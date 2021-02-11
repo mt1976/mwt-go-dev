@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -25,6 +27,16 @@ type WctPayload struct {
 	RequestParameters     string `json:"requestParameters"`
 	UniqueUID             string `json:"uniqueID"`
 	RequestResponseFormat string `json:"requestResponseFormat"`
+}
+
+//Page ...
+type Page struct {
+	Title        string
+	Body         string
+	RequestPath  string
+	ResponsePath string
+	NoResponses  int
+	Responses    string
 }
 
 //WctMessage is cheese
@@ -63,7 +75,7 @@ func main() {
 	fmt.Println("DONE!")
 	fmt.Printf("\n")
 
-	http.HandleFunc("/", helloWorld)
+	http.HandleFunc("/", helloWorldHandler)
 	http.ListenAndServe(":8080", nil)
 
 }
@@ -131,20 +143,41 @@ func getProperties(propFile string) map[string]string {
 	return wctProperties
 }
 
-func helloWorld(w http.ResponseWriter, r *http.Request) {
+func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println("WCT : Serving :", "helloWorld")
+	inUTL := r.URL.Path
+	if !(inUTL == "/favicon.ico") {
 
-	w.Header().Set("Content-Type", "text/html")
+		fmt.Println("WCT : Serving :", inUTL)
 
-	var propertiesFileName = "wct_Properties.cfg"
-	wctProperties := getProperties(propertiesFileName)
+		var propertiesFileName = "wct_Properties.cfg"
+		wctProperties := getProperties(propertiesFileName)
 
-	//	pageTitle := "<title>" + wctProperties["appname"] + "</title>"
-	fmt.Fprintf(w, "%s", "<title>"+wctProperties["appname"]+"</title>")
-	fmt.Fprintf(w, "%s", "<h1>"+wctProperties["appname"]+"</h1>")
-	fmt.Fprintf(w, "%s", "<em>requests </em>"+wctProperties["deliverpath"]+"<br>")
-	fmt.Fprintf(w, "%s", "<em>responses </em>"+wctProperties["receivepath"]+"<br>")
-	listResponsesweb(wctProperties, "json", w)
+		w.Header().Set("Content-Type", "text/html")
 
+		title := wctProperties["appname"]
+		//p, _ := loadPage(title)
+
+		noResp, respText := listResponseswebNew(wctProperties, "json", w)
+		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText}
+
+		renderTemplate(w, "page", p)
+	}
+}
+
+func renderTemplate(w http.ResponseWriter, tmpl string, p Page) {
+	t, _ := template.ParseFiles(tmpl + ".html")
+	t.Execute(w, p)
+}
+
+func listResponseswebNew(wctProperties map[string]string, responseFormat string, w http.ResponseWriter) (int, string) {
+
+	files := getResponses(wctProperties["receivepath"], responseFormat)
+	//	var noFound = "<em>Responses Found : </em><code>" + strconv.Itoa(len(files)) + "</code>"
+	noResponses := len(files)
+	var responseText bytes.Buffer
+	for _, f := range files {
+		responseText.WriteString(f + "\n")
+	}
+	return noResponses, responseText.String()
 }
