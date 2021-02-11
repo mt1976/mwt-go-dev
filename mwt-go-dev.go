@@ -17,6 +17,11 @@ import (
 	"github.com/jimlawless/cfg"
 )
 
+//WctMessage is cheese
+type WctMessage struct {
+	WctPayload WctPayload `json:"wctRequest"`
+}
+
 //WctPayload ...
 type WctPayload struct {
 	ApplicationToken      string `json:"appToken"`
@@ -37,11 +42,39 @@ type Page struct {
 	ResponsePath string
 	NoResponses  int
 	Responses    string
+	NoServices   int
+	Services     string
 }
 
-//WctMessage is cheese
-type WctMessage struct {
-	WctPayload WctPayload `json:"wctRequest"`
+//WctResponseMessage is cheese
+type WctResponseMessage struct {
+	WctReponsePayload WctResponsePayload `json:"wctResponse"`
+}
+
+//WctResponsePayload is cheese
+type WctResponsePayload struct {
+	RequestID            string `json:"requestID"`
+	RequestFileName      string `json:"requestFileName"`
+	RequestFilePath      string `json:"requestFilePath"`
+	RequestFileType      string `json:"requestFileType"`
+	RequestConsumed      string `json:"requestConsumed"`
+	RequestAction        string `json:"requestAction"`
+	RequestItem          string `json:"requestItem"`
+	RequestParameters    string `json:"requestParameters"`
+	ResponseID           string `json:"responseID"`
+	ResponseFileName     string `json:"responseFileName"`
+	ResponseFilePath     string `json:"responseFilePath"`
+	ResponseFileType     string `json:"responseFileType"`
+	ResponseEjected      string `json:"responseEjected"`
+	ResponseContentCount string `json:"responseContentCount"`
+	ResponseStatus       string `json:"responseStatus"`
+	ResponseContent      struct {
+		ResponseContentRow []string `json:"responseContentRow"`
+	} `json:"responseContent"`
+	RequestPayloadCount string `json:"requestPayloadCount"`
+	RequestPayload      struct {
+		RequestPayloadRow []string `json:"requestPayloadRow"`
+	} `json:"requestPayload"`
 }
 
 func main() {
@@ -65,7 +98,7 @@ func main() {
 
 	//fmt.Println(id.String())
 	generateMessage(wctProperties, responseFormat) //Calling generateMessage
-	generateMessage(wctProperties, responseFormat) //Calling generateMessage
+	//	generateMessage(wctProperties, responseFormat) //Calling generateMessage
 
 	//home := wctProperties["receivepath"]
 
@@ -159,7 +192,10 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 		//p, _ := loadPage(title)
 
 		noResp, respText := listResponseswebNew(wctProperties, "json", w)
-		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText}
+
+		noServices, servicesTest := getServices(wctProperties, "json")
+
+		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesTest}
 
 		renderTemplate(w, "page", p)
 	}
@@ -180,4 +216,66 @@ func listResponseswebNew(wctProperties map[string]string, responseFormat string,
 		responseText.WriteString(f + "\n")
 	}
 	return noResponses, responseText.String()
+}
+
+func getServices(wctProperties map[string]string, responseFormat string) (int, string) {
+
+	id := uuid.New()
+
+	resp := WctMessage{
+		WctPayload{
+			ApplicationToken:      wctProperties["applicationtoken"],
+			RequestID:             id.String(),
+			RequestAction:         "SERVICES",
+			UniqueUID:             wctProperties["appid"],
+			RequestResponseFormat: responseFormat,
+		},
+	}
+	js, _ := json.Marshal(resp)
+
+	//	fmt.Printf("\n")
+	//	fmt.Printf("%s", js)
+	//	fmt.Printf("\n")
+
+	var fileName = wctProperties["deliverpath"] + "/" + id.String() + "." + responseFormat
+	fmt.Println("Request Filename :", fileName)
+	//	fmt.Printf("\n")
+	_ = ioutil.WriteFile(fileName, js, 0644)
+
+	// Now we get the services array
+	var reponseName = wctProperties["receivepath"] + "/" + id.String() + "." + responseFormat
+	fmt.Println("Response Filename :", reponseName)
+
+	//content := ""
+	condition := false
+	//	text := ""
+	noServices := 999
+	servicesList := ""
+	var wibble WctResponseMessage
+	//	var nibble WctResponsePayload
+	for !condition {
+		fmt.Println("Polling file", reponseName)
+		content, _ := ioutil.ReadFile(reponseName)
+		text := string(content)
+		//	fmt.Println("text file", text)
+		if text != "" {
+			condition = true
+			if text != "" {
+				json.Unmarshal(content, &wibble)
+				fmt.Println(wibble.WctReponsePayload.ResponseContent)
+				fmt.Println(wibble.WctReponsePayload.ResponseContentCount)
+				//servicesList = wibble["reponsepayloadcount"]
+				var x = wibble.WctReponsePayload.ResponseContentCount
+				noServices, _ = strconv.Atoi(x)
+				for ii := 1; ii < noServices; ii++ {
+					servicesList += wibble.WctReponsePayload.ResponseContent.ResponseContentRow[ii] + "\n"
+				}
+				//servicesList = wibble.WctReponsePayload.ResponseContent.ResponseContentRow[1]
+				fmt.Println(servicesList)
+			}
+		}
+		//fmt.Println(text)
+	}
+
+	return noServices, servicesList
 }
