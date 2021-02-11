@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"path/filepath"
+	"strconv"
 
 	"github.com/mbndr/figlet4go"
 
@@ -55,29 +57,44 @@ func main() {
 
 	//home := wctProperties["receivepath"]
 
-	listResponses(wctProperties, responseFormat) //Call listResponses
+	listResponsescli(wctProperties, responseFormat) //Call listResponses
 
 	fmt.Printf("\n")
 	fmt.Println("DONE!")
 	fmt.Printf("\n")
 
+	http.HandleFunc("/", helloWorld)
+	http.ListenAndServe(":8080", nil)
+
 }
 
-func listResponses(wctProperties map[string]string, responseFormat string) {
-	files, err := filepath.Glob(wctProperties["receivepath"] + "/*." + responseFormat)
+func listResponsescli(wctProperties map[string]string, responseFormat string) {
+	files := getResponses(wctProperties["receivepath"], responseFormat)
+	fmt.Println("Responses Found :", len(files))
+	for _, f := range files {
+		fmt.Println("ID :", f)
+	}
+}
 
+func listResponsesweb(wctProperties map[string]string, responseFormat string, w http.ResponseWriter) {
+
+	files := getResponses(wctProperties["receivepath"], responseFormat)
+	var noFound = "<em>Responses Found : </em><code>" + strconv.Itoa(len(files)) + "</code>"
+	fmt.Fprintf(w, "%s", "<hr>")
+	fmt.Fprintf(w, "%s", noFound)
+	fmt.Fprintf(w, "%s", "<hr>")
+	for _, f := range files {
+		var outString = "<em>ID : </em><code>" + f + "</code><br>"
+		fmt.Fprintf(w, "%s", outString)
+	}
+}
+
+func getResponses(path string, responseFormat string) []string {
+	files, err := filepath.Glob(path + "/*." + responseFormat)
 	if err != nil {
-
 		log.Fatal(err)
 	}
-
-	fmt.Println("Responses Found :", len(files))
-
-	for _, f := range files {
-
-		fmt.Println("ID :", f)
-
-	}
+	return files
 }
 
 func generateMessage(wctProperties map[string]string, responseFormat string) {
@@ -112,4 +129,22 @@ func getProperties(propFile string) map[string]string {
 		log.Fatal(err)
 	}
 	return wctProperties
+}
+
+func helloWorld(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println("WCT : Serving :", "helloWorld")
+
+	w.Header().Set("Content-Type", "text/html")
+
+	var propertiesFileName = "wct_Properties.cfg"
+	wctProperties := getProperties(propertiesFileName)
+
+	//	pageTitle := "<title>" + wctProperties["appname"] + "</title>"
+	fmt.Fprintf(w, "%s", "<title>"+wctProperties["appname"]+"</title>")
+	fmt.Fprintf(w, "%s", "<h1>"+wctProperties["appname"]+"</h1>")
+	fmt.Fprintf(w, "%s", "<em>requests </em>"+wctProperties["deliverpath"]+"<br>")
+	fmt.Fprintf(w, "%s", "<em>responses </em>"+wctProperties["receivepath"]+"<br>")
+	listResponsesweb(wctProperties, "json", w)
+
 }
