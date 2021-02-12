@@ -45,18 +45,20 @@ type ServiceCatalogItem struct {
 	Parameters string
 	Helptext   string
 	isTitle    bool
+	CatalogID  int
 }
 
 //Page ...
 type Page struct {
-	Title        string
-	Body         string
-	RequestPath  string
-	ResponsePath string
-	NoResponses  int
-	Responses    string
-	NoServices   int
-	Services     string
+	Title          string
+	Body           string
+	RequestPath    string
+	ResponsePath   string
+	NoResponses    int
+	Responses      string
+	NoServices     int
+	Services       string
+	ServiceCatalog []ServiceCatalogItem
 }
 
 //WctResponseMessage is cheese
@@ -96,7 +98,7 @@ func main() {
 	//	asciiOptions := figlet4go.NewRenderOptions()
 
 	var propertiesFileName = "config/wct_Properties.cfg"
-	var responseFormat = "json"
+	//var responseFormat = "json"
 	//	wctProperties := make(map[string]string)
 	wctProperties := getProperties(propertiesFileName)
 	//fmt.Println(wctProperties)
@@ -107,10 +109,10 @@ func main() {
 	fmt.Print(renderStr)
 
 	fmt.Println("Delivery Path :", wctProperties["deliverpath"])
-	fmt.Println("Responce Path :", wctProperties["receivepath"])
+	fmt.Println("Reponse Path :", wctProperties["receivepath"])
 
 	//fmt.Println(id.String())
-	generateMessage(wctProperties, responseFormat) //Calling generateMessage
+	//generateMessage(wctProperties, responseFormat) //Calling generateMessage
 	//	generateMessage(wctProperties, responseFormat) //Calling generateMessage
 
 	//home := wctProperties["receivepath"]
@@ -206,10 +208,10 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
 		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
 
-		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList}
+		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog}
 
-		fmt.Println("serviceCatalog", serviceCatalog)
-
+		//fmt.Println("serviceCatalog", serviceCatalog)
+		fmt.Println("PAGE=", p.ServiceCatalog)
 		renderTemplate(w, "page", p)
 	}
 }
@@ -301,8 +303,8 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 					} else {
 						item.isTitle = true
 						servicesList += item.Text + "\n"
-
 					}
+					item.CatalogID = ii
 
 					//fmt.Println("CatalogItem", item)
 
