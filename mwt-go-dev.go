@@ -37,7 +37,7 @@ type WctPayload struct {
 	RequestResponseFormat string `json:"requestResponseFormat"`
 }
 
-//ServiceCatalog ...
+//ServiceCatalogItem ...
 type ServiceCatalogItem struct {
 	Text       string
 	Action     string
@@ -95,7 +95,7 @@ func main() {
 	ascii := figlet4go.NewAsciiRender()
 	//	asciiOptions := figlet4go.NewRenderOptions()
 
-	var propertiesFileName = "wct_Properties.cfg"
+	var propertiesFileName = "config/wct_Properties.cfg"
 	var responseFormat = "json"
 	//	wctProperties := make(map[string]string)
 	wctProperties := getProperties(propertiesFileName)
@@ -194,7 +194,7 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Println("WCT : Serving :", inUTL)
 
-		var propertiesFileName = "wct_Properties.cfg"
+		var propertiesFileName = "config/wct_Properties.cfg"
 		wctProperties := getProperties(propertiesFileName)
 
 		w.Header().Set("Content-Type", "text/html")
