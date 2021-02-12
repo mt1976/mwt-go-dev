@@ -8,8 +8,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
+	"time"
 
 	"github.com/mbndr/figlet4go"
 
@@ -32,6 +35,16 @@ type WctPayload struct {
 	RequestParameters     string `json:"requestParameters"`
 	UniqueUID             string `json:"uniqueID"`
 	RequestResponseFormat string `json:"requestResponseFormat"`
+}
+
+//ServiceCatalog ...
+type ServiceCatalogItem struct {
+	Text       string
+	Action     string
+	Item       string
+	Parameters string
+	Helptext   string
+	isTitle    bool
 }
 
 //Page ...
@@ -102,14 +115,12 @@ func main() {
 
 	//home := wctProperties["receivepath"]
 
-	listResponsescli(wctProperties, responseFormat) //Call listResponses
-
-	fmt.Printf("\n")
-	fmt.Println("DONE!")
-	fmt.Printf("\n")
+	//listResponsescli(wctProperties, responseFormat) //Call listResponses
 
 	http.HandleFunc("/", helloWorldHandler)
-	http.ListenAndServe(":8080", nil)
+	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
+	httpPort := ":" + wctProperties["port"]
+	http.ListenAndServe(httpPort, nil)
 
 }
 
@@ -193,9 +204,11 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
 		noResp, respText := listResponseswebNew(wctProperties, "json", w)
 
-		noServices, servicesTest := getServices(wctProperties, "json")
+		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
 
-		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesTest}
+		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList}
+
+		fmt.Println("serviceCatalog", serviceCatalog)
 
 		renderTemplate(w, "page", p)
 	}
@@ -218,7 +231,10 @@ func listResponseswebNew(wctProperties map[string]string, responseFormat string,
 	return noResponses, responseText.String()
 }
 
-func getServices(wctProperties map[string]string, responseFormat string) (int, string) {
+func getServices(wctProperties map[string]string, responseFormat string) (int, string, []ServiceCatalogItem) {
+
+	// serviceCatalog is an array of Service Catalog Items
+	var serviceCatalog []ServiceCatalogItem
 
 	id := uuid.New()
 
@@ -243,8 +259,10 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 	_ = ioutil.WriteFile(fileName, js, 0644)
 
 	// Now we get the services array
-	var reponseName = wctProperties["receivepath"] + "/" + id.String() + "." + responseFormat
-	fmt.Println("Response Filename :", reponseName)
+	var responseFileName = wctProperties["receivepath"] + "/" + id.String() + "." + responseFormat
+	var processedFileName = wctProperties["processedpath"] + "/" + id.String() + "." + responseFormat
+	fmt.Println("Response Filename :", responseFileName)
+	fmt.Println("Processed Filename :", processedFileName)
 
 	//content := ""
 	condition := false
@@ -254,28 +272,63 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 	var wibble WctResponseMessage
 	//	var nibble WctResponsePayload
 	for !condition {
-		fmt.Println("Polling file", reponseName)
-		content, _ := ioutil.ReadFile(reponseName)
+		fmt.Println("Polling file", responseFileName)
+		content, _ := ioutil.ReadFile(responseFileName)
 		text := string(content)
 		//	fmt.Println("text file", text)
 		if text != "" {
 			condition = true
 			if text != "" {
 				json.Unmarshal(content, &wibble)
-				fmt.Println(wibble.WctReponsePayload.ResponseContent)
-				fmt.Println(wibble.WctReponsePayload.ResponseContentCount)
+				//			fmt.Println("responseContent", wibble.WctReponsePayload.ResponseContent)
+				//			fmt.Println("responseContentCount", wibble.WctReponsePayload.ResponseContentCount)
 				//servicesList = wibble["reponsepayloadcount"]
 				var x = wibble.WctReponsePayload.ResponseContentCount
 				noServices, _ = strconv.Atoi(x)
-				for ii := 1; ii < noServices; ii++ {
-					servicesList += wibble.WctReponsePayload.ResponseContent.ResponseContentRow[ii] + "\n"
+				for ii := 0; ii < noServices; ii++ {
+					//servicesList += wibble.WctReponsePayload.ResponseContent.ResponseContentRow[ii] + "\n"
+					serviceContent := strings.Split(wibble.WctReponsePayload.ResponseContent.ResponseContentRow[ii], "|")
+
+					var item ServiceCatalogItem
+					item.Text = serviceContent[0]
+					item.Action = serviceContent[1]
+					item.Item = serviceContent[2]
+					item.Parameters = serviceContent[3]
+					item.Helptext = serviceContent[4]
+					if item.Action != "" {
+						item.isTitle = false
+						servicesList += "* " + item.Text + "\n"
+					} else {
+						item.isTitle = true
+						servicesList += item.Text + "\n"
+
+					}
+
+					//fmt.Println("CatalogItem", item)
+
+					serviceCatalog = append(serviceCatalog, item)
 				}
 				//servicesList = wibble.WctReponsePayload.ResponseContent.ResponseContentRow[1]
-				fmt.Println(servicesList)
+				//fmt.Println(servicesList)
 			}
+			fmt.Println("Delete file", responseFileName)
+
+			var err = os.Remove(responseFileName)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			err = ioutil.WriteFile(processedFileName, content, 0644)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+		} else {
+
+			pollingInterval, _ := strconv.Atoi(wctProperties["pollinginterval"])
+			fmt.Println("Snoooze... Zzzzzz.... ", pollingInterval)
+			time.Sleep(time.Duration(pollingInterval) * time.Second)
 		}
 		//fmt.Println(text)
 	}
 
-	return noServices, servicesList
+	return noServices, servicesList, serviceCatalog
 }
