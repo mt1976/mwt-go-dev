@@ -54,6 +54,7 @@ type Page struct {
 	Body           string
 	RequestPath    string
 	ResponsePath   string
+	ProcessedPath  string
 	NoResponses    int
 	Responses      string
 	NoServices     int
@@ -208,7 +209,7 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
 		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
 
-		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog}
+		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], ProcessedPath: wctProperties["processedpath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog}
 
 		//fmt.Println("serviceCatalog", serviceCatalog)
 		fmt.Println("PAGE=", p.ServiceCatalog)
