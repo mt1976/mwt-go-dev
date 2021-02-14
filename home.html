@@ -1,0 +1,116 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <br>
+    <div class="jumbotron">
+      <h1>{{.Title}}</h1>
+      <p>This is some more text for the header</p>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Actions</div>
+      <div class="panel-body">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#config">Configuration</button>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#responses">Responses <span class="badge">{{.NoResponses}}</span></button>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#services">Services <span class="badge">{{.NoServices}}</span></button>
+
+          <button type="submit" value="Save" class="btn btndefault">Save</button>
+          <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
+        </div>
+      </div>
+    </div>
+    <div id="config" class="collapse">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Configuration</div>
+        <div class="panel-body">
+
+          <label for="requestPath">Request Path :</label>
+          <input type="text" id="requestPath" name="requestPath" value="{{.RequestPath}}" disabled size="60" class="form-control">
+          <br>
+          <label for="responsePath">Response Path :</label>
+          <input type="text" id="responsePath" name="responsePath" value="{{.ResponsePath}}" disabled size="60" class="form-control">
+          <br>
+
+          <label for="processedPath">Processed Path :</label>
+          <input type="text" id="processedPath" name="processedPath" value="{{.ProcessedPath}}" disabled size="60" class="form-control">
+          <br>
+
+
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#config">Close</button>
+        </div>
+      </div>
+    </div>
+    <div id="responses" class="collapse">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Responses</div>
+        <div class="panel-body">
+          <label for="noResponses">No. Responses :</label>
+          <input type="number" id="noResponses" name="noResponses" value="{{.NoResponses}}" disabled size="4" class="form-control">
+          <br>
+          <label for="responses">Responses :</label>
+          <textarea id="responses" name="responses" rows="10" cols="100" class="form-control">{{printf "%s" .Responses}}</textarea><br>
+          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#responses">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="services" class="collapse">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Services</div>
+        <div class="panel-body">
+
+
+          <label for="noServices">No. Services Available :</label>
+          <input type="number" id="noServices" name="noServices" value="{{.NoServices}}" disabled size="4" class="form-control">
+          <br>
+          <label for="services">Services :</label>
+          <div class="well">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th>Description</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{range .ServiceCatalog}}
+                <tr>
+                  <td class="text-center">{{.CatalogID}}</td>
+                  <td class="align-middle">{{.Text}}</td>
+                  <td class="align-middle">
+                    <form action="/actionItem/{{.CatalogID}}?action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
+                      <button type="submit" value="{{.CatalogID}}" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
+                          launch
+                        </span></button>
+                    </form>
+                  </td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#services">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</body>

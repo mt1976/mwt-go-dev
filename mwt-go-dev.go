@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -48,8 +47,8 @@ type ServiceCatalogItem struct {
 	CatalogID  int
 }
 
-//Page ...
-type Page struct {
+//HomePage ...
+type HomePage struct {
 	Title          string
 	Body           string
 	RequestPath    string
@@ -120,7 +119,8 @@ func main() {
 
 	//listResponsescli(wctProperties, responseFormat) //Call listResponses
 
-	http.HandleFunc("/", helloWorldHandler)
+	http.HandleFunc("/", homePageHandler)
+	http.HandleFunc("/favicon.ico", faviconHandler)
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
@@ -190,7 +190,7 @@ func getProperties(propFile string) map[string]string {
 	return wctProperties
 }
 
-func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
+func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	if !(inUTL == "/favicon.ico") {
@@ -203,23 +203,18 @@ func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
 		title := wctProperties["appname"]
-		//p, _ := loadPage(title)
+		//p, _ := loadHomePage(title)
 
 		noResp, respText := listResponseswebNew(wctProperties, "json", w)
 
 		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
 
-		p := Page{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], ProcessedPath: wctProperties["processedpath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog}
+		p := HomePage{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], ProcessedPath: wctProperties["processedpath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog}
 
 		//fmt.Println("serviceCatalog", serviceCatalog)
-		fmt.Println("PAGE=", p.ServiceCatalog)
-		renderTemplate(w, "page", p)
+		fmt.Println("HomePage=", p.ServiceCatalog)
+		renderTemplate(w, "home", p)
 	}
-}
-
-func renderTemplate(w http.ResponseWriter, tmpl string, p Page) {
-	t, _ := template.ParseFiles(tmpl + ".html")
-	t.Execute(w, p)
 }
 
 func listResponseswebNew(wctProperties map[string]string, responseFormat string, w http.ResponseWriter) (int, string) {
