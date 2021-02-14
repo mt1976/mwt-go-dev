@@ -54,6 +54,9 @@ func main() {
 
 	http.HandleFunc("/", homePageHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
+	http.HandleFunc("/previewRequest/", previewRequestHandler)
+	http.HandleFunc("/executeRequest/", executeRequestHandler)
+
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
@@ -91,7 +94,6 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	if !(inUTL == "/favicon.ico") {
 
 		fmt.Println("WCT : Serving :", inUTL)
-
 		var propertiesFileName = "config/wct_Properties.cfg"
 		wctProperties := getProperties(propertiesFileName)
 

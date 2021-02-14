@@ -21,6 +21,7 @@ type ServiceCatalogItem struct {
 	Helptext   string
 	isTitle    bool
 	CatalogID  int
+	UUID       string
 }
 
 func getServices(wctProperties map[string]string, responseFormat string) (int, string, []ServiceCatalogItem) {
@@ -95,7 +96,8 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 						servicesList += item.Text + "\n"
 					}
 					item.CatalogID = ii
-
+					requestID := uuid.New()
+					item.UUID = requestID.String()
 					//fmt.Println("CatalogItem", item)
 
 					serviceCatalog = append(serviceCatalog, item)

@@ -1,0 +1,98 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <br>
+    <div class="jumbotron">
+      <h1>{{.Title}}</h1>
+      <p>{{.Description}}</p>
+      <p>
+        <h3>Request Type = "{{.SudoID}}"</h3>
+      </p>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Actions</div>
+      <div class="panel-body">
+
+
+
+        <div class="btn-group">
+
+
+
+          <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
+
+          <button type="button" class="btn btn-danger" onclick="window.close()">Done</button>
+
+          <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Properties</strong></div>
+      <div class="panel-body">
+        <label for="DeliverTo">Delivery Path :</label>
+        <input type="text" id="DeliverTo" name="DeliverTo" value="{{.DeliverTo}}" disabled size="60" class="form-control">
+        <br>
+        <label for="DeliverFilename">Delivery Filename :</label>
+        <input type="text" id="DeliverTo" name="DeliverFilename" value="{{.RequestID}}.{{.RequestResponseFormat}}" disabled size="60" class="form-control">
+        <br>
+      </div>
+    </div>
+    <div id="requestMessage">
+
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Request Content</strong></div>
+        <div class="panel-body">
+
+          <label for="ApplicationToken">ApplicationToken :</label>
+          <input type="text" id="ApplicationToken" name="ApplicationToken" value="{{.ApplicationToken}}" disabled size="60" class="form-control">
+          <br>
+          <label for="SessionToken">SessionToken :</label>
+          <input type="text" id="SessionToken" name="SessionToken" value="{{.SessionToken}}" disabled size="60" class="form-control">
+          <br>
+          <label for="RequestID">RequestID :</label>
+          <input type="text" id="RequestID" name="RequestID" value="{{.RequestID}}" disabled size="60" class="form-control">
+          <br>
+          <label for="RequestAction">RequestAction :</label>
+          <input type="text" id="RequestAction" name="RequestAction" value="{{.RequestAction}}" disabled size="60" class="form-control">
+          <br>
+          <label for="RequestItem">RequestItem :</label>
+          <input type="text" id="RequestItem" name="RequestItem" value="{{.RequestItem}}" disabled size="60" class="form-control">
+          <br>
+          <label for="RequestParameters">RequestParameters :</label>
+          <input type="text" id="RequestParameters" name="RequestParameters" value="{{.RequestParameters}}" disabled size="60" class="form-control">
+          <br>
+          <label for="UniqueUID">UniqueUID :</label>
+          <input type="text" id="UniqueUID" name="RequestParameters" value="{{.UniqueUID}}" disabled size="60" class="form-control">
+          <br>
+          <label for="RequestResponseFormat">RequestResponseFormat :</label>
+          <input type="text" id="RequestResponseFormat" name="RequestResponseFormat" value="{{.RequestResponseFormat}}" disabled size="60" class="form-control">
+          <br>
+
+        </div>
+      </div>
+    </div>
+
+    <form action="/executeRequest?id={{.SudoID}}&uuid={{.RequestID}}&action={{.RequestAction}}&item={{.RequestItem}}&parameters={{.RequestParameters}}" method="POST">
+    <button type="submit" value="" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
+        launch
+      </span>
+    </button>
+    </form>
+
+  </div>
+</body>

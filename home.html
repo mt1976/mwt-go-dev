@@ -92,14 +92,21 @@
               <tbody>
                 {{range .ServiceCatalog}}
                 <tr>
-                  <td class="text-center">{{.CatalogID}}</td>
                   <td class="align-middle">{{.Text}}</td>
-                  <td class="align-middle">
-                    <form action="/actionItem/{{.CatalogID}}?action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
+                  <td class="">
+
+
+                    <form action="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
                       <button type="submit" value="{{.CatalogID}}" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
                           launch
                         </span></button>
                     </form>
+                    <form action="/previewRequest?id={{.CatalogID}}" method="POST">
+                      <button type="submit" value="{{.CatalogID}}" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
+                          visibility
+                        </span></button>
+                    </form>
+                    </div>
                   </td>
                 </tr>
                 {{end}}
