@@ -91,3 +91,13 @@ func getTemplateID(tmpl string) string {
 	fmt.Println("HTMLPAGE", templateName)
 	return templateName
 }
+
+func pickEpochToDateTimeString(pickEpoch string) string {
+	pickEpochLayout := "20060102T150405"
+	t, err := time.Parse(pickEpochLayout, pickEpoch)
+	if err != nil {
+		fmt.Println(err)
+	}
+	tString := t.Format(time.RFC1123)
+	return tString
+}

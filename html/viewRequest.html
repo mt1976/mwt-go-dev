@@ -13,47 +13,32 @@
   <!-- Add icon library -->
 
   <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
-  <link href="../assets/custom.css" rel="stylesheet">
+  <link href="../assets/custom.css" type="text/css" rel="stylesheet">
 
 </head>
 
 <body>
+  <nav class="navbar sticky-top navbar-light bg-light">
+    <a class="navbar-brand" href="#">{{.Title}}</a>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px"></i><br>Home</button>
+      <button type="button" class="btn btn-primary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i><br>Print</button>
+
+      <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
+    </div>
+  </nav>
   <div class="container-fluid">
     <br>
-    <div class="jumbotron">
-      <h1>{{.Title}}</h1>
-      <p>{{.Description}}</p>
-      <p>
-        <h3>Request Type = "{{.SudoID}}"</h3>
-      </p>
-    </div>
+
 
     <div class="card">
-      <div class="card-header">Actions</div>
+      <div class="card-header"><strong>Purpose</strong></div>
       <div class="card-body">
-        <div class="btn-group">
-
-          <button type="button" class="btn btn-primary" onclick="window.print()"><i class="fas fa-print" style="font-size: 18px"></i> Print</button>
-
-          <button type="button" class="btn btn-danger" onclick="location.href='../'"><i class="fas fa-home" style="font-size: 18px"></i> Back</button>
-
-          <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
-        </div>
+        <p>{{.Description}}</p>
       </div>
     </div>
     <br>
-    <div class="card">
-      <div class="card-header"><strong>Properties</strong></div>
-      <div class="card-body">
-        <label for="DeliverTo">Delivery Path :</label>
-        <input type="text" id="DeliverTo" name="DeliverTo" value="{{.DeliverTo}}" disabled size="60" class="form-control">
-        <br>
-        <label for="DeliverFilename">Delivery Filename :</label>
-        <input type="text" id="DeliverTo" name="DeliverFilename" value="{{.RequestID}}.{{.RequestResponseFormat}}" disabled size="60" class="form-control">
-        <br>
-      </div>
-    </div>
-    <br>
+
     <div id="requestMessage">
       <div class="card">
         <div class="card-header"><strong>Request Content</strong></div>
@@ -86,11 +71,23 @@
         </div>
       </div>
     </div>
-<br>
+    <br>
+    <div class="card">
+      <div class="card-header"><strong>Properties</strong></div>
+      <div class="card-body">
+        <label for="DeliverTo">Delivery Path :</label>
+        <input type="text" id="DeliverTo" name="DeliverTo" value="{{.DeliverTo}}" disabled size="60" class="form-control">
+        <br>
+        <label for="DeliverFilename">Delivery Filename :</label>
+        <input type="text" id="DeliverTo" name="DeliverFilename" value="{{.RequestID}}.{{.RequestResponseFormat}}" disabled size="60" class="form-control">
+        <br>
+      </div>
+    </div>
+    <br>
     <form action="/executeRequest?id={{.SudoID}}&uuid={{.RequestID}}&action={{.RequestAction}}&item={{.RequestItem}}&parameters={{.RequestParameters}}" method="POST">
       <button type="submit" value="" class="btn btn-outline-primary btn-block">
-<i class="far fa-paper-plane" style="font-size: 22px"></i>
-</button>
+        <i class="far fa-paper-plane" style="font-size: 22px"></i>
+      </button>
     </form>
 
   </div>

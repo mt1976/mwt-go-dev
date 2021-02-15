@@ -145,6 +145,9 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	respC := arrToString(thisPayload.ResponseContent.ResponseContentRow)
 	reqC := arrToString(thisPayload.RequestPayload.RequestPayloadRow)
+
+	outRequestConsumed := pickEpochToDateTimeString(thisPayload.RequestConsumed)
+	outResponseEjected := pickEpochToDateTimeString(thisPayload.ResponseEjected)
 	pageResponseView := PageResponseView{
 		Title:                title,
 		Description:          "Detail For : " + getURLparam(r, "uuid"),
@@ -152,7 +155,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 		RequestFileName:      thisPayload.RequestFileName,
 		RequestFilePath:      thisPayload.RequestFilePath,
 		RequestFileType:      thisPayload.RequestFileType,
-		RequestConsumed:      thisPayload.RequestConsumed,
+		RequestConsumed:      outRequestConsumed,
 		RequestAction:        thisPayload.RequestAction,
 		RequestItem:          thisPayload.RequestItem,
 		RequestParameters:    thisPayload.RequestParameters,
@@ -160,7 +163,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 		ResponseFileName:     thisPayload.ResponseFileName,
 		ResponseFilePath:     thisPayload.ResponseFilePath,
 		ResponseFileType:     thisPayload.ResponseFileType,
-		ResponseEjected:      thisPayload.ResponseEjected,
+		ResponseEjected:      outResponseEjected,
 		ResponseContentCount: thisPayload.ResponseContentCount,
 		ResponseStatus:       thisPayload.ResponseStatus,
 		ResponseContent:      html.UnescapeString(respC),

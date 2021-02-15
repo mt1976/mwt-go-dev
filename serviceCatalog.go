@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -87,7 +88,7 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 					item.Action = serviceContent[1]
 					item.Item = serviceContent[2]
 					item.Parameters = serviceContent[3]
-					item.Helptext = serviceContent[4]
+					item.Helptext = html.UnescapeString(serviceContent[4])
 					if item.Action != "" {
 						item.isTitle = false
 						servicesList += "* " + item.Text + "\n"
