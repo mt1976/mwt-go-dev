@@ -25,6 +25,8 @@
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#config">Configuration</button>
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#responses">Responses <span class="badge">{{.NoResponses}}</span></button>
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#servicesInfo">Services <span class="badge">{{.NoServices}}</span></button>
+          <button type="button" class="btn btn-warning" onclick="location.href='/clearResponses'">Clear Responses</button>
+          <button type="button" class="btn btn-danger" onclick="location.href='/clearQueues'">Clear Queues</button>
 
           <!-- <button type="submit" value="Save" class="btn btndefault">Save</button> -->
           <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
@@ -83,6 +85,12 @@
                       <button type="submit" value="{{.ResponseID}}" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
                           visibility
                         </span></button>
+                    </form>
+                    <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
+                      <button type="submit" value="" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
+                          delete_outline
+                        </span>
+                      </button>
                     </form>
                   </td>
                 </tr>

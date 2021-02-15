@@ -2,11 +2,17 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 
 	"github.com/mbndr/figlet4go"
 
 	"github.com/google/uuid"
+)
+
+//CONST_CONFIG_FILE is cheese
+const (
+	CONST_CONFIG_FILE = "config/properties.cfg"
 )
 
 //HomePage ...
@@ -30,10 +36,10 @@ func main() {
 	ascii := figlet4go.NewAsciiRender()
 	//	asciiOptions := figlet4go.NewRenderOptions()
 
-	var propertiesFileName = "config/wct_Properties.cfg"
+	//var propertiesFileName = getAppPropertiesFile
 	//var responseFormat = "json"
 	//	wctProperties := make(map[string]string)
-	wctProperties := getProperties(propertiesFileName)
+	wctProperties := getProperties(CONST_CONFIG_FILE)
 	//fmt.Println(wctProperties)
 
 	// The underscore would be an error
@@ -57,6 +63,8 @@ func main() {
 	http.HandleFunc("/previewRequest/", previewRequestHandler)
 	http.HandleFunc("/executeRequest/", executeRequestHandler)
 	http.HandleFunc("/viewResponse/", viewResponseHandler)
+	http.HandleFunc("/deleteResponse/", deleteResponseHandler)
+	http.HandleFunc("/clearQueues/", clearQueuesHandler)
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]
@@ -86,10 +94,10 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	if !(inUTL == "/favicon.ico") {
-
+		tmpl := "home"
 		fmt.Println("WCT : Serving :", inUTL)
-		var propertiesFileName = "config/wct_Properties.cfg"
-		wctProperties := getProperties(propertiesFileName)
+		//		var propertiesFileName = "config/properties.cfg"
+		wctProperties := getProperties(CONST_CONFIG_FILE)
 
 		w.Header().Set("Content-Type", "text/html")
 
@@ -105,6 +113,8 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
 		//fmt.Println("serviceCatalog", serviceCatalog)
 		//fmt.Println("HomePage=", p.ServiceCatalog)
-		renderTemplate(w, "home", p)
+
+		t, _ := template.ParseFiles(getTemplateID(tmpl))
+		t.Execute(w, p)
 	}
 }

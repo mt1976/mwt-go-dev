@@ -47,8 +47,7 @@ type RequestViewPage struct {
 
 func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
-	var propertiesFileName = "config/wct_Properties.cfg"
-	wctProperties := getProperties(propertiesFileName)
+	wctProperties := getProperties(CONST_CONFIG_FILE)
 	tmpl := "viewRequest"
 	inUTL := r.URL.Path
 	requestID := uuid.New()
@@ -82,15 +81,16 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Page Data", pageRequestView)
 
-	t, _ := template.ParseFiles(tmpl + ".html")
+	//thisTemplate:= getTemplateID(tmpl)
+	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageRequestView)
 
 }
 
 func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
-	var propertiesFileName = "config/wct_Properties.cfg"
-	wctProperties := getProperties(propertiesFileName)
+	//var propertiesFileName = "config/properties.cfg"
+	wctProperties := getProperties(CONST_CONFIG_FILE)
 	//	tmpl := "executeRequest"
 	inUTL := r.URL.Path
 
@@ -133,9 +133,6 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println("Page Data", pageRequestView)
-
-	//	t, _ := template.ParseFiles(tmpl + ".html")
-	//	t.Execute(w, pageRequestView)
 
 	fmt.Println("payload=", dispatchMessage)
 

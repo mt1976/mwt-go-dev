@@ -9,9 +9,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strconv"
-	"strings"
 )
 
 //WctResponseMessage is cheese
@@ -124,8 +124,8 @@ func listResponseswebNew(wctProperties map[string]string, responseFormat string,
 
 func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
-	var propertiesFileName = "config/wct_Properties.cfg"
-	wctProperties := getProperties(propertiesFileName)
+	//var propertiesFileName = "config/properties.cfg"
+	wctProperties := getProperties(CONST_CONFIG_FILE)
 	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -171,7 +171,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Page Data", pageResponseView)
 
-	t, _ := template.ParseFiles(tmpl + ".html")
+	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageResponseView)
 
 }
@@ -198,6 +198,49 @@ func getResponse(responseID string, wctProperties map[string]string) WctResponse
 
 	return returnPayload
 }
-func arrToString(strArray []string) string {
-	return strings.Join(strArray, "\n")
+
+func deleteResponse(responseID string, wctProperties map[string]string) (err error) {
+	fmt.Println("XXXXXXX - DELETE RESPONSE - XXXXXXX")
+	fullFilename := wctProperties["receivepath"] + "/" + responseID + "." + wctProperties["responseformat"]
+	fmt.Println("PATHTO:", fullFilename)
+
+	err = os.Remove(fullFilename)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	return err
+}
+
+func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
+
+	//var propertiesFileName = "config/properties.cfg"
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+	//	tmpl := "viewResponse"
+	inUTL := r.URL.Path
+	//requestID := uuid.New()
+
+	fmt.Println("WCT : Serving :", inUTL)
+
+	err := deleteResponse(getURLparam(r, "responseID"), wctProperties)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	homePageHandler(w, r)
+
+}
+
+func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
+
+	//var propertiesFileName = "config/properties.cfg"
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+	//	tmpl := "viewResponse"
+	inUTL := r.URL.Path
+	//requestID := uuid.New()
+
+	fmt.Println("WCT : Serving :", inUTL)
+
+	RemoveContents(wctProperties["receivepath"])
+
+	homePageHandler(w, r)
+
 }

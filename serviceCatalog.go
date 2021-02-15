@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"os"
 	"strconv"
 	"strings"
 
@@ -106,12 +105,12 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 				//servicesList = wibble.WctReponsePayload.ResponseContent.ResponseContentRow[1]
 				//fmt.Println(servicesList)
 			}
-			fmt.Println("Delete file", responseFileName)
 
-			var err = os.Remove(responseFileName)
+			err := deleteResponse(id.String(), wctProperties)
 			if err != nil {
 				fmt.Println(err.Error())
 			}
+
 			err = ioutil.WriteFile(processedFileName, content, 0644)
 			if err != nil {
 				fmt.Println(err.Error())
