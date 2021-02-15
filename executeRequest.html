@@ -1,6 +1,6 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{.Title}}</title>
+  <title>{{.Title}} - {{.PageTitle}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -19,12 +19,13 @@
       <h1>{{.Title}}</h1>
       <p>{{.Description}}</p>
       <p>
-        <h3>Executing Request "{{.RequestID}}"</h3>
+        <h3>Dispatching Request "{{.RequestID}}"</h3>
       </p>
     </div>
 
 
-
   </div>
-
+  <div class="mx-auto" style="width: 200px;">
+  <center><img src="assets/wctSpinner.gif" alt="spiiner"></center>
+  </div>
 </body>

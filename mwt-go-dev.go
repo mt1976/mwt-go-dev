@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/mbndr/figlet4go"
@@ -19,10 +17,12 @@ type HomePage struct {
 	ResponsePath   string
 	ProcessedPath  string
 	NoResponses    int
-	Responses      string
+	Responses      []WctResponsePayload
 	NoServices     int
 	Services       string
 	ServiceCatalog []ServiceCatalogItem
+	Description    string
+	ResponseType   string
 }
 
 func main() {
@@ -56,6 +56,7 @@ func main() {
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/previewRequest/", previewRequestHandler)
 	http.HandleFunc("/executeRequest/", executeRequestHandler)
+	http.HandleFunc("/viewResponse/", viewResponseHandler)
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]
@@ -76,16 +77,9 @@ func generateMessage(wctProperties map[string]string, responseFormat string) {
 			RequestResponseFormat: responseFormat,
 		},
 	}
-	js, _ := json.Marshal(resp)
 
-	//	fmt.Printf("\n")
-	//	fmt.Printf("%s", js)
-	//	fmt.Printf("\n")
+	deliverRequest(resp, wctProperties["deliverpath"], id.String(), responseFormat)
 
-	var fileName = wctProperties["deliverpath"] + "/" + id.String() + "." + responseFormat
-	fmt.Println("Request Filename :", fileName)
-	//	fmt.Printf("\n")
-	_ = ioutil.WriteFile(fileName, js, 0644)
 }
 
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
@@ -100,13 +94,14 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
 		title := wctProperties["appname"]
+
 		//p, _ := loadHomePage(title)
 
-		noResp, respText := listResponseswebNew(wctProperties, "json", w)
+		noResp, _, respList := listResponseswebNew(wctProperties, "json", w)
 
 		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
 
-		p := HomePage{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], ProcessedPath: wctProperties["processedpath"], NoResponses: noResp, Responses: respText, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog}
+		p := HomePage{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], ProcessedPath: wctProperties["processedpath"], NoResponses: noResp, Responses: respList, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog, Description: "A description of the homepage.", ResponseType: wctProperties["responseformat"]}
 
 		//fmt.Println("serviceCatalog", serviceCatalog)
 		//fmt.Println("HomePage=", p.ServiceCatalog)

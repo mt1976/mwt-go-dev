@@ -1,0 +1,124 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Title}} - {{.PageTitle}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <br>
+    <div class="jumbotron">
+      <h1>{{.Title}}</h1>
+      <p>{{.Description}}</p>
+      <p>
+        <h3>Response = "{{.ResponseID}}"</h3>
+      </p>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Actions</div>
+      <div class="panel-body">
+
+
+
+        <div class="btn-group">
+
+
+
+          <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
+
+          <button type="button" class="btn btn-danger" onclick="location.href='../'">Back</button>
+
+          <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Properties</strong></div>
+      <div class="panel-body">
+        <label for="DeliverTo">Response Path :</label>
+        <input type="text" id="DeliverTo" name="DeliverTo" value="{{.ResponseFilePath}}" disabled size="60" class="form-control">
+        <br>
+        <label for="DeliverFilename">Response Filename :</label>
+        <input type="text" id="DeliverFilename" name="DeliverFilename" value="{{.ResponseFileName}}" disabled size="60" class="form-control">
+        <br>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Response Content</strong></div>
+      <div class="panel-body">
+        <label for="RequestRID">Request ID :</label>
+        <input type="text" id="RequestRID" name="RequestRID" value="{{.RequestRID}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestFileName">RequestFileName :</label>
+        <input type="text" id="RequestFileName" name="RequestFileName" value="{{.RequestFileName}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestFilePath">RequestFilePath :</label>
+        <input type="text" id="RequestFilePath" name="RequestFilePath" value="{{.RequestFilePath}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestFileType">RequestFileType :</label>
+        <input type="text" id="RequestFileType" name="RequestFileType" value="{{.RequestFileType}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestConsumed">RequestConsumed :</label>
+        <input type="text" id="RequestConsumed" name="RequestConsumed" value="{{.RequestConsumed}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestAction">RequestAction :</label>
+        <input type="text" id="RequestAction" name="RequestAction" value="{{.RequestAction}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestItem">RequestItem :</label>
+        <input type="text" id="RequestItem" name="RequestItem" value="{{.RequestItem}}" disabled size="60" class="form-control">
+        <br>
+
+        <label for="RequestParameters">RequestParameters :</label>
+        <input type="text" id="RequestParameters" name="RequestParameters" value="{{.RequestParameters}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseID">ResponseID :</label>
+        <input type="text" id="ResponseID" name="ResponseID" value="{{.ResponseID}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseFileName">ResponseFileName :</label>
+        <input type="text" id="ResponseFileName" name="ResponseFileName" value="{{.ResponseFileName}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseFilePath">ResponseFilePath :</label>
+        <input type="text" id="ResponseFilePath" name="ResponseFilePath" value="{{.ResponseFilePath}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseFileType">ResponseFileType :</label>
+        <input type="text" id="ResponseFileType" name="ResponseFileType" value="{{.ResponseFileType}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseEjected">ResponseEmitted :</label>
+        <input type="text" id="ResponseEjected" name="ResponseEjected" value="{{.ResponseEjected}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseContentCount">ResponseContentCount :</label>
+        <input type="text" id="ResponseContentCount" name="ResponseContentCount" value="{{.ResponseContentCount}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseStatus">ResponseStatus :</label>
+        <input type="text" id="ResponseStatus" name="ResponseStatus" value="{{.ResponseStatus}}" disabled size="60" class="form-control">
+        <br>
+        <label for="ResponseContent">ResponseContent :</label>
+        <textarea name="ResponseContent" id="ResponseContent" rows="10" cols="132" disabled class="well form-control">{{.ResponseContent}}</textarea>
+        <br>
+        <label for="RequestPayloadCount">RequestPayloadCount :</label>
+        <input type="text" id="RequestPayloadCount" name="RequestPayloadCount" value="{{.RequestPayloadCount}}" disabled size="60" class="form-control">
+        <br>
+        <label for="RequestPayload">RequestPayload :</label>
+          <textarea name="RequestPayload" id="RequestPayload" rows="5" cols="80" disabled class="well form-control">{{.RequestPayload}}</textarea>
+        <br>
+      </div>
+    </div>
+
+  </div>
+</body>

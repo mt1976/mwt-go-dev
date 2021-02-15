@@ -7,7 +7,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/google/uuid"
 )
@@ -40,16 +39,18 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 			RequestResponseFormat: responseFormat,
 		},
 	}
-	js, _ := json.Marshal(resp)
+	//js, _ := json.Marshal(resp)
 
 	//	fmt.Printf("\n")
 	//	fmt.Printf("%s", js)
 	//	fmt.Printf("\n")
 
-	var fileName = wctProperties["deliverpath"] + "/" + id.String() + "." + responseFormat
-	fmt.Println("Request Filename :", fileName)
+	//var fileName = wctProperties["deliverpath"] + "/" + id.String() + "." + responseFormat
+	//fmt.Println("Request Filename :", fileName)
 	//	fmt.Printf("\n")
-	_ = ioutil.WriteFile(fileName, js, 0644)
+	//_ = ioutil.WriteFile(fileName, js, 0644)
+
+	deliverRequest(resp, wctProperties["deliverpath"], id.String(), wctProperties["responseformat"])
 
 	// Now we get the services array
 	var responseFileName = wctProperties["receivepath"] + "/" + id.String() + "." + responseFormat
@@ -117,9 +118,8 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 			}
 		} else {
 
-			pollingInterval, _ := strconv.Atoi(wctProperties["pollinginterval"])
-			fmt.Println("Snoooze... Zzzzzz.... ", pollingInterval)
-			time.Sleep(time.Duration(pollingInterval) * time.Second)
+			doSnooze(wctProperties["pollinginterval"])
+
 		}
 		//fmt.Println(text)
 	}

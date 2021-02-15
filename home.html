@@ -7,7 +7,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   </script>
 </head>
 
@@ -16,7 +15,7 @@
     <br>
     <div class="jumbotron">
       <h1>{{.Title}}</h1>
-      <p>This is some more text for the header</p>
+      <p>{{.Description}}</p>
     </div>
 
     <div class="panel panel-info">
@@ -25,13 +24,14 @@
         <div class="btn-group">
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#config">Configuration</button>
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#responses">Responses <span class="badge">{{.NoResponses}}</span></button>
-          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#services">Services <span class="badge">{{.NoServices}}</span></button>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#servicesInfo">Services <span class="badge">{{.NoServices}}</span></button>
 
-          <button type="submit" value="Save" class="btn btndefault">Save</button>
+          <!-- <button type="submit" value="Save" class="btn btndefault">Save</button> -->
           <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
         </div>
       </div>
     </div>
+
     <div id="config" class="collapse">
 
       <div class="panel panel-default">
@@ -49,11 +49,15 @@
           <input type="text" id="processedPath" name="processedPath" value="{{.ProcessedPath}}" disabled size="60" class="form-control">
           <br>
 
+          <label for="responseType">Response Type Required :</label>
+          <input type="text" id="responseType" name="responseType" value="{{.ResponseType}}" disabled size="60" class="form-control">
 
+          <br>
           <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#config">Close</button>
         </div>
       </div>
     </div>
+
     <div id="responses" class="collapse">
 
       <div class="panel panel-default">
@@ -62,20 +66,40 @@
           <label for="noResponses">No. Responses :</label>
           <input type="number" id="noResponses" name="noResponses" value="{{.NoResponses}}" disabled size="4" class="form-control">
           <br>
-          <label for="responses">Responses :</label>
-          <textarea id="responses" name="responses" rows="10" cols="100" class="form-control">{{printf "%s" .Responses}}</textarea><br>
-          <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#responses">Close</button>
+          <div class="well">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{range .Responses}}
+                <tr>
+                  <td class="align-middle">{{.ResponseID}}</td>
+                  <td class="">
+                    <form action="/viewResponse?uuid={{.ResponseID}}" method="POST">
+                      <button type="submit" value="{{.ResponseID}}" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
+                          visibility
+                        </span></button>
+                    </form>
+                  </td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+
+            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#responses">Close</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div id="services" class="collapse">
-
+    <div id="servicesInfo" class="collapse">
       <div class="panel panel-default">
         <div class="panel-heading">Services</div>
         <div class="panel-body">
-
-
           <label for="noServices">No. Services Available :</label>
           <input type="number" id="noServices" name="noServices" value="{{.NoServices}}" disabled size="4" class="form-control">
           <br>
@@ -92,10 +116,9 @@
               <tbody>
                 {{range .ServiceCatalog}}
                 <tr>
+                  <td class="align-middle">{{.CatalogID}}</td>
                   <td class="align-middle">{{.Text}}</td>
                   <td class="">
-
-
                     <form action="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
                       <button type="submit" value="{{.CatalogID}}" class="btn btn-default btn-block"><span class="material-icons" style="color:blue">
                           launch
@@ -106,13 +129,12 @@
                           visibility
                         </span></button>
                     </form>
-                    </div>
                   </td>
                 </tr>
                 {{end}}
               </tbody>
             </table>
-            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#services">Close</button>
+            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#servicesInfo">Close</button>
           </div>
         </div>
       </div>

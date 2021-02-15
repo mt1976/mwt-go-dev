@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
@@ -22,4 +24,10 @@ func getURLparam(r *http.Request, paramID string) string {
 	key := r.FormValue(paramID)
 	log.Println("Url Param '" + paramID + "' is: " + string(key))
 	return key
+}
+
+func doSnooze(inPollingInterval string) {
+	pollingInterval, _ := strconv.Atoi(inPollingInterval)
+	fmt.Println("Snoooze... Zzzzzz.... ", pollingInterval)
+	time.Sleep(time.Duration(pollingInterval) * time.Second)
 }
