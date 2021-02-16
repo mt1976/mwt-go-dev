@@ -1,8 +1,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{.Title}}</title>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -18,34 +17,33 @@
   <!-- Add icon library -->
 
   <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
-
-  <link href="../assets/custom.css" type="text/css" rel="stylesheet">
+  <title>{{.Title}}</title>
 
 </head>
 
 <body>
-  <nav class="navbar sticky-top navbar-light bg-light">
+  <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
     <a class="navbar-brand" href="#">{{.Title}}</a>
     <div class="btn-group">
-      <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px" disabled></i><br>Home</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px" disabled></i> Home</button>
 
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#config"> <i class="fas fa-sliders-h" style="font-size: 18px"></i><br>Configuration</button>
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#servicesInfo"><i class="fas fa-microchip" style="font-size: 18px"></i> Services <span class="badge badge-light">{{.NoServices}}</span></button>
 
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#responses"><i class="fas fa-folder" style="font-size: 18px"></i><br>Responses <span class="badge badge-light">{{.NoResponses}}</span></button>
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#responses"><i class="fas fa-folder" style="font-size: 18px"></i> Responses <span class="badge badge-light">{{.NoResponses}}</span></button>
 
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#servicesInfo"><i class="fas fa-microchip" style="font-size: 18px"></i><br>Services <span class="badge badge-light">{{.NoServices}}</span></button>
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#config"> <i class="fas fa-sliders-h" style="font-size: 18px"></i> Configuration</button>
 
-      <button type="button" class="btn btn-warning" onclick="location.href='/clearResponses'"><i class="fas fa-trash-alt" style="font-size: 18px"></i><br>Clear Responses</button>
+      <button type="button" class="btn btn-warning" onclick="location.href='/clearResponses'"><i class="fas fa-trash-alt" style="font-size: 18px"></i> Clear Responses</button>
 
-      <button type="button" class="btn btn-danger" onclick="location.href='/clearQueues'"><i class="fas fa-dumpster" style="font-size: 18px"></i></i><br>Clear Queues</button>
+      <button type="button" class="btn btn-danger" onclick="location.href='/clearQueues'"><i class="fas fa-dumpster" style="font-size: 18px"></i> Clear Queues</button>
 
+      <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i> Print</button>
 
-      <button type="button" class="btn btn-primary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i><br>Print</button>
-
-      <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
     </div>
   </nav>
+
   <div class="container-fluid"><br>
+
     <div id="config" class="collapse">
       <div class="card">
         <div class="card-header">Configuration</div>
@@ -66,59 +64,66 @@
           <input type="text" id="responseType" name="responseType" value="{{.ResponseType}}" disabled size="60" class="form-control">
 
           <br>
-          <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#config">Close</button>
+
+          <form action="/viewSrvConfig" method="POST" align="right">
+            <div class="btn-group">
+              <button type="submit" value="" class="btn btn-outline-info"><i class="fas fa-server" style="font-size: 22px"></i> Server Config</button>
+              <button type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#config">Close</button>
+            </div>
+          </form>
+
+
         </div>
       </div>
+      <br>
     </div>
 
     <div id="responses" class="collapse">
-      <br>
+
       <div class="card">
         <div class="card-header">Responses</div>
         <div class="card-body">
           <!--    <label for="noResponses">No. Responses :</label>
           <input type="number" id="noResponses" name="noResponses" value="{{.NoResponses}}" disabled size="4" class="form-control">
           <br> -->
-          <div class="well">
-            <table class="table">
-              <thead>
+          <div class="well table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="thead-light">
                 <tr>
                   <th class="text-center">ID</th>
-                  <th class="text-center">Actions</th>
+                  <th class="text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {{range .Responses}}
                 <tr>
                   <td class="align-middle">{{.ResponseID}}</td>
-                  <td class="">
-                    <div class="row">
-                      <div class="col">
-                        <form action="/viewResponse?uuid={{.ResponseID}}" method="POST">
-                          <button type="submit" value="{{.ResponseID}}" class="btn btn-outline-primary btn-lg btn-block"><i class="far fa-eye" style="font-size: 22px"></i></button>
-                        </form>
+                  <td class="alight-right">
+
+                    <form action="/viewResponse?uuid={{.ResponseID}}" method="POST" class="float-right">
+                      <div class="btn-group">
+                      <button type="submit" value="{{.ResponseID}}" class="btn btn-outline-info"><i class="far fa-eye" style="font-size: 22px"></i></button>
+
+                      <button type="submit" value="" class="btn btn-outline-danger" formaction="/deleteResponse?responseID={{.ResponseID}}" method="POST"><i class="far fa-trash-alt" style="font-size: 22px"></i>
+                      </button>
                       </div>
-                      <div class="col">
-                        <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
-                          <button type="submit" value="" class="btn btn-outline-danger btn-lg btn-block"><i class="far fa-trash-alt" style="font-size: 22px"></i>
-                          </button>
-                        </form>
-                      </div>
-                    </div>
+                    </form>
+
                   </td>
                 </tr>
                 {{end}}
               </tbody>
             </table>
 
-            <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#responses">Close</button>
+
           </div>
+          <button type="button" class="btn btn-outline-secondary float-right" data-toggle="collapse" data-target="#responses">Close</button>
         </div>
       </div>
+      <br>
     </div>
 
-    <div id="servicesInfo" class="collapse">
-      <br>
+    <div id="servicesInfo" class="collapse show">
       <div class="card">
         <div class="card-header">Services</div>
         <div class="card-body">
@@ -126,42 +131,44 @@
           <input type="number" id="noServices" name="noServices" value="{{.NoServices}}" disabled size="4" class="form-control">
           <br>
           <label for="services">Services :</label>-->
-          <div class="well">
-            <table class="table">
-              <thead>
+          <div class="well table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="thead-light">
                 <tr>
-                <!--  <th class="text-center">ID</th> -->
+                  <!--  <th class="text-center">ID</th> -->
                   <th>Description</th>
-                  <th class="text-center">Actions</th>
+                  <th class="text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {{range .ServiceCatalog}}
                 <tr>
-                <!--  <td class="align-middle">{{.CatalogID}}</td> -->
+                  <!--  <td class="align-middle">{{.CatalogID}}</td> -->
                   <td class="align-middle">{{.Text}}</td>
                   <td class="">
 
-                    <div class="row">
-                      <div class="col">
 
-                        <form action="/previewRequest?id={{.CatalogID}}" method="POST">
-                          <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-primary btn-lg btn-block"><i class="far fa-eye" style="font-size: 22px"></i></button>
-                        </form>
-                      </div>
-                      <div class="col">
-                        <form action="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
-                          <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-warning btn-lg btn-block"><i class="far fa-paper-plane" style="font-size: 22px"></i></button>
-                        </form>
-                      </div>
-                    </div>
+                    <form action="/previewRequest?id={{.CatalogID}}" method="POST" class="float-right">
+                      <div class="btn-group">
+
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-info">
+                          <i class="far fa-eye" style="font-size: 22px"></i>
+                        </button>
+
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-primary">
+                          <i class="far fa-paper-plane" style="font-size: 22px" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST"></i>
+                        </button>
+                    </form>
+
+
                   </td>
                 </tr>
                 {{end}}
               </tbody>
             </table>
-            <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#servicesInfo">Close</button>
+
           </div>
+          <button type="button" class="btn btn-outline-secondary float-right" data-toggle="collapse" data-target="#servicesInfo">Close</button>
         </div>
       </div>
     </div>

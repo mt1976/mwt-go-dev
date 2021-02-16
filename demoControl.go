@@ -6,8 +6,6 @@ import (
 	"net/http"
 
 	"github.com/mbndr/figlet4go"
-
-	"github.com/google/uuid"
 )
 
 //CONST_CONFIG_FILE is cheese
@@ -51,8 +49,8 @@ func main() {
 	fmt.Println("Reponse Path :", wctProperties["receivepath"])
 
 	//fmt.Println(id.String())
-	//generateMessage(wctProperties, responseFormat) //Calling generateMessage
-	//	generateMessage(wctProperties, responseFormat) //Calling generateMessage
+	//processSimpleRequestMessage(wctProperties, responseFormat) //Calling processSimpleRequestMessage
+	//	processSimpleRequestMessage(wctProperties, responseFormat) //Calling processSimpleRequestMessage
 
 	//home := wctProperties["receivepath"]
 
@@ -65,28 +63,11 @@ func main() {
 	http.HandleFunc("/viewResponse/", viewResponseHandler)
 	http.HandleFunc("/deleteResponse/", deleteResponseHandler)
 	http.HandleFunc("/clearQueues/", clearQueuesHandler)
+	http.HandleFunc("/viewSrvConfig", viewSrvConfigHandler)
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
-
-}
-
-func generateMessage(wctProperties map[string]string, responseFormat string) {
-
-	id := uuid.New()
-
-	resp := WctMessage{
-		WctPayload{
-			ApplicationToken:      wctProperties["applicationtoken"],
-			RequestID:             id.String(),
-			RequestAction:         "SERVICES",
-			UniqueUID:             wctProperties["appid"],
-			RequestResponseFormat: responseFormat,
-		},
-	}
-
-	deliverRequest(resp, wctProperties["deliverpath"], id.String(), responseFormat)
 
 }
 

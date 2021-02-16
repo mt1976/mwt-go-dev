@@ -247,3 +247,44 @@ func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	homePageHandler(w, r)
 
 }
+
+func waitForResponse(id string, wctProperties map[string]string) WctResponsePayload {
+
+	var responseFileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
+	var processedFileName = wctProperties["processedpath"] + "/" + id + "." + wctProperties["responseformat"]
+	fmt.Println("Response Filename :", responseFileName)
+	fmt.Println("Processed Filename :", processedFileName)
+
+	condition := false
+
+	var wibble WctResponsePayload
+	//	var nibble WctResponsePayload
+	for !condition {
+		fmt.Println("Polling file", responseFileName)
+		wibble = getResponse(id, wctProperties)
+		text := string(wibble.RequestConsumed)
+		//	fmt.Println("text file", text)
+		if text != "" {
+			condition = true
+
+			js, _ := json.Marshal(wibble)
+			err := ioutil.WriteFile(processedFileName, js, 0644)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+
+			err = deleteResponse(id, wctProperties)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+
+		} else {
+
+			doSnooze(wctProperties["pollinginterval"])
+
+		}
+		//fmt.Println(text)
+	}
+
+	return wibble
+}

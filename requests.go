@@ -158,3 +158,48 @@ func deliverRequest(dispatchMessage WctMessage, filePath string, id string, resp
 	//	fmt.Printf("\n")
 	_ = ioutil.WriteFile(fileName, js, 0644)
 }
+
+func processSimpleRequestMessage(wctProperties map[string]string, responseFormat string) {
+
+	id := uuid.New()
+
+	resp := WctMessage{
+		WctPayload{
+			ApplicationToken:      wctProperties["applicationtoken"],
+			RequestID:             id.String(),
+			RequestAction:         "SERVICES",
+			UniqueUID:             wctProperties["appid"],
+			RequestResponseFormat: responseFormat,
+		},
+	}
+
+	deliverRequest(resp, wctProperties["deliverpath"], id.String(), responseFormat)
+
+}
+
+func buildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, wctProperties map[string]string) WctMessage {
+
+	requestMessage := WctMessage{
+		WctPayload{
+			ApplicationToken:      wctProperties["applicationtoken"],
+			RequestID:             inUUID,
+			RequestAction:         inAction,
+			RequestItem:           inItem,
+			RequestParameters:     inParameters,
+			UniqueUID:             wctProperties["appid"],
+			RequestResponseFormat: wctProperties["responseformat"],
+		},
+	}
+
+	return requestMessage
+}
+
+func sendRequest(dispatchMessage WctMessage, id string, wctProperties map[string]string) {
+
+	js, _ := json.Marshal(dispatchMessage)
+
+	var fileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
+	fmt.Println("Request Filename :", fileName)
+	//	fmt.Printf("\n")
+	_ = ioutil.WriteFile(fileName, js, 0644)
+}

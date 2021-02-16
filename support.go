@@ -101,3 +101,13 @@ func pickEpochToDateTimeString(pickEpoch string) string {
 	tString := t.Format(time.RFC1123)
 	return tString
 }
+
+func strArrayToString(inArray []string) string {
+
+	outString := ""
+	noRows := len(inArray)
+	for ii := 0; ii < noRows; ii++ {
+		outString += inArray[ii] + "\n"
+	}
+	return outString
+}
