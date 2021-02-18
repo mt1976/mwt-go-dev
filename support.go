@@ -11,8 +11,40 @@ import (
 	"time"
 )
 
+// Max returns the larger of x or y.
+func Max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
+
+// Min returns the smaller of x or y.
+func Min(x, y int) int {
+	if x > y {
+		return y
+	}
+	return x
+}
+
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "assets/favicon.ico")
+}
+
+func favicon16Handler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon-16x16.png")
+}
+
+func favicon32Handler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon-32x32.png")
+}
+
+func faviconManifestHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "site.webmanifest")
+}
+
+func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "browserconfig.xml")
 }
 
 func getURLparam(r *http.Request, paramID string) string {

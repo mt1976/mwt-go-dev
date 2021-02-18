@@ -30,25 +30,8 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 
 	id := uuid.New()
 
-	resp := WctMessage{
-		WctPayload{
-			ApplicationToken:      wctProperties["applicationtoken"],
-			RequestID:             id.String(),
-			RequestAction:         "SERVICES",
-			UniqueUID:             wctProperties["appid"],
-			RequestResponseFormat: responseFormat,
-		},
-	}
-	//js, _ := json.Marshal(resp)
+resp := buildRequestMessage(id.String(), "SERVICES", "", "", "",wctProperties)
 
-	//	fmt.Printf("\n")
-	//	fmt.Printf("%s", js)
-	//	fmt.Printf("\n")
-
-	//var fileName = wctProperties["deliverpath"] + "/" + id.String() + "." + responseFormat
-	//fmt.Println("Request Filename :", fileName)
-	//	fmt.Printf("\n")
-	//_ = ioutil.WriteFile(fileName, js, 0644)
 
 	deliverRequest(resp, wctProperties["deliverpath"], id.String(), wctProperties["responseformat"])
 
@@ -74,13 +57,11 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 			condition = true
 			if text != "" {
 				json.Unmarshal(content, &wibble)
-				//			fmt.Println("responseContent", wibble.WctReponsePayload.ResponseContent)
-				//			fmt.Println("responseContentCount", wibble.WctReponsePayload.ResponseContentCount)
-				//servicesList = wibble["reponsepayloadcount"]
+
 				var x = wibble.WctReponsePayload.ResponseContentCount
 				noServices, _ = strconv.Atoi(x)
 				for ii := 0; ii < noServices; ii++ {
-					//servicesList += wibble.WctReponsePayload.ResponseContent.ResponseContentRow[ii] + "\n"
+
 					serviceContent := strings.Split(wibble.WctReponsePayload.ResponseContent.ResponseContentRow[ii], "|")
 
 					var item ServiceCatalogItem
@@ -103,8 +84,7 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 
 					serviceCatalog = append(serviceCatalog, item)
 				}
-				//servicesList = wibble.WctReponsePayload.ResponseContent.ResponseContentRow[1]
-				//fmt.Println(servicesList)
+
 			}
 
 			err := deleteResponse(id.String(), wctProperties)

@@ -9,24 +9,24 @@ import (
 	"github.com/google/uuid"
 )
 
-//ConfigViewPage is cheese
-type ConfigViewPage struct {
-	Title       string
-	PageTitle   string
-	ConfigItems []ConfigItem
+//SrvEnvironmentPage is cheese
+type SrvEnvironmentPage struct {
+	Title               string
+	PageTitle           string
+	SrvEnvironmentItems []SrvEnvironmentItem
 }
 
-//ConfigItem is cheese
-type ConfigItem struct {
+//SrvEnvironmentItem is cheese
+type SrvEnvironmentItem struct {
 	ItemID    int
 	ItemLabel string
 	ItemValue string
 }
 
-func viewSrvConfigHandler(w http.ResponseWriter, r *http.Request) {
+func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	tmpl := "viewSrvConfig"
+	tmpl := "viewSrvEnvironment"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
@@ -37,7 +37,7 @@ func viewSrvConfigHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@CONFIG", "", "", wctProperties)
+	requestMessage := buildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "",wctProperties)
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
@@ -49,10 +49,10 @@ func viewSrvConfigHandler(w http.ResponseWriter, r *http.Request) {
 	//outString := ""
 	noRows := len(responseMessge.ResponseContent.ResponseContentRow)
 
-	var configsList []ConfigItem
+	var configsList []SrvEnvironmentItem
 
 	for ii := 0; ii < noRows; ii++ {
-		var fred ConfigItem
+		var fred SrvEnvironmentItem
 		serviceContent := strings.Split(responseMessge.ResponseContent.ResponseContentRow[ii], "|")
 		fred.ItemID = ii
 		fred.ItemLabel = serviceContent[0]
@@ -60,16 +60,16 @@ func viewSrvConfigHandler(w http.ResponseWriter, r *http.Request) {
 		configsList = append(configsList, fred)
 	}
 
-	pageSrvConfigView := ConfigViewPage{
-		Title:       title,
-		PageTitle:   "View Server Config",
-		ConfigItems: configsList,
+	pageSrvEvironment := SrvEnvironmentPage{
+		Title:               title,
+		PageTitle:           "View Server Config",
+		SrvEnvironmentItems: configsList,
 	}
 
-	fmt.Println("Page Data", pageSrvConfigView)
+	fmt.Println("Page Data", pageSrvEvironment)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	t.Execute(w, pageSrvConfigView)
+	t.Execute(w, pageSrvEvironment)
 
 }

@@ -32,38 +32,33 @@ type HomePage struct {
 func main() {
 
 	ascii := figlet4go.NewAsciiRender()
-	//	asciiOptions := figlet4go.NewRenderOptions()
 
-	//var propertiesFileName = getAppPropertiesFile
-	//var responseFormat = "json"
-	//	wctProperties := make(map[string]string)
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	//fmt.Println(wctProperties)
 
 	// The underscore would be an error
 	renderStr, _ := ascii.Render("MWT GO PROTO")
-	//	asciiOptions.FontName = "standard"
+
 	fmt.Print(renderStr)
 
 	fmt.Println("Delivery Path :", wctProperties["deliverpath"])
 	fmt.Println("Reponse Path :", wctProperties["receivepath"])
 
-	//fmt.Println(id.String())
-	//processSimpleRequestMessage(wctProperties, responseFormat) //Calling processSimpleRequestMessage
-	//	processSimpleRequestMessage(wctProperties, responseFormat) //Calling processSimpleRequestMessage
-
-	//home := wctProperties["receivepath"]
-
-	//listResponsescli(wctProperties, responseFormat) //Call listResponses
-
 	http.HandleFunc("/", homePageHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
+	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
+	http.HandleFunc("/site.webmanifest", faviconManifestHandler)
+	http.HandleFunc("/favicon-16x16.png", favicon16Handler)
+	http.HandleFunc("/browserconfig.xml", faviconBrowserConfigHandler)
 	http.HandleFunc("/previewRequest/", previewRequestHandler)
 	http.HandleFunc("/executeRequest/", executeRequestHandler)
 	http.HandleFunc("/viewResponse/", viewResponseHandler)
 	http.HandleFunc("/deleteResponse/", deleteResponseHandler)
 	http.HandleFunc("/clearQueues/", clearQueuesHandler)
-	http.HandleFunc("/viewSrvConfig", viewSrvConfigHandler)
+	http.HandleFunc("/viewSrvEnvironment/", viewSrvEnvironmentHandler)
+	http.HandleFunc("/listSrvConfiguration/", listSrvConfigurationHandler)
+	http.HandleFunc("/viewSrvConfiguration/", viewSrvConfigurationHandler)
+	http.HandleFunc("/editSrvConfiguration/", editSrvConfigurationHandler)
+	http.HandleFunc("/saveSrvConfiguration/", saveSrvConfigurationHandler)
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]

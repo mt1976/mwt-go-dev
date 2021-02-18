@@ -26,6 +26,7 @@ type WctPayload struct {
 	RequestParameters     string `json:"requestParameters"`
 	UniqueUID             string `json:"uniqueID"`
 	RequestResponseFormat string `json:"requestResponseFormat"`
+	RequestData	  				string `json:"requestData"`
 }
 
 //RequestViewPage is cheese
@@ -113,6 +114,7 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 			RequestParameters:     getURLparam(r, "parameters"),
 			UniqueUID:             wctProperties["appid"],
 			RequestResponseFormat: wctProperties["responseformat"],
+			RequestData: "",
 		},
 	}
 
@@ -170,6 +172,7 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 			RequestAction:         "SERVICES",
 			UniqueUID:             wctProperties["appid"],
 			RequestResponseFormat: responseFormat,
+			RequestData: "",
 		},
 	}
 
@@ -177,7 +180,7 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 
 }
 
-func buildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, wctProperties map[string]string) WctMessage {
+func buildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, wctProperties map[string]string) WctMessage {
 
 	requestMessage := WctMessage{
 		WctPayload{
@@ -188,6 +191,7 @@ func buildRequestMessage(inUUID string, inAction string, inItem string, inParame
 			RequestParameters:     inParameters,
 			UniqueUID:             wctProperties["appid"],
 			RequestResponseFormat: wctProperties["responseformat"],
+			RequestData:				 inPayload,
 		},
 	}
 
