@@ -30,7 +30,8 @@
 
 <body>
   <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
-    <a class="navbar-brand" href="#">{{.Title}}</a>
+    <a class="navbar-brand" href="#">
+      <img src="../assets/android-chrome-192x192.png" class="img-fluid" alt="{{.Title}}" style="width: 1vw; min-width: 30px;"/> {{.Title}}</a>
     <div class="btn-group">
       <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px" disabled></i> Home</button>
 
@@ -40,9 +41,9 @@
 
       <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#config"> <i class="fas fa-sliders-h" style="font-size: 18px"></i> Configuration</button>
 
-      <button type="button" class="btn btn-warning" onclick="location.href='/clearResponses'"><i class="fas fa-trash-alt" style="font-size: 18px"></i> Clear Responses</button>
 
-      <button type="button" class="btn btn-danger" onclick="location.href='/clearQueues'"><i class="fas fa-dumpster" style="font-size: 18px"></i> Clear Queues</button>
+
+
 
       <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i> Print</button>
 
@@ -73,10 +74,11 @@
           <br>
 
           <form action="/viewSrvEnvironment" method="POST" align="right">
-            <div class="btn-group">
-              <button type="submit" value="" class="btn btn-outline-info"><i class="fas fa-server" style="font-size: 22px"></i> Server Environment</button>
-              <button type="submit" value="" class="btn btn-outline-info" formaction="/listSrvConfiguration" method="POST"><i class="fas fa-server" style="font-size: 22px"></i> List Config</button>
-              <button type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#config">Close</button>
+            <div class="btn-group d-flex">
+              <button type="submit" value="" class="btn btn-outline-info"><i class="fas fa-server" style="font-size: 22px"></i> Environment</button>
+              <button type="submit" value="" class="btn btn-outline-info" formaction="/listSrvConfiguration" method="POST"><i class="fas fa-server" style="font-size: 22px"></i> Configuration</button>
+              <button type="button" class="btn btn-outline-danger" formation="/clearQueues" method="POST"><i class="fas fa-dumpster" style="font-size: 18px"></i> Clear Queues</button>
+              <button type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#config"><i class="fas fa-times" style="font-size: 22px"></i> Close</button>
             </div>
           </form>
 
@@ -125,7 +127,10 @@
 
 
           </div>
-          <button type="button" class="btn btn-outline-secondary float-right" data-toggle="collapse" data-target="#responses">Close</button>
+          <div class="btn-group d-flex">
+          <button type="button" class="btn btn-outline-warning" onclick="location.href='/clearResponses'"><i class="fas fa-trash-alt" style="font-size: 18px"></i> Clear Responses</button>
+          <button type="button" class="btn btn-outline-secondary " data-toggle="collapse" data-target="#responses"><i class="fas fa-times" style="font-size: 22px"></i> Close</button>
+          </div>
         </div>
       </div>
       <br>
@@ -176,7 +181,7 @@
             </table>
 
           </div>
-          <button type="button" class="btn btn-outline-secondary float-right" data-toggle="collapse" data-target="#servicesInfo">Close</button>
+          <button type="button" class="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#servicesInfo"><i class="fas fa-times" style="font-size: 22px"></i> Close</button>
         </div>
       </div>
     </div>

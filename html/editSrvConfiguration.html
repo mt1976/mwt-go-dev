@@ -29,7 +29,8 @@
 
 <body>
   <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
-    <a class="navbar-brand" href="#">{{.Title}}</a>
+    <a class="navbar-brand" href="#">
+    <img src="../assets/android-chrome-192x192.png" class="img-fluid" alt="{{.Title}}" style="width: 1vw; min-width: 30px;"/> {{.Title}}</a>
     <div class="btn-group">
       <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px"></i> Home</button>
       <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i> Print</button>
@@ -62,7 +63,7 @@
             <br>
             <div class="btn-group float-right">
               <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 22px"></i> Save</button>
-              <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/">Cancel</button>
+              <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/"><i class="fas fa-times" style="font-size: 22px"></i> Cancel</button>
             </div>
           </div>
         </div>
