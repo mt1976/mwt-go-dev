@@ -27,47 +27,45 @@
 </head>
 
 <body>
-  <nav class="navbar sticky-top navbar-light" style="background-color: #dfdfdf">
+  <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
     <form action="/viewSrvEnvironment" method="POST" align="" class="btn-block">
-      <a class="navbar-brand float-left"  href="#">
-        <img src="../assets/android-chrome-192x192.png" class="img-fluid" alt="{{.Title}}" style="width: 1vw; min-width: 30px;"/>
-        {{.Title}}</a>
+      <a class="navbar-brand float-left font-weight-bold"  href="#"><h3 class="text-white">&nbsp;{{.Title}}</h3></a>
 
       <div class="btn-group flex-wrap float-right">
         <button type="button" class="btn btn-primary" onclick="location.href='../'">
           <i class="fa fa-home" style="font-size: 18px" disabled="disabled"></i>
-          Home</button>
+           &nbsp;Home</button>
 
         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#servicesInfo">
           <i class="fas fa-microchip" style="font-size: 18px"></i>
-          Services
+           &nbsp;Services
           <span class="badge badge-light">{{.NoServices}}</span></button>
 
         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#responses">
-          <i class="fas fa-folder" style="font-size: 18px"></i>
-          Responses
+          <i class="fas fa-folder" style="font-size: 18px"></i> &nbsp;Responses
           <span class="badge badge-light">{{.NoResponses}}</span></button>
 
         <div class="btn-group" role="group">
           <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-sliders-h" style="font-size: 18px"></i>
-            Settings
+             &nbsp;Settings
           </button>
           <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" href="#">
-              <button type="button" class="btn btn-outline-link" data-toggle="collapse" data-target="#config">Configuration</button>
-            </a>
-            <a class="dropdown-item" href="#">
-              <button type="submit" value="" class="btn btn-outline-link">Environment</button>
+            <a class="dropdown-item" href="/viewAppConfiguration">
+              <button type="button" class="btn btn-outline-link"><i class="fas fa-cogs" style="font-size: 18px"></i>&nbsp; &nbsp;App Configuration</button>
             </a>
             <a class="dropdown-item" href="/listSrvConfiguration">
-              <button type="submit" value="" class="btn btn-outline-link" formaction="/listSrvConfiguration" method="POST">Server Configuration</button>
+              <button type="submit" value="" class="btn btn-outline-link" formaction="/listSrvConfiguration" method="POST"><i class="fas fa-server" style="font-size: 18px"></i>&nbsp; &nbsp; Server Configuration</button>
             </a>
+            <a class="dropdown-item" href="#">
+              <button type="submit" value="" class="btn btn-outline-link"><i class="fas fa-server" style="font-size: 18px"></i>  &nbsp;&nbsp;Server Environment</button>
+            </a>
+
             <a class="dropdown-item" href="/clearResponses">
-              <button type="button" class="btn btn-outline-link text-warning" style="font-color:blue" onclick="location.href='/clearResponses'">Clear Responses</button>
+              <button type="submit" class="btn btn-outline-link text-warning" style="font-color:blue" onclick="location.href='/clearResponses'"><i class="far fa-trash-alt" style="font-size: 18px"></i> &nbsp; &nbsp;Responses</button>
             </a>
             <a class="dropdown-item" href="/clearQueues">
-              <button type="submit" class="btn btn-outline-link text-danger" formaction="/clearQueues" method="POST">Clear Queues</button>
+              <button type="submit" class="btn btn-outline-link text-danger" formaction="/clearQueues" method="POST"><i class="far fa-trash-alt" style="font-size: 18px"></i> &nbsp;&nbsp;Queues</button>
             </a>
 
           </div>
@@ -75,40 +73,13 @@
 
         <button type="button" class="btn btn-secondary" onclick="window.print()">
           <i class="fa fa-print" style="font-size: 18px"></i>
-          Print</button>
+           &nbsp;Print</button>
 
       </div>
     </form>
   </nav>
 
   <div class="container-fluid"><br>
-
-    <div id="config" class="collapse">
-      <div class="card">
-        <div class="card-header font-weight-bold">Configuration<button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#config">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="card-body">
-
-          <label for="requestPath" class="label-bg">Request Path :</label>
-          <input type="text" id="requestPath" name="requestPath" value="{{.RequestPath}}" disabled="disabled" size="60" class="form-control">
-          <br>
-          <label for="responsePath">Response Path :</label>
-          <input type="text" id="responsePath" name="responsePath" value="{{.ResponsePath}}" disabled="disabled" size="60" class="form-control">
-          <br>
-
-          <label for="processedPath">Processed Path :</label>
-          <input type="text" id="processedPath" name="processedPath" value="{{.ProcessedPath}}" disabled="disabled" size="60" class="form-control">
-          <br>
-
-          <label for="responseType">Response Type Required :</label>
-          <input type="text" id="responseType" name="responseType" value="{{.ResponseType}}" disabled="disabled" size="60" class="form-control">
-
-        </div>
-      </div>
-      <br>
-    </div>
 
     <div id="responses" class="collapse">
 
@@ -178,7 +149,6 @@
           </div>
 
           <div class="card-body">
-            <!-- <label for="noServices">No. Services Available :</label> <input type="number" id="noServices" name="noServices" value="{{.NoServices}}" disabled size="4" class="form-control"> <br> <label for="services">Services :</label>-->
             <div class="well table-responsive">
               <table class="table table-striped table-hover">
                 <thead class="thead-light">
@@ -202,8 +172,8 @@
                               <i class="far fa-eye" style="font-size: 22px"></i>
                             </button>
 
-                            <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-primary">
-                              <i class="far fa-paper-plane" style="font-size: 22px" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST"></i>
+                            <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-primary" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
+                              <i class="far fa-paper-plane" style="font-size: 22px"></i>
                             </button>
                           </form>
 

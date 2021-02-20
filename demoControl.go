@@ -59,6 +59,7 @@ func main() {
 	http.HandleFunc("/viewSrvConfiguration/", viewSrvConfigurationHandler)
 	http.HandleFunc("/editSrvConfiguration/", editSrvConfigurationHandler)
 	http.HandleFunc("/saveSrvConfiguration/", saveSrvConfigurationHandler)
+	http.HandleFunc("/viewAppConfiguration/", viewAppConfigurationHandler)
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 	httpPort := ":" + wctProperties["port"]
