@@ -8,6 +8,7 @@
   --custom-primary-light: #FFFFFF;
   --custom-primary-dark: #221D53;
   --custom-font-family: 'Raleway', sans-serif;
+  --custom-code-colour: #dd4814;
 
 }
 
@@ -56,6 +57,15 @@ border-color: var(--custom-primary-dark);
 
 }
 
+code{
+  color: var(--custom-code-colour);
+  font-weight: bolder;
+}
+
 body {
   font-family: var(--custom-font-family);
+}
+
+.badge-primary{
+  background-color: var(--custom-primary-colour);
 }

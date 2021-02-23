@@ -166,7 +166,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 		ResponseEjected:      outResponseEjected,
 		ResponseContentCount: thisPayload.ResponseContentCount,
 		ResponseStatus:       thisPayload.ResponseStatus,
-		ResponseContent:      html.UnescapeString(respC),
+		ResponseContent:      html.UnescapeString(html.UnescapeString(respC)),
 		RequestPayloadCount:  thisPayload.RequestPayloadCount,
 		RequestPayload:       html.UnescapeString(reqC),
 		PageTitle:            "View Response",

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,6 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 // Max returns the larger of x or y.
@@ -45,6 +48,29 @@ func faviconManifestHandler(w http.ResponseWriter, r *http.Request) {
 
 func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "browserconfig.xml")
+}
+
+func shutdownHandler(w http.ResponseWriter, r *http.Request) {
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	requestID := uuid.New()
+
+	fmt.Println("WCT : Serving :", inUTL)
+
+	requestMessage := buildRequestMessage(requestID.String(), "SHUTDOWN", "", "", "", wctProperties)
+
+	fmt.Println("requestMessage", requestMessage)
+	fmt.Println("SEND MESSAGE")
+	sendRequest(requestMessage, requestID.String(), wctProperties)
+	m := http.NewServeMux()
+
+	s := http.Server{Addr: wctProperties["port"], Handler: m}
+	s.Shutdown(context.Background())
+	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
+	//	viewResponseHandler(w, r)
+
 }
 
 func getURLparam(r *http.Request, paramID string) string {

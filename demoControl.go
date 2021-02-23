@@ -60,8 +60,12 @@ func main() {
 	http.HandleFunc("/editSrvConfiguration/", editSrvConfigurationHandler)
 	http.HandleFunc("/saveSrvConfiguration/", saveSrvConfigurationHandler)
 	http.HandleFunc("/viewAppConfiguration/", viewAppConfigurationHandler)
+	http.HandleFunc("/listSvcDataMap/", listSvcDataMapHandler)
+	http.HandleFunc("/viewSvcDataMap/", viewSvcDataMapHandler)
+	http.HandleFunc("/shutdown/", shutdownHandler)
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
+
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
 
