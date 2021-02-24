@@ -16,19 +16,30 @@ type SvcDataMapPage struct {
 	PageTitle       string
 	NoDataMapIDs    int
 	SvcDataMapItems []SvcDataMapItem
-	SvcDataMapCols  []string
+	SvcDataMapCols  []DataHdr
 	DataMapPageID   string
 	DataRows        []DataRow
+	JSRows          int
+	JSCols          int
 }
 
 //DataRow is cheese
 type DataRow struct {
+	RowID       int
 	DataRowItem []DataCol
+}
+
+//DataHdr is cheese
+type DataHdr struct {
+	ColID       int
+	DataHdrItem string
 }
 
 //DataCol is cheese
 type DataCol struct {
 	DataItem string
+	DIrow    int
+	DIcol    int
 }
 
 //SvcDataMapItem is cheese
@@ -98,7 +109,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	tmpl := "viewSvcDataMap"
+	tmpl := "viewSvcDataMap_test"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
@@ -125,7 +136,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//outString := ""
 	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
 
-	var wrkDataMapCols []string
+	var wrkDataMapCols []DataHdr
 	var wrkDataMapRows []DataRow
 	//wrkDataMapCols[1] = "POO"
 	fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
@@ -136,7 +147,10 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("noCols=", noCols)
 	for jj := 0; jj < noCols; jj++ {
 		headerVal := firstDataMapContentRow[jj]
-		wrkDataMapCols = append(wrkDataMapCols, headerVal)
+		var tmpVal DataHdr
+		tmpVal.ColID = jj
+		tmpVal.DataHdrItem = headerVal
+		wrkDataMapCols = append(wrkDataMapCols, tmpVal)
 	}
 	fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
 
@@ -152,10 +166,13 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 			var wrk DataCol
 			fmt.Println("theDataMapContentRow", kk, jj, theDataMapContentRow[jj])
 			wrk.DataItem = theDataMapContentRow[jj]
+			wrk.DIcol = jj
+			wrk.DIrow = kk
 			wrkDataMapColItems = append(wrkDataMapColItems, wrk)
 		}
 		fmt.Println("wrkDataMapColItems", kk, wrkDataMapColItems)
 		var dr DataRow
+		dr.RowID = kk
 		dr.DataRowItem = wrkDataMapColItems
 		//headerVal := firstDataMapContentRow[jj]
 		wrkDataMapRows = append(wrkDataMapRows, dr)
@@ -169,6 +186,8 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		SvcDataMapCols: wrkDataMapCols,
 		DataMapPageID:  thisID,
 		DataRows:       wrkDataMapRows,
+		JSCols:         noCols - 1,
+		JSRows:         noRows - 1,
 	}
 
 	fmt.Println("Page Data", pageSrvEvironment)

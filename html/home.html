@@ -24,20 +24,9 @@
 
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
   <title>{{.Title}}</title>
-  <style type="text/css">
-    table {
-      width: 100%;
-      counter-reset: 0;
-    }
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+    <link rel="stylesheet" href="../assets/custom_table.css">
 
-    table tr {
-      counter-increment: row-num;
-    }
-
-    table tr td:first-child::before {
-      content: counter(row-num) " - ";
-    }
-  </style>
 </head>
 
 <body>
@@ -113,27 +102,29 @@
         </div>
         <div class="card-body">
           <!-- <label for="noResponses">No. Responses :</label> <input type="number" id="noResponses" name="noResponses" value="{{.NoResponses}}" disabled size="4" class="form-control"> <br> -->
-          <div class="well table-responsive">
-            <table class="table table-striped table-hover">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
               <thead class="thead-light">
                 <tr>
-                  <th class="text-center">ID</th>
-                  <th class="text-right">Actions</th>
+                  <th class="text-center">#</td>
+                  <th class="text-center">Response ID</th>
+                  <th class="text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {{range .Responses}}
                 <tr>
+                  <td class="text-center align-middle"></td>
                   <td class="align-middle">{{.ResponseID}}</td>
-                  <td class="alight-right">
+                  <td class="alight-right" style="width:1px; white-space:nowrap;">
 
                     <form action="/viewResponse?uuid={{.ResponseID}}" method="POST" class="float-right">
                       <div class="btn-group">
-                        <button type="submit" value="{{.ResponseID}}" class="btn btn-outline-info">
+                        <button type="submit" value="{{.ResponseID}}" class="btn btn-sm btn-outline-info">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
 
-                        <button type="submit" value="" class="btn btn-outline-danger" formaction="/deleteResponse?responseID={{.ResponseID}}" method="POST">
+                        <button type="submit" value="" class="btn btn-sm btn-outline-danger" formaction="/deleteResponse?responseID={{.ResponseID}}" method="POST">
                           <i class="far fa-trash-alt" style="font-size: 22px"></i>
                         </button>
                       </div>
@@ -157,7 +148,7 @@
         <div class="card-header">
 
           <div class="row">
-            <div class="col-6 font-weight-bold form-control" style="border:0;background:000">
+            <div class="col-6 card-header font-weight-bold" style="border:0;background:000">
               Services
             </div>
             <div class="col-5">
@@ -171,30 +162,30 @@
         </div>
 
         <div class="card-body">
-          <div class="well table-responsive">
-            <table class="table table-striped table-hover">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
               <thead class="thead-light">
                 <tr>
-                  <!-- <th class="text-center">ID</th> -->
-                  <th>Description</th>
-                  <th class="text-right">Actions</th>
+                  <th class="text-center" scope="col">#</th>
+                  <th scope="col">Description</th>
+                  <th class="text-center" scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody id="myTable">
                 {{range .ServiceCatalog}}
                 <tr>
-                  <!-- <td class="align-middle">{{.CatalogID}}</td> -->
+
+                  <td class="text-center align-middle"> </td>
                   <td class="align-middle">{{.Text}}</td>
-                  <td class="align-middle">
+                  <td class="align-middle" style="width:1px; white-space:nowrap;">
 
                     <form action="/previewRequest?id={{.CatalogID}}" method="POST" class="float-right">
                       <div class="btn-group">
-
-                        <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-info">
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-info">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
 
-                        <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-primary" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-primary" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
                           <i class="far fa-paper-plane" style="font-size: 22px"></i>
                         </button>
                     </form>

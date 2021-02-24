@@ -1,0 +1,42 @@
+/* bootstrap.min.css */
+
+
+
+:root{
+  --custom-primary-colour: #322a77;
+  --custom-secondary-colour: #666666;
+  --custom-primary-light: #FFFFFF;
+  --custom-primary-dark: #221D53;
+  --custom-font-family: 'Raleway', sans-serif;
+  --custom-code-colour: #dd4814;
+
+}
+
+table {
+  width: 100%;
+  counter-reset: 0;
+}
+
+table tr {
+  counter-increment: row-num;
+}
+
+table tr td:first-child::before {
+    content: counter(row-num) " ";
+    font-weight: bolder;
+    align-content: stretch;
+    align-self: center;
+
+    color: var(--custom-primary-colour);
+}
+
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}

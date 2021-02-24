@@ -63,6 +63,7 @@ func main() {
 	http.HandleFunc("/listSvcDataMap/", listSvcDataMapHandler)
 	http.HandleFunc("/viewSvcDataMap/", viewSvcDataMapHandler)
 	http.HandleFunc("/shutdown/", shutdownHandler)
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 

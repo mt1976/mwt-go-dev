@@ -34,27 +34,32 @@ background-color: var(--custom-primary-dark);
 border-color: var(--custom-primary-dark);
 }
 
+.btn-primary:focus,.btn-primary.focus{
+  box-shadow:0 0 0 .2rem rgba(50,42,119,0.5);
+  background-color: var(--custom-primary-dark);
+}
+
+.btn-primary:active,.btn-primary.active{
+  box-shadow:0 0 0 .2rem rgba(50,42,119,0.5);
+  background-color: var(--custom-primary-dark);
+}
+
+
 .btn-secondary{
   background-color: var(--custom-secondary-colour);
   border-color: var(--custom-secondary-colour);
 }
 
 .table .thead-light th {
-
     color: var(--custom-primary-colour);
-    font-weight: normal;
+    font-weight: bolder;
     font-variant: small-caps;
-
-
 }
 
 .card-header .row .form-control{
-
   color: var(--custom-primary-colour);
   font-weight: normal;
   font-variant: small-caps;
-
-
 }
 
 code{

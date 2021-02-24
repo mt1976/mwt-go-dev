@@ -1,16 +1,18 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{.Title}} - {{.PageTitle}}</title>
+  <title>{{.Title}}
+    -
+    {{.PageTitle}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicon Stuff -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
-<meta name="msapplication-TileColor" content="#322a77">
-<meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+  <meta name="msapplication-TileColor" content="#322a77">
+  <meta name="theme-color" content="#ffffff">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -24,183 +26,196 @@
   <link rel="stylesheet" href="../assets/custom.css">
   <!-- Add icon library -->
 
-  <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
 
 </head>
 
 <body>
   <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
-    <a class="navbar-brand" href="#"><h3 class="text-white">&nbsp;{{.Title}}</h3></a>
+    <a class="navbar-brand" href="#">
+      <h3 class="text-white">&nbsp;{{.Title}}</h3>
+    </a>
     <div class="btn-group">
-      <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px"></i>&nbsp;Home</button>
-      <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i>&nbsp;&nbsp;Print</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='../'">
+        <i class="fa fa-home" style="font-size: 18px"></i>&nbsp;Home</button>
+      <button type="button" class="btn btn-secondary" onclick="window.print()">
+        <i class="fa fa-print" style="font-size: 18px"></i>&nbsp;&nbsp;Print</button>
 
-      <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
+      <!-- <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
     </div>
   </nav>
   <div class="container-fluid">
-  <br>
-    <!--    <div class="card">
-      <div class="card-header"><strong>Properties</strong></div>
-      <div class="card-body">
-        <label for="DeliverTo">Response Path :</label>
-        <input type="text" id="DeliverTo" name="DeliverTo" value="{{.ResponseFilePath}}" disabled size="60" class="form-control">
-        <br>
-        <label for="DeliverFilename">Response Filename :</label>
-        <input type="text" id="DeliverFilename" name="DeliverFilename" value="{{.ResponseFileName}}" disabled size="60" class="form-control">
-        <br>
-      </div>
-    </div>
+    <br>
+    <!-- <div class="card"> <div class="card-header"><strong>Properties</strong></div> <div class="card-body"> <label for="DeliverTo">Response Path :</label> <input type="text" id="DeliverTo" name="DeliverTo" value="{{.ResponseFilePath}}" disabled
+    size="60" class="form-control"> <br> <label for="DeliverFilename">Response Filename :</label> <input type="text" id="DeliverFilename" name="DeliverFilename" value="{{.ResponseFileName}}" disabled size="60" class="form-control"> <br> </div> </div>
     <br> -->
     <div class="card">
-      <div class="card-header"><strong>Response Content</strong></div>
+      <div class="card-header">
+        <strong>Response Content</strong>
+      </div>
       <div class="card-body d-flex h-100 flex-column">
-
-
         <div class="row">
           <div class="col">
 
             <label for="ResponseID">ID :</label>
-            <input type="text" id="ResponseID" name="ResponseID" value="{{.ResponseID}}" disabled size="60" class="form-control">
+            <input type="text" id="ResponseID" name="ResponseID" value="{{.ResponseID}}" disabled="disabled" size="60" class="form-control">
           </div>
           <div class="col">
             <label for="ResponseFileName">File Name :</label>
-            <input type="text" id="ResponseFileName" name="ResponseFileName" value="{{.ResponseFileName}}" disabled size="60" class="form-control">
-          </div>m
+            <input type="text" id="ResponseFileName" name="ResponseFileName" value="{{.ResponseFileName}}" disabled="disabled" size="60" class="form-control">
+          </div>
         </div>
         <br>
         <label for="ResponseFilePath">File Path :</label>
-        <input type="text" id="ResponseFilePath" name="ResponseFilePath" value="{{.ResponseFilePath}}" disabled size="60" class="form-control">
+        <input type="text" id="ResponseFilePath" name="ResponseFilePath" value="{{.ResponseFilePath}}" disabled="disabled" size="60" class="form-control">
         <br>
         <div class="row">
           <div class="col-6">
             <label for="ResponseEjected">Emitted :</label>
-            <input type="text" id="ResponseEjected" name="ResponseEjected" value="{{.ResponseEjected}}" disabled size="60" class="form-control">
+            <input type="text" id="ResponseEjected" name="ResponseEjected" value="{{.ResponseEjected}}" disabled="disabled" size="60" class="form-control">
           </div>
           <div class="col-3">
             <label for="ResponseFileType">Type :</label>
-            <input type="text" id="ResponseFileType" name="ResponseFileType" value="{{.ResponseFileType}}" disabled size="20" class="form-control">
+            <input type="text" id="ResponseFileType" name="ResponseFileType" value="{{.ResponseFileType}}" disabled="disabled" size="20" class="form-control">
           </div>
-          <!--          <div class="col">
-            <label for="ResponseContentCount">ResponseContentCount :</label>
-            <input type="text" id="ResponseContentCount" name="ResponseContentCount" value="{{.ResponseContentCount}}" disabled size="60" class="form-control">
-          </div> -->
           <div class="col-3">
             <label for="ResponseStatus">Status :</label>
-            <input type="text" id="ResponseStatus" name="ResponseStatus" value="{{.ResponseStatus}}" disabled size="20" class="form-control">
+            <input type="text" id="ResponseStatus" name="ResponseStatus" value="{{.ResponseStatus}}" disabled="disabled" size="20" class="form-control">
           </div>
         </div>
         <br>
         <label for="ResponseContent">Content :</label>
-        <textarea name="ResponseContent" id="ResponseContent" rows="10" cols="132" disabled class="well form-control">{{.ResponseContent}}</textarea>
+        <textarea name="ResponseContent" id="ResponseContent" rows="10" cols="132" disabled="disabled" class="well form-control">{{.ResponseContent}}</textarea>
         <br>
-          <button type="submit" value="" class="btn btn-outline-primary         float-right" method="POST" onclick="saveFile()"><i class="fas fa-save" style="font-size: 22px"></i>&nbsp;&nbsp;Save</button>
+
+        <div class="">
+          <button type="submit" value="" class="btn btn-sm btn-outline-secondary float-right" method="POST" onclick="saveFile()">
+            <i class="fas fa-save"></i>&nbsp;&nbsp;Save</button>
+        </div>
       </div>
 
     </div>
     <br>
     <div class="card">
-      <div class="card-header float-left"><strong>Request Content</strong>
-        <a class="btn btn-sm btn-outline-info float-right" data-toggle="collapse" href="#request" role="button" aria-expanded="false" aria-controls="request">
-View Request   </a></div>
-      <div class="card-body d-flex h-100 flex-column">
-<div class="collapse" id="request">
-        <br>
-        <div class="row">
-          <div class="col">
-            <label for="RequestRID">ID :</label>
-            <input type="text" id="RequestRID" name="RequestRID" value="{{.RequestRID}}" disabled size="" class="form-control">
-          </div>
-          <div class="col">
-            <label for="RequestFileName">File Name :</label>
-            <input type="text" id="RequestFileName" name="RequestFileName" value="{{.RequestFileName}}" disabled size="" class="form-control">
-          </div>
-        </div>
-        <br>
-        <label for="RequestFilePath">File Path :</label>
-        <input type="text" id="RequestFilePath" name="RequestFilePath" value="{{.RequestFilePath}}" disabled size="60" class="form-control">
-        <br>
-
-        <div class="row">
-          <div class="col-8">
-            <label for="RequestConsumed">Consumed :</label>
-            <input type="text" id="RequestConsumed" name="RequestConsumed" value="{{.RequestConsumed}}" disabled size="60" class="form-control">
-          </div>
-          <div class="col-4">
-
-            <label for="RequestFileType">File Type :</label>
-            <input type="text" id="RequestFileType" name="RequestFileType" value="{{.RequestFileType}}" disabled size="60" class="form-control">
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col">
-
-            <label for="RequestAction">Action :</label>
-            <input type="text" id="RequestAction" name="RequestAction" value="{{.RequestAction}}" disabled size="60" class="form-control">
-          </div>
-          <div class="col">
-
-            <label for="RequestItem">Item :</label>
-            <input type="text" id="RequestItem" name="RequestItem" value="{{.RequestItem}}" disabled size="60" class="form-control">
-          </div>
-          <div class="col">
-            <label for="RequestParameters">Parameters :</label>
-            <input type="text" id="RequestParameters" name="RequestParameters" value="{{.RequestParameters}}" disabled size="60" class="form-control">
-          </div>
-        </div>
-
-        <!-- <br>
-
-        <label for="RequestPayloadCount">RequestPayloadCount :</label>
-        <input type="text" id="RequestPayloadCount" name="RequestPayloadCount" value="{{.RequestPayloadCount}}" disabled size="60" class="form-control"> -->
-        <br>
-        <label for="RequestPayload">Payload :</label>
-        <textarea name="RequestPayload" id="RequestPayload" rows="5" cols="80" disabled class="well form-control">{{.RequestPayload}}</textarea>
-        <br>
+      <div class="card-header float-left">
+        <strong>Request Content</strong>
+        <a class="btn btn-sm shadow-none float-right" data-toggle="collapse" href="#request" role="button" aria-expanded="false" aria-controls="request">
+          <img class="fas fa-expand-alt" style="font-size: 22px" onclick="changeIcon(this)"></img>
+        </a>
       </div>
-    </div>
+      <div class="collapse" id="request">
+        <div class="card-body d-flex h-100 flex-column">
+
+          <div class="row">
+            <div class="col">
+              <label for="RequestRID">ID :</label>
+              <input type="text" id="RequestRID" name="RequestRID" value="{{.RequestRID}}" disabled="disabled" size="" class="form-control">
+            </div>
+            <div class="col">
+              <label for="RequestFileName">File Name :</label>
+              <input type="text" id="RequestFileName" name="RequestFileName" value="{{.RequestFileName}}" disabled="disabled" size="" class="form-control">
+            </div>
+          </div>
+          <br>
+          <label for="RequestFilePath">File Path :</label>
+          <input type="text" id="RequestFilePath" name="RequestFilePath" value="{{.RequestFilePath}}" disabled="disabled" size="60" class="form-control">
+          <br>
+
+          <div class="row">
+            <div class="col-8">
+              <label for="RequestConsumed">Consumed :</label>
+              <input type="text" id="RequestConsumed" name="RequestConsumed" value="{{.RequestConsumed}}" disabled="disabled" size="60" class="form-control">
+            </div>
+            <div class="col-4">
+
+              <label for="RequestFileType">File Type :</label>
+              <input type="text" id="RequestFileType" name="RequestFileType" value="{{.RequestFileType}}" disabled="disabled" size="60" class="form-control">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+
+              <label for="RequestAction">Action :</label>
+              <input type="text" id="RequestAction" name="RequestAction" value="{{.RequestAction}}" disabled="disabled" size="60" class="form-control">
+            </div>
+            <div class="col">
+
+              <label for="RequestItem">Item :</label>
+              <input type="text" id="RequestItem" name="RequestItem" value="{{.RequestItem}}" disabled="disabled" size="60" class="form-control">
+            </div>
+            <div class="col">
+              <label for="RequestParameters">Parameters :</label>
+              <input type="text" id="RequestParameters" name="RequestParameters" value="{{.RequestParameters}}" disabled="disabled" size="60" class="form-control">
+            </div>
+          </div>
+
+          <!-- <br> <label for="RequestPayloadCount">RequestPayloadCount :</label> <input type="text" id="RequestPayloadCount" name="RequestPayloadCount" value="{{.RequestPayloadCount}}" disabled size="60" class="form-control"> -->
+          <br>
+          <label for="RequestPayload">Payload :</label>
+          <textarea name="RequestPayload" id="RequestPayload" rows="5" cols="80" disabled="disabled" class="well form-control">{{.RequestPayload}}</textarea>
+
+        </div>
+      </div>
     </div>
     <br>
     <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
       <div class="btn-group d-flex">
 
-      <button type="submit" value="" class="btn btn-outline-danger">
-        <i class="far fa-trash-alt" style="font-size: 22px"></i> Delete
-      </button>
-      <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/"><i class="fas fa-times" style="font-size: 22px"></i> Cancel </button>
-    </div>
+        <button type="submit" value="" class="btn btn-outline-danger">
+          <i class="far fa-trash-alt" style="font-size: 22px"></i>
+          Delete
+        </button>
+        <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/">
+          <i class="fas fa-times" style="font-size: 22px"></i>
+          Cancel
+        </button>
+      </div>
 
     </form>
 
   </div>
 </body>
 <script>
-    let saveFile = () => {
+  let saveFile = () => {
 
-        // Get the data from each element on the form.
-    	const name = document.getElementById('ResponseContent');
+    // Get the data from each element on the form.
+    const name = document.getElementById('ResponseContent');
 
-        // This variable stores all the data.
-        let data =
-            '\r ' + name.value + ' \r\n '
+    // This variable stores all the data.
+    let data = '\r ' + name.value + ' \r\n '
 
-        // Convert the text to BLOB.
-        const textToBLOB = new Blob([data], { type: 'text/plain' });
-        const sFileName = '{{.ResponseID}}.txt';	   // The file to save the data.
+    // Convert the text to BLOB.
+    const textToBLOB = new Blob([data], {type: 'text/plain'});
+    const sFileName = '{{.ResponseID}}.txt'; // The file to save the data.
 
-        let newLink = document.createElement("a");
-        newLink.download = sFileName;
+    let newLink = document.createElement("a");
+    newLink.download = sFileName;
 
-        if (window.webkitURL != null) {
-            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-        }
-        else {
-            newLink.href = window.URL.createObjectURL(textToBLOB);
-            newLink.style.display = "none";
-            document.body.appendChild(newLink);
-        }
-
-        newLink.click();
+    if (window.webkitURL != null) {
+      newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+    } else {
+      newLink.href = window.URL.createObjectURL(textToBLOB);
+      newLink.style.display = "none";
+      document.body.appendChild(newLink);
     }
+
+    newLink.click();
+  }
+
+  function changeIcon(theImage) {
+    var expand = 'svg-inline--fa fa-expand-alt fa-w-14';
+    var collapse = 'svg-inline--fa fa-compress-alt fa-w-14';
+    var thePic = $(theImage).attr('class'); // use jQuery to get the current image
+
+    // now set the src attribute according to its current state
+    if (thePic == expand) {
+      $(theImage).attr('class', collapse);
+    }
+
+    if (thePic == collapse) {
+      $(theImage).attr('class', expand);
+    }
+  }
+
 </script>
