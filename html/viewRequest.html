@@ -31,7 +31,9 @@
 
 <body>
   <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
-    <a class="navbar-brand" href="#"><h3 class="text-white">&nbsp;{{.Title}}</h3></a>
+    <a class="navbar-brand" href="#">
+      <h3 class="text-white">&nbsp;{{.Title}}</h3>
+    </a>
     <div class="btn-group">
       <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px"></i>&nbsp;Home</button>
       <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i>&nbsp;&nbsp;Print</button>
@@ -43,13 +45,15 @@
     <br>
 
 
-    <div class="card d-flex flex-column">
-      <div class="card-header"><strong>Purpose</strong></div>
-      <div class="card-body d-flex flex-column">
-        <p>{{.Description}}</p>
-      </div>
+    <!--  <div class="card d-flex flex-column">
+      <div class="card-body flush"> -->
+    <div class="container-fluid box">
+      <h5 class="card-title">Request Purpose</h5>
+      <p class="card-text">{{.Description}}</p>
     </div>
+
     <br>
+
 
     <div id="requestMessage">
       <div class="card  d-flex flex-column">
@@ -58,11 +62,10 @@
 
           <div class="row">
             <div class="col">
-
-
               <label for="ApplicationToken">ApplicationToken :</label>
               <input type="text" id="ApplicationToken" name="ApplicationToken" value="{{.ApplicationToken}}" disabled size="60" class="form-control">
             </div>
+
             <div class="col">
               <label for="SessionToken">SessionToken :</label>
               <input type="text" id="SessionToken" name="SessionToken" value="{{.SessionToken}}" disabled size="60" class="form-control">
@@ -111,11 +114,12 @@
     <form action="/executeRequest?id={{.SudoID}}&uuid={{.RequestID}}&action={{.RequestAction}}&item={{.RequestItem}}&parameters={{.RequestParameters}}" method="POST">
       <div class="btn-group d-flex">
 
-      <button type="submit" value="" class="btn btn-outline-primary">
-        <i class="far fa-paper-plane" style="font-size: 22px"></i> Send
-      </button>
-      <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/"><i class="fas fa-times" style="font-size: 22px"></i> Cancel </button>
-</div>
+        <button type="submit" value="" class="btn btn-outline-primary">
+          <i class="far fa-paper-plane" style="font-size: 22px"></i> Send
+        </button>
+        <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/"><i class="fas fa-times" style="font-size: 22px"></i> Cancel </button>
+
+      </div>
     </form>
   </div>
 

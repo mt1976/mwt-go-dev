@@ -9,6 +9,7 @@
   --custom-primary-dark: #221D53;
   --custom-font-family: 'Raleway', sans-serif;
   --custom-code-colour: #dd4814;
+  --custom-grey: #dedede;
 
 }
 
@@ -73,4 +74,37 @@ body {
 
 .badge-primary{
   background-color: var(--custom-primary-colour);
+}
+
+.card {
+
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
+
+
+  min-height: 200px;
+
+  background: white;
+  border-radius: 5px;
+}
+
+.navbar {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
+}
+
+.navbar-brand {
+  color: #322a77;
+  font-size: 30px;
+}
+
+.shad {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
+}
+
+.box {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
+  background: var(--custom-grey);
+  color: var(--custom-primary-colour);
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
