@@ -30,8 +30,7 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 
 	id := uuid.New()
 
-resp := buildRequestMessage(id.String(), "SERVICES", "", "", "",wctProperties)
-
+	resp := buildRequestMessage(id.String(), "SERVICES", "", "", "", wctProperties)
 
 	deliverRequest(resp, wctProperties["deliverpath"], id.String(), wctProperties["responseformat"])
 

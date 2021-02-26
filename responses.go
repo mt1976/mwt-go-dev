@@ -180,13 +180,13 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getResponse(responseID string, wctProperties map[string]string) WctResponsePayload {
-	fmt.Println("XXXXXXX - GET RESPONSE - XXXXXXX")
+	//fmt.Println("XXXXXXX - GET RESPONSE - XXXXXXX")
 	var returnPayload WctResponsePayload
 	var reponseMessage WctResponseMessage
 	fullFilename := wctProperties["receivepath"] + "/" + responseID + "." + wctProperties["responseformat"]
-	fmt.Println("PATHTO:", fullFilename)
+	//fmt.Println("PATHTO:", fullFilename)
 
-	fmt.Println("Access file", fullFilename)
+	//fmt.Println("Access file", fullFilename)
 	content, _ := ioutil.ReadFile(fullFilename)
 	err := json.Unmarshal(content, &reponseMessage)
 	if err != nil {
@@ -195,7 +195,7 @@ func getResponse(responseID string, wctProperties map[string]string) WctResponse
 	text := string(content)
 	//	fmt.Println("text file", text)
 	if text != "" {
-		fmt.Println("content", text)
+		//fmt.Println("content", text)
 		returnPayload = reponseMessage.WctReponsePayload
 	}
 
@@ -203,9 +203,9 @@ func getResponse(responseID string, wctProperties map[string]string) WctResponse
 }
 
 func deleteResponse(responseID string, wctProperties map[string]string) (err error) {
-	fmt.Println("XXXXXXX - DELETE RESPONSE - XXXXXXX")
+	//fmt.Println("XXXXXXX - DELETE RESPONSE - XXXXXXX")
 	fullFilename := wctProperties["receivepath"] + "/" + responseID + "." + wctProperties["responseformat"]
-	fmt.Println("PATHTO:", fullFilename)
+	//fmt.Println("PATHTO:", fullFilename)
 
 	err = os.Remove(fullFilename)
 	if err != nil {

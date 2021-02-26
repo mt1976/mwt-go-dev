@@ -67,12 +67,12 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "LIST", "", "", wctProperties)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessage := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("responseMessage", responseMessage)
+	//fmt.Println("responseMessage", responseMessage)
 
 	//outString := ""
 	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
@@ -87,7 +87,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		newDataMapItem.DataMapFileID = dataMapContentRow[2]
 		newDataMapItem.DataMapDescription = html.UnescapeString(dataMapContentRow[3])
 		newDataMapItem.DataMapXMLFile = dataMapContentRow[4]
-		fmt.Println("newDataMapItem", newDataMapItem)
+		//fmt.Println("newDataMapItem", newDataMapItem)
 		dataMapItemsList = append(dataMapItemsList, newDataMapItem)
 	}
 
@@ -98,7 +98,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		SvcDataMapItems: dataMapItemsList,
 	}
 
-	fmt.Println("Page Data", pageSrvEvironment)
+	//fmt.Println("Page Data", pageSrvEvironment)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -115,7 +115,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	requestID := uuid.New()
 
 	thisID := getURLparam(r, "dataMapName")
-	fmt.Println(thisID)
+	//fmt.Println(thisID)
 
 	fmt.Println("WCT : Serving :", inUTL)
 
@@ -125,13 +125,13 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "VIEW", thisID, "", wctProperties)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessage := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("*** GOT RESPONSE ***")
-	fmt.Println("responseMessage", responseMessage)
+	//fmt.Println("*** GOT RESPONSE ***")
+	//fmt.Println("responseMessage", responseMessage)
 
 	//outString := ""
 	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
@@ -139,12 +139,12 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	var wrkDataMapCols []DataHdr
 	var wrkDataMapRows []DataRow
 	//wrkDataMapCols[1] = "POO"
-	fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
+	//fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
 	var firstDataMapContentRow = strings.Split(responseMessage.ResponseContent.ResponseContentRow[0], "|")
-	fmt.Println("Calculating Columns")
+	//fmt.Println("Calculating Columns")
 	noCols := len(firstDataMapContentRow)
-	fmt.Println("firstDataMapContentRow=", firstDataMapContentRow)
-	fmt.Println("noCols=", noCols)
+	//fmt.Println("firstDataMapContentRow=", firstDataMapContentRow)
+	//fmt.Println("noCols=", noCols)
 	for jj := 0; jj < noCols; jj++ {
 		headerVal := firstDataMapContentRow[jj]
 		var tmpVal DataHdr
@@ -152,32 +152,32 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		tmpVal.DataHdrItem = headerVal
 		wrkDataMapCols = append(wrkDataMapCols, tmpVal)
 	}
-	fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
+	//fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
 
 	// Deliberatly skip the first row
 	for kk := 1; kk < noRows; kk++ {
 
 		var theDataMapContentRow = strings.Split(responseMessage.ResponseContent.ResponseContentRow[kk], "|")
 
-		fmt.Println("theDataMapContentRow", theDataMapContentRow)
+		//fmt.Println("theDataMapContentRow", theDataMapContentRow)
 
 		var wrkDataMapColItems []DataCol
 		for jj := 0; jj < noCols; jj++ {
 			var wrk DataCol
-			fmt.Println("theDataMapContentRow", kk, jj, theDataMapContentRow[jj])
+			//fmt.Println("theDataMapContentRow", kk, jj, theDataMapContentRow[jj])
 			wrk.DataItem = theDataMapContentRow[jj]
 			wrk.DIcol = jj
 			wrk.DIrow = kk
 			wrkDataMapColItems = append(wrkDataMapColItems, wrk)
 		}
-		fmt.Println("wrkDataMapColItems", kk, wrkDataMapColItems)
+		//fmt.Println("wrkDataMapColItems", kk, wrkDataMapColItems)
 		var dr DataRow
 		dr.RowID = kk
 		dr.DataRowItem = wrkDataMapColItems
 		//headerVal := firstDataMapContentRow[jj]
 		wrkDataMapRows = append(wrkDataMapRows, dr)
 	}
-	fmt.Println("wrkDataMapRows", wrkDataMapRows)
+	//fmt.Println("wrkDataMapRows", wrkDataMapRows)
 
 	pageSrvEvironment := SvcDataMapPage{
 		Title:          title,
@@ -190,7 +190,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		JSRows:         noRows - 1,
 	}
 
-	fmt.Println("Page Data", pageSrvEvironment)
+	//fmt.Println("Page Data", pageSrvEvironment)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
