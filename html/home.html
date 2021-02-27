@@ -120,11 +120,11 @@
 
                     <form action="/viewResponse?uuid={{.ResponseID}}" method="POST" class="float-right">
                       <div class="btn-group">
-                        <button type="submit" value="{{.ResponseID}}" class="btn btn-sm btn-outline-info">
+                        <button type="submit" value="{{.ResponseID}}" class="btn btn-sm btn-outline-info btn-inner">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
 
-                        <button type="submit" value="" class="btn btn-sm btn-outline-danger" formaction="/deleteResponse?responseID={{.ResponseID}}" method="POST">
+                        <button type="submit" value="" class="btn btn-sm btn-outline-danger btn-inner" formaction="/deleteResponse?responseID={{.ResponseID}}" method="POST">
                           <i class="far fa-trash-alt" style="font-size: 22px"></i>
                         </button>
                       </div>
@@ -181,11 +181,11 @@
 
                     <form action="/previewRequest?id={{.CatalogID}}" method="POST" class="float-right">
                       <div class="btn-group">
-                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-info">
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-info btn-inner">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
 
-                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-primary" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-primary btn-inner" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}" method="POST">
                           <i class="far fa-paper-plane" style="font-size: 22px"></i>
                         </button>
                     </form>

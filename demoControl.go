@@ -62,6 +62,15 @@ func main() {
 	http.HandleFunc("/viewAppConfiguration/", viewAppConfigurationHandler)
 	http.HandleFunc("/listSvcDataMap/", listSvcDataMapHandler)
 	http.HandleFunc("/viewSvcDataMap/", viewSvcDataMapHandler)
+	http.HandleFunc("/editSvcDataMap/", editSvcDataMapHandler)
+	http.HandleFunc("/saveSvcDataMap/", saveSvcDataMapHandler)
+	http.HandleFunc("/viewSvcDataMapXML/", viewSvcDataMapXMLHandler)
+	http.HandleFunc("/editSvcDataMapXML/", editSvcDataMapXMLHandler)
+	http.HandleFunc("/saveSvcDataMapXML/", saveSvcDataMapXMLHandler)
+	http.HandleFunc("/newSvcDataMap/", newSvcDataMapHandler)
+	http.HandleFunc("/genSvcDataMap/", genSvcDataMapHandler)
+	http.HandleFunc("/deleteSvcDataMap/", deleteSvcDataMapHandler)
+
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 

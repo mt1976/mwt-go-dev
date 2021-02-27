@@ -35,7 +35,8 @@
 <body>
   <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
     <a class="navbar-brand" href="#">
-    <h3 class="text-white">&nbsp;&nbsp;{{.Title}}</h3></a>
+      <h3 class="text-white">&nbsp;&nbsp;{{.Title}}</h3>
+    </a>
     <div class="btn-group">
       <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px"></i>&nbsp;Home</button>
       <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i>&nbsp;&nbsp;Print</button>
@@ -43,34 +44,37 @@
       <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
     </div>
   </nav>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <h5 class="alert-heading">Information!</h5>
-    Where ^ is used in properties, it will be replaced by an = char in the resolved property
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
 
-  <form method="GET" action="/saveSrvConfiguration?id={{.PageRecordID}}&poo=bum">
+
+  <form method="GET" action="/genSvcDataMap">
 
 
     <div class="container-fluid">
       <br>
 
       <div id="SrvConfig">
-
-
         <div class="card">
-          <div class="card-header"><strong><label>ID :</label><code> {{.PageRecordID}}</code></strong></div>
+          <div class="card-header"><strong><label>ID :</label><code> NEW</code></strong>&nbsp;<code><font size="-3" color="grey"></font></code></div>
           <div class="card-body d-flex h-100 flex-column">
-            <input name="pgid" id="pgid" type="text" value="{{.PageRecordID}}" hidden/>
-            <textarea class="form-control" name="pgContent" id="pgContent" rows="{{.Rows}}" cols="80">{{.FullRecord}}</textarea>
+
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="name" value="" size="20" width="20" class="form-control" placeholder="Enter the name of the DataMap">
             <br>
+            <label for="descr">Description :</label>
+            <input type="text" id="descr" name="descr" size="60" class="form-control" placeholder="Enter a description/reason for the DataMap">
+            <br>
+
             <div class="btn-group float-right">
-              <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" ></i>&nbsp;&nbsp;Save</button>
-                        <button id="export" type="button" class="btn btn-outline-primary" onclick="saveFile()"><i class="fas fa-file-code" style="font-size: 18px"></i>&nbsp;&nbsp;Export</button>
-              <button type="submit" value="" class="btn btn-outline-secondary" method="POST" formaction="/"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+              <button type="submit" value="" class="btn btn-outline-danger" formaction="/genSvcDataMap"><i class="fas fa-save" style="font-size: 18px"></i>&nbsp;&nbsp;Create</button>
+
+              <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+
             </div>
+          </div>
+          <div class="card-footer text-muted">
+            <font size="-1">
+            A new DataMap will be created to load transactions into Siena
+          </font>
           </div>
         </div>
       </div>
@@ -78,30 +82,3 @@
   </form>
 
 </body>
-<script>
-  let saveFile = () => {
-
-    // Get the data from each element on the form.
-    const name = document.getElementById('pgContent');
-
-    // This variable stores all the data.
-    let data = '\r ' + name.value + ' \r\n '
-
-    // Convert the text to BLOB.
-    const textToBLOB = new Blob([data], {type: 'text/plain'});
-    const sFileName = '{{.PageRecordID}}.txt'; // The file to save the data.
-
-    let newLink = document.createElement("a");
-    newLink.download = sFileName;
-
-    if (window.webkitURL != null) {
-      newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-    } else {
-      newLink.href = window.URL.createObjectURL(textToBLOB);
-      newLink.style.display = "none";
-      document.body.appendChild(newLink);
-    }
-
-    newLink.click();
-  }
-</script>

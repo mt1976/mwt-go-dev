@@ -38,8 +38,8 @@
       <h3 class="text-white">&nbsp;{{.Title}}</h3>
     </a>
     <div class="btn-group">
-      <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" style="font-size: 18px"></i>&nbsp;Home</button>
-      <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i>&nbsp;&nbsp;Print</button>
+      <button type="button" class="btn btn-primary" onclick="location.href='../'"><i class="fa fa-home" ></i>&nbsp;Home</button>
+      <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" ></i>&nbsp;&nbsp;Print</button>
 
       <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
     </div>
@@ -50,7 +50,12 @@
     <form method="POST" action="/">
 
       <div class="card">
-        <div class="card-header"><strong>Data Maps &nbsp;</strong><span class="badge badge-primary">{{.NoDataMapIDs}}</span></div>
+        <div class="card-header"><strong>Data Maps &nbsp;</strong><span class="badge badge-primary">{{.NoDataMapIDs}}</span>
+
+          <button type="submit" value="" class="btn btn-sm btn-primary float-right" formaction="/newSvcDataMap" method="POST">
+            <i class="fas fa-plus-square" ></i>&nbsp;&nbsp;New</button>
+
+        </div>
         <div class="card-body">
           <div class="table-responsive">
 
@@ -71,15 +76,22 @@
                 <td class="align-middle">{{.DataMapDescription}}</td>
                 <td style="width:1px; white-space:nowrap;">
                   <div class="btn-group float-right">
-                    <button type="submit" value="" class="btn btn-sm btn-outline-primary" formaction="/viewSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
-                      <i class="far fa-eye" style="font-size: 22px"></i>
+                    <button type="submit" value="" class="btn btn-sm btn-outline-primary btn-inner" formaction="/viewSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                      <i class="far fa-eye" ></i>
                     </button>
-                    <button type="submit" value="" class="btn btm-sm btn-outline-danger" formaction="/viewSvcDataMap?dataMapFileID={{.DataMapFileID}}" method="POST">
-                      <i class="far fa-edit" style="font-size: 22px"></i>
+                    <button type="submit" value="" class="btn btm-sm btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                      <i class="far fa-file-alt" ></i>
                     </button>
-                    <button type="submit" value="" class="btn btn-sm btn-outline-info" formaction="/viewSvcDataMapXML?dataMapXmlID={{.DataMapXMLFile}}" method="POST">
-                      <i class="fas fa-code" style="font-size: 22px"></i>
+                    <button type="submit" value="" class="btn btn-sm btn-outline-primary btn-inner" style="border:none" formaction="/viewSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
+                      <i class="fas fa-code" ></i>
                     </button>
+                    <button type="submit" value="" class="btn btn-sm btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
+                      <i class="far fa-file-code"></i>
+                    </button>
+                    <button type="submit" value="" class="btn btn-sm btn-outline-danger btn-inner" style="border:none" formaction="/deleteSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+
                   </div>
                 </td>
               </tr>
