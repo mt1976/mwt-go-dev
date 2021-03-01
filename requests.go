@@ -26,7 +26,7 @@ type WctPayload struct {
 	RequestParameters     string `json:"requestParameters"`
 	UniqueUID             string `json:"uniqueID"`
 	RequestResponseFormat string `json:"requestResponseFormat"`
-	RequestData	  				string `json:"requestData"`
+	RequestData           string `json:"requestData"`
 }
 
 //RequestViewPage is cheese
@@ -69,7 +69,7 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 		Description:           serviceCatalog[thisID].Text + " " + serviceCatalog[thisID].Helptext,
 		SudoID:                thisID,
 		ApplicationToken:      wctProperties["applicationtoken"],
-		SessionToken:          "n/a",
+		SessionToken:          gSessionToken,
 		RequestID:             requestID.String(),
 		RequestAction:         serviceCatalog[thisID].Action,
 		RequestItem:           serviceCatalog[thisID].Item,
@@ -107,14 +107,14 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 	dispatchMessage := WctMessage{
 		WctPayload{
 			ApplicationToken:      wctProperties["applicationtoken"],
-			SessionToken:          "",
+			SessionToken:          gSessionToken,
 			RequestID:             thisUUID,
 			RequestAction:         getURLparam(r, "action"),
 			RequestItem:           getURLparam(r, "item"),
 			RequestParameters:     getURLparam(r, "parameters"),
 			UniqueUID:             wctProperties["appid"],
 			RequestResponseFormat: wctProperties["responseformat"],
-			RequestData: "",
+			RequestData:           "",
 		},
 	}
 
@@ -172,7 +172,8 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 			RequestAction:         "SERVICES",
 			UniqueUID:             wctProperties["appid"],
 			RequestResponseFormat: responseFormat,
-			RequestData: "",
+			RequestData:           "",
+			SessionToken:          gSessionToken,
 		},
 	}
 
@@ -191,7 +192,8 @@ func buildRequestMessage(inUUID string, inAction string, inItem string, inParame
 			RequestParameters:     inParameters,
 			UniqueUID:             wctProperties["appid"],
 			RequestResponseFormat: wctProperties["responseformat"],
-			RequestData:				 inPayload,
+			RequestData:           inPayload,
+			SessionToken:          gSessionToken,
 		},
 	}
 

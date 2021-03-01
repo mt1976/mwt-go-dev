@@ -1,0 +1,141 @@
+package main
+
+import (
+	"fmt"
+	"html/template"
+	"net/http"
+	"os"
+
+	"github.com/google/uuid"
+)
+
+//loginPage is cheese
+type loginPage struct {
+	AppName          string
+	UserName         string
+	UserPassword     string
+	WebServerVersion string
+	LicenceType      string
+	LicenceLink      string
+}
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+	tmpl := "login"
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	fmt.Println("WCT : Serving :", inUTL)
+
+	appName := wctProperties["appname"]
+
+	appServerVersion := wctProperties["releaseid"] + " [r" + wctProperties["releaselevel"] + "-" + wctProperties["releasenumber"] + "]"
+
+	loginPageContent := loginPage{
+		AppName:          appName,
+		UserName:         "",
+		UserPassword:     "",
+		WebServerVersion: appServerVersion,
+		LicenceType:      wctProperties["licname"],
+		LicenceLink:      wctProperties["liclink"],
+	}
+
+	fmt.Println("Page Data", loginPageContent)
+
+	//thisTemplate:= getTemplateID(tmpl)
+	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t.Execute(w, loginPageContent)
+
+}
+
+func valLoginHandler(w http.ResponseWriter, r *http.Request) {
+
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+	//tmpl := "login"
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	fmt.Println("WCT : Serving :", inUTL)
+
+	uName := r.FormValue("username")
+	uPassword := r.FormValue("password")
+	appToken := wctProperties["applicationtoken"]
+	requestID := uuid.New()
+	var requestPayload []string
+
+	requestPayload = qmBundleAdd(requestPayload, "username", uName)
+	requestPayload = qmBundleAdd(requestPayload, "password", uPassword)
+	requestPayload = qmBundleAdd(requestPayload, "apptoken", appToken)
+
+	requestPayload = qmBundleAdd(requestPayload, "ipUser", readUserIP(r))
+	requestPayload = qmBundleAdd(requestPayload, "hostUser", r.Host)
+
+	hostname, err := os.Hostname()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	requestPayload = qmBundleAdd(requestPayload, "ipWebServer", getLocalIP())
+	requestPayload = qmBundleAdd(requestPayload, "hostWebServer", hostname)
+
+	//fmt.Println("requestPayload", requestPayload)
+	//fmt.Println("BUNDLE", qmBundleToString(requestPayload))
+
+	loginRequest := buildRequestMessage(requestID.String(), "LOGIN", "", "", qmBundleToString(requestPayload), wctProperties)
+
+	fmt.Println("loginRequest", loginRequest)
+	fmt.Println("SEND MESSAGE")
+	sendRequest(loginRequest, requestID.String(), wctProperties)
+
+	loginResponse := waitForResponse(requestID.String(), wctProperties)
+	fmt.Println("loginResponse", loginResponse)
+
+	//outString := ""
+	//noRows := len(loginResponse.ResponseContent.ResponseContentRow)
+
+	responseCode := loginResponse.ResponseStatus
+	fmt.Println("Response Code", responseCode)
+	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
+	newToken := loginResponse.ResponseContent.ResponseContentRow[0]
+	fmt.Println("Response Content", newToken)
+
+	//todo Encryp password etc
+
+	if loginResponse.ResponseStatus == "200" {
+		fmt.Println("Logginng In", responseCode)
+		gSessionToken = newToken
+		homePageHandler(w, r)
+	} else {
+		fmt.Println("Reject Login", responseCode)
+		loginHandler(w, r)
+	}
+}
+
+func logoutHandler(w http.ResponseWriter, r *http.Request) {
+
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+	//tmpl := "login"
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	fmt.Println("WCT : Serving :", inUTL)
+
+	requestID := uuid.New()
+
+	logoutRequest := buildRequestMessage(requestID.String(), "LOGOUT", "", "", "", wctProperties)
+
+	fmt.Println("logoutRequest", logoutRequest)
+	fmt.Println("SEND MESSAGE")
+	sendRequest(logoutRequest, requestID.String(), wctProperties)
+
+	logoutResponse := waitForResponse(requestID.String(), wctProperties)
+	fmt.Println("logoutResponse", logoutResponse)
+
+	//outString := ""
+	//noRows := len(loginResponse.ResponseContent.ResponseContentRow)
+
+	responseCode := logoutResponse.ResponseStatus
+	fmt.Println("Response Code", responseCode)
+	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
+	//todo Encryp password etc
+
+	loginHandler(w, r)
+}

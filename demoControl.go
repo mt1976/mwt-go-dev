@@ -13,6 +13,8 @@ const (
 	CONST_CONFIG_FILE = "config/properties.cfg"
 )
 
+var gSessionToken = ""
+
 //HomePage ...
 type HomePage struct {
 	Title          string
@@ -43,12 +45,16 @@ func main() {
 	fmt.Println("Delivery Path :", wctProperties["deliverpath"])
 	fmt.Println("Reponse Path :", wctProperties["receivepath"])
 
-	http.HandleFunc("/", homePageHandler)
+	http.HandleFunc("/", loginHandler)
+	http.HandleFunc("/login", valLoginHandler)
+	http.HandleFunc("/logout", logoutHandler)
+	http.HandleFunc("/home", homePageHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
 	http.HandleFunc("/site.webmanifest", faviconManifestHandler)
 	http.HandleFunc("/favicon-16x16.png", favicon16Handler)
 	http.HandleFunc("/browserconfig.xml", faviconBrowserConfigHandler)
+	http.HandleFunc("/listResponses/", listResponsesHandler)
 	http.HandleFunc("/previewRequest/", previewRequestHandler)
 	http.HandleFunc("/executeRequest/", executeRequestHandler)
 	http.HandleFunc("/viewResponse/", viewResponseHandler)

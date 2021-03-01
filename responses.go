@@ -14,6 +14,16 @@ import (
 	"strconv"
 )
 
+type ResponseListPage struct {
+	Title       string
+	PageTitle   string
+	Responses   []ResponseItem
+	NoResponses int
+}
+type ResponseItem struct {
+	ID string
+}
+
 //WctResponseMessage is cheese
 type WctResponseMessage struct {
 	WctReponsePayload WctResponsePayload `json:"wctResponse"`
@@ -228,7 +238,7 @@ func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	homePageHandler(w, r)
+	listResponsesHandler(w, r)
 
 }
 
@@ -287,4 +297,52 @@ func waitForResponse(id string, wctProperties map[string]string) WctResponsePayl
 	}
 
 	return wibble
+}
+
+func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
+
+	wctProperties := getProperties(CONST_CONFIG_FILE)
+	tmpl := "listResponses"
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+
+	fmt.Println("WCT : Serving :", inUTL)
+
+	noResps, _, files := getResponseIDs(wctProperties)
+	fmt.Println("Responses Found :", len(files))
+
+	title := wctProperties["appname"]
+
+	rpc := ResponseListPage{
+		Title:       title,
+		PageTitle:   "List Responses",
+		Responses:   files,
+		NoResponses: noResps,
+	}
+
+	fmt.Println("Page Data", rpc)
+
+	//thisTemplate:= getTemplateID(tmpl)
+	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t.Execute(w, rpc)
+
+}
+
+func getResponseIDs(wctProperties map[string]string) (int, string, []ResponseItem) {
+	files := getResponses(wctProperties["receivepath"], wctProperties["responseformat"])
+	var respList []ResponseItem
+	//	var noFound = "<em>Responses Found : </em><code>" + strconv.Itoa(len(files)) + "</code>"
+	noResponses := len(files)
+	var responseText bytes.Buffer
+	for _, f := range files {
+		responseText.WriteString(f + "\n")
+
+		var tempResponse ResponseItem
+		endPoint := len(f) - (len(wctProperties["responseformat"]) + 1)
+		startPoint := len(wctProperties["receivepath"]) + 1
+		tempResponse.ID = f[startPoint:endPoint]
+		respList = append(respList, tempResponse)
+
+	}
+	return noResponses, responseText.String(), respList
 }

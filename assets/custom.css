@@ -10,6 +10,8 @@
   --custom-font-family: 'Raleway', sans-serif;
   --custom-code-colour: #dd4814;
   --custom-grey: #dedede;
+  --custom-placeholder: #aeaeae;
+
 
 }
 
@@ -17,6 +19,26 @@
   color: white;
   background-color: var(--custom-primary-colour);
   border-color: var(--custom-primary-colour);
+}
+
+.text-primary{
+  color: var(--custom-primary-colour)!important;
+  font-weight: bold;
+}
+.text-primary-list{
+  color: var(--custom-primary-colour)!important;
+
+}
+
+.hr-list{
+margin-top:0;
+margin-bottom:0;
+
+}
+
+.text-note{
+  font-weight: lighter;
+  font-size: 12px;
 }
 
 .btn-outline-primary{
@@ -76,6 +98,9 @@ body {
   background-color: var(--custom-primary-colour);
 }
 
+.badge-light{
+  color: var(--custom-primary-colour);
+}
 .card {
 
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
@@ -111,4 +136,24 @@ body {
 
 .btn-inner{
   border:0;
+  padding: 4;
 }
+
+.btn-list{
+  border:0;
+  padding: 0;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: var(--custom-placeholder);
+            opacity: 1;
+            font-weight: lighter;
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+              color: var(--custom-placeholder);
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+                color: var(--custom-placeholder);
+ }
