@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"strings"
 
@@ -31,20 +31,20 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "",wctProperties)
+	requestMessage := buildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", wctProperties)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessge := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("responseMessge", responseMessge)
+	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
 	noRows := len(responseMessge.ResponseContent.ResponseContentRow)
@@ -66,7 +66,7 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 		SrvEnvironmentItems: configsList,
 	}
 
-	fmt.Println("Page Data", pageSrvEvironment)
+	//fmt.Println("Page Data", pageSrvEvironment)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

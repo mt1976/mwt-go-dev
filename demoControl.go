@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 
 	"github.com/mbndr/figlet4go"
@@ -14,6 +15,8 @@ const (
 )
 
 var gSessionToken = ""
+var gUUID = "authorAdjust"
+var gSecurityViolation = ""
 
 //HomePage ...
 type HomePage struct {
@@ -42,8 +45,25 @@ func main() {
 
 	fmt.Print(renderStr)
 
-	fmt.Println("Delivery Path :", wctProperties["deliverpath"])
-	fmt.Println("Reponse Path :", wctProperties["receivepath"])
+	fmt.Println("PATHS")
+	fmt.Println("Delivery   :", wctProperties["deliverpath"])
+	fmt.Println("Response   :", wctProperties["receivepath"])
+	fmt.Println("Processed  :", wctProperties["processedpath"])
+	fmt.Println("")
+	fmt.Println("ACCESS")
+	fmt.Println("URL        :", "http://localhost:"+wctProperties["port"])
+	fmt.Println("")
+	fmt.Println("APPLICATION")
+	fmt.Println("Name       :", wctProperties["appname"])
+	fmt.Println("Msg Format :", wctProperties["responseformat"])
+	fmt.Println("Licence    :", wctProperties["licname"])
+	fmt.Println("Lic URL    :", wctProperties["liclink"])
+	fmt.Println("")
+	fmt.Println("RELEASE")
+	fmt.Println("Release ID :", wctProperties["releaseid"])
+	fmt.Println("Level      :", wctProperties["releaselevel"])
+	fmt.Println("Number     :", wctProperties["releasenumber"])
+	fmt.Println("")
 
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/login", valLoginHandler)
@@ -80,7 +100,7 @@ func main() {
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-	fmt.Println("URL", "http://localhost:"+wctProperties["port"])
+	//fmt.Println("URL", "http://localhost:"+wctProperties["port"])
 
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
@@ -92,7 +112,8 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	if !(inUTL == "/favicon.ico") {
 		tmpl := "home"
-		fmt.Println("WCT : Serving :", inUTL)
+		log.Println("Servicing :", inUTL)
+
 		//		var propertiesFileName = "config/properties.cfg"
 		wctProperties := getProperties(CONST_CONFIG_FILE)
 
@@ -106,7 +127,18 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
 		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
 
-		p := HomePage{Title: title, Body: "", RequestPath: wctProperties["deliverpath"], ResponsePath: wctProperties["receivepath"], ProcessedPath: wctProperties["processedpath"], NoResponses: noResp, Responses: respList, NoServices: noServices, Services: servicesList, ServiceCatalog: serviceCatalog, Description: "A description of the homepage.", ResponseType: wctProperties["responseformat"]}
+		p := HomePage{Title: title,
+			Body:           "",
+			RequestPath:    wctProperties["deliverpath"],
+			ResponsePath:   wctProperties["receivepath"],
+			ProcessedPath:  wctProperties["processedpath"],
+			NoResponses:    noResp,
+			Responses:      respList,
+			NoServices:     noServices,
+			Services:       servicesList,
+			ServiceCatalog: serviceCatalog,
+			Description:    "A description of the homepage.",
+			ResponseType:   wctProperties["responseformat"]}
 
 		//fmt.Println("serviceCatalog", serviceCatalog)
 		//fmt.Println("HomePage=", p.ServiceCatalog)

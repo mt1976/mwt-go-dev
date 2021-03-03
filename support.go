@@ -59,7 +59,7 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	requestMessage := buildRequestMessage(requestID.String(), "SHUTDOWN", "", "", "", wctProperties)
 
@@ -76,8 +76,8 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getURLparam(r *http.Request, paramID string) string {
-	fmt.Println(paramID)
-	fmt.Println(r.URL)
+	//fmt.Println(paramID)
+	//fmt.Println(r.URL)
 	key := r.FormValue(paramID)
 	log.Println("Url Param '" + paramID + "' is: " + string(key))
 	return key
@@ -85,7 +85,7 @@ func getURLparam(r *http.Request, paramID string) string {
 
 func doSnooze(inPollingInterval string) {
 	pollingInterval, _ := strconv.Atoi(inPollingInterval)
-	fmt.Println("Snoooze... Zzzzzz.... ", pollingInterval)
+	log.Println("Snoooze... Zzzzzz.... ", pollingInterval)
 	time.Sleep(time.Duration(pollingInterval) * time.Second)
 }
 
@@ -95,7 +95,7 @@ func arrToString(strArray []string) string {
 
 //RemoveContents has a comment
 func RemoveContents(dir string) error {
-	fmt.Println("TRASH", dir)
+	log.Println("TRASH", dir)
 	files, err := filepath.Glob(filepath.Join(dir, "*"))
 	if err != nil {
 		fmt.Println(err)
@@ -120,7 +120,7 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
 	err1 := RemoveContents(wctProperties["deliverpath"])
@@ -148,7 +148,7 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 func getTemplateID(tmpl string) string {
 
 	templateName := "html/" + tmpl + ".html"
-	fmt.Println("HTMLPAGE", templateName)
+	log.Println("Preparing", templateName)
 	return templateName
 }
 

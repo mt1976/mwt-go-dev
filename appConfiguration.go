@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -25,7 +26,8 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
+
 	title := wctProperties["appname"]
 
 	// Get Data Here

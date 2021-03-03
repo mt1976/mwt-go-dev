@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 
@@ -17,6 +18,7 @@ type loginPage struct {
 	WebServerVersion string
 	LicenceType      string
 	LicenceLink      string
+	ResponseError    string
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +27,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	appName := wctProperties["appname"]
 
@@ -38,9 +40,10 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		WebServerVersion: appServerVersion,
 		LicenceType:      wctProperties["licname"],
 		LicenceLink:      wctProperties["liclink"],
+		ResponseError:    gSecurityViolation,
 	}
 
-	fmt.Println("Page Data", loginPageContent)
+	//fmt.Println("Page Data", loginPageContent)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -54,7 +57,7 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	uName := r.FormValue("username")
 	uPassword := r.FormValue("password")
@@ -82,30 +85,36 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	loginRequest := buildRequestMessage(requestID.String(), "LOGIN", "", "", qmBundleToString(requestPayload), wctProperties)
 
-	fmt.Println("loginRequest", loginRequest)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("loginRequest", loginRequest)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(loginRequest, requestID.String(), wctProperties)
 
 	loginResponse := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("loginResponse", loginResponse)
+	//fmt.Println("loginResponse", loginResponse)
 
 	//outString := ""
 	//noRows := len(loginResponse.ResponseContent.ResponseContentRow)
 
 	responseCode := loginResponse.ResponseStatus
-	fmt.Println("Response Code", responseCode)
+	//fmt.Println("Response Code", responseCode)
 	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
 	newToken := loginResponse.ResponseContent.ResponseContentRow[0]
-	fmt.Println("Response Content", newToken)
+	//fmt.Println("Response Content", newToken)
 
+	log.Println(responseCode, newToken)
 	//todo Encryp password etc
 
 	if loginResponse.ResponseStatus == "200" {
-		fmt.Println("Logginng In", responseCode)
+		log.Println("ACCESS GRANTED", responseCode, uName)
+		newUUID := loginResponse.ResponseContent.ResponseContentRow[1]
+
 		gSessionToken = newToken
+		gUUID = newUUID
+		gSecurityViolation = ""
 		homePageHandler(w, r)
 	} else {
-		fmt.Println("Reject Login", responseCode)
+		gSecurityViolation = loginResponse.ResponseContent.ResponseContentRow[0]
+		log.Println("SECURITY INCIDENT", responseCode, gSecurityViolation)
 		loginHandler(w, r)
 	}
 }
@@ -116,24 +125,26 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	requestID := uuid.New()
 
 	logoutRequest := buildRequestMessage(requestID.String(), "LOGOUT", "", "", "", wctProperties)
 
-	fmt.Println("logoutRequest", logoutRequest)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("logoutRequest", logoutRequest)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(logoutRequest, requestID.String(), wctProperties)
 
 	logoutResponse := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("logoutResponse", logoutResponse)
+	//fmt.Println("logoutResponse", logoutResponse)
 
 	//outString := ""
-	//noRows := len(loginResponse.ResponseContent.ResponseContentRow)
 
-	responseCode := logoutResponse.ResponseStatus
-	fmt.Println("Response Code", responseCode)
+	//responseCode := logoutResponse.ResponseStatus
+	log.Println("LOGOUT", logoutResponse.ResponseStatus, gSessionToken)
+	gSessionToken = ""
+	gUUID = ""
+	gSecurityViolation = ""
 	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
 	//todo Encryp password etc
 

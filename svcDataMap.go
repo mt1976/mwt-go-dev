@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html"
 	"html/template"
+	"log"
 	"net/http"
 	"strings"
 
@@ -60,7 +61,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -118,7 +119,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := getURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -210,7 +211,7 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := getURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -258,7 +259,7 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := getURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -306,7 +307,7 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := getURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -356,7 +357,7 @@ func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := getURLparam(r, "pgid")
 	//recordContent := getURLparam(r, "pgContent")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -401,7 +402,7 @@ func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := getURLparam(r, "pgid")
 	//recordContent := getURLparam(r, "pgContent")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -441,7 +442,7 @@ func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -468,7 +469,7 @@ func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := getURLparam(r, "pgid")
 	//recordContent := getURLparam(r, "pgContent")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -514,7 +515,7 @@ func deleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := getURLparam(r, "pgid")
 	//recordContent := getURLparam(r, "pgContent")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	//title := wctProperties["appname"]
 

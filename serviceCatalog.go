@@ -37,8 +37,8 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 	// Now we get the services array
 	var responseFileName = wctProperties["receivepath"] + "/" + id.String() + "." + responseFormat
 	var processedFileName = wctProperties["processedpath"] + "/" + id.String() + "." + responseFormat
-	fmt.Println("Response Filename :", responseFileName)
-	fmt.Println("Processed Filename :", processedFileName)
+	//fmt.Println("Response Filename :", responseFileName)
+	//fmt.Println("Processed Filename :", processedFileName)
 
 	//content := ""
 	condition := false
@@ -48,7 +48,7 @@ func getServices(wctProperties map[string]string, responseFormat string) (int, s
 	var wibble WctResponseMessage
 	//	var nibble WctResponsePayload
 	for !condition {
-		fmt.Println("Polling file", responseFileName)
+		//fmt.Println("Polling file", responseFileName)
 		content, _ := ioutil.ReadFile(responseFileName)
 		text := string(content)
 		//	fmt.Println("text file", text)

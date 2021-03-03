@@ -2,9 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -53,16 +53,16 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	thisID, _ := strconv.Atoi(getURLparam(r, "id"))
-	fmt.Println(thisID)
+	//fmt.Println(thisID)
 	title := wctProperties["appname"]
 
 	_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	fmt.Println("serviceCatalog", serviceCatalog)
-	fmt.Println("test", serviceCatalog[thisID])
+	//fmt.Println("serviceCatalog", serviceCatalog)
+	//fmt.Println("test", serviceCatalog[thisID])
 
 	pageRequestView := RequestViewPage{
 		Title:                 title,
@@ -74,13 +74,13 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 		RequestAction:         serviceCatalog[thisID].Action,
 		RequestItem:           serviceCatalog[thisID].Item,
 		RequestParameters:     serviceCatalog[thisID].Parameters,
-		UniqueUID:             wctProperties["appid"],
+		UniqueUID:             gUUID,
 		RequestResponseFormat: wctProperties["responseformat"],
 		DeliverTo:             wctProperties["deliverpath"],
 		PageTitle:             "View Request",
 	}
 
-	fmt.Println("Page Data", pageRequestView)
+	//fmt.Println("Page Data", pageRequestView)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -95,13 +95,13 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 	//	tmpl := "executeRequest"
 	inUTL := r.URL.Path
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
-	thisID, _ := strconv.Atoi(getURLparam(r, "id"))
-	fmt.Println(thisID)
+	//	thisID, _ := strconv.Atoi(getURLparam(r, "id"))
+	//	fmt.Println("ID", thisID)
 	thisUUID := getURLparam(r, "uuid")
-	fmt.Println(thisUUID)
-	title := wctProperties["appname"]
+	//	fmt.Println("REQUESTID", thisUUID)
+	//title := wctProperties["appname"]
 	//thisAction = getURLparam(r, "action")
 
 	dispatchMessage := WctMessage{
@@ -112,13 +112,13 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 			RequestAction:         getURLparam(r, "action"),
 			RequestItem:           getURLparam(r, "item"),
 			RequestParameters:     getURLparam(r, "parameters"),
-			UniqueUID:             wctProperties["appid"],
+			UniqueUID:             gUUID,
 			RequestResponseFormat: wctProperties["responseformat"],
 			RequestData:           "",
 		},
 	}
 
-	pageRequestView := RequestViewPage{
+	/*	pageRequestView := RequestViewPage{
 		Title:                 title,
 		Description:           "",
 		SudoID:                thisID,
@@ -128,20 +128,20 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 		RequestAction:         getURLparam(r, "action"),
 		RequestItem:           getURLparam(r, "item"),
 		RequestParameters:     getURLparam(r, "parameters"),
-		UniqueUID:             wctProperties["appid"],
+		UniqueUID:             gUUID,
 		RequestResponseFormat: wctProperties["responseformat"],
 		DeliverTo:             wctProperties["deliverpath"],
 		PageTitle:             "Execute Request",
-	}
+	} */
 
-	fmt.Println("Page Data", pageRequestView)
+	//	fmt.Println("Page Data", pageRequestView)
 
-	fmt.Println("payload=", dispatchMessage)
+	//	fmt.Println("payload=", dispatchMessage)
 
 	deliverRequest(dispatchMessage, wctProperties["deliverpath"], thisUUID, wctProperties["responseformat"])
 
 	doSnooze(wctProperties["pollinginterval"])
-	fmt.Println(r.URL.Path, r.URL, r)
+	//	fmt.Println(r.URL.Path, r.URL, r)
 	viewResponseHandler(w, r)
 	//	http.Redirect(w, r, "/", http.StatusOK)
 
@@ -156,7 +156,7 @@ func deliverRequest(dispatchMessage WctMessage, filePath string, id string, resp
 	//	fmt.Printf("\n")
 
 	var fileName = filePath + "/" + id + "." + responseFormat
-	fmt.Println("Request Filename :", fileName)
+	log.Println("Request Filename :", fileName)
 	//	fmt.Printf("\n")
 	_ = ioutil.WriteFile(fileName, js, 0644)
 }
@@ -170,7 +170,7 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 			ApplicationToken:      wctProperties["applicationtoken"],
 			RequestID:             id.String(),
 			RequestAction:         "SERVICES",
-			UniqueUID:             wctProperties["appid"],
+			UniqueUID:             gUUID,
 			RequestResponseFormat: responseFormat,
 			RequestData:           "",
 			SessionToken:          gSessionToken,
@@ -190,7 +190,7 @@ func buildRequestMessage(inUUID string, inAction string, inItem string, inParame
 			RequestAction:         inAction,
 			RequestItem:           inItem,
 			RequestParameters:     inParameters,
-			UniqueUID:             wctProperties["appid"],
+			UniqueUID:             gUUID,
 			RequestResponseFormat: wctProperties["responseformat"],
 			RequestData:           inPayload,
 			SessionToken:          gSessionToken,
@@ -205,7 +205,7 @@ func sendRequest(dispatchMessage WctMessage, id string, wctProperties map[string
 	js, _ := json.Marshal(dispatchMessage)
 
 	var fileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
-	fmt.Println("Request Filename :", fileName)
+	log.Println("Request Filename :", fileName)
 	//	fmt.Printf("\n")
 	_ = ioutil.WriteFile(fileName, js, 0644)
 }

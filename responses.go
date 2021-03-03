@@ -140,18 +140,18 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
-	thisID, _ := strconv.Atoi(getURLparam(r, "uuid"))
-	fmt.Println(thisID)
+	//thisID, _ := strconv.Atoi(getURLparam(r, "uuid"))
+	//fmt.Println(thisID)
 	title := wctProperties["appname"]
-	fmt.Println(title)
+	//fmt.Println(title)
 
-	var emptyString []string
-	fmt.Println(emptyString)
+	//var emptyString []string
+	//fmt.Println(emptyString)
 
 	thisPayload := getResponse(getURLparam(r, "uuid"), wctProperties)
-	fmt.Println(thisPayload)
+	//fmt.Println(thisPayload)
 
 	respC := arrToString(thisPayload.ResponseContent.ResponseContentRow)
 	reqC := arrToString(thisPayload.RequestPayload.RequestPayloadRow)
@@ -182,7 +182,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:            "View Response",
 	}
 
-	fmt.Println("Page Data", pageResponseView)
+	//fmt.Println("Page Data", pageResponseView)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageResponseView)
@@ -219,7 +219,7 @@ func deleteResponse(responseID string, wctProperties map[string]string) (err err
 
 	err = os.Remove(fullFilename)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 	}
 	return err
 }
@@ -232,7 +232,7 @@ func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	err := deleteResponse(getURLparam(r, "responseID"), wctProperties)
 	if err != nil {
@@ -250,7 +250,7 @@ func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	RemoveContents(wctProperties["receivepath"])
 
@@ -262,15 +262,15 @@ func waitForResponse(id string, wctProperties map[string]string) WctResponsePayl
 
 	var responseFileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
 	var processedFileName = wctProperties["processedpath"] + "/" + id + "." + wctProperties["responseformat"]
-	fmt.Println("Response Filename :", responseFileName)
-	fmt.Println("Processed Filename :", processedFileName)
+	//log.Println("Response Filename :", responseFileName)
+	//fmt.Println("Processed Filename :", processedFileName)
 
 	condition := false
 
 	var wibble WctResponsePayload
 	//	var nibble WctResponsePayload
 	for !condition {
-		fmt.Println("Polling file", responseFileName)
+		log.Println("Polling 4 file", responseFileName)
 		wibble = getResponse(id, wctProperties)
 		text := string(wibble.RequestConsumed)
 		//	fmt.Println("text file", text)
@@ -306,10 +306,10 @@ func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	noResps, _, files := getResponseIDs(wctProperties)
-	fmt.Println("Responses Found :", len(files))
+	log.Println("Responses Found :", len(files))
 
 	title := wctProperties["appname"]
 
@@ -320,7 +320,7 @@ func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 		NoResponses: noResps,
 	}
 
-	fmt.Println("Page Data", rpc)
+	//fmt.Println("Page Data", rpc)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

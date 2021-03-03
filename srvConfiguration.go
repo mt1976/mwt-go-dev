@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -12,7 +12,7 @@ import (
 
 type Page struct {
 	Title string
-	Body []byte
+	Body  []byte
 }
 
 //SrvConfigurationPage is cheese
@@ -49,7 +49,7 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	recordID := getURLparam(r, "id")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -57,12 +57,12 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessge := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("responseMessge", responseMessge)
+	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
 	noRows := len(responseMessge.ResponseContent.ResponseContentRow)
@@ -93,7 +93,7 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		PageRecordID:          recordID,
 	}
 
-	fmt.Println("Page Data", pageSrvConfigView)
+	//fmt.Println("Page Data", pageSrvConfigView)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -109,7 +109,7 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -117,12 +117,12 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", wctProperties)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessge := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("responseMessge", responseMessge)
+	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
 	noRows := len(responseMessge.ResponseContent.ResponseContentRow)
@@ -144,7 +144,7 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		SrvConfigurationItems: configsList,
 	}
 
-	fmt.Println("Page Data", pageSrvConfigView)
+	//fmt.Println("Page Data", pageSrvConfigView)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -162,7 +162,7 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
 	recordID := getURLparam(r, "id")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
 	title := wctProperties["appname"]
 
@@ -170,12 +170,12 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessge := waitForResponse(requestID.String(), wctProperties)
-	fmt.Println("responseMessge", responseMessge)
+	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
 	noRows := len(responseMessge.ResponseContent.ResponseContentRow)
@@ -195,7 +195,7 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		Rows:         Min(maxRows, noRows),
 	}
 
-	fmt.Println("Page Data", pageSrvConfigView)
+	//fmt.Println("Page Data", pageSrvConfigView)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -215,31 +215,30 @@ func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := getURLparam(r, "pgid")
 	//recordContent := getURLparam(r, "pgContent")
 
-	fmt.Println("WCT : Serving :", inUTL)
+	log.Println("Servicing :", inUTL)
 
-	title := wctProperties["appname"]
+	//	title := wctProperties["appname"]
 
 	body := r.FormValue("pgContent")
 	id := r.FormValue("pgid")
 
 	//p := &Page{Title: title, Body: []byte(body)}
-//	fmt.Println("METHOD",r.Method)
-	fmt.Println("TITLE", title)
+	//	fmt.Println("METHOD",r.Method)
+	//fmt.Println("TITLE", title)
 	//	fmt.Println("ID", recordID)
-	fmt.Println("ID", id)
-	fmt.Println("BODY", body)
+	//fmt.Println("ID", id)
+	//fmt.Println("BODY", body)
 	//fmt.Println("REC", recordContent)
-//	fmt.Println("ARSE", r)
-//	fmt.Println("parse",r.ParseForm())
+	//	fmt.Println("ARSE", r)
+	//	fmt.Println("parse",r.ParseForm())
 
 	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, wctProperties)
 
-
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	listSrvConfigurationHandler(w,r)
+	listSrvConfigurationHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
