@@ -12,6 +12,7 @@
   --custom-grey: #dedede;
   --custom-placeholder: #aeaeae;
   --custom-tertiary: #34e1eb;
+  --custom-primary-hover: #aaa;
 
 
 }
@@ -176,4 +177,30 @@ body {
   background: radial-gradient(ellipse farthest-corner at bottom left, #322A77 20%, #34E1EB 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  border:0;
+  margin:0;
+  margin-top: 0.2rem;
+}
+
+.hamburger {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--custom-primary-colour);
+  border: 0;
+  background: var(--custom-grey)
+  border:0;
+  padding:0;
+  margin:0;
+  margin-top: 0rem;
+}
+.hamburger:hover {
+  color: var(--custom-primary-hover);
+}
+
+.btn-header{
+color: var(--custom-primary-colour);
+}
+
+.btn-header:hover{
+color: var(--custom-primary-hover);
 }

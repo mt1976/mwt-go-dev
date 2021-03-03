@@ -38,7 +38,9 @@
 <body>
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
   <div w3-include-html="../assets/navigation.html"></div>
-  <script>cust_includeHTML();</script>
+  <script>
+    cust_includeHTML();
+  </script>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -46,60 +48,85 @@
     <form method="POST" action="/">
 
       <div class="card">
-        <div class="card-header"><strong>Data Maps &nbsp;</strong><span class="badge badge-primary">{{.NoDataMapIDs}}</span>
 
-          <button type="submit" value="" class="btn btn-sm btn-primary float-right" formaction="/newSvcDataMap" method="POST">
-            <i class="fas fa-plus-square" ></i>&nbsp;&nbsp;New</button>
 
+        <div class="card-header">
+          <div class="row">
+
+            <div class="col col">
+              Data Maps &nbsp;<span class="badge badge-primary">{{.NoDataMapIDs}}</span>
+            </div>
+
+            <div class="col col-5">
+              <input class="form-control float-right" id="myFilter" type="text" placeholder="Search..."></input>
+            </div>
+
+            <div class="col col">
+              <button type="submit" value="" class="btn btn-primary float-right" formaction="/newSvcDataMap" method="POST">
+                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;New</button>
+            </div>
+
+          </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
 
-          <table class="table table-striped table-bordered table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col" class="text-center" >#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col" class="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{range .SvcDataMapItems}}
-              <tr>
-                <td class="text-center align-middle" style="width:1px; white-space:nowrap;"></td>
-                <td class="align-middle">{{.DataMapName}}</td>
-                <td class="align-middle">{{.DataMapDescription}}</td>
-                <td style="width:1px; white-space:nowrap;">
-                  <div class="btn-group float-right">
-                    <button type="submit" value="" class="btn btn-sm btn-outline-primary btn-inner" formaction="/viewSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
-                      <i class="far fa-eye" ></i>
-                    </button>
-                    <button type="submit" value="" class="btn btm-sm btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
-                      <i class="far fa-file-alt" ></i>
-                    </button>
-                    <button type="submit" value="" class="btn btn-sm btn-outline-primary btn-inner" style="border:none" formaction="/viewSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
-                      <i class="fas fa-code" ></i>
-                    </button>
-                    <button type="submit" value="" class="btn btn-sm btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
-                      <i class="far fa-file-code"></i>
-                    </button>
-                    <button type="submit" value="" class="btn btn-sm btn-outline-danger btn-inner" style="border:none" formaction="/deleteSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
+            <table class="table table-striped table-bordered table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="text-center">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="filterTable">
+                {{range .SvcDataMapItems}}
+                <tr>
+                  <td class="text-center align-middle" style="width:1px; white-space:nowrap;"></td>
+                  <td class="align-middle">{{.DataMapName}}</td>
+                  <td class="align-middle">{{.DataMapDescription}}</td>
+                  <td style="width:1px; white-space:nowrap;">
+                    <div class="btn-group float-right">
+                      <button type="submit" value="" class="btn btn-lg btn-outline-primary btn-inner" formaction="/viewSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                        <i class="far fa-eye"></i>
+                      </button>
+                      <button type="submit" value="" class="btn btn-lg btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                        <i class="far fa-file-alt"></i>
+                      </button>
+                      <button type="submit" value="" class="btn btn-lg btn-outline-primary btn-inner" style="border:none" formaction="/viewSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
+                        <i class="fas fa-code"></i>
+                      </button>
+                      <button type="submit" value="" class="btn btn-lg btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
+                        <i class="far fa-file-code"></i>
+                      </button>
+                      <button type="submit" value="" class="btn btn-lg btn-outline-danger btn-inner" style="border:none" formaction="/deleteSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
 
-                  </div>
-                </td>
-              </tr>
-              {{end}}
-            </tbody>
-          </table>
-</div>
+                    </div>
+                  </td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-</form>
+    </form>
 
   </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#myFilter").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#filterTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
 
 </body>
