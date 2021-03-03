@@ -23,26 +23,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/custom.css">
+  <script src="../assets/custom.js"></script>
 
   <!-- Add icon library -->
-
   <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+  <!--<link rel="stylesheet" href="../assets/custom_table.css">-->
 
   <title>{{.Title}} - {{.PageTitle}}</title>
 
 </head>
 
 <body>
-  <nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
-    <a class="navbar-brand" href="#">
-    <h3 class="text-white">&nbsp;&nbsp;{{.Title}}</h3></a>
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary" onclick="location.href='../home'"><i class="fa fa-home" style="font-size: 18px"></i>&nbsp;Home</button>
-      <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="fa fa-print" style="font-size: 18px"></i>&nbsp;&nbsp;Print</button>
 
-      <!--  <button type="submit" value="Edit" class="btn btn-default">Edit</button> -->
-    </div>
-  </nav>
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div w3-include-html="../assets/navigation.html"></div>
+  <script>cust_includeHTML();</script>
+  <!-- DO NOT CHANGE -->
+
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <h5 class="alert-heading">Information!</h5>
     Where ^ is used in properties, it will be replaced by an = char in the resolved property

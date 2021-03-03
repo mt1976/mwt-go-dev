@@ -1,0 +1,24 @@
+
+<!-- Add Custom Fonts & Styles-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/custom.css">
+<script src="../assets/custom.js"></script>
+
+<!-- Add icon library -->
+<script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+
+<!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+<link rel="stylesheet" href="../assets/custom_table.css">
+
+<title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
+
+
+
+
+
+
+<!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+<div w3-include-html="../assets/navigation.html"></div>
+<script>cust_includeHTML();</script>
+<!-- DO NOT CHANGE -->
