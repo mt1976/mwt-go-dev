@@ -1,10 +1,11 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
-	"html/template"
-	"log"
 	"net/http"
+
+	_ "github.com/denisenkom/go-mssqldb"
 
 	"github.com/mbndr/figlet4go"
 )
@@ -12,11 +13,14 @@ import (
 //CONST_CONFIG_FILE is cheese
 const (
 	CONST_CONFIG_FILE = "config/properties.cfg"
+	cSQL_CONFIG       = "config/mssql.cfg"
+	cSIENACONFIG      = "config/siena.cfg"
 )
 
 var gSessionToken = ""
 var gUUID = "authorAdjust"
 var gSecurityViolation = ""
+var gDB *sql.DB
 
 //HomePage ...
 type HomePage struct {
@@ -50,9 +54,6 @@ func main() {
 	fmt.Println("Response   :", wctProperties["receivepath"])
 	fmt.Println("Processed  :", wctProperties["processedpath"])
 	fmt.Println("")
-	fmt.Println("ACCESS")
-	fmt.Println("URL        :", "http://localhost:"+wctProperties["port"])
-	fmt.Println("")
 	fmt.Println("APPLICATION")
 	fmt.Println("Name       :", wctProperties["appname"])
 	fmt.Println("Msg Format :", wctProperties["responseformat"])
@@ -65,6 +66,9 @@ func main() {
 	fmt.Println("Number     :", wctProperties["releasenumber"])
 	fmt.Println("")
 
+	// Test Connection
+
+	//
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/login", valLoginHandler)
 	http.HandleFunc("/logout", logoutHandler)
@@ -96,54 +100,26 @@ func main() {
 	http.HandleFunc("/newSvcDataMap/", newSvcDataMapHandler)
 	http.HandleFunc("/genSvcDataMap/", genSvcDataMapHandler)
 	http.HandleFunc("/deleteSvcDataMap/", deleteSvcDataMapHandler)
+	http.HandleFunc("/listSienaCountry/", listSienaCountryHandler)
+	http.HandleFunc("/viewSienaCountry/", viewSienaCountryHandler)
+	http.HandleFunc("/editSienaCountry/", editSienaCountryHandler)
+	http.HandleFunc("/saveSienaCountry/", saveSienaCountryHandler)
+	http.HandleFunc("/newSienaCountry/", newSienaCountryHandler)
+
+	http.HandleFunc("/listSienaSector/", listSienaSectorHandler)
+	http.HandleFunc("/viewSienaSector/", viewSienaSectorHandler)
+	http.HandleFunc("/editSienaSector/", editSienaSectorHandler)
+	http.HandleFunc("/saveSienaSector/", saveSienaSectorHandler)
+	http.HandleFunc("/newSienaSector/", newSienaSectorHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-	//fmt.Println("URL", "http://localhost:"+wctProperties["port"])
+	fmt.Println("")
+	fmt.Println("READY STEADY GO!!!")
+	fmt.Println("URL        :", "http://localhost:"+wctProperties["port"])
 
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
 
-}
-
-func homePageHandler(w http.ResponseWriter, r *http.Request) {
-
-	inUTL := r.URL.Path
-	if !(inUTL == "/favicon.ico") {
-		tmpl := "home"
-		log.Println("Servicing :", inUTL)
-
-		//		var propertiesFileName = "config/properties.cfg"
-		wctProperties := getProperties(CONST_CONFIG_FILE)
-
-		w.Header().Set("Content-Type", "text/html")
-
-		title := wctProperties["appname"]
-
-		//p, _ := loadHomePage(title)
-
-		noResp, _, respList := listResponseswebNew(wctProperties, "json", w)
-
-		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
-
-		p := HomePage{Title: title,
-			Body:           "",
-			RequestPath:    wctProperties["deliverpath"],
-			ResponsePath:   wctProperties["receivepath"],
-			ProcessedPath:  wctProperties["processedpath"],
-			NoResponses:    noResp,
-			Responses:      respList,
-			NoServices:     noServices,
-			Services:       servicesList,
-			ServiceCatalog: serviceCatalog,
-			Description:    "A description of the homepage.",
-			ResponseType:   wctProperties["responseformat"]}
-
-		//fmt.Println("serviceCatalog", serviceCatalog)
-		//fmt.Println("HomePage=", p.ServiceCatalog)
-
-		t, _ := template.ParseFiles(getTemplateID(tmpl))
-		t.Execute(w, p)
-	}
 }

@@ -13,6 +13,7 @@
   --custom-placeholder: #aeaeae;
   --custom-tertiary: #34e1eb;
   --custom-primary-hover: #aaa;
+  --custom-primary-border: #d9d7f1;
 
 
 }
@@ -29,9 +30,12 @@
 }
 .text-primary-list{
   color: var(--custom-primary-colour)!important;
-
 }
 
+.border-primary{
+  color: var(--custom-primary-colour)!important;
+  border-color: var(--custom-primary-border)!important;
+}
 
 
 .hr-list{
