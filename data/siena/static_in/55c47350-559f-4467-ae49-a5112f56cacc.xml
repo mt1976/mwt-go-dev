@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Country" classname="com.eurobase.siena.data.sector.Sector"><RECORD><KEYFIELD name="Code">AFG</KEYFIELD><FIELD name="name">Afghanistan</FIELD><FIELD name="shortCode">77</FIELD><FIELD name="EU_EEA">on</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>
