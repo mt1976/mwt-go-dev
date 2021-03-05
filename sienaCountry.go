@@ -186,7 +186,7 @@ func saveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	var sienaTable sienaTABLE
 	sienaTable.Name = "Country"
-	sienaTable.Classname = "com.eurobase.siena.data.sector.Sector"
+	sienaTable.Classname = "com.eurobase.siena.data.country.Country"
 	sienaTable.RECORD = sienaRecords
 
 	var sienaTransaction sienaTRANSACTION

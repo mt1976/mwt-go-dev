@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strings"
 )
 
 //AppConfigurationPage is cheese
@@ -18,11 +19,23 @@ type AppConfigurationPage struct {
 	AppServerReleaseID     string
 	AppServerReleaseLevel  string
 	AppServerReleaseNumber string
+	SienaName              string
+	SienaDealImportPath    string
+	SienaStaticImportPath  string
+	SienaDataServer        string
+	SienaDataSource        string
+	SienaDBSchema          string
+	SienaDBUser            string
+	SienaDBPassword        string
+	SienaDBPort            string
 }
 
 func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
+	sienaProperties := getProperties(cSIENACONFIG)
+	sqlServerProperties := getProperties(cSQL_CONFIG)
+
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -42,6 +55,15 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		AppServerReleaseID:     wctProperties["releaseid"],
 		AppServerReleaseLevel:  wctProperties["releaselevel"],
 		AppServerReleaseNumber: wctProperties["releasenumber"],
+		SienaName:              sienaProperties["name"],
+		SienaDealImportPath:    sienaProperties["dealimport_in"],
+		SienaStaticImportPath:  sienaProperties["static_in"],
+		SienaDataServer:        sqlServerProperties["server"],
+		SienaDataSource:        sqlServerProperties["database"],
+		SienaDBSchema:          sqlServerProperties["schema"],
+		SienaDBUser:            sqlServerProperties["user"],
+		SienaDBPassword:        strings.Repeat("*", len(sqlServerProperties["password"])),
+		SienaDBPort:            sqlServerProperties["port"],
 	}
 
 	fmt.Println("Page Data", pageAppConfigView)

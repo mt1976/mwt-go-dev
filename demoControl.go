@@ -112,6 +112,24 @@ func main() {
 	http.HandleFunc("/saveSienaSector/", saveSienaSectorHandler)
 	http.HandleFunc("/newSienaSector/", newSienaSectorHandler)
 
+	http.HandleFunc("/listSienaFirm/", listSienaFirmHandler)
+	http.HandleFunc("/viewSienaFirm/", viewSienaFirmHandler)
+	http.HandleFunc("/editSienaFirm/", editSienaFirmHandler)
+	http.HandleFunc("/saveSienaFirm/", saveSienaFirmHandler)
+	http.HandleFunc("/newSienaFirm/", newSienaFirmHandler)
+
+	http.HandleFunc("/listSienaPortfolio/", listSienaPortfolioHandler)
+	http.HandleFunc("/viewSienaPortfolio/", viewSienaPortfolioHandler)
+	http.HandleFunc("/editSienaPortfolio/", editSienaPortfolioHandler)
+	http.HandleFunc("/saveSienaPortfolio/", saveSienaPortfolioHandler)
+	http.HandleFunc("/newSienaPortfolio/", newSienaPortfolioHandler)
+
+	http.HandleFunc("/listSienaCentre/", listSienaCentreHandler)
+	http.HandleFunc("/viewSienaCentre/", viewSienaCentreHandler)
+	http.HandleFunc("/editSienaCentre/", editSienaCentreHandler)
+	http.HandleFunc("/saveSienaCentre/", saveSienaCentreHandler)
+	http.HandleFunc("/newSienaCentre/", newSienaCentreHandler)
+
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 

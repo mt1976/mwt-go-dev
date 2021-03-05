@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Sector" classname="com.eurobase.siena.data.sector.Sector"><RECORD><KEYFIELD name="Code">ASR</KEYFIELD><FIELD name="name">POLLP</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

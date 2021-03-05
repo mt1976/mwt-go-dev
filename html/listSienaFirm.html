@@ -47,7 +47,7 @@
       <div class="card border-primary">
         <div class="card-header font-weight-bold border-primary">
           <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Country&nbsp;&nbsp;<span class="badge badge-primary">{{.SienaCountryCount}} </span></div>
+          Firms&nbsp;&nbsp;<span class="badge badge-primary">{{.SienaFirmCount}} </span></div>
 
         <div class="card-body">
           <form action="/home" method="POST">
@@ -58,7 +58,7 @@
               </div>
 
               <div class="col">
-                <button type="submit" value="" class="btn btn-primary float-right" formaction="/newSienaCountry" method="POST">
+                <button type="submit" value="" class="btn btn-primary float-right" formaction="/newSienaFirm" method="POST">
                   <i class="fas fa-plus"></i>&nbsp;&nbsp;New
                 </button>
               </div>
@@ -71,32 +71,30 @@
                 <thead class="thead-light">
                   <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">Code</th>
-                    <th class="text-center">ShortCode</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">EU?</th>
+                    <th class="text-center">Short Name</th>
+                    <th class="text-center">Full Name</th>
+                    <th class="text-center">Country</th>
+                    <th class="text-center">Sector</th>
                     <th class="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody id=filterTable>
-                  {{range .SienaCountryList}}
+                  {{range .SienaFirmList}}
                   <tr>
                     <td class="text-center align-middle"></td>
-                    <td class="align-middle">{{.Code}}</td>
-                    <td class="align-middle">{{.ShortCode}}</td>
-                    <td class="align-middle">{{.Name}}</td>
-                    <td class="align-middle">
-                      <input class="form-checkbox" type="checkbox" name="eu{{.Code}}" value="{{.EU_EEA}}" {{.EU_EEA}}>
-                    </td>
+                    <td class="align-middle">{{.FirmName}}</td>
+                    <td class="align-middle">{{.FullName}}</td>
+                    <td class="align-middle text-center">{{.CountryName}}</td>
+                    <td class="align-middle text-center">{{.SectorName}}</td>
 
                     <td class="alight-right" style="width:1px;">
 
                       <div class="btn-group">
-                        <button type="submit" value="" class="btn btn-sm btn-outline-info btn-inner" formaction="/viewSienaCountry?sienaCountry={{.Code}}" method="POST">
+                        <button type="submit" value="" class="btn btn-sm btn-outline-info btn-inner" formaction="/viewSienaFirm?SienaFirm={{.FirmName}}" method="POST">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
 
-                        <button type="submit" value="" class="btn btn-sm btn-outline-primary btn-inner" formaction="/editSienaCountry?sienaCountry={{.Code}}" method="POST">
+                        <button type="submit" value="" class="btn btn-sm btn-outline-primary btn-inner" formaction="/editSienaFirm?SienaFirm={{.FirmName}}" method="POST">
                           <i class="far fa-edit" style="font-size: 22px"></i>
                         </button>
                       </div>

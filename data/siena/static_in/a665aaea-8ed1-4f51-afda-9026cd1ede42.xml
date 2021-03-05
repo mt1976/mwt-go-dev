@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">ABC</KEYFIELD><FIELD name="fullName">ABC LTD UK</FIELD><FIELD name="country">AUT</FIELD><FIELD name="sector">Banks</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

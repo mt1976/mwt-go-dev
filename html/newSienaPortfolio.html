@@ -43,13 +43,13 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid"><br>
-    <form action="/saveSienaSector" method="GET">
+    <form action="/saveSienaPortfolio" method="GET">
 
       <div class="card">
 
         <div class="card-header font-weight-bold">
           <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Sector&nbsp;:&nbsp;<code>{{.ID}}</code>
+          Portfolio&nbsp;:&nbsp;<code>{{.ID}}</code>
         </div>
 
         <div class="card-body">
@@ -59,7 +59,7 @@
 
               <div class="col">
                 <label for="code">Code</label>
-                <input type="code" class="form-control" id="code" name="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3">
+                <input type="code" class="form-control" id="code" name="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="10">
               </div>
 
             </div>
@@ -84,7 +84,7 @@
             <div class="col">
               <div class="btn-group float-right">
 
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaSector" formaction="/saveSienaSector"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaPortfolio" formaction="/saveSienaPortfolio"></i>&nbsp;&nbsp;Save</button>
 
                 <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
 

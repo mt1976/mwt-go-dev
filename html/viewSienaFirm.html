@@ -43,23 +43,35 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid"><br>
-    <form action="/saveSienaSector" method="GET">
+    <form action="/editSienaFirm?SienaFirm={{.ID}}" method="POST" class="form">
 
       <div class="card">
 
         <div class="card-header font-weight-bold">
           <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Sector&nbsp;:&nbsp;<code>{{.ID}}</code>
+          Firm&nbsp;:&nbsp;<code>{{.ID}}</code>
         </div>
 
         <div class="card-body">
+
           <div class="container-responsive">
 
             <div class="row">
 
               <div class="col">
-                <label for="code">Code</label>
-                <input type="code" class="form-control" id="code" name="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3">
+                <label for="firmName">Short Name</label>
+                <input type="firmName" class="form-control" id="firmName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.FirmName}}" maxlength="10">
+              </div>
+
+
+
+            </div>
+            <br>
+            <div class="row">
+
+              <div class="col">
+                <label for="fullName">Full Name</label>
+                <input type="fullName" class="form-control" id="name" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.FullName}}" required disabled>
               </div>
 
             </div>
@@ -67,31 +79,37 @@
             <div class="row">
 
               <div class="col">
-                <label for="name">Description</label>
-                <input type="name" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}">
+                <label for="country">Country</label>
+                <input type="country" class="form-control" id="country" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.CountryName}}" required disabled>
               </div>
 
             </div>
             <br>
+            <div class="row">
 
+              <div class="col">
+                <label for="sector">Sector</label>
+                <input type="sector" class="form-control" id="sector" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.SectorName}}" required disabled>
+              </div>
 
+            </div>
           </div>
-
         </div>
 
         <div class="card-footer">
           <div class="row">
             <div class="col">
               <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen" style="font-size: 18px" method="POST" formaction="/editSienaFirm/?SienaFirm={{.ID}}" onclick="/editSienaFirm/?SienaFirm={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
 
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaSector" formaction="/saveSienaSector"></i>&nbsp;&nbsp;Save</button>
-
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
+
         </div>
+
+      </div>
     </form>
   </div>
 

@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Sector" classname="com.eurobase.siena.data.sector.Sector"><RECORD><KEYFIELD name="Code">Asset</KEYFIELD><FIELD name="name">Asset Managers</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

@@ -43,24 +43,27 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid"><br>
-    <form action="/saveSienaSector" method="GET">
+    <form action="/editSienaPortfolio?SienaPortfolio={{.ID}}" method="POST" class="form">
 
       <div class="card">
 
         <div class="card-header font-weight-bold">
           <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Sector&nbsp;:&nbsp;<code>{{.ID}}</code>
+          Portfolio&nbsp;:&nbsp;<code>{{.ID}}</code>
         </div>
 
         <div class="card-body">
+
           <div class="container-responsive">
 
             <div class="row">
 
               <div class="col">
-                <label for="code">Code</label>
-                <input type="code" class="form-control" id="code" name="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3">
+                <label for="code">Short Name</label>
+                <input type="code" class="form-control" id="code" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.Code}}" maxlength="10">
               </div>
+
+
 
             </div>
             <br>
@@ -68,30 +71,27 @@
 
               <div class="col">
                 <label for="name">Description</label>
-                <input type="name" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}">
+                <input type="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.Name}}" required disabled>
               </div>
 
             </div>
-            <br>
-
-
           </div>
-
         </div>
 
         <div class="card-footer">
           <div class="row">
             <div class="col">
               <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen" style="font-size: 18px" method="POST" formaction="/editSienaPortfolio/?SienaPortfolio={{.ID}}" onclick="/editSienaPortfolio/?SienaPortfolio={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
 
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaSector" formaction="/saveSienaSector"></i>&nbsp;&nbsp;Save</button>
-
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
+
         </div>
+
+      </div>
     </form>
   </div>
 

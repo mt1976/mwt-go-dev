@@ -13,16 +13,16 @@ import (
 	"github.com/google/uuid"
 )
 
-//sienaSectorPage is cheese
-type sienaSectorListPage struct {
-	Title            string
-	PageTitle        string
-	SienaSectorCount int
-	SienaSectorList  []sienaSectorItem
+//sienaPortfolioPage is cheese
+type sienaPortfolioListPage struct {
+	Title               string
+	PageTitle           string
+	SienaPortfolioCount int
+	SienaPortfolioList  []sienaPortfolioItem
 }
 
-//sienaSectorPage is cheese
-type sienaSectorPage struct {
+//sienaPortfolioPage is cheese
+type sienaPortfolioPage struct {
 	Title     string
 	PageTitle string
 	ID        string
@@ -30,102 +30,102 @@ type sienaSectorPage struct {
 	Name      string
 }
 
-//sienaSectorItem is cheese
-type sienaSectorItem struct {
+//sienaPortfolioItem is cheese
+type sienaPortfolioItem struct {
 	Code   string
 	Name   string
 	Action string
 }
 
-func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	tmpl := "listSienaSector"
+	tmpl := "listSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
-	noItems, returnList, _ := getSienaSectorList(thisConnection)
+	var returnList []sienaPortfolioItem
+	noItems, returnList, _ := getSienaPortfolioList(thisConnection)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
-	pageSienaSectorList := sienaSectorListPage{
-		Title:            wctProperties["appname"],
-		PageTitle:        "List Siena Sectors",
-		SienaSectorCount: noItems,
-		SienaSectorList:  returnList,
+	pageSienaPortfolioList := sienaPortfolioListPage{
+		Title:               wctProperties["appname"],
+		PageTitle:           "List Siena Portfolios",
+		SienaPortfolioCount: noItems,
+		SienaPortfolioList:  returnList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	tmpl := "viewSienaSector"
+	tmpl := "viewSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
-	searchID := getURLparam(r, "sienaSector")
-	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
-	fmt.Println("NoSienaCountries", noItems)
+	var returnList []sienaPortfolioItem
+	searchID := getURLparam(r, "SienaPortfolio")
+	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
+	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
-	pageSienaSectorList := sienaSectorPage{
+	pageSienaPortfolioList := sienaPortfolioPage{
 		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Sector",
+		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	tmpl := "editSienaSector"
+	tmpl := "editSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
-	searchID := getURLparam(r, "sienaSector")
-	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
+	var returnList []sienaPortfolioItem
+	searchID := getURLparam(r, "SienaPortfolio")
+	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
-	pageSienaSectorList := sienaSectorPage{
+	pageSienaPortfolioList := sienaPortfolioPage{
 		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Sector",
+		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func saveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	sienaProperties := getProperties(cSIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -134,7 +134,7 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
 
-	var item sienaSectorItem
+	var item sienaPortfolioItem
 
 	item.Code = r.FormValue("code")
 	if len(item.Code) == 0 {
@@ -151,7 +151,7 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	sFldCode.Name = "Code"
 	sFldCode.Text = item.Code
 
-	sFldName.Name = "name"
+	sFldName.Name = "Description1"
 	sFldName.Text = item.Name
 	// IGNORE
 	var sienaKeyFields []sienaKEYFIELD
@@ -165,8 +165,8 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	sienaRecords = append(sienaRecords, *sienaRecord)
 
 	var sienaTable sienaTABLE
-	sienaTable.Name = "Sector"
-	sienaTable.Classname = "com.eurobase.siena.data.sector.Sector"
+	sienaTable.Name = "Portfolio"
+	sienaTable.Classname = "com.eurobase.siena.data.portfolio.Portfolio"
 	sienaTable.RECORD = sienaRecords
 
 	var sienaTransaction sienaTRANSACTION
@@ -190,39 +190,39 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err.Error())
 	}
 
-	listSienaSectorHandler(w, r)
+	listSienaPortfolioHandler(w, r)
 
 }
 
-func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	tmpl := "newSienaSector"
+	tmpl := "newSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 
-	pageSienaSectorList := sienaSectorPage{
+	pageSienaPortfolioList := sienaPortfolioPage{
 		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Sector",
+		PageTitle: "View Siena Portfolio",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-// getSienaSectorList read all employees
-func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
+// getSienaPortfolioList read all employees
+func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
-	var sienaSectorList []sienaSectorItem
-	var sienaSector sienaSectorItem
-	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaSector;", mssqlConfig["schema"])
+	var sienaPortfolioList []sienaPortfolioItem
+	var sienaPortfolio sienaPortfolioItem
+	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaPortfolio;", mssqlConfig["schema"])
 	//	fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
@@ -241,28 +241,28 @@ func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, err
 		}
-		sienaSector.Code = code
-		sienaSector.Name = name
-		sienaSectorList = append(sienaSectorList, sienaSector)
+		sienaPortfolio.Code = code
+		sienaPortfolio.Name = name
+		sienaPortfolioList = append(sienaPortfolioList, sienaPortfolio)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	return count, sienaSectorList, nil
+	return count, sienaPortfolioList, nil
 }
 
-// getSienaSectorList read all employees
-func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
+// getSienaPortfolioList read all employees
+func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
-	var sienaSector sienaSectorItem
-	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaSector WHERE Code='%s';", mssqlConfig["schema"], id)
+	var sienaPortfolio sienaPortfolioItem
+	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaPortfolio WHERE Code='%s';", mssqlConfig["schema"], id)
 	fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaSector, err
+		return -1, sienaPortfolio, err
 	}
 	//fmt.Println(rows)
 	defer rows.Close()
@@ -273,17 +273,17 @@ func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
 		err := rows.Scan(&code, &name)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaSector, err
+			return -1, sienaPortfolio, err
 		}
-		sienaSector.Code = code
-		sienaSector.Name = name
+		sienaPortfolio.Code = code
+		sienaPortfolio.Name = name
 		count++
 	}
-	return 1, sienaSector, nil
+	return 1, sienaPortfolio, nil
 }
 
-// getSienaSectorList read all employees
-func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
+// getSienaPortfolioList read all employees
+func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
 	mssqlConfig := getProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])

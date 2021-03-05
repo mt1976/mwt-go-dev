@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="CentreName">ABU</KEYFIELD><FIELD name="fullName"></FIELD><FIELD name="country">AUT</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

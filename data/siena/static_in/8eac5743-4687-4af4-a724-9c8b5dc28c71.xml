@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">AIRNZ</KEYFIELD><FIELD name="fullName">Air New Zealand</FIELD><FIELD name="country">NZL</FIELD><FIELD name="sector">Ins</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

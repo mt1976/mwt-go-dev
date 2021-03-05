@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Portfolio" classname="com.eurobase.siena.data.portfolio.Portfolio"><RECORD><KEYFIELD name="Code">ARH</KEYFIELD><FIELD name="Description1">1231213</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

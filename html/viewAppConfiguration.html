@@ -52,40 +52,109 @@
         <div class="card-header font-weight-bold">Configuration</div>
         <div class="card-body">
 
-          <label for="requestPath" class="label-bg">Request Path :</label>
-          <input type="text" id="requestPath" name="requestPath" value="{{.RequestPath}}" disabled="disabled" size="60" class="form-control">
-          <br>
-          <label for="responsePath">Response Path :</label>
-          <input type="text" id="responsePath" name="responsePath" value="{{.ResponsePath}}" disabled="disabled" size="60" class="form-control">
-          <br>
 
-          <label for="processedPath">Processed Path :</label>
-          <input type="text" id="processedPath" name="processedPath" value="{{.ProcessedPath}}" disabled="disabled" size="60" class="form-control">
-          <br />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#application" role="tab" aria-controls="home" aria-selected="true">Application</a>
+            </li>
 
-          <label for="responseType">Response Type Required :</label>
-          <input type="text" id="responseType" name="responseType" value="{{.ResponseType}}" disabled="disabled" size="60" class="form-control">
-          <br />
-          <div class="row">
-            <div class="col">
-              <label for="responseType">App Server Release ID :</label>
-              <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}" disabled="disabled" size="60" class="form-control">
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#paths" role="tab" aria-controls="profile" aria-selected="false">Web Connect</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#siena" role="tab" aria-controls="contact" aria-selected="false">Siena</a>
+            </li>
+          </ul>
+<br>
+
+          <div class="tab-content" id="myTabContent">
+
+
+            <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="profile-tab">
+
+              <div class="row">
+                <div class="col">
+                  <label for="responseType">App Server Release ID :</label>
+                  <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}" disabled="disabled" size="60" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="responseType">App Server Release Level :</label>
+                  <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseLevel}}" disabled="disabled" size="60" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="responseType">App Server Release Number :</label>
+                  <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseNumber}}" disabled="disabled" size="60" class="form-control">
+                </div>
+              </div>
+              <br>
+              <label for="responseType">App Server Release :</label>
+              <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}&nbsp;[r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}]" disabled="disabled" size="60" class="form-control">
             </div>
-            <div class="col">
-              <label for="responseType">App Server Release Level :</label>
-              <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseLevel}}" disabled="disabled" size="60" class="form-control">
+
+            <div class="tab-pane fade" id="paths" role="tabpanel" aria-labelledby="home-tab">
+              <label for="requestPath" class="label-bg">Request Path :</label>
+              <input type="text" id="requestPath" name="requestPath" value="{{.RequestPath}}" disabled="disabled" size="60" class="form-control">
+              <br>
+              <label for="responsePath">Response Path :</label>
+              <input type="text" id="responsePath" name="responsePath" value="{{.ResponsePath}}" disabled="disabled" size="60" class="form-control">
+              <br>
+              <label for="processedPath">Processed Path :</label>
+              <input type="text" id="processedPath" name="processedPath" value="{{.ProcessedPath}}" disabled="disabled" size="60" class="form-control">
+              <br />
+              <label for="responseType">Response Type Required :</label>
+              <input type="text" id="responseType" name="responseType" value="{{.ResponseType}}" disabled="disabled" size="60" class="form-control">
             </div>
-            <div class="col">
-              <label for="responseType">App Server Release Number :</label>
-              <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseNumber}}" disabled="disabled" size="60" class="form-control">
+
+
+            <div class="tab-pane fade" id="siena" role="tabpanel" aria-labelledby="contact-tab">
+
+              <label for="sienaName">Connected To :</label>
+              <input type="text" id="sienaName" name="sienaName" value="{{.SienaName}}" disabled="disabled" size="60" class="form-control">
+              <br>
+              <label for="sienaDealImportPath">Deal Import Path:</label>
+              <input type="text" id="sienaDealImportPath" name="sienaDealImportPath" value="{{.SienaDealImportPath}}" disabled="disabled" size="60" class="form-control">
+              <br>
+              <label for="sienaStaticImportPath">Static Import Path:</label>
+              <input type="text" id="sienaStaticImportPath" name="sienaStaticImportPath" value="{{.SienaStaticImportPath}}" disabled="disabled" size="60" class="form-control">
+
+              <br>
+
+              <div class="row">
+                <div class="col">
+                  <label for="sienaDataServer">MS SQL Server:</label>
+                  <input type="text" id="sienaDataServer" name="sienaDataServer" value="{{.SienaDataServer}}" disabled="disabled" size="60" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="sienaDataSource">Database:</label>
+                  <input type="text" id="sienaDataSource" name="sienaDataSource" value="{{.SienaDataSource}}" disabled="disabled" size="60" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="sienaDBSchema">Schema:</label>
+                  <input type="text" id="sienaDBSchema" name="sienaDBSchema" value="{{.SienaDBSchema}}" disabled="disabled" size="60" class="form-control">
+                </div>
+              </div>
+
+<br>
+
+              <div class="row">
+                <div class="col">
+                  <label for="sienaDBUser">DB User :</label>
+                  <input type="text" id="sienaDBUser" name="sienaDBUser" value="{{.SienaDBUser}}" disabled="disabled" size="60" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="sienaDBPassword">DB Password :</label>
+                  <input type="text" id="sienaDBPassword" name="sienaDBPassword" value="{{.SienaDBPassword}}" disabled="disabled" size="60" class="form-control">
+                </div>
+                <div class="col">
+                  <label for="sienaDBPort">DB Port :</label>
+                  <input type="text" id="sienaDBPort" name="sienaDBPort" value="{{.SienaDBPort}}" disabled="disabled" size="60" class="form-control">
+                </div>
+              </div>
+
             </div>
           </div>
-          <br>
-          <label for="responseType">App Server Release :</label>
-          <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}&nbsp;[r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}]" disabled="disabled" size="60" class="form-control">
-          <br>
-          <button id="close" type="button" class="btn btn-outline-secondary float-right" onclick="history.back()">
-            <i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+
 
         </div>
 

@@ -208,3 +208,13 @@ color: var(--custom-primary-colour);
 .btn-header:hover{
 color: var(--custom-primary-hover);
 }
+
+.label{
+  margin-bottom: 0;
+}
+
+label{
+  font-weight: bold!important;
+  color: var(--custom-primary-colour);
+  margin-bottom: 0;
+}
