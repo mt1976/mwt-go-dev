@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Broker" classname="com.eurobase.siena.data.Brokers.Broker"><RECORD><KEYFIELD name="Code"></KEYFIELD><FIELD name="Name"></FIELD><FIELD name="Fullname"></FIELD><FIELD name="Contact"></FIELD><FIELD name="Address"></FIELD><FIELD name="LEI"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

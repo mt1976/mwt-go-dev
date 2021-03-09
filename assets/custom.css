@@ -218,3 +218,7 @@ label{
   color: var(--custom-primary-colour);
   margin-bottom: 0;
 }
+
+td.negative { color : red; }
+.negative { color : red; }
+.positive { color : green; }

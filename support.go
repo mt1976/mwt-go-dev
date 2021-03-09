@@ -153,8 +153,8 @@ func getTemplateID(tmpl string) string {
 }
 
 func pickEpochToDateTimeString(pickEpoch string) string {
-	pickEpochLayout := "20060102T150405"
-	t, err := time.Parse(pickEpochLayout, pickEpoch)
+	//pickEpochLayout := "20060102T150405"
+	t, err := time.Parse(wctEpochDateFormat, pickEpoch)
 	if err != nil {
 		fmt.Println(err)
 	}

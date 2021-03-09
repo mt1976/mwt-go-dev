@@ -12,9 +12,11 @@ import (
 
 //CONST_CONFIG_FILE is cheese
 const (
-	CONST_CONFIG_FILE = "config/properties.cfg"
-	cSQL_CONFIG       = "config/mssql.cfg"
-	cSIENACONFIG      = "config/siena.cfg"
+	CONST_CONFIG_FILE  = "config/properties.cfg"
+	cSQL_CONFIG        = "config/mssql.cfg"
+	cSIENACONFIG       = "config/siena.cfg"
+	wctEpochDateFormat = "20060102T150405"
+	sienaDateFormat    = "2006-01-02"
 )
 
 var gSessionToken = ""
@@ -129,6 +131,21 @@ func main() {
 	http.HandleFunc("/editSienaCentre/", editSienaCentreHandler)
 	http.HandleFunc("/saveSienaCentre/", saveSienaCentreHandler)
 	http.HandleFunc("/newSienaCentre/", newSienaCentreHandler)
+
+	http.HandleFunc("/listSienaBook/", listSienaBookHandler)
+	http.HandleFunc("/viewSienaBook/", viewSienaBookHandler)
+	http.HandleFunc("/editSienaBook/", editSienaBookHandler)
+	http.HandleFunc("/saveSienaBook/", saveSienaBookHandler)
+	http.HandleFunc("/newSienaBook/", newSienaBookHandler)
+
+	http.HandleFunc("/listSienaBroker/", listSienaBrokerHandler)
+	http.HandleFunc("/viewSienaBroker/", viewSienaBrokerHandler)
+	http.HandleFunc("/editSienaBroker/", editSienaBrokerHandler)
+	http.HandleFunc("/saveSienaBroker/", saveSienaBrokerHandler)
+	http.HandleFunc("/newSienaBroker/", newSienaBrokerHandler)
+
+	http.HandleFunc("/listSienaAccount/", listSienaAccountHandler)
+	http.HandleFunc("/viewSienaAccount/", viewSienaAccountHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
