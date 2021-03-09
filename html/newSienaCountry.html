@@ -55,21 +55,21 @@
         </div>
 
         <div class="card-body">
-          <div class="container-responsive">
+          <div class="container">
 
             <div class="row">
 
-              <div class="col">
+              <div class="col-sm">
                 <label for="code">Code</label>
                 <input type="text" name="code" class="form-control" id="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3">
               </div>
 
-              <div class="col">
+              <div class="col-sm">
                 <label for="shortcode">Short Code</label>
                 <input type="text" name="shortcode" class="form-control" id="shortcode" aria-describedby="emailHelp" placeholder="Enter code" value="{{.ShortCode}}" maxlength="2">
               </div>
 
-              <div class="col">
+              <div class="col-sm">
                 <label class="form-check-label" for="isEUEEA">EU/EAA?</label>
                 <input class="form-control" type="checkbox" id="isEUEEA" name="isEUEEA" style="margin-left:1.75rem;">
               </div>
@@ -78,7 +78,7 @@
             <br>
             <div class="row">
 
-              <div class="col">
+              <div class="col-sm">
                 <label for="name">Description</label>
                 <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}">
               </div>
@@ -93,7 +93,7 @@
 
         <div class="card-footer">
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
               <div class="btn-group float-right">
 
                 <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaCountry" formaction="/saveSienaCountry"></i>&nbsp;&nbsp;Save</button>

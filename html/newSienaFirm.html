@@ -55,11 +55,11 @@
         </div>
 
         <div class="card-body">
-          <div class="container-responsive">
+          <div class="container">
 
             <div class="row">
 
-              <div class="col">
+              <div class="col-sm">
                 <label for="firmName">Short Name</label>
                 <input type="text" class="form-control" id="firmName" name="firmName" aria-describedby="emailHelp" placeholder="Enter code" value="{{.FirmName}}" maxlength="10" required="required">
               </div>
@@ -67,14 +67,14 @@
             </div>
             <br>
             <div class="row">
-              <div class="col">
+              <div class="col-sm">
                 <label for="name">Full Name</label>
                 <input type="name" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.FullName}}" required="required">
               </div>
             </div>
             <br>
             <div class="row">
-              <div class="col">
+              <div class="col-sm">
 
                 <label for="country">Country</label>
                 <select class="form-control" id="country" name="country" required="required">
@@ -88,7 +88,7 @@
                 </select>
 
               </div>
-              <div class="col">
+              <div class="col-sm">
                 <label for="sector">Sector</label>
 
                 <select class="form-control" id="sector" name="sector" required="required">
@@ -111,7 +111,7 @@
 
         <div class="card-footer">
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
               <div class="btn-group float-right">
 
                 <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaFirm" formaction="/saveSienaFirm"></i>&nbsp;&nbsp;Save</button>

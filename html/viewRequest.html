@@ -59,15 +59,15 @@
     <div id="requestMessage">
       <div class="card  d-flex flex-column">
         <div class="card-header"><strong>Request Content</strong></div>
-        <div class="card-body d-flex flex-column">
+        <div class="container card-body d-flex flex-column">
 
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
               <label for="ApplicationToken">ApplicationToken :</label>
               <input type="text" id="ApplicationToken" name="ApplicationToken" value="{{.ApplicationToken}}" disabled size="60" class="form-control">
             </div>
 
-            <div class="col">
+            <div class="col-sm">
               <label for="SessionToken">SessionToken :</label>
               <input type="text" id="SessionToken" name="SessionToken" value="{{.SessionToken}}" disabled size="60" class="form-control">
               <br>
@@ -79,12 +79,12 @@
           <br>
 
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
 
               <label for="RequestAction">RequestAction :</label>
               <input type="text" id="RequestAction" name="RequestAction" value="{{.RequestAction}}" disabled size="60" class="form-control">
             </div>
-            <div class="col">
+            <div class="col-sm">
               <label for="RequestItem">RequestItem :</label>
               <input type="text" id="RequestItem" name="RequestItem" value="{{.RequestItem}}" disabled size="60" class="form-control">
             </div>
@@ -96,13 +96,13 @@
           <br>
 
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
 
               <label for="UniqueUID">UniqueUID :</label>
               <input type="text" id="UniqueUID" name="RequestParameters" value="{{.UniqueUID}}" disabled size="60" class="form-control">
               <br>
             </div>
-            <div class="col">
+            <div class="col-sm">
               <label for="RequestResponseFormat">RequestResponseFormat :</label>
               <input type="text" id="RequestResponseFormat" name="RequestResponseFormat" value="{{.RequestResponseFormat}}" disabled size="60" class="form-control">
             </div>

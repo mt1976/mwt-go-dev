@@ -147,6 +147,15 @@ func main() {
 	http.HandleFunc("/listSienaAccount/", listSienaAccountHandler)
 	http.HandleFunc("/viewSienaAccount/", viewSienaAccountHandler)
 
+	http.HandleFunc("/listSienaCurrency/", listSienaCurrencyHandler)
+	http.HandleFunc("/listSienaCurrencyPair/", listSienaCurrencyPairHandler)
+
+	http.HandleFunc("/listSienaMandatedUser/", listSienaMandatedUserHandler)
+	http.HandleFunc("/viewSienaMandatedUser/", viewSienaMandatedUserHandler)
+	http.HandleFunc("/editSienaMandatedUser/", editSienaMandatedUserHandler)
+	http.HandleFunc("/saveSienaMandatedUser/", saveSienaMandatedUserHandler)
+	http.HandleFunc("/newSienaMandatedUser/", newSienaMandatedUserHandler)
+
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 

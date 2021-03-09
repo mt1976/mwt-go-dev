@@ -54,11 +54,11 @@
 
         <div class="card-body">
 
-          <div class="container-responsive">
+          <div class="container">
 
             <div class="row">
 
-              <div class="col">
+              <div class="col-sm">
                 <label for="BookName">Code</label>
                 <input type="BookName" class="form-control" id="BookName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.Code}}" maxlength="10">
               </div>
@@ -69,7 +69,7 @@
             <br>
             <div class="row">
 
-              <div class="col">
+              <div class="col-sm">
                 <label for="fullName">Name</label>
                 <input type="fullName" class="form-control" id="name" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.Name}}" required disabled>
               </div>
@@ -81,7 +81,7 @@
 
         <div class="card-footer">
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
               <div class="btn-group float-right">
                 <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen" style="font-size: 18px" method="POST" formaction="/editSienaBook/?SienaBook={{.ID}}" onclick="/editSienaBook/?SienaBook={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
 

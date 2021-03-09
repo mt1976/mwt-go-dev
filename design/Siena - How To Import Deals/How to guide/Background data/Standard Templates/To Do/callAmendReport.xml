@@ -7,10 +7,10 @@
     Description:
         Purpose of the document follows:
           Example of a Term deal to  be importer or exported by siena
-        
+
     Deal Type identification:
       This has a SubTyp of CALLA so this is a Call Amendment
-    
+
     Attributes:
       ExecTyp=0: means new report
       TrdDt:   The date the ammendment was struck
@@ -42,7 +42,7 @@
     SubTyp: CALLA means call amendment
   -->
   <Instrmt CFI="DYFXXX" SubTyp="CALLA"/>
-  <!-- 
+  <!--
     Side=F: Means lend. B means borrow. This is from the banks point of view. This
     is a Loan
   -->

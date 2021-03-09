@@ -36,7 +36,7 @@
 </head>
 
 <body>
-  
+
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
   <div w3-include-html="../assets/navigation.html"></div>
   <script>cust_includeHTML();</script>
@@ -45,16 +45,21 @@
   <div class="container-fluid">
     <br>
 
-    <div id="requestMessage">
+    <div class="">
       <div class="card">
         <div class="card-header"><strong>Config Content</strong></div>
         <div class="card-body">
-
+<div class="container">
           {{range .SrvEnvironmentItems}}
+          <div class="row">
+            <div class="col-sm">
           <label for="ci_{{.ItemID}}">{{.ItemLabel}} :</label>
           <input type="text" id="ci_{{.ItemID}}" name="ci_{{.ItemID}}" value="{{.ItemValue}}" disabled="disabled" size="60" class="form-control">
+          </div>
+            </div>
           <br>
           {{end}}
+</div>
           <br>
                     <button id="close" type="button" class="btn btn-outline-secondary float-right" onclick="history.back()">
                       <i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>

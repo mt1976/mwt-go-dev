@@ -71,18 +71,18 @@
           <div class="tab-content" id="myTabContent">
 
 
-            <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="profile-tab">
 
               <div class="row">
-                <div class="col">
+                <div class="col-sm">
                   <label for="responseType">App Server Release ID :</label>
                   <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}" disabled="disabled" size="60" class="form-control">
                 </div>
-                <div class="col">
+                <div class="col-sm">
                   <label for="responseType">App Server Release Level :</label>
                   <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseLevel}}" disabled="disabled" size="60" class="form-control">
                 </div>
-                <div class="col">
+                <div class="col-sm">
                   <label for="responseType">App Server Release Number :</label>
                   <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseNumber}}" disabled="disabled" size="60" class="form-control">
                 </div>
@@ -92,7 +92,7 @@
               <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}&nbsp;[r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}]" disabled="disabled" size="60" class="form-control">
             </div>
 
-            <div class="tab-pane fade" id="paths" role="tabpanel" aria-labelledby="home-tab">
+            <div class="container tab-pane fade" id="paths" role="tabpanel" aria-labelledby="home-tab">
               <label for="requestPath" class="label-bg">Request Path :</label>
               <input type="text" id="requestPath" name="requestPath" value="{{.RequestPath}}" disabled="disabled" size="60" class="form-control">
               <br>
@@ -107,7 +107,7 @@
             </div>
 
 
-            <div class="tab-pane fade" id="siena" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="container tab-pane fade" id="siena" role="tabpanel" aria-labelledby="contact-tab">
 
               <label for="sienaName">Connected To :</label>
               <input type="text" id="sienaName" name="sienaName" value="{{.SienaName}}" disabled="disabled" size="60" class="form-control">
@@ -121,15 +121,15 @@
               <br>
 
               <div class="row">
-                <div class="col">
+                <div class="col-sm">
                   <label for="sienaDataServer">MS SQL Server:</label>
                   <input type="text" id="sienaDataServer" name="sienaDataServer" value="{{.SienaDataServer}}" disabled="disabled" size="60" class="form-control">
                 </div>
-                <div class="col">
+                <div class="col-sm">
                   <label for="sienaDataSource">Database:</label>
                   <input type="text" id="sienaDataSource" name="sienaDataSource" value="{{.SienaDataSource}}" disabled="disabled" size="60" class="form-control">
                 </div>
-                <div class="col">
+                <div class="col-sm">
                   <label for="sienaDBSchema">Schema:</label>
                   <input type="text" id="sienaDBSchema" name="sienaDBSchema" value="{{.SienaDBSchema}}" disabled="disabled" size="60" class="form-control">
                 </div>
@@ -138,15 +138,15 @@
 <br>
 
               <div class="row">
-                <div class="col">
+                <div class="col-sm">
                   <label for="sienaDBUser">DB User :</label>
                   <input type="text" id="sienaDBUser" name="sienaDBUser" value="{{.SienaDBUser}}" disabled="disabled" size="60" class="form-control">
                 </div>
-                <div class="col">
+                <div class="col-sm">
                   <label for="sienaDBPassword">DB Password :</label>
                   <input type="text" id="sienaDBPassword" name="sienaDBPassword" value="{{.SienaDBPassword}}" disabled="disabled" size="60" class="form-control">
                 </div>
-                <div class="col">
+                <div class="col-sm">
                   <label for="sienaDBPort">DB Port :</label>
                   <input type="text" id="sienaDBPort" name="sienaDBPort" value="{{.SienaDBPort}}" disabled="disabled" size="60" class="form-control">
                 </div>

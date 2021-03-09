@@ -49,14 +49,14 @@
       <div class="card-header">
         <strong>Response Content</strong>
       </div>
-      <div class="card-body d-flex h-100 flex-column">
+      <div class="container card-body d-flex h-100 flex-column">
         <div class="row">
-          <div class="col">
+          <div class="col-sm">
 
             <label for="ResponseID">ID :</label>
             <input type="text" id="ResponseID" name="ResponseID" value="{{.ResponseID}}" disabled="disabled" size="60" class="form-control">
           </div>
-          <div class="col">
+          <div class="col-sm">
             <label for="ResponseFileName">File Name :</label>
             <input type="text" id="ResponseFileName" name="ResponseFileName" value="{{.ResponseFileName}}" disabled="disabled" size="60" class="form-control">
           </div>
@@ -100,14 +100,14 @@
         </a>
       </div>
       <div class="collapse" id="request">
-        <div class="card-body d-flex h-100 flex-column">
+        <div class="container card-body d-flex h-100 flex-column">
 
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
               <label for="RequestRID">ID :</label>
               <input type="text" id="RequestRID" name="RequestRID" value="{{.RequestRID}}" disabled="disabled" size="" class="form-control">
             </div>
-            <div class="col">
+            <div class="col-sm">
               <label for="RequestFileName">File Name :</label>
               <input type="text" id="RequestFileName" name="RequestFileName" value="{{.RequestFileName}}" disabled="disabled" size="" class="form-control">
             </div>
@@ -130,23 +130,21 @@
           </div>
           <br>
           <div class="row">
-            <div class="col">
+            <div class="col-sm">
 
               <label for="RequestAction">Action :</label>
               <input type="text" id="RequestAction" name="RequestAction" value="{{.RequestAction}}" disabled="disabled" size="60" class="form-control">
             </div>
-            <div class="col">
+            <div class="col-sm">
 
               <label for="RequestItem">Item :</label>
               <input type="text" id="RequestItem" name="RequestItem" value="{{.RequestItem}}" disabled="disabled" size="60" class="form-control">
             </div>
-            <div class="col">
+            <div class="col-sm">
               <label for="RequestParameters">Parameters :</label>
               <input type="text" id="RequestParameters" name="RequestParameters" value="{{.RequestParameters}}" disabled="disabled" size="60" class="form-control">
             </div>
           </div>
-
-          <!-- <br> <label for="RequestPayloadCount">RequestPayloadCount :</label> <input type="text" id="RequestPayloadCount" name="RequestPayloadCount" value="{{.RequestPayloadCount}}" disabled size="60" class="form-control"> -->
           <br>
           <label for="RequestPayload">Payload :</label>
           <textarea name="RequestPayload" id="RequestPayload" rows="5" cols="80" disabled="disabled" class="well form-control">{{.RequestPayload}}</textarea>
@@ -156,7 +154,7 @@
     </div>
     <br>
     <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
-      <div class="btn-group d-flex">
+      <div class="container btn-group d-flex">
 
         <button type="submit" value="" class="btn btn-outline-danger">
           <i class="far fa-trash-alt" style="font-size: 22px"></i>
