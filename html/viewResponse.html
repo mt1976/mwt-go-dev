@@ -41,10 +41,10 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <br>
+
     <!-- <div class="card"> <div class="card-header"><strong>Properties</strong></div> <div class="card-body"> <label for="DeliverTo">Response Path :</label> <input type="text" id="DeliverTo" name="DeliverTo" value="{{.ResponseFilePath}}" disabled
-    size="60" class="form-control"> <br> <label for="DeliverFilename">Response Filename :</label> <input type="text" id="DeliverFilename" name="DeliverFilename" value="{{.ResponseFileName}}" disabled size="60" class="form-control"> <br> </div> </div>
-    <br> -->
+    size="60" class="form-control">  <label for="DeliverFilename">Response Filename :</label> <input type="text" id="DeliverFilename" name="DeliverFilename" value="{{.ResponseFileName}}" disabled size="60" class="form-control">  </div> </div>
+     -->
     <div class="card">
       <div class="card-header">
         <strong>Response Content</strong>
@@ -61,10 +61,10 @@
             <input type="text" id="ResponseFileName" name="ResponseFileName" value="{{.ResponseFileName}}" disabled="disabled" size="60" class="form-control">
           </div>
         </div>
-        <br>
+
         <label for="ResponseFilePath">File Path :</label>
         <input type="text" id="ResponseFilePath" name="ResponseFilePath" value="{{.ResponseFilePath}}" disabled="disabled" size="60" class="form-control">
-        <br>
+
         <div class="row">
           <div class="col-6">
             <label for="ResponseEjected">Emitted :</label>
@@ -79,10 +79,10 @@
             <input type="text" id="ResponseStatus" name="ResponseStatus" value="{{.ResponseStatus}}" disabled="disabled" size="20" class="form-control">
           </div>
         </div>
-        <br>
+
         <label for="ResponseContent">Content :</label>
         <textarea name="ResponseContent" id="ResponseContent" rows="10" cols="132" disabled="disabled" class="well form-control">{{.ResponseContent}}</textarea>
-        <br>
+
 
         <div class="">
           <button type="submit" value="" class="btn btn-sm btn-outline-secondary float-right" method="POST" onclick="saveFile()">
@@ -91,7 +91,7 @@
       </div>
 
     </div>
-    <br>
+
     <div class="card">
       <div class="card-header float-left">
         <strong>Request Content</strong>
@@ -112,10 +112,10 @@
               <input type="text" id="RequestFileName" name="RequestFileName" value="{{.RequestFileName}}" disabled="disabled" size="" class="form-control">
             </div>
           </div>
-          <br>
+
           <label for="RequestFilePath">File Path :</label>
           <input type="text" id="RequestFilePath" name="RequestFilePath" value="{{.RequestFilePath}}" disabled="disabled" size="60" class="form-control">
-          <br>
+
 
           <div class="row">
             <div class="col-8">
@@ -128,7 +128,7 @@
               <input type="text" id="RequestFileType" name="RequestFileType" value="{{.RequestFileType}}" disabled="disabled" size="60" class="form-control">
             </div>
           </div>
-          <br>
+
           <div class="row">
             <div class="col-sm">
 
@@ -145,14 +145,14 @@
               <input type="text" id="RequestParameters" name="RequestParameters" value="{{.RequestParameters}}" disabled="disabled" size="60" class="form-control">
             </div>
           </div>
-          <br>
+
           <label for="RequestPayload">Payload :</label>
           <textarea name="RequestPayload" id="RequestPayload" rows="5" cols="80" disabled="disabled" class="well form-control">{{.RequestPayload}}</textarea>
 
         </div>
       </div>
     </div>
-    <br>
+
     <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
       <div class="container btn-group d-flex">
 

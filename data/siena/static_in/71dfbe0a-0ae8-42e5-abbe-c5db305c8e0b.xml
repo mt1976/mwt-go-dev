@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Portfolio" classname="com.eurobase.siena.data.portfolio.Portfolio"><RECORD><KEYFIELD name="Code">1234567890</KEYFIELD><FIELD name="Description1">42314123415235463457345674564tagsdfgs</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

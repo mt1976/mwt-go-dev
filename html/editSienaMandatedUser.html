@@ -42,7 +42,7 @@
   </script>
   <!-- DO NOT CHANGE -->
 
-  <div class="container-fluid"><br>
+  <div class="container-fluid">
     <form action="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" method="POST" class="form">
 
       <div class="card">
@@ -75,7 +75,7 @@
               </div>
 
             </div>
-            <br>
+
             <div class="row">
 
               <div class="col-sm">
@@ -85,14 +85,12 @@
 
               <div class="col-sm">
                 <label for="Surname">Last Name</label>
-                <input type="text" class="form-control" id="Surname" aria-describedby="emailHelp" name="Surname" placeholder="<<BLANK>>" value="{{.Surname}}" required="required" >
+                <input type="text" class="form-control" id="Surname" aria-describedby="emailHelp" name="Surname" placeholder="<<BLANK>>" value="{{.Surname}}" required="required">
               </div>
 
             </div>
-            <br>
 
             <div class="row">
-
               <div class="col-sm">
                 <label for="TelephoneNumber">Phone Number</label>
                 <input type="text" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumber" name="TelephoneNumber" placeholder="Phone Number" value="{{.TelephoneNumber}}">
@@ -101,50 +99,48 @@
                 <label for="Postcode">Postcode</label>
                 <input type="text" class="form-control" id="Postcode" aria-describedby="Postcode" name="Postcode" placeholder="<<BLANK>>" value="{{.Postcode}}">
               </div>
-
               <div class="col-sm">
                 <label for="Country">Country</label>
+                <select class="form-control" id="country" name="country" required="required">
 
-                  <select class="form-control" id="country" name="country" required="required">
+                  <option id="{{.Country}}" selected="selected">{{.CountryName}}</option>
 
-                    <option id="{{.Country}}" selected="selected">{{.CountryName}}</option>
+                  {{range .CountryList}}
+                  <option value="{{.Code}}">{{.Name}}</option>
+                  {{end}}
 
-                    {{range .CountryList}}
-                      <option value="{{.Code}}">{{.Name}}</option>
-                    {{end}}
-
-                  </select>
+                </select>
               </div>
 
 
             </div>
-            <br>
+
 
             <div class="row">
 
               <div class="col-sm">
                 <label for="DateOfBirth">Date Of Birth</label>
-                <input type="date" class="form-control" id="DateOfBirth" aria-describedby="emailHelp" name="DateOfBirth" placeholder="<<BLANK>>" value="{{.DateOfBirth}}" required disabled>
+                <input type="date" class="form-control" id="DateOfBirth" aria-describedby="emailHelp" name="DateOfBirth" placeholder="<<BLANK>>" value="{{.DateOfBirth}}" required>
               </div>
 
 
 
               <div class="col-sm">
                 <label for="NationalIDNo">National ID No.</label>
-                <input type="text" class="form-control" id="NationalIDNo" aria-describedby="NationalIDNo" name="NationalIDNo" placeholder="<<BLANK>>" value="{{.NationalIDNo}}" >
+                <input type="text" class="form-control" id="NationalIDNo" aria-describedby="NationalIDNo" name="NationalIDNo" placeholder="<<BLANK>>" value="{{.NationalIDNo}}">
               </div>
 
               <div class="col-sm">
                 <label for="PassportNo">Passport No.</label>
-                <input type="text" class="form-control" id="PassportNo" aria-describedby="PassportNo" name="PassportNo" placeholder="<<BLANK>>" value="{{.PassportNo}}" >
+                <input type="text" class="form-control" id="PassportNo" aria-describedby="PassportNo" name="PassportNo" placeholder="<<BLANK>>" value="{{.PassportNo}}">
               </div>
 
             </div>
-            <br>
+
             <div class="row">
               <div class="col-sm">
                 <label for="EmailAddress">Email</label>
-                <input type="email" class="form-control" id="EmailAddress" aria-describedby="emailHelp" name="EmailAddress" placeholder="<<BLANK>>" value="{{.EmailAddress}}" >
+                <input type="email" class="form-control" id="EmailAddress" aria-describedby="emailHelp" name="EmailAddress" placeholder="<<BLANK>>" value="{{.EmailAddress}}">
               </div>
               <div class="col-sm">
                 <label for="Active">Active</label>
@@ -158,23 +154,23 @@
               </div>
 
             </div>
-            <br>
-        </div>
+        
+          </div>
+</div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-sm">
+                <div class="btn-group float-right">
+                  <button type="submit" value="" class="btn btn-outline-danger"   formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"><i class="fas fa-save" style="font-size: 18px" method="GET"></i>&nbsp;&nbsp;Save</button>
 
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-sm">
-              <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Save</button>
-
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+                  <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+                </div>
               </div>
             </div>
+
           </div>
 
         </div>
-
-      </div>
     </form>
   </div>
 

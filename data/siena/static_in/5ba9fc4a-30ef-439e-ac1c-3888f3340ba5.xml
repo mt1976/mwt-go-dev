@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Book" classname="com.eurobase.siena.data.Books.Book"><RECORD><KEYFIELD name="BookName">POO</KEYFIELD><FIELD name="FullName">WEE</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

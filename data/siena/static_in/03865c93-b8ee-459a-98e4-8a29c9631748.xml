@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Country" classname="com.eurobase.siena.data.country.Country"><RECORD><KEYFIELD name="Code">HVO</KEYFIELD><FIELD name="name">Upper Volta</FIELD><FIELD name="shortCode"></FIELD><FIELD name="EU_EEA">on</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

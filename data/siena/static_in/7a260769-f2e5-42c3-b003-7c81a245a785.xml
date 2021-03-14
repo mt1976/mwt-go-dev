@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="shortName">bum</KEYFIELD><FIELD name="fullName">fun</FIELD><FIELD name="country">BGD</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

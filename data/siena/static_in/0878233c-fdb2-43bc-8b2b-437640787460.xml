@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Country" classname="com.eurobase.siena.data.country.Country"><RECORD><KEYFIELD name="Code">IRL</KEYFIELD><FIELD name="name">Ireland</FIELD><FIELD name="shortCode">IE</FIELD><FIELD name="EU_EEA">on</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

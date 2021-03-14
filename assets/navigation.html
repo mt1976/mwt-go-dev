@@ -1,9 +1,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta charset="utf-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <!-- Favicon Stuff -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,152 +29,307 @@
 <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
 <link rel="stylesheet" href="../assets/custom_table.css">
 
-<nav class="navbar sticky-top navbar-light" style="background-color: #dedede">
+<nav class="navbar sticky-top">
+
   <form action="#" method="POST" align="" class="btn-block">
 
-    <button id="btnGroupDrop1" type="button" class="hamburger" style="hamburger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="fas fa-th fa-2x"></i>
-    </button>
+    <div class="row">
+      <div class="nav-burger">
+        <button id="btnGroupDrop1" type="button" class="hamburger" data-toggle="collapse" data-target="#cheese" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-th fa-2x"></i>
+        </button>
+      </div>
 
-    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="btnGroupDrop1" style="font-weight:lighter">
+      <div class="nav-title"><a href="" onclick="history.back()" class="nav-title">Demo Control Centre</a></div>
+
+    </row>
+
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="font-weight:lighter" id="cheese">
 
       <a class="dropdown-item" href="/listSienaSector">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaSector">
-<i class="fas fa-industry"></i>
-          &nbsp;&nbsp;Sectors</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-industry"></i>
+          </div>
+          <div class="dd-text">
+            Sectors
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaCountry">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaCountry">
-<i class="fas fa-globe-americas"></i>
-          &nbsp;&nbsp;Countrys</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <div class="dd-text">
+            Countrys
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaCurrency">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaCurrency">
-<i class="fas fa-dollar-sign"></i>          &nbsp;&nbsp;Currencys</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="dd-text">
+            Currencys
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaCurrencyPair">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaCurrencyPair">
-<i class="fas fa-coins"></i>          &nbsp;&nbsp;Currency Pairs</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-coins"></i>
+          </div>
+          <div class="dd-text">
+            Currency Pairs
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaFirm">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaFirm">
-<i class="fas fa-city"></i>
-          &nbsp;&nbsp;Firms</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-city"></i>
+          </div>
+          <div class="dd-text">
+            Firms
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaCentre">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaCentre">
-          <i class="fas fa-map-marker-alt"></i>
-          &nbsp;&nbsp;&nbsp;Centers</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-map-marker-alt"></i>
+
+          </div>
+          <div class="dd-text">
+            Centres
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaBook">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaBook">
-<i class="fas fa-book"></i>
-         &nbsp;&nbsp;Books</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-book"></i>
+
+          </div>
+          <div class="dd-text">
+            Books
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaBroker">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaBroker">
-          <i class="far fa-handshake"></i>
-         &nbsp;&nbsp;Brokers</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-handshake"></i>
+
+          </div>
+          <div class="dd-text">
+            Brokers
+          </div>
+        </div>
+      </a>
+
+      <a class="dropdown-item" href="/listSienaCounterparty">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fa fa-user"></i>
+
+          </div>
+          <div class="dd-text">
+            Counterpartys
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaMandatedUser">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaMandatedUser">
-<i class="fas fa-user-check"></i>          &nbsp;&nbsp;Mandated Users</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-user-check"></i>
+
+          </div>
+          <div class="dd-text">
+            Mandated Users
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaPortfolio">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaPortfolio">
-<i class="far fa-folder-open"></i>
-          &nbsp;&nbsp;Bank Portfolios</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-folder-open"></i>
+
+          </div>
+          <div class="dd-text">
+            Bank Portfolios
+          </div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/listSienaAccount">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSienaAccount">
-<i class="fas fa-landmark"></i>          &nbsp;&nbsp;Accounts</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-landmark"></i>
+
+          </div>
+          <div class="dd-text">
+            Accounts
+          </div>
+        </div>
       </a>
 
-<hr class="hr-list">
+      <a class="dropdown-item" href="/listSienaCounterpartyPayee">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-wallet"></i>
+
+          </div>
+          <div class="dd-text">
+            Payees
+          </div>
+        </div>
+      </a>
+
+      <a class="dropdown-item" href="/listSienaCounterpartyImportID">
+        <div class="row">
+          <div class="dd-img">
+<i class="fas fa-file-import"></i>
+          </div>
+          <div class="dd-text">
+            Counterparty Import 
+          </div>
+        </div>
+      </a>
+
+      <hr class="hr-list">
+      <a class="dropdown-item" href="/srvServiceCatalog">
+        <div class="row">
+          <div class="dd-img">
+<i class="fas fa-list-alt text-secondary"></i>
+          </div>
+          <div class="dd-text">
+Service Catalog
+          </div>
+        </div>
+      </a>
       <a class="dropdown-item" href="/listSvcDataMap">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listSvcDataMap">
-          <i class="fas fa-dice-d6"></i>
-          &nbsp;&nbsp;Data Loader Mappings</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-dice-d6 text-secondary"></i>
+
+          </div>
+          <div class="dd-text">
+            Data Loader Mappings
+          </div>
+        </div>
       </a>
-      <a class="dropdown-item">
-        <button type="submit" class="btn text-primary-list btn-list" formaction="/listResponses">
-          <i class="fas fa-folder"></i>
-          &nbsp;Responses</button>
+
+      <a class="dropdown-item" href="/listResponses">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-folder text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            Responses
+          </div>
+        </div>
       </a>
+
       <a class="dropdown-item" href="/listSrvConfiguration">
-        <button type="submit" value="" class="btn text-primary-list btn-list" formaction="/listSrvConfiguration" method="POST">
-          <i class="fas fa-cog"></i>&nbsp;&nbsp;Properties</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-cog text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            Properties
+          </div>
+        </div>
       </a>
-      <a class="dropdown-item">
-        <button type="button" class="btn text-secondary btn-list" onclick="window.print()">
-          <i class="fa fa-print"></i>
-          &nbsp;Print</button>
+
+      <a class="dropdown-item" onclick="window.print()">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fa fa-print text-secondary"></i>
+
+          </div>
+          <div class="dd-text">
+            Print
+          </div>
+        </div>
       </a>
 
       <hr class="hr-list">
 
       <a class="dropdown-item" href="/viewAppConfiguration">
-        <button type="button" class="btn btn-list text-info ">
-          <i class="fas fa-server"></i>&nbsp;&nbsp;App Environment</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-server text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            App Environment
+          </div>
+        </div>
       </a>
 
-
       <a class="dropdown-item" href="/viewSrvEnvironment">
-        <button type="button" value="" class="btn text-info btn-list">
-          <i class="fas fa-server"></i>&nbsp;&nbsp;Server Environment</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-server text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            Server Environment
+          </div>
+        </div>
       </a>
 
       <hr class="hr-list">
 
       <a class="dropdown-item" href="/clearResponses">
-        <button type="submit" class="btn text-warning btn-list" formaction="/clearResponses">
-          <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Responses</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-trash-alt text-warning"></i>
+
+          </div>
+          <div class="dd-text">
+            Responses</div>
+        </div>
       </a>
 
       <a class="dropdown-item" href="/clearQueues">
-        <button type="submit" class="btn text-danger btn-list" formaction="/clearQueues" method="POST">
-          <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Queues</button>
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-trash-alt text-warning"></i>
+
+          </div>
+          <div class="dd-text">
+            Queues</div>
+        </div>
       </a>
+
       <hr class="hr-list">
 
       <a class="dropdown-item" href="/logout">
-        <button type="button" class="btn text-secondary btn-list" formaction="/clearQueues">
-          <i class="fas fa-sign-out-alt"></i>
-          &nbsp;Logout</button>
+        <div class="row">
+          <div class="dd-img text-muted">
+            <i class="fas fa-sign-out-alt"></i>
+          </div>
+          <div class="dd-text text-muted">
+            Logout</div>
+        </div>
       </a>
 
     </div>
 
-
-
-    <a class="navbar-brand" href="#">
-      <h3 class="apptitle">&nbsp;Demo Control Centre</h3>
-    </a>
-
-    <div class="btn-group float-right">
-
-      <div class="btn-group" role="group">
-
-        <button id="close" type="submit" class="btn btn-lg btn-header" formaction="/home" data-toggle="tooltip" data-placement="bottom" title="Go Home" style="padding-right=0;">
-      <i class="fas fa-home fa-lg"></i>
-        </button>
-
-        <button id="close" type="button" class="btn btn-lg btn-header"  onclick="history.back()" data-toggle="tooltip" data-placement="bottom" title="Page Back" style="padding:0;padding-right:.5rem;">
-<i class="far fa-arrow-alt-circle-left fa-lg"></i>
-        </button>
-
-      </div>
-
-    </div>
   </form>
 </nav>

@@ -75,6 +75,7 @@ func main() {
 	http.HandleFunc("/login", valLoginHandler)
 	http.HandleFunc("/logout", logoutHandler)
 	http.HandleFunc("/home", homePageHandler)
+	http.HandleFunc("/srvServiceCatalog", srvServiceCatalogHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
 	http.HandleFunc("/site.webmanifest", faviconManifestHandler)
@@ -155,6 +156,24 @@ func main() {
 	http.HandleFunc("/editSienaMandatedUser/", editSienaMandatedUserHandler)
 	http.HandleFunc("/saveSienaMandatedUser/", saveSienaMandatedUserHandler)
 	http.HandleFunc("/newSienaMandatedUser/", newSienaMandatedUserHandler)
+
+	http.HandleFunc("/listSienaCounterparty/", listSienaCounterpartyHandler)
+	http.HandleFunc("/viewSienaCounterparty/", viewSienaCounterpartyHandler)
+	http.HandleFunc("/editSienaCounterparty/", editSienaCounterpartyHandler)
+	http.HandleFunc("/saveSienaCounterparty/", saveSienaCounterpartyHandler)
+	http.HandleFunc("/newSienaCounterparty/", newSienaCounterpartyHandler)
+
+	http.HandleFunc("/listSienaCounterpartyPayee/", listSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/viewSienaCounterpartyPayee/", viewSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/editSienaCounterpartyPayee/", editSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/saveSienaCounterpartyPayee/", saveSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/newSienaCounterpartyPayee/", newSienaCounterpartyPayeeHandler)
+
+	http.HandleFunc("/listSienaCounterpartyImportID/", listSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/viewSienaCounterpartyImportID/", viewSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/editSienaCounterpartyImportID/", editSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/saveSienaCounterpartyImportID/", saveSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/newSienaCounterpartyImportID/", newSienaCounterpartyImportIDHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))

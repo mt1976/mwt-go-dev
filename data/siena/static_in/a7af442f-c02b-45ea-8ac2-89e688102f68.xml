@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Book" classname="com.eurobase.siena.data.Books.Book"><RECORD><KEYFIELD name="BookName">CORPSPOT</KEYFIELD><FIELD name="FullName">CORPORATE SPOT34223</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

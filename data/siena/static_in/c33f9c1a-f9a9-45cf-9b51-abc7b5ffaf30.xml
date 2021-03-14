@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">DIB</KEYFIELD><FIELD name="fullName"></FIELD><FIELD name="country">ASM</FIELD><FIELD name="sector">BasInd</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">ALBLRUGBY</KEYFIELD><FIELD name="fullName">All Black Rugby Team</FIELD><FIELD name="country">Switzerland</FIELD><FIELD name="sector">Leisure</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

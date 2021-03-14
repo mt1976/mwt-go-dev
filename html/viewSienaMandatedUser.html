@@ -42,7 +42,7 @@
   </script>
   <!-- DO NOT CHANGE -->
 
-  <div class="container-fluid"><br>
+  <div class="container-fluid">
     <form action="/editSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" method="POST" class="form">
 
       <div class="card">
@@ -62,38 +62,17 @@
                 <label for="MandatedUserKeyUserName">Name</label>
                 <input type="text" class="form-control" id="MandatedUserKeyUserName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.MandatedUserKeyUserName}}" maxlength="10">
               </div>
-
-
               <div class="col-sm">
-                <label for="MandatedUserKeyCounterpartyFirm">Firm</label>
-                <select class="form-control" id="MandatedUserKeyCounterpartyFirm" name="MandatedUserKeyCounterpartyFirm" required="required" disabled>
-
-                  <option id="{{.MandatedUserKeyCounterpartyFirm}}" selected="selected">{{.FirmName}}</option>
-
-                  {{range .FirmList}}
-                    <option value="{{.Code}}">{{.Name}}</option>
-                  {{end}}
-
-                </select>
+                <label for="FirmName">Firm</label>
+                <input type="text" class="form-control" id="FirmName" aria-describedby="emailHelp" name="FirmName" placeholder="<<BLANK>>" value="{{.FirmName}}" required disabled>
               </div>
 
               <div class="col-sm">
-                <label for="MandatedUserKeyCounterpartyCentre">Centre</label>
-                <select class="form-control" id="MandatedUserKeyCounterpartyCentre" name="MandatedUserKeyCounterpartyCentre" required="required" disabled>
-
-                  <option id="{{.CentreName}}" selected="selected">{{.CentreName}}</option>
-
-                  {{range .CentreList}}
-                    <option value="{{.Code}}">{{.Name}}</option>
-                  {{end}}
-
-                </select>
-
-
+                <label for="CentreName">Centre</label>
+                <input type="text" class="form-control" id="CentreName" aria-describedby="emailHelp" name="CentreName" placeholder="<<BLANK>>" value="{{.CentreName}}" required disabled>
               </div>
-
             </div>
-            <br>
+
             <div class="row">
 
               <div class="col-sm">
@@ -107,7 +86,7 @@
               </div>
 
             </div>
-            <br>
+
 
             <div class="row">
 
@@ -135,16 +114,14 @@
 
 
             </div>
-            <br>
+
 
             <div class="row">
 
               <div class="col-sm">
                 <label for="DateOfBirth">Date Of Birth</label>
-                <input type="datetime-local" class="form-control" id="DateOfBirth" aria-describedby="emailHelp" name="DateOfBirth" placeholder="<<BLANK>>" value="{{.DateOfBirth}}" required disabled>
+                <input type="date" class="form-control" id="DateOfBirth" aria-describedby="emailHelp" name="DateOfBirth" placeholder="<<BLANK>>" value="{{.DateOfBirth}}" required disabled>
               </div>
-
-
 
               <div class="col-sm">
                 <label for="NationalIDNo">National ID No.</label>
@@ -157,7 +134,7 @@
               </div>
 
             </div>
-            <br>
+
             <div class="row">
               <div class="col-sm">
                 <label for="EmailAddress">Email</label>
@@ -175,9 +152,9 @@
               </div>
 
             </div>
-            <br>
-        </div>
 
+        </div>
+</div>
         <div class="card-footer">
           <div class="row">
             <div class="col-sm">

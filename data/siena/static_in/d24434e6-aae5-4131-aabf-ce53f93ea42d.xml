@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Country" classname="com.eurobase.siena.data.sector.Sector"><RECORD><KEYFIELD name="Code">GBR</KEYFIELD><FIELD name="name">United Kingdom Bitches!</FIELD><FIELD name="shortCode">GB</FIELD><FIELD name="EU_EEA"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

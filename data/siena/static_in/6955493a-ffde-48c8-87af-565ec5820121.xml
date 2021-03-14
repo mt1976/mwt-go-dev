@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">BASF</KEYFIELD><FIELD name="fullName">BASF</FIELD><FIELD name="country">DEU</FIELD><FIELD name="sector">Chems</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

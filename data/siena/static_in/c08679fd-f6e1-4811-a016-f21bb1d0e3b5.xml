@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Country" classname="com.eurobase.siena.data.sector.Sector"><RECORD><KEYFIELD name="Code">AGO</KEYFIELD><FIELD name="name">Angola</FIELD><FIELD name="shortCode">12</FIELD><FIELD name="EU_EEA"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

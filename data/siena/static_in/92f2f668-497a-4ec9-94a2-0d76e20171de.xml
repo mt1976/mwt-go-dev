@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="shortName">SYD</KEYFIELD><FIELD name="fullName">Sydney</FIELD><FIELD name="country">ARG</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

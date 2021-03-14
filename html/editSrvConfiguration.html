@@ -54,7 +54,7 @@
 
 
     <div class="container-fluid">
-      <br>
+
 
       <div id="SrvConfig">
 
@@ -64,7 +64,7 @@
           <div class="card-body d-flex h-100 flex-column">
             <input name="pgid" id="pgid" type="text" value="{{.PageRecordID}}" hidden/>
             <textarea class="form-control" name="pgContent" id="pgContent" rows="{{.Rows}}" cols="80">{{.FullRecord}}</textarea>
-            <br>
+
             <div class="btn-group float-right">
               <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" ></i>&nbsp;&nbsp;Save</button>
                         <button id="export" type="button" class="btn btn-outline-primary" onclick="saveFile()"><i class="fas fa-file-code" style="font-size: 18px"></i>&nbsp;&nbsp;Export</button>

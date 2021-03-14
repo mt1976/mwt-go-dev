@@ -37,7 +37,7 @@ type sienaMandatedUserPage struct {
 	ActiveChecked                     string
 	FirstName                         string
 	Surname                           string
-	DateOfBirth                       time.Time
+	DateOfBirth                       string
 	Postcode                          string
 	NationalIDNo                      string
 	PassportNo                        string
@@ -52,6 +52,7 @@ type sienaMandatedUserPage struct {
 	CountryList                       []sienaCountryItem
 	FirmList                          []sienaFirmItem
 	CentreList                        []sienaCentreItem
+	CounterpartyName                  string
 }
 
 //sienaMandatedUserItem is cheese
@@ -64,7 +65,7 @@ type sienaMandatedUserItem struct {
 	Active                            bool
 	FirstName                         string
 	Surname                           string
-	DateOfBirth                       time.Time
+	DateOfBirth                       string
 	Postcode                          string
 	NationalIDNo                      string
 	PassportNo                        string
@@ -75,6 +76,7 @@ type sienaMandatedUserItem struct {
 	Notify                            bool
 	SystemUser                        string
 	Action                            string
+	CounterpartyName                  string
 }
 
 func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
@@ -239,7 +241,7 @@ func saveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	item.Active, _ = strconv.ParseBool(r.FormValue("Active"))
 	item.FirstName = r.FormValue("FirstName")
 	item.Surname = r.FormValue("Surname")
-	item.DateOfBirth, _ = time.Parse(sienaDateFormat, r.FormValue("DateOfBirth"))
+	item.DateOfBirth = r.FormValue("DateOfBirth")
 	item.Postcode = r.FormValue("Postcode")
 	item.NationalIDNo = r.FormValue("NationalIDNo")
 	item.PassportNo = r.FormValue("PassportNo")
@@ -396,7 +398,62 @@ func getSienaMandatedUserList(db *sql.DB) (int, []sienaMandatedUserItem, error) 
 		sienaMandatedUser.Active = Active.Bool
 		sienaMandatedUser.FirstName = FirstName.String
 		sienaMandatedUser.Surname = Surname.String
-		sienaMandatedUser.DateOfBirth = DateOfBirth
+		sienaMandatedUser.DateOfBirth = DateOfBirth.Format(sienaDateFormat)
+		sienaMandatedUser.Postcode = Postcode.String
+		sienaMandatedUser.NationalIDNo = NationalIDNo.String
+		sienaMandatedUser.PassportNo = PassportNo.String
+		sienaMandatedUser.Country = Country.String
+		sienaMandatedUser.CountryName = CountryName.String
+		sienaMandatedUser.FirmName = FirmName.String
+		sienaMandatedUser.CentreName = CentreName.String
+		sienaMandatedUser.Notify = Notify.Bool
+		sienaMandatedUser.SystemUser = SystemUser.String
+		sienaMandatedUserList = append(sienaMandatedUserList, sienaMandatedUser)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaMandatedUserList, nil
+}
+
+// getSienaMandatedUserList read all employees
+func getSienaMandatedUserListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaMandatedUserItem, error) {
+	mssqlConfig := getProperties(cSQL_CONFIG)
+	//fmt.Println(db.Stats().OpenConnections)
+	var sienaMandatedUserList []sienaMandatedUserItem
+	var sienaMandatedUser sienaMandatedUserItem
+	tsql := fmt.Sprintf("SELECT MandatedUserKeyCounterpartyFirm, 	MandatedUserKeyCounterpartyCentre, 	MandatedUserKeyUserName, 	TelephoneNumber, 	EmailAddress, 	Active, 	FirstName, 	Surname, 	DateOfBirth, 	Postcode, 	NationalIDNo, 	PassportNo, 	Country, 	CountryName, 	FirmName, 	CentreName, 	Notify, 	SystemUser  FROM %s.sienaMandatedUser WHERE MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", mssqlConfig["schema"], idFirm, idCentre)
+	//	fmt.Println("MS SQL:", tsql)
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		//var Code, Name, Country, CountryName string
+		var MandatedUserKeyCounterpartyFirm, MandatedUserKeyCounterpartyCentre, MandatedUserKeyUserName, TelephoneNumber, EmailAddress, FirstName, Surname, Postcode, NationalIDNo, PassportNo, Country, CountryName, FirmName, CentreName, SystemUser sql.NullString
+		var Active, Notify sql.NullBool
+		var DateOfBirth time.Time
+
+		err := rows.Scan(&MandatedUserKeyCounterpartyFirm, &MandatedUserKeyCounterpartyCentre, &MandatedUserKeyUserName, &TelephoneNumber, &EmailAddress, &Active, &FirstName, &Surname, &DateOfBirth, &Postcode, &NationalIDNo, &PassportNo, &Country, &CountryName, &FirmName, &CentreName, &Notify, &SystemUser)
+
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, err
+		}
+		sienaMandatedUser.MandatedUserKeyCounterpartyFirm = MandatedUserKeyCounterpartyFirm.String
+		sienaMandatedUser.MandatedUserKeyCounterpartyCentre = MandatedUserKeyCounterpartyCentre.String
+		sienaMandatedUser.MandatedUserKeyUserName = MandatedUserKeyUserName.String
+		sienaMandatedUser.TelephoneNumber = TelephoneNumber.String
+		sienaMandatedUser.EmailAddress = EmailAddress.String
+		sienaMandatedUser.Active = Active.Bool
+		sienaMandatedUser.FirstName = FirstName.String
+		sienaMandatedUser.Surname = Surname.String
+		sienaMandatedUser.DateOfBirth = DateOfBirth.Format(sienaDateFormat)
 		sienaMandatedUser.Postcode = Postcode.String
 		sienaMandatedUser.NationalIDNo = NationalIDNo.String
 		sienaMandatedUser.PassportNo = PassportNo.String
@@ -448,7 +505,7 @@ func getSienaMandatedUser(db *sql.DB, suid string, sfid string, scid string) (in
 		sienaMandatedUser.Active = Active.Bool
 		sienaMandatedUser.FirstName = FirstName.String
 		sienaMandatedUser.Surname = Surname.String
-		sienaMandatedUser.DateOfBirth = DateOfBirth
+		sienaMandatedUser.DateOfBirth = DateOfBirth.Format(sienaDateFormat)
 		sienaMandatedUser.Postcode = Postcode.String
 		sienaMandatedUser.NationalIDNo = NationalIDNo.String
 		sienaMandatedUser.PassportNo = PassportNo.String

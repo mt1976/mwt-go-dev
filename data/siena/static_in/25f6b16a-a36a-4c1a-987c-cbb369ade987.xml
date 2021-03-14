@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">Allianz</KEYFIELD><FIELD name="fullName">Allianz</FIELD><FIELD name="country">Federal Rep of Germany</FIELD><FIELD name="sector">Ins</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

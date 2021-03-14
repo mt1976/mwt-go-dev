@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">ADCB</KEYFIELD><FIELD name="fullName">Abu Dhabi Commercial Bank</FIELD><FIELD name="country">ARE</FIELD><FIELD name="sector">General Industries</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

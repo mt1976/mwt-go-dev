@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Book" classname="com.eurobase.siena.data.Books.Book"><RECORD><KEYFIELD name="BookName">234</KEYFIELD><FIELD name="FullName">234</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

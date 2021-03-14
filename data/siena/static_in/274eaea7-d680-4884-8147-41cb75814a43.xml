@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">dsdsdsd</KEYFIELD><FIELD name="fullName"></FIELD><FIELD name="country">BEL</FIELD><FIELD name="sector">Dist</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

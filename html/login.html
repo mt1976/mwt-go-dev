@@ -1,6 +1,4 @@
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Favicon Stuff -->
@@ -21,30 +19,33 @@
   <!-- Add Custom Fonts & Styles-->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/custom.css">
+  <link rel="stylesheet" href="../assets/login.css">
   <!-- Add icon library -->
 
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
 
-  <title>{{.AppName}}
-  </title>
+  <title>{{.AppName}} - Login</title>
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-  <link rel="stylesheet" href="../assets/custom_table.css">
 
 </head>
 
 <body>
 
 
-  <div class="container h-100">
-    <div class="row h-100 justify-content-center align-items-center">
-      <div class="card" style="width: 30rem;">
+  <div class="container-fluid">
+    <div class="row  justify-content-center align-items-center">
+      <div class="card">
+
         <div class="card-header text-center apptitle">
-          {{.AppName}}</div>
+<div class="hdrimage">
+<i class="fas fa-atom" style="font-size:100pt"></i>
+</div>
+          {{.AppName}}
+        </div>
+
         <div class="card-body">
 
           <form action="/" method="POST" class="">
-
             <!-- UserID -->
             <div class="input-group mb-2 mr-sm-2">
               <div class="input-group-prepend">
@@ -54,7 +55,6 @@
               </div>
               <input type="text" class="form-control" id="username" name="username" placeholder="User ID" required="required">
             </div>
-
             <!-- Password input -->
             <div class="input-group mb-2 mr-sm-2">
               <div class="input-group-prepend">
@@ -67,31 +67,37 @@
                 <button type="button" class="input-group-text"><i class="fas fa-eye" onclick="showPassword('password')"></i></button>
               </div>
             </div>
+            <br>
             <div class="text text-center text-danger" role="alert"><strong>
             {{.ResponseError}}</strong></div>
-            <hr>
+            <br>
             <button type="submit" value="" class="btn btn-primary float-right" formaction="/login" method="GET">Login</button>
-
           </form>
         </div>
-        <div class="card-footer text-note">
+
+
+
+        <div class="card-footer">
+
+          <div class="text-note">
           <center><b>This software is for use by authorised persons only.</b></center>
           <br>
           The sofware is protect by the <em>{{.LicenceType}}</em>. For more information, please refer to <a href="{{.LicenceLink}}">{{.LicenceLink}}</a>.
           <br><br>
-          <div class="float-right">{{.WebServerVersion}}</div>
+          <div class="float-right">{{.WebServerVersion}}</div></div>
+
         </div>
       </div>
     </div>
   </div>
-</body>
-<script>
-  function showPassword(inField) {
-    var x = document.getElementById(inField);
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
+  <script>
+    function showPassword(inField) {
+      var x = document.getElementById(inField);
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
     }
-  }
-</script>
+  </script>
+</body>

@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="CentreName">NEW</KEYFIELD><FIELD name="fullName"></FIELD><FIELD name="country">BDI</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">Inuhb</KEYFIELD><FIELD name="fullName">MATT TOWNSEND</FIELD><FIELD name="country">CHE</FIELD><FIELD name="sector">Autos</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

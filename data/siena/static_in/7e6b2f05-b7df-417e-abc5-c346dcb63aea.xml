@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">Poo</KEYFIELD><FIELD name="fullName">Wee</FIELD><FIELD name="country">ARE</FIELD><FIELD name="sector">Brews</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

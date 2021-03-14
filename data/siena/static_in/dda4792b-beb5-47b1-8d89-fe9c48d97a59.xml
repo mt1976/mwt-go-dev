@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Sector" classname="com.eurobase.siena.data.sector.Sector"><RECORD><KEYFIELD name="Code">AerDef</KEYFIELD><FIELD name="name"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

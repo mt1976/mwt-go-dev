@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm"><RECORD><KEYFIELD name="firmName">Allianz</KEYFIELD><FIELD name="fullName">Allianz</FIELD><FIELD name="country">DEU</FIELD><FIELD name="sector">Insurance</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>
