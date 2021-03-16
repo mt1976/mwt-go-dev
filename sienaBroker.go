@@ -82,13 +82,13 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBrokerItem
 	searchID := getURLparam(r, "SienaBroker")
 	noItems, returnRecord, _ := getSienaBroker(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaBrokerList := sienaBrokerPage{
 		Title:     wctProperties["appname"],
@@ -103,7 +103,7 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "",
 	}
 
-	fmt.Println(pageSienaBrokerList)
+	//fmt.Println(pageSienaBrokerList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaBrokerList)
@@ -119,13 +119,13 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBrokerItem
 	searchID := getURLparam(r, "SienaBroker")
 	noItems, returnRecord, _ := getSienaBroker(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//fmt.Println(displayList)
 
@@ -144,7 +144,7 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Action: "",
 		//	CountryList: countryList,
 	}
-	fmt.Println(pageSienaBrokerList)
+	//fmt.Println(pageSienaBrokerList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaBrokerList)
@@ -175,7 +175,7 @@ func saveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	//item.Action = "UPDATE"
 
-	fmt.Println("ITEM", item)
+	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD
@@ -233,13 +233,13 @@ func saveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
+	//fmt.Println("PreparedXML", string(preparedXML))
 
 	staticImporterPath := sienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
+	//fmt.Println(fileName)
 
 	err := ioutil.WriteFile(fileName, preparedXML, 0644)
 	if err != nil {

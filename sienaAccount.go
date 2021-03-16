@@ -112,13 +112,13 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountItem
 	searchID := getURLparam(r, "SienaAccountID")
 	noItems, returnRecord, _ := getSienaAccount(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaAccountList := sienaAccountPage{
 		Title:             wctProperties["appname"],
@@ -161,13 +161,13 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountItem
 	searchID := getURLparam(r, "SienaAccount")
 	noItems, returnRecord, _ := getSienaAccount(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
@@ -203,7 +203,7 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		NameCentre:        returnRecord.NameCentre,
 		//	SectorList:  sectorList,
 	}
-	fmt.Println(pageSienaAccountList)
+	//fmt.Println(pageSienaAccountList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaAccountList)
@@ -261,7 +261,7 @@ func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
 	var sienaAccountList []sienaAccountItem
 
 	tsql := fmt.Sprintf("SELECT SienaReference, CustomerSienaView, Status,StartDate,ExternalReference,CCY,Book,MandatedUser,BackOfficeNotes,CashBalance,AccountNumber,AccountName,LedgerBalance,Portfolio,UTI,CCYName,BookName, Firm, Centre FROM %s.sienaAccount;", mssqlConfig["schema"])
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
@@ -328,7 +328,7 @@ func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre strin
 	var sienaAccountList []sienaAccountItem
 
 	tsql := fmt.Sprintf("SELECT SienaReference, CustomerSienaView, Status,StartDate,ExternalReference,CCY,Book,MandatedUser,BackOfficeNotes,CashBalance,AccountNumber,AccountName,LedgerBalance,Portfolio,UTI,CCYName,BookName, Firm, Centre FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", mssqlConfig["schema"], idFirm, idCentre)
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
@@ -394,7 +394,7 @@ func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
 	var sienaAccount sienaAccountItem
 
 	tsql := fmt.Sprintf("SELECT SienaReference, CustomerSienaView, Status,StartDate,ExternalReference,CCY,Book,MandatedUser,BackOfficeNotes,CashBalance,AccountNumber,AccountName,LedgerBalance,Portfolio,UTI,CCYName,BookName,Firm,Centre FROM %s.sienaAccount WHERE SienaReference='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")

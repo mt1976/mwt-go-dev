@@ -17,6 +17,7 @@ const (
 	cSIENACONFIG       = "config/siena.cfg"
 	wctEpochDateFormat = "20060102T150405"
 	sienaDateFormat    = "2006-01-02"
+	cCounterpartySep   = "\u22EE"
 )
 
 var gSessionToken = ""
@@ -174,6 +175,12 @@ func main() {
 	http.HandleFunc("/editSienaCounterpartyImportID/", editSienaCounterpartyImportIDHandler)
 	http.HandleFunc("/saveSienaCounterpartyImportID/", saveSienaCounterpartyImportIDHandler)
 	http.HandleFunc("/newSienaCounterpartyImportID/", newSienaCounterpartyImportIDHandler)
+
+	http.HandleFunc("/listSienaDealList/", listSienaDealListHandler)
+	http.HandleFunc("/viewSienaDealList/", viewSienaDealListHandler)
+	//http.HandleFunc("/editSienaDealList/", editSienaDealListHandler)
+	//http.HandleFunc("/saveSienaDealList/", saveSienaDealListHandler)
+	//http.HandleFunc("/newSienaDealList/", newSienaDealListHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))

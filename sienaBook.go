@@ -75,13 +75,13 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBookItem
 	searchID := getURLparam(r, "SienaBook")
 	noItems, returnRecord, _ := getSienaBook(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaBookList := sienaBookPage{
 		Title:     wctProperties["appname"],
@@ -106,13 +106,13 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBookItem
 	searchID := getURLparam(r, "SienaBook")
 	noItems, returnRecord, _ := getSienaBook(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//fmt.Println(displayList)
 
@@ -125,7 +125,7 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 		Action: "",
 	}
-	fmt.Println(pageSienaBookList)
+	//fmt.Println(pageSienaBookList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaBookList)
@@ -151,7 +151,7 @@ func saveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	item.Action = "UPDATE"
 
-	fmt.Println("ITEM", item)
+	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD
@@ -194,7 +194,7 @@ func saveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
+	//fmt.Println(fileName)
 
 	err := ioutil.WriteFile(fileName, preparedXML, 0644)
 	if err != nil {
@@ -270,7 +270,7 @@ func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
 	//fmt.Println(db.Stats().OpenConnections)
 	var sienaBook sienaBookItem
 	tsql := fmt.Sprintf("SELECT BookName, FullName FROM %s.sienaBook WHERE BookName='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
@@ -300,7 +300,7 @@ func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
 func putSienaBook(db *sql.DB, updateItem sienaBookItem) error {
 	mssqlConfig := getProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
-	fmt.Println(updateItem)
+	//fmt.Println(mssqlConfig["schema"])
+	//fmt.Println(updateItem)
 	return nil
 }

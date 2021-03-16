@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -66,7 +65,7 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		SienaDBPort:            sqlServerProperties["port"],
 	}
 
-	fmt.Println("Page Data", pageAppConfigView)
+	//fmt.Println("Page Data", pageAppConfigView)
 
 	//thisTemplate:= getTemplateID(tmpl)
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

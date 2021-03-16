@@ -43,14 +43,14 @@
   </script>
   <!-- DO NOT CHANGE -->
 <div class="container-fluid">
-      <div class="card border-primary">
+      <div class="card">
         <div class="card-header font-weight-bold border-primary">
           <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
           Counterpartys&nbsp;&nbsp;<span class="badge badge-primary">{{.SienaCounterpartyCount}} </span></div>
 
         <div class="card-body">
           <form action="/home" method="POST">
-            <div class="container">
+
 
             <div class="row">
               <div class="col-6">
@@ -71,6 +71,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th class="text-center">#</th>
+                    <th class="text-center">Code</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Type</th>
                     <th class="text-center">Firm</th>
@@ -82,6 +83,7 @@
                   {{range .SienaCounterpartyList}}
                   <tr>
                     <td class="text-center align-middle"></td>
+                    <td class="align-middle">{{.NameFirm}}&#8942;{{.NameCentre}}</td>
                     <td class="align-middle">{{.FullName}}</td>
                     <td class="align-middle">{{.CustomerType}}</td>
                     <td class="align-middle">{{.NameFirmName}}</td>
@@ -105,7 +107,7 @@
               </table>
 
             </div>
-            </div>
+
           </form>
         </div>
       </div>

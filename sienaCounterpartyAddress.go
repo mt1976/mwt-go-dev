@@ -86,14 +86,14 @@ func viewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyAddressItem
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
-	fmt.Println("NoSienaItems", noItems, firmID, centreID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
 		Title:      wctProperties["appname"],
@@ -123,15 +123,15 @@ func editSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyAddressItem
 
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
-	fmt.Println("NoSienaItems", noItems, firmID, centreID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//fmt.Println(displayList)
 
@@ -148,7 +148,7 @@ func editSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 		Postcode:   returnRecord.Postcode,
 		Action:     "",
 	}
-	fmt.Println(pageSienaCounterpartyAddressList)
+	//fmt.Println(pageSienaCounterpartyAddressList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaCounterpartyAddressList)

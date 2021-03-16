@@ -1,0 +1,138 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+  <!-- Favicon Stuff -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+  <meta name="msapplication-TileColor" content="#322a77">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+  <!-- Add Custom Fonts & Styles-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <script src="../assets/custom.js"></script>
+
+  <!-- Add icon library -->
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+  <link rel="stylesheet" href="../assets/custom_table.css">
+
+  <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
+
+</head>
+
+<body>
+
+
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div w3-include-html="../assets/navigation.html"></div>
+  <script>
+    cust_includeHTML();
+  </script>
+  <!-- DO NOT CHANGE -->
+
+<div class="container-fluid">
+      <div class="card border-primary">
+        <div class="card-header font-weight-bold border-primary">
+          <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+          Transactions&nbsp;&nbsp;<span class="badge badge-primary">{{.SienaDealListCount}} </span></div>
+
+        <div class="card-body">
+          <form action="/home" method="POST">
+            <div class="row">
+              <div class="col-6">
+
+                <input class="form-control float-left" id="myFilter" type="text" placeholder="Search..."></input>
+              </div>
+
+              <div class="col">
+
+              </div>
+            </div>
+
+            <div class="table-responsive">
+
+
+              <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Contract No.</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Type</th>
+
+                    <th class="text-center">Direction</th>
+                    <th class="text-center">Instrument</th>
+                    <th class="text-center">Dealt</th>
+                    <th class="text-center">Against</th>
+                    <th class="text-center">Book</th>
+
+                    <th class="text-center">Party</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody id=filterTable>
+                  {{range .SienaDealListList}}
+                  <tr>
+                    <td class="text-center align-middle"></td>
+                    <td class="align-middle">{{.ContractNumber}}</td>
+                      <td class="align-middle">{{.Status}}</td>
+                      <td class="align-middle">{{.FullDealType}}</td>
+
+                      <td class="align-middle">{{.Direction}}</td>
+                      <td class="align-middle">{{.Instrument}}</td>
+                      <td class="align-middle">{{.DealtCcy}} {{.DealtAmount}}</td>
+                      <td class="align-middle">{{.AgainstCcy}} {{.AgainstAmount}}</td>
+
+                      <td class="align-middle">{{.Book}}</td>
+
+                    <td class="align-middle">{{.PartyName}}</td>
+
+
+                    <td class="alight-right" style="width:1px;">
+
+                      <div class="btn-group">
+                        <button type="submit" value="" class="btn btn-outline-info btn-inner" formaction="/viewSienaDealList?SienaRef={{.SienaReference}}" method="POST">
+                          <i class="far fa-eye" style="font-size: 22px"></i>
+                        </button>
+
+
+                      </div>
+
+                    </td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
+
+
+  <script>
+    $(document).ready(function() {
+      $("#myFilter").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#filterTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+</body>

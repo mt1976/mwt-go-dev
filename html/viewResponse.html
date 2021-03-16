@@ -37,7 +37,9 @@
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
   <div w3-include-html="../assets/navigation.html"></div>
-  <script>cust_includeHTML();</script>
+  <script>
+    cust_includeHTML();
+  </script>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -49,7 +51,7 @@
       <div class="card-header">
         <strong>Response Content</strong>
       </div>
-      <div class="container card-body d-flex h-100 flex-column">
+      <div class="card-body d-flex h-100 flex-column">
         <div class="row">
           <div class="col-sm">
 
@@ -81,27 +83,11 @@
         </div>
 
         <label for="ResponseContent">Content :</label>
-        <textarea name="ResponseContent" id="ResponseContent" rows="10" cols="132" disabled="disabled" class="well form-control">{{.ResponseContent}}</textarea>
+        <textarea name="ResponseContent" id="ResponseContent" rows="10" cols="132" disabled="disabled" class="well form-control" style="min-height:13rem;">{{.ResponseContent}}</textarea>
+        <br>
 
-
-        <div class="">
-          <button type="submit" value="" class="btn btn-sm btn-outline-secondary float-right" method="POST" onclick="saveFile()">
-            <i class="fas fa-save"></i>&nbsp;&nbsp;Save</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="card">
-      <div class="card-header float-left">
-        <strong>Request Content</strong>
-        <a class="btn btn-sm shadow-none float-right" data-toggle="collapse" href="#request" role="button" aria-expanded="false" aria-controls="request">
-          <img class="fas fa-expand-alt" style="font-size: 22px" onclick="changeIcon(this)"></img>
-        </a>
-      </div>
-      <div class="collapse" id="request">
-        <div class="container card-body d-flex h-100 flex-column">
-
+        <div class="collapse" id="request">
+<h5> Request Information</h5>
           <div class="row">
             <div class="col-sm">
               <label for="RequestRID">ID :</label>
@@ -149,24 +135,38 @@
           <label for="RequestPayload">Payload :</label>
           <textarea name="RequestPayload" id="RequestPayload" rows="5" cols="80" disabled="disabled" class="well form-control">{{.RequestPayload}}</textarea>
 
+
         </div>
+
       </div>
+
+      <div class="card-footer">
+        <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
+          <div class="btn-group d-flex float-right">
+            <button type="submit" value="" class="btn btn-outline-primary float-right" method="POST" onclick="saveFile()" formaction="">
+              <i class="fas fa-save"></i>&nbsp;&nbsp;Save Content</button>
+            <a class="btn btn-outline-info" data-toggle="collapse" href="#request" role="button" aria-expanded="false" aria-controls="request">
+              <img class="far fa-eye"></img> &nbsp;&nbsp;View Request
+            </a>
+            <button type="submit" value="" class="btn btn-outline-danger">
+              <i class="far fa-trash-alt"></i>
+              &nbsp;&nbsp;Delete
+            </button>
+            <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
+              <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+          </div>
+
+        </form>
+      </div>
+
     </div>
 
-    <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
-      <div class="container btn-group d-flex">
-
-        <button type="submit" value="" class="btn btn-outline-danger">
-          <i class="far fa-trash-alt" style="font-size: 22px"></i>
-          Delete
-        </button>
-        <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
-          <i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-      </div>
-
-    </form>
 
   </div>
+
+
+
+
 
 
 </body>
@@ -182,7 +182,9 @@
     let data = '\r ' + name.value + ' \r\n '
 
     // Convert the text to BLOB.
-    const textToBLOB = new Blob([data], {type: 'text/plain'});
+    const textToBLOB = new Blob([data], {
+      type: 'text/plain'
+    });
     const sFileName = '{{.ResponseID}}.txt'; // The file to save the data.
 
     let newLink = document.createElement("a");
@@ -197,21 +199,6 @@
     }
 
     newLink.click();
-  }
-
-  function changeIcon(theImage) {
-    var expand = 'svg-inline--fa fa-expand-alt fa-w-14';
-    var collapse = 'svg-inline--fa fa-compress-alt fa-w-14';
-    var thePic = $(theImage).attr('class'); // use jQuery to get the current image
-
-    // now set the src attribute according to its current state
-    if (thePic == expand) {
-      $(theImage).attr('class', collapse);
-    }
-
-    if (thePic == collapse) {
-      $(theImage).attr('class', expand);
-    }
   }
 
 </script>

@@ -85,13 +85,13 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaFirmItem
 	searchID := getURLparam(r, "SienaFirm")
 	noItems, returnRecord, _ := getSienaFirm(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaFirmList := sienaFirmPage{
 		Title:       wctProperties["appname"],
@@ -120,13 +120,13 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaFirmItem
 	searchID := getURLparam(r, "SienaFirm")
 	noItems, returnRecord, _ := getSienaFirm(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
@@ -148,7 +148,7 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 		SectorList:  sectorList,
 	}
-	fmt.Println(pageSienaFirmList)
+	//fmt.Println(pageSienaFirmList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaFirmList)
@@ -317,7 +317,7 @@ func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
 	//fmt.Println(db.Stats().OpenConnections)
 	var sienaFirm sienaFirmItem
 	tsql := fmt.Sprintf("SELECT FirmName, FullName, Country, Sector, CountryName, SectorName FROM %s.sienaFirm WHERE FirmName='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")

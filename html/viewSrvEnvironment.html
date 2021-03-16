@@ -47,9 +47,9 @@
 
     <div class="">
       <div class="card">
-        <div class="card-header"><strong>Config Content</strong></div>
+        <div class="card-header"><strong>Server Environment</strong></div>
         <div class="card-body">
-<div class="container">
+
           {{range .SrvEnvironmentItems}}
           <div class="row">
             <div class="col-sm">
@@ -59,12 +59,14 @@
             </div>
 
           {{end}}
-</div>
 
-                    <button id="close" type="button" class="btn btn-outline-secondary float-right" onclick="history.back()">
-                      <i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+
+
         </div>
-
+        <div class="card-footer">
+          <button id="close" type="button" class="btn btn-outline-secondary float-right" onclick="history.back()">
+            <i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+          </div>
 
 
 

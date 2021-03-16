@@ -73,13 +73,13 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCountryItem
 	searchID := getURLparam(r, "sienaCountry")
 	noItems, returnRecord, _ := getSienaCountry(thisConnection, searchID)
-	fmt.Println("NoSienaCountries", noItems)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaCountries", noItems)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
 		Title:     wctProperties["appname"],
@@ -105,13 +105,13 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCountryItem
 	searchID := getURLparam(r, "sienaCountry")
 	noItems, returnRecord, _ := getSienaCountry(thisConnection, searchID)
-	fmt.Println("NoSienaCountries", noItems)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaCountries", noItems)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
 		Title:     wctProperties["appname"],
@@ -218,7 +218,7 @@ func getSienaCountry(db *sql.DB, id string) (int, sienaCountryItem, error) {
 	//fmt.Println(db.Stats().OpenConnections)
 	var sienaCountry sienaCountryItem
 	tsql := fmt.Sprintf("SELECT Code, Name, ShortCode, EU_EEA FROM %s.sienaCountry WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")

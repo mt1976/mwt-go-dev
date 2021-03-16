@@ -60,6 +60,8 @@ type sienaCounterpartyPage struct {
 	ExtensionsList  []sienaCounterpartyExtensionsItem
 	NoAccounts      int
 	AccountsList    []sienaAccountItem
+	NoTxns          int
+	TxnList         []sienaDealListItem
 }
 
 //sienaCounterpartyItem is cheese
@@ -127,14 +129,14 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyItem
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
-	fmt.Println("NoSienaItems", noItems, firmID, centreID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	noPayees, returnPayeeList, _ := getSienaCounterpartyPayeeListByCounterparty(thisConnection, firmID, centreID)
 
@@ -147,6 +149,8 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	noExtn, extnList, _ := getSienaCounterpartyExtensionsListByCounterparty(thisConnection, firmID, centreID)
 
 	noAcct, acctList, _ := getSienaAccountListByCounterParty(thisConnection, firmID, centreID)
+
+	noTxns, txnList, _ := getSienaDealListListByCounterparty(thisConnection, firmID, centreID)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
 		Title:           wctProperties["appname"],
@@ -185,6 +189,8 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		ExtensionsList:  extnList,
 		NoAccounts:      noAcct,
 		AccountsList:    acctList,
+		NoTxns:          noTxns,
+		TxnList:         txnList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -201,15 +207,15 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyItem
 
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
-	fmt.Println("NoSienaItems", noItems, firmID, centreID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
@@ -240,7 +246,7 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		Action:          "",
 		CountryList:     countryList,
 	}
-	fmt.Println(pageSienaCounterpartyList)
+	//fmt.Println(pageSienaCounterpartyList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaCounterpartyList)
@@ -277,7 +283,7 @@ func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	item.SectorCodeName = r.FormValue("SectorCodeName")
 	item.Action = "UPDATE"
 
-	fmt.Println("ITEM", item)
+	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD

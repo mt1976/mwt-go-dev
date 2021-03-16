@@ -281,3 +281,11 @@ func getLocalIP() string {
 	localAddr := conn.LocalAddr().(*net.UDPAddr)
 	return localAddr.String()
 }
+
+func sqlDateToHTMLDate(inDate string) (outDate string) {
+	var rtnDate string
+	if inDate != "" {
+		rtnDate = inDate[0:10]
+	}
+	return rtnDate
+}

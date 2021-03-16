@@ -80,13 +80,13 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCentreItem
 	searchID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCentre(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       wctProperties["appname"],
@@ -113,13 +113,13 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
+	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCentreItem
 	searchID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCentre(thisConnection, searchID)
-	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
@@ -137,7 +137,7 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		Action:      "",
 		CountryList: countryList,
 	}
-	fmt.Println(pageSienaCentreList)
+	//fmt.Println(pageSienaCentreList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaCentreList)
@@ -295,7 +295,7 @@ func getSienaCentre(db *sql.DB, id string) (int, sienaCentreItem, error) {
 	//fmt.Println(db.Stats().OpenConnections)
 	var sienaCentre sienaCentreItem
 	tsql := fmt.Sprintf("SELECT Code, Name, Country, CountryName FROM %s.sienaCentre WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
+	//fmt.Println("MS SQL:", tsql)
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")

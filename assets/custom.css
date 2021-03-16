@@ -18,6 +18,7 @@ body {
 
   background: linear-gradient(to right top, #322a77, #6cdbeb);
   font-family: var(--custom-font-family);
+
 }
 
 .btn-primary {
@@ -84,18 +85,31 @@ body {
   margin-top: 1rem !important;
   border-top-right-radius: 7px;
   border-top-left-radius: 7px;
-  border-bottom-right-radius: 7px;
   border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
   padding: 0;
   margin-bottom: 0;
   background-color: white;
   padding: 0;
+  min-height: 95%;
+  max-height: 95%;
+  width: 100%
+
 }
 
 .table .thead-light th {
   background-color: var(--custom-primary-colour);
   color: var(--custom-primary-light);
   font-variant: small-caps;
+  min-height: 95%;
+  max-height: 95%;
+}
+.table{
+  border-color: transparent;
+  margin-bottom: 0;
+  background: linear-gradient(to right bottom,
+      rgba(255, 255, 255, .6),
+      rgba(255, 255, 255, .6));
 }
 
 .card-header .row .form-control {
@@ -103,7 +117,15 @@ body {
   font-weight: bold !important;
   font-variant: small-caps;
 }
-
+.card{
+  max-height: 100%;
+  overflow-x: hidden;
+}
+.card-body{
+  max-height: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
 .card-header {
   color: var(--custom-primary-colour);
   font-weight: bold !important;
@@ -156,6 +178,10 @@ body {
       rgba(255, 255, 255, .6),
       rgba(255, 255, 255, .6));
   border: none;
+  position: fixed;
+  top:0;
+  width: 100%;
+    backdrop-filter: blur(2rem);
 }
 
 .nav-title {
@@ -219,7 +245,10 @@ body {
   margin: 2px;
 }
 
-
+.container-fluid{
+  margin-top: 4rem;
+  height: 90%;
+}
 .shad {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
 }
@@ -237,6 +266,7 @@ body {
   border: none;
   padding: 0.5rem;
   border-radius: 5px;
+  max-height: 5rem;
 }
 
 .btn-inner {
@@ -340,6 +370,13 @@ body {
   color: var(--custom-primary-hover);
 }
 
+h2{
+  font-weight: light!normal;
+}
+.h2{
+  font-weight: light!normal;
+}
+
 .label {
   margin-bottom: 0;
 }
@@ -377,13 +414,18 @@ td.negative {
   margin-top: .2rem;
   color: #322a77;
   background: linear-gradient(to right bottom,
-      rgba(255, 255, 255, .6),
-      rgba(255, 255, 255, .6));
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, .9));
   border: none;
   padding: 0.5rem;
   border-radius: 5px;
   font-weight: normal;
-  backdrop-filter: blur(2rem);
+  backdrop-filter: sepia(90%);
+  backdrop-filter: blur(2rem)!important;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y:scroll;
+  max-height: 700px;
 }
 
 .dd-img {

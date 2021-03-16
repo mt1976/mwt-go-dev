@@ -39,16 +39,12 @@
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
   <div w3-include-html="../assets/navigation.html"></div>
-  <script>cust_includeHTML();</script>
+  <script>
+    cust_includeHTML();
+  </script>
   <!-- DO NOT CHANGE -->
 
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading">Information!</h4>
-    Where ^ is used in properties, it will be replaced by an = char in the resolved property
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+
 
 
   <form method="POST" action="/editSrvConfiguration?id={{.PageRecordID}}">
@@ -59,31 +55,41 @@
 
       <div id="requestMessage">
         <div class="card">
-          <div class="card-header"><strong><label>ID :</label><code> {{.PageRecordID}}</code></strong></div>
-          <div class="container card-body d-flex h-100 flex-column">
-
+          <div class="card-header"><strong><label>WCT Properties File :</label><code> {{.PageRecordID}}</code></strong></div>
+          <div class="card-body d-flex h-100 flex-column">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <h4 class="alert-heading">Information!</h4>
+              Where ^ is used in properties, it will be replaced by an = char in the resolved property
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             {{range .SrvConfigurationItems}}
             <div class="row">
               <div class="col-sm">
-            <div class="input-group input-group-sm mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="ci_{{.ItemID}}"><strong>{{.ItemLabel}}</strong></span>
-              </div>
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="ci_{{.ItemID}}"><strong>{{.ItemLabel}}</strong></span>
+                  </div>
 
-              <input type="text" class="form-control" placeholder="Empty" aria-label="{{.ItemLabel}}" aria-describedby="ci_{{.ItemID}}" value="{{.ItemValue}}" disabled>
-</div>
-</div>
+                  <input type="text" class="form-control" placeholder="Empty" aria-label="{{.ItemLabel}}" aria-describedby="ci_{{.ItemID}}" value="{{.ItemValue}}" disabled>
+                </div>
+              </div>
             </div>
             {{end}}
 
-            <div class="btn-group">
-              <button type="submit" value="" class="btn btn-outline-warning" method="POST" formaction="/editSrvConfiguration?id={{.PageRecordID}}"><i class="fas fa-edit" style="font-size: 22px"></i> Edit</button>
 
-                        <button id="close" type="button" class="btn btn-outline-secondary float-right" onclick="history.back()">
-                          <i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-            </div>
           </div>
+          <div class="card-footer">
 
+            <div class="btn-group float-right">
+              <button type="submit" value="" class="btn btn-outline-warning" method="POST" formaction="/editSrvConfiguration?id={{.PageRecordID}}"><i class="fas fa-edit" ></i>&nbsp;&nbsp;Edit</button>
+
+              <button id="close" type="button" class="btn btn-outline-secondary float-right" onclick="history.back()">
+                <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+            </div>
+
+          </div>
 
 
 
