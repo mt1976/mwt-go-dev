@@ -13,6 +13,10 @@ import (
 	"github.com/google/uuid"
 )
 
+// Defines the Fields to Fetch from SQL
+var sienaCounterpartyPayeeSQL = "SourceTable, 	KeyCounterpartyFirm, 	KeyCounterpartyCentre, 	KeyCurrency, 	KeyName, 	KeyNumber, 	KeyDirection, 	KeyType, 	FullName, 	Address, 	PhoneNo, 	Country, 	Bic, 	Iban, 	AccountNo, 	FedWireNo, 	SortCode, 	BankName, 	BankPinCode, 	BankAddress, 	Reason, 	BankSettlementAcct, 	UpdatedUserId"
+var sqlCPPYSourceTable, sqlCPPYKeyCounterpartyFirm, sqlCPPYKeyCounterpartyCentre, sqlCPPYKeyCurrency, sqlCPPYKeyName, sqlCPPYKeyNumber, sqlCPPYKeyDirection, sqlCPPYKeyType, sqlCPPYFullName, sqlCPPYAddress, sqlCPPYPhoneNo, sqlCPPYCountry, sqlCPPYBic, sqlCPPYIban, sqlCPPYAccountNo, sqlCPPYFedWireNo, sqlCPPYSortCode, sqlCPPYBankName, sqlCPPYBankPinCode, sqlCPPYBankAddress, sqlCPPYReason, sqlCPPYBankSettlementAcct, sqlCPPYUpdatedUserId sql.NullString
+
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeeListPage struct {
 	Title                       string
@@ -183,7 +187,7 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCounterpartyPayeeItem
+	//var returnList []sienaCounterpartyPayeeItem
 	idSource := getURLparam(r, "csrc")
 	idFirm := getURLparam(r, "cfrm")
 	idCentre := getURLparam(r, "ccen")
@@ -195,8 +199,8 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	noItems, returnRecord, _ := getSienaCounterpartyPayeeByKey(thisConnection, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 	fmt.Println("NoSienaItems", noItems, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	//	fmt.Println(returnList)
+	//	fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
@@ -233,7 +237,7 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                "",
 		CountryList:           countryList,
 	}
-	fmt.Println(pageSienaCounterpartyPayeeList)
+	//	fmt.Println(pageSienaCounterpartyPayeeList)
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 	t.Execute(w, pageSienaCounterpartyPayeeList)
@@ -384,227 +388,31 @@ func newSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayeeList(db *sql.DB) (int, []sienaCounterpartyPayeeItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyPayeeList []sienaCounterpartyPayeeItem
-	var sienaCounterpartyPayee sienaCounterpartyPayeeItem
-	tsql := fmt.Sprintf("SELECT SourceTable, 	KeyCounterpartyFirm, 	KeyCounterpartyCentre, 	KeyCurrency, 	KeyName, 	KeyNumber, 	KeyDirection, 	KeyType, 	FullName, 	Address, 	PhoneNo, 	Country, 	Bic, 	Iban, 	AccountNo, 	FedWireNo, 	SortCode, 	BankName, 	BankPinCode, 	BankAddress, 	Reason, 	BankSettlementAcct, 	UpdatedUserId FROM %s.sienaCounterpartyPayee ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var SourceTable, KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency, KeyName, KeyNumber, KeyDirection, KeyType, FullName, Address, PhoneNo, Country, Bic, Iban, AccountNo, FedWireNo, SortCode, BankName, BankPinCode, BankAddress, Reason, BankSettlementAcct, UpdatedUserId sql.NullString
-		err := rows.Scan(&SourceTable, &KeyCounterpartyFirm, &KeyCounterpartyCentre, &KeyCurrency, &KeyName, &KeyNumber, &KeyDirection, &KeyType, &FullName, &Address, &PhoneNo, &Country, &Bic, &Iban, &AccountNo, &FedWireNo, &SortCode, &BankName, &BankPinCode, &BankAddress, &Reason, &BankSettlementAcct, &UpdatedUserId)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterpartyPayee.SourceTable = SourceTable.String
-		sienaCounterpartyPayee.KeyCounterpartyFirm = KeyCounterpartyFirm.String
-		sienaCounterpartyPayee.KeyCounterpartyCentre = KeyCounterpartyCentre.String
-		sienaCounterpartyPayee.KeyCurrency = KeyCurrency.String
-		sienaCounterpartyPayee.KeyName = KeyName.String
-		sienaCounterpartyPayee.KeyNumber = KeyNumber.String
-		sienaCounterpartyPayee.KeyDirection = KeyDirection.String
-		sienaCounterpartyPayee.KeyType = KeyType.String
-		sienaCounterpartyPayee.FullName = FullName.String
-		sienaCounterpartyPayee.Address = Address.String
-		sienaCounterpartyPayee.PhoneNo = PhoneNo.String
-		sienaCounterpartyPayee.Country = Country.String
-		sienaCounterpartyPayee.Bic = Bic.String
-		sienaCounterpartyPayee.Iban = Iban.String
-		sienaCounterpartyPayee.AccountNo = AccountNo.String
-		sienaCounterpartyPayee.FedWireNo = FedWireNo.String
-		sienaCounterpartyPayee.SortCode = SortCode.String
-		sienaCounterpartyPayee.BankName = BankName.String
-		sienaCounterpartyPayee.BankPinCode = BankPinCode.String
-		sienaCounterpartyPayee.BankAddress = BankAddress.String
-		sienaCounterpartyPayee.Reason = Reason.String
-		sienaCounterpartyPayee.BankSettlementAcct = BankSettlementAcct.String
-		sienaCounterpartyPayee.UpdatedUserId = UpdatedUserId.String
-		sienaCounterpartyPayee.Approved = "Pending"
-		if SourceTable.String == "dbo.Payee" {
-			sienaCounterpartyPayee.Approved = "Approved"
-		}
-		sienaCounterpartyPayeeList = append(sienaCounterpartyPayeeList, sienaCounterpartyPayee)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"])
+	count, sienaCounterpartyPayeeList, _, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return count, sienaCounterpartyPayeeList, nil
 }
 
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayee(db *sql.DB, id string) (int, sienaCounterpartyPayeeItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyPayee sienaCounterpartyPayeeItem
-	tsql := fmt.Sprintf("SELECT SourceTable, 	KeyCounterpartyFirm, 	KeyCounterpartyCentre, 	KeyCurrency, 	KeyName, 	KeyNumber, 	KeyDirection, 	KeyType, 	FullName, 	Address, 	PhoneNo, 	Country, 	Bic, 	Iban, 	AccountNo, 	FedWireNo, 	SortCode, 	BankName, 	BankPinCode, 	BankAddress, 	Reason, 	BankSettlementAcct, 	UpdatedUserId FROM %s.sienaCounterpartyPayee WHERE Code='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCounterpartyPayee, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var SourceTable, KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency, KeyName, KeyNumber, KeyDirection, KeyType, FullName, Address, PhoneNo, Country, Bic, Iban, AccountNo, FedWireNo, SortCode, BankName, BankPinCode, BankAddress, Reason, BankSettlementAcct, UpdatedUserId sql.NullString
-		err := rows.Scan(&SourceTable, &KeyCounterpartyFirm, &KeyCounterpartyCentre, &KeyCurrency, &KeyName, &KeyNumber, &KeyDirection, &KeyType, &FullName, &Address, &PhoneNo, &Country, &Bic, &Iban, &AccountNo, &FedWireNo, &SortCode, &BankName, &BankPinCode, &BankAddress, &Reason, &BankSettlementAcct, &UpdatedUserId)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCounterpartyPayee, err
-		}
-		sienaCounterpartyPayee.SourceTable = SourceTable.String
-		sienaCounterpartyPayee.KeyCounterpartyFirm = KeyCounterpartyFirm.String
-		sienaCounterpartyPayee.KeyCounterpartyCentre = KeyCounterpartyCentre.String
-		sienaCounterpartyPayee.KeyCurrency = KeyCurrency.String
-		sienaCounterpartyPayee.KeyName = KeyName.String
-		sienaCounterpartyPayee.KeyNumber = KeyNumber.String
-		sienaCounterpartyPayee.KeyDirection = KeyDirection.String
-		sienaCounterpartyPayee.KeyType = KeyType.String
-		sienaCounterpartyPayee.FullName = FullName.String
-		sienaCounterpartyPayee.Address = Address.String
-		sienaCounterpartyPayee.PhoneNo = PhoneNo.String
-		sienaCounterpartyPayee.Country = Country.String
-		sienaCounterpartyPayee.Bic = Bic.String
-		sienaCounterpartyPayee.Iban = Iban.String
-		sienaCounterpartyPayee.AccountNo = AccountNo.String
-		sienaCounterpartyPayee.FedWireNo = FedWireNo.String
-		sienaCounterpartyPayee.SortCode = SortCode.String
-		sienaCounterpartyPayee.BankName = BankName.String
-		sienaCounterpartyPayee.BankPinCode = BankPinCode.String
-		sienaCounterpartyPayee.BankAddress = BankAddress.String
-		sienaCounterpartyPayee.Reason = Reason.String
-		sienaCounterpartyPayee.BankSettlementAcct = BankSettlementAcct.String
-		sienaCounterpartyPayee.UpdatedUserId = UpdatedUserId.String
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE Code='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"], id)
+	_, _, sienaCounterpartyPayee, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return 1, sienaCounterpartyPayee, nil
 }
 
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayeeListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyPayeeItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyPayeeList []sienaCounterpartyPayeeItem
-	var sienaCounterpartyPayee sienaCounterpartyPayeeItem
-	tsql := fmt.Sprintf("SELECT SourceTable, 	KeyCounterpartyFirm, 	KeyCounterpartyCentre, 	KeyCurrency, 	KeyName, 	KeyNumber, 	KeyDirection, 	KeyType, 	FullName, 	Address, 	PhoneNo, 	Country, 	Bic, 	Iban, 	AccountNo, 	FedWireNo, 	SortCode, 	BankName, 	BankPinCode, 	BankAddress, 	Reason, 	BankSettlementAcct, 	UpdatedUserId FROM %s.sienaCounterpartyPayee WHERE KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", mssqlConfig["schema"], idFirm, idCentre)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var SourceTable, KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency, KeyName, KeyNumber, KeyDirection, KeyType, FullName, Address, PhoneNo, Country, Bic, Iban, AccountNo, FedWireNo, SortCode, BankName, BankPinCode, BankAddress, Reason, BankSettlementAcct, UpdatedUserId sql.NullString
-		err := rows.Scan(&SourceTable, &KeyCounterpartyFirm, &KeyCounterpartyCentre, &KeyCurrency, &KeyName, &KeyNumber, &KeyDirection, &KeyType, &FullName, &Address, &PhoneNo, &Country, &Bic, &Iban, &AccountNo, &FedWireNo, &SortCode, &BankName, &BankPinCode, &BankAddress, &Reason, &BankSettlementAcct, &UpdatedUserId)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterpartyPayee.SourceTable = SourceTable.String
-		sienaCounterpartyPayee.KeyCounterpartyFirm = KeyCounterpartyFirm.String
-		sienaCounterpartyPayee.KeyCounterpartyCentre = KeyCounterpartyCentre.String
-		sienaCounterpartyPayee.KeyCurrency = KeyCurrency.String
-		sienaCounterpartyPayee.KeyName = KeyName.String
-		sienaCounterpartyPayee.KeyNumber = KeyNumber.String
-		sienaCounterpartyPayee.KeyDirection = KeyDirection.String
-		sienaCounterpartyPayee.KeyType = KeyType.String
-		sienaCounterpartyPayee.FullName = FullName.String
-		sienaCounterpartyPayee.Address = Address.String
-		sienaCounterpartyPayee.PhoneNo = PhoneNo.String
-		sienaCounterpartyPayee.Country = Country.String
-		sienaCounterpartyPayee.Bic = Bic.String
-		sienaCounterpartyPayee.Iban = Iban.String
-		sienaCounterpartyPayee.AccountNo = AccountNo.String
-		sienaCounterpartyPayee.FedWireNo = FedWireNo.String
-		sienaCounterpartyPayee.SortCode = SortCode.String
-		sienaCounterpartyPayee.BankName = BankName.String
-		sienaCounterpartyPayee.BankPinCode = BankPinCode.String
-		sienaCounterpartyPayee.BankAddress = BankAddress.String
-		sienaCounterpartyPayee.Reason = Reason.String
-		sienaCounterpartyPayee.BankSettlementAcct = BankSettlementAcct.String
-		sienaCounterpartyPayee.UpdatedUserId = UpdatedUserId.String
-		sienaCounterpartyPayee.Approved = "Pending"
-		if SourceTable.String == "dbo.Payee" {
-			sienaCounterpartyPayee.Approved = "Approved"
-		}
-		sienaCounterpartyPayeeList = append(sienaCounterpartyPayeeList, sienaCounterpartyPayee)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"], idFirm, idCentre)
+	count, sienaCounterpartyPayeeList, _, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return count, sienaCounterpartyPayeeList, nil
 }
 
 func getSienaCounterpartyPayeeByKey(db *sql.DB, idSource string, idFirm string, idCentre string, idCCY string, idName string, idNumber string, idDirection string, idType string) (int, sienaCounterpartyPayeeItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyPayee sienaCounterpartyPayeeItem
-	tsql := fmt.Sprintf("SELECT SourceTable, 	KeyCounterpartyFirm, 	KeyCounterpartyCentre, 	KeyCurrency, 	KeyName, 	KeyNumber, 	KeyDirection, 	KeyType, 	FullName, 	Address, 	PhoneNo, 	Country, 	Bic, 	Iban, 	AccountNo, 	FedWireNo, 	SortCode, 	BankName, 	BankPinCode, 	BankAddress, 	Reason, 	BankSettlementAcct, 	UpdatedUserId FROM %s.sienaCounterpartyPayee WHERE SourceTable='%s' AND KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' AND KeyCurrency='%s' AND KeyName='%s' AND KeyNumber='%s' AND KeyDirection='%s' AND KeyType='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", mssqlConfig["schema"], idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCounterpartyPayee, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var SourceTable, KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency, KeyName, KeyNumber, KeyDirection, KeyType, FullName, Address, PhoneNo, Country, Bic, Iban, AccountNo, FedWireNo, SortCode, BankName, BankPinCode, BankAddress, Reason, BankSettlementAcct, UpdatedUserId sql.NullString
-		err := rows.Scan(&SourceTable, &KeyCounterpartyFirm, &KeyCounterpartyCentre, &KeyCurrency, &KeyName, &KeyNumber, &KeyDirection, &KeyType, &FullName, &Address, &PhoneNo, &Country, &Bic, &Iban, &AccountNo, &FedWireNo, &SortCode, &BankName, &BankPinCode, &BankAddress, &Reason, &BankSettlementAcct, &UpdatedUserId)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCounterpartyPayee, err
-		}
-		sienaCounterpartyPayee.SourceTable = SourceTable.String
-		sienaCounterpartyPayee.KeyCounterpartyFirm = KeyCounterpartyFirm.String
-		sienaCounterpartyPayee.KeyCounterpartyCentre = KeyCounterpartyCentre.String
-		sienaCounterpartyPayee.KeyCurrency = KeyCurrency.String
-		sienaCounterpartyPayee.KeyName = KeyName.String
-		sienaCounterpartyPayee.KeyNumber = KeyNumber.String
-		sienaCounterpartyPayee.KeyDirection = KeyDirection.String
-		sienaCounterpartyPayee.KeyType = KeyType.String
-		sienaCounterpartyPayee.FullName = FullName.String
-		sienaCounterpartyPayee.Address = Address.String
-		sienaCounterpartyPayee.PhoneNo = PhoneNo.String
-		sienaCounterpartyPayee.Country = Country.String
-		sienaCounterpartyPayee.Bic = Bic.String
-		sienaCounterpartyPayee.Iban = Iban.String
-		sienaCounterpartyPayee.AccountNo = AccountNo.String
-		sienaCounterpartyPayee.FedWireNo = FedWireNo.String
-		sienaCounterpartyPayee.SortCode = SortCode.String
-		sienaCounterpartyPayee.BankName = BankName.String
-		sienaCounterpartyPayee.BankPinCode = BankPinCode.String
-		sienaCounterpartyPayee.BankAddress = BankAddress.String
-		sienaCounterpartyPayee.Reason = Reason.String
-		sienaCounterpartyPayee.BankSettlementAcct = BankSettlementAcct.String
-		sienaCounterpartyPayee.UpdatedUserId = UpdatedUserId.String
-		sienaCounterpartyPayee.Approved = "Pending"
-		if SourceTable.String == "dbo.Payee" {
-			sienaCounterpartyPayee.Approved = "Approved"
-		}
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE SourceTable='%s' AND KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' AND KeyCurrency='%s' AND KeyName='%s' AND KeyNumber='%s' AND KeyDirection='%s' AND KeyType='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"], idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	_, _, sienaCounterpartyPayee, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return 1, sienaCounterpartyPayee, nil
 }
 
@@ -615,4 +423,62 @@ func putSienaCounterpartyPayee(db *sql.DB, updateItem sienaCounterpartyPayeeItem
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCounterpartyPayeeData read all employees
+func fetchSienaCounterpartyPayeeData(db *sql.DB, tsql string) (int, []sienaCounterpartyPayeeItem, sienaCounterpartyPayeeItem, error) {
+
+	var sienaCounterpartyPayee sienaCounterpartyPayeeItem
+	var sienaCounterpartyPayeeList []sienaCounterpartyPayeeItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCounterpartyPayee, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCPPYSourceTable, &sqlCPPYKeyCounterpartyFirm, &sqlCPPYKeyCounterpartyCentre, &sqlCPPYKeyCurrency, &sqlCPPYKeyName, &sqlCPPYKeyNumber, &sqlCPPYKeyDirection, &sqlCPPYKeyType, &sqlCPPYFullName, &sqlCPPYAddress, &sqlCPPYPhoneNo, &sqlCPPYCountry, &sqlCPPYBic, &sqlCPPYIban, &sqlCPPYAccountNo, &sqlCPPYFedWireNo, &sqlCPPYSortCode, &sqlCPPYBankName, &sqlCPPYBankPinCode, &sqlCPPYBankAddress, &sqlCPPYReason, &sqlCPPYBankSettlementAcct, &sqlCPPYUpdatedUserId)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCounterpartyPayee, err
+		}
+
+		sienaCounterpartyPayee.SourceTable = sqlCPPYSourceTable.String
+		sienaCounterpartyPayee.KeyCounterpartyFirm = sqlCPPYKeyCounterpartyFirm.String
+		sienaCounterpartyPayee.KeyCounterpartyCentre = sqlCPPYKeyCounterpartyCentre.String
+		sienaCounterpartyPayee.KeyCurrency = sqlCPPYKeyCurrency.String
+		sienaCounterpartyPayee.KeyName = sqlCPPYKeyName.String
+		sienaCounterpartyPayee.KeyNumber = sqlCPPYKeyNumber.String
+		sienaCounterpartyPayee.KeyDirection = sqlCPPYKeyDirection.String
+		sienaCounterpartyPayee.KeyType = sqlCPPYKeyType.String
+		sienaCounterpartyPayee.FullName = sqlCPPYFullName.String
+		sienaCounterpartyPayee.Address = sqlCPPYAddress.String
+		sienaCounterpartyPayee.PhoneNo = sqlCPPYPhoneNo.String
+		sienaCounterpartyPayee.Country = sqlCPPYCountry.String
+		sienaCounterpartyPayee.Bic = sqlCPPYBic.String
+		sienaCounterpartyPayee.Iban = sqlCPPYIban.String
+		sienaCounterpartyPayee.AccountNo = sqlCPPYAccountNo.String
+		sienaCounterpartyPayee.FedWireNo = sqlCPPYFedWireNo.String
+		sienaCounterpartyPayee.SortCode = sqlCPPYSortCode.String
+		sienaCounterpartyPayee.BankName = sqlCPPYBankName.String
+		sienaCounterpartyPayee.BankPinCode = sqlCPPYBankPinCode.String
+		sienaCounterpartyPayee.BankAddress = sqlCPPYBankAddress.String
+		sienaCounterpartyPayee.Reason = sqlCPPYReason.String
+		sienaCounterpartyPayee.BankSettlementAcct = sqlCPPYBankSettlementAcct.String
+		sienaCounterpartyPayee.UpdatedUserId = sqlCPPYUpdatedUserId.String
+
+		sienaCounterpartyPayee.Approved = "Pending"
+		if sienaCounterpartyPayee.SourceTable == "dbo.Payee" {
+			sienaCounterpartyPayee.Approved = "Approved"
+		}
+
+		sienaCounterpartyPayeeList = append(sienaCounterpartyPayeeList, sienaCounterpartyPayee)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCounterpartyPayeeList, sienaCounterpartyPayee, nil
 }

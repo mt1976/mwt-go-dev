@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCounterpartyAddressSQL = "NameFirm, 	NameCentre, 	Address1, 	Address2, 	CityTown, 	County, 	Postcode"
+var sqlCPADNameFirm, sqlCPADNameCentre, sqlCPADAddress1, sqlCPADAddress2, sqlCPADCityTown, sqlCPADCounty, sqlCPADPostcode sql.NullString
+
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressListPage struct {
 	Title                         string
@@ -87,10 +90,10 @@ func viewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCounterpartyAddressItem
+	//var returnList []sienaCounterpartyAddressItem
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
-	noItems, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
+	_, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
 	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -124,11 +127,11 @@ func editSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCounterpartyAddressItem
+	//var returnList []sienaCounterpartyAddressItem
 
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
-	noItems, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
+	_, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
 	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -260,75 +263,16 @@ func newSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 // getSienaCounterpartyAddressList read all employees
 func getSienaCounterpartyAddressList(db *sql.DB) (int, []sienaCounterpartyAddressItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyAddressList []sienaCounterpartyAddressItem
-	var sienaCounterpartyAddress sienaCounterpartyAddressItem
-	tsql := fmt.Sprintf("SELECT NameFirm, 	NameCentre, 	Address1, 	Address2, 	CityTown, 	County, 	Postcode  FROM %s.sienaCounterpartyAddress;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var NameFirm, NameCentre, Address1, Address2, CityTown, County, Postcode sql.NullString
-		err := rows.Scan(&NameFirm, &NameCentre, &Address1, &Address2, &CityTown, &County, &Postcode)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterpartyAddress.NameFirm = NameFirm.String
-		sienaCounterpartyAddress.NameCentre = NameCentre.String
-		sienaCounterpartyAddress.Address1 = Address1.String
-		sienaCounterpartyAddress.Address2 = Address2.String
-		sienaCounterpartyAddress.CityTown = CityTown.String
-		sienaCounterpartyAddress.County = County.String
-		sienaCounterpartyAddress.Postcode = Postcode.String
-		sienaCounterpartyAddressList = append(sienaCounterpartyAddressList, sienaCounterpartyAddress)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyAddress;", sienaCounterpartyAddressSQL, mssqlConfig["schema"])
+	count, sienaCounterpartyAddressList, _, _ := fetchSienaCounterpartyAddressData(db, tsql)
 	return count, sienaCounterpartyAddressList, nil
 }
 
 // getSienaCounterpartyAddressList read all employees
 func getSienaCounterpartyAddress(db *sql.DB, idFirm string, idCentre string) (int, sienaCounterpartyAddressItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyAddress sienaCounterpartyAddressItem
-	tsql := fmt.Sprintf("SELECT NameFirm, 	NameCentre, 	Address1, 	Address2, 	CityTown, 	County, 	Postcode  FROM %s.sienaCounterpartyAddress WHERE NameFirm='%s' AND NameCentre='%s';", mssqlConfig["schema"], idFirm, idCentre)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCounterpartyAddress, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var NameFirm, NameCentre, Address1, Address2, CityTown, County, Postcode sql.NullString
-		err := rows.Scan(&NameFirm, &NameCentre, &Address1, &Address2, &CityTown, &County, &Postcode)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCounterpartyAddress, err
-		}
-		sienaCounterpartyAddress.NameFirm = NameFirm.String
-		sienaCounterpartyAddress.NameCentre = NameCentre.String
-		sienaCounterpartyAddress.Address1 = Address1.String
-		sienaCounterpartyAddress.Address2 = Address2.String
-		sienaCounterpartyAddress.CityTown = CityTown.String
-		sienaCounterpartyAddress.County = County.String
-		sienaCounterpartyAddress.Postcode = Postcode.String
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyAddress WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyAddressSQL, mssqlConfig["schema"], idFirm, idCentre)
+	_, _, sienaCounterpartyAddress, _ := fetchSienaCounterpartyAddressData(db, tsql)
 	return 1, sienaCounterpartyAddress, nil
 }
 
@@ -339,4 +283,41 @@ func putSienaCounterpartyAddress(db *sql.DB, updateItem sienaCounterpartyAddress
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCounterpartyAddressData read all employees
+func fetchSienaCounterpartyAddressData(db *sql.DB, tsql string) (int, []sienaCounterpartyAddressItem, sienaCounterpartyAddressItem, error) {
+
+	var sienaCounterpartyAddress sienaCounterpartyAddressItem
+	var sienaCounterpartyAddressList []sienaCounterpartyAddressItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCounterpartyAddress, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCPADNameFirm, &sqlCPADNameCentre, &sqlCPADAddress1, &sqlCPADAddress2, &sqlCPADCityTown, &sqlCPADCounty, &sqlCPADPostcode)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCounterpartyAddress, err
+		}
+
+		sienaCounterpartyAddress.NameFirm = sqlCPADNameFirm.String
+		sienaCounterpartyAddress.NameCentre = sqlCPADNameCentre.String
+		sienaCounterpartyAddress.Address1 = sqlCPADAddress1.String
+		sienaCounterpartyAddress.Address2 = sqlCPADAddress2.String
+		sienaCounterpartyAddress.CityTown = sqlCPADCityTown.String
+		sienaCounterpartyAddress.County = sqlCPADCounty.String
+		sienaCounterpartyAddress.Postcode = sqlCPADPostcode.String
+
+		sienaCounterpartyAddressList = append(sienaCounterpartyAddressList, sienaCounterpartyAddress)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCounterpartyAddressList, sienaCounterpartyAddress, nil
 }

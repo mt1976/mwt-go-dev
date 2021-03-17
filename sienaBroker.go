@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaBrokerSQL = "Code, 	Name, 	FullName, 	Contact, 	Address, 	LEI"
+var sqlBRKRCode, sqlBRKRName, sqlBRKRFullName, sqlBRKRContact, sqlBRKRAddress, sqlBRKRLEI sql.NullString
+
 //sienaBrokerPage is cheese
 type sienaBrokerListPage struct {
 	Title            string
@@ -83,9 +86,9 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaBrokerItem
+	//var returnList []sienaBrokerItem
 	searchID := getURLparam(r, "SienaBroker")
-	noItems, returnRecord, _ := getSienaBroker(thisConnection, searchID)
+	_, returnRecord, _ := getSienaBroker(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -120,9 +123,9 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaBrokerItem
+	//var returnList []sienaBrokerItem
 	searchID := getURLparam(r, "SienaBroker")
-	noItems, returnRecord, _ := getSienaBroker(thisConnection, searchID)
+	_, returnRecord, _ := getSienaBroker(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -279,76 +282,16 @@ func newSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaBrokerList read all employees
 func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaBrokerList []sienaBrokerItem
-	var sienaBroker sienaBrokerItem
-	tsql := fmt.Sprintf("SELECT Code, Name, FullName, Contact, Address, LEI FROM %s.sienaBroker;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name, FullName, Contact, Address, LEI sql.NullString
-		err := rows.Scan(&Code, &Name, &FullName, &Contact, &Address, &LEI)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaBroker.Code = Code.String
-		sienaBroker.Name = Name.String
-		sienaBroker.Fullname = FullName.String
-		sienaBroker.Contact = Contact.String
-		sienaBroker.Address = Address.String
-		sienaBroker.LEI = LEI.String
-		sienaBrokerList = append(sienaBrokerList, sienaBroker)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker;", sienaBrokerSQL, mssqlConfig["schema"])
+	count, sienaBrokerList, _, _ := fetchSienaBrokerData(db, tsql)
 	return count, sienaBrokerList, nil
 }
 
 // getSienaBrokerList read all employees
 func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaBroker sienaBrokerItem
-	tsql := fmt.Sprintf("SELECT Code, Name, FullName, Contact, Address, LEI FROM %s.sienaBroker WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaBroker, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name, FullName, Contact, Address, LEI sql.NullString
-		err := rows.Scan(&Code, &Name, &FullName, &Contact, &Address, &LEI)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaBroker, err
-		}
-
-		sienaBroker.Code = Code.String
-		sienaBroker.Name = Name.String
-		sienaBroker.Fullname = FullName.String
-		sienaBroker.Contact = Contact.String
-		sienaBroker.Address = Address.String
-		sienaBroker.LEI = LEI.String
-
-		count++
-	}
-	log.Println(sienaBroker)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker WHERE Code='%s';", sienaBrokerSQL, mssqlConfig["schema"], id)
+	_, _, sienaBroker, _ := fetchSienaBrokerData(db, tsql)
 	return 1, sienaBroker, nil
 }
 
@@ -359,4 +302,40 @@ func putSienaBroker(db *sql.DB, updateItem sienaBrokerItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaBrokerData read all employees
+func fetchSienaBrokerData(db *sql.DB, tsql string) (int, []sienaBrokerItem, sienaBrokerItem, error) {
+
+	var sienaBroker sienaBrokerItem
+	var sienaBrokerList []sienaBrokerItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaBroker, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlBRKRCode, &sqlBRKRName, &sqlBRKRFullName, &sqlBRKRContact, &sqlBRKRAddress, &sqlBRKRLEI)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaBroker, err
+		}
+
+		sienaBroker.Code = sqlBRKRCode.String
+		sienaBroker.Name = sqlBRKRName.String
+		sienaBroker.Fullname = sqlBRKRFullName.String
+		sienaBroker.Contact = sqlBRKRContact.String
+		sienaBroker.Address = sqlBRKRAddress.String
+		sienaBroker.LEI = sqlBRKRLEI.String
+
+		sienaBrokerList = append(sienaBrokerList, sienaBroker)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaBrokerList, sienaBroker, nil
 }

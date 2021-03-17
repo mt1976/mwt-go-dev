@@ -13,6 +13,10 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCounterpartyExtensionsSQL = "NameFirm, 	NameCentre, 	BICCode, 	ContactIndicator, 	CoverTrade, 	CustomerCategory, 	FSCSInclusive, 	FeeFactor, 	InactiveStatus, 	Indemnity, 	KnowYourCustomerStatus, 	LERLimitCarveOut, 	LastAmended, 	LastLogin, 	LossGivenDefault, 	MIC, 	ProtectedDepositor, 	RPTCurrency, 	RateTimeout, 	RateValidation, 	Registered, 	RegulatoryCategory, 	SecuredSettlement, 	SettlementLimitCarveOut, 	SortCode, 	Training, 	TrainingCode, 	TrainingReceived, 	Unencumbered, 	LEIExpiryDate, 	MIFIDReviewDate, 	GDPRReviewDate, 	DelegatedReporting, 	BOReconcile, 	MIFIDReportableDealsAllowed, 	SignedInvestmentAgreement, 	AppropriatenessAssessment, 	FinancialCounterparty, 	Collateralisation, 	PortfolioCode, 	ReconciliationLetterFrequency, 	DirectDealing"
+
+var sqlCPEXNameFirm, sqlCPEXNameCentre, sqlCPEXBICCode, sqlCPEXContactIndicator, sqlCPEXCoverTrade, sqlCPEXCustomerCategory, sqlCPEXFSCSInclusive, sqlCPEXFeeFactor, sqlCPEXInactiveStatus, sqlCPEXIndemnity, sqlCPEXKnowYourCustomerStatus, sqlCPEXLERLimitCarveOut, sqlCPEXLastAmended, sqlCPEXLastLogin, sqlCPEXLossGivenDefault, sqlCPEXMIC, sqlCPEXProtectedDepositor, sqlCPEXRPTCurrency, sqlCPEXRateTimeout, sqlCPEXRateValidation, sqlCPEXRegistered, sqlCPEXRegulatoryCategory, sqlCPEXSecuredSettlement, sqlCPEXSettlementLimitCarveOut, sqlCPEXSortCode, sqlCPEXTraining, sqlCPEXTrainingCode, sqlCPEXTrainingReceived, sqlCPEXUnencumbered, sqlCPEXLEIExpiryDate, sqlCPEXMIFIDReviewDate, sqlCPEXGDPRReviewDate, sqlCPEXDelegatedReporting, sqlCPEXBOReconcile, sqlCPEXMIFIDReportableDealsAllowed, sqlCPEXSignedInvestmentAgreement, sqlCPEXAppropriatenessAssessment, sqlCPEXFinancialCounterparty, sqlCPEXCollateralisation, sqlCPEXPortfolioCode, sqlCPEXReconciliationLetterFrequency, sqlCPEXDirectDealing sql.NullString
+
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsListPage struct {
 	Title                            string
@@ -476,227 +480,24 @@ func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsList(db *sql.DB) (int, []sienaCounterpartyExtensionsItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyExtensionsList []sienaCounterpartyExtensionsItem
-	var sienaCounterpartyExtensions sienaCounterpartyExtensionsItem
-	tsql := fmt.Sprintf("SELECT NameFirm, 	NameCentre, 	BICCode, 	ContactIndicator, 	CoverTrade, 	CustomerCategory, 	FSCSInclusive, 	FeeFactor, 	InactiveStatus, 	Indemnity, 	KnowYourCustomerStatus, 	LERLimitCarveOut, 	LastAmended, 	LastLogin, 	LossGivenDefault, 	MIC, 	ProtectedDepositor, 	RPTCurrency, 	RateTimeout, 	RateValidation, 	Registered, 	RegulatoryCategory, 	SecuredSettlement, 	SettlementLimitCarveOut, 	SortCode, 	Training, 	TrainingCode, 	TrainingReceived, 	Unencumbered, 	LEIExpiryDate, 	MIFIDReviewDate, 	GDPRReviewDate, 	DelegatedReporting, 	BOReconcile, 	MIFIDReportableDealsAllowed, 	SignedInvestmentAgreement, 	AppropriatenessAssessment, 	FinancialCounterparty, 	Collateralisation, 	PortfolioCode, 	ReconciliationLetterFrequency, 	DirectDealing  FROM %s.sienaCounterpartyExtensions;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		//var Code, Name, Country, CountryName string
-		var NameFirm, NameCentre, BICCode, ContactIndicator, CoverTrade, CustomerCategory, FSCSInclusive, FeeFactor, InactiveStatus, Indemnity, KnowYourCustomerStatus, LERLimitCarveOut, LastAmended, LastLogin, LossGivenDefault, MIC, ProtectedDepositor, RPTCurrency, RateTimeout, RateValidation, Registered, RegulatoryCategory, SecuredSettlement, SettlementLimitCarveOut, SortCode, Training, TrainingCode, TrainingReceived, Unencumbered, LEIExpiryDate, MIFIDReviewDate, GDPRReviewDate, DelegatedReporting, BOReconcile, MIFIDReportableDealsAllowed, SignedInvestmentAgreement, AppropriatenessAssessment, FinancialCounterparty, Collateralisation, PortfolioCode, ReconciliationLetterFrequency, DirectDealing sql.NullString
-
-		err := rows.Scan(&NameFirm, &NameCentre, &BICCode, &ContactIndicator, &CoverTrade, &CustomerCategory, &FSCSInclusive, &FeeFactor, &InactiveStatus, &Indemnity, &KnowYourCustomerStatus, &LERLimitCarveOut, &LastAmended, &LastLogin, &LossGivenDefault, &MIC, &ProtectedDepositor, &RPTCurrency, &RateTimeout, &RateValidation, &Registered, &RegulatoryCategory, &SecuredSettlement, &SettlementLimitCarveOut, &SortCode, &Training, &TrainingCode, &TrainingReceived, &Unencumbered, &LEIExpiryDate, &MIFIDReviewDate, &GDPRReviewDate, &DelegatedReporting, &BOReconcile, &MIFIDReportableDealsAllowed, &SignedInvestmentAgreement, &AppropriatenessAssessment, &FinancialCounterparty, &Collateralisation, &PortfolioCode, &ReconciliationLetterFrequency, &DirectDealing)
-
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterpartyExtensions.NameFirm = NameFirm.String
-		sienaCounterpartyExtensions.NameCentre = NameCentre.String
-		sienaCounterpartyExtensions.BICCode = BICCode.String
-		sienaCounterpartyExtensions.ContactIndicator = ContactIndicator.String
-		sienaCounterpartyExtensions.CoverTrade = CoverTrade.String
-		sienaCounterpartyExtensions.CustomerCategory = CustomerCategory.String
-		sienaCounterpartyExtensions.FSCSInclusive = FSCSInclusive.String
-		sienaCounterpartyExtensions.FeeFactor = FeeFactor.String
-		sienaCounterpartyExtensions.InactiveStatus = InactiveStatus.String
-		sienaCounterpartyExtensions.Indemnity = Indemnity.String
-		sienaCounterpartyExtensions.KnowYourCustomerStatus = KnowYourCustomerStatus.String
-		sienaCounterpartyExtensions.LERLimitCarveOut = LERLimitCarveOut.String
-		sienaCounterpartyExtensions.LastAmended = LastAmended.String
-		sienaCounterpartyExtensions.LastLogin = LastLogin.String
-		sienaCounterpartyExtensions.LossGivenDefault = LossGivenDefault.String
-		sienaCounterpartyExtensions.MIC = MIC.String
-		sienaCounterpartyExtensions.ProtectedDepositor = ProtectedDepositor.String
-		sienaCounterpartyExtensions.RPTCurrency = RPTCurrency.String
-		sienaCounterpartyExtensions.RateTimeout = RateTimeout.String
-		sienaCounterpartyExtensions.RateValidation = RateValidation.String
-		sienaCounterpartyExtensions.Registered = Registered.String
-		sienaCounterpartyExtensions.RegulatoryCategory = RegulatoryCategory.String
-		sienaCounterpartyExtensions.SecuredSettlement = SecuredSettlement.String
-		sienaCounterpartyExtensions.SettlementLimitCarveOut = SettlementLimitCarveOut.String
-		sienaCounterpartyExtensions.SortCode = SortCode.String
-		sienaCounterpartyExtensions.Training = Training.String
-		sienaCounterpartyExtensions.TrainingCode = TrainingCode.String
-		sienaCounterpartyExtensions.TrainingReceived = TrainingReceived.String
-		sienaCounterpartyExtensions.Unencumbered = Unencumbered.String
-		sienaCounterpartyExtensions.LEIExpiryDate = LEIExpiryDate.String
-		sienaCounterpartyExtensions.MIFIDReviewDate = MIFIDReviewDate.String
-		sienaCounterpartyExtensions.GDPRReviewDate = GDPRReviewDate.String
-		sienaCounterpartyExtensions.DelegatedReporting = DelegatedReporting.String
-		sienaCounterpartyExtensions.BOReconcile = BOReconcile.String
-		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = MIFIDReportableDealsAllowed.String
-		sienaCounterpartyExtensions.SignedInvestmentAgreement = SignedInvestmentAgreement.String
-		sienaCounterpartyExtensions.AppropriatenessAssessment = AppropriatenessAssessment.String
-		sienaCounterpartyExtensions.FinancialCounterparty = FinancialCounterparty.String
-		sienaCounterpartyExtensions.Collateralisation = Collateralisation.String
-		sienaCounterpartyExtensions.PortfolioCode = PortfolioCode.String
-		sienaCounterpartyExtensions.ReconciliationLetterFrequency = ReconciliationLetterFrequency.String
-		sienaCounterpartyExtensions.DirectDealing = DirectDealing.String
-		sienaCounterpartyExtensionsList = append(sienaCounterpartyExtensionsList, sienaCounterpartyExtensions)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions;", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"])
+	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return count, sienaCounterpartyExtensionsList, nil
 }
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyExtensionsItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyExtensionsList []sienaCounterpartyExtensionsItem
-	var sienaCounterpartyExtensions sienaCounterpartyExtensionsItem
-	tsql := fmt.Sprintf("SELECT NameFirm, 	NameCentre, 	BICCode, 	ContactIndicator, 	CoverTrade, 	CustomerCategory, 	FSCSInclusive, 	FeeFactor, 	InactiveStatus, 	Indemnity, 	KnowYourCustomerStatus, 	LERLimitCarveOut, 	LastAmended, 	LastLogin, 	LossGivenDefault, 	MIC, 	ProtectedDepositor, 	RPTCurrency, 	RateTimeout, 	RateValidation, 	Registered, 	RegulatoryCategory, 	SecuredSettlement, 	SettlementLimitCarveOut, 	SortCode, 	Training, 	TrainingCode, 	TrainingReceived, 	Unencumbered, 	LEIExpiryDate, 	MIFIDReviewDate, 	GDPRReviewDate, 	DelegatedReporting, 	BOReconcile, 	MIFIDReportableDealsAllowed, 	SignedInvestmentAgreement, 	AppropriatenessAssessment, 	FinancialCounterparty, 	Collateralisation, 	PortfolioCode, 	ReconciliationLetterFrequency, 	DirectDealing  FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", mssqlConfig["schema"], idFirm, idCentre)
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		//var Code, Name, Country, CountryName string
-		var NameFirm, NameCentre, BICCode, ContactIndicator, CoverTrade, CustomerCategory, FSCSInclusive, FeeFactor, InactiveStatus, Indemnity, KnowYourCustomerStatus, LERLimitCarveOut, LastAmended, LastLogin, LossGivenDefault, MIC, ProtectedDepositor, RPTCurrency, RateTimeout, RateValidation, Registered, RegulatoryCategory, SecuredSettlement, SettlementLimitCarveOut, SortCode, Training, TrainingCode, TrainingReceived, Unencumbered, LEIExpiryDate, MIFIDReviewDate, GDPRReviewDate, DelegatedReporting, BOReconcile, MIFIDReportableDealsAllowed, SignedInvestmentAgreement, AppropriatenessAssessment, FinancialCounterparty, Collateralisation, PortfolioCode, ReconciliationLetterFrequency, DirectDealing sql.NullString
-
-		err := rows.Scan(&NameFirm, &NameCentre, &BICCode, &ContactIndicator, &CoverTrade, &CustomerCategory, &FSCSInclusive, &FeeFactor, &InactiveStatus, &Indemnity, &KnowYourCustomerStatus, &LERLimitCarveOut, &LastAmended, &LastLogin, &LossGivenDefault, &MIC, &ProtectedDepositor, &RPTCurrency, &RateTimeout, &RateValidation, &Registered, &RegulatoryCategory, &SecuredSettlement, &SettlementLimitCarveOut, &SortCode, &Training, &TrainingCode, &TrainingReceived, &Unencumbered, &LEIExpiryDate, &MIFIDReviewDate, &GDPRReviewDate, &DelegatedReporting, &BOReconcile, &MIFIDReportableDealsAllowed, &SignedInvestmentAgreement, &AppropriatenessAssessment, &FinancialCounterparty, &Collateralisation, &PortfolioCode, &ReconciliationLetterFrequency, &DirectDealing)
-
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterpartyExtensions.NameFirm = NameFirm.String
-		sienaCounterpartyExtensions.NameCentre = NameCentre.String
-		sienaCounterpartyExtensions.BICCode = BICCode.String
-		sienaCounterpartyExtensions.ContactIndicator = ContactIndicator.String
-		sienaCounterpartyExtensions.CoverTrade = CoverTrade.String
-		sienaCounterpartyExtensions.CustomerCategory = CustomerCategory.String
-		sienaCounterpartyExtensions.FSCSInclusive = FSCSInclusive.String
-		sienaCounterpartyExtensions.FeeFactor = FeeFactor.String
-		sienaCounterpartyExtensions.InactiveStatus = InactiveStatus.String
-		sienaCounterpartyExtensions.Indemnity = Indemnity.String
-		sienaCounterpartyExtensions.KnowYourCustomerStatus = KnowYourCustomerStatus.String
-		sienaCounterpartyExtensions.LERLimitCarveOut = LERLimitCarveOut.String
-		sienaCounterpartyExtensions.LastAmended = LastAmended.String
-		sienaCounterpartyExtensions.LastLogin = LastLogin.String
-		sienaCounterpartyExtensions.LossGivenDefault = LossGivenDefault.String
-		sienaCounterpartyExtensions.MIC = MIC.String
-		sienaCounterpartyExtensions.ProtectedDepositor = ProtectedDepositor.String
-		sienaCounterpartyExtensions.RPTCurrency = RPTCurrency.String
-		sienaCounterpartyExtensions.RateTimeout = RateTimeout.String
-		sienaCounterpartyExtensions.RateValidation = RateValidation.String
-		sienaCounterpartyExtensions.Registered = Registered.String
-		sienaCounterpartyExtensions.RegulatoryCategory = RegulatoryCategory.String
-		sienaCounterpartyExtensions.SecuredSettlement = SecuredSettlement.String
-		sienaCounterpartyExtensions.SettlementLimitCarveOut = SettlementLimitCarveOut.String
-		sienaCounterpartyExtensions.SortCode = SortCode.String
-		sienaCounterpartyExtensions.Training = Training.String
-		sienaCounterpartyExtensions.TrainingCode = TrainingCode.String
-		sienaCounterpartyExtensions.TrainingReceived = TrainingReceived.String
-		sienaCounterpartyExtensions.Unencumbered = Unencumbered.String
-		sienaCounterpartyExtensions.LEIExpiryDate = LEIExpiryDate.String
-		sienaCounterpartyExtensions.MIFIDReviewDate = MIFIDReviewDate.String
-		sienaCounterpartyExtensions.GDPRReviewDate = GDPRReviewDate.String
-		sienaCounterpartyExtensions.DelegatedReporting = DelegatedReporting.String
-		sienaCounterpartyExtensions.BOReconcile = BOReconcile.String
-		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = MIFIDReportableDealsAllowed.String
-		sienaCounterpartyExtensions.SignedInvestmentAgreement = SignedInvestmentAgreement.String
-		sienaCounterpartyExtensions.AppropriatenessAssessment = AppropriatenessAssessment.String
-		sienaCounterpartyExtensions.FinancialCounterparty = FinancialCounterparty.String
-		sienaCounterpartyExtensions.Collateralisation = Collateralisation.String
-		sienaCounterpartyExtensions.PortfolioCode = PortfolioCode.String
-		sienaCounterpartyExtensions.ReconciliationLetterFrequency = ReconciliationLetterFrequency.String
-		sienaCounterpartyExtensions.DirectDealing = DirectDealing.String
-		sienaCounterpartyExtensionsList = append(sienaCounterpartyExtensionsList, sienaCounterpartyExtensions)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"], idFirm, idCentre)
+	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return count, sienaCounterpartyExtensionsList, nil
 }
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensions(db *sql.DB, sfid string, scid string) (int, sienaCounterpartyExtensionsItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyExtensions sienaCounterpartyExtensionsItem
-	tsql := fmt.Sprintf("SELECT NameFirm, 	NameCentre, 	BICCode, 	ContactIndicator, 	CoverTrade, 	CustomerCategory, 	FSCSInclusive, 	FeeFactor, 	InactiveStatus, 	Indemnity, 	KnowYourCustomerStatus, 	LERLimitCarveOut, 	LastAmended, 	LastLogin, 	LossGivenDefault, 	MIC, 	ProtectedDepositor, 	RPTCurrency, 	RateTimeout, 	RateValidation, 	Registered, 	RegulatoryCategory, 	SecuredSettlement, 	SettlementLimitCarveOut, 	SortCode, 	Training, 	TrainingCode, 	TrainingReceived, 	Unencumbered, 	LEIExpiryDate, 	MIFIDReviewDate, 	GDPRReviewDate, 	DelegatedReporting, 	BOReconcile, 	MIFIDReportableDealsAllowed, 	SignedInvestmentAgreement, 	AppropriatenessAssessment, 	FinancialCounterparty, 	Collateralisation, 	PortfolioCode, 	ReconciliationLetterFrequency, 	DirectDealing FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", mssqlConfig["schema"], sfid, scid)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCounterpartyExtensions, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var NameFirm, NameCentre, BICCode, ContactIndicator, CoverTrade, CustomerCategory, FSCSInclusive, FeeFactor, InactiveStatus, Indemnity, KnowYourCustomerStatus, LERLimitCarveOut, LastAmended, LastLogin, LossGivenDefault, MIC, ProtectedDepositor, RPTCurrency, RateTimeout, RateValidation, Registered, RegulatoryCategory, SecuredSettlement, SettlementLimitCarveOut, SortCode, Training, TrainingCode, TrainingReceived, Unencumbered, LEIExpiryDate, MIFIDReviewDate, GDPRReviewDate, DelegatedReporting, BOReconcile, MIFIDReportableDealsAllowed, SignedInvestmentAgreement, AppropriatenessAssessment, FinancialCounterparty, Collateralisation, PortfolioCode, ReconciliationLetterFrequency, DirectDealing sql.NullString
-
-		err := rows.Scan(&NameFirm, &NameCentre, &BICCode, &ContactIndicator, &CoverTrade, &CustomerCategory, &FSCSInclusive, &FeeFactor, &InactiveStatus, &Indemnity, &KnowYourCustomerStatus, &LERLimitCarveOut, &LastAmended, &LastLogin, &LossGivenDefault, &MIC, &ProtectedDepositor, &RPTCurrency, &RateTimeout, &RateValidation, &Registered, &RegulatoryCategory, &SecuredSettlement, &SettlementLimitCarveOut, &SortCode, &Training, &TrainingCode, &TrainingReceived, &Unencumbered, &LEIExpiryDate, &MIFIDReviewDate, &GDPRReviewDate, &DelegatedReporting, &BOReconcile, &MIFIDReportableDealsAllowed, &SignedInvestmentAgreement, &AppropriatenessAssessment, &FinancialCounterparty, &Collateralisation, &PortfolioCode, &ReconciliationLetterFrequency, &DirectDealing)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCounterpartyExtensions, err
-		}
-		sienaCounterpartyExtensions.NameFirm = NameFirm.String
-		sienaCounterpartyExtensions.NameCentre = NameCentre.String
-		sienaCounterpartyExtensions.BICCode = BICCode.String
-		sienaCounterpartyExtensions.ContactIndicator = ContactIndicator.String
-		sienaCounterpartyExtensions.CoverTrade = CoverTrade.String
-		sienaCounterpartyExtensions.CustomerCategory = CustomerCategory.String
-		sienaCounterpartyExtensions.FSCSInclusive = FSCSInclusive.String
-		sienaCounterpartyExtensions.FeeFactor = FeeFactor.String
-		sienaCounterpartyExtensions.InactiveStatus = InactiveStatus.String
-		sienaCounterpartyExtensions.Indemnity = Indemnity.String
-		sienaCounterpartyExtensions.KnowYourCustomerStatus = KnowYourCustomerStatus.String
-		sienaCounterpartyExtensions.LERLimitCarveOut = LERLimitCarveOut.String
-		sienaCounterpartyExtensions.LastAmended = LastAmended.String
-		sienaCounterpartyExtensions.LastLogin = LastLogin.String
-		sienaCounterpartyExtensions.LossGivenDefault = LossGivenDefault.String
-		sienaCounterpartyExtensions.MIC = MIC.String
-		sienaCounterpartyExtensions.ProtectedDepositor = ProtectedDepositor.String
-		sienaCounterpartyExtensions.RPTCurrency = RPTCurrency.String
-		sienaCounterpartyExtensions.RateTimeout = RateTimeout.String
-		sienaCounterpartyExtensions.RateValidation = RateValidation.String
-		sienaCounterpartyExtensions.Registered = Registered.String
-		sienaCounterpartyExtensions.RegulatoryCategory = RegulatoryCategory.String
-		sienaCounterpartyExtensions.SecuredSettlement = SecuredSettlement.String
-		sienaCounterpartyExtensions.SettlementLimitCarveOut = SettlementLimitCarveOut.String
-		sienaCounterpartyExtensions.SortCode = SortCode.String
-		sienaCounterpartyExtensions.Training = Training.String
-		sienaCounterpartyExtensions.TrainingCode = TrainingCode.String
-		sienaCounterpartyExtensions.TrainingReceived = TrainingReceived.String
-		sienaCounterpartyExtensions.Unencumbered = Unencumbered.String
-		sienaCounterpartyExtensions.LEIExpiryDate = LEIExpiryDate.String
-		sienaCounterpartyExtensions.MIFIDReviewDate = MIFIDReviewDate.String
-		sienaCounterpartyExtensions.GDPRReviewDate = GDPRReviewDate.String
-		sienaCounterpartyExtensions.DelegatedReporting = DelegatedReporting.String
-		sienaCounterpartyExtensions.BOReconcile = BOReconcile.String
-		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = MIFIDReportableDealsAllowed.String
-		sienaCounterpartyExtensions.SignedInvestmentAgreement = SignedInvestmentAgreement.String
-		sienaCounterpartyExtensions.AppropriatenessAssessment = AppropriatenessAssessment.String
-		sienaCounterpartyExtensions.FinancialCounterparty = FinancialCounterparty.String
-		sienaCounterpartyExtensions.Collateralisation = Collateralisation.String
-		sienaCounterpartyExtensions.PortfolioCode = PortfolioCode.String
-		sienaCounterpartyExtensions.ReconciliationLetterFrequency = ReconciliationLetterFrequency.String
-		sienaCounterpartyExtensions.DirectDealing = DirectDealing.String
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"], sfid, scid)
+	_, _, sienaCounterpartyExtensions, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return 1, sienaCounterpartyExtensions, nil
 }
 
@@ -707,4 +508,76 @@ func putSienaCounterpartyExtensions(db *sql.DB, updateItem sienaCounterpartyExte
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCounterpartyExtensionsData read all employees
+func fetchSienaCounterpartyExtensionsData(db *sql.DB, tsql string) (int, []sienaCounterpartyExtensionsItem, sienaCounterpartyExtensionsItem, error) {
+
+	var sienaCounterpartyExtensions sienaCounterpartyExtensionsItem
+	var sienaCounterpartyExtensionsList []sienaCounterpartyExtensionsItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCounterpartyExtensions, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCPEXNameFirm, &sqlCPEXNameCentre, &sqlCPEXBICCode, &sqlCPEXContactIndicator, &sqlCPEXCoverTrade, &sqlCPEXCustomerCategory, &sqlCPEXFSCSInclusive, &sqlCPEXFeeFactor, &sqlCPEXInactiveStatus, &sqlCPEXIndemnity, &sqlCPEXKnowYourCustomerStatus, &sqlCPEXLERLimitCarveOut, &sqlCPEXLastAmended, &sqlCPEXLastLogin, &sqlCPEXLossGivenDefault, &sqlCPEXMIC, &sqlCPEXProtectedDepositor, &sqlCPEXRPTCurrency, &sqlCPEXRateTimeout, &sqlCPEXRateValidation, &sqlCPEXRegistered, &sqlCPEXRegulatoryCategory, &sqlCPEXSecuredSettlement, &sqlCPEXSettlementLimitCarveOut, &sqlCPEXSortCode, &sqlCPEXTraining, &sqlCPEXTrainingCode, &sqlCPEXTrainingReceived, &sqlCPEXUnencumbered, &sqlCPEXLEIExpiryDate, &sqlCPEXMIFIDReviewDate, &sqlCPEXGDPRReviewDate, &sqlCPEXDelegatedReporting, &sqlCPEXBOReconcile, &sqlCPEXMIFIDReportableDealsAllowed, &sqlCPEXSignedInvestmentAgreement, &sqlCPEXAppropriatenessAssessment, &sqlCPEXFinancialCounterparty, &sqlCPEXCollateralisation, &sqlCPEXPortfolioCode, &sqlCPEXReconciliationLetterFrequency, &sqlCPEXDirectDealing)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCounterpartyExtensions, err
+		}
+
+		sienaCounterpartyExtensions.NameFirm = sqlCPEXNameFirm.String
+		sienaCounterpartyExtensions.NameCentre = sqlCPEXNameCentre.String
+		sienaCounterpartyExtensions.BICCode = sqlCPEXBICCode.String
+		sienaCounterpartyExtensions.ContactIndicator = sqlCPEXContactIndicator.String
+		sienaCounterpartyExtensions.CoverTrade = sqlCPEXCoverTrade.String
+		sienaCounterpartyExtensions.CustomerCategory = sqlCPEXCustomerCategory.String
+		sienaCounterpartyExtensions.FSCSInclusive = sqlCPEXFSCSInclusive.String
+		sienaCounterpartyExtensions.FeeFactor = sqlCPEXFeeFactor.String
+		sienaCounterpartyExtensions.InactiveStatus = sqlCPEXInactiveStatus.String
+		sienaCounterpartyExtensions.Indemnity = sqlCPEXIndemnity.String
+		sienaCounterpartyExtensions.KnowYourCustomerStatus = sqlCPEXKnowYourCustomerStatus.String
+		sienaCounterpartyExtensions.LERLimitCarveOut = sqlCPEXLERLimitCarveOut.String
+		sienaCounterpartyExtensions.LastAmended = sqlCPEXLastAmended.String
+		sienaCounterpartyExtensions.LastLogin = sqlCPEXLastLogin.String
+		sienaCounterpartyExtensions.LossGivenDefault = sqlCPEXLossGivenDefault.String
+		sienaCounterpartyExtensions.MIC = sqlCPEXMIC.String
+		sienaCounterpartyExtensions.ProtectedDepositor = sqlCPEXProtectedDepositor.String
+		sienaCounterpartyExtensions.RPTCurrency = sqlCPEXRPTCurrency.String
+		sienaCounterpartyExtensions.RateTimeout = sqlCPEXRateTimeout.String
+		sienaCounterpartyExtensions.RateValidation = sqlCPEXRateValidation.String
+		sienaCounterpartyExtensions.Registered = sqlCPEXRegistered.String
+		sienaCounterpartyExtensions.RegulatoryCategory = sqlCPEXRegulatoryCategory.String
+		sienaCounterpartyExtensions.SecuredSettlement = sqlCPEXSecuredSettlement.String
+		sienaCounterpartyExtensions.SettlementLimitCarveOut = sqlCPEXSettlementLimitCarveOut.String
+		sienaCounterpartyExtensions.SortCode = sqlCPEXSortCode.String
+		sienaCounterpartyExtensions.Training = sqlCPEXTraining.String
+		sienaCounterpartyExtensions.TrainingCode = sqlCPEXTrainingCode.String
+		sienaCounterpartyExtensions.TrainingReceived = sqlCPEXTrainingReceived.String
+		sienaCounterpartyExtensions.Unencumbered = sqlCPEXUnencumbered.String
+		sienaCounterpartyExtensions.LEIExpiryDate = sqlDateToHTMLDate(sqlCPEXLEIExpiryDate.String)
+		sienaCounterpartyExtensions.MIFIDReviewDate = sqlDateToHTMLDate(sqlCPEXMIFIDReviewDate.String)
+		sienaCounterpartyExtensions.GDPRReviewDate = sqlDateToHTMLDate(sqlCPEXGDPRReviewDate.String)
+		sienaCounterpartyExtensions.DelegatedReporting = sqlCPEXDelegatedReporting.String
+		sienaCounterpartyExtensions.BOReconcile = sqlCPEXBOReconcile.String
+		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = sqlCPEXMIFIDReportableDealsAllowed.String
+		sienaCounterpartyExtensions.SignedInvestmentAgreement = sqlCPEXSignedInvestmentAgreement.String
+		sienaCounterpartyExtensions.AppropriatenessAssessment = sqlCPEXAppropriatenessAssessment.String
+		sienaCounterpartyExtensions.FinancialCounterparty = sqlCPEXFinancialCounterparty.String
+		sienaCounterpartyExtensions.Collateralisation = sqlCPEXCollateralisation.String
+		sienaCounterpartyExtensions.PortfolioCode = sqlCPEXPortfolioCode.String
+		sienaCounterpartyExtensions.ReconciliationLetterFrequency = sqlCPEXReconciliationLetterFrequency.String
+		sienaCounterpartyExtensions.DirectDealing = sqlCPEXDirectDealing.String
+
+		sienaCounterpartyExtensionsList = append(sienaCounterpartyExtensionsList, sienaCounterpartyExtensions)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCounterpartyExtensionsList, sienaCounterpartyExtensions, nil
 }

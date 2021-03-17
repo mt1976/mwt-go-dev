@@ -13,6 +13,10 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCounterpartySQL = "NameCentre, 	NameFirm, 	FullName, 	TelephoneNumber, 	EmailAddress, 	CustomerType, 	AccountOfficer, 	CountryCode, 	SectorCode, 	CpartyGroupName, 	Notes, 	Owner, 	Authorised, 	NameFirmName, 	NameCentreName, 	CountryCodeName, 	SectorCodeName"
+
+var sqlCPTYNameCentre, sqlCPTYNameFirm, sqlCPTYFullName, sqlCPTYTelephoneNumber, sqlCPTYEmailAddress, sqlCPTYCustomerType, sqlCPTYAccountOfficer, sqlCPTYCountryCode, sqlCPTYSectorCode, sqlCPTYCpartyGroupName, sqlCPTYNotes, sqlCPTYOwner, sqlCPTYAuthorised, sqlCPTYNameFirmName, sqlCPTYNameCentreName, sqlCPTYCountryCodeName, sqlCPTYSectorCodeName sql.NullString
+
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyListPage struct {
 	Title                  string
@@ -130,10 +134,10 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCounterpartyItem
+	//var returnList []sienaCounterpartyItem
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
-	noItems, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
+	_, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
 	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -208,11 +212,11 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCounterpartyItem
+	//var returnList []sienaCounterpartyItem
 
 	firmID := getURLparam(r, "SienaFirm")
 	centreID := getURLparam(r, "SienaCentre")
-	noItems, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
+	_, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
 	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -384,95 +388,16 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCounterpartyList read all employees
 func getSienaCounterpartyList(db *sql.DB) (int, []sienaCounterpartyItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyList []sienaCounterpartyItem
-	var sienaCounterparty sienaCounterpartyItem
-	tsql := fmt.Sprintf("SELECT NameCentre, 	NameFirm, 	FullName, 	TelephoneNumber, 	EmailAddress, 	CustomerType, 	AccountOfficer, 	CountryCode, 	SectorCode, 	CpartyGroupName, 	Notes, 	Owner, 	Authorised, 	NameFirmName, 	NameCentreName, 	CountryCodeName, 	SectorCodeName  FROM %s.sienaCounterparty;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var NameCentre, NameFirm, FullName, TelephoneNumber, EmailAddress, CustomerType, AccountOfficer, CountryCode, SectorCode, CpartyGroupName, Notes, Owner, Authorised, NameFirmName, NameCentreName, CountryCodeName, SectorCodeName sql.NullString
-		err := rows.Scan(&NameCentre, &NameFirm, &FullName, &TelephoneNumber, &EmailAddress, &CustomerType, &AccountOfficer, &CountryCode, &SectorCode, &CpartyGroupName, &Notes, &Owner, &Authorised, &NameFirmName, &NameCentreName, &CountryCodeName, &SectorCodeName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterparty.NameCentre = NameCentre.String
-		sienaCounterparty.NameFirm = NameFirm.String
-		sienaCounterparty.FullName = FullName.String
-		sienaCounterparty.TelephoneNumber = TelephoneNumber.String
-		sienaCounterparty.EmailAddress = EmailAddress.String
-		sienaCounterparty.CustomerType = CustomerType.String
-		sienaCounterparty.AccountOfficer = AccountOfficer.String
-		sienaCounterparty.CountryCode = CountryCode.String
-		sienaCounterparty.SectorCode = SectorCode.String
-		sienaCounterparty.CpartyGroupName = CpartyGroupName.String
-		sienaCounterparty.Notes = Notes.String
-		sienaCounterparty.Owner = Owner.String
-		sienaCounterparty.Authorised = Authorised.String
-		sienaCounterparty.NameFirmName = NameFirmName.String
-		sienaCounterparty.NameCentreName = NameCentreName.String
-		sienaCounterparty.CountryCodeName = CountryCodeName.String
-		sienaCounterparty.SectorCodeName = SectorCodeName.String
-		sienaCounterpartyList = append(sienaCounterpartyList, sienaCounterparty)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterparty;", sienaCounterpartySQL, mssqlConfig["schema"])
+	count, sienaCounterpartyList, _, _ := fetchSienaCounterpartyData(db, tsql)
 	return count, sienaCounterpartyList, nil
 }
 
 // getSienaCounterpartyList read all employees
 func getSienaCounterparty(db *sql.DB, idFirm string, idCentre string) (int, sienaCounterpartyItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterparty sienaCounterpartyItem
-	tsql := fmt.Sprintf("SELECT NameCentre, 	NameFirm, 	FullName, 	TelephoneNumber, 	EmailAddress, 	CustomerType, 	AccountOfficer, 	CountryCode, 	SectorCode, 	CpartyGroupName, 	Notes, 	Owner, 	Authorised, 	NameFirmName, 	NameCentreName, 	CountryCodeName, 	SectorCodeName  FROM %s.sienaCounterparty WHERE NameFirm='%s' AND NameCentre='%s';", mssqlConfig["schema"], idFirm, idCentre)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCounterparty, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var NameCentre, NameFirm, FullName, TelephoneNumber, EmailAddress, CustomerType, AccountOfficer, CountryCode, SectorCode, CpartyGroupName, Notes, Owner, Authorised, NameFirmName, NameCentreName, CountryCodeName, SectorCodeName sql.NullString
-		err := rows.Scan(&NameCentre, &NameFirm, &FullName, &TelephoneNumber, &EmailAddress, &CustomerType, &AccountOfficer, &CountryCode, &SectorCode, &CpartyGroupName, &Notes, &Owner, &Authorised, &NameFirmName, &NameCentreName, &CountryCodeName, &SectorCodeName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCounterparty, err
-		}
-		sienaCounterparty.NameCentre = NameCentre.String
-		sienaCounterparty.NameFirm = NameFirm.String
-		sienaCounterparty.FullName = FullName.String
-		sienaCounterparty.TelephoneNumber = TelephoneNumber.String
-		sienaCounterparty.EmailAddress = EmailAddress.String
-		sienaCounterparty.CustomerType = CustomerType.String
-		sienaCounterparty.AccountOfficer = AccountOfficer.String
-		sienaCounterparty.CountryCode = CountryCode.String
-		sienaCounterparty.SectorCode = SectorCode.String
-		sienaCounterparty.CpartyGroupName = CpartyGroupName.String
-		sienaCounterparty.Notes = Notes.String
-		sienaCounterparty.Owner = Owner.String
-		sienaCounterparty.Authorised = Authorised.String
-		sienaCounterparty.NameFirmName = NameFirmName.String
-		sienaCounterparty.NameCentreName = NameCentreName.String
-		sienaCounterparty.CountryCodeName = CountryCodeName.String
-		sienaCounterparty.SectorCodeName = SectorCodeName.String
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterparty WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartySQL, mssqlConfig["schema"], idFirm, idCentre)
+	_, _, sienaCounterparty, _ := fetchSienaCounterpartyData(db, tsql)
 	return 1, sienaCounterparty, nil
 }
 
@@ -483,4 +408,51 @@ func putSienaCounterparty(db *sql.DB, updateItem sienaCounterpartyItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCounterpartyData read all employees
+func fetchSienaCounterpartyData(db *sql.DB, tsql string) (int, []sienaCounterpartyItem, sienaCounterpartyItem, error) {
+
+	var sienaCounterparty sienaCounterpartyItem
+	var sienaCounterpartyList []sienaCounterpartyItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCounterparty, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCPTYNameCentre, &sqlCPTYNameFirm, &sqlCPTYFullName, &sqlCPTYTelephoneNumber, &sqlCPTYEmailAddress, &sqlCPTYCustomerType, &sqlCPTYAccountOfficer, &sqlCPTYCountryCode, &sqlCPTYSectorCode, &sqlCPTYCpartyGroupName, &sqlCPTYNotes, &sqlCPTYOwner, &sqlCPTYAuthorised, &sqlCPTYNameFirmName, &sqlCPTYNameCentreName, &sqlCPTYCountryCodeName, &sqlCPTYSectorCodeName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCounterparty, err
+		}
+
+		sienaCounterparty.NameCentre = sqlCPTYNameCentre.String
+		sienaCounterparty.NameFirm = sqlCPTYNameFirm.String
+		sienaCounterparty.FullName = sqlCPTYFullName.String
+		sienaCounterparty.TelephoneNumber = sqlCPTYTelephoneNumber.String
+		sienaCounterparty.EmailAddress = sqlCPTYEmailAddress.String
+		sienaCounterparty.CustomerType = sqlCPTYCustomerType.String
+		sienaCounterparty.AccountOfficer = sqlCPTYAccountOfficer.String
+		sienaCounterparty.CountryCode = sqlCPTYCountryCode.String
+		sienaCounterparty.SectorCode = sqlCPTYSectorCode.String
+		sienaCounterparty.CpartyGroupName = sqlCPTYCpartyGroupName.String
+		sienaCounterparty.Notes = sqlCPTYNotes.String
+		sienaCounterparty.Owner = sqlCPTYOwner.String
+		sienaCounterparty.Authorised = sqlCPTYAuthorised.String
+		sienaCounterparty.NameFirmName = sqlCPTYNameFirmName.String
+		sienaCounterparty.NameCentreName = sqlCPTYNameCentreName.String
+		sienaCounterparty.CountryCodeName = sqlCPTYCountryCodeName.String
+		sienaCounterparty.SectorCodeName = sqlCPTYSectorCodeName.String
+
+		sienaCounterpartyList = append(sienaCounterpartyList, sienaCounterparty)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCounterpartyList, sienaCounterparty, nil
 }

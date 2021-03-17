@@ -24,7 +24,7 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 
 		noResp, _, respList := listResponseswebNew(wctProperties, "json", w)
 
-		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json")
+		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json", r)
 
 		p := HomePage{Title: title,
 			Body:           "",

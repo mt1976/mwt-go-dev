@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCentreSQL = "Code, 	Name, 	Country, 	CountryName"
+var sqlCENTCode, sqlCENTName, sqlCENTCountry, sqlCENTCountryName sql.NullString
+
 //sienaCentrePage is cheese
 type sienaCentreListPage struct {
 	Title            string
@@ -81,9 +84,9 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCentreItem
+	//var returnList []sienaCentreItem
 	searchID := getURLparam(r, "SienaCentre")
-	noItems, returnRecord, _ := getSienaCentre(thisConnection, searchID)
+	_, returnRecord, _ := getSienaCentre(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -114,9 +117,9 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCentreItem
+	//var returnList []sienaCentreItem
 	searchID := getURLparam(r, "SienaCentre")
-	noItems, returnRecord, _ := getSienaCentre(thisConnection, searchID)
+	_, returnRecord, _ := getSienaCentre(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -256,70 +259,16 @@ func newSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCentreList read all employees
 func getSienaCentreList(db *sql.DB) (int, []sienaCentreItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCentreList []sienaCentreItem
-	var sienaCentre sienaCentreItem
-	tsql := fmt.Sprintf("SELECT Code, Name, Country, CountryName FROM %s.sienaCentre;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name, Country, CountryName string
-		err := rows.Scan(&Code, &Name, &Country, &CountryName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCentre.Code = Code
-		sienaCentre.Name = Name
-		sienaCentre.Country = Country
-		sienaCentre.CountryName = CountryName
-		sienaCentreList = append(sienaCentreList, sienaCentre)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre;", sienaCentreSQL, mssqlConfig["schema"])
+	count, sienaCentreList, _, _ := fetchSienaCentreData(db, tsql)
 	return count, sienaCentreList, nil
 }
 
 // getSienaCentreList read all employees
 func getSienaCentre(db *sql.DB, id string) (int, sienaCentreItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCentre sienaCentreItem
-	tsql := fmt.Sprintf("SELECT Code, Name, Country, CountryName FROM %s.sienaCentre WHERE Code='%s';", mssqlConfig["schema"], id)
-	//fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCentre, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name, Country, CountryName string
-		err := rows.Scan(&Code, &Name, &Country, &CountryName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCentre, err
-		}
-		sienaCentre.Code = Code
-		sienaCentre.Name = Name
-		sienaCentre.Country = Country
-		sienaCentre.CountryName = CountryName
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre WHERE Code='%s';", sienaCentreSQL, mssqlConfig["schema"], id)
+	_, _, sienaCentre, _ := fetchSienaCentreData(db, tsql)
 	return 1, sienaCentre, nil
 }
 
@@ -330,4 +279,38 @@ func putSienaCentre(db *sql.DB, updateItem sienaCentreItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCentreData read all employees
+func fetchSienaCentreData(db *sql.DB, tsql string) (int, []sienaCentreItem, sienaCentreItem, error) {
+
+	var sienaCentre sienaCentreItem
+	var sienaCentreList []sienaCentreItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCentre, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCENTCode, &sqlCENTName, &sqlCENTCountry, &sqlCENTCountryName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCentre, err
+		}
+
+		sienaCentre.Code = sqlCENTCode.String
+		sienaCentre.Name = sqlCENTName.String
+		sienaCentre.Country = sqlCENTCountry.String
+		sienaCentre.CountryName = sqlCENTCountryName.String
+
+		sienaCentreList = append(sienaCentreList, sienaCentre)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCentreList, sienaCentre, nil
 }

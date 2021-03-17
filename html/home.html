@@ -29,7 +29,7 @@
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
   <link rel="stylesheet" href="../assets/custom_table.css">
 
-  <title>HOME</title>
+  <title>{{.PageTitle}}</title>
 
 
 </head>
@@ -47,13 +47,14 @@
 <br>
 <div class="jumbotron">
 
-<h1>  Holding Page </h1>
-<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+<h4 class="nav-title text-left">{{.PageTitle}}</h4>
 <hr class="my-4">
-<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-<a class="btn btn-primary btn-lg float-right" href="#" role="button">Learn more</a>
-<br>
+<p class="lead">Demonstration System - Home Page</p>
+<p>Application Server : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]</p>
+<p>Siena System: {{.SienaName}}</p>
+<p>SQL Server: {{.SQLServer}}-{{.SQLDB}}-{{.SQLSchema}}</p>
 </div>
+
 
   </div>
 

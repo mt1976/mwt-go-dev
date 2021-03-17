@@ -73,7 +73,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := waitForResponse(requestID.String(), wctProperties)
+	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("responseMessage", responseMessage)
 
 	//outString := ""
@@ -131,7 +131,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := waitForResponse(requestID.String(), wctProperties)
+	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	//fmt.Println("responseMessage", responseMessage)
 
@@ -223,7 +223,7 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := waitForResponse(requestID.String(), wctProperties)
+	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -271,7 +271,7 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := waitForResponse(requestID.String(), wctProperties)
+	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -319,7 +319,7 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := waitForResponse(requestID.String(), wctProperties)
+	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 

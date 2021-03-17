@@ -89,7 +89,7 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(loginRequest, requestID.String(), wctProperties)
 
-	loginResponse := waitForResponse(requestID.String(), wctProperties)
+	loginResponse := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("loginResponse", loginResponse)
 
 	//outString := ""
@@ -135,7 +135,7 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(logoutRequest, requestID.String(), wctProperties)
 
-	logoutResponse := waitForResponse(requestID.String(), wctProperties)
+	logoutResponse := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("logoutResponse", logoutResponse)
 
 	//outString := ""

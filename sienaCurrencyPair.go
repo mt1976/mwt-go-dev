@@ -13,6 +13,10 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCurrencyPairSQL = "CodeMajorCurrencyIsoCode, 	CodeMinorCurrencyIsoCode, 	ReciprocalActive, 	Code, 	MajorName, 	MinorName"
+
+var sqlCCYPCodeMajorCurrencyIsoCode, sqlCCYPCodeMinorCurrencyIsoCode, sqlCCYPReciprocalActive, sqlCCYPCode, sqlCCYPMajorName, sqlCCYPMinorName sql.NullString
+
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairListPage struct {
 	Title                  string
@@ -23,21 +27,27 @@ type sienaCurrencyPairListPage struct {
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairPage struct {
-	Title     string
-	PageTitle string
-	ID        string
-	Code      string
-	MajorName string
-	MinorName string
-	Action    string
+	Title                    string
+	PageTitle                string
+	ID                       string
+	Action                   string
+	CodeMajorCurrencyIsoCode string
+	CodeMinorCurrencyIsoCode string
+	ReciprocalActive         string
+	Code                     string
+	MajorName                string
+	MinorName                string
 }
 
 //sienaCurrencyPairItem is cheese
 type sienaCurrencyPairItem struct {
-	Code      string
-	MajorName string
-	MinorName string
-	Action    string
+	Action                   string
+	CodeMajorCurrencyIsoCode string
+	CodeMinorCurrencyIsoCode string
+	ReciprocalActive         string
+	Code                     string
+	MajorName                string
+	MinorName                string
 }
 
 func listSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
@@ -243,70 +253,18 @@ func newSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCurrencyPairList read all employees
 func getSienaCurrencyPairList(db *sql.DB) (int, []sienaCurrencyPairItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCurrencyPairList []sienaCurrencyPairItem
-	var sienaCurrencyPair sienaCurrencyPairItem
-	tsql := fmt.Sprintf("SELECT Code, MajorName, MinorName FROM %s.sienaCurrencyPair;", mssqlConfig["schema"])
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrencyPair;", sienaCurrencyPairSQL, mssqlConfig["schema"])
 	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, MajorName, MinorName string
-
-		err := rows.Scan(&Code, &MajorName, &MinorName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCurrencyPair.Code = Code
-		sienaCurrencyPair.MajorName = MajorName
-		sienaCurrencyPair.MinorName = MinorName
-		sienaCurrencyPairList = append(sienaCurrencyPairList, sienaCurrencyPair)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	count, sienaCurrencyPairList, _, _ := fetchSienaCurrencyPairData(db, tsql)
 	return count, sienaCurrencyPairList, nil
 }
 
 // getSienaCurrencyPairList read all employees
 func getSienaCurrencyPair(db *sql.DB, id string) (int, sienaCurrencyPairItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCurrencyPair sienaCurrencyPairItem
-	tsql := fmt.Sprintf("SELECT Code, MajorName, MinorName FROM %s.sienaCurrencyPair WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCurrencyPair, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, MajorName, MinorName string
-
-		err := rows.Scan(&Code, &MajorName, &MinorName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCurrencyPair, err
-		}
-		sienaCurrencyPair.Code = Code
-		sienaCurrencyPair.MajorName = MajorName
-		sienaCurrencyPair.MinorName = MinorName
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrencyPair WHERE Code='%s';", sienaCurrencyPairSQL, mssqlConfig["schema"], id)
+	_, _, sienaCurrencyPair, _ := fetchSienaCurrencyPairData(db, tsql)
 	return 1, sienaCurrencyPair, nil
 }
 
@@ -317,4 +275,40 @@ func putSienaCurrencyPair(db *sql.DB, updateItem sienaCurrencyPairItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCurrencyPairData read all employees
+func fetchSienaCurrencyPairData(db *sql.DB, tsql string) (int, []sienaCurrencyPairItem, sienaCurrencyPairItem, error) {
+
+	var sienaCurrencyPair sienaCurrencyPairItem
+	var sienaCurrencyPairList []sienaCurrencyPairItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCurrencyPair, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCCYPCodeMajorCurrencyIsoCode, &sqlCCYPCodeMinorCurrencyIsoCode, &sqlCCYPReciprocalActive, &sqlCCYPCode, &sqlCCYPMajorName, &sqlCCYPMinorName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCurrencyPair, err
+		}
+
+		sienaCurrencyPair.CodeMajorCurrencyIsoCode = sqlCCYPCodeMajorCurrencyIsoCode.String
+		sienaCurrencyPair.CodeMinorCurrencyIsoCode = sqlCCYPCodeMinorCurrencyIsoCode.String
+		sienaCurrencyPair.ReciprocalActive = sqlCCYPReciprocalActive.String
+		sienaCurrencyPair.Code = sqlCCYPCode.String
+		sienaCurrencyPair.MajorName = sqlCCYPMajorName.String
+		sienaCurrencyPair.MinorName = sqlCCYPMinorName.String
+
+		sienaCurrencyPairList = append(sienaCurrencyPairList, sienaCurrencyPair)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCurrencyPairList, sienaCurrencyPair, nil
 }

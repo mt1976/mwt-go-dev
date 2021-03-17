@@ -47,7 +47,7 @@
       <div class="card border-primary">
         <div class="card-header font-weight-bold border-primary">
           <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Accounts&nbsp;&nbsp;<span class="badge badge-primary">{{.SienaAccountCount}} </span></div>
+          Accounts&nbsp;&nbsp;<span class="badge badge-pill badge-primary">{{.SienaAccountCount}} </span></div>
 
         <div class="card-body">
           <form action="/home" method="POST">
@@ -91,8 +91,8 @@
                     <td class="align-middle">{{.AccountName}}</td>
 
                     <td class="align-middle text-center">{{.CCY}}</td>
-                    <td class="align-middle text-center" style="{{.CBNeg}}">{{.CashBalance}}</td>
-            <td class="align-middle text-center" style="{{.LBNeg}}">{{.LedgerBalance}}</td>
+                    <td class="align-middle text-center plusmin">{{.CashBalance}}</td>
+            <td class="align-middle text-center plusmin">{{.LedgerBalance}}</td>
   <td class="align-middle text-center">{{.Status}}</td>
 
 
@@ -112,7 +112,7 @@
               </table>
               <script language="JavaScript" type="text/javascript">
 
-              MakeNegative();
+              MakePosNeg();
 
                </script>
                          </div>
@@ -139,8 +139,8 @@
 
       for (var i = 0; i < TDs.length; i++) {
         var temp = TDs[i];
-        if (temp.firstChild.nodeValue.indexOf('-') == 0) {temp.className = "negative";}
-        else {temp.className = "positive";}
+        if (temp.firstChild.nodeValue.indexOf('-') == 0) {temp.className = " text-right negative";}
+        else {temp.className = "text-right positive";}
       }
     }
     onload = MakePosNeg()

@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCounterpartyImportIDSQL = "KeyImportID, 	Firm, 	Centre, 	FirmName, 	CentreName, 	KeyOriginID"
+var sqlCPIDKeyImportID, sqlCPIDFirm, sqlCPIDCentre, sqlCPIDFirmName, sqlCPIDCentreName, sqlCPIDKeyOriginID sql.NullString
+
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDListPage struct {
 	Title                          string
@@ -265,74 +268,16 @@ func newSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 // getSienaCounterpartyImportIDList read all employees
 func getSienaCounterpartyImportIDList(db *sql.DB) (int, []sienaCounterpartyImportIDItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyImportIDList []sienaCounterpartyImportIDItem
-	var sienaCounterpartyImportID sienaCounterpartyImportIDItem
-	tsql := fmt.Sprintf("SELECT KeyImportID, 	Firm, 	Centre, 	FirmName, 	CentreName, 	KeyOriginID FROM %s.sienaCounterpartyImportID;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var KeyImportID, Firm, Centre, FirmName, CentreName, KeyOriginID sql.NullString
-		err := rows.Scan(&KeyImportID, &Firm, &Centre, &FirmName, &CentreName, &KeyOriginID)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCounterpartyImportID.KeyImportID = KeyImportID.String
-		sienaCounterpartyImportID.Firm = Firm.String
-		sienaCounterpartyImportID.Centre = Centre.String
-		sienaCounterpartyImportID.FirmName = FirmName.String
-		sienaCounterpartyImportID.CentreName = CentreName.String
-		sienaCounterpartyImportID.KeyOriginID = KeyOriginID.String
-		sienaCounterpartyImportIDList = append(sienaCounterpartyImportIDList, sienaCounterpartyImportID)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyImportID;", sienaCounterpartyImportIDSQL, mssqlConfig["schema"])
+	count, sienaCounterpartyImportIDList, _, _ := fetchSienaCounterpartyImportIDData(db, tsql)
 	return count, sienaCounterpartyImportIDList, nil
 }
 
 // getSienaCounterpartyImportIDList read all employees
 func getSienaCounterpartyImportID(db *sql.DB, idImportID string, idOriginID string) (int, sienaCounterpartyImportIDItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyImportID sienaCounterpartyImportIDItem
-	tsql := fmt.Sprintf("SELECT KeyImportID, 	Firm, 	Centre, 	FirmName, 	CentreName, 	KeyOriginID FROM %s.sienaCounterpartyImportID WHERE KeyImportID='%s' AND KeyOriginID='%s';", mssqlConfig["schema"], idImportID, idOriginID)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCounterpartyImportID, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var KeyImportID, Firm, Centre, FirmName, CentreName, KeyOriginID sql.NullString
-		err := rows.Scan(&KeyImportID, &Firm, &Centre, &FirmName, &CentreName, &KeyOriginID)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCounterpartyImportID, err
-		}
-		sienaCounterpartyImportID.KeyImportID = KeyImportID.String
-		sienaCounterpartyImportID.Firm = Firm.String
-		sienaCounterpartyImportID.Centre = Centre.String
-		sienaCounterpartyImportID.FirmName = FirmName.String
-		sienaCounterpartyImportID.CentreName = CentreName.String
-		sienaCounterpartyImportID.KeyOriginID = KeyOriginID.String
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyImportID WHERE KeyImportID='%s' AND KeyOriginID='%s';", sienaCounterpartyImportIDSQL, mssqlConfig["schema"], idImportID, idOriginID)
+	_, _, sienaCounterpartyImportID, _ := fetchSienaCounterpartyImportIDData(db, tsql)
 	return 1, sienaCounterpartyImportID, nil
 }
 
@@ -348,37 +293,43 @@ func putSienaCounterpartyImportID(db *sql.DB, updateItem sienaCounterpartyImport
 // getSienaCounterpartyImportIDList read all employees
 func getSienaCounterpartyImportIDListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyImportIDItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCounterpartyImportIDList []sienaCounterpartyImportIDItem
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyImportID WHERE Firm='%s' AND Centre='%s';", sienaCounterpartyImportIDSQL, mssqlConfig["schema"], idFirm, idCentre)
+	count, sienaCounterpartyImportIDList, _, _ := fetchSienaCounterpartyImportIDData(db, tsql)
+	return count, sienaCounterpartyImportIDList, nil
+}
+
+// fetchSienaCounterpartyImportIDData read all employees
+func fetchSienaCounterpartyImportIDData(db *sql.DB, tsql string) (int, []sienaCounterpartyImportIDItem, sienaCounterpartyImportIDItem, error) {
+
 	var sienaCounterpartyImportID sienaCounterpartyImportIDItem
-	tsql := fmt.Sprintf("SELECT KeyImportID, 	Firm, 	Centre, 	FirmName, 	CentreName, 	KeyOriginID FROM %s.sienaCounterpartyImportID WHERE Firm='%s' AND Centre='%s';", mssqlConfig["schema"], idFirm, idCentre)
-	//	fmt.Println("MS SQL:", tsql)
+	var sienaCounterpartyImportIDList []sienaCounterpartyImportIDItem
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
+		return -1, nil, sienaCounterpartyImportID, err
 	}
 	//fmt.Println(rows)
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		var KeyImportID, Firm, Centre, FirmName, CentreName, KeyOriginID sql.NullString
-		err := rows.Scan(&KeyImportID, &Firm, &Centre, &FirmName, &CentreName, &KeyOriginID)
+		err := rows.Scan(&sqlCPIDKeyImportID, &sqlCPIDFirm, &sqlCPIDCentre, &sqlCPIDFirmName, &sqlCPIDCentreName, &sqlCPIDKeyOriginID)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
+			return -1, nil, sienaCounterpartyImportID, err
 		}
-		sienaCounterpartyImportID.KeyImportID = KeyImportID.String
-		sienaCounterpartyImportID.Firm = Firm.String
-		sienaCounterpartyImportID.Centre = Centre.String
-		sienaCounterpartyImportID.FirmName = FirmName.String
-		sienaCounterpartyImportID.CentreName = CentreName.String
-		sienaCounterpartyImportID.KeyOriginID = KeyOriginID.String
+
+		sienaCounterpartyImportID.KeyImportID = sqlCPIDKeyImportID.String
+		sienaCounterpartyImportID.Firm = sqlCPIDFirm.String
+		sienaCounterpartyImportID.Centre = sqlCPIDCentre.String
+		sienaCounterpartyImportID.FirmName = sqlCPIDFirmName.String
+		sienaCounterpartyImportID.CentreName = sqlCPIDCentreName.String
+		sienaCounterpartyImportID.KeyOriginID = sqlCPIDKeyOriginID.String
+
 		sienaCounterpartyImportIDList = append(sienaCounterpartyImportIDList, sienaCounterpartyImportID)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	return count, sienaCounterpartyImportIDList, nil
+	return count, sienaCounterpartyImportIDList, sienaCounterpartyImportID, nil
 }

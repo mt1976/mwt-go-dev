@@ -43,7 +43,7 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessge := waitForResponse(requestID.String(), wctProperties)
+	responseMessge := getResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""

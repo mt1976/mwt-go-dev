@@ -59,7 +59,7 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(thisID)
 	title := wctProperties["appname"]
 
-	_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
+	_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"], r)
 
 	//fmt.Println("serviceCatalog", serviceCatalog)
 	//fmt.Println("test", serviceCatalog[thisID])
@@ -97,12 +97,7 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Servicing :", inUTL)
 
-	//	thisID, _ := strconv.Atoi(getURLparam(r, "id"))
-	//	fmt.Println("ID", thisID)
 	thisUUID := getURLparam(r, "uuid")
-	//	fmt.Println("REQUESTID", thisUUID)
-	//title := wctProperties["appname"]
-	//thisAction = getURLparam(r, "action")
 
 	dispatchMessage := WctMessage{
 		WctPayload{
@@ -117,26 +112,6 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 			RequestData:           "",
 		},
 	}
-
-	/*	pageRequestView := RequestViewPage{
-		Title:                 title,
-		Description:           "",
-		SudoID:                thisID,
-		ApplicationToken:      wctProperties["applicationtoken"],
-		SessionToken:          "n/a",
-		RequestID:             thisUUID,
-		RequestAction:         getURLparam(r, "action"),
-		RequestItem:           getURLparam(r, "item"),
-		RequestParameters:     getURLparam(r, "parameters"),
-		UniqueUID:             gUUID,
-		RequestResponseFormat: wctProperties["responseformat"],
-		DeliverTo:             wctProperties["deliverpath"],
-		PageTitle:             "Execute Request",
-	} */
-
-	//	fmt.Println("Page Data", pageRequestView)
-
-	//	fmt.Println("payload=", dispatchMessage)
 
 	deliverRequest(dispatchMessage, wctProperties["deliverpath"], thisUUID, wctProperties["responseformat"])
 

@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaBookSQL = "BookName, 	FullName"
+var sqlBOOKBookName, sqlBOOKFullName sql.NullString
+
 //sienaBookPage is cheese
 type sienaBookListPage struct {
 	Title          string
@@ -76,9 +79,9 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaBookItem
+	//var returnList []sienaBookItem
 	searchID := getURLparam(r, "SienaBook")
-	noItems, returnRecord, _ := getSienaBook(thisConnection, searchID)
+	_, returnRecord, _ := getSienaBook(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -107,9 +110,9 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaBookItem
+	//var returnList []sienaBookItem
 	searchID := getURLparam(r, "SienaBook")
-	noItems, returnRecord, _ := getSienaBook(thisConnection, searchID)
+	_, returnRecord, _ := getSienaBook(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -232,75 +235,56 @@ func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaBookList read all employees
 func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaBookList []sienaBookItem
-	var sienaBook sienaBookItem
-	tsql := fmt.Sprintf("SELECT BookName, FullName FROM %s.sienaBook;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name string
-		err := rows.Scan(&Code, &Name)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaBook.Code = Code
-		sienaBook.Name = Name
-
-		sienaBookList = append(sienaBookList, sienaBook)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, mssqlConfig["schema"])
+	count, sienaBookList, _, _ := fetchSienaBookData(db, tsql)
 	return count, sienaBookList, nil
 }
 
 // getSienaBookList read all employees
 func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaBook sienaBookItem
-	tsql := fmt.Sprintf("SELECT BookName, FullName FROM %s.sienaBook WHERE BookName='%s';", mssqlConfig["schema"], id)
-	//fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaBook, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name string
-		err := rows.Scan(&Code, &Name)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaBook, err
-		}
-		sienaBook.Code = Code
-		sienaBook.Name = Name
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, mssqlConfig["schema"], id)
+	_, _, sienaBook, _ := fetchSienaBookData(db, tsql)
 	return 1, sienaBook, nil
 }
 
 // getSienaBookList read all employees
 func putSienaBook(db *sql.DB, updateItem sienaBookItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	//mssqlConfig := getProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	//fmt.Println(mssqlConfig["schema"])
 	//fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaBookData read all employees
+func fetchSienaBookData(db *sql.DB, tsql string) (int, []sienaBookItem, sienaBookItem, error) {
+
+	var sienaBook sienaBookItem
+	var sienaBookList []sienaBookItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaBook, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlBOOKBookName, &sqlBOOKFullName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaBook, err
+		}
+
+		sienaBook.Code = sqlBOOKBookName.String
+		sienaBook.Name = sqlBOOKFullName.String
+
+		sienaBookList = append(sienaBookList, sienaBook)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaBookList, sienaBook, nil
 }

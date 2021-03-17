@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaCurrencySQL = "Code, 	Name, 	AmountDp, 	Country, 	CountryName"
+var sqlCCYCode, sqlCCYName, sqlCCYAmountDp, sqlCCYCountry, sqlCCYCountryName sql.NullString
+
 //sienaCurrencyPage is cheese
 type sienaCurrencyListPage struct {
 	Title              string
@@ -28,7 +31,7 @@ type sienaCurrencyPage struct {
 	ID          string
 	Code        string
 	Name        string
-	AmountDP    int32
+	AmountDP    string
 	Country     string
 	CountryName string
 	Action      string
@@ -39,7 +42,7 @@ type sienaCurrencyPage struct {
 type sienaCurrencyItem struct {
 	Code        string
 	Name        string
-	AmountDP    int32
+	AmountDP    string
 	Country     string
 	Action      string
 	CountryName string
@@ -260,74 +263,16 @@ func newSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCurrencyList read all employees
 func getSienaCurrencyList(db *sql.DB) (int, []sienaCurrencyItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCurrencyList []sienaCurrencyItem
-	var sienaCurrency sienaCurrencyItem
-	tsql := fmt.Sprintf("SELECT Code, Name, AmountDP, Country, CountryName FROM %s.sienaCurrency;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name, Country, CountryName string
-		var AmountDP sql.NullInt32
-		err := rows.Scan(&Code, &Name, &AmountDP, &Country, &CountryName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaCurrency.Code = Code
-		sienaCurrency.Name = Name
-		sienaCurrency.AmountDP = AmountDP.Int32
-		sienaCurrency.Country = Country
-		sienaCurrency.CountryName = CountryName
-		sienaCurrencyList = append(sienaCurrencyList, sienaCurrency)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, mssqlConfig["schema"])
+	count, sienaCurrencyList, _, _ := fetchSienaCurrencyData(db, tsql)
 	return count, sienaCurrencyList, nil
 }
 
 // getSienaCurrencyList read all employees
 func getSienaCurrency(db *sql.DB, id string) (int, sienaCurrencyItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaCurrency sienaCurrencyItem
-	tsql := fmt.Sprintf("SELECT Code, Name, AmountDP, Country, CountryName FROM %s.sienaCurrency WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaCurrency, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var Code, Name, Country, CountryName string
-		var AmountDP sql.NullInt32
-		err := rows.Scan(&Code, &Name, &AmountDP, &Country, &CountryName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaCurrency, err
-		}
-		sienaCurrency.Code = Code
-		sienaCurrency.Name = Name
-		sienaCurrency.AmountDP = AmountDP.Int32
-		sienaCurrency.Country = Country
-		sienaCurrency.CountryName = CountryName
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, mssqlConfig["schema"], id)
+	_, _, sienaCurrency, _ := fetchSienaCurrencyData(db, tsql)
 	return 1, sienaCurrency, nil
 }
 
@@ -338,4 +283,39 @@ func putSienaCurrency(db *sql.DB, updateItem sienaCurrencyItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaCurrencyData read all employees
+func fetchSienaCurrencyData(db *sql.DB, tsql string) (int, []sienaCurrencyItem, sienaCurrencyItem, error) {
+
+	var sienaCurrency sienaCurrencyItem
+	var sienaCurrencyList []sienaCurrencyItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCurrency, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCCYCode, &sqlCCYName, &sqlCCYAmountDp, &sqlCCYCountry, &sqlCCYCountryName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCurrency, err
+		}
+
+		sienaCurrency.Code = sqlCCYCode.String
+		sienaCurrency.Name = sqlCCYName.String
+		sienaCurrency.AmountDP = sqlCCYAmountDp.String
+		sienaCurrency.Country = sqlCCYCountry.String
+		sienaCurrency.CountryName = sqlCCYCountryName.String
+
+		sienaCurrencyList = append(sienaCurrencyList, sienaCurrency)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCurrencyList, sienaCurrency, nil
 }

@@ -56,33 +56,33 @@
 
           <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-user"></i>&nbsp;Home</a>
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-user"></i><br>Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fas fa-map-signs"></i>&nbsp;Address</a>
+              <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fas fa-map-signs"></i><br>Address</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="mandates-tab" data-toggle="tab" href="#mandates" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-user-check"></i>&nbsp;Mandates&nbsp;<span
-                  class="badge badge-primary">{{.NoMandates}}</span></a>
+              <a class="nav-link" id="mandates-tab" data-toggle="tab" href="#mandates" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-user-check"></i><br>Mandates&nbsp;<span
+                  class="badge badge-pill badge-light">{{.NoMandates}}</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="payee-tab" data-toggle="tab" href="#payee" role="tab" aria-controls="payee" aria-selected="false"><i class="fas fa-wallet"></i></i>&nbsp;Payees&nbsp;<span class="badge badge-primary">{{.NoPayees}}</span></a>
+              <a class="nav-link" id="payee-tab" data-toggle="tab" href="#payee" role="tab" aria-controls="payee" aria-selected="false"><i class="fas fa-wallet"></i><br>Payees&nbsp;<span class="badge badge-pill badge-light">{{.NoPayees}}</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="contact" aria-selected="false">        <i class="fas fa-landmark"></i>&nbsp;Accounts&nbsp;<span
-                  class="badge badge-primary">{{.NoAccounts}}</span></a>
+              <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="contact" aria-selected="false">        <i class="fas fa-landmark"></i><br>Accounts&nbsp;<span
+                  class="badge badge-pill badge-light">{{.NoAccounts}}</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="additional-tab" data-toggle="tab" href="#additional" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-passport"></i>&nbsp;Additional</a>
+              <a class="nav-link" id="additional-tab" data-toggle="tab" href="#additional" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-passport"></i><br>Additional</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-file-import"></i>&nbsp;Import&nbsp;<span
-                  class="badge badge-primary">{{.NoImports}}</span></a>
+              <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-file-import"></i><br>Import&nbsp;<span
+                  class="badge badge-pill badge-light">{{.NoImports}}</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="txn-tab" data-toggle="tab" href="#txn" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-shopping-basket"></i>
-&nbsp;Deals&nbsp;<span
-                  class="badge badge-primary">{{.NoTxns}}</span></a>
+<br>Deals&nbsp;<span
+                  class="badge badge-pill badge-light">{{.NoTxns}}</span></a>
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
@@ -440,8 +440,8 @@
                         <td class="align-middle">{{.AccountName}}</td>
 
                         <td class="align-middle text-center">{{.CCY}}</td>
-                        <td class="align-middle text-center" style="{{.CBNeg}}">{{.CashBalance}}</td>
-                <td class="align-middle text-center" style="{{.LBNeg}}">{{.LedgerBalance}}</td>
+                        <td class="align-middle text-center plusmin">{{.CashBalance}}</td>
+                <td class="align-middle text-center plusmin">{{.LedgerBalance}}</td>
         <td class="align-middle text-center">{{.Status}}</td>
 
 
@@ -461,7 +461,7 @@
                   </table>
                   <script language="JavaScript" type="text/javascript">
 
-                  MakeNegative();
+                  MakePosNeg();
 
                    </script>
                              </div>
@@ -675,5 +675,20 @@
         });
       });
     });
+  </script>
+  <script>
+    function MakePosNeg() {
+      var TDs = document.querySelectorAll('.plusmin');
+
+      for (var i = 0; i < TDs.length; i++) {
+        var temp = TDs[i];
+        if (temp.firstChild.nodeValue.indexOf('-') == 0) {
+          temp.className = "text-right negative";
+        } else {
+          temp.className = "text-right positive";
+        }
+      }
+    }
+    onload = MakePosNeg()
   </script>
 </body>

@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="CounterpartyImportID" classname="com.eurobase.siena.data.CounterpartyImportIDs.CounterpartyImportID"><RECORD><KEYFIELD name="shortName"></KEYFIELD><FIELD name="fullName"></FIELD><FIELD name="country"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

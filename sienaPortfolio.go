@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaPortfolioSQL = "Code, 	Name"
+var sqlPRTCode, sqlPRTName sql.NullString
+
 //sienaPortfolioPage is cheese
 type sienaPortfolioListPage struct {
 	Title               string
@@ -219,34 +222,8 @@ func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaPortfolioList read all employees
 func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaPortfolioList []sienaPortfolioItem
-	var sienaPortfolio sienaPortfolioItem
-	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaPortfolio;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var code, name string
-		err := rows.Scan(&code, &name)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaPortfolio.Code = code
-		sienaPortfolio.Name = name
-		sienaPortfolioList = append(sienaPortfolioList, sienaPortfolio)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, mssqlConfig["schema"])
+	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
 	return count, sienaPortfolioList, nil
 }
 
@@ -254,31 +231,8 @@ func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
-	var sienaPortfolio sienaPortfolioItem
-	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaPortfolio WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaPortfolio, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var code, name string
-
-		err := rows.Scan(&code, &name)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaPortfolio, err
-		}
-		sienaPortfolio.Code = code
-		sienaPortfolio.Name = name
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, mssqlConfig["schema"], id)
+	_, _, sienaPortfolio, _ := fetchSienaPortfolioData(db, tsql)
 	return 1, sienaPortfolio, nil
 }
 
@@ -289,4 +243,35 @@ func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// getSienaPortfolioList read all employees
+func fetchSienaPortfolioData(db *sql.DB, tsql string) (int, []sienaPortfolioItem, sienaPortfolioItem, error) {
+	log.Println("QUERY", tsql)
+	var sienaPortfolioList []sienaPortfolioItem
+	var sienaPortfolio sienaPortfolioItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaPortfolio, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlPRTCode, &sqlPRTName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaPortfolio, err
+		}
+		sienaPortfolio.Code = sqlPRTCode.String
+		sienaPortfolio.Name = sqlPRTName.String
+		sienaPortfolioList = append(sienaPortfolioList, sienaPortfolio)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	log.Println(count, sienaPortfolioList, sienaPortfolio)
+	return count, sienaPortfolioList, sienaPortfolio, nil
 }

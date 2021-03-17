@@ -9,10 +9,10 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var sqlFields = "SienaReference, 	CustomerSienaView, 	Status, 	ValueDate, 	MaturityDate, 	ContractNumber, 	ExternalReference, 	Book, 	MandatedUser, 	Portfolio, 	AgreementId, 	BackOfficeRefNo, 	ISIN, 	UTI, 	BookName, 	Centre, 	Firm, 	DealTypeShortName, 	FullDealType, 	TradeDate, 	DealtCcy, 	DealtAmount, 	AgainstAmount, 	AgainstCcy, 	AllInRate, 	MktRate, 	SettleCcy, 	Direction, 	NpvRate, 	OriginUser, 	PayInstruction, 	ReceiptInstruction, 	NIName, 	CCYPair, 	Instrument, 	PortfolioName, 	RVDate, 	RVMTM, 	CounterBook, 	CounterBookName, 	Party, 	PartyName"
+var sienaDealListSQL = "SienaReference, 	CustomerSienaView, 	Status, 	ValueDate, 	MaturityDate, 	ContractNumber, 	ExternalReference, 	Book, 	MandatedUser, 	Portfolio, 	AgreementId, 	BackOfficeRefNo, 	ISIN, 	UTI, 	BookName, 	Centre, 	Firm, 	DealTypeShortName, 	FullDealType, 	TradeDate, 	DealtCcy, 	DealtAmount, 	AgainstAmount, 	AgainstCcy, 	AllInRate, 	MktRate, 	SettleCcy, 	Direction, 	NpvRate, 	OriginUser, 	PayInstruction, 	ReceiptInstruction, 	NIName, 	CCYPair, 	Instrument, 	PortfolioName, 	RVDate, 	RVMTM, 	CounterBook, 	CounterBookName, 	Party, 	PartyName"
 
 // Defined the Temp Variables used to extract data returned from SQL
-var sqlSienaReference, sqlCustomerSienaView, sqlStatus, sqlValueDate, sqlMaturityDate, sqlContractNumber, sqlExternalReference, sqlBook, sqlMandatedUser, sqlPortfolio, sqlAgreementId, sqlBackOfficeRefNo, sqlISIN, sqlUTI, sqlBookName, sqlCentre, sqlFirm, sqlDealTypeShortName, sqlFullDealType, sqlTradeDate, sqlDealtCcy, sqlDealtAmount, sqlAgainstAmount, sqlAgainstCcy, sqlAllInRate, sqlMktRate, sqlSettleCcy, sqlDirection, sqlNpvRate, sqlOriginUser, sqlPayInstruction, sqlReceiptInstruction, sqlNIName, sqlCCYPair, sqlInstrument, sqlPortfolioName, sqlRVDate, sqlRVMTM, sqlCounterBook, sqlCounterBookName, sqlParty, sqlPartyName sql.NullString
+var sqlDLSTSienaReference, sqlDLSTCustomerSienaView, sqlDLSTStatus, sqlDLSTValueDate, sqlDLSTMaturityDate, sqlDLSTContractNumber, sqlDLSTExternalReference, sqlDLSTBook, sqlDLSTMandatedUser, sqlDLSTPortfolio, sqlDLSTAgreementId, sqlDLSTBackOfficeRefNo, sqlDLSTISIN, sqlDLSTUTI, sqlDLSTBookName, sqlDLSTCentre, sqlDLSTFirm, sqlDLSTDealTypeShortName, sqlDLSTFullDealType, sqlDLSTTradeDate, sqlDLSTDealtCcy, sqlDLSTDealtAmount, sqlDLSTAgainstAmount, sqlDLSTAgainstCcy, sqlDLSTAllInRate, sqlDLSTMktRate, sqlDLSTSettleCcy, sqlDLSTDirection, sqlDLSTNpvRate, sqlDLSTOriginUser, sqlDLSTPayInstruction, sqlDLSTReceiptInstruction, sqlDLSTNIName, sqlDLSTCCYPair, sqlDLSTInstrument, sqlDLSTPortfolioName, sqlDLSTRVDate, sqlDLSTRVMTM, sqlDLSTCounterBook, sqlDLSTCounterBookName, sqlDLSTParty, sqlDLSTPartyName sql.NullString
 
 //sienaDealListPage is cheese
 type sienaDealListListPage struct {
@@ -171,8 +171,8 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		SienaReference:     returnRecord.SienaReference,
 		CustomerSienaView:  returnRecord.CustomerSienaView,
 		Status:             returnRecord.Status,
-		ValueDate:          sqlDateToHTMLDate(returnRecord.ValueDate),
-		MaturityDate:       sqlDateToHTMLDate(returnRecord.MaturityDate),
+		ValueDate:          returnRecord.ValueDate,
+		MaturityDate:       returnRecord.MaturityDate,
 		ContractNumber:     returnRecord.ContractNumber,
 		ExternalReference:  returnRecord.ExternalReference,
 		Book:               returnRecord.Book,
@@ -187,7 +187,7 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		Firm:               returnRecord.Firm,
 		DealTypeShortName:  returnRecord.DealTypeShortName,
 		FullDealType:       returnRecord.FullDealType,
-		TradeDate:          sqlDateToHTMLDate(returnRecord.TradeDate),
+		TradeDate:          returnRecord.TradeDate,
 		DealtCcy:           returnRecord.DealtCcy,
 		DealtAmount:        returnRecord.DealtAmount,
 		AgainstAmount:      returnRecord.AgainstAmount,
@@ -204,7 +204,7 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		CCYPair:            returnRecord.CCYPair,
 		Instrument:         returnRecord.Instrument,
 		PortfolioName:      returnRecord.PortfolioName,
-		RVDate:             sqlDateToHTMLDate(returnRecord.RVDate),
+		RVDate:             returnRecord.RVDate,
 		RVMTM:              returnRecord.RVMTM,
 		CounterBook:        returnRecord.CounterBook,
 		CounterBookName:    returnRecord.CounterBookName,
@@ -220,248 +220,28 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaDealListList read all employees
 func getSienaDealListList(db *sql.DB) (int, []sienaDealListItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaDealListList []sienaDealListItem
-	var sienaDealList sienaDealListItem
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList;", sqlFields, mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList;", sienaDealListSQL, mssqlConfig["schema"])
+	count, sienaDealListList, _, _ := fetchSienaDealListData(db, tsql)
 
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		//var Code, Name, Country, CountryName string
-		//		var DealListKeyCounterpartyFirm, DealListKeyCounterpartyCentre, DealListKeyUserName, TelephoneNumber, EmailAddress, FirstName, Surname, Postcode, NationalIDNo, PassportNo, Country, CountryName, FirmName, CentreName, SystemUser sql.NullString
-
-		err := rows.Scan(&sqlSienaReference, &sqlCustomerSienaView, &sqlStatus, &sqlValueDate, &sqlMaturityDate, &sqlContractNumber, &sqlExternalReference, &sqlBook, &sqlMandatedUser, &sqlPortfolio, &sqlAgreementId, &sqlBackOfficeRefNo, &sqlISIN, &sqlUTI, &sqlBookName, &sqlCentre, &sqlFirm, &sqlDealTypeShortName, &sqlFullDealType, &sqlTradeDate, &sqlDealtCcy, &sqlDealtAmount, &sqlAgainstAmount, &sqlAgainstCcy, &sqlAllInRate, &sqlMktRate, &sqlSettleCcy, &sqlDirection, &sqlNpvRate, &sqlOriginUser, &sqlPayInstruction, &sqlReceiptInstruction, &sqlNIName, &sqlCCYPair, &sqlInstrument, &sqlPortfolioName, &sqlRVDate, &sqlRVMTM, &sqlCounterBook, &sqlCounterBookName, &sqlParty, &sqlPartyName)
-
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-
-		sienaDealList.SienaReference = sqlSienaReference.String
-		sienaDealList.CustomerSienaView = sqlCustomerSienaView.String
-		sienaDealList.Status = sqlStatus.String
-		sienaDealList.ValueDate = sqlValueDate.String
-		sienaDealList.MaturityDate = sqlMaturityDate.String
-		sienaDealList.ContractNumber = sqlContractNumber.String
-		sienaDealList.ExternalReference = sqlExternalReference.String
-		sienaDealList.Book = sqlBook.String
-		sienaDealList.MandatedUser = sqlMandatedUser.String
-		sienaDealList.Portfolio = sqlPortfolio.String
-		sienaDealList.AgreementId = sqlAgreementId.String
-		sienaDealList.BackOfficeRefNo = sqlBackOfficeRefNo.String
-		sienaDealList.ISIN = sqlISIN.String
-		sienaDealList.UTI = sqlUTI.String
-		sienaDealList.BookName = sqlBookName.String
-		sienaDealList.Centre = sqlCentre.String
-		sienaDealList.Firm = sqlFirm.String
-		sienaDealList.DealTypeShortName = sqlDealTypeShortName.String
-		sienaDealList.FullDealType = sqlFullDealType.String
-		sienaDealList.TradeDate = sqlTradeDate.String
-		sienaDealList.DealtCcy = sqlDealtCcy.String
-		sienaDealList.DealtAmount = sqlDealtAmount.String
-		sienaDealList.AgainstAmount = sqlAgainstAmount.String
-		sienaDealList.AgainstCcy = sqlAgainstCcy.String
-		sienaDealList.AllInRate = sqlAllInRate.String
-		sienaDealList.MktRate = sqlMktRate.String
-		sienaDealList.SettleCcy = sqlSettleCcy.String
-		sienaDealList.Direction = sqlDirection.String
-		sienaDealList.NpvRate = sqlNpvRate.String
-		sienaDealList.OriginUser = sqlOriginUser.String
-		sienaDealList.PayInstruction = sqlPayInstruction.String
-		sienaDealList.ReceiptInstruction = sqlReceiptInstruction.String
-		sienaDealList.NIName = sqlNIName.String
-		sienaDealList.CCYPair = sqlCCYPair.String
-		sienaDealList.Instrument = sqlInstrument.String
-		sienaDealList.PortfolioName = sqlPortfolioName.String
-		sienaDealList.RVDate = sqlRVDate.String
-		sienaDealList.RVMTM = sqlRVMTM.String
-		sienaDealList.CounterBook = sqlCounterBook.String
-		sienaDealList.CounterBookName = sqlCounterBookName.String
-		sienaDealList.Party = sqlParty.String
-		sienaDealList.PartyName = sqlPartyName.String
-
-		if sienaDealList.Firm != "" {
-			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, cCounterpartySep, sienaDealList.Centre)
-		}
-
-		sienaDealListList = append(sienaDealListList, sienaDealList)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
 	return count, sienaDealListList, nil
 }
 
 // getSienaDealListList read all employees
 func getSienaDealListListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaDealListItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaDealListList []sienaDealListItem
-	var sienaDealList sienaDealListItem
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE Firm='%s' AND Centre='%s';", sqlFields, mssqlConfig["schema"], idFirm, idCentre)
-	//	fmt.Println("MS SQL:", tsql)
 
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		//var Code, Name, Country, CountryName string
-		//	var DealListKeyCounterpartyFirm, DealListKeyCounterpartyCentre, DealListKeyUserName, TelephoneNumber, EmailAddress, FirstName, Surname, Postcode, NationalIDNo, PassportNo, Country, CountryName, FirmName, CentreName, SystemUser sql.NullString
-		//var Active, Notify sql.NullBool
-		//var DateOfBirth time.Time
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE Firm='%s' AND Centre='%s';", sienaDealListSQL, mssqlConfig["schema"], idFirm, idCentre)
 
-		err := rows.Scan(&sqlSienaReference, &sqlCustomerSienaView, &sqlStatus, &sqlValueDate, &sqlMaturityDate, &sqlContractNumber, &sqlExternalReference, &sqlBook, &sqlMandatedUser, &sqlPortfolio, &sqlAgreementId, &sqlBackOfficeRefNo, &sqlISIN, &sqlUTI, &sqlBookName, &sqlCentre, &sqlFirm, &sqlDealTypeShortName, &sqlFullDealType, &sqlTradeDate, &sqlDealtCcy, &sqlDealtAmount, &sqlAgainstAmount, &sqlAgainstCcy, &sqlAllInRate, &sqlMktRate, &sqlSettleCcy, &sqlDirection, &sqlNpvRate, &sqlOriginUser, &sqlPayInstruction, &sqlReceiptInstruction, &sqlNIName, &sqlCCYPair, &sqlInstrument, &sqlPortfolioName, &sqlRVDate, &sqlRVMTM, &sqlCounterBook, &sqlCounterBookName, &sqlParty, &sqlPartyName)
+	count, sienaDealListList, _, _ := fetchSienaDealListData(db, tsql)
 
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-
-		sienaDealList.SienaReference = sqlSienaReference.String
-		sienaDealList.CustomerSienaView = sqlCustomerSienaView.String
-		sienaDealList.Status = sqlStatus.String
-		sienaDealList.ValueDate = sqlValueDate.String
-		sienaDealList.MaturityDate = sqlMaturityDate.String
-		sienaDealList.ContractNumber = sqlContractNumber.String
-		sienaDealList.ExternalReference = sqlExternalReference.String
-		sienaDealList.Book = sqlBook.String
-		sienaDealList.MandatedUser = sqlMandatedUser.String
-		sienaDealList.Portfolio = sqlPortfolio.String
-		sienaDealList.AgreementId = sqlAgreementId.String
-		sienaDealList.BackOfficeRefNo = sqlBackOfficeRefNo.String
-		sienaDealList.ISIN = sqlISIN.String
-		sienaDealList.UTI = sqlUTI.String
-		sienaDealList.BookName = sqlBookName.String
-		sienaDealList.Centre = sqlCentre.String
-		sienaDealList.Firm = sqlFirm.String
-		sienaDealList.DealTypeShortName = sqlDealTypeShortName.String
-		sienaDealList.FullDealType = sqlFullDealType.String
-		sienaDealList.TradeDate = sqlTradeDate.String
-		sienaDealList.DealtCcy = sqlDealtCcy.String
-		sienaDealList.DealtAmount = sqlDealtAmount.String
-		sienaDealList.AgainstAmount = sqlAgainstAmount.String
-		sienaDealList.AgainstCcy = sqlAgainstCcy.String
-		sienaDealList.AllInRate = sqlAllInRate.String
-		sienaDealList.MktRate = sqlMktRate.String
-		sienaDealList.SettleCcy = sqlSettleCcy.String
-		sienaDealList.Direction = sqlDirection.String
-		sienaDealList.NpvRate = sqlNpvRate.String
-		sienaDealList.OriginUser = sqlOriginUser.String
-		sienaDealList.PayInstruction = sqlPayInstruction.String
-		sienaDealList.ReceiptInstruction = sqlReceiptInstruction.String
-		sienaDealList.NIName = sqlNIName.String
-		sienaDealList.CCYPair = sqlCCYPair.String
-		sienaDealList.Instrument = sqlInstrument.String
-		sienaDealList.PortfolioName = sqlPortfolioName.String
-		sienaDealList.RVDate = sqlRVDate.String
-		sienaDealList.RVMTM = sqlRVMTM.String
-		sienaDealList.CounterBook = sqlCounterBook.String
-		sienaDealList.CounterBookName = sqlCounterBookName.String
-		sienaDealList.Party = sqlParty.String
-		sienaDealList.PartyName = sqlPartyName.String
-
-		if sienaDealList.Firm != "" {
-			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, cCounterpartySep, sienaDealList.Centre)
-		}
-
-		sienaDealListList = append(sienaDealListList, sienaDealList)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
 	return count, sienaDealListList, nil
 }
 
 // getSienaDealListList read all employees
 func getSienaDealList(db *sql.DB, sienaDealListID string) (int, sienaDealListItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaDealList sienaDealListItem
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE SienaReference='%s';", sqlFields, mssqlConfig["schema"], sienaDealListID)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaDealList, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		//		var DealListKeyCounterpartyFirm, DealListKeyCounterpartyCentre, DealListKeyUserName, TelephoneNumber, EmailAddress, FirstName, Surname, Postcode, NationalIDNo, PassportNo, Country, CountryName, FirmName, CentreName, SystemUser sql.NullString
-		//	var Active, Notify sql.NullBool
-		//	var DateOfBirth time.Time
-
-		err := rows.Scan(&sqlSienaReference, &sqlCustomerSienaView, &sqlStatus, &sqlValueDate, &sqlMaturityDate, &sqlContractNumber, &sqlExternalReference, &sqlBook, &sqlMandatedUser, &sqlPortfolio, &sqlAgreementId, &sqlBackOfficeRefNo, &sqlISIN, &sqlUTI, &sqlBookName, &sqlCentre, &sqlFirm, &sqlDealTypeShortName, &sqlFullDealType, &sqlTradeDate, &sqlDealtCcy, &sqlDealtAmount, &sqlAgainstAmount, &sqlAgainstCcy, &sqlAllInRate, &sqlMktRate, &sqlSettleCcy, &sqlDirection, &sqlNpvRate, &sqlOriginUser, &sqlPayInstruction, &sqlReceiptInstruction, &sqlNIName, &sqlCCYPair, &sqlInstrument, &sqlPortfolioName, &sqlRVDate, &sqlRVMTM, &sqlCounterBook, &sqlCounterBookName, &sqlParty, &sqlPartyName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaDealList, err
-		}
-
-		sienaDealList.SienaReference = sqlSienaReference.String
-		sienaDealList.CustomerSienaView = sqlCustomerSienaView.String
-		sienaDealList.Status = sqlStatus.String
-		sienaDealList.ValueDate = sqlValueDate.String
-		sienaDealList.MaturityDate = sqlMaturityDate.String
-		sienaDealList.ContractNumber = sqlContractNumber.String
-		sienaDealList.ExternalReference = sqlExternalReference.String
-		sienaDealList.Book = sqlBook.String
-		sienaDealList.MandatedUser = sqlMandatedUser.String
-		sienaDealList.Portfolio = sqlPortfolio.String
-		sienaDealList.AgreementId = sqlAgreementId.String
-		sienaDealList.BackOfficeRefNo = sqlBackOfficeRefNo.String
-		sienaDealList.ISIN = sqlISIN.String
-		sienaDealList.UTI = sqlUTI.String
-		sienaDealList.BookName = sqlBookName.String
-		sienaDealList.Centre = sqlCentre.String
-		sienaDealList.Firm = sqlFirm.String
-		sienaDealList.DealTypeShortName = sqlDealTypeShortName.String
-		sienaDealList.FullDealType = sqlFullDealType.String
-		sienaDealList.TradeDate = sqlTradeDate.String
-		sienaDealList.DealtCcy = sqlDealtCcy.String
-		sienaDealList.DealtAmount = sqlDealtAmount.String
-		sienaDealList.AgainstAmount = sqlAgainstAmount.String
-		sienaDealList.AgainstCcy = sqlAgainstCcy.String
-		sienaDealList.AllInRate = sqlAllInRate.String
-		sienaDealList.MktRate = sqlMktRate.String
-		sienaDealList.SettleCcy = sqlSettleCcy.String
-		sienaDealList.Direction = sqlDirection.String
-		sienaDealList.NpvRate = sqlNpvRate.String
-		sienaDealList.OriginUser = sqlOriginUser.String
-		sienaDealList.PayInstruction = sqlPayInstruction.String
-		sienaDealList.ReceiptInstruction = sqlReceiptInstruction.String
-		sienaDealList.NIName = sqlNIName.String
-		sienaDealList.CCYPair = sqlCCYPair.String
-		sienaDealList.Instrument = sqlInstrument.String
-		sienaDealList.PortfolioName = sqlPortfolioName.String
-		sienaDealList.RVDate = sqlRVDate.String
-		sienaDealList.RVMTM = sqlRVMTM.String
-		sienaDealList.CounterBook = sqlCounterBook.String
-		sienaDealList.CounterBookName = sqlCounterBookName.String
-		sienaDealList.Party = sqlParty.String
-		sienaDealList.PartyName = sqlPartyName.String
-
-		if sienaDealList.Firm != "" {
-			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, cCounterpartySep, sienaDealList.Centre)
-		}
-
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE SienaReference='%s';", sienaDealListSQL, mssqlConfig["schema"], sienaDealListID)
+	_, _, sienaDealList, _ := fetchSienaDealListData(db, tsql)
 	return 1, sienaDealList, nil
 }
 
@@ -472,4 +252,80 @@ func putSienaDealList(db *sql.DB, updateItem sienaDealListItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaDealListData read all employees
+func fetchSienaDealListData(db *sql.DB, tsql string) (int, []sienaDealListItem, sienaDealListItem, error) {
+
+	var sienaDealList sienaDealListItem
+	var sienaDealListList []sienaDealListItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaDealList, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlDLSTSienaReference, &sqlDLSTCustomerSienaView, &sqlDLSTStatus, &sqlDLSTValueDate, &sqlDLSTMaturityDate, &sqlDLSTContractNumber, &sqlDLSTExternalReference, &sqlDLSTBook, &sqlDLSTMandatedUser, &sqlDLSTPortfolio, &sqlDLSTAgreementId, &sqlDLSTBackOfficeRefNo, &sqlDLSTISIN, &sqlDLSTUTI, &sqlDLSTBookName, &sqlDLSTCentre, &sqlDLSTFirm, &sqlDLSTDealTypeShortName, &sqlDLSTFullDealType, &sqlDLSTTradeDate, &sqlDLSTDealtCcy, &sqlDLSTDealtAmount, &sqlDLSTAgainstAmount, &sqlDLSTAgainstCcy, &sqlDLSTAllInRate, &sqlDLSTMktRate, &sqlDLSTSettleCcy, &sqlDLSTDirection, &sqlDLSTNpvRate, &sqlDLSTOriginUser, &sqlDLSTPayInstruction, &sqlDLSTReceiptInstruction, &sqlDLSTNIName, &sqlDLSTCCYPair, &sqlDLSTInstrument, &sqlDLSTPortfolioName, &sqlDLSTRVDate, &sqlDLSTRVMTM, &sqlDLSTCounterBook, &sqlDLSTCounterBookName, &sqlDLSTParty, &sqlDLSTPartyName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaDealList, err
+		}
+
+		sienaDealList.SienaReference = sqlDLSTSienaReference.String
+		sienaDealList.CustomerSienaView = sqlDLSTCustomerSienaView.String
+		sienaDealList.Status = sqlDLSTStatus.String
+		sienaDealList.ValueDate = sqlDateToHTMLDate(sqlDLSTValueDate.String)
+		sienaDealList.MaturityDate = sqlDateToHTMLDate(sqlDLSTMaturityDate.String)
+		sienaDealList.ContractNumber = sqlDLSTContractNumber.String
+		sienaDealList.ExternalReference = sqlDLSTExternalReference.String
+		sienaDealList.Book = sqlDLSTBook.String
+		sienaDealList.MandatedUser = sqlDLSTMandatedUser.String
+		sienaDealList.Portfolio = sqlDLSTPortfolio.String
+		sienaDealList.AgreementId = sqlDLSTAgreementId.String
+		sienaDealList.BackOfficeRefNo = sqlDLSTBackOfficeRefNo.String
+		sienaDealList.ISIN = sqlDLSTISIN.String
+		sienaDealList.UTI = sqlDLSTUTI.String
+		sienaDealList.BookName = sqlDLSTBookName.String
+		sienaDealList.Centre = sqlDLSTCentre.String
+		sienaDealList.Firm = sqlDLSTFirm.String
+		sienaDealList.DealTypeShortName = sqlDLSTDealTypeShortName.String
+		sienaDealList.FullDealType = sqlDLSTFullDealType.String
+		sienaDealList.TradeDate = sqlDateToHTMLDate(sqlDLSTTradeDate.String)
+		sienaDealList.DealtCcy = sqlDLSTDealtCcy.String
+		sienaDealList.DealtAmount = formatCurrency(sqlDLSTDealtAmount.String, sqlDLSTDealtCcy.String)
+		sienaDealList.AgainstCcy = sqlDLSTAgainstCcy.String
+		sienaDealList.AgainstAmount = formatCurrency(sqlDLSTAgainstAmount.String, sqlDLSTAgainstCcy.String)
+		sienaDealList.AllInRate = sqlDLSTAllInRate.String
+		sienaDealList.MktRate = sqlDLSTMktRate.String
+		sienaDealList.SettleCcy = sqlDLSTSettleCcy.String
+		sienaDealList.Direction = sqlDLSTDirection.String
+		sienaDealList.NpvRate = sqlDLSTNpvRate.String
+		sienaDealList.OriginUser = sqlDLSTOriginUser.String
+		sienaDealList.PayInstruction = sqlDLSTPayInstruction.String
+		sienaDealList.ReceiptInstruction = sqlDLSTReceiptInstruction.String
+		sienaDealList.NIName = sqlDLSTNIName.String
+		sienaDealList.CCYPair = sqlDLSTCCYPair.String
+		sienaDealList.Instrument = sqlDLSTInstrument.String
+		sienaDealList.PortfolioName = sqlDLSTPortfolioName.String
+		sienaDealList.RVDate = sqlDateToHTMLDate(sqlDLSTRVDate.String)
+		sienaDealList.RVMTM = sqlDLSTRVMTM.String
+		sienaDealList.CounterBook = sqlDLSTCounterBook.String
+		sienaDealList.CounterBookName = sqlDLSTCounterBookName.String
+		sienaDealList.Party = sqlDLSTParty.String
+		sienaDealList.PartyName = sqlDLSTPartyName.String
+
+		if sienaDealList.Firm != "" {
+			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, cCounterpartySep, sienaDealList.Centre)
+		}
+
+		sienaDealListList = append(sienaDealListList, sienaDealList)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaDealListList, sienaDealList, nil
 }

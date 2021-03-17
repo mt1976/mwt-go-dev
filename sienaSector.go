@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaSectorSQL = "Code, 	Name"
+var sqlSCTCode, sqlSCTName sql.NullString
+
 //sienaSectorPage is cheese
 type sienaSectorListPage struct {
 	Title            string
@@ -219,66 +222,16 @@ func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaSectorList read all employees
 func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaSectorList []sienaSectorItem
-	var sienaSector sienaSectorItem
-	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaSector;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var code, name string
-		err := rows.Scan(&code, &name)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaSector.Code = code
-		sienaSector.Name = name
-		sienaSectorList = append(sienaSectorList, sienaSector)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector;", sienaSectorSQL, mssqlConfig["schema"])
+	count, sienaSectorList, _, _ := fetchSienaSectorData(db, tsql)
 	return count, sienaSectorList, nil
 }
 
 // getSienaSectorList read all employees
 func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaSector sienaSectorItem
-	tsql := fmt.Sprintf("SELECT Code, Name FROM %s.sienaSector WHERE Code='%s';", mssqlConfig["schema"], id)
-	fmt.Println("MS SQL:", tsql)
-
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaSector, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var code, name string
-
-		err := rows.Scan(&code, &name)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaSector, err
-		}
-		sienaSector.Code = code
-		sienaSector.Name = name
-		count++
-	}
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector WHERE Code='%s';", sienaSectorSQL, mssqlConfig["schema"], id)
+	_, _, sienaSector, _ := fetchSienaSectorData(db, tsql)
 	return 1, sienaSector, nil
 }
 
@@ -289,4 +242,36 @@ func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaSectorData read all employees
+func fetchSienaSectorData(db *sql.DB, tsql string) (int, []sienaSectorItem, sienaSectorItem, error) {
+
+	var sienaSector sienaSectorItem
+	var sienaSectorList []sienaSectorItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaSector, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlSCTCode, &sqlSCTName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaSector, err
+		}
+
+		sienaSector.Code = sqlSCTCode.String
+		sienaSector.Name = sqlSCTName.String
+
+		sienaSectorList = append(sienaSectorList, sienaSector)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaSectorList, sienaSector, nil
 }

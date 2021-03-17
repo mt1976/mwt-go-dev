@@ -126,10 +126,21 @@ body {
   min-height: 100%;
   overflow-x: hidden;
 }
+
+.card-footer{
+margin: 0;
+padding: 5;
+padding-top:2;
+}
+
 .card-header {
   color: var(--custom-primary-colour);
-  font-weight: bold !important;
+  font-weight: normal !important;
   font-size: 1.5rem !important;
+  margin:0;
+  padding:5;
+  padding-top:2;
+  padding-left:8;
 }
 
 code {
@@ -215,6 +226,9 @@ body {
   background-color: green;
 }
 
+.nav-pills {
+}
+
 .navbar-brand {
   color: #322a77;
   font-size: 8rem;
@@ -227,6 +241,29 @@ body {
       rgba(255, 255, 255, .6),
       rgba(255, 255, 255, .6));
   margin: 2px;
+  min-height: 50px;
+  align-items: center!important;
+  align-content: center!important;
+  text-align:center!important;
+  vertical-align: middle!important;
+  padding-top: 10px;
+}
+
+a.nav-link{
+  color:var(--custom-primary-colour);
+  align-items: center!important;
+  align-content: center!important;
+  text-align:center!important;
+  vertical-align: middle!important;
+}
+
+.badge-primary{
+  color:var(--custom-primary-colour);
+  background-color: white;
+  padding:2px;
+  padding-bottom: 5px;
+  font-size: 12pt;
+  font-weight: normal;
 }
 
 .nav-link.active{
@@ -371,18 +408,28 @@ body {
 }
 
 h2{
-  font-weight: light!normal;
+  font-weight: normal!important;
+  color: var(--custom-primary-colour);
+  font-size: 18pt;
+  font-kerning: none;
 }
-.h2{
-  font-weight: light!normal;
+
+h4{
+  font-weight: normal!important;
+  color: var(--custom-primary-colour);
+  font-size: 18pt;
+  font-kerning: none;
+  margin-top:0;
+  margin-bottom: 0;
 }
+
 
 .label {
   margin-bottom: 0;
 }
 
 label {
-  font-weight: bold !important;
+
   color: var(--custom-primary-colour);
   margin-bottom: 1px !important;
   margin-left: 1px;
@@ -394,12 +441,14 @@ td.negative {
 }
 
 .negative {
-  color: red;
+  color: red!important;
 }
 
 .positive {
-  color: green;
+  color: var(--custom-text)!important;
 }
+
+
 
 .dropdown-item {
   margin-top: .2rem;
@@ -443,4 +492,9 @@ td.negative {
 
 .dd-text-primary {
   color: var(--custom-primary-colour);
+}
+
+.listdate{
+  background-color: transparent!important;
+  border:0;
 }

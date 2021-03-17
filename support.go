@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/leekchan/accounting"
 )
 
 // Max returns the larger of x or y.
@@ -288,4 +289,10 @@ func sqlDateToHTMLDate(inDate string) (outDate string) {
 		rtnDate = inDate[0:10]
 	}
 	return rtnDate
+}
+
+func formatCurrency(inAmount string, inCCY string) string {
+	ac := accounting.Accounting{Symbol: inCCY, Precision: 2, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013\u2013"}
+	bum, _ := strconv.ParseFloat(inAmount, 64)
+	return ac.FormatMoney(bum)
 }

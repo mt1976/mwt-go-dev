@@ -258,7 +258,7 @@ func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func waitForResponse(id string, wctProperties map[string]string) WctResponsePayload {
+func getResponseAsync(id string, wctProperties map[string]string, r *http.Request) WctResponsePayload {
 
 	var responseFileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
 	var processedFileName = wctProperties["processedpath"] + "/" + id + "." + wctProperties["responseformat"]
@@ -294,6 +294,12 @@ func waitForResponse(id string, wctProperties map[string]string) WctResponsePayl
 
 		}
 		//fmt.Println(text)
+	}
+
+	respStatus, _ := strconv.Atoi(wibble.ResponseStatus)
+
+	if respStatus != 200 {
+		http.RedirectHandler("/", respStatus)
 	}
 
 	return wibble

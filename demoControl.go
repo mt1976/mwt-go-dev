@@ -178,7 +178,8 @@ func main() {
 
 	http.HandleFunc("/listSienaDealList/", listSienaDealListHandler)
 	http.HandleFunc("/viewSienaDealList/", viewSienaDealListHandler)
-	//http.HandleFunc("/editSienaDealList/", editSienaDealListHandler)
+	http.HandleFunc("/listSienaAccountLadder/", listSienaAccountLadderHandler)
+	http.HandleFunc("/listSienaAccountTransactions/", listSienaAccountTransactionsHandler)
 	//http.HandleFunc("/saveSienaDealList/", saveSienaDealListHandler)
 	//http.HandleFunc("/newSienaDealList/", newSienaDealListHandler)
 

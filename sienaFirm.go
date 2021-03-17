@@ -13,6 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
+var sienaFirmSQL = "FirmName, 	FullName, 	Country, 	Sector, 	SectorName, 	CountryName"
+var sqlFRMFirmName, sqlFRMFullName, sqlFRMCountry, sqlFRMSector, sqlFRMSectorName, sqlFRMCountryName sql.NullString
+
 //sienaFirmPage is cheese
 type sienaFirmListPage struct {
 	Title          string
@@ -29,9 +32,9 @@ type sienaFirmPage struct {
 	FirmName    string
 	FullName    string
 	Country     string
-	CountryName string
 	Sector      string
 	SectorName  string
+	CountryName string
 	Action      string
 	CountryList []sienaCountryItem
 	SectorList  []sienaSectorItem
@@ -42,9 +45,9 @@ type sienaFirmItem struct {
 	FirmName    string
 	FullName    string
 	Country     string
-	CountryName string
 	Sector      string
 	SectorName  string
+	CountryName string
 	Action      string
 }
 
@@ -86,9 +89,9 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaFirmItem
+	//var returnList []sienaFirmItem
 	searchID := getURLparam(r, "SienaFirm")
-	noItems, returnRecord, _ := getSienaFirm(thisConnection, searchID)
+	_, returnRecord, _ := getSienaFirm(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -121,9 +124,9 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaFirmItem
+	//var returnList []sienaFirmItem
 	searchID := getURLparam(r, "SienaFirm")
-	noItems, returnRecord, _ := getSienaFirm(thisConnection, searchID)
+	_, returnRecord, _ := getSienaFirm(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -275,77 +278,19 @@ func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaFirmList read all employees
 func getSienaFirmList(db *sql.DB) (int, []sienaFirmItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaFirmList []sienaFirmItem
-	var sienaFirm sienaFirmItem
-	tsql := fmt.Sprintf("SELECT FirmName, FullName, Country, Sector, CountryName, SectorName FROM %s.sienaFirm;", mssqlConfig["schema"])
-	//	fmt.Println("MS SQL:", tsql)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, mssqlConfig["schema"])
+	count, sienaFirmList, _, _ := fetchSienaFirmData(db, tsql)
 
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var firmName, fullName, country, sector, CountryName, SectorName string
-		err := rows.Scan(&firmName, &fullName, &country, &sector, &CountryName, &SectorName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, err
-		}
-		sienaFirm.FirmName = firmName
-		sienaFirm.FullName = fullName
-		sienaFirm.Country = country
-		sienaFirm.Sector = sector
-		sienaFirm.CountryName = CountryName
-		sienaFirm.SectorName = SectorName
-
-		sienaFirmList = append(sienaFirmList, sienaFirm)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
 	return count, sienaFirmList, nil
 }
 
 // getSienaFirmList read all employees
 func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	var sienaFirm sienaFirmItem
-	tsql := fmt.Sprintf("SELECT FirmName, FullName, Country, Sector, CountryName, SectorName FROM %s.sienaFirm WHERE FirmName='%s';", mssqlConfig["schema"], id)
-	//fmt.Println("MS SQL:", tsql)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, mssqlConfig["schema"], id)
 
-	rows, err := db.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, sienaFirm, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		var firmName, fullName, country, sector, CountryName, SectorName string
-		err := rows.Scan(&firmName, &fullName, &country, &sector, &CountryName, &SectorName)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, sienaFirm, err
-		}
-		sienaFirm.FirmName = firmName
-		sienaFirm.FullName = fullName
-		sienaFirm.Country = country
-		sienaFirm.Sector = sector
-		sienaFirm.CountryName = CountryName
-		sienaFirm.SectorName = SectorName
+	_, _, sienaFirm, _ := fetchSienaFirmData(db, tsql)
 
-		//sienaFirmList = append(sienaFirmList, sienaFirm)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
 	return 1, sienaFirm, nil
 }
 
@@ -356,4 +301,40 @@ func putSienaFirm(db *sql.DB, updateItem sienaFirmItem) error {
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
 	return nil
+}
+
+// fetchSienaFirmData read all employees
+func fetchSienaFirmData(db *sql.DB, tsql string) (int, []sienaFirmItem, sienaFirmItem, error) {
+
+	var sienaFirm sienaFirmItem
+	var sienaFirmList []sienaFirmItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaFirm, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlFRMFirmName, &sqlFRMFullName, &sqlFRMCountry, &sqlFRMSector, &sqlFRMSectorName, &sqlFRMCountryName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaFirm, err
+		}
+
+		sienaFirm.FirmName = sqlFRMFirmName.String
+		sienaFirm.FullName = sqlFRMFullName.String
+		sienaFirm.Country = sqlFRMCountry.String
+		sienaFirm.Sector = sqlFRMSector.String
+		sienaFirm.SectorName = sqlFRMSectorName.String
+		sienaFirm.CountryName = sqlFRMCountryName.String
+
+		sienaFirmList = append(sienaFirmList, sienaFirm)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaFirmList, sienaFirm, nil
 }

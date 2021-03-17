@@ -26,6 +26,22 @@
   <!-- Add icon library -->
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
 
+  <script>
+    function MakePosNeg() {
+      var TDs = document.querySelectorAll('.plusmin');
+
+      for (var i = 0; i < TDs.length; i++) {
+        var temp = TDs[i];
+        if (temp.value.indexOf('-') == 0) {
+          temp.className = "form-control text-right negative";
+        } else {
+          temp.className = "form-control text-right positive";
+        }
+      }
+    }
+    onload = MakePosNeg()
+  </script>
+
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
   <link rel="stylesheet" href="../assets/custom_table.css">
 
@@ -55,100 +71,113 @@
         <div class="card-body">
 
 
-            <div class="row">
-              <div class="col-sm">
-                <label for="CCY"> CCY</label>
-                <input type="CCY" class="form-control" id="name" aria-describedby="CCY" placeholder="<<BLANK>>" value="{{.CCYName}}" required disabled>
-              </div>
+          <div class="row">
+            <div class="col-sm">
+              <label for="CCY"> CCY</label>
+              <input type="CCY" class="form-control" id="name" aria-describedby="CCY" placeholder="<<BLANK>>" value="{{.CCYName}}" required disabled>
+            </div>
 
-              <div class="col-sm">
-                <label for="AccountNo">Account No.</label>
-                <input type="AccountNo" class="form-control" id="AccountName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.AccountNumber}}" maxlength="10">
-              </div>
+            <div class="col-sm">
+              <label for="AccountNo">Account No.</label>
+              <input type="AccountNo" class="form-control" id="AccountName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.AccountNumber}}" maxlength="10">
+            </div>
 
-              <div class="col-sm">
-                <label for="AccountName">Acount Name</label>
-                <input type="AccountName" class="form-control" id="AccountName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.AccountName}}" maxlength="10">
+            <div class="col-sm">
+              <label for="AccountName">Acount Name</label>
+              <input type="AccountName" class="form-control" id="AccountName" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.AccountName}}" maxlength="10">
+            </div>
+
+          </div>
+
+          <hr>
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="CashBalance">Cash Balance</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default" style="border:0;padding:0;padding-left:.5rem;padding-right:.5rem">{{.CCY}}</span>
+                </div>
+                <input type="text" class="form-control plusmin" id="CashBalance" aria-describedby="CashBalance" placeholder="<<BLANK>>" value="{{.CashBalance}}" required disabled min="0.00" step="0.05" value="1.00" >
               </div>
 
             </div>
 
-            <hr>
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="CashBalance">Cash Balance</label>
-                <input type="CashBalance" class="form-control" id="CashBalance" aria-describedby="CashBalance" placeholder="<<BLANK>>" value="{{.CCY}} {{.CashBalance}}" required disabled>
+            <div class="col-sm">
+              <label for="LedgerBalance">Ledger Balance</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default" style="border:0;padding:0;padding-left:.5rem;padding-right:.5rem">{{.CCY}}</span>
+                </div>
+                <input type="text" class="form-control plusmin" id="LedgerBalance" aria-describedby="LedgerBalance" placeholder="<<BLANK>>" value="{{.LedgerBalance}}" required disabled min="0.00" step="0.05" value="1.00">
               </div>
-
-              <div class="col-sm">
-                <label for="LedgerBalance">Ledger Balance</label>
-                <input type="LedgerBalance" class="form-control" id="LedgerBalance" aria-describedby="LedgerBalance" placeholder="<<BLANK>>" value="{{.CCY}} {{.LedgerBalance}}" required disabled>
-              </div>
-
             </div>
 
-            <hr>
+          </div>
+          <script language="JavaScript" type="text/javascript">
+            MakePosNeg();
+          </script>
+          <hr>
 
 
 
-            <div class="row">
+          <div class="row">
 
 
 
-              <div class="col-sm">
-                <label for="Counterparty">Counterparty</label>
-                <input type="Counterparty" class="form-control" id="Counterparty" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.NameFirm}}&#8942;{{.NameCentre}}" required disabled>
-              </div>
-
-              <div class="col-sm">
-                <label for="MandatedUser">Contact</label>
-                <input type="MandatedUser" class="form-control" id="MandatedUser" aria-describedby="MandatedUser" placeholder="<<BLANK>>" value="{{.MandatedUser}}" required disabled>
-              </div>
-
-              <div class="col-sm">
-                <label for="Portfolio">Portfolio</label>
-                <input type="Portfolio" class="form-control" id="Portfolio" aria-describedby="Portfolio" placeholder="<<BLANK>>" value="{{.Portfolio}}" required disabled>
-              </div>
-
-
+            <div class="col-sm">
+              <label for="Counterparty">Counterparty</label>
+              <input type="Counterparty" class="form-control" id="Counterparty" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.NameFirm}}&#8942;{{.NameCentre}}" required disabled>
             </div>
 
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="Opened">Opened</label>
-                <input type="Opened" class="form-control" id="Opened" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.Opened}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="Status">Status</label>
-                <input type="Status" class="form-control" id="Status" aria-describedby="Status" placeholder="<<BLANK>>" value="{{.Status}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="Book">Book</label>
-                <input type="Book" class="form-control" id="Book" aria-describedby="Book" placeholder="<<BLANK>>" value="{{.BookName}}" required disabled>
-              </div>
-
-
+            <div class="col-sm">
+              <label for="MandatedUser">Contact</label>
+              <input type="MandatedUser" class="form-control" id="MandatedUser" aria-describedby="MandatedUser" placeholder="<<BLANK>>" value="{{.MandatedUser}}" required disabled>
             </div>
 
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="BackOfficeNotes">Notes</label>
-                <input type="BackOfficeNotes" class="form-control" id="BackOfficeNotes" aria-describedby="BackOfficeNotes" placeholder="<<BLANK>>" value="{{.BackOfficeNotes}}" required disabled>
-              </div>
-
+            <div class="col-sm">
+              <label for="Portfolio">Portfolio</label>
+              <input type="Portfolio" class="form-control" id="Portfolio" aria-describedby="Portfolio" placeholder="<<BLANK>>" value="{{.Portfolio}}" required disabled>
             </div>
 
-            <div class="row">
 
-              <div class="col-sm">
-                <label for="ExternalReference">External Reference</label>
-                <input type="ExternalReference" class="form-control" id="ExternalReference" aria-describedby="ExternalReference" placeholder="<<BLANK>>" value="{{.ExternalReference}}" required disabled>
-              </div>
+          </div>
 
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="Opened">Opened</label>
+              <input type="date" class="form-control" id="Opened" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.Opened}}" required disabled>
             </div>
+            <div class="col-sm">
+              <label for="Status">Status</label>
+              <input type="text" class="form-control" id="Status" aria-describedby="Status" placeholder="<<BLANK>>" value="{{.Status}}" required disabled>
+            </div>
+            <div class="col-sm">
+              <label for="Book">Book</label>
+              <input type="text" class="form-control" id="Book" aria-describedby="Book" placeholder="<<BLANK>>" value="{{.BookName}}" required disabled>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="BackOfficeNotes">Notes</label>
+              <input type="BackOfficeNotes" class="form-control" id="BackOfficeNotes" aria-describedby="BackOfficeNotes" placeholder="<<BLANK>>" value="{{.BackOfficeNotes}}" required disabled>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="ExternalReference">External Reference</label>
+              <input type="ExternalReference" class="form-control" id="ExternalReference" aria-describedby="ExternalReference" placeholder="<<BLANK>>" value="{{.ExternalReference}}" required disabled>
+            </div>
+
+          </div>
 
 
         </div>
@@ -158,8 +187,14 @@
             <div class="col-sm">
               <div class="btn-group float-right">
 
+                <button type="submit" value="" class="btn btn-outline-info" onclick="" formaction="/listSienaAccountTransactions/?SienaAccountID={{.ID}}&CCY={{.CCY}}" method="POST">
+                  <i class="fas fa-history"></i>&nbsp;&nbsp;View Transactions</button>
 
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+                <button type="submit" value="" class="btn btn-outline-info" onclick="" formaction="/listSienaAccountLadder/?SienaAccountID={{.ID}}&CCY={{.CCY}}" method="POST">
+                  <i class="fas fa-balance-scale-right"></i></i>&nbsp;&nbsp;View Ladder</button>
+
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+
               </div>
             </div>
           </div>
@@ -168,6 +203,8 @@
 
       </div>
     </form>
+
   </div>
+
 
 </body>
