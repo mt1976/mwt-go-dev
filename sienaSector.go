@@ -18,6 +18,8 @@ var sqlSCTCode, sqlSCTName sql.NullString
 
 //sienaSectorPage is cheese
 type sienaSectorListPage struct {
+	UserRole         string
+	UserNavi         string
 	Title            string
 	PageTitle        string
 	SienaSectorCount int
@@ -26,6 +28,8 @@ type sienaSectorListPage struct {
 
 //sienaSectorPage is cheese
 type sienaSectorPage struct {
+	UserRole  string
+	UserNavi  string
 	Title     string
 	PageTitle string
 	ID        string
@@ -57,6 +61,8 @@ func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorListPage{
+		UserRole:         gUserRole,
+		UserNavi:         gUserNavi,
 		Title:            wctProperties["appname"],
 		PageTitle:        "List Siena Sectors",
 		SienaSectorCount: noItems,
@@ -86,6 +92,8 @@ func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        returnRecord.Code,
@@ -116,6 +124,8 @@ func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        returnRecord.Code,
@@ -207,6 +217,8 @@ func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaSectorList := sienaSectorPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        "NEW",

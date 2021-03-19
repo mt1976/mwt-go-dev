@@ -18,6 +18,8 @@ var sqlBOOKBookName, sqlBOOKFullName sql.NullString
 
 //sienaBookPage is cheese
 type sienaBookListPage struct {
+	UserRole       string
+	UserNavi       string
 	Title          string
 	PageTitle      string
 	SienaBookCount int
@@ -26,6 +28,8 @@ type sienaBookListPage struct {
 
 //sienaBookPage is cheese
 type sienaBookPage struct {
+	UserRole  string
+	UserNavi  string
 	Title     string
 	PageTitle string
 	ID        string
@@ -62,6 +66,8 @@ func listSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:      "List Siena Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
+		UserRole:       gUserRole,
+		UserNavi:       gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -93,6 +99,8 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 		Action:    "",
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -125,8 +133,9 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
-
-		Action: "",
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
+		Action:    "",
 	}
 	//fmt.Println(pageSienaBookList)
 
@@ -223,8 +232,9 @@ func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
-
-		Action: "NEW",
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
+		Action:    "NEW",
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

@@ -45,14 +45,21 @@
 
   <div class="container-fluid">
 <br>
-<div class="jumbotron">
+<div class="well">
 
-<h4 class="nav-title text-left">{{.PageTitle}}</h4>
-<hr class="my-4">
-<p class="lead">Demonstration System - Home Page</p>
-<p>Application Server : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]</p>
-<p>Siena System: {{.SienaName}}</p>
-<p>SQL Server: {{.SQLServer}}-{{.SQLDB}}-{{.SQLSchema}}</p>
+<h4 class="text-left text-light">{{.PageTitle}}</h4>
+<p class="lead text-light">{{.UserRole}} Role</p>
+<pre class="text-light">
+User Name          : {{.UserName}}
+Known As           : {{.UserKnowAs}}
+User Role          : {{.UserRole}}<br>
+Application Server : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]<br>
+Siena System       : {{.SienaName}}<br>
+SQL Server         : {{.SQLServer}}
+SQL Database       : {{.SQLDB}}
+SQL Schema         : {{.SQLSchema}}
+</pre>
+
 </div>
 
 

@@ -24,6 +24,10 @@ var gSessionToken = ""
 var gUUID = "authorAdjust"
 var gSecurityViolation = ""
 var gDB *sql.DB
+var gUserRole = ""
+var gUserName = ""
+var gUserKnowAs = ""
+var gUserNavi = ""
 
 //HomePage ...
 type HomePage struct {

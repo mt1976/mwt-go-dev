@@ -13,6 +13,8 @@ import (
 
 //SvcDataMapPage is cheese
 type SvcDataMapPage struct {
+	UserRole        string
+	UserNavi        string
 	Title           string
 	PageTitle       string
 	NoDataMapIDs    int
@@ -94,6 +96,8 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserRole:        gUserRole,
+		UserNavi:        gUserNavi,
 		Title:           title,
 		PageTitle:       "List Data Maps",
 		NoDataMapIDs:    noRows,
@@ -182,6 +186,8 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("wrkDataMapRows", wrkDataMapRows)
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserRole:       gUserRole,
+		UserNavi:       gUserNavi,
 		Title:          title,
 		PageTitle:      "View Data Maps",
 		NoDataMapIDs:   0,
@@ -233,6 +239,8 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserRole:      gUserRole,
+		UserNavi:      gUserNavi,
 		Title:         title,
 		PageTitle:     "Edit Data Map",
 		DataMapPageID: thisID,
@@ -281,6 +289,8 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserRole:      gUserRole,
+		UserNavi:      gUserNavi,
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
@@ -329,6 +339,8 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 	fullRec = html.UnescapeString(fullRec)
 	pageEditSvcDataMapXML := SvcDataMapPage{
+		UserRole:      gUserRole,
+		UserNavi:      gUserNavi,
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
@@ -447,6 +459,8 @@ func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	title := wctProperties["appname"]
 
 	pageDM := SvcDataMapPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     title,
 		PageTitle: "New Data Loader Template",
 	}
@@ -504,46 +518,15 @@ func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-
 	requestID := uuid.New()
-	//	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
-	//recordID := getURLparam(r, "pgid")
-	//recordContent := getURLparam(r, "pgContent")
-
 	log.Println("Servicing :", inUTL)
-
-	//title := wctProperties["appname"]
-
 	id := getURLparam(r, "dataMapName")
-
-	//p := &Page{Title: title, Body: []byte(body)}
-	//	fmt.Println("METHOD",r.Method)
-	//fmt.Println("TITLE", title)
-	//	fmt.Println("ID", recordID)
-	//fmt.Println("ID", id)
-
-	//fmt.Println("REC", recordContent)
-	//	fmt.Println("ARSE", r)
-	//	fmt.Println("parse",r.ParseForm())
-
 	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", wctProperties)
-
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-
 	sendRequest(requestMessage, requestID.String(), wctProperties)
-
 	listSvcDataMapHandler(w, r)
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-
-	//	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	//	t.Execute(w, pageSrvConfigView)
-
 }

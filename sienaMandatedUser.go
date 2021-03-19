@@ -19,6 +19,8 @@ var sqlMDUMandatedUserKeyCounterpartyFirm, sqlMDUMandatedUserKeyCounterpartyCent
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserListPage struct {
+	UserRole               string
+	UserNavi               string
 	Title                  string
 	PageTitle              string
 	SienaMandatedUserCount int
@@ -27,6 +29,8 @@ type sienaMandatedUserListPage struct {
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserPage struct {
+	UserRole                          string
+	UserNavi                          string
 	Title                             string
 	PageTitle                         string
 	ID                                string
@@ -96,6 +100,8 @@ func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaMandatedUserList := sienaMandatedUserListPage{
+		UserRole:               gUserRole,
+		UserNavi:               gUserNavi,
 		Title:                  wctProperties["appname"],
 		PageTitle:              "List Siena MandatedUsers",
 		SienaMandatedUserCount: noItems,
@@ -127,6 +133,8 @@ func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
+		UserRole:                          gUserRole,
+		UserNavi:                          gUserNavi,
 		Title:                             wctProperties["appname"],
 		PageTitle:                         "View Siena MandatedUser",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
@@ -179,6 +187,8 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
+		UserRole:                          gUserRole,
+		UserNavi:                          gUserNavi,
 		Title:                             wctProperties["appname"],
 		PageTitle:                         "View Siena MandatedUser",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
@@ -317,6 +327,8 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	_, centreList, _ := getSienaCentreList(thisConnection)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
+		UserRole:                          gUserRole,
+		UserNavi:                          gUserNavi,
 		Title:                             wctProperties["appname"],
 		PageTitle:                         "View Siena MandatedUser",
 		ID:                                "NEW",

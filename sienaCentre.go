@@ -18,6 +18,8 @@ var sqlCENTCode, sqlCENTName, sqlCENTCountry, sqlCENTCountryName sql.NullString
 
 //sienaCentrePage is cheese
 type sienaCentreListPage struct {
+	UserRole         string
+	UserNavi         string
 	Title            string
 	PageTitle        string
 	SienaCentreCount int
@@ -26,6 +28,8 @@ type sienaCentreListPage struct {
 
 //sienaCentrePage is cheese
 type sienaCentrePage struct {
+	UserRole    string
+	UserNavi    string
 	Title       string
 	PageTitle   string
 	ID          string
@@ -67,6 +71,8 @@ func listSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:        "List Siena Centres",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
+		UserRole:         gUserRole,
+		UserNavi:         gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -100,6 +106,8 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		Country:     returnRecord.Country,
 		CountryName: returnRecord.CountryName,
 		Action:      "",
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -139,6 +147,8 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName: returnRecord.CountryName,
 		Action:      "",
 		CountryList: countryList,
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 	}
 	//fmt.Println(pageSienaCentreList)
 
@@ -240,13 +250,14 @@ func newSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList(thisConnection)
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Centre",
-		ID:        "NEW",
-		Code:      "",
-		Name:      "",
-		Country:   "",
-
+		Title:       wctProperties["appname"],
+		PageTitle:   "View Siena Centre",
+		ID:          "NEW",
+		Code:        "",
+		Name:        "",
+		Country:     "",
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Action:      "NEW",
 		CountryList: countryList,
 	}

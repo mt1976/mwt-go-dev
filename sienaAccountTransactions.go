@@ -9,11 +9,13 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var sienaAccountTransactionsSQL = "SienaReference, 	LegNo, 	MMLegNo, 	Narrative, 	Amount, 	StartInterestDate, 	EndInterestDate, 	Amortisation, 	InterestAmount, 	InterestAction, 	FixingDate, 	InterestCalculationDate, 	AmendmentAmount, 	DealtCcy"
-var sqlACTXSienaReference, sqlACTXLegNo, sqlACTXMMLegNo, sqlACTXNarrative, sqlACTXAmount, sqlACTXStartInterestDate, sqlACTXEndInterestDate, sqlACTXAmortisation, sqlACTXInterestAmount, sqlACTXInterestAction, sqlACTXFixingDate, sqlACTXInterestCalculationDate, sqlACTXAmendmentAmount, sqlACTXDealtCcy sql.NullString
+var sienaAccountTransactionsSQL = "SienaReference, 	LegNo, 	MMLegNo, 	Narrative, 	Amount, 	StartInterestDate, 	EndInterestDate, 	Amortisation, 	InterestAmount, 	InterestAction, 	FixingDate, 	InterestCalculationDate, 	AmendmentAmount, 	DealtCcy, AmountDp"
+var sqlACTXSienaReference, sqlACTXLegNo, sqlACTXMMLegNo, sqlACTXNarrative, sqlACTXAmount, sqlACTXStartInterestDate, sqlACTXEndInterestDate, sqlACTXAmortisation, sqlACTXInterestAmount, sqlACTXInterestAction, sqlACTXFixingDate, sqlACTXInterestCalculationDate, sqlACTXAmendmentAmount, sqlACTXDealtCcy, sqlACTXAmountDp sql.NullString
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionListPage struct {
+	UserRole                     string
+	UserNavi                     string
 	Title                        string
 	PageTitle                    string
 	SienaAccountTransactionCount int
@@ -24,6 +26,8 @@ type sienaAccountTransactionListPage struct {
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionPage struct {
+	UserRole                string
+	UserNavi                string
 	Title                   string
 	PageTitle               string
 	ID                      string
@@ -42,6 +46,7 @@ type sienaAccountTransactionPage struct {
 	InterestCalculationDate string
 	AmendmentAmount         string
 	DealtCcy                string
+	AmountDp                string
 }
 
 //sienaAccountTransactionItem is cheese
@@ -61,6 +66,7 @@ type sienaAccountTransactionItem struct {
 	InterestCalculationDate string
 	AmendmentAmount         string
 	DealtCcy                string
+	AmountDp                string
 }
 
 func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request) {
@@ -89,6 +95,8 @@ func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 		SienaAccountTransactionList:  returnList,
 		ID:                           account.AccountNumber,
 		Name:                         account.AccountName,
+		UserRole:                     gUserRole,
+		UserNavi:                     gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -120,7 +128,7 @@ func fetchSienaAccountTransactionData(db *sql.DB, tsql string) (int, []sienaAcco
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlACTXSienaReference, &sqlACTXLegNo, &sqlACTXMMLegNo, &sqlACTXNarrative, &sqlACTXAmount, &sqlACTXStartInterestDate, &sqlACTXEndInterestDate, &sqlACTXAmortisation, &sqlACTXInterestAmount, &sqlACTXInterestAction, &sqlACTXFixingDate, &sqlACTXInterestCalculationDate, &sqlACTXAmendmentAmount, &sqlACTXDealtCcy)
+		err := rows.Scan(&sqlACTXSienaReference, &sqlACTXLegNo, &sqlACTXMMLegNo, &sqlACTXNarrative, &sqlACTXAmount, &sqlACTXStartInterestDate, &sqlACTXEndInterestDate, &sqlACTXAmortisation, &sqlACTXInterestAmount, &sqlACTXInterestAction, &sqlACTXFixingDate, &sqlACTXInterestCalculationDate, &sqlACTXAmendmentAmount, &sqlACTXDealtCcy, &sqlACTXAmountDp)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, sienaAccountTransaction, err
@@ -129,7 +137,7 @@ func fetchSienaAccountTransactionData(db *sql.DB, tsql string) (int, []sienaAcco
 		sienaAccountTransaction.LegNo = sqlACTXLegNo.String
 		sienaAccountTransaction.MMLegNo = sqlACTXMMLegNo.String
 		sienaAccountTransaction.Narrative = sqlACTXNarrative.String
-		sienaAccountTransaction.Amount = formatCurrency(sqlACTXAmount.String, sqlACTXDealtCcy.String)
+		sienaAccountTransaction.Amount = formatCurrencyDps(sqlACTXAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
 		sienaAccountTransaction.StartInterestDate = sqlDateToHTMLDate(sqlACTXStartInterestDate.String)
 		sienaAccountTransaction.EndInterestDate = sqlDateToHTMLDate(sqlACTXEndInterestDate.String)
 		sienaAccountTransaction.Amortisation = sqlACTXAmortisation.String
@@ -137,8 +145,9 @@ func fetchSienaAccountTransactionData(db *sql.DB, tsql string) (int, []sienaAcco
 		sienaAccountTransaction.InterestAction = sqlACTXInterestAction.String
 		sienaAccountTransaction.FixingDate = sqlDateToHTMLDate(sqlACTXFixingDate.String)
 		sienaAccountTransaction.InterestCalculationDate = sqlDateToHTMLDate(sqlACTXInterestCalculationDate.String)
-		sienaAccountTransaction.AmendmentAmount = formatCurrency(sqlACTXAmendmentAmount.String, sqlACTXDealtCcy.String)
+		sienaAccountTransaction.AmendmentAmount = formatCurrencyDps(sqlACTXAmendmentAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
 		sienaAccountTransaction.DealtCcy = sqlACTXDealtCcy.String
+		sienaAccountTransaction.AmountDp = sqlACTXAmountDp.String
 		sienaAccountTransactionList = append(sienaAccountTransactionList, sienaAccountTransaction)
 		count++
 	}

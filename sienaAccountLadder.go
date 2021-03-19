@@ -9,11 +9,13 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var sienaAccountLadderSQL = "SienaReference, BusinessDate, ContractNumber, Balance, DealtCcy"
-var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBalance, sqlACCLDealtCcy sql.NullString
+var sienaAccountLadderSQL = "SienaReference, BusinessDate, ContractNumber, Balance, DealtCcy,AmountDP"
+var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBalance, sqlACCLDealtCcy, sqlACCLAmountDP sql.NullString
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderListPage struct {
+	UserRole                string
+	UserNavi                string
 	Title                   string
 	PageTitle               string
 	SienaAccountLadderCount int
@@ -24,6 +26,8 @@ type sienaAccountLadderListPage struct {
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderPage struct {
+	UserRole       string
+	UserNavi       string
 	Title          string
 	PageTitle      string
 	ID             string
@@ -33,6 +37,7 @@ type sienaAccountLadderPage struct {
 	ContractNumber string
 	Balance        string
 	DealtCcy       string
+	AmountDP       string
 }
 
 //sienaAccountLadderItem is cheese
@@ -43,6 +48,7 @@ type sienaAccountLadderItem struct {
 	ContractNumber string
 	Balance        string
 	DealtCcy       string
+	AmountDP       string
 }
 
 func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
@@ -65,6 +71,8 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	_, account, _ := getSienaAccount(thisConnection, accountID)
 
 	pageSienaAccountLadderList := sienaAccountLadderListPage{
+		UserRole:                gUserRole,
+		UserNavi:                gUserNavi,
 		Title:                   wctProperties["appname"],
 		PageTitle:               "List Siena AccountLadders",
 		SienaAccountLadderCount: noItems,
@@ -102,7 +110,7 @@ func fetchSienaAccountLadderData(db *sql.DB, tsql string) (int, []sienaAccountLa
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlACCLSienaReference, &sqlACCLBusinessDate, &sqlACCLContractNumber, &sqlACCLBalance, &sqlACCLDealtCcy)
+		err := rows.Scan(&sqlACCLSienaReference, &sqlACCLBusinessDate, &sqlACCLContractNumber, &sqlACCLBalance, &sqlACCLDealtCcy, &sqlACCLAmountDP)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, sienaAccountLadder, err
@@ -112,8 +120,8 @@ func fetchSienaAccountLadderData(db *sql.DB, tsql string) (int, []sienaAccountLa
 		sienaAccountLadder.BusinessDate = sqlDateToHTMLDate(sqlACCLBusinessDate.String)
 		sienaAccountLadder.ContractNumber = sqlACCLContractNumber.String
 		sienaAccountLadder.DealtCcy = sqlACCLDealtCcy.String
-		sienaAccountLadder.Balance = formatCurrency(sqlACCLBalance.String, sqlACCLDealtCcy.String)
-
+		sienaAccountLadder.Balance = formatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
+		sienaAccountLadder.AmountDP = sqlACCLAmountDP.String
 		sienaAccountLadderList = append(sienaAccountLadderList, sienaAccountLadder)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++

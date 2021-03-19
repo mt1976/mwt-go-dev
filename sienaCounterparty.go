@@ -19,6 +19,8 @@ var sqlCPTYNameCentre, sqlCPTYNameFirm, sqlCPTYFullName, sqlCPTYTelephoneNumber,
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyListPage struct {
+	UserRole               string
+	UserNavi               string
 	Title                  string
 	PageTitle              string
 	SienaCounterpartyCount int
@@ -27,6 +29,8 @@ type sienaCounterpartyListPage struct {
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyPage struct {
+	UserRole        string
+	UserNavi        string
 	Title           string
 	PageTitle       string
 	ID              string
@@ -117,6 +121,8 @@ func listSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:              "List Siena Counterpartys",
 		SienaCounterpartyCount: noItems,
 		SienaCounterpartyList:  returnList,
+		UserRole:               gUserRole,
+		UserNavi:               gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -157,6 +163,8 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	noTxns, txnList, _ := getSienaDealListListByCounterparty(thisConnection, firmID, centreID)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
+		UserRole:        gUserRole,
+		UserNavi:        gUserNavi,
 		Title:           wctProperties["appname"],
 		PageTitle:       "View Siena Counterparty",
 		ID:              "",
@@ -227,6 +235,8 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
+		UserRole:        gUserRole,
+		UserNavi:        gUserNavi,
 		Title:           wctProperties["appname"],
 		PageTitle:       "View Siena Counterparty",
 		ID:              "",
@@ -356,6 +366,8 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList(thisConnection)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
+		UserRole:        gUserRole,
+		UserNavi:        gUserNavi,
 		Title:           wctProperties["appname"],
 		PageTitle:       "View Siena Counterparty",
 		ID:              "NEW",

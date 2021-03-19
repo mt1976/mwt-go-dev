@@ -15,6 +15,8 @@ import (
 )
 
 type ResponseListPage struct {
+	UserRole    string
+	UserNavi    string
 	Title       string
 	PageTitle   string
 	Responses   []ResponseItem
@@ -57,6 +59,8 @@ type WctResponsePayload struct {
 
 //PageResponseView is cheese
 type PageResponseView struct {
+	UserRole             string
+	UserNavi             string
 	Title                string
 	Description          string
 	RequestRID           string
@@ -159,6 +163,8 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 	outRequestConsumed := pickEpochToDateTimeString(thisPayload.RequestConsumed)
 	outResponseEjected := pickEpochToDateTimeString(thisPayload.ResponseEjected)
 	pageResponseView := PageResponseView{
+		UserRole:             gUserRole,
+		UserNavi:             gUserNavi,
 		Title:                title,
 		Description:          "Detail For : " + getURLparam(r, "uuid"),
 		RequestRID:           thisPayload.RequestID,
@@ -320,6 +326,8 @@ func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	title := wctProperties["appname"]
 
 	rpc := ResponseListPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       title,
 		PageTitle:   "List Responses",
 		Responses:   files,

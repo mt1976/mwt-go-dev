@@ -7,8 +7,10 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"time"
 )
+
+var sienaAccountSQL = "SienaReference, 	CustomerSienaView, 	SienaCommonRef, 	Status, 	StartDate, 	MaturityDate, 	ContractNumber, 	ExternalReference, 	CCY, 	Book, 	MandatedUser, 	BackOfficeNotes, 	CashBalance, 	AccountNumber, 	AccountName, 	LedgerBalance, 	Portfolio, 	AgreementId, 	BackOfficeRefNo, 	PaymentSystemSienaView, 	ISIN, 	UTI, 	CCYName, 	BookName, 	PortfolioName, 	Centre, 	Firm, 	CCYDp"
+var sqlACCTSienaReference, sqlACCTCustomerSienaView, sqlACCTSienaCommonRef, sqlACCTStatus, sqlACCTStartDate, sqlACCTMaturityDate, sqlACCTContractNumber, sqlACCTExternalReference, sqlACCTCCY, sqlACCTBook, sqlACCTMandatedUser, sqlACCTBackOfficeNotes, sqlACCTCashBalance, sqlACCTAccountNumber, sqlACCTAccountName, sqlACCTLedgerBalance, sqlACCTPortfolio, sqlACCTAgreementId, sqlACCTBackOfficeRefNo, sqlACCTPaymentSystemSienaView, sqlACCTISIN, sqlACCTUTI, sqlACCTCCYName, sqlACCTBookName, sqlACCTPortfolioName, sqlACCTCentre, sqlACCTFirm, sqlACCTCCYDp sql.NullString
 
 //sienaAccountPage is cheese
 type sienaAccountListPage struct {
@@ -16,64 +18,81 @@ type sienaAccountListPage struct {
 	PageTitle         string
 	SienaAccountCount int
 	SienaAccountList  []sienaAccountItem
+	UserRole          string
+	UserNavi          string
 }
 
 //sienaAccountPage is cheese
 type sienaAccountPage struct {
-	Title             string
-	PageTitle         string
-	ID                string
-	SienaReference    string
-	Counterparty      string
-	Status            string
-	Opened            string
-	Closed            string
-	ExternalReference string
-	CCY               string
-	Book              string
-	MandatedUser      string
-	BackOfficeNotes   string
-	CashBalance       string
-	AccountNumber     string
-	AccountName       string
-	LedgerBalance     string
-	Portfolio         string
-	UTI               string
-	CCYName           string
-	BookName          string
-	Action            string
-	CountryList       []sienaCountryItem
-	NameFirm          string
-	NameCentre        string
+	UserRole               string
+	UserNavi               string
+	Title                  string
+	PageTitle              string
+	ID                     string
+	SienaReference         string
+	CustomerSienaView      string
+	SienaCommonRef         string
+	Status                 string
+	StartDate              string
+	MaturityDate           string
+	ContractNumber         string
+	ExternalReference      string
+	CCY                    string
+	Book                   string
+	MandatedUser           string
+	BackOfficeNotes        string
+	CashBalance            string
+	AccountNumber          string
+	AccountName            string
+	LedgerBalance          string
+	Portfolio              string
+	AgreementId            string
+	BackOfficeRefNo        string
+	PaymentSystemSienaView string
+	ISIN                   string
+	UTI                    string
+	CCYName                string
+	BookName               string
+	PortfolioName          string
+	Centre                 string
+	Firm                   string
+	CCYDp                  string
+	Action                 string
+	CountryList            []sienaCountryItem
 
 	//	SectorList  []sienaSectorItem
 }
 
 //sienaAccountItem is cheese
 type sienaAccountItem struct {
-	SienaReference    string
-	Counterparty      string
-	Status            string
-	Opened            string
-	Closed            string
-	ExternalReference string
-	CCY               string
-	Book              string
-	MandatedUser      string
-	BackOfficeNotes   string
-	CashBalance       string
-	CBNeg             string
-	AccountNumber     string
-	AccountName       string
-	LedgerBalance     string
-	LBNeg             string
-	Portfolio         string
-	UTI               string
-	CCYName           string
-	BookName          string
-	Action            string
-	NameFirm          string
-	NameCentre        string
+	SienaReference         string
+	CustomerSienaView      string
+	SienaCommonRef         string
+	Status                 string
+	StartDate              string
+	MaturityDate           string
+	ContractNumber         string
+	ExternalReference      string
+	CCY                    string
+	Book                   string
+	MandatedUser           string
+	BackOfficeNotes        string
+	CashBalance            string
+	AccountNumber          string
+	AccountName            string
+	LedgerBalance          string
+	Portfolio              string
+	AgreementId            string
+	BackOfficeRefNo        string
+	PaymentSystemSienaView string
+	ISIN                   string
+	UTI                    string
+	CCYName                string
+	BookName               string
+	PortfolioName          string
+	Centre                 string
+	Firm                   string
+	CCYDp                  string
 }
 
 func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
@@ -97,6 +116,8 @@ func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:         "List Siena Accounts",
 		SienaAccountCount: noItems,
 		SienaAccountList:  returnList,
+		UserRole:          gUserRole,
+		UserNavi:          gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -122,30 +143,40 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaAccountList := sienaAccountPage{
-		Title:             wctProperties["appname"],
-		PageTitle:         "View Siena Account",
-		ID:                returnRecord.SienaReference,
-		SienaReference:    returnRecord.SienaReference,
-		Counterparty:      returnRecord.Counterparty,
-		Status:            returnRecord.Status,
-		Opened:            sqlDateToHTMLDate(returnRecord.Opened),
-		Closed:            sqlDateToHTMLDate(returnRecord.Closed),
-		ExternalReference: returnRecord.ExternalReference,
-		CCY:               returnRecord.CCY,
-		Book:              returnRecord.Book,
-		MandatedUser:      returnRecord.MandatedUser,
-		BackOfficeNotes:   returnRecord.BackOfficeNotes,
-		CashBalance:       returnRecord.CashBalance,
-		AccountNumber:     returnRecord.AccountNumber,
-		AccountName:       returnRecord.AccountName,
-		LedgerBalance:     returnRecord.LedgerBalance,
-		Portfolio:         returnRecord.Portfolio,
-		UTI:               returnRecord.UTI,
-		CCYName:           returnRecord.CCYName,
-		BookName:          returnRecord.BookName,
-		NameFirm:          returnRecord.NameFirm,
-		NameCentre:        returnRecord.NameCentre,
-		Action:            "",
+		UserRole:               gUserRole,
+		UserNavi:               gUserNavi,
+		Title:                  wctProperties["appname"],
+		PageTitle:              "View Siena Account",
+		ID:                     returnRecord.SienaReference,
+		SienaReference:         returnRecord.SienaReference,
+		CustomerSienaView:      returnRecord.CustomerSienaView,
+		SienaCommonRef:         returnRecord.SienaCommonRef,
+		Status:                 returnRecord.Status,
+		StartDate:              returnRecord.StartDate,
+		MaturityDate:           returnRecord.MaturityDate,
+		ContractNumber:         returnRecord.ContractNumber,
+		ExternalReference:      returnRecord.ExternalReference,
+		CCY:                    returnRecord.CCY,
+		Book:                   returnRecord.Book,
+		MandatedUser:           returnRecord.MandatedUser,
+		BackOfficeNotes:        returnRecord.BackOfficeNotes,
+		CashBalance:            returnRecord.CashBalance,
+		AccountNumber:          returnRecord.AccountNumber,
+		AccountName:            returnRecord.AccountName,
+		LedgerBalance:          returnRecord.LedgerBalance,
+		Portfolio:              returnRecord.Portfolio,
+		AgreementId:            returnRecord.AgreementId,
+		BackOfficeRefNo:        returnRecord.BackOfficeRefNo,
+		PaymentSystemSienaView: returnRecord.PaymentSystemSienaView,
+		ISIN:                   returnRecord.ISIN,
+		UTI:                    returnRecord.UTI,
+		CCYName:                returnRecord.CCYName,
+		BookName:               returnRecord.BookName,
+		PortfolioName:          returnRecord.PortfolioName,
+		Centre:                 returnRecord.Centre,
+		Firm:                   returnRecord.Firm,
+		CCYDp:                  returnRecord.CCYDp,
+		Action:                 "",
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -177,31 +208,42 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaAccountList := sienaAccountPage{
-		Title:          wctProperties["appname"],
-		PageTitle:      "View Siena Account",
-		ID:             returnRecord.SienaReference,
-		SienaReference: returnRecord.SienaReference,
-		Counterparty:   returnRecord.Counterparty,
-		Status:         returnRecord.Status,
-		Opened:         sqlDateToHTMLDate(returnRecord.Opened),
-		//	Closed:            returnRecord.Closed,
-		ExternalReference: returnRecord.ExternalReference,
-		CCY:               returnRecord.CCY,
-		Book:              returnRecord.Book,
-		MandatedUser:      returnRecord.MandatedUser,
-		BackOfficeNotes:   returnRecord.BackOfficeNotes,
-		CashBalance:       returnRecord.CashBalance,
-		AccountNumber:     returnRecord.AccountNumber,
-		AccountName:       returnRecord.AccountName,
-		LedgerBalance:     returnRecord.LedgerBalance,
-		Portfolio:         returnRecord.Portfolio,
-		UTI:               returnRecord.UTI,
-		CCYName:           returnRecord.CCYName,
-		BookName:          returnRecord.BookName,
-		Action:            "",
-		CountryList:       countryList,
-		NameFirm:          returnRecord.NameFirm,
-		NameCentre:        returnRecord.NameCentre,
+		UserRole:               gUserRole,
+		UserNavi:               gUserNavi,
+		Title:                  wctProperties["appname"],
+		PageTitle:              "View Siena Account",
+		ID:                     returnRecord.SienaReference,
+		SienaReference:         returnRecord.SienaReference,
+		CustomerSienaView:      returnRecord.CustomerSienaView,
+		SienaCommonRef:         returnRecord.SienaCommonRef,
+		Status:                 returnRecord.Status,
+		StartDate:              returnRecord.StartDate,
+		MaturityDate:           returnRecord.MaturityDate,
+		ContractNumber:         returnRecord.ContractNumber,
+		ExternalReference:      returnRecord.ExternalReference,
+		CCY:                    returnRecord.CCY,
+		Book:                   returnRecord.Book,
+		MandatedUser:           returnRecord.MandatedUser,
+		BackOfficeNotes:        returnRecord.BackOfficeNotes,
+		CashBalance:            returnRecord.CashBalance,
+		AccountNumber:          returnRecord.AccountNumber,
+		AccountName:            returnRecord.AccountName,
+		LedgerBalance:          returnRecord.LedgerBalance,
+		Portfolio:              returnRecord.Portfolio,
+		AgreementId:            returnRecord.AgreementId,
+		BackOfficeRefNo:        returnRecord.BackOfficeRefNo,
+		PaymentSystemSienaView: returnRecord.PaymentSystemSienaView,
+		ISIN:                   returnRecord.ISIN,
+		UTI:                    returnRecord.UTI,
+		CCYName:                returnRecord.CCYName,
+		BookName:               returnRecord.BookName,
+		PortfolioName:          returnRecord.PortfolioName,
+		Centre:                 returnRecord.Centre,
+		Firm:                   returnRecord.Firm,
+		CCYDp:                  returnRecord.CCYDp,
+		Action:                 "",
+		CountryList:            countryList,
+
 		//	SectorList:  sectorList,
 	}
 	//fmt.Println(pageSienaAccountList)
@@ -242,6 +284,8 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaAccountList := sienaAccountPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena Account",
 		ID:          "NEW",
@@ -257,40 +301,24 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaAccountList read all employees
 func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-
-	tsql := fmt.Sprintf("SELECT SienaReference, CustomerSienaView, Status,StartDate,ExternalReference,CCY,Book,MandatedUser,BackOfficeNotes,CashBalance,AccountNumber,AccountName,LedgerBalance,Portfolio,UTI,CCYName,BookName, Firm, Centre FROM %s.sienaAccount;", mssqlConfig["schema"])
-	//fmt.Println("MS SQL:", tsql)
-
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, mssqlConfig["schema"])
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
-
 	return count, sienaAccountList, nil
 }
 
 // getSienaAccountListByCounterParty read all employees
 func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre string) (int, []sienaAccountItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-
-	tsql := fmt.Sprintf("SELECT SienaReference, CustomerSienaView, Status,StartDate,ExternalReference,CCY,Book,MandatedUser,BackOfficeNotes,CashBalance,AccountNumber,AccountName,LedgerBalance,Portfolio,UTI,CCYName,BookName, Firm, Centre FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", mssqlConfig["schema"], idFirm, idCentre)
-	//fmt.Println("MS SQL:", tsql)
-
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
-
 	return count, sienaAccountList, nil
 }
 
 // getSienaAccount read all employees
 func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
 	mssqlConfig := getProperties(cSQL_CONFIG)
-	//fmt.Println(db.Stats().OpenConnections)
-	//var sienaAccount sienaAccountItem
-
-	tsql := fmt.Sprintf("SELECT SienaReference, CustomerSienaView, Status,StartDate,ExternalReference,CCY,Book,MandatedUser,BackOfficeNotes,CashBalance,AccountNumber,AccountName,LedgerBalance,Portfolio,UTI,CCYName,BookName,Firm,Centre FROM %s.sienaAccount WHERE SienaReference='%s';", mssqlConfig["schema"], id)
-	//fmt.Println("MS SQL:", tsql)
-
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, mssqlConfig["schema"], id)
 	_, _, sienaAccount, _ := fetchSienaAccountData(db, tsql)
-
 	return 1, sienaAccount, nil
 }
 
@@ -319,36 +347,40 @@ func fetchSienaAccountData(db *sql.DB, tsql string) (int, []sienaAccountItem, si
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		var SienaReference, Counterparty, Status, CCY, Book, AccountNumber, AccountName, CCYName, BookName, Firm, Centre sql.NullString
-		//var AccountName, fullName, country, sector, CountryName, SectorName string
-		var CashBalance, LedgerBalance sql.NullString
-		var MandatedUser, Portfolio, UTI, ExternalReference, BackOfficeNotes sql.NullString
-		var Opened time.Time
-		err := rows.Scan(&SienaReference, &Counterparty, &Status, &Opened, &ExternalReference, &CCY, &Book, &MandatedUser, &BackOfficeNotes, &CashBalance, &AccountNumber, &AccountName, &LedgerBalance, &Portfolio, &UTI, &CCYName, &BookName, &Firm, &Centre)
+		err := rows.Scan(&sqlACCTSienaReference, &sqlACCTCustomerSienaView, &sqlACCTSienaCommonRef, &sqlACCTStatus, &sqlACCTStartDate, &sqlACCTMaturityDate, &sqlACCTContractNumber, &sqlACCTExternalReference, &sqlACCTCCY, &sqlACCTBook, &sqlACCTMandatedUser, &sqlACCTBackOfficeNotes, &sqlACCTCashBalance, &sqlACCTAccountNumber, &sqlACCTAccountName, &sqlACCTLedgerBalance, &sqlACCTPortfolio, &sqlACCTAgreementId, &sqlACCTBackOfficeRefNo, &sqlACCTPaymentSystemSienaView, &sqlACCTISIN, &sqlACCTUTI, &sqlACCTCCYName, &sqlACCTBookName, &sqlACCTPortfolioName, &sqlACCTCentre, &sqlACCTFirm, &sqlACCTCCYDp)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, sienaAccount, err
 		}
 
-		sienaAccount.SienaReference = SienaReference.String
-		sienaAccount.Counterparty = Counterparty.String
-		sienaAccount.Status = Status.String
-		sienaAccount.Opened = sqlDateToHTMLDate(Opened.String())
-		sienaAccount.ExternalReference = ExternalReference.String
-		sienaAccount.CCY = CCY.String
-		sienaAccount.CCYName = CCYName.String
-		sienaAccount.Book = Book.String
-		sienaAccount.BookName = BookName.String
-		sienaAccount.MandatedUser = MandatedUser.String
-		sienaAccount.BackOfficeNotes = BackOfficeNotes.String
-		sienaAccount.CashBalance = formatCurrency(CashBalance.String, CCY.String)
-		sienaAccount.AccountNumber = AccountNumber.String
-		sienaAccount.AccountName = AccountName.String
-		sienaAccount.LedgerBalance = formatCurrency(LedgerBalance.String, CCY.String)
-		sienaAccount.Portfolio = Portfolio.String
-		sienaAccount.UTI = UTI.String
-		sienaAccount.NameFirm = strings.TrimSpace(Firm.String)
-		sienaAccount.NameCentre = strings.TrimSpace(Centre.String)
+		sienaAccount.SienaReference = sqlACCTSienaReference.String
+		sienaAccount.CustomerSienaView = sqlACCTCustomerSienaView.String
+		sienaAccount.SienaCommonRef = sqlACCTSienaCommonRef.String
+		sienaAccount.Status = sqlACCTStatus.String
+		sienaAccount.StartDate = sqlDateToHTMLDate(sqlACCTStartDate.String)
+		sienaAccount.MaturityDate = sqlDateToHTMLDate(sqlACCTMaturityDate.String)
+		sienaAccount.ContractNumber = sqlACCTContractNumber.String
+		sienaAccount.ExternalReference = sqlACCTExternalReference.String
+		sienaAccount.CCY = sqlACCTCCY.String
+		sienaAccount.Book = sqlACCTBook.String
+		sienaAccount.MandatedUser = sqlACCTMandatedUser.String
+		sienaAccount.BackOfficeNotes = sqlACCTBackOfficeNotes.String
+		sienaAccount.CashBalance = formatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.AccountNumber = sqlACCTAccountNumber.String
+		sienaAccount.AccountName = sqlACCTAccountName.String
+		sienaAccount.LedgerBalance = formatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.Portfolio = sqlACCTPortfolio.String
+		sienaAccount.AgreementId = sqlACCTAgreementId.String
+		sienaAccount.BackOfficeRefNo = sqlACCTBackOfficeRefNo.String
+		sienaAccount.PaymentSystemSienaView = sqlACCTPaymentSystemSienaView.String
+		sienaAccount.ISIN = sqlACCTISIN.String
+		sienaAccount.UTI = sqlACCTUTI.String
+		sienaAccount.CCYName = sqlACCTCCYName.String
+		sienaAccount.BookName = sqlACCTBookName.String
+		sienaAccount.PortfolioName = sqlACCTPortfolioName.String
+		sienaAccount.Centre = strings.TrimSpace(sqlACCTCentre.String)
+		sienaAccount.Firm = strings.TrimSpace(sqlACCTFirm.String)
+		sienaAccount.CCYDp = sqlACCTCCYDp.String
 
 		sienaAccountList = append(sienaAccountList, sienaAccount)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

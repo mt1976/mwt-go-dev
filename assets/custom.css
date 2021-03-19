@@ -17,8 +17,13 @@
 body {
 
   background: linear-gradient(to right top, #322a77, #6cdbeb);
+  background-repeat: repeat;
+  -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
   font-family: var(--custom-font-family);
-
+  height: 100%;
 }
 
 .btn-primary {
@@ -174,6 +179,21 @@ body {
       rgba(255, 255, 255, 0.3));
   z-index: 2;
   backdrop-filter: blur(2rem);
+  display: flex;
+}
+
+.highlight {
+  //box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
+  background: white;
+  border-radius: 7px;
+  margin-top: 15px;
+    padding-bottom: 15px;
+  background: white;
+font-weight: bold;
+  background: linear-gradient(to right bottom,
+      rgba(255, 255, 255, .6),
+      rgba(255, 255, 255, .6));
+  z-index: 2;
   display: flex;
 }
 

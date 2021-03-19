@@ -18,6 +18,8 @@ var sqlPRTCode, sqlPRTName sql.NullString
 
 //sienaPortfolioPage is cheese
 type sienaPortfolioListPage struct {
+	UserRole            string
+	UserNavi            string
 	Title               string
 	PageTitle           string
 	SienaPortfolioCount int
@@ -26,6 +28,8 @@ type sienaPortfolioListPage struct {
 
 //sienaPortfolioPage is cheese
 type sienaPortfolioPage struct {
+	UserRole  string
+	UserNavi  string
 	Title     string
 	PageTitle string
 	ID        string
@@ -57,6 +61,8 @@ func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := sienaPortfolioListPage{
+		UserRole:            gUserRole,
+		UserNavi:            gUserNavi,
 		Title:               wctProperties["appname"],
 		PageTitle:           "List Siena Portfolios",
 		SienaPortfolioCount: noItems,
@@ -86,6 +92,8 @@ func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
@@ -116,6 +124,8 @@ func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
@@ -207,6 +217,8 @@ func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Portfolio",
 		ID:        "NEW",

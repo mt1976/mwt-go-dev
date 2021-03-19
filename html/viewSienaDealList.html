@@ -27,7 +27,6 @@
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
 
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-  <link rel="stylesheet" href="../assets/custom_table.css">
 
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
 
@@ -178,7 +177,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row highlight">
 
               <div class="col-sm">
                 <label for="DealtCcy">DealtCcy</label>
@@ -187,7 +186,7 @@
               </div>
               <div class="col-sm">
                 <label for="DealtAmount">DealtAmount</label>
-                <input type="number" class="form-control" id="DealtAmount" aria-describedby="DealtAmount" name="DealtAmount" placeholder="<<BLANK>>" value="{{.DealtAmount}}" disabled>
+                <input type="text" class="form-control" id="DealtAmount" aria-describedby="DealtAmount" name="DealtAmount" placeholder="<<BLANK>>" value="{{.DealtAmount}}" disabled>
               </div>
 
               <div class="col-sm">
@@ -197,7 +196,7 @@
               </div>
               <div class="col-sm">
                 <label for="AgainstAmount">AgainstAmount</label>
-                <input type="number" class="form-control" id="AgainstAmount" aria-describedby="AgainstAmount" name="AgainstAmount" placeholder="<<BLANK>>" value="{{.AgainstAmount}}" disabled>
+                <input type="text" class="form-control" id="AgainstAmount" aria-describedby="AgainstAmount" name="AgainstAmount" placeholder="<<BLANK>>" value="{{.AgainstAmount}}" disabled>
               </div>
 
               <div class="col-sm">
@@ -208,7 +207,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row highlight">
 
               <div class="col-sm">
                 <label for="AllInRate">AllInRate</label>

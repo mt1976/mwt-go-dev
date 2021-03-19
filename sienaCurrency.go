@@ -18,6 +18,8 @@ var sqlCCYCode, sqlCCYName, sqlCCYAmountDp, sqlCCYCountry, sqlCCYCountryName sql
 
 //sienaCurrencyPage is cheese
 type sienaCurrencyListPage struct {
+	UserRole           string
+	UserNavi           string
 	Title              string
 	PageTitle          string
 	SienaCurrencyCount int
@@ -26,6 +28,8 @@ type sienaCurrencyListPage struct {
 
 //sienaCurrencyPage is cheese
 type sienaCurrencyPage struct {
+	UserRole    string
+	UserNavi    string
 	Title       string
 	PageTitle   string
 	ID          string
@@ -65,6 +69,8 @@ func listSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCurrencyList := sienaCurrencyListPage{
+		UserRole:           gUserRole,
+		UserNavi:           gUserNavi,
 		Title:              wctProperties["appname"],
 		PageTitle:          "List Siena Currencys",
 		SienaCurrencyCount: noItems,
@@ -94,6 +100,8 @@ func viewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCurrencyList := sienaCurrencyPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena Currency",
 		ID:          returnRecord.Code,
@@ -133,6 +141,8 @@ func editSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCurrencyList := sienaCurrencyPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena Currency",
 		ID:          returnRecord.Code,
@@ -244,6 +254,8 @@ func newSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList(thisConnection)
 
 	pageSienaCurrencyList := sienaCurrencyPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena Currency",
 		ID:        "NEW",

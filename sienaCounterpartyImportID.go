@@ -18,6 +18,8 @@ var sqlCPIDKeyImportID, sqlCPIDFirm, sqlCPIDCentre, sqlCPIDFirmName, sqlCPIDCent
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDListPage struct {
+	UserRole                       string
+	UserNavi                       string
 	Title                          string
 	PageTitle                      string
 	SienaCounterpartyImportIDCount int
@@ -26,6 +28,8 @@ type sienaCounterpartyImportIDListPage struct {
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDPage struct {
+	UserRole    string
+	UserNavi    string
 	Title       string
 	PageTitle   string
 	ID          string
@@ -67,6 +71,8 @@ func listSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDListPage{
+		UserRole:                       gUserRole,
+		UserNavi:                       gUserNavi,
 		Title:                          wctProperties["appname"],
 		PageTitle:                      "List Siena CounterpartyImportIDs",
 		SienaCounterpartyImportIDCount: noItems,
@@ -97,6 +103,8 @@ func viewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena CounterpartyImportID",
 		ID:          returnRecord.Code,
@@ -135,6 +143,8 @@ func editSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena CounterpartyImportID",
 		ID:          returnRecord.Code,
@@ -247,6 +257,8 @@ func newSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena CounterpartyImportID",
 		ID:          "NEW",

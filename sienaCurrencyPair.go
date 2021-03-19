@@ -19,6 +19,8 @@ var sqlCCYPCodeMajorCurrencyIsoCode, sqlCCYPCodeMinorCurrencyIsoCode, sqlCCYPRec
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairListPage struct {
+	UserRole               string
+	UserNavi               string
 	Title                  string
 	PageTitle              string
 	SienaCurrencyPairCount int
@@ -27,6 +29,8 @@ type sienaCurrencyPairListPage struct {
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairPage struct {
+	UserRole                 string
+	UserNavi                 string
 	Title                    string
 	PageTitle                string
 	ID                       string
@@ -67,6 +71,8 @@ func listSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairListPage{
+		UserRole:               gUserRole,
+		UserNavi:               gUserNavi,
 		Title:                  wctProperties["appname"],
 		PageTitle:              "List Siena CurrencyPairs",
 		SienaCurrencyPairCount: noItems,
@@ -96,6 +102,8 @@ func viewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena CurrencyPair",
 		ID:        returnRecord.Code,
@@ -130,6 +138,8 @@ func editSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena CurrencyPair",
 		ID:        returnRecord.Code,
@@ -236,6 +246,8 @@ func newSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena CurrencyPair",
 		ID:        "NEW",

@@ -11,6 +11,8 @@ import (
 
 //SrvEnvironmentPage is cheese
 type SrvEnvironmentPage struct {
+	UserRole            string
+	UserNavi            string
 	Title               string
 	PageTitle           string
 	SrvEnvironmentItems []SrvEnvironmentItem
@@ -61,6 +63,8 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SrvEnvironmentPage{
+		UserRole:            gUserRole,
+		UserNavi:            gUserNavi,
 		Title:               title,
 		PageTitle:           "View Server Config",
 		SrvEnvironmentItems: configsList,

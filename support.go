@@ -147,10 +147,35 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getTemplateID(tmpl string) string {
-
 	templateName := "html/" + tmpl + ".html"
-	log.Println("Preparing", templateName)
+	roleTemplate := "html" + gUserRole + "/" + tmpl + ".html"
+	log.Println("Testing", roleTemplate, fileExists(roleTemplate))
+	log.Println("Testing", templateName, fileExists(templateName))
+	if fileExists(roleTemplate) {
+		//	templateName = roleTemplate
+	}
+	log.Println("TEMPLATE", templateName)
 	return templateName
+}
+
+func getNavigationID(inUserRole string) string {
+	templateName := "../assets/navigation.html"
+	roleTemplate := "../assets" + inUserRole + "_navigation.html"
+	log.Println("Testing", templateName, fileExists(templateName))
+	log.Println("Testing", roleTemplate, fileExists(roleTemplate))
+	if fileExists(roleTemplate) {
+		//templateName = roleTemplate
+	}
+	log.Println("NAVIGATION", templateName)
+	return templateName
+}
+
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
 }
 
 func pickEpochToDateTimeString(pickEpoch string) string {
@@ -292,7 +317,24 @@ func sqlDateToHTMLDate(inDate string) (outDate string) {
 }
 
 func formatCurrency(inAmount string, inCCY string) string {
-	ac := accounting.Accounting{Symbol: inCCY, Precision: 2, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013\u2013"}
+	ac := accounting.Accounting{Symbol: inCCY, Precision: 2, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 ;\u2013"}
+	bum, _ := strconv.ParseFloat(inAmount, 64)
+	return ac.FormatMoney(bum)
+}
+
+func formatCurrencyFull(inAmount string, inCCY string) string {
+
+	thisConnection, _ := sienaConnect()
+	_, ccyData, _ := getSienaCurrency(thisConnection, inCCY)
+	prec, _ := strconv.Atoi(ccyData.AmountDP)
+	ac := accounting.Accounting{Symbol: inCCY, Precision: prec, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 \u2013"}
+	bum, _ := strconv.ParseFloat(inAmount, 64)
+	return ac.FormatMoney(bum)
+}
+
+func formatCurrencyDps(inAmount string, inCCY string, inPrec string) string {
+	prec, _ := strconv.Atoi(inPrec)
+	ac := accounting.Accounting{Symbol: inCCY, Precision: prec, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 \u2013"}
 	bum, _ := strconv.ParseFloat(inAmount, 64)
 	return ac.FormatMoney(bum)
 }

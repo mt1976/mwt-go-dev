@@ -16,6 +16,8 @@ var sqlDLSTSienaReference, sqlDLSTCustomerSienaView, sqlDLSTStatus, sqlDLSTValue
 
 //sienaDealListPage is cheese
 type sienaDealListListPage struct {
+	UserRole           string
+	UserNavi           string
 	Title              string
 	PageTitle          string
 	SienaDealListCount int
@@ -24,6 +26,8 @@ type sienaDealListListPage struct {
 
 //sienaDealListPage is cheese
 type sienaDealListPage struct {
+	UserRole           string
+	UserNavi           string
 	Title              string
 	PageTitle          string
 	ID                 string
@@ -136,6 +140,8 @@ func listSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaDealListList := sienaDealListListPage{
+		UserRole:           gUserRole,
+		UserNavi:           gUserNavi,
 		Title:              wctProperties["appname"],
 		PageTitle:          "List Siena DealLists",
 		SienaDealListCount: noItems,
@@ -165,6 +171,8 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaDealListList := sienaDealListPage{
+		UserRole:           gUserRole,
+		UserNavi:           gUserNavi,
 		Title:              wctProperties["appname"],
 		PageTitle:          "View Siena DealList",
 		Action:             "",

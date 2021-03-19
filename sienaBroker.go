@@ -18,6 +18,8 @@ var sqlBRKRCode, sqlBRKRName, sqlBRKRFullName, sqlBRKRContact, sqlBRKRAddress, s
 
 //sienaBrokerPage is cheese
 type sienaBrokerListPage struct {
+	UserRole         string
+	UserNavi         string
 	Title            string
 	PageTitle        string
 	SienaBrokerCount int
@@ -26,6 +28,8 @@ type sienaBrokerListPage struct {
 
 //sienaBrokerPage is cheese
 type sienaBrokerPage struct {
+	UserRole  string
+	UserNavi  string
 	Title     string
 	PageTitle string
 	ID        string
@@ -69,6 +73,8 @@ func listSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:        "List Siena Brokers",
 		SienaBrokerCount: noItems,
 		SienaBrokerList:  returnList,
+		UserRole:         gUserRole,
+		UserNavi:         gUserNavi,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -104,6 +110,8 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Address:   returnRecord.Address,
 		LEI:       returnRecord.LEI,
 		Action:    "",
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 	}
 
 	//fmt.Println(pageSienaBrokerList)
@@ -142,6 +150,8 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Contact:   returnRecord.Contact,
 		Address:   returnRecord.Address,
 		LEI:       returnRecord.LEI,
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		//	Country:     returnRecord.Country,
 		//	CountryName: returnRecord.CountryName,
 		Action: "",
@@ -268,6 +278,8 @@ func newSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
+		UserRole:  gUserRole,
+		UserNavi:  gUserNavi,
 		//		Country:   "",
 
 		Action: "NEW",

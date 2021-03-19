@@ -18,6 +18,8 @@ var sqlCPADNameFirm, sqlCPADNameCentre, sqlCPADAddress1, sqlCPADAddress2, sqlCPA
 
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressListPage struct {
+	UserRole                      string
+	UserNavi                      string
 	Title                         string
 	PageTitle                     string
 	SienaCounterpartyAddressCount int
@@ -26,6 +28,8 @@ type sienaCounterpartyAddressListPage struct {
 
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressPage struct {
+	UserRole   string
+	UserNavi   string
 	Title      string
 	PageTitle  string
 	ID         string
@@ -69,6 +73,8 @@ func listSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressListPage{
+		UserRole:                      gUserRole,
+		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
 		PageTitle:                     "List Siena CounterpartyAddresss",
 		SienaCounterpartyAddressCount: noItems,
@@ -99,6 +105,8 @@ func viewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	//fmt.Println(tmpl)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
+		UserRole:   gUserRole,
+		UserNavi:   gUserNavi,
 		Title:      wctProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "",
@@ -139,6 +147,8 @@ func editSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
+		UserRole:   gUserRole,
+		UserNavi:   gUserNavi,
 		Title:      wctProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "",
@@ -242,6 +252,8 @@ func newSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 	log.Println("Servicing :", inUTL)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
+		UserRole:   gUserRole,
+		UserNavi:   gUserNavi,
 		Title:      wctProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "NEW",

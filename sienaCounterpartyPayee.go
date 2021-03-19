@@ -19,6 +19,8 @@ var sqlCPPYSourceTable, sqlCPPYKeyCounterpartyFirm, sqlCPPYKeyCounterpartyCentre
 
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeeListPage struct {
+	UserRole                    string
+	UserNavi                    string
 	Title                       string
 	PageTitle                   string
 	SienaCounterpartyPayeeCount int
@@ -27,6 +29,8 @@ type sienaCounterpartyPayeeListPage struct {
 
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeePage struct {
+	UserRole              string
+	UserNavi              string
 	Title                 string
 	PageTitle             string
 	ID                    string
@@ -106,6 +110,8 @@ func listSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeeListPage{
+		UserRole:                    gUserRole,
+		UserNavi:                    gUserNavi,
 		Title:                       wctProperties["appname"],
 		PageTitle:                   "List Siena CounterpartyPayees",
 		SienaCounterpartyPayeeCount: noItems,
@@ -143,6 +149,8 @@ func viewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
+		UserRole:              gUserRole,
+		UserNavi:              gUserNavi,
 		Title:                 wctProperties["appname"],
 		PageTitle:             "View Siena CounterpartyPayee",
 		SourceTable:           returnRecord.SourceTable,
@@ -208,6 +216,8 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
+		UserRole:              gUserRole,
+		UserNavi:              gUserNavi,
 		Title:                 wctProperties["appname"],
 		PageTitle:             "View Siena CounterpartyPayee",
 		SourceTable:           returnRecord.SourceTable,
@@ -349,6 +359,8 @@ func newSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
+		UserRole:              gUserRole,
+		UserNavi:              gUserNavi,
 		Title:                 wctProperties["appname"],
 		PageTitle:             "View Siena CounterpartyPayee",
 		ID:                    "NEW",

@@ -46,7 +46,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("Page Data", loginPageContent)
 
 	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, err := template.ParseFiles(getTemplateID(tmpl))
+	log.Println(t, getTemplateID(tmpl), err)
 	t.Execute(w, loginPageContent)
 
 }
@@ -105,9 +106,13 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 	//todo Encryp password etc
 
 	if loginResponse.ResponseStatus == "200" {
-		log.Println("ACCESS GRANTED", responseCode, uName)
-		newUUID := loginResponse.ResponseContent.ResponseContentRow[1]
 
+		newUUID := loginResponse.ResponseContent.ResponseContentRow[1]
+		gUserRole = loginResponse.ResponseContent.ResponseContentRow[2]
+		gUserNavi = getNavigationID(gUserRole)
+		gUserKnowAs = loginResponse.ResponseContent.ResponseContentRow[3]
+		log.Println("ACCESS GRANTED", responseCode, uName, gUserRole)
+		gUserName = uName
 		gSessionToken = newToken
 		gUUID = newUUID
 		gSecurityViolation = ""
@@ -145,6 +150,7 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	gSessionToken = ""
 	gUUID = ""
 	gSecurityViolation = ""
+	gUserRole = ""
 	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
 	//todo Encryp password etc
 

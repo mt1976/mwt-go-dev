@@ -19,6 +19,8 @@ var sqlCPEXNameFirm, sqlCPEXNameCentre, sqlCPEXBICCode, sqlCPEXContactIndicator,
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsListPage struct {
+	UserRole                         string
+	UserNavi                         string
 	Title                            string
 	PageTitle                        string
 	SienaCounterpartyExtensionsCount int
@@ -27,6 +29,8 @@ type sienaCounterpartyExtensionsListPage struct {
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsPage struct {
+	UserRole                      string
+	UserNavi                      string
 	Title                         string
 	PageTitle                     string
 	ID                            string
@@ -139,6 +143,8 @@ func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsListPage{
+		UserRole:                         gUserRole,
+		UserNavi:                         gUserNavi,
 		Title:                            wctProperties["appname"],
 		PageTitle:                        "List Siena CounterpartyExtensionss",
 		SienaCounterpartyExtensionsCount: noItems,
@@ -170,6 +176,8 @@ func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
+		UserRole:                      gUserRole,
+		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
 		PageTitle:                     "View Siena CounterpartyExtensions",
 		NameFirm:                      returnRecord.NameFirm,
@@ -245,6 +253,8 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
+		UserRole:                      gUserRole,
+		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
 		PageTitle:                     "View Siena CounterpartyExtensions",
 		NameFirm:                      returnRecord.NameFirm,
@@ -425,6 +435,8 @@ func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
+		UserRole:                      gUserRole,
+		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
 		PageTitle:                     "View Siena CounterpartyExtensions",
 		ID:                            "NEW",

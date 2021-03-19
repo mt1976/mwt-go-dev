@@ -31,6 +31,8 @@ type WctPayload struct {
 
 //RequestViewPage is cheese
 type RequestViewPage struct {
+	UserRole              string
+	UserNavi              string
 	Title                 string
 	Description           string
 	SudoID                int
@@ -65,6 +67,8 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("test", serviceCatalog[thisID])
 
 	pageRequestView := RequestViewPage{
+		UserRole:              gUserRole,
+		UserNavi:              gUserNavi,
 		Title:                 title,
 		Description:           serviceCatalog[thisID].Text + " " + serviceCatalog[thisID].Helptext,
 		SudoID:                thisID,

@@ -18,6 +18,8 @@ var sqlFRMFirmName, sqlFRMFullName, sqlFRMCountry, sqlFRMSector, sqlFRMSectorNam
 
 //sienaFirmPage is cheese
 type sienaFirmListPage struct {
+	UserRole       string
+	UserNavi       string
 	Title          string
 	PageTitle      string
 	SienaFirmCount int
@@ -26,6 +28,8 @@ type sienaFirmListPage struct {
 
 //sienaFirmPage is cheese
 type sienaFirmPage struct {
+	UserRole    string
+	UserNavi    string
 	Title       string
 	PageTitle   string
 	ID          string
@@ -68,6 +72,8 @@ func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaFirmList := sienaFirmListPage{
+		UserRole:       gUserRole,
+		UserNavi:       gUserNavi,
 		Title:          wctProperties["appname"],
 		PageTitle:      "List Siena Firms",
 		SienaFirmCount: noItems,
@@ -97,6 +103,8 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaFirmList := sienaFirmPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          returnRecord.FirmName,
@@ -138,6 +146,8 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaFirmList := sienaFirmPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          returnRecord.FirmName,
@@ -258,6 +268,8 @@ func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaFirmList := sienaFirmPage{
+		UserRole:    gUserRole,
+		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          "NEW",

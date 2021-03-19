@@ -8,6 +8,8 @@ import (
 
 //sienaMandatedUserPage is cheese
 type sienaHomePage struct {
+	UserNavi        string
+	UserRole        string
 	Title           string
 	PageTitle       string
 	AppReleaseID    string
@@ -17,9 +19,12 @@ type sienaHomePage struct {
 	SQLServer       string
 	SQLDB           string
 	SQLSchema       string
+	UserName        string
+	UserKnowAs      string
 }
 
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
 	wctProperties := getProperties(CONST_CONFIG_FILE)
@@ -31,6 +36,8 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	homePage := sienaHomePage{
+		UserRole:        gUserRole,
+		UserNavi:        gUserNavi,
 		Title:           "Home",
 		PageTitle:       wctProperties["appname"],
 		AppReleaseID:    wctProperties["releaseid"],
@@ -40,9 +47,14 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		SQLServer:       sqlProperties["server"],
 		SQLDB:           sqlProperties["database"],
 		SQLSchema:       sqlProperties["schema"],
+		UserName:        gUserName,
+		UserKnowAs:      gUserKnowAs,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
+
+	log.Println(getTemplateID(tmpl), tmpl, t, gUserRole, gUserNavi, homePage.UserRole, homePage.UserNavi)
+	log.Println("about to execute")
 	t.Execute(w, homePage)
 
 }

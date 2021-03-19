@@ -17,6 +17,8 @@ type Page struct {
 
 //SrvConfigurationPage is cheese
 type SrvConfigurationPage struct {
+	UserRole              string
+	UserNavi              string
 	Title                 string
 	PageTitle             string
 	SrvConfigurationItems []SrvConfigurationItem
@@ -27,6 +29,8 @@ type SrvConfigurationPage struct {
 
 //SrvConfigurationListPage is cheese
 type SrvConfigurationListPage struct {
+	UserRole              string
+	UserNavi              string
 	Title                 string
 	PageTitle             string
 	SrvConfigurationItems []SrvConfigurationItem
@@ -87,6 +91,8 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
+		UserRole:              gUserRole,
+		UserNavi:              gUserNavi,
 		Title:                 title,
 		PageTitle:             "View Server Config",
 		SrvConfigurationItems: configsList,
@@ -139,6 +145,8 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
+		UserRole:              gUserRole,
+		UserNavi:              gUserNavi,
 		Title:                 title,
 		PageTitle:             "View Server Config",
 		SrvConfigurationItems: configsList,
@@ -188,6 +196,8 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
+		UserRole:     gUserRole,
+		UserNavi:     gUserNavi,
 		Title:        title,
 		PageTitle:    "View Server Config",
 		PageRecordID: recordID,
@@ -206,44 +216,19 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := getProperties(CONST_CONFIG_FILE)
-	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
 	requestID := uuid.New()
-	//	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
-	//recordID := getURLparam(r, "pgid")
-	//recordContent := getURLparam(r, "pgContent")
 
 	log.Println("Servicing :", inUTL)
-
-	//	title := wctProperties["appname"]
 
 	body := r.FormValue("pgContent")
 	id := r.FormValue("pgid")
 
-	//p := &Page{Title: title, Body: []byte(body)}
-	//	fmt.Println("METHOD",r.Method)
-	//fmt.Println("TITLE", title)
-	//	fmt.Println("ID", recordID)
-	//fmt.Println("ID", id)
-	//fmt.Println("BODY", body)
-	//fmt.Println("REC", recordContent)
-	//	fmt.Println("ARSE", r)
-	//	fmt.Println("parse",r.ParseForm())
-
 	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, wctProperties)
 
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	listSrvConfigurationHandler(w, r)
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-
-	//	t, _ := template.ParseFiles(getTemplateID(tmpl))
-	//	t.Execute(w, pageSrvConfigView)
-
 }

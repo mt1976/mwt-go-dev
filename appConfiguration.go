@@ -9,6 +9,8 @@ import (
 
 //AppConfigurationPage is cheese
 type AppConfigurationPage struct {
+	UserRole               string
+	UserNavi               string
 	Title                  string
 	PageTitle              string
 	RequestPath            string
@@ -45,6 +47,8 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 
 	pageAppConfigView := AppConfigurationPage{
+		UserRole:               gUserRole,
+		UserNavi:               gUserNavi,
 		Title:                  title,
 		PageTitle:              "View Application Server Config",
 		RequestPath:            wctProperties["deliverpath"],
