@@ -168,6 +168,11 @@ func main() {
 	http.HandleFunc("/saveSienaCounterparty/", saveSienaCounterpartyHandler)
 	http.HandleFunc("/newSienaCounterparty/", newSienaCounterpartyHandler)
 
+	http.HandleFunc("/editSienaCounterpartyAddress/", editSienaCounterpartyAddressHandler)
+	http.HandleFunc("/saveSienaCounterpartyAddress/", saveSienaCounterpartyAddressHandler)
+	http.HandleFunc("/editSienaCounterpartyExtensions/", editSienaCounterpartyExtensionsHandler)
+	http.HandleFunc("/saveSienaCounterpartyExtensions/", saveSienaCounterpartyExtensionsHandler)
+
 	http.HandleFunc("/listSienaCounterpartyPayee/", listSienaCounterpartyPayeeHandler)
 	http.HandleFunc("/viewSienaCounterpartyPayee/", viewSienaCounterpartyPayeeHandler)
 	http.HandleFunc("/editSienaCounterpartyPayee/", editSienaCounterpartyPayeeHandler)

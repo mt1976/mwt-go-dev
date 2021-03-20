@@ -1,0 +1,200 @@
+<head>
+  <!-- START OF INSERTS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <!-- FAVICON BUMPF -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+  <meta name="msapplication-TileColor" content="#322a77">
+  <meta name="theme-color" content="#ffffff">
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <!-- Add CUSTOM ICONS, FONTS & STYLES -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <script src="../assets/custom.js"></script>
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+  </link>
+  <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <!-- END OF INSERTS -->
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+
+  <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
+
+</head>
+
+<body>
+
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div w3-include-html="../assets/navigation.html"></div>
+  <script>
+    cust_includeHTML();
+  </script>
+  <!-- DO NOT CHANGE -->
+
+  <div class="container-fluid">
+    <form action="/saveSienaCounterpartyAddress?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST" class="form">
+
+      <div class="card">
+
+
+
+
+        <div class="card-header font-weight-bold">
+
+          <div class="row">
+            <div class="col">
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              Counterparty - Additional Information &nbsp;:&nbsp;<code>{{.NameFirm}}&#8942;{{.NameCentre}}</code>
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-danger" formaction="/saveSienaCounterpartyExtensions?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST"><i class="fas fa-save"></i>&nbsp;&nbsp;Save</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card-body">
+
+          <br>
+          <h2>Regulatory</h2>
+          <div class="row">
+            <div class="col-sm">
+              <label for="CustomerCategory">Customer Category</label>
+              <input type="text" class="form-control" id="CustomerCategory" aria-describedby="CustomerCategory" placeholder="<<BLANK>>" value="{{.CustomerCategory}}" maxlength="30">
+            </div>
+            <div class="col-sm">
+              <label for="RegulatoryCategory">Regulatory Category</label>
+              <input type="text" class="form-control" id="RegulatoryCategory" aria-describedby="RegulatoryCategory" placeholder="<<BLANK>>" value="{{.RegulatoryCategory}}" maxlength="30">
+            </div>
+            <div class="col-sm">
+              <label for="FSCSInclusive">FSCS Inclusive?</label>
+              <input type="text" class="form-control" id="FSCSInclusive" aria-describedby="FSCSInclusive" placeholder="<<BLANK>>" value="{{.FSCSInclusive}}">
+            </div>
+            <div class="col-sm">
+              <label for="FinancialCounterparty">Financial Counterparty</label>
+              <input type="text" class="form-control" id="FinancialCounterparty" aria-describedby="FinancialCounterparty" placeholder="<<BLANK>>" value="{{.FinancialCounterparty}}">
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="LEIExpiryDate">LEI Expiry Date</label>
+              <input type="date" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDate" placeholder="<<BLANK>>" value="{{.LEIExpiryDate}}">
+            </div>
+            <div class="col-sm">
+              <label for="MIFIDReviewDate">MIFID Review Date</label>
+              <input type="date" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDate" placeholder="<<BLANK>>" value="{{.MIFIDReviewDate}}">
+            </div>
+            <div class="col-sm">
+              <label for="GDPRReviewDate">GDPR Review Date</label>
+              <input type="date" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDate" placeholder="<<BLANK>>" value="{{.GDPRReviewDate}}">
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="DelegatedReporting">Delegated Reporting?</label>
+              <input type="DelegatedReporting" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReporting" placeholder="<<BLANK>>" value="{{.DelegatedReporting}}"  >
+            </div>
+
+            <div class="col-sm">
+              <label for="MIFIDReportableDealsAllowed">MIFID Reportable Deals Allowed?</label>
+              <input type="MIFIDReportableDealsAllowed" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowed" placeholder="<<BLANK>>"
+                value="{{.MIFIDReportableDealsAllowed}}"  >
+            </div>
+
+
+
+          </div>
+          <hr>
+          <h2>Onboarding</h2>
+          <div class="row">
+            <div class="col-sm">
+              <label for="SignedInvestmentAgreement">Signed Investment Agreement</label>
+              <input type="SignedInvestmentAgreement" class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreement" placeholder="<<BLANK>>" value="{{.SignedInvestmentAgreement}}"
+                 >
+            </div>
+
+            <div class="col-sm">
+              <label for="AppropriatenessAssessment">Appropriateness Assessment</label>
+              <input type="AppropriatenessAssessment" class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessment" placeholder="<<BLANK>>" value="{{.AppropriatenessAssessment}}"
+                 >
+            </div>
+            <div class="col-sm">
+              <label for="KnowYourCustomerStatus">Know Your Customer Status</label>
+              <input type="text" class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatus" placeholder="<<BLANK>>" value="{{.KnowYourCustomerStatus}}"  >
+            </div>
+
+            <div class="col-sm">
+              <label for="Registered">Registered?</label>
+              <input type="text" class="form-control" id="Registered" name="Registered" aria-describedby="Registered" placeholder="<<BLANK>>" value="{{.Registered}}"  >
+            </div>
+
+          </div>
+          <hr>
+          <h2>Training</h2>
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="Training">Training</label>
+              <input type="text" class="form-control" id="Training" name="Training" aria-describedby="Training" placeholder="<<BLANK>>" value="{{.Training}}">
+            </div>
+            <div class="col-sm">
+              <label for="TrainingCode">Training Code</label>
+              <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCode" placeholder="<<BLANK>>" value="{{.TrainingCode}}">
+            </div>
+            <div class="col-sm">
+              <label for="TrainingReceived">Training Received?</label>
+              <input type="text" class="form-control" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceived" placeholder="<<BLANK>>" value="{{.TrainingReceived}}">
+            </div>
+
+          </div>
+          <hr>
+          <h2>Identification</h2>
+          <div class="row">
+
+            <div class="col-sm">
+              <label for="MIC">SWIFT MIC</label>
+              <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MIC" placeholder="<<BLANK>>" value="{{.MIC}}">
+            </div>
+            <div class="col-sm">
+              <label for="BICCode">SWIFT BIC</label>
+              <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCode" placeholder="<<BLANK>>" value="{{.BICCode}}">
+            </div>
+            <div class="col-sm">
+              <label for="SortCode">SortCode</label>
+              <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCode" placeholder="<<BLANK>>" value="{{.SortCode}}">
+            </div>
+            <div class="col-sm">
+              <label for="PortfolioCode">PortfolioCode</label>
+              <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCode" placeholder="<<BLANK>>" value="{{.PortfolioCode}}">
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+
+</body>

@@ -27,5 +27,19 @@
   }
 
   function hamburger(x) {
-    x.classList.toggle("change"); 
+    x.classList.toggle("change");
   }
+
+    function MakePosNeg() {
+      var TDs = document.querySelectorAll('.plusmin');
+
+      for (var i = 0; i < TDs.length; i++) {
+        var temp = TDs[i];
+        if (temp.firstChild.nodeValue.indexOf('-') == 0) {
+          temp.className = "text-right negative";
+        } else {
+          temp.className = "text-right positive";
+        }
+      }
+    }
+    onload = MakePosNeg()

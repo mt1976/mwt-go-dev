@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="CounterpartyAddress" classname="com.eurobase.siena.data.CounterpartyAddresss.CounterpartyAddress"><RECORD><KEYFIELD name="shortName"></KEYFIELD><FIELD name="fullName"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

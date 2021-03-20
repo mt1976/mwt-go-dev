@@ -238,7 +238,7 @@ func saveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 		fmt.Println(err.Error())
 	}
 
-	listSienaCounterpartyAddressHandler(w, r)
+	viewSienaCounterpartyHandler(w, r)
 
 }
 

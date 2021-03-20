@@ -1,8 +1,8 @@
 <head>
+  <!-- START OF INSERTS -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta charset="utf-8">
-  <!-- Favicon Stuff -->
+  <!-- FAVICON BUMPF -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -10,22 +10,21 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
   <meta name="msapplication-TileColor" content="#322a77">
   <meta name="theme-color" content="#ffffff">
-  <!-- Bootstrap CSS -->
+  <!-- BOOTSTRAP CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-
-  <!-- Add Custom Fonts & Styles-->
+  <!-- Add CUSTOM ICONS, FONTS & STYLES -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/custom.css">
   <script src="../assets/custom.js"></script>
-
-  <!-- Add icon library -->
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
-
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+  </link>
+  <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <!-- END OF INSERTS -->
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
 
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
@@ -47,8 +46,32 @@
       <div class="card">
 
         <div class="card-header font-weight-bold">
-          <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Transaction View :&nbsp;<code>{{.FullDealType}}</code>
+
+
+
+
+
+          <div class="row">
+            <div class="col">
+
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              Transaction View :&nbsp;<code>{{.FullDealType}}
+
+<span class="badge badge-pill badge-info">{{.ContractNumber}}</span>
+
+              </code>
+
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+
+
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+
+
         </div>
 
         <div class="card-body">
@@ -82,7 +105,61 @@
               </div>
 
             </div>
-<br>
+<hr>
+            <h4>Deal</h4>
+<div class="row highlight">
+  <div class="col-sm">
+    <label for="DealtCcy">DealtCcy</label>
+    <input type="text" class="form-control" id="DealtCcy" aria-describedby="DealtCcy" name="DealtCcy" placeholder="<<BLANK>>" value="{{.DealtCcy}}" disabled>
+
+  </div>
+  <div class="col-sm">
+    <label for="DealtAmount">DealtAmount</label>
+    <input type="text" class="form-control" id="DealtAmount" aria-describedby="DealtAmount" name="DealtAmount" placeholder="<<BLANK>>" value="{{.DealtAmount}}" disabled>
+  </div>
+
+  <div class="col-sm">
+    <label for="AgainstCcy">AgainstCcy</label>
+    <input type="text" class="form-control" id="AgainstCcy" aria-describedby="AgainstCcy" name="AgainstCcy" placeholder="<<BLANK>>" value="{{.AgainstCcy}}" disabled>
+
+  </div>
+  <div class="col-sm">
+    <label for="AgainstAmount">AgainstAmount</label>
+    <input type="text" class="form-control" id="AgainstAmount" aria-describedby="AgainstAmount" name="AgainstAmount" placeholder="<<BLANK>>" value="{{.AgainstAmount}}" disabled>
+  </div>
+
+  <div class="col-sm">
+    <label for="SettleCcy">Settlement Ccy</label>
+    <input type="text" class="form-control" id="SettleCcy" aria-describedby="SettleCcy" name="SettleCcy" placeholder="<<BLANK>>" value="{{.SettleCcy}}" disabled>
+  </div>
+
+
+</div>
+
+<div class="row highlight">
+
+  <div class="col-sm">
+    <label for="AllInRate">AllInRate</label>
+    <input type="number" class="form-control" id="DealtCcy" aria-describedby="AllInRate" name="AllInRate" placeholder="<<BLANK>>" value="{{.AllInRate}}" disabled>
+
+  </div>
+  <div class="col-sm">
+    <label for="MktRate">MktRate</label>
+    <input type="number" class="form-control" id="MktRate" aria-describedby="MktRate" name="MktRate" placeholder="<<BLANK>>" value="{{.MktRate}}" disabled>
+
+  </div>
+
+  <div class="col-sm">
+    <label for="RVDate">Reval Date</label>
+    <input type="date" class="form-control" id="RVDate" aria-describedby="RVDate" name="RVDate" placeholder="<<BLANK>>" value="{{.RVDate}}" disabled>
+  </div>
+  <div class="col-sm">
+    <label for="RVMTM">Mark to Market</label>
+    <input type="text" class="form-control" id="RVMTM" aria-describedby="RVMTM" name="RVMTM" placeholder="<<BLANK>>" value="{{.RVMTM}}" disabled>
+  </div>
+
+</div>
+<hr>
 <h4>Instrument</h4>
             <div class="row">
 
@@ -107,7 +184,7 @@
               </div>
 
             </div>
-<br>
+<hr>
 <h4>Transaction</h4>
 
             <div class="row">
@@ -177,60 +254,7 @@
 
             </div>
 
-            <div class="row highlight">
-
-              <div class="col-sm">
-                <label for="DealtCcy">DealtCcy</label>
-                <input type="text" class="form-control" id="DealtCcy" aria-describedby="DealtCcy" name="DealtCcy" placeholder="<<BLANK>>" value="{{.DealtCcy}}" disabled>
-
-              </div>
-              <div class="col-sm">
-                <label for="DealtAmount">DealtAmount</label>
-                <input type="text" class="form-control" id="DealtAmount" aria-describedby="DealtAmount" name="DealtAmount" placeholder="<<BLANK>>" value="{{.DealtAmount}}" disabled>
-              </div>
-
-              <div class="col-sm">
-                <label for="AgainstCcy">AgainstCcy</label>
-                <input type="text" class="form-control" id="AgainstCcy" aria-describedby="AgainstCcy" name="AgainstCcy" placeholder="<<BLANK>>" value="{{.AgainstCcy}}" disabled>
-
-              </div>
-              <div class="col-sm">
-                <label for="AgainstAmount">AgainstAmount</label>
-                <input type="text" class="form-control" id="AgainstAmount" aria-describedby="AgainstAmount" name="AgainstAmount" placeholder="<<BLANK>>" value="{{.AgainstAmount}}" disabled>
-              </div>
-
-              <div class="col-sm">
-                <label for="SettleCcy">Settlement Ccy</label>
-                <input type="text" class="form-control" id="SettleCcy" aria-describedby="SettleCcy" name="SettleCcy" placeholder="<<BLANK>>" value="{{.SettleCcy}}" disabled>
-              </div>
-
-
-            </div>
-
-            <div class="row highlight">
-
-              <div class="col-sm">
-                <label for="AllInRate">AllInRate</label>
-                <input type="number" class="form-control" id="DealtCcy" aria-describedby="AllInRate" name="AllInRate" placeholder="<<BLANK>>" value="{{.AllInRate}}" disabled>
-
-              </div>
-              <div class="col-sm">
-                <label for="MktRate">MktRate</label>
-                <input type="number" class="form-control" id="MktRate" aria-describedby="MktRate" name="MktRate" placeholder="<<BLANK>>" value="{{.MktRate}}" disabled>
-
-              </div>
-
-              <div class="col-sm">
-                <label for="RVDate">Reval Date</label>
-                <input type="date" class="form-control" id="RVDate" aria-describedby="RVDate" name="RVDate" placeholder="<<BLANK>>" value="{{.RVDate}}" disabled>
-              </div>
-              <div class="col-sm">
-                <label for="RVMTM">Mark to Market</label>
-                <input type="text" class="form-control" id="RVMTM" aria-describedby="RVMTM" name="RVMTM" placeholder="<<BLANK>>" value="{{.RVMTM}}" disabled>
-              </div>
-
-            </div>
-            <br>
+<hr>
 <h4>Settlements</h4>
             <div class="row">
 
@@ -251,18 +275,7 @@
 
 
 </div>
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-sm">
-              <div class="btn-group float-right">
 
-
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
       </div>
     </form>

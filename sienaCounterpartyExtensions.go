@@ -241,8 +241,8 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyExtensionsItem
-	sfID := getURLparam(r, "Firm")
-	scID := getURLparam(r, "Centre")
+	sfID := getURLparam(r, "SienaFirm")
+	scID := getURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterpartyExtensions(thisConnection, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, sfID, scID)
 	fmt.Println(returnList)
@@ -419,7 +419,7 @@ func saveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		fmt.Println(err.Error())
 	}
 
-	listSienaCounterpartyExtensionsHandler(w, r)
+	viewSienaCounterpartyHandler(w, r)
 
 }
 
