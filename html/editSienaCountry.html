@@ -48,9 +48,22 @@
       <div class="card">
 
         <div class="card-header font-weight-bold">
-          <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Country&nbsp;:&nbsp;<code>{{.ID}}</code>
 
+          <div class="row">
+            <div class="col">
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              Country&nbsp;:&nbsp;<code>{{.ID}}</code>
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+
+                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" onclick="/saveSienaCountry" formaction="/saveSienaCountry"></i>&nbsp;&nbsp;Save</button>
+
+                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="card-body">
@@ -70,7 +83,10 @@
 
               <div class="col-sm">
                 <label class="form-check-label" for="isEUEEA">EU/EAA?</label>
-                <input class="form-control" type="checkbox" id="isEUEEA" name="isEUEEA" {{.EU_EEA}} style="margin-left:1.75rem;">
+                <select class="form-control" id="isEUEEA" name="isEUEEA" required="required">
+                  <option id="{{.EU_EEA}}" selected="selected">{{.EU_EEA}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
               </div>
 
             </div>
@@ -90,19 +106,6 @@
 
         </div>
 
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-sm">
-              <div class="btn-group float-right">
-
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaCountry" formaction="/saveSienaCountry"></i>&nbsp;&nbsp;Save</button>
-
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-
-              </div>
-            </div>
-          </div>
-        </div>
     </form>
   </div>
 

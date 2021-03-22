@@ -48,8 +48,25 @@
       <div class="card">
 
         <div class="card-header font-weight-bold">
-          <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Country&nbsp;:&nbsp;<code>{{.ID}}</code>
+
+
+
+          <div class="row">
+            <div class="col">
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              Country&nbsp;:&nbsp;<code>{{.ID}}</code>
+
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+
+                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" onclick="/saveSienaCountry" formaction="/saveSienaCountry"></i>&nbsp;&nbsp;Save</button>
+
+                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="card-body">
@@ -59,7 +76,7 @@
 
               <div class="col-sm">
                 <label for="code">Code</label>
-                <input type="text" name="code" class="form-control" id="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3">
+                <input type="text" name="code" class="form-control" id="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3" required>
               </div>
 
               <div class="col-sm">
@@ -69,7 +86,11 @@
 
               <div class="col-sm">
                 <label class="form-check-label" for="isEUEEA">EU/EAA?</label>
-                <input class="form-control" type="checkbox" id="isEUEEA" name="isEUEEA" style="margin-left:1.75rem;">
+                <select class="form-control" id="isEUEEA" name="isEUEEA" required="required">
+                  <option id="{{.EU_EEA}}" selected="selected">{{.EU_EEA}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
+              </div>
               </div>
 
             </div>
@@ -78,7 +99,7 @@
 
               <div class="col-sm">
                 <label for="name">Description</label>
-                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}">
+                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}" required>
               </div>
 
             </div>
@@ -89,19 +110,7 @@
 
         </div>
 
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-sm">
-              <div class="btn-group float-right">
 
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" onclick="/saveSienaCountry" formaction="/saveSienaCountry"></i>&nbsp;&nbsp;Save</button>
-
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-
-              </div>
-            </div>
-          </div>
-        </div>
     </form>
   </div>
 

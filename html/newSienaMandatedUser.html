@@ -46,8 +46,23 @@
       <div class="card">
 
         <div class="card-header font-weight-bold">
-          <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          MandatedUser&nbsp;:&nbsp;<code>{{.MandatedUserKeyUserName}}</code>
+
+
+          <div class="row">
+            <div class="col">
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              MandatedUser&nbsp;:&nbsp;<code>{{.MandatedUserKeyUserName}}</code>
+            </div>
+
+            <div class="col">
+              <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Save</button>
+
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="card-body">
@@ -160,31 +175,25 @@
               </div>
               <div class="col-sm">
                 <label for="Active">Active</label>
-                <input type="checkbox" class="form-control" id="Active" aria-describedby="Active" name="Active" placeholder="<<BLANK>>" value="{{.Active}}" checked="{{.ActiveChecked}}">
-
+                  <select class="form-control" id="Active" name="Active" required="required">
+                    <option id="{{.Active}}" selected="selected">{{.Active}}</option>
+                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                  </select>
               </div>
 
               <div class="col-sm">
                 <label for="Notify">Notify</label>
-                <input type="checkbox" class="form-control" id="Notify" aria-describedby="Notify" name="Notify" placeholder="<<BLANK>>" checked="{{.Notify}}" checked="{{.NotifyChecked}}">
+                  <select class="form-control" id="Notify" name="Notify" required="required">
+                    <option id="{{.Notify}}" selected="selected">{{.Notify}}</option>
+                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                  </select>
               </div>
 
             </div>
 
         </div>
 
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-sm">
-              <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Save</button>
 
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
       </div>
     </form>

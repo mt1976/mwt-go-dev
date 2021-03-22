@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Country" classname="com.eurobase.siena.data.country.Country"><RECORD><KEYFIELD name="Code">EUROCLEAR</KEYFIELD><FIELD name="name"></FIELD><FIELD name="shortCode"></FIELD><FIELD name="EU_EEA"></FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

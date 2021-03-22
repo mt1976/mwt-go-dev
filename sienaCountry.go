@@ -37,6 +37,7 @@ type sienaCountryPage struct {
 	Name      string
 	ShortCode string
 	EU_EEA    string
+	YNList    []sienaYNItem
 }
 
 //sienaCountryItem is cheese
@@ -91,6 +92,8 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//var returnList []sienaCountryItem
 	searchID := getURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(thisConnection, searchID)
+	_, ynList, _ := getSienaYNList()
+
 	///	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
@@ -104,6 +107,7 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 		ShortCode: returnRecord.ShortCode,
 		EU_EEA:    returnRecord.EU_EEA,
+		YNList:    ynList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -124,6 +128,7 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//var returnList []sienaCountryItem
 	searchID := getURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(thisConnection, searchID)
+	_, ynList, _ := getSienaYNList()
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
@@ -138,6 +143,7 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 		ShortCode: returnRecord.ShortCode,
 		EU_EEA:    returnRecord.EU_EEA,
+		YNList:    ynList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -234,6 +240,8 @@ func newSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 
+	_, ynList, _ := getSienaYNList()
+
 	pageSienaCountryList := sienaCountryPage{
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
@@ -244,6 +252,7 @@ func newSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 		ShortCode: "",
 		EU_EEA:    "",
+		YNList:    ynList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -302,7 +311,7 @@ func fetchSienaCountryData(db *sql.DB, tsql string) (int, []sienaCountryItem, si
 		sienaCountry.Code = sqlCNTRCode.String
 		sienaCountry.Name = sqlCNTRName.String
 		sienaCountry.ShortCode = sqlCNTRShortCode.String
-		sienaCountry.EU_EEA = sqlCNTREU_EEA.String
+		sienaCountry.EU_EEA = sienaYN(sqlCNTREU_EEA.String)
 
 		sienaCountryList = append(sienaCountryList, sienaCountry)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

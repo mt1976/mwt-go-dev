@@ -70,6 +70,11 @@ type sienaCounterpartyPage struct {
 	AccountsList    []sienaAccountItem
 	NoTxns          int
 	TxnList         []sienaDealListItem
+	NoSectors       int
+	SectorsList     []sienaSectorItem
+	NoGroups        int
+	GroupsList      []sienaCounterpartyGroupItem
+	YNList          []sienaYNItem
 }
 
 //sienaCounterpartyItem is cheese
@@ -231,7 +236,9 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
-
+	_, groupList, _ := getSienaCounterpartyGroupList(thisConnection)
+	_, sectorList, _ := getSienaSectorList(thisConnection)
+	_, ynList, _ := getSienaYNList()
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
@@ -259,6 +266,9 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		SectorCodeName:  returnRecord.SectorCodeName,
 		Action:          "",
 		CountryList:     countryList,
+		GroupsList:      groupList,
+		SectorsList:     sectorList,
+		YNList:          ynList,
 	}
 	//fmt.Println(pageSienaCounterpartyList)
 
@@ -364,6 +374,9 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 
 	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, groupList, _ := getSienaCounterpartyGroupList(thisConnection)
+	_, sectorList, _ := getSienaSectorList(thisConnection)
+	_, ynList, _ := getSienaYNList()
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
 		UserRole:        gUserRole,
@@ -390,6 +403,9 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		SectorCodeName:  "",
 		Action:          "NEW",
 		CountryList:     countryList,
+		GroupsList:      groupList,
+		SectorsList:     sectorList,
+		YNList:          ynList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

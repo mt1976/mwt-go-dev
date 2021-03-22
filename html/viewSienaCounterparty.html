@@ -125,11 +125,21 @@
               </div>
               <div class="col-sm">
                 <label for="NameCentre">Centre</label>
-                <input type="text" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentre" placeholder="<<BLANK>>" disabled="disabled" value="{{.NameCentreName}}" maxlength="3">
+
+                  <select class="form-control" id="NameCentre" name="NameCentre" required="required" disabled>
+                    <option id="{{.NameCentre}}" selected="selected">{{.NameCentreName}}</option>
+
+                  </select>
+
               </div>
               <div class="col-sm">
                 <label for="CpartyGroupName">Group</label>
-                <input type="text" class="form-control" id="CpartyGroupName" name="CpartyGroupName" aria-describedby="CpartyGroupName" placeholder="<<BLANK>>" disabled="disabled" value="{{.CpartyGroupName}}" maxlength="3">
+
+                  <select class="form-control" id="CpartyGroupName" name="CpartyGroupName" required="required" disabled>
+                    <option id="{{.CpartyGroupName}}" selected="selected">{{.CpartyGroupName}}</option>
+
+                  </select>
+
               </div>
 
             </div>
@@ -143,12 +153,20 @@
 
               <div class="col-sm">
                 <label for="CountryCode">Country</label>
-                <input type="CountryCode" class="form-control" id="CountryCode" name="CountryCode" aria-describedby="CountryCode" placeholder="<<BLANK>>" value="{{.CountryCodeName}}" required disabled>
+
+                  <select class="form-control" id="CountryCode" name="CountryCode" required="required" disabled>
+                    <option id="{{.CountryCodeName}}" selected="selected">{{.CountryCodeName}}</option>
+
+                  </select>
               </div>
 
               <div class="col-sm">
                 <label for="SectorCode">Sector</label>
-                <input type="SectorCode" class="form-control" id="SectorCode" name="SectorCode" aria-describedby="SectorCode" placeholder="<<BLANK>>" value="{{.SectorCodeName}}" required disabled>
+
+                  <select class="form-control" id="SectorCode" name="SectorCode" required="required" disabled>
+                    <option id="{{.SectorCode}}" selected="selected">{{.SectorCodeName}}</option>
+
+                  </select>
               </div>
 
             </div>
@@ -279,131 +297,162 @@
 
 
 
+
           </div>
 
 
           <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
             {{range .ExtensionsList}}
 
-            <br>
-            <h2>Regulatory</h2>
-            <div class="row">
-              <div class="col-sm">
-                <label for="CustomerCategory">CustomerCategory</label>
-                <input type="text" class="form-control" id="CustomerCategory" aria-describedby="CustomerCategory" placeholder="<<BLANK>>" disabled="disabled" value="{{.CustomerCategory}}" maxlength="30">
-              </div>
-              <div class="col-sm">
-                <label for="RegulatoryCategory">RegulatoryCategory</label>
-                <input type="text" class="form-control" id="RegulatoryCategory" aria-describedby="RegulatoryCategory" placeholder="<<BLANK>>" disabled="disabled" value="{{.RegulatoryCategory}}" maxlength="30">
-              </div>
-              <div class="col-sm">
-                <label for="FSCSInclusive">FSCSInclusive</label>
-                <input type="text" class="form-control" id="FSCSInclusive" aria-describedby="FSCSInclusive" placeholder="<<BLANK>>" disabled="disabled" value="{{.FSCSInclusive}}" maxlength="30">
-              </div>
-              <div class="col-sm">
-                <label for="FinancialCounterparty">FinancialCounterparty</label>
-                <input type="text" class="form-control" id="FinancialCounterparty" aria-describedby="FinancialCounterparty" placeholder="<<BLANK>>" disabled="disabled" value="{{.FinancialCounterparty}}" maxlength="30">
-              </div>
-            </div>
-
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="LEIExpiryDate">LEIExpiryDate</label>
-                <input type="text" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDate" placeholder="<<BLANK>>" disabled="disabled" value="{{.LEIExpiryDate}}" maxlength="11">
-              </div>
-              <div class="col-sm">
-                <label for="MIFIDReviewDate">MIFIDReviewDate</label>
-                <input type="text" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDate" placeholder="<<BLANK>>" disabled="disabled" value="{{.MIFIDReviewDate}}" maxlength="3">
-              </div>
-              <div class="col-sm">
-                <label for="GDPRReviewDate">GDPRReviewDate</label>
-                <input type="text" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDate" placeholder="<<BLANK>>" disabled="disabled" value="{{.GDPRReviewDate}}" maxlength="3">
-              </div>
-
-            </div>
-
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="DelegatedReporting">DelegatedReporting</label>
-                <input type="DelegatedReporting" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReporting" placeholder="<<BLANK>>" value="{{.DelegatedReporting}}" required disabled>
-              </div>
-
-              <div class="col-sm">
-                <label for="MIFIDReportableDealsAllowed">MIFIDReportableDealsAllowed</label>
-                <input type="MIFIDReportableDealsAllowed" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowed" placeholder="<<BLANK>>"
-                  value="{{.MIFIDReportableDealsAllowed}}" required disabled>
-              </div>
 
 
 
-            </div>
-            <hr>
-            <h2>Onboarding</h2>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SignedInvestmentAgreement">SignedInvestmentAgreement</label>
-                <input type="SignedInvestmentAgreement" class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreement" placeholder="<<BLANK>>" value="{{.SignedInvestmentAgreement}}"
-                  required disabled>
-              </div>
+                      <br>
+                      <h2>Regulatory</h2>
+                      <div class="row">
+                        <div class="col-sm">
+                          <label for="CustomerCategory">Customer Category</label>
+                          <input type="text" class="form-control" id="CustomerCategory" aria-describedby="CustomerCategory" placeholder="<<BLANK>>" value="{{.CustomerCategory}}" maxlength="30" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="RegulatoryCategory">Regulatory Category</label>
+                          <input type="text" class="form-control" id="RegulatoryCategory" aria-describedby="RegulatoryCategory" placeholder="<<BLANK>>" value="{{.RegulatoryCategory}}" maxlength="30" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="FSCSInclusive">FSCS Inclusive?</label>
 
-              <div class="col-sm">
-                <label for="AppropriatenessAssessment">AppropriatenessAssessment</label>
-                <input type="AppropriatenessAssessment" class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessment" placeholder="<<BLANK>>" value="{{.AppropriatenessAssessment}}"
-                  required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="KnowYourCustomerStatus">KnowYourCustomerStatus</label>
-                <input type="text" class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatus" placeholder="<<BLANK>>" value="{{.KnowYourCustomerStatus}}" required disabled>
-              </div>
 
-              <div class="col-sm">
-                <label for="Registered">Registered</label>
-                <input type="text" class="form-control" id="Registered" name="Registered" aria-describedby="Registered" placeholder="<<BLANK>>" value="{{.Registered}}" required disabled>
-              </div>
+                            <select class="form-control" id="FSCSInclusive" name="FSCSInclusive" required="required"  disabled>
+                              <option id="{{.FSCSInclusive}}" selected="selected">{{.FSCSInclusive}}</option>
 
-            </div>
-            <hr>
-            <h2>Training</h2>
-            <div class="row">
+                            </select>
 
-              <div class="col-sm">
-                <label for="Training">Training</label>
-                <input type="text" class="form-control" id="Training" name="Training" aria-describedby="Training" placeholder="<<BLANK>>" value="{{.Training}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="TrainingCode">TrainingCode</label>
-                <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCode" placeholder="<<BLANK>>" value="{{.TrainingCode}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="TrainingReceived">TrainingReceived</label>
-                <input type="text" class="form-control" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceived" placeholder="<<BLANK>>" value="{{.TrainingReceived}}" required disabled>
-              </div>
+                        </div>
+                        <div class="col-sm">
+                          <label for="FinancialCounterparty">Financial Counterparty</label>
+                          <input type="text" class="form-control" id="FinancialCounterparty" aria-describedby="FinancialCounterparty" placeholder="<<BLANK>>" value="{{.FinancialCounterparty}}" disabled>
+                        </div>
+                      </div>
 
-            </div>
-            <hr>
-            <h2>Identification</h2>
-            <div class="row">
+                      <div class="row">
 
-              <div class="col-sm">
-                <label for="MIC">MIC</label>
-                <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MIC" placeholder="<<BLANK>>" value="{{.MIC}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="BICCode">BICCode</label>
-                <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCode" placeholder="<<BLANK>>" value="{{.BICCode}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="SortCode">SortCode</label>
-                <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCode" placeholder="<<BLANK>>" value="{{.SortCode}}" required disabled>
-              </div>
-              <div class="col-sm">
-                <label for="PortfolioCode">PortfolioCode</label>
-                <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCode" placeholder="<<BLANK>>" value="{{.PortfolioCode}}" required disabled>
-              </div>
+                        <div class="col-sm">
+                          <label for="LEIExpiryDate">LEI Expiry Date</label>
+                          <input type="date" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDate" placeholder="<<BLANK>>" value="{{.LEIExpiryDate}}" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="MIFIDReviewDate">MIFID Review Date</label>
+                          <input type="date" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDate" placeholder="<<BLANK>>" value="{{.MIFIDReviewDate}}" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="GDPRReviewDate">GDPR Review Date</label>
+                          <input type="date" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDate" placeholder="<<BLANK>>" value="{{.GDPRReviewDate}}" disabled>
+                        </div>
 
-            </div>
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm">
+                          <label for="DelegatedReporting">Delegated Reporting?</label>
+                          <input type="DelegatedReporting" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReporting" placeholder="<<BLANK>>" value="{{.DelegatedReporting}}"  disabled >
+                        </div>
+
+                        <div class="col-sm">
+                          <label for="MIFIDReportableDealsAllowed">MIFID Reportable Deals Allowed?</label>
+                          <input type="MIFIDReportableDealsAllowed" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowed" placeholder="<<BLANK>>"
+                            value="{{.MIFIDReportableDealsAllowed}}" disabled >
+                        </div>
+
+
+
+                      </div>
+                      <hr>
+                      <h2>Onboarding</h2>
+                      <div class="row">
+                        <div class="col-sm">
+                          <label for="SignedInvestmentAgreement">Signed Investment Agreement</label>
+                             <select class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" required="required" disabled>
+                               <option id="{{.SignedInvestmentAgreement}}" selected="selected">{{.SignedInvestmentAgreement}}</option>
+                             </select>
+                        </div>
+
+                        <div class="col-sm">
+                          <label for="AppropriatenessAssessment">Appropriateness Assessment</label>
+
+                             <select class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" required="required" disabled>
+                               <option id="{{.AppropriatenessAssessment}}" selected="selected">{{.AppropriatenessAssessment}}</option>
+                             </select>
+                        </div>
+                        <div class="col-sm">
+                          <label for="KnowYourCustomerStatus">Know Your Customer Status</label>
+
+                            <select class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" required="required" disabled>
+                              <option id="{{.KnowYourCustomerStatus}}" selected="selected">{{.KnowYourCustomerStatus}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm">
+                          <label for="Registered">Registered?</label>
+
+                            <select class="form-control" id="Registered" name="Registered" required="required" disabled>
+                              <option id="{{.Registered}}" selected="selected">{{.Registered}}</option>
+                            </select>
+                        </div>
+
+                      </div>
+                      <hr>
+                      <h2>Training</h2>
+                      <div class="row">
+
+                        <div class="col-sm">
+                          <label for="Training">Training</label>
+
+                            <select class="form-control" id="Training" name="Training" required="required" disabled>
+                              <option id="{{.Training}}" selected="selected">{{.Training}}</option>
+
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                          <label for="TrainingCode">Training Code</label>
+                          <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCode" placeholder="<<BLANK>>" value="{{.TrainingCode}}" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="TrainingReceived">Training Received?</label>
+
+                            <select class="form-control" id="TrainingReceived" name="TrainingReceived" required="required" disabled>
+                              <option id="{{.TrainingReceived}}" selected="selected">{{.TrainingReceived}}</option>
+                            </select>
+                        </div>
+
+                      </div>
+                      <hr>
+                      <h2>Identification</h2>
+                      <div class="row">
+
+                        <div class="col-sm">
+                          <label for="MIC">SWIFT MIC</label>
+                          <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MIC" placeholder="<<BLANK>>" value="{{.MIC}}" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="BICCode">SWIFT BIC</label>
+                          <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCode" placeholder="<<BLANK>>" value="{{.BICCode}}" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="SortCode">SortCode</label>
+                          <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCode" placeholder="<<BLANK>>" value="{{.SortCode}}" disabled>
+                        </div>
+                        <div class="col-sm">
+                          <label for="PortfolioCode">PortfolioCode</label>
+                          <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCode" placeholder="<<BLANK>>" value="{{.PortfolioCode}}" disabled>
+                        </div>
+
+                      </div>
+
+
+
+
+
 
 
 

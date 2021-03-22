@@ -55,9 +55,9 @@
             </div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-danger"   formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"><i class="fas fa-save" style="font-size: 18px" method="GET"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-outline-danger"   formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"><i class="fas fa-save"  method="GET"></i>&nbsp;&nbsp;Save</button>
 
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
@@ -158,13 +158,18 @@
 
               <div class="col-sm">
                 <label for="Active">Active</label>
-                <input type="checkbox" class="form-control" id="Active" aria-describedby="Active" name="Active" placeholder="<<BLANK>>" checked="{{.Active}}">
-
+                  <select class="form-control" id="Active" name="Active" required="required">
+                    <option id="{{.Active}}" selected="selected">{{.Active}}</option>
+                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                  </select>
               </div>
 
               <div class="col-sm">
                 <label for="Notify">Notify</label>
-                <input type="checkbox" class="form-control" id="Notify" aria-describedby="Notify" name="Notify" placeholder="<<BLANK>>" checked="{{.Notify}}">
+                  <select class="form-control" id="Notify" name="Notify" required="required">
+                    <option id="{{.Notify}}" selected="selected">{{.Notify}}</option>
+                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                  </select>
               </div>
 
 

@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"net/http"
 
 	_ "github.com/denisenkom/go-mssqldb"
@@ -17,6 +18,8 @@ const (
 	cSIENACONFIG       = "config/siena.cfg"
 	wctEpochDateFormat = "20060102T150405"
 	sienaDateFormat    = "2006-01-02"
+	YMDDateFormat      = "20060102"
+	gOutputDateFormat  = "Monday, 02 Jan 2006"
 	cCounterpartySep   = "\u22EE"
 )
 
@@ -28,6 +31,7 @@ var gUserRole = ""
 var gUserName = ""
 var gUserKnowAs = ""
 var gUserNavi = ""
+var gSienaSystemDate sienaBusinessDateItem
 
 //HomePage ...
 type HomePage struct {
@@ -52,26 +56,26 @@ func main() {
 	wctProperties := getProperties(CONST_CONFIG_FILE)
 
 	// The underscore would be an error
-	renderStr, _ := ascii.Render("MWT GO PROTO")
+	renderStr, _ := ascii.Render(wctProperties["appname"])
 
 	fmt.Print(renderStr)
 
-	fmt.Println("PATHS")
-	fmt.Println("Delivery   :", wctProperties["deliverpath"])
-	fmt.Println("Response   :", wctProperties["receivepath"])
-	fmt.Println("Processed  :", wctProperties["processedpath"])
-	fmt.Println("")
-	fmt.Println("APPLICATION")
-	fmt.Println("Name       :", wctProperties["appname"])
-	fmt.Println("Msg Format :", wctProperties["responseformat"])
-	fmt.Println("Licence    :", wctProperties["licname"])
-	fmt.Println("Lic URL    :", wctProperties["liclink"])
-	fmt.Println("")
-	fmt.Println("RELEASE")
-	fmt.Println("Release ID :", wctProperties["releaseid"])
-	fmt.Println("Level      :", wctProperties["releaselevel"])
-	fmt.Println("Number     :", wctProperties["releasenumber"])
-	fmt.Println("")
+	log.Println("PATHS")
+	log.Println("Delivery   :", wctProperties["deliverpath"])
+	log.Println("Response   :", wctProperties["receivepath"])
+	log.Println("Processed  :", wctProperties["processedpath"])
+	log.Println("")
+	log.Println("APPLICATION")
+	log.Println("Name       :", wctProperties["appname"])
+	log.Println("Msg Format :", wctProperties["responseformat"])
+	log.Println("Licence    :", wctProperties["licname"])
+	log.Println("Lic URL    :", wctProperties["liclink"])
+	log.Println("")
+	log.Println("RELEASE")
+	log.Println("Release ID :", wctProperties["releaseid"])
+	log.Println("Level      :", wctProperties["releaselevel"])
+	log.Println("Number     :", wctProperties["releasenumber"])
+	log.Println("")
 
 	// Test Connection
 
@@ -192,12 +196,22 @@ func main() {
 	//http.HandleFunc("/saveSienaDealList/", saveSienaDealListHandler)
 	//http.HandleFunc("/newSienaDealList/", newSienaDealListHandler)
 
+	http.HandleFunc("/listSienaCounterpartyGroup/", listSienaCounterpartyGroupHandler)
+	http.HandleFunc("/viewSienaCounterpartyGroup/", viewSienaCounterpartyGroupHandler)
+	http.HandleFunc("/editSienaCounterpartyGroup/", editSienaCounterpartyGroupHandler)
+	http.HandleFunc("/saveSienaCounterpartyGroup/", saveSienaCounterpartyGroupHandler)
+	http.HandleFunc("/newSienaCounterpartyGroup/", newSienaCounterpartyGroupHandler)
+
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-	fmt.Println("")
-	fmt.Println("READY STEADY GO!!!")
-	fmt.Println("URL        :", "http://localhost:"+wctProperties["port"])
+	db, _ := sienaConnect()
+	_, gSienaSystemDate, _ = getSienaBusinessDate(db)
+
+	log.Println("")
+	log.Println("READY STEADY GO!!!")
+	log.Println("URL        :", "http://localhost:"+wctProperties["port"])
+	log.Println("SYSTEM DATE:", gSienaSystemDate.Internal.Format(gOutputDateFormat))
 
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)

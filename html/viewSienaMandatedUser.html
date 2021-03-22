@@ -57,9 +57,9 @@
             </div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen" style="font-size: 18px" method="POST" formaction="/editSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/editSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Edit</button>
+                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen"  method="POST" formaction="/editSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/editSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Edit</button>
 
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
@@ -120,11 +120,6 @@
                 <select class="form-control" id="Country" name="Country" required="required" disabled>
 
                   <option id="{{.Country}}" selected="selected">{{.CountryName}}</option>
-
-                  {{range .CountryList}}
-                    <option value="{{.Code}}">{{.Name}}</option>
-                  {{end}}
-
                 </select>
               </div>
 
@@ -158,13 +153,16 @@
               </div>
               <div class="col-sm">
                 <label for="Active">Active</label>
-                <input type="checkbox" class="form-control" id="Active" aria-describedby="Active" name="Active" placeholder="<<BLANK>>" value="{{.Active}}" checked="{{.Active}}" disabled>
-
+                  <select class="form-control" id="Active" name="Active" required="required" disabled>
+                    <option id="{{.Active}}" selected="selected">{{.Active}}</option>
+                  </select>
               </div>
 
               <div class="col-sm">
                 <label for="Notify">Notify</label>
-                <input type="checkbox" class="form-control" id="Notify" aria-describedby="Notify" name="Notify" placeholder="<<BLANK>>" checked="{{.Notify}}" checked="{{.Notify}}" disabled>
+                  <select class="form-control" id="Notify" name="Notify" required="required" disabled>
+                    <option id="{{.Notify}}" selected="selected">{{.Notify}}</option>
+                  </select>
               </div>
 
             </div>

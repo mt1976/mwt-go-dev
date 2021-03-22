@@ -29,7 +29,6 @@
 
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
 
-
 </head>
 
 <body>
@@ -42,74 +41,63 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
+    <form action="/editSienaCounterpartyGroup?SienaCounterpartyGroup={{.Name}}" method="POST" class="form">
 
-    <form method="GET" action="/saveSvcDataMap">
+      <div class="card">
+
+        <div class="card-header font-weight-bold">
 
 
-      <div id="dataMapDetail">
-        <div class="card">
-          <div class="card-header">
-            <strong>Data Map &nbsp;:&nbsp;</strong>
-            <code>{{.DataMapPageID}}</code>
+
+          <div class="row">
+            <div class="col">
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              CounterpartyGroup&nbsp;:&nbsp;<code>{{.Name}}</code>
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen"  method="POST" formaction="/editSienaCounterpartyGroup/?SienaCounterpartyGroup={{.Name}}" onclick="/editSienaCounterpartyGroup/?SienaCounterpartyGroup={{.Name}}"></i>&nbsp;&nbsp;Edit</button>
+
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="card-body d-flex h-100 flex-column">
-            <input name="pgid" id="pgid" type="text" value="{{.DataMapPageID}}" hidden />
+        <div class="card-body">
 
-            <textarea class="form-control" name="pgContent" id="pgContent" rows="{{.JSRows}}" cols="80">{{.FullRecord}}</textarea>
-          </div>
 
-          <div class="card-footer">
 
-            <div class="btn-group float-right">
+            <div class="row">
 
-              <button id="save" type="submit" class="btn btn-outline-danger">
-                <i class="fas fa-save"  formaction="/saveSvcDataMap"></i>&nbsp;&nbsp;Save</button>
+              <div class="col-sm">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" id="Name" aria-describedby="Name" placeholder="<<BLANK>>" disabled="disabled" value="{{.Name}}" maxlength="10">
+              </div>
 
-              <button id="export" type="button" class="btn btn-outline-primary" onclick="saveFile()">
-                <i class="fas fa-file-code" ></i>&nbsp;&nbsp;Export</button>
 
-              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
-                <i class="far fa-window-close" ></i>&nbsp;&nbsp;Cancel</button>
 
             </div>
 
+            <div class="row">
 
-          </div>
+              <div class="col-sm">
+                <label for="Country">Country</label>
+                <input type="text" class="form-control" id="Country" aria-describedby="Country" placeholder="<<BLANK>>" value="{{.CountryName}}" required disabled>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-sm">
+                <label for="SuperGroup">Parent Group</label>
+                <input type="text" class="form-control" id="SuperGroup" aria-describedby="SuperGroup" placeholder="<<BLANK>>" value="{{.SuperGroup}}" required disabled>
+              </div>
+            </div>
         </div>
       </div>
-
     </form>
-
   </div>
 
 </body>
-<script>
-  let saveFile = () => {
-
-    // Get the data from each element on the form.
-    const name = document.getElementById('pgContent');
-
-    // This variable stores all the data.
-    let data = '\r ' + name.value + ' \r\n '
-
-    // Convert the text to BLOB.
-    const textToBLOB = new Blob([data], {
-      type: 'text/plain'
-    });
-    const sFileName = '{{.DataMapPageID}}.txt'; // The file to save the data.
-
-    let newLink = document.createElement("a");
-    newLink.download = sFileName;
-
-    if (window.webkitURL != null) {
-      newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-    } else {
-      newLink.href = window.URL.createObjectURL(textToBLOB);
-      newLink.style.display = "none";
-      document.body.appendChild(newLink);
-    }
-
-    newLink.click();
-  }
-</script>

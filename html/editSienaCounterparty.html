@@ -56,10 +56,10 @@
             </div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" style="font-size: 18px" method="GET" formaction="/saveSienaCounterparty/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}"
+                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" formaction="/saveSienaCounterparty/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}"
                     onclick="/saveSienaCounterparty/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}"></i>&nbsp;&nbsp;Save</button>
 
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
@@ -89,7 +89,10 @@
               </div>
               <div class="col-sm">
                 <label for="CpartyGroupName">Group</label>
-                <input type="text" class="form-control" id="CpartyGroupName" name="CpartyGroupName" aria-describedby="CpartyGroupName" placeholder="<<BLANK>>" disabled="disabled" value="{{.CpartyGroupName}}" maxlength="3">
+                  <select class="form-control" id="CpartyGroupName" name="CpartyGroupName" required="required">
+                    <option id="{{.CpartyGroupName}}" selected="selected">{{.CpartyGroupName}}</option>
+                    {{range .GroupsList}}<option value="{{.Name}}">{{.Name}}</option>{{end}}
+                  </select>
               </div>
 
             </div>
@@ -103,12 +106,19 @@
 
               <div class="col-sm">
                 <label for="CountryCode">Country</label>
-                <input type="CountryCode" class="form-control" id="CountryCode" name="CountryCode" aria-describedby="CountryCode" placeholder="<<BLANK>>" value="{{.CountryCodeName}}" required disabled>
+                  <select class="form-control" id="CountryCode" name="CountryCode" required="required">
+                    <option id="{{.CountryCode}}" selected="selected">{{.CountryCodeName}}</option>
+                    {{range .CountryList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                  </select>
+
               </div>
 
               <div class="col-sm">
                 <label for="SectorCode">Sector</label>
-                <input type="SectorCode" class="form-control" id="SectorCode" name="SectorCode" aria-describedby="SectorCode" placeholder="<<BLANK>>" value="{{.SectorCodeName}}" required disabled>
+                  <select class="form-control" id="SectorCode" name="SectorCode" required="required">
+                    <option id="{{.SectorCode}}" selected="selected">{{.SectorCodeName}}</option>
+                    {{range .SectorsList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                  </select>
               </div>
 
             </div>

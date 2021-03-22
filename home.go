@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 //sienaMandatedUserPage is cheese
@@ -21,6 +22,8 @@ type sienaHomePage struct {
 	SQLSchema       string
 	UserName        string
 	UserKnowAs      string
+	SienaDate       string
+	AppServerDate   string
 }
 
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
@@ -49,6 +52,8 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		SQLSchema:       sqlProperties["schema"],
 		UserName:        gUserName,
 		UserKnowAs:      gUserKnowAs,
+		SienaDate:       gSienaSystemDate.Siena,
+		AppServerDate:   time.Now().Format(sienaDateFormat),
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

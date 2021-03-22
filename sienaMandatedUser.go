@@ -57,6 +57,7 @@ type sienaMandatedUserPage struct {
 	FirmList                          []sienaFirmItem
 	CentreList                        []sienaCentreItem
 	CounterpartyName                  string
+	YNList                            []sienaYNItem
 }
 
 //sienaMandatedUserItem is cheese
@@ -183,6 +184,7 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, ynList, _ := getSienaYNList()
 
 	//fmt.Println(displayList)
 
@@ -211,6 +213,7 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		SystemUser:                        returnRecord.SystemUser,
 		Action:                            "",
 		CountryList:                       countryList,
+		YNList:                            ynList,
 	}
 
 	fmt.Println(pageSienaMandatedUserList)
@@ -325,6 +328,7 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList(thisConnection)
 	_, firmList, _ := getSienaFirmList(thisConnection)
 	_, centreList, _ := getSienaCentreList(thisConnection)
+	_, ynList, _ := getSienaYNList()
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
 		UserRole:                          gUserRole,
@@ -337,7 +341,7 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		MandatedUserKeyUserName:           "",
 		TelephoneNumber:                   "",
 		EmailAddress:                      "",
-		Active:                            "",
+		Active:                            "No",
 		FirstName:                         "",
 		Surname:                           "",
 		Postcode:                          "",
@@ -347,12 +351,13 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName:                       "",
 		FirmName:                          "",
 		CentreName:                        "",
-		Notify:                            "",
+		Notify:                            "Yes",
 		SystemUser:                        "",
 		Action:                            "NEW",
 		CountryList:                       countryList,
 		FirmList:                          firmList,
 		CentreList:                        centreList,
+		YNList:                            ynList,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -421,7 +426,7 @@ func fetchSienaMandatedUserData(db *sql.DB, tsql string) (int, []sienaMandatedUs
 		sienaMandatedUser.MandatedUserKeyUserName = sqlMDUMandatedUserKeyUserName.String
 		sienaMandatedUser.TelephoneNumber = sqlMDUTelephoneNumber.String
 		sienaMandatedUser.EmailAddress = sqlMDUEmailAddress.String
-		sienaMandatedUser.Active = sqlMDUActive.String
+		sienaMandatedUser.Active = sienaYN(sqlMDUActive.String)
 		sienaMandatedUser.FirstName = sqlMDUFirstName.String
 		sienaMandatedUser.Surname = sqlMDUSurname.String
 		sienaMandatedUser.DateOfBirth = sqlDateToHTMLDate(sqlMDUDateOfBirth.String)
@@ -432,7 +437,7 @@ func fetchSienaMandatedUserData(db *sql.DB, tsql string) (int, []sienaMandatedUs
 		sienaMandatedUser.CountryName = sqlMDUCountryName.String
 		sienaMandatedUser.FirmName = sqlMDUFirmName.String
 		sienaMandatedUser.CentreName = sqlMDUCentreName.String
-		sienaMandatedUser.Notify = sqlMDUNotify.String
+		sienaMandatedUser.Notify = sienaYN(sqlMDUNotify.String)
 		sienaMandatedUser.SystemUser = sqlMDUSystemUser.String
 
 		sienaMandatedUserList = append(sienaMandatedUserList, sienaMandatedUser)

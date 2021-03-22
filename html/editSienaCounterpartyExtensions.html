@@ -80,7 +80,13 @@
             </div>
             <div class="col-sm">
               <label for="FSCSInclusive">FSCS Inclusive?</label>
-              <input type="text" class="form-control" id="FSCSInclusive" aria-describedby="FSCSInclusive" placeholder="<<BLANK>>" value="{{.FSCSInclusive}}">
+
+
+                <select class="form-control" id="FSCSInclusive" name="FSCSInclusive" required="required">
+                  <option id="{{.FSCSInclusive}}" selected="selected">{{.FSCSInclusive}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
+
             </div>
             <div class="col-sm">
               <label for="FinancialCounterparty">Financial Counterparty</label>
@@ -126,23 +132,36 @@
           <div class="row">
             <div class="col-sm">
               <label for="SignedInvestmentAgreement">Signed Investment Agreement</label>
-              <input type="SignedInvestmentAgreement" class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreement" placeholder="<<BLANK>>" value="{{.SignedInvestmentAgreement}}"
-                 >
+                 <select class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" required="required">
+                   <option id="{{.SignedInvestmentAgreement}}" selected="selected">{{.SignedInvestmentAgreement}}</option>
+                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                 </select>
             </div>
 
             <div class="col-sm">
               <label for="AppropriatenessAssessment">Appropriateness Assessment</label>
-              <input type="AppropriatenessAssessment" class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessment" placeholder="<<BLANK>>" value="{{.AppropriatenessAssessment}}"
-                 >
+
+                 <select class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" required="required">
+                   <option id="{{.AppropriatenessAssessment}}" selected="selected">{{.AppropriatenessAssessment}}</option>
+                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                 </select>
             </div>
             <div class="col-sm">
               <label for="KnowYourCustomerStatus">Know Your Customer Status</label>
-              <input type="text" class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatus" placeholder="<<BLANK>>" value="{{.KnowYourCustomerStatus}}"  >
+
+                <select class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" required="required">
+                  <option id="{{.KnowYourCustomerStatus}}" selected="selected">{{.KnowYourCustomerStatus}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
             </div>
 
             <div class="col-sm">
               <label for="Registered">Registered?</label>
-              <input type="text" class="form-control" id="Registered" name="Registered" aria-describedby="Registered" placeholder="<<BLANK>>" value="{{.Registered}}"  >
+
+                <select class="form-control" id="Registered" name="Registered" required="required">
+                  <option id="{{.Registered}}" selected="selected">{{.Registered}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
             </div>
 
           </div>
@@ -152,7 +171,11 @@
 
             <div class="col-sm">
               <label for="Training">Training</label>
-              <input type="text" class="form-control" id="Training" name="Training" aria-describedby="Training" placeholder="<<BLANK>>" value="{{.Training}}">
+
+                <select class="form-control" id="Training" name="Training" required="required">
+                  <option id="{{.Training}}" selected="selected">{{.Training}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
             </div>
             <div class="col-sm">
               <label for="TrainingCode">Training Code</label>
@@ -160,7 +183,11 @@
             </div>
             <div class="col-sm">
               <label for="TrainingReceived">Training Received?</label>
-              <input type="text" class="form-control" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceived" placeholder="<<BLANK>>" value="{{.TrainingReceived}}">
+  
+                <select class="form-control" id="TrainingReceived" name="TrainingReceived" required="required">
+                  <option id="{{.TrainingReceived}}" selected="selected">{{.TrainingReceived}}</option>
+                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                </select>
             </div>
 
           </div>

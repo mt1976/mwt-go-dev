@@ -77,6 +77,7 @@ type sienaCounterpartyExtensionsPage struct {
 	PortfolioCode                 string
 	ReconciliationLetterFrequency string
 	DirectDealing                 string
+	YNList                        []sienaYNItem
 }
 
 //sienaCounterpartyExtensionsItem is cheese
@@ -249,7 +250,7 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-
+	_, ynList, _ := getSienaYNList()
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
@@ -300,6 +301,7 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		ReconciliationLetterFrequency: returnRecord.ReconciliationLetterFrequency,
 		DirectDealing:                 returnRecord.DirectDealing,
 		Action:                        "",
+		YNList:                        ynList,
 	}
 
 	fmt.Println(pageSienaCounterpartyExtensionsList)
@@ -550,11 +552,11 @@ func fetchSienaCounterpartyExtensionsData(db *sql.DB, tsql string) (int, []siena
 		sienaCounterpartyExtensions.ContactIndicator = sqlCPEXContactIndicator.String
 		sienaCounterpartyExtensions.CoverTrade = sqlCPEXCoverTrade.String
 		sienaCounterpartyExtensions.CustomerCategory = sqlCPEXCustomerCategory.String
-		sienaCounterpartyExtensions.FSCSInclusive = sqlCPEXFSCSInclusive.String
+		sienaCounterpartyExtensions.FSCSInclusive = sienaYN(sqlCPEXFSCSInclusive.String)
 		sienaCounterpartyExtensions.FeeFactor = sqlCPEXFeeFactor.String
 		sienaCounterpartyExtensions.InactiveStatus = sqlCPEXInactiveStatus.String
 		sienaCounterpartyExtensions.Indemnity = sqlCPEXIndemnity.String
-		sienaCounterpartyExtensions.KnowYourCustomerStatus = sqlCPEXKnowYourCustomerStatus.String
+		sienaCounterpartyExtensions.KnowYourCustomerStatus = sienaYN(sqlCPEXKnowYourCustomerStatus.String)
 		sienaCounterpartyExtensions.LERLimitCarveOut = sqlCPEXLERLimitCarveOut.String
 		sienaCounterpartyExtensions.LastAmended = sqlCPEXLastAmended.String
 		sienaCounterpartyExtensions.LastLogin = sqlCPEXLastLogin.String
@@ -564,14 +566,14 @@ func fetchSienaCounterpartyExtensionsData(db *sql.DB, tsql string) (int, []siena
 		sienaCounterpartyExtensions.RPTCurrency = sqlCPEXRPTCurrency.String
 		sienaCounterpartyExtensions.RateTimeout = sqlCPEXRateTimeout.String
 		sienaCounterpartyExtensions.RateValidation = sqlCPEXRateValidation.String
-		sienaCounterpartyExtensions.Registered = sqlCPEXRegistered.String
+		sienaCounterpartyExtensions.Registered = sienaYN(sqlCPEXRegistered.String)
 		sienaCounterpartyExtensions.RegulatoryCategory = sqlCPEXRegulatoryCategory.String
 		sienaCounterpartyExtensions.SecuredSettlement = sqlCPEXSecuredSettlement.String
 		sienaCounterpartyExtensions.SettlementLimitCarveOut = sqlCPEXSettlementLimitCarveOut.String
 		sienaCounterpartyExtensions.SortCode = sqlCPEXSortCode.String
-		sienaCounterpartyExtensions.Training = sqlCPEXTraining.String
+		sienaCounterpartyExtensions.Training = sienaYN(sqlCPEXTraining.String)
 		sienaCounterpartyExtensions.TrainingCode = sqlCPEXTrainingCode.String
-		sienaCounterpartyExtensions.TrainingReceived = sqlCPEXTrainingReceived.String
+		sienaCounterpartyExtensions.TrainingReceived = sienaYN(sqlCPEXTrainingReceived.String)
 		sienaCounterpartyExtensions.Unencumbered = sqlCPEXUnencumbered.String
 		sienaCounterpartyExtensions.LEIExpiryDate = sqlDateToHTMLDate(sqlCPEXLEIExpiryDate.String)
 		sienaCounterpartyExtensions.MIFIDReviewDate = sqlDateToHTMLDate(sqlCPEXMIFIDReviewDate.String)
@@ -579,8 +581,8 @@ func fetchSienaCounterpartyExtensionsData(db *sql.DB, tsql string) (int, []siena
 		sienaCounterpartyExtensions.DelegatedReporting = sqlCPEXDelegatedReporting.String
 		sienaCounterpartyExtensions.BOReconcile = sqlCPEXBOReconcile.String
 		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = sqlCPEXMIFIDReportableDealsAllowed.String
-		sienaCounterpartyExtensions.SignedInvestmentAgreement = sqlCPEXSignedInvestmentAgreement.String
-		sienaCounterpartyExtensions.AppropriatenessAssessment = sqlCPEXAppropriatenessAssessment.String
+		sienaCounterpartyExtensions.SignedInvestmentAgreement = sienaYN(sqlCPEXSignedInvestmentAgreement.String)
+		sienaCounterpartyExtensions.AppropriatenessAssessment = sienaYN(sqlCPEXAppropriatenessAssessment.String)
 		sienaCounterpartyExtensions.FinancialCounterparty = sqlCPEXFinancialCounterparty.String
 		sienaCounterpartyExtensions.Collateralisation = sqlCPEXCollateralisation.String
 		sienaCounterpartyExtensions.PortfolioCode = sqlCPEXPortfolioCode.String

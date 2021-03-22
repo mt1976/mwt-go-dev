@@ -46,8 +46,20 @@
       <div class="card">
 
         <div class="card-header font-weight-bold">
-          <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-          Firm&nbsp;:&nbsp;<code>{{.ID}}</code>
+
+
+          <div class="row">
+            <div class="col">    <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+                Firm&nbsp;:&nbsp;<code>{{.ID}}</code></div>
+            <div class="col-sm">
+              <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen"  method="POST" formaction="/editSienaFirm/?SienaFirm={{.ID}}" onclick="/editSienaFirm/?SienaFirm={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
+
+            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="card-body">
@@ -90,18 +102,7 @@
 
         </div>
 
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-sm">
-              <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen" style="font-size: 18px" method="POST" formaction="/editSienaFirm/?SienaFirm={{.ID}}" onclick="/editSienaFirm/?SienaFirm={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
 
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" style="font-size: 18px"></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
       </div>
     </form>
