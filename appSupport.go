@@ -158,6 +158,18 @@ func getTemplateID(tmpl string) string {
 	return templateName
 }
 
+func getMenuID(tmpl string) string {
+	templateName := "config/menu/" + tmpl + ".json"
+	roleTemplate := "config/menu" + gUserRole + "/" + tmpl + ".json"
+	log.Println("Testing", roleTemplate, fileExists(roleTemplate))
+	log.Println("Testing", templateName, fileExists(templateName))
+	if fileExists(roleTemplate) {
+		templateName = roleTemplate
+	}
+	log.Println("MENU", templateName)
+	return templateName
+}
+
 func getNavigationID(inUserRole string) string {
 	templateName := "../assets/navigation.html"
 	roleTemplate := "../assets" + inUserRole + "_navigation.html"

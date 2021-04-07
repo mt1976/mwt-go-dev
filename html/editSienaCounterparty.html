@@ -34,10 +34,23 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -89,7 +102,7 @@
               </div>
               <div class="col-sm">
                 <label for="CpartyGroupName">Group</label>
-                  <select class="form-control" id="CpartyGroupName" name="CpartyGroupName" required="required">
+                  <select class="custom-select" id="CpartyGroupName" name="CpartyGroupName" required="required">
                     <option id="{{.CpartyGroupName}}" selected="selected">{{.CpartyGroupName}}</option>
                     {{range .GroupsList}}<option value="{{.Name}}">{{.Name}}</option>{{end}}
                   </select>
@@ -106,7 +119,7 @@
 
               <div class="col-sm">
                 <label for="CountryCode">Country</label>
-                  <select class="form-control" id="CountryCode" name="CountryCode" required="required">
+                  <select class="custom-select" id="CountryCode" name="CountryCode" required="required">
                     <option id="{{.CountryCode}}" selected="selected">{{.CountryCodeName}}</option>
                     {{range .CountryList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                   </select>
@@ -115,7 +128,7 @@
 
               <div class="col-sm">
                 <label for="SectorCode">Sector</label>
-                  <select class="form-control" id="SectorCode" name="SectorCode" required="required">
+                  <select class="custom-select" id="SectorCode" name="SectorCode" required="required">
                     <option id="{{.SectorCode}}" selected="selected">{{.SectorCodeName}}</option>
                     {{range .SectorsList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                   </select>

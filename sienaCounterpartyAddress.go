@@ -18,6 +18,7 @@ var sqlCPADNameFirm, sqlCPADNameCentre, sqlCPADAddress1, sqlCPADAddress2, sqlCPA
 
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressListPage struct {
+	UserMenu                      []AppMenuItem
 	UserRole                      string
 	UserNavi                      string
 	Title                         string
@@ -28,6 +29,7 @@ type sienaCounterpartyAddressListPage struct {
 
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressPage struct {
+	UserMenu   []AppMenuItem
 	UserRole   string
 	UserNavi   string
 	Title      string
@@ -73,6 +75,7 @@ func listSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressListPage{
+		UserMenu:                      getappMenuData(gUserRole),
 		UserRole:                      gUserRole,
 		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
@@ -105,6 +108,7 @@ func viewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	//fmt.Println(tmpl)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
+		UserMenu:   getappMenuData(gUserRole),
 		UserRole:   gUserRole,
 		UserNavi:   gUserNavi,
 		Title:      wctProperties["appname"],
@@ -147,6 +151,7 @@ func editSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
+		UserMenu:   getappMenuData(gUserRole),
 		UserRole:   gUserRole,
 		UserNavi:   gUserNavi,
 		Title:      wctProperties["appname"],
@@ -252,6 +257,7 @@ func newSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 	log.Println("Servicing :", inUTL)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
+		UserMenu:   getappMenuData(gUserRole),
 		UserRole:   gUserRole,
 		UserNavi:   gUserNavi,
 		Title:      wctProperties["appname"],

@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/google/uuid"
 )
@@ -18,6 +17,7 @@ var sqlSCTCode, sqlSCTName sql.NullString
 
 //sienaSectorPage is cheese
 type sienaSectorListPage struct {
+	UserMenu         []AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -28,6 +28,7 @@ type sienaSectorListPage struct {
 
 //sienaSectorPage is cheese
 type sienaSectorPage struct {
+	UserMenu  []AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -61,6 +62,7 @@ func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorListPage{
+		UserMenu:         getappMenuData(gUserRole),
 		UserRole:         gUserRole,
 		UserNavi:         gUserNavi,
 		Title:            wctProperties["appname"],
@@ -92,6 +94,7 @@ func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
@@ -124,6 +127,7 @@ func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
@@ -161,7 +165,7 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD
 	// POPULATE THE XML FIELDS
-	sFldCode.Name = "Code"
+	sFldCode.Name = "code"
 	sFldCode.Text = item.Code
 
 	sFldName.Name = "name"
@@ -194,8 +198,8 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	staticImporterPath := sienaProperties["static_in"]
 	fileID := uuid.New()
-	pwd, _ := os.Getwd()
-	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
+	//pwd, _ := os.Getwd()
+	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
 
 	err := ioutil.WriteFile(fileName, preparedXML, 0644)
@@ -217,6 +221,7 @@ func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaSectorList := sienaSectorPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],

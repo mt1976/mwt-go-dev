@@ -18,6 +18,7 @@ var sqlCPIDKeyImportID, sqlCPIDFirm, sqlCPIDCentre, sqlCPIDFirmName, sqlCPIDCent
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDListPage struct {
+	UserMenu                       []AppMenuItem
 	UserRole                       string
 	UserNavi                       string
 	Title                          string
@@ -28,6 +29,7 @@ type sienaCounterpartyImportIDListPage struct {
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDPage struct {
+	UserMenu    []AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -71,6 +73,7 @@ func listSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDListPage{
+		UserMenu:                       getappMenuData(gUserRole),
 		UserRole:                       gUserRole,
 		UserNavi:                       gUserNavi,
 		Title:                          wctProperties["appname"],
@@ -103,6 +106,7 @@ func viewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
@@ -143,6 +147,7 @@ func editSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
@@ -257,6 +262,7 @@ func newSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],

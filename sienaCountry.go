@@ -18,6 +18,7 @@ var sqlCNTRCode, sqlCNTRName, sqlCNTRShortCode, sqlCNTREU_EEA sql.NullString
 
 //sienaCountryPage is cheese
 type sienaCountryListPage struct {
+	UserMenu          []AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string
@@ -28,6 +29,7 @@ type sienaCountryListPage struct {
 
 //sienaCountryPage is cheese
 type sienaCountryPage struct {
+	UserMenu  []AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -66,6 +68,7 @@ func listSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryListPage{
+		UserMenu:          getappMenuData(gUserRole),
 		UserRole:          gUserRole,
 		UserNavi:          gUserNavi,
 		Title:             wctProperties["appname"],
@@ -98,6 +101,7 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
@@ -134,6 +138,7 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
@@ -243,6 +248,7 @@ func newSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCountryList := sienaCountryPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],

@@ -16,6 +16,7 @@ var sqlDLSTSienaReference, sqlDLSTCustomerSienaView, sqlDLSTStatus, sqlDLSTValue
 
 //sienaDealListPage is cheese
 type sienaDealListListPage struct {
+	UserMenu           []AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -26,6 +27,7 @@ type sienaDealListListPage struct {
 
 //sienaDealListPage is cheese
 type sienaDealListPage struct {
+	UserMenu           []AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -140,6 +142,7 @@ func listSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaDealListList := sienaDealListListPage{
+		UserMenu:           getappMenuData(gUserRole),
 		UserRole:           gUserRole,
 		UserNavi:           gUserNavi,
 		Title:              wctProperties["appname"],
@@ -171,6 +174,7 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaDealListList := sienaDealListPage{
+		UserMenu:           getappMenuData(gUserRole),
 		UserRole:           gUserRole,
 		UserNavi:           gUserNavi,
 		Title:              wctProperties["appname"],
@@ -329,6 +333,10 @@ func fetchSienaDealListData(db *sql.DB, tsql string) (int, []sienaDealListItem, 
 
 		if sienaDealList.Firm != "" {
 			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, cCounterpartySep, sienaDealList.Centre)
+		}
+
+		if sienaDealList.Instrument == "" {
+			sienaDealList.Instrument = sienaDealList.DealtCcy + " " + sienaDealList.FullDealType + " " + sienaDealList.Direction
 		}
 
 		sienaDealListList = append(sienaDealListList, sienaDealList)

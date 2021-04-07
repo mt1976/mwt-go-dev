@@ -18,6 +18,7 @@ var sqlFRMFirmName, sqlFRMFullName, sqlFRMCountry, sqlFRMSector, sqlFRMSectorNam
 
 //sienaFirmPage is cheese
 type sienaFirmListPage struct {
+	UserMenu       []AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -28,6 +29,7 @@ type sienaFirmListPage struct {
 
 //sienaFirmPage is cheese
 type sienaFirmPage struct {
+	UserMenu    []AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -72,6 +74,7 @@ func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaFirmList := sienaFirmListPage{
+		UserMenu:       getappMenuData(gUserRole),
 		UserRole:       gUserRole,
 		UserNavi:       gUserNavi,
 		Title:          wctProperties["appname"],
@@ -103,6 +106,7 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaFirmList := sienaFirmPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
@@ -146,6 +150,7 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaFirmList := sienaFirmPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],
@@ -268,6 +273,7 @@ func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaFirmList := sienaFirmPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],

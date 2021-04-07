@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="../assets/custom.css">
   <script src="../assets/custom.js"></script>
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+
+
   <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
   </link>
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
@@ -34,10 +36,23 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -79,12 +94,12 @@
 
               <div class="col-sm">
                 <label for="FirmName">Firm</label>
-                <input type="text" class="form-control" id="FirmName" aria-describedby="emailHelp" name="FirmName" placeholder="<<BLANK>>" value="{{.FirmName}}" required disabled>
+                <input type="text" class="custom-select" id="FirmName" aria-describedby="emailHelp" name="FirmName" placeholder="<<BLANK>>" value="{{.FirmName}}" required disabled>
               </div>
 
               <div class="col-sm">
                 <label for="CentreName">Centre</label>
-                <input type="text" class="form-control" id="CentreName" aria-describedby="emailHelp" name="CentreName" placeholder="<<BLANK>>" value="{{.CentreName}}" required disabled>
+                <input type="text" class="custom-select" id="CentreName" aria-describedby="emailHelp" name="CentreName" placeholder="<<BLANK>>" value="{{.CentreName}}" required disabled>
               </div>
 
             </div>
@@ -114,7 +129,7 @@
               </div>
               <div class="col-sm">
                 <label for="Country">Country</label>
-                <select class="form-control" id="country" name="country" required="required">
+                <select class="custom-select" id="country" name="country" required="required">
 
                   <option id="{{.Country}}" selected="selected">{{.CountryName}}</option>
 
@@ -151,25 +166,25 @@
             </div>
 
             <div class="row">
-              <div class="col-sm">
+              <div class="col">
                 <label for="EmailAddress">Email</label>
                 <input type="email" class="form-control" id="EmailAddress" aria-describedby="emailHelp" name="EmailAddress" placeholder="<<BLANK>>" value="{{.EmailAddress}}">
               </div>
 
-              <div class="col-sm">
-                <label for="Active">Active</label>
-                  <select class="form-control" id="Active" name="Active" required="required">
-                    <option id="{{.Active}}" selected="selected">{{.Active}}</option>
-                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
-                  </select>
+              <div class="col">
+                <div class="custom-control custom-switch">
+                  <input class="custom-control-input" type="checkbox" value="" id="Active" name="Active" {{.CBActive}}></input>
+                    <label class="custom-control-label" for="Active">Active</label>
+                </div>
               </div>
 
-              <div class="col-sm">
-                <label for="Notify">Notify</label>
-                  <select class="form-control" id="Notify" name="Notify" required="required">
-                    <option id="{{.Notify}}" selected="selected">{{.Notify}}</option>
-                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
-                  </select>
+              <div class="col">
+                <div class="custom-control custom-switch">
+
+                  <input class="custom-control-input" type="checkbox" value="" id="Notify" name="Notify" {{.CBNotify}}></input>
+                    <label class="custom-control-label" for="Notify">Notify</label>
+                </div>
+
               </div>
 
 

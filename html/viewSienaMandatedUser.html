@@ -34,10 +34,23 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -80,12 +93,12 @@
               </div>
               <div class="col-sm">
                 <label for="FirmName">Firm</label>
-                <input type="text" class="form-control" id="FirmName" aria-describedby="emailHelp" name="FirmName" placeholder="<<BLANK>>" value="{{.FirmName}}" required disabled>
+                <input type="text" class="custom-select" id="FirmName" aria-describedby="emailHelp" name="FirmName" placeholder="<<BLANK>>" value="{{.FirmName}}" required disabled>
               </div>
 
               <div class="col-sm">
                 <label for="CentreName">Centre</label>
-                <input type="text" class="form-control" id="CentreName" aria-describedby="emailHelp" name="CentreName" placeholder="<<BLANK>>" value="{{.CentreName}}" required disabled>
+                <input type="text" class="custom-select" id="CentreName" aria-describedby="emailHelp" name="CentreName" placeholder="<<BLANK>>" value="{{.CentreName}}" required disabled>
               </div>
             </div>
 
@@ -117,7 +130,7 @@
 
               <div class="col-sm">
                 <label for="Country">Country</label>
-                <select class="form-control" id="Country" name="Country" required="required" disabled>
+                <select class="custom-select" id="Country" name="Country" required="required" disabled>
 
                   <option id="{{.Country}}" selected="selected">{{.CountryName}}</option>
                 </select>
@@ -151,18 +164,20 @@
                 <label for="EmailAddress">Email</label>
                 <input type="text" class="form-control" id="EmailAddress" aria-describedby="emailHelp" name="EmailAddress" placeholder="<<BLANK>>" value="{{.EmailAddress}}" required disabled>
               </div>
-              <div class="col-sm">
-                <label for="Active">Active</label>
-                  <select class="form-control" id="Active" name="Active" required="required" disabled>
-                    <option id="{{.Active}}" selected="selected">{{.Active}}</option>
-                  </select>
+              <div class="col">
+                <div class="custom-control custom-switch">
+                  <input class="custom-control-input" type="checkbox" value="" id="Active" name="Active" disabled="disabled"    {{.CBActive}}></input>
+                    <label class="custom-control-label" for="Active">Active</label>
+                </div>
               </div>
 
-              <div class="col-sm">
-                <label for="Notify">Notify</label>
-                  <select class="form-control" id="Notify" name="Notify" required="required" disabled>
-                    <option id="{{.Notify}}" selected="selected">{{.Notify}}</option>
-                  </select>
+              <div class="col">
+                <div class="custom-control custom-switch">
+
+                  <input class="custom-control-input" type="checkbox" value="" id="Notify" name="Notify" disabled="disabled" {{.CBNotify}}></input>
+                    <label class="custom-control-label" for="Notify">Notify</label>
+                </div>
+
               </div>
 
             </div>

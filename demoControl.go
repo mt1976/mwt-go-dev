@@ -27,27 +27,11 @@ var gSessionToken = ""
 var gUUID = "authorAdjust"
 var gSecurityViolation = ""
 var gDB *sql.DB
-var gUserRole = ""
+var gUserRole = "/default"
 var gUserName = ""
 var gUserKnowAs = ""
 var gUserNavi = ""
 var gSienaSystemDate sienaBusinessDateItem
-
-//HomePage ...
-type HomePage struct {
-	Title          string
-	Body           string
-	RequestPath    string
-	ResponsePath   string
-	ProcessedPath  string
-	NoResponses    int
-	Responses      []WctResponsePayload
-	NoServices     int
-	Services       string
-	ServiceCatalog []ServiceCatalogItem
-	Description    string
-	ResponseType   string
-}
 
 func main() {
 
@@ -79,6 +63,10 @@ func main() {
 
 	// Test Connection
 
+	thisConnection, _ := sienaConnect()
+	//	fmt.Println(thisConnection.Stats().OpenConnections)
+	noItems, _, _ := getcalenderList(thisConnection)
+	log.Println("No. Cal Events", noItems)
 	//
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/login", valLoginHandler)
@@ -212,6 +200,12 @@ func main() {
 	log.Println("READY STEADY GO!!!")
 	log.Println("URL        :", "http://localhost:"+wctProperties["port"])
 	log.Println("SYSTEM DATE:", gSienaSystemDate.Internal.Format(gOutputDateFormat))
+
+	// Get menu
+	menuCount, _ := fetchappMenuData("")
+	log.Println("No. Menu Items", menuCount)
+	//log.Println("MENU", menuContent)
+	// get menu end
 
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)

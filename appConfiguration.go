@@ -9,6 +9,7 @@ import (
 
 //AppConfigurationPage is cheese
 type AppConfigurationPage struct {
+	UserMenu               []AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -47,6 +48,7 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 
 	pageAppConfigView := AppConfigurationPage{
+		UserMenu:               getappMenuData(gUserRole),
 		UserRole:               gUserRole,
 		UserNavi:               gUserNavi,
 		Title:                  title,

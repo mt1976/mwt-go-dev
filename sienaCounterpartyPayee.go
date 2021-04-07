@@ -19,6 +19,7 @@ var sqlCPPYSourceTable, sqlCPPYKeyCounterpartyFirm, sqlCPPYKeyCounterpartyCentre
 
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeeListPage struct {
+	UserMenu                    []AppMenuItem
 	UserRole                    string
 	UserNavi                    string
 	Title                       string
@@ -29,6 +30,7 @@ type sienaCounterpartyPayeeListPage struct {
 
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeePage struct {
+	UserMenu              []AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string
@@ -110,6 +112,7 @@ func listSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeeListPage{
+		UserMenu:                    getappMenuData(gUserRole),
 		UserRole:                    gUserRole,
 		UserNavi:                    gUserNavi,
 		Title:                       wctProperties["appname"],
@@ -149,6 +152,7 @@ func viewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
+		UserMenu:              getappMenuData(gUserRole),
 		UserRole:              gUserRole,
 		UserNavi:              gUserNavi,
 		Title:                 wctProperties["appname"],
@@ -216,6 +220,7 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
+		UserMenu:              getappMenuData(gUserRole),
 		UserRole:              gUserRole,
 		UserNavi:              gUserNavi,
 		Title:                 wctProperties["appname"],
@@ -359,6 +364,7 @@ func newSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
+		UserMenu:              getappMenuData(gUserRole),
 		UserRole:              gUserRole,
 		UserNavi:              gUserNavi,
 		Title:                 wctProperties["appname"],

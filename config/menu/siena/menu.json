@@ -1,0 +1,171 @@
+{
+  "menu_Nodes": [{
+      "ID": "1",
+      "Text": "Home",
+      "Glyph": "fa fa-home",
+      "HREF": "/home",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "2",
+      "Text": "Sectors",
+      "Glyph": "fas fa-industry",
+      "HREF": "/listSienaSector",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "3",
+      "Text": "Countrys",
+      "Glyph": "fas fa-globe-americas",
+      "HREF": "/listSienaCountry",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+
+    ,
+    {
+      "ID": "4",
+      "Text": "Currencys",
+      "Glyph": "fas fa-dollar-sign",
+      "HREF": "/listSienaCurrency",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "5",
+      "Text": "Currency Pairs",
+      "Glyph": "fas fa-coins",
+      "HREF": "/listSienaCurrencyPair",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "6",
+      "Text": "Firms",
+      "Glyph": "fas fa-city",
+      "HREF": "/listSienaFirm",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "7",
+      "Text": "Centres",
+      "Glyph": "fas fa-map-marker-alt",
+      "HREF": "/listSienaCentre",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "8",
+      "Text": "Books",
+      "Glyph": "fas fa-book",
+      "HREF": "/listSienaBook",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "9",
+      "Text": "Brokers",
+      "Glyph": "far fa-handshake",
+      "HREF": "/listSienaBroker",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "10",
+      "Text": "Counterpartys",
+      "Glyph": "fa fa-user",
+      "HREF": "/listSienaCounterparty",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "11",
+      "Text": "Mandated Users",
+      "Glyph": "fas fa-user-check",
+      "HREF": "/listSienaMandatedUser",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "12",
+      "Text": "Counterparty Groups",
+      "Glyph": "fa fa-users",
+      "HREF": "/listSienaCounterpartyGroup",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "13",
+      "Text": "Bank Portfolios",
+      "Glyph": "far fa-folder-open",
+      "HREF": "/listSienaPortfolio",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "14",
+      "Text": "Accounts",
+      "Glyph": "fas fa-landmark",
+      "HREF": "/listSienaAccount",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "ID": "15",
+      "Text": "Payees",
+      "Glyph": "fas fa-wallet",
+      "HREF": "/listSienaCounterpartyPayee",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "16",
+      "Text": "Counterparty Import",
+      "Glyph": "fas fa-file-import",
+      "HREF": "/listSienaCounterpartyImportID",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "ID": "17",
+      "Text": "Transactions",
+      "Glyph": "fas fa-shopping-basket",
+      "HREF": "/listSienaDealList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+
+    ,
+    {
+      "Break": "<hr class=\"hr-list\">"
+    }
+    ,
+    {
+      "ID": "27",
+      "Text": "Logout",
+      "Glyph": "fas fa-sign-out-alt",
+      "HREF": "/logout",
+      "OnClick": "",
+      "TextClass": "text-muted"
+    }
+
+  ]
+}

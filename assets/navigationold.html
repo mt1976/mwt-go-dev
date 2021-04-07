@@ -1,0 +1,383 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="utf-8">
+<!-- Favicon Stuff -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+<meta name="msapplication-TileColor" content="#322a77">
+<meta name="theme-color" content="#ffffff">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+<!-- Add Custom Fonts & Styles-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/custom.css">
+<script src="../assets/custom.js"></script>
+
+<!-- Add icon library -->
+<script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+
+<!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+<link rel="stylesheet" href="../assets/custom_table.css">
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+</link>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<!-- VISIBLE BIT -->
+
+<nav class="navbar sticky-top">
+
+  <form action="#" method="POST" align="" class="btn-block">
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+
+
+    <div class="row">
+      <div class="nav-burger">
+        <button id="btnGroupDrop1" type="button" class="hamburger" data-toggle="collapse" data-target="#cheese" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-th fa-2x"></i>
+        </button>
+      </div>
+
+      <div class="nav-title"><a href="" onclick="/home/" class="nav-title">Demo Control Centre</a></div>
+
+    </div>
+
+    <div class="dropdown-menu my-dropdown-menu" aria-labelledby="btnGroupDrop1" style="font-weight:lighter" id="cheese">
+
+      <a class="my-dropdown-item" href="/home">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fa fa-home"></i>
+          </div>
+          <div class="dd-text">
+            Home
+          </div>
+        </div>
+      </a>
+
+      <a class="dropdown-item my-dropdown-item" href="/listSienaSector">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-industry"></i>
+          </div>
+          <div class="dd-text">
+            Sectors
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCountry">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <div class="dd-text">
+            Countrys
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCurrency">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="dd-text">
+            Currencys
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCurrencyPair">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-coins"></i>
+          </div>
+          <div class="dd-text">
+            Currency Pairs
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaFirm">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-city"></i>
+          </div>
+          <div class="dd-text">
+            Firms
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCentre">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-map-marker-alt"></i>
+
+          </div>
+          <div class="dd-text">
+            Centres
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaBook">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-book"></i>
+
+          </div>
+          <div class="dd-text">
+            Books
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaBroker">
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-handshake"></i>
+
+          </div>
+          <div class="dd-text">
+            Brokers
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCounterparty">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fa fa-user"></i>
+
+          </div>
+          <div class="dd-text">
+            Counterpartys
+          </div>
+        </div>
+      </a>
+
+
+
+      <a class="my-dropdown-item" href="/listSienaMandatedUser">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-user-check"></i>
+
+          </div>
+          <div class="dd-text">
+            Mandated Users
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCounterpartyGroup">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fa fa-users"></i>
+
+          </div>
+          <div class="dd-text">
+            Counterparty Groups
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaPortfolio">
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-folder-open"></i>
+
+          </div>
+          <div class="dd-text">
+            Bank Portfolios
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaAccount">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-landmark"></i>
+
+          </div>
+          <div class="dd-text">
+            Accounts
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCounterpartyPayee">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-wallet"></i>
+
+          </div>
+          <div class="dd-text">
+            Payees
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaCounterpartyImportID">
+        <div class="row">
+          <div class="dd-img">
+<i class="fas fa-file-import"></i>
+          </div>
+          <div class="dd-text">
+            Counterparty Import
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSienaDealList">
+        <div class="row">
+          <div class="dd-img">
+<i class="fas fa-shopping-basket"></i>
+</div>
+          <div class="dd-text">
+            Transactions
+          </div>
+        </div>
+      </a>
+
+      <hr class="hr-list">
+      <a class="my-dropdown-item" href="/srvServiceCatalog">
+        <div class="row">
+          <div class="dd-img">
+<i class="fas fa-list-alt text-secondary"></i>
+          </div>
+          <div class="dd-text">
+Service Catalog
+          </div>
+        </div>
+      </a>
+      <a class="my-dropdown-item" href="/listSvcDataMap">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-dice-d6 text-secondary"></i>
+
+          </div>
+          <div class="dd-text">
+            Data Loader Mappings
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listResponses">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-folder text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            Responses
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/listSrvConfiguration">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-cog text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            Properties
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" onclick="window.print()">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fa fa-print text-secondary"></i>
+
+          </div>
+          <div class="dd-text">
+            Print
+          </div>
+        </div>
+      </a>
+
+      <hr class="hr-list">
+
+      <a class="my-dropdown-item" href="/viewAppConfiguration">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-server text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            App Environment
+          </div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/viewSrvEnvironment">
+        <div class="row">
+          <div class="dd-img">
+            <i class="fas fa-server text-info"></i>
+
+          </div>
+          <div class="dd-text">
+            Server Environment
+          </div>
+        </div>
+      </a>
+
+      <hr class="hr-list">
+
+      <a class="my-dropdown-item" href="/clearResponses">
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-trash-alt text-warning"></i>
+
+          </div>
+          <div class="dd-text">
+            Responses</div>
+        </div>
+      </a>
+
+      <a class="my-dropdown-item" href="/clearQueues">
+        <div class="row">
+          <div class="dd-img">
+            <i class="far fa-trash-alt text-warning"></i>
+
+          </div>
+          <div class="dd-text">
+            Queues</div>
+        </div>
+      </a>
+
+      <hr class="hr-list">
+
+      <a class="my-dropdown-item" href="/logout">
+        <div class="row">
+          <div class="dd-img text-muted">
+            <i class="fas fa-sign-out-alt"></i>
+          </div>
+          <div class="dd-text text-muted">
+            Logout</div>
+        </div>
+      </a>
+
+    </div>
+
+  </form>
+</nav>

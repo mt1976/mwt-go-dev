@@ -35,10 +35,23 @@
 
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
 <div class="container-fluid">
@@ -51,7 +64,7 @@
             <div class="col">
 
               <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              MandatedUsers&nbsp;&nbsp;<span class="badge badge-pill badge-primary">{{.SienaMandatedUserCount}} </span>
+              MandatedUsers&nbsp;&nbsp;<span class="badge badge-dark">{{.SienaMandatedUserCount}} </span>
             </div>
             <div class="col text-right">
               <div class="btn-group">
@@ -81,6 +94,7 @@
                     <th class="text-center">Counterparty</th>
                     <th class="text-center">Firm</th>
                     <th class="text-center">Centre</th>
+                    <th class="text-center">Active</th>
                     <th class="text-center">Action</th>
                   </tr>
                 </thead>
@@ -92,7 +106,10 @@
                     <td class="align-middle">{{.MandatedUserKeyCounterpartyFirm}}&#8942;{{.MandatedUserKeyCounterpartyCentre}}</td>
                     <td class="align-middle">{{.FirmName}}</td>
                     <td class="align-middle text-center">{{.CentreName}}</td>
+                  <td class="align-middle text-center">
+                  <input class="" type="checkbox" value="" id="Active" name="Active" disabled="disabled" {{.CBActive}}></input>
 
+                </td>
                     <td class="alight-right" style="width:1px;">
 
                       <div class="btn-group">

@@ -17,6 +17,7 @@ type Page struct {
 
 //SrvConfigurationPage is cheese
 type SrvConfigurationPage struct {
+	UserMenu              []AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string
@@ -29,6 +30,7 @@ type SrvConfigurationPage struct {
 
 //SrvConfigurationListPage is cheese
 type SrvConfigurationListPage struct {
+	UserMenu              []AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string
@@ -91,6 +93,7 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
+		UserMenu:              getappMenuData(gUserRole),
 		UserRole:              gUserRole,
 		UserNavi:              gUserNavi,
 		Title:                 title,
@@ -145,6 +148,7 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
+		UserMenu:              getappMenuData(gUserRole),
 		UserRole:              gUserRole,
 		UserNavi:              gUserNavi,
 		Title:                 title,
@@ -196,6 +200,7 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
+		UserMenu:     getappMenuData(gUserRole),
 		UserRole:     gUserRole,
 		UserNavi:     gUserNavi,
 		Title:        title,

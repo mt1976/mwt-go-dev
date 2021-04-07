@@ -34,10 +34,23 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+  </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -45,14 +58,14 @@
 
       <div class="card-header font-weight-bold">
 
-          <div class="row">
-            <div class="col">
-              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              Counterparty&nbsp;:&nbsp;<code>{{.NameFirm}}&#8942;{{.NameCentre}}</code>
-            </div>
-            <div class="col">
-  <form action="/editSienaCounterparty/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST" id="actionBar">
-                  <div class="btn-group float-right">
+        <div class="row">
+          <div class="col">
+            <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+            Counterparty&nbsp;:&nbsp;<code>{{.NameFirm}}&#8942;{{.NameCentre}}</code>
+          </div>
+          <div class="col">
+            <form action="/editSienaCounterparty/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST" id="actionBar">
+              <div class="btn-group float-right">
 
                 <button type="submit" value="" class="btn btn-outline-warning" formaction="/editSienaCounterparty/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST">
                   <i class="fa fa-user"></i>&nbsp;&nbsp;Edit Counterparty</button>
@@ -60,14 +73,15 @@
                 <button type="submit" value="" class="btn btn-outline-warning" formaction="/editSienaCounterpartyAddress/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST">
                   <i class="fas fa-map-signs"></i>&nbsp;&nbsp;Edit Address</button>
 
-                <button type="submit" value="" class="btn btn-outline-warning" formaction="/editSienaCounterpartyExtensions/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST"><i class="fas fa-passport"></i>&nbsp;&nbsp;Edit Additional</button>
+                <button type="submit" value="" class="btn btn-outline-warning" formaction="/editSienaCounterpartyExtensions/?SienaFirm={{.NameFirm}}&SienaCentre={{.NameCentre}}" method="POST"><i class="fas fa-passport"></i>&nbsp;&nbsp;Edit
+                  Additional</button>
 
                 <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </form>
 
-            </div>
           </div>
+        </div>
 
 
       </div>
@@ -76,32 +90,31 @@
 
         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-user"></i><br>Home</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-user"></i><br>Home<br>&nbsp;</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fas fa-map-signs"></i><br>Address</a>
+            <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fas fa-map-signs"></i><br>Address<br>&nbsp;</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="mandates-tab" data-toggle="tab" href="#mandates" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-user-check"></i><br>Mandates&nbsp;<span
-                class="badge badge-pill badge-light">{{.NoMandates}}</span></a>
+                class="badge badge-primary">{{.NoMandates}}</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="payee-tab" data-toggle="tab" href="#payee" role="tab" aria-controls="payee" aria-selected="false"><i class="fas fa-wallet"></i><br>Payees&nbsp;<span class="badge badge-pill badge-light">{{.NoPayees}}</span></a>
+            <a class="nav-link" id="payee-tab" data-toggle="tab" href="#payee" role="tab" aria-controls="payee" aria-selected="false"><i class="fas fa-wallet"></i><br>Payees<br><span class="badge badge-primary">{{.NoPayees}}</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="contact" aria-selected="false"> <i class="fas fa-landmark"></i><br>Accounts&nbsp;<span
-                class="badge badge-pill badge-light">{{.NoAccounts}}</span></a>
+            <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="contact" aria-selected="false"> <i class="fas fa-landmark"></i><br>Accounts&nbsp;<span class="badge badge-primary">{{.NoAccounts}}</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="additional-tab" data-toggle="tab" href="#additional" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-passport"></i><br>Additional</a>
+            <a class="nav-link" id="additional-tab" data-toggle="tab" href="#additional" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-passport"></i><br>Additional<br>&nbsp;</a>
+
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-file-import"></i><br>Import&nbsp;<span
-                class="badge badge-pill badge-light">{{.NoImports}}</span></a>
+            <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-file-import"></i><br>Import<br><span class="badge badge-primary">{{.NoImports}}</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="txn-tab" data-toggle="tab" href="#txn" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-shopping-basket"></i>
-              <br>Deals&nbsp;<span class="badge badge-pill badge-light">{{.NoTxns}}</span></a>
+              <br>Deals<br><span class="badge badge-primary">{{.NoTxns}}</span></a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -126,19 +139,19 @@
               <div class="col-sm">
                 <label for="NameCentre">Centre</label>
 
-                  <select class="form-control" id="NameCentre" name="NameCentre" required="required" disabled>
-                    <option id="{{.NameCentre}}" selected="selected">{{.NameCentreName}}</option>
+                <select class="custom-select" id="NameCentre" name="NameCentre" required="required" disabled>
+                  <option id="{{.NameCentre}}" selected="selected">{{.NameCentreName}}</option>
 
-                  </select>
+                </select>
 
               </div>
               <div class="col-sm">
                 <label for="CpartyGroupName">Group</label>
 
-                  <select class="form-control" id="CpartyGroupName" name="CpartyGroupName" required="required" disabled>
-                    <option id="{{.CpartyGroupName}}" selected="selected">{{.CpartyGroupName}}</option>
+                <select class="custom-select" id="CpartyGroupName" name="CpartyGroupName" required="required" disabled>
+                  <option id="{{.CpartyGroupName}}" selected="selected">{{.CpartyGroupName}}</option>
 
-                  </select>
+                </select>
 
               </div>
 
@@ -154,19 +167,19 @@
               <div class="col-sm">
                 <label for="CountryCode">Country</label>
 
-                  <select class="form-control" id="CountryCode" name="CountryCode" required="required" disabled>
-                    <option id="{{.CountryCodeName}}" selected="selected">{{.CountryCodeName}}</option>
+                <select class="custom-select" id="CountryCode" name="CountryCode" required="required" disabled>
+                  <option id="{{.CountryCodeName}}" selected="selected">{{.CountryCodeName}}</option>
 
-                  </select>
+                </select>
               </div>
 
               <div class="col-sm">
                 <label for="SectorCode">Sector</label>
 
-                  <select class="form-control" id="SectorCode" name="SectorCode" required="required" disabled>
-                    <option id="{{.SectorCode}}" selected="selected">{{.SectorCodeName}}</option>
+                <select class="custom-select" id="SectorCode" name="SectorCode" required="required" disabled>
+                  <option id="{{.SectorCode}}" selected="selected">{{.SectorCodeName}}</option>
 
-                  </select>
+                </select>
               </div>
 
             </div>
@@ -197,7 +210,6 @@
 
 
           <div class="tab-pane fade" id="payee" role="tabpanel" aria-labelledby="payee-tab">
-            <br>
             <form action="/home" method="POST">
 
               <div class="table-responsive">
@@ -307,147 +319,147 @@
 
 
 
-                      <br>
-                      <h2>Regulatory</h2>
-                      <div class="row">
-                        <div class="col-sm">
-                          <label for="CustomerCategory">Customer Category</label>
-                          <input type="text" class="form-control" id="CustomerCategory" aria-describedby="CustomerCategory" placeholder="<<BLANK>>" value="{{.CustomerCategory}}" maxlength="30" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="RegulatoryCategory">Regulatory Category</label>
-                          <input type="text" class="form-control" id="RegulatoryCategory" aria-describedby="RegulatoryCategory" placeholder="<<BLANK>>" value="{{.RegulatoryCategory}}" maxlength="30" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="FSCSInclusive">FSCS Inclusive?</label>
+            <br>
+            <h2>Regulatory</h2>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CustomerCategory">Customer Category</label>
+                <input type="text" class="form-control" id="CustomerCategory" aria-describedby="CustomerCategory" placeholder="<<BLANK>>" value="{{.CustomerCategory}}" maxlength="30" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="RegulatoryCategory">Regulatory Category</label>
+                <input type="text" class="form-control" id="RegulatoryCategory" aria-describedby="RegulatoryCategory" placeholder="<<BLANK>>" value="{{.RegulatoryCategory}}" maxlength="30" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="FSCSInclusive">FSCS Inclusive?</label>
 
 
-                            <select class="form-control" id="FSCSInclusive" name="FSCSInclusive" required="required"  disabled>
-                              <option id="{{.FSCSInclusive}}" selected="selected">{{.FSCSInclusive}}</option>
+                <select class="custom-select" id="FSCSInclusive" name="FSCSInclusive" required="required" disabled>
+                  <option id="{{.FSCSInclusive}}" selected="selected">{{.FSCSInclusive}}</option>
 
-                            </select>
+                </select>
 
-                        </div>
-                        <div class="col-sm">
-                          <label for="FinancialCounterparty">Financial Counterparty</label>
-                          <input type="text" class="form-control" id="FinancialCounterparty" aria-describedby="FinancialCounterparty" placeholder="<<BLANK>>" value="{{.FinancialCounterparty}}" disabled>
-                        </div>
-                      </div>
+              </div>
+              <div class="col-sm">
+                <label for="FinancialCounterparty">Financial Counterparty</label>
+                <input type="text" class="form-control" id="FinancialCounterparty" aria-describedby="FinancialCounterparty" placeholder="<<BLANK>>" value="{{.FinancialCounterparty}}" disabled>
+              </div>
+            </div>
 
-                      <div class="row">
+            <div class="row">
 
-                        <div class="col-sm">
-                          <label for="LEIExpiryDate">LEI Expiry Date</label>
-                          <input type="date" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDate" placeholder="<<BLANK>>" value="{{.LEIExpiryDate}}" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="MIFIDReviewDate">MIFID Review Date</label>
-                          <input type="date" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDate" placeholder="<<BLANK>>" value="{{.MIFIDReviewDate}}" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="GDPRReviewDate">GDPR Review Date</label>
-                          <input type="date" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDate" placeholder="<<BLANK>>" value="{{.GDPRReviewDate}}" disabled>
-                        </div>
+              <div class="col-sm">
+                <label for="LEIExpiryDate">LEI Expiry Date</label>
+                <input type="date" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDate" placeholder="<<BLANK>>" value="{{.LEIExpiryDate}}" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="MIFIDReviewDate">MIFID Review Date</label>
+                <input type="date" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDate" placeholder="<<BLANK>>" value="{{.MIFIDReviewDate}}" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="GDPRReviewDate">GDPR Review Date</label>
+                <input type="date" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDate" placeholder="<<BLANK>>" value="{{.GDPRReviewDate}}" disabled>
+              </div>
 
-                      </div>
+            </div>
 
-                      <div class="row">
+            <div class="row">
 
-                        <div class="col-sm">
-                          <label for="DelegatedReporting">Delegated Reporting?</label>
-                          <input type="DelegatedReporting" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReporting" placeholder="<<BLANK>>" value="{{.DelegatedReporting}}"  disabled >
-                        </div>
+              <div class="col-sm">
+                <label for="DelegatedReporting">Delegated Reporting?</label>
+                <input type="DelegatedReporting" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReporting" placeholder="<<BLANK>>" value="{{.DelegatedReporting}}" disabled>
+              </div>
 
-                        <div class="col-sm">
-                          <label for="MIFIDReportableDealsAllowed">MIFID Reportable Deals Allowed?</label>
-                          <input type="MIFIDReportableDealsAllowed" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowed" placeholder="<<BLANK>>"
-                            value="{{.MIFIDReportableDealsAllowed}}" disabled >
-                        </div>
+              <div class="col-sm">
+                <label for="MIFIDReportableDealsAllowed">MIFID Reportable Deals Allowed?</label>
+                <input type="MIFIDReportableDealsAllowed" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowed" placeholder="<<BLANK>>"
+                  value="{{.MIFIDReportableDealsAllowed}}" disabled>
+              </div>
 
 
 
-                      </div>
-                      <hr>
-                      <h2>Onboarding</h2>
-                      <div class="row">
-                        <div class="col-sm">
-                          <label for="SignedInvestmentAgreement">Signed Investment Agreement</label>
-                             <select class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" required="required" disabled>
-                               <option id="{{.SignedInvestmentAgreement}}" selected="selected">{{.SignedInvestmentAgreement}}</option>
-                             </select>
-                        </div>
+            </div>
+            <hr>
+            <h2>Onboarding</h2>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SignedInvestmentAgreement">Signed Investment Agreement</label>
+                <select class="custom-select" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" required="required" disabled>
+                  <option id="{{.SignedInvestmentAgreement}}" selected="selected">{{.SignedInvestmentAgreement}}</option>
+                </select>
+              </div>
 
-                        <div class="col-sm">
-                          <label for="AppropriatenessAssessment">Appropriateness Assessment</label>
+              <div class="col-sm">
+                <label for="AppropriatenessAssessment">Appropriateness Assessment</label>
 
-                             <select class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" required="required" disabled>
-                               <option id="{{.AppropriatenessAssessment}}" selected="selected">{{.AppropriatenessAssessment}}</option>
-                             </select>
-                        </div>
-                        <div class="col-sm">
-                          <label for="KnowYourCustomerStatus">Know Your Customer Status</label>
+                <select class="custom-select" id="AppropriatenessAssessment" name="AppropriatenessAssessment" required="required" disabled>
+                  <option id="{{.AppropriatenessAssessment}}" selected="selected">{{.AppropriatenessAssessment}}</option>
+                </select>
+              </div>
+              <div class="col-sm">
+                <label for="KnowYourCustomerStatus">Know Your Customer Status</label>
 
-                            <select class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" required="required" disabled>
-                              <option id="{{.KnowYourCustomerStatus}}" selected="selected">{{.KnowYourCustomerStatus}}</option>
-                            </select>
-                        </div>
+                <select class="custom-select" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" required="required" disabled>
+                  <option id="{{.KnowYourCustomerStatus}}" selected="selected">{{.KnowYourCustomerStatus}}</option>
+                </select>
+              </div>
 
-                        <div class="col-sm">
-                          <label for="Registered">Registered?</label>
+              <div class="col-sm">
+                <label for="Registered">Registered?</label>
 
-                            <select class="form-control" id="Registered" name="Registered" required="required" disabled>
-                              <option id="{{.Registered}}" selected="selected">{{.Registered}}</option>
-                            </select>
-                        </div>
+                <select class="custom-select" id="Registered" name="Registered" required="required" disabled>
+                  <option id="{{.Registered}}" selected="selected">{{.Registered}}</option>
+                </select>
+              </div>
 
-                      </div>
-                      <hr>
-                      <h2>Training</h2>
-                      <div class="row">
+            </div>
+            <hr>
+            <h2>Training</h2>
+            <div class="row">
 
-                        <div class="col-sm">
-                          <label for="Training">Training</label>
+              <div class="col-sm">
+                <label for="Training">Training</label>
 
-                            <select class="form-control" id="Training" name="Training" required="required" disabled>
-                              <option id="{{.Training}}" selected="selected">{{.Training}}</option>
+                <select class="custom-select" id="Training" name="Training" required="required" disabled>
+                  <option id="{{.Training}}" selected="selected">{{.Training}}</option>
 
-                            </select>
-                        </div>
-                        <div class="col-sm">
-                          <label for="TrainingCode">Training Code</label>
-                          <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCode" placeholder="<<BLANK>>" value="{{.TrainingCode}}" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="TrainingReceived">Training Received?</label>
+                </select>
+              </div>
+              <div class="col-sm">
+                <label for="TrainingCode">Training Code</label>
+                <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCode" placeholder="<<BLANK>>" value="{{.TrainingCode}}" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="TrainingReceived">Training Received?</label>
 
-                            <select class="form-control" id="TrainingReceived" name="TrainingReceived" required="required" disabled>
-                              <option id="{{.TrainingReceived}}" selected="selected">{{.TrainingReceived}}</option>
-                            </select>
-                        </div>
+                <select class="custom-select" id="TrainingReceived" name="TrainingReceived" required="required" disabled>
+                  <option id="{{.TrainingReceived}}" selected="selected">{{.TrainingReceived}}</option>
+                </select>
+              </div>
 
-                      </div>
-                      <hr>
-                      <h2>Identification</h2>
-                      <div class="row">
+            </div>
+            <hr>
+            <h2>Identification</h2>
+            <div class="row">
 
-                        <div class="col-sm">
-                          <label for="MIC">SWIFT MIC</label>
-                          <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MIC" placeholder="<<BLANK>>" value="{{.MIC}}" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="BICCode">SWIFT BIC</label>
-                          <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCode" placeholder="<<BLANK>>" value="{{.BICCode}}" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="SortCode">SortCode</label>
-                          <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCode" placeholder="<<BLANK>>" value="{{.SortCode}}" disabled>
-                        </div>
-                        <div class="col-sm">
-                          <label for="PortfolioCode">PortfolioCode</label>
-                          <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCode" placeholder="<<BLANK>>" value="{{.PortfolioCode}}" disabled>
-                        </div>
+              <div class="col-sm">
+                <label for="MIC">SWIFT MIC</label>
+                <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MIC" placeholder="<<BLANK>>" value="{{.MIC}}" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="BICCode">SWIFT BIC</label>
+                <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCode" placeholder="<<BLANK>>" value="{{.BICCode}}" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="SortCode">SortCode</label>
+                <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCode" placeholder="<<BLANK>>" value="{{.SortCode}}" disabled>
+              </div>
+              <div class="col-sm">
+                <label for="PortfolioCode">PortfolioCode</label>
+                <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCode" placeholder="<<BLANK>>" value="{{.PortfolioCode}}" disabled>
+              </div>
 
-                      </div>
+            </div>
 
 
 
@@ -521,7 +533,7 @@
 
           <div class="tab-pane fade" id="mandates" role="tabpanel" aria-labelledby="mandates-tab">
 
-            <br>
+
             <form action="/home" method="POST">
 
               <div class="table-responsive">
@@ -576,7 +588,6 @@
 
           <div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
 
-            <br>
             <form action="/home" method="POST">
 
               <div class="table-responsive">

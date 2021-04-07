@@ -29,20 +29,53 @@
 
   <title>{{.PageTitle}}</title>
 
+
 </head>
 
 <body>
 
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div w3-include-html="../assets/navigation.html"></div>
+  <script>cust_includeHTML();</script>
+  <!-- DO NOT CHANGE -->
 
 
 
   <div class="container-fluid">
-    <br>
-    <div class="jumbotron">
+<br>
+<div class="well">
 
-      <h4 class="nav-title text-left">TitlePage</h4>
-      <p class="lead">Demonstration System - Home Page</p>
+<h4 class="text-left text-light">{{.PageTitle}}</h4>
+<p class="lead text-light">{{.UserRole}} Role</p>
+<pre class="text-light">
+User Name          : {{.UserName}}
+Known As           : {{.UserKnowAs}}
+User Role          : {{.UserRole}}<br>
+Application Server : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]
+App Server Date    : {{.AppServerDate}}<br>
+Siena System       : {{.SienaName}}
+Siena System Date  : {{.SienaDate}}<br>
+SQL Server         : {{.SQLServer}}
+SQL Database       : {{.SQLDB}}
+SQL Schema         : {{.SQLSchema}}
+</pre>
 
-    </div>
+</div>
+
+
   </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+
+
 </body>

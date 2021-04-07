@@ -19,6 +19,7 @@ var sqlMDUMandatedUserKeyCounterpartyFirm, sqlMDUMandatedUserKeyCounterpartyCent
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserListPage struct {
+	UserMenu               []AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -29,6 +30,7 @@ type sienaMandatedUserListPage struct {
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserPage struct {
+	UserMenu                          []AppMenuItem
 	UserRole                          string
 	UserNavi                          string
 	Title                             string
@@ -58,6 +60,8 @@ type sienaMandatedUserPage struct {
 	CentreList                        []sienaCentreItem
 	CounterpartyName                  string
 	YNList                            []sienaYNItem
+	CBActive                          string
+	CBNotify                          string
 }
 
 //sienaMandatedUserItem is cheese
@@ -82,6 +86,8 @@ type sienaMandatedUserItem struct {
 	SystemUser                        string
 	Action                            string
 	CounterpartyName                  string
+	CBActive                          string
+	CBNotify                          string
 }
 
 func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
@@ -101,6 +107,7 @@ func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaMandatedUserList := sienaMandatedUserListPage{
+		UserMenu:               getappMenuData(gUserRole),
 		UserRole:               gUserRole,
 		UserNavi:               gUserNavi,
 		Title:                  wctProperties["appname"],
@@ -134,6 +141,7 @@ func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
+		UserMenu:                          getappMenuData(gUserRole),
 		UserRole:                          gUserRole,
 		UserNavi:                          gUserNavi,
 		Title:                             wctProperties["appname"],
@@ -157,6 +165,8 @@ func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		Notify:                            returnRecord.Notify,
 		SystemUser:                        returnRecord.SystemUser,
 		Action:                            "",
+		CBActive:                          returnRecord.CBActive,
+		CBNotify:                          returnRecord.CBNotify,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -189,6 +199,7 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
+		UserMenu:                          getappMenuData(gUserRole),
 		UserRole:                          gUserRole,
 		UserNavi:                          gUserNavi,
 		Title:                             wctProperties["appname"],
@@ -214,6 +225,8 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                            "",
 		CountryList:                       countryList,
 		YNList:                            ynList,
+		CBActive:                          returnRecord.CBActive,
+		CBNotify:                          returnRecord.CBNotify,
 	}
 
 	fmt.Println(pageSienaMandatedUserList)
@@ -331,6 +344,7 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
+		UserMenu:                          getappMenuData(gUserRole),
 		UserRole:                          gUserRole,
 		UserNavi:                          gUserNavi,
 		Title:                             wctProperties["appname"],
@@ -358,6 +372,8 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		FirmList:                          firmList,
 		CentreList:                        centreList,
 		YNList:                            ynList,
+		CBActive:                          "",
+		CBNotify:                          "",
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
@@ -439,6 +455,8 @@ func fetchSienaMandatedUserData(db *sql.DB, tsql string) (int, []sienaMandatedUs
 		sienaMandatedUser.CentreName = sqlMDUCentreName.String
 		sienaMandatedUser.Notify = sienaYN(sqlMDUNotify.String)
 		sienaMandatedUser.SystemUser = sqlMDUSystemUser.String
+		sienaMandatedUser.CBActive = setChecked(sqlMDUActive.String)
+		sienaMandatedUser.CBNotify = setChecked(sqlMDUNotify.String)
 
 		sienaMandatedUserList = append(sienaMandatedUserList, sienaMandatedUser)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

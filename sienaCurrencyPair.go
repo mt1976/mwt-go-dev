@@ -19,6 +19,7 @@ var sqlCCYPCodeMajorCurrencyIsoCode, sqlCCYPCodeMinorCurrencyIsoCode, sqlCCYPRec
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairListPage struct {
+	UserMenu               []AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -29,6 +30,7 @@ type sienaCurrencyPairListPage struct {
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairPage struct {
+	UserMenu                 []AppMenuItem
 	UserRole                 string
 	UserNavi                 string
 	Title                    string
@@ -71,6 +73,7 @@ func listSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairListPage{
+		UserMenu:               getappMenuData(gUserRole),
 		UserRole:               gUserRole,
 		UserNavi:               gUserNavi,
 		Title:                  wctProperties["appname"],
@@ -102,6 +105,7 @@ func viewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
@@ -138,6 +142,7 @@ func editSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
@@ -246,6 +251,7 @@ func newSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],

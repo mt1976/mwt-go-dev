@@ -33,10 +33,23 @@
 
 <body>
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -50,7 +63,7 @@
 
             <div class="row">
               <div class="col">
-                Data Maps &nbsp;<span class="badge badge-pill badge-primary">{{.NoDataMapIDs}}</span>
+                Data Maps &nbsp;<span class="badge badge-dark">{{.NoDataMapIDs}}</span>
               </div>
               <div class="col text-right">
                 <div class="btn-group">

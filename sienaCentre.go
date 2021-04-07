@@ -18,6 +18,7 @@ var sqlCENTCode, sqlCENTName, sqlCENTCountry, sqlCENTCountryName sql.NullString
 
 //sienaCentrePage is cheese
 type sienaCentreListPage struct {
+	UserMenu         []AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -28,6 +29,7 @@ type sienaCentreListPage struct {
 
 //sienaCentrePage is cheese
 type sienaCentrePage struct {
+	UserMenu    []AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -71,6 +73,7 @@ func listSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:        "List Siena Centres",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
+		UserMenu:         getappMenuData(gUserRole),
 		UserRole:         gUserRole,
 		UserNavi:         gUserNavi,
 	}
@@ -106,6 +109,7 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		Country:     returnRecord.Country,
 		CountryName: returnRecord.CountryName,
 		Action:      "",
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 	}
@@ -147,6 +151,7 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName: returnRecord.CountryName,
 		Action:      "",
 		CountryList: countryList,
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 	}
@@ -256,6 +261,7 @@ func newSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		Code:        "",
 		Name:        "",
 		Country:     "",
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Action:      "NEW",

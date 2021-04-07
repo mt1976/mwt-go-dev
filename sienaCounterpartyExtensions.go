@@ -19,6 +19,7 @@ var sqlCPEXNameFirm, sqlCPEXNameCentre, sqlCPEXBICCode, sqlCPEXContactIndicator,
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsListPage struct {
+	UserMenu                         []AppMenuItem
 	UserRole                         string
 	UserNavi                         string
 	Title                            string
@@ -29,6 +30,7 @@ type sienaCounterpartyExtensionsListPage struct {
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsPage struct {
+	UserMenu                      []AppMenuItem
 	UserRole                      string
 	UserNavi                      string
 	Title                         string
@@ -144,6 +146,7 @@ func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	//	fmt.Println(tmpl)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsListPage{
+		UserMenu:                         getappMenuData(gUserRole),
 		UserRole:                         gUserRole,
 		UserNavi:                         gUserNavi,
 		Title:                            wctProperties["appname"],
@@ -177,6 +180,7 @@ func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
+		UserMenu:                      getappMenuData(gUserRole),
 		UserRole:                      gUserRole,
 		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
@@ -254,6 +258,7 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
+		UserMenu:                      getappMenuData(gUserRole),
 		UserRole:                      gUserRole,
 		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],
@@ -437,6 +442,7 @@ func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
+		UserMenu:                      getappMenuData(gUserRole),
 		UserRole:                      gUserRole,
 		UserNavi:                      gUserNavi,
 		Title:                         wctProperties["appname"],

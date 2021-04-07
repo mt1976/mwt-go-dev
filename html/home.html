@@ -35,19 +35,34 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>cust_includeHTML();</script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
-
-
   <div class="container-fluid">
-<br>
-<div class="well">
 
-<h4 class="text-left text-light">{{.PageTitle}}</h4>
-<p class="lead text-light">{{.UserRole}} Role</p>
-<pre class="text-light">
+
+    <br>
+    <div class="well">
+
+      <h4 class="text-left text-primary">{{.PageTitle}}</h4>
+      <p class="lead text-primary">{{.UserRole}} Role</p>
+      <pre class="text-primary">
 User Name          : {{.UserName}}
 Known As           : {{.UserKnowAs}}
 User Role          : {{.UserRole}}<br>
@@ -60,7 +75,7 @@ SQL Database       : {{.SQLDB}}
 SQL Schema         : {{.SQLSchema}}
 </pre>
 
-</div>
+    </div>
 
 
   </div>

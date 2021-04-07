@@ -11,8 +11,12 @@
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4) {
-            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+            if (this.status == 200) {
+              elmnt.innerHTML = this.responseText;
+            }
+            if (this.status == 404) {
+              elmnt.innerHTML = "Page not found.";
+            }
             /* Remove the attribute, and call this function once more: */
             elmnt.removeAttribute("w3-include-html");
             cust_includeHTML();
@@ -30,16 +34,35 @@
     x.classList.toggle("change");
   }
 
-    function MakePosNeg() {
-      var TDs = document.querySelectorAll('.plusmin');
+  function MakePosNeg() {
+    var TDs = document.querySelectorAll('.plusmin');
 
-      for (var i = 0; i < TDs.length; i++) {
-        var temp = TDs[i];
-        if (temp.firstChild.nodeValue.indexOf('-') == 0) {
-          temp.className = "text-right negative";
-        } else {
-          temp.className = "text-right positive";
-        }
+    for (var i = 0; i < TDs.length; i++) {
+      var temp = TDs[i];
+      if (temp.firstChild.nodeValue.indexOf('-') == 0) {
+        temp.className = "text-right negative";
+      } else {
+        temp.className = "text-right positive";
       }
     }
-    onload = MakePosNeg()
+  }
+  onload = MakePosNeg()
+
+
+
+
+
+
+  /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+//  document.getElementById("body").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+//  document.getElementById("body").style.marginLeft = "0";
+  document.body.style.backgroundColor = "rgba(242,242,242)";
+}

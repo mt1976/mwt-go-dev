@@ -14,6 +14,7 @@ var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBa
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderListPage struct {
+	UserMenu                []AppMenuItem
 	UserRole                string
 	UserNavi                string
 	Title                   string
@@ -26,6 +27,7 @@ type sienaAccountLadderListPage struct {
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderPage struct {
+	UserMenu       []AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -71,6 +73,7 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	_, account, _ := getSienaAccount(thisConnection, accountID)
 
 	pageSienaAccountLadderList := sienaAccountLadderListPage{
+		UserMenu:                getappMenuData(gUserRole),
 		UserRole:                gUserRole,
 		UserNavi:                gUserNavi,
 		Title:                   wctProperties["appname"],

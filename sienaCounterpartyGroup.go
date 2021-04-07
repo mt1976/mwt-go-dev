@@ -18,6 +18,7 @@ var sqlCGRPName, sqlCGRPCountryCode, sqlCGRPSuperGroup, sqlCGRPCountryName sql.N
 
 //sienaCounterpartyGroupPage is cheese
 type sienaCounterpartyGroupListPage struct {
+	UserMenu                    []AppMenuItem
 	UserRole                    string
 	UserNavi                    string
 	Title                       string
@@ -28,6 +29,7 @@ type sienaCounterpartyGroupListPage struct {
 
 //sienaCounterpartyGroupPage is cheese
 type sienaCounterpartyGroupPage struct {
+	UserMenu    []AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -71,6 +73,7 @@ func listSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:                   "List Siena CounterpartyGroups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
+		UserMenu:                    getappMenuData(gUserRole),
 		UserRole:                    gUserRole,
 		UserNavi:                    gUserNavi,
 	}
@@ -105,6 +108,7 @@ func viewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		SuperGroup:  returnRecord.SuperGroup,
 		CountryName: returnRecord.CountryName,
 		Action:      "",
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 	}
@@ -146,6 +150,7 @@ func editSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName: returnRecord.CountryName,
 		Action:      "",
 		CountryList: countryList,
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		GroupList:   groupList,
@@ -258,6 +263,7 @@ func newSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		CountryCode: "",
 		SuperGroup:  "",
 		CountryName: "",
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Action:      "NEW",

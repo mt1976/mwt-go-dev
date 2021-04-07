@@ -13,6 +13,7 @@ import (
 
 //SvcDataMapPage is cheese
 type SvcDataMapPage struct {
+	UserMenu        []AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -96,6 +97,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserMenu:        getappMenuData(gUserRole),
 		UserRole:        gUserRole,
 		UserNavi:        gUserNavi,
 		Title:           title,
@@ -186,6 +188,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("wrkDataMapRows", wrkDataMapRows)
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserMenu:       getappMenuData(gUserRole),
 		UserRole:       gUserRole,
 		UserNavi:       gUserNavi,
 		Title:          title,
@@ -239,6 +242,7 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserMenu:      getappMenuData(gUserRole),
 		UserRole:      gUserRole,
 		UserNavi:      gUserNavi,
 		Title:         title,
@@ -289,6 +293,7 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
+		UserMenu:      getappMenuData(gUserRole),
 		UserRole:      gUserRole,
 		UserNavi:      gUserNavi,
 		Title:         title,
@@ -339,6 +344,7 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 	fullRec = html.UnescapeString(fullRec)
 	pageEditSvcDataMapXML := SvcDataMapPage{
+		UserMenu:      getappMenuData(gUserRole),
 		UserRole:      gUserRole,
 		UserNavi:      gUserNavi,
 		Title:         title,
@@ -459,6 +465,7 @@ func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	title := wctProperties["appname"]
 
 	pageDM := SvcDataMapPage{
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     title,

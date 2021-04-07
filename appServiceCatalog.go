@@ -1,10 +1,31 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 )
+
+//srvCatalogPage ...
+type srvCatalogPage struct {
+	UserMenu       []AppMenuItem
+	UserRole       string
+	UserNavi       string
+	Title          string
+	Body           string
+	RequestPath    string
+	ResponsePath   string
+	ProcessedPath  string
+	NoResponses    int
+	Responses      []WctResponsePayload
+	NoServices     int
+	Services       string
+	ServiceCatalog []ServiceCatalogItem
+	Description    string
+	ResponseType   string
+	PageTitle      string
+}
 
 func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -20,13 +41,13 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 
 		title := wctProperties["appname"]
 
-		//p, _ := loadHomePage(title)
+		//p, _ := loadsrvCatalogPage(title)
 
 		noResp, _, respList := listResponseswebNew(wctProperties, "json", w)
 
 		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json", r)
 
-		p := HomePage{Title: title,
+		p := srvCatalogPage{Title: title,
 			Body:           "",
 			RequestPath:    wctProperties["deliverpath"],
 			ResponsePath:   wctProperties["receivepath"],
@@ -36,11 +57,17 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 			NoServices:     noServices,
 			Services:       servicesList,
 			ServiceCatalog: serviceCatalog,
-			Description:    "A description of the homepage.",
-			ResponseType:   wctProperties["responseformat"]}
+			Description:    "A description of the srvCatalogPage.",
+			ResponseType:   wctProperties["responseformat"],
+			UserMenu:       getappMenuData(gUserRole),
+			UserRole:       gUserRole,
+			UserNavi:       gUserNavi,
+			PageTitle:      "Service Catalog",
+		}
 
-		//fmt.Println("serviceCatalog", serviceCatalog)
-		//fmt.Println("HomePage=", p.ServiceCatalog)
+		//	fmt.Println("serviceCatalog", serviceCatalog)
+		//	fmt.Println("srvCatalogPage=", p.ServiceCatalog)
+		fmt.Println("menu=", p.UserMenu)
 
 		t, _ := template.ParseFiles(getTemplateID(tmpl))
 		t.Execute(w, p)

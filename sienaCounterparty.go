@@ -19,6 +19,7 @@ var sqlCPTYNameCentre, sqlCPTYNameFirm, sqlCPTYFullName, sqlCPTYTelephoneNumber,
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyListPage struct {
+	UserMenu               []AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -29,6 +30,7 @@ type sienaCounterpartyListPage struct {
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyPage struct {
+	UserMenu        []AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -126,6 +128,7 @@ func listSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:              "List Siena Counterpartys",
 		SienaCounterpartyCount: noItems,
 		SienaCounterpartyList:  returnList,
+		UserMenu:               getappMenuData(gUserRole),
 		UserRole:               gUserRole,
 		UserNavi:               gUserNavi,
 	}
@@ -168,6 +171,7 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	noTxns, txnList, _ := getSienaDealListListByCounterparty(thisConnection, firmID, centreID)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
+		UserMenu:        getappMenuData(gUserRole),
 		UserRole:        gUserRole,
 		UserNavi:        gUserNavi,
 		Title:           wctProperties["appname"],
@@ -242,6 +246,7 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
+		UserMenu:        getappMenuData(gUserRole),
 		UserRole:        gUserRole,
 		UserNavi:        gUserNavi,
 		Title:           wctProperties["appname"],
@@ -379,6 +384,7 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
+		UserMenu:        getappMenuData(gUserRole),
 		UserRole:        gUserRole,
 		UserNavi:        gUserNavi,
 		Title:           wctProperties["appname"],

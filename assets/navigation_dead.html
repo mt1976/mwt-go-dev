@@ -34,22 +34,14 @@
 
 <nav class="navbar sticky-top">
 
-  <form action="#" method="POST" align="" class="btn-block">
-
+  <form action="#" method="POST" align="" class="">
     <div class="row">
-      <div class="nav-burger">
-        <button id="btnGroupDrop1" type="button" class="hamburger" data-toggle="collapse" data-target="#cheese" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-th fa-2x"></i>
-        </button>
-      </div>
-
+      <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
       <div class="nav-title"><a href="" onclick="/home/" class="nav-title">Demo Control Centre</a></div>
-
     </div>
-
-    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="font-weight:lighter" id="cheese">
-
-      <a class="dropdown-item" href="/home">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a class="" href="/home">
         <div class="row">
           <div class="dd-img">
             <i class="fa fa-home"></i>
@@ -60,7 +52,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaSector">
+      <a class="" href="/listSienaSector">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-industry"></i>
@@ -71,7 +63,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCountry">
+      <a class="" href="/listSienaCountry">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-globe-americas"></i>
@@ -82,7 +74,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCurrency">
+      <a class="" href="/listSienaCurrency">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-dollar-sign"></i>
@@ -93,7 +85,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCurrencyPair">
+      <a class="" href="/listSienaCurrencyPair">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-coins"></i>
@@ -104,7 +96,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaFirm">
+      <a class="" href="/listSienaFirm">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-city"></i>
@@ -115,7 +107,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCentre">
+      <a class="" href="/listSienaCentre">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-map-marker-alt"></i>
@@ -127,7 +119,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaBook">
+      <a class="" href="/listSienaBook">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-book"></i>
@@ -139,7 +131,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaBroker">
+      <a class="" href="/listSienaBroker">
         <div class="row">
           <div class="dd-img">
             <i class="far fa-handshake"></i>
@@ -151,7 +143,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCounterparty">
+      <a class="" href="/listSienaCounterparty">
         <div class="row">
           <div class="dd-img">
             <i class="fa fa-user"></i>
@@ -165,7 +157,7 @@
 
 
 
-      <a class="dropdown-item" href="/listSienaMandatedUser">
+      <a class="" href="/listSienaMandatedUser">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-user-check"></i>
@@ -177,7 +169,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCounterpartyGroup">
+      <a class="" href="/listSienaCounterpartyGroup">
         <div class="row">
           <div class="dd-img">
             <i class="fa fa-users"></i>
@@ -189,7 +181,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaPortfolio">
+      <a class="" href="/listSienaPortfolio">
         <div class="row">
           <div class="dd-img">
             <i class="far fa-folder-open"></i>
@@ -201,7 +193,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaAccount">
+      <a class="" href="/listSienaAccount">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-landmark"></i>
@@ -213,7 +205,7 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCounterpartyPayee">
+      <a class="" href="/listSienaCounterpartyPayee">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-wallet"></i>
@@ -225,10 +217,10 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaCounterpartyImportID">
+      <a class="" href="/listSienaCounterpartyImportID">
         <div class="row">
           <div class="dd-img">
-<i class="fas fa-file-import"></i>
+            <i class="fas fa-file-import"></i>
           </div>
           <div class="dd-text">
             Counterparty Import
@@ -236,11 +228,11 @@
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSienaDealList">
+      <a class="" href="/listSienaDealList">
         <div class="row">
           <div class="dd-img">
-<i class="fas fa-shopping-basket"></i>
-</div>
+            <i class="fas fa-shopping-basket"></i>
+          </div>
           <div class="dd-text">
             Transactions
           </div>
@@ -248,17 +240,17 @@
       </a>
 
       <hr class="hr-list">
-      <a class="dropdown-item" href="/srvServiceCatalog">
+      <a class="" href="/srvServiceCatalog">
         <div class="row">
           <div class="dd-img">
-<i class="fas fa-list-alt text-secondary"></i>
+            <i class="fas fa-list-alt text-secondary"></i>
           </div>
           <div class="dd-text">
-Service Catalog
+            Service Catalog
           </div>
         </div>
       </a>
-      <a class="dropdown-item" href="/listSvcDataMap">
+      <a class="" href="/listSvcDataMap">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-dice-d6 text-secondary"></i>
@@ -270,7 +262,7 @@ Service Catalog
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listResponses">
+      <a class="" href="/listResponses">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-folder text-info"></i>
@@ -282,7 +274,7 @@ Service Catalog
         </div>
       </a>
 
-      <a class="dropdown-item" href="/listSrvConfiguration">
+      <a class="" href="/listSrvConfiguration">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-cog text-info"></i>
@@ -294,7 +286,7 @@ Service Catalog
         </div>
       </a>
 
-      <a class="dropdown-item" onclick="window.print()">
+      <a class="" onclick="window.print()">
         <div class="row">
           <div class="dd-img">
             <i class="fa fa-print text-secondary"></i>
@@ -308,7 +300,7 @@ Service Catalog
 
       <hr class="hr-list">
 
-      <a class="dropdown-item" href="/viewAppConfiguration">
+      <a class="" href="/viewAppConfiguration">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-server text-info"></i>
@@ -320,7 +312,7 @@ Service Catalog
         </div>
       </a>
 
-      <a class="dropdown-item" href="/viewSrvEnvironment">
+      <a class="" href="/viewSrvEnvironment">
         <div class="row">
           <div class="dd-img">
             <i class="fas fa-server text-info"></i>
@@ -334,41 +326,45 @@ Service Catalog
 
       <hr class="hr-list">
 
-      <a class="dropdown-item" href="/clearResponses">
+      <a class="" href="/clearResponses">
         <div class="row">
           <div class="dd-img">
             <i class="far fa-trash-alt text-warning"></i>
-
           </div>
-          <div class="dd-text">
-            Responses</div>
+          <div class="dd-text">Responses</div>
         </div>
       </a>
 
-      <a class="dropdown-item" href="/clearQueues">
+      <a class="" href="/clearQueues">
         <div class="row">
           <div class="dd-img">
             <i class="far fa-trash-alt text-warning"></i>
 
           </div>
-          <div class="dd-text">
-            Queues</div>
+          <div class="dd-text">Queues</div>
         </div>
       </a>
 
       <hr class="hr-list">
 
-      <a class="dropdown-item" href="/logout">
+      <a class="" href="/logout">
         <div class="row">
           <div class="dd-img text-muted">
             <i class="fas fa-sign-out-alt"></i>
           </div>
-          <div class="dd-text text-muted">
-            Logout</div>
+          <div class="dd-text text-muted">Logout</div>
         </div>
       </a>
 
+
+
+
+
+
     </div>
 
+
+
   </form>
+
 </nav>

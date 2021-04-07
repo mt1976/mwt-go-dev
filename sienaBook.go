@@ -18,6 +18,7 @@ var sqlBOOKBookName, sqlBOOKFullName sql.NullString
 
 //sienaBookPage is cheese
 type sienaBookListPage struct {
+	UserMenu       []AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -28,6 +29,7 @@ type sienaBookListPage struct {
 
 //sienaBookPage is cheese
 type sienaBookPage struct {
+	UserMenu  []AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -66,6 +68,7 @@ func listSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:      "List Siena Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
+		UserMenu:       getappMenuData(gUserRole),
 		UserRole:       gUserRole,
 		UserNavi:       gUserNavi,
 	}
@@ -99,6 +102,7 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 		Action:    "",
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 	}
@@ -133,6 +137,7 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Action:    "",
@@ -232,6 +237,7 @@ func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
+		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Action:    "NEW",

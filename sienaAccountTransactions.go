@@ -14,6 +14,7 @@ var sqlACTXSienaReference, sqlACTXLegNo, sqlACTXMMLegNo, sqlACTXNarrative, sqlAC
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionListPage struct {
+	UserMenu                     []AppMenuItem
 	UserRole                     string
 	UserNavi                     string
 	Title                        string
@@ -26,6 +27,7 @@ type sienaAccountTransactionListPage struct {
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionPage struct {
+	UserMenu                []AppMenuItem
 	UserRole                string
 	UserNavi                string
 	Title                   string
@@ -95,6 +97,7 @@ func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 		SienaAccountTransactionList:  returnList,
 		ID:                           account.AccountNumber,
 		Name:                         account.AccountName,
+		UserMenu:                     getappMenuData(gUserRole),
 		UserRole:                     gUserRole,
 		UserNavi:                     gUserNavi,
 	}

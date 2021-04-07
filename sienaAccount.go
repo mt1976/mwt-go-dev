@@ -14,6 +14,7 @@ var sqlACCTSienaReference, sqlACCTCustomerSienaView, sqlACCTSienaCommonRef, sqlA
 
 //sienaAccountPage is cheese
 type sienaAccountListPage struct {
+	UserMenu          []AppMenuItem
 	Title             string
 	PageTitle         string
 	SienaAccountCount int
@@ -24,6 +25,7 @@ type sienaAccountListPage struct {
 
 //sienaAccountPage is cheese
 type sienaAccountPage struct {
+	UserMenu               []AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -116,6 +118,7 @@ func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:         "List Siena Accounts",
 		SienaAccountCount: noItems,
 		SienaAccountList:  returnList,
+		UserMenu:          getappMenuData(gUserRole),
 		UserRole:          gUserRole,
 		UserNavi:          gUserNavi,
 	}
@@ -143,6 +146,7 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaAccountList := sienaAccountPage{
+		UserMenu:               getappMenuData(gUserRole),
 		UserRole:               gUserRole,
 		UserNavi:               gUserNavi,
 		Title:                  wctProperties["appname"],
@@ -208,6 +212,7 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaAccountList := sienaAccountPage{
+		UserMenu:               getappMenuData(gUserRole),
 		UserRole:               gUserRole,
 		UserNavi:               gUserNavi,
 		Title:                  wctProperties["appname"],
@@ -284,6 +289,7 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaAccountList := sienaAccountPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       wctProperties["appname"],

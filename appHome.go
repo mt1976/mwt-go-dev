@@ -9,6 +9,7 @@ import (
 
 //sienaMandatedUserPage is cheese
 type sienaHomePage struct {
+	UserMenu        []AppMenuItem
 	UserNavi        string
 	UserRole        string
 	Title           string
@@ -39,6 +40,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	homePage := sienaHomePage{
+		UserMenu:        getappMenuData(gUserRole),
 		UserRole:        gUserRole,
 		UserNavi:        gUserNavi,
 		Title:           "Home",
@@ -58,7 +60,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
 
-	log.Println(getTemplateID(tmpl), tmpl, t, gUserRole, gUserNavi, homePage.UserRole, homePage.UserNavi)
+	log.Println(getTemplateID(tmpl), tmpl, t, gUserRole, gUserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
 	log.Println("about to execute")
 	t.Execute(w, homePage)
 

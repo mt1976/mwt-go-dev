@@ -60,6 +60,31 @@ func sienaYN(inValue string) string {
 	return outValue
 }
 
+func setChecked(inValue string) string {
+	var outValue string
+	outValue = ""
+	if inValue == "true" {
+		outValue = "checked"
+	}
+	if inValue == "false" {
+		outValue = ""
+	}
+	return outValue
+}
+
+func isChecked(inValue string) string {
+	var outValue string
+	fmt.Println(inValue)
+	outValue = ""
+	if inValue == "true" {
+		outValue = "checked" 
+	}
+	if inValue == "false" {
+		outValue = ""
+	}
+	return outValue
+}
+
 func sienaConnect() (*sql.DB, error) {
 	// Connect to SQL Server DB
 	mssqlConfig := getProperties(cSQL_CONFIG)

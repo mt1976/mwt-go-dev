@@ -11,6 +11,7 @@ import (
 
 //SrvEnvironmentPage is cheese
 type SrvEnvironmentPage struct {
+	UserMenu            []AppMenuItem
 	UserRole            string
 	UserNavi            string
 	Title               string
@@ -63,6 +64,7 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SrvEnvironmentPage{
+		UserMenu:            getappMenuData(gUserRole),
 		UserRole:            gUserRole,
 		UserNavi:            gUserNavi,
 		Title:               title,

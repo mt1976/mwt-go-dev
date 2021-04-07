@@ -15,6 +15,7 @@ import (
 )
 
 type ResponseListPage struct {
+	UserMenu    []AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -59,6 +60,7 @@ type WctResponsePayload struct {
 
 //PageResponseView is cheese
 type PageResponseView struct {
+	UserMenu             []AppMenuItem
 	UserRole             string
 	UserNavi             string
 	Title                string
@@ -163,6 +165,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 	outRequestConsumed := pickEpochToDateTimeString(thisPayload.RequestConsumed)
 	outResponseEjected := pickEpochToDateTimeString(thisPayload.ResponseEjected)
 	pageResponseView := PageResponseView{
+		UserMenu:             getappMenuData(gUserRole),
 		UserRole:             gUserRole,
 		UserNavi:             gUserNavi,
 		Title:                title,
@@ -326,6 +329,7 @@ func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	title := wctProperties["appname"]
 
 	rpc := ResponseListPage{
+		UserMenu:    getappMenuData(gUserRole),
 		UserRole:    gUserRole,
 		UserNavi:    gUserNavi,
 		Title:       title,

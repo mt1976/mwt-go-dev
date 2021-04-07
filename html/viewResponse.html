@@ -34,10 +34,23 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -47,7 +60,29 @@
      -->
     <div class="card">
       <div class="card-header">
+        <div class="row">
+          <div class="col">
         <strong>Response Content</strong>
+        </div>
+        <div class="col">
+        <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
+          <div class="btn-group d-flex float-right">
+            <button type="submit" value="" class="btn btn-outline-primary float-right" method="POST" onclick="saveFile()" formaction="">
+              <i class="fas fa-save"></i>&nbsp;&nbsp;Save Content</button>
+            <a class="btn btn-outline-info" data-toggle="collapse" href="#request" role="button" aria-expanded="false" aria-controls="request">
+              <img class="far fa-eye"></img> &nbsp;&nbsp;View Request
+            </a>
+            <button type="submit" value="" class="btn btn-outline-danger">
+              <i class="far fa-trash-alt"></i>
+              &nbsp;&nbsp;Delete
+            </button>
+            <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
+              <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+          </div>
+
+        </form>
+        </div>
+        </div>
       </div>
       <div class="card-body d-flex h-100 flex-column">
         <div class="row">
@@ -138,24 +173,7 @@
 
       </div>
 
-      <div class="card-footer">
-        <form action="/deleteResponse?responseID={{.ResponseID}}" method="POST">
-          <div class="btn-group d-flex float-right">
-            <button type="submit" value="" class="btn btn-outline-primary float-right" method="POST" onclick="saveFile()" formaction="">
-              <i class="fas fa-save"></i>&nbsp;&nbsp;Save Content</button>
-            <a class="btn btn-outline-info" data-toggle="collapse" href="#request" role="button" aria-expanded="false" aria-controls="request">
-              <img class="far fa-eye"></img> &nbsp;&nbsp;View Request
-            </a>
-            <button type="submit" value="" class="btn btn-outline-danger">
-              <i class="far fa-trash-alt"></i>
-              &nbsp;&nbsp;Delete
-            </button>
-            <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
-              <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
-          </div>
 
-        </form>
-      </div>
 
     </div>
 

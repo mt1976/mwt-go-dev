@@ -34,10 +34,23 @@
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
-  <div w3-include-html="../assets/navigation.html"></div>
-  <script>
-    cust_includeHTML();
-  </script>
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
@@ -82,7 +95,7 @@
               <label for="FSCSInclusive">FSCS Inclusive?</label>
 
 
-                <select class="form-control" id="FSCSInclusive" name="FSCSInclusive" required="required">
+                <select class="custom-select" id="FSCSInclusive" name="FSCSInclusive" required="required">
                   <option id="{{.FSCSInclusive}}" selected="selected">{{.FSCSInclusive}}</option>
                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                 </select>
@@ -132,7 +145,7 @@
           <div class="row">
             <div class="col-sm">
               <label for="SignedInvestmentAgreement">Signed Investment Agreement</label>
-                 <select class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" required="required">
+                 <select class="custom-select" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" required="required">
                    <option id="{{.SignedInvestmentAgreement}}" selected="selected">{{.SignedInvestmentAgreement}}</option>
                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                  </select>
@@ -141,7 +154,7 @@
             <div class="col-sm">
               <label for="AppropriatenessAssessment">Appropriateness Assessment</label>
 
-                 <select class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" required="required">
+                 <select class="custom-select" id="AppropriatenessAssessment" name="AppropriatenessAssessment" required="required">
                    <option id="{{.AppropriatenessAssessment}}" selected="selected">{{.AppropriatenessAssessment}}</option>
                    {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                  </select>
@@ -149,7 +162,7 @@
             <div class="col-sm">
               <label for="KnowYourCustomerStatus">Know Your Customer Status</label>
 
-                <select class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" required="required">
+                <select class="custom-select" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" required="required">
                   <option id="{{.KnowYourCustomerStatus}}" selected="selected">{{.KnowYourCustomerStatus}}</option>
                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                 </select>
@@ -158,7 +171,7 @@
             <div class="col-sm">
               <label for="Registered">Registered?</label>
 
-                <select class="form-control" id="Registered" name="Registered" required="required">
+                <select class="custom-select" id="Registered" name="Registered" required="required">
                   <option id="{{.Registered}}" selected="selected">{{.Registered}}</option>
                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                 </select>
@@ -172,7 +185,7 @@
             <div class="col-sm">
               <label for="Training">Training</label>
 
-                <select class="form-control" id="Training" name="Training" required="required">
+                <select class="custom-select" id="Training" name="Training" required="required">
                   <option id="{{.Training}}" selected="selected">{{.Training}}</option>
                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                 </select>
@@ -183,8 +196,8 @@
             </div>
             <div class="col-sm">
               <label for="TrainingReceived">Training Received?</label>
-  
-                <select class="form-control" id="TrainingReceived" name="TrainingReceived" required="required">
+
+                <select class="custom-select" id="TrainingReceived" name="TrainingReceived" required="required">
                   <option id="{{.TrainingReceived}}" selected="selected">{{.TrainingReceived}}</option>
                   {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
                 </select>
