@@ -2,15 +2,10 @@ package main
 
 import (
 	"database/sql"
-	"encoding/xml"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-
-	"github.com/google/uuid"
 )
 
 var sienaCounterpartySQL = "NameCentre, 	NameFirm, 	FullName, 	TelephoneNumber, 	EmailAddress, 	CustomerType, 	AccountOfficer, 	CountryCode, 	SectorCode, 	CpartyGroupName, 	Notes, 	Owner, 	Authorised, 	NameFirmName, 	NameCentreName, 	CountryCodeName, 	SectorCodeName"
@@ -284,9 +279,6 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
-	//tmpl := "saveSienaCountry"
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
@@ -314,23 +306,86 @@ func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
-	var sFldCode sienaKEYFIELD
-	var sFldName sienaFIELD
-	//var sFldCountry sienaFIELD
+	var sienaFieldNameCentre sienaKEYFIELD
+	var sienaFieldNameFirm sienaKEYFIELD
+	var sienaFieldFullName sienaFIELD
+	var sienaFieldTelephoneNumber sienaFIELD
+	var sienaFieldEmailAddress sienaFIELD
+	var sienaFieldCustomerType sienaFIELD
+	var sienaFieldAccountOfficer sienaFIELD
+	var sienaFieldCountryCode sienaFIELD
+	var sienaFieldSectorCode sienaFIELD
+	var sienaFieldCpartyGroupName sienaFIELD
+	var sienaFieldNotes sienaFIELD
+	var sienaFieldOwner sienaFIELD
+	var sienaFieldAuthorised sienaFIELD
+	var sienaFieldNameFirmName sienaFIELD
+	var sienaFieldNameCentreName sienaFIELD
+	var sienaFieldCountryCodeName sienaFIELD
+	var sienaFieldSectorCodeName sienaFIELD
 
 	// POPULATE THE XML FIELDS
-	sFldCode.Name = "shortName"
-	sFldCode.Text = item.NameFirm
+	sienaFieldNameCentre.Name = "NameCentre"
+	sienaFieldNameFirm.Name = "NameFirm"
+	sienaFieldFullName.Name = "FullName"
+	sienaFieldTelephoneNumber.Name = "TelephoneNumber"
+	sienaFieldEmailAddress.Name = "EmailAddress"
+	sienaFieldCustomerType.Name = "CustomerType"
+	sienaFieldAccountOfficer.Name = "AccountOfficer"
+	sienaFieldCountryCode.Name = "CountryCode"
+	sienaFieldSectorCode.Name = "SectorCode"
+	sienaFieldCpartyGroupName.Name = "CpartyGroupName"
+	sienaFieldNotes.Name = "Notes"
+	sienaFieldOwner.Name = "Owner"
+	sienaFieldAuthorised.Name = "Authorised"
+	sienaFieldNameFirmName.Name = "NameFirmName"
+	sienaFieldNameCentreName.Name = "NameCentreName"
+	sienaFieldCountryCodeName.Name = "CountryCodeName"
+	sienaFieldSectorCodeName.Name = "SectorCodeName"
 
-	sFldName.Name = "fullName"
-	sFldName.Text = item.NameCentre
+	// POPULATE THE XML values
+
+	sienaFieldNameCentre.Text = item.NameCentre
+	sienaFieldNameFirm.Text = item.NameFirm
+	sienaFieldFullName.Text = item.FullName
+	sienaFieldTelephoneNumber.Text = item.TelephoneNumber
+	sienaFieldEmailAddress.Text = item.EmailAddress
+	sienaFieldCustomerType.Text = item.CustomerType
+	sienaFieldAccountOfficer.Text = item.AccountOfficer
+	sienaFieldCountryCode.Text = item.CountryCode
+	sienaFieldSectorCode.Text = item.SectorCode
+	sienaFieldCpartyGroupName.Text = item.CpartyGroupName
+	sienaFieldNotes.Text = item.Notes
+	sienaFieldOwner.Text = item.Owner
+	sienaFieldAuthorised.Text = item.Authorised
+	sienaFieldNameFirmName.Text = item.NameFirmName
+	sienaFieldNameCentreName.Text = item.NameCentreName
+	sienaFieldCountryCodeName.Text = item.CountryCodeName
+	sienaFieldSectorCodeName.Text = item.SectorCodeName
 
 	// IGNORE
 	var sienaKeyFields []sienaKEYFIELD
 	var sienaFields []sienaFIELD
 	// ADD THE FIELDS TO THE LISTS ABOVE
-	sienaKeyFields = append(sienaKeyFields, sFldCode)
-	sienaFields = append(sienaFields, sFldName)
+
+	sienaKeyFields = append(sienaKeyFields, sienaFieldNameCentre)
+	sienaKeyFields = append(sienaKeyFields, sienaFieldNameFirm)
+	sienaFields = append(sienaFields, sienaFieldFullName)
+	sienaFields = append(sienaFields, sienaFieldTelephoneNumber)
+	sienaFields = append(sienaFields, sienaFieldEmailAddress)
+	sienaFields = append(sienaFields, sienaFieldCustomerType)
+	sienaFields = append(sienaFields, sienaFieldAccountOfficer)
+	sienaFields = append(sienaFields, sienaFieldCountryCode)
+	sienaFields = append(sienaFields, sienaFieldSectorCode)
+	sienaFields = append(sienaFields, sienaFieldCpartyGroupName)
+	sienaFields = append(sienaFields, sienaFieldNotes)
+	sienaFields = append(sienaFields, sienaFieldOwner)
+	sienaFields = append(sienaFields, sienaFieldAuthorised)
+	sienaFields = append(sienaFields, sienaFieldNameFirmName)
+	sienaFields = append(sienaFields, sienaFieldNameCentreName)
+	sienaFields = append(sienaFields, sienaFieldCountryCodeName)
+	sienaFields = append(sienaFields, sienaFieldSectorCodeName)
+
 	// IGNORE
 	sienaRecord := &sienaRECORD{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
 	var sienaRecords []sienaRECORD
@@ -348,18 +403,9 @@ func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	var sienaXMLContent sienaXML
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
-	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
-
-	staticImporterPath := sienaProperties["static_in"]
-	fileID := uuid.New()
-	pwd, _ := os.Getwd()
-	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
-
-	err := ioutil.WriteFile(fileName, preparedXML, 0644)
-	if err != nil {
-		fmt.Println(err.Error())
+	thisError := sienaDispatchStaticDataXML(sienaXMLContent)
+	if thisError != nil {
+		log.Println("Error in XML dispatch: ", thisError)
 	}
 
 	listSienaCounterpartyHandler(w, r)

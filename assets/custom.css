@@ -469,7 +469,8 @@ background-color: var(--custom-primary-colour);
   border: var(--custom-primary-color);
   padding: 0.5rem;
   border-radius: 5px;
-  margin-right: 200px !important;
+  /* padding-right: 200px !important; */
+  text-align: left!important;
 }
 
 .input-group-text {

@@ -5,7 +5,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -188,7 +187,7 @@ func saveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	if len(item.FirmName) == 0 {
 		item.FirmName = r.FormValue("ID")
 	}
-	item.FullName = r.FormValue("name")
+	item.FullName = r.FormValue("fullName")
 	item.Country = r.FormValue("country")
 
 	item.Sector = r.FormValue("sector")
@@ -244,13 +243,21 @@ func saveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	staticImporterPath := sienaProperties["static_in"]
 	fileID := uuid.New()
-	pwd, _ := os.Getwd()
-	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
+	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
 
-	err := ioutil.WriteFile(fileName, preparedXML, 0644)
+	xmlFile, err := os.Create(fileName)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("Error creating XML file: ", err)
+		return
+	}
+	xmlFile.WriteString(sienaProperties["static_xml_encoding"] + "\n")
+	encoder := xml.NewEncoder(xmlFile)
+	encoder.Indent("", "\t")
+	err = encoder.Encode(sienaXMLContent)
+	if err != nil {
+		fmt.Println("Error encoding XML to file: ", err)
+		return
 	}
 
 	listSienaFirmHandler(w, r)

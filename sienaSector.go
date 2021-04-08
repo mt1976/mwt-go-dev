@@ -5,9 +5,9 @@ import (
 	"encoding/xml"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/google/uuid"
 )
@@ -158,6 +158,9 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		item.Code = r.FormValue("ID")
 	}
 	item.Name = r.FormValue("name")
+
+	log.Println(item)
+
 	item.Action = "UPDATE"
 
 	fmt.Println("ITEM", item)
@@ -178,6 +181,7 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	sienaFields = append(sienaFields, sFldName)
 	// IGNORE
 	sienaRecord := &sienaRECORD{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
+	fmt.Println(sienaRecord)
 	var sienaRecords []sienaRECORD
 	sienaRecords = append(sienaRecords, *sienaRecord)
 
@@ -195,6 +199,7 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
+	fmt.Println("header", xml.Header)
 
 	staticImporterPath := sienaProperties["static_in"]
 	fileID := uuid.New()
@@ -202,10 +207,24 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
 
-	err := ioutil.WriteFile(fileName, preparedXML, 0644)
+	xmlFile, err := os.Create(fileName)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("Error creating XML file: ", err)
+		return
 	}
+	xmlFile.WriteString(sienaProperties["static_xml_encoding"] + "\n")
+	encoder := xml.NewEncoder(xmlFile)
+	encoder.Indent("", "\t")
+	err = encoder.Encode(sienaXMLContent)
+	if err != nil {
+		fmt.Println("Error encoding XML to file: ", err)
+		return
+	}
+
+	//err := ioutil.WriteFile(fileName, preparedXML, 0644)
+	//if err != nil {
+	//	fmt.Println(err.Error())
+	//}
 
 	listSienaSectorHandler(w, r)
 

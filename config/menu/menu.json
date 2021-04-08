@@ -8,6 +8,15 @@
       "TextClass": ""
     },
     {
+      "ID": "30",
+      "Text": "Dashboard",
+      "Glyph": "fas fa-tachometer-alt",
+      "HREF": "/dashboard",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
       "ID": "2",
       "Text": "Sectors",
       "Glyph": "fas fa-industry",

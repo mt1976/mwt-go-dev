@@ -86,7 +86,8 @@
 
               <div class="col-sm">
                 <label for="code">Code</label>
-                <input type="code" class="form-control" id="code" aria-describedby="emailHelp" placeholder="<<BLANK>>" disabled="disabled" value="{{.Code}}" maxlength="3">
+                <input type="text" class="form-control" id="code" name="code" aria-describedby="code" placeholder="<<BLANK>>" disabled="disabled" value="{{.Code}}" maxlength="3">
+                    <input type="text" class="form-control" id="ID" name="ID" aria-describedby="ID" placeholder="<<BLANK>>" value="{{.Code}}" hidden>
               </div>
 
 
@@ -97,7 +98,7 @@
 
               <div class="col-sm">
                 <label for="name">Description</label>
-                <input type="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="<<BLANK>>" value="{{.Name}}" required>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="<<BLANK>>" value="{{.Name}}" required>
               </div>
 
             </div>

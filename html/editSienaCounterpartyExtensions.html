@@ -66,7 +66,7 @@
           <div class="row">
             <div class="col">
               <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              Counterparty - Additional Information &nbsp;:&nbsp;<code>{{.NameFirm}}&#8942;{{.NameCentre}}</code>
+              Additional Information &nbsp;<code>{{.NameFirm}}&#8942;{{.NameCentre}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
@@ -112,14 +112,23 @@
             <div class="col-sm">
               <label for="LEIExpiryDate">LEI Expiry Date</label>
               <input type="date" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDate" placeholder="<<BLANK>>" value="{{.LEIExpiryDate}}">
+                <script type="text/javascript">
+                  LEIExpiryDate.min = new Date().toISOString().split("T")[0];
+                </script>
             </div>
             <div class="col-sm">
               <label for="MIFIDReviewDate">MIFID Review Date</label>
               <input type="date" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDate" placeholder="<<BLANK>>" value="{{.MIFIDReviewDate}}">
+                <script type="text/javascript">
+                  MIFIDReviewDate.min = new Date().toISOString().split("T")[0];
+                </script>
             </div>
             <div class="col-sm">
               <label for="GDPRReviewDate">GDPR Review Date</label>
               <input type="date" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDate" placeholder="<<BLANK>>" value="{{.GDPRReviewDate}}">
+                <script type="text/javascript">
+                  GDPRReviewDate.min = new Date().toISOString().split("T")[0];
+                </script>
             </div>
 
           </div>

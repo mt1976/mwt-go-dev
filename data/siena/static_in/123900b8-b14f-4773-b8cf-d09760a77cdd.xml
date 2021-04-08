@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="CounterpartyPayee" classname="com.eurobase.siena.data.CounterpartyPayees.CounterpartyPayee"><RECORD><KEYFIELD name="shortName"></KEYFIELD><FIELD name="fullName"></FIELD><FIELD name="country">BEL</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

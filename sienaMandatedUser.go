@@ -2,15 +2,10 @@ package main
 
 import (
 	"database/sql"
-	"encoding/xml"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-
-	"github.com/google/uuid"
 )
 
 var sienaMandatedUserSQL = "MandatedUserKeyCounterpartyFirm, 	MandatedUserKeyCounterpartyCentre, 	MandatedUserKeyUserName, 	TelephoneNumber, 	EmailAddress, 	Active, 	FirstName, 	Surname, 	DateOfBirth, 	Postcode, 	NationalIDNo, 	PassportNo, 	Country, 	CountryName, 	FirmName, 	CentreName, 	Notify, 	SystemUser"
@@ -238,9 +233,6 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
-	//tmpl := "saveSienaCountry"
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
@@ -260,9 +252,6 @@ func saveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	item.NationalIDNo = r.FormValue("NationalIDNo")
 	item.PassportNo = r.FormValue("PassportNo")
 	item.Country = r.FormValue("Country")
-	item.CountryName = r.FormValue("CountryName")
-	item.FirmName = r.FormValue("FirmName")
-	item.CentreName = r.FormValue("CentreName")
 	item.Notify = r.FormValue("Notify")
 	item.SystemUser = r.FormValue("SystemUser")
 
@@ -270,27 +259,77 @@ func saveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
-	var sFldCode sienaKEYFIELD
-	var sFldName sienaFIELD
-	var sFldCountry sienaFIELD
+	var sienaFieldMandatedUserKeyCounterpartyFirm sienaKEYFIELD
+	var sienaFieldMandatedUserKeyCounterpartyCentre sienaKEYFIELD
+	var sienaFieldMandatedUserKeyUserName sienaKEYFIELD
+	var sienaFieldTelephoneNumber sienaFIELD
+	var sienaFieldEmailAddress sienaFIELD
+	var sienaFieldActive sienaFIELD
+	var sienaFieldFirstName sienaFIELD
+	var sienaFieldSurname sienaFIELD
+	var sienaFieldDateOfBirth sienaFIELD
+	var sienaFieldPostcode sienaFIELD
+	var sienaFieldNationalIDNo sienaFIELD
+	var sienaFieldPassportNo sienaFIELD
+	var sienaFieldCountry sienaFIELD
+	var sienaFieldNotify sienaFIELD
+	var sienaFieldSystemUser sienaFIELD
 
-	// POPULATE THE XML FIELDS
-	sFldCode.Name = "MandatedUserKeyUserName"
-	sFldCode.Text = item.MandatedUserKeyUserName
+	// POitemPULATE THE XML FIELD NAMEs
+	sienaFieldMandatedUserKeyCounterpartyFirm.Name = "MandatedUserKeyCounterpartyFirm"
+	sienaFieldMandatedUserKeyCounterpartyCentre.Name = "MandatedUserKeyCounterpartyCentre"
+	sienaFieldMandatedUserKeyUserName.Name = "MandatedUserKeyUserName"
+	sienaFieldTelephoneNumber.Name = "TelephoneNumber"
+	sienaFieldEmailAddress.Name = "EmailAddress"
+	sienaFieldActive.Name = "Active"
+	sienaFieldFirstName.Name = "FirstName"
+	sienaFieldSurname.Name = "Surname"
+	sienaFieldDateOfBirth.Name = "DateOfBirth"
+	sienaFieldPostcode.Name = "Postcode"
+	sienaFieldNationalIDNo.Name = "NationalIDNo"
+	sienaFieldPassportNo.Name = "PassportNo"
+	sienaFieldCountry.Name = "Country"
+	sienaFieldNotify.Name = "Notify"
+	sienaFieldSystemUser.Name = "SystemUser"
 
-	sFldName.Name = "MandatedUserKeyCounterpartyFirm"
-	sFldName.Text = item.MandatedUserKeyCounterpartyFirm
+	// POitemPULATE THE XML FIELD values
 
-	sFldCountry.Name = "MandatedUserKeyCounterpartyCentre"
-	sFldCountry.Text = item.MandatedUserKeyCounterpartyCentre
+	sienaFieldMandatedUserKeyCounterpartyFirm.Text = item.MandatedUserKeyCounterpartyFirm
+	sienaFieldMandatedUserKeyCounterpartyCentre.Text = item.MandatedUserKeyCounterpartyCentre
+	sienaFieldMandatedUserKeyUserName.Text = item.MandatedUserKeyUserName
+	sienaFieldTelephoneNumber.Text = item.TelephoneNumber
+	sienaFieldEmailAddress.Text = item.EmailAddress
+	sienaFieldActive.Text = item.Active
+	sienaFieldFirstName.Text = item.FirstName
+	sienaFieldSurname.Text = item.Surname
+	sienaFieldDateOfBirth.Text = item.DateOfBirth
+	sienaFieldPostcode.Text = item.Postcode
+	sienaFieldNationalIDNo.Text = item.NationalIDNo
+	sienaFieldPassportNo.Text = item.PassportNo
+	sienaFieldCountry.Text = item.Country
+	sienaFieldNotify.Text = item.Notify
+	sienaFieldSystemUser.Text = item.SystemUser
 
 	// IGNORE
 	var sienaKeyFields []sienaKEYFIELD
 	var sienaFields []sienaFIELD
 	// ADD THE FIELDS TO THE LISTS ABOVE
-	sienaKeyFields = append(sienaKeyFields, sFldCode)
-	sienaFields = append(sienaFields, sFldName)
-	sienaFields = append(sienaFields, sFldCountry)
+	sienaKeyFields = append(sienaKeyFields, sienaFieldMandatedUserKeyCounterpartyFirm)
+	sienaKeyFields = append(sienaKeyFields, sienaFieldMandatedUserKeyCounterpartyCentre)
+	sienaKeyFields = append(sienaKeyFields, sienaFieldMandatedUserKeyUserName)
+	sienaFields = append(sienaFields, sienaFieldTelephoneNumber)
+	sienaFields = append(sienaFields, sienaFieldEmailAddress)
+	sienaFields = append(sienaFields, sienaFieldActive)
+	sienaFields = append(sienaFields, sienaFieldFirstName)
+	sienaFields = append(sienaFields, sienaFieldSurname)
+	sienaFields = append(sienaFields, sienaFieldDateOfBirth)
+	sienaFields = append(sienaFields, sienaFieldPostcode)
+	sienaFields = append(sienaFields, sienaFieldNationalIDNo)
+	sienaFields = append(sienaFields, sienaFieldPassportNo)
+	sienaFields = append(sienaFields, sienaFieldCountry)
+	sienaFields = append(sienaFields, sienaFieldNotify)
+	sienaFields = append(sienaFields, sienaFieldSystemUser)
+
 	// IGNORE
 	sienaRecord := &sienaRECORD{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
 	var sienaRecords []sienaRECORD
@@ -302,24 +341,15 @@ func saveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	sienaTable.RECORD = sienaRecords
 
 	var sienaTransaction sienaTRANSACTION
-	sienaTransaction.Type = "IMPORT"
+	sienaTransaction.Type = CONSTsienaXMLimport
 	sienaTransaction.TABLE = sienaTable
 
 	var sienaXMLContent sienaXML
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
-	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
-
-	staticImporterPath := sienaProperties["static_in"]
-	fileID := uuid.New()
-	pwd, _ := os.Getwd()
-	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
-
-	err := ioutil.WriteFile(fileName, preparedXML, 0644)
-	if err != nil {
-		fmt.Println(err.Error())
+	thisError := sienaDispatchStaticDataXML(sienaXMLContent)
+	if thisError != nil {
+		log.Println("Error in XML dispatch: ", thisError)
 	}
 
 	listSienaMandatedUserHandler(w, r)

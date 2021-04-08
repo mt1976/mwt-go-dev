@@ -2,15 +2,10 @@ package main
 
 import (
 	"database/sql"
-	"encoding/xml"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-
-	"github.com/google/uuid"
 )
 
 var sienaCountrySQL = "Code, 	Name, 	ShortCode, 	EU_EEA"
@@ -157,10 +152,6 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func saveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
-
-	sienaProperties := getProperties(cSIENACONFIG)
-	//tmpl := "saveSienaCountry"
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
@@ -219,20 +210,10 @@ func saveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	var sienaXMLContent sienaXML
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
-	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
-
-	staticImporterPath := sienaProperties["static_in"]
-	fileID := uuid.New()
-	pwd, _ := os.Getwd()
-	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
-
-	err := ioutil.WriteFile(fileName, preparedXML, 0644)
-	if err != nil {
-		fmt.Println(err.Error())
+	thisError := sienaDispatchStaticDataXML(sienaXMLContent)
+	if thisError != nil {
+		log.Println("Error in XML dispatch: ", thisError)
 	}
-
 	listSienaCountryHandler(w, r)
 }
 

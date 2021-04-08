@@ -54,7 +54,7 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" method="POST" class="form">
+    <form action="/saveSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" method="GET" class="form">
 
       <div class="card">
 
@@ -69,7 +69,7 @@
 
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" formaction="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/viewSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" formaction="/saveSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}" onclick="/saveSienaMandatedUser?SU={{.MandatedUserKeyUserName}}&SF={{.MandatedUserKeyCounterpartyFirm}}&SC={{.MandatedUserKeyCounterpartyCentre}}"></i>&nbsp;&nbsp;Save</button>
 
             <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
@@ -86,7 +86,7 @@
 
               <div class="col-sm">
                 <label for="MandatedUserKeyUserName">Name</label>
-                <input type="text" class="form-control" id="MandatedUserKeyUserName" aria-describedby="emailHelp" placeholder="<<BLANK>>"  value="{{.MandatedUserKeyUserName}}" maxlength="30" required>
+                <input type="text" class="form-control" id="MandatedUserKeyUserName" name="MandatedUserKeyUserName"  aria-describedby="emailHelp" placeholder="<<BLANK>>"  value="{{.MandatedUserKeyUserName}}" maxlength="30" required>
               </div>
 
 
@@ -165,6 +165,11 @@
               <div class="col-sm">
                 <label for="DateOfBirth">Date Of Birth</label>
                 <input type="date" class="form-control" id="DateOfBirth" aria-describedby="emailHelp" name="DateOfBirth" placeholder="<<BLANK>>" value="{{.DateOfBirth}}" required>
+                  <script type="text/javascript">
+                    DateOfBirth.max = new Date().toISOString().split("T")[0];
+                  </script>
+
+
               </div>
 
 
