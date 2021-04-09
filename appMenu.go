@@ -36,13 +36,5 @@ func fetchappMenuData(inRole string) (int, AppMenuList) {
 
 	_ = json.Unmarshal([]byte(file), &data)
 
-	//fmt.Println(data)
-
-	//for i := 0; i < len(data.MenuItem); i++ {
-	//	fmt.Println(data.MenuItem[i])
-	////fmt.Println("Product Id: ", data.MenuItem[i].MenuID)
-	////fmt.Println("Quantity: ", data.MenuItem[i].MenuText)
-	//}
-
 	return len(data.MenuItem), data
 }

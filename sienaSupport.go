@@ -175,7 +175,7 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	log.Println("Dates", sienaBusinessDate)
+	//log.Println("Dates", sienaBusinessDate)
 	return count, sienaBusinessDateList, sienaBusinessDate, nil
 }
 

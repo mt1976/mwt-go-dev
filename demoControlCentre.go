@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	_ "github.com/denisenkom/go-mssqldb"
 
@@ -13,14 +14,14 @@ import (
 
 //CONST_CONFIG_FILE is cheese
 const (
-	APPCONFIG  = "config/properties.cfg"
-	SQLCONFIG        = "config/mssql.cfg"
-	SIENACONFIG       = "config/siena.cfg"
-	DATEFORMATPICK = "20060102T150405"
-	DATEFORMATSIENA    = "2006-01-02"
-	DATEFORMATYMD      = "20060102"
+	APPCONFIG       = "properties.cfg"
+	SQLCONFIG       = "mssql.cfg"
+	SIENACONFIG     = "siena.cfg"
+	DATEFORMATPICK  = "20060102T150405"
+	DATEFORMATSIENA = "2006-01-02"
+	DATEFORMATYMD   = "20060102"
 	DATEFORMATUSER  = "Monday, 02 Jan 2006"
-	SIENACPTYSEP   = "\u22EE"
+	SIENACPTYSEP    = "\u22EE"
 )
 
 var gSessionToken = ""
@@ -41,9 +42,11 @@ func main() {
 
 	// The underscore would be an error
 	renderStr, _ := ascii.Render(wctProperties["appname"])
+	tmpHostname, _ := os.Hostname()
 
 	fmt.Print(renderStr)
-
+	log.Println("INSTANCE")
+	log.Println("Machine    :", tmpHostname)
 	log.Println("PATHS")
 	log.Println("Delivery   :", wctProperties["deliverpath"])
 	log.Println("Response   :", wctProperties["receivepath"])
@@ -61,17 +64,6 @@ func main() {
 	log.Println("Number     :", wctProperties["releasenumber"])
 	log.Println("")
 
-	// Test Connection
-
-	thisConnection, _ := sienaConnect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
-	//noItems, _, _ := getcalenderList(thisConnection)
-	//log.Println("No. Cal Events", noItems)
-	noItems, productList, _ := getSienaProductHelperList(thisConnection)
-	log.Println(noItems, productList)
-	noDts, dealTypeList, _ := getSienaDealTypeHelperList(thisConnection)
-	log.Println(noDts, dealTypeList)
-	//
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/login", valLoginHandler)
 	http.HandleFunc("/logout", logoutHandler)
@@ -201,17 +193,15 @@ func main() {
 
 	db, _ := sienaConnect()
 	_, gSienaSystemDate, _ = getSienaBusinessDate(db)
+	log.Println("Siena System Date:", gSienaSystemDate.Internal.Format(DATEFORMATUSER))
+	// Get menu
+	menuCount, _ := fetchappMenuData("")
+	log.Println("No. Menu Items   :", menuCount)
 
 	log.Println("")
 	log.Println("READY STEADY GO!!!")
-	log.Println("URL        :", "http://localhost:"+wctProperties["port"])
-	log.Println("SYSTEM DATE:", gSienaSystemDate.Internal.Format(DATEFORMATUSER))
 
-	// Get menu
-	menuCount, _ := fetchappMenuData("")
-	log.Println("No. Menu Items", menuCount)
-	//log.Println("MENU", menuContent)
-	// get menu end
+	log.Println("URL        :", "http://localhost:"+wctProperties["port"])
 
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)

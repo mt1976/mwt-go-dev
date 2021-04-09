@@ -149,24 +149,24 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 func getTemplateID(tmpl string) string {
 	templateName := "html/" + tmpl + ".html"
 	roleTemplate := "html" + gUserRole + "/" + tmpl + ".html"
-	log.Println("Testing", roleTemplate, fileExists(roleTemplate))
-	log.Println("Testing", templateName, fileExists(templateName))
+	//log.Println("Testing", roleTemplate, fileExists(roleTemplate))
+	//log.Println("Testing", templateName, fileExists(templateName))
 	if fileExists(roleTemplate) {
 		//	templateName = roleTemplate
 	}
-	log.Println("TEMPLATE", templateName)
+	log.Println("Using Template :", templateName)
 	return templateName
 }
 
 func getMenuID(tmpl string) string {
 	templateName := "config/menu/" + tmpl + ".json"
 	roleTemplate := "config/menu" + gUserRole + "/" + tmpl + ".json"
-	log.Println("Testing", roleTemplate, fileExists(roleTemplate))
-	log.Println("Testing", templateName, fileExists(templateName))
+	//log.Println("Testing", roleTemplate, fileExists(roleTemplate))
+	//log.Println("Testing", templateName, fileExists(templateName))
 	if fileExists(roleTemplate) {
 		templateName = roleTemplate
 	}
-	log.Println("MENU", templateName)
+	log.Println("Using Menu :", templateName)
 	return templateName
 }
 
