@@ -127,7 +127,7 @@ type sienaDealListItem struct {
 
 func listSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaDealList"
 
 	inUTL := r.URL.Path
@@ -158,7 +158,7 @@ func listSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaDealList"
 
 	inUTL := r.URL.Path
@@ -231,7 +231,7 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaDealListList read all employees
 func getSienaDealListList(db *sql.DB) (int, []sienaDealListItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList;", sienaDealListSQL, mssqlConfig["schema"])
 	count, sienaDealListList, _, _ := fetchSienaDealListData(db, tsql)
 
@@ -240,7 +240,7 @@ func getSienaDealListList(db *sql.DB) (int, []sienaDealListItem, error) {
 
 // getSienaDealListList read all employees
 func getSienaDealListListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaDealListItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE Firm='%s' AND Centre='%s';", sienaDealListSQL, mssqlConfig["schema"], idFirm, idCentre)
 
@@ -251,7 +251,7 @@ func getSienaDealListListByCounterparty(db *sql.DB, idFirm string, idCentre stri
 
 // getSienaDealListList read all employees
 func getSienaDealList(db *sql.DB, sienaDealListID string) (int, sienaDealListItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE SienaReference='%s';", sienaDealListSQL, mssqlConfig["schema"], sienaDealListID)
 	_, _, sienaDealList, _ := fetchSienaDealListData(db, tsql)
 	return 1, sienaDealList, nil
@@ -259,7 +259,7 @@ func getSienaDealList(db *sql.DB, sienaDealListID string) (int, sienaDealListIte
 
 // getSienaDealListList read all employees
 func putSienaDealList(db *sql.DB, updateItem sienaDealListItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -332,7 +332,7 @@ func fetchSienaDealListData(db *sql.DB, tsql string) (int, []sienaDealListItem, 
 		sienaDealList.PartyName = sqlDLSTPartyName.String
 
 		if sienaDealList.Firm != "" {
-			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, cCounterpartySep, sienaDealList.Centre)
+			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, SIENACPTYSEP, sienaDealList.Centre)
 		}
 
 		if sienaDealList.Instrument == "" {

@@ -14,10 +14,10 @@ import (
 var sienaBusinessDateSQL = "Today"
 var sqlSYSDToday sql.NullString
 
-const CONSTsienaXMLimport = "IMPORT"
-const CONSTsienaXMLdelete = "DELETE"
-const CONSTsienaXMLupdate = "UPDATE"
-const CONSTsienaXMLnew = "INSERT"
+const SIENAXMLIMPORT = "IMPORT"
+const SIENAXMLDELETE = "DELETE"
+const SIENAXMLUPDATE = "UPDATE"
+const SIENAXMLNEW = "INSERT"
 
 //sienaBusinessDateItem is cheese
 type sienaBusinessDateItem struct {
@@ -96,7 +96,7 @@ func isChecked(inValue string) string {
 
 func sienaConnect() (*sql.DB, error) {
 	// Connect to SQL Server DB
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 
 	server := mssqlConfig["server"]
 	user := mssqlConfig["user"]
@@ -137,7 +137,7 @@ func sienaConnect() (*sql.DB, error) {
 
 // getSienaBusinessDate read all employees
 func getSienaBusinessDate(db *sql.DB) (int, sienaBusinessDateItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, mssqlConfig["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
@@ -168,9 +168,9 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 		sienaBusinessDate.Today = sqlSYSDToday.String
 
 		sienaBusinessDate.Internal, _ = time.Parse(time.RFC3339, sqlSYSDToday.String)
-		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(sienaDateFormat)
-		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(YMDDateFormat)
-		sienaBusinessDate.qmEpoch = sienaBusinessDate.Internal.Format(wctEpochDateFormat)
+		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(DATEFORMATSIENA)
+		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(DATEFORMATYMD)
+		sienaBusinessDate.qmEpoch = sienaBusinessDate.Internal.Format(DATEFORMATPICK)
 		sienaBusinessDateList = append(sienaBusinessDateList, sienaBusinessDate)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
@@ -181,7 +181,7 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 
 func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))

@@ -48,7 +48,7 @@ type calenderItem struct {
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listcalender"
 
 	inUTL := r.URL.Path
@@ -78,7 +78,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
 // getcalenderList read all employees
 func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 
 	var calenderList []calenderItem
 
@@ -101,7 +101,7 @@ func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
 
 // getcalenderList read all employees
 func getcalender(db *sql.DB, id string) (int, calenderItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.calender WHERE Code='%s';", calenderSQL, mssqlConfig["schema"], id)
 	_, _, calender, _ := fetchcalenderData(db, tsql)
 	return 1, calender, nil

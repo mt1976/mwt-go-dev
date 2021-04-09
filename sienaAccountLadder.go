@@ -55,7 +55,7 @@ type sienaAccountLadderItem struct {
 
 func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaAccountLadder"
 
 	inUTL := r.URL.Path
@@ -91,7 +91,7 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaAccountLadderList read all employees
 func getSienaAccountLadderList(db *sql.DB, idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, mssqlConfig["schema"], idRef)
 	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(db, tsql)
 	return count, sienaAccountLadderList, nil

@@ -13,14 +13,14 @@ import (
 
 //CONST_CONFIG_FILE is cheese
 const (
-	CONST_CONFIG_FILE  = "config/properties.cfg"
-	cSQL_CONFIG        = "config/mssql.cfg"
-	cSIENACONFIG       = "config/siena.cfg"
-	wctEpochDateFormat = "20060102T150405"
-	sienaDateFormat    = "2006-01-02"
-	YMDDateFormat      = "20060102"
-	gOutputDateFormat  = "Monday, 02 Jan 2006"
-	cCounterpartySep   = "\u22EE"
+	APPCONFIG  = "config/properties.cfg"
+	SQLCONFIG        = "config/mssql.cfg"
+	SIENACONFIG       = "config/siena.cfg"
+	DATEFORMATPICK = "20060102T150405"
+	DATEFORMATSIENA    = "2006-01-02"
+	DATEFORMATYMD      = "20060102"
+	DATEFORMATUSER  = "Monday, 02 Jan 2006"
+	SIENACPTYSEP   = "\u22EE"
 )
 
 var gSessionToken = ""
@@ -37,7 +37,7 @@ func main() {
 
 	ascii := figlet4go.NewAsciiRender()
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 
 	// The underscore would be an error
 	renderStr, _ := ascii.Render(wctProperties["appname"])
@@ -205,7 +205,7 @@ func main() {
 	log.Println("")
 	log.Println("READY STEADY GO!!!")
 	log.Println("URL        :", "http://localhost:"+wctProperties["port"])
-	log.Println("SYSTEM DATE:", gSienaSystemDate.Internal.Format(gOutputDateFormat))
+	log.Println("SYSTEM DATE:", gSienaSystemDate.Internal.Format(DATEFORMATUSER))
 
 	// Get menu
 	menuCount, _ := fetchappMenuData("")

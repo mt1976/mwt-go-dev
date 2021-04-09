@@ -48,7 +48,7 @@ type sienaPortfolioItem struct {
 
 func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -79,7 +79,7 @@ func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -112,7 +112,7 @@ func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -145,7 +145,7 @@ func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -214,7 +214,7 @@ func saveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -239,7 +239,7 @@ func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaPortfolioList read all employees
 func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, mssqlConfig["schema"])
 	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
 	return count, sienaPortfolioList, nil
@@ -247,7 +247,7 @@ func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 
 // getSienaPortfolioList read all employees
 func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, mssqlConfig["schema"], id)
 	_, _, sienaPortfolio, _ := fetchSienaPortfolioData(db, tsql)
@@ -256,7 +256,7 @@ func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 
 // getSienaPortfolioList read all employees
 func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

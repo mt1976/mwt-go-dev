@@ -99,7 +99,7 @@ type sienaAccountItem struct {
 
 func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaAccount"
 
 	inUTL := r.URL.Path
@@ -130,7 +130,7 @@ func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaAccount"
 
 	inUTL := r.URL.Path
@@ -190,7 +190,7 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaAccount"
 
 	inUTL := r.URL.Path
@@ -275,7 +275,7 @@ func saveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaAccount"
 
 	inUTL := r.URL.Path
@@ -306,7 +306,7 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaAccountList read all employees
 func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, mssqlConfig["schema"])
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
 	return count, sienaAccountList, nil
@@ -314,7 +314,7 @@ func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
 
 // getSienaAccountListByCounterParty read all employees
 func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre string) (int, []sienaAccountItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
 	return count, sienaAccountList, nil
@@ -322,7 +322,7 @@ func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre strin
 
 // getSienaAccount read all employees
 func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, mssqlConfig["schema"], id)
 	_, _, sienaAccount, _ := fetchSienaAccountData(db, tsql)
 	return 1, sienaAccount, nil
@@ -330,7 +330,7 @@ func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
 
 // getSienaAccountList read all employees
 func putSienaAccount(db *sql.DB, updateItem sienaAccountItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

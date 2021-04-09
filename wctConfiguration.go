@@ -47,7 +47,7 @@ type SrvConfigurationItem struct {
 
 func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -112,7 +112,7 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -166,7 +166,7 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -220,7 +220,7 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 

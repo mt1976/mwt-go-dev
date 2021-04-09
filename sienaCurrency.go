@@ -56,7 +56,7 @@ type sienaCurrencyItem struct {
 
 func listSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaCurrency"
 
 	inUTL := r.URL.Path
@@ -87,7 +87,7 @@ func listSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaCurrency"
 
 	inUTL := r.URL.Path
@@ -124,7 +124,7 @@ func viewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaCurrency"
 
 	inUTL := r.URL.Path
@@ -168,7 +168,7 @@ func editSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -246,7 +246,7 @@ func saveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaCurrency"
 
 	inUTL := r.URL.Path
@@ -280,7 +280,7 @@ func newSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaCurrencyList read all employees
 func getSienaCurrencyList(db *sql.DB) (int, []sienaCurrencyItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, mssqlConfig["schema"])
 	count, sienaCurrencyList, _, _ := fetchSienaCurrencyData(db, tsql)
 	return count, sienaCurrencyList, nil
@@ -288,7 +288,7 @@ func getSienaCurrencyList(db *sql.DB) (int, []sienaCurrencyItem, error) {
 
 // getSienaCurrencyList read all employees
 func getSienaCurrency(db *sql.DB, id string) (int, sienaCurrencyItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, mssqlConfig["schema"], id)
 	_, _, sienaCurrency, _ := fetchSienaCurrencyData(db, tsql)
 	return 1, sienaCurrency, nil
@@ -296,7 +296,7 @@ func getSienaCurrency(db *sql.DB, id string) (int, sienaCurrencyItem, error) {
 
 // getSienaCurrencyList read all employees
 func putSienaCurrency(db *sql.DB, updateItem sienaCurrencyItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

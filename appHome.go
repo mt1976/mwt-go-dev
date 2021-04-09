@@ -31,9 +31,9 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
-	wctProperties := getProperties(CONST_CONFIG_FILE)
-	sqlProperties := getProperties(cSQL_CONFIG)
-	sienaProperties := getProperties(cSIENACONFIG)
+	wctProperties := getProperties(APPCONFIG)
+	sqlProperties := getProperties(SQLCONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -55,7 +55,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		UserName:        gUserName,
 		UserKnowAs:      gUserKnowAs,
 		SienaDate:       gSienaSystemDate.Siena,
-		AppServerDate:   time.Now().Format(sienaDateFormat),
+		AppServerDate:   time.Now().Format(DATEFORMATSIENA),
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))

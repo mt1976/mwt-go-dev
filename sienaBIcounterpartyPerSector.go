@@ -19,7 +19,7 @@ type sienaBIcounterpartyPerSectorItem struct {
 
 // getSienaBIcounterpartyPerSectorList read all employees
 func getSienaBIcounterpartyPerSectorList(db *sql.DB) (int, []sienaBIcounterpartyPerSectorItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIcounterpartyPerSector;", sienaBIcounterpartyPerSectorSQL, mssqlConfig["schema"])
 	count, sienaBIcounterpartyPerSectorList, _, _ := fetchSienaBIcounterpartyPerSectorData(db, tsql)
 	return count, sienaBIcounterpartyPerSectorList, nil

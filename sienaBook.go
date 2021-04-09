@@ -49,7 +49,7 @@ type sienaBookItem struct {
 
 func listSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaBook"
 
 	inUTL := r.URL.Path
@@ -80,7 +80,7 @@ func listSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaBook"
 
 	inUTL := r.URL.Path
@@ -114,7 +114,7 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaBook"
 
 	inUTL := r.URL.Path
@@ -151,7 +151,7 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -224,7 +224,7 @@ func saveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaBook"
 
 	inUTL := r.URL.Path
@@ -250,7 +250,7 @@ func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaBookList read all employees
 func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, mssqlConfig["schema"])
 	count, sienaBookList, _, _ := fetchSienaBookData(db, tsql)
 	return count, sienaBookList, nil
@@ -258,7 +258,7 @@ func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
 
 // getSienaBookList read all employees
 func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, mssqlConfig["schema"], id)
 	_, _, sienaBook, _ := fetchSienaBookData(db, tsql)
 	return 1, sienaBook, nil

@@ -54,7 +54,7 @@ func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -116,7 +116,7 @@ func RemoveContents(dir string) error {
 func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -192,7 +192,7 @@ func fileExists(filename string) bool {
 
 func pickEpochToDateTimeString(pickEpoch string) string {
 	//pickEpochLayout := "20060102T150405"
-	t, err := time.Parse(wctEpochDateFormat, pickEpoch)
+	t, err := time.Parse(DATEFORMATPICK, pickEpoch)
 	if err != nil {
 		fmt.Println(err)
 	}

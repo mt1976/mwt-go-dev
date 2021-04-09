@@ -141,7 +141,7 @@ func listResponseswebNew(wctProperties map[string]string, responseFormat string,
 func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -236,7 +236,7 @@ func deleteResponse(responseID string, wctProperties map[string]string) (err err
 func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -254,7 +254,7 @@ func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -316,7 +316,7 @@ func getResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 
 func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listResponses"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

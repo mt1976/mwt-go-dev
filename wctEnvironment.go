@@ -28,7 +28,7 @@ type SrvEnvironmentItem struct {
 
 func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSrvEnvironment"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

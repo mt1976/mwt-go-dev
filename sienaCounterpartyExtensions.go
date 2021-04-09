@@ -131,7 +131,7 @@ type sienaCounterpartyExtensionsItem struct {
 
 func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -162,7 +162,7 @@ func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -237,7 +237,7 @@ func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -318,7 +318,7 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 func saveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -432,7 +432,7 @@ func saveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -499,7 +499,7 @@ func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsList(db *sql.DB) (int, []sienaCounterpartyExtensionsItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions;", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"])
 	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return count, sienaCounterpartyExtensionsList, nil
@@ -507,7 +507,7 @@ func getSienaCounterpartyExtensionsList(db *sql.DB) (int, []sienaCounterpartyExt
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyExtensionsItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return count, sienaCounterpartyExtensionsList, nil
@@ -515,7 +515,7 @@ func getSienaCounterpartyExtensionsListByCounterparty(db *sql.DB, idFirm string,
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensions(db *sql.DB, sfid string, scid string) (int, sienaCounterpartyExtensionsItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"], sfid, scid)
 	_, _, sienaCounterpartyExtensions, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return 1, sienaCounterpartyExtensions, nil
@@ -523,7 +523,7 @@ func getSienaCounterpartyExtensions(db *sql.DB, sfid string, scid string) (int, 
 
 // getSienaCounterpartyExtensionsList read all employees
 func putSienaCounterpartyExtensions(db *sql.DB, updateItem sienaCounterpartyExtensionsItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

@@ -58,7 +58,7 @@ type sienaFirmItem struct {
 
 func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaFirm"
 
 	inUTL := r.URL.Path
@@ -89,7 +89,7 @@ func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaFirm"
 
 	inUTL := r.URL.Path
@@ -127,7 +127,7 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaFirm"
 
 	inUTL := r.URL.Path
@@ -174,7 +174,7 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -266,7 +266,7 @@ func saveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaFirm"
 
 	inUTL := r.URL.Path
@@ -302,7 +302,7 @@ func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaFirmList read all employees
 func getSienaFirmList(db *sql.DB) (int, []sienaFirmItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, mssqlConfig["schema"])
 	count, sienaFirmList, _, _ := fetchSienaFirmData(db, tsql)
 
@@ -311,7 +311,7 @@ func getSienaFirmList(db *sql.DB) (int, []sienaFirmItem, error) {
 
 // getSienaFirmList read all employees
 func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, mssqlConfig["schema"], id)
 
 	_, _, sienaFirm, _ := fetchSienaFirmData(db, tsql)
@@ -321,7 +321,7 @@ func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
 
 // getSienaFirmList read all employees
 func putSienaFirm(db *sql.DB, updateItem sienaFirmItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

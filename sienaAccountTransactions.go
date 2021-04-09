@@ -73,7 +73,7 @@ type sienaAccountTransactionItem struct {
 
 func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaAccountTransactions"
 
 	inUTL := r.URL.Path
@@ -109,7 +109,7 @@ func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 
 // getSienaAccountTransactionsList read all employees
 func getSienaAccountTransactionsList(db *sql.DB, idRef string, accountCCY string) (int, []sienaAccountTransactionItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, mssqlConfig["schema"], idRef)
 	count, sienaAccountTransactionsList, _, _ := fetchSienaAccountTransactionData(db, tsql)
 	return count, sienaAccountTransactionsList, nil

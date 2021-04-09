@@ -51,7 +51,7 @@ type RequestViewPage struct {
 
 func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewRequest"
 	inUTL := r.URL.Path
 	requestID := uuid.New()
@@ -97,7 +97,7 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	//	tmpl := "executeRequest"
 	inUTL := r.URL.Path
 

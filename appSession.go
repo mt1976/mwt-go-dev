@@ -23,7 +23,7 @@ type loginPage struct {
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -54,7 +54,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -126,7 +126,7 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

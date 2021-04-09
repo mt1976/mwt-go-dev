@@ -30,7 +30,7 @@ type sienaDashboardPage struct {
 
 func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "dashboard"
 
 	inUTL := r.URL.Path

@@ -97,7 +97,7 @@ type sienaCounterpartyPayeeItem struct {
 
 func listSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaCounterpartyPayee"
 
 	inUTL := r.URL.Path
@@ -128,7 +128,7 @@ func listSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaCounterpartyPayee"
 
 	inUTL := r.URL.Path
@@ -191,7 +191,7 @@ func viewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaCounterpartyPayee"
 
 	inUTL := r.URL.Path
@@ -261,7 +261,7 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(cSIENACONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -356,7 +356,7 @@ func saveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaCounterpartyPayee"
 
 	inUTL := r.URL.Path
@@ -405,7 +405,7 @@ func newSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayeeList(db *sql.DB) (int, []sienaCounterpartyPayeeItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"])
 	count, sienaCounterpartyPayeeList, _, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return count, sienaCounterpartyPayeeList, nil
@@ -413,7 +413,7 @@ func getSienaCounterpartyPayeeList(db *sql.DB) (int, []sienaCounterpartyPayeeIte
 
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayee(db *sql.DB, id string) (int, sienaCounterpartyPayeeItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE Code='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"], id)
 	_, _, sienaCounterpartyPayee, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return 1, sienaCounterpartyPayee, nil
@@ -421,14 +421,14 @@ func getSienaCounterpartyPayee(db *sql.DB, id string) (int, sienaCounterpartyPay
 
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayeeListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyPayeeItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaCounterpartyPayeeList, _, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return count, sienaCounterpartyPayeeList, nil
 }
 
 func getSienaCounterpartyPayeeByKey(db *sql.DB, idSource string, idFirm string, idCentre string, idCCY string, idName string, idNumber string, idDirection string, idType string) (int, sienaCounterpartyPayeeItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE SourceTable='%s' AND KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' AND KeyCurrency='%s' AND KeyName='%s' AND KeyNumber='%s' AND KeyDirection='%s' AND KeyType='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, mssqlConfig["schema"], idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 	_, _, sienaCounterpartyPayee, _ := fetchSienaCounterpartyPayeeData(db, tsql)
 	return 1, sienaCounterpartyPayee, nil
@@ -436,7 +436,7 @@ func getSienaCounterpartyPayeeByKey(db *sql.DB, idSource string, idFirm string, 
 
 // getSienaCounterpartyPayeeList read all employees
 func putSienaCounterpartyPayee(db *sql.DB, updateItem sienaCounterpartyPayeeItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

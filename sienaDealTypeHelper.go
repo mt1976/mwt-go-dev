@@ -22,7 +22,7 @@ type sienaDealTypeHelperItem struct {
 
 // getSienaDealTypeHelperList read all employees
 func getSienaDealTypeHelperList(db *sql.DB) (int, []sienaDealTypeHelperItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealTypeHelper;", sienaDealTypeHelperSQL, mssqlConfig["schema"])
 	count, sienaDealTypeHelperList, _, _ := fetchSienaDealTypeHelperData(db, tsql)
 	return count, sienaDealTypeHelperList, nil

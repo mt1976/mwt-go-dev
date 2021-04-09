@@ -104,7 +104,7 @@ type sienaCounterpartyItem struct {
 
 func listSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "listSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -135,7 +135,7 @@ func listSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "viewSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -216,7 +216,7 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "editSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -414,7 +414,7 @@ func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
+	wctProperties := getProperties(APPCONFIG)
 	tmpl := "newSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -467,7 +467,7 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaCounterpartyList read all employees
 func getSienaCounterpartyList(db *sql.DB) (int, []sienaCounterpartyItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterparty;", sienaCounterpartySQL, mssqlConfig["schema"])
 	count, sienaCounterpartyList, _, _ := fetchSienaCounterpartyData(db, tsql)
 	return count, sienaCounterpartyList, nil
@@ -475,7 +475,7 @@ func getSienaCounterpartyList(db *sql.DB) (int, []sienaCounterpartyItem, error) 
 
 // getSienaCounterpartyList read all employees
 func getSienaCounterparty(db *sql.DB, idFirm string, idCentre string) (int, sienaCounterpartyItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterparty WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartySQL, mssqlConfig["schema"], idFirm, idCentre)
 	_, _, sienaCounterparty, _ := fetchSienaCounterpartyData(db, tsql)
 	return 1, sienaCounterparty, nil
@@ -483,7 +483,7 @@ func getSienaCounterparty(db *sql.DB, idFirm string, idCentre string) (int, sien
 
 // getSienaCounterpartyList read all employees
 func putSienaCounterparty(db *sql.DB, updateItem sienaCounterpartyItem) error {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

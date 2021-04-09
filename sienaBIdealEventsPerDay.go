@@ -19,7 +19,7 @@ type sienaBIdealEventsPerDayItem struct {
 
 // getSienaBIdealEventsPerDayList read all employees
 func getSienaBIdealEventsPerDayList(db *sql.DB) (int, []sienaBIdealEventsPerDayItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, mssqlConfig["schema"])
 	count, sienaBIdealEventsPerDayList, _, _ := fetchSienaBIdealEventsPerDayData(db, tsql)
 	return count, sienaBIdealEventsPerDayList, nil

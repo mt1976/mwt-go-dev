@@ -34,9 +34,9 @@ type AppConfigurationPage struct {
 
 func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(CONST_CONFIG_FILE)
-	sienaProperties := getProperties(cSIENACONFIG)
-	sqlServerProperties := getProperties(cSQL_CONFIG)
+	wctProperties := getProperties(APPCONFIG)
+	sienaProperties := getProperties(SIENACONFIG)
+	sqlServerProperties := getProperties(SQLCONFIG)
 
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path

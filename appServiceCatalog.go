@@ -35,7 +35,7 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Servicing :", inUTL)
 
 		//		var propertiesFileName = "config/properties.cfg"
-		wctProperties := getProperties(CONST_CONFIG_FILE)
+		wctProperties := getProperties(APPCONFIG)
 
 		w.Header().Set("Content-Type", "text/html")
 

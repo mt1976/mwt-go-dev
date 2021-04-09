@@ -19,7 +19,7 @@ type sienaProductHelperItem struct {
 
 // getSienaProductHelperList read all employees
 func getSienaProductHelperList(db *sql.DB) (int, []sienaProductHelperItem, error) {
-	mssqlConfig := getProperties(cSQL_CONFIG)
+	mssqlConfig := getProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaProductHelper;", sienaProductHelperSQL, mssqlConfig["schema"])
 	count, sienaProductHelperList, _, _ := fetchSienaProductHelperData(db, tsql)
 	return count, sienaProductHelperList, nil
