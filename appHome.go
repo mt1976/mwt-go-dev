@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -25,6 +26,7 @@ type sienaHomePage struct {
 	UserKnowAs      string
 	SienaDate       string
 	AppServerDate   string
+	AppServerName   string
 }
 
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +40,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
+	tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{
 		UserMenu:        getappMenuData(gUserRole),
@@ -56,6 +59,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		UserKnowAs:      gUserKnowAs,
 		SienaDate:       gSienaSystemDate.Siena,
 		AppServerDate:   time.Now().Format(DATEFORMATSIENA),
+		AppServerName:   tmpHostname,
 	}
 
 	t, _ := template.ParseFiles(getTemplateID(tmpl))
