@@ -1,3 +1,0 @@
-
--- The counterparty must be within the database before this file is loaded.
--- The Trading group must withi the database before this file is loaded.

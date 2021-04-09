@@ -1,3 +1,0 @@
-
-
---  A valid Amountbandid needs to be inplace before this file is dropped into the static data importer.
