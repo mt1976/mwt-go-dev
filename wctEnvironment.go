@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -47,14 +48,15 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	sendRequest(requestMessage, requestID.String(), wctProperties)
 
 	responseMessge := getResponseAsync(requestID.String(), wctProperties, r)
-	//fmt.Println("responseMessge", responseMessge)
+	fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
 	noRows := len(responseMessge.ResponseContent.ResponseContentRow)
-
+	fmt.Println("noRows", noRows)
 	var configsList []SrvEnvironmentItem
 
 	for ii := 0; ii < noRows; ii++ {
+		fmt.Println("row", ii)
 		var fred SrvEnvironmentItem
 		serviceContent := strings.Split(responseMessge.ResponseContent.ResponseContentRow[ii], "|")
 		fred.ItemID = ii
@@ -62,7 +64,7 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 		fred.ItemValue = serviceContent[1]
 		configsList = append(configsList, fred)
 	}
-
+	fmt.Println("configs", configsList)
 	pageSrvEvironment := SrvEnvironmentPage{
 		UserMenu:            getappMenuData(gUserRole),
 		UserRole:            gUserRole,
