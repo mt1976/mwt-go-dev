@@ -16,7 +16,7 @@ var sqlACTXSienaReference, sqlACTXLegNo, sqlACTXMMLegNo, sqlACTXNarrative, sqlAC
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionListPage struct {
-	UserMenu                     []AppMenuItem
+	UserMenu                     []application.AppMenuItem
 	UserRole                     string
 	UserNavi                     string
 	Title                        string
@@ -29,7 +29,7 @@ type sienaAccountTransactionListPage struct {
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionPage struct {
-	UserMenu                []AppMenuItem
+	UserMenu                []application.AppMenuItem
 	UserRole                string
 	UserNavi                string
 	Title                   string

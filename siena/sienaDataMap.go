@@ -14,7 +14,7 @@ import (
 
 //SvcDataMapPage is cheese
 type SvcDataMapPage struct {
-	UserMenu        []AppMenuItem
+	UserMenu        []application.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string

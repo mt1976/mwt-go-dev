@@ -19,7 +19,7 @@ var sqlPRTCode, sqlPRTName sql.NullString
 
 //sienaPortfolioPage is cheese
 type sienaPortfolioListPage struct {
-	UserMenu            []AppMenuItem
+	UserMenu            []application.AppMenuItem
 	UserRole            string
 	UserNavi            string
 	Title               string
@@ -30,7 +30,7 @@ type sienaPortfolioListPage struct {
 
 //sienaPortfolioPage is cheese
 type sienaPortfolioPage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []application.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string

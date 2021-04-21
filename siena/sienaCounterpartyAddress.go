@@ -19,7 +19,7 @@ var sqlCPADNameFirm, sqlCPADNameCentre, sqlCPADAddress1, sqlCPADAddress2, sqlCPA
 
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressListPage struct {
-	UserMenu                      []AppMenuItem
+	UserMenu                      []application.AppMenuItem
 	UserRole                      string
 	UserNavi                      string
 	Title                         string
@@ -30,7 +30,7 @@ type sienaCounterpartyAddressListPage struct {
 
 //sienaCounterpartyAddressPage is cheese
 type sienaCounterpartyAddressPage struct {
-	UserMenu   []AppMenuItem
+	UserMenu   []application.AppMenuItem
 	UserRole   string
 	UserNavi   string
 	Title      string

@@ -1,4 +1,4 @@
-package main
+package application
 
 import (
 	"html/template"
@@ -36,9 +36,9 @@ type AppConfigurationPage struct {
 
 func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
-	sienaProperties := support.GetProperties(SIENACONFIG)
-	sqlServerProperties := support.GetProperties(SQLCONFIG)
+	wctProperties := support.GetProperties(support.APPCONFIG)
+	sienaProperties := support.GetProperties(support.SIENACONFIG)
+	sqlServerProperties := support.GetProperties(support.SQLCONFIG)
 
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path

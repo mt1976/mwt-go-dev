@@ -20,7 +20,7 @@ var sqlCPEXNameFirm, sqlCPEXNameCentre, sqlCPEXBICCode, sqlCPEXContactIndicator,
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsListPage struct {
-	UserMenu                         []AppMenuItem
+	UserMenu                         []application.AppMenuItem
 	UserRole                         string
 	UserNavi                         string
 	Title                            string
@@ -31,7 +31,7 @@ type sienaCounterpartyExtensionsListPage struct {
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsPage struct {
-	UserMenu                      []AppMenuItem
+	UserMenu                      []application.AppMenuItem
 	UserRole                      string
 	UserNavi                      string
 	Title                         string

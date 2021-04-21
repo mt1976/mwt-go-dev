@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strings"
 
+	support "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
@@ -16,7 +17,7 @@ var sqlACCTSienaReference, sqlACCTCustomerSienaView, sqlACCTSienaCommonRef, sqlA
 
 //sienaAccountPage is cheese
 type sienaAccountListPage struct {
-	UserMenu          []AppMenuItem
+	UserMenu          []application.application.AppMenuItem
 	Title             string
 	PageTitle         string
 	SienaAccountCount int
@@ -27,7 +28,7 @@ type sienaAccountListPage struct {
 
 //sienaAccountPage is cheese
 type sienaAccountPage struct {
-	UserMenu               []AppMenuItem
+	UserMenu               []application.application.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string

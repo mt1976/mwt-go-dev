@@ -18,7 +18,7 @@ var sqlFRMFirmName, sqlFRMFullName, sqlFRMCountry, sqlFRMSector, sqlFRMSectorNam
 
 //sienaFirmPage is cheese
 type sienaFirmListPage struct {
-	UserMenu       []AppMenuItem
+	UserMenu       []application.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -29,7 +29,7 @@ type sienaFirmListPage struct {
 
 //sienaFirmPage is cheese
 type sienaFirmPage struct {
-	UserMenu    []AppMenuItem
+	UserMenu    []application.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

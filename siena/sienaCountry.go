@@ -15,7 +15,7 @@ var sqlCNTRCode, sqlCNTRName, sqlCNTRShortCode, sqlCNTREU_EEA sql.NullString
 
 //sienaCountryPage is cheese
 type sienaCountryListPage struct {
-	UserMenu          []AppMenuItem
+	UserMenu          []application.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string
@@ -26,7 +26,7 @@ type sienaCountryListPage struct {
 
 //sienaCountryPage is cheese
 type sienaCountryPage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []application.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string

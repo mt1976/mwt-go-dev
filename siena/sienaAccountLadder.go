@@ -16,7 +16,7 @@ var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBa
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderListPage struct {
-	UserMenu                []AppMenuItem
+	UserMenu                []application.AppMenuItem
 	UserRole                string
 	UserNavi                string
 	Title                   string
@@ -29,7 +29,7 @@ type sienaAccountLadderListPage struct {
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderPage struct {
-	UserMenu       []AppMenuItem
+	UserMenu       []application.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string

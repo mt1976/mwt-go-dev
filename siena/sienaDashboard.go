@@ -12,7 +12,7 @@ import (
 
 //sienaDashboardPage is cheese
 type sienaDashboardPage struct {
-	UserMenu          []AppMenuItem
+	UserMenu          []application.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string

@@ -19,7 +19,7 @@ var sqlCENTCode, sqlCENTName, sqlCENTCountry, sqlCENTCountryName sql.NullString
 
 //sienaCentrePage is cheese
 type sienaCentreListPage struct {
-	UserMenu         []AppMenuItem
+	UserMenu         []application.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -30,7 +30,7 @@ type sienaCentreListPage struct {
 
 //sienaCentrePage is cheese
 type sienaCentrePage struct {
-	UserMenu    []AppMenuItem
+	UserMenu    []application.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

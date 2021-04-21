@@ -16,7 +16,7 @@ var sqlMDUMandatedUserKeyCounterpartyFirm, sqlMDUMandatedUserKeyCounterpartyCent
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserListPage struct {
-	UserMenu               []AppMenuItem
+	UserMenu               []application.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -27,7 +27,7 @@ type sienaMandatedUserListPage struct {
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserPage struct {
-	UserMenu                          []AppMenuItem
+	UserMenu                          []application.AppMenuItem
 	UserRole                          string
 	UserNavi                          string
 	Title                             string

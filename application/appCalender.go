@@ -1,4 +1,4 @@
-package main
+package application
 
 import (
 	"database/sql"
@@ -50,13 +50,13 @@ type calenderItem struct {
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(support.APPCONFIG)
 	tmpl := "listcalender"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.sienaConnect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []calenderItem
 	noItems, returnList, _ := getcalenderList(thisConnection)
@@ -80,7 +80,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
 // getcalenderList read all employees
 func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(support.SQLCONFIG)
 
 	var calenderList []calenderItem
 
@@ -103,7 +103,7 @@ func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
 
 // getcalenderList read all employees
 func getcalender(db *sql.DB, id string) (int, calenderItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(support.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.calender WHERE Code='%s';", calenderSQL, mssqlConfig["schema"], id)
 	_, _, calender, _ := fetchcalenderData(db, tsql)
 	return 1, calender, nil

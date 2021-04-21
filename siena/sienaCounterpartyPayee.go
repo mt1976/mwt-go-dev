@@ -20,7 +20,7 @@ var sqlCPPYSourceTable, sqlCPPYKeyCounterpartyFirm, sqlCPPYKeyCounterpartyCentre
 
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeeListPage struct {
-	UserMenu                    []AppMenuItem
+	UserMenu                    []application.AppMenuItem
 	UserRole                    string
 	UserNavi                    string
 	Title                       string
@@ -31,7 +31,7 @@ type sienaCounterpartyPayeeListPage struct {
 
 //sienaCounterpartyPayeePage is cheese
 type sienaCounterpartyPayeePage struct {
-	UserMenu              []AppMenuItem
+	UserMenu              []application.AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string

@@ -19,7 +19,7 @@ var sqlBRKRCode, sqlBRKRName, sqlBRKRFullName, sqlBRKRContact, sqlBRKRAddress, s
 
 //sienaBrokerPage is cheese
 type sienaBrokerListPage struct {
-	UserMenu         []AppMenuItem
+	UserMenu         []application.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -30,7 +30,7 @@ type sienaBrokerListPage struct {
 
 //sienaBrokerPage is cheese
 type sienaBrokerPage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []application.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string

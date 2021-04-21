@@ -20,7 +20,7 @@ var sqlCCYPCodeMajorCurrencyIsoCode, sqlCCYPCodeMinorCurrencyIsoCode, sqlCCYPRec
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairListPage struct {
-	UserMenu               []AppMenuItem
+	UserMenu               []application.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -31,7 +31,7 @@ type sienaCurrencyPairListPage struct {
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairPage struct {
-	UserMenu                 []AppMenuItem
+	UserMenu                 []application.AppMenuItem
 	UserRole                 string
 	UserNavi                 string
 	Title                    string

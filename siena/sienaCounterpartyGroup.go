@@ -19,7 +19,7 @@ var sqlCGRPName, sqlCGRPCountryCode, sqlCGRPSuperGroup, sqlCGRPCountryName sql.N
 
 //sienaCounterpartyGroupPage is cheese
 type sienaCounterpartyGroupListPage struct {
-	UserMenu                    []AppMenuItem
+	UserMenu                    []application.AppMenuItem
 	UserRole                    string
 	UserNavi                    string
 	Title                       string
@@ -30,7 +30,7 @@ type sienaCounterpartyGroupListPage struct {
 
 //sienaCounterpartyGroupPage is cheese
 type sienaCounterpartyGroupPage struct {
-	UserMenu    []AppMenuItem
+	UserMenu    []application.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

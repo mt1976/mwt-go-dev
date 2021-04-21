@@ -16,7 +16,7 @@ var sqlCPTYNameCentre, sqlCPTYNameFirm, sqlCPTYFullName, sqlCPTYTelephoneNumber,
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyListPage struct {
-	UserMenu               []AppMenuItem
+	UserMenu               []application.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -27,7 +27,7 @@ type sienaCounterpartyListPage struct {
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyPage struct {
-	UserMenu        []AppMenuItem
+	UserMenu        []application.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string

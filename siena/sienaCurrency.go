@@ -19,7 +19,7 @@ var sqlCCYCode, sqlCCYName, sqlCCYAmountDp, sqlCCYCountry, sqlCCYCountryName sql
 
 //sienaCurrencyPage is cheese
 type sienaCurrencyListPage struct {
-	UserMenu           []AppMenuItem
+	UserMenu           []application.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -30,7 +30,7 @@ type sienaCurrencyListPage struct {
 
 //sienaCurrencyPage is cheese
 type sienaCurrencyPage struct {
-	UserMenu    []AppMenuItem
+	UserMenu    []application.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

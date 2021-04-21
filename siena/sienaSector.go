@@ -18,7 +18,7 @@ var sqlSCTCode, sqlSCTName sql.NullString
 
 //sienaSectorPage is cheese
 type sienaSectorListPage struct {
-	UserMenu         []AppMenuItem
+	UserMenu         []application.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -29,7 +29,7 @@ type sienaSectorListPage struct {
 
 //sienaSectorPage is cheese
 type sienaSectorPage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []application.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string

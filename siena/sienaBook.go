@@ -19,7 +19,7 @@ var sqlBOOKBookName, sqlBOOKFullName sql.NullString
 
 //sienaBookPage is cheese
 type sienaBookListPage struct {
-	UserMenu       []AppMenuItem
+	UserMenu       []application.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -30,7 +30,7 @@ type sienaBookListPage struct {
 
 //sienaBookPage is cheese
 type sienaBookPage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []application.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string

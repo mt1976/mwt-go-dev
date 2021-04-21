@@ -19,7 +19,7 @@ var sqlCPIDKeyImportID, sqlCPIDFirm, sqlCPIDCentre, sqlCPIDFirmName, sqlCPIDCent
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDListPage struct {
-	UserMenu                       []AppMenuItem
+	UserMenu                       []application.AppMenuItem
 	UserRole                       string
 	UserNavi                       string
 	Title                          string
@@ -30,7 +30,7 @@ type sienaCounterpartyImportIDListPage struct {
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDPage struct {
-	UserMenu    []AppMenuItem
+	UserMenu    []application.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

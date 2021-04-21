@@ -18,7 +18,7 @@ var sqlDLSTSienaReference, sqlDLSTCustomerSienaView, sqlDLSTStatus, sqlDLSTValue
 
 //sienaDealListPage is cheese
 type sienaDealListListPage struct {
-	UserMenu           []AppMenuItem
+	UserMenu           []application.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -29,7 +29,7 @@ type sienaDealListListPage struct {
 
 //sienaDealListPage is cheese
 type sienaDealListPage struct {
-	UserMenu           []AppMenuItem
+	UserMenu           []application.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
