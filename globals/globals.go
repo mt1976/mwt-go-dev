@@ -10,3 +10,11 @@ var UserRole = "/default"
 var UserName = ""
 var UserKnowAs = ""
 var UserNavi = ""
+
+const (
+	DATEFORMATPICK  = "20060102T150405"
+	DATEFORMATSIENA = "2006-01-02"
+	DATEFORMATYMD   = "20060102"
+	DATEFORMATUSER  = "Monday, 02 Jan 2006"
+	SIENACPTYSEP    = "\u22EE"
+)

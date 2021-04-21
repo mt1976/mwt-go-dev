@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //AppMenuItem is cheese
@@ -32,7 +33,7 @@ func getappMenuData(inRole string) []AppMenuItem {
 // fetchappMenuData read all employees
 func fetchappMenuData(inRole string) (int, AppMenuList) {
 
-	file, _ := ioutil.ReadFile(support.GetMenuID("menu", gUserRole))
+	file, _ := ioutil.ReadFile(support.GetMenuID("menu", globals.UserRole))
 
 	data := AppMenuList{}
 

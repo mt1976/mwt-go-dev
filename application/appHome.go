@@ -8,6 +8,7 @@ import (
 	"time"
 
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //sienaMandatedUserPage is cheese
@@ -45,9 +46,9 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{
-		UserMenu:        getappMenuData(main.gUserRole),
-		UserRole:        gUserRole,
-		UserNavi:        gUserNavi,
+		UserMenu:        getappMenuData(globals.UserRole),
+		UserRole:        globals.UserRole,
+		UserNavi:        globals.UserNavi,
 		Title:           "Home",
 		PageTitle:       wctProperties["appname"],
 		AppReleaseID:    wctProperties["releaseid"],
@@ -57,16 +58,16 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		SQLServer:       sqlProperties["server"],
 		SQLDB:           sqlProperties["database"],
 		SQLSchema:       sqlProperties["schema"],
-		UserName:        gUserName,
-		UserKnowAs:      gUserKnowAs,
-		SienaDate:       gSienaSystemDate.Siena,
-		AppServerDate:   time.Now().Format(DATEFORMATSIENA),
+		UserName:        globals.UserName,
+		UserKnowAs:      globals.UserKnowAs,
+		SienaDate:       globals.SienaSystemDate,
+		AppServerDate:   time.Now().Format(globals.DATEFORMATSIENA),
 		AppServerName:   tmpHostname,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 
-	log.Println(support.GetTemplateID(tmpl, gUserRole), tmpl, t, gUserRole, gUserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
+	log.Println(support.GetTemplateID(tmpl, globals.UserRole), tmpl, t, globals.UserRole, globals.UserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
 	log.Println("about to execute")
 	t.Execute(w, homePage)
 

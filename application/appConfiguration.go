@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //AppConfigurationPage is cheese
@@ -51,8 +52,8 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageAppConfigView := AppConfigurationPage{
 		UserMenu:               getappMenuData(globals.UserRole),
-		UserRole:               gUserRole,
-		UserNavi:               gUserNavi,
+		UserRole:               globals.UserRole,
+		UserNavi:               globals.UserNavi,
 		Title:                  title,
 		PageTitle:              "View Application Server Config",
 		RequestPath:            wctProperties["deliverpath"],
@@ -75,8 +76,8 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageAppConfigView)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageAppConfigView)
 
 }
