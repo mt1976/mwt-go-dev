@@ -1,10 +1,11 @@
-package main
+package siena
 
 import (
 	"database/sql"
 	"encoding/xml"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -13,22 +14,22 @@ import (
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
-var sienaSectorSQL = "Code, 	Name"
-var sqlSCTCode, sqlSCTName sql.NullString
+var sienaPortfolioSQL = "Code, 	Name"
+var sqlPRTCode, sqlPRTName sql.NullString
 
-//sienaSectorPage is cheese
-type sienaSectorListPage struct {
-	UserMenu         []AppMenuItem
-	UserRole         string
-	UserNavi         string
-	Title            string
-	PageTitle        string
-	SienaSectorCount int
-	SienaSectorList  []sienaSectorItem
+//sienaPortfolioPage is cheese
+type sienaPortfolioListPage struct {
+	UserMenu            []AppMenuItem
+	UserRole            string
+	UserNavi            string
+	Title               string
+	PageTitle           string
+	SienaPortfolioCount int
+	SienaPortfolioList  []sienaPortfolioItem
 }
 
-//sienaSectorPage is cheese
-type sienaSectorPage struct {
+//sienaPortfolioPage is cheese
+type sienaPortfolioPage struct {
 	UserMenu  []AppMenuItem
 	UserRole  string
 	UserNavi  string
@@ -39,111 +40,111 @@ type sienaSectorPage struct {
 	Name      string
 }
 
-//sienaSectorItem is cheese
-type sienaSectorItem struct {
+//sienaPortfolioItem is cheese
+type sienaPortfolioItem struct {
 	Code   string
 	Name   string
 	Action string
 }
 
-func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(APPCONFIG)
-	tmpl := "listSienaSector"
+	tmpl := "listSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
-	noItems, returnList, _ := getSienaSectorList(thisConnection)
+	var returnList []sienaPortfolioItem
+	noItems, returnList, _ := getSienaPortfolioList(thisConnection)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
-	pageSienaSectorList := sienaSectorListPage{
-		UserMenu:         getappMenuData(gUserRole),
-		UserRole:         gUserRole,
-		UserNavi:         gUserNavi,
-		Title:            wctProperties["appname"],
-		PageTitle:        "List Siena Sectors",
-		SienaSectorCount: noItems,
-		SienaSectorList:  returnList,
+	pageSienaPortfolioList := sienaPortfolioListPage{
+		UserMenu:            getappMenuData(gUserRole),
+		UserRole:            gUserRole,
+		UserNavi:            gUserNavi,
+		Title:               wctProperties["appname"],
+		PageTitle:           "List Siena Portfolios",
+		SienaPortfolioCount: noItems,
+		SienaPortfolioList:  returnList,
 	}
 
 	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(APPCONFIG)
-	tmpl := "viewSienaSector"
+	tmpl := "viewSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
-	searchID := support.GetURLparam(r, "sienaSector")
-	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
-	fmt.Println("NoSienaCountries", noItems)
+	var returnList []sienaPortfolioItem
+	searchID := support.GetURLparam(r, "SienaPortfolio")
+	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
+	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
-	pageSienaSectorList := sienaSectorPage{
+	pageSienaPortfolioList := sienaPortfolioPage{
 		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Sector",
+		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 	}
 
 	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(APPCONFIG)
-	tmpl := "editSienaSector"
+	tmpl := "editSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
-	searchID := support.GetURLparam(r, "sienaSector")
-	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
+	var returnList []sienaPortfolioItem
+	searchID := support.GetURLparam(r, "SienaPortfolio")
+	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
-	pageSienaSectorList := sienaSectorPage{
+	pageSienaPortfolioList := sienaPortfolioPage{
 		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Sector",
+		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 	}
 
 	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func saveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	sienaProperties := support.GetProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -152,16 +153,13 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
 
-	var item sienaSectorItem
+	var item sienaPortfolioItem
 
 	item.Code = r.FormValue("code")
 	if len(item.Code) == 0 {
 		item.Code = r.FormValue("ID")
 	}
 	item.Name = r.FormValue("name")
-
-	log.Println(item)
-
 	item.Action = "UPDATE"
 
 	fmt.Println("ITEM", item)
@@ -169,10 +167,10 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD
 	// POPULATE THE XML FIELDS
-	sFldCode.Name = "code"
+	sFldCode.Name = "Code"
 	sFldCode.Text = item.Code
 
-	sFldName.Name = "name"
+	sFldName.Name = "Description1"
 	sFldName.Text = item.Name
 	// IGNORE
 	var sienaKeyFields []sienaKEYFIELD
@@ -182,13 +180,12 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	sienaFields = append(sienaFields, sFldName)
 	// IGNORE
 	sienaRecord := &sienaRECORD{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
-	fmt.Println(sienaRecord)
 	var sienaRecords []sienaRECORD
 	sienaRecords = append(sienaRecords, *sienaRecord)
 
 	var sienaTable sienaTABLE
-	sienaTable.Name = "Sector"
-	sienaTable.Classname = "com.eurobase.siena.data.sector.Sector"
+	sienaTable.Name = "Portfolio"
+	sienaTable.Classname = "com.eurobase.siena.data.portfolio.Portfolio"
 	sienaTable.RECORD = sienaRecords
 
 	var sienaTransaction sienaTRANSACTION
@@ -200,80 +197,66 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
-	fmt.Println("header", xml.Header)
 
 	staticImporterPath := sienaProperties["static_in"]
 	fileID := uuid.New()
-	//pwd, _ := os.Getwd()
-	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
+	pwd, _ := os.Getwd()
+	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
 
-	xmlFile, err := os.Create(fileName)
+	err := ioutil.WriteFile(fileName, preparedXML, 0644)
 	if err != nil {
-		fmt.Println("Error creating XML file: ", err)
-		return
-	}
-	xmlFile.WriteString(sienaProperties["static_xml_encoding"] + "\n")
-	encoder := xml.NewEncoder(xmlFile)
-	encoder.Indent("", "\t")
-	err = encoder.Encode(sienaXMLContent)
-	if err != nil {
-		fmt.Println("Error encoding XML to file: ", err)
-		return
+		fmt.Println(err.Error())
 	}
 
-	//err := ioutil.WriteFile(fileName, preparedXML, 0644)
-	//if err != nil {
-	//	fmt.Println(err.Error())
-	//}
-
-	listSienaSectorHandler(w, r)
+	listSienaPortfolioHandler(w, r)
 
 }
 
-func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(APPCONFIG)
-	tmpl := "newSienaSector"
+	tmpl := "newSienaPortfolio"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 
-	pageSienaSectorList := sienaSectorPage{
+	pageSienaPortfolioList := sienaPortfolioPage{
 		UserMenu:  getappMenuData(gUserRole),
 		UserRole:  gUserRole,
 		UserNavi:  gUserNavi,
 		Title:     wctProperties["appname"],
-		PageTitle: "View Siena Sector",
+		PageTitle: "View Siena Portfolio",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
 	}
 
 	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
-	t.Execute(w, pageSienaSectorList)
+	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-// getSienaSectorList read all employees
-func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
+// getSienaPortfolioList read all employees
+func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 	mssqlConfig := support.GetProperties(SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector;", sienaSectorSQL, mssqlConfig["schema"])
-	count, sienaSectorList, _, _ := fetchSienaSectorData(db, tsql)
-	return count, sienaSectorList, nil
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, mssqlConfig["schema"])
+	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
+	return count, sienaPortfolioList, nil
 }
 
-// getSienaSectorList read all employees
-func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
+// getSienaPortfolioList read all employees
+func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 	mssqlConfig := support.GetProperties(SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector WHERE Code='%s';", sienaSectorSQL, mssqlConfig["schema"], id)
-	_, _, sienaSector, _ := fetchSienaSectorData(db, tsql)
-	return 1, sienaSector, nil
+	//fmt.Println(db.Stats().OpenConnections)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, mssqlConfig["schema"], id)
+	_, _, sienaPortfolio, _ := fetchSienaPortfolioData(db, tsql)
+	return 1, sienaPortfolio, nil
 }
 
-// getSienaSectorList read all employees
-func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
+// getSienaPortfolioList read all employees
+func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
 	mssqlConfig := support.GetProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
@@ -281,34 +264,33 @@ func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
 	return nil
 }
 
-// fetchSienaSectorData read all employees
-func fetchSienaSectorData(db *sql.DB, tsql string) (int, []sienaSectorItem, sienaSectorItem, error) {
-
-	var sienaSector sienaSectorItem
-	var sienaSectorList []sienaSectorItem
+// getSienaPortfolioList read all employees
+func fetchSienaPortfolioData(db *sql.DB, tsql string) (int, []sienaPortfolioItem, sienaPortfolioItem, error) {
+	log.Println("QUERY", tsql)
+	var sienaPortfolioList []sienaPortfolioItem
+	var sienaPortfolio sienaPortfolioItem
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, sienaSector, err
+		return -1, nil, sienaPortfolio, err
 	}
 	//fmt.Println(rows)
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlSCTCode, &sqlSCTName)
+		err := rows.Scan(&sqlPRTCode, &sqlPRTName)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, sienaSector, err
+			return -1, nil, sienaPortfolio, err
 		}
-
-		sienaSector.Code = sqlSCTCode.String
-		sienaSector.Name = sqlSCTName.String
-
-		sienaSectorList = append(sienaSectorList, sienaSector)
+		sienaPortfolio.Code = sqlPRTCode.String
+		sienaPortfolio.Name = sqlPRTName.String
+		sienaPortfolioList = append(sienaPortfolioList, sienaPortfolio)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	return count, sienaSectorList, sienaSector, nil
+	log.Println(count, sienaPortfolioList, sienaPortfolio)
+	return count, sienaPortfolioList, sienaPortfolio, nil
 }

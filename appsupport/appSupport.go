@@ -43,7 +43,7 @@ func Min(x, y int) int {
 	return x
 }
 
-// Comment
+// GetURLparam returns a selected parmeter value from the a given URI
 func GetURLparam(r *http.Request, paramID string) string {
 	//fmt.Println(paramID)
 	//fmt.Println(r.URL)
@@ -52,19 +52,19 @@ func GetURLparam(r *http.Request, paramID string) string {
 	return key
 }
 
-//Comment
+// Snooze snoozes the application for a given amount of time
 func Snooze(inPollingInterval string) {
 	pollingInterval, _ := strconv.Atoi(inPollingInterval)
 	log.Println("Snoooze... Zzzzzz.... ", pollingInterval)
 	time.Sleep(time.Duration(pollingInterval) * time.Second)
 }
 
-//Comment
+// ArrToString converts an array of strings to a printable string
 func ArrToString(strArray []string) string {
 	return strings.Join(strArray, "\n")
 }
 
-//RemoveContents has a comment
+// RemoveContents clears the contents of a specified directory
 func RemoveContents(dir string) error {
 	log.Println("TRASH", dir)
 	files, err := filepath.Glob(filepath.Join(dir, "*"))
@@ -83,7 +83,7 @@ func RemoveContents(dir string) error {
 	return err
 }
 
-//Com
+// GetTemplateID returns the template to use when providing HTML page templates
 func GetTemplateID(tmpl string, userRole string) string {
 	templateName := "html/" + tmpl + ".html"
 	roleTemplate := "html" + userRole + "/" + tmpl + ".html"
@@ -96,7 +96,7 @@ func GetTemplateID(tmpl string, userRole string) string {
 	return templateName
 }
 
-//Coment
+// GetMenuID returns the menu template to use when providing HTML meny templates
 func GetMenuID(tmpl string, userRole string) string {
 	templateName := "config/menu/" + tmpl + ".json"
 	roleTemplate := "config/menu" + userRole + "/" + tmpl + ".json"
@@ -109,7 +109,7 @@ func GetMenuID(tmpl string, userRole string) string {
 	return templateName
 }
 
-//comment
+// GetNavigationID returns the navigation pane template to use when providing navigation templates
 func GetNavigationID(inUserRole string) string {
 	templateName := "../assets/navigation.html"
 	roleTemplate := "../assets" + inUserRole + "_navigation.html"
@@ -122,7 +122,7 @@ func GetNavigationID(inUserRole string) string {
 	return templateName
 }
 
-//comment
+// FileExists returns true if the specified file existing on the filesystem
 func FileExists(filename string) bool {
 	info, err := os.Stat(filename)
 	if os.IsNotExist(err) {
@@ -131,7 +131,7 @@ func FileExists(filename string) bool {
 	return !info.IsDir()
 }
 
-//comment
+// PickEpochToDateTimeString converts a PICK format date into a readable string.
 func PickEpochToDateTimeString(pickEpoch string) string {
 	//pickEpochLayout := "20060102T150405"
 	t, err := time.Parse(DATEFORMATPICK, pickEpoch)
@@ -142,13 +142,12 @@ func PickEpochToDateTimeString(pickEpoch string) string {
 	return tString
 }
 
-//comment
+// StrArrayToString converst a string array into a string
 func StrArrayToString(inArray []string) string {
-
 	return StrArrayToStringWithSep(inArray, "\n")
 }
 
-//comment
+//StrArrayToStringWithSep converts a string array to a string using a given separator
 func StrArrayToStringWithSep(inArray []string, inSep string) string {
 
 	outString := ""
@@ -159,12 +158,12 @@ func StrArrayToStringWithSep(inArray []string, inSep string) string {
 	return outString
 }
 
-//comment
+// QmBundleAdd adds data to a "bundle" of data to be passed in a request message
 func QmBundleAdd(inBundle []string, name string, value string) []string {
 	return append(inBundle, name+"¡"+value)
 }
 
-//comment
+// QmBundleToString convers a "bundle" from a request message to a readable string
 func QmBundleToString(inBundle []string) string {
 	return StrArrayToStringWithSep(inBundle, ";")
 }
@@ -226,7 +225,7 @@ func isPrivateSubnet(ipAddress net.IP) bool {
 	return false
 }
 
-//comment
+// GetIPAdress returns the current IP address
 func GetIPAdress(r *http.Request) string {
 	var ipAddress string
 	for _, h := range []string{"X-Forwarded-For", "X-Real-Ip"} {
@@ -247,6 +246,7 @@ Done:
 	return ipAddress
 }
 
+// ReadUserIP returns the end-users IP address
 func ReadUserIP(r *http.Request) string {
 	IPAddress := r.Header.Get("X-Real-Ip")
 	if IPAddress == "" {
@@ -258,6 +258,7 @@ func ReadUserIP(r *http.Request) string {
 	return IPAddress
 }
 
+// GetLocalIP returns the local IP address
 func GetLocalIP() string {
 	conn, _ := net.Dial("udp", "8.8.8.8:80")
 	//handle err...
@@ -267,7 +268,7 @@ func GetLocalIP() string {
 	return localAddr.String()
 }
 
-//comment
+// SqlDateToHTMLDate returns a string version of a SQL Date
 func SqlDateToHTMLDate(inDate string) (outDate string) {
 	var rtnDate string
 	if inDate != "" {
@@ -276,14 +277,14 @@ func SqlDateToHTMLDate(inDate string) (outDate string) {
 	return rtnDate
 }
 
-//comment
+// FormatCurrency returns a formated string version of a CCY amount
 func FormatCurrency(inAmount string, inCCY string) string {
 	ac := accounting.Accounting{Symbol: inCCY, Precision: 2, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 ;\u2013"}
 	bum, _ := strconv.ParseFloat(inAmount, 64)
 	return ac.FormatMoney(bum)
 }
 
-//comment
+// FormatCurrencyFull returns a formated string version of a CCY amount to 7dps
 func FormatCurrencyFull(inAmount string, inCCY string) string {
 	//thisConnection, _ := sienaConnect()
 	//_, ccyData, _ := getSienaCurrency(thisConnection, inCCY)
@@ -293,10 +294,37 @@ func FormatCurrencyFull(inAmount string, inCCY string) string {
 	return ac.FormatMoney(bum)
 }
 
-//comment
+// FormatCurrencyDps returns a formated string version of a CCY amount to a given DPS
 func FormatCurrencyDps(inAmount string, inCCY string, inPrec string) string {
 	prec, _ := strconv.Atoi(inPrec)
 	ac := accounting.Accounting{Symbol: inCCY, Precision: prec, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 \u2013"}
 	bum, _ := strconv.ParseFloat(inAmount, 64)
 	return ac.FormatMoney(bum)
+}
+
+//TruncateString truncates a string to a define number of characters
+func TruncateString(str string, length int) string {
+	if length <= 0 {
+		return ""
+	}
+
+	// This code cannot support Japanese
+	// orgLen := len(str)
+	// if orgLen <= length {
+	//     return str
+	// }
+	// return str[:length]
+
+	// Support Japanese
+	// Ref: Range loops https://blog.golang.org/strings
+	truncated := ""
+	count := 0
+	for _, char := range str {
+		truncated += string(char)
+		count++
+		if count >= length {
+			break
+		}
+	}
+	return truncated
 }

@@ -1,4 +1,4 @@
-package main
+package siena
 
 import (
 	"database/sql"
