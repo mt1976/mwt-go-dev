@@ -6,12 +6,13 @@ import (
 	"log"
 	"net/http"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //srvCatalogPage ...
 type srvCatalogPage struct {
-	UserMenu       []AppMenuItem
+	UserMenu       []application.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string

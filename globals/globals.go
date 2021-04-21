@@ -2,11 +2,11 @@ package globals
 
 import "database/sql"
 
-var gSessionToken = ""
-var gUUID = "authorAdjust"
-var gSecurityViolation = ""
-var gDB *sql.DB
-var gUserRole = "/default"
-var gUserName = ""
-var gUserKnowAs = ""
-var gUserNavi = ""
+var SessionToken = ""
+var UUID = "authorAdjust"
+var SecurityViolation = ""
+var DB *sql.DB
+var UserRole = "/default"
+var UserName = ""
+var UserKnowAs = ""
+var UserNavi = ""

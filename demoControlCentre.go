@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -27,14 +26,6 @@ const (
 	SIENACPTYSEP    = "\u22EE"
 )
 
-var gSessionToken = ""
-var gUUID = "authorAdjust"
-var gSecurityViolation = ""
-var gDB *sql.DB
-var gUserRole = "/default"
-var gUserName = ""
-var gUserKnowAs = ""
-var gUserNavi = ""
 var gSienaSystemDate sienaBusinessDateItem
 
 func main() {
