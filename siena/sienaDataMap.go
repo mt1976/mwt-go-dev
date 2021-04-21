@@ -9,7 +9,10 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	connection "github.com/mt1976/mwt-go-dev/connection"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //SvcDataMapPage is cheese
@@ -59,7 +62,7 @@ type SvcDataMapItem struct {
 
 func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -71,13 +74,13 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "LIST", "", "", wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAMAP", "LIST", "", "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessage := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("responseMessage", responseMessage)
 
 	//outString := ""
@@ -98,9 +101,9 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:        getappMenuData(gUserRole),
-		UserRole:        gUserRole,
-		UserNavi:        gUserNavi,
+		UserMenu:        application.GetAppMenuData(globals.UserRole),
+		UserRole:        globals.UserRole,
+		UserNavi:        globals.UserNavi,
 		Title:           title,
 		PageTitle:       "List Data Maps",
 		NoDataMapIDs:    noRows,
@@ -109,15 +112,15 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -132,13 +135,13 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "VIEW", thisID, "", wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAMAP", "VIEW", thisID, "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessage := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	//fmt.Println("responseMessage", responseMessage)
 
@@ -189,9 +192,9 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("wrkDataMapRows", wrkDataMapRows)
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:       getappMenuData(gUserRole),
-		UserRole:       gUserRole,
-		UserNavi:       gUserNavi,
+		UserMenu:       application.GetAppMenuData(globals.UserRole),
+		UserRole:       globals.UserRole,
+		UserNavi:       globals.UserNavi,
 		Title:          title,
 		PageTitle:      "View Data Maps",
 		NoDataMapIDs:   0,
@@ -204,15 +207,15 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -227,13 +230,13 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "RAW", thisID, "", wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAMAP", "RAW", thisID, "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessage := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -243,9 +246,9 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:      getappMenuData(gUserRole),
-		UserRole:      gUserRole,
-		UserNavi:      gUserNavi,
+		UserMenu:      application.GetAppMenuData(globals.UserRole),
+		UserRole:      globals.UserRole,
+		UserNavi:      globals.UserNavi,
 		Title:         title,
 		PageTitle:     "Edit Data Map",
 		DataMapPageID: thisID,
@@ -255,15 +258,15 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSvcDataMapXML"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -278,13 +281,13 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessage := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -294,9 +297,9 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:      getappMenuData(gUserRole),
-		UserRole:      gUserRole,
-		UserNavi:      gUserNavi,
+		UserMenu:      application.GetAppMenuData(globals.UserRole),
+		UserRole:      globals.UserRole,
+		UserNavi:      globals.UserNavi,
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
@@ -306,15 +309,15 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSvcDataMapXML"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -329,13 +332,13 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessage := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessage := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -345,9 +348,9 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 	fullRec = html.UnescapeString(fullRec)
 	pageEditSvcDataMapXML := SvcDataMapPage{
-		UserMenu:      getappMenuData(gUserRole),
-		UserRole:      gUserRole,
-		UserNavi:      gUserNavi,
+		UserMenu:      application.GetAppMenuData(globals.UserRole),
+		UserRole:      globals.UserRole,
+		UserNavi:      globals.UserNavi,
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
@@ -357,8 +360,8 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Page Data", pageEditSvcDataMapXML)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, err := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, err := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	fmt.Println("error", err)
 	t.Execute(w, pageEditSvcDataMapXML)
 
@@ -366,7 +369,7 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -393,25 +396,25 @@ func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println("ARSE", r)
 	//	fmt.Println("parse",r.ParseForm())
 
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "SAVE", id, body, wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAMAP", "SAVE", id, body, wctProperties)
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
 	listSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,gUserRole))
+	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,globals.UserRole))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -438,25 +441,25 @@ func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println("ARSE", r)
 	//	fmt.Println("parse",r.ParseForm())
 
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAXML", "SAVE", id, body, wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAXML", "SAVE", id, body, wctProperties)
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
 	listSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,gUserRole))
+	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,globals.UserRole))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "newSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -466,22 +469,22 @@ func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	title := wctProperties["appname"]
 
 	pageDM := SvcDataMapPage{
-		UserMenu:  getappMenuData(gUserRole),
-		UserRole:  gUserRole,
-		UserNavi:  gUserNavi,
+		UserMenu:  application.GetAppMenuData(globals.UserRole),
+		UserRole:  globals.UserRole,
+		UserNavi:  globals.UserNavi,
 		Title:     title,
 		PageTitle: "New Data Loader Template",
 	}
 	fmt.Println("WCT : Page :", pageDM)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageDM)
 
 }
 
 func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -508,33 +511,33 @@ func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println("ARSE", r)
 	//	fmt.Println("parse",r.ParseForm())
 
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "NEW", id, body, wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAMAP", "NEW", id, body, wctProperties)
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
 
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
 	listSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,gUserRole))
+	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,globals.UserRole))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func deleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
 	id := support.GetURLparam(r, "dataMapName")
-	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", wctProperties)
+	requestMessage := connection.BuildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", wctProperties)
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 	listSvcDataMapHandler(w, r)
 }

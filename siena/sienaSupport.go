@@ -10,6 +10,7 @@ import (
 
 	"github.com/google/uuid"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 var sienaBusinessDateSQL = "Today"
@@ -97,7 +98,7 @@ func isChecked(inValue string) string {
 
 func Connect() (*sql.DB, error) {
 	// Connect to SQL Server DB
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 
 	server := mssqlConfig["server"]
 	user := mssqlConfig["user"]
@@ -138,7 +139,7 @@ func Connect() (*sql.DB, error) {
 
 // getSienaBusinessDate read all employees
 func getSienaBusinessDate(db *sql.DB) (int, sienaBusinessDateItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, mssqlConfig["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
@@ -169,9 +170,9 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 		sienaBusinessDate.Today = sqlSYSDToday.String
 
 		sienaBusinessDate.Internal, _ = time.Parse(time.RFC3339, sqlSYSDToday.String)
-		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(DATEFORMATSIENA)
-		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(DATEFORMATYMD)
-		sienaBusinessDate.qmEpoch = sienaBusinessDate.Internal.Format(DATEFORMATPICK)
+		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(globals.DATEFORMATSIENA)
+		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(globals.DATEFORMATYMD)
+		sienaBusinessDate.qmEpoch = sienaBusinessDate.Internal.Format(globals.DATEFORMATPICK)
 		sienaBusinessDateList = append(sienaBusinessDateList, sienaBusinessDate)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
@@ -182,7 +183,7 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 
 func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 
-	sienaProperties := support.GetProperties(SIENACONFIG)
+	sienaProperties := support.GetProperties(globals.SIENACONFIG)
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))

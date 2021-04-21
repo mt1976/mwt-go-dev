@@ -7,7 +7,9 @@ import (
 	"log"
 	"net/http"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -57,13 +59,13 @@ type sienaAccountLadderItem struct {
 
 func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccountLadder"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := siena.Connect()
+	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountLadderItem
 	accountID := support.GetURLparam(r, "SienaAccountID")
@@ -75,9 +77,9 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	_, account, _ := getSienaAccount(thisConnection, accountID)
 
 	pageSienaAccountLadderList := sienaAccountLadderListPage{
-		UserMenu:                getappMenuData(gUserRole),
-		UserRole:                gUserRole,
-		UserNavi:                gUserNavi,
+		UserMenu:                application.GetAppMenuData(globals.UserRole),
+		UserRole:                globals.UserRole,
+		UserNavi:                globals.UserNavi,
 		Title:                   wctProperties["appname"],
 		PageTitle:               "List Siena AccountLadders",
 		SienaAccountLadderCount: noItems,
@@ -86,14 +88,14 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		Name:                    account.AccountName,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountLadderList)
 
 }
 
 // getSienaAccountLadderList read all employees
 func getSienaAccountLadderList(db *sql.DB, idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, mssqlConfig["schema"], idRef)
 	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(db, tsql)
 	return count, sienaAccountLadderList, nil

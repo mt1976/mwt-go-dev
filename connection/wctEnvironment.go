@@ -10,6 +10,7 @@ import (
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //SrvEnvironmentPage is cheese
@@ -31,7 +32,7 @@ type SrvEnvironmentItem struct {
 
 func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvEnvironment"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -43,13 +44,13 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", wctProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessge := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
 	fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -68,9 +69,9 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("configs", configsList)
 	pageSrvEvironment := SrvEnvironmentPage{
-		UserMenu:            getappMenuData(gUserRole),
-		UserRole:            gUserRole,
-		UserNavi:            gUserNavi,
+		UserMenu:            application.GetAppMenuData(globals.UserRole),
+		UserRole:            globals.UserRole,
+		UserNavi:            globals.UserNavi,
 		Title:               title,
 		PageTitle:           "View Server Config",
 		SrvEnvironmentItems: configsList,
@@ -78,8 +79,8 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }

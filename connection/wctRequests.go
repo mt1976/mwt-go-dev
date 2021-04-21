@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //WctMessage is cheese
@@ -53,7 +54,7 @@ type RequestViewPage struct {
 
 func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewRequest"
 	inUTL := r.URL.Path
 	requestID := uuid.New()
@@ -64,25 +65,25 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(thisID)
 	title := wctProperties["appname"]
 
-	_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"], r)
+	_, _, serviceCatalog := GetServices(wctProperties, wctProperties["responseformat"], r)
 
 	//fmt.Println("serviceCatalog", serviceCatalog)
 	//fmt.Println("test", serviceCatalog[thisID])
 
 	pageRequestView := RequestViewPage{
-		UserMenu:              getappMenuData(gUserRole),
-		UserRole:              gUserRole,
-		UserNavi:              gUserNavi,
+		UserMenu:              application.GetAppMenuData(globals.UserRole),
+		UserRole:              globals.UserRole,
+		UserNavi:              globals.UserNavi,
 		Title:                 title,
 		Description:           serviceCatalog[thisID].Text + " " + serviceCatalog[thisID].Helptext,
 		SudoID:                thisID,
 		ApplicationToken:      wctProperties["applicationtoken"],
-		SessionToken:          gSessionToken,
+		SessionToken:          globals.SessionToken,
 		RequestID:             requestID.String(),
 		RequestAction:         serviceCatalog[thisID].Action,
 		RequestItem:           serviceCatalog[thisID].Item,
 		RequestParameters:     serviceCatalog[thisID].Parameters,
-		UniqueUID:             gUUID,
+		UniqueUID:             globals.UUID,
 		RequestResponseFormat: wctProperties["responseformat"],
 		DeliverTo:             wctProperties["deliverpath"],
 		PageTitle:             "View Request",
@@ -90,8 +91,8 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageRequestView)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageRequestView)
 
 }
@@ -99,7 +100,7 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "executeRequest"
 	inUTL := r.URL.Path
 
@@ -110,12 +111,12 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 	dispatchMessage := WctMessage{
 		WctPayload{
 			ApplicationToken:      wctProperties["applicationtoken"],
-			SessionToken:          gSessionToken,
+			SessionToken:          globals.SessionToken,
 			RequestID:             thisUUID,
 			RequestAction:         support.GetURLparam(r, "action"),
 			RequestItem:           support.GetURLparam(r, "item"),
 			RequestParameters:     support.GetURLparam(r, "parameters"),
-			UniqueUID:             gUUID,
+			UniqueUID:             globals.UUID,
 			RequestResponseFormat: wctProperties["responseformat"],
 			RequestData:           "",
 		},
@@ -153,10 +154,10 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 			ApplicationToken:      wctProperties["applicationtoken"],
 			RequestID:             id.String(),
 			RequestAction:         "SERVICES",
-			UniqueUID:             gUUID,
+			UniqueUID:             globals.UUID,
 			RequestResponseFormat: responseFormat,
 			RequestData:           "",
-			SessionToken:          gSessionToken,
+			SessionToken:          globals.SessionToken,
 		},
 	}
 
@@ -164,7 +165,7 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 
 }
 
-func buildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, wctProperties map[string]string) WctMessage {
+func BuildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, wctProperties map[string]string) WctMessage {
 
 	requestMessage := WctMessage{
 		WctPayload{
@@ -173,17 +174,17 @@ func buildRequestMessage(inUUID string, inAction string, inItem string, inParame
 			RequestAction:         inAction,
 			RequestItem:           inItem,
 			RequestParameters:     inParameters,
-			UniqueUID:             gUUID,
+			UniqueUID:             globals.UUID,
 			RequestResponseFormat: wctProperties["responseformat"],
 			RequestData:           inPayload,
-			SessionToken:          gSessionToken,
+			SessionToken:          globals.SessionToken,
 		},
 	}
 
 	return requestMessage
 }
 
-func sendRequest(dispatchMessage WctMessage, id string, wctProperties map[string]string) {
+func SendRequest(dispatchMessage WctMessage, id string, wctProperties map[string]string) {
 
 	js, _ := json.Marshal(dispatchMessage)
 

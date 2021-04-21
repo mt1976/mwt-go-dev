@@ -7,7 +7,9 @@ import (
 	"log"
 	"net/http"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -75,13 +77,13 @@ type sienaAccountTransactionItem struct {
 
 func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccountTransactions"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := siena.Connect()
+	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountTransactionItem
 	accountID := support.GetURLparam(r, "SienaAccountID")
@@ -99,19 +101,19 @@ func listSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 		SienaAccountTransactionList:  returnList,
 		ID:                           account.AccountNumber,
 		Name:                         account.AccountName,
-		UserMenu:                     getappMenuData(gUserRole),
-		UserRole:                     gUserRole,
-		UserNavi:                     gUserNavi,
+		UserMenu:                     application.GetAppMenuData(globals.UserRole),
+		UserRole:                     globals.UserRole,
+		UserNavi:                     globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountTransactionsList)
 
 }
 
 // getSienaAccountTransactionsList read all employees
 func getSienaAccountTransactionsList(db *sql.DB, idRef string, accountCCY string) (int, []sienaAccountTransactionItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, mssqlConfig["schema"], idRef)
 	count, sienaAccountTransactionsList, _, _ := fetchSienaAccountTransactionData(db, tsql)
 	return count, sienaAccountTransactionsList, nil

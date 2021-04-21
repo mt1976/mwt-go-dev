@@ -11,7 +11,9 @@ import (
 	"os"
 
 	"github.com/google/uuid"
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 var sienaCurrencyPairSQL = "CodeMajorCurrencyIsoCode, 	CodeMinorCurrencyIsoCode, 	ReciprocalActive, 	Code, 	MajorName, 	MinorName"
@@ -59,13 +61,13 @@ type sienaCurrencyPairItem struct {
 
 func listSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCurrencyPair"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := siena.Connect()
+	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
 	noItems, returnList, _ := getSienaCurrencyPairList(thisConnection)
@@ -74,29 +76,29 @@ func listSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairListPage{
-		UserMenu:               getappMenuData(gUserRole),
-		UserRole:               gUserRole,
-		UserNavi:               gUserNavi,
+		UserMenu:               application.GetAppMenuData(globals.UserRole),
+		UserRole:               globals.UserRole,
+		UserNavi:               globals.UserNavi,
 		Title:                  wctProperties["appname"],
 		PageTitle:              "List Siena CurrencyPairs",
 		SienaCurrencyPairCount: noItems,
 		SienaCurrencyPairList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 func viewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCurrencyPair"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := siena.Connect()
+	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
 	searchID := support.GetURLparam(r, "SienaCurrencyPair")
@@ -106,9 +108,9 @@ func viewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
-		UserMenu:  getappMenuData(gUserRole),
-		UserRole:  gUserRole,
-		UserNavi:  gUserNavi,
+		UserMenu:  application.GetAppMenuData(globals.UserRole),
+		UserRole:  globals.UserRole,
+		UserNavi:  globals.UserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena CurrencyPair",
 		ID:        returnRecord.Code,
@@ -118,20 +120,20 @@ func viewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 func editSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCurrencyPair"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := siena.Connect()
+	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
 	searchID := support.GetURLparam(r, "SienaCurrencyPair")
@@ -143,9 +145,9 @@ func editSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
-		UserMenu:  getappMenuData(gUserRole),
-		UserRole:  gUserRole,
-		UserNavi:  gUserNavi,
+		UserMenu:  application.GetAppMenuData(globals.UserRole),
+		UserRole:  globals.UserRole,
+		UserNavi:  globals.UserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena CurrencyPair",
 		ID:        returnRecord.Code,
@@ -157,14 +159,14 @@ func editSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(pageSienaCurrencyPairList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 func saveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(SIENACONFIG)
+	sienaProperties := support.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -242,7 +244,7 @@ func saveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCurrencyPair"
 
 	inUTL := r.URL.Path
@@ -252,9 +254,9 @@ func newSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
-		UserMenu:  getappMenuData(gUserRole),
-		UserRole:  gUserRole,
-		UserNavi:  gUserNavi,
+		UserMenu:  application.GetAppMenuData(globals.UserRole),
+		UserRole:  globals.UserRole,
+		UserNavi:  globals.UserNavi,
 		Title:     wctProperties["appname"],
 		PageTitle: "View Siena CurrencyPair",
 		ID:        "NEW",
@@ -264,14 +266,14 @@ func newSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "NEW",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 // getSienaCurrencyPairList read all employees
 func getSienaCurrencyPairList(db *sql.DB) (int, []sienaCurrencyPairItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrencyPair;", sienaCurrencyPairSQL, mssqlConfig["schema"])
 	//	fmt.Println("MS SQL:", tsql)
@@ -281,7 +283,7 @@ func getSienaCurrencyPairList(db *sql.DB) (int, []sienaCurrencyPairItem, error) 
 
 // getSienaCurrencyPairList read all employees
 func getSienaCurrencyPair(db *sql.DB, id string) (int, sienaCurrencyPairItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrencyPair WHERE Code='%s';", sienaCurrencyPairSQL, mssqlConfig["schema"], id)
 	_, _, sienaCurrencyPair, _ := fetchSienaCurrencyPairData(db, tsql)
 	return 1, sienaCurrencyPair, nil
@@ -289,7 +291,7 @@ func getSienaCurrencyPair(db *sql.DB, id string) (int, sienaCurrencyPairItem, er
 
 // getSienaCurrencyPairList read all employees
 func putSienaCurrencyPair(db *sql.DB, updateItem sienaCurrencyPairItem) error {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

@@ -6,6 +6,7 @@ import (
 	"log"
 
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 var sienaProductHelperSQL = "Code, 	Name"
@@ -21,7 +22,7 @@ type sienaProductHelperItem struct {
 
 // getSienaProductHelperList read all employees
 func getSienaProductHelperList(db *sql.DB) (int, []sienaProductHelperItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaProductHelper;", sienaProductHelperSQL, mssqlConfig["schema"])
 	count, sienaProductHelperList, _, _ := fetchSienaProductHelperData(db, tsql)
 	return count, sienaProductHelperList, nil

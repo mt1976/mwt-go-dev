@@ -61,7 +61,7 @@ func main() {
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/login", valLoginHandler)
 	http.HandleFunc("/logout", logoutHandler)
-	http.HandleFunc("/home", homePageHandler)
+	http.HandleFunc("/home", support.HomePageHandler)
 	http.HandleFunc("/srvServiceCatalog", srvServiceCatalogHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
@@ -272,6 +272,22 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	if err3 != nil {
 		fmt.Println(err3)
 	}
+
+	homePageHandler(w, r)
+
+}
+
+func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
+
+	//var propertiesFileName = "config/properties.cfg"
+	wctProperties := support.GetProperties(globals.APPCONFIG)
+	//	tmpl := "viewResponse"
+	inUTL := r.URL.Path
+	//requestID := uuid.New()
+
+	log.Println("Servicing :", inUTL)
+
+	support.RemoveContents(wctProperties["receivepath"])
 
 	homePageHandler(w, r)
 

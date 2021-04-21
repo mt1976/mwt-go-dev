@@ -10,6 +10,7 @@ import (
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 type Page struct {
@@ -32,7 +33,7 @@ type SrvConfigurationPage struct {
 
 //SrvConfigurationListPage is cheese
 type SrvConfigurationListPage struct {
-	UserMenu              []AppMenuItem
+	UserMenu              []application.AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string
@@ -49,7 +50,7 @@ type SrvConfigurationItem struct {
 
 func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -63,13 +64,13 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessge := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -95,9 +96,9 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
-		UserMenu:              getappMenuData(gUserRole),
-		UserRole:              gUserRole,
-		UserNavi:              gUserNavi,
+		UserMenu:              application.GetAppMenuData(globals.UserRole),
+		UserRole:              globals.UserRole,
+		UserNavi:              globals.UserNavi,
 		Title:                 title,
 		PageTitle:             "View Server Config",
 		SrvConfigurationItems: configsList,
@@ -106,15 +107,15 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvConfigView)
 
 }
 
 func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -126,13 +127,13 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", wctProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessge := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -150,9 +151,9 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
-		UserMenu:              getappMenuData(gUserRole),
-		UserRole:              gUserRole,
-		UserNavi:              gUserNavi,
+		UserMenu:              application.GetAppMenuData(globals.UserRole),
+		UserRole:              globals.UserRole,
+		UserNavi:              globals.UserNavi,
 		Title:                 title,
 		PageTitle:             "View Server Config",
 		SrvConfigurationItems: configsList,
@@ -160,15 +161,15 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvConfigView)
 
 }
 
 func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -182,13 +183,13 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	responseMessge := getResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -202,9 +203,9 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
-		UserMenu:     getappMenuData(gUserRole),
-		UserRole:     gUserRole,
-		UserNavi:     gUserNavi,
+		UserMenu:     application.GetAppMenuData(globals.UserRole),
+		UserRole:     globals.UserRole,
+		UserNavi:     globals.UserNavi,
 		Title:        title,
 		PageTitle:    "View Server Config",
 		PageRecordID: recordID,
@@ -214,15 +215,15 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSrvConfigView)
 
 }
 
 func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
@@ -233,9 +234,9 @@ func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	body := r.FormValue("pgContent")
 	id := r.FormValue("pgid")
 
-	requestMessage := buildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, wctProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, wctProperties)
 
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), wctProperties)
 
 	listSrvConfigurationHandler(w, r)
 }

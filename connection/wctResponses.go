@@ -15,6 +15,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 type ResponseListPage struct {
@@ -63,7 +64,7 @@ type WctResponsePayload struct {
 
 //PageResponseView is cheese
 type PageResponseView struct {
-	UserMenu             []AppMenuItem
+	UserMenu             []application.AppMenuItem
 	UserRole             string
 	UserNavi             string
 	Title                string
@@ -144,7 +145,7 @@ func listResponseswebNew(wctProperties map[string]string, responseFormat string,
 func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -168,9 +169,9 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 	outRequestConsumed := support.PickEpochToDateTimeString(thisPayload.RequestConsumed)
 	outResponseEjected := support.PickEpochToDateTimeString(thisPayload.ResponseEjected)
 	pageResponseView := PageResponseView{
-		UserMenu:             getappMenuData(gUserRole),
-		UserRole:             gUserRole,
-		UserNavi:             gUserNavi,
+		UserMenu:             application.GetAppMenuData(globals.UserRole),
+		UserRole:             globals.UserRole,
+		UserNavi:             globals.UserNavi,
 		Title:                title,
 		Description:          "Detail For : " + support.GetURLparam(r, "uuid"),
 		RequestRID:           thisPayload.RequestID,
@@ -196,7 +197,7 @@ func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageResponseView)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageResponseView)
 
 }
@@ -239,7 +240,7 @@ func deleteResponse(responseID string, wctProperties map[string]string) (err err
 func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -254,23 +255,7 @@ func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
-
-	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := support.GetProperties(APPCONFIG)
-	//	tmpl := "viewResponse"
-	inUTL := r.URL.Path
-	//requestID := uuid.New()
-
-	log.Println("Servicing :", inUTL)
-
-	support.RemoveContents(wctProperties["receivepath"])
-
-	homePageHandler(w, r)
-
-}
-
-func getResponseAsync(id string, wctProperties map[string]string, r *http.Request) WctResponsePayload {
+func GetResponseAsync(id string, wctProperties map[string]string, r *http.Request) WctResponsePayload {
 
 	var responseFileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
 	var processedFileName = wctProperties["processedpath"] + "/" + id + "." + wctProperties["responseformat"]
@@ -319,7 +304,7 @@ func getResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 
 func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listResponses"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -332,9 +317,9 @@ func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	title := wctProperties["appname"]
 
 	rpc := ResponseListPage{
-		UserMenu:    getappMenuData(gUserRole),
-		UserRole:    gUserRole,
-		UserNavi:    gUserNavi,
+		UserMenu:    application.GetAppMenuData(globals.UserRole),
+		UserRole:    globals.UserRole,
+		UserNavi:    globals.UserNavi,
 		Title:       title,
 		PageTitle:   "List Responses",
 		Responses:   files,
@@ -343,8 +328,8 @@ func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", rpc)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, rpc)
 
 }

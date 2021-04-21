@@ -9,6 +9,8 @@ import (
 
 	"github.com/google/uuid"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	connection "github.com/mt1976/mwt-go-dev/connection"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //loginPage is cheese
@@ -41,14 +43,14 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		WebServerVersion: appServerVersion,
 		LicenceType:      wctProperties["licname"],
 		LicenceLink:      wctProperties["liclink"],
-		ResponseError:    gSecurityViolation,
+		ResponseError:    globals.SecurityViolation,
 	}
 
 	//fmt.Println("Page Data", loginPageContent)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
-	t, err := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
-	log.Println(t, support.GetTemplateID(tmpl, gUserRole), err)
+	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
+	t, err := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	log.Println(t, support.GetTemplateID(tmpl, globals.UserRole), err)
 	t.Execute(w, loginPageContent)
 
 }
@@ -85,13 +87,13 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("requestPayload", requestPayload)
 	//fmt.Println("BUNDLE", support.QmBundleToString(requestPayload))
 
-	loginRequest := buildRequestMessage(requestID.String(), "LOGIN", "", "", support.QmBundleToString(requestPayload), wctProperties)
+	loginRequest := connection.BuildRequestMessage(requestID.String(), "LOGIN", "", "", support.QmBundleToString(requestPayload), wctProperties)
 
 	//fmt.Println("loginRequest", loginRequest)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(loginRequest, requestID.String(), wctProperties)
+	connection.SendRequest(loginRequest, requestID.String(), wctProperties)
 
-	loginResponse := getResponseAsync(requestID.String(), wctProperties, r)
+	loginResponse := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("loginResponse", loginResponse)
 
 	//outString := ""
@@ -109,18 +111,18 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 	if loginResponse.ResponseStatus == "200" {
 
 		newUUID := loginResponse.ResponseContent.ResponseContentRow[1]
-		gUserRole = loginResponse.ResponseContent.ResponseContentRow[2]
-		gUserNavi = support.GetNavigationID(gUserRole)
-		gUserKnowAs = loginResponse.ResponseContent.ResponseContentRow[3]
-		log.Println("ACCESS GRANTED", responseCode, uName, gUserRole)
-		gUserName = uName
-		gSessionToken = newToken
-		gUUID = newUUID
-		gSecurityViolation = ""
+		globals.UserRole = loginResponse.ResponseContent.ResponseContentRow[2]
+		globals.UserNavi = support.GetNavigationID(globals.UserRole)
+		globals.UserKnowAs = loginResponse.ResponseContent.ResponseContentRow[3]
+		log.Println("ACCESS GRANTED", responseCode, uName, globals.UserRole)
+		globals.UserName = uName
+		globals.SessionToken = newToken
+		globals.UUID = newUUID
+		globals.SecurityViolation = ""
 		homePageHandler(w, r)
 	} else {
-		gSecurityViolation = loginResponse.ResponseContent.ResponseContentRow[0]
-		log.Println("SECURITY INCIDENT", responseCode, gSecurityViolation)
+		globals.SecurityViolation = loginResponse.ResponseContent.ResponseContentRow[0]
+		log.Println("SECURITY INCIDENT", responseCode, globals.SecurityViolation)
 		loginHandler(w, r)
 	}
 }
@@ -135,23 +137,23 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 
 	requestID := uuid.New()
 
-	logoutRequest := buildRequestMessage(requestID.String(), "LOGOUT", "", "", "", wctProperties)
+	logoutRequest := connection.BuildRequestMessage(requestID.String(), "LOGOUT", "", "", "", wctProperties)
 
 	//fmt.Println("logoutRequest", logoutRequest)
 	//fmt.Println("SEND MESSAGE")
-	sendRequest(logoutRequest, requestID.String(), wctProperties)
+	connection.SendRequest(logoutRequest, requestID.String(), wctProperties)
 
-	logoutResponse := getResponseAsync(requestID.String(), wctProperties, r)
+	logoutResponse := connection.GetResponseAsync(requestID.String(), wctProperties, r)
 	//fmt.Println("logoutResponse", logoutResponse)
 
 	//outString := ""
 
 	//responseCode := logoutResponse.ResponseStatus
-	log.Println("LOGOUT", logoutResponse.ResponseStatus, gSessionToken)
-	gSessionToken = ""
-	gUUID = ""
-	gSecurityViolation = ""
-	gUserRole = ""
+	log.Println("LOGOUT", logoutResponse.ResponseStatus, globals.SessionToken)
+	globals.SessionToken = ""
+	globals.UUID = ""
+	globals.SecurityViolation = ""
+	globals.UserRole = ""
 	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
 	//todo Encryp password etc
 

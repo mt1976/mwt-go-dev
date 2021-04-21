@@ -8,6 +8,8 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	connection "github.com/mt1976/mwt-go-dev/connection"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //srvCatalogPage ...
@@ -21,10 +23,10 @@ type srvCatalogPage struct {
 	ResponsePath   string
 	ProcessedPath  string
 	NoResponses    int
-	Responses      []WctResponsePayload
+	Responses      []connection.WctResponsePayload
 	NoServices     int
 	Services       string
-	ServiceCatalog []ServiceCatalogItem
+	ServiceCatalog []connection.ServiceCatalogItem
 	Description    string
 	ResponseType   string
 	PageTitle      string
@@ -48,7 +50,7 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 
 		noResp, _, respList := listResponseswebNew(wctProperties, "json", w)
 
-		noServices, servicesList, serviceCatalog := getServices(wctProperties, "json", r)
+		noServices, servicesList, serviceCatalog := connection.GetServices(wctProperties, "json", r)
 
 		p := srvCatalogPage{Title: title,
 			Body:           "",
@@ -62,9 +64,9 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 			ServiceCatalog: serviceCatalog,
 			Description:    "A description of the srvCatalogPage.",
 			ResponseType:   wctProperties["responseformat"],
-			UserMenu:       getappMenuData(gUserRole),
-			UserRole:       gUserRole,
-			UserNavi:       gUserNavi,
+			UserMenu:       application.GetAppMenuData(globals.UserRole),
+			UserRole:       globals.UserRole,
+			UserNavi:       globals.UserNavi,
 			PageTitle:      "Service Catalog",
 		}
 
@@ -72,7 +74,7 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 		//	fmt.Println("srvCatalogPage=", p.ServiceCatalog)
 		fmt.Println("menu=", p.UserMenu)
 
-		t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+		t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 		t.Execute(w, p)
 	}
 }

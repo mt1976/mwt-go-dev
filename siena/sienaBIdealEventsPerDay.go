@@ -6,6 +6,7 @@ import (
 	"log"
 
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 var sienaBIdealEventsPerDaySQL = "StartInterestDate, 	Count"
@@ -21,7 +22,7 @@ type sienaBIdealEventsPerDayItem struct {
 
 // getSienaBIdealEventsPerDayList read all employees
 func getSienaBIdealEventsPerDayList(db *sql.DB) (int, []sienaBIdealEventsPerDayItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, mssqlConfig["schema"])
 	count, sienaBIdealEventsPerDayList, _, _ := fetchSienaBIdealEventsPerDayData(db, tsql)
 	return count, sienaBIdealEventsPerDayList, nil

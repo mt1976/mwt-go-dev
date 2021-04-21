@@ -7,7 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //sienaDashboardPage is cheese
@@ -32,13 +34,13 @@ type sienaDashboardPage struct {
 
 func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "dashboard"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	db, _ := siena.Connect()
+	db, _ := Connect()
 	noCps, _, _ := getSienaCounterpartyList(db)
 	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList(db)
 	noSecs, dataSect, _ := getSienaBIcounterpartyPerSectorList(db)
@@ -58,9 +60,9 @@ func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	p := sienaDashboardPage{
-		UserMenu:          getappMenuData(gUserRole),
-		UserRole:          gUserRole,
-		UserNavi:          gUserNavi,
+		UserMenu:          application.GetAppMenuData(globals.UserRole),
+		UserRole:          globals.UserRole,
+		UserNavi:          globals.UserNavi,
 		Title:             wctProperties["appname"],
 		PageTitle:         "List Siena Dashboards",
 		TotCounterparties: strconv.Itoa(noCps),
@@ -76,7 +78,7 @@ func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(p)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, p)
 
 }

@@ -25,7 +25,7 @@ type AppMenuList struct {
 }
 
 //getappMenuData
-func getappMenuData(inRole string) []AppMenuItem {
+func GetAppMenuData(inRole string) []AppMenuItem {
 	_, thisMenuList := fetchappMenuData(inRole)
 	return thisMenuList.MenuItem
 }

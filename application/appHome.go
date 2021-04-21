@@ -32,7 +32,7 @@ type sienaHomePage struct {
 	AppServerName   string
 }
 
-func homePageHandler(w http.ResponseWriter, r *http.Request) {
+func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
@@ -46,7 +46,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{
-		UserMenu:        getappMenuData(globals.UserRole),
+		UserMenu:        GetAppMenuData(globals.UserRole),
 		UserRole:        globals.UserRole,
 		UserNavi:        globals.UserNavi,
 		Title:           "Home",

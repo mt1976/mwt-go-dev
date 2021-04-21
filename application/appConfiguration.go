@@ -51,7 +51,7 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 
 	pageAppConfigView := AppConfigurationPage{
-		UserMenu:               getappMenuData(globals.UserRole),
+		UserMenu:               GetAppMenuData(globals.UserRole),
 		UserRole:               globals.UserRole,
 		UserNavi:               globals.UserNavi,
 		Title:                  title,

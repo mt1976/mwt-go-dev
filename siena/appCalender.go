@@ -8,7 +8,9 @@ import (
 	"net/http"
 	"time"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 var calenderSQL = "ID, 	Type, 	Date, 	Time, 	ShortName, 	Description"
@@ -16,7 +18,7 @@ var sqlCALID, sqlCALType, sqlCALDate, sqlCALTime, sqlCALShortName, sqlCALDescrip
 
 //calenderPage is cheese
 type calenderListPage struct {
-	UserMenu      []AppMenuItem
+	UserMenu      []application.AppMenuItem
 	UserRole      string
 	UserNavi      string
 	Title         string
@@ -27,7 +29,7 @@ type calenderListPage struct {
 
 //calenderPage is cheese
 type calenderPage struct {
-	UserMenu      []AppMenuItem
+	UserMenu      []application.AppMenuItem
 	UserRole      string
 	UserNavi      string
 	Title         string
@@ -69,11 +71,11 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:     "List Siena Calenders",
 		CalenderCount: noItems,
 		CalenderList:  returnList,
-		UserRole:      gUserRole,
-		UserNavi:      gUserNavi,
+		UserRole:      globals.UserRole,
+		UserNavi:      globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pagecalenderList)
 
 }

@@ -6,6 +6,7 @@ import (
 	"log"
 
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 var sienaBIcounterpartyPerSectorSQL = "SectorCode, 	Count"
@@ -21,7 +22,7 @@ type sienaBIcounterpartyPerSectorItem struct {
 
 // getSienaBIcounterpartyPerSectorList read all employees
 func getSienaBIcounterpartyPerSectorList(db *sql.DB) (int, []sienaBIcounterpartyPerSectorItem, error) {
-	mssqlConfig := support.GetProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIcounterpartyPerSector;", sienaBIcounterpartyPerSectorSQL, mssqlConfig["schema"])
 	count, sienaBIcounterpartyPerSectorList, _, _ := fetchSienaBIcounterpartyPerSectorData(db, tsql)
 	return count, sienaBIcounterpartyPerSectorList, nil
