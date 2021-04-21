@@ -12,8 +12,7 @@ import (
 
 	"github.com/mbndr/figlet4go"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
-	connection "github.com/mt1976/mwt-go-dev/connection"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 	siena "github.com/mt1976/mwt-go-dev/siena"
 )
 
@@ -29,13 +28,11 @@ const (
 	SIENACPTYSEP    = "\u22EE"
 )
 
-var gSienaSystemDate sienaBusinessDateItem
-
 func main() {
 
 	ascii := figlet4go.NewAsciiRender()
 
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := application.GetProperties(APPCONFIG)
 
 	// The underscore would be an error
 	renderStr, _ := ascii.Render(wctProperties["appname"])
@@ -61,27 +58,27 @@ func main() {
 	log.Println("Number     :", wctProperties["releasenumber"])
 	log.Println("")
 
-	http.HandleFunc("/", loginHandler)
-	http.HandleFunc("/login", valLoginHandler)
-	http.HandleFunc("/logout", logoutHandler)
+	http.HandleFunc("/", application.LoginHandler)
+	http.HandleFunc("/login", application.ValidateLoginHandler)
+	http.HandleFunc("/logout", application.LogoutHandler)
 	http.HandleFunc("/home", application.HomePageHandler)
-	http.HandleFunc("/srvServiceCatalog", srvServiceCatalogHandler)
+	http.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
 	http.HandleFunc("/site.webmanifest", faviconManifestHandler)
 	http.HandleFunc("/favicon-16x16.png", favicon16Handler)
 	http.HandleFunc("/browserconfig.xml", faviconBrowserConfigHandler)
-	http.HandleFunc("/listResponses/", connection.ListResponsesHandler)
-	http.HandleFunc("/previewRequest/", connection.PreviewRequestHandler)
-	http.HandleFunc("/executeRequest/", connection.ExecuteRequestHandler)
-	http.HandleFunc("/viewResponse/", connection.ViewResponseHandler)
-	http.HandleFunc("/deleteResponse/", connection.DeleteResponseHandler)
+	http.HandleFunc("/listResponses/", application.ListResponsesHandler)
+	http.HandleFunc("/previewRequest/", application.PreviewRequestHandler)
+	http.HandleFunc("/executeRequest/", application.ExecuteRequestHandler)
+	http.HandleFunc("/viewResponse/", application.ViewResponseHandler)
+	http.HandleFunc("/deleteResponse/", application.DeleteResponseHandler)
 	http.HandleFunc("/clearQueues/", clearQueuesHandler)
-	http.HandleFunc("/viewSrvEnvironment/", connection.ViewSrvEnvironmentHandler)
-	http.HandleFunc("/listSrvConfiguration/", connection.ListSrvConfigurationHandler)
-	http.HandleFunc("/viewSrvConfiguration/", connection.ViewSrvConfigurationHandler)
-	http.HandleFunc("/editSrvConfiguration/", connection.EditSrvConfigurationHandler)
-	http.HandleFunc("/saveSrvConfiguration/", connection.SaveSrvConfigurationHandler)
+	http.HandleFunc("/viewSrvEnvironment/", application.ViewSrvEnvironmentHandler)
+	http.HandleFunc("/listSrvConfiguration/", application.ListSrvConfigurationHandler)
+	http.HandleFunc("/viewSrvConfiguration/", application.ViewSrvConfigurationHandler)
+	http.HandleFunc("/editSrvConfiguration/", application.EditSrvConfigurationHandler)
+	http.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
 	http.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
 	http.HandleFunc("/listSvcDataMap/", siena.ListSvcDataMapHandler)
 	http.HandleFunc("/viewSvcDataMap/", siena.ViewSvcDataMapHandler)
@@ -93,106 +90,107 @@ func main() {
 	http.HandleFunc("/newSvcDataMap/", siena.NewSvcDataMapHandler)
 	http.HandleFunc("/genSvcDataMap/", siena.GenSvcDataMapHandler)
 	http.HandleFunc("/deleteSvcDataMap/", siena.DeleteSvcDataMapHandler)
-	http.HandleFunc("/listSienaCountry/", listSienaCountryHandler)
-	http.HandleFunc("/viewSienaCountry/", viewSienaCountryHandler)
-	http.HandleFunc("/editSienaCountry/", editSienaCountryHandler)
-	http.HandleFunc("/saveSienaCountry/", saveSienaCountryHandler)
-	http.HandleFunc("/newSienaCountry/", newSienaCountryHandler)
+	http.HandleFunc("/listSienaCountry/", siena.ListSienaCountryHandler)
+	http.HandleFunc("/viewSienaCountry/", siena.ViewSienaCountryHandler)
+	http.HandleFunc("/editSienaCountry/", siena.EditSienaCountryHandler)
+	http.HandleFunc("/saveSienaCountry/", siena.SaveSienaCountryHandler)
+	http.HandleFunc("/newSienaCountry/", siena.NewSienaCountryHandler)
 
-	http.HandleFunc("/listSienaSector/", listSienaSectorHandler)
-	http.HandleFunc("/viewSienaSector/", viewSienaSectorHandler)
-	http.HandleFunc("/editSienaSector/", editSienaSectorHandler)
-	http.HandleFunc("/saveSienaSector/", saveSienaSectorHandler)
-	http.HandleFunc("/newSienaSector/", newSienaSectorHandler)
+	http.HandleFunc("/listSienaSector/", siena.ListSienaSectorHandler)
+	http.HandleFunc("/viewSienaSector/", siena.ViewSienaSectorHandler)
+	http.HandleFunc("/editSienaSector/", siena.EditSienaSectorHandler)
+	http.HandleFunc("/saveSienaSector/", siena.SaveSienaSectorHandler)
+	http.HandleFunc("/newSienaSector/", siena.NewSienaSectorHandler)
 
-	http.HandleFunc("/listSienaFirm/", listSienaFirmHandler)
-	http.HandleFunc("/viewSienaFirm/", viewSienaFirmHandler)
-	http.HandleFunc("/editSienaFirm/", editSienaFirmHandler)
-	http.HandleFunc("/saveSienaFirm/", saveSienaFirmHandler)
-	http.HandleFunc("/newSienaFirm/", newSienaFirmHandler)
+	http.HandleFunc("/listSienaFirm/", siena.ListSienaFirmHandler)
+	http.HandleFunc("/viewSienaFirm/", siena.ViewSienaFirmHandler)
+	http.HandleFunc("/editSienaFirm/", siena.EditSienaFirmHandler)
+	http.HandleFunc("/saveSienaFirm/", siena.SaveSienaFirmHandler)
+	http.HandleFunc("/newSienaFirm/", siena.NewSienaFirmHandler)
 
-	http.HandleFunc("/listSienaPortfolio/", listSienaPortfolioHandler)
-	http.HandleFunc("/viewSienaPortfolio/", viewSienaPortfolioHandler)
-	http.HandleFunc("/editSienaPortfolio/", editSienaPortfolioHandler)
-	http.HandleFunc("/saveSienaPortfolio/", saveSienaPortfolioHandler)
-	http.HandleFunc("/newSienaPortfolio/", newSienaPortfolioHandler)
+	http.HandleFunc("/listSienaPortfolio/", siena.ListSienaPortfolioHandler)
+	http.HandleFunc("/viewSienaPortfolio/", siena.ViewSienaPortfolioHandler)
+	http.HandleFunc("/editSienaPortfolio/", siena.EditSienaPortfolioHandler)
+	http.HandleFunc("/saveSienaPortfolio/", siena.SaveSienaPortfolioHandler)
+	http.HandleFunc("/newSienaPortfolio/", siena.NewSienaPortfolioHandler)
 
-	http.HandleFunc("/listSienaCentre/", listSienaCentreHandler)
-	http.HandleFunc("/viewSienaCentre/", viewSienaCentreHandler)
-	http.HandleFunc("/editSienaCentre/", editSienaCentreHandler)
-	http.HandleFunc("/saveSienaCentre/", saveSienaCentreHandler)
-	http.HandleFunc("/newSienaCentre/", newSienaCentreHandler)
+	http.HandleFunc("/listSienaCentre/", siena.ListSienaCentreHandler)
+	http.HandleFunc("/viewSienaCentre/", siena.ViewSienaCentreHandler)
+	http.HandleFunc("/editSienaCentre/", siena.EditSienaCentreHandler)
+	http.HandleFunc("/saveSienaCentre/", siena.SaveSienaCentreHandler)
+	http.HandleFunc("/newSienaCentre/", siena.NewSienaCentreHandler)
 
-	http.HandleFunc("/listSienaBook/", listSienaBookHandler)
-	http.HandleFunc("/viewSienaBook/", viewSienaBookHandler)
-	http.HandleFunc("/editSienaBook/", editSienaBookHandler)
-	http.HandleFunc("/saveSienaBook/", saveSienaBookHandler)
-	http.HandleFunc("/newSienaBook/", newSienaBookHandler)
+	http.HandleFunc("/listSienaBook/", siena.ListSienaBookHandler)
+	http.HandleFunc("/viewSienaBook/", siena.ViewSienaBookHandler)
+	http.HandleFunc("/editSienaBook/", siena.EditSienaBookHandler)
+	http.HandleFunc("/saveSienaBook/", siena.SaveSienaBookHandler)
+	http.HandleFunc("/newSienaBook/", siena.NewSienaBookHandler)
 
-	http.HandleFunc("/listSienaBroker/", listSienaBrokerHandler)
-	http.HandleFunc("/viewSienaBroker/", viewSienaBrokerHandler)
-	http.HandleFunc("/editSienaBroker/", editSienaBrokerHandler)
-	http.HandleFunc("/saveSienaBroker/", saveSienaBrokerHandler)
-	http.HandleFunc("/newSienaBroker/", newSienaBrokerHandler)
+	http.HandleFunc("/listSienaBroker/", siena.ListSienaBrokerHandler)
+	http.HandleFunc("/viewSienaBroker/", siena.ViewSienaBrokerHandler)
+	http.HandleFunc("/editSienaBroker/", siena.EditSienaBrokerHandler)
+	http.HandleFunc("/saveSienaBroker/", siena.SaveSienaBrokerHandler)
+	http.HandleFunc("/newSienaBroker/", siena.NewSienaBrokerHandler)
 
-	http.HandleFunc("/listSienaAccount/", listSienaAccountHandler)
-	http.HandleFunc("/viewSienaAccount/", viewSienaAccountHandler)
+	http.HandleFunc("/listSienaAccount/", siena.ListSienaAccountHandler)
+	http.HandleFunc("/viewSienaAccount/", siena.ViewSienaAccountHandler)
 
-	http.HandleFunc("/listSienaCurrency/", listSienaCurrencyHandler)
-	http.HandleFunc("/listSienaCurrencyPair/", listSienaCurrencyPairHandler)
+	http.HandleFunc("/listSienaCurrency/", siena.ListSienaCurrencyHandler)
+	http.HandleFunc("/listSienaCurrencyPair/", siena.ListSienaCurrencyPairHandler)
 
-	http.HandleFunc("/listSienaMandatedUser/", listSienaMandatedUserHandler)
-	http.HandleFunc("/viewSienaMandatedUser/", viewSienaMandatedUserHandler)
-	http.HandleFunc("/editSienaMandatedUser/", editSienaMandatedUserHandler)
-	http.HandleFunc("/saveSienaMandatedUser/", saveSienaMandatedUserHandler)
-	http.HandleFunc("/newSienaMandatedUser/", newSienaMandatedUserHandler)
+	http.HandleFunc("/listSienaMandatedUser/", siena.ListSienaMandatedUserHandler)
+	http.HandleFunc("/viewSienaMandatedUser/", siena.ViewSienaMandatedUserHandler)
+	http.HandleFunc("/editSienaMandatedUser/", siena.EditSienaMandatedUserHandler)
+	http.HandleFunc("/saveSienaMandatedUser/", siena.SaveSienaMandatedUserHandler)
+	http.HandleFunc("/newSienaMandatedUser/", siena.NewSienaMandatedUserHandler)
 
-	http.HandleFunc("/listSienaCounterparty/", listSienaCounterpartyHandler)
-	http.HandleFunc("/viewSienaCounterparty/", viewSienaCounterpartyHandler)
-	http.HandleFunc("/editSienaCounterparty/", editSienaCounterpartyHandler)
-	http.HandleFunc("/saveSienaCounterparty/", saveSienaCounterpartyHandler)
-	http.HandleFunc("/newSienaCounterparty/", newSienaCounterpartyHandler)
+	http.HandleFunc("/listSienaCounterparty/", siena.ListSienaCounterpartyHandler)
+	http.HandleFunc("/viewSienaCounterparty/", siena.ViewSienaCounterpartyHandler)
+	http.HandleFunc("/editSienaCounterparty/", siena.EditSienaCounterpartyHandler)
+	http.HandleFunc("/saveSienaCounterparty/", siena.SaveSienaCounterpartyHandler)
+	http.HandleFunc("/newSienaCounterparty/", siena.NewSienaCounterpartyHandler)
 
-	http.HandleFunc("/editSienaCounterpartyAddress/", editSienaCounterpartyAddressHandler)
-	http.HandleFunc("/saveSienaCounterpartyAddress/", saveSienaCounterpartyAddressHandler)
-	http.HandleFunc("/editSienaCounterpartyExtensions/", editSienaCounterpartyExtensionsHandler)
-	http.HandleFunc("/saveSienaCounterpartyExtensions/", saveSienaCounterpartyExtensionsHandler)
+	http.HandleFunc("/editSienaCounterpartyAddress/", siena.EditSienaCounterpartyAddressHandler)
+	http.HandleFunc("/saveSienaCounterpartyAddress/", siena.SaveSienaCounterpartyAddressHandler)
+	http.HandleFunc("/editSienaCounterpartyExtensions/", siena.EditSienaCounterpartyExtensionsHandler)
+	http.HandleFunc("/saveSienaCounterpartyExtensions/", siena.SaveSienaCounterpartyExtensionsHandler)
 
-	http.HandleFunc("/listSienaCounterpartyPayee/", listSienaCounterpartyPayeeHandler)
-	http.HandleFunc("/viewSienaCounterpartyPayee/", viewSienaCounterpartyPayeeHandler)
-	http.HandleFunc("/editSienaCounterpartyPayee/", editSienaCounterpartyPayeeHandler)
-	http.HandleFunc("/saveSienaCounterpartyPayee/", saveSienaCounterpartyPayeeHandler)
-	http.HandleFunc("/newSienaCounterpartyPayee/", newSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/listSienaCounterpartyPayee/", siena.ListSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/viewSienaCounterpartyPayee/", siena.ViewSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/editSienaCounterpartyPayee/", siena.EditSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/saveSienaCounterpartyPayee/", siena.SaveSienaCounterpartyPayeeHandler)
+	http.HandleFunc("/newSienaCounterpartyPayee/", siena.NewSienaCounterpartyPayeeHandler)
 
-	http.HandleFunc("/listSienaCounterpartyImportID/", listSienaCounterpartyImportIDHandler)
-	http.HandleFunc("/viewSienaCounterpartyImportID/", viewSienaCounterpartyImportIDHandler)
-	http.HandleFunc("/editSienaCounterpartyImportID/", editSienaCounterpartyImportIDHandler)
-	http.HandleFunc("/saveSienaCounterpartyImportID/", saveSienaCounterpartyImportIDHandler)
-	http.HandleFunc("/newSienaCounterpartyImportID/", newSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/listSienaCounterpartyImportID/", siena.ListSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/viewSienaCounterpartyImportID/", siena.ViewSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/editSienaCounterpartyImportID/", siena.EditSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/saveSienaCounterpartyImportID/", siena.SaveSienaCounterpartyImportIDHandler)
+	http.HandleFunc("/newSienaCounterpartyImportID/", siena.NewSienaCounterpartyImportIDHandler)
 
-	http.HandleFunc("/listSienaDealList/", listSienaDealListHandler)
-	http.HandleFunc("/viewSienaDealList/", viewSienaDealListHandler)
-	http.HandleFunc("/listSienaAccountLadder/", listSienaAccountLadderHandler)
-	http.HandleFunc("/listSienaAccountTransactions/", listSienaAccountTransactionsHandler)
-	//http.HandleFunc("/saveSienaDealList/", saveSienaDealListHandler)
-	//http.HandleFunc("/newSienaDealList/", newSienaDealListHandler)
+	http.HandleFunc("/listSienaDealList/", siena.ListSienaDealListHandler)
+	http.HandleFunc("/viewSienaDealList/", siena.ViewSienaDealListHandler)
+	http.HandleFunc("/listSienaAccountLadder/", siena.ListSienaAccountLadderHandler)
+	http.HandleFunc("/listSienaAccountTransactions/", siena.ListSienaAccountTransactionsHandler)
+	//http.HandleFunc("/saveSienaDealList/", siena.SaveSienaDealListHandler)
+	//http.HandleFunc("/newSienaDealList/", siena.NewSienaDealListHandler)
 
-	http.HandleFunc("/listSienaCounterpartyGroup/", listSienaCounterpartyGroupHandler)
-	http.HandleFunc("/viewSienaCounterpartyGroup/", viewSienaCounterpartyGroupHandler)
-	http.HandleFunc("/editSienaCounterpartyGroup/", editSienaCounterpartyGroupHandler)
-	http.HandleFunc("/saveSienaCounterpartyGroup/", saveSienaCounterpartyGroupHandler)
-	http.HandleFunc("/newSienaCounterpartyGroup/", newSienaCounterpartyGroupHandler)
+	http.HandleFunc("/listSienaCounterpartyGroup/", siena.ListSienaCounterpartyGroupHandler)
+	http.HandleFunc("/viewSienaCounterpartyGroup/", siena.ViewSienaCounterpartyGroupHandler)
+	http.HandleFunc("/editSienaCounterpartyGroup/", siena.EditSienaCounterpartyGroupHandler)
+	http.HandleFunc("/saveSienaCounterpartyGroup/", siena.SaveSienaCounterpartyGroupHandler)
+	http.HandleFunc("/newSienaCounterpartyGroup/", siena.NewSienaCounterpartyGroupHandler)
 
-	http.HandleFunc("/dashboard/", sienaDashboardHandler)
+	http.HandleFunc("/dashboard/", siena.SienaDashboardHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	db, _ := siena.Connect()
-	_, gSienaSystemDate, _ = getSienaBusinessDate(db)
-	log.Println("Siena System Date:", gSienaSystemDate.Internal.Format(DATEFORMATUSER))
+	_, tempDate, _ := siena.GetBusinessDate(db)
+	globals.SienaSystemDate = tempDate
+	log.Println("Siena System Date:", tempDate.Internal.Format(globals.DATEFORMATUSER))
 	// Get menu
-	menuCount, _ := fetchappMenuData("")
+	menuCount, _ := application.FetchappMenuData("")
 	log.Println("No. Menu Items   :", menuCount)
 
 	log.Println("")
@@ -227,7 +225,7 @@ func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
 
 //// TODO: migrage the following three functions to appsupport
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := application.GetProperties(APPCONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -235,11 +233,11 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Servicing :", inUTL)
 
-	requestMessage := buildRequestMessage(requestID.String(), "SHUTDOWN", "", "", "", wctProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", "", "", "", wctProperties)
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	sendRequest(requestMessage, requestID.String(), wctProperties)
+	application.SendRequest(requestMessage, requestID.String(), wctProperties)
 	m := http.NewServeMux()
 
 	s := http.Server{Addr: wctProperties["port"], Handler: m}
@@ -251,47 +249,35 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := support.GetProperties(APPCONFIG)
+	wctProperties := application.GetProperties(APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
-
 	log.Println("Servicing :", inUTL)
-
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := support.RemoveContents(wctProperties["deliverpath"])
+	err1 := application.RemoveContents(wctProperties["deliverpath"])
 	if err1 != nil {
 		fmt.Println(err1)
 	}
-
 	//fmt.Println("recPath", wctProperties["receivepath"])
-
-	err2 := support.RemoveContents(wctProperties["receivepath"])
+	err2 := application.RemoveContents(wctProperties["receivepath"])
 	if err2 != nil {
 		fmt.Println(err2)
 	}
 	//fmt.Println("procPath", wctProperties["processedpath"])
-
-	err3 := support.RemoveContents(wctProperties["processedpath"])
+	err3 := application.RemoveContents(wctProperties["processedpath"])
 	if err3 != nil {
 		fmt.Println(err3)
 	}
-
-	homePageHandler(w, r)
-
+	application.HomePageHandler(w, r)
 }
 func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
-
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
-
 	log.Println("Servicing :", inUTL)
-
-	support.RemoveContents(wctProperties["receivepath"])
-
-	homePageHandler(w, r)
-
+	application.RemoveContents(wctProperties["receivepath"])
+	application.HomePageHandler(w, r)
 }

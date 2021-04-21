@@ -12,7 +12,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -132,9 +131,9 @@ type sienaCounterpartyExtensionsItem struct {
 	Action                        string
 }
 
-func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -158,14 +157,14 @@ func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		SienaCounterpartyExtensionsList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
-func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -174,9 +173,9 @@ func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyExtensionsItem
-	suID := support.GetURLparam(r, "SU")
-	sfID := support.GetURLparam(r, "SF")
-	scID := support.GetURLparam(r, "SC")
+	suID := application.GetURLparam(r, "SU")
+	sfID := application.GetURLparam(r, "SF")
+	scID := application.GetURLparam(r, "SC")
 	noItems, returnRecord, _ := getSienaCounterpartyExtensions(thisConnection, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	fmt.Println(returnList)
@@ -233,14 +232,14 @@ func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		Action:                        "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
-func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -249,8 +248,8 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyExtensionsItem
-	sfID := support.GetURLparam(r, "SienaFirm")
-	scID := support.GetURLparam(r, "SienaCentre")
+	sfID := application.GetURLparam(r, "SienaFirm")
+	scID := application.GetURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterpartyExtensions(thisConnection, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, sfID, scID)
 	fmt.Println(returnList)
@@ -314,14 +313,14 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	fmt.Println(pageSienaCounterpartyExtensionsList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
-func saveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -429,13 +428,13 @@ func saveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		fmt.Println(err.Error())
 	}
 
-	viewSienaCounterpartyHandler(w, r)
+	ViewSienaCounterpartyHandler(w, r)
 
 }
 
-func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyExtensions"
 
 	inUTL := r.URL.Path
@@ -495,14 +494,14 @@ func newSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 		DirectDealing:                 "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsList(db *sql.DB) (int, []sienaCounterpartyExtensionsItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions;", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"])
 	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return count, sienaCounterpartyExtensionsList, nil
@@ -510,7 +509,7 @@ func getSienaCounterpartyExtensionsList(db *sql.DB) (int, []sienaCounterpartyExt
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyExtensionsItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return count, sienaCounterpartyExtensionsList, nil
@@ -518,7 +517,7 @@ func getSienaCounterpartyExtensionsListByCounterparty(db *sql.DB, idFirm string,
 
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensions(db *sql.DB, sfid string, scid string) (int, sienaCounterpartyExtensionsItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, mssqlConfig["schema"], sfid, scid)
 	_, _, sienaCounterpartyExtensions, _ := fetchSienaCounterpartyExtensionsData(db, tsql)
 	return 1, sienaCounterpartyExtensions, nil
@@ -526,7 +525,7 @@ func getSienaCounterpartyExtensions(db *sql.DB, sfid string, scid string) (int, 
 
 // getSienaCounterpartyExtensionsList read all employees
 func putSienaCounterpartyExtensions(db *sql.DB, updateItem sienaCounterpartyExtensionsItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -584,9 +583,9 @@ func fetchSienaCounterpartyExtensionsData(db *sql.DB, tsql string) (int, []siena
 		sienaCounterpartyExtensions.TrainingCode = sqlCPEXTrainingCode.String
 		sienaCounterpartyExtensions.TrainingReceived = sienaYN(sqlCPEXTrainingReceived.String)
 		sienaCounterpartyExtensions.Unencumbered = sqlCPEXUnencumbered.String
-		sienaCounterpartyExtensions.LEIExpiryDate = support.SqlDateToHTMLDate(sqlCPEXLEIExpiryDate.String)
-		sienaCounterpartyExtensions.MIFIDReviewDate = support.SqlDateToHTMLDate(sqlCPEXMIFIDReviewDate.String)
-		sienaCounterpartyExtensions.GDPRReviewDate = support.SqlDateToHTMLDate(sqlCPEXGDPRReviewDate.String)
+		sienaCounterpartyExtensions.LEIExpiryDate = application.SqlDateToHTMLDate(sqlCPEXLEIExpiryDate.String)
+		sienaCounterpartyExtensions.MIFIDReviewDate = application.SqlDateToHTMLDate(sqlCPEXMIFIDReviewDate.String)
+		sienaCounterpartyExtensions.GDPRReviewDate = application.SqlDateToHTMLDate(sqlCPEXGDPRReviewDate.String)
 		sienaCounterpartyExtensions.DelegatedReporting = sqlCPEXDelegatedReporting.String
 		sienaCounterpartyExtensions.BOReconcile = sqlCPEXBOReconcile.String
 		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = sqlCPEXMIFIDReportableDealsAllowed.String

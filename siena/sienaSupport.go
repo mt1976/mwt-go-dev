@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
+	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -20,15 +20,6 @@ const SIENAXMLIMPORT = "IMPORT"
 const SIENAXMLDELETE = "DELETE"
 const SIENAXMLUPDATE = "UPDATE"
 const SIENAXMLNEW = "INSERT"
-
-//sienaBusinessDateItem is cheese
-type sienaBusinessDateItem struct {
-	Today    string
-	Internal time.Time
-	Siena    string
-	YYYYMMDD string
-	qmEpoch  string
-}
 
 type sienaYNItem struct {
 	Code string
@@ -98,7 +89,7 @@ func isChecked(inValue string) string {
 
 func Connect() (*sql.DB, error) {
 	// Connect to SQL Server DB
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 
 	server := mssqlConfig["server"]
 	user := mssqlConfig["user"]
@@ -138,18 +129,18 @@ func Connect() (*sql.DB, error) {
 }
 
 // getSienaBusinessDate read all employees
-func getSienaBusinessDate(db *sql.DB) (int, sienaBusinessDateItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+func GetBusinessDate(db *sql.DB) (int, globals.DateItem, error) {
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, mssqlConfig["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
 }
 
 // fetchSienaBusinessDateData read all employees
-func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDateItem, sienaBusinessDateItem, error) {
+func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []globals.DateItem, globals.DateItem, error) {
 
-	var sienaBusinessDate sienaBusinessDateItem
-	var sienaBusinessDateList []sienaBusinessDateItem
+	var sienaBusinessDate globals.DateItem
+	var sienaBusinessDateList []globals.DateItem
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
@@ -172,7 +163,7 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 		sienaBusinessDate.Internal, _ = time.Parse(time.RFC3339, sqlSYSDToday.String)
 		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(globals.DATEFORMATSIENA)
 		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(globals.DATEFORMATYMD)
-		sienaBusinessDate.qmEpoch = sienaBusinessDate.Internal.Format(globals.DATEFORMATPICK)
+		sienaBusinessDate.PICKEpoch = sienaBusinessDate.Internal.Format(globals.DATEFORMATPICK)
 		sienaBusinessDateList = append(sienaBusinessDateList, sienaBusinessDate)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
@@ -183,7 +174,7 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 
 func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))

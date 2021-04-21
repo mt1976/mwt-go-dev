@@ -12,7 +12,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -59,9 +58,9 @@ type sienaCounterpartyImportIDItem struct {
 	KeyOriginID string
 }
 
-func listSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyImportID"
 
 	inUTL := r.URL.Path
@@ -85,14 +84,14 @@ func listSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		SienaCounterpartyImportIDList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
-func viewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyImportID"
 
 	inUTL := r.URL.Path
@@ -101,8 +100,8 @@ func viewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyImportIDItem
-	idImport := support.GetURLparam(r, "II")
-	idOrigin := support.GetURLparam(r, "IO")
+	idImport := application.GetURLparam(r, "II")
+	idOrigin := application.GetURLparam(r, "IO")
 	noItems, returnRecord, _ := getSienaCounterpartyImportID(thisConnection, idImport, idOrigin)
 	fmt.Println("NoSienaItems", noItems, idImport, idOrigin)
 	fmt.Println(returnList)
@@ -124,14 +123,14 @@ func viewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
-func editSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyImportID"
 
 	inUTL := r.URL.Path
@@ -140,8 +139,8 @@ func editSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyImportIDItem
-	idImport := support.GetURLparam(r, "II")
-	idOrigin := support.GetURLparam(r, "IO")
+	idImport := application.GetURLparam(r, "II")
+	idOrigin := application.GetURLparam(r, "IO")
 	noItems, returnRecord, _ := getSienaCounterpartyImportID(thisConnection, idImport, idOrigin)
 	fmt.Println("NoSienaItems", noItems, idImport, idOrigin)
 	fmt.Println(returnList)
@@ -166,14 +165,14 @@ func editSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	}
 	fmt.Println(pageSienaCounterpartyImportIDList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
-func saveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -249,13 +248,13 @@ func saveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		fmt.Println(err.Error())
 	}
 
-	listSienaCounterpartyImportIDHandler(w, r)
+	ListSienaCounterpartyImportIDHandler(w, r)
 
 }
 
-func newSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyImportID"
 
 	inUTL := r.URL.Path
@@ -281,14 +280,14 @@ func newSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 		Action: "NEW",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
 // getSienaCounterpartyImportIDList read all employees
 func getSienaCounterpartyImportIDList(db *sql.DB) (int, []sienaCounterpartyImportIDItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyImportID;", sienaCounterpartyImportIDSQL, mssqlConfig["schema"])
 	count, sienaCounterpartyImportIDList, _, _ := fetchSienaCounterpartyImportIDData(db, tsql)
 	return count, sienaCounterpartyImportIDList, nil
@@ -296,7 +295,7 @@ func getSienaCounterpartyImportIDList(db *sql.DB) (int, []sienaCounterpartyImpor
 
 // getSienaCounterpartyImportIDList read all employees
 func getSienaCounterpartyImportID(db *sql.DB, idImportID string, idOriginID string) (int, sienaCounterpartyImportIDItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyImportID WHERE KeyImportID='%s' AND KeyOriginID='%s';", sienaCounterpartyImportIDSQL, mssqlConfig["schema"], idImportID, idOriginID)
 	_, _, sienaCounterpartyImportID, _ := fetchSienaCounterpartyImportIDData(db, tsql)
 	return 1, sienaCounterpartyImportID, nil
@@ -304,7 +303,7 @@ func getSienaCounterpartyImportID(db *sql.DB, idImportID string, idOriginID stri
 
 // getSienaCounterpartyImportIDList read all employees
 func putSienaCounterpartyImportID(db *sql.DB, updateItem sienaCounterpartyImportIDItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -313,7 +312,7 @@ func putSienaCounterpartyImportID(db *sql.DB, updateItem sienaCounterpartyImport
 
 // getSienaCounterpartyImportIDList read all employees
 func getSienaCounterpartyImportIDListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaCounterpartyImportIDItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyImportID WHERE Firm='%s' AND Centre='%s';", sienaCounterpartyImportIDSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaCounterpartyImportIDList, _, _ := fetchSienaCounterpartyImportIDData(db, tsql)
 	return count, sienaCounterpartyImportIDList, nil

@@ -12,7 +12,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -57,9 +56,9 @@ type sienaBrokerItem struct {
 	LEI      string
 }
 
-func listSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaBroker"
 
 	inUTL := r.URL.Path
@@ -83,14 +82,14 @@ func listSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:         globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
-func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaBroker"
 
 	inUTL := r.URL.Path
@@ -99,7 +98,7 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
-	searchID := support.GetURLparam(r, "SienaBroker")
+	searchID := application.GetURLparam(r, "SienaBroker")
 	_, returnRecord, _ := getSienaBroker(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
 	//fmt.Println(returnList)
@@ -123,14 +122,14 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageSienaBrokerList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
-func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaBroker"
 
 	inUTL := r.URL.Path
@@ -139,7 +138,7 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
-	searchID := support.GetURLparam(r, "SienaBroker")
+	searchID := application.GetURLparam(r, "SienaBroker")
 	_, returnRecord, _ := getSienaBroker(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -167,14 +166,14 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaBrokerList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
-func saveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -267,13 +266,13 @@ func saveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err.Error())
 	}
 
-	listSienaBrokerHandler(w, r)
+	ListSienaBrokerHandler(w, r)
 
 }
 
-func newSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaBroker"
 
 	inUTL := r.URL.Path
@@ -295,14 +294,14 @@ func newSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		//	CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
 // getSienaBrokerList read all employees
 func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker;", sienaBrokerSQL, mssqlConfig["schema"])
 	count, sienaBrokerList, _, _ := fetchSienaBrokerData(db, tsql)
 	return count, sienaBrokerList, nil
@@ -310,7 +309,7 @@ func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
 
 // getSienaBrokerList read all employees
 func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker WHERE Code='%s';", sienaBrokerSQL, mssqlConfig["schema"], id)
 	_, _, sienaBroker, _ := fetchSienaBrokerData(db, tsql)
 	return 1, sienaBroker, nil
@@ -318,7 +317,7 @@ func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
 
 // getSienaBrokerList read all employees
 func putSienaBroker(db *sql.DB, updateItem sienaBrokerItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

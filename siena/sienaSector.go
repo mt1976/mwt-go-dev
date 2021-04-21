@@ -11,7 +11,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -48,9 +47,9 @@ type sienaSectorItem struct {
 	Action string
 }
 
-func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaSector"
 
 	inUTL := r.URL.Path
@@ -74,14 +73,14 @@ func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		SienaSectorList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
-func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaSector"
 
 	inUTL := r.URL.Path
@@ -90,7 +89,7 @@ func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaSectorItem
-	searchID := support.GetURLparam(r, "sienaSector")
+	searchID := application.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
@@ -107,14 +106,14 @@ func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
-func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaSector"
 
 	inUTL := r.URL.Path
@@ -123,7 +122,7 @@ func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaSectorItem
-	searchID := support.GetURLparam(r, "sienaSector")
+	searchID := application.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
@@ -140,14 +139,14 @@ func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
-func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -229,13 +228,13 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(err.Error())
 	//}
 
-	listSienaSectorHandler(w, r)
+	ListSienaSectorHandler(w, r)
 
 }
 
-func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaSector"
 
 	inUTL := r.URL.Path
@@ -253,14 +252,14 @@ func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 // getSienaSectorList read all employees
 func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector;", sienaSectorSQL, mssqlConfig["schema"])
 	count, sienaSectorList, _, _ := fetchSienaSectorData(db, tsql)
 	return count, sienaSectorList, nil
@@ -268,7 +267,7 @@ func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
 
 // getSienaSectorList read all employees
 func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector WHERE Code='%s';", sienaSectorSQL, mssqlConfig["schema"], id)
 	_, _, sienaSector, _ := fetchSienaSectorData(db, tsql)
 	return 1, sienaSector, nil
@@ -276,7 +275,7 @@ func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
 
 // getSienaSectorList read all employees
 func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

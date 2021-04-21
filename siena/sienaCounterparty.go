@@ -8,7 +8,6 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -106,9 +105,9 @@ type sienaCounterpartyItem struct {
 	Action          string
 }
 
-func listSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -132,14 +131,14 @@ func listSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:               globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyList)
 
 }
 
-func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -148,8 +147,8 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyItem
-	firmID := support.GetURLparam(r, "SienaFirm")
-	centreID := support.GetURLparam(r, "SienaCentre")
+	firmID := application.GetURLparam(r, "SienaFirm")
+	centreID := application.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
 	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
 	//fmt.Println(returnList)
@@ -213,14 +212,14 @@ func viewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		TxnList:         txnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyList)
 
 }
 
-func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -230,8 +229,8 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyItem
 
-	firmID := support.GetURLparam(r, "SienaFirm")
-	centreID := support.GetURLparam(r, "SienaCentre")
+	firmID := application.GetURLparam(r, "SienaFirm")
+	centreID := application.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCounterparty(thisConnection, firmID, centreID)
 	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
 	//fmt.Println(returnList)
@@ -276,12 +275,12 @@ func editSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaCounterpartyList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyList)
 
 }
 
-func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -412,13 +411,13 @@ func saveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Error in XML dispatch: ", thisError)
 	}
 
-	listSienaCounterpartyHandler(w, r)
+	ListSienaCounterpartyHandler(w, r)
 
 }
 
-func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterparty"
 
 	inUTL := r.URL.Path
@@ -464,14 +463,14 @@ func newSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:          ynList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyList)
 
 }
 
 // getSienaCounterpartyList read all employees
 func getSienaCounterpartyList(db *sql.DB) (int, []sienaCounterpartyItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterparty;", sienaCounterpartySQL, mssqlConfig["schema"])
 	count, sienaCounterpartyList, _, _ := fetchSienaCounterpartyData(db, tsql)
 	return count, sienaCounterpartyList, nil
@@ -479,7 +478,7 @@ func getSienaCounterpartyList(db *sql.DB) (int, []sienaCounterpartyItem, error) 
 
 // getSienaCounterpartyList read all employees
 func getSienaCounterparty(db *sql.DB, idFirm string, idCentre string) (int, sienaCounterpartyItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterparty WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartySQL, mssqlConfig["schema"], idFirm, idCentre)
 	_, _, sienaCounterparty, _ := fetchSienaCounterpartyData(db, tsql)
 	return 1, sienaCounterparty, nil
@@ -487,7 +486,7 @@ func getSienaCounterparty(db *sql.DB, idFirm string, idCentre string) (int, sien
 
 // getSienaCounterpartyList read all employees
 func putSienaCounterparty(db *sql.DB, updateItem sienaCounterpartyItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

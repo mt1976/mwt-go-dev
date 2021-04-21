@@ -8,7 +8,6 @@ import (
 	"strconv"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -32,9 +31,9 @@ type sienaDashboardPage struct {
 	SECTDataValues    []string
 }
 
-func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
+func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "dashboard"
 
 	inUTL := r.URL.Path
@@ -78,7 +77,7 @@ func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(p)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, p)
 
 }

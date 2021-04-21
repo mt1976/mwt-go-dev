@@ -12,7 +12,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -55,9 +54,9 @@ type sienaCounterpartyGroupItem struct {
 	Action      string
 }
 
-func listSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyGroup"
 
 	inUTL := r.URL.Path
@@ -81,14 +80,14 @@ func listSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:                    globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
-func viewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyGroup"
 
 	inUTL := r.URL.Path
@@ -97,7 +96,7 @@ func viewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyGroupItem
-	searchID := support.GetURLparam(r, "SienaCounterpartyGroup")
+	searchID := application.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -116,14 +115,14 @@ func viewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:    globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
-func editSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyGroup"
 
 	inUTL := r.URL.Path
@@ -132,7 +131,7 @@ func editSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyGroupItem
-	searchID := support.GetURLparam(r, "SienaCounterpartyGroup")
+	searchID := application.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -160,14 +159,14 @@ func editSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaCounterpartyGroupList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
-func saveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -239,13 +238,13 @@ func saveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err.Error())
 	}
 
-	listSienaCounterpartyGroupHandler(w, r)
+	ListSienaCounterpartyGroupHandler(w, r)
 
 }
 
-func newSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyGroup"
 
 	inUTL := r.URL.Path
@@ -274,14 +273,14 @@ func newSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		GroupList:   groupList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
 // getSienaCounterpartyGroupList read all employees
 func getSienaCounterpartyGroupList(db *sql.DB) (int, []sienaCounterpartyGroupItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup;", sienaCounterpartyGroupSQL, mssqlConfig["schema"])
 	count, sienaCounterpartyGroupList, _, _ := fetchSienaCounterpartyGroupData(db, tsql)
 	return count, sienaCounterpartyGroupList, nil
@@ -289,7 +288,7 @@ func getSienaCounterpartyGroupList(db *sql.DB) (int, []sienaCounterpartyGroupIte
 
 // getSienaCounterpartyGroupList read all employees
 func getSienaCounterpartyGroup(db *sql.DB, id string) (int, sienaCounterpartyGroupItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup WHERE Name='%s';", sienaCounterpartyGroupSQL, mssqlConfig["schema"], id)
 	_, _, sienaCounterpartyGroup, _ := fetchSienaCounterpartyGroupData(db, tsql)
 	return 1, sienaCounterpartyGroup, nil
@@ -297,7 +296,7 @@ func getSienaCounterpartyGroup(db *sql.DB, id string) (int, sienaCounterpartyGro
 
 // getSienaCounterpartyGroupList read all employees
 func putSienaCounterpartyGroup(db *sql.DB, updateItem sienaCounterpartyGroupItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

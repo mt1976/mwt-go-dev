@@ -8,7 +8,6 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -50,9 +49,9 @@ type sienaCountryItem struct {
 	Action    string
 }
 
-func listSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCountry"
 
 	inUTL := r.URL.Path
@@ -76,14 +75,14 @@ func listSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		SienaCountryList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
-func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCountry"
 
 	inUTL := r.URL.Path
@@ -92,7 +91,7 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCountryItem
-	searchID := support.GetURLparam(r, "sienaCountry")
+	searchID := application.GetURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(thisConnection, searchID)
 	_, ynList, _ := getSienaYNList()
 
@@ -113,14 +112,14 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
-func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCountry"
 
 	inUTL := r.URL.Path
@@ -129,7 +128,7 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCountryItem
-	searchID := support.GetURLparam(r, "sienaCountry")
+	searchID := application.GetURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(thisConnection, searchID)
 	_, ynList, _ := getSienaYNList()
 	//	fmt.Println("NoSienaCountries", noItems)
@@ -150,12 +149,12 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
-func saveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
@@ -218,12 +217,12 @@ func saveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	if thisError != nil {
 		log.Println("Error in XML dispatch: ", thisError)
 	}
-	listSienaCountryHandler(w, r)
+	ListSienaCountryHandler(w, r)
 }
 
-func newSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCountry"
 
 	inUTL := r.URL.Path
@@ -246,14 +245,14 @@ func newSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
 // getSienaCountryList read all employees
 func getSienaCountryList(db *sql.DB) (int, []sienaCountryItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry;", sienaCountrySQL, mssqlConfig["schema"])
 	count, sienaCountryList, _, _ := fetchSienaCountryData(db, tsql)
 	return count, sienaCountryList, nil
@@ -261,7 +260,7 @@ func getSienaCountryList(db *sql.DB) (int, []sienaCountryItem, error) {
 
 // getSienaCountryList read all employees
 func getSienaCountry(db *sql.DB, id string) (int, sienaCountryItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry WHERE Code='%s';", sienaCountrySQL, mssqlConfig["schema"], id)
 	_, _, sienaCountry, _ := fetchSienaCountryData(db, tsql)
 	return 1, sienaCountry, nil
@@ -269,7 +268,7 @@ func getSienaCountry(db *sql.DB, id string) (int, sienaCountryItem, error) {
 
 // getSienaCountryList read all employees
 func putSienaCountry(db *sql.DB, updateItem sienaCountryItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

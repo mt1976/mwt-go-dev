@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -26,14 +25,14 @@ type AppMenuList struct {
 
 //getappMenuData
 func GetAppMenuData(inRole string) []AppMenuItem {
-	_, thisMenuList := fetchappMenuData(inRole)
+	_, thisMenuList := FetchappMenuData(inRole)
 	return thisMenuList.MenuItem
 }
 
 // fetchappMenuData read all employees
-func fetchappMenuData(inRole string) (int, AppMenuList) {
+func FetchappMenuData(inRole string) (int, AppMenuList) {
 
-	file, _ := ioutil.ReadFile(support.GetMenuID("menu", globals.UserRole))
+	file, _ := ioutil.ReadFile(GetMenuID("menu", globals.UserRole))
 
 	data := AppMenuList{}
 

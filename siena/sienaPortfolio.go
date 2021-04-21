@@ -12,7 +12,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -49,9 +48,9 @@ type sienaPortfolioItem struct {
 	Action string
 }
 
-func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -75,14 +74,14 @@ func listSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		SienaPortfolioList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -91,7 +90,7 @@ func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaPortfolioItem
-	searchID := support.GetURLparam(r, "SienaPortfolio")
+	searchID := application.GetURLparam(r, "SienaPortfolio")
 	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
@@ -108,14 +107,14 @@ func viewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -124,7 +123,7 @@ func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaPortfolioItem
-	searchID := support.GetURLparam(r, "SienaPortfolio")
+	searchID := application.GetURLparam(r, "SienaPortfolio")
 	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
@@ -141,14 +140,14 @@ func editSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
-func saveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -211,13 +210,13 @@ func saveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err.Error())
 	}
 
-	listSienaPortfolioHandler(w, r)
+	ListSienaPortfolioHandler(w, r)
 
 }
 
-func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -235,14 +234,14 @@ func newSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
 // getSienaPortfolioList read all employees
 func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, mssqlConfig["schema"])
 	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
 	return count, sienaPortfolioList, nil
@@ -250,7 +249,7 @@ func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 
 // getSienaPortfolioList read all employees
 func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, mssqlConfig["schema"], id)
 	_, _, sienaPortfolio, _ := fetchSienaPortfolioData(db, tsql)
@@ -259,7 +258,7 @@ func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 
 // getSienaPortfolioList read all employees
 func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

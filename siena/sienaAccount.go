@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -101,9 +100,9 @@ type sienaAccountItem struct {
 	CCYDp                  string
 }
 
-func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccount"
 
 	inUTL := r.URL.Path
@@ -127,14 +126,14 @@ func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:          globals.UserNavi,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
-func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaAccount"
 
 	inUTL := r.URL.Path
@@ -143,7 +142,7 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaAccountItem
-	searchID := support.GetURLparam(r, "SienaAccountID")
+	searchID := application.GetURLparam(r, "SienaAccountID")
 	_, returnRecord, _ := getSienaAccount(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -187,14 +186,14 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                 "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
-func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaAccount"
 
 	inUTL := r.URL.Path
@@ -203,7 +202,7 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaAccountItem
-	searchID := support.GetURLparam(r, "SienaAccount")
+	searchID := application.GetURLparam(r, "SienaAccount")
 	_, returnRecord, _ := getSienaAccount(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -257,14 +256,14 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaAccountList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
-func saveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	//sienaProperties := support.GetProperties(cSIENACONFIG)
+	//sienaProperties := application.GetProperties(cSIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -273,13 +272,13 @@ func saveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	//	var item sienaAccountItem
 
-	listSienaAccountHandler(w, r)
+	ListSienaAccountHandler(w, r)
 
 }
 
-func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaAccount"
 
 	inUTL := r.URL.Path
@@ -303,14 +302,14 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 // getSienaAccountList read all employees
 func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, mssqlConfig["schema"])
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
 	return count, sienaAccountList, nil
@@ -318,7 +317,7 @@ func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
 
 // getSienaAccountListByCounterParty read all employees
 func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre string) (int, []sienaAccountItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
 	return count, sienaAccountList, nil
@@ -326,7 +325,7 @@ func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre strin
 
 // getSienaAccount read all employees
 func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, mssqlConfig["schema"], id)
 	_, _, sienaAccount, _ := fetchSienaAccountData(db, tsql)
 	return 1, sienaAccount, nil
@@ -334,7 +333,7 @@ func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
 
 // getSienaAccountList read all employees
 func putSienaAccount(db *sql.DB, updateItem sienaAccountItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -367,18 +366,18 @@ func fetchSienaAccountData(db *sql.DB, tsql string) (int, []sienaAccountItem, si
 		sienaAccount.CustomerSienaView = sqlACCTCustomerSienaView.String
 		sienaAccount.SienaCommonRef = sqlACCTSienaCommonRef.String
 		sienaAccount.Status = sqlACCTStatus.String
-		sienaAccount.StartDate = support.SqlDateToHTMLDate(sqlACCTStartDate.String)
-		sienaAccount.MaturityDate = support.SqlDateToHTMLDate(sqlACCTMaturityDate.String)
+		sienaAccount.StartDate = application.SqlDateToHTMLDate(sqlACCTStartDate.String)
+		sienaAccount.MaturityDate = application.SqlDateToHTMLDate(sqlACCTMaturityDate.String)
 		sienaAccount.ContractNumber = sqlACCTContractNumber.String
 		sienaAccount.ExternalReference = sqlACCTExternalReference.String
 		sienaAccount.CCY = sqlACCTCCY.String
 		sienaAccount.Book = sqlACCTBook.String
 		sienaAccount.MandatedUser = sqlACCTMandatedUser.String
 		sienaAccount.BackOfficeNotes = sqlACCTBackOfficeNotes.String
-		sienaAccount.CashBalance = support.FormatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.CashBalance = application.FormatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
 		sienaAccount.AccountNumber = sqlACCTAccountNumber.String
 		sienaAccount.AccountName = sqlACCTAccountName.String
-		sienaAccount.LedgerBalance = support.FormatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.LedgerBalance = application.FormatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
 		sienaAccount.Portfolio = sqlACCTPortfolio.String
 		sienaAccount.AgreementId = sqlACCTAgreementId.String
 		sienaAccount.BackOfficeRefNo = sqlACCTBackOfficeRefNo.String

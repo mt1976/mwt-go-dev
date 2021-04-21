@@ -7,7 +7,6 @@ import (
 	"os"
 	"time"
 
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -27,7 +26,7 @@ type sienaHomePage struct {
 	SQLSchema       string
 	UserName        string
 	UserKnowAs      string
-	SienaDate       string
+	SienaDate       globals.DateItem
 	AppServerDate   string
 	AppServerName   string
 }
@@ -37,9 +36,9 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
-	wctProperties := support.GetProperties(support.APPCONFIG)
-	sqlProperties := support.GetProperties(support.SQLCONFIG)
-	sienaProperties := support.GetProperties(support.SIENACONFIG)
+	wctProperties := GetProperties(globals.APPCONFIG)
+	sqlProperties := GetProperties(globals.SQLCONFIG)
+	sienaProperties := GetProperties(globals.SIENACONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -66,9 +65,9 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		AppServerName:   tmpHostname,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
 
-	log.Println(support.GetTemplateID(tmpl, globals.UserRole), tmpl, t, globals.UserRole, globals.UserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
+	log.Println(GetTemplateID(tmpl, globals.UserRole), tmpl, t, globals.UserRole, globals.UserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
 	log.Println("about to execute")
 	t.Execute(w, homePage)
 

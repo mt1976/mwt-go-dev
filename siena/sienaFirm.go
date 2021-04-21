@@ -11,7 +11,6 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -59,9 +58,9 @@ type sienaFirmItem struct {
 	Action      string
 }
 
-func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaFirm"
 
 	inUTL := r.URL.Path
@@ -85,14 +84,14 @@ func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		SienaFirmList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
-func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaFirm"
 
 	inUTL := r.URL.Path
@@ -101,7 +100,7 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaFirmItem
-	searchID := support.GetURLparam(r, "SienaFirm")
+	searchID := application.GetURLparam(r, "SienaFirm")
 	_, returnRecord, _ := getSienaFirm(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -123,14 +122,14 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
-func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaFirm"
 
 	inUTL := r.URL.Path
@@ -139,7 +138,7 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaFirmItem
-	searchID := support.GetURLparam(r, "SienaFirm")
+	searchID := application.GetURLparam(r, "SienaFirm")
 	_, returnRecord, _ := getSienaFirm(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -170,14 +169,14 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaFirmList)
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
-func saveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := support.GetProperties(globals.SIENACONFIG)
+	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -263,13 +262,13 @@ func saveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	listSienaFirmHandler(w, r)
+	ListSienaFirmHandler(w, r)
 
 }
 
-func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaFirm"
 
 	inUTL := r.URL.Path
@@ -298,14 +297,14 @@ func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		SectorList:  sectorList,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
 // getSienaFirmList read all employees
 func getSienaFirmList(db *sql.DB) (int, []sienaFirmItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, mssqlConfig["schema"])
 	count, sienaFirmList, _, _ := fetchSienaFirmData(db, tsql)
 
@@ -314,7 +313,7 @@ func getSienaFirmList(db *sql.DB) (int, []sienaFirmItem, error) {
 
 // getSienaFirmList read all employees
 func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, mssqlConfig["schema"], id)
 
 	_, _, sienaFirm, _ := fetchSienaFirmData(db, tsql)
@@ -324,7 +323,7 @@ func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
 
 // getSienaFirmList read all employees
 func putSienaFirm(db *sql.DB, updateItem sienaFirmItem) error {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

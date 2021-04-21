@@ -8,7 +8,6 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -57,9 +56,9 @@ type sienaAccountLadderItem struct {
 	AmountDP       string
 }
 
-func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
+func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(globals.APPCONFIG)
+	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccountLadder"
 
 	inUTL := r.URL.Path
@@ -68,8 +67,8 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountLadderItem
-	accountID := support.GetURLparam(r, "SienaAccountID")
-	accountCCY := support.GetURLparam(r, "CCY")
+	accountID := application.GetURLparam(r, "SienaAccountID")
+	accountCCY := application.GetURLparam(r, "CCY")
 	noItems, returnList, _ := getSienaAccountLadderList(thisConnection, accountID, accountCCY)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
@@ -88,14 +87,14 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		Name:                    account.AccountName,
 	}
 
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageSienaAccountLadderList)
 
 }
 
 // getSienaAccountLadderList read all employees
 func getSienaAccountLadderList(db *sql.DB, idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
-	mssqlConfig := support.GetProperties(globals.SQLCONFIG)
+	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, mssqlConfig["schema"], idRef)
 	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(db, tsql)
 	return count, sienaAccountLadderList, nil
@@ -124,10 +123,10 @@ func fetchSienaAccountLadderData(db *sql.DB, tsql string) (int, []sienaAccountLa
 		}
 
 		sienaAccountLadder.SienaReference = sqlACCLSienaReference.String
-		sienaAccountLadder.BusinessDate = support.SqlDateToHTMLDate(sqlACCLBusinessDate.String)
+		sienaAccountLadder.BusinessDate = application.SqlDateToHTMLDate(sqlACCLBusinessDate.String)
 		sienaAccountLadder.ContractNumber = sqlACCLContractNumber.String
 		sienaAccountLadder.DealtCcy = sqlACCLDealtCcy.String
-		sienaAccountLadder.Balance = support.FormatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
+		sienaAccountLadder.Balance = application.FormatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
 		sienaAccountLadder.AmountDP = sqlACCLAmountDP.String
 		sienaAccountLadderList = append(sienaAccountLadderList, sienaAccountLadder)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

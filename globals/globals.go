@@ -1,6 +1,9 @@
 package globals
 
-import "database/sql"
+import (
+	"database/sql"
+	"time"
+)
 
 var SessionToken = ""
 var UUID = "authorAdjust"
@@ -10,7 +13,7 @@ var UserRole = "/default"
 var UserName = ""
 var UserKnowAs = ""
 var UserNavi = ""
-var SienaSystemDate = ""
+var SienaSystemDate DateItem
 
 const (
 	DATEFORMATPICK  = "20060102T150405"
@@ -22,3 +25,12 @@ const (
 	SQLCONFIG       = "mssql.cfg"
 	SIENACONFIG     = "siena.cfg"
 )
+
+//SienaBusinessDateItem is cheese
+type DateItem struct {
+	Today     string
+	Internal  time.Time
+	Siena     string
+	YYYYMMDD  string
+	PICKEpoch string
+}

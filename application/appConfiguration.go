@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strings"
 
-	support "github.com/mt1976/mwt-go-dev/appsupport"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -37,9 +36,9 @@ type AppConfigurationPage struct {
 
 func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := support.GetProperties(support.APPCONFIG)
-	sienaProperties := support.GetProperties(support.SIENACONFIG)
-	sqlServerProperties := support.GetProperties(support.SQLCONFIG)
+	wctProperties := GetProperties(globals.APPCONFIG)
+	sienaProperties := GetProperties(globals.SIENACONFIG)
+	sqlServerProperties := GetProperties(globals.SQLCONFIG)
 
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path
@@ -76,8 +75,8 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageAppConfigView)
 
-	//thisTemplate:= support.GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
 	t.Execute(w, pageAppConfigView)
 
 }
