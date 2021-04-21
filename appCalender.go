@@ -48,7 +48,7 @@ type calenderItem struct {
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := app.getProperties(APPCONFIG)
 	tmpl := "listcalender"
 
 	inUTL := r.URL.Path

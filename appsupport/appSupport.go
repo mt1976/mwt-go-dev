@@ -43,7 +43,8 @@ func Min(x, y int) int {
 	return x
 }
 
-func getURLparam(r *http.Request, paramID string) string {
+// Comment
+func GetURLparam(r *http.Request, paramID string) string {
 	//fmt.Println(paramID)
 	//fmt.Println(r.URL)
 	key := r.FormValue(paramID)
@@ -51,13 +52,15 @@ func getURLparam(r *http.Request, paramID string) string {
 	return key
 }
 
-func doSnooze(inPollingInterval string) {
+//Comment
+func DoSnooze(inPollingInterval string) {
 	pollingInterval, _ := strconv.Atoi(inPollingInterval)
 	log.Println("Snoooze... Zzzzzz.... ", pollingInterval)
 	time.Sleep(time.Duration(pollingInterval) * time.Second)
 }
 
-func arrToString(strArray []string) string {
+//Comment
+func ArrToString(strArray []string) string {
 	return strings.Join(strArray, "\n")
 }
 
@@ -80,43 +83,47 @@ func RemoveContents(dir string) error {
 	return err
 }
 
-func getTemplateID(tmpl string, userRole string) string {
+//Com
+func GetTemplateID(tmpl string, userRole string) string {
 	templateName := "html/" + tmpl + ".html"
 	roleTemplate := "html" + userRole + "/" + tmpl + ".html"
-	//log.Println("Testing", roleTemplate, fileExists(roleTemplate))
-	//log.Println("Testing", templateName, fileExists(templateName))
-	if fileExists(roleTemplate) {
+	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
+	//log.Println("Testing", templateName, FileExists(templateName))
+	if FileExists(roleTemplate) {
 		//	templateName = roleTemplate
 	}
 	log.Println("Using Template :", templateName)
 	return templateName
 }
 
-func getMenuID(tmpl string, userRole string) string {
+//Coment
+func GetMenuID(tmpl string, userRole string) string {
 	templateName := "config/menu/" + tmpl + ".json"
 	roleTemplate := "config/menu" + userRole + "/" + tmpl + ".json"
-	//log.Println("Testing", roleTemplate, fileExists(roleTemplate))
-	//log.Println("Testing", templateName, fileExists(templateName))
-	if fileExists(roleTemplate) {
+	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
+	//log.Println("Testing", templateName, FileExists(templateName))
+	if FileExists(roleTemplate) {
 		templateName = roleTemplate
 	}
 	log.Println("Using Menu :", templateName)
 	return templateName
 }
 
-func getNavigationID(inUserRole string) string {
+//comment
+func GetNavigationID(inUserRole string) string {
 	templateName := "../assets/navigation.html"
 	roleTemplate := "../assets" + inUserRole + "_navigation.html"
-	log.Println("Testing", templateName, fileExists(templateName))
-	log.Println("Testing", roleTemplate, fileExists(roleTemplate))
-	if fileExists(roleTemplate) {
+	log.Println("Testing", templateName, FileExists(templateName))
+	log.Println("Testing", roleTemplate, FileExists(roleTemplate))
+	if FileExists(roleTemplate) {
 		//templateName = roleTemplate
 	}
 	log.Println("NAVIGATION", templateName)
 	return templateName
 }
 
-func fileExists(filename string) bool {
+//comment
+func FileExists(filename string) bool {
 	info, err := os.Stat(filename)
 	if os.IsNotExist(err) {
 		return false
@@ -124,7 +131,8 @@ func fileExists(filename string) bool {
 	return !info.IsDir()
 }
 
-func pickEpochToDateTimeString(pickEpoch string) string {
+//comment
+func PickEpochToDateTimeString(pickEpoch string) string {
 	//pickEpochLayout := "20060102T150405"
 	t, err := time.Parse(DATEFORMATPICK, pickEpoch)
 	if err != nil {
@@ -134,12 +142,14 @@ func pickEpochToDateTimeString(pickEpoch string) string {
 	return tString
 }
 
-func strArrayToString(inArray []string) string {
+//comment
+func StrArrayToString(inArray []string) string {
 
-	return strArrayToStringWithSep(inArray, "\n")
+	return StrArrayToStringWithSep(inArray, "\n")
 }
 
-func strArrayToStringWithSep(inArray []string, inSep string) string {
+//comment
+func StrArrayToStringWithSep(inArray []string, inSep string) string {
 
 	outString := ""
 	noRows := len(inArray)
@@ -149,12 +159,14 @@ func strArrayToStringWithSep(inArray []string, inSep string) string {
 	return outString
 }
 
-func qmBundleAdd(inBundle []string, name string, value string) []string {
+//comment
+func QmBundleAdd(inBundle []string, name string, value string) []string {
 	return append(inBundle, name+"¡"+value)
 }
 
-func qmBundleToString(inBundle []string) string {
-	return strArrayToStringWithSep(inBundle, ";")
+//comment
+func QmBundleToString(inBundle []string) string {
+	return StrArrayToStringWithSep(inBundle, ";")
 }
 
 //ipRange - a structure that holds the start and end of a range of ip addresses
@@ -214,7 +226,8 @@ func isPrivateSubnet(ipAddress net.IP) bool {
 	return false
 }
 
-func getIPAdress(r *http.Request) string {
+//comment
+func GetIPAdress(r *http.Request) string {
 	var ipAddress string
 	for _, h := range []string{"X-Forwarded-For", "X-Real-Ip"} {
 		for _, ip := range strings.Split(r.Header.Get(h), ",") {
@@ -254,7 +267,8 @@ func getLocalIP() string {
 	return localAddr.String()
 }
 
-func sqlDateToHTMLDate(inDate string) (outDate string) {
+//comment
+func SQLDateToHTMLDate(inDate string) (outDate string) {
 	var rtnDate string
 	if inDate != "" {
 		rtnDate = inDate[0:10]
@@ -262,13 +276,15 @@ func sqlDateToHTMLDate(inDate string) (outDate string) {
 	return rtnDate
 }
 
-func formatCurrency(inAmount string, inCCY string) string {
+//comment
+func FormatCurrency(inAmount string, inCCY string) string {
 	ac := accounting.Accounting{Symbol: inCCY, Precision: 2, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 ;\u2013"}
 	bum, _ := strconv.ParseFloat(inAmount, 64)
 	return ac.FormatMoney(bum)
 }
 
-func formatCurrencyFull(inAmount string, inCCY string) string {
+//comment
+func FormatCurrencyFull(inAmount string, inCCY string) string {
 	//thisConnection, _ := sienaConnect()
 	//_, ccyData, _ := getSienaCurrency(thisConnection, inCCY)
 	prec, _ := strconv.Atoi("7")
@@ -277,7 +293,8 @@ func formatCurrencyFull(inAmount string, inCCY string) string {
 	return ac.FormatMoney(bum)
 }
 
-func formatCurrencyDps(inAmount string, inCCY string, inPrec string) string {
+//comment
+func FormatCurrencyDps(inAmount string, inCCY string, inPrec string) string {
 	prec, _ := strconv.Atoi(inPrec)
 	ac := accounting.Accounting{Symbol: inCCY, Precision: prec, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 \u2013"}
 	bum, _ := strconv.ParseFloat(inAmount, 64)

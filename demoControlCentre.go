@@ -12,6 +12,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/mbndr/figlet4go"
+	support "github.com/mt1976/mwt-go-play/appsupport"
 )
 
 //CONST_CONFIG_FILE is cheese
@@ -40,7 +41,7 @@ func main() {
 
 	ascii := figlet4go.NewAsciiRender()
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 
 	// The underscore would be an error
 	renderStr, _ := ascii.Render(wctProperties["appname"])
