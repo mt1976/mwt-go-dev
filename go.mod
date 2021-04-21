@@ -1,4 +1,4 @@
-module demoControlCentre
+module github.com/mt1976/mwt-go-dev
 
 go 1.15
 
