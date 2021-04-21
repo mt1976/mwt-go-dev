@@ -301,4 +301,3 @@ func FormatCurrencyDps(inAmount string, inCCY string, inPrec string) string {
 	bum, _ := strconv.ParseFloat(inAmount, 64)
 	return ac.FormatMoney(bum)
 }
-

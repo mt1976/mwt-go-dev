@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	tools "github.com/mt1976/mwt-go-dev/tools"
+	tools "github.com/mt1976/mwtgostringtools"
 	cron "github.com/robfig/cron/v3"
 )
 
