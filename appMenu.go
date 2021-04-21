@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //AppMenuItem is cheese
@@ -30,7 +32,7 @@ func getappMenuData(inRole string) []AppMenuItem {
 // fetchappMenuData read all employees
 func fetchappMenuData(inRole string) (int, AppMenuList) {
 
-	file, _ := ioutil.ReadFile(getMenuID("menu"))
+	file, _ := ioutil.ReadFile(support.GetMenuID("menu", gUserRole))
 
 	data := AppMenuList{}
 

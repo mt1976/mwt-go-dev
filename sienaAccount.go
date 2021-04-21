@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaAccountSQL = "SienaReference, 	CustomerSienaView, 	SienaCommonRef, 	Status, 	StartDate, 	MaturityDate, 	ContractNumber, 	ExternalReference, 	CCY, 	Book, 	MandatedUser, 	BackOfficeNotes, 	CashBalance, 	AccountNumber, 	AccountName, 	LedgerBalance, 	Portfolio, 	AgreementId, 	BackOfficeRefNo, 	PaymentSystemSienaView, 	ISIN, 	UTI, 	CCYName, 	BookName, 	PortfolioName, 	Centre, 	Firm, 	CCYDp"
@@ -99,7 +101,7 @@ type sienaAccountItem struct {
 
 func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaAccount"
 
 	inUTL := r.URL.Path
@@ -123,14 +125,14 @@ func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:          gUserNavi,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSienaAccount"
 
 	inUTL := r.URL.Path
@@ -139,7 +141,7 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaAccountItem
-	searchID := getURLparam(r, "SienaAccountID")
+	searchID := support.GetURLparam(r, "SienaAccountID")
 	_, returnRecord, _ := getSienaAccount(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -183,14 +185,14 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                 "",
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSienaAccount"
 
 	inUTL := r.URL.Path
@@ -199,7 +201,7 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaAccountItem
-	searchID := getURLparam(r, "SienaAccount")
+	searchID := support.GetURLparam(r, "SienaAccount")
 	_, returnRecord, _ := getSienaAccount(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -253,14 +255,14 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaAccountList)
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 func saveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	//sienaProperties := getProperties(cSIENACONFIG)
+	//sienaProperties := support.GetProperties(cSIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -275,7 +277,7 @@ func saveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "newSienaAccount"
 
 	inUTL := r.URL.Path
@@ -299,14 +301,14 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 // getSienaAccountList read all employees
 func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, mssqlConfig["schema"])
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
 	return count, sienaAccountList, nil
@@ -314,7 +316,7 @@ func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
 
 // getSienaAccountListByCounterParty read all employees
 func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre string) (int, []sienaAccountItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, mssqlConfig["schema"], idFirm, idCentre)
 	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
 	return count, sienaAccountList, nil
@@ -322,7 +324,7 @@ func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre strin
 
 // getSienaAccount read all employees
 func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, mssqlConfig["schema"], id)
 	_, _, sienaAccount, _ := fetchSienaAccountData(db, tsql)
 	return 1, sienaAccount, nil
@@ -330,7 +332,7 @@ func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
 
 // getSienaAccountList read all employees
 func putSienaAccount(db *sql.DB, updateItem sienaAccountItem) error {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -363,18 +365,18 @@ func fetchSienaAccountData(db *sql.DB, tsql string) (int, []sienaAccountItem, si
 		sienaAccount.CustomerSienaView = sqlACCTCustomerSienaView.String
 		sienaAccount.SienaCommonRef = sqlACCTSienaCommonRef.String
 		sienaAccount.Status = sqlACCTStatus.String
-		sienaAccount.StartDate = sqlDateToHTMLDate(sqlACCTStartDate.String)
-		sienaAccount.MaturityDate = sqlDateToHTMLDate(sqlACCTMaturityDate.String)
+		sienaAccount.StartDate = support.SqlDateToHTMLDate(sqlACCTStartDate.String)
+		sienaAccount.MaturityDate = support.SqlDateToHTMLDate(sqlACCTMaturityDate.String)
 		sienaAccount.ContractNumber = sqlACCTContractNumber.String
 		sienaAccount.ExternalReference = sqlACCTExternalReference.String
 		sienaAccount.CCY = sqlACCTCCY.String
 		sienaAccount.Book = sqlACCTBook.String
 		sienaAccount.MandatedUser = sqlACCTMandatedUser.String
 		sienaAccount.BackOfficeNotes = sqlACCTBackOfficeNotes.String
-		sienaAccount.CashBalance = formatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.CashBalance = support.FormatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
 		sienaAccount.AccountNumber = sqlACCTAccountNumber.String
 		sienaAccount.AccountName = sqlACCTAccountName.String
-		sienaAccount.LedgerBalance = formatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.LedgerBalance = support.FormatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
 		sienaAccount.Portfolio = sqlACCTPortfolio.String
 		sienaAccount.AgreementId = sqlACCTAgreementId.String
 		sienaAccount.BackOfficeRefNo = sqlACCTBackOfficeRefNo.String

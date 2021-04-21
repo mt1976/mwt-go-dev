@@ -10,6 +10,7 @@ import (
 	"os"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaSectorSQL = "Code, 	Name"
@@ -47,7 +48,7 @@ type sienaSectorItem struct {
 
 func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaSector"
 
 	inUTL := r.URL.Path
@@ -71,14 +72,14 @@ func listSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		SienaSectorList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSienaSector"
 
 	inUTL := r.URL.Path
@@ -87,7 +88,7 @@ func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaSectorItem
-	searchID := getURLparam(r, "sienaSector")
+	searchID := support.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
@@ -104,14 +105,14 @@ func viewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSienaSector"
 
 	inUTL := r.URL.Path
@@ -120,7 +121,7 @@ func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaSectorItem
-	searchID := getURLparam(r, "sienaSector")
+	searchID := support.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
@@ -137,14 +138,14 @@ func editSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(SIENACONFIG)
+	sienaProperties := support.GetProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -232,7 +233,7 @@ func saveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "newSienaSector"
 
 	inUTL := r.URL.Path
@@ -250,14 +251,14 @@ func newSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 // getSienaSectorList read all employees
 func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector;", sienaSectorSQL, mssqlConfig["schema"])
 	count, sienaSectorList, _, _ := fetchSienaSectorData(db, tsql)
 	return count, sienaSectorList, nil
@@ -265,7 +266,7 @@ func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
 
 // getSienaSectorList read all employees
 func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector WHERE Code='%s';", sienaSectorSQL, mssqlConfig["schema"], id)
 	_, _, sienaSector, _ := fetchSienaSectorData(db, tsql)
 	return 1, sienaSector, nil
@@ -273,7 +274,7 @@ func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
 
 // getSienaSectorList read all employees
 func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

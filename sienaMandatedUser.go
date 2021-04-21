@@ -6,6 +6,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaMandatedUserSQL = "MandatedUserKeyCounterpartyFirm, 	MandatedUserKeyCounterpartyCentre, 	MandatedUserKeyUserName, 	TelephoneNumber, 	EmailAddress, 	Active, 	FirstName, 	Surname, 	DateOfBirth, 	Postcode, 	NationalIDNo, 	PassportNo, 	Country, 	CountryName, 	FirmName, 	CentreName, 	Notify, 	SystemUser"
@@ -87,7 +89,7 @@ type sienaMandatedUserItem struct {
 
 func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaMandatedUser"
 
 	inUTL := r.URL.Path
@@ -111,14 +113,14 @@ func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		SienaMandatedUserList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
 
 func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSienaMandatedUser"
 
 	inUTL := r.URL.Path
@@ -127,9 +129,9 @@ func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaMandatedUserItem
-	suID := getURLparam(r, "SU")
-	sfID := getURLparam(r, "SF")
-	scID := getURLparam(r, "SC")
+	suID := support.GetURLparam(r, "SU")
+	sfID := support.GetURLparam(r, "SF")
+	scID := support.GetURLparam(r, "SC")
 	noItems, returnRecord, _ := getSienaMandatedUser(thisConnection, suID, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	fmt.Println(returnList)
@@ -164,14 +166,14 @@ func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          returnRecord.CBNotify,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
 
 func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSienaMandatedUser"
 
 	inUTL := r.URL.Path
@@ -179,9 +181,9 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	suID := getURLparam(r, "SU")
-	sfID := getURLparam(r, "SF")
-	scID := getURLparam(r, "SC")
+	suID := support.GetURLparam(r, "SU")
+	sfID := support.GetURLparam(r, "SF")
+	scID := support.GetURLparam(r, "SC")
 	noItems, returnRecord, _ := getSienaMandatedUser(thisConnection, suID, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	//	fmt.Println(returnList)
@@ -226,7 +228,7 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(pageSienaMandatedUserList)
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
@@ -358,7 +360,7 @@ func saveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "newSienaMandatedUser"
 
 	inUTL := r.URL.Path
@@ -406,14 +408,14 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          "",
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
 
 // getSienaMandatedUserList read all employees
 func getSienaMandatedUserList(db *sql.DB) (int, []sienaMandatedUserItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser;", sienaMandatedUserSQL, mssqlConfig["schema"])
 	count, sienaMandatedUserList, _, _ := fetchSienaMandatedUserData(db, tsql)
 	return count, sienaMandatedUserList, nil
@@ -421,7 +423,7 @@ func getSienaMandatedUserList(db *sql.DB) (int, []sienaMandatedUserItem, error) 
 
 // getSienaMandatedUserList read all employees
 func getSienaMandatedUserListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaMandatedUserItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser WHERE MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", sienaMandatedUserSQL, mssqlConfig["schema"], idFirm, idCentre)
 	//	fmt.Println("MS SQL:", tsql)
 	count, sienaMandatedUserList, _, _ := fetchSienaMandatedUserData(db, tsql)
@@ -430,7 +432,7 @@ func getSienaMandatedUserListByCounterparty(db *sql.DB, idFirm string, idCentre 
 
 // getSienaMandatedUserList read all employees
 func getSienaMandatedUser(db *sql.DB, suid string, sfid string, scid string) (int, sienaMandatedUserItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser WHERE MandatedUserKeyUserName='%s' AND MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", sienaMandatedUserSQL, mssqlConfig["schema"], suid, sfid, scid)
 	_, _, sienaMandatedUser, _ := fetchSienaMandatedUserData(db, tsql)
 	return 1, sienaMandatedUser, nil
@@ -438,7 +440,7 @@ func getSienaMandatedUser(db *sql.DB, suid string, sfid string, scid string) (in
 
 // getSienaMandatedUserList read all employees
 func putSienaMandatedUser(db *sql.DB, updateItem sienaMandatedUserItem) error {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -475,7 +477,7 @@ func fetchSienaMandatedUserData(db *sql.DB, tsql string) (int, []sienaMandatedUs
 		sienaMandatedUser.Active = sienaYN(sqlMDUActive.String)
 		sienaMandatedUser.FirstName = sqlMDUFirstName.String
 		sienaMandatedUser.Surname = sqlMDUSurname.String
-		sienaMandatedUser.DateOfBirth = sqlDateToHTMLDate(sqlMDUDateOfBirth.String)
+		sienaMandatedUser.DateOfBirth = support.SqlDateToHTMLDate(sqlMDUDateOfBirth.String)
 		sienaMandatedUser.Postcode = sqlMDUPostcode.String
 		sienaMandatedUser.NationalIDNo = sqlMDUNationalIDNo.String
 		sienaMandatedUser.PassportNo = sqlMDUPassportNo.String

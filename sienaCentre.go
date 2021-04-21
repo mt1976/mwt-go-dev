@@ -11,6 +11,7 @@ import (
 	"os"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaCentreSQL = "Code, 	Name, 	Country, 	CountryName"
@@ -54,7 +55,7 @@ type sienaCentreItem struct {
 
 func listSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaCentre"
 
 	inUTL := r.URL.Path
@@ -78,14 +79,14 @@ func listSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:         gUserNavi,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSienaCentre"
 
 	inUTL := r.URL.Path
@@ -94,7 +95,7 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
-	searchID := getURLparam(r, "SienaCentre")
+	searchID := support.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCentre(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -114,14 +115,14 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:    gUserNavi,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSienaCentre"
 
 	inUTL := r.URL.Path
@@ -130,7 +131,7 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
-	searchID := getURLparam(r, "SienaCentre")
+	searchID := support.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCentre(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -157,14 +158,14 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaCentreList)
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 func saveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(SIENACONFIG)
+	sienaProperties := support.GetProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -242,7 +243,7 @@ func saveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "newSienaCentre"
 
 	inUTL := r.URL.Path
@@ -268,14 +269,14 @@ func newSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 // getSienaCentreList read all employees
 func getSienaCentreList(db *sql.DB) (int, []sienaCentreItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre;", sienaCentreSQL, mssqlConfig["schema"])
 	count, sienaCentreList, _, _ := fetchSienaCentreData(db, tsql)
 	return count, sienaCentreList, nil
@@ -283,7 +284,7 @@ func getSienaCentreList(db *sql.DB) (int, []sienaCentreItem, error) {
 
 // getSienaCentreList read all employees
 func getSienaCentre(db *sql.DB, id string) (int, sienaCentreItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre WHERE Code='%s';", sienaCentreSQL, mssqlConfig["schema"], id)
 	_, _, sienaCentre, _ := fetchSienaCentreData(db, tsql)
 	return 1, sienaCentre, nil
@@ -291,7 +292,7 @@ func getSienaCentre(db *sql.DB, id string) (int, sienaCentreItem, error) {
 
 // getSienaCentreList read all employees
 func putSienaCentre(db *sql.DB, updateItem sienaCentreItem) error {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)

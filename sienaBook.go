@@ -11,6 +11,7 @@ import (
 	"os"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaBookSQL = "BookName, 	FullName"
@@ -49,7 +50,7 @@ type sienaBookItem struct {
 
 func listSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaBook"
 
 	inUTL := r.URL.Path
@@ -73,14 +74,14 @@ func listSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:       gUserNavi,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSienaBook"
 
 	inUTL := r.URL.Path
@@ -89,7 +90,7 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBookItem
-	searchID := getURLparam(r, "SienaBook")
+	searchID := support.GetURLparam(r, "SienaBook")
 	_, returnRecord, _ := getSienaBook(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -107,14 +108,14 @@ func viewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:  gUserNavi,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSienaBook"
 
 	inUTL := r.URL.Path
@@ -123,7 +124,7 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBookItem
-	searchID := getURLparam(r, "SienaBook")
+	searchID := support.GetURLparam(r, "SienaBook")
 	_, returnRecord, _ := getSienaBook(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -144,14 +145,14 @@ func editSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaBookList)
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 func saveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	sienaProperties := getProperties(SIENACONFIG)
+	sienaProperties := support.GetProperties(SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -224,7 +225,7 @@ func saveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "newSienaBook"
 
 	inUTL := r.URL.Path
@@ -243,14 +244,14 @@ func newSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "NEW",
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 // getSienaBookList read all employees
 func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, mssqlConfig["schema"])
 	count, sienaBookList, _, _ := fetchSienaBookData(db, tsql)
 	return count, sienaBookList, nil
@@ -258,7 +259,7 @@ func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
 
 // getSienaBookList read all employees
 func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, mssqlConfig["schema"], id)
 	_, _, sienaBook, _ := fetchSienaBookData(db, tsql)
 	return 1, sienaBook, nil
@@ -266,7 +267,7 @@ func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
 
 // getSienaBookList read all employees
 func putSienaBook(db *sql.DB, updateItem sienaBookItem) error {
-	//mssqlConfig := getProperties(cSQL_CONFIG)
+	//mssqlConfig := support.GetProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	//fmt.Println(mssqlConfig["schema"])
 	//fmt.Println(updateItem)

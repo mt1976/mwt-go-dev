@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaBusinessDateSQL = "Today"
@@ -96,7 +97,7 @@ func isChecked(inValue string) string {
 
 func sienaConnect() (*sql.DB, error) {
 	// Connect to SQL Server DB
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 
 	server := mssqlConfig["server"]
 	user := mssqlConfig["user"]
@@ -137,7 +138,7 @@ func sienaConnect() (*sql.DB, error) {
 
 // getSienaBusinessDate read all employees
 func getSienaBusinessDate(db *sql.DB) (int, sienaBusinessDateItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, mssqlConfig["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
@@ -181,7 +182,7 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []sienaBusinessDa
 
 func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 
-	sienaProperties := getProperties(SIENACONFIG)
+	sienaProperties := support.GetProperties(SIENACONFIG)
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))

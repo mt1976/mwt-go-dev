@@ -12,7 +12,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/mbndr/figlet4go"
-	support "github.com/mt1976/mwt-go-play/appsupport"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //CONST_CONFIG_FILE is cheese
@@ -232,7 +232,7 @@ func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -256,7 +256,7 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -264,20 +264,20 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := RemoveContents(wctProperties["deliverpath"])
+	err1 := support.RemoveContents(wctProperties["deliverpath"])
 	if err1 != nil {
 		fmt.Println(err1)
 	}
 
 	//fmt.Println("recPath", wctProperties["receivepath"])
 
-	err2 := RemoveContents(wctProperties["receivepath"])
+	err2 := support.RemoveContents(wctProperties["receivepath"])
 	if err2 != nil {
 		fmt.Println(err2)
 	}
 	//fmt.Println("procPath", wctProperties["processedpath"])
 
-	err3 := RemoveContents(wctProperties["processedpath"])
+	err3 := support.RemoveContents(wctProperties["processedpath"])
 	if err3 != nil {
 		fmt.Println(err3)
 	}

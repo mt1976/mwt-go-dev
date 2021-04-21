@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 type Page struct {
@@ -47,13 +48,13 @@ type SrvConfigurationItem struct {
 
 func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	recordID := getURLparam(r, "id")
+	recordID := support.GetURLparam(r, "id")
 
 	log.Println("Servicing :", inUTL)
 
@@ -104,15 +105,15 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvConfigView)
 
 }
 
 func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -158,21 +159,21 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvConfigView)
 
 }
 
 func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
-	recordID := getURLparam(r, "id")
+	recordID := support.GetURLparam(r, "id")
 
 	log.Println("Servicing :", inUTL)
 
@@ -207,20 +208,20 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:    "View Server Config",
 		PageRecordID: recordID,
 		FullRecord:   recordContent,
-		Rows:         Min(maxRows, noRows),
+		Rows:         support.Min(maxRows, noRows),
 	}
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvConfigView)
 
 }
 
 func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 

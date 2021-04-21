@@ -6,6 +6,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -127,7 +129,7 @@ type sienaDealListItem struct {
 
 func listSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaDealList"
 
 	inUTL := r.URL.Path
@@ -151,14 +153,14 @@ func listSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		SienaDealListList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaDealListList)
 
 }
 
 func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSienaDealList"
 
 	inUTL := r.URL.Path
@@ -167,7 +169,7 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaDealListItem
-	sienaDealListID := getURLparam(r, "SienaRef")
+	sienaDealListID := support.GetURLparam(r, "SienaRef")
 	noItems, returnRecord, _ := getSienaDealList(thisConnection, sienaDealListID)
 	fmt.Println("NoSienaItems", noItems, sienaDealListID, returnRecord.Status)
 	fmt.Println(returnList)
@@ -224,14 +226,14 @@ func viewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		PartyName:          returnRecord.PartyName,
 	}
 	fmt.Println("PAGE", pageSienaDealListList)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaDealListList)
 
 }
 
 // getSienaDealListList read all employees
 func getSienaDealListList(db *sql.DB) (int, []sienaDealListItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList;", sienaDealListSQL, mssqlConfig["schema"])
 	count, sienaDealListList, _, _ := fetchSienaDealListData(db, tsql)
 
@@ -240,7 +242,7 @@ func getSienaDealListList(db *sql.DB) (int, []sienaDealListItem, error) {
 
 // getSienaDealListList read all employees
 func getSienaDealListListByCounterparty(db *sql.DB, idFirm string, idCentre string) (int, []sienaDealListItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE Firm='%s' AND Centre='%s';", sienaDealListSQL, mssqlConfig["schema"], idFirm, idCentre)
 
@@ -251,7 +253,7 @@ func getSienaDealListListByCounterparty(db *sql.DB, idFirm string, idCentre stri
 
 // getSienaDealListList read all employees
 func getSienaDealList(db *sql.DB, sienaDealListID string) (int, sienaDealListItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE SienaReference='%s';", sienaDealListSQL, mssqlConfig["schema"], sienaDealListID)
 	_, _, sienaDealList, _ := fetchSienaDealListData(db, tsql)
 	return 1, sienaDealList, nil
@@ -259,7 +261,7 @@ func getSienaDealList(db *sql.DB, sienaDealListID string) (int, sienaDealListIte
 
 // getSienaDealListList read all employees
 func putSienaDealList(db *sql.DB, updateItem sienaDealListItem) error {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(mssqlConfig["schema"])
 	fmt.Println(updateItem)
@@ -291,8 +293,8 @@ func fetchSienaDealListData(db *sql.DB, tsql string) (int, []sienaDealListItem, 
 		sienaDealList.SienaReference = sqlDLSTSienaReference.String
 		sienaDealList.CustomerSienaView = sqlDLSTCustomerSienaView.String
 		sienaDealList.Status = sqlDLSTStatus.String
-		sienaDealList.ValueDate = sqlDateToHTMLDate(sqlDLSTValueDate.String)
-		sienaDealList.MaturityDate = sqlDateToHTMLDate(sqlDLSTMaturityDate.String)
+		sienaDealList.ValueDate = support.SqlDateToHTMLDate(sqlDLSTValueDate.String)
+		sienaDealList.MaturityDate = support.SqlDateToHTMLDate(sqlDLSTMaturityDate.String)
 		sienaDealList.ContractNumber = sqlDLSTContractNumber.String
 		sienaDealList.ExternalReference = sqlDLSTExternalReference.String
 		sienaDealList.Book = sqlDLSTBook.String
@@ -307,11 +309,11 @@ func fetchSienaDealListData(db *sql.DB, tsql string) (int, []sienaDealListItem, 
 		sienaDealList.Firm = sqlDLSTFirm.String
 		sienaDealList.DealTypeShortName = sqlDLSTDealTypeShortName.String
 		sienaDealList.FullDealType = sqlDLSTFullDealType.String
-		sienaDealList.TradeDate = sqlDateToHTMLDate(sqlDLSTTradeDate.String)
+		sienaDealList.TradeDate = support.SqlDateToHTMLDate(sqlDLSTTradeDate.String)
 		sienaDealList.DealtCcy = sqlDLSTDealtCcy.String
-		sienaDealList.DealtAmount = formatCurrency(sqlDLSTDealtAmount.String, sqlDLSTDealtCcy.String)
+		sienaDealList.DealtAmount = support.FormatCurrency(sqlDLSTDealtAmount.String, sqlDLSTDealtCcy.String)
 		sienaDealList.AgainstCcy = sqlDLSTAgainstCcy.String
-		sienaDealList.AgainstAmount = formatCurrency(sqlDLSTAgainstAmount.String, sqlDLSTAgainstCcy.String)
+		sienaDealList.AgainstAmount = support.FormatCurrency(sqlDLSTAgainstAmount.String, sqlDLSTAgainstCcy.String)
 		sienaDealList.AllInRate = sqlDLSTAllInRate.String
 		sienaDealList.MktRate = sqlDLSTMktRate.String
 		sienaDealList.SettleCcy = sqlDLSTSettleCcy.String
@@ -324,7 +326,7 @@ func fetchSienaDealListData(db *sql.DB, tsql string) (int, []sienaDealListItem, 
 		sienaDealList.CCYPair = sqlDLSTCCYPair.String
 		sienaDealList.Instrument = sqlDLSTInstrument.String
 		sienaDealList.PortfolioName = sqlDLSTPortfolioName.String
-		sienaDealList.RVDate = sqlDateToHTMLDate(sqlDLSTRVDate.String)
+		sienaDealList.RVDate = support.SqlDateToHTMLDate(sqlDLSTRVDate.String)
 		sienaDealList.RVMTM = sqlDLSTRVMTM.String
 		sienaDealList.CounterBook = sqlDLSTCounterBook.String
 		sienaDealList.CounterBookName = sqlDLSTCounterBookName.String

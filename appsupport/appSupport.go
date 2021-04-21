@@ -53,7 +53,7 @@ func GetURLparam(r *http.Request, paramID string) string {
 }
 
 //Comment
-func DoSnooze(inPollingInterval string) {
+func Snooze(inPollingInterval string) {
 	pollingInterval, _ := strconv.Atoi(inPollingInterval)
 	log.Println("Snoooze... Zzzzzz.... ", pollingInterval)
 	time.Sleep(time.Duration(pollingInterval) * time.Second)
@@ -247,7 +247,7 @@ Done:
 	return ipAddress
 }
 
-func readUserIP(r *http.Request) string {
+func ReadUserIP(r *http.Request) string {
 	IPAddress := r.Header.Get("X-Real-Ip")
 	if IPAddress == "" {
 		IPAddress = r.Header.Get("X-Forwarded-For")
@@ -258,7 +258,7 @@ func readUserIP(r *http.Request) string {
 	return IPAddress
 }
 
-func getLocalIP() string {
+func GetLocalIP() string {
 	conn, _ := net.Dial("udp", "8.8.8.8:80")
 	//handle err...
 
@@ -268,7 +268,7 @@ func getLocalIP() string {
 }
 
 //comment
-func SQLDateToHTMLDate(inDate string) (outDate string) {
+func SqlDateToHTMLDate(inDate string) (outDate string) {
 	var rtnDate string
 	if inDate != "" {
 		rtnDate = inDate[0:10]

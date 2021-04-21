@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var calenderSQL = "ID, 	Type, 	Date, 	Time, 	ShortName, 	Description"
@@ -48,7 +50,7 @@ type calenderItem struct {
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := app.getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listcalender"
 
 	inUTL := r.URL.Path
@@ -71,14 +73,14 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:      gUserNavi,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pagecalenderList)
 
 }
 
 // getcalenderList read all employees
 func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 
 	var calenderList []calenderItem
 
@@ -101,7 +103,7 @@ func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
 
 // getcalenderList read all employees
 func getcalender(db *sql.DB, id string) (int, calenderItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.calender WHERE Code='%s';", calenderSQL, mssqlConfig["schema"], id)
 	_, _, calender, _ := fetchcalenderData(db, tsql)
 	return 1, calender, nil

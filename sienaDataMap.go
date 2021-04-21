@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //SvcDataMapPage is cheese
@@ -58,7 +59,7 @@ type SvcDataMapItem struct {
 
 func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -108,21 +109,21 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	thisID := getURLparam(r, "dataMapName")
+	thisID := support.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
 	log.Println("Servicing :", inUTL)
@@ -203,21 +204,21 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	thisID := getURLparam(r, "dataMapName")
+	thisID := support.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
 	log.Println("Servicing :", inUTL)
@@ -254,21 +255,21 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSvcDataMapXML"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	thisID := getURLparam(r, "dataMapName")
+	thisID := support.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
 	log.Println("Servicing :", inUTL)
@@ -305,21 +306,21 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "editSvcDataMapXML"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	thisID := getURLparam(r, "dataMapName")
+	thisID := support.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
 	log.Println("Servicing :", inUTL)
@@ -356,8 +357,8 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Page Data", pageEditSvcDataMapXML)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, err := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, err := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	fmt.Println("error", err)
 	t.Execute(w, pageEditSvcDataMapXML)
 
@@ -365,15 +366,15 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
 	requestID := uuid.New()
 	//	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
-	//recordID := getURLparam(r, "pgid")
-	//recordContent := getURLparam(r, "pgContent")
+	//recordID := support.GetURLparam(r, "pgid")
+	//recordContent := support.GetURLparam(r, "pgContent")
 
 	log.Println("Servicing :", inUTL)
 
@@ -403,22 +404,22 @@ func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,gUserRole))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
 	requestID := uuid.New()
 	//	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
-	//recordID := getURLparam(r, "pgid")
-	//recordContent := getURLparam(r, "pgContent")
+	//recordID := support.GetURLparam(r, "pgid")
+	//recordContent := support.GetURLparam(r, "pgContent")
 
 	log.Println("Servicing :", inUTL)
 
@@ -448,14 +449,14 @@ func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,gUserRole))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "newSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -473,22 +474,22 @@ func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("WCT : Page :", pageDM)
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageDM)
 
 }
 
 func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
 	requestID := uuid.New()
 	//	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
-	//recordID := getURLparam(r, "pgid")
-	//recordContent := getURLparam(r, "pgContent")
+	//recordID := support.GetURLparam(r, "pgid")
+	//recordContent := support.GetURLparam(r, "pgContent")
 
 	log.Println("Servicing :", inUTL)
 
@@ -519,18 +520,18 @@ func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//	t, _ := template.ParseFiles(support.GetTemplateID(tmpl,gUserRole))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func deleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
-	id := getURLparam(r, "dataMapName")
+	id := support.GetURLparam(r, "dataMapName")
 	requestMessage := buildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", wctProperties)
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")

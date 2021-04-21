@@ -6,6 +6,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -55,7 +57,7 @@ type sienaAccountLadderItem struct {
 
 func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "listSienaAccountLadder"
 
 	inUTL := r.URL.Path
@@ -64,8 +66,8 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	thisConnection, _ := sienaConnect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountLadderItem
-	accountID := getURLparam(r, "SienaAccountID")
-	accountCCY := getURLparam(r, "CCY")
+	accountID := support.GetURLparam(r, "SienaAccountID")
+	accountCCY := support.GetURLparam(r, "CCY")
 	noItems, returnList, _ := getSienaAccountLadderList(thisConnection, accountID, accountCCY)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
@@ -84,14 +86,14 @@ func listSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		Name:                    account.AccountName,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSienaAccountLadderList)
 
 }
 
 // getSienaAccountLadderList read all employees
 func getSienaAccountLadderList(db *sql.DB, idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, mssqlConfig["schema"], idRef)
 	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(db, tsql)
 	return count, sienaAccountLadderList, nil
@@ -120,10 +122,10 @@ func fetchSienaAccountLadderData(db *sql.DB, tsql string) (int, []sienaAccountLa
 		}
 
 		sienaAccountLadder.SienaReference = sqlACCLSienaReference.String
-		sienaAccountLadder.BusinessDate = sqlDateToHTMLDate(sqlACCLBusinessDate.String)
+		sienaAccountLadder.BusinessDate = support.SqlDateToHTMLDate(sqlACCLBusinessDate.String)
 		sienaAccountLadder.ContractNumber = sqlACCLContractNumber.String
 		sienaAccountLadder.DealtCcy = sqlACCLDealtCcy.String
-		sienaAccountLadder.Balance = formatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
+		sienaAccountLadder.Balance = support.FormatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
 		sienaAccountLadder.AmountDP = sqlACCLAmountDP.String
 		sienaAccountLadderList = append(sienaAccountLadderList, sienaAccountLadder)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

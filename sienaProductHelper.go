@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 var sienaProductHelperSQL = "Code, 	Name"
@@ -19,7 +21,7 @@ type sienaProductHelperItem struct {
 
 // getSienaProductHelperList read all employees
 func getSienaProductHelperList(db *sql.DB) (int, []sienaProductHelperItem, error) {
-	mssqlConfig := getProperties(SQLCONFIG)
+	mssqlConfig := support.GetProperties(SQLCONFIG)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaProductHelper;", sienaProductHelperSQL, mssqlConfig["schema"])
 	count, sienaProductHelperList, _, _ := fetchSienaProductHelperData(db, tsql)
 	return count, sienaProductHelperList, nil

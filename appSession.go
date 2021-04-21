@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //loginPage is cheese
@@ -23,7 +24,7 @@ type loginPage struct {
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -45,16 +46,16 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", loginPageContent)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, err := template.ParseFiles(getTemplateID(tmpl))
-	log.Println(t, getTemplateID(tmpl), err)
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, err := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
+	log.Println(t, support.GetTemplateID(tmpl, gUserRole), err)
 	t.Execute(w, loginPageContent)
 
 }
 
 func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -66,25 +67,25 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 	requestID := uuid.New()
 	var requestPayload []string
 
-	requestPayload = qmBundleAdd(requestPayload, "username", uName)
-	requestPayload = qmBundleAdd(requestPayload, "password", uPassword)
-	requestPayload = qmBundleAdd(requestPayload, "apptoken", appToken)
+	requestPayload = support.QmBundleAdd(requestPayload, "username", uName)
+	requestPayload = support.QmBundleAdd(requestPayload, "password", uPassword)
+	requestPayload = support.QmBundleAdd(requestPayload, "apptoken", appToken)
 
-	requestPayload = qmBundleAdd(requestPayload, "ipUser", readUserIP(r))
-	requestPayload = qmBundleAdd(requestPayload, "hostUser", r.Host)
+	requestPayload = support.QmBundleAdd(requestPayload, "ipUser", support.ReadUserIP(r))
+	requestPayload = support.QmBundleAdd(requestPayload, "hostUser", r.Host)
 
 	hostname, err := os.Hostname()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	requestPayload = qmBundleAdd(requestPayload, "ipWebServer", getLocalIP())
-	requestPayload = qmBundleAdd(requestPayload, "hostWebServer", hostname)
+	requestPayload = support.QmBundleAdd(requestPayload, "ipWebServer", support.GetLocalIP())
+	requestPayload = support.QmBundleAdd(requestPayload, "hostWebServer", hostname)
 
 	//fmt.Println("requestPayload", requestPayload)
-	//fmt.Println("BUNDLE", qmBundleToString(requestPayload))
+	//fmt.Println("BUNDLE", support.QmBundleToString(requestPayload))
 
-	loginRequest := buildRequestMessage(requestID.String(), "LOGIN", "", "", qmBundleToString(requestPayload), wctProperties)
+	loginRequest := buildRequestMessage(requestID.String(), "LOGIN", "", "", support.QmBundleToString(requestPayload), wctProperties)
 
 	//fmt.Println("loginRequest", loginRequest)
 	//fmt.Println("SEND MESSAGE")
@@ -109,7 +110,7 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 
 		newUUID := loginResponse.ResponseContent.ResponseContentRow[1]
 		gUserRole = loginResponse.ResponseContent.ResponseContentRow[2]
-		gUserNavi = getNavigationID(gUserRole)
+		gUserNavi = support.GetNavigationID(gUserRole)
 		gUserKnowAs = loginResponse.ResponseContent.ResponseContentRow[3]
 		log.Println("ACCESS GRANTED", responseCode, uName, gUserRole)
 		gUserName = uName
@@ -126,7 +127,7 @@ func valLoginHandler(w http.ResponseWriter, r *http.Request) {
 
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

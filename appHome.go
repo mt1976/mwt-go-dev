@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //sienaMandatedUserPage is cheese
@@ -33,9 +35,9 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
-	wctProperties := getProperties(APPCONFIG)
-	sqlProperties := getProperties(SQLCONFIG)
-	sienaProperties := getProperties(SIENACONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
+	sqlProperties := support.GetProperties(SQLCONFIG)
+	sienaProperties := support.GetProperties(SIENACONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -62,9 +64,9 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 		AppServerName:   tmpHostname,
 	}
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 
-	log.Println(getTemplateID(tmpl), tmpl, t, gUserRole, gUserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
+	log.Println(support.GetTemplateID(tmpl, gUserRole), tmpl, t, gUserRole, gUserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
 	log.Println("about to execute")
 	t.Execute(w, homePage)
 

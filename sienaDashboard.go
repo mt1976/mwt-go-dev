@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //sienaDashboardPage is cheese
@@ -30,7 +32,7 @@ type sienaDashboardPage struct {
 
 func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "dashboard"
 
 	inUTL := r.URL.Path
@@ -74,7 +76,7 @@ func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(p)
 
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, p)
 
 }

@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //AppConfigurationPage is cheese
@@ -34,9 +36,9 @@ type AppConfigurationPage struct {
 
 func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
-	sienaProperties := getProperties(SIENACONFIG)
-	sqlServerProperties := getProperties(SQLCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
+	sienaProperties := support.GetProperties(SIENACONFIG)
+	sqlServerProperties := support.GetProperties(SQLCONFIG)
 
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path
@@ -73,8 +75,8 @@ func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageAppConfigView)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageAppConfigView)
 
 }

@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //SrvEnvironmentPage is cheese
@@ -29,7 +30,7 @@ type SrvEnvironmentItem struct {
 
 func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewSrvEnvironment"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -76,8 +77,8 @@ func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageSrvEvironment)
 
 }

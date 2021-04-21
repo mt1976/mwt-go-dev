@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //srvCatalogPage ...
@@ -35,7 +37,7 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Servicing :", inUTL)
 
 		//		var propertiesFileName = "config/properties.cfg"
-		wctProperties := getProperties(APPCONFIG)
+		wctProperties := support.GetProperties(APPCONFIG)
 
 		w.Header().Set("Content-Type", "text/html")
 
@@ -69,7 +71,7 @@ func srvServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 		//	fmt.Println("srvCatalogPage=", p.ServiceCatalog)
 		fmt.Println("menu=", p.UserMenu)
 
-		t, _ := template.ParseFiles(getTemplateID(tmpl))
+		t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 		t.Execute(w, p)
 	}
 }

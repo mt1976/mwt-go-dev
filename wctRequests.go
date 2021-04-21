@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/google/uuid"
+	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //WctMessage is cheese
@@ -51,14 +52,14 @@ type RequestViewPage struct {
 
 func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	tmpl := "viewRequest"
 	inUTL := r.URL.Path
 	requestID := uuid.New()
 
 	log.Println("Servicing :", inUTL)
 
-	thisID, _ := strconv.Atoi(getURLparam(r, "id"))
+	thisID, _ := strconv.Atoi(support.GetURLparam(r, "id"))
 	//fmt.Println(thisID)
 	title := wctProperties["appname"]
 
@@ -88,8 +89,8 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageRequestView)
 
-	//thisTemplate:= getTemplateID(tmpl)
-	t, _ := template.ParseFiles(getTemplateID(tmpl))
+	//thisTemplate:= support.GetTemplateID(tmpl,gUserRole)
+	t, _ := template.ParseFiles(support.GetTemplateID(tmpl, gUserRole))
 	t.Execute(w, pageRequestView)
 
 }
@@ -97,22 +98,22 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := getProperties(APPCONFIG)
+	wctProperties := support.GetProperties(APPCONFIG)
 	//	tmpl := "executeRequest"
 	inUTL := r.URL.Path
 
 	log.Println("Servicing :", inUTL)
 
-	thisUUID := getURLparam(r, "uuid")
+	thisUUID := support.GetURLparam(r, "uuid")
 
 	dispatchMessage := WctMessage{
 		WctPayload{
 			ApplicationToken:      wctProperties["applicationtoken"],
 			SessionToken:          gSessionToken,
 			RequestID:             thisUUID,
-			RequestAction:         getURLparam(r, "action"),
-			RequestItem:           getURLparam(r, "item"),
-			RequestParameters:     getURLparam(r, "parameters"),
+			RequestAction:         support.GetURLparam(r, "action"),
+			RequestItem:           support.GetURLparam(r, "item"),
+			RequestParameters:     support.GetURLparam(r, "parameters"),
 			UniqueUID:             gUUID,
 			RequestResponseFormat: wctProperties["responseformat"],
 			RequestData:           "",
@@ -121,7 +122,7 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	deliverRequest(dispatchMessage, wctProperties["deliverpath"], thisUUID, wctProperties["responseformat"])
 
-	doSnooze(wctProperties["pollinginterval"])
+	support.Snooze(wctProperties["pollinginterval"])
 	//	fmt.Println(r.URL.Path, r.URL, r)
 	viewResponseHandler(w, r)
 	//	http.Redirect(w, r, "/", http.StatusOK)
