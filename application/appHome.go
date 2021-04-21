@@ -1,4 +1,4 @@
-package main
+package application
 
 import (
 	"html/template"
@@ -35,9 +35,9 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
-	wctProperties := support.GetProperties(APPCONFIG)
-	sqlProperties := support.GetProperties(SQLCONFIG)
-	sienaProperties := support.GetProperties(SIENACONFIG)
+	wctProperties := support.GetProperties(support.APPCONFIG)
+	sqlProperties := support.GetProperties(support.SQLCONFIG)
+	sienaProperties := support.GetProperties(support.SIENACONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -45,7 +45,7 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{
-		UserMenu:        getappMenuData(gUserRole),
+		UserMenu:        getappMenuData(main.gUserRole),
 		UserRole:        gUserRole,
 		UserNavi:        gUserNavi,
 		Title:           "Home",

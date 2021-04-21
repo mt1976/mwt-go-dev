@@ -1,4 +1,4 @@
-package application
+package siena
 
 import (
 	"database/sql"
@@ -56,7 +56,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := siena.sienaConnect()
+	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []calenderItem
 	noItems, returnList, _ := getcalenderList(thisConnection)

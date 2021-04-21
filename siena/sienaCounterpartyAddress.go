@@ -67,7 +67,7 @@ func listSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyAddressItem
 	noItems, returnList, _ := getSienaCounterpartyAddressList(thisConnection)
@@ -98,7 +98,7 @@ func viewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyAddressItem
 	firmID := support.GetURLparam(r, "SienaFirm")
@@ -138,7 +138,7 @@ func editSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyAddressItem
 

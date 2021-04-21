@@ -65,7 +65,7 @@ func listSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaFirmItem
 	noItems, returnList, _ := getSienaFirmList(thisConnection)
@@ -96,7 +96,7 @@ func viewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaFirmItem
 	searchID := support.GetURLparam(r, "SienaFirm")
@@ -134,7 +134,7 @@ func editSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaFirmItem
 	searchID := support.GetURLparam(r, "SienaFirm")
@@ -275,7 +275,7 @@ func newSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 
 	_, countryList, _ := getSienaCountryList(thisConnection)
 	_, sectorList, _ := getSienaSectorList(thisConnection)

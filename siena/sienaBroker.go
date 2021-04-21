@@ -63,7 +63,7 @@ func listSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBrokerItem
 	noItems, returnList, _ := getSienaBrokerList(thisConnection)
@@ -94,7 +94,7 @@ func viewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
 	searchID := support.GetURLparam(r, "SienaBroker")
@@ -134,7 +134,7 @@ func editSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
 	searchID := support.GetURLparam(r, "SienaBroker")

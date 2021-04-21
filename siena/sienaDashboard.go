@@ -38,7 +38,7 @@ func sienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	db, _ := sienaConnect()
+	db, _ := siena.Connect()
 	noCps, _, _ := getSienaCounterpartyList(db)
 	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList(db)
 	noSecs, dataSect, _ := getSienaBIcounterpartyPerSectorList(db)

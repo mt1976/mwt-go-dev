@@ -13,11 +13,12 @@ import (
 	"path/filepath"
 	"strconv"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 type ResponseListPage struct {
-	UserMenu    []AppMenuItem
+	UserMenu    []application.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

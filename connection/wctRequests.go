@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/google/uuid"
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
@@ -32,7 +33,7 @@ type WctPayload struct {
 
 //RequestViewPage is cheese
 type RequestViewPage struct {
-	UserMenu              []AppMenuItem
+	UserMenu              []application.AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string

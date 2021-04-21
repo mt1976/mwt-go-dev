@@ -108,7 +108,7 @@ func listSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountItem
 	noItems, returnList, _ := getSienaAccountList(thisConnection)
@@ -139,7 +139,7 @@ func viewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaAccountItem
 	searchID := support.GetURLparam(r, "SienaAccountID")
@@ -199,7 +199,7 @@ func editSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaAccountItem
 	searchID := support.GetURLparam(r, "SienaAccount")
@@ -286,7 +286,7 @@ func newSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 
 	_, countryList, _ := getSienaCountryList(thisConnection)
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)

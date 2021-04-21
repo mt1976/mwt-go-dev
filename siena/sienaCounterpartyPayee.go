@@ -104,7 +104,7 @@ func listSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyPayeeItem
 	noItems, returnList, _ := getSienaCounterpartyPayeeList(thisConnection)
@@ -135,7 +135,7 @@ func viewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyPayeeItem
 	idSource := support.GetURLparam(r, "csrc")
@@ -198,7 +198,7 @@ func editSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCounterpartyPayeeItem
 	idSource := support.GetURLparam(r, "csrc")

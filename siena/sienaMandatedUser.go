@@ -95,7 +95,7 @@ func listSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaMandatedUserItem
 	noItems, returnList, _ := getSienaMandatedUserList(thisConnection)
@@ -126,7 +126,7 @@ func viewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaMandatedUserItem
 	suID := support.GetURLparam(r, "SU")
@@ -179,7 +179,7 @@ func editSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	suID := support.GetURLparam(r, "SU")
 	sfID := support.GetURLparam(r, "SF")
@@ -368,7 +368,7 @@ func newSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 
 	_, countryList, _ := getSienaCountryList(thisConnection)
 	_, firmList, _ := getSienaFirmList(thisConnection)

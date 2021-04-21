@@ -8,12 +8,13 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
 //SrvEnvironmentPage is cheese
 type SrvEnvironmentPage struct {
-	UserMenu            []AppMenuItem
+	UserMenu            []application.AppMenuItem
 	UserRole            string
 	UserNavi            string
 	Title               string

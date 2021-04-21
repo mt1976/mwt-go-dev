@@ -95,7 +95,7 @@ func isChecked(inValue string) string {
 	return outValue
 }
 
-func sienaConnect() (*sql.DB, error) {
+func Connect() (*sql.DB, error) {
 	// Connect to SQL Server DB
 	mssqlConfig := support.GetProperties(SQLCONFIG)
 

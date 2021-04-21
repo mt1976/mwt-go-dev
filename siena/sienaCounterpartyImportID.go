@@ -65,7 +65,7 @@ func listSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyImportIDItem
 	noItems, returnList, _ := getSienaCounterpartyImportIDList(thisConnection)
@@ -96,7 +96,7 @@ func viewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyImportIDItem
 	idImport := support.GetURLparam(r, "II")
@@ -135,7 +135,7 @@ func editSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyImportIDItem
 	idImport := support.GetURLparam(r, "II")

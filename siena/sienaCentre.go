@@ -61,7 +61,7 @@ func listSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCentreItem
 	noItems, returnList, _ := getSienaCentreList(thisConnection)
@@ -92,7 +92,7 @@ func viewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
 	searchID := support.GetURLparam(r, "SienaCentre")
@@ -128,7 +128,7 @@ func editSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
 	searchID := support.GetURLparam(r, "SienaCentre")
@@ -251,7 +251,7 @@ func newSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 
 	_, countryList, _ := getSienaCountryList(thisConnection)
 

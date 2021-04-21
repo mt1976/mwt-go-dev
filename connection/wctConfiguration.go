@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
 )
 
@@ -18,7 +19,7 @@ type Page struct {
 
 //SrvConfigurationPage is cheese
 type SrvConfigurationPage struct {
-	UserMenu              []AppMenuItem
+	UserMenu              []application.AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string

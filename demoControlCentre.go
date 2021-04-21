@@ -194,7 +194,7 @@ func main() {
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-	db, _ := sienaConnect()
+	db, _ := siena.Connect()
 	_, gSienaSystemDate, _ = getSienaBusinessDate(db)
 	log.Println("Siena System Date:", gSienaSystemDate.Internal.Format(DATEFORMATUSER))
 	// Get menu

@@ -138,7 +138,7 @@ func listSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyExtensionsItem
 	noItems, returnList, _ := getSienaCounterpartyExtensionsList(thisConnection)
@@ -169,7 +169,7 @@ func viewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyExtensionsItem
 	suID := support.GetURLparam(r, "SU")
@@ -244,7 +244,7 @@ func editSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCounterpartyExtensionsItem
 	sfID := support.GetURLparam(r, "SienaFirm")

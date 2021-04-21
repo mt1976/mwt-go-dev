@@ -44,7 +44,7 @@ func listSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCountryItem
 	noItems, returnList, _ := getSienaCountryList(thisConnection)
@@ -72,7 +72,7 @@ func viewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCountryItem
 	searchID := support.GetURLparam(r, "sienaCountry")
@@ -104,7 +104,7 @@ func editSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := sienaConnect()
+	thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCountryItem
 	searchID := support.GetURLparam(r, "sienaCountry")
@@ -136,7 +136,7 @@ func saveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	//thisConnection, _ := sienaConnect()
+	//thisConnection, _ := siena.Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//searchID := support.GetURLparam(r, "sienaCountry")
 	//noItems, returnRecord, _ := getSienaCountry(thisConnection, searchID)
