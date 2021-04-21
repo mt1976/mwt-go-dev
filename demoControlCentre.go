@@ -11,7 +11,10 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/mbndr/figlet4go"
+	application "github.com/mt1976/mwt-go-dev/application"
 	support "github.com/mt1976/mwt-go-dev/appsupport"
+	connection "github.com/mt1976/mwt-go-dev/connection"
+	siena "github.com/mt1976/mwt-go-dev/siena"
 )
 
 //CONST_CONFIG_FILE is cheese
@@ -61,35 +64,35 @@ func main() {
 	http.HandleFunc("/", loginHandler)
 	http.HandleFunc("/login", valLoginHandler)
 	http.HandleFunc("/logout", logoutHandler)
-	http.HandleFunc("/home", support.HomePageHandler)
+	http.HandleFunc("/home", application.HomePageHandler)
 	http.HandleFunc("/srvServiceCatalog", srvServiceCatalogHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
 	http.HandleFunc("/site.webmanifest", faviconManifestHandler)
 	http.HandleFunc("/favicon-16x16.png", favicon16Handler)
 	http.HandleFunc("/browserconfig.xml", faviconBrowserConfigHandler)
-	http.HandleFunc("/listResponses/", listResponsesHandler)
-	http.HandleFunc("/previewRequest/", previewRequestHandler)
-	http.HandleFunc("/executeRequest/", executeRequestHandler)
-	http.HandleFunc("/viewResponse/", viewResponseHandler)
-	http.HandleFunc("/deleteResponse/", deleteResponseHandler)
+	http.HandleFunc("/listResponses/", connection.ListResponsesHandler)
+	http.HandleFunc("/previewRequest/", connection.PreviewRequestHandler)
+	http.HandleFunc("/executeRequest/", connection.ExecuteRequestHandler)
+	http.HandleFunc("/viewResponse/", connection.ViewResponseHandler)
+	http.HandleFunc("/deleteResponse/", connection.DeleteResponseHandler)
 	http.HandleFunc("/clearQueues/", clearQueuesHandler)
-	http.HandleFunc("/viewSrvEnvironment/", viewSrvEnvironmentHandler)
-	http.HandleFunc("/listSrvConfiguration/", listSrvConfigurationHandler)
-	http.HandleFunc("/viewSrvConfiguration/", viewSrvConfigurationHandler)
-	http.HandleFunc("/editSrvConfiguration/", editSrvConfigurationHandler)
-	http.HandleFunc("/saveSrvConfiguration/", saveSrvConfigurationHandler)
-	http.HandleFunc("/viewAppConfiguration/", viewAppConfigurationHandler)
-	http.HandleFunc("/listSvcDataMap/", listSvcDataMapHandler)
-	http.HandleFunc("/viewSvcDataMap/", viewSvcDataMapHandler)
-	http.HandleFunc("/editSvcDataMap/", editSvcDataMapHandler)
-	http.HandleFunc("/saveSvcDataMap/", saveSvcDataMapHandler)
-	http.HandleFunc("/viewSvcDataMapXML/", viewSvcDataMapXMLHandler)
-	http.HandleFunc("/editSvcDataMapXML/", editSvcDataMapXMLHandler)
-	http.HandleFunc("/saveSvcDataMapXML/", saveSvcDataMapXMLHandler)
-	http.HandleFunc("/newSvcDataMap/", newSvcDataMapHandler)
-	http.HandleFunc("/genSvcDataMap/", genSvcDataMapHandler)
-	http.HandleFunc("/deleteSvcDataMap/", deleteSvcDataMapHandler)
+	http.HandleFunc("/viewSrvEnvironment/", connection.ViewSrvEnvironmentHandler)
+	http.HandleFunc("/listSrvConfiguration/", connection.ListSrvConfigurationHandler)
+	http.HandleFunc("/viewSrvConfiguration/", connection.ViewSrvConfigurationHandler)
+	http.HandleFunc("/editSrvConfiguration/", connection.EditSrvConfigurationHandler)
+	http.HandleFunc("/saveSrvConfiguration/", connection.SaveSrvConfigurationHandler)
+	http.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
+	http.HandleFunc("/listSvcDataMap/", siena.ListSvcDataMapHandler)
+	http.HandleFunc("/viewSvcDataMap/", siena.ViewSvcDataMapHandler)
+	http.HandleFunc("/editSvcDataMap/", siena.EditSvcDataMapHandler)
+	http.HandleFunc("/saveSvcDataMap/", siena.SaveSvcDataMapHandler)
+	http.HandleFunc("/viewSvcDataMapXML/", siena.ViewSvcDataMapXMLHandler)
+	http.HandleFunc("/editSvcDataMapXML/", siena.EditSvcDataMapXMLHandler)
+	http.HandleFunc("/saveSvcDataMapXML/", siena.SaveSvcDataMapXMLHandler)
+	http.HandleFunc("/newSvcDataMap/", siena.NewSvcDataMapHandler)
+	http.HandleFunc("/genSvcDataMap/", siena.GenSvcDataMapHandler)
+	http.HandleFunc("/deleteSvcDataMap/", siena.DeleteSvcDataMapHandler)
 	http.HandleFunc("/listSienaCountry/", listSienaCountryHandler)
 	http.HandleFunc("/viewSienaCountry/", viewSienaCountryHandler)
 	http.HandleFunc("/editSienaCountry/", editSienaCountryHandler)
@@ -222,6 +225,7 @@ func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "browserconfig.xml")
 }
 
+//// TODO: migrage the following three functions to appsupport
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 	wctProperties := support.GetProperties(APPCONFIG)
 
@@ -276,7 +280,6 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	homePageHandler(w, r)
 
 }
-
 func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"

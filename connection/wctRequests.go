@@ -52,7 +52,7 @@ type RequestViewPage struct {
 	PageTitle             string
 }
 
-func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
+func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewRequest"
@@ -97,7 +97,7 @@ func previewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
+func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
 	wctProperties := support.GetProperties(globals.APPCONFIG)
@@ -126,7 +126,7 @@ func executeRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	support.Snooze(wctProperties["pollinginterval"])
 	//	fmt.Println(r.URL.Path, r.URL, r)
-	viewResponseHandler(w, r)
+	ViewResponseHandler(w, r)
 	//	http.Redirect(w, r, "/", http.StatusOK)
 
 }

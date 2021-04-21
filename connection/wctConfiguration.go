@@ -48,7 +48,7 @@ type SrvConfigurationItem struct {
 	ItemValue string
 }
 
-func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvConfiguration"
@@ -113,7 +113,7 @@ func viewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSrvConfiguration"
@@ -167,7 +167,7 @@ func listSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSrvConfiguration"
@@ -221,7 +221,7 @@ func editSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path
@@ -238,5 +238,5 @@ func saveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	listSrvConfigurationHandler(w, r)
+	ListSrvConfigurationHandler(w, r)
 }

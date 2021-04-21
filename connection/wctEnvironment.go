@@ -30,7 +30,7 @@ type SrvEnvironmentItem struct {
 	ItemValue string
 }
 
-func viewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvEnvironment"

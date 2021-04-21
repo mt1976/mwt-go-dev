@@ -60,7 +60,7 @@ type SvcDataMapItem struct {
 	DataMapXMLFile     string
 }
 
-func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listSvcDataMap"
@@ -118,7 +118,7 @@ func listSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSvcDataMap"
@@ -213,7 +213,7 @@ func viewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSvcDataMap"
@@ -264,7 +264,7 @@ func editSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSvcDataMapXML"
@@ -315,7 +315,7 @@ func viewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "editSvcDataMapXML"
@@ -367,7 +367,7 @@ func editSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
@@ -402,7 +402,7 @@ func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("SEND MESSAGE")
 	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	listSvcDataMapHandler(w, r)
+	ListSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
@@ -412,7 +412,7 @@ func saveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
@@ -447,7 +447,7 @@ func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("SEND MESSAGE")
 	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	listSvcDataMapHandler(w, r)
+	ListSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
@@ -457,7 +457,7 @@ func saveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "newSvcDataMap"
@@ -482,7 +482,7 @@ func newSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
@@ -518,7 +518,7 @@ func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
 
-	listSvcDataMapHandler(w, r)
+	ListSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
@@ -528,7 +528,7 @@ func genSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func deleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -539,5 +539,5 @@ func deleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
 	connection.SendRequest(requestMessage, requestID.String(), wctProperties)
-	listSvcDataMapHandler(w, r)
+	ListSvcDataMapHandler(w, r)
 }

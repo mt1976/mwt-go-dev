@@ -142,7 +142,7 @@ func listResponseswebNew(wctProperties map[string]string, responseFormat string,
 	return noResponses, responseText.String(), respList
 }
 
-func viewResponseHandler(w http.ResponseWriter, r *http.Request) {
+func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
 	wctProperties := support.GetProperties(globals.APPCONFIG)
@@ -237,7 +237,7 @@ func deleteResponse(responseID string, wctProperties map[string]string) (err err
 	return err
 }
 
-func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
+func DeleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
 	wctProperties := support.GetProperties(globals.APPCONFIG)
@@ -251,7 +251,7 @@ func deleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	listResponsesHandler(w, r)
+	ListResponsesHandler(w, r)
 
 }
 
@@ -302,7 +302,7 @@ func GetResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 	return wibble
 }
 
-func listResponsesHandler(w http.ResponseWriter, r *http.Request) {
+func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(globals.APPCONFIG)
 	tmpl := "listResponses"

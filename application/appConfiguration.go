@@ -35,7 +35,7 @@ type AppConfigurationPage struct {
 	SienaDBPort            string
 }
 
-func viewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := support.GetProperties(support.APPCONFIG)
 	sienaProperties := support.GetProperties(support.SIENACONFIG)

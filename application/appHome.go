@@ -32,6 +32,7 @@ type sienaHomePage struct {
 	AppServerName   string
 }
 
+// HomePageHandler
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("IN HOMEPAGE")
 
