@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
 	"log"
@@ -8,6 +9,7 @@ import (
 	"os"
 
 	_ "github.com/denisenkom/go-mssqldb"
+	"github.com/google/uuid"
 
 	"github.com/mbndr/figlet4go"
 )
@@ -205,5 +207,80 @@ func main() {
 
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
+
+}
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon.ico")
+}
+
+func favicon16Handler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon-16x16.png")
+}
+
+func favicon32Handler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon-32x32.png")
+}
+
+func faviconManifestHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "site.webmanifest")
+}
+
+func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "browserconfig.xml")
+}
+
+func shutdownHandler(w http.ResponseWriter, r *http.Request) {
+	wctProperties := getProperties(APPCONFIG)
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	requestID := uuid.New()
+
+	log.Println("Servicing :", inUTL)
+
+	requestMessage := buildRequestMessage(requestID.String(), "SHUTDOWN", "", "", "", wctProperties)
+
+	fmt.Println("requestMessage", requestMessage)
+	fmt.Println("SEND MESSAGE")
+	sendRequest(requestMessage, requestID.String(), wctProperties)
+	m := http.NewServeMux()
+
+	s := http.Server{Addr: wctProperties["port"], Handler: m}
+	s.Shutdown(context.Background())
+	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
+	//	viewResponseHandler(w, r)
+
+}
+func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
+
+	//var propertiesFileName = "config/properties.cfg"
+	wctProperties := getProperties(APPCONFIG)
+	//	tmpl := "viewResponse"
+	inUTL := r.URL.Path
+	//requestID := uuid.New()
+
+	log.Println("Servicing :", inUTL)
+
+	//fmt.Println("delivPath", wctProperties["deliverpath"])
+	err1 := RemoveContents(wctProperties["deliverpath"])
+	if err1 != nil {
+		fmt.Println(err1)
+	}
+
+	//fmt.Println("recPath", wctProperties["receivepath"])
+
+	err2 := RemoveContents(wctProperties["receivepath"])
+	if err2 != nil {
+		fmt.Println(err2)
+	}
+	//fmt.Println("procPath", wctProperties["processedpath"])
+
+	err3 := RemoveContents(wctProperties["processedpath"])
+	if err3 != nil {
+		fmt.Println(err3)
+	}
+
+	homePageHandler(w, r)
 
 }
