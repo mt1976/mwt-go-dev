@@ -16,14 +16,16 @@ var UserNavi = ""
 var SienaSystemDate DateItem
 
 const (
-	DATEFORMATPICK  = "20060102T150405"
-	DATEFORMATSIENA = "2006-01-02"
-	DATEFORMATYMD   = "20060102"
-	DATEFORMATUSER  = "Monday, 02 Jan 2006"
-	SIENACPTYSEP    = "\u22EE"
-	APPCONFIG       = "properties.cfg"
-	SQLCONFIG       = "mssql.cfg"
-	SIENACONFIG     = "siena.cfg"
+	DATEFORMATPICK     = "20060102T150405"
+	DATEFORMATSIENA    = "2006-01-02"
+	DATEFORMATYMD      = "20060102"
+	DATEFORMATUSER     = "Monday, 02 Jan 2006"
+	SIENACPTYSEP       = "\u22EE"
+	APPCONFIG          = "properties.cfg"
+	SQLCONFIG          = "mssql.cfg"
+	SIENACONFIG        = "siena.cfg"
+	DATASTORECONFIG    = "datastore.cfg"
+	DATETIMEFORMATUSER = DATEFORMATUSER + " @ 15:04:05"
 )
 
 //SienaBusinessDateItem is cheese

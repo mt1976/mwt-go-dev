@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/google/uuid"
+	"github.com/mt1976/common"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -122,7 +123,7 @@ func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	deliverRequest(dispatchMessage, wctProperties["deliverpath"], thisUUID, wctProperties["responseformat"])
 
-	Snooze(wctProperties["pollinginterval"])
+	common.SnoozeFor(wctProperties["pollinginterval"])
 	//	fmt.Println(r.URL.Path, r.URL, r)
 	ViewResponseHandler(w, r)
 	//	http.Redirect(w, r, "/", http.StatusOK)

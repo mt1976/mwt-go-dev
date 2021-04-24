@@ -52,13 +52,6 @@ func GetURLparam(r *http.Request, paramID string) string {
 	return key
 }
 
-// Snooze snoozes the application for a given amount of time
-func Snooze(inPollingInterval string) {
-	pollingInterval, _ := strconv.Atoi(inPollingInterval)
-	log.Println("Snoooze... Zzzzzz.... ", pollingInterval)
-	time.Sleep(time.Duration(pollingInterval) * time.Second)
-}
-
 // ArrToString converts an array of strings to a printable string
 func ArrToString(strArray []string) string {
 	return strings.Join(strArray, "\n")

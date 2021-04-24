@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"strconv"
 
+	"github.com/mt1976/common"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -285,7 +286,7 @@ func GetResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 
 		} else {
 
-			Snooze(wctProperties["pollinginterval"])
+			common.SnoozeFor(wctProperties["pollinginterval"])
 
 		}
 		//fmt.Println(text)

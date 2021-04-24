@@ -57,7 +57,16 @@ func main() {
 	log.Println("Level      :", wctProperties["releaselevel"])
 	log.Println("Number     :", wctProperties["releasenumber"])
 	log.Println("")
-
+	log.Println("STARTING JOBS")
+	log.Println("")
+	//jobs.Start()
+	//jobs.RunJobFRED("TEST")
+	//jobs.RunJobBOE("TEST")
+	//jobs.RunJobECB("TEST")
+	//jobs.RunJobFXSPOT("TEST")
+	log.Println("")
+	log.Println("STARTING HANDLERS")
+	log.Println("")
 	http.HandleFunc("/", application.LoginHandler)
 	http.HandleFunc("/login", application.ValidateLoginHandler)
 	http.HandleFunc("/logout", application.LogoutHandler)
@@ -181,6 +190,20 @@ func main() {
 	http.HandleFunc("/newSienaCounterpartyGroup/", siena.NewSienaCounterpartyGroupHandler)
 
 	http.HandleFunc("/dashboard/", siena.SienaDashboardHandler)
+
+	http.HandleFunc("/listCredentialsStore/", application.ListCredentialsStoreHandler)
+	http.HandleFunc("/viewCredentialsStore/", application.ViewCredentialStoreHandler)
+	http.HandleFunc("/editCredentialsStore/", application.EditCredentialStoreHandler)
+	http.HandleFunc("/deleteCredentialsStore/", application.DeleteCredentialStoreHandler)
+	http.HandleFunc("/saveCredentialsStore/", application.SaveCredentialStoreHandler)
+	http.HandleFunc("/newCredentialsStore/", application.NewCredentialStoreHandler)
+	http.HandleFunc("/banCredentialsStore/", application.BanCredentialStoreHandler)
+	http.HandleFunc("/activateCredentialsStore/", application.ActivateCredentialStoreHandler)
+
+	http.HandleFunc("/listMessageStore/", application.ListMessageStoreHandler)
+	http.HandleFunc("/viewMessageStore/", application.ViewMessageStoreHandler)
+	http.HandleFunc("/editMessageStore/", application.EditMessageStoreHandler)
+	http.HandleFunc("/saveMessageStore/", application.SaveMessageStoreHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))

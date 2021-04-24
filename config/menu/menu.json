@@ -169,6 +169,27 @@
 
     ,
     {
+      "ID": "credentialsStore",
+      "Text": "Credentials",
+      "Glyph": "fas fa-key",
+      "HREF": "/listCredentialsStore",
+      "OnClick": "",
+      "TextClass": "text-danger"
+    }
+    ,
+
+
+    {
+      "ID": "messageStore",
+      "Text": "System Messages",
+      "Glyph": "fas fa-info-circle",
+      "HREF": "/listMessageStore",
+      "OnClick": "",
+      "TextClass": "text-warning"
+    }
+    ,
+
+    {
       "ID": "18",
       "Text": "Service Catalog",
       "Glyph": "fas fa-list-alt",
