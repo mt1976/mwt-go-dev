@@ -94,7 +94,9 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 		globals.SessionToken = tok.session
 		globals.UUID = tok.uuid
 		globals.SecurityViolation = ""
+		globals.SessionToken = CreateSessionToken(r)
 		log.Println("ACCESS GRANTED", tok.ResponseCode, tok.username, globals.UserRole)
+
 		HomePageHandler(w, r)
 	} else {
 		globals.UserRole = ""

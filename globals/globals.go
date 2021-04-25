@@ -26,6 +26,7 @@ const (
 	SIENACONFIG        = "siena.cfg"
 	DATASTORECONFIG    = "datastore.cfg"
 	DATETIMEFORMATUSER = DATEFORMATUSER + " @ 15:04:05"
+	TIMEHMS            = "15:04:05"
 )
 
 //SienaBusinessDateItem is cheese

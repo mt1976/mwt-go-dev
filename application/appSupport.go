@@ -294,3 +294,28 @@ func FormatCurrencyDps(inAmount string, inCCY string, inPrec string) string {
 	bum, _ := strconv.ParseFloat(inAmount, 64)
 	return ac.FormatMoney(bum)
 }
+
+func GetHostIP() string {
+	var ip string
+	ip = ""
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		panic(err)
+	}
+	for _, addr := range addrs {
+		//fmt.Printf("%d %v\n", i, addr)
+		ip = addr.String()
+		return ip
+	}
+	return ""
+}
+
+// GetIP gets a requests IP address by reading off the forwarded-for
+// header (for proxies) and falls back to use the remote address.
+func GetIncomingRequestIP(r *http.Request) string {
+	forwarded := r.Header.Get("X-FORWARDED-FOR")
+	if forwarded != "" {
+		return forwarded
+	}
+	return r.RemoteAddr
+}
