@@ -59,6 +59,12 @@ type sienaFirmItem struct {
 }
 
 func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaFirm"
@@ -90,6 +96,12 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaFirm"
@@ -128,6 +140,12 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaFirm"
@@ -175,6 +193,12 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -267,6 +291,12 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaFirm"

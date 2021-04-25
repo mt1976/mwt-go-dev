@@ -59,6 +59,12 @@ type SvcDataMapItem struct {
 }
 
 func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSvcDataMap"
@@ -117,6 +123,12 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSvcDataMap"
@@ -212,6 +224,12 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSvcDataMap"
@@ -263,6 +281,12 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSvcDataMapXML"
@@ -314,6 +338,12 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSvcDataMapXML"
@@ -366,6 +396,12 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
@@ -411,6 +447,12 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
@@ -456,6 +498,12 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSvcDataMap"
@@ -481,6 +529,12 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	//	tmpl := "editSrvConfiguration"
@@ -527,6 +581,12 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

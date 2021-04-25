@@ -50,6 +50,12 @@ type sienaCountryItem struct {
 }
 
 func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCountry"
@@ -81,6 +87,12 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCountry"
@@ -118,6 +130,12 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCountry"
@@ -155,6 +173,12 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
@@ -221,6 +245,12 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCountry"

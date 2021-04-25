@@ -52,6 +52,12 @@ type RequestViewPage struct {
 }
 
 func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewRequest"
@@ -97,6 +103,12 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	//var propertiesFileName = "config/properties.cfg"
 	wctProperties := GetProperties(globals.APPCONFIG)

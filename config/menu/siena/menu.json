@@ -8,6 +8,15 @@
       "TextClass": ""
     },
     {
+      "ID": "30",
+      "Text": "Dashboard",
+      "Glyph": "fas fa-tachometer-alt",
+      "HREF": "/dashboard",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
       "ID": "2",
       "Text": "Sectors",
       "Glyph": "fas fa-industry",
@@ -157,7 +166,51 @@
     {
       "Break": "<hr class=\"hr-list\">"
     }
+
     ,
+    {
+      "ID": "credentialsStore",
+      "Text": "Credentials",
+      "Glyph": "fas fa-key",
+      "HREF": "/listCredentialsStore",
+      "OnClick": "",
+      "TextClass": "text-danger"
+    }
+    ,
+
+    {
+      "ID": "scheduleStore",
+      "Text": "Schedule",
+      "Glyph": "far fa-clock",
+      "HREF": "/listScheduleStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
+    ,
+
+    {
+      "ID": "messageStore",
+      "Text": "System Messages",
+      "Glyph": "fas fa-info-circle",
+      "HREF": "/listMessageStore",
+      "OnClick": "",
+      "TextClass": "text-warning"
+    }
+    ,
+    {
+      "Break": "<hr class=\"hr-list\">"
+    },
+    {
+      "ID": "23",
+      "Text": "App Environment",
+      "Glyph": "fa fa-server",
+      "HREF": "/viewAppConfiguration",
+      "OnClick": "",
+      "TextClass": "text-info"
+    },
+    {
+      "Break": "<hr class=\"hr-list\">"
+    },
     {
       "ID": "27",
       "Text": "Logout",

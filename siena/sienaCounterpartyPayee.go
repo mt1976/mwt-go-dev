@@ -98,6 +98,12 @@ type sienaCounterpartyPayeeItem struct {
 }
 
 func ListSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyPayee"
@@ -129,6 +135,12 @@ func ListSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyPayee"
@@ -192,6 +204,12 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyPayee"
@@ -262,6 +280,12 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -357,6 +381,12 @@ func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyPayee"

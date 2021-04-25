@@ -57,6 +57,12 @@ type sienaCurrencyItem struct {
 }
 
 func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCurrency"
@@ -88,6 +94,12 @@ func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCurrency"
@@ -125,6 +137,12 @@ func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCurrency"
@@ -169,6 +187,12 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -247,6 +271,12 @@ func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCurrency"

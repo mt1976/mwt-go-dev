@@ -29,6 +29,12 @@ type SrvEnvironmentItem struct {
 }
 
 func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvEnvironment"

@@ -47,6 +47,12 @@ type SrvConfigurationItem struct {
 }
 
 func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvConfiguration"
@@ -112,6 +118,12 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "listSrvConfiguration"
@@ -166,6 +178,12 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "editSrvConfiguration"
@@ -220,6 +238,12 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path

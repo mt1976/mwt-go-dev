@@ -59,6 +59,12 @@ type sienaCounterpartyImportIDItem struct {
 }
 
 func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyImportID"
@@ -90,6 +96,12 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 }
 
 func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyImportID"
@@ -129,6 +141,12 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 }
 
 func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyImportID"
@@ -171,6 +189,12 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 }
 
 func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -253,6 +277,12 @@ func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 }
 
 func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyImportID"

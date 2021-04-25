@@ -49,6 +49,12 @@ type sienaPortfolioItem struct {
 }
 
 func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaPortfolio"
@@ -80,6 +86,12 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaPortfolio"
@@ -113,6 +125,12 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaPortfolio"
@@ -146,6 +164,12 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -215,6 +239,12 @@ func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaPortfolio"

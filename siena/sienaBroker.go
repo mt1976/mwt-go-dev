@@ -57,6 +57,12 @@ type sienaBrokerItem struct {
 }
 
 func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaBroker"
@@ -88,6 +94,12 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaBroker"
@@ -128,6 +140,12 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaBroker"
@@ -172,6 +190,12 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -271,6 +295,12 @@ func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaBroker"

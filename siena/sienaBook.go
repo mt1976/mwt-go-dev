@@ -50,6 +50,12 @@ type sienaBookItem struct {
 }
 
 func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaBook"
@@ -81,6 +87,12 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaBook"
@@ -115,6 +127,12 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaBook"
@@ -152,6 +170,12 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -225,6 +249,12 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaBook"

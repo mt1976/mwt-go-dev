@@ -66,7 +66,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
-
 	wctProperties := GetProperties(APPCONFIG)
 	//tmpl := "login"
 	inUTL := r.URL.Path
@@ -106,7 +105,7 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 		globals.UUID = ""
 		globals.SecurityViolation = tok.SecurityViolation
 		log.Println("SECURITY INCIDENT", tok.ResponseCode, tok.SecurityViolation)
-		LoginHandler(w, r)
+		LogoutHandler(w, r)
 	}
 }
 
@@ -129,6 +128,11 @@ func loginValidate(appToken string, username string, password string, host strin
 		return s
 	}
 	if cred.Username != username {
+		s.ResponseCode = "512"
+		s.SecurityViolation = "SECURITY VIOLATION"
+		return s
+	}
+	if len(cred.Expiry) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
 		return s
@@ -169,14 +173,17 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 	db, _ := DataStoreConnect()
 	_, cred, _ := GetCredentialsStoreByID(db, globals.UUID)
 	if len(cred.Id) == 0 {
-		log.Println("len(cred.Id) == 0", len(cred.Id))
 		//no credentials found
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
 		return false
 	}
 	if cred.Username != globals.UserName {
-		log.Println("cred.Username != globals.UserName", cred.Username, globals.UserName)
+		s.ResponseCode = "512"
+		s.SecurityViolation = "SECURITY VIOLATION"
+		return false
+	}
+	if len(cred.Expiry) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
 		return false
@@ -195,28 +202,14 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-
-	requestID := uuid.New()
-
-	logoutRequest := BuildRequestMessage(requestID.String(), "LOGOUT", "", "", "", wctProperties)
-
-	//fmt.Println("logoutRequest", logoutRequest)
-	//fmt.Println("SEND MESSAGE")
-	SendRequest(logoutRequest, requestID.String(), wctProperties)
-
-	logoutResponse := GetResponseAsync(requestID.String(), wctProperties, r)
-	//fmt.Println("logoutResponse", logoutResponse)
-
-	//outString := ""
-
-	//responseCode := logoutResponse.ResponseStatus
-	log.Println("LOGOUT", logoutResponse.ResponseStatus, globals.SessionToken)
+	log.Println("LOGOUT", globals.SessionToken)
 	globals.SessionToken = ""
-	globals.UUID = ""
-	globals.SecurityViolation = ""
+	globals.UUID = wctProperties["releaseID"]
+	//	globals.SecurityViolation = ""
 	globals.UserRole = ""
-	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
-	//todo Encryp password etc
+	globals.UserName = ""
+	globals.UserKnowAs = ""
+	globals.UserNavi = ""
 
 	LoginHandler(w, r)
 }

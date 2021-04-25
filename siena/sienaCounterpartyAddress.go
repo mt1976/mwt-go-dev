@@ -61,6 +61,12 @@ type sienaCounterpartyAddressItem struct {
 }
 
 func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyAddress"
@@ -92,6 +98,12 @@ func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyAddress"
@@ -132,6 +144,12 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyAddress"
@@ -176,6 +194,12 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -250,6 +274,12 @@ func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyAddress"

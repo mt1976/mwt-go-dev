@@ -14,7 +14,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
-	schedule "github.com/mt1976/mwt-go-dev/jobs"
+	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	siena "github.com/mt1976/mwt-go-dev/siena"
 )
 
@@ -61,11 +61,7 @@ func main() {
 	log.Println("")
 	log.Println("STARTING JOBS")
 	log.Println("")
-	schedule.Start()
-	//jobs.RunJobFRED("TEST")
-	//jobs.RunJobBOE("TEST")
-	//jobs.RunJobECB("TEST")
-	//jobs.RunJobFXSPOT("TEST")
+	scheduler.Start()
 	log.Println("")
 	log.Println("STARTING HANDLERS")
 	log.Println("")
@@ -74,11 +70,11 @@ func main() {
 	http.HandleFunc("/logout", application.LogoutHandler)
 	http.HandleFunc("/home", application.HomePageHandler)
 	http.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
-	http.HandleFunc("/favicon.ico", faviconHandler)
-	http.HandleFunc("/favicon-32x32.png", favicon32Handler)
-	http.HandleFunc("/site.webmanifest", faviconManifestHandler)
-	http.HandleFunc("/favicon-16x16.png", favicon16Handler)
-	http.HandleFunc("/browserconfig.xml", faviconBrowserConfigHandler)
+	http.HandleFunc("/favicon.ico", application.FaviconHandler)
+	http.HandleFunc("/favicon-32x32.png", application.Favicon32Handler)
+	http.HandleFunc("/site.webmanifest", application.FaviconManifestHandler)
+	http.HandleFunc("/favicon-16x16.png", application.Favicon16Handler)
+	http.HandleFunc("/browserconfig.xml", application.FaviconBrowserConfigHandler)
 	http.HandleFunc("/listResponses/", application.ListResponsesHandler)
 	http.HandleFunc("/previewRequest/", application.PreviewRequestHandler)
 	http.HandleFunc("/executeRequest/", application.ExecuteRequestHandler)
@@ -229,26 +225,6 @@ func main() {
 	httpPort := ":" + wctProperties["port"]
 	http.ListenAndServe(httpPort, nil)
 
-}
-
-func faviconHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "assets/favicon.ico")
-}
-
-func favicon16Handler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "assets/favicon-16x16.png")
-}
-
-func favicon32Handler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "assets/favicon-32x32.png")
-}
-
-func faviconManifestHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "site.webmanifest")
-}
-
-func faviconBrowserConfigHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "browserconfig.xml")
 }
 
 //// TODO: migrage the following three functions to appsupport

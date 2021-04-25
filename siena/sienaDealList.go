@@ -129,6 +129,12 @@ type sienaDealListItem struct {
 }
 
 func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaDealList"
@@ -160,6 +166,12 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaDealList"

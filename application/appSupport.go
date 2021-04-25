@@ -92,7 +92,7 @@ func GetTemplateID(tmpl string, userRole string) string {
 // GetMenuID returns the menu template to use when providing HTML meny templates
 func GetMenuID(tmpl string, userRole string) string {
 	templateName := "config/menu/" + tmpl + ".json"
-	roleTemplate := "config/menu" + userRole + "/" + tmpl + ".json"
+	roleTemplate := "config/menu/" + userRole + "/" + tmpl + ".json"
 	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	//log.Println("Testing", templateName, FileExists(templateName))
 	if FileExists(roleTemplate) {

@@ -55,6 +55,12 @@ type sienaCounterpartyGroupItem struct {
 }
 
 func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyGroup"
@@ -86,6 +92,12 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyGroup"
@@ -121,6 +133,12 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyGroup"
@@ -165,6 +183,12 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -243,6 +267,12 @@ func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyGroup"

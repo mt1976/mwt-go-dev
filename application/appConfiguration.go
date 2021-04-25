@@ -35,6 +35,12 @@ type AppConfigurationPage struct {
 }
 
 func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	sienaProperties := GetProperties(globals.SIENACONFIG)

@@ -132,6 +132,12 @@ type sienaCounterpartyExtensionsItem struct {
 }
 
 func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyExtensions"
@@ -163,6 +169,12 @@ func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 }
 
 func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyExtensions"
@@ -238,6 +250,12 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 }
 
 func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyExtensions"
@@ -319,6 +337,12 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 }
 
 func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -433,6 +457,12 @@ func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 }
 
 func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyExtensions"

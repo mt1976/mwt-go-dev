@@ -75,6 +75,12 @@ type appScheduleStoreItem struct {
 }
 
 func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreList"
@@ -107,6 +113,12 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreView"
@@ -149,6 +161,12 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreEdit"
@@ -196,6 +214,12 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	//	sienaProperties := GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -226,6 +250,12 @@ func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
@@ -236,6 +266,12 @@ func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BanScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
@@ -248,6 +284,12 @@ func BanScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
@@ -261,6 +303,12 @@ func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreNew"

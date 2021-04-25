@@ -89,6 +89,12 @@ type sienaMandatedUserItem struct {
 }
 
 func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaMandatedUser"
@@ -120,6 +126,12 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaMandatedUser"
@@ -173,6 +185,12 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaMandatedUser"
@@ -235,6 +253,12 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -360,6 +384,12 @@ func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaMandatedUser"

@@ -59,6 +59,12 @@ type sienaCurrencyPairItem struct {
 }
 
 func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCurrencyPair"
@@ -90,6 +96,12 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCurrencyPair"
@@ -125,6 +137,12 @@ func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCurrencyPair"
@@ -164,6 +182,12 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -242,6 +266,12 @@ func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCurrencyPair"

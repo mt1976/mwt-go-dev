@@ -142,6 +142,12 @@ func GetResponsesList(wctProperties map[string]string, responseFormat string, w 
 }
 
 func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	//var propertiesFileName = "config/properties.cfg"
 	wctProperties := GetProperties(globals.APPCONFIG)
@@ -237,6 +243,12 @@ func deleteResponse(responseID string, wctProperties map[string]string) (err err
 }
 
 func DeleteResponseHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	//var propertiesFileName = "config/properties.cfg"
 	wctProperties := GetProperties(globals.APPCONFIG)
@@ -302,6 +314,12 @@ func GetResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 }
 
 func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "listResponses"

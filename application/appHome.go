@@ -33,6 +33,12 @@ type sienaHomePage struct {
 
 // HomePageHandler
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	log.Println("IN HOMEPAGE")
 

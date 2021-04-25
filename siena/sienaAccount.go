@@ -101,6 +101,12 @@ type sienaAccountItem struct {
 }
 
 func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccount"
@@ -132,6 +138,12 @@ func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaAccount"
@@ -192,6 +204,12 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaAccount"
@@ -262,6 +280,12 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	//sienaProperties := application.GetProperties(cSIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -277,6 +301,12 @@ func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaAccount"

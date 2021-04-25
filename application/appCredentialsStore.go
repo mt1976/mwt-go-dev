@@ -84,6 +84,12 @@ type appCredentialsStoreItem struct {
 }
 
 func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreList"
@@ -116,6 +122,12 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreView"
@@ -166,6 +178,12 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreEdit"
@@ -217,6 +235,12 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	//	sienaProperties := GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -247,6 +271,12 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
@@ -257,6 +287,12 @@ func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
@@ -269,6 +305,12 @@ func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
@@ -282,6 +324,12 @@ func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreNew"

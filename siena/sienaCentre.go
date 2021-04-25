@@ -55,6 +55,12 @@ type sienaCentreItem struct {
 }
 
 func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCentre"
@@ -86,6 +92,12 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCentre"
@@ -122,6 +134,12 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCentre"
@@ -165,6 +183,12 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -243,6 +267,12 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCentre"

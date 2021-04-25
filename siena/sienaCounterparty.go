@@ -106,6 +106,12 @@ type sienaCounterpartyItem struct {
 }
 
 func ListSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterparty"
@@ -137,6 +143,12 @@ func ListSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterparty"
@@ -218,6 +230,12 @@ func ViewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterparty"
@@ -281,6 +299,12 @@ func EditSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -416,6 +440,12 @@ func SaveSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterparty"

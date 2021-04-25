@@ -30,6 +30,12 @@ type srvCatalogPage struct {
 }
 
 func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
+// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+// Code Continues Below
 
 	inUTL := r.URL.Path
 	if !(inUTL == "/favicon.ico") {

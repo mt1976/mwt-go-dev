@@ -63,11 +63,12 @@ type appMessageStoreItem struct {
 }
 
 func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
-
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
-		LoginHandler(w, r)
+		LogoutHandler(w, r)
 		return
 	}
+	// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreList"
@@ -100,6 +101,12 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreView"
@@ -141,6 +148,12 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreEdit"
@@ -183,6 +196,12 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	//	sienaProperties := GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
@@ -208,6 +227,12 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "MessageStore")
@@ -218,6 +243,12 @@ func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "MessageStore")
@@ -230,6 +261,12 @@ func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "MessageStore")
@@ -243,6 +280,12 @@ func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
 
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreNew"
