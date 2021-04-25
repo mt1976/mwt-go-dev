@@ -33,6 +33,7 @@ type sienaHomePage struct {
 
 // HomePageHandler
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
+
 	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
@@ -67,8 +68,8 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
 
-	log.Println(GetTemplateID(tmpl, globals.UserRole), tmpl, t, globals.UserRole, globals.UserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
-	log.Println("about to execute")
+	//log.Println(GetTemplateID(tmpl, globals.UserRole), tmpl, t, globals.UserRole, globals.UserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
+	//log.Println("about to execute")
 	t.Execute(w, homePage)
 
 }

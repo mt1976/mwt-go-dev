@@ -5,6 +5,7 @@ import (
 	"runtime"
 	"strings"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -17,13 +18,38 @@ const (
 // Start Initialises the Required Jobs
 func Start() {
 	//funcName = "Start"
-	logit("JobHandler", "JOB SCHEDULER")
+	logit("JobHandler", "CRON SCHEDULER")
 	c := cron.New()
 	// Insert Jobs Here
-	c.AddFunc("@every 10s", func() { RunJobHeartBeat(Scheduled) })
-	logit("RunJobHeartBeat", "@every 10s")
-	c.AddFunc("@every 1m", func() { RunJobFXSPOT(Scheduled) })
-	logit("RunJobFXSPOT", "@every 1m")
+	var period string
+
+	period = "@every 20s"
+	application.RegisterSchedule("heartbeat", "HeartBeat", "System Heartbeat", period)
+	c.AddFunc(period, func() { RunJobHeartBeat(Scheduled) })
+	logit("RunJobHeartBeat", period)
+
+	period = "@every 10m"
+	application.RegisterSchedule("fxspot", "FX Spot", "FX Spot rate from barchart.com", period)
+	c.AddFunc(period, func() { RunJobFXSPOT(Scheduled) })
+	logit("RunJobHeartBeat", period)
+
+	period = "30 16 * * 1-5"
+	application.RegisterSchedule("ecbrate", "ECB Rates", "ECB  Benchmark FX Spot rate", period)
+	c.AddFunc(period, func() { RunJobECB(Scheduled) })
+	logit("RunJobHeartBeat", period)
+
+	period = "30 10 * * 1-5"
+	application.RegisterSchedule("sonia", "BOE Sonia", "Current SONIA", period)
+	c.AddFunc(period, func() { RunJobBOESONIA(Scheduled) })
+	logit("RunJobHeartBeat", period)
+
+	period = "58 7-19 * * 1-5"
+	application.RegisterSchedule("fred", "Fred Series", "Current St Louis Fed Data", period)
+	c.AddFunc(period, func() { RunJobFRED(Scheduled) })
+	logit("RunJobHeartBeat", period)
+
+	//c.AddFunc("@every 1m", func() { RunJobFXSPOT(Scheduled) })
+	//logit("RunJobFXSPOT", "@every 1m")
 	//log.Println(runtime.Caller(0))
 	//log.Println(c.Entries())
 	c.Start()

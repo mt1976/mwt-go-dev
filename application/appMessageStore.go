@@ -64,6 +64,11 @@ type appMessageStoreItem struct {
 
 func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
+	if !(SessionValidate(w, r)) {
+		LoginHandler(w, r)
+		return
+	}
+
 	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreList"
 

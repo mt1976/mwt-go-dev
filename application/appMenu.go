@@ -31,12 +31,8 @@ func GetAppMenuData(inRole string) []AppMenuItem {
 
 // fetchappMenuData read all employees
 func FetchappMenuData(inRole string) (int, AppMenuList) {
-
 	file, _ := ioutil.ReadFile(GetMenuID("menu", globals.UserRole))
-
 	data := AppMenuList{}
-
 	_ = json.Unmarshal([]byte(file), &data)
-
 	return len(data.MenuItem), data
 }

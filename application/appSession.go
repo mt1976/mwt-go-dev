@@ -22,6 +22,19 @@ type loginPage struct {
 	ResponseError    string
 }
 
+type token struct {
+	session           string
+	uuid              string
+	appToken          string
+	role              string
+	navigation        string
+	knownas           string
+	username          string
+	SecurityViolation string
+	ResponseCode      string
+	host              string
+}
+
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	wctProperties := GetProperties(APPCONFIG)
@@ -63,62 +76,116 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 	uName := r.FormValue("username")
 	uPassword := r.FormValue("password")
 	appToken := wctProperties["applicationtoken"]
-	requestID := uuid.New()
-	var requestPayload []string
-
-	requestPayload = QmBundleAdd(requestPayload, "username", uName)
-	requestPayload = QmBundleAdd(requestPayload, "password", uPassword)
-	requestPayload = QmBundleAdd(requestPayload, "apptoken", appToken)
-
-	requestPayload = QmBundleAdd(requestPayload, "ipUser", ReadUserIP(r))
-	requestPayload = QmBundleAdd(requestPayload, "hostUser", r.Host)
 
 	hostname, err := os.Hostname()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	requestPayload = QmBundleAdd(requestPayload, "ipWebServer", GetLocalIP())
-	requestPayload = QmBundleAdd(requestPayload, "hostWebServer", hostname)
 
-	loginRequest := BuildRequestMessage(requestID.String(), "LOGIN", "", "", QmBundleToString(requestPayload), wctProperties)
+	tok := loginValidate(appToken, uName, uPassword, hostname)
 
-	//fmt.Println("loginRequest", loginRequest)
-	//fmt.Println("SEND MESSAGE")
-	SendRequest(loginRequest, requestID.String(), wctProperties)
+	log.Println(tok.ResponseCode, tok)
 
-	loginResponse := GetResponseAsync(requestID.String(), wctProperties, r)
-	//fmt.Println("loginResponse", loginResponse)
-
-	//outString := ""
-	//noRows := len(loginResponse.ResponseContent.ResponseContentRow)
-
-	responseCode := loginResponse.ResponseStatus
-	//fmt.Println("Response Code", responseCode)
-	//fmt.Println("SESSION", loginResponse.ResponseContent.ResponseContentRow[1])
-	newToken := loginResponse.ResponseContent.ResponseContentRow[0]
-	//fmt.Println("Response Content", newToken)
-
-	log.Println(responseCode, newToken)
-	//todo Encryp password etc
-
-	if loginResponse.ResponseStatus == "200" {
-
-		newUUID := loginResponse.ResponseContent.ResponseContentRow[1]
-		globals.UserRole = loginResponse.ResponseContent.ResponseContentRow[2]
-		globals.UserNavi = GetNavigationID(globals.UserRole)
-		globals.UserKnowAs = loginResponse.ResponseContent.ResponseContentRow[3]
-		log.Println("ACCESS GRANTED", responseCode, uName, globals.UserRole)
-		globals.UserName = uName
-		globals.SessionToken = newToken
-		globals.UUID = newUUID
+	if tok.ResponseCode == "200" {
+		globals.UserRole = tok.role
+		globals.UserNavi = tok.navigation
+		globals.UserKnowAs = tok.knownas
+		globals.UserName = tok.username
+		globals.SessionToken = tok.session
+		globals.UUID = tok.uuid
 		globals.SecurityViolation = ""
+		log.Println("ACCESS GRANTED", tok.ResponseCode, tok.username, globals.UserRole)
 		HomePageHandler(w, r)
 	} else {
-		globals.SecurityViolation = loginResponse.ResponseContent.ResponseContentRow[0]
-		log.Println("SECURITY INCIDENT", responseCode, globals.SecurityViolation)
+		globals.UserRole = ""
+		globals.UserNavi = ""
+		globals.UserKnowAs = ""
+		globals.UserName = ""
+		globals.SessionToken = ""
+		globals.UUID = ""
+		globals.SecurityViolation = tok.SecurityViolation
+		log.Println("SECURITY INCIDENT", tok.ResponseCode, tok.SecurityViolation)
 		LoginHandler(w, r)
 	}
+}
+
+func loginValidate(appToken string, username string, password string, host string) token {
+	var s token
+	s.session = ""
+	s.appToken = ""
+	s.role = ""
+	s.navigation = ""
+	s.knownas = ""
+	s.username = ""
+	s.SecurityViolation = ""
+	s.ResponseCode = ""
+	s.host = ""
+	db, _ := DataStoreConnect()
+	_, cred, _ := GetCredentialsStoreByUserName(db, username)
+	if len(cred.Id) == 0 {
+		s.ResponseCode = "512"
+		s.SecurityViolation = "SECURITY VIOLATION"
+		return s
+	}
+	if cred.Username != username {
+		s.ResponseCode = "512"
+		s.SecurityViolation = "SECURITY VIOLATION"
+		return s
+	}
+	// insert password check here
+
+	s.session = uuid.New().String()
+	s.uuid = cred.Id
+	s.appToken = appToken
+	s.role = cred.Role
+	s.navigation = GetNavigationID(cred.Role)
+	s.knownas = cred.Knownas
+	s.username = cred.Username
+	s.SecurityViolation = ""
+	s.ResponseCode = "200"
+	s.host = host
+	return s
+}
+
+// SessionValidate is cheese
+func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
+	var s token
+	s.session = ""
+	s.appToken = ""
+	s.role = ""
+	s.navigation = ""
+	s.knownas = ""
+	s.username = ""
+	s.SecurityViolation = ""
+	s.ResponseCode = ""
+	s.host = ""
+
+	//ok := true
+
+	log.Println("VALIDATE SESSION", globals.UUID, globals.UserName)
+
+	// were only going to check that uid and the username mactc
+	db, _ := DataStoreConnect()
+	_, cred, _ := GetCredentialsStoreByID(db, globals.UUID)
+	if len(cred.Id) == 0 {
+		log.Println("len(cred.Id) == 0", len(cred.Id))
+		//no credentials found
+		s.ResponseCode = "512"
+		s.SecurityViolation = "SECURITY VIOLATION"
+		return false
+	}
+	if cred.Username != globals.UserName {
+		log.Println("cred.Username != globals.UserName", cred.Username, globals.UserName)
+		s.ResponseCode = "512"
+		s.SecurityViolation = "SECURITY VIOLATION"
+		return false
+	}
+	// insert password check here
+	fmt.Println("SHOULD NOT GET HERE FOR THIS TEST!")
+	s.SecurityViolation = ""
+	s.ResponseCode = "200"
+	return true
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {

@@ -53,7 +53,7 @@ type CubeItem struct {
 	LASTUPDATED string `xml:"LAST_UPDATED,attr"`
 }
 
-func RunJobBOE(actionType string) {
+func RunJobBOESONIA(actionType string) {
 	logit(actionType, "*** START ***")
 	//funcName = "RunJobFXSPOT"
 	//date := "1999-12-31"

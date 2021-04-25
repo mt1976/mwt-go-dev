@@ -24,6 +24,7 @@ var appCredentialsStoreSQLINSERT = "INSERT INTO %s.credentialsStore(%s) VALUES('
 var appCredentialsStoreSQLDELETE = "DELETE FROM %s.credentialsStore WHERE id='%s';"
 var appCredentialsStoreSQLSELECT = "SELECT %s FROM %s.credentialsStore;"
 var appCredentialsStoreSQLGET = "SELECT %s FROM %s.credentialsStore WHERE id='%s';"
+var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsStore WHERE username='%s';"
 
 //appCredentialsStorePage is cheese
 type appCredentialsStoreListPage struct {
@@ -318,6 +319,14 @@ func GetCredentialsStoreList(db *sql.DB) (int, []appCredentialsStoreItem, error)
 func GetCredentialsStoreByID(db *sql.DB, id string) (int, appCredentialsStoreItem, error) {
 	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
 	tsql := fmt.Sprintf(appCredentialsStoreSQLGET, appCredentialsStoreSQL, mssqlConfig["schema"], id)
+	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(db, tsql)
+	return 1, appCredentialsStoreItem, nil
+}
+
+// getCredentialsStoreList read all employees
+func GetCredentialsStoreByUserName(db *sql.DB, id string) (int, appCredentialsStoreItem, error) {
+	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
+	tsql := fmt.Sprintf(appCredentialsStoreSQLGETUSER, appCredentialsStoreSQL, mssqlConfig["schema"], id)
 	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(db, tsql)
 	return 1, appCredentialsStoreItem, nil
 }

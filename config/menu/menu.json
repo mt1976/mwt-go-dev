@@ -178,6 +178,15 @@
     }
     ,
 
+    {
+      "ID": "scheduleStore",
+      "Text": "Schedule",
+      "Glyph": "far fa-clock",
+      "HREF": "/listScheduleStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
+    ,
 
     {
       "ID": "messageStore",

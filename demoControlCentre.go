@@ -11,8 +11,10 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/mbndr/figlet4go"
+
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
+	schedule "github.com/mt1976/mwt-go-dev/jobs"
 	siena "github.com/mt1976/mwt-go-dev/siena"
 )
 
@@ -59,7 +61,7 @@ func main() {
 	log.Println("")
 	log.Println("STARTING JOBS")
 	log.Println("")
-	//jobs.Start()
+	schedule.Start()
 	//jobs.RunJobFRED("TEST")
 	//jobs.RunJobBOE("TEST")
 	//jobs.RunJobECB("TEST")
@@ -204,6 +206,9 @@ func main() {
 	http.HandleFunc("/viewMessageStore/", application.ViewMessageStoreHandler)
 	http.HandleFunc("/editMessageStore/", application.EditMessageStoreHandler)
 	http.HandleFunc("/saveMessageStore/", application.SaveMessageStoreHandler)
+
+	http.HandleFunc("/listScheduleStore/", application.ListScheduleStoreHandler)
+	http.HandleFunc("/viewScheduleStore/", application.ViewScheduleStoreHandler)
 
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))

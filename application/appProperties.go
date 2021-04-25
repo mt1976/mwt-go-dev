@@ -18,7 +18,7 @@ func GetProperties(inPropertiesFile string) map[string]string {
 	if FileExists(localisedFileName) {
 		propertiesFileName = localisedFileName
 	}
-	log.Println("Using Properties :", propertiesFileName)
+	//log.Println("Using Properties :", propertiesFileName)
 
 	err := cfg.Load(propertiesFileName, wctProperties)
 
