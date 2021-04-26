@@ -61,32 +61,27 @@ type sienaCounterpartyAddressItem struct {
 }
 
 func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCounterpartyAddress"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []sienaCounterpartyAddressItem
-	noItems, returnList, _ := getSienaCounterpartyAddressList(thisConnection)
-	//	fmt.Println("NoSienaCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := getSienaCounterpartyAddressList()
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressListPage{
 		UserMenu:                      application.GetAppMenuData(globals.UserRole),
 		UserRole:                      globals.UserRole,
 		UserNavi:                      globals.UserNavi,
-		Title:                         wctProperties["appname"],
+		Title:                         globals.ApplicationProperties["appname"],
 		PageTitle:                     "List Siena CounterpartyAddresss",
 		SienaCounterpartyAddressCount: noItems,
 		SienaCounterpartyAddressList:  returnList,
@@ -98,34 +93,28 @@ func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCounterpartyAddress"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaCounterpartyAddressItem
+
 	firmID := application.GetURLparam(r, "SienaFirm")
 	centreID := application.GetURLparam(r, "SienaCentre")
-	_, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
-	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
+	_, returnRecord, _ := getSienaCounterpartyAddress(firmID, centreID)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
 		UserMenu:   application.GetAppMenuData(globals.UserRole),
 		UserRole:   globals.UserRole,
 		UserNavi:   globals.UserNavi,
-		Title:      wctProperties["appname"],
+		Title:      globals.ApplicationProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "",
 		NameFirm:   returnRecord.NameFirm,
@@ -144,37 +133,28 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCounterpartyAddress"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaCounterpartyAddressItem
 
 	firmID := application.GetURLparam(r, "SienaFirm")
 	centreID := application.GetURLparam(r, "SienaCentre")
-	_, returnRecord, _ := getSienaCounterpartyAddress(thisConnection, firmID, centreID)
-	//fmt.Println("NoSienaItems", noItems, firmID, centreID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
-
-	//fmt.Println(displayList)
+	_, returnRecord, _ := getSienaCounterpartyAddress(firmID, centreID)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
 		UserMenu:   application.GetAppMenuData(globals.UserRole),
 		UserRole:   globals.UserRole,
 		UserNavi:   globals.UserNavi,
-		Title:      wctProperties["appname"],
+		Title:      globals.ApplicationProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "",
 		NameFirm:   returnRecord.NameFirm,
@@ -194,14 +174,13 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -258,7 +237,7 @@ func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -274,14 +253,13 @@ func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCounterpartyAddress"
 
 	inUTL := r.URL.Path
@@ -292,7 +270,7 @@ func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 		UserMenu:   application.GetAppMenuData(globals.UserRole),
 		UserRole:   globals.UserRole,
 		UserNavi:   globals.UserNavi,
-		Title:      wctProperties["appname"],
+		Title:      globals.ApplicationProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "NEW",
 		NameFirm:   "",
@@ -311,37 +289,37 @@ func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 }
 
 // getSienaCounterpartyAddressList read all employees
-func getSienaCounterpartyAddressList(db *sql.DB) (int, []sienaCounterpartyAddressItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyAddress;", sienaCounterpartyAddressSQL, mssqlConfig["schema"])
-	count, sienaCounterpartyAddressList, _, _ := fetchSienaCounterpartyAddressData(db, tsql)
+func getSienaCounterpartyAddressList() (int, []sienaCounterpartyAddressItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyAddress;", sienaCounterpartyAddressSQL, globals.SienaPropertiesDB["schema"])
+	count, sienaCounterpartyAddressList, _, _ := fetchSienaCounterpartyAddressData(tsql)
 	return count, sienaCounterpartyAddressList, nil
 }
 
 // getSienaCounterpartyAddressList read all employees
-func getSienaCounterpartyAddress(db *sql.DB, idFirm string, idCentre string) (int, sienaCounterpartyAddressItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyAddress WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyAddressSQL, mssqlConfig["schema"], idFirm, idCentre)
-	_, _, sienaCounterpartyAddress, _ := fetchSienaCounterpartyAddressData(db, tsql)
+func getSienaCounterpartyAddress(idFirm string, idCentre string) (int, sienaCounterpartyAddressItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyAddress WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyAddressSQL, globals.SienaPropertiesDB["schema"], idFirm, idCentre)
+	_, _, sienaCounterpartyAddress, _ := fetchSienaCounterpartyAddressData(tsql)
 	return 1, sienaCounterpartyAddress, nil
 }
 
 // getSienaCounterpartyAddressList read all employees
-func putSienaCounterpartyAddress(db *sql.DB, updateItem sienaCounterpartyAddressItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaCounterpartyAddress(updateItem sienaCounterpartyAddressItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
 
 // fetchSienaCounterpartyAddressData read all employees
-func fetchSienaCounterpartyAddressData(db *sql.DB, tsql string) (int, []sienaCounterpartyAddressItem, sienaCounterpartyAddressItem, error) {
+func fetchSienaCounterpartyAddressData(tsql string) (int, []sienaCounterpartyAddressItem, sienaCounterpartyAddressItem, error) {
 
 	var sienaCounterpartyAddress sienaCounterpartyAddressItem
 	var sienaCounterpartyAddressList []sienaCounterpartyAddressItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

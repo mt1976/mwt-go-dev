@@ -64,28 +64,26 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccountLadder"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountLadderItem
 	accountID := application.GetURLparam(r, "SienaAccountID")
 	accountCCY := application.GetURLparam(r, "CCY")
-	noItems, returnList, _ := getSienaAccountLadderList(thisConnection, accountID, accountCCY)
+	noItems, returnList, _ := getSienaAccountLadderList(accountID, accountCCY)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
-	_, account, _ := getSienaAccount(thisConnection, accountID)
+	_, account, _ := getSienaAccount(accountID)
 
 	pageSienaAccountLadderList := sienaAccountLadderListPage{
 		UserMenu:                application.GetAppMenuData(globals.UserRole),
 		UserRole:                globals.UserRole,
 		UserNavi:                globals.UserNavi,
-		Title:                   wctProperties["appname"],
+		Title:                   globals.ApplicationProperties["appname"],
 		PageTitle:               "List Siena AccountLadders",
 		SienaAccountLadderCount: noItems,
 		SienaAccountLadderList:  returnList,
@@ -99,20 +97,20 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaAccountLadderList read all employees
-func getSienaAccountLadderList(db *sql.DB, idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, mssqlConfig["schema"], idRef)
-	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(db, tsql)
+func getSienaAccountLadderList(idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, globals.SienaPropertiesDB["schema"], idRef)
+	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(tsql)
 	return count, sienaAccountLadderList, nil
 }
 
 // fetchSienaAccountLadderData read all employees
-func fetchSienaAccountLadderData(db *sql.DB, tsql string) (int, []sienaAccountLadderItem, sienaAccountLadderItem, error) {
+func fetchSienaAccountLadderData(tsql string) (int, []sienaAccountLadderItem, sienaAccountLadderItem, error) {
 	log.Println(tsql)
 	var sienaAccountLadder sienaAccountLadderItem
 	var sienaAccountLadderList []sienaAccountLadderItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

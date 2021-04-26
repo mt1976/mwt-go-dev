@@ -33,19 +33,16 @@ type sienaHomePage struct {
 
 // HomePageHandler
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	log.Println("IN HOMEPAGE")
+	//	log.Println("IN HOMEPAGE")
 
 	tmpl := "home"
-	wctProperties := GetProperties(globals.APPCONFIG)
-	sqlProperties := GetProperties(globals.SQLCONFIG)
-	sienaProperties := GetProperties(globals.SIENACONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -57,14 +54,14 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        globals.UserRole,
 		UserNavi:        globals.UserNavi,
 		Title:           "Home",
-		PageTitle:       wctProperties["appname"],
-		AppReleaseID:    wctProperties["releaseid"],
-		AppReleaseLevel: wctProperties["releaselevel"],
-		AppReleaseNo:    wctProperties["releasenumber"],
-		SienaName:       sienaProperties["name"],
-		SQLServer:       sqlProperties["server"],
-		SQLDB:           sqlProperties["database"],
-		SQLSchema:       sqlProperties["schema"],
+		PageTitle:       globals.ApplicationProperties["appname"],
+		AppReleaseID:    globals.ApplicationProperties["releaseid"],
+		AppReleaseLevel: globals.ApplicationProperties["releaselevel"],
+		AppReleaseNo:    globals.ApplicationProperties["releasenumber"],
+		SienaName:       globals.SienaProperties["name"],
+		SQLServer:       globals.SienaPropertiesDB["server"],
+		SQLDB:           globals.SienaPropertiesDB["database"],
+		SQLSchema:       globals.SienaPropertiesDB["schema"],
 		UserName:        globals.UserName,
 		UserKnowAs:      globals.UserKnowAs,
 		SienaDate:       globals.SienaSystemDate,

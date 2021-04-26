@@ -57,32 +57,27 @@ type sienaCurrencyItem struct {
 }
 
 func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCurrency"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []sienaCurrencyItem
-	noItems, returnList, _ := getSienaCurrencyList(thisConnection)
-	//	fmt.Println("NoSienaCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := getSienaCurrencyList()
 
 	pageSienaCurrencyList := sienaCurrencyListPage{
 		UserMenu:           application.GetAppMenuData(globals.UserRole),
 		UserRole:           globals.UserRole,
 		UserNavi:           globals.UserNavi,
-		Title:              wctProperties["appname"],
+		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          "List Siena Currencys",
 		SienaCurrencyCount: noItems,
 		SienaCurrencyList:  returnList,
@@ -94,33 +89,28 @@ func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCurrency"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCurrencyItem
+
 	searchID := application.GetURLparam(r, "SienaCurrency")
-	noItems, returnRecord, _ := getSienaCurrency(thisConnection, searchID)
+	noItems, returnRecord, _ := getSienaCurrency(searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
 
 	pageSienaCurrencyList := sienaCurrencyPage{
 		UserMenu:    application.GetAppMenuData(globals.UserRole),
 		UserRole:    globals.UserRole,
 		UserNavi:    globals.UserNavi,
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Currency",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
@@ -137,30 +127,25 @@ func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCurrency"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaCurrencyItem
+
 	searchID := application.GetURLparam(r, "SienaCurrency")
-	noItems, returnRecord, _ := getSienaCurrency(thisConnection, searchID)
+	noItems, returnRecord, _ := getSienaCurrency(searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
 
 	//fmt.Println(displayList)
 
@@ -168,7 +153,7 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetAppMenuData(globals.UserRole),
 		UserRole:    globals.UserRole,
 		UserNavi:    globals.UserNavi,
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Currency",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
@@ -187,14 +172,13 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -255,7 +239,7 @@ func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -271,14 +255,13 @@ func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCurrency"
 
 	inUTL := r.URL.Path
@@ -286,15 +269,13 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := Connect()
-
-	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
 
 	pageSienaCurrencyList := sienaCurrencyPage{
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Currency",
 		ID:        "NEW",
 		Code:      "",
@@ -311,37 +292,37 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaCurrencyList read all employees
-func getSienaCurrencyList(db *sql.DB) (int, []sienaCurrencyItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, mssqlConfig["schema"])
-	count, sienaCurrencyList, _, _ := fetchSienaCurrencyData(db, tsql)
+func getSienaCurrencyList() (int, []sienaCurrencyItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, globals.SienaPropertiesDB["schema"])
+	count, sienaCurrencyList, _, _ := fetchSienaCurrencyData(tsql)
 	return count, sienaCurrencyList, nil
 }
 
 // getSienaCurrencyList read all employees
-func getSienaCurrency(db *sql.DB, id string) (int, sienaCurrencyItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, mssqlConfig["schema"], id)
-	_, _, sienaCurrency, _ := fetchSienaCurrencyData(db, tsql)
+func getSienaCurrency(id string) (int, sienaCurrencyItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, globals.SienaPropertiesDB["schema"], id)
+	_, _, sienaCurrency, _ := fetchSienaCurrencyData(tsql)
 	return 1, sienaCurrency, nil
 }
 
 // getSienaCurrencyList read all employees
-func putSienaCurrency(db *sql.DB, updateItem sienaCurrencyItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaCurrency(updateItem sienaCurrencyItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
 
 // fetchSienaCurrencyData read all employees
-func fetchSienaCurrencyData(db *sql.DB, tsql string) (int, []sienaCurrencyItem, sienaCurrencyItem, error) {
+func fetchSienaCurrencyData(tsql string) (int, []sienaCurrencyItem, sienaCurrencyItem, error) {
 
 	var sienaCurrency sienaCurrencyItem
 	var sienaCurrencyList []sienaCurrencyItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

@@ -104,26 +104,19 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "SessionStoreList"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []appSessionStoreItem
-
-	noItems, returnList, _ := GetSessionStoreList(thisConnection)
-	//	fmt.Println("NoCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := GetSessionStoreList()
 
 	pageSessionStoreList := appSessionStoreListPage{
 		UserMenu:          GetAppMenuData(globals.UserRole),
 		UserRole:          globals.UserRole,
 		UserNavi:          globals.UserNavi,
-		Title:             wctProperties["appname"],
+		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Session",
 		SessionStoreCount: noItems,
 		SessionStoreList:  returnList,
@@ -142,23 +135,17 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "SessionStoreView"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
+
 	searchID := GetURLparam(r, "SessionStore")
-	_, returnRecord, _ := GetSessionStoreByID(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
+	_, returnRecord, _ := GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Session",
 		Action:    "",
 		UserMenu:  GetAppMenuData(globals.UserRole),
@@ -204,25 +191,17 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "SessionStoreEdit"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
-	searchID := GetURLparam(r, "SessionStore")
-	_, returnRecord, _ := GetSessionStoreByID(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
 
-	//fmt.Println(displayList)
+	searchID := GetURLparam(r, "SessionStore")
+	_, returnRecord, _ := GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Session",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -267,7 +246,6 @@ func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	//	sienaProperties := GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -366,7 +344,6 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "SessionStoreNew"
 
 	inUTL := r.URL.Path
@@ -374,7 +351,7 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -391,33 +368,28 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSessionStoreList read all employees
-func GetSessionStoreList(db *sql.DB) (int, []appSessionStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appSessionStoreSQLSELECT, appSessionStoreSQL, mssqlConfig["schema"])
-	count, appSessionStoreList, _, _ := fetchSessionStoreData(db, tsql)
+func GetSessionStoreList() (int, []appSessionStoreItem, error) {
+	tsql := fmt.Sprintf(appSessionStoreSQLSELECT, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	count, appSessionStoreList, _, _ := fetchSessionStoreData(tsql)
 	return count, appSessionStoreList, nil
 }
 
 // getSessionStoreList read all employees
-func GetSessionStoreByID(db *sql.DB, id string) (int, appSessionStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appSessionStoreSQLGET, appSessionStoreSQL, mssqlConfig["schema"], id)
-	_, _, appSessionStoreItem, _ := fetchSessionStoreData(db, tsql)
+func GetSessionStoreByID(id string) (int, appSessionStoreItem, error) {
+	tsql := fmt.Sprintf(appSessionStoreSQLGET, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	_, _, appSessionStoreItem, _ := fetchSessionStoreData(tsql)
 	return 1, appSessionStoreItem, nil
 }
 
 // getSessionStoreList read all employees
-func GetSessionStoreByUserName(db *sql.DB, id string) (int, appSessionStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appSessionStoreSQLGETUSER, appSessionStoreSQL, mssqlConfig["schema"], id)
-	_, _, appSessionStoreItem, _ := fetchSessionStoreData(db, tsql)
+func GetSessionStoreByUserName(id string) (int, appSessionStoreItem, error) {
+	tsql := fmt.Sprintf(appSessionStoreSQLGETUSER, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	_, _, appSessionStoreItem, _ := fetchSessionStoreData(tsql)
 	return 1, appSessionStoreItem, nil
 }
 
 func putSessionStore(r appSessionStoreItem) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	appConfig := GetProperties(globals.APPCONFIG)
 
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
@@ -435,10 +407,10 @@ func putSessionStore(r appSessionStoreItem) {
 		r.SYSHost = host
 		r.Issued = createDate
 		//expiryDate := time.Now()
-		//life, _ := strconv.Atoi(appConfig["credentialslife"])
+		//life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
 		//expiryDate = expiryDate.AddDate(0, 0, life)
 		r.Expiry = ""
-		r.Password = appConfig["defaultpassword"]
+		r.Password = globals.ApplicationProperties["defaultpassword"]
 	}
 
 	r.SYSUpdated = createDate
@@ -446,35 +418,30 @@ func putSessionStore(r appSessionStoreItem) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
+	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id)
 
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, mssqlConfig["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, mssqlConfig["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id)
+	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
 
-	log.Println("DELETE:", deletesql, db)
-	log.Println("INSERT:", inserttsql, db)
-
-	fred2, err2 := db.Exec(deletesql)
+	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
 	log.Println(fred2, err2)
-	fred, err := db.Exec(inserttsql)
+	fred, err := globals.ApplicationDB.Exec(inserttsql)
 	log.Println(fred, err)
 }
 
 func getSessionExpiryTime() string {
-	appConfig := GetProperties(globals.APPCONFIG)
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(appConfig["credentialslife"])
+	life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
 	expiryDate = expiryDate.AddDate(0, 0, life)
 	return expiryDate.Format(globals.DATETIMEFORMATUSER)
 }
 
 func deleteSessionStore(id string) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	db, _ := DataStoreConnect()
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, mssqlConfig["schema"], id)
-	log.Println("DELETE:", deletesql, db)
-	fred2, err2 := db.Exec(deletesql)
+	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
 	log.Println(fred2, err2)
 }
 
@@ -483,8 +450,7 @@ func banSessionStore(id string) {
 	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
-	_, r, _ := GetSessionStoreByID(db, id)
+	_, r, _ := GetSessionStoreByID(id)
 	r.Expiry = ""
 	r.Password = ""
 	putSessionStore(r)
@@ -495,19 +461,18 @@ func activateSessionStore(id string) {
 	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
-	_, r, _ := GetSessionStoreByID(db, id)
+	_, r, _ := GetSessionStoreByID(id)
 	r.Expiry = getExpiryDate()
 	putSessionStore(r)
 }
 
 // fetchSessionStoreData read all employees
-func fetchSessionStoreData(db *sql.DB, tsql string) (int, []appSessionStoreItem, appSessionStoreItem, error) {
+func fetchSessionStoreData(tsql string) (int, []appSessionStoreItem, appSessionStoreItem, error) {
 	log.Println(tsql)
 	var appSessionStore appSessionStoreItem
 	var appSessionStoreList []appSessionStoreItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -559,7 +524,6 @@ func newSessionStoreID() string {
 }
 
 func CreateSessionToken(req *http.Request) string {
-	appConfig := GetProperties(globals.APPCONFIG)
 
 	id := uuid.New().String()
 	now := time.Now()
@@ -568,7 +532,7 @@ func CreateSessionToken(req *http.Request) string {
 	host, _ := os.Hostname()
 	var r appSessionStoreItem
 	r.Id = id
-	r.Apptoken = appConfig["applicationtoken"]
+	r.Apptoken = globals.ApplicationProperties["applicationtoken"]
 	r.Createdate = now.Format(globals.DATEFORMATSIENA)
 	r.Createtime = now.Format(globals.TIMEHMS)
 	r.Uniqueid = globals.UUID
@@ -580,7 +544,7 @@ func CreateSessionToken(req *http.Request) string {
 	r.Apphost = host
 	r.Issued = now.Format(globals.DATETIMEFORMATUSER)
 
-	//addTime, _ := strconv.Atoi(appConfig["sessionlife"])
+	//addTime, _ := strconv.Atoi(globals.ApplicationProperties["sessionlife"])
 	expiry := now.Add(time.Minute * 20)
 
 	r.Expiry = expiry.Format(globals.DATETIMEFORMATUSER)

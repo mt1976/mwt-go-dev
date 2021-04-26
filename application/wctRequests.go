@@ -52,14 +52,13 @@ type RequestViewPage struct {
 }
 
 func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewRequest"
 	inUTL := r.URL.Path
 	requestID := uuid.New()
@@ -68,9 +67,9 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	thisID, _ := strconv.Atoi(GetURLparam(r, "id"))
 	//fmt.Println(thisID)
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
-	_, _, serviceCatalog := GetServices(wctProperties, wctProperties["responseformat"], r)
+	_, _, serviceCatalog := GetServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"], r)
 
 	//fmt.Println("serviceCatalog", serviceCatalog)
 	//fmt.Println("test", serviceCatalog[thisID])
@@ -82,15 +81,15 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 		Title:                 title,
 		Description:           serviceCatalog[thisID].Text + " " + serviceCatalog[thisID].Helptext,
 		SudoID:                thisID,
-		ApplicationToken:      wctProperties["applicationtoken"],
+		ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
 		SessionToken:          globals.SessionToken,
 		RequestID:             requestID.String(),
 		RequestAction:         serviceCatalog[thisID].Action,
 		RequestItem:           serviceCatalog[thisID].Item,
 		RequestParameters:     serviceCatalog[thisID].Parameters,
 		UniqueUID:             globals.UUID,
-		RequestResponseFormat: wctProperties["responseformat"],
-		DeliverTo:             wctProperties["deliverpath"],
+		RequestResponseFormat: globals.ApplicationProperties["responseformat"],
+		DeliverTo:             globals.ApplicationProperties["deliverpath"],
 		PageTitle:             "View Request",
 	}
 
@@ -103,16 +102,13 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := GetProperties(globals.APPCONFIG)
-	//	tmpl := "executeRequest"
 	inUTL := r.URL.Path
 
 	log.Println("Servicing :", inUTL)
@@ -121,21 +117,21 @@ func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	dispatchMessage := WctMessage{
 		WctPayload{
-			ApplicationToken:      wctProperties["applicationtoken"],
+			ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
 			SessionToken:          globals.SessionToken,
 			RequestID:             thisUUID,
 			RequestAction:         GetURLparam(r, "action"),
 			RequestItem:           GetURLparam(r, "item"),
 			RequestParameters:     GetURLparam(r, "parameters"),
 			UniqueUID:             globals.UUID,
-			RequestResponseFormat: wctProperties["responseformat"],
+			RequestResponseFormat: globals.ApplicationProperties["responseformat"],
 			RequestData:           "",
 		},
 	}
 
-	deliverRequest(dispatchMessage, wctProperties["deliverpath"], thisUUID, wctProperties["responseformat"])
+	deliverRequest(dispatchMessage, globals.ApplicationProperties["deliverpath"], thisUUID, globals.ApplicationProperties["responseformat"])
 
-	common.SnoozeFor(wctProperties["pollinginterval"])
+	common.SnoozeFor(globals.ApplicationProperties["pollinginterval"])
 	//	fmt.Println(r.URL.Path, r.URL, r)
 	ViewResponseHandler(w, r)
 	//	http.Redirect(w, r, "/", http.StatusOK)
@@ -156,13 +152,13 @@ func deliverRequest(dispatchMessage WctMessage, filePath string, id string, resp
 	_ = ioutil.WriteFile(fileName, js, 0644)
 }
 
-func processSimpleRequestMessage(wctProperties map[string]string, responseFormat string) {
+func processSimpleRequestMessage(unused map[string]string, responseFormat string) {
 
 	id := uuid.New()
 
 	resp := WctMessage{
 		WctPayload{
-			ApplicationToken:      wctProperties["applicationtoken"],
+			ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
 			RequestID:             id.String(),
 			RequestAction:         "SERVICES",
 			UniqueUID:             globals.UUID,
@@ -172,21 +168,21 @@ func processSimpleRequestMessage(wctProperties map[string]string, responseFormat
 		},
 	}
 
-	deliverRequest(resp, wctProperties["deliverpath"], id.String(), responseFormat)
+	deliverRequest(resp, globals.ApplicationProperties["deliverpath"], id.String(), responseFormat)
 
 }
 
-func BuildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, wctProperties map[string]string) WctMessage {
+func BuildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, unused map[string]string) WctMessage {
 
 	requestMessage := WctMessage{
 		WctPayload{
-			ApplicationToken:      wctProperties["applicationtoken"],
+			ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
 			RequestID:             inUUID,
 			RequestAction:         inAction,
 			RequestItem:           inItem,
 			RequestParameters:     inParameters,
 			UniqueUID:             globals.UUID,
-			RequestResponseFormat: wctProperties["responseformat"],
+			RequestResponseFormat: globals.ApplicationProperties["responseformat"],
 			RequestData:           inPayload,
 			SessionToken:          globals.SessionToken,
 		},
@@ -195,11 +191,11 @@ func BuildRequestMessage(inUUID string, inAction string, inItem string, inParame
 	return requestMessage
 }
 
-func SendRequest(dispatchMessage WctMessage, id string, wctProperties map[string]string) {
+func SendRequest(dispatchMessage WctMessage, id string, unused map[string]string) {
 
 	js, _ := json.Marshal(dispatchMessage)
 
-	var fileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
+	var fileName = globals.ApplicationProperties["deliverpath"] + "/" + id + "." + globals.ApplicationProperties["responseformat"]
 	log.Println("Request Filename :", fileName)
 	//	fmt.Printf("\n")
 	_ = ioutil.WriteFile(fileName, js, 0644)

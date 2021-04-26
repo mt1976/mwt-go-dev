@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -21,20 +20,20 @@ type sienaBIcounterpartyPerSectorItem struct {
 }
 
 // getSienaBIcounterpartyPerSectorList read all employees
-func getSienaBIcounterpartyPerSectorList(db *sql.DB) (int, []sienaBIcounterpartyPerSectorItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIcounterpartyPerSector;", sienaBIcounterpartyPerSectorSQL, mssqlConfig["schema"])
-	count, sienaBIcounterpartyPerSectorList, _, _ := fetchSienaBIcounterpartyPerSectorData(db, tsql)
+func getSienaBIcounterpartyPerSectorList() (int, []sienaBIcounterpartyPerSectorItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIcounterpartyPerSector;", sienaBIcounterpartyPerSectorSQL, globals.SienaPropertiesDB["schema"])
+	count, sienaBIcounterpartyPerSectorList, _, _ := fetchSienaBIcounterpartyPerSectorData(tsql)
 	return count, sienaBIcounterpartyPerSectorList, nil
 }
 
 // fetchSienaBIcounterpartyPerSectorData read all employees
-func fetchSienaBIcounterpartyPerSectorData(db *sql.DB, tsql string) (int, []sienaBIcounterpartyPerSectorItem, sienaBIcounterpartyPerSectorItem, error) {
+func fetchSienaBIcounterpartyPerSectorData(tsql string) (int, []sienaBIcounterpartyPerSectorItem, sienaBIcounterpartyPerSectorItem, error) {
 
 	var sienaBIcounterpartyPerSector sienaBIcounterpartyPerSectorItem
 	var sienaBIcounterpartyPerSectorList []sienaBIcounterpartyPerSectorItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

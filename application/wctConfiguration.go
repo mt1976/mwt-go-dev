@@ -47,14 +47,13 @@ type SrvConfigurationItem struct {
 }
 
 func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -64,17 +63,17 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Servicing :", inUTL)
 
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
 	// Get Data Here
-	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
+	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", globals.ApplicationProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
 
-	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -118,14 +117,13 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "listSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -133,17 +131,17 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Servicing :", inUTL)
 
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
 	// Get Data Here
-	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", wctProperties)
+	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", globals.ApplicationProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
 
-	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -178,34 +176,33 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
-	maxRows, _ := strconv.Atoi(wctProperties["maxtextboxrows"])
+	maxRows, _ := strconv.Atoi(globals.ApplicationProperties["maxtextboxrows"])
 	recordID := GetURLparam(r, "id")
 
 	log.Println("Servicing :", inUTL)
 
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
 	// Get Data Here
-	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", wctProperties)
+	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", globals.ApplicationProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
 
-	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -238,14 +235,13 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
@@ -256,9 +252,9 @@ func SaveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	body := r.FormValue("pgContent")
 	id := r.FormValue("pgid")
 
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, wctProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, globals.ApplicationProperties)
 
-	SendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
 
 	ListSrvConfigurationHandler(w, r)
 }

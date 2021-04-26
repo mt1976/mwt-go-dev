@@ -59,32 +59,27 @@ type sienaFirmItem struct {
 }
 
 func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaFirm"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []sienaFirmItem
-	noItems, returnList, _ := getSienaFirmList(thisConnection)
-	//	fmt.Println("NoSienaCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := getSienaFirmList()
 
 	pageSienaFirmList := sienaFirmListPage{
 		UserMenu:       application.GetAppMenuData(globals.UserRole),
 		UserRole:       globals.UserRole,
 		UserNavi:       globals.UserNavi,
-		Title:          wctProperties["appname"],
+		Title:          globals.ApplicationProperties["appname"],
 		PageTitle:      "List Siena Firms",
 		SienaFirmCount: noItems,
 		SienaFirmList:  returnList,
@@ -96,33 +91,27 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaFirm"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaFirmItem
+
 	searchID := application.GetURLparam(r, "SienaFirm")
-	_, returnRecord, _ := getSienaFirm(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
+	_, returnRecord, _ := getSienaFirm(searchID)
 
 	pageSienaFirmList := sienaFirmPage{
 		UserMenu:    application.GetAppMenuData(globals.UserRole),
 		UserRole:    globals.UserRole,
 		UserNavi:    globals.UserNavi,
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          returnRecord.FirmName,
 		FirmName:    returnRecord.FirmName,
@@ -140,31 +129,25 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaFirm"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaFirmItem
+
 	searchID := application.GetURLparam(r, "SienaFirm")
-	_, returnRecord, _ := getSienaFirm(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
+	_, returnRecord, _ := getSienaFirm(searchID)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList(thisConnection)
-	_, sectorList, _ := getSienaSectorList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
+	_, sectorList, _ := getSienaSectorList()
 
 	//fmt.Println(displayList)
 
@@ -172,7 +155,7 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetAppMenuData(globals.UserRole),
 		UserRole:    globals.UserRole,
 		UserNavi:    globals.UserNavi,
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          returnRecord.FirmName,
 		FirmName:    returnRecord.FirmName,
@@ -193,14 +176,13 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -267,7 +249,7 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
@@ -277,7 +259,7 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error creating XML file: ", err)
 		return
 	}
-	xmlFile.WriteString(sienaProperties["static_xml_encoding"] + "\n")
+	xmlFile.WriteString(globals.SienaProperties["static_xml_encoding"] + "\n")
 	encoder := xml.NewEncoder(xmlFile)
 	encoder.Indent("", "\t")
 	err = encoder.Encode(sienaXMLContent)
@@ -291,14 +273,13 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaFirm"
 
 	inUTL := r.URL.Path
@@ -306,16 +287,14 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := Connect()
-
-	_, countryList, _ := getSienaCountryList(thisConnection)
-	_, sectorList, _ := getSienaSectorList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
+	_, sectorList, _ := getSienaSectorList()
 
 	pageSienaFirmList := sienaFirmPage{
 		UserMenu:    application.GetAppMenuData(globals.UserRole),
 		UserRole:    globals.UserRole,
 		UserNavi:    globals.UserNavi,
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          "NEW",
 		FirmName:    "",
@@ -333,40 +312,39 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaFirmList read all employees
-func getSienaFirmList(db *sql.DB) (int, []sienaFirmItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, mssqlConfig["schema"])
-	count, sienaFirmList, _, _ := fetchSienaFirmData(db, tsql)
+func getSienaFirmList() (int, []sienaFirmItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, globals.SienaPropertiesDB["schema"])
+	count, sienaFirmList, _, _ := fetchSienaFirmData(tsql)
 
 	return count, sienaFirmList, nil
 }
 
 // getSienaFirmList read all employees
-func getSienaFirm(db *sql.DB, id string) (int, sienaFirmItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, mssqlConfig["schema"], id)
+func getSienaFirm(id string) (int, sienaFirmItem, error) {
 
-	_, _, sienaFirm, _ := fetchSienaFirmData(db, tsql)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, globals.SienaPropertiesDB["schema"], id)
+	_, _, sienaFirm, _ := fetchSienaFirmData(tsql)
 
 	return 1, sienaFirm, nil
 }
 
 // getSienaFirmList read all employees
-func putSienaFirm(db *sql.DB, updateItem sienaFirmItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaFirm(updateItem sienaFirmItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
 
 // fetchSienaFirmData read all employees
-func fetchSienaFirmData(db *sql.DB, tsql string) (int, []sienaFirmItem, sienaFirmItem, error) {
+func fetchSienaFirmData(tsql string) (int, []sienaFirmItem, sienaFirmItem, error) {
 
 	var sienaFirm sienaFirmItem
 	var sienaFirmList []sienaFirmItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

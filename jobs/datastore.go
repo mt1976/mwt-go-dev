@@ -10,7 +10,6 @@ import (
 	"strings"
 	"time"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -28,7 +27,7 @@ type RatesDataStore struct {
 	date        string
 }
 
-var wctRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, created, who, host, [date]"
+var wctRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, _created, _who, _host, [date]"
 var sqlRatesDataStoreID, sqlRatesDataStorebid, sqlRatesDataStoremid, sqlRatesDataStoreoffer, sqlRatesDataStoremarket, sqlRatesDataStoretenor, sqlRatesDataStoreseries, sqlRatesDataStorename, sqlRatesDataStoresource, sqlRatesDataStoredestination, sqlRatesDataStoreclass, sqlRatesDataStorecreated, sqlRatesDataStoreby, sqlRatesDataStoreon, sqlRatesDataStoredate sql.NullString
 var wctRatesDataStoreSQLINSERT = "INSERT INTO %s.rateDataStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
 var wctRatesDataStoreSQLDELETE = "DELETE FROM %s.rateDataStore WHERE id='%s';"
@@ -154,19 +153,23 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 	fmt.Println("RECORD", sql)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := application.DataStoreConnect()
+	//db, _ := application.DataStoreConnect()
 
-	mssqlConfig := application.GetProperties(globals.DATASTORECONFIG)
-	inserttsql := fmt.Sprintf(wctRatesDataStoreSQLINSERT, mssqlConfig["schema"], wctRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
-	deletesql := fmt.Sprintf(wctRatesDataStoreSQLDELETE, mssqlConfig["schema"], sql.ID)
+	//mssqlConfig := application.GetProperties(globals.DATASTORECONFIG)
+	inserttsql := fmt.Sprintf(wctRatesDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], wctRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
+	deletesql := fmt.Sprintf(wctRatesDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], sql.ID)
 	//var wctRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, created, who, host, [date]"
 
-	log.Println(inserttsql, db)
-	log.Println(deletesql, db)
-	fred2, err2 := db.Exec(deletesql)
-	log.Println(fred2, err2)
-	fred, err := db.Exec(inserttsql)
-	log.Println(fred, err)
+	//log.Println(inserttsql, globals.ApplicationDB)
+	//log.Println(deletesql, globals.ApplicationDB)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Panicf("%e", err2)
+	}
+	_, err := globals.ApplicationDB.Exec(inserttsql)
+	if err != nil {
+		log.Panicf("%e", err)
+	}
 }
 
 func getRatesDataStoreKey(ratesData RatesDataStore) string {

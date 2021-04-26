@@ -89,17 +89,19 @@ type PageResponseView struct {
 	PageTitle            string
 }
 
-func listResponsescli(wctProperties map[string]string, responseFormat string) {
-	files := getResponses(wctProperties["receivepath"], responseFormat)
+/*
+func listResponsescli(map[string]string, responseFormat string) {
+	files := getResponses(globals.ApplicationProperties["receivepath"], responseFormat)
 	fmt.Println("Responses Found :", len(files))
 	for _, f := range files {
 		fmt.Println("ID :", f)
 	}
 }
+*/
+/*
+func listResponsesweb(globals.ApplicationProperties map[string]string, responseFormat string, w http.ResponseWriter) {
 
-func listResponsesweb(wctProperties map[string]string, responseFormat string, w http.ResponseWriter) {
-
-	files := getResponses(wctProperties["receivepath"], responseFormat)
+	files := getResponses(globals.ApplicationProperties["receivepath"], responseFormat)
 	var noFound = "<em>Responses Found : </em><code>" + strconv.Itoa(len(files)) + "</code>"
 	fmt.Fprintf(w, "%s", "<hr>")
 	fmt.Fprintf(w, "%s", noFound)
@@ -109,7 +111,7 @@ func listResponsesweb(wctProperties map[string]string, responseFormat string, w 
 		fmt.Fprintf(w, "%s", outString)
 	}
 }
-
+*/
 func getResponses(path string, responseFormat string) []string {
 	files, err := filepath.Glob(path + "/*." + responseFormat)
 	if err != nil {
@@ -118,10 +120,10 @@ func getResponses(path string, responseFormat string) []string {
 	return files
 }
 
-func GetResponsesList(wctProperties map[string]string, responseFormat string, w http.ResponseWriter) (int, string, []WctResponsePayload) {
+func GetResponsesList(unused map[string]string, responseFormat string, w http.ResponseWriter) (int, string, []WctResponsePayload) {
 
 	var respList []WctResponsePayload
-	files := getResponses(wctProperties["receivepath"], responseFormat)
+	files := getResponses(globals.ApplicationProperties["receivepath"], responseFormat)
 	//	var noFound = "<em>Responses Found : </em><code>" + strconv.Itoa(len(files)) + "</code>"
 	noResponses := len(files)
 	var responseText bytes.Buffer
@@ -130,10 +132,10 @@ func GetResponsesList(wctProperties map[string]string, responseFormat string, w 
 
 		var tempResponse WctResponsePayload
 		endPoint := len(f) - (len(responseFormat) + 1)
-		startPoint := len(wctProperties["receivepath"]) + 1
+		startPoint := len(globals.ApplicationProperties["receivepath"]) + 1
 		tempResponse.ResponseID = f[startPoint:endPoint]
 		tempResponse.ResponseFileName = f
-		tempResponse.ResponseFilePath = wctProperties["receivepath"]
+		tempResponse.ResponseFilePath = globals.ApplicationProperties["receivepath"]
 		tempResponse.ResponseFileType = responseFormat
 		respList = append(respList, tempResponse)
 
@@ -142,15 +144,13 @@ func GetResponsesList(wctProperties map[string]string, responseFormat string, w 
 }
 
 func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
@@ -159,13 +159,13 @@ func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//thisID, _ := strconv.Atoi(GetURLparam(r, "uuid"))
 	//fmt.Println(thisID)
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 	//fmt.Println(title)
 
 	//var emptyString []string
 	//fmt.Println(emptyString)
 
-	thisPayload := getResponse(GetURLparam(r, "uuid"), wctProperties)
+	thisPayload := getResponse(GetURLparam(r, "uuid"), globals.ApplicationProperties)
 	//fmt.Println(thisPayload)
 
 	respC := ArrToString(thisPayload.ResponseContent.ResponseContentRow)
@@ -207,11 +207,11 @@ func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func getResponse(responseID string, wctProperties map[string]string) WctResponsePayload {
+func getResponse(responseID string, unused map[string]string) WctResponsePayload {
 	//fmt.Println("XXXXXXX - GET RESPONSE - XXXXXXX")
 	var returnPayload WctResponsePayload
 	var reponseMessage WctResponseMessage
-	fullFilename := wctProperties["receivepath"] + "/" + responseID + "." + wctProperties["responseformat"]
+	fullFilename := globals.ApplicationProperties["receivepath"] + "/" + responseID + "." + globals.ApplicationProperties["responseformat"]
 	//fmt.Println("PATHTO:", fullFilename)
 
 	//fmt.Println("Access file", fullFilename)
@@ -230,9 +230,9 @@ func getResponse(responseID string, wctProperties map[string]string) WctResponse
 	return returnPayload
 }
 
-func deleteResponse(responseID string, wctProperties map[string]string) (err error) {
+func deleteResponse(responseID string, unused map[string]string) (err error) {
 	//fmt.Println("XXXXXXX - DELETE RESPONSE - XXXXXXX")
-	fullFilename := wctProperties["receivepath"] + "/" + responseID + "." + wctProperties["responseformat"]
+	fullFilename := globals.ApplicationProperties["receivepath"] + "/" + responseID + "." + globals.ApplicationProperties["responseformat"]
 	//fmt.Println("PATHTO:", fullFilename)
 
 	err = os.Remove(fullFilename)
@@ -243,22 +243,18 @@ func deleteResponse(responseID string, wctProperties map[string]string) (err err
 }
 
 func DeleteResponseHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := GetProperties(globals.APPCONFIG)
-	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
-	//requestID := uuid.New()
 
 	log.Println("Servicing :", inUTL)
 
-	err := deleteResponse(GetURLparam(r, "responseID"), wctProperties)
+	err := deleteResponse(GetURLparam(r, "responseID"), globals.ApplicationProperties)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -266,10 +262,10 @@ func DeleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetResponseAsync(id string, wctProperties map[string]string, r *http.Request) WctResponsePayload {
+func GetResponseAsync(id string, unused map[string]string, r *http.Request) WctResponsePayload {
 
-	var responseFileName = wctProperties["deliverpath"] + "/" + id + "." + wctProperties["responseformat"]
-	var processedFileName = wctProperties["processedpath"] + "/" + id + "." + wctProperties["responseformat"]
+	var responseFileName = globals.ApplicationProperties["deliverpath"] + "/" + id + "." + globals.ApplicationProperties["responseformat"]
+	var processedFileName = globals.ApplicationProperties["processedpath"] + "/" + id + "." + globals.ApplicationProperties["responseformat"]
 	//log.Println("Response Filename :", responseFileName)
 	//fmt.Println("Processed Filename :", processedFileName)
 
@@ -279,7 +275,7 @@ func GetResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 	//	var nibble WctResponsePayload
 	for !condition {
 		log.Println("Polling 4 file", responseFileName)
-		wibble = getResponse(id, wctProperties)
+		wibble = getResponse(id, globals.ApplicationProperties)
 		text := string(wibble.RequestConsumed)
 		//	fmt.Println("text file", text)
 		if text != "" {
@@ -291,14 +287,14 @@ func GetResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 				fmt.Println(err.Error())
 			}
 
-			err = deleteResponse(id, wctProperties)
+			err = deleteResponse(id, globals.ApplicationProperties)
 			if err != nil {
 				fmt.Println(err.Error())
 			}
 
 		} else {
 
-			common.SnoozeFor(wctProperties["pollinginterval"])
+			common.SnoozeFor(globals.ApplicationProperties["pollinginterval"])
 
 		}
 		//fmt.Println(text)
@@ -314,24 +310,23 @@ func GetResponseAsync(id string, wctProperties map[string]string, r *http.Reques
 }
 
 func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "listResponses"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
 	log.Println("Servicing :", inUTL)
 
-	noResps, _, files := getResponseIDs(wctProperties)
+	noResps, _, files := getResponseIDs(globals.ApplicationProperties)
 	log.Println("Responses Found :", len(files))
 
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
 	rpc := ResponseListPage{
 		UserMenu:    GetAppMenuData(globals.UserRole),
@@ -351,8 +346,8 @@ func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func getResponseIDs(wctProperties map[string]string) (int, string, []ResponseItem) {
-	files := getResponses(wctProperties["receivepath"], wctProperties["responseformat"])
+func getResponseIDs(unused map[string]string) (int, string, []ResponseItem) {
+	files := getResponses(globals.ApplicationProperties["receivepath"], globals.ApplicationProperties["responseformat"])
 	var respList []ResponseItem
 	//	var noFound = "<em>Responses Found : </em><code>" + strconv.Itoa(len(files)) + "</code>"
 	noResponses := len(files)
@@ -361,8 +356,8 @@ func getResponseIDs(wctProperties map[string]string) (int, string, []ResponseIte
 		responseText.WriteString(f + "\n")
 
 		var tempResponse ResponseItem
-		endPoint := len(f) - (len(wctProperties["responseformat"]) + 1)
-		startPoint := len(wctProperties["receivepath"]) + 1
+		endPoint := len(f) - (len(globals.ApplicationProperties["responseformat"]) + 1)
+		startPoint := len(globals.ApplicationProperties["receivepath"]) + 1
 		tempResponse.ID = f[startPoint:endPoint]
 		respList = append(respList, tempResponse)
 

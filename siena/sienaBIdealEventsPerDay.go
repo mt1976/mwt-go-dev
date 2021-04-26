@@ -21,20 +21,20 @@ type sienaBIdealEventsPerDayItem struct {
 }
 
 // getSienaBIdealEventsPerDayList read all employees
-func getSienaBIdealEventsPerDayList(db *sql.DB) (int, []sienaBIdealEventsPerDayItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, mssqlConfig["schema"])
-	count, sienaBIdealEventsPerDayList, _, _ := fetchSienaBIdealEventsPerDayData(db, tsql)
+func getSienaBIdealEventsPerDayList() (int, []sienaBIdealEventsPerDayItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, globals.SienaPropertiesDB["schema"])
+	count, sienaBIdealEventsPerDayList, _, _ := fetchSienaBIdealEventsPerDayData(tsql)
 	return count, sienaBIdealEventsPerDayList, nil
 }
 
 // fetchSienaBIdealEventsPerDayData read all employees
-func fetchSienaBIdealEventsPerDayData(db *sql.DB, tsql string) (int, []sienaBIdealEventsPerDayItem, sienaBIdealEventsPerDayItem, error) {
+func fetchSienaBIdealEventsPerDayData(tsql string) (int, []sienaBIdealEventsPerDayItem, sienaBIdealEventsPerDayItem, error) {
 
 	var sienaBIdealEventsPerDay sienaBIdealEventsPerDayItem
 	var sienaBIdealEventsPerDayList []sienaBIdealEventsPerDayItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

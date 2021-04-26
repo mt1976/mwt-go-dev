@@ -32,23 +32,22 @@ type sienaDashboardPage struct {
 }
 
 func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "dashboard"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	db, _ := Connect()
-	noCps, _, _ := getSienaCounterpartyList(db)
-	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList(db)
-	noSecs, dataSect, _ := getSienaBIcounterpartyPerSectorList(db)
+
+	noCps, _, _ := getSienaCounterpartyList()
+	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList()
+	noSecs, dataSect, _ := getSienaBIcounterpartyPerSectorList()
 
 	var DLlist []string
 	var DVlist []string
@@ -68,7 +67,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:          application.GetAppMenuData(globals.UserRole),
 		UserRole:          globals.UserRole,
 		UserNavi:          globals.UserNavi,
-		Title:             wctProperties["appname"],
+		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Siena Dashboards",
 		TotCounterparties: strconv.Itoa(noCps),
 		NoGDPRExp:         strconv.Itoa(noDepd),

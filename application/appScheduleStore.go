@@ -75,33 +75,28 @@ type appScheduleStoreItem struct {
 }
 
 func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreList"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []appScheduleStoreItem
 
-	noItems, returnList, _ := GetScheduleStoreList(thisConnection)
-	//	fmt.Println("NoCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := GetScheduleStoreList()
 
 	pageScheduleStoreList := appScheduleStoreListPage{
 		UserMenu:           GetAppMenuData(globals.UserRole),
 		UserRole:           globals.UserRole,
 		UserNavi:           globals.UserNavi,
-		Title:              wctProperties["appname"],
+		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          "List Message",
 		ScheduleStoreCount: noItems,
 		ScheduleStoreList:  returnList,
@@ -113,26 +108,23 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreView"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-
 	searchID := GetURLparam(r, "ScheduleStore")
-	_, returnRecord, _ := GetScheduleStoreByID(thisConnection, searchID)
+	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
 	pageCredentialStoreList := appScheduleStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Message",
 		Action:    "",
 		UserMenu:  GetAppMenuData(globals.UserRole),
@@ -161,32 +153,23 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreEdit"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
 	searchID := GetURLparam(r, "ScheduleStore")
-	_, returnRecord, _ := GetScheduleStoreByID(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
-
-	//fmt.Println(displayList)
+	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
 	pageCredentialStoreList := appScheduleStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Message",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -214,15 +197,12 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
-
-	//	sienaProperties := GetProperties(globals.SIENACONFIG)
-	//tmpl := "saveSienaCountry"
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
@@ -250,12 +230,12 @@ func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
@@ -266,12 +246,12 @@ func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BanScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
@@ -284,12 +264,12 @@ func BanScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
@@ -303,14 +283,13 @@ func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "ScheduleStoreNew"
 
 	inUTL := r.URL.Path
@@ -318,7 +297,7 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageCredentialStoreList := appScheduleStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -335,43 +314,39 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getScheduleStoreList read all employees
-func GetScheduleStoreList(db *sql.DB) (int, []appScheduleStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appScheduleStoreSQLSELECT, appScheduleStoreSQL, mssqlConfig["schema"])
-	count, appScheduleStoreList, _, _ := fetchScheduleStoreData(db, tsql)
+func GetScheduleStoreList() (int, []appScheduleStoreItem, error) {
+
+	tsql := fmt.Sprintf(appScheduleStoreSQLSELECT, appScheduleStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	count, appScheduleStoreList, _, _ := fetchScheduleStoreData(tsql)
 	return count, appScheduleStoreList, nil
 }
 
 // getScheduleStoreList read all employees
-func GetScheduleStoreByID(db *sql.DB, id string) (int, appScheduleStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appScheduleStoreSQLGET, appScheduleStoreSQL, mssqlConfig["schema"], id)
-	_, _, appScheduleStoreItem, _ := fetchScheduleStoreData(db, tsql)
+func GetScheduleStoreByID(id string) (int, appScheduleStoreItem, error) {
+	tsql := fmt.Sprintf(appScheduleStoreSQLGET, appScheduleStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	_, _, appScheduleStoreItem, _ := fetchScheduleStoreData(tsql)
 	return 1, appScheduleStoreItem, nil
 }
 
 func putScheduleStore(r appScheduleStoreItem) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
 
 	r.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
 
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
-
-	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, mssqlConfig["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appScheduleStoreSQLINSERT, mssqlConfig["schema"], appScheduleStoreSQL, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appScheduleStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appScheduleStoreSQL, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
 	//log.Println("DELETE:", deletesql, db)
 	//log.Println("INSERT:", inserttsql, db)
 
-	_, err2 := db.Exec(deletesql)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panic(err2)
 	}
-	_, err := db.Exec(inserttsql)
+	_, err := globals.ApplicationDB.Exec(inserttsql)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -379,12 +354,11 @@ func putScheduleStore(r appScheduleStoreItem) {
 
 func deleteScheduleStore(id string) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	db, _ := DataStoreConnect()
-	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, mssqlConfig["schema"], id)
+
+	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
 	//	log.Println("DELETE:", deletesql, db)
 
-	_, err2 := db.Exec(deletesql)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panic(err2)
 	}
@@ -396,8 +370,7 @@ func banScheduleStore(id string) {
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
-	_, r, _ := GetScheduleStoreByID(db, id)
+	_, r, _ := GetScheduleStoreByID(id)
 
 	putScheduleStore(r)
 }
@@ -407,19 +380,18 @@ func activateScheduleStore(id string) {
 	//	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
-	_, r, _ := GetScheduleStoreByID(db, id)
+	_, r, _ := GetScheduleStoreByID(id)
 
 	putScheduleStore(r)
 }
 
 // fetchScheduleStoreData read all employees
-func fetchScheduleStoreData(db *sql.DB, tsql string) (int, []appScheduleStoreItem, appScheduleStoreItem, error) {
+func fetchScheduleStoreData(tsql string) (int, []appScheduleStoreItem, appScheduleStoreItem, error) {
 	//log.Println(tsql)
 	var appScheduleStore appScheduleStoreItem
 	var appScheduleStoreList []appScheduleStoreItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -480,8 +452,8 @@ func RegisterSchedule(id string, name string, description string, schedule strin
 }
 
 func UpdateSchedule(id string, message string) {
-	db, _ := DataStoreConnect()
-	_, s, _ := GetScheduleStoreByID(db, id)
+
+	_, s, _ := GetScheduleStoreByID(id)
 	s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
 	s.Message = message
 	putScheduleStore(s)

@@ -29,14 +29,13 @@ type SrvEnvironmentItem struct {
 }
 
 func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "viewSrvEnvironment"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -44,17 +43,17 @@ func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Servicing :", inUTL)
 
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
 	// Get Data Here
-	//_, _, serviceCatalog := getServices(wctProperties, wctProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", wctProperties)
+	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
+	requestMessage := BuildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", globals.ApplicationProperties)
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), wctProperties)
+	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
 
-	responseMessge := GetResponseAsync(requestID.String(), wctProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
 	fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""

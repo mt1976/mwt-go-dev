@@ -50,32 +50,27 @@ type sienaCountryItem struct {
 }
 
 func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCountry"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []sienaCountryItem
-	noItems, returnList, _ := getSienaCountryList(thisConnection)
-	//	fmt.Println("NoSienaCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := getSienaCountryList()
 
 	pageSienaCountryList := sienaCountryListPage{
 		UserMenu:          application.GetAppMenuData(globals.UserRole),
 		UserRole:          globals.UserRole,
 		UserNavi:          globals.UserNavi,
-		Title:             wctProperties["appname"],
+		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Siena Countrys",
 		SienaCountryCount: noItems,
 		SienaCountryList:  returnList,
@@ -87,24 +82,21 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCountry"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaCountryItem
+
 	searchID := application.GetURLparam(r, "sienaCountry")
-	_, returnRecord, _ := getSienaCountry(thisConnection, searchID)
+	_, returnRecord, _ := getSienaCountry(searchID)
 	_, ynList, _ := getSienaYNList()
 
 	///	fmt.Println(returnList)
@@ -114,7 +106,7 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Country",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
@@ -130,34 +122,28 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCountry"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaCountryItem
+
 	searchID := application.GetURLparam(r, "sienaCountry")
-	_, returnRecord, _ := getSienaCountry(thisConnection, searchID)
+	_, returnRecord, _ := getSienaCountry(searchID)
 	_, ynList, _ := getSienaYNList()
-	//	fmt.Println("NoSienaCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Country",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
@@ -173,12 +159,12 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL, " : Save")
@@ -245,14 +231,13 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCountry"
 
 	inUTL := r.URL.Path
@@ -265,7 +250,7 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Country",
 		ID:        "NEW",
 		Code:      "",
@@ -281,38 +266,38 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaCountryList read all employees
-func getSienaCountryList(db *sql.DB) (int, []sienaCountryItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry;", sienaCountrySQL, mssqlConfig["schema"])
-	count, sienaCountryList, _, _ := fetchSienaCountryData(db, tsql)
+func getSienaCountryList() (int, []sienaCountryItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry;", sienaCountrySQL, globals.SienaPropertiesDB["schema"])
+	count, sienaCountryList, _, _ := fetchSienaCountryData(tsql)
 	return count, sienaCountryList, nil
 }
 
 // getSienaCountryList read all employees
-func getSienaCountry(db *sql.DB, id string) (int, sienaCountryItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry WHERE Code='%s';", sienaCountrySQL, mssqlConfig["schema"], id)
-	_, _, sienaCountry, _ := fetchSienaCountryData(db, tsql)
+func getSienaCountry(id string) (int, sienaCountryItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry WHERE Code='%s';", sienaCountrySQL, globals.SienaPropertiesDB["schema"], id)
+	_, _, sienaCountry, _ := fetchSienaCountryData(tsql)
 	return 1, sienaCountry, nil
 }
 
 // getSienaCountryList read all employees
-func putSienaCountry(db *sql.DB, updateItem sienaCountryItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaCountry(updateItem sienaCountryItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 
 	return nil
 }
 
 // fetchSienaCountryData read all employees
-func fetchSienaCountryData(db *sql.DB, tsql string) (int, []sienaCountryItem, sienaCountryItem, error) {
+func fetchSienaCountryData(tsql string) (int, []sienaCountryItem, sienaCountryItem, error) {
 
 	var sienaCountry sienaCountryItem
 	var sienaCountryList []sienaCountryItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

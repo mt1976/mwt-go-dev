@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -89,13 +88,12 @@ func isChecked(inValue string) string {
 
 func Connect() (*sql.DB, error) {
 	// Connect to SQL Server DB
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
 
-	server := mssqlConfig["server"]
-	user := mssqlConfig["user"]
-	password := mssqlConfig["password"]
-	port := mssqlConfig["port"]
-	database := mssqlConfig["database"]
+	server := globals.SienaPropertiesDB["server"]
+	user := globals.SienaPropertiesDB["user"]
+	password := globals.SienaPropertiesDB["password"]
+	port := globals.SienaPropertiesDB["port"]
+	database := globals.SienaPropertiesDB["database"]
 	/*
 		fmt.Println("SQL SERVER - CONNECTING...")
 		fmt.Println("Server     :", server)
@@ -130,8 +128,8 @@ func Connect() (*sql.DB, error) {
 
 // getSienaBusinessDate read all employees
 func GetBusinessDate(db *sql.DB) (int, globals.DateItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, mssqlConfig["schema"])
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, globals.SienaPropertiesDB["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
 }
@@ -174,12 +172,10 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []globals.DateIte
 
 func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
-
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
@@ -189,7 +185,7 @@ func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 		fmt.Println("Error creating XML file: ", err)
 		return err
 	}
-	xmlFile.WriteString(sienaProperties["static_xml_encoding"] + "\n")
+	xmlFile.WriteString(globals.SienaProperties["static_xml_encoding"] + "\n")
 	encoder := xml.NewEncoder(xmlFile)
 	encoder.Indent("", "\t")
 	err = encoder.Encode(sienaXMLContent)

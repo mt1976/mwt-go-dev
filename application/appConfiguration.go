@@ -35,23 +35,19 @@ type AppConfigurationPage struct {
 }
 
 func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
-
-	wctProperties := GetProperties(globals.APPCONFIG)
-	sienaProperties := GetProperties(globals.SIENACONFIG)
-	sqlServerProperties := GetProperties(globals.SQLCONFIG)
+	// Code Continues Below
 
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 
-	title := wctProperties["appname"]
+	title := globals.ApplicationProperties["appname"]
 
 	// Get Data Here
 
@@ -61,22 +57,22 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:               globals.UserNavi,
 		Title:                  title,
 		PageTitle:              "View Application Server Config",
-		RequestPath:            wctProperties["deliverpath"],
-		ResponsePath:           wctProperties["receivepath"],
-		ProcessedPath:          wctProperties["processedpath"],
-		ResponseType:           wctProperties["responseformat"],
-		AppServerReleaseID:     wctProperties["releaseid"],
-		AppServerReleaseLevel:  wctProperties["releaselevel"],
-		AppServerReleaseNumber: wctProperties["releasenumber"],
-		SienaName:              sienaProperties["name"],
-		SienaDealImportPath:    sienaProperties["dealimport_in"],
-		SienaStaticImportPath:  sienaProperties["static_in"],
-		SienaDataServer:        sqlServerProperties["server"],
-		SienaDataSource:        sqlServerProperties["database"],
-		SienaDBSchema:          sqlServerProperties["schema"],
-		SienaDBUser:            sqlServerProperties["user"],
-		SienaDBPassword:        strings.Repeat("*", len(sqlServerProperties["password"])),
-		SienaDBPort:            sqlServerProperties["port"],
+		RequestPath:            globals.ApplicationProperties["deliverpath"],
+		ResponsePath:           globals.ApplicationProperties["receivepath"],
+		ProcessedPath:          globals.ApplicationProperties["processedpath"],
+		ResponseType:           globals.ApplicationProperties["responseformat"],
+		AppServerReleaseID:     globals.ApplicationProperties["releaseid"],
+		AppServerReleaseLevel:  globals.ApplicationProperties["releaselevel"],
+		AppServerReleaseNumber: globals.ApplicationProperties["releasenumber"],
+		SienaName:              globals.SienaProperties["name"],
+		SienaDealImportPath:    globals.SienaProperties["dealimport_in"],
+		SienaStaticImportPath:  globals.SienaProperties["static_in"],
+		SienaDataServer:        globals.SienaPropertiesDB["server"],
+		SienaDataSource:        globals.SienaPropertiesDB["database"],
+		SienaDBSchema:          globals.SienaPropertiesDB["schema"],
+		SienaDBUser:            globals.SienaPropertiesDB["user"],
+		SienaDBPassword:        strings.Repeat("*", len(globals.SienaPropertiesDB["password"])),
+		SienaDBPort:            globals.SienaPropertiesDB["port"],
 	}
 
 	//fmt.Println("Page Data", pageAppConfigView)

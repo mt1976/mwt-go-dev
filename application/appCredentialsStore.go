@@ -84,33 +84,28 @@ type appCredentialsStoreItem struct {
 }
 
 func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreList"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []appCredentialsStoreItem
 
-	noItems, returnList, _ := GetCredentialsStoreList(thisConnection)
-	//	fmt.Println("NoCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := GetCredentialsStoreList()
 
 	pageCredentialsStoreList := appCredentialsStoreListPage{
 		UserMenu:              GetAppMenuData(globals.UserRole),
 		UserRole:              globals.UserRole,
 		UserNavi:              globals.UserNavi,
-		Title:                 wctProperties["appname"],
+		Title:                 globals.ApplicationProperties["appname"],
 		PageTitle:             "List Credentials",
 		CredentialsStoreCount: noItems,
 		CredentialsStoreList:  returnList,
@@ -122,30 +117,24 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreView"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
+
 	searchID := GetURLparam(r, "CredentialsStore")
-	_, returnRecord, _ := GetCredentialsStoreByID(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
+	_, returnRecord, _ := GetCredentialsStoreByID(searchID)
 
 	pageCredentialStoreList := appCredentialsStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Credentials",
 		Action:    "",
 		UserMenu:  GetAppMenuData(globals.UserRole),
@@ -178,24 +167,21 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreEdit"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
+
 	searchID := GetURLparam(r, "CredentialsStore")
-	_, returnRecord, _ := GetCredentialsStoreByID(thisConnection, searchID)
+	_, returnRecord, _ := GetCredentialsStoreByID(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -203,7 +189,7 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageCredentialStoreList := appCredentialsStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Credentials",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -235,16 +221,12 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
-
-	//	sienaProperties := GetProperties(globals.SIENACONFIG)
-	//tmpl := "saveSienaCountry"
-
+	// Code Continues Below
 	inUTL := r.URL.Path
 	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
 
@@ -271,12 +253,12 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
@@ -287,12 +269,12 @@ func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
@@ -305,12 +287,12 @@ func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
@@ -324,14 +306,13 @@ func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "CredentialsStoreNew"
 
 	inUTL := r.URL.Path
@@ -339,7 +320,7 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageCredentialStoreList := appCredentialsStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -356,33 +337,28 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getCredentialsStoreList read all employees
-func GetCredentialsStoreList(db *sql.DB) (int, []appCredentialsStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appCredentialsStoreSQLSELECT, appCredentialsStoreSQL, mssqlConfig["schema"])
-	count, appCredentialsStoreList, _, _ := fetchCredentialsStoreData(db, tsql)
+func GetCredentialsStoreList() (int, []appCredentialsStoreItem, error) {
+	tsql := fmt.Sprintf(appCredentialsStoreSQLSELECT, appCredentialsStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	count, appCredentialsStoreList, _, _ := fetchCredentialsStoreData(tsql)
 	return count, appCredentialsStoreList, nil
 }
 
 // getCredentialsStoreList read all employees
-func GetCredentialsStoreByID(db *sql.DB, id string) (int, appCredentialsStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appCredentialsStoreSQLGET, appCredentialsStoreSQL, mssqlConfig["schema"], id)
-	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(db, tsql)
+func GetCredentialsStoreByID(id string) (int, appCredentialsStoreItem, error) {
+	tsql := fmt.Sprintf(appCredentialsStoreSQLGET, appCredentialsStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql)
 	return 1, appCredentialsStoreItem, nil
 }
 
 // getCredentialsStoreList read all employees
-func GetCredentialsStoreByUserName(db *sql.DB, id string) (int, appCredentialsStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appCredentialsStoreSQLGETUSER, appCredentialsStoreSQL, mssqlConfig["schema"], id)
-	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(db, tsql)
+func GetCredentialsStoreByUserName(userName string) (int, appCredentialsStoreItem, error) {
+	tsql := fmt.Sprintf(appCredentialsStoreSQLGETUSER, appCredentialsStoreSQL, globals.ApplicationPropertiesDB["schema"], userName)
+	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql)
 	return 1, appCredentialsStoreItem, nil
 }
 
 func putCredentialsStore(r appCredentialsStoreItem) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	appConfig := GetProperties(globals.APPCONFIG)
 
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
@@ -400,10 +376,10 @@ func putCredentialsStore(r appCredentialsStoreItem) {
 		r.SYSHost = host
 		r.Issued = createDate
 		//expiryDate := time.Now()
-		//life, _ := strconv.Atoi(appConfig["credentialslife"])
+		//life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
 		//expiryDate = expiryDate.AddDate(0, 0, life)
 		r.Expiry = ""
-		r.Password = appConfig["defaultpassword"]
+		r.Password = globals.ApplicationProperties["defaultpassword"]
 	}
 
 	r.SYSUpdated = createDate
@@ -411,45 +387,43 @@ func putCredentialsStore(r appCredentialsStoreItem) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
+	deletesql := fmt.Sprintf(appCredentialsStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appCredentialsStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appCredentialsStoreSQL, r.Id, r.Username, r.Password, r.Firstname, r.Lastname, r.Knownas, r.Email, r.Issued, r.Expiry, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	deletesql := fmt.Sprintf(appCredentialsStoreSQLDELETE, mssqlConfig["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appCredentialsStoreSQLINSERT, mssqlConfig["schema"], appCredentialsStoreSQL, r.Id, r.Username, r.Password, r.Firstname, r.Lastname, r.Knownas, r.Email, r.Issued, r.Expiry, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
 
-	log.Println("DELETE:", deletesql, db)
-	log.Println("INSERT:", inserttsql, db)
-
-	fred2, err2 := db.Exec(deletesql)
-	log.Println(fred2, err2)
-	fred, err := db.Exec(inserttsql)
-	log.Println(fred, err)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Panicf("%e", err2)
+	}
+	_, err := globals.ApplicationDB.Exec(inserttsql)
+	if err != nil {
+		log.Panicf("%e", err)
+	}
 }
 
 func getExpiryDate() string {
-	appConfig := GetProperties(globals.APPCONFIG)
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(appConfig["credentialslife"])
+	life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
 	expiryDate = expiryDate.AddDate(0, 0, life)
 	return expiryDate.Format(globals.DATETIMEFORMATUSER)
 }
 
 func deleteCredentialsStore(id string) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	db, _ := DataStoreConnect()
-	deletesql := fmt.Sprintf(appCredentialsStoreSQLDELETE, mssqlConfig["schema"], id)
-	log.Println("DELETE:", deletesql, db)
-	fred2, err2 := db.Exec(deletesql)
-	log.Println(fred2, err2)
+	deletesql := fmt.Sprintf(appCredentialsStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	_, err := globals.ApplicationDB.Exec(deletesql)
+	if err != nil {
+		log.Panicf("%e", err)
+	}
 }
 
 func banCredentialsStore(id string) {
 	//fmt.Println(credentialStore)
-	fmt.Println("RECORD", id)
+	//	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
-
-	db, _ := DataStoreConnect()
-	_, r, _ := GetCredentialsStoreByID(db, id)
+	_, r, _ := GetCredentialsStoreByID(id)
 	r.Expiry = ""
 	r.Password = ""
 	putCredentialsStore(r)
@@ -457,22 +431,21 @@ func banCredentialsStore(id string) {
 
 func activateCredentialsStore(id string) {
 	//fmt.Println(credentialStore)
-	fmt.Println("RECORD", id)
+	//	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
-	_, r, _ := GetCredentialsStoreByID(db, id)
+	_, r, _ := GetCredentialsStoreByID(id)
 	r.Expiry = getExpiryDate()
 	putCredentialsStore(r)
 }
 
 // fetchCredentialsStoreData read all employees
-func fetchCredentialsStoreData(db *sql.DB, tsql string) (int, []appCredentialsStoreItem, appCredentialsStoreItem, error) {
+func fetchCredentialsStoreData(tsql string) (int, []appCredentialsStoreItem, appCredentialsStoreItem, error) {
 	log.Println(tsql)
 	var appCredentialsStore appCredentialsStoreItem
 	var appCredentialsStoreList []appCredentialsStoreItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

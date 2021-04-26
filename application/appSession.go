@@ -37,23 +37,22 @@ type token struct {
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := GetProperties(APPCONFIG)
 	tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 
-	appName := wctProperties["appname"]
+	appName := globals.ApplicationProperties["appname"]
 
-	appServerVersion := wctProperties["releaseid"] + " [r" + wctProperties["releaselevel"] + "-" + wctProperties["releasenumber"] + "]"
+	appServerVersion := globals.ApplicationProperties["releaseid"] + " [r" + globals.ApplicationProperties["releaselevel"] + "-" + globals.ApplicationProperties["releasenumber"] + "]"
 
 	loginPageContent := loginPage{
 		AppName:          appName,
 		UserName:         "",
 		UserPassword:     "",
 		WebServerVersion: appServerVersion,
-		LicenceType:      wctProperties["licname"],
-		LicenceLink:      wctProperties["liclink"],
+		LicenceType:      globals.ApplicationProperties["licname"],
+		LicenceLink:      globals.ApplicationProperties["liclink"],
 		ResponseError:    globals.SecurityViolation,
 	}
 
@@ -66,15 +65,14 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := GetProperties(APPCONFIG)
-	//tmpl := "login"
+
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 
 	uName := r.FormValue("username")
 	uPassword := r.FormValue("password")
-	appToken := wctProperties["applicationtoken"]
+	appToken := globals.ApplicationProperties["applicationtoken"]
 
 	hostname, err := os.Hostname()
 	if err != nil {
@@ -122,8 +120,8 @@ func loginValidate(appToken string, username string, password string, host strin
 	s.SecurityViolation = ""
 	s.ResponseCode = ""
 	s.host = ""
-	db, _ := DataStoreConnect()
-	_, cred, _ := GetCredentialsStoreByUserName(db, username)
+
+	_, cred, _ := GetCredentialsStoreByUserName(username)
 	if len(cred.Id) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
@@ -169,11 +167,11 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 
 	//ok := true
 
-	log.Println("VALIDATE SESSION", globals.UUID, globals.UserName)
+	log.Println("VALIDATE SESSION", globals.UUID, globals.UserName, globals.SessionToken)
 
 	// were only going to check that uid and the username mactc
-	db, _ := DataStoreConnect()
-	_, cred, _ := GetCredentialsStoreByID(db, globals.UUID)
+
+	_, cred, _ := GetCredentialsStoreByID(globals.UUID)
 	if len(cred.Id) == 0 {
 		//no credentials found
 		s.ResponseCode = "512"
@@ -191,7 +189,7 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 	// insert password check here
-	fmt.Println("SHOULD NOT GET HERE FOR THIS TEST!")
+	//fmt.Println("SHOULD NOT GET HERE FOR THIS TEST!")
 	s.SecurityViolation = ""
 	s.ResponseCode = "200"
 	return true
@@ -199,14 +197,12 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 
-	wctProperties := GetProperties(APPCONFIG)
-	//tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
 	log.Println("LOGOUT", globals.SessionToken)
 	globals.SessionToken = ""
-	globals.UUID = wctProperties["releaseID"]
+	globals.UUID = globals.ApplicationProperties["releaseID"]
 	//	globals.SecurityViolation = ""
 	globals.UserRole = ""
 	globals.UserName = ""

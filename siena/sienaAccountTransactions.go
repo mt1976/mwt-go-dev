@@ -75,32 +75,30 @@ type sienaAccountTransactionItem struct {
 }
 
 func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccountTransactions"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountTransactionItem
 	accountID := application.GetURLparam(r, "SienaAccountID")
 	accountCCY := application.GetURLparam(r, "CCY")
-	noItems, returnList, _ := getSienaAccountTransactionsList(thisConnection, accountID, accountCCY)
+	noItems, returnList, _ := getSienaAccountTransactionsList(accountID, accountCCY)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
-	_, account, _ := getSienaAccount(thisConnection, accountID)
+	_, account, _ := getSienaAccount(accountID)
 
 	pageSienaAccountTransactionsList := sienaAccountTransactionListPage{
-		Title:                        wctProperties["appname"],
+		Title:                        globals.ApplicationProperties["appname"],
 		PageTitle:                    "List Siena AccountTransactionss",
 		SienaAccountTransactionCount: noItems,
 		SienaAccountTransactionList:  returnList,
@@ -117,20 +115,20 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 }
 
 // getSienaAccountTransactionsList read all employees
-func getSienaAccountTransactionsList(db *sql.DB, idRef string, accountCCY string) (int, []sienaAccountTransactionItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, mssqlConfig["schema"], idRef)
-	count, sienaAccountTransactionsList, _, _ := fetchSienaAccountTransactionData(db, tsql)
+func getSienaAccountTransactionsList(idRef string, accountCCY string) (int, []sienaAccountTransactionItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, globals.SienaPropertiesDB["schema"], idRef)
+	count, sienaAccountTransactionsList, _, _ := fetchSienaAccountTransactionData(tsql)
 	return count, sienaAccountTransactionsList, nil
 }
 
 // fetchSienaAccountTransactionData read all employees
-func fetchSienaAccountTransactionData(db *sql.DB, tsql string) (int, []sienaAccountTransactionItem, sienaAccountTransactionItem, error) {
+func fetchSienaAccountTransactionData(tsql string) (int, []sienaAccountTransactionItem, sienaAccountTransactionItem, error) {
 
 	var sienaAccountTransaction sienaAccountTransactionItem
 	var sienaAccountTransactionList []sienaAccountTransactionItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

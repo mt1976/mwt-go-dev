@@ -8,7 +8,7 @@ import (
 )
 
 //comment
-func GetProperties(inPropertiesFile string) map[string]string {
+func OSBOLETEGetProperties(inPropertiesFile string) map[string]string {
 	wctProperties := make(map[string]string)
 	machineName, _ := os.Hostname()
 	propertiesFileName := "config/" + inPropertiesFile

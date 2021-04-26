@@ -30,43 +30,40 @@ type srvCatalogPage struct {
 }
 
 func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	if !(inUTL == "/favicon.ico") {
 		tmpl := "listSrvServiceCatalog"
 		log.Println("Servicing :", inUTL)
 
-		//		var propertiesFileName = "config/properties.cfg"
-		wctProperties := GetProperties(APPCONFIG)
-
 		w.Header().Set("Content-Type", "text/html")
 
-		title := wctProperties["appname"]
+		title := globals.ApplicationProperties["appname"]
 
 		//p, _ := loadsrvCatalogPage(title)
 
-		noResp, _, respList := GetResponsesList(wctProperties, "json", w)
+		noResp, _, respList := GetResponsesList(globals.ApplicationProperties, "json", w)
 
-		noServices, servicesList, serviceCatalog := GetServices(wctProperties, "json", r)
+		noServices, servicesList, serviceCatalog := GetServices(globals.ApplicationProperties, "json", r)
 
 		p := srvCatalogPage{Title: title,
 			Body:           "",
-			RequestPath:    wctProperties["deliverpath"],
-			ResponsePath:   wctProperties["receivepath"],
-			ProcessedPath:  wctProperties["processedpath"],
+			RequestPath:    globals.ApplicationProperties["deliverpath"],
+			ResponsePath:   globals.ApplicationProperties["receivepath"],
+			ProcessedPath:  globals.ApplicationProperties["processedpath"],
 			NoResponses:    noResp,
 			Responses:      respList,
 			NoServices:     noServices,
 			Services:       servicesList,
 			ServiceCatalog: serviceCatalog,
 			Description:    "A description of the srvCatalogPage.",
-			ResponseType:   wctProperties["responseformat"],
+			ResponseType:   globals.ApplicationProperties["responseformat"],
 			UserMenu:       GetAppMenuData(globals.UserRole),
 			UserRole:       globals.UserRole,
 			UserNavi:       globals.UserNavi,

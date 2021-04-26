@@ -50,14 +50,13 @@ type calenderItem struct {
 }
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(application.APPCONFIG)
 	tmpl := "listcalender"
 
 	inUTL := r.URL.Path
@@ -72,7 +71,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pagecalenderList := calenderListPage{
-		Title:         wctProperties["appname"],
+		Title:         globals.ApplicationProperties["appname"],
 		PageTitle:     "List Siena Calenders",
 		CalenderCount: noItems,
 		CalenderList:  returnList,
@@ -87,19 +86,18 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
 // getcalenderList read all employees
 func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
-	mssqlConfig := application.GetProperties(application.SQLCONFIG)
 
 	var calenderList []calenderItem
 
-	tsqlDeals := fmt.Sprintf("SELECT %s FROM %s.sienaCalenderDeals;", calenderSQL, mssqlConfig["schema"])
+	tsqlDeals := fmt.Sprintf("SELECT %s FROM %s.sienaCalenderDeals;", calenderSQL, globals.SienaPropertiesDB["schema"])
 	countDeal, calenderDealList, _, _ := fetchcalenderData(db, tsqlDeals)
 	calenderList = append(calenderList, calenderDealList...)
 
-	tsqlDealLegs := fmt.Sprintf("SELECT %s FROM %s.sienaCalenderDealLegs;", calenderSQL, mssqlConfig["schema"])
+	tsqlDealLegs := fmt.Sprintf("SELECT %s FROM %s.sienaCalenderDealLegs;", calenderSQL, globals.SienaPropertiesDB["schema"])
 	countDealLegs, calenderDealLegsList, _, _ := fetchcalenderData(db, tsqlDealLegs)
 	calenderList = append(calenderList, calenderDealLegsList...)
 
-	tsqlHolidays := fmt.Sprintf("SELECT %s FROM %s.sienaCalenderHoliday;", calenderSQL, mssqlConfig["schema"])
+	tsqlHolidays := fmt.Sprintf("SELECT %s FROM %s.sienaCalenderHoliday;", calenderSQL, globals.SienaPropertiesDB["schema"])
 	countHolidays, calenderHolidaysList, _, _ := fetchcalenderData(db, tsqlHolidays)
 	calenderList = append(calenderList, calenderHolidaysList...)
 
@@ -110,8 +108,7 @@ func getcalenderList(db *sql.DB) (int, []calenderItem, error) {
 
 // getcalenderList read all employees
 func getcalender(db *sql.DB, id string) (int, calenderItem, error) {
-	mssqlConfig := application.GetProperties(application.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.calender WHERE Code='%s';", calenderSQL, mssqlConfig["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.calender WHERE Code='%s';", calenderSQL, globals.SienaPropertiesDB["schema"], id)
 	_, _, calender, _ := fetchcalenderData(db, tsql)
 	return 1, calender, nil
 }

@@ -70,26 +70,20 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreList"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []appMessageStoreItem
 
-	noItems, returnList, _ := GetMessageStoreList(thisConnection)
-	//	fmt.Println("NoCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := GetMessageStoreList(globals.ApplicationDB)
 
 	pageMessageStoreList := appMessageStoreListPage{
 		UserMenu:          GetAppMenuData(globals.UserRole),
 		UserRole:          globals.UserRole,
 		UserNavi:          globals.UserNavi,
-		Title:             wctProperties["appname"],
+		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Message",
 		MessageStoreCount: noItems,
 		MessageStoreList:  returnList,
@@ -108,23 +102,17 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreView"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
+
 	searchID := GetURLparam(r, "MessageStore")
-	_, returnRecord, _ := GetMessageStoreByID(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
+	_, returnRecord, _ := GetMessageStoreByID(globals.ApplicationDB, searchID)
 
 	pageCredentialStoreList := appMessageStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Message",
 		Action:    "",
 		UserMenu:  GetAppMenuData(globals.UserRole),
@@ -155,25 +143,17 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreEdit"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := DataStoreConnect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaBrokerItem
-	searchID := GetURLparam(r, "MessageStore")
-	_, returnRecord, _ := GetMessageStoreByID(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
 
-	//fmt.Println(displayList)
+	searchID := GetURLparam(r, "MessageStore")
+	_, returnRecord, _ := GetMessageStoreByID(globals.ApplicationDB, searchID)
 
 	pageCredentialStoreList := appMessageStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Message",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -203,9 +183,6 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	//	sienaProperties := GetProperties(globals.SIENACONFIG)
-	//tmpl := "saveSienaCountry"
-
 	inUTL := r.URL.Path
 	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
 
@@ -218,7 +195,7 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.SYSHost = r.FormValue("SYSHost")
 	s.SYSUpdated = r.FormValue("SYSUpdated")
 
-	log.Println("save", s)
+	//log.Println("save", s)
 
 	putMessageStore(s)
 
@@ -287,7 +264,6 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := GetProperties(globals.APPCONFIG)
 	tmpl := "MessageStoreNew"
 
 	inUTL := r.URL.Path
@@ -295,7 +271,7 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageCredentialStoreList := appMessageStorePage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
 		UserMenu:  GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
@@ -312,51 +288,48 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getMessageStoreList read all employees
-func GetMessageStoreList(db *sql.DB) (int, []appMessageStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appMessageStoreSQLSELECT, appMessageStoreSQL, mssqlConfig["schema"])
-	count, appMessageStoreList, _, _ := fetchMessageStoreData(db, tsql)
+func GetMessageStoreList(unused *sql.DB) (int, []appMessageStoreItem, error) {
+	tsql := fmt.Sprintf(appMessageStoreSQLSELECT, appMessageStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	count, appMessageStoreList, _, _ := fetchMessageStoreData(globals.ApplicationDB, tsql)
 	return count, appMessageStoreList, nil
 }
 
 // getMessageStoreList read all employees
-func GetMessageStoreByID(db *sql.DB, id string) (int, appMessageStoreItem, error) {
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	tsql := fmt.Sprintf(appMessageStoreSQLGET, appMessageStoreSQL, mssqlConfig["schema"], id)
-	_, _, appMessageStoreItem, _ := fetchMessageStoreData(db, tsql)
+func GetMessageStoreByID(unused *sql.DB, id string) (int, appMessageStoreItem, error) {
+	tsql := fmt.Sprintf(appMessageStoreSQLGET, appMessageStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	_, _, appMessageStoreItem, _ := fetchMessageStoreData(globals.ApplicationDB, tsql)
 	return 1, appMessageStoreItem, nil
 }
 
 func putMessageStore(r appMessageStoreItem) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
 
 	r.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
 
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	db, _ := DataStoreConnect()
+	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appMessageStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appMessageStoreSQL, r.Id, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, mssqlConfig["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appMessageStoreSQLINSERT, mssqlConfig["schema"], appMessageStoreSQL, r.Id, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
 
-	log.Println("DELETE:", deletesql, db)
-	log.Println("INSERT:", inserttsql, db)
-
-	fred2, err2 := db.Exec(deletesql)
-	log.Println(fred2, err2)
-	fred, err := db.Exec(inserttsql)
-	log.Println(fred, err)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Panicf("%e", err2)
+	}
+	_, err := globals.ApplicationDB.Exec(inserttsql)
+	if err != nil {
+		log.Panicf("%e", err)
+	}
 }
 
 func deleteMessageStore(id string) {
 	//fmt.Println(credentialStore)
-	mssqlConfig := GetProperties(globals.DATASTORECONFIG)
-	db, _ := DataStoreConnect()
-	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, mssqlConfig["schema"], id)
-	log.Println("DELETE:", deletesql, db)
-	fred2, err2 := db.Exec(deletesql)
+	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	log.Println("DELETE:", deletesql)
+	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
 	log.Println(fred2, err2)
 }
 
@@ -364,31 +337,24 @@ func banMessageStore(id string) {
 	//fmt.Println(credentialStore)
 	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
-
-	db, _ := DataStoreConnect()
-	_, r, _ := GetMessageStoreByID(db, id)
+	_, r, _ := GetMessageStoreByID(globals.ApplicationDB, id)
 
 	putMessageStore(r)
 }
 
 func activateMessageStore(id string) {
-	//fmt.Println(credentialStore)
 	fmt.Println("RECORD", id)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
-
-	db, _ := DataStoreConnect()
-	_, r, _ := GetMessageStoreByID(db, id)
-
+	_, r, _ := GetMessageStoreByID(globals.ApplicationDB, id)
 	putMessageStore(r)
 }
 
 // fetchMessageStoreData read all employees
-func fetchMessageStoreData(db *sql.DB, tsql string) (int, []appMessageStoreItem, appMessageStoreItem, error) {
+func fetchMessageStoreData(unused *sql.DB, tsql string) (int, []appMessageStoreItem, appMessageStoreItem, error) {
 	log.Println(tsql)
 	var appMessageStore appMessageStoreItem
 	var appMessageStoreList []appMessageStoreItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

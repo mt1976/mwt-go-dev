@@ -279,8 +279,6 @@ func FormatCurrency(inAmount string, inCCY string) string {
 
 // FormatCurrencyFull returns a formated string version of a CCY amount to 7dps
 func FormatCurrencyFull(inAmount string, inCCY string) string {
-	//thisConnection, _ := siena.Connect()
-	//_, ccyData, _ := getSienaCurrency(thisConnection, inCCY)
 	prec, _ := strconv.Atoi("7")
 	ac := accounting.Accounting{Symbol: inCCY, Precision: prec, Format: "%v", FormatNegative: "-%v", FormatZero: "\u2013 \u2013"}
 	bum, _ := strconv.ParseFloat(inAmount, 64)

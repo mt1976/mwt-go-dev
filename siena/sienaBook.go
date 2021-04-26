@@ -50,14 +50,13 @@ type sienaBookItem struct {
 }
 
 func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaBook"
 
 	inUTL := r.URL.Path
@@ -72,7 +71,7 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaBookList := sienaBookListPage{
-		Title:          wctProperties["appname"],
+		Title:          globals.ApplicationProperties["appname"],
 		PageTitle:      "List Siena Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
@@ -87,14 +86,13 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaBook"
 
 	inUTL := r.URL.Path
@@ -110,7 +108,7 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaBookList := sienaBookPage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Book",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
@@ -127,14 +125,13 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaBook"
 
 	inUTL := r.URL.Path
@@ -152,7 +149,7 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaBookList := sienaBookPage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Book",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
@@ -170,14 +167,13 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -233,7 +229,7 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -249,14 +245,13 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaBook"
 
 	inUTL := r.URL.Path
@@ -264,7 +259,7 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaBookList := sienaBookPage{
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Book",
 		ID:        "NEW",
 		Code:      "",
@@ -282,25 +277,25 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaBookList read all employees
 func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, mssqlConfig["schema"])
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, globals.SienaPropertiesDB["schema"])
 	count, sienaBookList, _, _ := fetchSienaBookData(db, tsql)
 	return count, sienaBookList, nil
 }
 
 // getSienaBookList read all employees
 func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, mssqlConfig["schema"], id)
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, globals.SienaPropertiesDB["schema"], id)
 	_, _, sienaBook, _ := fetchSienaBookData(db, tsql)
 	return 1, sienaBook, nil
 }
 
 // getSienaBookList read all employees
 func putSienaBook(db *sql.DB, updateItem sienaBookItem) error {
-	//mssqlConfig := application.GetProperties(cSQL_CONFIG)
+	//globals.SienaPropertiesDB := application.GetProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
-	//fmt.Println(mssqlConfig["schema"])
+	//fmt.Println(globals.SienaPropertiesDB["schema"])
 	//fmt.Println(updateItem)
 	return nil
 }

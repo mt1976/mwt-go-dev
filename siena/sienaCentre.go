@@ -55,29 +55,27 @@ type sienaCentreItem struct {
 }
 
 func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaCentre"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCentreItem
-	noItems, returnList, _ := getSienaCentreList(thisConnection)
+	noItems, returnList, _ := getSienaCentreList()
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
 	pageSienaCentreList := sienaCentreListPage{
-		Title:            wctProperties["appname"],
+		Title:            globals.ApplicationProperties["appname"],
 		PageTitle:        "List Siena Centres",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
@@ -92,30 +90,28 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaCentre"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
 	searchID := application.GetURLparam(r, "SienaCentre")
-	_, returnRecord, _ := getSienaCentre(thisConnection, searchID)
+	_, returnRecord, _ := getSienaCentre(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Centre",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
@@ -134,35 +130,26 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaCentre"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaCentreItem
 	searchID := application.GetURLparam(r, "SienaCentre")
-	_, returnRecord, _ := getSienaCentre(thisConnection, searchID)
-	//fmt.Println("NoSienaItems", noItems, searchID)
-	//fmt.Println(returnList)
-	//fmt.Println(tmpl)
-
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, returnRecord, _ := getSienaCentre(searchID)
+	_, countryList, _ := getSienaCountryList()
 
 	//fmt.Println(displayList)
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Centre",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
@@ -183,14 +170,13 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -251,7 +237,7 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -267,14 +253,13 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaCentre"
 
 	inUTL := r.URL.Path
@@ -282,12 +267,11 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := Connect()
 
-	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Centre",
 		ID:          "NEW",
 		Code:        "",
@@ -306,37 +290,37 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaCentreList read all employees
-func getSienaCentreList(db *sql.DB) (int, []sienaCentreItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre;", sienaCentreSQL, mssqlConfig["schema"])
-	count, sienaCentreList, _, _ := fetchSienaCentreData(db, tsql)
+func getSienaCentreList() (int, []sienaCentreItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre;", sienaCentreSQL, globals.SienaPropertiesDB["schema"])
+	count, sienaCentreList, _, _ := fetchSienaCentreData(tsql)
 	return count, sienaCentreList, nil
 }
 
 // getSienaCentreList read all employees
-func getSienaCentre(db *sql.DB, id string) (int, sienaCentreItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre WHERE Code='%s';", sienaCentreSQL, mssqlConfig["schema"], id)
-	_, _, sienaCentre, _ := fetchSienaCentreData(db, tsql)
+func getSienaCentre(id string) (int, sienaCentreItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre WHERE Code='%s';", sienaCentreSQL, globals.SienaPropertiesDB["schema"], id)
+	_, _, sienaCentre, _ := fetchSienaCentreData(tsql)
 	return 1, sienaCentre, nil
 }
 
 // getSienaCentreList read all employees
-func putSienaCentre(db *sql.DB, updateItem sienaCentreItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaCentre(updateItem sienaCentreItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
 
 // fetchSienaCentreData read all employees
-func fetchSienaCentreData(db *sql.DB, tsql string) (int, []sienaCentreItem, sienaCentreItem, error) {
+func fetchSienaCentreData(tsql string) (int, []sienaCentreItem, sienaCentreItem, error) {
 
 	var sienaCentre sienaCentreItem
 	var sienaCentreList []sienaCentreItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

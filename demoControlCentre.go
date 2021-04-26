@@ -6,11 +6,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	_ "github.com/denisenkom/go-mssqldb"
-	"github.com/google/uuid"
-
-	"github.com/mbndr/figlet4go"
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
@@ -32,39 +30,45 @@ const (
 
 func main() {
 
-	ascii := figlet4go.NewAsciiRender()
+	//ascii := figlet4go.NewAsciiRender()
 
-	wctProperties := application.GetProperties(APPCONFIG)
+	//wctProperties := application.GetProperties(APPCONFIG)
 
 	// The underscore would be an error
-	renderStr, _ := ascii.Render(wctProperties["appname"])
+	//	renderStr, _ := ascii.Render(wctProperties["appname"])
 	tmpHostname, _ := os.Hostname()
-
-	fmt.Print(renderStr)
+	line := strings.Repeat("-", 100)
+	log.Println(line)
+	log.Println("INITIALISING...")
+	globals.Initialise()
+	log.Println("INITIALISED!!!")
+	log.Println(line)
 	log.Println("INSTANCE")
+	log.Println("Application:", globals.ApplicationProperties["appname"])
 	log.Println("Machine    :", tmpHostname)
 	log.Println("PATHS")
-	log.Println("Delivery   :", wctProperties["deliverpath"])
-	log.Println("Response   :", wctProperties["receivepath"])
-	log.Println("Processed  :", wctProperties["processedpath"])
-	log.Println("")
+	log.Println("Delivery   :", globals.ApplicationProperties["deliverpath"])
+	log.Println("Response   :", globals.ApplicationProperties["receivepath"])
+	log.Println("Processed  :", globals.ApplicationProperties["processedpath"])
+	log.Println(line)
 	log.Println("APPLICATION")
-	log.Println("Name       :", wctProperties["appname"])
-	log.Println("Msg Format :", wctProperties["responseformat"])
-	log.Println("Licence    :", wctProperties["licname"])
-	log.Println("Lic URL    :", wctProperties["liclink"])
-	log.Println("")
+	log.Println("Name       :", globals.ApplicationProperties["appname"])
+	log.Println("Msg Format :", globals.ApplicationProperties["responseformat"])
+	log.Println("Licence    :", globals.ApplicationProperties["licname"])
+	log.Println("Lic URL    :", globals.ApplicationProperties["liclink"])
+	log.Println(line)
 	log.Println("RELEASE")
-	log.Println("Release ID :", wctProperties["releaseid"])
-	log.Println("Level      :", wctProperties["releaselevel"])
-	log.Println("Number     :", wctProperties["releasenumber"])
-	log.Println("")
+	log.Println("Release ID :", globals.ApplicationProperties["releaseid"])
+	log.Println("Level      :", globals.ApplicationProperties["releaselevel"])
+	log.Println("Number     :", globals.ApplicationProperties["releasenumber"])
+	log.Println(line)
+
 	log.Println("STARTING JOBS")
-	log.Println("")
+
 	scheduler.Start()
-	log.Println("")
+	log.Println(line)
 	log.Println("STARTING HANDLERS")
-	log.Println("")
+
 	http.HandleFunc("/", application.LoginHandler)
 	http.HandleFunc("/login", application.ValidateLoginHandler)
 	http.HandleFunc("/logout", application.LogoutHandler)
@@ -209,42 +213,43 @@ func main() {
 	http.HandleFunc("/shutdown/", shutdownHandler)
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-	db, _ := siena.Connect()
-	_, tempDate, _ := siena.GetBusinessDate(db)
+	log.Println(line)
+	log.Println("SIENA")
+	//	db, _ := siena.Connect()
+	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
 	globals.SienaSystemDate = tempDate
-	log.Println("Siena System Date:", tempDate.Internal.Format(globals.DATEFORMATUSER))
+	log.Println("System Date:", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
 	// Get menu
-	menuCount, _ := application.FetchappMenuData("")
-	log.Println("No. Menu Items   :", menuCount)
+	//menuCount, _ := application.FetchappMenuData("")
+	//log.Println("No. Menu Items   :", menuCount)
 
-	log.Println("")
+	log.Println(line)
 	log.Println("READY STEADY GO!!!")
+	log.Println("URI        :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
+	log.Println(line)
 
-	log.Println("URL        :", "http://localhost:"+wctProperties["port"])
-
-	httpPort := ":" + wctProperties["port"]
+	httpPort := ":" + globals.ApplicationProperties["port"]
 	http.ListenAndServe(httpPort, nil)
 
 }
 
 //// TODO: migrage the following three functions to appsupport
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
-	wctProperties := application.GetProperties(APPCONFIG)
+	//	wctProperties := application.GetProperties(APPCONFIG)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
+	//requestID := uuid.New()
 
 	log.Println("Servicing :", inUTL)
+	//requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", line, line, line, wctProperties)
 
-	requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", "", "", "", wctProperties)
-
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), wctProperties)
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
+	//application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
 	m := http.NewServeMux()
 
-	s := http.Server{Addr: wctProperties["port"], Handler: m}
+	s := http.Server{Addr: globals.ApplicationProperties["port"], Handler: m}
 	s.Shutdown(context.Background())
 	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
 	//	viewResponseHandler(w, r)
@@ -253,23 +258,23 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := application.GetProperties(APPCONFIG)
+	//wctProperties := application.GetProperties(APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := application.RemoveContents(wctProperties["deliverpath"])
+	err1 := application.RemoveContents(globals.ApplicationProperties["deliverpath"])
 	if err1 != nil {
 		fmt.Println(err1)
 	}
 	//fmt.Println("recPath", wctProperties["receivepath"])
-	err2 := application.RemoveContents(wctProperties["receivepath"])
+	err2 := application.RemoveContents(globals.ApplicationProperties["receivepath"])
 	if err2 != nil {
 		fmt.Println(err2)
 	}
 	//fmt.Println("procPath", wctProperties["processedpath"])
-	err3 := application.RemoveContents(wctProperties["processedpath"])
+	err3 := application.RemoveContents(globals.ApplicationProperties["processedpath"])
 	if err3 != nil {
 		fmt.Println(err3)
 	}
@@ -277,11 +282,11 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 }
 func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	//var propertiesFileName = "config/properties.cfg"
-	wctProperties := application.GetProperties(globals.APPCONFIG)
+	//	wctProperties := application.GetProperties(globals.APPCONFIG)
 	//	tmpl := "viewResponse"
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
-	application.RemoveContents(wctProperties["receivepath"])
+	application.RemoveContents(globals.ApplicationProperties["receivepath"])
 	application.HomePageHandler(w, r)
 }

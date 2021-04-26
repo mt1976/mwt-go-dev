@@ -108,22 +108,20 @@ func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaAccount"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountItem
-	noItems, returnList, _ := getSienaAccountList(thisConnection)
+	noItems, returnList, _ := getSienaAccountList()
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
 	pageSienaAccountList := sienaAccountListPage{
-		Title:             wctProperties["appname"],
+		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Siena Accounts",
 		SienaAccountCount: noItems,
 		SienaAccountList:  returnList,
@@ -145,17 +143,14 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaAccount"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaAccountItem
+
 	searchID := application.GetURLparam(r, "SienaAccountID")
-	_, returnRecord, _ := getSienaAccount(thisConnection, searchID)
+	_, returnRecord, _ := getSienaAccount(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -164,7 +159,7 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               application.GetAppMenuData(globals.UserRole),
 		UserRole:               globals.UserRole,
 		UserNavi:               globals.UserNavi,
-		Title:                  wctProperties["appname"],
+		Title:                  globals.ApplicationProperties["appname"],
 		PageTitle:              "View Siena Account",
 		ID:                     returnRecord.SienaReference,
 		SienaReference:         returnRecord.SienaReference,
@@ -211,23 +206,20 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaAccount"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//fmt.Println(thisConnection.Stats().OpenConnections)
-	//var returnList []sienaAccountItem
+
 	searchID := application.GetURLparam(r, "SienaAccount")
-	_, returnRecord, _ := getSienaAccount(thisConnection, searchID)
+	_, returnRecord, _ := getSienaAccount(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
 	//_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	//fmt.Println(displayList)
@@ -236,7 +228,7 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               application.GetAppMenuData(globals.UserRole),
 		UserRole:               globals.UserRole,
 		UserNavi:               globals.UserNavi,
-		Title:                  wctProperties["appname"],
+		Title:                  globals.ApplicationProperties["appname"],
 		PageTitle:              "View Siena Account",
 		ID:                     returnRecord.SienaReference,
 		SienaReference:         returnRecord.SienaReference,
@@ -287,7 +279,7 @@ func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	//sienaProperties := application.GetProperties(cSIENACONFIG)
+	//globals.SienaProperties := application.GetProperties(cSIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -308,7 +300,6 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaAccount"
 
 	inUTL := r.URL.Path
@@ -316,16 +307,14 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
-	thisConnection, _ := Connect()
-
-	_, countryList, _ := getSienaCountryList(thisConnection)
+	_, countryList, _ := getSienaCountryList()
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaAccountList := sienaAccountPage{
 		UserMenu:    application.GetAppMenuData(globals.UserRole),
 		UserRole:    globals.UserRole,
 		UserNavi:    globals.UserNavi,
-		Title:       wctProperties["appname"],
+		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Account",
 		ID:          "NEW",
 		Action:      "NEW",
@@ -338,45 +327,45 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaAccountList read all employees
-func getSienaAccountList(db *sql.DB) (int, []sienaAccountItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, mssqlConfig["schema"])
-	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
+func getSienaAccountList() (int, []sienaAccountItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, globals.SienaPropertiesDB["schema"])
+	count, sienaAccountList, _, _ := fetchSienaAccountData(tsql)
 	return count, sienaAccountList, nil
 }
 
 // getSienaAccountListByCounterParty read all employees
-func getSienaAccountListByCounterParty(db *sql.DB, idFirm string, idCentre string) (int, []sienaAccountItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, mssqlConfig["schema"], idFirm, idCentre)
-	count, sienaAccountList, _, _ := fetchSienaAccountData(db, tsql)
+func getSienaAccountListByCounterParty(idFirm string, idCentre string) (int, []sienaAccountItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, globals.SienaPropertiesDB["schema"], idFirm, idCentre)
+	count, sienaAccountList, _, _ := fetchSienaAccountData(tsql)
 	return count, sienaAccountList, nil
 }
 
 // getSienaAccount read all employees
-func getSienaAccount(db *sql.DB, id string) (int, sienaAccountItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, mssqlConfig["schema"], id)
-	_, _, sienaAccount, _ := fetchSienaAccountData(db, tsql)
+func getSienaAccount(id string) (int, sienaAccountItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, globals.SienaPropertiesDB["schema"], id)
+	_, _, sienaAccount, _ := fetchSienaAccountData(tsql)
 	return 1, sienaAccount, nil
 }
 
 // getSienaAccountList read all employees
-func putSienaAccount(db *sql.DB, updateItem sienaAccountItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaAccount(updateItem sienaAccountItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
 
 // fetchSienaAccountData read all employees
-func fetchSienaAccountData(db *sql.DB, tsql string) (int, []sienaAccountItem, sienaAccountItem, error) {
+func fetchSienaAccountData(tsql string) (int, []sienaAccountItem, sienaAccountItem, error) {
 
 	var sienaAccount sienaAccountItem
 	var sienaAccountList []sienaAccountItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

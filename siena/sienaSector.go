@@ -48,32 +48,27 @@ type sienaSectorItem struct {
 }
 
 func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "listSienaSector"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	//	fmt.Println(thisConnection.Stats().OpenConnections)
+
 	var returnList []sienaSectorItem
-	noItems, returnList, _ := getSienaSectorList(thisConnection)
-	//	fmt.Println("NoSienaCountries", noItems)
-	//	fmt.Println(returnList)
-	//	fmt.Println(tmpl)
+	noItems, returnList, _ := getSienaSectorList()
 
 	pageSienaSectorList := sienaSectorListPage{
 		UserMenu:         application.GetAppMenuData(globals.UserRole),
 		UserRole:         globals.UserRole,
 		UserNavi:         globals.UserNavi,
-		Title:            wctProperties["appname"],
+		Title:            globals.ApplicationProperties["appname"],
 		PageTitle:        "List Siena Sectors",
 		SienaSectorCount: noItems,
 		SienaSectorList:  returnList,
@@ -85,33 +80,28 @@ func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "viewSienaSector"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
+
 	searchID := application.GetURLparam(r, "sienaSector")
-	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
+	noItems, returnRecord, _ := getSienaSector(searchID)
 	fmt.Println("NoSienaCountries", noItems)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorPage{
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
@@ -124,33 +114,28 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "editSienaSector"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	log.Println("Servicing :", inUTL)
-	thisConnection, _ := Connect()
-	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaSectorItem
+
 	searchID := application.GetURLparam(r, "sienaSector")
-	noItems, returnRecord, _ := getSienaSector(thisConnection, searchID)
+	noItems, returnRecord, _ := getSienaSector(searchID)
 	fmt.Println("NoSienaCountries", noItems)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
 
 	pageSienaSectorList := sienaSectorPage{
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
@@ -163,14 +148,13 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	sienaProperties := application.GetProperties(globals.SIENACONFIG)
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
@@ -227,7 +211,7 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("PreparedXML", string(preparedXML))
 	fmt.Println("header", xml.Header)
 
-	staticImporterPath := sienaProperties["static_in"]
+	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	//pwd, _ := os.Getwd()
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
@@ -238,7 +222,7 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error creating XML file: ", err)
 		return
 	}
-	xmlFile.WriteString(sienaProperties["static_xml_encoding"] + "\n")
+	xmlFile.WriteString(globals.SienaProperties["static_xml_encoding"] + "\n")
 	encoder := xml.NewEncoder(xmlFile)
 	encoder.Indent("", "\t")
 	err = encoder.Encode(sienaXMLContent)
@@ -257,14 +241,13 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	wctProperties := application.GetProperties(globals.APPCONFIG)
 	tmpl := "newSienaSector"
 
 	inUTL := r.URL.Path
@@ -275,7 +258,7 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetAppMenuData(globals.UserRole),
 		UserRole:  globals.UserRole,
 		UserNavi:  globals.UserNavi,
-		Title:     wctProperties["appname"],
+		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        "NEW",
 		Code:      "",
@@ -288,37 +271,37 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaSectorList read all employees
-func getSienaSectorList(db *sql.DB) (int, []sienaSectorItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector;", sienaSectorSQL, mssqlConfig["schema"])
-	count, sienaSectorList, _, _ := fetchSienaSectorData(db, tsql)
+func getSienaSectorList() (int, []sienaSectorItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector;", sienaSectorSQL, globals.SienaPropertiesDB["schema"])
+	count, sienaSectorList, _, _ := fetchSienaSectorData(tsql)
 	return count, sienaSectorList, nil
 }
 
 // getSienaSectorList read all employees
-func getSienaSector(db *sql.DB, id string) (int, sienaSectorItem, error) {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector WHERE Code='%s';", sienaSectorSQL, mssqlConfig["schema"], id)
-	_, _, sienaSector, _ := fetchSienaSectorData(db, tsql)
+func getSienaSector(id string) (int, sienaSectorItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaSector WHERE Code='%s';", sienaSectorSQL, globals.SienaPropertiesDB["schema"], id)
+	_, _, sienaSector, _ := fetchSienaSectorData(tsql)
 	return 1, sienaSector, nil
 }
 
 // getSienaSectorList read all employees
-func putSienaSector(db *sql.DB, updateItem sienaSectorItem) error {
-	mssqlConfig := application.GetProperties(globals.SQLCONFIG)
+func putSienaSector(updateItem sienaSectorItem) error {
+
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(mssqlConfig["schema"])
+	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
 
 // fetchSienaSectorData read all employees
-func fetchSienaSectorData(db *sql.DB, tsql string) (int, []sienaSectorItem, sienaSectorItem, error) {
+func fetchSienaSectorData(tsql string) (int, []sienaSectorItem, sienaSectorItem, error) {
 
 	var sienaSector sienaSectorItem
 	var sienaSectorList []sienaSectorItem
 
-	rows, err := db.Query(tsql)
+	rows, err := globals.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
