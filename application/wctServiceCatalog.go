@@ -21,26 +21,20 @@ type ServiceCatalogItem struct {
 	UUID       string
 }
 
-func GetServices(wctProperties map[string]string, responseFormat string, r *http.Request) (int, string, []ServiceCatalogItem) {
+func GetServices(unused map[string]string, responseFormat string, r *http.Request) (int, string, []ServiceCatalogItem) {
 
 	// serviceCatalog is an array of Service Catalog Items
 	var serviceCatalog []ServiceCatalogItem
 
 	id := uuid.New()
 
-	resp := BuildRequestMessage(id.String(), "SERVICES", "", "", "", wctProperties)
+	resp := BuildRequestMessage(id.String(), "SERVICES", "", "", "", GetUserSessionToken(r))
 
-	deliverRequest(resp, wctProperties["deliverpath"], id.String(), wctProperties["responseformat"])
-
-	// Now we get the services array
-	//var responseFileName = wctProperties["receivepath"] + "/" + id.String() + "." + responseFormat
-	//var processedFileName = wctProperties["processedpath"] + "/" + id.String() + "." + responseFormat
-	//fmt.Println("Response Filename :", responseFileName)
-	//fmt.Println("Processed Filename :", processedFileName)
+	deliverRequest(resp, id.String())
 
 	var servicesList string
 
-	catalogResponse := GetResponseAsync(id.String(), wctProperties, r)
+	catalogResponse := GetResponseAsync(id.String(), r)
 
 	noServices, _ := strconv.Atoi(catalogResponse.ResponseContentCount)
 	for ii := 0; ii < noServices; ii++ {

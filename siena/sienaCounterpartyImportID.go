@@ -76,16 +76,16 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	noItems, returnList, _ := getSienaCounterpartyImportIDList()
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDListPage{
-		UserMenu:                       application.GetAppMenuData(globals.UserRole),
-		UserRole:                       globals.UserRole,
-		UserNavi:                       globals.UserNavi,
+		UserMenu:                       application.GetUserMenu(r),
+		UserRole:                       application.GetUserRole(r),
+		UserNavi:                       "NOT USED",
 		Title:                          globals.ApplicationProperties["appname"],
 		PageTitle:                      "List Siena CounterpartyImportIDs",
 		SienaCounterpartyImportIDCount: noItems,
 		SienaCounterpartyImportIDList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
@@ -112,9 +112,9 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena CounterpartyImportID",
 		ID:          returnRecord.Code,
@@ -127,7 +127,7 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
@@ -157,9 +157,9 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena CounterpartyImportID",
 		ID:          returnRecord.Code,
@@ -173,7 +173,7 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	}
 	fmt.Println(pageSienaCounterpartyImportIDList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
@@ -282,9 +282,9 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena CounterpartyImportID",
 		ID:          "NEW",
@@ -298,7 +298,7 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 		Action: "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }

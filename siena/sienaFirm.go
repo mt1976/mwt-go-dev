@@ -76,16 +76,16 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaFirmList()
 
 	pageSienaFirmList := sienaFirmListPage{
-		UserMenu:       application.GetAppMenuData(globals.UserRole),
-		UserRole:       globals.UserRole,
-		UserNavi:       globals.UserNavi,
+		UserMenu:       application.GetUserMenu(r),
+		UserRole:       application.GetUserRole(r),
+		UserNavi:       "NOT USED",
 		Title:          globals.ApplicationProperties["appname"],
 		PageTitle:      "List Siena Firms",
 		SienaFirmCount: noItems,
 		SienaFirmList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }
@@ -108,9 +108,9 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := getSienaFirm(searchID)
 
 	pageSienaFirmList := sienaFirmPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          returnRecord.FirmName,
@@ -123,7 +123,7 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }
@@ -152,9 +152,9 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaFirmList := sienaFirmPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          returnRecord.FirmName,
@@ -170,7 +170,7 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaFirmList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }
@@ -291,9 +291,9 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	_, sectorList, _ := getSienaSectorList()
 
 	pageSienaFirmList := sienaFirmPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Firm",
 		ID:          "NEW",
@@ -306,7 +306,7 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		SectorList:  sectorList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }

@@ -78,16 +78,16 @@ func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	noItems, returnList, _ := getSienaCounterpartyAddressList()
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressListPage{
-		UserMenu:                      application.GetAppMenuData(globals.UserRole),
-		UserRole:                      globals.UserRole,
-		UserNavi:                      globals.UserNavi,
+		UserMenu:                      application.GetUserMenu(r),
+		UserRole:                      application.GetUserRole(r),
+		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
 		PageTitle:                     "List Siena CounterpartyAddresss",
 		SienaCounterpartyAddressCount: noItems,
 		SienaCounterpartyAddressList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyAddressList)
 
 }
@@ -111,9 +111,9 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	_, returnRecord, _ := getSienaCounterpartyAddress(firmID, centreID)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
-		UserMenu:   application.GetAppMenuData(globals.UserRole),
-		UserRole:   globals.UserRole,
-		UserNavi:   globals.UserNavi,
+		UserMenu:   application.GetUserMenu(r),
+		UserRole:   application.GetUserRole(r),
+		UserNavi:   "NOT USED",
 		Title:      globals.ApplicationProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "",
@@ -127,7 +127,7 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 		Action:     "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyAddressList)
 
 }
@@ -151,9 +151,9 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	_, returnRecord, _ := getSienaCounterpartyAddress(firmID, centreID)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
-		UserMenu:   application.GetAppMenuData(globals.UserRole),
-		UserRole:   globals.UserRole,
-		UserNavi:   globals.UserNavi,
+		UserMenu:   application.GetUserMenu(r),
+		UserRole:   application.GetUserRole(r),
+		UserNavi:   "NOT USED",
 		Title:      globals.ApplicationProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "",
@@ -168,7 +168,7 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	}
 	//fmt.Println(pageSienaCounterpartyAddressList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyAddressList)
 
 }
@@ -267,9 +267,9 @@ func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 	log.Println("Servicing :", inUTL)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
-		UserMenu:   application.GetAppMenuData(globals.UserRole),
-		UserRole:   globals.UserRole,
-		UserNavi:   globals.UserNavi,
+		UserMenu:   application.GetUserMenu(r),
+		UserRole:   application.GetUserRole(r),
+		UserNavi:   "NOT USED",
 		Title:      globals.ApplicationProperties["appname"],
 		PageTitle:  "View Siena CounterpartyAddress",
 		ID:         "NEW",
@@ -283,7 +283,7 @@ func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 		Action:     "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyAddressList)
 
 }

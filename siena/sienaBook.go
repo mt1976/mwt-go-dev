@@ -75,12 +75,12 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:      "List Siena Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
-		UserMenu:       application.GetAppMenuData(globals.UserRole),
-		UserRole:       globals.UserRole,
-		UserNavi:       globals.UserNavi,
+		UserMenu:       application.GetUserMenu(r),
+		UserRole:       application.GetUserRole(r),
+		UserNavi:       "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }
@@ -114,12 +114,12 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 		Action:    "",
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }
@@ -154,14 +154,14 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 	}
 	//fmt.Println(pageSienaBookList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }
@@ -264,13 +264,13 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }

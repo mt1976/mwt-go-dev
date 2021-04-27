@@ -67,13 +67,13 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", globals.ApplicationProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	SendRequest(requestMessage, requestID.String())
 
-	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -99,9 +99,9 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
-		UserMenu:              GetAppMenuData(globals.UserRole),
-		UserRole:              globals.UserRole,
-		UserNavi:              globals.UserNavi,
+		UserMenu:              GetUserMenu(r),
+		UserRole:              GetUserRole(r),
+		UserNavi:              "NOT USED",
 		Title:                 title,
 		PageTitle:             "View Server Config",
 		SrvConfigurationItems: configsList,
@@ -110,8 +110,8 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSrvConfigView)
 
 }
@@ -135,13 +135,13 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", globals.ApplicationProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "LIST", "", "", GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	SendRequest(requestMessage, requestID.String())
 
-	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -159,9 +159,9 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
-		UserMenu:              GetAppMenuData(globals.UserRole),
-		UserRole:              globals.UserRole,
-		UserNavi:              globals.UserNavi,
+		UserMenu:              GetUserMenu(r),
+		UserRole:              GetUserRole(r),
+		UserNavi:              "NOT USED",
 		Title:                 title,
 		PageTitle:             "View Server Config",
 		SrvConfigurationItems: configsList,
@@ -169,8 +169,8 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSrvConfigView)
 
 }
@@ -196,13 +196,13 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", globals.ApplicationProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "VIEW", recordID, "", GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	SendRequest(requestMessage, requestID.String())
 
-	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), r)
 	//fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -216,9 +216,9 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvConfigView := SrvConfigurationPage{
-		UserMenu:     GetAppMenuData(globals.UserRole),
-		UserRole:     globals.UserRole,
-		UserNavi:     globals.UserNavi,
+		UserMenu:     GetUserMenu(r),
+		UserRole:     GetUserRole(r),
+		UserNavi:     "NOT USED",
 		Title:        title,
 		PageTitle:    "View Server Config",
 		PageRecordID: recordID,
@@ -228,8 +228,8 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvConfigView)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSrvConfigView)
 
 }
@@ -252,9 +252,9 @@ func SaveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	body := r.FormValue("pgContent")
 	id := r.FormValue("pgid")
 
-	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, globals.ApplicationProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@CONFIGURATION", "SAVE", id, body, GetUserSessionToken(r))
 
-	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	SendRequest(requestMessage, requestID.String())
 
 	ListSrvConfigurationHandler(w, r)
 }

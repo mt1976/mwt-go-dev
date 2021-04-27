@@ -80,9 +80,9 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	_, account, _ := getSienaAccount(accountID)
 
 	pageSienaAccountLadderList := sienaAccountLadderListPage{
-		UserMenu:                application.GetAppMenuData(globals.UserRole),
-		UserRole:                globals.UserRole,
-		UserNavi:                globals.UserNavi,
+		UserMenu:                application.GetUserMenu(r),
+		UserRole:                application.GetUserRole(r),
+		UserNavi:                "NOT USED",
 		Title:                   globals.ApplicationProperties["appname"],
 		PageTitle:               "List Siena AccountLadders",
 		SienaAccountLadderCount: noItems,
@@ -91,7 +91,7 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		Name:                    account.AccountName,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountLadderList)
 
 }

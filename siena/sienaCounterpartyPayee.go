@@ -115,16 +115,16 @@ func ListSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaCounterpartyPayeeList()
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeeListPage{
-		UserMenu:                    application.GetAppMenuData(globals.UserRole),
-		UserRole:                    globals.UserRole,
-		UserNavi:                    globals.UserNavi,
+		UserMenu:                    application.GetUserMenu(r),
+		UserRole:                    application.GetUserRole(r),
+		UserNavi:                    "NOT USED",
 		Title:                       globals.ApplicationProperties["appname"],
 		PageTitle:                   "List Siena CounterpartyPayees",
 		SienaCounterpartyPayeeCount: noItems,
 		SienaCounterpartyPayeeList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyPayeeList)
 
 }
@@ -158,9 +158,9 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
-		UserMenu:              application.GetAppMenuData(globals.UserRole),
-		UserRole:              globals.UserRole,
-		UserNavi:              globals.UserNavi,
+		UserMenu:              application.GetUserMenu(r),
+		UserRole:              application.GetUserRole(r),
+		UserNavi:              "NOT USED",
 		Title:                 globals.ApplicationProperties["appname"],
 		PageTitle:             "View Siena CounterpartyPayee",
 		SourceTable:           returnRecord.SourceTable,
@@ -190,7 +190,7 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyPayeeList)
 
 }
@@ -225,9 +225,9 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList()
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
-		UserMenu:              application.GetAppMenuData(globals.UserRole),
-		UserRole:              globals.UserRole,
-		UserNavi:              globals.UserNavi,
+		UserMenu:              application.GetUserMenu(r),
+		UserRole:              application.GetUserRole(r),
+		UserNavi:              "NOT USED",
 		Title:                 globals.ApplicationProperties["appname"],
 		PageTitle:             "View Siena CounterpartyPayee",
 		SourceTable:           returnRecord.SourceTable,
@@ -259,7 +259,7 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//	fmt.Println(pageSienaCounterpartyPayeeList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyPayeeList)
 
 }
@@ -379,9 +379,9 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
-		UserMenu:              application.GetAppMenuData(globals.UserRole),
-		UserRole:              globals.UserRole,
-		UserNavi:              globals.UserNavi,
+		UserMenu:              application.GetUserMenu(r),
+		UserRole:              application.GetUserRole(r),
+		UserNavi:              "NOT USED",
 		Title:                 globals.ApplicationProperties["appname"],
 		PageTitle:             "View Siena CounterpartyPayee",
 		ID:                    "NEW",
@@ -413,7 +413,7 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		Action: "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyPayeeList)
 
 }

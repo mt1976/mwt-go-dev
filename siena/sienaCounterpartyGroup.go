@@ -76,12 +76,12 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:                   "List Siena CounterpartyGroups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
-		UserMenu:                    application.GetAppMenuData(globals.UserRole),
-		UserRole:                    globals.UserRole,
-		UserNavi:                    globals.UserNavi,
+		UserMenu:                    application.GetUserMenu(r),
+		UserRole:                    application.GetUserRole(r),
+		UserNavi:                    "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
@@ -111,12 +111,12 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		SuperGroup:  returnRecord.SuperGroup,
 		CountryName: returnRecord.CountryName,
 		Action:      "",
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
@@ -149,14 +149,14 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName: returnRecord.CountryName,
 		Action:      "",
 		CountryList: countryList,
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		GroupList:   groupList,
 	}
 	//fmt.Println(pageSienaCounterpartyGroupList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
@@ -270,15 +270,15 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		CountryCode: "",
 		SuperGroup:  "",
 		CountryName: "",
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Action:      "NEW",
 		CountryList: countryList,
 		GroupList:   groupList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }

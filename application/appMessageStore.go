@@ -80,16 +80,16 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetMessageStoreList(globals.ApplicationDB)
 
 	pageMessageStoreList := appMessageStoreListPage{
-		UserMenu:          GetAppMenuData(globals.UserRole),
-		UserRole:          globals.UserRole,
-		UserNavi:          globals.UserNavi,
+		UserMenu:          GetUserMenu(r),
+		UserRole:          GetUserRole(r),
+		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Message",
 		MessageStoreCount: noItems,
 		MessageStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageMessageStoreList)
 
 }
@@ -115,9 +115,9 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Message",
 		Action:    "",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
 		Id:         returnRecord.Id,
@@ -130,7 +130,7 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -155,9 +155,9 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Message",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
@@ -170,7 +170,7 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -273,16 +273,16 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }

@@ -75,11 +75,11 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:     "List Siena Calenders",
 		CalenderCount: noItems,
 		CalenderList:  returnList,
-		UserRole:      globals.UserRole,
-		UserNavi:      globals.UserNavi,
+		UserRole:      application.GetUserRole(r),
+		UserNavi:      "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pagecalenderList)
 
 }

@@ -48,10 +48,11 @@ func Start() {
 	c.AddFunc(period, func() { RunJobFRED(Scheduled) })
 	logit("RunJobHeartBeat", period)
 
-	//c.AddFunc("@every 1m", func() { RunJobFXSPOT(Scheduled) })
-	//logit("RunJobFXSPOT", "@every 1m")
-	//log.Println(runtime.Caller(0))
-	//log.Println(c.Entries())
+	period = "@every 1m"
+	application.RegisterSchedule("sessionhousekeeping", "Session Management", "Manage Application Sessions", period)
+	c.AddFunc(period, func() { RunJobSessionHousekeeping(Scheduled) })
+	logit("RunJobSessionHousekeeping", period)
+
 	c.Start()
 }
 

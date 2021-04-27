@@ -174,9 +174,9 @@ func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 	outRequestConsumed := PickEpochToDateTimeString(thisPayload.RequestConsumed)
 	outResponseEjected := PickEpochToDateTimeString(thisPayload.ResponseEjected)
 	pageResponseView := PageResponseView{
-		UserMenu:             GetAppMenuData(globals.UserRole),
-		UserRole:             globals.UserRole,
-		UserNavi:             globals.UserNavi,
+		UserMenu:             GetUserMenu(r),
+		UserRole:             GetUserRole(r),
+		UserNavi:             "NOT USED",
 		Title:                title,
 		Description:          "Detail For : " + GetURLparam(r, "uuid"),
 		RequestRID:           thisPayload.RequestID,
@@ -202,7 +202,7 @@ func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageResponseView)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageResponseView)
 
 }
@@ -262,7 +262,7 @@ func DeleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetResponseAsync(id string, unused map[string]string, r *http.Request) WctResponsePayload {
+func GetResponseAsync(id string, r *http.Request) WctResponsePayload {
 
 	var responseFileName = globals.ApplicationProperties["deliverpath"] + "/" + id + "." + globals.ApplicationProperties["responseformat"]
 	var processedFileName = globals.ApplicationProperties["processedpath"] + "/" + id + "." + globals.ApplicationProperties["responseformat"]
@@ -329,9 +329,9 @@ func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	title := globals.ApplicationProperties["appname"]
 
 	rpc := ResponseListPage{
-		UserMenu:    GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    GetUserMenu(r),
+		UserRole:    GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       title,
 		PageTitle:   "List Responses",
 		Responses:   files,
@@ -340,8 +340,8 @@ func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", rpc)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, rpc)
 
 }

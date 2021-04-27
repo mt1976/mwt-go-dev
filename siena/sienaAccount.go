@@ -125,12 +125,12 @@ func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:         "List Siena Accounts",
 		SienaAccountCount: noItems,
 		SienaAccountList:  returnList,
-		UserMenu:          application.GetAppMenuData(globals.UserRole),
-		UserRole:          globals.UserRole,
-		UserNavi:          globals.UserNavi,
+		UserMenu:          application.GetUserMenu(r),
+		UserRole:          application.GetUserRole(r),
+		UserNavi:          "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
@@ -156,9 +156,9 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaAccountList := sienaAccountPage{
-		UserMenu:               application.GetAppMenuData(globals.UserRole),
-		UserRole:               globals.UserRole,
-		UserNavi:               globals.UserNavi,
+		UserMenu:               application.GetUserMenu(r),
+		UserRole:               application.GetUserRole(r),
+		UserNavi:               "NOT USED",
 		Title:                  globals.ApplicationProperties["appname"],
 		PageTitle:              "View Siena Account",
 		ID:                     returnRecord.SienaReference,
@@ -193,7 +193,7 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                 "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
@@ -225,9 +225,9 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaAccountList := sienaAccountPage{
-		UserMenu:               application.GetAppMenuData(globals.UserRole),
-		UserRole:               globals.UserRole,
-		UserNavi:               globals.UserNavi,
+		UserMenu:               application.GetUserMenu(r),
+		UserRole:               application.GetUserRole(r),
+		UserNavi:               "NOT USED",
 		Title:                  globals.ApplicationProperties["appname"],
 		PageTitle:              "View Siena Account",
 		ID:                     returnRecord.SienaReference,
@@ -266,7 +266,7 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaAccountList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
@@ -311,9 +311,9 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaAccountList := sienaAccountPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Account",
 		ID:          "NEW",
@@ -321,7 +321,7 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }

@@ -52,11 +52,11 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 
 	pageAppConfigView := AppConfigurationPage{
-		UserMenu:               GetAppMenuData(globals.UserRole),
-		UserRole:               globals.UserRole,
-		UserNavi:               globals.UserNavi,
+		UserMenu:               GetUserMenu(r),
+		UserRole:               GetUserRole(r),
+		UserNavi:               "NOT USED",
 		Title:                  title,
-		PageTitle:              "View Application Server Config",
+		PageTitle:              "Application Server Configuration",
 		RequestPath:            globals.ApplicationProperties["deliverpath"],
 		ResponsePath:           globals.ApplicationProperties["receivepath"],
 		ProcessedPath:          globals.ApplicationProperties["processedpath"],
@@ -77,8 +77,8 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageAppConfigView)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageAppConfigView)
 
 }

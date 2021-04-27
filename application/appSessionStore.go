@@ -16,15 +16,17 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var appSessionStoreSQL = "apptoken, 	createdate, 	createtime, 	uniqueid, 	sessiontoken, 	username, 	password, 	userip, 	userhost, 	appip, 	apphost, 	issued, 	expiry, 	expiryraw, 	role, 	brand, 	_created, 	_who, 	_host, 	_updated, 	id"
+var appSessionStoreSQL = "apptoken, 	createdate, 	createtime, 	uniqueid, 	sessiontoken, 	username, 	password, 	userip, 	userhost, 	appip, 	apphost, 	issued, 	expiry, 	expiryraw, 	role, 	brand, 	_created, 	_who, 	_host, 	_updated, 	id, expires"
 
-var sqlSessionStoreApptoken, sqlSessionStoreCreatedate, sqlSessionStoreCreatetime, sqlSessionStoreUniqueid, sqlSessionStoreSessiontoken, sqlSessionStoreUsername, sqlSessionStorePassword, sqlSessionStoreUserip, sqlSessionStoreUserhost, sqlSessionStoreAppip, sqlSessionStoreApphost, sqlSessionStoreIssued, sqlSessionStoreExpiry, sqlSessionStoreExpiryraw, sqlSessionStoreRole, sqlSessionStoreBrand, sqlSessionStoreSYSCreated, sqlSessionStoreSYSWho, sqlSessionStoreSYSHost, sqlSessionStoreSYSUpdated, sqlSessionStoreId sql.NullString
+var sqlSessionStoreApptoken, sqlSessionStoreCreatedate, sqlSessionStoreCreatetime, sqlSessionStoreUniqueid, sqlSessionStoreSessiontoken, sqlSessionStoreUsername, sqlSessionStorePassword, sqlSessionStoreUserip, sqlSessionStoreUserhost, sqlSessionStoreAppip, sqlSessionStoreApphost, sqlSessionStoreIssued, sqlSessionStoreExpiry, sqlSessionStoreExpiryraw, sqlSessionStoreRole, sqlSessionStoreBrand, sqlSessionStoreSYSCreated, sqlSessionStoreSYSWho, sqlSessionStoreSYSHost, sqlSessionStoreSYSUpdated, sqlSessionStoreId, sqlSessionStoreExpires sql.NullString
 
-var appSessionStoreSQLINSERT = "INSERT INTO %s.sessionStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
+var appSessionStoreSQLINSERT = "INSERT INTO %s.sessionStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');"
 var appSessionStoreSQLDELETE = "DELETE FROM %s.sessionStore WHERE id='%s';"
 var appSessionStoreSQLSELECT = "SELECT %s FROM %s.sessionStore;"
 var appSessionStoreSQLGET = "SELECT %s FROM %s.sessionStore WHERE id='%s';"
+var appSessionStoreSQLGETTOKEN = "SELECT %s FROM %s.sessionStore WHERE sessiontoken='%s';"
 var appSessionStoreSQLGETUSER = "SELECT %s FROM %s.sessionStore WHERE username='%s';"
+var appSessionStoreSQLDELETEEXPIRED = "DELETE FROM %s.sessionStore WHERE expires < '%s';"
 
 //appSessionStorePage is cheese
 type appSessionStoreListPage struct {
@@ -94,6 +96,7 @@ type appSessionStoreItem struct {
 	SYSHost      string
 	SYSUpdated   string
 	Id           string
+	Expires      string
 }
 
 func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -113,16 +116,16 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetSessionStoreList()
 
 	pageSessionStoreList := appSessionStoreListPage{
-		UserMenu:          GetAppMenuData(globals.UserRole),
-		UserRole:          globals.UserRole,
-		UserNavi:          globals.UserNavi,
+		UserMenu:          GetUserMenu(r),
+		UserRole:          GetUserRole(r),
+		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Session",
 		SessionStoreCount: noItems,
 		SessionStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
@@ -148,9 +151,9 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Session",
 		Action:    "",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
 		Apptoken:     returnRecord.Apptoken,
@@ -178,7 +181,7 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageSessionStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
@@ -203,9 +206,9 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageSessionStoreList := appSessionStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Session",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
@@ -233,7 +236,7 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSessionStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
@@ -353,16 +356,16 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageSessionStoreList := appSessionStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
@@ -382,15 +385,30 @@ func GetSessionStoreByID(id string) (int, appSessionStoreItem, error) {
 }
 
 // getSessionStoreList read all employees
+func GetSessionStoreByTokenID(id string) (int, appSessionStoreItem, error) {
+	tsql := fmt.Sprintf(appSessionStoreSQLGETTOKEN, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	_, _, appSessionStoreItem, _ := fetchSessionStoreData(tsql)
+	return 1, appSessionStoreItem, nil
+}
+
+// getSessionStoreList read all employees
 func GetSessionStoreByUserName(id string) (int, appSessionStoreItem, error) {
 	tsql := fmt.Sprintf(appSessionStoreSQLGETUSER, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
 	_, _, appSessionStoreItem, _ := fetchSessionStoreData(tsql)
 	return 1, appSessionStoreItem, nil
 }
 
+// getSessionStoreList read all employees
+func HousekeepSessionStore() (int, error) {
+	expiry := time.Now().Format(globals.DATETIMEFORMATSQLSERVER)
+	deletesql := fmt.Sprintf(appSessionStoreSQLDELETEEXPIRED, globals.ApplicationPropertiesDB["schema"], expiry)
+	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	_, err := globals.ApplicationDB.Exec(deletesql)
+	return 0, err
+}
+
 func putSessionStore(r appSessionStoreItem) {
 	//fmt.Println(credentialStore)
-
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
@@ -419,7 +437,7 @@ func putSessionStore(r appSessionStoreItem) {
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id)
+	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id, r.Expires)
 
 	log.Println("DELETE:", deletesql, globals.ApplicationDB)
 	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
@@ -482,7 +500,7 @@ func fetchSessionStoreData(tsql string) (int, []appSessionStoreItem, appSessionS
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlSessionStoreApptoken, &sqlSessionStoreCreatedate, &sqlSessionStoreCreatetime, &sqlSessionStoreUniqueid, &sqlSessionStoreSessiontoken, &sqlSessionStoreUsername, &sqlSessionStorePassword, &sqlSessionStoreUserip, &sqlSessionStoreUserhost, &sqlSessionStoreAppip, &sqlSessionStoreApphost, &sqlSessionStoreIssued, &sqlSessionStoreExpiry, &sqlSessionStoreExpiryraw, &sqlSessionStoreRole, &sqlSessionStoreBrand, &sqlSessionStoreSYSCreated, &sqlSessionStoreSYSWho, &sqlSessionStoreSYSHost, &sqlSessionStoreSYSUpdated, &sqlSessionStoreId)
+		err := rows.Scan(&sqlSessionStoreApptoken, &sqlSessionStoreCreatedate, &sqlSessionStoreCreatetime, &sqlSessionStoreUniqueid, &sqlSessionStoreSessiontoken, &sqlSessionStoreUsername, &sqlSessionStorePassword, &sqlSessionStoreUserip, &sqlSessionStoreUserhost, &sqlSessionStoreAppip, &sqlSessionStoreApphost, &sqlSessionStoreIssued, &sqlSessionStoreExpiry, &sqlSessionStoreExpiryraw, &sqlSessionStoreRole, &sqlSessionStoreBrand, &sqlSessionStoreSYSCreated, &sqlSessionStoreSYSWho, &sqlSessionStoreSYSHost, &sqlSessionStoreSYSUpdated, &sqlSessionStoreId, &sqlSessionStoreExpires)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, appSessionStore, err
@@ -509,6 +527,7 @@ func fetchSessionStoreData(tsql string) (int, []appSessionStoreItem, appSessionS
 		appSessionStore.SYSHost = sqlSessionStoreSYSHost.String
 		appSessionStore.SYSUpdated = sqlSessionStoreSYSUpdated.String
 		appSessionStore.Id = sqlSessionStoreId.String
+		appSessionStore.Expires = sqlSessionStoreExpires.String
 		// no change below
 		appSessionStoreList = append(appSessionStoreList, appSessionStore)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
@@ -532,11 +551,12 @@ func CreateSessionToken(req *http.Request) string {
 	host, _ := os.Hostname()
 	var r appSessionStoreItem
 	r.Id = id
+	r.Sessiontoken = id
 	r.Apptoken = globals.ApplicationProperties["applicationtoken"]
 	r.Createdate = now.Format(globals.DATEFORMATSIENA)
 	r.Createtime = now.Format(globals.TIMEHMS)
-	r.Uniqueid = globals.UUID
-	r.Username = globals.UserName
+	r.Uniqueid = GetUserUUID(req)
+	r.Username = GetUserName(req)
 	r.Password = ""
 	r.Userip = req.Referer()
 	r.Userhost = GetIncomingRequestIP(req)
@@ -549,11 +569,12 @@ func CreateSessionToken(req *http.Request) string {
 
 	r.Expiry = expiry.Format(globals.DATETIMEFORMATUSER)
 	r.Expiryraw = expiry.String()
-	r.Role = globals.UserRole
+	r.Role = GetUserRole(req)
 	r.Brand = ""
 	r.SYSCreated = time.Now().Format(globals.DATETIMEFORMATUSER)
 	r.SYSWho = userID
 	r.SYSHost = host
+	r.Expires = expiry.Format(globals.DATETIMEFORMATSQLSERVER)
 
 	putSessionStore(r)
 

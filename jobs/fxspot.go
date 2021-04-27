@@ -191,13 +191,13 @@ func deliverRVData(name string, record string) {
 
 func RunJobFXSPOT(actionType string) {
 	//funcName = "RunJobFXSPOT"
-	logit(actionType, "*** REFRESH RATES ***")
+	//	logit(actionType, "*** REFRESH RATES ***")
 	rateCard := buildRateCard()
 	//log.Println(rateCard, len(rateCard.fxRates))
-	//fmt.Println(rateCard, len(rateCard))
-	logit(actionType, "*** BUILD RV RATES ***")
-	outputString := buldFXRVRates(rateCard)
-	logit(actionType, "*** DELIVER RATES ***")
-	deliverRVData("RVMARKET", outputString)
-	logit(actionType, "*** DONE ***")
+	fmt.Println(rateCard, len(rateCard.fxRates))
+	//logit(actionType, "*** BUILD RV RATES ***")
+	//outputString := buldFXRVRates(rateCard)
+	//logit(actionType, "*** DELIVER RATES ***")
+	//deliverRVData("RVMARKET", outputString)
+	//logit(actionType, "*** DONE ***")
 }

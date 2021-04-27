@@ -64,9 +64,9 @@ func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 			ServiceCatalog: serviceCatalog,
 			Description:    "A description of the srvCatalogPage.",
 			ResponseType:   globals.ApplicationProperties["responseformat"],
-			UserMenu:       GetAppMenuData(globals.UserRole),
-			UserRole:       globals.UserRole,
-			UserNavi:       globals.UserNavi,
+			UserMenu:       GetUserMenu(r),
+			UserRole:       GetUserRole(r),
+			UserNavi:       "NOT USED",
 			PageTitle:      "Service Catalog",
 		}
 
@@ -74,7 +74,7 @@ func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 		//	fmt.Println("srvCatalogPage=", p.ServiceCatalog)
 		fmt.Println("menu=", p.UserMenu)
 
-		t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+		t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 		t.Execute(w, p)
 	}
 }

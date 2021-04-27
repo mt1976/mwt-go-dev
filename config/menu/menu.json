@@ -194,7 +194,17 @@
       "Glyph": "fas fa-info-circle",
       "HREF": "/listMessageStore",
       "OnClick": "",
-      "TextClass": "text-warning"
+      "TextClass": "text-info"
+    }
+    ,
+
+    {
+      "ID": "sessionStore",
+      "Text": "Sessions",
+      "Glyph": "fas fa-history",
+      "HREF": "/listSessionStore",
+      "OnClick": "",
+      "TextClass": "text-info"
     }
     ,
 

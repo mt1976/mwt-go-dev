@@ -146,16 +146,16 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaDealListList()
 
 	pageSienaDealListList := sienaDealListListPage{
-		UserMenu:           application.GetAppMenuData(globals.UserRole),
-		UserRole:           globals.UserRole,
-		UserNavi:           globals.UserNavi,
+		UserMenu:           application.GetUserMenu(r),
+		UserRole:           application.GetUserRole(r),
+		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          "List Siena DealLists",
 		SienaDealListCount: noItems,
 		SienaDealListList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaDealListList)
 
 }
@@ -179,9 +179,9 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("NoSienaItems", noItems, sienaDealListID, returnRecord.Status)
 
 	pageSienaDealListList := sienaDealListPage{
-		UserMenu:           application.GetAppMenuData(globals.UserRole),
-		UserRole:           globals.UserRole,
-		UserNavi:           globals.UserNavi,
+		UserMenu:           application.GetUserMenu(r),
+		UserRole:           application.GetUserRole(r),
+		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          "View Siena DealList",
 		Action:             "",
@@ -229,7 +229,7 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		PartyName:          returnRecord.PartyName,
 	}
 	fmt.Println("PAGE", pageSienaDealListList)
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaDealListList)
 
 }

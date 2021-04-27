@@ -105,16 +105,16 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaMandatedUserList()
 
 	pageSienaMandatedUserList := sienaMandatedUserListPage{
-		UserMenu:               application.GetAppMenuData(globals.UserRole),
-		UserRole:               globals.UserRole,
-		UserNavi:               globals.UserNavi,
+		UserMenu:               application.GetUserMenu(r),
+		UserRole:               application.GetUserRole(r),
+		UserNavi:               "NOT USED",
 		Title:                  globals.ApplicationProperties["appname"],
 		PageTitle:              "List Siena MandatedUsers",
 		SienaMandatedUserCount: noItems,
 		SienaMandatedUserList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
@@ -142,9 +142,9 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
-		UserMenu:                          application.GetAppMenuData(globals.UserRole),
-		UserRole:                          globals.UserRole,
-		UserNavi:                          globals.UserNavi,
+		UserMenu:                          application.GetUserMenu(r),
+		UserRole:                          application.GetUserRole(r),
+		UserNavi:                          "NOT USED",
 		Title:                             globals.ApplicationProperties["appname"],
 		PageTitle:                         "View Siena MandatedUser",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
@@ -170,7 +170,7 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          returnRecord.CBNotify,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
@@ -204,9 +204,9 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
-		UserMenu:                          application.GetAppMenuData(globals.UserRole),
-		UserRole:                          globals.UserRole,
-		UserNavi:                          globals.UserNavi,
+		UserMenu:                          application.GetUserMenu(r),
+		UserRole:                          application.GetUserRole(r),
+		UserNavi:                          "NOT USED",
 		Title:                             globals.ApplicationProperties["appname"],
 		PageTitle:                         "View Siena MandatedUser",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
@@ -236,7 +236,7 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(pageSienaMandatedUserList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
@@ -394,9 +394,9 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
-		UserMenu:                          application.GetAppMenuData(globals.UserRole),
-		UserRole:                          globals.UserRole,
-		UserNavi:                          globals.UserNavi,
+		UserMenu:                          application.GetUserMenu(r),
+		UserRole:                          application.GetUserRole(r),
+		UserNavi:                          "NOT USED",
 		Title:                             globals.ApplicationProperties["appname"],
 		PageTitle:                         "View Siena MandatedUser",
 		ID:                                "NEW",
@@ -426,7 +426,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }

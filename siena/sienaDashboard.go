@@ -64,9 +64,9 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	p := sienaDashboardPage{
-		UserMenu:          application.GetAppMenuData(globals.UserRole),
-		UserRole:          globals.UserRole,
-		UserNavi:          globals.UserNavi,
+		UserMenu:          application.GetUserMenu(r),
+		UserRole:          application.GetUserRole(r),
+		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Siena Dashboards",
 		TotCounterparties: strconv.Itoa(noCps),
@@ -82,7 +82,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(p)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, p)
 
 }

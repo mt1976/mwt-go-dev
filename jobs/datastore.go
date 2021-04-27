@@ -173,6 +173,6 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 }
 
 func getRatesDataStoreKey(ratesData RatesDataStore) string {
-	key := strings.ToUpper(ratesData.market) + "." + strings.ToUpper(ratesData.tenor) + "." + strings.ToUpper(ratesData.class) + "." + strings.ToUpper(ratesData.series)
+	key := strings.ToUpper(ratesData.market) + globals.IDSep + strings.ToUpper(ratesData.tenor) + globals.IDSep + strings.ToUpper(ratesData.class) + globals.IDSep + strings.ToUpper(ratesData.series)
 	return key
 }

@@ -149,16 +149,16 @@ func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	noItems, returnList, _ := getSienaCounterpartyExtensionsList()
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsListPage{
-		UserMenu:                         application.GetAppMenuData(globals.UserRole),
-		UserRole:                         globals.UserRole,
-		UserNavi:                         globals.UserNavi,
+		UserMenu:                         application.GetUserMenu(r),
+		UserRole:                         application.GetUserRole(r),
+		UserNavi:                         "NOT USED",
 		Title:                            globals.ApplicationProperties["appname"],
 		PageTitle:                        "List Siena CounterpartyExtensionss",
 		SienaCounterpartyExtensionsCount: noItems,
 		SienaCounterpartyExtensionsList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
@@ -185,9 +185,9 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
-		UserMenu:                      application.GetAppMenuData(globals.UserRole),
-		UserRole:                      globals.UserRole,
-		UserNavi:                      globals.UserNavi,
+		UserMenu:                      application.GetUserMenu(r),
+		UserRole:                      application.GetUserRole(r),
+		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
 		PageTitle:                     "View Siena CounterpartyExtensions",
 		NameFirm:                      returnRecord.NameFirm,
@@ -235,7 +235,7 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		Action:                        "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
@@ -265,9 +265,9 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
-		UserMenu:                      application.GetAppMenuData(globals.UserRole),
-		UserRole:                      globals.UserRole,
-		UserNavi:                      globals.UserNavi,
+		UserMenu:                      application.GetUserMenu(r),
+		UserRole:                      application.GetUserRole(r),
+		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
 		PageTitle:                     "View Siena CounterpartyExtensions",
 		NameFirm:                      returnRecord.NameFirm,
@@ -318,7 +318,7 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	fmt.Println(pageSienaCounterpartyExtensionsList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
@@ -459,9 +459,9 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
-		UserMenu:                      application.GetAppMenuData(globals.UserRole),
-		UserRole:                      globals.UserRole,
-		UserNavi:                      globals.UserNavi,
+		UserMenu:                      application.GetUserMenu(r),
+		UserRole:                      application.GetUserRole(r),
+		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
 		PageTitle:                     "View Siena CounterpartyExtensions",
 		ID:                            "NEW",
@@ -509,7 +509,7 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 		DirectDealing:                 "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }

@@ -50,9 +50,9 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{
-		UserMenu:        GetAppMenuData(globals.UserRole),
-		UserRole:        globals.UserRole,
-		UserNavi:        globals.UserNavi,
+		UserMenu:        GetUserMenu(r),
+		UserRole:        GetUserRole(r),
+		UserNavi:        "NOT USED",
 		Title:           "Home",
 		PageTitle:       globals.ApplicationProperties["appname"],
 		AppReleaseID:    globals.ApplicationProperties["releaseid"],
@@ -62,16 +62,16 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		SQLServer:       globals.SienaPropertiesDB["server"],
 		SQLDB:           globals.SienaPropertiesDB["database"],
 		SQLSchema:       globals.SienaPropertiesDB["schema"],
-		UserName:        globals.UserName,
+		UserName:        GetUserName(r),
 		UserKnowAs:      globals.UserKnowAs,
 		SienaDate:       globals.SienaSystemDate,
 		AppServerDate:   time.Now().Format(globals.DATEFORMATSIENA),
 		AppServerName:   tmpHostname,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 
-	//log.Println(GetTemplateID(tmpl, globals.UserRole), tmpl, t, globals.UserRole, globals.UserNavi, homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
+	//log.Println(GetTemplateID(tmpl, GetUserRole(r)), tmpl, t, GetUserRole(r), "NOT USED", homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
 	//log.Println("about to execute")
 	t.Execute(w, homePage)
 

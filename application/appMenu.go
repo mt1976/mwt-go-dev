@@ -3,6 +3,7 @@ package application
 import (
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
 
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
@@ -24,14 +25,15 @@ type AppMenuList struct {
 }
 
 //getappMenuData
-func GetAppMenuData(inRole string) []AppMenuItem {
-	_, thisMenuList := FetchappMenuData(inRole)
+func GetUserMenu(r *http.Request) []AppMenuItem {
+	session_role := globals.SessionManager.GetString(r.Context(), globals.SessionRole)
+	_, thisMenuList := FetchappMenuData(session_role)
 	return thisMenuList.MenuItem
 }
 
 // fetchappMenuData read all employees
 func FetchappMenuData(inRole string) (int, AppMenuList) {
-	file, _ := ioutil.ReadFile(GetMenuID("menu", globals.UserRole))
+	file, _ := ioutil.ReadFile(GetMenuID("menu", inRole))
 	data := AppMenuList{}
 	_ = json.Unmarshal([]byte(file), &data)
 	return len(data.MenuItem), data

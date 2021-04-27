@@ -83,12 +83,12 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:        "List Siena Brokers",
 		SienaBrokerCount: noItems,
 		SienaBrokerList:  returnList,
-		UserMenu:         application.GetAppMenuData(globals.UserRole),
-		UserRole:         globals.UserRole,
-		UserNavi:         globals.UserNavi,
+		UserMenu:         application.GetUserMenu(r),
+		UserRole:         application.GetUserRole(r),
+		UserNavi:         "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }
@@ -127,14 +127,14 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Address:   returnRecord.Address,
 		LEI:       returnRecord.LEI,
 		Action:    "",
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 	}
 
 	//fmt.Println(pageSienaBrokerList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }
@@ -174,9 +174,9 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Contact:   returnRecord.Contact,
 		Address:   returnRecord.Address,
 		LEI:       returnRecord.LEI,
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		//	Country:     returnRecord.Country,
 		//	CountryName: returnRecord.CountryName,
 		Action: "",
@@ -184,7 +184,7 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaBrokerList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }
@@ -315,16 +315,16 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		//		Country:   "",
 
 		Action: "NEW",
 		//	CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }

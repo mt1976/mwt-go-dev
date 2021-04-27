@@ -65,16 +65,16 @@ func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaSectorList()
 
 	pageSienaSectorList := sienaSectorListPage{
-		UserMenu:         application.GetAppMenuData(globals.UserRole),
-		UserRole:         globals.UserRole,
-		UserNavi:         globals.UserNavi,
+		UserMenu:         application.GetUserMenu(r),
+		UserRole:         application.GetUserRole(r),
+		UserNavi:         "NOT USED",
 		Title:            globals.ApplicationProperties["appname"],
 		PageTitle:        "List Siena Sectors",
 		SienaSectorCount: noItems,
 		SienaSectorList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }
@@ -98,9 +98,9 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("NoSienaCountries", noItems)
 
 	pageSienaSectorList := sienaSectorPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        returnRecord.Code,
@@ -108,7 +108,7 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }
@@ -132,9 +132,9 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("NoSienaCountries", noItems)
 
 	pageSienaSectorList := sienaSectorPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        returnRecord.Code,
@@ -142,7 +142,7 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }
@@ -255,9 +255,9 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaSectorList := sienaSectorPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Sector",
 		ID:        "NEW",
@@ -265,7 +265,7 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }

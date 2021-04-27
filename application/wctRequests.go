@@ -75,14 +75,14 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("test", serviceCatalog[thisID])
 
 	pageRequestView := RequestViewPage{
-		UserMenu:              GetAppMenuData(globals.UserRole),
-		UserRole:              globals.UserRole,
-		UserNavi:              globals.UserNavi,
+		UserMenu:              GetUserMenu(r),
+		UserRole:              GetUserRole(r),
+		UserNavi:              "NOT USED",
 		Title:                 title,
 		Description:           serviceCatalog[thisID].Text + " " + serviceCatalog[thisID].Helptext,
 		SudoID:                thisID,
 		ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
-		SessionToken:          globals.SessionToken,
+		SessionToken:          GetUserSessionToken(r),
 		RequestID:             requestID.String(),
 		RequestAction:         serviceCatalog[thisID].Action,
 		RequestItem:           serviceCatalog[thisID].Item,
@@ -95,8 +95,8 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageRequestView)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageRequestView)
 
 }
@@ -118,7 +118,7 @@ func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 	dispatchMessage := WctMessage{
 		WctPayload{
 			ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
-			SessionToken:          globals.SessionToken,
+			SessionToken:          GetUserSessionToken(r),
 			RequestID:             thisUUID,
 			RequestAction:         GetURLparam(r, "action"),
 			RequestItem:           GetURLparam(r, "item"),
@@ -129,7 +129,7 @@ func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	deliverRequest(dispatchMessage, globals.ApplicationProperties["deliverpath"], thisUUID, globals.ApplicationProperties["responseformat"])
+	deliverRequest(dispatchMessage, thisUUID)
 
 	common.SnoozeFor(globals.ApplicationProperties["pollinginterval"])
 	//	fmt.Println(r.URL.Path, r.URL, r)
@@ -138,7 +138,7 @@ func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func deliverRequest(dispatchMessage WctMessage, filePath string, id string, responseFormat string) {
+func deliverRequest(dispatchMessage WctMessage, id string) {
 
 	js, _ := json.Marshal(dispatchMessage)
 
@@ -146,33 +146,13 @@ func deliverRequest(dispatchMessage WctMessage, filePath string, id string, resp
 	//	fmt.Printf("%s", js)
 	//	fmt.Printf("\n")
 
-	var fileName = filePath + "/" + id + "." + responseFormat
+	var fileName = globals.ApplicationProperties["deliverpath"] + "/" + id + "." + globals.ApplicationProperties["responseformat"]
 	log.Println("Request Filename :", fileName)
 	//	fmt.Printf("\n")
 	_ = ioutil.WriteFile(fileName, js, 0644)
 }
 
-func processSimpleRequestMessage(unused map[string]string, responseFormat string) {
-
-	id := uuid.New()
-
-	resp := WctMessage{
-		WctPayload{
-			ApplicationToken:      globals.ApplicationProperties["applicationtoken"],
-			RequestID:             id.String(),
-			RequestAction:         "SERVICES",
-			UniqueUID:             globals.UUID,
-			RequestResponseFormat: responseFormat,
-			RequestData:           "",
-			SessionToken:          globals.SessionToken,
-		},
-	}
-
-	deliverRequest(resp, globals.ApplicationProperties["deliverpath"], id.String(), responseFormat)
-
-}
-
-func BuildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, unused map[string]string) WctMessage {
+func BuildRequestMessage(inUUID string, inAction string, inItem string, inParameters string, inPayload string, masterSession string) WctMessage {
 
 	requestMessage := WctMessage{
 		WctPayload{
@@ -184,14 +164,14 @@ func BuildRequestMessage(inUUID string, inAction string, inItem string, inParame
 			UniqueUID:             globals.UUID,
 			RequestResponseFormat: globals.ApplicationProperties["responseformat"],
 			RequestData:           inPayload,
-			SessionToken:          globals.SessionToken,
+			SessionToken:          masterSession,
 		},
 	}
 
 	return requestMessage
 }
 
-func SendRequest(dispatchMessage WctMessage, id string, unused map[string]string) {
+func SendRequest(dispatchMessage WctMessage, id string) {
 
 	js, _ := json.Marshal(dispatchMessage)
 

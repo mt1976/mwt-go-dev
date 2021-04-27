@@ -93,16 +93,16 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetScheduleStoreList()
 
 	pageScheduleStoreList := appScheduleStoreListPage{
-		UserMenu:           GetAppMenuData(globals.UserRole),
-		UserRole:           globals.UserRole,
-		UserNavi:           globals.UserNavi,
+		UserMenu:           GetUserMenu(r),
+		UserRole:           GetUserRole(r),
+		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          "List Message",
 		ScheduleStoreCount: noItems,
 		ScheduleStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageScheduleStoreList)
 
 }
@@ -127,9 +127,9 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Message",
 		Action:    "",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
 		Id:          returnRecord.Id,
@@ -147,7 +147,7 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -171,9 +171,9 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "Edit Message",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
@@ -191,7 +191,7 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -299,16 +299,16 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
-		UserMenu:  GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  GetUserMenu(r),
+		UserRole:  GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }

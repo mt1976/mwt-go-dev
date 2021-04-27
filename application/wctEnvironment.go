@@ -47,13 +47,13 @@ func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := BuildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", globals.ApplicationProperties)
+	requestMessage := BuildRequestMessage(requestID.String(), "@ENVIRONMENT", "", "", "", GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	SendRequest(requestMessage, requestID.String())
 
-	responseMessge := GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessge := GetResponseAsync(requestID.String(), r)
 	fmt.Println("responseMessge", responseMessge)
 
 	//outString := ""
@@ -72,9 +72,9 @@ func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("configs", configsList)
 	pageSrvEvironment := SrvEnvironmentPage{
-		UserMenu:            GetAppMenuData(globals.UserRole),
-		UserRole:            globals.UserRole,
-		UserNavi:            globals.UserNavi,
+		UserMenu:            GetUserMenu(r),
+		UserRole:            GetUserRole(r),
+		UserNavi:            "NOT USED",
 		Title:               title,
 		PageTitle:           "View Server Config",
 		SrvEnvironmentItems: configsList,
@@ -82,8 +82,8 @@ func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }

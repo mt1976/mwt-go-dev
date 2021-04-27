@@ -67,16 +67,16 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaCountryList()
 
 	pageSienaCountryList := sienaCountryListPage{
-		UserMenu:          application.GetAppMenuData(globals.UserRole),
-		UserRole:          globals.UserRole,
-		UserNavi:          globals.UserNavi,
+		UserMenu:          application.GetUserMenu(r),
+		UserRole:          application.GetUserRole(r),
+		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
 		PageTitle:         "List Siena Countrys",
 		SienaCountryCount: noItems,
 		SienaCountryList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }
@@ -103,9 +103,9 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Country",
 		ID:        returnRecord.Code,
@@ -116,7 +116,7 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }
@@ -140,9 +140,9 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCountryList := sienaCountryPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Country",
 		ID:        returnRecord.Code,
@@ -153,7 +153,7 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }
@@ -247,9 +247,9 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCountryList := sienaCountryPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Country",
 		ID:        "NEW",
@@ -260,7 +260,7 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }

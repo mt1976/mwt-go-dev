@@ -5,6 +5,7 @@ go 1.16
 require (
 	github.com/AlecAivazis/survey/v2 v2.2.12 // indirect
 	github.com/Masterminds/semver/v3 v3.1.1 // indirect
+	github.com/alexedwards/scs/v2 v2.4.0 // indirect
 	github.com/bjarneh/latinx v0.0.0-20120329061922-4dfe9ba2a293 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect

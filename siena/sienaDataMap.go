@@ -59,14 +59,13 @@ type SvcDataMapItem struct {
 }
 
 func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "listSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -78,13 +77,13 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "LIST", "", "", globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "LIST", "", "", application.GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
-	responseMessage := application.GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessage := application.GetResponseAsync(requestID.String(), r)
 	//fmt.Println("responseMessage", responseMessage)
 
 	//outString := ""
@@ -105,9 +104,9 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:        application.GetAppMenuData(globals.UserRole),
-		UserRole:        globals.UserRole,
-		UserNavi:        globals.UserNavi,
+		UserMenu:        application.GetUserMenu(r),
+		UserRole:        application.GetUserRole(r),
+		UserNavi:        "NOT USED",
 		Title:           title,
 		PageTitle:       "List Data Maps",
 		NoDataMapIDs:    noRows,
@@ -116,21 +115,20 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= application.GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "viewSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -145,13 +143,13 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "VIEW", thisID, "", globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "VIEW", thisID, "", application.GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
-	responseMessage := application.GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessage := application.GetResponseAsync(requestID.String(), r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	//fmt.Println("responseMessage", responseMessage)
 
@@ -202,9 +200,9 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println("wrkDataMapRows", wrkDataMapRows)
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:       application.GetAppMenuData(globals.UserRole),
-		UserRole:       globals.UserRole,
-		UserNavi:       globals.UserNavi,
+		UserMenu:       application.GetUserMenu(r),
+		UserRole:       application.GetUserRole(r),
+		UserNavi:       "NOT USED",
 		Title:          title,
 		PageTitle:      "View Data Maps",
 		NoDataMapIDs:   0,
@@ -217,21 +215,20 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= application.GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "editSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -246,13 +243,13 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "RAW", thisID, "", globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "RAW", thisID, "", application.GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
-	responseMessage := application.GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessage := application.GetResponseAsync(requestID.String(), r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -262,9 +259,9 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:      application.GetAppMenuData(globals.UserRole),
-		UserRole:      globals.UserRole,
-		UserNavi:      globals.UserNavi,
+		UserMenu:      application.GetUserMenu(r),
+		UserRole:      application.GetUserRole(r),
+		UserNavi:      "NOT USED",
 		Title:         title,
 		PageTitle:     "Edit Data Map",
 		DataMapPageID: thisID,
@@ -274,21 +271,20 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= application.GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "viewSvcDataMapXML"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -303,13 +299,13 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", application.GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
-	responseMessage := application.GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessage := application.GetResponseAsync(requestID.String(), r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -319,9 +315,9 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:      application.GetAppMenuData(globals.UserRole),
-		UserRole:      globals.UserRole,
-		UserNavi:      globals.UserNavi,
+		UserMenu:      application.GetUserMenu(r),
+		UserRole:      application.GetUserRole(r),
+		UserNavi:      "NOT USED",
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
@@ -331,21 +327,20 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= application.GetTemplateID(tmpl,globals.UserRole)
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "editSvcDataMapXML"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -360,13 +355,13 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", application.GetUserSessionToken(r))
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
-	responseMessage := application.GetResponseAsync(requestID.String(), globals.ApplicationProperties, r)
+	responseMessage := application.GetResponseAsync(requestID.String(), r)
 	//fmt.Println("*** GOT RESPONSE ***")
 	fmt.Println("responseMessage", responseMessage)
 
@@ -376,9 +371,9 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
 	fullRec = html.UnescapeString(fullRec)
 	pageEditSvcDataMapXML := SvcDataMapPage{
-		UserMenu:      application.GetAppMenuData(globals.UserRole),
-		UserRole:      globals.UserRole,
-		UserNavi:      globals.UserNavi,
+		UserMenu:      application.GetUserMenu(r),
+		UserRole:      application.GetUserRole(r),
+		UserNavi:      "NOT USED",
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
@@ -388,22 +383,21 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Page Data", pageEditSvcDataMapXML)
 
-	//thisTemplate:= application.GetTemplateID(tmpl,globals.UserRole)
-	t, err := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
+	t, err := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	fmt.Println("error", err)
 	t.Execute(w, pageEditSvcDataMapXML)
 
 }
 
 func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -430,31 +424,30 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println("ARSE", r)
 	//	fmt.Println("parse",r.ParseForm())
 
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "SAVE", id, body, globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "SAVE", id, body, application.GetUserSessionToken(r))
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
 	ListSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,globals.UserRole))
+	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,application.GetUserRole(r)))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -481,31 +474,30 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println("ARSE", r)
 	//	fmt.Println("parse",r.ParseForm())
 
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "SAVE", id, body, globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "SAVE", id, body, application.GetUserSessionToken(r))
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
 	ListSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,globals.UserRole))
+	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,application.GetUserRole(r)))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "newSvcDataMap"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -515,28 +507,27 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	title := globals.ApplicationProperties["appname"]
 
 	pageDM := SvcDataMapPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     title,
 		PageTitle: "New Data Loader Template",
 	}
 	fmt.Println("WCT : Page :", pageDM)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageDM)
 
 }
 
 func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -563,39 +554,39 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println("ARSE", r)
 	//	fmt.Println("parse",r.ParseForm())
 
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "NEW", id, body, globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "NEW", id, body, application.GetUserSessionToken(r))
 
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
 
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 
 	ListSvcDataMapHandler(w, r)
 
 	// Get Data Here
 	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
 
-	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,globals.UserRole))
+	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,application.GetUserRole(r)))
 	//	t.Execute(w, pageSrvConfigView)
 
 }
 
 func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
-	
+	// Code Continues Below
+
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
 	id := application.GetURLparam(r, "dataMapName")
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", globals.ApplicationProperties)
+	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", application.GetUserSessionToken(r))
 	fmt.Println("requestMessage", requestMessage)
 	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	application.SendRequest(requestMessage, requestID.String())
 	ListSvcDataMapHandler(w, r)
 }

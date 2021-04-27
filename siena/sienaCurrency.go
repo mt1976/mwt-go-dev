@@ -74,16 +74,16 @@ func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaCurrencyList()
 
 	pageSienaCurrencyList := sienaCurrencyListPage{
-		UserMenu:           application.GetAppMenuData(globals.UserRole),
-		UserRole:           globals.UserRole,
-		UserNavi:           globals.UserNavi,
+		UserMenu:           application.GetUserMenu(r),
+		UserRole:           application.GetUserRole(r),
+		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          "List Siena Currencys",
 		SienaCurrencyCount: noItems,
 		SienaCurrencyList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyList)
 
 }
@@ -107,9 +107,9 @@ func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("NoSienaItems", noItems, searchID)
 
 	pageSienaCurrencyList := sienaCurrencyPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Currency",
 		ID:          returnRecord.Code,
@@ -121,7 +121,7 @@ func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyList)
 
 }
@@ -150,9 +150,9 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCurrencyList := sienaCurrencyPage{
-		UserMenu:    application.GetAppMenuData(globals.UserRole),
-		UserRole:    globals.UserRole,
-		UserNavi:    globals.UserNavi,
+		UserMenu:    application.GetUserMenu(r),
+		UserRole:    application.GetUserRole(r),
+		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
 		PageTitle:   "View Siena Currency",
 		ID:          returnRecord.Code,
@@ -166,7 +166,7 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(pageSienaCurrencyList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyList)
 
 }
@@ -272,9 +272,9 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList()
 
 	pageSienaCurrencyList := sienaCurrencyPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Currency",
 		ID:        "NEW",
@@ -286,7 +286,7 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyList)
 
 }

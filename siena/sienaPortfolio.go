@@ -71,16 +71,16 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := sienaPortfolioListPage{
-		UserMenu:            application.GetAppMenuData(globals.UserRole),
-		UserRole:            globals.UserRole,
-		UserNavi:            globals.UserNavi,
+		UserMenu:            application.GetUserMenu(r),
+		UserRole:            application.GetUserRole(r),
+		UserNavi:            "NOT USED",
 		Title:               globals.ApplicationProperties["appname"],
 		PageTitle:           "List Siena Portfolios",
 		SienaPortfolioCount: noItems,
 		SienaPortfolioList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
@@ -109,9 +109,9 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
@@ -119,7 +119,7 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
@@ -148,9 +148,9 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Portfolio",
 		ID:        returnRecord.Code,
@@ -158,7 +158,7 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
@@ -254,9 +254,9 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Servicing :", inUTL)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
-		UserMenu:  application.GetAppMenuData(globals.UserRole),
-		UserRole:  globals.UserRole,
-		UserNavi:  globals.UserNavi,
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Portfolio",
 		ID:        "NEW",
@@ -264,7 +264,7 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, globals.UserRole))
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
