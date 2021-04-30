@@ -306,7 +306,7 @@ func putMessageStore(r appMessageStoreItem) {
 
 	r.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
 
-	fmt.Println("RECORD", r)
+	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
@@ -328,23 +328,31 @@ func putMessageStore(r appMessageStoreItem) {
 func deleteMessageStore(id string) {
 	//fmt.Println(credentialStore)
 	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	log.Println("DELETE:", deletesql)
-	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
-	log.Println(fred2, err2)
+	//log.Println("DELETE:", deletesql)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
+	//log.Println(fred2, err2)
 }
 
 func banMessageStore(id string) {
 	//fmt.Println(credentialStore)
-	fmt.Println("RECORD", id)
+	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
-	_, r, _ := GetMessageStoreByID(globals.ApplicationDB, id)
-
+	_, r, err2 := GetMessageStoreByID(globals.ApplicationDB, id)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
 	putMessageStore(r)
 }
 
 func activateMessageStore(id string) {
 	fmt.Println("RECORD", id)
-	_, r, _ := GetMessageStoreByID(globals.ApplicationDB, id)
+	_, r, err2 := GetMessageStoreByID(globals.ApplicationDB, id)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
 	putMessageStore(r)
 }
 
@@ -381,7 +389,7 @@ func fetchMessageStoreData(unused *sql.DB, tsql string) (int, []appMessageStoreI
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	log.Println(count, appMessageStoreList, appMessageStore)
+	//log.Println(count, appMessageStoreList, appMessageStore)
 	return count, appMessageStoreList, appMessageStore, nil
 }
 

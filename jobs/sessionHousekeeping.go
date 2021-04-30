@@ -7,12 +7,13 @@ import (
 )
 
 func RunJobSessionHousekeeping(actionType string) {
-	logit(actionType, "*** START ***")
+	//logit(actionType, "*** START ***")
 	_, err := application.HousekeepSessionStore()
 	// handle the error if there is one
 	if err != nil {
 		log.Println(err)
 		panic(err)
 	}
-	logit(actionType, "*** DONE ***")
+	application.UpdateSchedule(actionType, Monitor, "")
+	//logit(actionType, "*** DONE ***")
 }

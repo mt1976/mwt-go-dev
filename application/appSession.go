@@ -55,8 +55,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", loginPageContent)
 
-	t, err := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
-	log.Println(t, GetTemplateID(tmpl, GetUserRole(r)), err)
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	//log.Println(t, GetTemplateID(tmpl, GetUserRole(r)), err)
 	t.Execute(w, loginPageContent)
 
 }
@@ -78,8 +78,6 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 	//}
 
 	tok := loginValidate(appToken, uName, uPassword, r)
-
-	log.Println(tok.ResponseCode, tok)
 
 	if tok.ResponseCode == "200" {
 		//GetUserRole(r) = tok.role
@@ -166,12 +164,12 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 	s.ResponseCode = ""
 	//s.host = ""
 
-	session_username := GetUserName(r)
-	session_session := GetUserSessionToken(r)
+	//session_username := GetUserName(r)
+	//session_session := GetUserSessionToken(r)
 	session_uuid := GetUserUUID(r)
 	//ok := true
 
-	log.Println("VALIDATE SESSION", session_username, session_session, session_uuid)
+	//log.Println("VALIDATE SESSION", session_username, session_session, session_uuid)
 
 	// were only going to check that uid and the username mactc
 
@@ -179,30 +177,30 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 	if err != nil {
 		log.Panicf("ERROR %e", err)
 	}
-	_, sess, err := GetSessionStoreByTokenID(GetUserSessionToken(r))
-	if err != nil {
-		log.Panicf("ERROR %e", err)
-	}
+	//	_, sess, err := GetSessionStoreByTokenID(GetUserSessionToken(r))
+	//	if err != nil {
+	//		log.Panicf("ERROR %e", err)
+	//	}
 
-	log.Println("session=", sess)
+	//log.Println("session=", sess)
 	if len(cred.Id) == 0 {
 		//no credentials found
 		s.ResponseCode = "512"
-		s.SecurityViolation = "SECURITY VIOLATION - NO CREDS"
-		log.Println(s.ResponseCode, s.SecurityViolation)
+		s.SecurityViolation = "SECURITY VIOLATION"
+		//	log.Println(s.ResponseCode, s.SecurityViolation)
 		return false
 	}
 	if cred.Username != GetUserName(r) {
 		s.ResponseCode = "512"
-		s.SecurityViolation = "SECURITY VIOLATION CREDUN#Sess"
-		log.Println(s.ResponseCode, s.SecurityViolation)
+		s.SecurityViolation = "SECURITY VIOLATION"
+		//log.Println(s.ResponseCode, s.SecurityViolation)
 
 		return false
 	}
 	if len(cred.Expiry) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
-		log.Println(s.ResponseCode, s.SecurityViolation)
+		//	log.Println(s.ResponseCode, s.SecurityViolation)
 
 		return false
 	}
@@ -212,7 +210,7 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 	//fmt.Println("SHOULD NOT GET HERE FOR THIS TEST!")
 	s.SecurityViolation = ""
 	s.ResponseCode = "200"
-	log.Println("LOGIN APPROVED")
+	//	log.Println("ACCESS APPROVED")
 	return true
 }
 

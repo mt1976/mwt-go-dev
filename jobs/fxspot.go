@@ -10,6 +10,7 @@ import (
 	"sync"
 
 	"github.com/mt1976/common"
+	application "github.com/mt1976/mwt-go-dev/application"
 	tools "github.com/mt1976/mwtgostringtools"
 )
 
@@ -72,7 +73,7 @@ func getFXrate(inCCYpair string) fxRate {
 	thisRate.askRate, _ = strconv.ParseFloat(inString[askPriceStart:askPriceStop], 64)
 	thisRate.askString = tools.TruncateString(inString[askPriceStart:askPriceStop], constRateLen)
 	//fmt.Println("askPrice=", askPrice)
-	log.Println(thisRate.ccyPair, bidPriceStart, askPriceStart, askPriceStop, thisRate.bidRate, thisRate.askRate)
+	//log.Println(thisRate.ccyPair, bidPriceStart, askPriceStart, askPriceStop, thisRate.bidRate, thisRate.askRate)
 	var ratesData RatesDataStore
 	ratesData.bid = fmt.Sprintf("%f", thisRate.bidRate)
 	ratesData.offer = fmt.Sprintf("%f", thisRate.askRate)
@@ -137,11 +138,11 @@ func getASYCFXrate(inCCYpair string, rateChan chan fxRate) {
 
 	rateChan <- thisRate
 
-	log.Println(thisRate.ccyPair, bidPriceStart, askPriceStart, askPriceStop, thisRate.bidRate, thisRate.askRate)
+	//log.Println(thisRate.ccyPair, bidPriceStart, askPriceStart, askPriceStop, thisRate.bidRate, thisRate.askRate)
 
 }
 
-func buildRateCard() fxRateCard {
+func buildRateCard() {
 	var rateCard fxRateCard
 	rateCard.fxRates = append(rateCard.fxRates, getFXrate("AUDUSD"))
 	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURGBP"))
@@ -154,7 +155,6 @@ func buildRateCard() fxRateCard {
 	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDHKD"))
 	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDJPY"))
 	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDSGD"))
-	return rateCard
 }
 
 func buldFXRVRates(rateCard fxRateCard) string {
@@ -191,13 +191,36 @@ func deliverRVData(name string, record string) {
 
 func RunJobFXSPOT(actionType string) {
 	//funcName = "RunJobFXSPOT"
-	//	logit(actionType, "*** REFRESH RATES ***")
-	rateCard := buildRateCard()
+	//	//logit(actionType, "*** REFRESH RATES ***")
+	//	buildRateCard()
+
+	_, cacheList, err := application.GetCacheStoreListByOBJECT("CurrencyPair")
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	var rateCard fxRateCard
+
+	for _, cacheData := range cacheList {
+		//	fmt.Println(i, ccyPair)
+		rateCard.fxRates = append(rateCard.fxRates, getFXrate(cacheData.Value))
+	}
+	/*rateCard.fxRates = append(rateCard.fxRates, getFXrate("AUDUSD"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURGBP"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURJPY"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURUSD"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("GBPUSD"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("NZDUSD"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDCAD"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDCHF"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDHKD"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDJPY"))
+	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDSGD"))*/
 	//log.Println(rateCard, len(rateCard.fxRates))
-	fmt.Println(rateCard, len(rateCard.fxRates))
-	//logit(actionType, "*** BUILD RV RATES ***")
+	//fmt.Println(rateCard, len(rateCard.fxRates))
+	////logit(actionType, "*** BUILD RV RATES ***")
 	//outputString := buldFXRVRates(rateCard)
-	//logit(actionType, "*** DELIVER RATES ***")
+	////logit(actionType, "*** DELIVER RATES ***")
 	//deliverRVData("RVMARKET", outputString)
-	//logit(actionType, "*** DONE ***")
+	////logit(actionType, "*** DONE ***")
 }

@@ -27,10 +27,10 @@ type RatesDataStore struct {
 	date        string
 }
 
-var wctRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, _created, _who, _host, [date]"
+var appRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, _created, _who, _host, [date]"
 var sqlRatesDataStoreID, sqlRatesDataStorebid, sqlRatesDataStoremid, sqlRatesDataStoreoffer, sqlRatesDataStoremarket, sqlRatesDataStoretenor, sqlRatesDataStoreseries, sqlRatesDataStorename, sqlRatesDataStoresource, sqlRatesDataStoredestination, sqlRatesDataStoreclass, sqlRatesDataStorecreated, sqlRatesDataStoreby, sqlRatesDataStoreon, sqlRatesDataStoredate sql.NullString
-var wctRatesDataStoreSQLINSERT = "INSERT INTO %s.rateDataStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
-var wctRatesDataStoreSQLDELETE = "DELETE FROM %s.rateDataStore WHERE id='%s';"
+var appRatesDataStoreSQLINSERT = "INSERT INTO %s.rateDataStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
+var appRatesDataStoreSQLDELETE = "DELETE FROM %s.rateDataStore WHERE id='%s';"
 
 type DataStoreSQL struct {
 	ID          string `sql:"que"`
@@ -51,7 +51,6 @@ type DataStoreSQL struct {
 }
 
 func RunJobRatesDataStore(actionType string) {
-	logit(actionType, "*** START ***")
 	var ratesData RatesDataStore
 	ratesData.bid = "1.3847"
 	ratesData.mid = ""
@@ -105,7 +104,7 @@ func RunJobRatesDataStore(actionType string) {
 	cpi2.destination = "RVMARKET"
 	RatesDataStorePut(cpi2)
 
-	logit(actionType, "*** DONE ***")
+	//logit(actionType, "*** DONE ***")
 }
 
 func RatesDataStorePut(ratesData RatesDataStore) {
@@ -150,15 +149,15 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 	sql.created = createDate
 	sql.who = userID
 	sql.host = host
-	fmt.Println("RECORD", sql)
+	//fmt.Println("RECORD", sql)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	//db, _ := application.DataStoreConnect()
 
 	//mssqlConfig := application.GetProperties(globals.DATASTORECONFIG)
-	inserttsql := fmt.Sprintf(wctRatesDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], wctRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
-	deletesql := fmt.Sprintf(wctRatesDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], sql.ID)
-	//var wctRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, created, who, host, [date]"
+	inserttsql := fmt.Sprintf(appRatesDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
+	deletesql := fmt.Sprintf(appRatesDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], sql.ID)
+	//var appRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, created, who, host, [date]"
 
 	//log.Println(inserttsql, globals.ApplicationDB)
 	//log.Println(deletesql, globals.ApplicationDB)

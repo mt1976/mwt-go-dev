@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	application "github.com/mt1976/mwt-go-dev/application"
 )
 
 const (
@@ -58,20 +60,20 @@ type FredSeriesInfo struct {
 }
 
 func RunJobFRED(actionType string) {
-	logit(actionType, "*** START ***")
-	//logit(actionType, apiKey)
-	//logit(actionType, uri)
+	//logit(actionType, "*** START ***")
+	////logit(actionType, apiKey)
+	////logit(actionType, uri)
 
 	seriesList := []string{"TB3MS", "TB1YR", "DTB6", "TB4WK", "DTB4WK", "BAMLC1A0C13YEY", "SOFR", "CBBTCUSD", "CPALTT01USM657N", "JPNCPIALLMINMEI", "GBRCPIALLMINMEI"}
 
 	for _, s := range seriesList {
 		requestURI := fmt.Sprintf(uri, s, apiKey)
 		seriesRequestURI := fmt.Sprintf(seriesuri, s, apiKey)
-		logit(actionType, requestURI)
+		//logit(actionType, requestURI)
 		value, valueDate := getFredAPIData(requestURI)
-		logit(actionType, value)
-		logit(actionType, valueDate)
-		logit(actionType, seriesRequestURI)
+		//logit(actionType, value)
+		//logit(actionType, valueDate)
+		//logit(actionType, seriesRequestURI)
 		//getFredSeriesData(seriesRequestURI)
 
 		var ratesData RatesDataStore
@@ -90,9 +92,10 @@ func RunJobFRED(actionType string) {
 	}
 
 	//requestURI := fmt.Sprintf(uri, "BUM", apiKey)
-	//logit(actionType, requestURI)
+	////logit(actionType, requestURI)
+	application.UpdateSchedule(actionType, Aquirer, "")
 
-	logit(actionType, "*** DONE ***")
+	//logit(actionType, "*** DONE ***")
 }
 
 func getFredAPIData(inURI string) (string, string) {
@@ -151,7 +154,7 @@ func getFredSeriesData(inURI string) string {
 	}
 	//fmt.Printf("%+v", data)
 	output := data.Seriess[0].Title
-	//logit("getFredSeriesData", output)
+	////logit("getFredSeriesData", output)
 
 	return output
 	//fmt.Println("count", data.Count)

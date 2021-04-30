@@ -3,12 +3,13 @@ package jobs
 import (
 	"fmt"
 
+	application "github.com/mt1976/mwt-go-dev/application"
 	"github.com/openprovider/rates"
 	"github.com/openprovider/rates/providers"
 )
 
 func RunJobECB(actionType string) {
-	logit(actionType, "*** START ***")
+	//logit(actionType, "*** START ***")
 	service := rates.New(
 		// any collection of providers which implement rates.Provider interface
 		providers.NewECBProvider(new(rates.Options)),
@@ -34,5 +35,6 @@ func RunJobECB(actionType string) {
 		RatesDataStorePut(ratesData)
 
 	}
-	logit(actionType, "*** DONE ***")
+	application.UpdateSchedule(actionType, Aquirer, "")
+	//logit(actionType, "*** DONE ***")
 }

@@ -1,7 +1,6 @@
 package siena
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -80,7 +79,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		SECTDataLabels:    SLlist,
 	}
 
-	fmt.Println(p)
+	//fmt.Println(p)
 
 	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, p)

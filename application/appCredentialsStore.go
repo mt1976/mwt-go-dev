@@ -244,7 +244,7 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.Role = r.FormValue("Role")
 	s.Brand = r.FormValue("Brand")
 
-	log.Println("save", s)
+	//log.Println("save", s)
 
 	putCredentialsStore(s)
 
@@ -441,7 +441,7 @@ func activateCredentialsStore(id string) {
 
 // fetchCredentialsStoreData read all employees
 func fetchCredentialsStoreData(tsql string) (int, []appCredentialsStoreItem, appCredentialsStoreItem, error) {
-	log.Println(tsql)
+	//log.Println(tsql)
 	var appCredentialsStore appCredentialsStoreItem
 	var appCredentialsStoreList []appCredentialsStoreItem
 
@@ -481,7 +481,7 @@ func fetchCredentialsStoreData(tsql string) (int, []appCredentialsStoreItem, app
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	log.Println(count, appCredentialsStoreList, appCredentialsStore)
+	//log.Println(count, appCredentialsStoreList, appCredentialsStore)
 	return count, appCredentialsStoreList, appCredentialsStore, nil
 }
 

@@ -11,15 +11,17 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/lnquy/cron"
+	hcron "github.com/lnquy/cron"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
-var appScheduleStoreSQL = "id, 	name, 	description, 	schedule, 	started, 	lastrun, 	message, 	_created, 	_who, 	_host, 	_updated"
+var appScheduleStoreSQL = "id, 	name, 	description, 	schedule, 	started, 	lastrun, 	message, 	_created, 	_who, 	_host, 	_updated, type"
 
-var sqlScheduleStoreId, sqlScheduleStoreName, sqlScheduleStoreDescription, sqlScheduleStoreSchedule, sqlScheduleStoreStarted, sqlScheduleStoreLastrun, sqlScheduleStoreMessage, sqlScheduleStoreSYSCreated, sqlScheduleStoreSYSWho, sqlScheduleStoreSYSHost, sqlScheduleStoreSYSUpdated sql.NullString
+var sqlScheduleStoreId, sqlScheduleStoreName, sqlScheduleStoreDescription, sqlScheduleStoreSchedule, sqlScheduleStoreStarted, sqlScheduleStoreLastrun, sqlScheduleStoreMessage, sqlScheduleStoreSYSCreated, sqlScheduleStoreSYSWho, sqlScheduleStoreSYSHost, sqlScheduleStoreSYSUpdated, sqlScheduleStoreType sql.NullString
 
-var appScheduleStoreSQLINSERT = "INSERT INTO %s.scheduleStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
+var appScheduleStoreSQLINSERT = "INSERT INTO %s.scheduleStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
 var appScheduleStoreSQLDELETE = "DELETE FROM %s.scheduleStore WHERE id='%s';"
 var appScheduleStoreSQLSELECT = "SELECT %s FROM %s.scheduleStore;"
 var appScheduleStoreSQLGET = "SELECT %s FROM %s.scheduleStore WHERE id='%s';"
@@ -56,6 +58,7 @@ type appScheduleStorePage struct {
 	SYSWho      string
 	SYSHost     string
 	SYSUpdated  string
+	Type        string
 }
 
 //appScheduleStoreItem is cheese
@@ -72,6 +75,7 @@ type appScheduleStoreItem struct {
 	SYSWho      string
 	SYSHost     string
 	SYSUpdated  string
+	Type        string
 }
 
 func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -143,6 +147,7 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSWho:      returnRecord.SYSWho,
 		SYSHost:     returnRecord.SYSHost,
 		SYSUpdated:  returnRecord.SYSUpdated,
+		Type:        returnRecord.Type,
 	}
 
 	//fmt.Println(pageCredentialStoreList)
@@ -188,6 +193,7 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSWho:      returnRecord.SYSWho,
 		SYSHost:     returnRecord.SYSHost,
 		SYSUpdated:  returnRecord.SYSUpdated,
+		Type:        returnRecord.Type,
 	}
 	//fmt.Println(pageCredentialStoreList)
 
@@ -220,6 +226,7 @@ func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.SYSWho = r.FormValue("SYSWho")
 	s.SYSHost = r.FormValue("SYSHost")
 	s.SYSUpdated = r.FormValue("SYSUpdated")
+	s.Type = r.FormValue("Type")
 
 	log.Println("save", s)
 
@@ -337,7 +344,7 @@ func putScheduleStore(r appScheduleStoreItem) {
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appScheduleStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appScheduleStoreSQL, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	inserttsql := fmt.Sprintf(appScheduleStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appScheduleStoreSQL, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type)
 
 	//log.Println("DELETE:", deletesql, db)
 	//log.Println("INSERT:", inserttsql, db)
@@ -401,7 +408,7 @@ func fetchScheduleStoreData(tsql string) (int, []appScheduleStoreItem, appSchedu
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlScheduleStoreId, &sqlScheduleStoreName, &sqlScheduleStoreDescription, &sqlScheduleStoreSchedule, &sqlScheduleStoreStarted, &sqlScheduleStoreLastrun, &sqlScheduleStoreMessage, &sqlScheduleStoreSYSCreated, &sqlScheduleStoreSYSWho, &sqlScheduleStoreSYSHost, &sqlScheduleStoreSYSUpdated)
+		err := rows.Scan(&sqlScheduleStoreId, &sqlScheduleStoreName, &sqlScheduleStoreDescription, &sqlScheduleStoreSchedule, &sqlScheduleStoreStarted, &sqlScheduleStoreLastrun, &sqlScheduleStoreMessage, &sqlScheduleStoreSYSCreated, &sqlScheduleStoreSYSWho, &sqlScheduleStoreSYSHost, &sqlScheduleStoreSYSUpdated, &sqlScheduleStoreType)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, appScheduleStore, err
@@ -418,6 +425,7 @@ func fetchScheduleStoreData(tsql string) (int, []appScheduleStoreItem, appSchedu
 		appScheduleStore.SYSWho = sqlScheduleStoreSYSWho.String
 		appScheduleStore.SYSHost = sqlScheduleStoreSYSHost.String
 		appScheduleStore.SYSUpdated = sqlScheduleStoreSYSUpdated.String
+		appScheduleStore.Type = sqlScheduleStoreType.String
 		// no change below
 		appScheduleStoreList = append(appScheduleStoreList, appScheduleStore)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
@@ -432,9 +440,9 @@ func newScheduleStoreID() string {
 	return id
 }
 
-func RegisterSchedule(id string, name string, description string, schedule string) {
+func RegisterSchedule(id string, name string, description string, schedule string, inType string) {
 	var s appScheduleStoreItem
-	s.Id = id
+	s.Id = id + globals.IDSep + inType
 	s.Name = name
 	s.Description = description
 	s.Schedule = schedule
@@ -447,14 +455,32 @@ func RegisterSchedule(id string, name string, description string, schedule strin
 	s.SYSWho = currentUserID.Name
 	s.SYSHost = host
 	s.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
+	s.Type = inType
 	//log.Println("STORE", s)
 	putScheduleStore(s)
+
+	exprDesc, err := hcron.NewDescriptor(
+		cron.Use24HourTimeFormat(true),
+		cron.DayOfWeekStartsAtOne(true),
+		cron.Verbose(true),
+		cron.SetLogger(log.New(os.Stdout, "cron: ", 0)),
+		cron.SetLocales(hcron.Locale_en),
+	)
+	if err != nil {
+		log.Panicf("failed to create CRON expression descriptor: %s", err)
+	}
+	desc, err := exprDesc.ToDescription(s.Schedule, hcron.Locale_en)
+	if err != nil {
+		log.Panicf("failed to convert CRON expression to human readable description: %s", err)
+	}
+
+	log.Printf("Scheduled Job : %-11s %-20s %-20s %q", inType, name, schedule, desc)
 }
 
-func UpdateSchedule(id string, message string) {
-
-	_, s, _ := GetScheduleStoreByID(id)
+func UpdateSchedule(id string, inType string, message string) {
+	_, s, _ := GetScheduleStoreByID(id + globals.IDSep + inType)
 	s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
 	s.Message = message
+	log.Printf("Ran Job       : %-11s %-20s %q", inType, s.Name, message)
 	putScheduleStore(s)
 }

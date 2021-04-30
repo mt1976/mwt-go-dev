@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/bjarneh/latinx"
+	application "github.com/mt1976/mwt-go-dev/application"
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/encoding/charmap"
 )
@@ -54,7 +55,7 @@ type CubeItem struct {
 }
 
 func RunJobBOESONIA(actionType string) {
-	logit(actionType, "*** START ***")
+	//logit(actionType, "*** START ***")
 	//funcName = "RunJobFXSPOT"
 	//date := "1999-12-31"
 	//t, err := time.Parse("2006-01-02", date)
@@ -150,7 +151,8 @@ func RunJobBOESONIA(actionType string) {
 	ratesData.destination = "RVMARKET"
 	RatesDataStorePut(ratesData)
 
-	logit(actionType, "*** DONE ***")
+	application.UpdateSchedule(actionType, Aquirer, err.Error())
+	//logit(actionType, "*** DONE ***")
 }
 
 func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {

@@ -278,7 +278,7 @@ func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.SYSUpdated = r.FormValue("SYSUpdated")
 	s.Id = r.FormValue("Id")
 
-	log.Println("save", s)
+	//log.Println("save", s)
 
 	putSessionStore(s)
 
@@ -402,7 +402,7 @@ func GetSessionStoreByUserName(id string) (int, appSessionStoreItem, error) {
 func HousekeepSessionStore() (int, error) {
 	expiry := time.Now().Format(globals.DATETIMEFORMATSQLSERVER)
 	deletesql := fmt.Sprintf(appSessionStoreSQLDELETEEXPIRED, globals.ApplicationPropertiesDB["schema"], expiry)
-	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
 	_, err := globals.ApplicationDB.Exec(deletesql)
 	return 0, err
 }
@@ -433,19 +433,25 @@ func putSessionStore(r appSessionStoreItem) {
 
 	r.SYSUpdated = createDate
 
-	fmt.Println("RECORD", r)
+	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
 	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id, r.Expires)
 
-	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
 
-	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
-	log.Println(fred2, err2)
-	fred, err := globals.ApplicationDB.Exec(inserttsql)
-	log.Println(fred, err)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
+	//log.Println(fred2, err2)
+	_, err := globals.ApplicationDB.Exec(inserttsql)
+	//log.Println(fred, err)
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
 
 func getSessionExpiryTime() string {
@@ -458,14 +464,17 @@ func getSessionExpiryTime() string {
 func deleteSessionStore(id string) {
 	//fmt.Println(credentialStore)
 	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
-	log.Println(fred2, err2)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
+	//log.Println(fred2, err2)
 }
 
 func banSessionStore(id string) {
 	//fmt.Println(credentialStore)
-	fmt.Println("RECORD", id)
+	//	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetSessionStoreByID(id)
@@ -476,7 +485,7 @@ func banSessionStore(id string) {
 
 func activateSessionStore(id string) {
 	//fmt.Println(credentialStore)
-	fmt.Println("RECORD", id)
+	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetSessionStoreByID(id)
@@ -486,7 +495,7 @@ func activateSessionStore(id string) {
 
 // fetchSessionStoreData read all employees
 func fetchSessionStoreData(tsql string) (int, []appSessionStoreItem, appSessionStoreItem, error) {
-	log.Println(tsql)
+	//	log.Println(tsql)
 	var appSessionStore appSessionStoreItem
 	var appSessionStoreList []appSessionStoreItem
 
@@ -533,7 +542,7 @@ func fetchSessionStoreData(tsql string) (int, []appSessionStoreItem, appSessionS
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	log.Println(count, appSessionStoreList, appSessionStore)
+	//log.Println(count, appSessionStoreList, appSessionStore)
 	return count, appSessionStoreList, appSessionStore, nil
 }
 

@@ -7,6 +7,6 @@ import (
 // RunJobHeartBeat is a HeartBeat function
 func RunJobHeartBeat(actionType string) {
 	//	funcName := "RunJobHeartBeat"
-	//	logit(actionType, "HeartBeat")
-	application.UpdateSchedule("heartbeat", "")
+	//logit(actionType, ".")
+	application.UpdateSchedule(actionType, Monitor, "")
 }

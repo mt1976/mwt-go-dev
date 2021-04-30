@@ -15,11 +15,12 @@ var SessionToken = ""
 var UUID = "authorAdjust"
 var SecurityViolation = ""
 var DB *sql.DB
+var sourceAccess []*sql.DB
 
 //var UserRole = "/default"
-var UserName = ""
-var UserKnowAs = ""
-var UserNavi = ""
+//var UserName = ""
+//var UserKnowAs = ""
+//var UserNavi = ""
 
 var ApplicationProperties map[string]string
 var ApplicationPropertiesDB map[string]string
@@ -62,7 +63,39 @@ const (
 	SessionSecurityViolation = "4097340829"
 	SessionAppToken          = "1117429826"
 	IDSep                    = "|"
+	Tick                     = "\u2713"
 )
+
+type Connection struct {
+	count int
+	Pool  []ConnectionItem
+}
+
+type ConnectionItem struct {
+	ID               string
+	Name             string
+	DealimportIn     string
+	DealimportOut    string
+	StaticIn         string
+	StaticOut        string
+	Database         *sql.DB
+	ConnectionString sienaDBItem
+}
+
+type sienaDBItem struct {
+	ID         string
+	Server     string
+	Port       string
+	User       string
+	Password   string
+	Database   string
+	Schema     string
+	Active     string
+	SYSCreated string
+	SYSWho     string
+	SYSHost    string
+	SYSUpdated string
+}
 
 //SienaBusinessDateItem is cheese
 type DateItem struct {
@@ -80,9 +113,9 @@ func Initialise() {
 	//DB *sql.DB
 	//Datasource_db *sql.DB
 	//UserRole = "/default"
-	UserName = ""
-	UserKnowAs = ""
-	UserNavi = ""
+	//UserName = ""
+	//UserKnowAs = ""
+	//UserNavi = ""
 
 	//SienaSystemDate DateItem
 	ApplicationProperties = getProperties(APPCONFIG)
@@ -92,6 +125,9 @@ func Initialise() {
 
 	ApplicationDB, _ = globalsDatabaseConnect(ApplicationPropertiesDB)
 	SienaDB, _ = globalsDatabaseConnect(SienaPropertiesDB)
+
+	// TODO: get a list of additional DB's to connect to (from the SRS.sienadbStore)
+	// TODO: load them into the var sourceAccess []*sql.DB slice
 
 	SessionManager = scs.New()
 	life, err := time.ParseDuration(ApplicationProperties["sessionlife"])

@@ -82,6 +82,7 @@
                   <thead class="thead-light">
                     <tr>
                       <th class="text-center">#</th>
+                      <th class="text-center">Type</th>
 
                       <th class="text-center">Name</th>
                       <th class="text-center">Description</th>
@@ -98,11 +99,12 @@
                     {{range .ScheduleStoreList}}
                     <tr>
                       <td class="text-center align-middle"></td>
-                
+                      <td class="align-middle text-left">{{.Type}}</td>
+
                       <td class="align-middle text-left">{{.Name}}</td>
                       <td class="align-middle text-left">{{.Description}}</td>
-                      <td class="align-middle text-left">{{.Schedule}}</td>
-                      <td class="align-middle text-left">{{.Lastrun}}</td>
+                      <td class="align-middle text-center">{{.Schedule}}</td>
+                      <td class="align-middle text-center">{{.Lastrun}}</td>
                       <td class="align-middle text-left">{{.Message}}</td>
                       <td class="aligm-middle text-center" style="width:1px; white-space:nowrap;">
 

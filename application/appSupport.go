@@ -2,7 +2,6 @@ package application
 
 import (
 	"bytes"
-	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -48,7 +47,7 @@ func GetURLparam(r *http.Request, paramID string) string {
 	//fmt.Println(paramID)
 	//fmt.Println(r.URL)
 	key := r.FormValue(paramID)
-	log.Println("Url Param '" + paramID + "' is: " + string(key))
+	log.Printf("Url Param '" + paramID + "' is: " + string(key))
 	return key
 }
 
@@ -62,14 +61,14 @@ func RemoveContents(dir string) error {
 	log.Println("TRASH", dir)
 	files, err := filepath.Glob(filepath.Join(dir, "*"))
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return err
 	}
 	//	fmt.Println("do Clear", files)
 	for _, file := range files {
 		err = os.RemoveAll(file)
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
 			return err
 		}
 	}
@@ -85,7 +84,7 @@ func GetTemplateID(tmpl string, userRole string) string {
 	if FileExists(roleTemplate) {
 		//	templateName = roleTemplate
 	}
-	log.Println("Using Template :", templateName)
+	log.Printf("Using Template: %q", templateName)
 	return templateName
 }
 
@@ -98,20 +97,20 @@ func GetMenuID(tmpl string, userRole string) string {
 	if FileExists(roleTemplate) {
 		templateName = roleTemplate
 	}
-	log.Println("Using Menu :", templateName)
+	log.Printf("Using Menu    : %q", templateName)
 	return templateName
 }
 
 // GetNavigationID returns the navigation pane template to use when providing navigation templates
 func GetNavigationID(inUserRole string) string {
 	templateName := "../assets/navigation.html"
-	roleTemplate := "../assets" + inUserRole + "_navigation.html"
-	log.Println("Testing", templateName, FileExists(templateName))
-	log.Println("Testing", roleTemplate, FileExists(roleTemplate))
+	roleTemplate := "../assets/" + inUserRole + "_navigation.html"
+	//log.Println("Testing", templateName, FileExists(templateName))
+	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	if FileExists(roleTemplate) {
 		//templateName = roleTemplate
 	}
-	log.Println("NAVIGATION", templateName)
+	//log.Println("NAVIGATION", templateName)
 	return templateName
 }
 
@@ -129,7 +128,7 @@ func PickEpochToDateTimeString(pickEpoch string) string {
 	//pickEpochLayout := "20060102T150405"
 	t, err := time.Parse(DATEFORMATPICK, pickEpoch)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	tString := t.Format(time.RFC1123)
 	return tString

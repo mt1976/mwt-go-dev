@@ -63,7 +63,7 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		SQLDB:           globals.SienaPropertiesDB["database"],
 		SQLSchema:       globals.SienaPropertiesDB["schema"],
 		UserName:        GetUserName(r),
-		UserKnowAs:      globals.UserKnowAs,
+		UserKnowAs:      GetUserKnowAs(r),
 		SienaDate:       globals.SienaSystemDate,
 		AppServerDate:   time.Now().Format(globals.DATEFORMATSIENA),
 		AppServerName:   tmpHostname,

@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	_ "github.com/denisenkom/go-mssqldb"
 
@@ -40,37 +41,21 @@ func main() {
 	tmpHostname, _ := os.Hostname()
 	line := strings.Repeat("-", 100)
 	log.Println(line)
-	log.Println("INITIALISING...")
+
+	header("Initialising ...")
 	globals.Initialise()
+	done("Initialised")
+	//	log.Println(line)
+	header("Caching ...")
 	application.InitialiseCache()
-	log.Println("INITIALISED!!!")
-	log.Println(line)
-	log.Println("INSTANCE")
-	log.Println("Application:", globals.ApplicationProperties["appname"])
-	log.Println("Machine    :", tmpHostname)
-	log.Println("PATHS")
-	log.Println("Delivery   :", globals.ApplicationProperties["deliverpath"])
-	log.Println("Response   :", globals.ApplicationProperties["receivepath"])
-	log.Println("Processed  :", globals.ApplicationProperties["processedpath"])
-	log.Println(line)
-	log.Println("APPLICATION")
-	log.Println("Name       :", globals.ApplicationProperties["appname"])
-	log.Println("Msg Format :", globals.ApplicationProperties["responseformat"])
-	log.Println("Licence    :", globals.ApplicationProperties["licname"])
-	log.Println("Lic URL    :", globals.ApplicationProperties["liclink"])
-	log.Println(line)
-	log.Println("RELEASE")
-	log.Println("Release ID :", globals.ApplicationProperties["releaseid"])
-	log.Println("Level      :", globals.ApplicationProperties["releaselevel"])
-	log.Println("Number     :", globals.ApplicationProperties["releasenumber"])
-	log.Println(line)
+	done("Cache Refreshed")
+	//log.Println(line)
 
-	log.Println("STARTING JOBS")
-
+	header("Scheduling Jobs")
 	scheduler.Start()
-	log.Println(line)
-	log.Println("STARTING HANDLERS")
-
+	done("Jobs Scheduled")
+	//log.Println(line)
+	header("Starting Handlers")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/put", putHandler)
 	mux.HandleFunc("/get", getHandler)
@@ -221,22 +206,37 @@ func main() {
 
 	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	done("Handlers Started")
 	log.Println(line)
-	log.Println("SESSIONS")
-	log.Println("SessionLife:", globals.ApplicationProperties["sessionlife"])
-	log.Println(line)
-	log.Println("SIENA")
-	//	db, _ := siena.Connect()
+	header("Application Information")
+	header("Application")
+	log.Println("Host          :", tmpHostname)
+	log.Println("Name          :", globals.ApplicationProperties["appname"])
+	log.Println("Server Date   :", time.Now().Format(globals.DATEFORMATUSER))
+	log.Println("Licence       :", globals.ApplicationProperties["licname"])
+	log.Println("Lic URL       :", globals.ApplicationProperties["liclink"])
+	log.Println("Session Life  :", globals.ApplicationProperties["sessionlife"])
+	header("Paths")
+	log.Println("Delivery      :", globals.ApplicationProperties["deliverpath"])
+	log.Println("Response      :", globals.ApplicationProperties["receivepath"])
+	log.Println("Processed     :", globals.ApplicationProperties["processedpath"])
+	header("Software Release")
+	log.Printf("Release       : %s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"])
+	log.Println("Name          :", globals.ApplicationProperties["releaseid"])
+	log.Println("Level         :", globals.ApplicationProperties["releaselevel"])
+	log.Println("Number        :", globals.ApplicationProperties["releasenumber"])
+	header("Siena")
 	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
 	globals.SienaSystemDate = tempDate
-	log.Println("System Date:", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+	log.Println("System Date   :", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+
 	// Get menu
 	//menuCount, _ := application.FetchappMenuData("")
 	//log.Println("No. Menu Items   :", menuCount)
 
 	log.Println(line)
-	log.Println("READY STEADY GO!!!")
-	log.Println("URI        :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
+	header("READY STEADY GO!!!")
+	log.Println("URI           :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
 	log.Println(line)
 
 	httpPort := ":" + globals.ApplicationProperties["port"]
@@ -315,4 +315,12 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 	// key. The zero value is returned if the key does not exist.
 	msg := globals.SessionManager.GetString(r.Context(), "message")
 	io.WriteString(w, msg)
+}
+
+func header(s string) {
+	log.Println(globals.ColorYellow + s + globals.ColorReset)
+	//log.Println(strings.Repeat("-", len(s)))
+}
+func done(s string) {
+	log.Println(globals.ColorYellow + globals.Tick + globals.ColorReset + " " + s)
 }

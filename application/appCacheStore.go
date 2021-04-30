@@ -22,6 +22,7 @@ var appCacheStoreSQLINSERT = "INSERT INTO %s.cacheStore(%s) VALUES('%s', '%s', '
 var appCacheStoreSQLDELETE = "DELETE FROM %s.cacheStore WHERE id='%s';"
 var appCacheStoreSQLSELECT = "SELECT %s FROM %s.cacheStore;"
 var appCacheStoreSQLGET = "SELECT %s FROM %s.cacheStore WHERE id='%s';"
+var appCacheStoreSQLGETOBJECT = "SELECT %s FROM %s.cacheStore WHERE object='%s';"
 
 //var appCacheStoreSQLDELETEEXPIRED = "DELETE FROM %s.cacheStore WHERE expires < '%s';"
 
@@ -219,7 +220,7 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.SYSUpdated = r.FormValue("SYSUpdated")
 	s.Source = r.FormValue("Source")
 
-	log.Println("save", s)
+	//log.Println("save", s)
 
 	putCacheStore(s)
 
@@ -286,6 +287,13 @@ func GetCacheStoreByID(id string) (int, appCacheStoreItem, error) {
 	tsql := fmt.Sprintf(appCacheStoreSQLGET, appCacheStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
 	_, _, appCacheStoreItem, _ := fetchCacheStoreData(tsql)
 	return 1, appCacheStoreItem, nil
+}
+
+// getCacheStoreList read all employees
+func GetCacheStoreListByOBJECT(object string) (int, []appCacheStoreItem, error) {
+	tsql := fmt.Sprintf(appCacheStoreSQLGETOBJECT, appCacheStoreSQL, globals.ApplicationPropertiesDB["schema"], object)
+	count, appCacheStoreItem, _, _ := fetchCacheStoreData(tsql)
+	return count, appCacheStoreItem, nil
 }
 
 // getCacheStoreList read all employees
@@ -362,14 +370,17 @@ func putCacheStore(r appCacheStoreItem) {
 func deleteCacheStore(id string) {
 	//fmt.Println(credentialStore)
 	deletesql := fmt.Sprintf(appCacheStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	fred2, err2 := globals.ApplicationDB.Exec(deletesql)
-	log.Println(fred2, err2)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Panicln(err2.Error())
+	}
+	//log.Println(fred2, err2)
 }
 
 // fetchCacheStoreData read all employees
 func fetchCacheStoreData(tsql string) (int, []appCacheStoreItem, appCacheStoreItem, error) {
-	log.Println(tsql)
+	//log.Println(tsql)
 	var appCacheStore appCacheStoreItem
 	var appCacheStoreList []appCacheStoreItem
 
@@ -404,7 +415,7 @@ func fetchCacheStoreData(tsql string) (int, []appCacheStoreItem, appCacheStoreIt
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
-	log.Println(count, appCacheStoreList, appCacheStore)
+	//log.Println(count, appCacheStoreList, appCacheStore)
 	return count, appCacheStoreList, appCacheStore, nil
 }
 
@@ -434,7 +445,8 @@ func InitialiseCacheData(table string, field string, objectName string, fieldNam
 		storeObjectName = table
 	}
 
-	log.Printf("Caching %s data as %s from %s %s on %s", table, storeObjectName, sourceProperties["database"], sourceProperties["schema"], sourceProperties["server"])
+	log.Printf("Caching       : %-20s data -> %-20s from %-15q -> %s on %-15q", table, storeObjectName, sourceProperties["database"], sourceProperties["schema"], sourceProperties["server"])
+
 	//log.Println(basesql)
 	buildCache(table, field, fieldName, objectName, basesql, sourceProperties)
 }
