@@ -66,7 +66,7 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCentreItem
 	noItems, returnList, _ := getSienaCentreList()
@@ -101,7 +101,7 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
 	searchID := application.GetURLparam(r, "SienaCentre")
@@ -141,7 +141,7 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	searchID := application.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCentre(searchID)
 	_, countryList, _ := getSienaCountryList()
@@ -181,7 +181,7 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCentreItem
 
@@ -264,7 +264,7 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 

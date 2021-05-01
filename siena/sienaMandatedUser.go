@@ -100,7 +100,7 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	var returnList []sienaMandatedUserItem
 	noItems, returnList, _ := getSienaMandatedUserList()
 
@@ -131,7 +131,7 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	suID := application.GetURLparam(r, "SU")
 	sfID := application.GetURLparam(r, "SF")
@@ -187,7 +187,7 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	suID := application.GetURLparam(r, "SU")
 	sfID := application.GetURLparam(r, "SF")
@@ -251,7 +251,7 @@ func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaMandatedUserItem
 
@@ -384,7 +384,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 

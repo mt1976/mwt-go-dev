@@ -37,7 +37,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := "login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	appName := globals.ApplicationProperties["appname"]
 
@@ -65,7 +65,7 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	uName := r.FormValue("username")
 	uPassword := r.FormValue("password")
@@ -89,7 +89,8 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 		globals.SecurityViolation = ""
 		//GetUserSessionToken(r) = CreateSessionToken(r)
 
-		log.Println("ACCESS GRANTED", tok.ResponseCode, GetUserName(r), GetUserRole(r))
+		//	log.Println("ACCESS GRANTED", tok.ResponseCode, GetUserName(r), GetUserRole(r))
+		serviceMessageAction("ACCESS GRANTED", GetUserName(r), tok.ResponseCode)
 
 		HomePageHandler(w, r)
 	} else {
@@ -100,7 +101,8 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 		//GetUserSessionToken(r) = ""
 		//globals.UUID = ""
 		globals.SecurityViolation = tok.SecurityViolation
-		log.Println("SECURITY INCIDENT", tok.ResponseCode, tok.SecurityViolation)
+		//	log.Println("SECURITY INCIDENT", ok.ResponseCode, tok.SecurityViolation), tok.SecurityViolation)
+		serviceMessageAction(tok.SecurityViolation, GetUserName(r), tok.ResponseCode)
 		LogoutHandler(w, r)
 	}
 }
@@ -218,8 +220,8 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
-	log.Println("LOGOUT", GetUserSessionToken(r))
+	serviceMessageAction("LOGOUT", GetUserName(r), inUTL)
+	//log.Println("LOGOUT", GetUserSessionToken(r))
 	//GetUserSessionToken(r) = ""
 	//globals.UUID = globals.ApplicationProperties["releaseID"]
 	//	globals.SecurityViolation = ""

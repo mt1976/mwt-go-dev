@@ -2,7 +2,6 @@ package application
 
 import (
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -61,7 +60,7 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	recordID := GetURLparam(r, "id")
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -129,7 +128,7 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -190,7 +189,7 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	maxRows, _ := strconv.Atoi(globals.ApplicationProperties["maxtextboxrows"])
 	recordID := GetURLparam(r, "id")
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -247,7 +246,7 @@ func SaveSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	requestID := uuid.New()
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	body := r.FormValue("pgContent")
 	id := r.FormValue("pgid")

@@ -66,7 +66,7 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyGroupItem
 	noItems, returnList, _ := getSienaCounterpartyGroupList()
@@ -98,7 +98,7 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	searchID := application.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
@@ -133,7 +133,7 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	searchID := application.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
@@ -173,7 +173,7 @@ func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCounterpartyGroupItem
 
@@ -256,7 +256,7 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList()

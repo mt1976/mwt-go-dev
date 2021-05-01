@@ -2,6 +2,7 @@ package application
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -315,4 +316,20 @@ func GetIncomingRequestIP(r *http.Request) string {
 		return forwarded
 	}
 	return r.RemoteAddr
+}
+
+func serviceMessage(i string) {
+	msg := "Servicing     : %q"
+	log.Printf(msg, i)
+}
+func serviceMessageAction(i string, act string, id string) {
+	msgSuffix := fmt.Sprintf("%s %s %q", i, act, id)
+	serviceMessage(msgSuffix)
+}
+func ServiceMessageAction(i string, act string, id string) {
+	serviceMessageAction(i, act, id)
+}
+
+func ServiceMessage(i string) {
+	serviceMessage(i)
 }

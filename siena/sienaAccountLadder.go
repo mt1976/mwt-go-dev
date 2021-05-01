@@ -68,7 +68,7 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountLadderItem
 	accountID := application.GetURLparam(r, "SienaAccountID")

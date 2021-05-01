@@ -2,7 +2,6 @@ package application
 
 import (
 	"html/template"
-	"log"
 	"net/http"
 	"strings"
 
@@ -45,7 +44,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := "viewAppConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 

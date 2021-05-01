@@ -155,7 +155,7 @@ func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	//requestID := uuid.New()
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	//thisID, _ := strconv.Atoi(GetURLparam(r, "uuid"))
 	//fmt.Println(thisID)
@@ -252,7 +252,7 @@ func DeleteResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	err := deleteResponse(GetURLparam(r, "responseID"), globals.ApplicationProperties)
 	if err != nil {
@@ -321,7 +321,7 @@ func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	noResps, _, files := getResponseIDs(globals.ApplicationProperties)
 	log.Println("Responses Found :", len(files))

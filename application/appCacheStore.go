@@ -86,7 +86,7 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	var returnList []appCacheStoreItem
 	noItems, returnList, _ := GetCacheStoreList()
 
@@ -117,7 +117,7 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "CacheStore")
 	_, returnRecord, _ := GetCacheStoreByID(searchID)
@@ -162,7 +162,7 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "CacheStore")
 	_, returnRecord, _ := GetCacheStoreByID(searchID)
@@ -205,7 +205,7 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appCacheStoreItem
 
@@ -238,7 +238,7 @@ func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CacheStore")
-	log.Println("Servicing :", inUTL, " : Delete", searchID)
+	serviceMessageAction(inUTL, "Delete", searchID)
 	deleteCacheStore(searchID)
 	ListCacheStoreHandler(w, r)
 
@@ -256,7 +256,7 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],

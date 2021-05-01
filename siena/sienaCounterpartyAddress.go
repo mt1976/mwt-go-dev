@@ -72,7 +72,7 @@ func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyAddressItem
 	noItems, returnList, _ := getSienaCounterpartyAddressList()
@@ -104,7 +104,7 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	firmID := application.GetURLparam(r, "SienaFirm")
 	centreID := application.GetURLparam(r, "SienaCentre")
@@ -144,7 +144,7 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	firmID := application.GetURLparam(r, "SienaFirm")
 	centreID := application.GetURLparam(r, "SienaCentre")
@@ -185,7 +185,7 @@ func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCounterpartyAddressItem
 
@@ -264,7 +264,7 @@ func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressPage{
 		UserMenu:   application.GetUserMenu(r),

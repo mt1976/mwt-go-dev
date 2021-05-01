@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html"
 	"html/template"
-	"log"
 	"net/http"
 	"strings"
 
@@ -71,7 +70,7 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -137,7 +136,7 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := application.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -237,7 +236,7 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := application.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -293,7 +292,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := application.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -349,7 +348,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	thisID := application.GetURLparam(r, "dataMapName")
 	//fmt.Println(thisID)
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -407,7 +406,7 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := application.GetURLparam(r, "pgid")
 	//recordContent := application.GetURLparam(r, "pgContent")
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -457,7 +456,7 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := application.GetURLparam(r, "pgid")
 	//recordContent := application.GetURLparam(r, "pgContent")
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -502,7 +501,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -537,7 +536,7 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	//recordID := application.GetURLparam(r, "pgid")
 	//recordContent := application.GetURLparam(r, "pgContent")
 
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
@@ -582,7 +581,7 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	id := application.GetURLparam(r, "dataMapName")
 	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", application.GetUserSessionToken(r))
 	fmt.Println("requestMessage", requestMessage)

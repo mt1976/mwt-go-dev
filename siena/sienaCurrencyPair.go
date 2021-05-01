@@ -71,7 +71,7 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
@@ -108,7 +108,7 @@ func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
@@ -149,7 +149,7 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
@@ -194,7 +194,7 @@ func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCurrencyPairItem
 
@@ -278,7 +278,7 @@ func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 

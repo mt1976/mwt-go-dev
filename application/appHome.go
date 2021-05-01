@@ -2,7 +2,6 @@ package application
 
 import (
 	"html/template"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -46,7 +45,7 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{

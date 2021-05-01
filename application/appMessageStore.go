@@ -74,7 +74,7 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	var returnList []appMessageStoreItem
 
 	noItems, returnList, _ := GetMessageStoreList(globals.ApplicationDB)
@@ -106,7 +106,7 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "MessageStore")
 	_, returnRecord, _ := GetMessageStoreByID(globals.ApplicationDB, searchID)
@@ -147,7 +147,7 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "MessageStore")
 	_, returnRecord, _ := GetMessageStoreByID(globals.ApplicationDB, searchID)
@@ -184,7 +184,7 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appMessageStoreItem
 
@@ -213,7 +213,7 @@ func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "MessageStore")
-	log.Println("Servicing :", inUTL, " : Delete", searchID)
+	serviceMessageAction(inUTL, "Delete", searchID)
 	deleteMessageStore(searchID)
 	ListMessageStoreHandler(w, r)
 
@@ -232,7 +232,7 @@ func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Ban", searchID)
+	serviceMessageAction(inUTL, "Ban", searchID)
 	banMessageStore(searchID)
 	ListMessageStoreHandler(w, r)
 }
@@ -250,7 +250,7 @@ func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Activate", searchID)
+	serviceMessageAction(inUTL, "Activate", searchID)
 	activateMessageStore(searchID)
 	ListMessageStoreHandler(w, r)
 
@@ -268,7 +268,7 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     globals.ApplicationProperties["appname"],

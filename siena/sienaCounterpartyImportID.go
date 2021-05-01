@@ -70,7 +70,7 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyImportIDItem
 	noItems, returnList, _ := getSienaCounterpartyImportIDList()
@@ -102,7 +102,7 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	var returnList []sienaCounterpartyImportIDItem
 	idImport := application.GetURLparam(r, "II")
 	idOrigin := application.GetURLparam(r, "IO")
@@ -144,7 +144,7 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyImportIDItem
 	idImport := application.GetURLparam(r, "II")
@@ -190,7 +190,7 @@ func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCounterpartyImportIDItem
 
@@ -277,7 +277,7 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 

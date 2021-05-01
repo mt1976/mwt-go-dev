@@ -61,7 +61,7 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaCountryItem
 	noItems, returnList, _ := getSienaCountryList()
@@ -93,7 +93,7 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	searchID := application.GetURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(searchID)
@@ -133,7 +133,7 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	searchID := application.GetURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(searchID)
@@ -167,7 +167,7 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCountryItem
 
@@ -242,7 +242,7 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	_, ynList, _ := getSienaYNList()
 

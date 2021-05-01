@@ -3,7 +3,6 @@ package application
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"strings"
 
@@ -41,7 +40,7 @@ func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	requestID := uuid.New()
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 

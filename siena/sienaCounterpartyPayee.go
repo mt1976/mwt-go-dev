@@ -109,7 +109,7 @@ func ListSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyPayeeItem
 	noItems, returnList, _ := getSienaCounterpartyPayeeList()
@@ -141,7 +141,7 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	var returnList []sienaCounterpartyPayeeItem
 	idSource := application.GetURLparam(r, "csrc")
 	idFirm := application.GetURLparam(r, "cfrm")
@@ -207,7 +207,7 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	//var returnList []sienaCounterpartyPayeeItem
 	idSource := application.GetURLparam(r, "csrc")
 	idFirm := application.GetURLparam(r, "cfrm")
@@ -276,7 +276,7 @@ func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaCounterpartyPayeeItem
 
@@ -376,7 +376,7 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
 		UserMenu:              application.GetUserMenu(r),

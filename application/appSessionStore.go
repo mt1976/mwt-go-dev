@@ -111,7 +111,7 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	var returnList []appSessionStoreItem
 	noItems, returnList, _ := GetSessionStoreList()
 
@@ -142,7 +142,7 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "SessionStore")
 	_, returnRecord, _ := GetSessionStoreByID(searchID)
@@ -198,7 +198,7 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "SessionStore")
 	_, returnRecord, _ := GetSessionStoreByID(searchID)
@@ -252,7 +252,7 @@ func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appSessionStoreItem
 
@@ -296,7 +296,7 @@ func DeleteSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "SessionStore")
-	log.Println("Servicing :", inUTL, " : Delete", searchID)
+	serviceMessageAction(inUTL, "Delete", searchID)
 	deleteSessionStore(searchID)
 	ListSessionStoreHandler(w, r)
 
@@ -315,7 +315,7 @@ func BanSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Ban", searchID)
+	serviceMessageAction(inUTL, "Ban", searchID)
 	banSessionStore(searchID)
 	ListSessionStoreHandler(w, r)
 }
@@ -333,7 +333,7 @@ func ActivateSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Activate", searchID)
+	serviceMessageAction(inUTL, "Activate", searchID)
 	activateSessionStore(searchID)
 	ListSessionStoreHandler(w, r)
 
@@ -351,7 +351,7 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	pageSessionStoreList := appSessionStorePage{
 		Title:     globals.ApplicationProperties["appname"],

@@ -61,7 +61,7 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaPortfolioItem
@@ -98,7 +98,7 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaPortfolioItem
@@ -137,7 +137,7 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaPortfolioItem
@@ -176,7 +176,7 @@ func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaPortfolioItem
 
@@ -251,7 +251,7 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	pageSienaPortfolioList := sienaPortfolioPage{
 		UserMenu:  application.GetUserMenu(r),

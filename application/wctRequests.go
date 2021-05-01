@@ -63,7 +63,7 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	requestID := uuid.New()
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	thisID, _ := strconv.Atoi(GetURLparam(r, "id"))
 	//fmt.Println(thisID)
@@ -111,7 +111,7 @@ func ExecuteRequestHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	thisUUID := GetURLparam(r, "uuid")
 

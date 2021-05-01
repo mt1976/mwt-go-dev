@@ -79,7 +79,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	var returnList []DispatchStoreItem
 	noItems, returnList, _ := GetDispatchStoreList()
 
@@ -110,7 +110,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "DispatchStore")
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
@@ -153,7 +153,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "DispatchStore")
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
@@ -194,7 +194,7 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s DispatchStoreItem
 
@@ -225,7 +225,7 @@ func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "DispatchStore")
-	log.Println("Servicing :", inUTL, " : Delete", searchID)
+	serviceMessageAction(inUTL, "Delete", searchID)
 	deleteDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 
@@ -244,7 +244,7 @@ func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Ban", searchID)
+	serviceMessageAction(inUTL, "Ban", searchID)
 	banDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 }
@@ -262,7 +262,7 @@ func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Activate", searchID)
+	serviceMessageAction(inUTL, "Activate", searchID)
 	activateDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 
@@ -280,7 +280,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],

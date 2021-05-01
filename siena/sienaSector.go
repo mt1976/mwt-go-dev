@@ -59,7 +59,7 @@ func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaSectorItem
 	noItems, returnList, _ := getSienaSectorList()
@@ -91,7 +91,7 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	searchID := application.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(searchID)
@@ -125,7 +125,7 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	searchID := application.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(searchID)
@@ -159,7 +159,7 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaSectorItem
 
@@ -252,7 +252,7 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	pageSienaSectorList := sienaSectorPage{
 		UserMenu:  application.GetUserMenu(r),

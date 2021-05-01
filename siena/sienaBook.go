@@ -61,7 +61,7 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBookItem
@@ -97,7 +97,7 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBookItem
@@ -136,7 +136,7 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBookItem
@@ -178,7 +178,7 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save")
+	application.ServiceMessageAction(inUTL,"Save","")
 
 	var item sienaBookItem
 
@@ -256,7 +256,7 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],

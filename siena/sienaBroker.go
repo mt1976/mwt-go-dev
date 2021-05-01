@@ -57,19 +57,18 @@ type sienaBrokerItem struct {
 }
 
 func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "listSienaBroker"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBrokerItem
@@ -94,19 +93,18 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "viewSienaBroker"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
@@ -140,19 +138,18 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "editSienaBroker"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
@@ -190,19 +187,18 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	application.ServiceMessageAction(inUTL, " : Save", r.FormValue("Id"))
 
 	var item sienaBrokerItem
 
@@ -295,19 +291,18 @@ func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "newSienaBroker"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	pageSienaBrokerList := sienaBrokerPage{
 		Title:     globals.ApplicationProperties["appname"],
@@ -331,7 +326,7 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaBrokerList read all employees
 func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
-	
+
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker;", sienaBrokerSQL, globals.SienaPropertiesDB["schema"])
 	count, sienaBrokerList, _, _ := fetchSienaBrokerData(db, tsql)
 	return count, sienaBrokerList, nil
@@ -339,7 +334,7 @@ func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
 
 // getSienaBrokerList read all employees
 func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
-	
+
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker WHERE Code='%s';", sienaBrokerSQL, globals.SienaPropertiesDB["schema"], id)
 	_, _, sienaBroker, _ := fetchSienaBrokerData(db, tsql)
 	return 1, sienaBroker, nil
@@ -347,7 +342,7 @@ func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
 
 // getSienaBrokerList read all employees
 func putSienaBroker(db *sql.DB, updateItem sienaBrokerItem) error {
-	
+
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)

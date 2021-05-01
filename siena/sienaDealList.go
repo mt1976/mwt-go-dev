@@ -140,7 +140,7 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	var returnList []sienaDealListItem
 	noItems, returnList, _ := getSienaDealListList()
@@ -172,7 +172,7 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL, tmpl)
+	application.ServiceMessageAction(inUTL, tmpl, "")
 
 	sienaDealListID := application.GetURLparam(r, "SienaRef")
 	noItems, returnRecord, _ := getSienaDealList(sienaDealListID)

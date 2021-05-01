@@ -3,7 +3,6 @@ package application
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 
 	globals "github.com/mt1976/mwt-go-dev/globals"
@@ -40,7 +39,7 @@ func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	if !(inUTL == "/favicon.ico") {
 		tmpl := "listSrvServiceCatalog"
-		log.Println("Servicing :", inUTL)
+		serviceMessage(inUTL)
 
 		w.Header().Set("Content-Type", "text/html")
 

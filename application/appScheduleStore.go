@@ -90,7 +90,7 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	var returnList []appScheduleStoreItem
 
@@ -123,7 +123,7 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	searchID := GetURLparam(r, "ScheduleStore")
 	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
@@ -169,7 +169,7 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 	searchID := GetURLparam(r, "ScheduleStore")
 	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
@@ -211,7 +211,7 @@ func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appScheduleStoreItem
 
@@ -246,7 +246,7 @@ func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "ScheduleStore")
-	log.Println("Servicing :", inUTL, " : Delete", searchID)
+	serviceMessageAction(inUTL, "Delete", searchID)
 	deleteScheduleStore(searchID)
 	ListScheduleStoreHandler(w, r)
 
@@ -265,7 +265,7 @@ func BanScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Ban", searchID)
+	serviceMessageAction(inUTL, "Ban", searchID)
 	banScheduleStore(searchID)
 	ListScheduleStoreHandler(w, r)
 }
@@ -283,7 +283,7 @@ func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Activate", searchID)
+	serviceMessageAction(inUTL, "Activate", searchID)
 	activateScheduleStore(searchID)
 	ListScheduleStoreHandler(w, r)
 
@@ -301,7 +301,7 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     globals.ApplicationProperties["appname"],

@@ -2,7 +2,6 @@ package siena
 
 import (
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -42,7 +41,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	application.ServiceMessage(inUTL)
 
 	noCps, _, _ := getSienaCounterpartyList()
 	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList()

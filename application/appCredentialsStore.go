@@ -95,7 +95,7 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	var returnList []appCredentialsStoreItem
 
@@ -128,7 +128,7 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "CredentialsStore")
 	_, returnRecord, _ := GetCredentialsStoreByID(searchID)
@@ -178,7 +178,7 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "CredentialsStore")
 	_, returnRecord, _ := GetCredentialsStoreByID(searchID)
@@ -228,7 +228,7 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 	inUTL := r.URL.Path
-	log.Println("Servicing :", inUTL, " : Save", r.PostForm)
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appCredentialsStoreItem
 
@@ -262,7 +262,7 @@ func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	searchID := GetURLparam(r, "CredentialsStore")
-	log.Println("Servicing :", inUTL, " : Delete", searchID)
+	serviceMessageAction(inUTL, "Delete", searchID)
 	deleteCredentialsStore(searchID)
 	ListCredentialsStoreHandler(w, r)
 
@@ -281,7 +281,7 @@ func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Ban", searchID)
+	serviceMessageAction(inUTL, "Ban", searchID)
 	banCredentialsStore(searchID)
 	ListCredentialsStoreHandler(w, r)
 }
@@ -299,7 +299,7 @@ func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	log.Println("Servicing :", inUTL, " : Activate", searchID)
+	serviceMessageAction(inUTL, "Activate", searchID)
 	activateCredentialsStore(searchID)
 	ListCredentialsStoreHandler(w, r)
 
@@ -317,7 +317,7 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	log.Println("Servicing :", inUTL)
+	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     globals.ApplicationProperties["appname"],
