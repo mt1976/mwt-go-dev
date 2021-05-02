@@ -67,7 +67,7 @@
               </div>
               <div class="col text-right">
                 <div class="btn-group">
-                  <button type="submit" value="" class="btn btn-primary float-right" formaction="/newSvcDataMap" method="POST">
+                  <button type="submit" value="" class="btn btn-primary float-right" formaction="/newSvcDataMap" method="POST" data-toggle="tooltip" data-placement="bottom" title="Create a new Data Map">
                     <i class="fas fa-plus"></i>&nbsp;&nbsp;New</button>
                   <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
                     <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
@@ -85,6 +85,7 @@
                   <th scope="col" class="text-center">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Description</th>
+                  <th scope="col" class="text-center">Last Run</th>
                   <th scope="col" class="text-center">Action</th>
                 </tr>
               </thead>
@@ -94,22 +95,26 @@
                   <td class="text-center align-middle" style="width:1px; white-space:nowrap;"></td>
                   <td class="align-middle">{{.DataMapName}}</td>
                   <td class="align-middle">{{.DataMapDescription}}</td>
+                  <td class="align-middle text-center">TBD</td>
                   <td style="width:1px; white-space:nowrap;">
-                    <div class="btn-group float-right">
-                      <button type="submit" value="" class="btn btn-lg btn-outline-primary btn-inner" formaction="/viewSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                    <div class="btn-group text-center">
+                      <button type="submit" value="" class="btn btn-lg btn-info" formaction="/viewSvcDataMap?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="View {{.DataMapName}} Data Map">
                         <i class="far fa-eye"></i>
                       </button>
-                      <button type="submit" value="" class="btn btn-lg btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                      <button type="submit" value="" class="btn btn-lg btn-warning" style="border:none" formaction="/editSvcDataMap?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Edit {{.DataMapName}} Data Map">
                         <i class="far fa-file-alt"></i>
                       </button>
-                      <button type="submit" value="" class="btn btn-lg btn-outline-primary btn-inner" style="border:none" formaction="/viewSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
+                      <button type="submit" value="" class="btn btn-lg btn-info" style="border:none" formaction="/viewSvcDataMapXML?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="View {{.DataMapName}} XML Template">
                         <i class="fas fa-code"></i>
                       </button>
-                      <button type="submit" value="" class="btn btn-lg btn-outline-warning btn-inner" style="border:none" formaction="/editSvcDataMapXML?dataMapName={{.DataMapName}}" method="POST">
+                      <button type="submit" value="" class="btn btn-lg btn-warning" style="border:none" formaction="/editSvcDataMapXML?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Edit {{.DataMapName}} XML Template">
                         <i class="far fa-file-code"></i>
                       </button>
-                      <button type="submit" value="" class="btn btn-lg btn-outline-danger btn-inner" style="border:none" formaction="/deleteSvcDataMap?dataMapName={{.DataMapName}}" method="POST">
+                      <button type="submit" value="" class="btn btn-lg btn-danger" style="border:none" formaction="/deleteSvcDataMap?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete {{.DataMapName}} Data Map">
                         <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <button type="submit" value="" class="btn btn-lg btn-primary" style="border:none" formaction="/deleteSvcDataMap?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process {{.DataMapName}} Data Map">
+                        <i class="fas fa-paper-plane"></i>
                       </button>
 
                     </div>
@@ -141,6 +146,9 @@
 $(document).ready(function(){
     $('#wctDataMapTable').dataTable();
 });
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 
 </body>

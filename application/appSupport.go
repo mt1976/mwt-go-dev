@@ -3,6 +3,7 @@ package application
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -48,7 +49,7 @@ func GetURLparam(r *http.Request, paramID string) string {
 	//fmt.Println(paramID)
 	//fmt.Println(r.URL)
 	key := r.FormValue(paramID)
-	log.Printf("Url Param '" + paramID + "' is: " + string(key))
+	log.Printf("URL Parameter : %q = %q", paramID, string(key))
 	return key
 }
 
@@ -332,4 +333,63 @@ func ServiceMessageAction(i string, act string, id string) {
 
 func ServiceMessage(i string) {
 	serviceMessage(i)
+}
+
+func ReadDataFile(fileName string, path string) (string, error) {
+	pwd, _ := os.Getwd()
+	filePath := pwd + "/" + fileName
+	if len(path) != 0 {
+		filePath = pwd + path + "/" + fileName
+	}
+
+	// Check it exists - If not create it
+	if !(FileExists(filePath)) {
+		WriteDataFile(fileName, path, "")
+	}
+
+	log.Println("Read          :", filePath)
+	// Read entire file content, giving us little control but
+	// making it very simple. No need to close the file.
+	content, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Convert []byte to string and print to screen
+	return string(content), err
+}
+
+func WriteDataFile(fileName string, path string, content string) int {
+	pwd, _ := os.Getwd()
+	filePath := pwd + "/" + fileName
+	if len(path) != 0 {
+		filePath = pwd + path + "/" + fileName
+	}
+	log.Println("Write         :", filePath)
+
+	message := []byte(content)
+	err := ioutil.WriteFile(filePath, message, 0644)
+	if err != nil {
+		log.Fatal(err)
+		return -1
+	}
+	return 1
+}
+
+func DeleteDataFile(fileName string, path string) int {
+	pwd, _ := os.Getwd()
+	filePath := pwd + "/" + fileName
+	if len(path) != 0 {
+		filePath = pwd + path + "/" + fileName
+	}
+	log.Println("Delete        :", filePath)
+
+	// delete file
+	var err = os.Remove(filePath)
+	if err != nil {
+		log.Fatal(err.Error())
+		return -1
+	}
+
+	fmt.Println("File Deleted")
+	return 1
 }

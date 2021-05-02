@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"html"
 	"html/template"
+	"io/ioutil"
+	"log"
 	"net/http"
-	"strings"
+	"strconv"
 
-	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
@@ -50,7 +51,7 @@ type DataCol struct {
 
 //SvcDataMapItem is cheese
 type SvcDataMapItem struct {
-	DataMapID          int
+	DataMapID          string
 	DataMapName        string
 	DataMapFileID      string
 	DataMapDescription string
@@ -65,39 +66,24 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "listSvcDataMap"
+	tmpl := "LoaderList"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
+	//	requestID := uuid.New()
 
 	application.ServiceMessage(inUTL)
 
-	title := globals.ApplicationProperties["appname"]
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "LIST", "", "", application.GetUserSessionToken(r))
-
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
-
-	responseMessage := application.GetResponseAsync(requestID.String(), r)
-	//fmt.Println("responseMessage", responseMessage)
-
-	//outString := ""
-	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
+	noRows, loaderList, _ := application.GetLoaderStoreList()
 
 	var dataMapItemsList []SvcDataMapItem
 
-	for ii := 0; ii < noRows; ii++ {
+	for _, listItem := range loaderList {
 		var newDataMapItem SvcDataMapItem
-		dataMapContentRow := strings.Split(responseMessage.ResponseContent.ResponseContentRow[ii], "|")
-		newDataMapItem.DataMapID = ii
-		newDataMapItem.DataMapName = dataMapContentRow[1]
-		newDataMapItem.DataMapFileID = dataMapContentRow[2]
-		newDataMapItem.DataMapDescription = html.UnescapeString(dataMapContentRow[3])
-		newDataMapItem.DataMapXMLFile = dataMapContentRow[4]
+		newDataMapItem.DataMapID = listItem.Id
+		newDataMapItem.DataMapName = listItem.Name
+		newDataMapItem.DataMapFileID = listItem.Filename
+		newDataMapItem.DataMapDescription = listItem.Description
+		newDataMapItem.DataMapXMLFile = listItem.Filename
 		//fmt.Println("newDataMapItem", newDataMapItem)
 		dataMapItemsList = append(dataMapItemsList, newDataMapItem)
 	}
@@ -106,7 +92,7 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:        application.GetUserMenu(r),
 		UserRole:        application.GetUserRole(r),
 		UserNavi:        "NOT USED",
-		Title:           title,
+		Title:           globals.ApplicationProperties["appname"],
 		PageTitle:       "List Data Maps",
 		NoDataMapIDs:    noRows,
 		SvcDataMapItems: dataMapItemsList,
@@ -128,75 +114,52 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "viewSvcDataMap"
-	inUTL := r.URL.Path
+	buildGridPage("LoaderView", w, r)
+
+}
+
+func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
-
-	thisID := application.GetURLparam(r, "dataMapName")
-	//fmt.Println(thisID)
-
+	inUTL := r.URL.Path
+	thisID := application.GetURLparam(r, "loaderID")
 	application.ServiceMessage(inUTL)
-
 	title := globals.ApplicationProperties["appname"]
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "VIEW", thisID, "", application.GetUserSessionToken(r))
-
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
-
-	responseMessage := application.GetResponseAsync(requestID.String(), r)
-	//fmt.Println("*** GOT RESPONSE ***")
-	//fmt.Println("responseMessage", responseMessage)
-
-	//outString := ""
-	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
-
 	var wrkDataMapCols []DataHdr
-	var wrkDataMapRows []DataRow
-	//wrkDataMapCols[1] = "POO"
-	//fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
-	var firstDataMapContentRow = strings.Split(responseMessage.ResponseContent.ResponseContentRow[0], "|")
-	//fmt.Println("Calculating Columns")
-	noCols := len(firstDataMapContentRow)
-	//fmt.Println("firstDataMapContentRow=", firstDataMapContentRow)
-	//fmt.Println("noCols=", noCols)
-	for jj := 0; jj < noCols; jj++ {
-		headerVal := firstDataMapContentRow[jj]
+	noColumns, wrkLoaderHeadersList, _ := application.GetLoaderMapStoreListByLoader(thisID)
+	for _, colData := range wrkLoaderHeadersList {
 		var tmpVal DataHdr
-		tmpVal.ColID = jj
-		tmpVal.DataHdrItem = headerVal
+		tmpVal.ColID, _ = strconv.Atoi(colData.Position)
+		tmpVal.DataHdrItem = colData.Name
 		wrkDataMapCols = append(wrkDataMapCols, tmpVal)
 	}
-	//fmt.Println("defined wrkDataMapCols", wrkDataMapCols)
 
-	// Deliberatly skip the first row
-	for kk := 1; kk < noRows; kk++ {
+	var wrkDataMapRows []DataRow
+	var wrk DataCol
+	var dr DataRow
 
-		var theDataMapContentRow = strings.Split(responseMessage.ResponseContent.ResponseContentRow[kk], "|")
+	noRows := application.GetLoaderDataStoreRowsByLoader(thisID)
 
-		//fmt.Println("theDataMapContentRow", theDataMapContentRow)
-
+	for thisRow := 0; thisRow < noRows; thisRow++ {
 		var wrkDataMapColItems []DataCol
-		for jj := 0; jj < noCols; jj++ {
-			var wrk DataCol
-			//fmt.Println("theDataMapContentRow", kk, jj, theDataMapContentRow[jj])
-			wrk.DataItem = theDataMapContentRow[jj]
-			wrk.DIcol = jj
-			wrk.DIrow = kk
+
+		noItems, wrkLoaderRowsList, _ := application.GetLoaderDataStoreRowList(thisID, strconv.Itoa(thisRow+1))
+		for thisCol := 0; thisCol < noColumns; thisCol++ {
+			//		log.Println("R=", thisRow, "C=", thisCol)
+			wrk.DataItem = ""
+			//	log.Println(thisCol, thisRow, noItems)
+			if thisCol < noItems {
+				var thisColData = wrkLoaderRowsList[thisCol]
+				wrk.DataItem = thisColData.Value
+			}
+			wrk.DIcol = thisCol
+			wrk.DIrow = thisRow
 			wrkDataMapColItems = append(wrkDataMapColItems, wrk)
 		}
-		//fmt.Println("wrkDataMapColItems", kk, wrkDataMapColItems)
-		var dr DataRow
-		dr.RowID = kk
+		//	log.Println("WDMCOL=", wrkDataMapColItems)
+		dr.RowID = thisRow
 		dr.DataRowItem = wrkDataMapColItems
-		//headerVal := firstDataMapContentRow[jj]
 		wrkDataMapRows = append(wrkDataMapRows, dr)
 	}
-	//fmt.Println("wrkDataMapRows", wrkDataMapRows)
 
 	pageSrvEvironment := SvcDataMapPage{
 		UserMenu:       application.GetUserMenu(r),
@@ -208,16 +171,23 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		SvcDataMapCols: wrkDataMapCols,
 		DataMapPageID:  thisID,
 		DataRows:       wrkDataMapRows,
-		JSCols:         noCols - 1,
-		JSRows:         noRows - 1,
+		JSCols:         noColumns,
+		JSRows:         noRows,
 	}
 
-	//fmt.Println("Page Data", pageSrvEvironment)
-
-	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
+	application.GetTemplateID(tmpl, application.GetUserRole(r))
 	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
+}
 
+func getDataListFile(fileID string) string {
+	content, err := ioutil.ReadFile(fileID)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Convert []byte to string and print to screen
+	return string(content)
 }
 
 func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
@@ -228,51 +198,7 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "editSvcDataMap"
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
-
-	thisID := application.GetURLparam(r, "dataMapName")
-	//fmt.Println(thisID)
-
-	application.ServiceMessage(inUTL)
-
-	title := globals.ApplicationProperties["appname"]
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "RAW", thisID, "", application.GetUserSessionToken(r))
-
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
-
-	responseMessage := application.GetResponseAsync(requestID.String(), r)
-	//fmt.Println("*** GOT RESPONSE ***")
-	fmt.Println("responseMessage", responseMessage)
-
-	//outString := ""
-	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
-
-	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
-
-	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:      application.GetUserMenu(r),
-		UserRole:      application.GetUserRole(r),
-		UserNavi:      "NOT USED",
-		Title:         title,
-		PageTitle:     "Edit Data Map",
-		DataMapPageID: thisID,
-		JSRows:        noRows - 1,
-		FullRecord:    fullRec,
-	}
-
-	//fmt.Println("Page Data", pageSrvEvironment)
-
-	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
-	t.Execute(w, pageSrvEvironment)
+	buildGridPage("LoaderEdit", w, r)
 
 }
 
@@ -284,52 +210,51 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "viewSvcDataMapXML"
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
+	tmpl := "LoaderTemplateView"
 
-	thisID := application.GetURLparam(r, "dataMapName")
-	//fmt.Println(thisID)
+	inUTL := r.URL.Path
+
+	w.Header().Set("Content-Type", "text/html")
+
+	thisID := application.GetURLparam(r, "loaderID")
 
 	application.ServiceMessage(inUTL)
 
-	title := globals.ApplicationProperties["appname"]
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", application.GetUserSessionToken(r))
-
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
-
-	responseMessage := application.GetResponseAsync(requestID.String(), r)
-	//fmt.Println("*** GOT RESPONSE ***")
-	fmt.Println("responseMessage", responseMessage)
-
-	//outString := ""
-	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
-
-	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
+	text, _ := getXMLtemplateBody(thisID)
 
 	pageSrvEvironment := SvcDataMapPage{
 		UserMenu:      application.GetUserMenu(r),
 		UserRole:      application.GetUserRole(r),
 		UserNavi:      "NOT USED",
-		Title:         title,
+		Title:         "Title",
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
-		JSRows:        noRows - 1,
-		FullRecord:    html.UnescapeString(fullRec),
+		JSRows:        35,
+		FullRecord:    html.UnescapeString(text),
 	}
 
-	//fmt.Println("Page Data", pageSrvEvironment)
-
-	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
 	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
+}
+
+func getXMLtemplateBody(thisID string) (string, error) {
+	path := globals.ApplicationProperties["datamaptemplatepath"]
+	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
+	fileName := loaderItem.Filename + ".xml"
+	content, err := application.ReadDataFile(fileName, path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return content, err
+}
+
+func putXMLtemplateBody(thisID string, content string) int {
+	path := globals.ApplicationProperties["datamaptemplatepath"]
+	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
+	fileName := loaderItem.Filename + ".xml"
+	status := application.WriteDataFile(fileName, path, content)
+	return status
 }
 
 func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
@@ -340,35 +265,19 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "editSvcDataMapXML"
+	tmpl := "LoaderTemplateEdit"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
 
-	thisID := application.GetURLparam(r, "dataMapName")
-	//fmt.Println(thisID)
+	thisID := application.GetURLparam(r, "loaderID")
 
 	application.ServiceMessage(inUTL)
 
 	title := globals.ApplicationProperties["appname"]
 
 	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "VIEW", thisID, "", application.GetUserSessionToken(r))
+	fullRec, _ := getXMLtemplateBody(thisID)
 
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
-
-	responseMessage := application.GetResponseAsync(requestID.String(), r)
-	//fmt.Println("*** GOT RESPONSE ***")
-	fmt.Println("responseMessage", responseMessage)
-
-	//outString := ""
-	noRows := len(responseMessage.ResponseContent.ResponseContentRow)
-
-	fullRec := strings.Join(responseMessage.ResponseContent.ResponseContentRow, " \n")
-	fullRec = html.UnescapeString(fullRec)
 	pageEditSvcDataMapXML := SvcDataMapPage{
 		UserMenu:      application.GetUserMenu(r),
 		UserRole:      application.GetUserRole(r),
@@ -376,15 +285,13 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		Title:         title,
 		PageTitle:     "View XML Template",
 		DataMapPageID: thisID,
-		JSRows:        noRows - 1,
+		JSRows:        35,
 		FullRecord:    html.UnescapeString(fullRec),
 	}
 
-	fmt.Println("Page Data", pageEditSvcDataMapXML)
+	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 
-	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
-	t, err := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
-	fmt.Println("error", err)
+	//fmt.Println("error", err)
 	t.Execute(w, pageEditSvcDataMapXML)
 
 }
@@ -401,42 +308,38 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	requestID := uuid.New()
-	//	maxRows, _ := strconv.Atoi(globals.ApplicationProperties["maxtextboxrows"])
-	//recordID := application.GetURLparam(r, "pgid")
-	//recordContent := application.GetURLparam(r, "pgContent")
-
 	application.ServiceMessage(inUTL)
 
-	title := globals.ApplicationProperties["appname"]
+	tableColumns := r.FormValue("tableColumns")
+	tableRows := r.FormValue("tableRows")
+	loaderID := r.FormValue("loaderID")
 
-	body := r.FormValue("pgContent")
-	id := r.FormValue("pgid")
+	cols, _ := strconv.Atoi(tableColumns)
+	rows, _ := strconv.Atoi(tableRows)
 
-	//p := &Page{Title: title, Body: []byte(body)}
-	//	fmt.Println("METHOD",r.Method)
-	fmt.Println("TITLE", title)
-	//	fmt.Println("ID", recordID)
-	fmt.Println("ID", id)
-	fmt.Println("BODY", body)
-	//fmt.Println("REC", recordContent)
-	//	fmt.Println("ARSE", r)
-	//	fmt.Println("parse",r.ParseForm())
+	cols = cols - 1
+	rows = rows - 1
 
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "SAVE", id, body, application.GetUserSessionToken(r))
+	application.DeleteLoaderDataStoreByLoader(loaderID)
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
+	for thisRow := 0; thisRow <= rows; thisRow++ {
+		for thisCol := 0; thisCol <= cols; thisCol++ {
+			var record application.LoaderDataStoreItem
+			findField := fmt.Sprintf("R%dC%d", thisRow, thisCol)
+			data := r.FormValue(findField)
+			//log.Println("find name", findField, data)
+			record.Row = strconv.Itoa(thisRow + 1)
+			record.Position = strconv.Itoa(thisCol + 1)
+			record.Value = data
+			record.Loader = loaderID
+			record.Map = record.Position
+			application.UpdateLoaderDataStore(record)
+		}
+	}
+
+	//fmt.Println("table", tableRows, "x", tableColumns, "loader", loaderID)
 
 	ListSvcDataMapHandler(w, r)
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-
-	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,application.GetUserRole(r)))
-	//	t.Execute(w, pageSrvConfigView)
-
 }
 
 func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
@@ -447,46 +350,20 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	requestID := uuid.New()
-	//	maxRows, _ := strconv.Atoi(globals.ApplicationProperties["maxtextboxrows"])
-	//recordID := application.GetURLparam(r, "pgid")
-	//recordContent := application.GetURLparam(r, "pgContent")
-
 	application.ServiceMessage(inUTL)
 
-	title := globals.ApplicationProperties["appname"]
-
 	body := r.FormValue("pgContent")
-	id := r.FormValue("pgid")
+	thisID := r.FormValue("pgid")
 
-	//p := &Page{Title: title, Body: []byte(body)}
-	//	fmt.Println("METHOD",r.Method)
-	fmt.Println("TITLE", title)
-	//	fmt.Println("ID", recordID)
-	fmt.Println("ID", id)
-	fmt.Println("BODY", body)
-	//fmt.Println("REC", recordContent)
-	//	fmt.Println("ARSE", r)
-	//	fmt.Println("parse",r.ParseForm())
-
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAXML", "SAVE", id, body, application.GetUserSessionToken(r))
-
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
+	status := putXMLtemplateBody(thisID, body)
+	if status != 1 {
+		// do nothing
+	}
 
 	ListSvcDataMapHandler(w, r)
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-
-	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,application.GetUserRole(r)))
-	//	t.Execute(w, pageSrvConfigView)
-
 }
 
 func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
@@ -497,7 +374,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "newSvcDataMap"
+	tmpl := "LoaderNew"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
@@ -512,7 +389,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     title,
 		PageTitle: "New Data Loader Template",
 	}
-	fmt.Println("WCT : Page :", pageDM)
+	//fmt.Println("WCT : Page :", pageDM)
 
 	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
 	t.Execute(w, pageDM)
@@ -527,46 +404,22 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	//	tmpl := "editSrvConfiguration"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	requestID := uuid.New()
-	//	maxRows, _ := strconv.Atoi(globals.ApplicationProperties["maxtextboxrows"])
-	//recordID := application.GetURLparam(r, "pgid")
-	//recordContent := application.GetURLparam(r, "pgContent")
-
 	application.ServiceMessage(inUTL)
-
-	title := globals.ApplicationProperties["appname"]
 
 	body := r.FormValue("descr")
 	id := r.FormValue("name")
 
-	//p := &Page{Title: title, Body: []byte(body)}
-	//	fmt.Println("METHOD",r.Method)
-	fmt.Println("TITLE", title)
-	//	fmt.Println("ID", recordID)
-	fmt.Println("ID", id)
-	fmt.Println("BODY", body)
-	//fmt.Println("REC", recordContent)
-	//	fmt.Println("ARSE", r)
-	//	fmt.Println("parse",r.ParseForm())
+	var s application.LoaderStoreItem
 
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "NEW", id, body, application.GetUserSessionToken(r))
+	s.Name = id
+	s.Description = body
 
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
-
-	application.SendRequest(requestMessage, requestID.String())
+	application.NewLoaderStore(s)
 
 	ListSvcDataMapHandler(w, r)
-
-	// Get Data Here
-	//_, _, serviceCatalog := getServices(globals.ApplicationProperties, globals.ApplicationProperties["responseformat"])
-
-	//	t, _ := template.ParseFiles(application.GetTemplateID(tmpl,application.GetUserRole(r)))
-	//	t.Execute(w, pageSrvConfigView)
 
 }
 
@@ -580,12 +433,14 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	requestID := uuid.New()
 	application.ServiceMessage(inUTL)
-	id := application.GetURLparam(r, "dataMapName")
-	requestMessage := application.BuildRequestMessage(requestID.String(), "@DATAMAP", "DELETE", id, "", application.GetUserSessionToken(r))
-	fmt.Println("requestMessage", requestMessage)
-	fmt.Println("SEND MESSAGE")
-	application.SendRequest(requestMessage, requestID.String())
+	id := application.GetURLparam(r, "loaderID")
+	path := globals.ApplicationProperties["datamaptemplatepath"]
+	status := application.DeleteDataFile(id+".xml", path)
+	if status != 1 {
+		//do nothing
+	}
+	application.DeleteLoaderStore(id)
+
 	ListSvcDataMapHandler(w, r)
 }

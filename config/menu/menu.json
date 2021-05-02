@@ -220,11 +220,11 @@
     ,
     {
       "ID": "19",
-      "Text": "Data Loader Mappings",
+      "Text": "Data Loader",
       "Glyph": "fas fa-dice-d6",
       "HREF": "/listSvcDataMap",
       "OnClick": "",
-      "TextClass": "text-secondary"
+      "TextClass": "text-warning"
     }
 
     ,
