@@ -29,10 +29,11 @@
 
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
 
-
 </head>
 
 <body>
+
+
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
   <div class="row nav-row">
     <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
@@ -53,59 +54,73 @@
     </div>
   <!-- DO NOT CHANGE -->
 
+<div class="container-fluid">
+      <div class="card">
+        <form action="/home" method="POST">
 
-  <form method="GET" action="/genSvcDataMap">
-
-
-    <div class="container-fluid">
-
-
-      <div id="SrvConfig">
-        <div class="card">
-          <div class="card-header">
-Data Map &nbsp;:&nbsp;<code>NEW</code>
-            <div class="btn-group float-right">
-              <button type="submit" value="" class="btn btn-outline-danger" formaction="/genSvcDataMap"><i class="fas fa-save" ></i>&nbsp;&nbsp;Create</button>
-              <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-
-            </div>
-          </div>
-          <div class="card-body">
-            <label for="name">Name :</label>
-            <input type="text" id="name" name="name" value="" size="20" width="20" class="form-control" placeholder="Enter the name of the DataMap">
-
-            <label for="descr">Description :</label>
-            <input type="text" id="descr" name="descr" size="60" class="form-control" placeholder="Enter a description/reason for the DataMap">
-            <div class="row">
-              <div class="col">
-            <label for="type" class="d-flex flex-column">Type :</label>
-            <select class="selectpicker" id="Type" name="Type" mandatory="mandatory">
-              <option>transactional</option>
-              <option>static</option>
-            </select>
-            <small id="emailHelp" class="form-text text-muted">Select static for Static Data Import, or Transaction for Deal Import</small>
-            </div>
+        <div class="card-header">
+          <div class="row">
             <div class="col">
-          <label for="type" class="d-flex flex-column">Instance :</label>
-          <select class="selectpicker" id="Instance" name="Instance">
-            <option></option>
-            <option>bnk6 sys-3</option>
-            <option>bnk4 sys-1</option>
-            <option>bnk6 sys-5</option>
-          </select>
-          <small id="emailHelp" class="form-text text-muted">Select which instance to deliver data to</small>
-          </div>
-          <div class="col">
-            <label for="Extension">File Extension :</label>
-            <input type="text" id="Extension" name="Extension" value="" size="6" width="6" maxlength="5" class="form-control" placeholder=".xml">
-              <small id="emailHelp" class="form-text text-muted">Examples: .xml, .json etc. Leave blank for no file extension.</small>
-          </div>
+              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
+              Mapper Columns&nbsp;&nbsp;<span class="badge badge-dark">{{.LoaderMapStoreCount}} </span>
+            </div>
+            <div class="col text-right">
+              <div class="btn-group">
+                <button type="submit" value="" class="btn btn-primary" formaction="/newLoaderMapStore?loaderID={{.LoaderID}}&lastColumn={{.LoaderMapStoreCount}}" method="POST">
+                  <i class="fas fa-plus"></i>&nbsp;&nbsp;New
+                </button>
+                <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
+                  <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              </div>
             </div>
           </div>
+        </div>
 
+        <div class="card-body">
+
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover" id="sienaDataTable">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Position</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody id=filterTable>
+                  {{$out := .}}
+                  {{range .LoaderMapStoreList}}
+                  <tr>
+                    <td class="text-center align-middle"></td>
+                    <td class="align-middle">{{.Name}}</td>
+                    <td class="align-middle">{{.Position}}</td>
+                    <td class="align-middle text-center" style="width:1px; padding:0.25rem">
+
+                      <div class="btn-group">
+                        <button type="submit" value="" class="btn btn-outline-primary " formaction="/editLoaderMapStore?LoaderMapStore={{.Id}}&loaderID={{$out.LoaderID}}" method="POST">
+                          <i class="far fa-edit" style="font-size: 22px"></i>
+                        </button>
+                        <button type="submit" value="" class="btn btn-outline-danger " formaction="/editLoaderMapStore?LoaderMapStore={{.Id}}" method="POST" disabled>
+                          <i class="fas fa-trash-alt" style="font-size: 22px"></i>
+                        </button>
+                      </div>
+
+                    </td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+
+            </div>
+          </form>
         </div>
       </div>
-    </div>
-  </form>
+
+  <script>
+$(document).ready(function(){
+    $('#sienaFirmTable').dataTable();
+});
+</script>
 
 </body>

@@ -15,11 +15,11 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var appLoaderStoreSQL = "id, 	name, 	description, 	filename, 	lastrun, 	_created, 	_who, 	_host, 	_updated"
+var appLoaderStoreSQL = "id, 	name, 	description, 	filename, 	lastrun, 	_created, 	_who, 	_host, 	_updated, type, instance, extension"
 
-var sqlLoaderStoreId, sqlLoaderStoreName, sqlLoaderStoreDescription, sqlLoaderStoreFilename, sqlLoaderStoreLastrun, sqlLoaderStoreSYSCreated, sqlLoaderStoreSYSWho, sqlLoaderStoreSYSHost, sqlLoaderStoreSYSUpdated sql.NullString
+var sqlLoaderStoreId, sqlLoaderStoreName, sqlLoaderStoreDescription, sqlLoaderStoreFilename, sqlLoaderStoreLastrun, sqlLoaderStoreSYSCreated, sqlLoaderStoreSYSWho, sqlLoaderStoreSYSHost, sqlLoaderStoreSYSUpdated, sqlLoaderStoreType, sqlLoaderStoreInstance, sqlLoaderStoreExtension sql.NullString
 
-var appLoaderStoreSQLINSERT = "INSERT INTO %s.loaderStore(%s) VALUES('%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s');"
+var appLoaderStoreSQLINSERT = "INSERT INTO %s.loaderStore(%s) VALUES('%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s','%s','%s','%s');"
 var appLoaderStoreSQLDELETE = "DELETE FROM %s.loaderStore WHERE id='%s';"
 var appLoaderStoreSQLSELECT = "SELECT %s FROM %s.loaderStore;"
 var appLoaderStoreSQLGET = "SELECT %s FROM %s.loaderStore WHERE id='%s';"
@@ -54,6 +54,9 @@ type appLoaderStorePage struct {
 	SYSWho      string
 	SYSHost     string
 	SYSUpdated  string
+	Type        string
+	Instance    string
+	Extension   string
 }
 
 //LoaderStoreItem is cheese
@@ -67,6 +70,9 @@ type LoaderStoreItem struct {
 	SYSWho      string
 	SYSHost     string
 	SYSUpdated  string
+	Type        string
+	Instance    string
+	Extension   string
 }
 
 func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -135,6 +141,9 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSWho:      returnRecord.SYSWho,
 		SYSHost:     returnRecord.SYSHost,
 		SYSUpdated:  returnRecord.SYSUpdated,
+		Type:        returnRecord.Type,
+		Instance:    returnRecord.Instance,
+		Extension:   returnRecord.Extension,
 	}
 
 	//fmt.Println(pageLoaderStoreList)
@@ -179,6 +188,9 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSWho:      returnRecord.SYSWho,
 		SYSHost:     returnRecord.SYSHost,
 		SYSUpdated:  returnRecord.SYSUpdated,
+		Type:        returnRecord.Type,
+		Instance:    returnRecord.Instance,
+		Extension:   returnRecord.Extension,
 	}
 	//fmt.Println(pageLoaderStoreList)
 
@@ -211,8 +223,11 @@ func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.SYSWho = r.FormValue("SYSWho")
 	s.SYSHost = r.FormValue("SYSHost")
 	s.SYSUpdated = r.FormValue("SYSUpdated")
+	s.Type = r.FormValue("Type")
+	s.Instance = r.FormValue("Instance")
+	s.Extension = r.FormValue("Extension")
 
-	//log.Println("save", s)
+	log.Println("save", s)
 
 	putLoaderStore(s)
 
@@ -326,6 +341,10 @@ func NewLoaderStore(r LoaderStoreItem) {
 	putLoaderStore(r)
 }
 
+func PutLoaderStore(r LoaderStoreItem) {
+	putLoaderStore(r)
+}
+
 func putLoaderStore(r LoaderStoreItem) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
@@ -347,7 +366,7 @@ func putLoaderStore(r LoaderStoreItem) {
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLoaderStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLoaderStoreSQL, r.Id, r.Name, r.Description, r.Filename, r.Lastrun, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	inserttsql := fmt.Sprintf(appLoaderStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLoaderStoreSQL, r.Id, r.Name, r.Description, r.Filename, r.Lastrun, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type, r.Instance, r.Extension)
 
 	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
@@ -411,7 +430,7 @@ func fetchLoaderStoreData(tsql string) (int, []LoaderStoreItem, LoaderStoreItem,
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlLoaderStoreId, &sqlLoaderStoreName, &sqlLoaderStoreDescription, &sqlLoaderStoreFilename, &sqlLoaderStoreLastrun, &sqlLoaderStoreSYSCreated, &sqlLoaderStoreSYSWho, &sqlLoaderStoreSYSHost, &sqlLoaderStoreSYSUpdated)
+		err := rows.Scan(&sqlLoaderStoreId, &sqlLoaderStoreName, &sqlLoaderStoreDescription, &sqlLoaderStoreFilename, &sqlLoaderStoreLastrun, &sqlLoaderStoreSYSCreated, &sqlLoaderStoreSYSWho, &sqlLoaderStoreSYSHost, &sqlLoaderStoreSYSUpdated, &sqlLoaderStoreType, &sqlLoaderStoreInstance, &sqlLoaderStoreExtension)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, appLoaderStore, err
@@ -426,6 +445,9 @@ func fetchLoaderStoreData(tsql string) (int, []LoaderStoreItem, LoaderStoreItem,
 		appLoaderStore.SYSWho = sqlLoaderStoreSYSWho.String
 		appLoaderStore.SYSHost = sqlLoaderStoreSYSHost.String
 		appLoaderStore.SYSUpdated = sqlLoaderStoreSYSUpdated.String
+		appLoaderStore.Type = sqlLoaderStoreType.String
+		appLoaderStore.Instance = sqlLoaderStoreInstance.String
+		appLoaderStore.Extension = sqlLoaderStoreExtension.String
 		// no change below
 		appLoaderStoreList = append(appLoaderStoreList, appLoaderStore)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

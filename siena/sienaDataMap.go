@@ -8,7 +8,10 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
+	"time"
 
+	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
@@ -56,6 +59,10 @@ type SvcDataMapItem struct {
 	DataMapFileID      string
 	DataMapDescription string
 	DataMapXMLFile     string
+	DataMapLastrun     string
+	DataMapType        string
+	DataMapInstance    string
+	DataMapExtension   string
 }
 
 func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
@@ -84,6 +91,10 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		newDataMapItem.DataMapFileID = listItem.Filename
 		newDataMapItem.DataMapDescription = listItem.Description
 		newDataMapItem.DataMapXMLFile = listItem.Filename
+		newDataMapItem.DataMapLastrun = listItem.Lastrun
+		newDataMapItem.DataMapType = listItem.Type
+		newDataMapItem.DataMapInstance = listItem.Instance
+		newDataMapItem.DataMapExtension = listItem.Extension
 		//fmt.Println("newDataMapItem", newDataMapItem)
 		dataMapItemsList = append(dataMapItemsList, newDataMapItem)
 	}
@@ -241,7 +252,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 func getXMLtemplateBody(thisID string) (string, error) {
 	path := globals.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
-	fileName := loaderItem.Filename + ".xml"
+	fileName := loaderItem.Filename + ".template"
 	content, err := application.ReadDataFile(fileName, path)
 	if err != nil {
 		log.Fatal(err)
@@ -252,7 +263,7 @@ func getXMLtemplateBody(thisID string) (string, error) {
 func putXMLtemplateBody(thisID string, content string) int {
 	path := globals.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
-	fileName := loaderItem.Filename + ".xml"
+	fileName := loaderItem.Filename + ".template"
 	status := application.WriteDataFile(fileName, path, content)
 	return status
 }
@@ -411,11 +422,17 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	body := r.FormValue("descr")
 	id := r.FormValue("name")
+	txntype := r.FormValue("Type")
+	instanceID := r.FormValue("Instance")
+	extensionID := r.FormValue("Extension")
 
 	var s application.LoaderStoreItem
 
 	s.Name = id
 	s.Description = body
+	s.Type = txntype
+	s.Instance = instanceID
+	s.Extension = extensionID
 
 	application.NewLoaderStore(s)
 
@@ -436,11 +453,101 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 	id := application.GetURLparam(r, "loaderID")
 	path := globals.ApplicationProperties["datamaptemplatepath"]
-	status := application.DeleteDataFile(id+".xml", path)
+	status := application.DeleteDataFile(id+".template", path)
 	if status != 1 {
 		//do nothing
 	}
+
 	application.DeleteLoaderStore(id)
+	application.DeleteLoaderDataStoreByLoader(id)
+	application.DeleteLoaderMapStoreByLoader(id)
 
 	ListSvcDataMapHandler(w, r)
+}
+
+func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(application.SessionValidate(w, r)) {
+		application.LogoutHandler(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	application.ServiceMessage(inUTL)
+	id := application.GetURLparam(r, "loaderID")
+
+	_, loader, _ := application.GetLoaderStoreByID(id)
+
+	// Get template
+	instanceID := loader.Instance
+	extensionID := loader.Extension
+	log.Printf("instance id %s %s", instanceID, extensionID)
+	importtemplate, err := application.ReadDataFile(loader.Filename+".template", globals.ApplicationProperties["datamaptemplatepath"])
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	origTemplate := importtemplate
+
+	log.Println(importtemplate)
+
+	noRows, _, _ := application.GetLoaderDataStoreListByLoaderCols(id, "1")
+	log.Println("No Rows of data=", noRows)
+	// get columns
+	noColumns, listColumns, _ := application.GetLoaderMapStoreListByLoader(id)
+	log.Println("No Cols=", noColumns, "List", listColumns)
+
+	for thisRow := 1; thisRow <= noRows; thisRow++ {
+		// Reset the template data
+		importtemplate = origTemplate
+		for thisColumn := 1; thisColumn <= noColumns; thisColumn++ {
+			log.Println(thisRow, thisColumn)
+
+			_, dataItem, _ := application.GetLoaderDataStoreListByLoaderItem(id, strconv.Itoa(thisRow), strconv.Itoa(thisColumn))
+			activeColumn := thisColumn - 1
+
+			importtemplate = replaceWildcard(importtemplate, listColumns[activeColumn].Name, dataItem.Value)
+
+		}
+
+		// Special Replacement Section
+		newID := uuid.New().String()
+		importtemplate = replaceWildcard(importtemplate, "MSG.ID", newID)
+		path := globals.SienaProperties[loader.Type]
+		instancePath := ""
+		if len(instanceID) != 0 {
+			ipath := loader.Instance + "_" + loader.Type
+			ipath = strings.ReplaceAll(ipath, " ", "_")
+			ipath = strings.ReplaceAll(ipath, "-", "_")
+			log.Println(ipath)
+			instancePath = globals.SienaProperties[ipath]
+		}
+		if len(instancePath) != 0 {
+			path = instancePath
+		}
+		log.Println(path)
+		if len(extensionID) == 0 {
+			extensionID = ".xml"
+		}
+		filename := newID + extensionID
+
+		val := application.WriteDataFile(filename, path, importtemplate)
+		if val != 0 {
+			//do nothing
+		}
+		log.Println(importtemplate)
+
+	}
+
+	loader.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
+	application.PutLoaderStore(loader)
+
+	ListSvcDataMapHandler(w, r)
+}
+
+func replaceWildcard(orig string, replaceThis string, withThis string) string {
+	wrkThis := "{{" + replaceThis + "}}"
+	log.Printf("Replace %s with %q", wrkThis, withThis)
+	return strings.ReplaceAll(orig, wrkThis, withThis)
 }

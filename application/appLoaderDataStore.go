@@ -26,6 +26,7 @@ var appLoaderDataStoreSQLGET = "SELECT %s FROM %s.loaderDataStore WHERE id='%s';
 var appLoaderDataStoreSQLSELECTBYLOADERCOLS = "SELECT %s FROM %s.loaderDataStore WHERE loader='%s' AND position='%s';"
 var appLoaderDataStoreSQLSELECTBYLOADERPITEM = "SELECT %s FROM %s.loaderDataStore WHERE loader='%s' AND row='%s';"
 var appLoaderDataStoreSQLDELETELOADER = "DELETE FROM %s.loaderDataStore WHERE loader='%s';"
+var appLoaderDataStoreSQLGETITEM = "SELECT %s FROM %s.loaderDataStore WHERE loader='%s' AND row='%s' AND position='%s';"
 
 //appLoaderDataStorePage is cheese
 type appLoaderDataStoreListPage struct {
@@ -342,7 +343,7 @@ func GetLoaderDataStoreRowList(loaderID string, rowID string) (int, []LoaderData
 
 // GetLoaderDataStoreListByLoaderRow read all employees
 func GetLoaderDataStoreListByLoaderItem(loaderId string, colId string, rowId string) (int, LoaderDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERPITEM, appLoaderDataStoreSQL, globals.ApplicationPropertiesDB["schema"], loaderId, colId, rowId)
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLGETITEM, appLoaderDataStoreSQL, globals.ApplicationPropertiesDB["schema"], loaderId, colId, rowId)
 	count, _, appLoaderDataStoreItem, _ := fetchLoaderDataStoreData(tsql)
 	return count, appLoaderDataStoreItem, nil
 }

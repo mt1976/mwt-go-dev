@@ -47,7 +47,7 @@ func main() {
 	done("Initialised")
 	//	log.Println(line)
 	header("Caching ...")
-	application.InitialiseCache()
+	//application.InitialiseCache()
 	done("Cache Refreshed")
 	//log.Println(line)
 
@@ -82,6 +82,7 @@ func main() {
 	mux.HandleFunc("/editSrvConfiguration/", application.EditSrvConfigurationHandler)
 	mux.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
 	mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
+
 	mux.HandleFunc("/listSvcDataMap/", siena.ListSvcDataMapHandler)
 	mux.HandleFunc("/viewSvcDataMap/", siena.ViewSvcDataMapHandler)
 	mux.HandleFunc("/editSvcDataMap/", siena.EditSvcDataMapHandler)
@@ -92,6 +93,12 @@ func main() {
 	mux.HandleFunc("/newSvcDataMap/", siena.NewSvcDataMapHandler)
 	mux.HandleFunc("/genSvcDataMap/", siena.GenSvcDataMapHandler)
 	mux.HandleFunc("/deleteSvcDataMap/", siena.DeleteSvcDataMapHandler)
+	mux.HandleFunc("/editDataMapColumns/", application.ListLoaderMapStoreHandler)
+	mux.HandleFunc("/editLoaderMapStore/", application.EditLoaderMapStoreHandler)
+	mux.HandleFunc("/saveLoaderMapStore/", application.SaveLoaderMapStoreHandler)
+	mux.HandleFunc("/newLoaderMapStore/", application.NewLoaderMapStoreHandler)
+	mux.HandleFunc("/runLoader/", siena.RunDataLoaderHandler)
+
 	mux.HandleFunc("/listSienaCountry/", siena.ListSienaCountryHandler)
 	mux.HandleFunc("/viewSienaCountry/", siena.ViewSienaCountryHandler)
 	mux.HandleFunc("/editSienaCountry/", siena.EditSienaCountryHandler)

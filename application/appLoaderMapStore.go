@@ -8,8 +8,11 @@ import (
 	"net/http"
 	"os"
 	"os/user"
+	"strconv"
+	"strings"
 	"time"
 
+	"github.com/google/uuid"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -20,9 +23,11 @@ var sqlLoaderMapStoreId, sqlLoaderMapStoreName, sqlLoaderMapStorePosition, sqlLo
 
 var appLoaderMapStoreSQLINSERT = "INSERT INTO %s.loaderMapStore(%s) VALUES('%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s',	'%s');"
 var appLoaderMapStoreSQLDELETE = "DELETE FROM %s.loaderMapStore WHERE id='%s';"
+var appLoaderMapStoreSQLDELETELOADER = "DELETE FROM %s.loaderMapStore WHERE loader='%s';"
 var appLoaderMapStoreSQLSELECT = "SELECT %s FROM %s.loaderMapStore;"
 var appLoaderMapStoreSQLGET = "SELECT %s FROM %s.loaderMapStore WHERE id='%s';"
-var appLoaderMapStoreSQLSELECTBYLOADER = "SELECT %s FROM %s.loaderMapStore WHERE loader='%s';"
+var appLoaderMapStoreSQLSELECTBYLOADER = "SELECT %s FROM %s.loaderMapStore WHERE loader='%s' ORDER BY int_position ASC;"
+var appLoaderMapStoreSQLGETIDLOADER = "SELECT %s FROM %s.loaderMapStore WHERE id='%s' AND loader='%s' ORDER BY int_position ASC ;"
 
 //appLoaderMapStorePage is cheese
 type appLoaderMapStoreListPage struct {
@@ -33,6 +38,7 @@ type appLoaderMapStoreListPage struct {
 	PageTitle           string
 	LoaderMapStoreCount int
 	LoaderMapStoreList  []LoaderMapStoreItem
+	LoaderID            string
 }
 
 //appLoaderMapStorePage is cheese
@@ -74,22 +80,23 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Code Continues Below
-
+	searchID := GetURLparam(r, "loaderID")
 	tmpl := "LoaderMapStoreList"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	serviceMessage(inUTL)
 	var returnList []LoaderMapStoreItem
-	noItems, returnList, _ := GetLoaderMapStoreList()
+	noItems, returnList, _ := GetLoaderMapStoreListByLoader(searchID)
 
 	pageLoaderMapStoreList := appLoaderMapStoreListPage{
 		UserMenu:            GetUserMenu(r),
 		UserRole:            GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               globals.ApplicationProperties["appname"],
-		PageTitle:           "List Dispatch",
+		PageTitle:           "Data Loader",
 		LoaderMapStoreCount: noItems,
 		LoaderMapStoreList:  returnList,
+		LoaderID:            searchID,
 	}
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
@@ -116,7 +123,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Dispatch",
+		PageTitle: "Data Loader - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -155,11 +162,13 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	searchID := GetURLparam(r, "LoaderMapStore")
-	_, returnRecord, _ := GetLoaderMapStoreByID(searchID)
+	loaderID := GetURLparam(r, "loaderID")
+
+	_, returnRecord, _ := GetLoaderMapStoreByIDLoader(searchID, loaderID)
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Dispatch",
+		PageTitle: "Data Loader - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -190,23 +199,24 @@ func SaveLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	//tmpl := "saveSienaCountry"
-
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	serviceMessageAction(inUTL, "Save", r.FormValue("Id")+"-"+r.FormValue("Loader"))
 
 	var s LoaderMapStoreItem
 
-	s.Id = r.FormValue("Id")
-	s.Name = r.FormValue("Name")
-	s.Position = r.FormValue("Position")
-	s.Loader = r.FormValue("Loader")
-	s.SYSCreated = r.FormValue("SYSCreated")
-	s.SYSWho = r.FormValue("SYSWho")
-	s.SYSHost = r.FormValue("SYSHost")
-	s.SYSUpdated = r.FormValue("SYSUpdated")
+	s.Id = r.FormValue("origID")
+	if len(s.Id) == 0 {
+		s.Id = uuid.New().String()
+	}
+	s.Name = r.FormValue("name")
+	s.Position = r.FormValue("position")
+	s.Loader = r.FormValue("loader")
+	//s.SYSCreated = r.FormValue("SYSCreated")
+	//s.SYSWho = r.FormValue("SYSWho")
+	//s.SYSHost = r.FormValue("SYSHost")
+	//s.SYSUpdated = r.FormValue("SYSUpdated")
 
-	//log.Println("save", s)
+	log.Println("save", s)
 
 	putLoaderMapStore(s)
 
@@ -281,6 +291,12 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	serviceMessage(inUTL)
 
+	lastCol := GetURLparam(r, "lastColumn")
+	loaderID := GetURLparam(r, "loaderID")
+
+	nextPosition, _ := strconv.Atoi(lastCol)
+	nextPosition = nextPosition + 1
+
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: "View Siena Broker",
@@ -290,7 +306,8 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "",
 		// Above are mandatory
 		// Below are variable
-
+		Position: strconv.Itoa(nextPosition),
+		Loader:   loaderID,
 	}
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
@@ -319,13 +336,21 @@ func GetLoaderMapStoreByID(id string) (int, LoaderMapStoreItem, error) {
 	return 1, LoaderMapStoreItem, nil
 }
 
+// getLoaderMapStoreList read all employees
+func GetLoaderMapStoreByIDLoader(id string, loaderID string) (int, LoaderMapStoreItem, error) {
+	tsql := fmt.Sprintf(appLoaderMapStoreSQLGETIDLOADER, appLoaderMapStoreSQL, globals.ApplicationPropertiesDB["schema"], id, loaderID)
+	_, _, LoaderMapStoreItem, _ := fetchLoaderMapStoreData(tsql)
+	return 1, LoaderMapStoreItem, nil
+}
+
 func putLoaderMapStore(r LoaderMapStoreItem) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
-	if len(r.SYSCreated) == 0 {
-		r.SYSCreated = createDate
+	if len(r.Id) == 0 {
+		r.Id = ""
 	}
 
+	r.Name = strings.ToUpper(r.Name)
 	currentUserID, _ := user.Current()
 	userID := currentUserID.Name
 	host, _ := os.Hostname()
@@ -363,6 +388,17 @@ func putLoaderMapStore(r LoaderMapStoreItem) {
 func deleteLoaderMapStore(id string) {
 	//fmt.Println(credentialStore)
 	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	_, err := globals.ApplicationDB.Exec(deletesql)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	//log.Println(fred2, err2)
+}
+
+func DeleteLoaderMapStoreByLoader(id string) {
+	//fmt.Println(credentialStore)
+	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETELOADER, globals.ApplicationPropertiesDB["schema"], id)
 	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
 	_, err := globals.ApplicationDB.Exec(deletesql)
 	if err != nil {

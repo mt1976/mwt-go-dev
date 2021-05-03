@@ -347,7 +347,7 @@ func ReadDataFile(fileName string, path string) (string, error) {
 		WriteDataFile(fileName, path, "")
 	}
 
-	log.Println("Read          :", filePath)
+	//log.Println("Read          :", filePath)
 	// Read entire file content, giving us little control but
 	// making it very simple. No need to close the file.
 	content, err := ioutil.ReadFile(filePath)
@@ -364,7 +364,7 @@ func WriteDataFile(fileName string, path string, content string) int {
 	if len(path) != 0 {
 		filePath = pwd + path + "/" + fileName
 	}
-	log.Println("Write         :", filePath)
+	//log.Println("Write         :", filePath)
 
 	message := []byte(content)
 	err := ioutil.WriteFile(filePath, message, 0644)
@@ -381,15 +381,17 @@ func DeleteDataFile(fileName string, path string) int {
 	if len(path) != 0 {
 		filePath = pwd + path + "/" + fileName
 	}
-	log.Println("Delete        :", filePath)
+	//log.Println("Delete        :", filePath)
 
 	// delete file
-	var err = os.Remove(filePath)
-	if err != nil {
-		log.Fatal(err.Error())
-		return -1
-	}
 
-	fmt.Println("File Deleted")
+	if FileExists(filePath) {
+		var err = os.Remove(filePath)
+		if err != nil {
+			log.Fatal(err.Error())
+			return -1
+		}
+	}
+	//fmt.Println("File Deleted")
 	return 1
 }
