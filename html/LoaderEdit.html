@@ -87,9 +87,9 @@
                 <tbody class="">
                   {{range .DataRows}}
                   <tr>
-                    <td class="text-center"></td>
+                    <td class="text-center align-middle" style="padding:0"></td>
                     {{range .DataRowItem}}
-                    <td><input type="text" class="form-control form-control-sm"  style="border-color: #0000ff;" id="R{{.DIrow}}C{{.DIcol}}" name="R{{.DIrow}}C{{.DIcol}}" aria-describedby="Username" placeholder="-" value="{{.DataItem}}" ></td>{{end}}
+                    <td style="padding:0"><input type="text" class="form-control form-control-sm"  style="padding:0" id="R{{.DIrow}}C{{.DIcol}}" name="R{{.DIrow}}C{{.DIcol}}" aria-describedby="Username" placeholder="-" value="{{.DataItem}}" ></td>{{end}}
                   </tr>
                   {{end}}
                 </tbody>

@@ -27,7 +27,7 @@ func Start() {
 	var period string
 	var runType string
 
-	period = "* * * * *"
+	period = "*/10 * * * *"
 	application.RegisterSchedule("heartbeat", "HeartBeat", "System Heartbeat", period, Monitor)
 	c.AddFunc(period, func() { RunJobHeartBeat("heartbeat") })
 	//logit("RunJobHeartBeat", period)
@@ -52,7 +52,7 @@ func Start() {
 	c.AddFunc(period, func() { RunJobFRED("fred") })
 	//logit("RunJobHeartBeat", period)
 
-	period = "* * * * *"
+	period = "*/15 * * * *"
 	application.RegisterSchedule("sessionhousekeeping", "Session Management", "Manage Application Sessions", period, Monitor)
 	c.AddFunc(period, func() { RunJobSessionHousekeeping("sessionhousekeeping") })
 	//logit("RunJobSessionHousekeeping", period)
