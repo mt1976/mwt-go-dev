@@ -89,9 +89,7 @@ Data Map &nbsp;:&nbsp;<code>NEW</code>
           <label for="type" class="d-flex flex-column">Instance :</label>
           <select class="selectpicker" id="Instance" name="Instance">
             <option></option>
-            <option>bnk6 sys-3</option>
-            <option>bnk4 sys-1</option>
-            <option>bnk6 sys-5</option>
+            {{range .InstanceList}}<option>{{.Id}}</option>{{end}}
           </select>
           <small id="emailHelp" class="form-text text-muted">Select which instance to deliver data to</small>
           </div>

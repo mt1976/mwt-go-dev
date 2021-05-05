@@ -57,22 +57,25 @@ type appLoaderStorePage struct {
 	Type        string
 	Instance    string
 	Extension   string
+	// Manually Added
+	InstanceList []SystemStoreItem
 }
 
 //LoaderStoreItem is cheese
 type LoaderStoreItem struct {
-	Id          string
-	Name        string
-	Description string
-	Filename    string
-	Lastrun     string
-	SYSCreated  string
-	SYSWho      string
-	SYSHost     string
-	SYSUpdated  string
-	Type        string
-	Instance    string
-	Extension   string
+	Id           string
+	Name         string
+	Description  string
+	Filename     string
+	Lastrun      string
+	SYSCreated   string
+	SYSWho       string
+	SYSHost      string
+	SYSUpdated   string
+	Type         string
+	Instance     string
+	Extension    string
+	InstanceList []SystemStoreItem
 }
 
 func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -169,6 +172,7 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	searchID := GetURLparam(r, "LoaderStore")
 	_, returnRecord, _ := GetLoaderStoreByID(searchID)
+	_, instanceList, _ := GetSystemStoreList()
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     globals.ApplicationProperties["appname"],
@@ -192,6 +196,10 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Instance:    returnRecord.Instance,
 		Extension:   returnRecord.Extension,
 	}
+
+	// Populate InstanceList
+	pageLoaderStoreList.InstanceList = instanceList
+
 	//fmt.Println(pageLoaderStoreList)
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
@@ -313,7 +321,9 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		// Below are variable
 
 	}
-
+	_, instanceList, _ := GetSystemStoreList()
+	pageLoaderStoreList.InstanceList = instanceList
+	log.Println(pageLoaderStoreList)
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageLoaderStoreList)
 

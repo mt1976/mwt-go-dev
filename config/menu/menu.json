@@ -207,6 +207,24 @@
       "TextClass": "text-info"
     }
     ,
+    {
+      "ID": "fundsCheck",
+      "Text": "Funds Check Approvals",
+      "Glyph": "fas fa-check",
+      "HREF": "/listFundsCheck",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "ID": "systemStore",
+      "Text": "Connected Systems",
+      "Glyph": "fas fa-plug",
+      "HREF": "/listSystemStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
+    ,
 
     {
       "ID": "18",

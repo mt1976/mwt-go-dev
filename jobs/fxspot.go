@@ -223,4 +223,9 @@ func RunJobFXSPOT(actionType string) {
 	////logit(actionType, "*** DELIVER RATES ***")
 	//deliverRVData("RVMARKET", outputString)
 	////logit(actionType, "*** DONE ***")
+	message := ""
+	if err != nil {
+		message = err.Error()
+	}
+	application.UpdateSchedule("fxspot", Aquirer, message)
 }

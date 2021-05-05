@@ -54,6 +54,9 @@ func main() {
 	header("Scheduling Jobs")
 	scheduler.Start()
 	done("Jobs Scheduled")
+
+	nofiles, fileslist, _ := application.GetFundsCheckList()
+	log.Println(nofiles, fileslist)
 	//log.Println(line)
 	header("Starting Handlers")
 	mux := http.NewServeMux()
@@ -210,6 +213,18 @@ func main() {
 
 	mux.HandleFunc("/listSessionStore/", application.ListSessionStoreHandler)
 	mux.HandleFunc("/deleteSessionStore/", application.DeleteSessionStoreHandler)
+
+	mux.HandleFunc("/listSystemStore/", application.ListSystemStoreHandler)
+	mux.HandleFunc("/viewSystemStore/", application.ViewSystemStoreHandler)
+	mux.HandleFunc("/editSystemStore/", application.EditSystemStoreHandler)
+	mux.HandleFunc("/deleteSystemStore/", application.DeleteSystemStoreHandler)
+	mux.HandleFunc("/saveSystemStore/", application.SaveSystemStoreHandler)
+	mux.HandleFunc("/newSystemStore/", application.NewSystemStoreHandler)
+
+	mux.HandleFunc("/listFundsCheck/", application.ListFundsCheckHandler)
+	mux.HandleFunc("/viewFundsCheck/", application.ViewFundsCheckHandler)
+	mux.HandleFunc("/actionFundsCheck/", application.ActionFundsCheckHandler)
+	mux.HandleFunc("/submitFundsCheck/", application.SubmitFundsCheckHandler)
 
 	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<Collections>
+      <Collection>
+        <DealType>Spot</DealType>
+        <MsgID>6cd567ba-4914-448f-86ed-2a9713ea7507</MsgID>
+        <ExecType>1</ExecType>
+        <TradeDate>2021-05-04</TradeDate>
+        <ExtRefNo>FX202105041741263</ExtRefNo>
+        <ExternalCustomer>ABC</ExternalCustomer>
+        <Direction>Sell</Direction>
+        <Rate>0.789</Rate>
+        <DealtCurrency>EUR</DealtCurrency>
+        <AgainstCurrency>USD</AgainstCurrency>
+        <DealtAmount>30000</DealtAmount>
+        <AgainstAmount></AgainstAmount>
+        <Book>IMPORT</Book>
+        <ValueDate>2021-05-06</ValueDate>
+        <Notes>FX20210504174126</Notes>
+        <MandatedUser>Default</MandatedUser>
+        <LEI>213800APCD7UDNQHOI68</LEI>
+        <Broker></Broker>
+      </Collection>
+</Collections>

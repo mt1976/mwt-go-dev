@@ -209,14 +209,22 @@
 
     ,
     {
-      "ID": "19",
+      "ID": "dataLoader",
       "Text": "Data Loader",
       "Glyph": "fas fa-dice-d6",
       "HREF": "/listSvcDataMap",
       "OnClick": "",
       "TextClass": "text-warning"
     }
-
+    ,
+    {
+      "ID": "systemStore",
+      "Text": "Connected Systems",
+      "Glyph": "fas fa-plug",
+      "HREF": "/listSystemStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
     ,
     {
       "Break": "<hr class=\"hr-list\">"

@@ -8,5 +8,5 @@ import (
 func RunJobHeartBeat(actionType string) {
 	//	funcName := "RunJobHeartBeat"
 	//logit(actionType, ".")
-	application.UpdateSchedule(actionType, Monitor, "")
+	application.UpdateSchedule("heartbeat", Monitor, "")
 }

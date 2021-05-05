@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/leekchan/accounting"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 //CONST_CONFIG_FILE is cheese
@@ -392,6 +393,77 @@ func DeleteDataFile(fileName string, path string) int {
 			return -1
 		}
 	}
-	//fmt.Println("File Deleted")
+	fmt.Println("File Deleted - " + fileName + " - " + path)
 	return 1
+}
+
+func GetDeliveryPath(instanceID string, loaderType string, instanceDirection string) string {
+
+	path := globals.SienaProperties[loaderType]
+	instancePath := ""
+	log.Println(instanceID, loaderType, instanceDirection)
+	if len(instanceID) != 0 {
+		// If we have an instanceID load its details and work out which path to build
+		log.Println("fetch", instanceID)
+		_, systemDetails, _ := GetSystemStoreByID(instanceID)
+		log.Println("returned", systemDetails)
+		loaderDirection := loaderType + instanceDirection
+		log.Println(loaderDirection)
+		switch loaderDirection {
+		case "static":
+			instancePath = systemDetails.Staticin
+		case "staticin":
+			instancePath = systemDetails.Staticin
+		case "staticout":
+			instancePath = systemDetails.Staticout
+		case "transactional":
+			instancePath = systemDetails.Txnin
+		case "transactionalin":
+			instancePath = systemDetails.Txnin
+		case "transactionalout":
+			instancePath = systemDetails.Txnout
+		case "funds":
+			instancePath = systemDetails.Fundscheckin
+		case "fundsin":
+			instancePath = systemDetails.Fundscheckin
+		case "fundsout":
+			instancePath = systemDetails.Fundscheckout
+		default:
+			instancePath = ""
+		}
+	}
+	if len(instancePath) != 0 {
+		path = instancePath
+	}
+	log.Println("RETURNING ", path)
+	return path
+}
+
+// CalculateSpotDate(inTime invalid type)
+func CalculateSpotDate(inTime time.Time) time.Time {
+	spot := inTime.AddDate(0, 0, 2)
+	return wibbleDate(spot)
+}
+
+func wibbleDate(inDate time.Time) time.Time {
+	if inDate.Weekday() == time.Saturday {
+		inDate = inDate.AddDate(0, 0, 2)
+	}
+	if inDate.Weekday() == time.Sunday {
+		inDate = inDate.AddDate(0, 0, 1)
+	}
+	return inDate
+}
+
+// CalculateSpotDate(inTime invalid type)
+func CalculateTenorDate(inTime time.Time, inMonth string) time.Time {
+	month, _ := strconv.Atoi(inMonth)
+	spot := inTime.AddDate(0, month, 0)
+	return wibbleDate(spot)
+}
+
+func CalculateFirstDateOfYear(inTime time.Time) time.Time {
+	// Assuking 1st Jan is a holiday therefore first day is 2, then wibble the date.
+	tempDate := time.Date(inTime.Year(), 1, 2, 0, 0, 0, inTime.Nanosecond(), inTime.Location())
+	return wibbleDate(tempDate)
 }

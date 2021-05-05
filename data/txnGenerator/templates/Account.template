@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <Collection>
   <DealType>{{DEAL.TYPE}}</DealType>
-  <MsgID>{{MSG.ID}}</MsgID>
+  <MsgID>{{!MSG.ID}}</MsgID>
   <ExecType>0</ExecType>
-  <TradeDate>{{FIRST.WD.OF.YEAR}}</TradeDate>
+  <TradeDate>{{!FDY}}</TradeDate>
   <ExtRefNo>{{EXT.REF}}</ExtRefNo>
   <ExternalCustomer>{{COUNTERPARTY}}</ExternalCustomer>
   <MandatedUser>{{MANDATED.USER}}</MandatedUser>
@@ -16,7 +16,7 @@
   <DealtCurrency>{{CURRENCY}}</DealtCurrency>
   <DealtAmount>{{AMOUNT}}</DealtAmount>
   <Book>{{BOOK}}</Book>
-  <ValueDate>{{FIRST.WD.OF.YEAR}}</ValueDate>
+  <ValueDate>{{!FDY}}</ValueDate>
   <MaturityDate/>
   <InterestFrequency>3M</InterestFrequency>
   <InterestRateType>LIBOR</InterestRateType>
@@ -32,3 +32,4 @@
   <DebitFrequency>1M</DebitFrequency>
   <Notes>{{NOTES}}</Notes>
 </Collection>
+{{!TODAY}}|{{!DD}}|{{!MM}}|{{!YY}}|{{!YYYY}}|{{!hh}}|{{!mm}}|{{!ss}}

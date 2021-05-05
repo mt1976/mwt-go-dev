@@ -14,6 +14,10 @@ func RunJobSessionHousekeeping(actionType string) {
 		log.Println(err)
 		panic(err)
 	}
-	application.UpdateSchedule(actionType, Monitor, "")
+	message := ""
+	if err != nil {
+		message = err.Error()
+	}
+	application.UpdateSchedule("sessionhousekeeping", Monitor, message)
 	//logit(actionType, "*** DONE ***")
 }

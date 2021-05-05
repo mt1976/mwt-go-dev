@@ -150,8 +150,11 @@ func RunJobBOESONIA(actionType string) {
 	ratesData.source = "BankOfEnglang"
 	ratesData.destination = "RVMARKET"
 	RatesDataStorePut(ratesData)
-
-	application.UpdateSchedule(actionType, Aquirer, err.Error())
+	message := ""
+	if err != nil {
+		message = err.Error()
+	}
+	application.UpdateSchedule("sonia", Aquirer, message)
 	//logit(actionType, "*** DONE ***")
 }
 

@@ -93,7 +93,8 @@ func RunJobFRED(actionType string) {
 
 	//requestURI := fmt.Sprintf(uri, "BUM", apiKey)
 	////logit(actionType, requestURI)
-	application.UpdateSchedule(actionType, Aquirer, "")
+
+	application.UpdateSchedule("fred", Aquirer, "")
 
 	//logit(actionType, "*** DONE ***")
 }

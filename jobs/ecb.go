@@ -14,9 +14,9 @@ func RunJobECB(actionType string) {
 		// any collection of providers which implement rates.Provider interface
 		providers.NewECBProvider(new(rates.Options)),
 	)
-	rates, errors := service.FetchLast()
-	if len(errors) != 0 {
-		fmt.Println(errors)
+	rates, err := service.FetchLast()
+	if len(err) != 0 {
+		fmt.Println(err)
 	}
 	fmt.Println(service.Name(), "exchange rates for today")
 	for index, rate := range rates {
@@ -35,6 +35,11 @@ func RunJobECB(actionType string) {
 		RatesDataStorePut(ratesData)
 
 	}
-	application.UpdateSchedule(actionType, Aquirer, "")
+	message := ""
+	if err != nil {
+		message = err[0].Error()
+	}
+	application.UpdateSchedule("ecbrate", Aquirer, message)
+
 	//logit(actionType, "*** DONE ***")
 }

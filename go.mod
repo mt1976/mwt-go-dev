@@ -18,6 +18,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jimlawless/cfg v0.0.0-20160326141742-136e0c264d31
 	github.com/kisielk/sqlstruct v0.0.0-20201105191214-5f3e10d3ab46 // indirect
+	github.com/kr/pretty v0.2.1 // indirect
 	github.com/leekchan/accounting v1.0.0
 	github.com/lnquy/cron v1.1.1 // indirect
 	github.com/mbndr/figlet4go v0.0.0-20190224160619-d6cef5b186ea
