@@ -66,7 +66,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:          application.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +         "List Siena Dashboards",
+		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "Dashboard",
 		TotCounterparties: strconv.Itoa(noCps),
 		NoGDPRExp:         strconv.Itoa(noDepd),
 		NoLEIExp:          strconv.Itoa(noSecs),

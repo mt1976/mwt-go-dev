@@ -59,14 +59,13 @@ type sienaCurrencyPairItem struct {
 }
 
 func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "listSienaCurrencyPair"
 
 	inUTL := r.URL.Path
@@ -81,11 +80,12 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairListPage{
-		UserMenu:               application.GetUserMenu(r),
-		UserRole:               application.GetUserRole(r),
-		UserNavi:               "NOT USED",
-		Title:                  globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +              "List Siena CurrencyPairs",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Currency Pairs",
+
 		SienaCurrencyPairCount: noItems,
 		SienaCurrencyPairList:  returnList,
 	}
@@ -96,14 +96,13 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "viewSienaCurrencyPair"
 
 	inUTL := r.URL.Path
@@ -123,7 +122,7 @@ func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena CurrencyPair",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Currency Pair - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		MajorName: returnRecord.MajorName,
@@ -137,14 +136,13 @@ func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "editSienaCurrencyPair"
 
 	inUTL := r.URL.Path
@@ -166,7 +164,7 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena CurrencyPair",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Currency Pair - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		MajorName: returnRecord.MajorName,
@@ -182,19 +180,18 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCurrencyPairItem
 
@@ -266,14 +263,13 @@ func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "newSienaCurrencyPair"
 
 	inUTL := r.URL.Path
@@ -287,7 +283,7 @@ func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena CurrencyPair",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Currency Pair - New",
 		ID:        "NEW",
 		Code:      "",
 		MajorName: "",
@@ -302,7 +298,6 @@ func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaCurrencyPairList read all employees
 func getSienaCurrencyPairList(db *sql.DB) (int, []sienaCurrencyPairItem, error) {
-	
 
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrencyPair;", sienaCurrencyPairSQL, globals.SienaPropertiesDB["schema"])
 	//	fmt.Println("MS SQL:", tsql)
@@ -312,7 +307,7 @@ func getSienaCurrencyPairList(db *sql.DB) (int, []sienaCurrencyPairItem, error) 
 
 // getSienaCurrencyPairList read all employees
 func getSienaCurrencyPair(db *sql.DB, id string) (int, sienaCurrencyPairItem, error) {
-	
+
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrencyPair WHERE Code='%s';", sienaCurrencyPairSQL, globals.SienaPropertiesDB["schema"], id)
 	_, _, sienaCurrencyPair, _ := fetchSienaCurrencyPairData(db, tsql)
 	return 1, sienaCurrencyPair, nil
@@ -320,7 +315,7 @@ func getSienaCurrencyPair(db *sql.DB, id string) (int, sienaCurrencyPairItem, er
 
 // getSienaCurrencyPairList read all employees
 func putSienaCurrencyPair(db *sql.DB, updateItem sienaCurrencyPairItem) error {
-	
+
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)

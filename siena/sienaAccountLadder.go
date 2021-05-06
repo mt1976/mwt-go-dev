@@ -84,7 +84,7 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:                application.GetUserRole(r),
 		UserNavi:                "NOT USED",
 		Title:                   globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +               "List Siena AccountLadders",
+		PageTitle:               globals.ApplicationProperties["appname"] + " - " + "Account Ladder - View",
 		SienaAccountLadderCount: noItems,
 		SienaAccountLadderList:  returnList,
 		ID:                      account.AccountNumber,

@@ -119,7 +119,7 @@ func ListSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:                    application.GetUserRole(r),
 		UserNavi:                    "NOT USED",
 		Title:                       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                   "List Siena CounterpartyPayees",
+		PageTitle:                   globals.ApplicationProperties["appname"] + " - " + "Counterparty Payees",
 		SienaCounterpartyPayeeCount: noItems,
 		SienaCounterpartyPayeeList:  returnList,
 	}
@@ -158,11 +158,12 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
-		UserMenu:              application.GetUserMenu(r),
-		UserRole:              application.GetUserRole(r),
-		UserNavi:              "NOT USED",
-		Title:                 globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +             "View Siena CounterpartyPayee",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Payee - View",
+
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
 		KeyCounterpartyCentre: returnRecord.KeyCounterpartyCentre,
@@ -225,11 +226,12 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList()
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
-		UserMenu:              application.GetUserMenu(r),
-		UserRole:              application.GetUserRole(r),
-		UserNavi:              "NOT USED",
-		Title:                 globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +             "View Siena CounterpartyPayee",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Payee - Edit",
+
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
 		KeyCounterpartyCentre: returnRecord.KeyCounterpartyCentre,
@@ -276,7 +278,7 @@ func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyPayeeItem
 
@@ -379,11 +381,12 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
-		UserMenu:              application.GetUserMenu(r),
-		UserRole:              application.GetUserRole(r),
-		UserNavi:              "NOT USED",
-		Title:                 globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +             "View Siena CounterpartyPayee",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Payee - New",
+
 		ID:                    "NEW",
 		SourceTable:           "",
 		KeyCounterpartyFirm:   "",

@@ -78,7 +78,7 @@ func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:           application.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +          "List Siena Currencys",
+		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Currencies",
 		SienaCurrencyCount: noItems,
 		SienaCurrencyList:  returnList,
 	}
@@ -111,7 +111,7 @@ func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Currency",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Currency - View",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -154,7 +154,7 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Currency",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Currency - Edit",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -183,7 +183,7 @@ func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCurrencyItem
 
@@ -276,7 +276,7 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Currency",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Currency - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

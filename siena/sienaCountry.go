@@ -71,7 +71,7 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:          application.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +         "List Siena Countrys",
+		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "Countries",
 		SienaCountryCount: noItems,
 		SienaCountryList:  returnList,
 	}
@@ -107,7 +107,7 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Country",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Country - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -144,7 +144,7 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Country",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Country - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -167,7 +167,7 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCountryItem
 
@@ -251,7 +251,7 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Country",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Country - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

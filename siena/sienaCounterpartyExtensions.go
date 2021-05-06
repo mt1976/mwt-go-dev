@@ -149,11 +149,12 @@ func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	noItems, returnList, _ := getSienaCounterpartyExtensionsList()
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsListPage{
-		UserMenu:                         application.GetUserMenu(r),
-		UserRole:                         application.GetUserRole(r),
-		UserNavi:                         "NOT USED",
-		Title:                            globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                        "List Siena CounterpartyExtensionss",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information",
+
 		SienaCounterpartyExtensionsCount: noItems,
 		SienaCounterpartyExtensionsList:  returnList,
 	}
@@ -189,7 +190,7 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		UserRole:                      application.GetUserRole(r),
 		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                     "View Siena CounterpartyExtensions",
+		PageTitle:                     globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - View",
 		NameFirm:                      returnRecord.NameFirm,
 		NameCentre:                    returnRecord.NameCentre,
 		BICCode:                       returnRecord.BICCode,
@@ -269,7 +270,7 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		UserRole:                      application.GetUserRole(r),
 		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                     "View Siena CounterpartyExtensions",
+		PageTitle:                     globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - Edit",
 		NameFirm:                      returnRecord.NameFirm,
 		NameCentre:                    returnRecord.NameCentre,
 		BICCode:                       returnRecord.BICCode,
@@ -335,7 +336,7 @@ func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyExtensionsItem
 
@@ -463,7 +464,7 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 		UserRole:                      application.GetUserRole(r),
 		UserNavi:                      "NOT USED",
 		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                     "View Siena CounterpartyExtensions",
+		PageTitle:                     globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - New",
 		ID:                            "NEW",
 		NameFirm:                      "",
 		NameCentre:                    "",

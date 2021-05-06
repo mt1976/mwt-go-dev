@@ -69,7 +69,7 @@ func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:         application.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +        "List Siena Sectors",
+		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Sectors",
 		SienaSectorCount: noItems,
 		SienaSectorList:  returnList,
 	}
@@ -102,7 +102,7 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Sector",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Sectors - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -136,7 +136,7 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Sector",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Sectors - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -159,7 +159,7 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaSectorItem
 
@@ -259,7 +259,7 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Sector",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Sector - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

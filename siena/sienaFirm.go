@@ -80,7 +80,7 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:       application.GetUserRole(r),
 		UserNavi:       "NOT USED",
 		Title:          globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +      "List Siena Firms",
+		PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Firms",
 		SienaFirmCount: noItems,
 		SienaFirmList:  returnList,
 	}
@@ -112,7 +112,7 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Firm",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Firm - View",
 		ID:          returnRecord.FirmName,
 		FirmName:    returnRecord.FirmName,
 		FullName:    returnRecord.FullName,
@@ -156,7 +156,7 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Firm",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Firm - Edit",
 		ID:          returnRecord.FirmName,
 		FirmName:    returnRecord.FirmName,
 		FullName:    returnRecord.FullName,
@@ -187,7 +187,7 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaFirmItem
 
@@ -295,7 +295,7 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Firm",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Firm - New",
 		ID:          "NEW",
 		FirmName:    "",
 		FullName:    "",

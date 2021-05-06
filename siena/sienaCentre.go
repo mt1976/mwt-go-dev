@@ -76,7 +76,7 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentreListPage{
 		Title:            globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +        "List Siena Centres",
+		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Centers",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
 		UserMenu:         application.GetUserMenu(r),
@@ -112,7 +112,7 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Centre",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Center - View",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -150,7 +150,7 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Centre",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Center - Edit",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -181,7 +181,7 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCentreItem
 
@@ -272,7 +272,7 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Centre",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Center - New",
 		ID:          "NEW",
 		Code:        "",
 		Name:        "",

@@ -72,7 +72,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
 	pagecalenderList := calenderListPage{
 		Title:         globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +     "List Siena Calenders",
+		PageTitle:     globals.ApplicationProperties["appname"] + " - " + "Calenders",
 		CalenderCount: noItems,
 		CalenderList:  returnList,
 		UserRole:      application.GetUserRole(r),

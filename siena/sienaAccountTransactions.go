@@ -98,8 +98,9 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 	_, account, _ := getSienaAccount(accountID)
 
 	pageSienaAccountTransactionsList := sienaAccountTransactionListPage{
-		Title:                        globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                    "List Siena AccountTransactionss",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Account Transactions - View",
+
 		SienaAccountTransactionCount: noItems,
 		SienaAccountTransactionList:  returnList,
 		ID:                           account.AccountNumber,

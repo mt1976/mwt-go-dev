@@ -49,14 +49,13 @@ type sienaPortfolioItem struct {
 }
 
 func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "listSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -75,7 +74,7 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:            application.GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +           "List Siena Portfolios",
+		PageTitle:           globals.ApplicationProperties["appname"] + " - " + "Bank Portfolios",
 		SienaPortfolioCount: noItems,
 		SienaPortfolioList:  returnList,
 	}
@@ -86,14 +85,13 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "viewSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -113,7 +111,7 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Portfolio",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bank Portfolio - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -125,14 +123,13 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "editSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -152,7 +149,7 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Portfolio",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bank Portfolio - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -164,19 +161,18 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaPortfolioItem
 
@@ -239,14 +235,13 @@ func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
-// Mandatory Security Validation
+	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
 		return
 	}
-// Code Continues Below
+	// Code Continues Below
 
-	
 	tmpl := "newSienaPortfolio"
 
 	inUTL := r.URL.Path
@@ -258,7 +253,7 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Portfolio",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bank Portfolio - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
@@ -271,7 +266,7 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSienaPortfolioList read all employees
 func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
-	
+
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, globals.SienaPropertiesDB["schema"])
 	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
 	return count, sienaPortfolioList, nil
@@ -279,7 +274,7 @@ func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 
 // getSienaPortfolioList read all employees
 func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
-	
+
 	//fmt.Println(db.Stats().OpenConnections)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, globals.SienaPropertiesDB["schema"], id)
 	_, _, sienaPortfolio, _ := fetchSienaPortfolioData(db, tsql)
@@ -288,7 +283,7 @@ func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 
 // getSienaPortfolioList read all employees
 func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
-	
+
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)

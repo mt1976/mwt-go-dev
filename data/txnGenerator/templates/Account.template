@@ -4,7 +4,7 @@
   <MsgID>{{!MSG.ID}}</MsgID>
   <ExecType>0</ExecType>
   <TradeDate>{{!FDY}}</TradeDate>
-  <ExtRefNo>{{EXT.REF}}</ExtRefNo>
+  <ExtRefNo>{{!YY}}{{!DDD}}{{!SEQ}}{{EXT.REF}}</ExtRefNo>
   <ExternalCustomer>{{COUNTERPARTY}}</ExternalCustomer>
   <MandatedUser>{{MANDATED.USER}}</MandatedUser>
   <PaymentSystem>{{PAYMENT.SYSTEM}}</PaymentSystem>
@@ -32,4 +32,3 @@
   <DebitFrequency>1M</DebitFrequency>
   <Notes>{{NOTES}}</Notes>
 </Collection>
-{{!TODAY}}|{{!DD}}|{{!MM}}|{{!YY}}|{{!YYYY}}|{{!hh}}|{{!mm}}|{{!ss}}

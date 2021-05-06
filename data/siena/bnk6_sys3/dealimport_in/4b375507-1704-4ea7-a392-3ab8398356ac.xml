@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<Collections>
+      <Collection>
+        <DealType>Spot</DealType>
+        <MsgID>4b375507-1704-4ea7-a392-3ab8398356ac</MsgID>
+        <ExecType>1</ExecType>
+        <TradeDate>2021-05-06</TradeDate>
+        <ExtRefNo>FX202105062152122</ExtRefNo>
+        <ExternalCustomer>TELIA</ExternalCustomer>
+        <Direction>Sell</Direction>
+        <Rate>0.456</Rate>
+        <DealtCurrency>EUR</DealtCurrency>
+        <AgainstCurrency>CHF</AgainstCurrency>
+        <DealtAmount>20000</DealtAmount>
+        <AgainstAmount></AgainstAmount>
+        <Book>IMPORT</Book>
+        <ValueDate>2021-05-10</ValueDate>
+        <Notes>FX20210506215212</Notes>
+        <MandatedUser>David J. Kim</MandatedUser>
+        <LEI>213800APCD7UDNQHOI68</LEI>
+        <Broker></Broker>
+      </Collection>
+</Collections>

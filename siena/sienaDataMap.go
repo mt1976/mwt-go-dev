@@ -108,7 +108,7 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        application.GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +       "List Data Maps",
+		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Data Loaders",
 		NoDataMapIDs:    noRows,
 		SvcDataMapItems: dataMapItemsList,
 	}
@@ -181,7 +181,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 		UserRole:       application.GetUserRole(r),
 		UserNavi:       "NOT USED",
 		Title:          title,
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +      "View Data Maps",
+		PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Data Loader - View",
 		NoDataMapIDs:   0,
 		SvcDataMapCols: wrkDataMapCols,
 		DataMapPageID:  thisID,
@@ -242,7 +242,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:      application.GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         "Title",
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +     "View XML Template",
+		PageTitle:     globals.ApplicationProperties["appname"] + " - " + "Data Loader - View Import XML",
 		DataMapPageID: thisID,
 		JSRows:        35,
 		FullRecord:    html.UnescapeString(text),
@@ -298,7 +298,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:      application.GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         title,
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +     "View XML Template",
+		PageTitle:     globals.ApplicationProperties["appname"] + " - " + "Data Loader - Edit XML Template",
 		DataMapPageID: thisID,
 		JSRows:        35,
 		FullRecord:    html.UnescapeString(fullRec),
@@ -404,7 +404,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:     application.GetUserRole(r),
 		UserNavi:     "NOT USED",
 		Title:        title,
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +    "New Data Loader Template",
+		PageTitle:    globals.ApplicationProperties["appname"] + " - " + "Data Loader - New",
 		InstanceList: instanceList,
 	}
 	//fmt.Println("WCT : Page :", pageDM)
@@ -518,7 +518,9 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 		newID := uuid.New().String()
 		importtemplate = replaceWildcard(importtemplate, "!MSG.ID", newID)
 		today := time.Now()
+		dayOfYear := fmt.Sprintf("%03d", today.YearDay())
 		importtemplate = replaceWildcard(importtemplate, "!TODAY", today.Format(globals.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!DDD", dayOfYear)
 		importtemplate = replaceWildcard(importtemplate, "!DD", today.Format(globals.DFDD))
 		importtemplate = replaceWildcard(importtemplate, "!MM", today.Format(globals.DFMM))
 		importtemplate = replaceWildcard(importtemplate, "!YY", today.Format(globals.DFYY))

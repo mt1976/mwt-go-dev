@@ -72,7 +72,7 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookListPage{
 		Title:          globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +      "List Siena Books",
+		PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
 		UserMenu:       application.GetUserMenu(r),
@@ -109,7 +109,7 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Book",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -150,7 +150,7 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Book",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -178,7 +178,7 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaBookItem
 
@@ -260,7 +260,7 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Book",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

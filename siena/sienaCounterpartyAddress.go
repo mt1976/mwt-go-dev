@@ -78,11 +78,12 @@ func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 	noItems, returnList, _ := getSienaCounterpartyAddressList()
 
 	pageSienaCounterpartyAddressList := sienaCounterpartyAddressListPage{
-		UserMenu:                      application.GetUserMenu(r),
-		UserRole:                      application.GetUserRole(r),
-		UserNavi:                      "NOT USED",
-		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                     "List Siena CounterpartyAddresss",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Addresses",
+
 		SienaCounterpartyAddressCount: noItems,
 		SienaCounterpartyAddressList:  returnList,
 	}
@@ -115,7 +116,7 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 		UserRole:   application.GetUserRole(r),
 		UserNavi:   "NOT USED",
 		Title:      globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +  "View Siena CounterpartyAddress",
+		PageTitle:  globals.ApplicationProperties["appname"] + " - " + "Counterparty Address - View",
 		ID:         "",
 		NameFirm:   returnRecord.NameFirm,
 		NameCentre: returnRecord.NameCentre,
@@ -155,7 +156,7 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 		UserRole:   application.GetUserRole(r),
 		UserNavi:   "NOT USED",
 		Title:      globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +  "View Siena CounterpartyAddress",
+		PageTitle:  globals.ApplicationProperties["appname"] + " - " + "Counterparty Address - Edit",
 		ID:         "",
 		NameFirm:   returnRecord.NameFirm,
 		NameCentre: returnRecord.NameCentre,
@@ -185,7 +186,7 @@ func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyAddressItem
 
@@ -271,7 +272,7 @@ func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) 
 		UserRole:   application.GetUserRole(r),
 		UserNavi:   "NOT USED",
 		Title:      globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +  "View Siena CounterpartyAddress",
+		PageTitle:  globals.ApplicationProperties["appname"] + " - " + "Counterparty Address - New",
 		ID:         "NEW",
 		NameFirm:   "",
 		NameCentre: "",

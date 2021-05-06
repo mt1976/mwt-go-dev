@@ -109,7 +109,7 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:               application.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +              "List Siena MandatedUsers",
+		PageTitle:              globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandates",
 		SienaMandatedUserCount: noItems,
 		SienaMandatedUserList:  returnList,
 	}
@@ -146,7 +146,7 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:                          application.GetUserRole(r),
 		UserNavi:                          "NOT USED",
 		Title:                             globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                         "View Siena MandatedUser",
+		PageTitle:                         globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - View",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
 		MandatedUserKeyCounterpartyCentre: returnRecord.MandatedUserKeyCounterpartyCentre,
 		MandatedUserKeyUserName:           returnRecord.MandatedUserKeyUserName,
@@ -208,7 +208,7 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:                          application.GetUserRole(r),
 		UserNavi:                          "NOT USED",
 		Title:                             globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                         "View Siena MandatedUser",
+		PageTitle:                         globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - Edit",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
 		MandatedUserKeyCounterpartyCentre: returnRecord.MandatedUserKeyCounterpartyCentre,
 		MandatedUserKeyUserName:           returnRecord.MandatedUserKeyUserName,
@@ -251,7 +251,7 @@ func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaMandatedUserItem
 
@@ -398,7 +398,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:                          application.GetUserRole(r),
 		UserNavi:                          "NOT USED",
 		Title:                             globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                         "View Siena MandatedUser",
+		PageTitle:                         globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - New",
 		ID:                                "NEW",
 		MandatedUserKeyCounterpartyFirm:   "",
 		MandatedUserKeyCounterpartyCentre: "",

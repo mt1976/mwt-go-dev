@@ -76,11 +76,12 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	noItems, returnList, _ := getSienaCounterpartyImportIDList()
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDListPage{
-		UserMenu:                       application.GetUserMenu(r),
-		UserRole:                       application.GetUserRole(r),
-		UserNavi:                       "NOT USED",
-		Title:                          globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                      "List Siena CounterpartyImportIDs",
+		UserMenu:  application.GetUserMenu(r),
+		UserRole:  application.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     globals.ApplicationProperties["appname"],
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifiers",
+
 		SienaCounterpartyImportIDCount: noItems,
 		SienaCounterpartyImportIDList:  returnList,
 	}
@@ -116,7 +117,7 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyImportID",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifier - View",
 		ID:          returnRecord.Code,
 		KeyImportID: returnRecord.KeyImportID,
 		Firm:        returnRecord.Firm,
@@ -161,7 +162,7 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyImportID",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifier - Edit",
 		ID:          returnRecord.Code,
 		KeyImportID: returnRecord.KeyImportID,
 		Firm:        returnRecord.Firm,
@@ -190,7 +191,7 @@ func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyImportIDItem
 
@@ -286,7 +287,7 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyImportID",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifier - New",
 		ID:          "NEW",
 		KeyImportID: "externalDealImporter",
 		Firm:        "",

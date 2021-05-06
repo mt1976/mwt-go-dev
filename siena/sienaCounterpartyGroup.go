@@ -73,7 +73,7 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupListPage{
 		Title:                       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                   "List Siena CounterpartyGroups",
+		PageTitle:                   globals.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
 		UserMenu:                    application.GetUserMenu(r),
@@ -105,7 +105,7 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyGroup",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -142,7 +142,7 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyGroup",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Group - View",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -173,7 +173,7 @@ func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL,"Save","")
+	application.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyGroupItem
 
@@ -264,7 +264,7 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena CounterpartyGroup",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Group - New",
 
 		Name:        "",
 		CountryCode: "",
