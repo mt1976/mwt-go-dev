@@ -137,7 +137,7 @@ func ListFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           "Outstanding Request",
-		PageTitle:       globals.ApplicationProperties["appname"] + " - Funds Check - Requests",
+		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Funds Check Approvals",
 		FundsCheckCount: noItems,
 		FundsCheckList:  returnList,
 	}
@@ -183,7 +183,7 @@ func ActionFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	fundsCheckPage := editViewFundsCheck(w, r)
-	fundsCheckPage.PageTitle = globals.ApplicationProperties["appname"] + " - Funds Check - Approve"
+	fundsCheckPage.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Process"
 	fundsCheckPage.Title = "Response Message Detail"
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
@@ -198,7 +198,7 @@ func editViewFundsCheck(w http.ResponseWriter, r *http.Request) simFundsCheckPag
 
 	fundsCheckPage := simFundsCheckPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Request",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Request",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -305,7 +305,7 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 	fundsCheckPage := simFundsCheckPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Funds Check Approval - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

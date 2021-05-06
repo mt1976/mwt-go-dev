@@ -96,7 +96,7 @@ func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:             GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                globals.ApplicationProperties["appname"],
-		PageTitle:            "List Dispatch",
+		PageTitle:            globals.ApplicationProperties["appname"] + " - " + "Import Data",
 		LoaderDataStoreCount: noItems,
 		LoaderDataStoreList:  returnList,
 	}
@@ -125,7 +125,7 @@ func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderDataStoreList := appLoaderDataStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Dispatch",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -170,7 +170,7 @@ func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderDataStoreList := appLoaderDataStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Dispatch",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -298,7 +298,7 @@ func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderDataStoreList := appLoaderDataStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

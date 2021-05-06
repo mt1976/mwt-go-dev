@@ -106,7 +106,7 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:              GetUserRole(r),
 		UserNavi:              "NOT USED",
 		Title:                 globals.ApplicationProperties["appname"],
-		PageTitle:             "List Credentials",
+		PageTitle:             globals.ApplicationProperties["appname"] + " - " + "Credentials",
 		CredentialsStoreCount: noItems,
 		CredentialsStoreList:  returnList,
 	}
@@ -135,7 +135,7 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Credentials",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Credentials - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -190,7 +190,7 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Credentials",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Credentials - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -321,7 +321,7 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Credentials - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

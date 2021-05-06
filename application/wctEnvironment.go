@@ -75,7 +75,7 @@ func ViewSrvEnvironmentHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:            GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               title,
-		PageTitle:           "View Server Config",
+		PageTitle:           globals.ApplicationProperties["appname"] + " - " + "WCT CONFIGURATION OBSOLETE!!!",
 		SrvEnvironmentItems: configsList,
 	}
 

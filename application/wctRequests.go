@@ -90,7 +90,7 @@ func PreviewRequestHandler(w http.ResponseWriter, r *http.Request) {
 		UniqueUID:             globals.UUID,
 		RequestResponseFormat: globals.ApplicationProperties["responseformat"],
 		DeliverTo:             globals.ApplicationProperties["deliverpath"],
-		PageTitle:             "View Request",
+		PageTitle:             globals.ApplicationProperties["appname"] + " - " + "WCT REQUESTS OBSOLETE!!!",
 	}
 
 	//fmt.Println("Page Data", pageRequestView)

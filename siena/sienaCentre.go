@@ -76,7 +76,7 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentreListPage{
 		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        "List Siena Centres",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +        "List Siena Centres",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
 		UserMenu:         application.GetUserMenu(r),
@@ -112,7 +112,7 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   "View Siena Centre",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Centre",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -150,7 +150,7 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   "View Siena Centre",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Centre",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -272,7 +272,7 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   "View Siena Centre",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena Centre",
 		ID:          "NEW",
 		Code:        "",
 		Name:        "",

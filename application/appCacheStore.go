@@ -95,7 +95,7 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           globals.ApplicationProperties["appname"],
-		PageTitle:       "List Session",
+		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Cache",
 		CacheStoreCount: noItems,
 		CacheStoreList:  returnList,
 	}
@@ -124,7 +124,7 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Session",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -169,7 +169,7 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Session",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -260,7 +260,7 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

@@ -73,7 +73,7 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupListPage{
 		Title:                       globals.ApplicationProperties["appname"],
-		PageTitle:                   "List Siena CounterpartyGroups",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +                   "List Siena CounterpartyGroups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
 		UserMenu:                    application.GetUserMenu(r),
@@ -105,7 +105,7 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   "View Siena CounterpartyGroup",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyGroup",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -142,7 +142,7 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
 		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   "View Siena CounterpartyGroup",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +   "View Siena CounterpartyGroup",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -264,7 +264,7 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena CounterpartyGroup",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena CounterpartyGroup",
 
 		Name:        "",
 		CountryCode: "",

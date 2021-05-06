@@ -101,7 +101,7 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:           GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          "List Message",
+		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Scheduler",
 		ScheduleStoreCount: noItems,
 		ScheduleStoreList:  returnList,
 	}
@@ -129,7 +129,7 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Message",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Schedule - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -175,7 +175,7 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Message",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Scheduler - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -305,7 +305,7 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Scheduler - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

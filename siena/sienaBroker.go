@@ -79,7 +79,7 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBrokerList := sienaBrokerListPage{
 		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        "List Siena Brokers",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +        "List Siena Brokers",
 		SienaBrokerCount: noItems,
 		SienaBrokerList:  returnList,
 		UserMenu:         application.GetUserMenu(r),
@@ -116,7 +116,7 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBrokerList := sienaBrokerPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Broker",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -163,7 +163,7 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBrokerList := sienaBrokerPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Broker",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -306,7 +306,7 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBrokerList := sienaBrokerPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Broker",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

@@ -1,0 +1,73 @@
+{
+  "menu_Nodes": [{
+      "ID": "1",
+      "Text": "Home",
+      "Glyph": "fa fa-home",
+      "HREF": "/home",
+      "OnClick": "",
+      "TextClass": ""
+    },
+    {
+      "Break": "<hr class=\"hr-list\">"
+    },
+    {
+      "ID": "fundsCheck",
+      "Text": "Funds Check Approvals",
+      "Glyph": "fas fa-check",
+      "HREF": "/listFundsCheck",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "ID": "19",
+      "Text": "Data Loader",
+      "Glyph": "fas fa-dice-d6",
+      "HREF": "/listSvcDataMap",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "Break": "<hr class=\"hr-list\">"
+    },
+    {
+      "ID": "scheduleStore",
+      "Text": "Schedule",
+      "Glyph": "far fa-clock",
+      "HREF": "/listScheduleStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
+    ,
+    {
+      "ID": "systemStore",
+      "Text": "Connected Systems",
+      "Glyph": "fas fa-plug",
+      "HREF": "/listSystemStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
+    ,
+    {
+      "ID": "23",
+      "Text": "App Environment",
+      "Glyph": "fa fa-server",
+      "HREF": "/viewAppConfiguration",
+      "OnClick": "",
+      "TextClass": "text-info"
+    },
+    {
+      "Break": "<hr class=\"hr-list\">"
+    },
+    {
+      "ID": "27",
+      "Text": "Logout",
+      "Glyph": "fas fa-sign-out-alt",
+      "HREF": "/logout",
+      "OnClick": "",
+      "TextClass": "text-muted"
+    }
+
+  ]
+}

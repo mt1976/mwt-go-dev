@@ -55,7 +55,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:               GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  title,
-		PageTitle:              "Application Server Configuration",
+		PageTitle:              globals.ApplicationProperties["appname"] + " - " + "Application Configuration",
 		RequestPath:            globals.ApplicationProperties["deliverpath"],
 		ResponsePath:           globals.ApplicationProperties["receivepath"],
 		ProcessedPath:          globals.ApplicationProperties["processedpath"],

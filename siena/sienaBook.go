@@ -72,7 +72,7 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookListPage{
 		Title:          globals.ApplicationProperties["appname"],
-		PageTitle:      "List Siena Books",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +      "List Siena Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
 		UserMenu:       application.GetUserMenu(r),
@@ -109,7 +109,7 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Book",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Book",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -150,7 +150,7 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Book",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Book",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -260,7 +260,7 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSienaBookList := sienaBookPage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Book",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ + "View Siena Book",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

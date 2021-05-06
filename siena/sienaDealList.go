@@ -150,7 +150,7 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:           application.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          "List Siena DealLists",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +          "List Siena DealLists",
 		SienaDealListCount: noItems,
 		SienaDealListList:  returnList,
 	}
@@ -183,7 +183,7 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:           application.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          "View Siena DealList",
+		PageTitle: globals.ApplicationProperties["appname"] + " - “ +          "View Siena DealList",
 		Action:             "",
 		SienaReference:     returnRecord.SienaReference,
 		CustomerSienaView:  returnRecord.CustomerSienaView,

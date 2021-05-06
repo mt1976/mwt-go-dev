@@ -88,7 +88,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:           GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          "List Dispatch",
+		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Dispatch",
 		DispatchStoreCount: noItems,
 		DispatchStoreList:  returnList,
 	}
@@ -117,7 +117,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Dispatch",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -160,7 +160,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Dispatch",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -284,7 +284,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

@@ -93,7 +93,7 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:            GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               globals.ApplicationProperties["appname"],
-		PageTitle:           "Data Loader",
+		PageTitle:           globals.ApplicationProperties["appname"] + " - " + "Import Data Map",
 		LoaderMapStoreCount: noItems,
 		LoaderMapStoreList:  returnList,
 		LoaderID:            searchID,
@@ -123,7 +123,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Data Loader - View",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data Map - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -168,7 +168,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Data Loader - Edit",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data Map - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -299,7 +299,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data Map - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

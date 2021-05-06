@@ -244,28 +244,6 @@
       "OnClick": "",
       "TextClass": "text-warning"
     }
-
-    ,
-    {
-      "ID": "20",
-      "Text": "Responses",
-      "Glyph": "fas fa-folder",
-      "HREF": "/listResponses",
-      "OnClick": "",
-      "TextClass": "text-info"
-    }
-
-    ,
-    {
-      "ID": "21",
-      "Text": "Properties",
-      "Glyph": "fas fa-cog",
-      "HREF": "/listSrvConfiguration",
-      "OnClick": "",
-      "TextClass": "text-info"
-    }
-
-
     ,
     {
       "Break": "<hr class=\"hr-list\">"
@@ -277,33 +255,6 @@
       "HREF": "/viewAppConfiguration",
       "OnClick": "",
       "TextClass": "text-info"
-    },
-    {
-      "ID": "24",
-      "Text": "Server Environment",
-      "Glyph": "fa fa-server",
-      "HREF": "/viewSrvEnvironment",
-      "OnClick": "",
-      "TextClass": "text-info"
-    },
-    {
-      "Break": "<hr class=\"hr-list\">"
-    },
-    {
-      "ID": "25",
-      "Text": "Requests",
-      "Glyph": "far fa-trash-alt",
-      "HREF": "/clearRequests",
-      "OnClick": "",
-      "TextClass": "text-warning"
-    },
-    {
-      "ID": "26",
-      "Text": "Responses",
-      "Glyph": "far fa-trash-alt",
-      "HREF": "/clearResponses",
-      "OnClick": "",
-      "TextClass": "text-warning"
     },
     {
       "Break": "<hr class=\"hr-list\">"

@@ -102,7 +102,7 @@ func ViewSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:              GetUserRole(r),
 		UserNavi:              "NOT USED",
 		Title:                 title,
-		PageTitle:             "View Server Config",
+		PageTitle:             globals.ApplicationProperties["appname"] + " - " + "WCT CONFIGURATION OBSOLETE!!!",
 		SrvConfigurationItems: configsList,
 		PageRecordID:          recordID,
 	}
@@ -162,7 +162,7 @@ func ListSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:              GetUserRole(r),
 		UserNavi:              "NOT USED",
 		Title:                 title,
-		PageTitle:             "View Server Config",
+		PageTitle:             globals.ApplicationProperties["appname"] + " - " + "WCT CONFIGURATION OBSOLETE!!!",
 		SrvConfigurationItems: configsList,
 	}
 
@@ -219,7 +219,7 @@ func EditSrvConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:     GetUserRole(r),
 		UserNavi:     "NOT USED",
 		Title:        title,
-		PageTitle:    "View Server Config",
+		PageTitle:    globals.ApplicationProperties["appname"] + " - " + "WCT CONFIGURATION OBSOLETE!!!",
 		PageRecordID: recordID,
 		FullRecord:   recordContent,
 		Rows:         Min(maxRows, noRows),

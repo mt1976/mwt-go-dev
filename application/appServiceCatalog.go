@@ -66,7 +66,7 @@ func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 			UserMenu:       GetUserMenu(r),
 			UserRole:       GetUserRole(r),
 			UserNavi:       "NOT USED",
-			PageTitle:      "Service Catalog",
+			PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Service Catalog",
 		}
 
 		//	fmt.Println("serviceCatalog", serviceCatalog)

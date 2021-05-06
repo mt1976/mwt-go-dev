@@ -84,7 +84,7 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:          GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
-		PageTitle:         "List Message",
+		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "System Message Translation",
 		MessageStoreCount: noItems,
 		MessageStoreList:  returnList,
 	}
@@ -113,7 +113,7 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Message",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "System Message Translation - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -154,7 +154,7 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Message",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "System Message Translation - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -272,7 +272,7 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "System Message Translation - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

@@ -40,6 +40,7 @@
     <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
+  <div class="nav-tile">Control Center</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}
     <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
@@ -62,8 +63,8 @@
 
           <div class="row">
             <div class="col">
-              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              Portfolio&nbsp;&nbsp;<span class="badge badge-dark">{{.SienaPortfolioCount}} </span>
+            <!--  <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;"></img> -->
+              Portfolio<span class="badge badge-dark">{{.SienaPortfolioCount}}</span>
             </div>
             <div class="col text-right">
               <div class="btn-group">

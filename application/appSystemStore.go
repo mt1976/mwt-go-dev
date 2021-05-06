@@ -99,7 +99,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:         GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        "List Dispatch",
+		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Connected Systems",
 		SystemStoreCount: noItems,
 		SystemStoreList:  returnList,
 	}
@@ -124,7 +124,7 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = "View System"
+	pageSystemStoreList.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Connected System - View"
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
@@ -143,7 +143,7 @@ func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = "Edit System Details"
+	pageSystemStoreList.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Connected System - Edit"
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
@@ -157,7 +157,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 
 	pageSystemStoreList := appSystemStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Dispatch",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Connected System - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -286,7 +286,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSystemStoreList := appSystemStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Connected System - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

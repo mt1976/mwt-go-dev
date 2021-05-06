@@ -197,7 +197,7 @@ func ViewResponseHandler(w http.ResponseWriter, r *http.Request) {
 		ResponseContent:      html.UnescapeString(html.UnescapeString(respC)),
 		RequestPayloadCount:  thisPayload.RequestPayloadCount,
 		RequestPayload:       html.UnescapeString(reqC),
-		PageTitle:            "View Response",
+		PageTitle:            globals.ApplicationProperties["appname"] + " - " + "WCT RESPONSES OBSOLETE!!!",
 	}
 
 	//fmt.Println("Page Data", pageResponseView)
@@ -333,7 +333,7 @@ func ListResponsesHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:    GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       title,
-		PageTitle:   "List Responses",
+		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "WCT RESPONSES OBSOLETE!!!",
 		Responses:   files,
 		NoResponses: noResps,
 	}

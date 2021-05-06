@@ -57,12 +57,12 @@
 function openNav() {
   document.getElementById("mySidenav").style.width = "300px";
 //  document.getElementById("body").style.marginLeft = "250px";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  document.body.style.backgroundColor = "rgba(0,0,0,.1)";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 //  document.getElementById("body").style.marginLeft = "0";
-  document.body.style.backgroundColor = "rgba(242,242,242)";
-}
+  document.body.style.backgroundColor = "rgba(255,255,255)";
+  }

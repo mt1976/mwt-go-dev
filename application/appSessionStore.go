@@ -120,7 +120,7 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:          GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             globals.ApplicationProperties["appname"],
-		PageTitle:         "List Session",
+		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "Sessions",
 		SessionStoreCount: noItems,
 		SessionStoreList:  returnList,
 	}
@@ -149,7 +149,7 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSessionStoreList := appSessionStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Session",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Session - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -205,7 +205,7 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSessionStoreList := appSessionStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "Edit Session",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Session - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -355,7 +355,7 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSessionStoreList := appSessionStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: "View Siena Broker",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Session - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",

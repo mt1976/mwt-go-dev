@@ -39,6 +39,7 @@
     <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
+  <div class="nav-tile">Control Center</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}
     <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
@@ -79,7 +80,7 @@ Data Map &nbsp;:&nbsp;<code>NEW</code>
             <div class="row">
               <div class="col">
             <label for="type" class="d-flex flex-column">Type :</label>
-            <select class="selectpicker" id="Type" name="Type" mandatory="mandatory">
+            <select class="selectpicker form-select" id="Type" name="Type" mandatory="mandatory">
               <option>transactional</option>
               <option>static</option>
             </select>
@@ -87,7 +88,7 @@ Data Map &nbsp;:&nbsp;<code>NEW</code>
             </div>
             <div class="col">
           <label for="type" class="d-flex flex-column">Instance :</label>
-          <select class="selectpicker" id="Instance" name="Instance">
+          <select class="selectpicker form-select" id="Instance" name="Instance">
             <option></option>
             {{range .InstanceList}}<option>{{.Id}}</option>{{end}}
           </select>
