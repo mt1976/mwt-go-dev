@@ -354,8 +354,8 @@ func getSienaAccount(id string) (int, sienaAccountItem, error) {
 func putSienaAccount(updateItem sienaAccountItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
-	fmt.Println(updateItem)
+	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(updateItem)
 	return nil
 }
 

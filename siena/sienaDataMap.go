@@ -440,7 +440,7 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	s.Instance = instanceID
 	s.Extension = extensionID
 
-	application.NewLoaderStore(s)
+	application.NewLoaderStore(s, r)
 
 	ListSvcDataMapHandler(w, r)
 
@@ -568,7 +568,7 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	loader.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
-	application.PutLoaderStore(loader)
+	application.PutLoaderStore(loader, r)
 
 	ListSvcDataMapHandler(w, r)
 }

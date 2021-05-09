@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/user"
 	"strings"
 	"time"
 
@@ -211,7 +210,7 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("save", s)
 
-	putSystemStore(s)
+	putSystemStore(s, r)
 
 	ListSystemStoreHandler(w, r)
 
@@ -247,7 +246,7 @@ func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Ban", searchID)
-	banSystemStore(searchID)
+	banSystemStore(searchID, r)
 	ListSystemStoreHandler(w, r)
 }
 
@@ -265,7 +264,7 @@ func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Activate", searchID)
-	activateSystemStore(searchID)
+	activateSystemStore(searchID, r)
 	ListSystemStoreHandler(w, r)
 
 }
@@ -315,29 +314,27 @@ func GetSystemStoreByID(id string) (int, SystemStoreItem, error) {
 	return 1, SystemStoreItem, nil
 }
 
-func NewSystemStore(r SystemStoreItem) {
+func NewSystemStore(r SystemStoreItem, req *http.Request) {
 	if len(r.Id) == 0 {
 		newID := uuid.New().String()
 		r.Id = newID
 	}
-	putSystemStore(r)
+	putSystemStore(r, req)
 }
 
-func PutSystemStore(r SystemStoreItem) {
-	putSystemStore(r)
+func PutSystemStore(r SystemStoreItem, req *http.Request) {
+	putSystemStore(r, req)
 }
 
-func putSystemStore(r SystemStoreItem) {
+func putSystemStore(r SystemStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
 	host, _ := os.Hostname()
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = userID
+		r.SYSWho = GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}
@@ -376,24 +373,24 @@ func DeleteSystemStore(id string) {
 	//log.Println(fred2, err2)
 }
 
-func banSystemStore(id string) {
+func banSystemStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetSystemStoreByID(id)
 
-	putSystemStore(r)
+	putSystemStore(r, req)
 }
 
-func activateSystemStore(id string) {
+func activateSystemStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetSystemStoreByID(id)
 
-	putSystemStore(r)
+	putSystemStore(r, req)
 }
 
 // fetchSystemStoreData read all employees

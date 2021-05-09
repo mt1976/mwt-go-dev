@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/user"
 	"strconv"
 	"strings"
 	"time"
@@ -218,7 +217,7 @@ func SaveLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("save", s)
 
-	putLoaderMapStore(s)
+	putLoaderMapStore(s, r)
 
 	ListLoaderMapStoreHandler(w, r)
 
@@ -254,7 +253,7 @@ func BanLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Ban", searchID)
-	banLoaderMapStore(searchID)
+	banLoaderMapStore(searchID, r)
 	ListLoaderMapStoreHandler(w, r)
 }
 
@@ -272,7 +271,7 @@ func ActivateLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Activate", searchID)
-	activateLoaderMapStore(searchID)
+	activateLoaderMapStore(searchID, r)
 	ListLoaderMapStoreHandler(w, r)
 
 }
@@ -343,7 +342,7 @@ func GetLoaderMapStoreByIDLoader(id string, loaderID string) (int, LoaderMapStor
 	return 1, LoaderMapStoreItem, nil
 }
 
-func putLoaderMapStore(r LoaderMapStoreItem) {
+func putLoaderMapStore(r LoaderMapStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 	if len(r.Id) == 0 {
@@ -351,13 +350,13 @@ func putLoaderMapStore(r LoaderMapStoreItem) {
 	}
 
 	r.Name = strings.ToUpper(r.Name)
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
+	//	currentUserID, _ := user.Current()
+	//	userID := currentUserID.Name
 	host, _ := os.Hostname()
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = userID
+		r.SYSWho = GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}
@@ -407,24 +406,24 @@ func DeleteLoaderMapStoreByLoader(id string) {
 	//log.Println(fred2, err2)
 }
 
-func banLoaderMapStore(id string) {
+func banLoaderMapStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetLoaderMapStoreByID(id)
 
-	putLoaderMapStore(r)
+	putLoaderMapStore(r, req)
 }
 
-func activateLoaderMapStore(id string) {
+func activateLoaderMapStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetLoaderMapStoreByID(id)
 
-	putLoaderMapStore(r)
+	putLoaderMapStore(r, req)
 }
 
 // fetchLoaderMapStoreData read all employees

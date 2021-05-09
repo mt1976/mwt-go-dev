@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -197,7 +198,7 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//log.Println("save", s)
 
-	putMessageStore(s)
+	putMessageStore(s, r)
 
 	ListMessageStoreHandler(w, r)
 
@@ -233,7 +234,7 @@ func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Ban", searchID)
-	banMessageStore(searchID)
+	banMessageStore(searchID, r)
 	ListMessageStoreHandler(w, r)
 }
 
@@ -251,7 +252,7 @@ func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Activate", searchID)
-	activateMessageStore(searchID)
+	activateMessageStore(searchID, r)
 	ListMessageStoreHandler(w, r)
 
 }
@@ -301,10 +302,23 @@ func GetMessageStoreByID(unused *sql.DB, id string) (int, appMessageStoreItem, e
 	return 1, appMessageStoreItem, nil
 }
 
-func putMessageStore(r appMessageStoreItem) {
+func putMessageStore(r appMessageStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 
-	r.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+
+	//	currentUserID, _ := user.Current()
+	//	userID := currentUserID.Name
+	host, _ := os.Hostname()
+
+	if len(r.SYSCreated) == 0 {
+		r.SYSCreated = createDate
+		r.SYSWho = GetUserName(req)
+		r.SYSHost = host
+		// Default in info for a new RECORD
+	}
+
+	r.SYSUpdated = createDate
 
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
@@ -336,7 +350,7 @@ func deleteMessageStore(id string) {
 	//log.Println(fred2, err2)
 }
 
-func banMessageStore(id string) {
+func banMessageStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
@@ -344,21 +358,21 @@ func banMessageStore(id string) {
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
-	putMessageStore(r)
+	putMessageStore(r, req)
 }
 
-func activateMessageStore(id string) {
+func activateMessageStore(id string, req *http.Request) {
 	fmt.Println("RECORD", id)
 	_, r, err2 := GetMessageStoreByID(globals.ApplicationDB, id)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
-	putMessageStore(r)
+	putMessageStore(r, req)
 }
 
 // fetchMessageStoreData read all employees
 func fetchMessageStoreData(unused *sql.DB, tsql string) (int, []appMessageStoreItem, appMessageStoreItem, error) {
-	log.Println(tsql)
+	//log.Println(tsql)
 	var appMessageStore appMessageStoreItem
 	var appMessageStoreList []appMessageStoreItem
 

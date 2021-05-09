@@ -183,10 +183,10 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 }
 
 func GlobalsDatabasePoke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
-	log.Println("Fingering     :", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"])
+	log.Printf("Fingering     : Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"])
 	err := dbInstance.Ping()
 	if err != nil {
-		log.Println("Reconnecting  :", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"], err.Error())
+		log.Printf("Reconnecting  : Server '%s' Database '%s' Schema '%s' (%s)", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"], err.Error())
 		// Try to reconnect
 		dbInstance, err = GlobalsDatabaseConnect(mssqlConfig)
 		if err != nil {

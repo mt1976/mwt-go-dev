@@ -344,8 +344,8 @@ func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
 func putSienaBroker(db *sql.DB, updateItem sienaBrokerItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
-	fmt.Println(updateItem)
+	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(updateItem)
 	return nil
 }
 

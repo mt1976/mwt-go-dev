@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/user"
 	"time"
 
 	"github.com/google/uuid"
@@ -237,7 +236,7 @@ func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("save", s)
 
-	putLoaderStore(s)
+	putLoaderStore(s, r)
 
 	ListLoaderStoreHandler(w, r)
 
@@ -273,7 +272,7 @@ func BanLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Ban", searchID)
-	banLoaderStore(searchID)
+	banLoaderStore(searchID, r)
 	ListLoaderStoreHandler(w, r)
 }
 
@@ -291,7 +290,7 @@ func ActivateLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Activate", searchID)
-	activateLoaderStore(searchID)
+	activateLoaderStore(searchID, r)
 	ListLoaderStoreHandler(w, r)
 
 }
@@ -343,29 +342,29 @@ func GetLoaderStoreByID(id string) (int, LoaderStoreItem, error) {
 	return 1, LoaderStoreItem, nil
 }
 
-func NewLoaderStore(r LoaderStoreItem) {
+func NewLoaderStore(r LoaderStoreItem, req *http.Request) {
 	newID := uuid.New().String()
 	r.Id = newID
 	r.Filename = newID
 	r.Lastrun = ""
-	putLoaderStore(r)
+	putLoaderStore(r, req)
 }
 
-func PutLoaderStore(r LoaderStoreItem) {
-	putLoaderStore(r)
+func PutLoaderStore(r LoaderStoreItem, req *http.Request) {
+	putLoaderStore(r, req)
 }
 
-func putLoaderStore(r LoaderStoreItem) {
+func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
+	//	currentUserID, _ := user.Current()
+	//	userID := currentUserID.Name
 	host, _ := os.Hostname()
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = userID
+		r.SYSWho = GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}
@@ -404,24 +403,24 @@ func DeleteLoaderStore(id string) {
 	//log.Println(fred2, err2)
 }
 
-func banLoaderStore(id string) {
+func banLoaderStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetLoaderStoreByID(id)
 
-	putLoaderStore(r)
+	putLoaderStore(r, req)
 }
 
-func activateLoaderStore(id string) {
+func activateLoaderStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetLoaderStoreByID(id)
 
-	putLoaderStore(r)
+	putLoaderStore(r, req)
 }
 
 // fetchLoaderStoreData read all employees

@@ -227,7 +227,7 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
+	//fmt.Println("PreparedXML", string(preparedXML))
 
 	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()

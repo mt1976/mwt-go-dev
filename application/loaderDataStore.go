@@ -223,7 +223,7 @@ func SaveLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//log.Println("save", s)
 
-	putLoaderDataStore(s)
+	putLoaderDataStore(s, r)
 
 	ListLoaderDataStoreHandler(w, r)
 
@@ -259,7 +259,7 @@ func BanLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Ban", searchID)
-	banLoaderDataStore(searchID)
+	banLoaderDataStore(searchID, r)
 	ListLoaderDataStoreHandler(w, r)
 }
 
@@ -277,7 +277,7 @@ func ActivateLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Activate", searchID)
-	activateLoaderDataStore(searchID)
+	activateLoaderDataStore(searchID, r)
 	ListLoaderDataStoreHandler(w, r)
 
 }
@@ -355,20 +355,20 @@ func GetLoaderDataStoreByID(id string) (int, LoaderDataStoreItem, error) {
 	return 1, LoaderDataStoreItem, nil
 }
 
-func putLoaderDataStore(r LoaderDataStoreItem) {
+func putLoaderDataStore(r LoaderDataStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
 	}
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
+	//currentUserID, _ := user.Current()
+	//userID := currentUserID.Name
 	host, _ := os.Hostname()
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = userID
+		r.SYSWho = GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}
@@ -461,24 +461,24 @@ func DeleteLoaderDataStoreByLoader(id string) {
 	//log.Println(fred2, err2)
 }
 
-func banLoaderDataStore(id string) {
+func banLoaderDataStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetLoaderDataStoreByID(id)
 
-	putLoaderDataStore(r)
+	putLoaderDataStore(r, req)
 }
 
-func activateLoaderDataStore(id string) {
+func activateLoaderDataStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetLoaderDataStoreByID(id)
 
-	putLoaderDataStore(r)
+	putLoaderDataStore(r, req)
 }
 
 // fetchLoaderDataStoreData read all employees

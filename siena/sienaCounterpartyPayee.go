@@ -142,7 +142,7 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	application.ServiceMessage(inUTL)
-	var returnList []sienaCounterpartyPayeeItem
+	//var returnList []sienaCounterpartyPayeeItem
 	idSource := application.GetURLparam(r, "csrc")
 	idFirm := application.GetURLparam(r, "cfrm")
 	idCentre := application.GetURLparam(r, "ccen")
@@ -152,10 +152,10 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	idDirection := application.GetURLparam(r, "cdir")
 	idType := application.GetURLparam(r, "ctyp")
 
-	noItems, returnRecord, _ := getSienaCounterpartyPayeeByKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
-	fmt.Println("NoSienaItems", noItems, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
-	fmt.Println(returnList)
-	fmt.Println(tmpl)
+	_, returnRecord, _ := getSienaCounterpartyPayeeByKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	//fmt.Println("NoSienaItems", noItems, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
 		UserMenu:  application.GetUserMenu(r),
@@ -219,8 +219,8 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	idDirection := application.GetURLparam(r, "cdir")
 	idType := application.GetURLparam(r, "ctyp")
 
-	noItems, returnRecord, _ := getSienaCounterpartyPayeeByKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
-	fmt.Println("NoSienaItems", noItems, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	_, returnRecord, _ := getSienaCounterpartyPayeeByKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	//fmt.Println("NoSienaItems", noItems, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList()
@@ -308,7 +308,7 @@ func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 
 	item.Action = "UPDATE"
 
-	fmt.Println("ITEM", item)
+	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD
@@ -349,13 +349,13 @@ func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
+	//fmt.Println("PreparedXML", string(preparedXML))
 
 	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
+	//fmt.Println(fileName)
 
 	err := ioutil.WriteFile(fileName, preparedXML, 0644)
 	if err != nil {
@@ -456,8 +456,8 @@ func getSienaCounterpartyPayeeByKey(idSource string, idFirm string, idCentre str
 func putSienaCounterpartyPayee(updateItem sienaCounterpartyPayeeItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
-	fmt.Println(updateItem)
+	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(updateItem)
 	return nil
 }
 

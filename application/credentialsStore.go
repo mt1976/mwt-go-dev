@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/user"
 	"strconv"
 	"time"
 
@@ -246,7 +245,7 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//log.Println("save", s)
 
-	putCredentialsStore(s)
+	putCredentialsStore(s, r)
 
 	ListCredentialsStoreHandler(w, r)
 
@@ -282,7 +281,7 @@ func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Ban", searchID)
-	banCredentialsStore(searchID)
+	banCredentialsStore(searchID, r)
 	ListCredentialsStoreHandler(w, r)
 }
 
@@ -300,7 +299,7 @@ func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 		searchID = r.FormValue("Id")
 	}
 	serviceMessageAction(inUTL, "Activate", searchID)
-	activateCredentialsStore(searchID)
+	activateCredentialsStore(searchID, r)
 	ListCredentialsStoreHandler(w, r)
 
 }
@@ -357,7 +356,7 @@ func GetCredentialsStoreByUserName(userName string) (int, appCredentialsStoreIte
 	return 1, appCredentialsStoreItem, nil
 }
 
-func putCredentialsStore(r appCredentialsStoreItem) {
+func putCredentialsStore(r appCredentialsStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
@@ -365,14 +364,14 @@ func putCredentialsStore(r appCredentialsStoreItem) {
 		r.SYSCreated = createDate
 	}
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
+	//currentUserID, _ := user.Current()
+	//userID := currentUserID.Name
 	host, _ := os.Hostname()
 
 	if len(r.Id) == 0 {
 		r.Id = newCredentialsStoreID()
 		r.SYSCreated = createDate
-		r.SYSWho = userID
+		r.SYSWho = GetUserName(req)
 		r.SYSHost = host
 		r.Issued = createDate
 		//expiryDate := time.Now()
@@ -419,24 +418,24 @@ func deleteCredentialsStore(id string) {
 	}
 }
 
-func banCredentialsStore(id string) {
+func banCredentialsStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 	_, r, _ := GetCredentialsStoreByID(id)
 	r.Expiry = ""
 	r.Password = ""
-	putCredentialsStore(r)
+	putCredentialsStore(r, req)
 }
 
-func activateCredentialsStore(id string) {
+func activateCredentialsStore(id string, req *http.Request) {
 	//fmt.Println(credentialStore)
 	//	fmt.Println("RECORD", id)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	_, r, _ := GetCredentialsStoreByID(id)
 	r.Expiry = getExpiryDate()
-	putCredentialsStore(r)
+	putCredentialsStore(r, req)
 }
 
 // fetchCredentialsStoreData read all employees

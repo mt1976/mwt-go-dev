@@ -194,7 +194,7 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	item.Action = "UPDATE"
 
-	fmt.Println("ITEM", item)
+	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
 	var sFldCode sienaKEYFIELD
 	var sFldName sienaFIELD
@@ -235,13 +235,13 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	sienaXMLContent.TRANSACTIONS = sienaTransaction
 
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
+	//fmt.Println("PreparedXML", string(preparedXML))
 
 	staticImporterPath := globals.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
+	//fmt.Println(fileName)
 
 	err := ioutil.WriteFile(fileName, preparedXML, 0644)
 	if err != nil {
@@ -309,7 +309,7 @@ func getSienaCentre(id string) (int, sienaCentreItem, error) {
 func putSienaCentre(updateItem sienaCentreItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(globals.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }

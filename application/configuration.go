@@ -31,6 +31,17 @@ type AppConfigurationPage struct {
 	SienaDBUser            string
 	SienaDBPassword        string
 	SienaDBPort            string
+	SienaSystemDate        string
+	AppDBServer            string
+	AppDBPort              string
+	AppDBUser              string
+	AppDBPassword          string
+	AppDBDatabase          string
+	AppDBSchema            string
+	AppCredentialsLife     string
+	AppSessionLife         string
+	AppDefaultSienaSystem  string
+	SienaSystems           []SystemStoreItem
 }
 
 func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
@@ -41,7 +52,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "viewAppConfiguration"
+	tmpl := "ConfigurationView"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	serviceMessage(inUTL)
@@ -73,6 +84,19 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		SienaDBPassword:        strings.Repeat("*", len(globals.SienaPropertiesDB["password"])),
 		SienaDBPort:            globals.SienaPropertiesDB["port"],
 	}
+	pageAppConfigView.SienaSystemDate = globals.SienaSystemDate.Today
+	pageAppConfigView.AppDBServer = globals.ApplicationPropertiesDB["server"]
+	pageAppConfigView.AppDBPort = globals.ApplicationPropertiesDB["port"]
+	pageAppConfigView.AppDBUser = globals.ApplicationPropertiesDB["user"]
+	pageAppConfigView.AppDBPassword = strings.Repeat("*", len(globals.ApplicationPropertiesDB["password"]))
+	pageAppConfigView.AppDBDatabase = globals.ApplicationPropertiesDB["database"]
+	pageAppConfigView.AppDBSchema = globals.ApplicationPropertiesDB["schema"]
+	pageAppConfigView.AppCredentialsLife = globals.ApplicationProperties["credentialslife"]
+	pageAppConfigView.AppSessionLife = globals.ApplicationProperties["sessionlife"]
+	pageAppConfigView.AppDefaultSienaSystem = globals.SienaProperties["defaultsystem"]
+
+	_, systems, _ := GetSystemStoreList()
+	pageAppConfigView.SienaSystems = systems
 
 	//fmt.Println("Page Data", pageAppConfigView)
 

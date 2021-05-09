@@ -101,11 +101,11 @@
                     <td class="text-center align-middle justify-content-center" style="width:1px; white-space:nowrap;">
 
                       <div class="btn-group text-center justify-content-center">
-                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-info btn-inner" formaction="/previewRequest?id={{.CatalogID}}">
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-info btn-inner" formaction="/previewRequest?id={{.CatalogID}}">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
 
-                        <button type="submit" value="{{.CatalogID}}" class="btn btn-sm btn-outline-primary btn-inner" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}"
+                        <button type="submit" value="{{.CatalogID}}" class="btn btn-outline-primary btn-inner" formaction="/executeRequest?id={{.CatalogID}}&uuid={{.UUID}}&action={{.Action}}&item={{.Item}}&parameters={{.Parameters}}"
                           method="POST">
                           <i class="far fa-paper-plane" style="font-size: 22px"></i>
                         </button>
