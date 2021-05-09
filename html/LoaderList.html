@@ -38,8 +38,8 @@
     <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
-  <div class="nav-tile">Control Center</div>
-    <div class="nav-tile">Control Center</div>
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
+    <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}
     <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
@@ -69,7 +69,7 @@
               </div>
               <div class="col text-right">
                 <div class="btn-group">
-                  <button type="submit" value="" class="btn btn-primary float-right" formaction="/newSvcDataMap" method="POST" data-toggle="tooltip" data-placement="bottom" title="Create a new Data Map">
+                  <button type="submit" value="" class="btn btn-outline-primary float-right" formaction="/newSvcDataMap" method="POST" data-toggle="tooltip" data-placement="bottom" title="Create a new Data Map">
                     <i class="fas fa-plus"></i>&nbsp;&nbsp;New</button>
                   <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
                     <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
@@ -126,7 +126,7 @@
                       <button type="submit" value="" class="btn  btn-danger" style="border:none" formaction="/deleteSvcDataMap?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete '{{.DataMapName}}'">
                         <i class="fas fa-trash-alt"></i>
                       </button>
-                      <button type="submit" value="" class="btn  btn-primary" style="border:none" formaction="/runLoader?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.DataMapName}}'">
+                      <button type="submit" value="" class="btn  btn-outline-primary" style="border:none" formaction="/runLoader?loaderID={{.DataMapID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.DataMapName}}'">
                         <i class="fas fa-paper-plane"></i>
                       </button>
 

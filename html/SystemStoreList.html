@@ -40,7 +40,7 @@
     <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
-  <div class="nav-tile">Control Center</div>
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}
     <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
@@ -65,7 +65,7 @@
             </div>
             <div class="col text-right">
               <div class="btn-group">
-                <button type="submit" value="" class="btn btn-primary" formaction="/newSystemStore" method="POST">
+                <button type="submit" value="" class="btn btn-outline-primary" formaction="/newSystemStore" method="POST">
                   <i class="fas fa-plus"></i>&nbsp;&nbsp;New
                 </button>
                 <button id="export" type="button" class="btn btn-outline-primary"><i class="fas fa-save" ></i>&nbsp;&nbsp;Export</button>

@@ -224,16 +224,7 @@
       "OnClick": "",
       "TextClass": "text-info"
     }
-    ,
 
-    {
-      "ID": "18",
-      "Text": "Service Catalog",
-      "Glyph": "fas fa-list-alt",
-      "HREF": "/srvServiceCatalog",
-      "OnClick": "",
-      "TextClass": "text-secondary"
-    }
 
     ,
     {

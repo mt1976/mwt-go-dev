@@ -47,10 +47,10 @@
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
   <div class="row nav-row">
     <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
-    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">Control Center - Dashboards</a></div>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{ (index .UserMenu 0).MenuHeaderText}} - Dashboards</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
-  <div class="nav-tile">Control Center</div>
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}
     <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">

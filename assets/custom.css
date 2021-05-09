@@ -24,6 +24,88 @@
   --custom-light-grey:#EAEAEA;
 }
 
+body > div.container-fluid > div > form > div.card-header.font-weight-bold.border-primary > div > div.col-sm.text-right > div{
+  //background-color: red;
+  position:absolute;
+  top: -64px;
+  right: 5px;
+  z-index: -10000;
+
+}
+
+body > div.container-fluid > form > div > div.card-header.font-weight-bold > div > div:nth-child(2) > div
+{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+
+}
+
+body > div.container-fluid > div > form > div.card-header.font-weight-bold.border-primary > div > div.col.text-right > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+
+}
+
+body > div.container-fluid > div > div.card-header.font-weight-bold.border-primary > div > div.col.text-right > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+}
+
+#actionBar > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+}
+
+body > div.container-fluid > form > div > div.card-header > div > div.col.text-right > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+}
+
+#config > div > div.card-header.font-weight-bold > div > div.col.text-right{
+  //background-color: red;
+  position:absolute;
+  top: -57px;
+  right: 0px;
+  z-index: -10000;
+}
+
+#dataMapDetail > div > form > div.card-header > div > div.col.text-right > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+}
+
+body > div.container-fluid > div > form > div.card-header > div > div.col.text-right > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;
+}
+#SrvConfig > div > div.card-header > div > div:nth-child(2) > div{
+  //background-color: red;
+  position:absolute;
+  top: -63px;
+  right: 5px;
+  z-index: -10000;  
+}
 .nav-pills{
   margin-top: 15px;
   margin-bottom: 5px;
@@ -388,7 +470,7 @@ p{
   padding-left:5px;
   backdrop-filter: blur(2rem);
   background-color: var(--custom-primary-colour)!important;
-  z-index: 50;
+  z-index: 0;
   margin: 0;
 }
 .navbar {

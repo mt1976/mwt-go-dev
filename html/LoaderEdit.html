@@ -37,7 +37,7 @@
     <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
-  <div class="nav-tile">Control Center</div>
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}<a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
       <div class="row"><div class="dd-img"><i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i></div><div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div></div></a>{{end}}
@@ -52,7 +52,7 @@
             <div class="row">
               <div class="col">Data Map &nbsp;:&nbsp;<code>{{.DataMapPageID}}</code></div>
               <div class="col text-right">
-                <button type="button" value="" class="btn btn-primary" onclick="testFunction()"><i class="fas fa-plus" ></i>&nbsp;&nbsp;Add Row</button>
+                <button type="button" value="" class="btn btn-outline-primary" onclick="testFunction()"><i class="fas fa-plus" ></i>&nbsp;&nbsp;Add Row</button>
                 <div class="btn-group">
                   <button type="submit" value="" class="btn btn-danger" formaction="/saveSvcDataMap?loaderID={{.DataMapPageID}}" method="GET">
                     <i class="far fa-save" ></i>&nbsp;&nbsp;Save</button>

@@ -123,3 +123,11 @@ func extractCreate(in string) string {
 	//log.Println(outString)
 	return outString
 }
+
+func PokeDatabase(DB *sql.DB) error {
+	errordb := DB.Ping()
+	if errordb != nil {
+
+	}
+	return errordb
+}

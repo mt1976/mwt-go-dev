@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/user"
 	"time"
 
 	globals "github.com/mt1976/mwt-go-dev/globals"
@@ -222,7 +221,7 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//log.Println("save", s)
 
-	putCacheStore(s)
+	putCacheStore(s, r)
 
 	ListCacheStoreHandler(w, r)
 
@@ -315,32 +314,32 @@ func GetCacheDataSampleAll(o string, f string) string {
 	return ""
 }
 
-func PutCacheDataSampleItem(o string, f string, v string, sourceDB string) {
+func PutCacheDataSampleItem(o string, f string, v string, sourceDB string, x *http.Request) {
 	// returns a random cache item
 	var r appCacheStoreItem
 	r.Object = o
 	r.Field = f
 	r.Value = v
 	r.Source = sourceDB
-	putCacheStore(r)
+	putCacheStore(r, x)
 
 }
 
-func putCacheStore(r appCacheStoreItem) {
+func putCacheStore(r appCacheStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
 	}
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
+	//currentUserID, _ := user.Current()
+	//userID := currentUserID.Name
 	host, _ := os.Hostname()
 
 	if len(r.Id) == 0 {
 		r.Id = newCacheStoreID(r)
 		r.SYSCreated = createDate
-		r.SYSWho = userID
+		r.SYSWho = GetUserName(req)
 		r.SYSHost = host
 	}
 
@@ -424,20 +423,20 @@ func newCacheStoreID(r appCacheStoreItem) string {
 	return id
 }
 
-func InitialiseCache() {
-	InitialiseCacheData("CounterpartyImportID", "KeyImportID", "Counterparty", "ID", globals.SienaPropertiesDB)
-	InitialiseCacheData("Book", "BookName", "", "ID", globals.SienaPropertiesDB)
-	InitialiseCacheData("Currency", "Code", "", "ID", globals.SienaPropertiesDB)
-	InitialiseCacheData("CurrencyPair", "Code", "", "ID", globals.SienaPropertiesDB)
+func InitialiseCache(r *http.Request) {
+	InitialiseCacheData("CounterpartyImportID", "KeyImportID", "Counterparty", "ID", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("Book", "BookName", "", "ID", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("Currency", "Code", "", "ID", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("CurrencyPair", "Code", "", "ID", globals.SienaPropertiesDB, r)
 	//	InitialiseCacheData("Reason", "Reason")
-	InitialiseCacheData("Portfolio", "Code", "", "ID", globals.SienaPropertiesDB)
-	InitialiseCacheData("User", "UserName", "", "Name", globals.SienaPropertiesDB)
-	InitialiseCacheData("MandatedUser", "MandatedUserKeyUserName", "", "Name", globals.SienaPropertiesDB)
-	InitialiseCacheData("BusinessDate", "Today", "", "", globals.SienaPropertiesDB)
-	InitialiseCacheData("Broker", "Code", "", "ID", globals.SienaPropertiesDB)
+	InitialiseCacheData("Portfolio", "Code", "", "ID", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("User", "UserName", "", "Name", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("MandatedUser", "MandatedUserKeyUserName", "", "Name", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("BusinessDate", "Today", "", "", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("Broker", "Code", "", "ID", globals.SienaPropertiesDB, r)
 }
 
-func InitialiseCacheData(table string, field string, objectName string, fieldName string, sourceProperties map[string]string) {
+func InitialiseCacheData(table string, field string, objectName string, fieldName string, sourceProperties map[string]string, r *http.Request) {
 	basesql := fmt.Sprintf("SELECT %s FROM %s.siena%s;", field, globals.SienaPropertiesDB["schema"], table)
 
 	storeObjectName := objectName
@@ -448,10 +447,10 @@ func InitialiseCacheData(table string, field string, objectName string, fieldNam
 	log.Printf("Caching       : %-20s data -> %-20s from %-15q -> %s on %-15q", table, storeObjectName, sourceProperties["database"], sourceProperties["schema"], sourceProperties["server"])
 
 	//log.Println(basesql)
-	buildCache(table, field, fieldName, objectName, basesql, sourceProperties)
+	buildCache(table, field, fieldName, objectName, basesql, sourceProperties, r)
 }
 
-func buildCache(table string, field string, fieldName string, objectName string, tsql string, sourceProperties map[string]string) {
+func buildCache(table string, field string, fieldName string, objectName string, tsql string, sourceProperties map[string]string, r *http.Request) {
 	//log.Println(tsql)
 	//var appCredentialsStore appCredentialsStoreItem
 	//var appCredentialsStoreList []appCredentialsStoreItem
@@ -481,7 +480,7 @@ func buildCache(table string, field string, fieldName string, objectName string,
 			storeObjectName = table
 		}
 
-		PutCacheDataSampleItem(storeObjectName, storeField, sqlDataItem.String, sourceProperties["database"])
+		PutCacheDataSampleItem(storeObjectName, storeField, sqlDataItem.String, sourceProperties["database"], r)
 		//appCredentialsStore.Id =
 		// no change below
 		//appCredentialsStoreList = append(appCredentialsStoreList, appCredentialsStore)
@@ -539,6 +538,6 @@ func RefreshCacheHandler(w http.ResponseWriter, r *http.Request) {
 		LogoutHandler(w, r)
 		return
 	}
-	InitialiseCache()
+	InitialiseCache(r)
 	HomePageHandler(w, r)
 }

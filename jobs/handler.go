@@ -27,7 +27,7 @@ func Start() {
 	var period string
 	var runType string
 
-	period = "*/10 * * * *"
+	period = "*/5 * * * *"
 	application.RegisterSchedule("heartbeat", "HeartBeat", "System Heartbeat", period, Monitor)
 	c.AddFunc(period, func() { RunJobHeartBeat("heartbeat") })
 	//logit("RunJobHeartBeat", period)

@@ -18,6 +18,7 @@ func RunJobSessionHousekeeping(actionType string) {
 	if err != nil {
 		message = err.Error()
 	}
+
 	application.UpdateSchedule("sessionhousekeeping", Monitor, message)
 	//logit(actionType, "*** DONE ***")
 }

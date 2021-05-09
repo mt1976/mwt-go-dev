@@ -59,6 +59,8 @@ type appScheduleStorePage struct {
 	SYSHost     string
 	SYSUpdated  string
 	Type        string
+	// Calclated Post SQL
+	HumanSchedule string
 }
 
 //appScheduleStoreItem is cheese
@@ -76,6 +78,8 @@ type appScheduleStoreItem struct {
 	SYSHost     string
 	SYSUpdated  string
 	Type        string
+	// Calclated Post SQL
+	HumanSchedule string
 }
 
 func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -148,6 +152,8 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSHost:     returnRecord.SYSHost,
 		SYSUpdated:  returnRecord.SYSUpdated,
 		Type:        returnRecord.Type,
+		// Calclated Post SQL
+		HumanSchedule: GetCronScheduleHuman(returnRecord.Schedule),
 	}
 
 	//fmt.Println(pageCredentialStoreList)
@@ -194,6 +200,8 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSHost:     returnRecord.SYSHost,
 		SYSUpdated:  returnRecord.SYSUpdated,
 		Type:        returnRecord.Type,
+		// Calclated Post SQL
+		HumanSchedule: GetCronScheduleHuman(returnRecord.Schedule),
 	}
 	//fmt.Println(pageCredentialStoreList)
 
@@ -426,6 +434,9 @@ func fetchScheduleStoreData(tsql string) (int, []appScheduleStoreItem, appSchedu
 		appScheduleStore.SYSHost = sqlScheduleStoreSYSHost.String
 		appScheduleStore.SYSUpdated = sqlScheduleStoreSYSUpdated.String
 		appScheduleStore.Type = sqlScheduleStoreType.String
+		// Calclated Post SQL
+		//log.Println(appScheduleStore.Schedule)
+		appScheduleStore.HumanSchedule = GetCronScheduleHuman(sqlScheduleStoreSchedule.String)
 		// no change below
 		appScheduleStoreList = append(appScheduleStoreList, appScheduleStore)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
@@ -459,20 +470,7 @@ func RegisterSchedule(id string, name string, description string, schedule strin
 	//log.Println("STORE", s)
 	putScheduleStore(s)
 
-	exprDesc, err := hcron.NewDescriptor(
-		cron.Use24HourTimeFormat(true),
-		cron.DayOfWeekStartsAtOne(true),
-		cron.Verbose(true),
-		cron.SetLogger(log.New(os.Stdout, "cron: ", 0)),
-		cron.SetLocales(hcron.Locale_en),
-	)
-	if err != nil {
-		log.Panicf("failed to create CRON expression descriptor: %s", err)
-	}
-	desc, err := exprDesc.ToDescription(s.Schedule, hcron.Locale_en)
-	if err != nil {
-		log.Panicf("failed to convert CRON expression to human readable description: %s", err)
-	}
+	desc := GetCronScheduleHuman(s.Schedule)
 
 	log.Printf("Scheduled Job : %-11s %-20s %-20s %q", inType, name, schedule, desc)
 }
@@ -483,4 +481,25 @@ func UpdateSchedule(id string, inType string, message string) {
 	s.Message = message
 	log.Printf("Ran Job       : %-11s %-20s %q", inType, s.Name, message)
 	putScheduleStore(s)
+}
+
+func GetCronScheduleHuman(in string) string {
+	desc := ""
+	if len(in) != 0 {
+		exprDesc, err := hcron.NewDescriptor(
+			cron.Use24HourTimeFormat(true),
+			cron.DayOfWeekStartsAtOne(true),
+			cron.Verbose(true),
+			cron.SetLogger(log.New(os.Stdout, "cron: ", 0)),
+			cron.SetLocales(hcron.Locale_en),
+		)
+		if err != nil {
+			log.Panicf("failed to create CRON expression descriptor: %s", err)
+		}
+		desc, err = exprDesc.ToDescription(in, hcron.Locale_en)
+		if err != nil {
+			log.Panicf("failed to convert CRON expression to human readable description: %s", err)
+		}
+	}
+	return desc
 }

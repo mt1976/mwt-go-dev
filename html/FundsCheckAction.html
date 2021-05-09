@@ -39,7 +39,7 @@
     <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
   </div>
   <div id="mySidenav" class="sidenav">
-  <div class="nav-tile">Control Center</div>
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     {{range .UserMenu}}
     <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
@@ -65,7 +65,7 @@
           <div class="col">{{.Title}}<code></code></div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-primary"><i class="far fa-paper-plane" method="GET" onclick="//submitFundsCheck?FundsCheck={{.Id}}" formaction="//submitFundsCheck?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
+                <button type="submit" value="" class="btn btn-outline-primary"><i class="far fa-paper-plane" method="GET" onclick="//submitFundsCheck?FundsCheck={{.Id}}" formaction="//submitFundsCheck?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
                 <button type="button"  class="btn  btn-outline-secondary" method="POST" onclick="history.back()">
                   <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>

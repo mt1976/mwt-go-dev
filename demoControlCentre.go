@@ -55,9 +55,6 @@ func main() {
 	scheduler.Start()
 	done("Jobs Scheduled")
 
-	nofiles, fileslist, _ := application.GetFundsCheckList()
-	log.Println(nofiles, fileslist)
-	//log.Println(line)
 	header("Starting Handlers")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/put", putHandler)
