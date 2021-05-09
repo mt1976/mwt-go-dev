@@ -531,3 +531,14 @@ func sourceConnect(sourceProperties map[string]string) (*sql.DB, error) {
 	//fmt.Printf("%s\n", result)
 	return dbInstance, err
 }
+
+// SQLInjectionHander
+func RefreshCacheHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(SessionValidate(w, r)) {
+		LogoutHandler(w, r)
+		return
+	}
+	InitialiseCache()
+	HomePageHandler(w, r)
+}

@@ -131,8 +131,8 @@ func Initialise() {
 	SienaPropertiesDB = getProperties(SQLCONFIG)
 	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
 
-	ApplicationDB, _ = globalsDatabaseConnect(ApplicationPropertiesDB)
-	SienaDB, _ = globalsDatabaseConnect(SienaPropertiesDB)
+	ApplicationDB, _ = GlobalsDatabaseConnect(ApplicationPropertiesDB)
+	SienaDB, _ = GlobalsDatabaseConnect(SienaPropertiesDB)
 
 	// TODO: get a list of additional DB's to connect to (from the SRS.sienadbStore)
 	// TODO: load them into the var sourceAccess []*sql.DB slice
@@ -153,7 +153,7 @@ func Initialise() {
 }
 
 // DataStoreConnect connects application to its datastore database
-func globalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
+func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	// Connect to SQL Server DB
 	//mssqlConfig := getProperties(config)
 
@@ -180,6 +180,19 @@ func globalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	}
 	//fmt.Printf("%s\n", result)
 	return dbInstance, err
+}
+
+func GlobalsDatabasePing(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
+	err := dbInstance.Ping()
+	if err != nil {
+		log.Println("Reconnecting", err.Error())
+		// Try to reconnect
+		dbInstance, err = GlobalsDatabaseConnect(mssqlConfig)
+		if err != nil {
+			log.Println(err.Error())
+		}
+	}
+	return dbInstance
 }
 
 //comment

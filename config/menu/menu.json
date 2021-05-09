@@ -257,6 +257,22 @@
       "TextClass": "text-info"
     },
     {
+      "ID": "sqlinject",
+      "Text": "Refresh SQL Views",
+      "Glyph": "fas fa-syringe",
+      "HREF": "/injectSQLViews",
+      "OnClick": "",
+      "TextClass": "text-danger"
+    },
+    {
+      "ID": "refreshCache",
+      "Text": "Refresh Cache",
+      "Glyph": "fas fa-redo-alt",
+      "HREF": "/refreshCache",
+      "OnClick": "",
+      "TextClass": "text-danger"
+    },
+    {
       "Break": "<hr class=\"hr-list\">"
     },
     {

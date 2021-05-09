@@ -226,6 +226,10 @@ func main() {
 	mux.HandleFunc("/actionFundsCheck/", application.ActionFundsCheckHandler)
 	mux.HandleFunc("/submitFundsCheck/", application.SubmitFundsCheckHandler)
 
+	mux.HandleFunc("/injectSQLViews/", application.SQLInjectionHandler)
+
+	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
+
 	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	done("Handlers Started")

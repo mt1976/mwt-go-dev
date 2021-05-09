@@ -401,14 +401,14 @@ func GetDeliveryPath(instanceID string, loaderType string, instanceDirection str
 
 	path := globals.SienaProperties[loaderType]
 	instancePath := ""
-	log.Println(instanceID, loaderType, instanceDirection)
+	//log.Println(instanceID, loaderType, instanceDirection)
 	if len(instanceID) != 0 {
 		// If we have an instanceID load its details and work out which path to build
-		log.Println("fetch", instanceID)
+		//	log.Println("fetch", instanceID)
 		_, systemDetails, _ := GetSystemStoreByID(instanceID)
-		log.Println("returned", systemDetails)
+		//log.Println("returned", systemDetails)
 		loaderDirection := loaderType + instanceDirection
-		log.Println(loaderDirection)
+		//log.Println(loaderDirection)
 		switch loaderDirection {
 		case "static":
 			instancePath = systemDetails.Staticin
@@ -429,14 +429,39 @@ func GetDeliveryPath(instanceID string, loaderType string, instanceDirection str
 		case "fundsout":
 			instancePath = systemDetails.Fundscheckout
 		default:
-			instancePath = ""
+			instancePath = instanceID
 		}
 	}
 	if len(instancePath) != 0 {
 		path = instancePath
 	}
-	log.Println("RETURNING ", path)
+	//	log.Println("RETURNING ", path)
 	return path
+}
+
+// getFundsCheckList read all employees
+func GetDataList(basePath string, kind string, direction string) (int, []string, error) {
+
+	var listing []string
+	requestPath := GetDeliveryPath(basePath, kind, direction)
+	//	log.Println(basePath, kind, direction, requestPath)
+	pwd, _ := os.Getwd()
+	//log.Println(pwd + requestPath + "/")
+	files, err := ioutil.ReadDir(pwd + requestPath + "/")
+	if err != nil {
+		log.Fatal(err)
+	}
+	//spew.Dump(files)
+
+	for _, k := range files {
+		//fmt.Println("key:", k)
+		var fci FundsCheckItem
+		fci.Id = k.Name()
+		listing = append(listing, k.Name())
+	}
+
+	//count, simFundsCheckList, _, _ := fetchFundsCheckData("")
+	return len(files), listing, nil
 }
 
 // CalculateSpotDate(inTime invalid type)
@@ -466,4 +491,10 @@ func CalculateFirstDateOfYear(inTime time.Time) time.Time {
 	// Assuking 1st Jan is a holiday therefore first day is 2, then wibble the date.
 	tempDate := time.Date(inTime.Year(), 1, 2, 0, 0, 0, inTime.Nanosecond(), inTime.Location())
 	return wibbleDate(tempDate)
+}
+
+func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
+	wrkThis := "{{" + replaceThis + "}}"
+	//log.Printf("Replace %s with %q", wrkThis, withThis)
+	return strings.ReplaceAll(orig, wrkThis, withThis)
 }

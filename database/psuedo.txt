@@ -1,0 +1,27 @@
+Connect to App DB
+issue USE SRS;
+SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_NAME ='????';
+if the table has been found the database has been initialised at least once
+If not
+  Create table '????'
+  Create other tables (select * from /data/database/templates)
+If it '????' already exists
+  Select DBVERSION from '????'
+  IF database.dbversion < application.dbversion
+    DO UPGRADE
+  OTHERWISE IF database.dbversion > application.dbversion
+    SCREAM AND SHOUT!!!!
+  END
+
+
+
+
+UPGRADE;
+FOR EACH TABLE
+
+  DO application.appRateStore.Upgrade(inver database.dbVersion)
+  USE SRS;
+  GO
+  EXEC sp_rename 'TABLENAME', 'TABLENAME'+ ver;
+
+  * this rename each table and adds the version numner to the table (retaining all the old data)

@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -575,7 +574,5 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func replaceWildcard(orig string, replaceThis string, withThis string) string {
-	wrkThis := "{{" + replaceThis + "}}"
-	log.Printf("Replace %s with %q", wrkThis, withThis)
-	return strings.ReplaceAll(orig, wrkThis, withThis)
+	return application.ReplaceWildcard(orig, replaceThis, withThis)
 }
