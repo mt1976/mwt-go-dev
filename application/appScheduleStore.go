@@ -10,6 +10,7 @@ import (
 	"os/user"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/google/uuid"
 	"github.com/lnquy/cron"
 	hcron "github.com/lnquy/cron"
@@ -476,11 +477,24 @@ func RegisterSchedule(id string, name string, description string, schedule strin
 }
 
 func UpdateSchedule(id string, inType string, message string) {
-	_, s, _ := GetScheduleStoreByID(id + globals.IDSep + inType)
-	s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
-	s.Message = message
-	log.Printf("Ran Job       : %-11s %-20s %q", inType, s.Name, message)
-	putScheduleStore(s)
+	scheduleID := id + globals.IDSep + inType
+	if len(scheduleID) > 1 {
+		_, s, _ := GetScheduleStoreByID(scheduleID)
+		if len(s.Name) > 0 {
+			s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
+			s.Message = message
+			thisMess := fmt.Sprintf("Ran Job       : %-11s %-20s %q", inType, s.Name, message)
+			Logit("Diagnostic", thisMess)
+			putScheduleStore(s)
+		} else {
+			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", id, inType, message, scheduleID)
+			Logit("Diagnostic", thisMess)
+			spew.Dump(s)
+		}
+	} else {
+		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", id, inType, message)
+		Logit("Diagnostic", thisMess)
+	}
 }
 
 func GetCronScheduleHuman(in string) string {

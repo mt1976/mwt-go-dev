@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -497,4 +498,14 @@ func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
 	wrkThis := "{{" + replaceThis + "}}"
 	//log.Printf("Replace %s with %q", wrkThis, withThis)
 	return strings.ReplaceAll(orig, wrkThis, withThis)
+}
+
+func Logit(actionType string, data string) {
+	_, caller, _, _ := runtime.Caller(1)
+	outcall := strings.Split(caller, "/")
+	depth := len(outcall) - 1
+	depth2 := depth - 1
+	//log.Println(len(outcall), depth, depth2)
+	callerName := outcall[depth2] + "/" + outcall[depth]
+	log.Println(callerName, actionType, data)
 }

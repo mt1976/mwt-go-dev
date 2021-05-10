@@ -169,7 +169,8 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	if err != nil {
 		log.Fatal("Open connection failed:", err.Error())
 	}
-
+	keepalive, _ := time.ParseDuration("-1h")
+	dbInstance.SetConnMaxLifetime(keepalive)
 	stmt, err := dbInstance.Prepare("select @@version")
 	row := stmt.QueryRow()
 	var result string
