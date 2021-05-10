@@ -16,17 +16,17 @@ func GenerateSourceViews(DB *sql.DB) {
 	//spew.Dump(DB)
 	//	spew.Dump(DB.Stats())
 	// Get a full list of all views
-	_, requiredViews, _ := GetDataList("/data/database/views", "", "")
-	createTemplate, err := ReadDataFile("templateCreate.sql", "/data/database/templates")
+	_, requiredViews, _ := GetDataList("/config/database/views", "", "")
+	createTemplate, err := ReadDataFile("templateCreate.sql", "/config/database/templates")
 	if err != nil {
 		log.Println(err.Error())
 	}
-	dropTemplate, err := ReadDataFile("templateDrop.sql", "/data/database/templates")
+	dropTemplate, err := ReadDataFile("templateDrop.sql", "/config/database/templates")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
-	schemaTemplate, err := ReadDataFile("templateCreateSchema.sql", "/data/database/templates")
+	schemaTemplate, err := ReadDataFile("templateCreateSchema.sql", "/config/database/templates")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -55,7 +55,7 @@ func GenerateSourceViews(DB *sql.DB) {
 		thisDrop = ReplaceWildcard(thisDrop, "!SQL.SCHEMA", schemaName)
 		thisDrop = ReplaceWildcard(thisDrop, "!SQL.VIEW", viewName)
 
-		sqlBody, err := ReadDataFile(fileID, "/data/database/views")
+		sqlBody, err := ReadDataFile(fileID, "/config/database/views")
 		if err != nil {
 			log.Println(err.Error())
 		}
