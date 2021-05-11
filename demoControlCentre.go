@@ -40,7 +40,9 @@ func main() {
 	log.Println(line)
 
 	header("Initialising ...")
+
 	globals.Initialise()
+
 	done("Initialised")
 	//	log.Println(line)
 	header("Caching ...")
