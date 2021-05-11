@@ -17,14 +17,10 @@ var SecurityViolation = ""
 var DB *sql.DB
 var sourceAccess []*sql.DB
 
-//var UserRole = "/default"
-//var UserName = ""
-//var UserKnowAs = ""
-//var UserNavi = ""
-
 var ApplicationProperties map[string]string
 var ApplicationPropertiesDB map[string]string
 var ApplicationDB *sql.DB
+var InstanceProperties map[string]string
 
 var SienaProperties map[string]string
 var SienaPropertiesDB map[string]string
@@ -48,10 +44,11 @@ const (
 	DFhh                     = "15"
 	DATETIMEFORMATSQLSERVER  = "2006-01-02 15:04:05"
 	SIENACPTYSEP             = "\u22EE"
-	APPCONFIG                = "properties.cfg"
-	SQLCONFIG                = "mssql.cfg"
+	APPCONFIG                = "application.cfg"
+	SQLCONFIG                = "sienaDB.cfg"
 	SIENACONFIG              = "siena.cfg"
-	DATASTORECONFIG          = "datastore.cfg"
+	DATASTORECONFIG          = "applicationDB.cfg"
+	INSTANCECONFIG           = "instance.cfg"
 	DATETIMEFORMATUSER       = DATEFORMATUSER + " 15:04:05"
 	TIMEHMS                  = "15:04:05"
 	ColorReset               = "\033[0m"
@@ -130,6 +127,7 @@ func Initialise() {
 	SienaProperties = getProperties(SIENACONFIG)
 	SienaPropertiesDB = getProperties(SQLCONFIG)
 	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
+	InstanceProperties = getProperties(INSTANCECONFIG)
 
 	ApplicationDB, _ = GlobalsDatabaseConnect(ApplicationPropertiesDB)
 	SienaDB, _ = GlobalsDatabaseConnect(SienaPropertiesDB)
@@ -201,6 +199,8 @@ func GlobalsDatabasePoke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql
 func getProperties(inPropertiesFile string) map[string]string {
 	wctProperties := make(map[string]string)
 	machineName, _ := os.Hostname()
+	// TODO: Dockerise
+	// For docker - if can't find properties file (create one from the template properties file)
 	propertiesFileName := "config/" + inPropertiesFile
 	localisedFileName := "config/" + machineName + "/" + inPropertiesFile
 	if fileExists(localisedFileName) {

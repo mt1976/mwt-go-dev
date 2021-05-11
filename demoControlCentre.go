@@ -20,9 +20,6 @@ import (
 
 //CONST_CONFIG_FILE is cheese
 const (
-	APPCONFIG       = "properties.cfg"
-	SQLCONFIG       = "mssql.cfg"
-	SIENACONFIG     = "siena.cfg"
 	DATEFORMATPICK  = "20060102T150405"
 	DATEFORMATSIENA = "2006-01-02"
 	DATEFORMATYMD   = "20060102"
