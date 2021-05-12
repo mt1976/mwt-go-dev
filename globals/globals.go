@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
@@ -113,7 +114,8 @@ type DateItem struct {
 }
 
 func Initialise() {
-	log.Println("Vrooom....")
+	log.Println("Initialisation: Vrooom...")
+
 	SessionToken = ""
 	UUID = "authorAdjust"
 	SecurityViolation = ""
@@ -127,11 +129,14 @@ func Initialise() {
 	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
 	InstanceProperties = getProperties(INSTANCECONFIG)
 	//
-	log.Println("Connecting to DB's")
+	//log.Println("Connecting to DB's")
+	log.Println("Initialisation: Connecting to application databases...")
+
 	ApplicationDB, _ = GlobalsDatabaseConnect(ApplicationPropertiesDB)
 	SienaDB, _ = GlobalsDatabaseConnect(SienaPropertiesDB)
 	//
 
+	//spew.Dump(ApplicationDB)
 	// TODO: get a list of additional DB's to connect to (from the SRS.sienadbStore)
 	// TODO: load them into the var sourceAccess []*sql.DB slice
 
@@ -147,90 +152,8 @@ func Initialise() {
 	SessionManager.Cookie.Persist = true
 	//SessionManager.Cookie.SameSite = http.SameSiteStrictMode
 	SessionManager.Cookie.Secure = false
+	log.Println("Initialisation: Vroooom Vrooooom VROOOOM!")
 
-}
-
-// DataStoreConnect connects application to its datastore database
-func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
-	// Connect to SQL Server DB
-	//mssqlConfig := getProperties(config)
-
-	server := mssqlConfig["server"]
-	user := mssqlConfig["user"]
-	password := mssqlConfig["password"]
-	port := mssqlConfig["port"]
-	database := mssqlConfig["database"]
-	instance := mssqlConfig["instance"]
-	log.Println("Connecting to " + database)
-
-	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;database=%s;",
-		server, user, password, port, database)
-	dbInstance, err := sql.Open("mssql", connString)
-	if err != nil {
-		log.Fatal("Open connection failed:", err.Error())
-	}
-	keepalive, _ := time.ParseDuration("-1h")
-	dbInstance.SetConnMaxLifetime(keepalive)
-	stmt, err := dbInstance.Prepare("select @@version")
-	row := stmt.QueryRow()
-	var result string
-
-	err = row.Scan(&result)
-	if err != nil {
-		log.Fatal("Scan failed:", err.Error())
-	}
-
-	dbName := database
-	if len(instance) != 0 {
-		dbName = database + "-" + instance
-	}
-
-	checkDBstmt := "SELECT create_date FROM sys.databases WHERE name = '" + dbName + "'"
-
-	stmt2, err2 := dbInstance.Prepare(checkDBstmt)
-	log.Println(checkDBstmt)
-	//spew.Dump(stmt2)
-	dbCheck := stmt2.QueryRow()
-	var result2 string
-
-	err2 = dbCheck.Scan(&result2)
-	if err2 != nil {
-		log.Println("Database does not exist", "Generating", dbName)
-		CreateDatabase(dbInstance, mssqlConfig, dbName)
-	} else {
-		log.Println("Database Exists " + result2)
-	}
-
-	//fmt.Printf("%s\n", result)
-	return dbInstance, err
-}
-
-func CreateDatabase(dbInstance *sql.DB, mssqlConfig map[string]string, dbName string) {
-	log.Println("poo")
-
-	createDBSQL := "CREATE DATABASE [" + dbName + "]"
-
-	_, errCreateDBSQL := dbInstance.Exec(createDBSQL)
-	if errCreateDBSQL != nil {
-		log.Panic(errCreateDBSQL)
-	}
-
-	log.Println("Database Created" + dbName)
-
-}
-
-func GlobalsDatabasePoke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
-	log.Printf("Fingering     : Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"])
-	err := dbInstance.Ping()
-	if err != nil {
-		log.Printf("Reconnecting  : Server '%s' Database '%s' Schema '%s' (%s)", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"], err.Error())
-		// Try to reconnect
-		dbInstance, err = GlobalsDatabaseConnect(mssqlConfig)
-		if err != nil {
-			log.Println(err.Error())
-		}
-	}
-	return dbInstance
 }
 
 // Load a Properties File
@@ -270,7 +193,7 @@ func PreInitialise() {
 
 }
 
-func readDataFile(fileName string, path string) (string, error) {
+func ReadDataFile(fileName string, path string) (string, error) {
 	pwd, _ := os.Getwd()
 	filePath := pwd + "/" + fileName
 	if len(path) != 0 {
@@ -335,7 +258,7 @@ func copyDataFile(fileName string, fromPath string, toPath string) bool {
 
 	log.Panicln("Copying " + fileName + " from " + fromPath + " to " + toPath)
 
-	content, err := readDataFile(fileName, fromPath)
+	content, err := ReadDataFile(fileName, fromPath)
 	if err != nil {
 		log.Panicln(err.Error())
 	}
@@ -350,4 +273,32 @@ func copyDataFile(fileName string, fromPath string, toPath string) bool {
 	}
 
 	return true
+}
+
+// getFundsCheckList read all employees
+func GetDataList(basePath string) (int, []string, error) {
+
+	var listing []string
+	//	log.Println(basePath, kind, direction, requestPath)
+	pwd, _ := os.Getwd()
+	//log.Println(pwd + requestPath + "/")
+	files, err := ioutil.ReadDir(pwd + basePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//spew.Dump(files)
+
+	for _, k := range files {
+		//fmt.Println("key:", k)
+		listing = append(listing, k.Name())
+	}
+
+	//count, simFundsCheckList, _, _ := fetchFundsCheckData("")
+	return len(files), listing, nil
+}
+
+func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
+	wrkThis := "{{" + replaceThis + "}}"
+	//log.Printf("Replace %s with %q", wrkThis, withThis)
+	return strings.ReplaceAll(orig, wrkThis, withThis)
 }

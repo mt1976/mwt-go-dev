@@ -340,9 +340,9 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func header(s string) {
-	log.Println(globals.ColorYellow + s + globals.ColorReset)
+	log.Println(globals.ColorYellow + "Information   : " + s + " " + globals.ColorReset)
 	//log.Println(strings.Repeat("-", len(s)))
 }
 func done(s string) {
-	log.Println(globals.ColorYellow + globals.Tick + globals.ColorReset + " " + s)
+	log.Println(globals.ColorYellow + "Success       : " + s + " " + globals.ColorReset + globals.Tick)
 }

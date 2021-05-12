@@ -13,6 +13,6 @@ func SQLInjectionHandler(w http.ResponseWriter, r *http.Request) {
 		LogoutHandler(w, r)
 		return
 	}
-	GenerateSourceViews(globals.SienaDB,"/config/database/views")
+	globals.CreateDatabaseObjects(globals.SienaDB, globals.SienaPropertiesDB, "/config/database/views", false)
 	HomePageHandler(w, r)
 }

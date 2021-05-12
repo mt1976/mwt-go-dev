@@ -1,11 +1,11 @@
 USE [SRS]
 GO
-/****** Object:  Table [dbo].[credentialsIndex]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[credentialsIndex]    Script Date: 10/05/2021 22:16:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[credentialsIndex](
+CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[credentialsIndex](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[username] [nvarchar](max) NOT NULL,
 	[id] [nvarchar](max) NOT NULL,

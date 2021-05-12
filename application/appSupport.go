@@ -437,31 +437,6 @@ func GetDeliveryPath(instanceID string, loaderType string, instanceDirection str
 	return path
 }
 
-// getFundsCheckList read all employees
-func GetDataList(basePath string, kind string, direction string) (int, []string, error) {
-
-	var listing []string
-	requestPath := GetDeliveryPath(basePath, kind, direction)
-	//	log.Println(basePath, kind, direction, requestPath)
-	pwd, _ := os.Getwd()
-	//log.Println(pwd + requestPath + "/")
-	files, err := ioutil.ReadDir(pwd + requestPath + "/")
-	if err != nil {
-		log.Fatal(err)
-	}
-	//spew.Dump(files)
-
-	for _, k := range files {
-		//fmt.Println("key:", k)
-		var fci FundsCheckItem
-		fci.Id = k.Name()
-		listing = append(listing, k.Name())
-	}
-
-	//count, simFundsCheckList, _, _ := fetchFundsCheckData("")
-	return len(files), listing, nil
-}
-
 // CalculateSpotDate(inTime invalid type)
 func CalculateSpotDate(inTime time.Time) time.Time {
 	spot := inTime.AddDate(0, 0, 2)
@@ -492,9 +467,7 @@ func CalculateFirstDateOfYear(inTime time.Time) time.Time {
 }
 
 func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
-	wrkThis := "{{" + replaceThis + "}}"
-	//log.Printf("Replace %s with %q", wrkThis, withThis)
-	return strings.ReplaceAll(orig, wrkThis, withThis)
+	return globals.ReplaceWildcard(orig, replaceThis, withThis)
 }
 
 func Logit(actionType string, data string) {

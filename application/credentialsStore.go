@@ -21,9 +21,9 @@ var sqlCredentialsStoreId, sqlCredentialsStoreUsername, sqlCredentialsStorePassw
 
 var appCredentialsStoreSQLINSERT = "INSERT INTO %s.credentialsStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');"
 var appCredentialsStoreSQLDELETE = "DELETE FROM %s.credentialsStore WHERE id='%s';"
-var appCredentialsStoreSQLSELECT = "SELECT %s FROM %s.credentialsStore;"
-var appCredentialsStoreSQLGET = "SELECT %s FROM %s.credentialsStore WHERE id='%s';"
-var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsStore WHERE username='%s';"
+var appCredentialsStoreSQLSELECT = "SELECT %s FROM %s.credentialsView;"
+var appCredentialsStoreSQLGET = "SELECT %s FROM %s.credentialsView WHERE id='%s';"
+var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsView WHERE username='%s';"
 
 //appCredentialsStorePage is cheese
 type appCredentialsStoreListPage struct {

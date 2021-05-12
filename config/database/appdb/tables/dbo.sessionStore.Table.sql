@@ -1,11 +1,11 @@
 USE [SRS]
 GO
-/****** Object:  Table [dbo].[sessionStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sessionStore]    Script Date: 10/05/2021 22:16:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[sessionStore](
+CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sessionStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[apptoken] [nvarchar](max) NOT NULL,
 	[createdate] [nvarchar](max) NULL,
