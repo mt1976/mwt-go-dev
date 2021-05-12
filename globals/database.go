@@ -1,4 +1,4 @@
-package application
+package globals
 
 import (
 	"database/sql"
@@ -8,7 +8,7 @@ import (
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
-func GenerateSourceViews(DB *sql.DB) {
+func GenerateSourceViews(DB *sql.DB,sourcePath string) {
 	errdb := DB.Ping()
 	if errdb != nil {
 		log.Println(errdb.Error())
@@ -16,7 +16,7 @@ func GenerateSourceViews(DB *sql.DB) {
 	//spew.Dump(DB)
 	//	spew.Dump(DB.Stats())
 	// Get a full list of all views
-	_, requiredViews, _ := GetDataList("/config/database/views", "", "")
+	_, requiredViews, _ := GetDataList(sourcePath, "", "")
 	createTemplate, err := ReadDataFile("templateCreate.sql", "/config/database/templates")
 	if err != nil {
 		log.Println(err.Error())
@@ -55,7 +55,7 @@ func GenerateSourceViews(DB *sql.DB) {
 		thisDrop = ReplaceWildcard(thisDrop, "!SQL.SCHEMA", schemaName)
 		thisDrop = ReplaceWildcard(thisDrop, "!SQL.VIEW", viewName)
 
-		sqlBody, err := ReadDataFile(fileID, "/config/database/views")
+		sqlBody, err := ReadDataFile(fileID, sourcePath)
 		if err != nil {
 			log.Println(err.Error())
 		}
