@@ -232,6 +232,7 @@ func main() {
 	log.Println(line)
 	header("Application Information")
 	header("Application")
+	info("Name", globals.ApplicationProperties["appname"])
 	info("Host Name", tmpHostname)
 	info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
 	info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
