@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 const (
@@ -94,7 +95,7 @@ func RunJobFRED(actionType string) {
 	//requestURI := fmt.Sprintf(uri, "BUM", apiKey)
 	////logit(actionType, requestURI)
 
-	application.UpdateSchedule("fred", Aquirer, "")
+	application.UpdateSchedule("fred", globals.Aquirer, "")
 
 	//logit(actionType, "*** DONE ***")
 }

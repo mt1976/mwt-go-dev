@@ -12,6 +12,7 @@ import (
 
 	"github.com/bjarneh/latinx"
 	application "github.com/mt1976/mwt-go-dev/application"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/encoding/charmap"
 )
@@ -154,7 +155,7 @@ func RunJobBOESONIA(actionType string) {
 	if err != nil {
 		message = err.Error()
 	}
-	application.UpdateSchedule("sonia", Aquirer, message)
+	application.UpdateSchedule("sonia", globals.Aquirer, message)
 	//logit(actionType, "*** DONE ***")
 }
 

@@ -469,11 +469,19 @@ func RegisterSchedule(id string, name string, description string, schedule strin
 	s.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
 	s.Type = inType
 	//log.Println("STORE", s)
-	putScheduleStore(s)
 
-	desc := GetCronScheduleHuman(s.Schedule)
+	registerIt := true
 
-	log.Printf("Scheduled Job : %-11s %-20s %-20s %q", inType, name, schedule, desc)
+	if globals.IsChildInstance {
+		if inType == globals.Aquirer {
+			registerIt = false
+		}
+	}
+	if registerIt {
+		putScheduleStore(s)
+		desc := GetCronScheduleHuman(s.Schedule)
+		log.Printf("Scheduled Job : %-11s %-20s %-20s %q", inType, name, schedule, desc)
+	}
 }
 
 func UpdateSchedule(id string, inType string, message string) {
@@ -483,7 +491,7 @@ func UpdateSchedule(id string, inType string, message string) {
 		if len(s.Name) > 0 {
 			s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
 			s.Message = message
-			thisMess := fmt.Sprintf("Ran Job       : %-11s %-20s %q", inType, s.Name, message)
+			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", inType, s.Name, message)
 			Logit("Diagnostic", thisMess)
 			putScheduleStore(s)
 		} else {

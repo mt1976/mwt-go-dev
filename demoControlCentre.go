@@ -232,25 +232,46 @@ func main() {
 	log.Println(line)
 	header("Application Information")
 	header("Application")
-	log.Println("Host          :", tmpHostname)
-	log.Println("Name          :", globals.ApplicationProperties["appname"])
-	log.Println("Server Date   :", time.Now().Format(globals.DATEFORMATUSER))
-	log.Println("Licence       :", globals.ApplicationProperties["licname"])
-	log.Println("Lic URL       :", globals.ApplicationProperties["liclink"])
-	log.Println("Session Life  :", globals.ApplicationProperties["sessionlife"])
-	header("Paths")
-	log.Println("Delivery      :", globals.ApplicationProperties["deliverpath"])
-	log.Println("Response      :", globals.ApplicationProperties["receivepath"])
-	log.Println("Processed     :", globals.ApplicationProperties["processedpath"])
-	header("Software Release")
-	log.Printf("Release       : %s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"])
-	log.Println("Name          :", globals.ApplicationProperties["releaseid"])
-	log.Println("Level         :", globals.ApplicationProperties["releaselevel"])
-	log.Println("Number        :", globals.ApplicationProperties["releasenumber"])
+	info("Host Name", tmpHostname)
+	info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
+	info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
+	if globals.IsChildInstance {
+		info("Server Mode", "Primary System")
+	} else {
+		info("Server Mode", "Secondary System")
+	}
+	info("Licence", globals.ApplicationProperties["licname"])
+	info("Lic URL", globals.ApplicationProperties["liclink"])
+
+	header("Application Database (MSSQL)")
+	info("Server", globals.ApplicationPropertiesDB["server"])
+	info("Database", globals.ApplicationPropertiesDB["database"])
+	info("Schema", globals.ApplicationPropertiesDB["schema"])
+	info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
+
 	header("Siena")
 	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
 	globals.SienaSystemDate = tempDate
-	log.Println("System Date   :", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+	info("System", globals.SienaProperties["name"])
+	info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+
+	header("Siena Database (MSSQL)")
+	info("Server", globals.SienaPropertiesDB["server"])
+	info("Database", globals.SienaPropertiesDB["database"])
+	info("Schema", globals.SienaPropertiesDB["schema"])
+	info("Parent Schema", globals.SienaPropertiesDB["parentschema"])
+
+	header("Siena Connectivity")
+	info("TXNs Delivery", globals.SienaProperties["transactional_in"])
+	info("TXNs Response", globals.SienaProperties["transactional_out"])
+	info("Static Delivery", globals.SienaProperties["static_in"])
+	info("Static Response", globals.SienaProperties["static_out"])
+	info("Funds Check Request", globals.SienaProperties["funds_out"])
+	info("Funds Check Response", globals.SienaProperties["funds_in"])
+	info("Rates & Prices Delivery", globals.SienaProperties["rates_in"])
+
+	header("Sessions")
+	info("Session Life", globals.ApplicationProperties["sessionlife"])
 
 	// Get menu
 	//menuCount, _ := application.FetchappMenuData("")
@@ -345,4 +366,8 @@ func header(s string) {
 }
 func done(s string) {
 	log.Println(globals.ColorYellow + "Success       : " + s + " " + globals.ColorReset + globals.Tick)
+}
+func info(what string, value string) {
+	output := fmt.Sprintf("Information   : %-25s %s", what, value)
+	log.Println(globals.ColorCyan + output + globals.ColorReset)
 }

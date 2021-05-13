@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -391,7 +390,7 @@ func DeleteDataFile(fileName string, path string) int {
 			return -1
 		}
 	}
-	fmt.Println("File Deleted - " + fileName + " - " + path)
+	log.Println("File Deletion : " + fileName + " in " + path)
 	return 1
 }
 
@@ -471,11 +470,12 @@ func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
 }
 
 func Logit(actionType string, data string) {
-	_, caller, _, _ := runtime.Caller(1)
-	outcall := strings.Split(caller, "/")
-	depth := len(outcall) - 1
-	depth2 := depth - 1
+	//_, caller, _, _ := runtime.Caller(1)
+	//outcall := strings.Split(caller, "/")
+	///depth := len(outcall) - 1
+	//depth2 := depth - 1
 	//log.Println(len(outcall), depth, depth2)
-	callerName := outcall[depth2] + "/" + outcall[depth]
-	log.Println(callerName, actionType, data)
+	//callerName := outcall[depth2] + "/" + outcall[depth]
+	log.Println("Information   : ", data)
+	//	log.Println(callerName, actionType, data)
 }

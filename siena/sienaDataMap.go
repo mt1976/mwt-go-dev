@@ -486,9 +486,9 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	_, loader, _ := application.GetLoaderStoreByID(id)
 
 	// Get template
-	instanceID := loader.Instance
-	extensionID := loader.Extension
-	log.Printf("instance id %s %s", instanceID, extensionID)
+	//instanceID := loader.Instance
+	//extensionID := loader.Extension
+	//log.Printf("instance id %s %s", instanceID, extensionID)
 	importtemplate, err := application.ReadDataFile(loader.Filename+".template", globals.ApplicationProperties["datamaptemplatepath"])
 	if err != nil {
 		log.Println(err.Error())
@@ -496,13 +496,24 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 
 	origTemplate := importtemplate
 
-	log.Println(importtemplate)
+	//log.Println(importtemplate)
 
 	noRows, _, _ := application.GetLoaderDataStoreListByLoaderCols(id, "1")
-	log.Println("No Rows of data=", noRows)
+	log.Println("Processing    : " + strconv.Itoa(noRows) + " of data")
 	// get columns
 	noColumns, listColumns, _ := application.GetLoaderMapStoreListByLoader(id)
-	log.Println("No Cols=", noColumns, "List", listColumns)
+	//	log.Println("No Cols=", noColumns, "List", listColumns)
+
+	path := globals.SienaProperties["transactional_in"]
+	if loader.Type == "static" {
+		path = globals.SienaProperties["static_in"]
+	}
+
+	log.Println("Delivery      : " + path)
+	extensionID := loader.Extension
+	if len(extensionID) == 0 {
+		extensionID = ".xml"
+	}
 
 	for thisRow := 1; thisRow <= noRows; thisRow++ {
 		// Reset the template data
@@ -552,18 +563,14 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 		importtemplate = replaceWildcard(importtemplate, "!LEI", "213800APCD7UDNQHOI68")
 
 		// Deliver Data
-		path := application.GetDeliveryPath(instanceID, loader.Type, "in")
-		log.Println(path)
-		if len(extensionID) == 0 {
-			extensionID = ".xml"
-		}
+
 		filename := newID + extensionID
 
 		val := application.WriteDataFile(filename, path, importtemplate)
 		if val != 0 {
 			//do nothing
 		}
-		log.Println(importtemplate)
+		//log.Println(importtemplate)
 
 	}
 

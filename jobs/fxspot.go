@@ -11,6 +11,7 @@ import (
 
 	"github.com/mt1976/common"
 	application "github.com/mt1976/mwt-go-dev/application"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 	tools "github.com/mt1976/mwtgostringtools"
 )
 
@@ -227,5 +228,5 @@ func RunJobFXSPOT(actionType string) {
 	if err != nil {
 		message = err.Error()
 	}
-	application.UpdateSchedule("fxspot", Aquirer, message)
+	application.UpdateSchedule("fxspot", globals.Aquirer, message)
 }

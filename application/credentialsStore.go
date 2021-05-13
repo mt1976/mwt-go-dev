@@ -91,6 +91,10 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	tmpl := "CredentialsStoreList"
+	if globals.IsChildInstance {
+		// This is a child instance running, deliver the cut down Page
+		tmpl = tmpl + "_Child"
+	}
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

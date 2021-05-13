@@ -71,37 +71,14 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 	uPassword := r.FormValue("password")
 	appToken := globals.ApplicationProperties["applicationtoken"]
 
-	//hostname, err := os.Hostname()
-	//if err != nil {
-	//	fmt.Println(err)
-	//	os.Exit(1)
-	//}
-
 	tok := loginValidate(appToken, uName, uPassword, r)
 
 	if tok.ResponseCode == "200" {
-		//GetUserRole(r) = tok.role
-		//"NOT USED" = tok.navigation
-		//globals.UserKnowAs = tok.knownas
-		//GetUserName(r) = tok.username
-		//GetUserSessionToken(r) = tok.session
-		//globals.UUID = tok.uuid
 		globals.SecurityViolation = ""
-		//GetUserSessionToken(r) = CreateSessionToken(r)
-
-		//	log.Println("ACCESS GRANTED", tok.ResponseCode, GetUserName(r), GetUserRole(r))
 		serviceMessageAction("ACCESS GRANTED", GetUserName(r), tok.ResponseCode)
-
 		HomePageHandler(w, r)
 	} else {
-		//GetUserRole(r) = ""
-		//"NOT USED" = ""
-		//globals.UserKnowAs = ""
-		//GetUserName(r) = ""
-		//GetUserSessionToken(r) = ""
-		//globals.UUID = ""
 		globals.SecurityViolation = tok.SecurityViolation
-		//	log.Println("SECURITY INCIDENT", ok.ResponseCode, tok.SecurityViolation), tok.SecurityViolation)
 		serviceMessageAction(tok.SecurityViolation, GetUserName(r), tok.ResponseCode)
 		LogoutHandler(w, r)
 	}

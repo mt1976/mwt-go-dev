@@ -105,7 +105,14 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 		returnDB = newDBInstance
 	} else {
 		log.Println("Information   : Database " + dbName + " exists Created: " + result2)
-		returnDB = dbInstance
+		if len(mssqlConfig["instance"]) != 0 {
+			mssqlConfig["database"] = database + "-" + mssqlConfig["instance"]
+		}
+		newDBInstance, errReCon := connect(mssqlConfig)
+		if errReCon != nil {
+			log.Panicln(errReCon.Error())
+		}
+		returnDB = newDBInstance
 	}
 
 	//fmt.Printf("%s\n", result)

@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	application "github.com/mt1976/mwt-go-dev/application"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 	"github.com/openprovider/rates"
 	"github.com/openprovider/rates/providers"
 )
@@ -39,7 +40,7 @@ func RunJobECB(actionType string) {
 	if err != nil {
 		message = err[0].Error()
 	}
-	application.UpdateSchedule("ecbrate", Aquirer, message)
+	application.UpdateSchedule("ecbrate", globals.Aquirer, message)
 
 	//logit(actionType, "*** DONE ***")
 }

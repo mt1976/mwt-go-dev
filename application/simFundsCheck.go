@@ -252,17 +252,20 @@ func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.QUERYTIMESTAMP = createDate
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.RESULTCODE = resultCode
 
-	log.Printf("%# v", simFundsCheckResponse)
+	//log.Printf("%# v", simFundsCheckResponse)
 
 	newMsg, err := xml.Marshal(simFundsCheckResponse)
-	log.Println(string(newMsg), err)
+	if err != nil {
+		log.Println(string(newMsg), err)
+	}
 
 	newID := uuid.New().String()
 	fileName := newID + ".xml"
 
-	delivertopath := GetDeliveryPath(globals.SienaProperties["defaultsystem"], "funds", "out")
-	deletefrompath := GetDeliveryPath(globals.SienaProperties["defaultsystem"], "funds", "in")
+	delivertopath := globals.SienaProperties["funds_out"]
+	deletefrompath := globals.SienaProperties["funds_in"]
 
+	log.Printf("Delivery      : %s -> %s", deletefrompath, delivertopath)
 	WriteDataFile(fileName, delivertopath, string(newMsg))
 
 	resp := DeleteDataFile(searchID, deletefrompath)
@@ -324,7 +327,7 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 func GetFundsCheckList() (int, []FundsCheckItem, error) {
 	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, globals.ApplicationPropertiesDB["schema"])
 	var simFundsCheckList []FundsCheckItem
-	requestPath := GetDeliveryPath(globals.SienaProperties["defaultsystem"], "funds", "in")
+	requestPath := globals.SienaProperties["funds_in"]
 	pwd, _ := os.Getwd()
 	files, err := ioutil.ReadDir(pwd + requestPath + "/")
 	if err != nil {
@@ -348,7 +351,7 @@ func GetFundsCheckList() (int, []FundsCheckItem, error) {
 // getFundsCheckList read all employees
 func GetFundsCheckByID(id string) (int, FundsCheckItem, error) {
 	var simFundsCheckItem FundsCheckItem
-	requestPath := GetDeliveryPath("bnk6/sys-3", "funds", "in")
+	requestPath := globals.SienaProperties["funds_in"]
 	pwd, _ := os.Getwd()
 	dat, err := ioutil.ReadFile(pwd + requestPath + "/" + id)
 	if err != nil {
@@ -364,7 +367,7 @@ func GetFundsCheckByID(id string) (int, FundsCheckItem, error) {
 
 	//log.Println(test)
 	//log.Println(test.HEADER.XREF)
-	log.Printf("%# v", test)
+	//	log.Printf("%# v", test)
 
 	simFundsCheckItem.Request = test
 

@@ -63,22 +63,48 @@
       </ol>
     </nav>
 
+
+
+
+
     <div class="well">
 
-      <h4 class="text-left text-primary">{{.PageTitle}}</h4>
-      <p class="lead text-primary">{{.UserRole}} Role</p>
-      <pre class="text-primary">
-User Name          : {{.UserName}}
-Known As           : {{.UserKnowAs}}
-User Role          : {{.UserRole}}<br>
-App Server Name    : {{.AppServerName}}
-Application Server : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]
-App Server Date    : {{.AppServerDate}}<br>
-Siena System       : {{.SienaName}}
-Siena System Date  : {{.SienaDate}}<br>
-SQL Server         : {{.SQLServer}}
-SQL Database       : {{.SQLDB}}
-SQL Schema         : {{.SQLSchema}}
+      <h4 class="text-left text-primary">System Details</h4>
+      <pre class="text-muted" style="font-size: 9.5pt">
+
+<b style="color:var(--custom-primary-colour)">User</b>
+Name                    : {{.UserName}}
+Known As                : {{.UserKnowAs}}
+Role                    : {{.UserRole}}<br>
+<b style="color:var(--custom-primary-colour)">Application</b>
+Server Name             : {{.AppServerName}}
+Server Release          : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]
+Server Date             : {{.AppServerDate}}
+Server Mode             : {{.InstanceState}}<br>
+<b style="color:var(--custom-primary-colour)">Application Database (MSSQL)</b>
+Server                  : {{.AppSQLServer}}
+Database                : {{.AppSQLDatabase}}
+Schema                  : {{.AppSQLSchema}}
+Parent Schema           : {{.AppSQLParentSchema}}
+
+<b style="color:var(--custom-primary-colour)">Siena</b>
+System                  : {{.SienaName}}
+System Date             : {{.SienaDate}} {{.DateSyncIssue}}<br>
+<b style="color:var(--custom-primary-colour)">Siena Database (MSSQL)</b>
+Server                  : {{.SQLServer}}
+Database                : {{.SQLDB}}
+Schema                  : {{.SQLSchema}}
+Parent Schema           : {{.SQLParentSchema}}<br>
+<b style="color:var(--custom-primary-colour)">Siena Connectivity</b>
+Txns Delivery           : {{.DealImportInPath}}
+Txns Response           : {{.DealImportOutPath}}
+Static Delivery         : {{.StaticDataInPath}}
+Static Response         : {{.StaticDataOutPath}}
+FundsCheck Requests     : {{.FundsCheckOutPath}}
+FundsCheck Response     : {{.FundsCheckInPath}}
+Rates & Prices Delivery : {{.RatesDataInPath}}
+
+
 </pre>
 
     </div>

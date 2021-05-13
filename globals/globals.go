@@ -31,6 +31,8 @@ var SienaSystemDate DateItem
 
 var SessionManager *scs.SessionManager
 
+var IsChildInstance bool
+
 const (
 	DATEFORMATPICK           = "20060102T150405"
 	DATEFORMATSIENA          = "2006-01-02"
@@ -71,6 +73,13 @@ const (
 	SessionAppToken          = "1117429826"
 	IDSep                    = "|"
 	Tick                     = "\u2713"
+	WarningLabel             = "\u2757"
+	Bike                     = "\u1F3CD"
+	Scheduled                = "Scheduled"
+	Adhoc                    = "AdHoc"
+	Monitor                  = "Monitor"
+	Dispatcher               = "Dispatcher"
+	Aquirer                  = "Aquirer"
 )
 
 type Connection struct {
@@ -128,6 +137,11 @@ func Initialise() {
 	SienaPropertiesDB = getProperties(SQLCONFIG)
 	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
 	InstanceProperties = getProperties(INSTANCECONFIG)
+
+	IsChildInstance = false
+	if len(ApplicationPropertiesDB["instance"]) != 0 {
+		IsChildInstance = true
+	}
 	//
 	//log.Println("Connecting to DB's")
 	log.Println("Initialisation: Connecting to application databases...")
@@ -152,7 +166,7 @@ func Initialise() {
 	SessionManager.Cookie.Persist = true
 	//SessionManager.Cookie.SameSite = http.SameSiteStrictMode
 	SessionManager.Cookie.Secure = false
-	log.Println("Initialisation: Vroooom Vrooooom VROOOOM!")
+	log.Println("Initialisation: Vroooom Vrooooom VROOOOM! " + Bike)
 
 }
 

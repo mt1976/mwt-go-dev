@@ -4,6 +4,7 @@ import (
 	"log"
 
 	application "github.com/mt1976/mwt-go-dev/application"
+	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 func RunJobSessionHousekeeping(actionType string) {
@@ -19,6 +20,6 @@ func RunJobSessionHousekeeping(actionType string) {
 		message = err.Error()
 	}
 
-	application.UpdateSchedule("sessionhousekeeping", Monitor, message)
+	application.UpdateSchedule("sessionhousekeeping", globals.Monitor, message)
 	//logit(actionType, "*** DONE ***")
 }

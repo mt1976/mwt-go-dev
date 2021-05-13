@@ -93,7 +93,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	pageAppConfigView.AppDBSchema = globals.ApplicationPropertiesDB["schema"]
 	pageAppConfigView.AppCredentialsLife = globals.ApplicationProperties["credentialslife"]
 	pageAppConfigView.AppSessionLife = globals.ApplicationProperties["sessionlife"]
-	pageAppConfigView.AppDefaultSienaSystem = globals.SienaProperties["defaultsystem"]
+	pageAppConfigView.AppDefaultSienaSystem = globals.SienaProperties["name"]
 
 	_, systems, _ := GetSystemStoreList()
 	pageAppConfigView.SienaSystems = systems

@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Book" classname="com.eurobase.siena.data.Books.Book"><RECORD><KEYFIELD name="BookName">ACTUAL</KEYFIELD><FIELD name="FullName">Actual Cashflow Book2</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

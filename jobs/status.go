@@ -12,5 +12,5 @@ func RunJobHeartBeat(actionType string) {
 
 	globals.ApplicationDB = globals.GlobalsDatabasePoke(globals.ApplicationDB, globals.ApplicationPropertiesDB)
 	globals.SienaDB = globals.GlobalsDatabasePoke(globals.SienaDB, globals.SienaPropertiesDB)
-	application.UpdateSchedule("heartbeat", Monitor, "")
+	application.UpdateSchedule("heartbeat", globals.Monitor, "")
 }
