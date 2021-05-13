@@ -274,6 +274,7 @@ func main() {
 	header("Sessions")
 	info("Session Life", globals.ApplicationProperties["sessionlife"])
 
+	siena.RateImporterTest()
 	// Get menu
 	//menuCount, _ := application.FetchappMenuData("")
 	//log.Println("No. Menu Items   :", menuCount)
