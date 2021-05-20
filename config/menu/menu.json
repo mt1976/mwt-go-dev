@@ -199,6 +199,16 @@
     ,
 
     {
+      "ID": "translationStore",
+      "Text": "Translations",
+      "Glyph": "fas fa-retweet",
+      "HREF": "/listTranslationStore",
+      "OnClick": "",
+      "TextClass": "text-info"
+    }
+    ,
+
+    {
       "ID": "sessionStore",
       "Text": "Sessions",
       "Glyph": "fas fa-history",

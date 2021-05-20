@@ -10,7 +10,6 @@ import (
 	"os/user"
 	"time"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/google/uuid"
 	"github.com/lnquy/cron"
 	hcron "github.com/lnquy/cron"
@@ -497,7 +496,7 @@ func UpdateSchedule(id string, inType string, message string) {
 		} else {
 			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", id, inType, message, scheduleID)
 			Logit("Diagnostic", thisMess)
-			spew.Dump(s)
+			//spew.Dump(s)
 		}
 	} else {
 		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", id, inType, message)

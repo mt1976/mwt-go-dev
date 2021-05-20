@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -91,7 +92,10 @@ func GetTemplateID(tmpl string, userRole string) string {
 // GetMenuID returns the menu template to use when providing HTML meny templates
 func GetMenuID(tmpl string, userRole string) string {
 	templateName := "config/menu/" + tmpl + ".json"
-	roleTemplate := "config/menu/" + userRole + "/" + tmpl + ".json"
+	roleTemplate := templateName
+	if len(userRole) != 0 {
+		roleTemplate = "config/menu/" + userRole + "/" + tmpl + ".json"
+	}
 	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	//log.Println("Testing", templateName, FileExists(templateName))
 	if FileExists(roleTemplate) {
@@ -478,4 +482,13 @@ func Logit(actionType string, data string) {
 	//callerName := outcall[depth2] + "/" + outcall[depth]
 	log.Println("Information   : ", data)
 	//	log.Println(callerName, actionType, data)
+}
+
+func RemoveSpecialChars(in string) string {
+	reg, err := regexp.Compile("[^A-Za-z0-9]+")
+	if err != nil {
+		log.Fatal(err)
+	}
+	newStr := reg.ReplaceAllString(in, "-")
+	return newStr
 }

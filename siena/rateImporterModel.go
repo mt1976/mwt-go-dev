@@ -56,7 +56,7 @@ func RateImporterTest() {
 	list = append(list, item)
 
 	item.Cat = "SourceA"
-	item.ID = "GBP="
+	item.ID = "EUR="
 	item.Src = "SRS"
 	item.Bid = "1.5"
 	item.Ask = "7.6"

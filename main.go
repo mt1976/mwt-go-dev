@@ -204,6 +204,11 @@ func main() {
 	mux.HandleFunc("/editMessageStore/", application.EditMessageStoreHandler)
 	mux.HandleFunc("/saveMessageStore/", application.SaveMessageStoreHandler)
 
+	mux.HandleFunc("/listTranslationStore/", application.ListTranslationStoreHandler)
+	mux.HandleFunc("/viewTranslationStore/", application.ViewTranslationStoreHandler)
+	mux.HandleFunc("/editTranslationStore/", application.EditTranslationStoreHandler)
+	mux.HandleFunc("/saveTranslationStore/", application.SaveTranslationStoreHandler)
+
 	mux.HandleFunc("/listScheduleStore/", application.ListScheduleStoreHandler)
 	mux.HandleFunc("/viewScheduleStore/", application.ViewScheduleStoreHandler)
 
@@ -274,12 +279,9 @@ func main() {
 	header("Sessions")
 	info("Session Life", globals.ApplicationProperties["sessionlife"])
 
-	siena.RateImporterTest()
-	// Get menu
-	//menuCount, _ := application.FetchappMenuData("")
-	//log.Println("No. Menu Items   :", menuCount)
+	scheduler.RunJobLSE("")
+	scheduler.RunJobFII("")
 
-	log.Println(line)
 	header("READY STEADY GO!!!")
 	log.Println("URI           :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
 	log.Println(line)
@@ -298,7 +300,7 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	//requestID := uuid.New()
+	//requestID := uuid.New()http.ListenAndServe(":8080", nil)
 
 	log.Println("Servicing :", inUTL)
 	//requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", line, line, line, wctProperties)
