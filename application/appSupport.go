@@ -492,3 +492,37 @@ func RemoveSpecialChars(in string) string {
 	newStr := reg.ReplaceAllString(in, "-")
 	return newStr
 }
+
+func finAbbrToNumeric(str string) int {
+	str = strings.ToUpper(str)
+	number := ""
+	number = strings.ReplaceAll(str, "$", "")
+	number = strings.ReplaceAll(str, "€", "")
+	number = strings.ReplaceAll(str, "£", "")
+	fact := strings.ToUpper(number[len(number)-1:])
+	number = strings.ReplaceAll(str, "M", "")
+	number = strings.ReplaceAll(str, "K", "")
+	number = strings.ReplaceAll(str, "T", "")
+	number = strings.ReplaceAll(str, "B", "")
+
+	intNum, err := strconv.Atoi(number)
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	var retNum int
+	switch fact {
+	case "T":
+		retNum = intNum * 1000
+	case "K":
+		retNum = intNum * 1000
+	case "M":
+		retNum = intNum * 1000000
+	case "B":
+		retNum = intNum * 1000000000
+	default:
+		retNum = intNum
+	}
+
+	return retNum
+}
