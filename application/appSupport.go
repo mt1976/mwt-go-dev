@@ -27,6 +27,19 @@ const (
 	SIENACPTYSEP    = "\u22EE"
 )
 
+// Converts a siena style date, as a user readable date
+func sienaDateToUserDate(in string) string {
+
+	t, err := time.Parse(DATEFORMATSIENA, in)
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	ext := t.Format(DATEFORMATUSER)
+
+	return ext
+}
+
 // Max returns the larger of x or y.
 func Max(x, y int) int {
 	if x < y {

@@ -161,7 +161,15 @@
       "OnClick": "",
       "TextClass": ""
     }
-
+    ,
+    {
+      "ID": "nego",
+      "Text": "Instruments",
+      "Glyph": "fas fa-money-check",
+      "HREF": "/listGiltsDataStore",
+      "OnClick": "",
+      "TextClass": ""
+    }
     ,
     {
       "Break": "<hr class=\"hr-list\">"

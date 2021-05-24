@@ -231,6 +231,11 @@ func main() {
 
 	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
 
+	mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
+	mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
+	mux.HandleFunc("/selectLSEGiltsDataStore/", application.SelectLSEGiltsDataStoreHandler)
+	mux.HandleFunc("/deselectLSEGiltsDataStore/", application.DeselectLSEGiltsDataStoreHandler)
+
 	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	done("Handlers Started")
@@ -279,8 +284,8 @@ func main() {
 	header("Sessions")
 	info("Session Life", globals.ApplicationProperties["sessionlife"])
 
-	scheduler.RunJobLSE("")
-	scheduler.RunJobFII("")
+	//scheduler.RunJobLSE("")
+	//scheduler.RunJobFII("")
 
 	header("READY STEADY GO!!!")
 	log.Println("URI           :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)

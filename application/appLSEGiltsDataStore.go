@@ -113,6 +113,8 @@ type AppLSEGiltsDataStoreItem struct {
 	RunningYield                   string
 	Lei                            string
 	Cusip                          string
+	//Additional Calculated Fields
+	Selected string
 }
 
 func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -346,7 +348,7 @@ func DeleteLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func BanLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
+func SelectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
@@ -359,12 +361,15 @@ func BanLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
-	banLSEGiltsDataStore(searchID, r)
+	serviceMessageAction(inUTL, "Select", searchID)
+	var thisRec AppNISelectedStoreItem
+	thisRec.Id = searchID
+	putNISelectedStore(thisRec, r)
+
 	ListLSEGiltsDataStoreHandler(w, r)
 }
 
-func ActivateLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
+func DeselectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(SessionValidate(w, r)) {
 		LogoutHandler(w, r)
@@ -377,10 +382,11 @@ func ActivateLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
-	activateLSEGiltsDataStore(searchID, r)
+	serviceMessageAction(inUTL, "Deselect", searchID)
+	//var thisRec AppNISelectedStoreItem
+	//thisRec.Id = searchID
+	deleteNISelectedStore(searchID)
 	ListLSEGiltsDataStoreHandler(w, r)
-
 }
 
 func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -566,6 +572,9 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 		appLSEGiltsDataStore.RunningYield = sqlLSEGiltsDataStoreRunningYield.String
 		appLSEGiltsDataStore.Lei = sqlLSEGiltsDataStoreLei.String
 		appLSEGiltsDataStore.Cusip = sqlLSEGiltsDataStoreCusip.String
+		// Additional Bits
+		appLSEGiltsDataStore.Selected = getSelected(appLSEGiltsDataStore.Id)
+
 		// no change below
 		appLSEGiltsDataStoreList = append(appLSEGiltsDataStoreList, appLSEGiltsDataStore)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
@@ -573,6 +582,15 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 	}
 	//log.Println(count, appLSEGiltsDataStoreList, appLSEGiltsDataStore)
 	return count, appLSEGiltsDataStoreList, appLSEGiltsDataStore, nil
+}
+
+func getSelected(inID string) string {
+	returnValue := ""
+	_, selectedRec, _ := GetNISelectedStoreByID(inID)
+	if len(selectedRec.Id) != 0 {
+		returnValue = globals.Tick
+	}
+	return returnValue
 }
 
 func newLSEGiltsDataStoreID() string {
