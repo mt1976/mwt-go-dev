@@ -15,16 +15,16 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var appLSEGiltsDataStoreSQL = "id, 	longName, 	isin, 	tidm, 	sedol, 	issueDate, 	maturityDate, 	couponValue, 	couponType, 	segment, 	sector, 	codeConventionCalculateAccrual, 	minimumDenomination, 	denominationCurrency, 	tradingCurrency, 	type, 	flatYield, 	paymentCouponDate, 	periodOfCoupon, 	exCouponDate, 	dateOfIndexInflation, 	unitOfQuotation, 	_Created, 	_Who, 	_Host, 	_Updated, 	issuer, 	issueAmount, 	runningYield, 	lei, 	cusip"
+var appLSEGiltsDataStoreSQL = "id, 	longName, 	isin, 	tidm, 	sedol, 	issueDate, 	maturityDate, 	couponValue, 	couponType, 	segment, 	sector, 	codeConventionCalculateAccrual, 	minimumDenomination, 	denominationCurrency, 	tradingCurrency, 	type, 	flatYield, 	paymentCouponDate, 	periodOfCoupon, 	exCouponDate, 	dateOfIndexInflation, 	unitOfQuotation, 	_Created, 	_Who, 	_Host, 	_Updated, 	issuer, 	issueAmount, 	runningYield, 	lei, 	cusip, isSelected"
 
-var sqlLSEGiltsDataStoreId, sqlLSEGiltsDataStoreLongName, sqlLSEGiltsDataStoreIsin, sqlLSEGiltsDataStoreTidm, sqlLSEGiltsDataStoreSedol, sqlLSEGiltsDataStoreIssueDate, sqlLSEGiltsDataStoreMaturityDate, sqlLSEGiltsDataStoreCouponValue, sqlLSEGiltsDataStoreCouponType, sqlLSEGiltsDataStoreSegment, sqlLSEGiltsDataStoreSector, sqlLSEGiltsDataStoreCodeConventionCalculateAccrual, sqlLSEGiltsDataStoreMinimumDenomination, sqlLSEGiltsDataStoreDenominationCurrency, sqlLSEGiltsDataStoreTradingCurrency, sqlLSEGiltsDataStoreType, sqlLSEGiltsDataStoreFlatYield, sqlLSEGiltsDataStorePaymentCouponDate, sqlLSEGiltsDataStorePeriodOfCoupon, sqlLSEGiltsDataStoreExCouponDate, sqlLSEGiltsDataStoreDateOfIndexInflation, sqlLSEGiltsDataStoreUnitOfQuotation, sqlLSEGiltsDataStoreSYSCreated, sqlLSEGiltsDataStoreSYSWho, sqlLSEGiltsDataStoreSYSHost, sqlLSEGiltsDataStoreSYSUpdated, sqlLSEGiltsDataStoreIssuer, sqlLSEGiltsDataStoreIssueAmount, sqlLSEGiltsDataStoreRunningYield, sqlLSEGiltsDataStoreLei, sqlLSEGiltsDataStoreCusip sql.NullString
+var sqlLSEGiltsDataStoreId, sqlLSEGiltsDataStoreLongName, sqlLSEGiltsDataStoreIsin, sqlLSEGiltsDataStoreTidm, sqlLSEGiltsDataStoreSedol, sqlLSEGiltsDataStoreIssueDate, sqlLSEGiltsDataStoreMaturityDate, sqlLSEGiltsDataStoreCouponValue, sqlLSEGiltsDataStoreCouponType, sqlLSEGiltsDataStoreSegment, sqlLSEGiltsDataStoreSector, sqlLSEGiltsDataStoreCodeConventionCalculateAccrual, sqlLSEGiltsDataStoreMinimumDenomination, sqlLSEGiltsDataStoreDenominationCurrency, sqlLSEGiltsDataStoreTradingCurrency, sqlLSEGiltsDataStoreType, sqlLSEGiltsDataStoreFlatYield, sqlLSEGiltsDataStorePaymentCouponDate, sqlLSEGiltsDataStorePeriodOfCoupon, sqlLSEGiltsDataStoreExCouponDate, sqlLSEGiltsDataStoreDateOfIndexInflation, sqlLSEGiltsDataStoreUnitOfQuotation, sqlLSEGiltsDataStoreSYSCreated, sqlLSEGiltsDataStoreSYSWho, sqlLSEGiltsDataStoreSYSHost, sqlLSEGiltsDataStoreSYSUpdated, sqlLSEGiltsDataStoreIssuer, sqlLSEGiltsDataStoreIssueAmount, sqlLSEGiltsDataStoreRunningYield, sqlLSEGiltsDataStoreLei, sqlLSEGiltsDataStoreCusip, sqlLSEGiltsDataStoreSelected sql.NullString
 
 var appLSEGiltsDataStoreNoParams = strings.Count(appLSEGiltsDataStoreSQL, ",") + 1
 var appLSEGiltsDataStoreParams = strings.Repeat("'%s',", appLSEGiltsDataStoreNoParams)
 var appLSEGiltsDataStoreSQLINSERT = "INSERT INTO %s.lseGiltsDataStore(%s) VALUES(" + strings.TrimRight(appLSEGiltsDataStoreParams, ",") + ");"
 var appLSEGiltsDataStoreSQLDELETE = "DELETE FROM %s.lseGiltsDataStore WHERE id='%s';"
-var appLSEGiltsDataStoreSQLSELECT = "SELECT %s FROM %s.lseGiltsDataStore;"
-var appLSEGiltsDataStoreSQLGET = "SELECT %s FROM %s.lseGiltsDataStore WHERE id='%s';"
+var appLSEGiltsDataStoreSQLSELECT = "SELECT %s FROM %s.niDataView;"
+var appLSEGiltsDataStoreSQLGET = "SELECT %s FROM %s.niDataView WHERE id='%s';"
 
 //appLSEGiltsDataStorePage is cheese
 type appLSEGiltsDataStoreListPage struct {
@@ -78,6 +78,7 @@ type appLSEGiltsDataStorePage struct {
 	RunningYield                   string
 	Lei                            string
 	Cusip                          string
+	Selected                       string
 }
 
 //AppLSEGiltsDataStoreItem is cheese
@@ -206,6 +207,7 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		RunningYield:                   returnRecord.RunningYield,
 		Lei:                            returnRecord.Lei,
 		Cusip:                          returnRecord.Cusip,
+		Selected:                       returnRecord.Selected,
 	}
 
 	//fmt.Println(pageCredentialStoreList)
@@ -272,6 +274,7 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		RunningYield:                   returnRecord.RunningYield,
 		Lei:                            returnRecord.Lei,
 		Cusip:                          returnRecord.Cusip,
+		Selected:                       returnRecord.Selected,
 	}
 	//fmt.Println(pageCredentialStoreList)
 
@@ -535,7 +538,7 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlLSEGiltsDataStoreId, &sqlLSEGiltsDataStoreLongName, &sqlLSEGiltsDataStoreIsin, &sqlLSEGiltsDataStoreTidm, &sqlLSEGiltsDataStoreSedol, &sqlLSEGiltsDataStoreIssueDate, &sqlLSEGiltsDataStoreMaturityDate, &sqlLSEGiltsDataStoreCouponValue, &sqlLSEGiltsDataStoreCouponType, &sqlLSEGiltsDataStoreSegment, &sqlLSEGiltsDataStoreSector, &sqlLSEGiltsDataStoreCodeConventionCalculateAccrual, &sqlLSEGiltsDataStoreMinimumDenomination, &sqlLSEGiltsDataStoreDenominationCurrency, &sqlLSEGiltsDataStoreTradingCurrency, &sqlLSEGiltsDataStoreType, &sqlLSEGiltsDataStoreFlatYield, &sqlLSEGiltsDataStorePaymentCouponDate, &sqlLSEGiltsDataStorePeriodOfCoupon, &sqlLSEGiltsDataStoreExCouponDate, &sqlLSEGiltsDataStoreDateOfIndexInflation, &sqlLSEGiltsDataStoreUnitOfQuotation, &sqlLSEGiltsDataStoreSYSCreated, &sqlLSEGiltsDataStoreSYSWho, &sqlLSEGiltsDataStoreSYSHost, &sqlLSEGiltsDataStoreSYSUpdated, &sqlLSEGiltsDataStoreIssuer, &sqlLSEGiltsDataStoreIssueAmount, &sqlLSEGiltsDataStoreRunningYield, &sqlLSEGiltsDataStoreLei, &sqlLSEGiltsDataStoreCusip)
+		err := rows.Scan(&sqlLSEGiltsDataStoreId, &sqlLSEGiltsDataStoreLongName, &sqlLSEGiltsDataStoreIsin, &sqlLSEGiltsDataStoreTidm, &sqlLSEGiltsDataStoreSedol, &sqlLSEGiltsDataStoreIssueDate, &sqlLSEGiltsDataStoreMaturityDate, &sqlLSEGiltsDataStoreCouponValue, &sqlLSEGiltsDataStoreCouponType, &sqlLSEGiltsDataStoreSegment, &sqlLSEGiltsDataStoreSector, &sqlLSEGiltsDataStoreCodeConventionCalculateAccrual, &sqlLSEGiltsDataStoreMinimumDenomination, &sqlLSEGiltsDataStoreDenominationCurrency, &sqlLSEGiltsDataStoreTradingCurrency, &sqlLSEGiltsDataStoreType, &sqlLSEGiltsDataStoreFlatYield, &sqlLSEGiltsDataStorePaymentCouponDate, &sqlLSEGiltsDataStorePeriodOfCoupon, &sqlLSEGiltsDataStoreExCouponDate, &sqlLSEGiltsDataStoreDateOfIndexInflation, &sqlLSEGiltsDataStoreUnitOfQuotation, &sqlLSEGiltsDataStoreSYSCreated, &sqlLSEGiltsDataStoreSYSWho, &sqlLSEGiltsDataStoreSYSHost, &sqlLSEGiltsDataStoreSYSUpdated, &sqlLSEGiltsDataStoreIssuer, &sqlLSEGiltsDataStoreIssueAmount, &sqlLSEGiltsDataStoreRunningYield, &sqlLSEGiltsDataStoreLei, &sqlLSEGiltsDataStoreCusip, &sqlLSEGiltsDataStoreSelected)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, appLSEGiltsDataStore, err
@@ -573,7 +576,7 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 		appLSEGiltsDataStore.Lei = sqlLSEGiltsDataStoreLei.String
 		appLSEGiltsDataStore.Cusip = sqlLSEGiltsDataStoreCusip.String
 		// Additional Bits
-		appLSEGiltsDataStore.Selected = getSelected(appLSEGiltsDataStore.Id)
+		appLSEGiltsDataStore.Selected = getSelected(sqlLSEGiltsDataStoreSelected.String)
 
 		// no change below
 		appLSEGiltsDataStoreList = append(appLSEGiltsDataStoreList, appLSEGiltsDataStore)
@@ -586,8 +589,7 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 
 func getSelected(inID string) string {
 	returnValue := ""
-	_, selectedRec, _ := GetNISelectedStoreByID(inID)
-	if len(selectedRec.Id) != 0 {
+	if len(inID) != 0 {
 		returnValue = globals.Tick
 	}
 	return returnValue

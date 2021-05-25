@@ -55,6 +55,8 @@ type appSystemStorePage struct {
 	Txnout        string
 	Fundscheckin  string
 	Fundscheckout string
+	Ratesin       string
+	Ratesout      string
 	SYSCreated    string
 	SYSWho        string
 	SYSHost       string
@@ -71,6 +73,8 @@ type SystemStoreItem struct {
 	Txnout        string
 	Fundscheckin  string
 	Fundscheckout string
+	Ratesin       string
+	Ratesout      string
 	SYSCreated    string
 	SYSWho        string
 	SYSHost       string

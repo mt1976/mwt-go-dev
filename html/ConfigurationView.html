@@ -201,32 +201,29 @@
             <h4>Systems Connections</h4>
 
 
-            <div class="row" style="margin-top: 10px">
+            <div class="row" style="margin-top: 10px;margin-bottom: 20px">
               {{range .SienaSystems}}
 
-              <div class="col highlightgrey">
-                <div class="row"><div class="col" style="fonfont-weight: bold;"><h4 class="font-weight-bolder">{{.Id}}</h4></div></div>
-                <hr>
-<div class="row" style="margin-top: 10px"><div class="col">
+              <div class="col">
+
+
+<div class="row" style="margin-top: 10px;margin-bottom: 20px"><div class="col">
                   <table>
-                    <thead><tr><th class="h5">Type</th><th class="h5">Path</th></tr></thead>
+
                     <tbody>
-                <tr><td class="text-muted">System Name</td><td class="font-weight-bold">{{.Name}}</td></tr>
+                            <tr><td class="text-muted">ID</td><td class="font-weight-bold">{{.Id}}</td></tr>
+                <tr><td class="text-muted">Name</td><td class="font-weight-bold">{{.Name}}</td></tr>
                 <tr><td class="text-muted">Static Data In</td><td class="font-weight-bold">{{.Staticin}}</td></tr>
                 <tr><td class="text-muted">Static Data Responses</td><td class="font-weight-bold">{{.Staticout}}</td></tr>
                 <tr><td class="text-muted">Deal Import In</td><td class="font-weight-bold">{{.Txnin}}</td></tr>
                 <tr><td class="text-muted">Deal Import Responses</td><td class="font-weight-bold">{{.Txnout}}</td></tr>
                 <tr><td class="text-muted">Funds Check Requests</td><td class="font-weight-bold">{{.Fundscheckin}}</td></tr>
                 <tr><td class="text-muted">Funds Check Responses</td><td class="font-weight-bold">{{.Fundscheckout}}</td></tr>
-                <tr><td class="text-muted">Last Updated</td><td class="font-weight-bold">{{.SYSUpdated}}</td></tr>
+                <tr><td class="text-muted">Rates Delivery</td><td class="font-weight-bold">{{.Ratesout}}</td></tr>
                     </tbody>
 </table>
 
               </div></div>
-              <hr>
-              <div class="row">
-                <a href="/viewSystemStore?SystemStore={{.Id}}" class="btn btn-info text-center" style="margin-left:15px" formaction="/viewSystemStore?SystemStore={{.Id}}" method="POST"><i class="far fa-eye"></i></a></div>
-              </div>
 
               {{end}}
             </div>

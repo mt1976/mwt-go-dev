@@ -95,8 +95,20 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	pageAppConfigView.AppSessionLife = globals.ApplicationProperties["sessionlife"]
 	pageAppConfigView.AppDefaultSienaSystem = globals.SienaProperties["name"]
 
-	_, systems, _ := GetSystemStoreList()
-	pageAppConfigView.SienaSystems = systems
+	var sienaSystem SystemStoreItem
+	sienaSystem.Id = globals.SienaProperties["id"]
+	sienaSystem.Name = globals.SienaProperties["name"]
+	sienaSystem.Staticin = globals.SienaProperties["static_in"]
+	sienaSystem.Staticout = globals.SienaProperties["static_in"]
+	sienaSystem.Fundscheckin = globals.SienaProperties["funds_in"]
+	sienaSystem.Fundscheckout = globals.SienaProperties["funds_out"]
+	sienaSystem.Txnin = globals.SienaProperties["transactional_in"]
+	sienaSystem.Txnout = globals.SienaProperties["transactional_out"]
+	sienaSystem.Ratesin = globals.SienaProperties["rates_in"]
+	sienaSystem.Ratesout = globals.SienaProperties["rates_out"]
+	pageAppConfigView.SienaSystems = append(pageAppConfigView.SienaSystems, sienaSystem)
+	//	_, systems, _ := GetSystemStoreList()
+	//	pageAppConfigView.SienaSystems = systems
 
 	//fmt.Println("Page Data", pageAppConfigView)
 
