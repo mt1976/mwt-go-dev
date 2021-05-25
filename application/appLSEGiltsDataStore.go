@@ -17,9 +17,11 @@ import (
 // Defines the Fields to Fetch from SQL
 var appLSEGiltsDataStoreSQL = "id, 	longName, 	isin, 	tidm, 	sedol, 	issueDate, 	maturityDate, 	couponValue, 	couponType, 	segment, 	sector, 	codeConventionCalculateAccrual, 	minimumDenomination, 	denominationCurrency, 	tradingCurrency, 	type, 	flatYield, 	paymentCouponDate, 	periodOfCoupon, 	exCouponDate, 	dateOfIndexInflation, 	unitOfQuotation, 	_Created, 	_Who, 	_Host, 	_Updated, 	issuer, 	issueAmount, 	runningYield, 	lei, 	cusip, isSelected"
 
+var appLSEGiltsDataStoreSQLInsert = "id, 	longName, 	isin, 	tidm, 	sedol, 	issueDate, 	maturityDate, 	couponValue, 	couponType, 	segment, 	sector, 	codeConventionCalculateAccrual, 	minimumDenomination, 	denominationCurrency, 	tradingCurrency, 	type, 	flatYield, 	paymentCouponDate, 	periodOfCoupon, 	exCouponDate, 	dateOfIndexInflation, 	unitOfQuotation, 	_Created, 	_Who, 	_Host, 	_Updated, 	issuer, 	issueAmount, 	runningYield, 	lei, 	cusip"
+
 var sqlLSEGiltsDataStoreId, sqlLSEGiltsDataStoreLongName, sqlLSEGiltsDataStoreIsin, sqlLSEGiltsDataStoreTidm, sqlLSEGiltsDataStoreSedol, sqlLSEGiltsDataStoreIssueDate, sqlLSEGiltsDataStoreMaturityDate, sqlLSEGiltsDataStoreCouponValue, sqlLSEGiltsDataStoreCouponType, sqlLSEGiltsDataStoreSegment, sqlLSEGiltsDataStoreSector, sqlLSEGiltsDataStoreCodeConventionCalculateAccrual, sqlLSEGiltsDataStoreMinimumDenomination, sqlLSEGiltsDataStoreDenominationCurrency, sqlLSEGiltsDataStoreTradingCurrency, sqlLSEGiltsDataStoreType, sqlLSEGiltsDataStoreFlatYield, sqlLSEGiltsDataStorePaymentCouponDate, sqlLSEGiltsDataStorePeriodOfCoupon, sqlLSEGiltsDataStoreExCouponDate, sqlLSEGiltsDataStoreDateOfIndexInflation, sqlLSEGiltsDataStoreUnitOfQuotation, sqlLSEGiltsDataStoreSYSCreated, sqlLSEGiltsDataStoreSYSWho, sqlLSEGiltsDataStoreSYSHost, sqlLSEGiltsDataStoreSYSUpdated, sqlLSEGiltsDataStoreIssuer, sqlLSEGiltsDataStoreIssueAmount, sqlLSEGiltsDataStoreRunningYield, sqlLSEGiltsDataStoreLei, sqlLSEGiltsDataStoreCusip, sqlLSEGiltsDataStoreSelected sql.NullString
 
-var appLSEGiltsDataStoreNoParams = strings.Count(appLSEGiltsDataStoreSQL, ",") + 1
+var appLSEGiltsDataStoreNoParams = strings.Count(appLSEGiltsDataStoreSQLInsert, ",") + 1
 var appLSEGiltsDataStoreParams = strings.Repeat("'%s',", appLSEGiltsDataStoreNoParams)
 var appLSEGiltsDataStoreSQLINSERT = "INSERT INTO %s.lseGiltsDataStore(%s) VALUES(" + strings.TrimRight(appLSEGiltsDataStoreParams, ",") + ");"
 var appLSEGiltsDataStoreSQLDELETE = "DELETE FROM %s.lseGiltsDataStore WHERE id='%s';"
@@ -476,10 +478,10 @@ func putLSEGiltsDataStoreUser(r AppLSEGiltsDataStoreItem, userID string) {
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
 	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLSEGiltsDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLSEGiltsDataStoreSQL, r.Id, r.LongName, r.Isin, r.Tidm, r.Sedol, r.IssueDate, r.MaturityDate, r.CouponValue, r.CouponType, r.Segment, r.Sector, r.CodeConventionCalculateAccrual, r.MinimumDenomination, r.DenominationCurrency, r.TradingCurrency, r.Type, r.FlatYield, r.PaymentCouponDate, r.PeriodOfCoupon, r.ExCouponDate, r.DateOfIndexInflation, r.UnitOfQuotation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Issuer, r.IssueAmount, r.RunningYield, r.Lei, r.Cusip)
+	inserttsql := fmt.Sprintf(appLSEGiltsDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLSEGiltsDataStoreSQLInsert, r.Id, r.LongName, r.Isin, r.Tidm, r.Sedol, r.IssueDate, r.MaturityDate, r.CouponValue, r.CouponType, r.Segment, r.Sector, r.CodeConventionCalculateAccrual, r.MinimumDenomination, r.DenominationCurrency, r.TradingCurrency, r.Type, r.FlatYield, r.PaymentCouponDate, r.PeriodOfCoupon, r.ExCouponDate, r.DateOfIndexInflation, r.UnitOfQuotation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Issuer, r.IssueAmount, r.RunningYield, r.Lei, r.Cusip)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
 
 	_, err2 := globals.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
