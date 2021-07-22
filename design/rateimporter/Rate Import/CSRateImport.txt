@@ -1,0 +1,6 @@
+<msg>
+  <coll>
+    <rt id="CSFO="><bid>12.34</bid><sts>OK</sts></rt>
+    <rt id="CSOIL="><bid>23.45</bid><sts>OK</sts></rt>
+  </coll>
+</msg>

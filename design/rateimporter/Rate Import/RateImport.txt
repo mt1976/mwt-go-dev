@@ -1,0 +1,15 @@
+<msg>
+  <coll>
+    <rt id="AIR1="><bid>99</bid><sts>OK</sts></rt>
+    <rt id="AIR2="><bid>96</bid><sts>OK</sts></rt>
+
+    <rt id="AFX1="><bid>1.55</bid><ask>1.56</ask><sts>STALE</sts></rt>
+    <rt id="AFX2="><bid>1.25</bid><ask>1.26</ask><sts>OK</sts></rt>
+    <rt id="AFX3="><bid>1.2</bid><ask>1.3</ask><sts>OK</sts></rt>
+    <rt id="AFX4="><bid>1.4</bid><ask>1.5</ask><sts>OK</sts></rt>
+
+    <rt id="AMM1="><bid>1.55</bid><ask>1.56</ask><sts>STALE</sts></rt>
+    <rt id="AMM2="><bid>1.25</bid><ask>1.26</ask><sts>OK</sts></rt>
+    <rt id="AMM3="><bid>1.35</bid><ask>1.36</ask><sts>OK</sts></rt>
+  </coll>
+</msg>
