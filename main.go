@@ -284,6 +284,8 @@ func main() {
 	header("Sessions")
 	info("Session Life", globals.ApplicationProperties["sessionlife"])
 
+	siena.RateImporterTest()
+
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 
