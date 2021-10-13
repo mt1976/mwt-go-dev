@@ -5,6 +5,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE VIEW [{{!SQL.SCHEMA}}].[ratesDataView] AS select * from [{{!SQL.SOURCE}}].dbo.rateDataStore rds
+CREATE VIEW [{{!SQL.SCHEMA}}].[ratesDataView] AS select * from [{{!SQL.DB}}].dbo.rateDataStore rds
 
 GO

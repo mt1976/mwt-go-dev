@@ -5,6 +5,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE VIEW [{{!SQL.SCHEMA}}].[credentialsView] AS SELECT * FROM [{{!SQL.SOURCE}}].dbo.credentialsStore cs
+CREATE VIEW [{{!SQL.SCHEMA}}].[credentialsView] AS SELECT * FROM [{{!SQL.DB}}].dbo.credentialsStore cs
 
 GO

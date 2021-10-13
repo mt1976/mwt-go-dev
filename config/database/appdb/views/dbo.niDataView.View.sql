@@ -6,12 +6,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[niDataView] AS
-SELECT        [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.id, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.longName, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.isin, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.tidm, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.sedol, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.issueDate, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.maturityDate,
-                         [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.couponValue, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.couponType, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.segment, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.sector, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.codeConventionCalculateAccrual,
-                         [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.minimumDenomination, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.denominationCurrency, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.tradingCurrency, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.type, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.flatYield,
-                         [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.paymentCouponDate, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.periodOfCoupon, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.exCouponDate, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.dateOfIndexInflation, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.unitOfQuotation,
-                         [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.issuer, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.issueAmount, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.runningYield, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.LEI, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.CUSIP, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore._created, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore._who,
-                         [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore._host, [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore._updated, [{{!SQL.SOURCE}}].dbo.niSelectedStore.id AS isSelected
-FROM            [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore LEFT OUTER JOIN
-                         [{{!SQL.SOURCE}}].dbo.niSelectedStore ON [{{!SQL.SOURCE}}].dbo.lseGiltsDataStore.id = [{{!SQL.SOURCE}}].dbo.niSelectedStore.id
+SELECT        [{{!SQL.DB}}].dbo.lseGiltsDataStore.id, [{{!SQL.DB}}].dbo.lseGiltsDataStore.longName, [{{!SQL.DB}}].dbo.lseGiltsDataStore.isin, [{{!SQL.DB}}].dbo.lseGiltsDataStore.tidm, [{{!SQL.DB}}].dbo.lseGiltsDataStore.sedol, [{{!SQL.DB}}].dbo.lseGiltsDataStore.issueDate, [{{!SQL.DB}}].dbo.lseGiltsDataStore.maturityDate,
+                         [{{!SQL.DB}}].dbo.lseGiltsDataStore.couponValue, [{{!SQL.DB}}].dbo.lseGiltsDataStore.couponType, [{{!SQL.DB}}].dbo.lseGiltsDataStore.segment, [{{!SQL.DB}}].dbo.lseGiltsDataStore.sector, [{{!SQL.DB}}].dbo.lseGiltsDataStore.codeConventionCalculateAccrual,
+                         [{{!SQL.DB}}].dbo.lseGiltsDataStore.minimumDenomination, [{{!SQL.DB}}].dbo.lseGiltsDataStore.denominationCurrency, [{{!SQL.DB}}].dbo.lseGiltsDataStore.tradingCurrency, [{{!SQL.DB}}].dbo.lseGiltsDataStore.type, [{{!SQL.DB}}].dbo.lseGiltsDataStore.flatYield,
+                         [{{!SQL.DB}}].dbo.lseGiltsDataStore.paymentCouponDate, [{{!SQL.DB}}].dbo.lseGiltsDataStore.periodOfCoupon, [{{!SQL.DB}}].dbo.lseGiltsDataStore.exCouponDate, [{{!SQL.DB}}].dbo.lseGiltsDataStore.dateOfIndexInflation, [{{!SQL.DB}}].dbo.lseGiltsDataStore.unitOfQuotation,
+                         [{{!SQL.DB}}].dbo.lseGiltsDataStore.issuer, [{{!SQL.DB}}].dbo.lseGiltsDataStore.issueAmount, [{{!SQL.DB}}].dbo.lseGiltsDataStore.runningYield, [{{!SQL.DB}}].dbo.lseGiltsDataStore.LEI, [{{!SQL.DB}}].dbo.lseGiltsDataStore.CUSIP, [{{!SQL.DB}}].dbo.lseGiltsDataStore._created, [{{!SQL.DB}}].dbo.lseGiltsDataStore._who,
+                         [{{!SQL.DB}}].dbo.lseGiltsDataStore._host, [{{!SQL.DB}}].dbo.lseGiltsDataStore._updated, [{{!SQL.DB}}].dbo.niSelectedStore.id AS isSelected
+FROM            [{{!SQL.DB}}].dbo.lseGiltsDataStore LEFT OUTER JOIN
+                         [{{!SQL.DB}}].dbo.niSelectedStore ON [{{!SQL.DB}}].dbo.lseGiltsDataStore.id = [{{!SQL.DB}}].dbo.niSelectedStore.id
 GO

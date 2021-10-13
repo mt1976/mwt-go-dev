@@ -6,8 +6,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[DataLoaderView] AS
-SELECT        [{{!SQL.SOURCE}}].dbo.loaderDataStore.row, [{{!SQL.SOURCE}}].dbo.loaderMapStore.name AS Field, [{{!SQL.SOURCE}}].dbo.loaderDataStore.value, [{{!SQL.SOURCE}}].dbo.loaderStore.name AS DataMap
-FROM            [{{!SQL.SOURCE}}].dbo.loaderDataStore INNER JOIN
-                         [{{!SQL.SOURCE}}].dbo.loaderMapStore ON [{{!SQL.SOURCE}}].dbo.loaderDataStore.map = [{{!SQL.SOURCE}}].dbo.loaderMapStore.id INNER JOIN
-                         [{{!SQL.SOURCE}}].dbo.loaderStore ON [{{!SQL.SOURCE}}].dbo.loaderDataStore.loader = [{{!SQL.SOURCE}}].dbo.loaderStore.id
+SELECT        [{{!SQL.DB}}].dbo.loaderDataStore.row, [{{!SQL.DB}}].dbo.loaderMapStore.name AS Field, [{{!SQL.DB}}].dbo.loaderDataStore.value, [{{!SQL.DB}}].dbo.loaderStore.name AS DataMap
+FROM            [{{!SQL.DB}}].dbo.loaderDataStore INNER JOIN
+                         [{{!SQL.DB}}].dbo.loaderMapStore ON [{{!SQL.DB}}].dbo.loaderDataStore.map = [{{!SQL.DB}}].dbo.loaderMapStore.id INNER JOIN
+                         [{{!SQL.DB}}].dbo.loaderStore ON [{{!SQL.DB}}].dbo.loaderDataStore.loader = [{{!SQL.DB}}].dbo.loaderStore.id
 GO
