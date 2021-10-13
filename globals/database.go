@@ -234,6 +234,7 @@ func CreateDatabaseObjects(DB *sql.DB, dbConfig map[string]string, sourcePath st
 		//fmt.Println("***************************************")
 
 		log.Println("Generating    :", objectName)
+		log.Println(sqlBody)
 		if !initialiseDB {
 			//log.Println(">>>", thisDrop, "<<<")
 			_, erra := DB.Exec(thisDrop)

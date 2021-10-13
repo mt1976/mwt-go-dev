@@ -1,13 +1,13 @@
 USE [SRS-2]
 GO
-/****** Object:  View [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[ratesDataView]    Script Date: 11/05/2021 14:31:24 ******/
+/****** Object:  View [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].[ratesDataView]    Script Date: 11/05/2021 14:31:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[DataLoaderView] AS
-SELECT        [{{!SQL.DB}}].dbo.loaderDataStore.row, [{{!SQL.DB}}].dbo.loaderMapStore.name AS Field, [{{!SQL.DB}}].dbo.loaderDataStore.value, [{{!SQL.DB}}].dbo.loaderStore.name AS DataMap
-FROM            [{{!SQL.DB}}].dbo.loaderDataStore INNER JOIN
-                         [{{!SQL.DB}}].dbo.loaderMapStore ON [{{!SQL.DB}}].dbo.loaderDataStore.map = [{{!SQL.DB}}].dbo.loaderMapStore.id INNER JOIN
-                         [{{!SQL.DB}}].dbo.loaderStore ON [{{!SQL.DB}}].dbo.loaderDataStore.loader = [{{!SQL.DB}}].dbo.loaderStore.id
+SELECT        [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderDataStore.row, [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderMapStore.name AS Field, [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderDataStore.value, [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderStore.name AS DataMap
+FROM            [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderDataStore INNER JOIN
+                         [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderMapStore ON [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderDataStore.map = [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderMapStore.id INNER JOIN
+                         [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderStore ON [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderDataStore.loader = [{{!SQL.SOURCE}}].[{{!SQL.SCHEMA}}].loaderStore.id
 GO
