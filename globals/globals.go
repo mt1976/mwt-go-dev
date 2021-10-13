@@ -22,7 +22,10 @@ var sourceAccess []*sql.DB
 var ApplicationProperties map[string]string
 var ApplicationPropertiesDB map[string]string
 var ApplicationDB *sql.DB
+
 var InstanceProperties map[string]string
+var MasterPropertiesDB map[string]string
+var MasterDB *sql.DB
 
 var SienaProperties map[string]string
 var SienaPropertiesDB map[string]string
@@ -137,6 +140,8 @@ func Initialise() {
 	SienaPropertiesDB = getProperties(SQLCONFIG)
 	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
 	InstanceProperties = getProperties(INSTANCECONFIG)
+	//MasterPropertiesDB = getProperties(DATASTORECONFIG)
+	//MasterPropertiesDB["database"] = "master"
 
 	IsChildInstance = false
 	if len(ApplicationPropertiesDB["instance"]) != 0 {
@@ -146,8 +151,14 @@ func Initialise() {
 	//log.Println("Connecting to DB's")
 	log.Println("Initialisation: Connecting to application databases...")
 
+	//MasterDB, _ = GlobalsDatabaseConnect(MasterPropertiesDB)
+
 	ApplicationDB, _ = GlobalsDatabaseConnect(ApplicationPropertiesDB)
+
 	SienaDB, _ = GlobalsDatabaseConnect(SienaPropertiesDB)
+
+	log.Println("Initialisation: Connection established")
+
 	//
 
 	//spew.Dump(ApplicationDB)

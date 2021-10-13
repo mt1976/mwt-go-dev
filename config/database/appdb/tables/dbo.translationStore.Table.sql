@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[translationStore](
+CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[translationStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[id] [nvarchar](max) NULL,
 	[class] [nvarchar](max) NULL,

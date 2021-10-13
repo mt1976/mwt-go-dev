@@ -37,20 +37,26 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	port := mssqlConfig["port"]
 	database := mssqlConfig["database"]
 	//	instance := mssqlConfig["instance"]
-	log.Println("Information   : Attemping connection to " + database)
+	if database != "master" {
+		log.Println("Information   : Attemping connection to " + server + " " + database)
+	}
+	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;database=%s;", server, user, password, port, database)
+	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;", server, user, password, port)
 
-	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;database=%s;",
-		server, user, password, port, database)
+	//log.Println("Connection    : " + connString)
 	dbInstance, err := sql.Open("mssql", connString)
 	if err != nil {
-		log.Fatal("ERROR!        : Connection attempt to "+database+" failed:", err.Error())
+		log.Fatal("ERROR!        : Connection attempt with "+database+connString+" failed:", err.Error())
+	}
+	if database != "master" {
+		log.Println("Information   : Connected to " + server + " " + database)
 	}
 	keepalive, _ := time.ParseDuration("-1h")
 	dbInstance.SetConnMaxLifetime(keepalive)
+	//log.Printf("Test Connection %d %d", dbInstance.Stats().OpenConnections, dbInstance.Stats().Idle)
 	stmt, err := dbInstance.Prepare("select @@version")
 	row := stmt.QueryRow()
 	var result string
-
 	err = row.Scan(&result)
 	if err != nil {
 		log.Fatal("Scan failed:", err.Error())
@@ -63,14 +69,17 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	// Connect to SQL Server DB
 	//mssqlConfig := getProperties(config)
 	var returnDB *sql.DB
+	database := mssqlConfig["database"]
+	instance := mssqlConfig["instance"]
+
+	mssqlConfig["database"] = "master"
 
 	dbInstance, errConnect := connect(mssqlConfig)
 	if errConnect != nil {
 		log.Panic(errConnect.Error())
 	}
 
-	database := mssqlConfig["database"]
-	instance := mssqlConfig["instance"]
+	mssqlConfig["database"] = database
 
 	dbName := database
 	if len(instance) != 0 {
@@ -114,7 +123,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 		}
 		returnDB = newDBInstance
 	}
-
+	//log.Printf("%d %s", returnDB.Stats().OpenConnections, mssqlConfig["database"])
 	//fmt.Printf("%s\n", result)
 	return returnDB, errConnect
 }

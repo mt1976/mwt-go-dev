@@ -22,9 +22,13 @@ CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[credentialsStore](
 	[_who] [nvarchar](max) NULL,
 	[_host] [nvarchar](max) NULL,
 	[_updated] [nvarchar](max) NULL,
- CONSTRAINT [PK_credentialsStore] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_credentialsStore] PRIMARY KEY CLUSTERED
 (
 	[_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+INSERT INTO [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[credentialsStore]
+(id, username, password, firstname, lastname, knownas, email, issued, expiry, [role], brand, [_created], [_who], [_host], [_updated])
+VALUES('super', 'super', '123456', 'Delete', 'Me', 'Delete Me', 'delete@me.com', '', '', '', '', 'system', 'system', '', '');
 GO

@@ -129,7 +129,7 @@ func Connect() (*sql.DB, error) {
 // getSienaBusinessDate read all employees
 func GetBusinessDate(db *sql.DB) (int, globals.DateItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.SienaBusinessDate;", sienaBusinessDateSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBusinessDate;", sienaBusinessDateSQL, globals.SienaPropertiesDB["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
 }
