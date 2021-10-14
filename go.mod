@@ -9,7 +9,6 @@ require (
 	github.com/denisenkom/go-mssqldb v0.10.0
 	github.com/google/uuid v1.2.0
 	github.com/jimlawless/cfg v0.0.0-20160326141742-136e0c264d31
-	github.com/jszwec/csvutil v1.5.0 // indirect
 	github.com/leekchan/accounting v1.0.0
 	github.com/lib/pq v1.2.0 // indirect
 	github.com/lnquy/cron v1.1.1
