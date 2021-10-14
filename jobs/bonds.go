@@ -83,7 +83,7 @@ func readCSVFromUrl(url string) ([]LSEBond, error) {
 	//log.Println(resp.Body)
 	//log.Println(data)
 	for row, theseStrings := range data {
-		//	log.Println(row)
+		log.Println(row)
 		if row > 2 {
 			//log.Println(theseStrings)
 			for _, thisRow := range theseStrings {
