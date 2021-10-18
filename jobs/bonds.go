@@ -24,6 +24,11 @@ const (
 	FFIURLPrefix                 = "https://www.fixedincomeinvestor.co.uk/x/"
 	MIBaseURI                    = "https://markets.businessinsider.com/bonds/"
 	MIDate                       = "1/2/2006"
+	FIIBenchmarks                = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=8"
+	FIIBondIndex                 = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=7"
+	FIIPIBS                      = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=11"
+	FIIORB                       = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=3620"
+	FIIORBBONDS                  = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=3653"
 )
 
 type LSEBond struct {
@@ -109,11 +114,16 @@ func RunJobFII(actionType string) {
 	logStart(actionType)
 	//	log.Println("SONIA=", sonia)
 	var message string
-	OnPage(FIICorporateBonds)
-	OnPage(FIIIndexLinkedCorporateBonds)
-	OnPage(FIIUKGilts)
-	OnPage(FIIUKIndexLinkedGilts)
+	OnPage(FIICorporateBonds, "Corporate Bonds")
+	OnPage(FIIIndexLinkedCorporateBonds, "Index Linked Corporate Bonds")
+	OnPage(FIIUKGilts, "Gilts")
+	OnPage(FIIUKIndexLinkedGilts, "Index Linked Gilts")
 
+	//OnPage(FIIBenchmarks,"Bencmark")
+	//	OnPage(FIIBondIndex)
+	OnPage(FIIPIBS, "Interest Baring Share")
+	OnPage(FIIORB, "Retail Bond")
+	OnPage(FIIORBBONDS, "Retail Bond")
 	//dataFile := "poo"
 	//log.Println(len(dataFile))
 	//if len(dataFile) == 0 {
@@ -124,8 +134,8 @@ func RunJobFII(actionType string) {
 	logEnd(actionType)
 }
 
-func OnPage(link string) {
-
+func OnPage(link string, nitype string) {
+	log.Printf("link: %v\n", link)
 	req, err := http.NewRequest("GET", link, nil)
 	if err != nil {
 		log.Fatalln(err)
@@ -138,7 +148,7 @@ func OnPage(link string) {
 		log.Fatal(err)
 	}
 
-	tokenizeFIIhtml(response)
+	tokenizeFIIhtml(response, nitype)
 
 	defer response.Body.Close()
 
@@ -149,7 +159,7 @@ func OnPage(link string) {
 	return
 }
 
-func tokenizeFIIhtml(response *http.Response) {
+func tokenizeFIIhtml(response *http.Response, nitype string) {
 
 	inTable := false
 	inTableBody := false
@@ -158,7 +168,8 @@ func tokenizeFIIhtml(response *http.Response) {
 	noRows := 0
 	noCols := 0
 	sourceURI := ""
-	var row []string
+	//var row []string
+	row := []string{"", "", "", "", "", "", "", "", "", ""}
 	var table [][]string
 	tokenizer := html.NewTokenizer(response.Body)
 	for {
@@ -171,6 +182,7 @@ func tokenizeFIIhtml(response *http.Response) {
 		}
 		//spew.Dump(tt)
 		switch tt {
+
 		case html.ErrorToken:
 			log.Fatal(err)
 		case html.TextToken:
@@ -178,11 +190,17 @@ func tokenizeFIIhtml(response *http.Response) {
 				//		spew.Dump(t)
 				if inTableBody {
 					if inTableRow {
+						//fmt.Printf("consume t.Data: %q", t.Data)
+						//fmt.Printf("inTableCell: %v\n", inTableCell)
 						if inTableCell {
 							//node := t.Type
 							data := strings.TrimSpace(t.Data)
-							//fmt.Println(inTable, inTableBody, inTableRow, node, data, noRows, noCols)
-							row = append(row, data)
+							//fmt.Println(inTable, inTableBody, inTableRow, data, noRows, noCols)
+							if len(data) == 0 {
+								data = "-"
+							}
+							//log.Println(data)
+							row[noCols-1] = data
 						}
 					}
 				}
@@ -213,10 +231,14 @@ func tokenizeFIIhtml(response *http.Response) {
 				}
 			}
 			if inTableRow {
+				//fmt.Printf("b4 inTableCell: %v\n", inTableCell)
 				if t.Data == "td" {
 					inTableCell = true
 					noCols = noCols + 1
 				}
+				//fmt.Printf("t.Data: %q", t.Data)
+				//fmt.Printf("noCols: %v\n", noCols)
+				//fmt.Printf("a4 inTableCell: %v\n", inTableCell)
 			}
 
 		case html.EndTagToken:
@@ -234,13 +256,13 @@ func tokenizeFIIhtml(response *http.Response) {
 				if t.Data == "tr" {
 					inTableRow = false
 					noRows = noRows + 1
-					processRow(row, noCols, sourceURI)
+					processRow(row, noCols, sourceURI, nitype)
 
 					//log.Print(row)
 
 					table = append(table, row)
 					noCols = 0
-					row = nil
+					row = []string{"", "", "", "", "", "", "", "", "", ""}
 
 				}
 			}
@@ -277,13 +299,13 @@ func getFFUURI(t html.Token) (bool, string) {
 	return ok, href
 }
 
-func processRow(row []string, noCols int, inURI string) {
-	processDefinition(row, noCols, inURI)
+func processRow(row []string, noCols int, inURI string, nitype string) {
+	processDefinition(row, noCols, inURI, nitype)
 	processPrice(row, noCols)
 	//	log.Println("PROCESSED", row, noCols, inURI)
 }
 
-func processDefinition(row []string, noCols int, inURI string) {
+func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	//	var bondRec application.AppLSEGiltsDataStoreItem
 	_, bondRec, _ := application.GetLSEGiltsDataStoreByID(row[3])
 	bondRec.LongName = application.GetTranslation("NI-Name", row[2])
@@ -302,8 +324,9 @@ func processDefinition(row []string, noCols int, inURI string) {
 	if bondRec.Segment == "UKGT" {
 		bondRec.Issuer = application.GetTranslation("NI-Issuer", "UK Government")
 	} else {
-		//		bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
+		bondRec.Type = nitype
 	}
+
 	if len(bondRec.Type) == 0 {
 		bondRec.Type = application.GetTranslation("NI-Type", bondRec.Segment)
 	}
@@ -377,6 +400,13 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 	if bondRec.Segment == "" {
 		bondRec.Segment = application.GetTranslation("NI-Segment", miData.Issuer)
 	}
+	//log.Printf("ISIN=%q LEI=%q", bondRec.Isin, bondRec.Lei)
+	bondRec.Lei, err = application.GLIEF_leiLookup(bondRec.Isin)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	//log.Printf("ISIN=%q LEI=%q", bondRec.Isin, bondRec.Lei)
+
 	//spew.Dump(bondRec)
 	//spew.Dump(miData)
 	return bondRec
@@ -648,6 +678,9 @@ func tokenizeFIIenrichment(response *http.Response) (string, string, string, str
 }
 
 func processPrice(row []string, noCols int) {
+	//fmt.Printf("row: %v\n", row)
+	//fmt.Printf("noCols: %v %v\n", noCols, len(row))
+	//spew.Dump(row)
 	var ratesData RatesDataStore
 	//	ratesData.bid = fmt.Sprintf("%v\r\n", bondRow.CouponValue)
 	ratesData.mid = row[7]
