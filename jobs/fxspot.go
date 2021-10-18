@@ -194,7 +194,7 @@ func RunJobFXSPOT(actionType string) {
 	//funcName = "RunJobFXSPOT"
 	//	//logit(actionType, "*** REFRESH RATES ***")
 	//	buildRateCard()
-
+	logStart(actionType)
 	_, cacheList, err := application.GetCacheStoreListByOBJECT("CurrencyPair")
 	if err != nil {
 		log.Println(err.Error())
@@ -229,4 +229,5 @@ func RunJobFXSPOT(actionType string) {
 		message = err.Error()
 	}
 	application.UpdateSchedule("fxspot", globals.Aquirer, message)
+	logEnd(actionType)
 }

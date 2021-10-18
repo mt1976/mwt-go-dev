@@ -455,6 +455,7 @@ func GetTranslation(class string, message string) string {
 		translationItem.Translation = message
 		putTranslationStoreSystem(translationItem)
 	}
+	//fmt.Printf("message: %v\n", message)
 	return translationItem.Translation
 }
 

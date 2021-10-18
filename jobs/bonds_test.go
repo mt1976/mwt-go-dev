@@ -6,5 +6,6 @@ import (
 
 // TestRunJobHeartBeat is a test
 func TestRunJobLSE(t *testing.T) {
-	RunJobLSE("TEST")
+	//RunJobLSE("TEST")
+	RunJobFII("TEST")
 }

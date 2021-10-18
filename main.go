@@ -51,6 +51,9 @@ func main() {
 	//log.Println(line)
 
 	header("Scheduling Jobs")
+	//log.Println("TEST>")
+	//scheduler.RunJobCob("TEST")
+	//log.Println("<TEST")
 	scheduler.Start()
 	done("Jobs Scheduled")
 
@@ -293,6 +296,8 @@ func main() {
 
 	httpPort := ":" + globals.ApplicationProperties["port"]
 	//http.ListenAndServe(httpPort, nil)
+
+	//scheduler.RunJobFII("")
 
 	// Wrap your handlers with the LoadAndSave() middleware.
 	http.ListenAndServe(httpPort, globals.SessionManager.LoadAndSave(mux))

@@ -61,6 +61,7 @@ type FredSeriesInfo struct {
 }
 
 func RunJobFRED(actionType string) {
+	logStart(actionType)
 	//logit(actionType, "*** START ***")
 	////logit(actionType, apiKey)
 	////logit(actionType, uri)
@@ -98,6 +99,7 @@ func RunJobFRED(actionType string) {
 	application.UpdateSchedule("fred", globals.Aquirer, "")
 
 	//logit(actionType, "*** DONE ***")
+	logEnd(actionType)
 }
 
 func getFredAPIData(inURI string) (string, string) {

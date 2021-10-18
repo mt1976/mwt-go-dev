@@ -56,6 +56,8 @@ type CubeItem struct {
 }
 
 func RunJobBOESONIA(actionType string) {
+
+	logStart(actionType)
 	//logit(actionType, "*** START ***")
 	//funcName = "RunJobFXSPOT"
 	//date := "1999-12-31"
@@ -157,6 +159,7 @@ func RunJobBOESONIA(actionType string) {
 	}
 	application.UpdateSchedule("sonia", globals.Aquirer, message)
 	//logit(actionType, "*** DONE ***")
+	logEnd(actionType)
 }
 
 func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {
