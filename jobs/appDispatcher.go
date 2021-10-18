@@ -8,6 +8,7 @@ import (
 )
 
 func RunJobDispatch(actionType string) {
+	logStart(actionType)
 	//log.Println(actionType, "*** START ***")
 	//_, dispatchList, err := application.GetDispatchStoreList()
 	//log.Println("Dispatchers", len(dispatchList), "Errors", err)
@@ -21,22 +22,25 @@ func RunJobDispatch(actionType string) {
 	//}
 	application.UpdateSchedule(actionType, globals.Dispatcher, "")
 	//log.Println(actionType, "*** DONE ***")
+	logEnd(actionType)
 }
 
 func RunJobDispatchType(actionType string) {
 	//log.Println(actionType, "*** START ***")
+	logStart(actionType)
 
 	DispatchByType("RV" + actionType)
 	application.UpdateSchedule(actionType, globals.Dispatcher, "")
+	logEnd(actionType)
 	//log.Println(actionType, "*** DONE ***")
 }
 
 func DispatchByType(dispatchType string) {
-	log.Printf("Dispatch      : %q -> %q \n", dispatchType, globals.SienaProperties["rates"])
+	log.Printf("Dispatch      : Issue %q -> %q \n", dispatchType, globals.SienaProperties["rates"])
 
 }
 
 //Dispatch poo
 func Dispatch(s application.DispatchStoreItem) {
-	log.Printf("Dispatch      : %q -> %q \n", s.Type, globals.SienaProperties["rates"])
+	log.Printf("Dispatch      : Issue %q -> %q \n", s.Type, globals.SienaProperties["rates"])
 }

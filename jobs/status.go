@@ -9,8 +9,9 @@ import (
 func RunJobHeartBeat(actionType string) {
 	//	funcName := "RunJobHeartBeat"
 	//logit(actionType, ".")
-
+	logStart(actionType)
 	globals.ApplicationDB = globals.GlobalsDatabasePoke(globals.ApplicationDB, globals.ApplicationPropertiesDB)
 	globals.SienaDB = globals.GlobalsDatabasePoke(globals.SienaDB, globals.SienaPropertiesDB)
 	application.UpdateSchedule("heartbeat", globals.Monitor, "")
+	logEnd(actionType)
 }

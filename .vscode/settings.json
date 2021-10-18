@@ -1,0 +1,36 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "eb-ldn-pc105",
+            "port": 1433,
+            "driver": "MSSQL",
+            "name": "SRS",
+            "database": "SRS",
+            "username": "rob",
+            "password": "rob123",
+            "group": "eb-ldn-pc105"
+        },
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "eb-ldn-pc105",
+            "port": 1433,
+            "driver": "MSSQL",
+            "name": "RG3",
+            "group": "eb-ldn-pc105",
+            "database": "RG3",
+            "username": "rob",
+            "password": "rob123"
+        }
+    ]
+}

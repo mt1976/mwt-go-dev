@@ -1,7 +1,7 @@
 package jobs
 
 import (
-	"encoding/csv"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -22,6 +22,8 @@ const (
 	FIIUKGilts                   = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=3"
 	FIIUKIndexLinkedGilts        = "https://www.fixedincomeinvestor.co.uk/x/bondtable.html?groupid=3530"
 	FFIURLPrefix                 = "https://www.fixedincomeinvestor.co.uk/x/"
+	MIBaseURI                    = "https://markets.businessinsider.com/bonds/"
+	MIDate                       = "1/2/2006"
 )
 
 type LSEBond struct {
@@ -48,132 +50,32 @@ type LSEBond struct {
 	UnitOfQuotation                string `csv:"UNIT OF QUOTATION"`
 }
 
-func RunJobLSE(actionType string) {
-
-	//	log.Println("SONIA=", sonia)
-	var message string
-	dataFile, err := readCSVFromUrl(LSEBaseURI)
-	if err != nil {
-		log.Println(err.Error())
-		message = err.Error()
-	}
-
-	if dataFile == nil {
-		message = "No Data Aquired"
-	}
-
-	application.UpdateSchedule("LSE", globals.Aquirer, message)
-	//logit(actionType, "*** DONE ***")
-}
-
-func readCSVFromUrl(url string) ([]LSEBond, error) {
-	resp, err := http.Get(url)
-	if err != nil {
-		return nil, err
-	}
-
-	//defer resp.Body.Close()
-	reader := csv.NewReader(resp.Body)
-	reader.Comma = ';'
-	data, err := reader.ReadAll()
-	if err != nil {
-		return nil, err
-	}
-	var bonds []LSEBond
-	//log.Println(resp.Body)
-	//log.Println(data)
-	for row, theseStrings := range data {
-		log.Println(row)
-		if row > 2 {
-			//log.Println(theseStrings)
-			for _, thisRow := range theseStrings {
-				var bondRow LSEBond
-				thisRow := strings.Split(thisRow, ",")
-				bondRow.LongName = application.GetTranslation("NI-Name", thisRow[0])
-				bondRow.Isin = thisRow[1]
-				bondRow.Tidm = thisRow[2]
-				bondRow.Sedol = thisRow[3]
-				bondRow.IssueDate = getInternalDate(thisRow[4])
-				bondRow.MaturityDate = getInternalDate(thisRow[5])
-				bondRow.CouponValue = thisRow[6]
-				bondRow.CouponType = thisRow[7]
-				bondRow.Segment = application.GetTranslation("NI-Segment", thisRow[8])
-				bondRow.Sector = application.GetTranslation("NI-Sector", thisRow[9])
-				bondRow.CodeConventionCalculateAccrual = application.GetTranslation("NI-AccrualType", thisRow[10])
-				bondRow.MinimumDenomination = thisRow[11]
-				bondRow.DenominationCurrency = thisRow[12]
-				bondRow.TradingCurrency = thisRow[13]
-				bondRow.Type = application.GetTranslation("NI-Type", thisRow[14])
-				bondRow.FlatYield = thisRow[15]
-				bondRow.PaymentCouponDate = getInternalDate(thisRow[16])
-				bondRow.PeriodOfCoupon = application.GetTranslation("NI-CouponPeriod", thisRow[17])
-				bondRow.ExCouponDate = getInternalDate(thisRow[18])
-				bondRow.DateOfIndexInflation = thisRow[19]
-				bondRow.UnitOfQuotation = thisRow[20]
-
-				_, bondRec, _ := application.GetLSEGiltsDataStoreByID(bondRow.Isin)
-				//		var bondRec application.AppLSEGiltsDataStoreItem
-				if bondRec.Isin == "" {
-					// ITs a new record
-					bondRec.LongName = bondRow.LongName
-					bondRec.Isin = bondRow.Isin
-					bondRec.Tidm = bondRow.Tidm
-					bondRec.Sedol = bondRow.Sedol
-					bondRec.IssueDate = bondRow.IssueDate
-					bondRec.MaturityDate = bondRow.MaturityDate
-					bondRec.CouponValue = bondRow.CouponValue
-					bondRec.CouponType = bondRow.CouponType
-					bondRec.Segment = bondRow.Segment
-					bondRec.Sector = bondRow.Sector
-					bondRec.CodeConventionCalculateAccrual = bondRow.CodeConventionCalculateAccrual
-					bondRec.MinimumDenomination = bondRow.MinimumDenomination
-					bondRec.DenominationCurrency = bondRow.DenominationCurrency
-					bondRec.TradingCurrency = bondRow.TradingCurrency
-					bondRec.Type = bondRow.Type
-					bondRec.FlatYield = bondRow.FlatYield
-					bondRec.PaymentCouponDate = bondRow.PaymentCouponDate
-					bondRec.PeriodOfCoupon = bondRow.PeriodOfCoupon
-					bondRec.ExCouponDate = bondRow.ExCouponDate
-					bondRec.DateOfIndexInflation = bondRow.DateOfIndexInflation
-					bondRec.UnitOfQuotation = bondRow.UnitOfQuotation
-					if bondRec.Segment == "UKGT" {
-						bondRec.Issuer = application.GetTranslation("NI-Issuer", "UK Government")
-					} else {
-						bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
-					}
-					if len(bondRec.Type) == 0 {
-						bondRec.Type = application.GetTranslation("NI-Type", bondRec.Segment)
-					}
-					if len(bondRec.Type) == 0 {
-						bondRec.Type = application.GetTranslation("NI-Type", "Corporate Bond")
-					}
-				}
-
-				bondRec.Tidm = bondRow.Tidm
-				bondRec.Sedol = bondRow.Sedol
-				bondRec.IssueDate = bondRow.IssueDate
-				bondRec.CouponValue = bondRow.CouponValue
-				bondRec.CouponType = bondRow.CouponType
-				bondRec.CodeConventionCalculateAccrual = bondRow.CodeConventionCalculateAccrual
-				bondRec.MinimumDenomination = bondRow.MinimumDenomination
-				bondRec.DenominationCurrency = bondRow.DenominationCurrency
-				bondRec.TradingCurrency = bondRow.TradingCurrency
-				bondRec.FlatYield = bondRow.FlatYield
-				bondRec.PaymentCouponDate = bondRow.PaymentCouponDate
-				bondRec.PeriodOfCoupon = bondRow.PeriodOfCoupon
-				bondRec.ExCouponDate = bondRow.ExCouponDate
-				bondRec.DateOfIndexInflation = bondRow.DateOfIndexInflation
-				bondRec.UnitOfQuotation = bondRow.UnitOfQuotation
-
-				application.PutLSEGiltsDataStoreSystem(bondRec)
-
-				//spew.Dump(bondRow)
-				bonds = append(bonds, bondRow)
-			}
-		}
-	}
-	//	log.Print(bonds)
-	return bonds, nil
+type MIBondData struct {
+	ISIN              string
+	Name              string
+	Country           string
+	Issuence          string
+	Issuer            string
+	IssueVolume       string
+	Currency          string
+	IssuePrice        string
+	IssueDate         string
+	Coupon            string
+	Coupon2           string
+	Denomination      string
+	QuotationType     string
+	PaymentType       string
+	SpecialCouponType string
+	MaturityDate      string
+	CouponPaymentDate string
+	PaymentFrequency  string
+	NoPaymentsPerYear string
+	CouponStartDate   string
+	FinalCouponDate   string
+	Floater           string
+	About             string
+	AboutIssuer       string
+	URI               string
 }
 
 func getInternalDate(in string) string {
@@ -183,14 +85,18 @@ func getInternalDate(in string) string {
 func getInternalDateGen(in string, format string) string {
 	var intDate string
 	if len(in) > 0 {
-		//log.Println(LSEDateFormat, globals.DATEFORMATSIENA)
-		time, err := time.Parse(format, in)
-		if err != nil {
-			log.Println(err.Error())
-		}
+		//log.Println(LSEDateFormat, globals.DATEFORMATSIENA
+		if in != "Perpetual" {
+			time, err := time.Parse(format, in)
+			if err != nil {
+				log.Println(err.Error())
+			}
 
-		intDate = time.Format(globals.DATEFORMATSIENA)
-		//log.Println(in, intDate)
+			intDate = time.Format(globals.DATEFORMATSIENA)
+		} else {
+			intDate = ""
+		}
+		//log.Println(in, intDate, format)
 	}
 	return intDate
 }
@@ -200,6 +106,7 @@ func getInternalDateFII(in string) string {
 }
 
 func RunJobFII(actionType string) {
+	logStart(actionType)
 	//	log.Println("SONIA=", sonia)
 	var message string
 	OnPage(FIICorporateBonds)
@@ -214,6 +121,7 @@ func RunJobFII(actionType string) {
 	//}
 	application.UpdateSchedule("FII", globals.Aquirer, message)
 	//logit(actionType, "*** DONE ***")
+	logEnd(actionType)
 }
 
 func OnPage(link string) {
@@ -394,7 +302,7 @@ func processDefinition(row []string, noCols int, inURI string) {
 	if bondRec.Segment == "UKGT" {
 		bondRec.Issuer = application.GetTranslation("NI-Issuer", "UK Government")
 	} else {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
+		//		bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
 	}
 	if len(bondRec.Type) == 0 {
 		bondRec.Type = application.GetTranslation("NI-Type", bondRec.Segment)
@@ -402,15 +310,27 @@ func processDefinition(row []string, noCols int, inURI string) {
 	if len(bondRec.Type) == 0 {
 		bondRec.Type = application.GetTranslation("NI-Type", "Corporate Bond")
 	}
+
+	//log.Println(bondRec.Issuer)
+	if bondRec.Issuer == "" {
+		bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
+	}
+
+	//fmt.Printf("bondRec: %v\n", bondRec)
+	//fmt.Println(bondRec.LongName, bondRec.Sector)
+
+	bondRec.LongName = strings.ToUpper(bondRec.LongName)
+
 	//// TODO: Use Longname/ISIN to get ISIN info and/or lookup a siena newSienaCounterparty
 	// TODO: if countarparty is not found create Firm, add to center, create counterparty (as issuer), create counterpartyimportID
 	// TODO: isinlookup  (might need to go into the Dispatcher Job)
-
+	//spew.Dump(bondRec)
+	fmt.Printf("bondRec: %v\n", bondRec)
 	application.PutLSEGiltsDataStoreSystem(bondRec)
 }
 
 func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem) application.AppLSEGiltsDataStoreItem {
-
+	//log.Println("URI=" + inURI)
 	req, err := http.NewRequest("GET", inURI, nil)
 	if err != nil {
 		log.Fatalln(err)
@@ -420,17 +340,186 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 
 	response, err := http.Get(inURI)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 	sector, couponFreq, yield, runningYield, issueAmount := tokenizeFIIenrichment(response)
-	bondRec.Sector = application.GetTranslation("NI-Sector", sector)
+	miData := getMIenrichment(bondRec.Isin, bondRec)
+
+	bondRec.Sector = sector
+	//fmt.Printf("bondRec.Sector: %v\n", bondRec.Sector)
+
+	if bondRec.Sector == "" {
+		bondRec.Sector = miData.Issuer
+	}
+
+	bondRec.Sector = application.GetTranslation("NI-Sector", bondRec.Sector)
+
+	//fmt.Printf("bondRec.Sector: %v\n", bondRec.Sector)
+
 	bondRec.PeriodOfCoupon = application.GetTranslation("NI-CouponPeriod", couponFreq)
 	bondRec.FlatYield = strings.ReplaceAll(yield, "%", "")
 	bondRec.RunningYield = strings.ReplaceAll(runningYield, "%", "")
 	bondRec.IssueAmount = issueAmount
 
+	bondRec.MinimumDenomination = miData.Denomination
+
+	//TODO Translate into Internal SRS format
+	bondRec.IssueDate = getInternalDateGen(miData.IssueDate, MIDate)
+	bondRec.PaymentCouponDate = getInternalDateGen(miData.CouponPaymentDate, MIDate)
+
+	if miData.Name != "" {
+		bondRec.LongName = strings.ToUpper(application.GetTranslation("NI-Name", miData.Name))
+	}
+	if miData.Issuer != "" {
+		bondRec.Issuer = application.GetTranslation("NI-Issuer", miData.Issuer)
+	}
+	//spew.Dump(bondRec)
+	//spew.Dump(miData)
 	return bondRec
+}
+
+func getMIenrichment(inISIN string, bondRec application.AppLSEGiltsDataStoreItem) MIBondData {
+
+	req, err := http.NewRequest("GET", MIBaseURI+inISIN, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	req.Header.Set("Accept", "application/json")
+
+	response, err := http.Get(MIBaseURI + inISIN)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	miData := processMIResponse(response)
+
+	defer response.Body.Close()
+
+	return miData
+}
+
+func processMIResponse(response *http.Response) MIBondData {
+	var miData MIBondData
+
+	miContent := make(map[string][]string)
+
+	inTable := false
+	inTableRow := false
+	inKeyCell := false
+	var dataKey string
+	var dataValue string
+	keyValueSearch := false
+
+	noCols := 0
+	var instCount = 0
+
+	tokenizer := html.NewTokenizer(response.Body)
+	for {
+		tt := tokenizer.Next()
+		t := tokenizer.Token()
+
+		err := tokenizer.Err()
+		if err == io.EOF {
+			break
+		}
+
+		//log.Printf("tt={%v} attr={%v} type={%v} data={%v} da={%v} ks={%v}", tt.String(), t.Attr, t.Type, strings.TrimSpace(t.Data), t.DataAtom, keyValueSearch)
+		switch tt {
+		case html.ErrorToken:
+			log.Fatalln(err.Error())
+		case html.TextToken:
+			if inTable {
+				//		spew.Dump(t)
+
+				if inTableRow {
+					//	prevData = nil
+					if inKeyCell && !keyValueSearch {
+						//node := t.Type
+						if strings.TrimSpace(t.Data) != "" {
+							dataKey = strings.TrimSpace(t.Data)
+							if dataValue == "" {
+								keyValueSearch = true
+							}
+						}
+					} else if inKeyCell && keyValueSearch {
+						dataValue = strings.TrimSpace(t.Data)
+						if dataValue != "" {
+							miContent[dataKey] = append(miContent[dataKey], dataValue)
+						}
+						instCount = instCount + 1
+					}
+
+					//			log.Println("DK=", dataKey, "DV=", dataValue, "IC=", instCount, "NC=", noCols)
+
+				}
+
+			}
+		case html.StartTagToken:
+
+			if t.Data == "table" {
+				inTable = true
+			}
+
+			if t.Data == "tr" {
+				inTableRow = true
+			}
+
+			if inTableRow {
+				if t.Data == "td" {
+					inKeyCell = true
+					noCols = noCols + 1
+				}
+			}
+
+		case html.EndTagToken:
+
+			if t.Data == "table" {
+				inTable = false
+			}
+
+			if t.Data == "tr" {
+				inTableRow = false
+				noCols = 0
+				//			row = nil
+				inKeyCell = false
+				keyValueSearch = false
+			}
+
+		}
+	}
+	// Print to check the slice's content
+	//spew.Dump(table)
+
+	miData.Coupon = getMIContent(miContent, "Coupon")
+	miData.Denomination = getMIContent(miContent, "Denomination")
+	miData.CouponPaymentDate = getMIContent(miContent, "Coupon Payment Date")
+	miData.Name = getMIContent(miContent, "Name")
+	miData.Issuer = getMIContent(miContent, "Issuer")
+	miData.IssuePrice = getMIContent(miContent, "Issue Price")
+	miData.MaturityDate = getMIContent(miContent, "Maturity Date")
+	miData.CouponStartDate = getMIContent(miContent, "Coupon Start Date")
+	miData.PaymentType = getMIContent(miContent, "Payment Type")
+	miData.FinalCouponDate = getMIContent(miContent, "Final Coupon Date")
+	miData.Country = getMIContent(miContent, "Country")
+	miData.IssueVolume = getMIContent(miContent, "Issue Volume")
+	miData.Currency = getMIContent(miContent, "Currency")
+	miData.Floater = getMIContent(miContent, "Floater")
+	miData.ISIN = getMIContent(miContent, "ISIN")
+	miData.IssueDate = getMIContent(miContent, "Issue Date")
+	miData.NoPaymentsPerYear = getMIContent(miContent, "No. of Payments per Year")
+
+	return miData
+}
+
+func getMIContent(in map[string][]string, fetch string) string {
+
+	var rv = ""
+	if len(in[fetch]) != 0 {
+		rv = in[fetch][0]
+	}
+	return rv
 }
 
 func tokenizeFIIenrichment(response *http.Response) (string, string, string, string, string) {
@@ -446,7 +535,6 @@ func tokenizeFIIenrichment(response *http.Response) (string, string, string, str
 	yield := ""
 	runningYield := ""
 	issueAmount := ""
-	//prevData := []string{"", ""}
 
 	var row []string
 	var table [][]string

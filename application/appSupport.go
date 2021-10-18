@@ -98,7 +98,7 @@ func GetTemplateID(tmpl string, userRole string) string {
 	if FileExists(roleTemplate) {
 		//	templateName = roleTemplate
 	}
-	log.Printf("Using Template: %q", templateName)
+	log.Printf("Using Template: Source %q", templateName)
 	return templateName
 }
 
@@ -114,7 +114,7 @@ func GetMenuID(tmpl string, userRole string) string {
 	if FileExists(roleTemplate) {
 		templateName = roleTemplate
 	}
-	log.Printf("Using Menu    : %q", templateName)
+	log.Printf("Using Menu    : Source %q", templateName)
 	return templateName
 }
 
@@ -335,7 +335,7 @@ func GetIncomingRequestIP(r *http.Request) string {
 }
 
 func serviceMessage(i string) {
-	msg := "Servicing     : %q"
+	msg := "Servicing     : Information %q"
 	log.Printf(msg, i)
 }
 func serviceMessageAction(i string, act string, id string) {
@@ -493,7 +493,7 @@ func Logit(actionType string, data string) {
 	//depth2 := depth - 1
 	//log.Println(len(outcall), depth, depth2)
 	//callerName := outcall[depth2] + "/" + outcall[depth]
-	log.Println("Information   : ", data)
+	log.Println("Information   :", data)
 	//	log.Println(callerName, actionType, data)
 }
 

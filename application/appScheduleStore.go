@@ -509,7 +509,7 @@ func GetCronScheduleHuman(in string) string {
 	if len(in) != 0 {
 		exprDesc, err := hcron.NewDescriptor(
 			cron.Use24HourTimeFormat(true),
-			cron.DayOfWeekStartsAtOne(true),
+			cron.DayOfWeekStartsAtOne(false),
 			cron.Verbose(true),
 			cron.SetLogger(log.New(os.Stdout, "cron: ", 0)),
 			cron.SetLocales(hcron.Locale_en),
@@ -522,5 +522,6 @@ func GetCronScheduleHuman(in string) string {
 			log.Panicf("failed to convert CRON expression to human readable description: %s", err)
 		}
 	}
+
 	return desc
 }

@@ -8,6 +8,7 @@ import (
 )
 
 func RunJobSessionHousekeeping(actionType string) {
+	logStart(actionType)
 	//logit(actionType, "*** START ***")
 	_, err := application.HousekeepSessionStore()
 	// handle the error if there is one
@@ -22,4 +23,5 @@ func RunJobSessionHousekeeping(actionType string) {
 
 	application.UpdateSchedule("sessionhousekeeping", globals.Monitor, message)
 	//logit(actionType, "*** DONE ***")
+	logEnd(actionType)
 }

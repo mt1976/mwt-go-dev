@@ -11,6 +11,8 @@ import (
 
 func RunJobECB(actionType string) {
 	//logit(actionType, "*** START ***")
+
+	logStart(actionType)
 	service := rates.New(
 		// any collection of providers which implement rates.Provider interface
 		providers.NewECBProvider(new(rates.Options)),
@@ -41,6 +43,6 @@ func RunJobECB(actionType string) {
 		message = err[0].Error()
 	}
 	application.UpdateSchedule("ecbrate", globals.Aquirer, message)
-
+	logEnd(actionType)
 	//logit(actionType, "*** DONE ***")
 }

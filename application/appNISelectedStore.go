@@ -85,7 +85,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:             GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                globals.ApplicationProperties["appname"],
-		PageTitle:            globals.ApplicationProperties["appname"] + " - " + "LSE Gilts",
+		PageTitle:            globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts",
 		NISelectedStoreCount: noItems,
 		NISelectedStoreList:  returnList,
 	}
@@ -114,7 +114,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "LSE Gilts - View",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -154,7 +154,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "LSE Gilts - Edit",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -270,7 +270,7 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "LSE Gilts - New",
+		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
