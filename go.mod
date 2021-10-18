@@ -17,6 +17,7 @@ require (
 	github.com/openprovider/rates v0.0.0-20160627110251-e43a5fe942ea
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/robfordww/finident v0.1.1
 	github.com/shopspring/decimal v1.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect
 	golang.org/x/net v0.0.0-20210508051633-16afe75a6701

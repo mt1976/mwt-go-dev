@@ -298,7 +298,8 @@ func main() {
 	//http.ListenAndServe(httpPort, nil)
 
 	//scheduler.RunJobFII("")
-
+	//s, _ := application.GLIEF_leiLookup("GB00BL68HJ26")
+	//info("LEI", s)
 	// Wrap your handlers with the LoadAndSave() middleware.
 	http.ListenAndServe(httpPort, globals.SessionManager.LoadAndSave(mux))
 
