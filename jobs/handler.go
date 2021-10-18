@@ -49,14 +49,14 @@ func Start() {
 	}
 	if !globals.IsChildInstance {
 		period = "30 10 * * 1-5"
-		application.RegisterSchedule("sonia", "SONIA_BOE", "Current SONIA", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobBOESONIA("SONIA_BOE") })
+		application.RegisterSchedule("sonia", "INST_SONIA_BOE", "Instruments - Current SONIA", period, globals.Aquirer)
+		c.AddFunc(period, func() { RunJobBOESONIA("INST_SONIA_BOE") })
 		//logit("RunJobHeartBeat", period)
 	}
 	if !globals.IsChildInstance {
 		period = "58 7-19 * * 1-5"
-		application.RegisterSchedule("fred", "BONDS_FRED", "Instruments - Fred", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobFRED("BONDS_FRED") })
+		application.RegisterSchedule("fred", "INST_FRED", "Instruments - Fred", period, globals.Aquirer)
+		c.AddFunc(period, func() { RunJobFRED("INST_FRED") })
 		//logit("RunJobHeartBeat", period)
 	}
 
@@ -69,8 +69,8 @@ func Start() {
 
 	if !globals.IsChildInstance {
 		period = "15 7-19 * * 1-5"
-		application.RegisterSchedule("FII", "BONDS_FII", "Instruments - Fixed Income Investor - Enrichment", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobFII("BONDS_FII") })
+		application.RegisterSchedule("FII", "INST_FII", "Instruments - Fixed Income Investor - Enrichment", period, globals.Aquirer)
+		c.AddFunc(period, func() { RunJobFII("INST_FII") })
 		//logit("RunJobHeartBeat", period)
 	}
 

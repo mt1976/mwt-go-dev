@@ -374,6 +374,9 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 	if miData.Issuer != "" {
 		bondRec.Issuer = application.GetTranslation("NI-Issuer", miData.Issuer)
 	}
+	if bondRec.Segment == "" {
+		bondRec.Segment = application.GetTranslation("NI-Segment", miData.Issuer)
+	}
 	//spew.Dump(bondRec)
 	//spew.Dump(miData)
 	return bondRec

@@ -9,7 +9,7 @@
   --custom-font-family: 'Raleway', sans-serif;
   --custom-code-colour: #77216F;
   --custom-grey: #dedede;
-  --custom-placeholder: #aeaeae;
+  --custom-placeholder: #757575c9;
   --custom-tertiary: #34e1eb;
   --custom-primary-hover: #aaa;
   --custom-primary-border: #d9d7f1;
@@ -21,7 +21,7 @@
   --custom-ok: #007F00;
   --custom-background-rgb: 255,255,255;
   --custom-background:#FFFFFF;
-  --custom-light-grey:#EAEAEA;
+  --custom-light-grey:#d3d3d3;
   --custom-dark-grey:#404040;
 }
 
