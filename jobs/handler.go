@@ -5,7 +5,6 @@ import (
 	"runtime"
 	"strings"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 
 	cron "github.com/robfig/cron/v3"
@@ -20,131 +19,54 @@ func Start() {
 	// Verbose c := cron.New(cron.WithLogger(
 	//	cron.VerbosePrintfLogger(log.New(os.Stdout, "", log.LstdFlags))))
 	c := cron.New()
+
 	// Insert Jobs Here
-	var period string
-	var runType string
+	//var period string
+	//var runType string
 
 	//logit("info", c.Location().String())
 
 	logit("cron Locale", c.Location().String())
 
-	period = "*/5 * * * *"
-	application.RegisterSchedule("heartbeat", "HEARTBEAT", "System Heartbeat", period, globals.Monitor)
-
-	c.AddFunc(period, func() { RunJobHeartBeat("HEARTBEAT") })
-
-	//logit("RunJobHeartBeat", period)
+	HeartBeat_Register(c)
 
 	if !globals.IsChildInstance {
-		period = "*/10 7-19 * * 1-5"
-		application.RegisterSchedule("fxspot", "FX_BARCHART", "FX Spot rate from barchart.com", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobFXSPOT("FX_BARCHART") })
+		RatesFXSpot_Register(c)
 	}
 
 	if !globals.IsChildInstance {
-		period = "30 16 * * 1-5"
-		application.RegisterSchedule("ecbrate", "FX_ECB", "ECB  Benchmark FX Spot rate", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobECB("FX_ECB") })
-		//logit("RunJobHeartBeat", period)
+		RatesFXECB_Register(c)
 	}
 	if !globals.IsChildInstance {
-		period = "30 10 * * 1-5"
-		application.RegisterSchedule("sonia", "INST_SONIA_BOE", "Instruments - Current SONIA", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobBOESONIA("INST_SONIA_BOE") })
-		//logit("RunJobHeartBeat", period)
+		IndexSONIABOE_Register(c)
 	}
 	if !globals.IsChildInstance {
-		period = "58 7-19 * * 1-5"
-		application.RegisterSchedule("fred", "INST_FRED", "Instruments - Fred", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobFRED("INST_FRED") })
-		//logit("RunJobHeartBeat", period)
+		InstFRED_Register(c)
 	}
-
-	//if !globals.IsChildInstance {
-	//	period = "10 7-19 * * 1-5"
-	//	application.RegisterSchedule("LSE", "Bonds", "Retail Bonds data from http://www.londonstockexchange.com/exchange/prices-and-markets/retail-bonds/retail-bonds-search.html", period, globals.Aquirer)
-	//	c.AddFunc(period, func() { RunJobLSE("LSE") })
-	//logit("RunJobHeartBeat", period)
-	//}
 
 	if !globals.IsChildInstance {
-		period = "15 7-19 * * 1-5"
-		application.RegisterSchedule("FII", "INST_FII", "Instruments - Fixed Income Investor - Enrichment", period, globals.Aquirer)
-		c.AddFunc(period, func() { RunJobFII("INST_FII") })
-		//logit("RunJobHeartBeat", period)
+		InstFII_Register(c)
 	}
 
-	period = "*/15 * * * *"
-	application.RegisterSchedule("sessionhousekeeping", "SESSION", "Session Management", period, globals.Monitor)
-	c.AddFunc(period, func() { RunJobSessionHousekeeping("SESSION") })
-	//logit("RunJobSessionHousekeeping", period)
-	period = "10 7-19 * * 1-5"
-	application.RegisterSchedule("refresh", "FX_RATES", "Refresh all pricing data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatch("FX_RATES") })
-	//logit("RunJobDispatch", period)
-
-	period = "*/10 6-21 * * 1-5"
-	runType = "MARKET"
-	application.RegisterSchedule(runType, runType, "Refresh "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 17 * * 1-5"
-	runType = "EONIA"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 11 * * 1-5"
-	runType = "SONIA"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 17 * * 1-5"
-	runType = "SOFR"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 17 * * 1-5"
-	runType = "ESTR"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 17 * * 1-5"
-	runType = "TONAR"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 17 * * 1-5"
-	runType = "EURIBOR"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "35 16 * * 1-5"
-	runType = "ECB"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "*/30 6-21 * * 1-5"
-	runType = "NI"
-	application.RegisterSchedule(runType, runType, "Refresh all "+runType+" data", period, globals.Dispatcher)
-	c.AddFunc(period, func() { RunJobDispatchType(runType) })
-	//logit("RunJobDispatchType-"+runType, period)
-
-	period = "10 1 * * *"
-	application.RegisterSchedule("SRO", "ROLLOVER", "Siena System Rollover", period, globals.Monitor)
-	c.AddFunc(period, func() { RunJobCob("ROLLOVER") })
-
-	//log.Println(c.Entries())
+	SessionHouseKeeping_Register(c)
+	DataDispatcher_Register(c, "MARKET", "*/10 6-21 * * 1-5")
+	DataDispatcher_Register(c, "EONIA", "35 17 * * 1-5")
+	DataDispatcher_Register(c, "SONIA", "35 11 * * 1-5")
+	DataDispatcher_Register(c, "SOFR", "35 17 * * 1-5")
+	DataDispatcher_Register(c, "ESTR", "35 17 * * 1-5")
+	DataDispatcher_Register(c, "TONAR", "35 17 * * 1-5")
+	DataDispatcher_Register(c, "ECB", "35 16 * * 1-5")
+	DataDispatcher_Register(c, "EURIBOR", "35 17 * * 1-5")
+	DataDispatcher_Register(c, "NI", "*/30 6-21 * * 1-5")
+	Rollover_Register(c)
 
 	c.Start()
-
+	//fmt.Println(len(c.Entries()))
+	//for i, e := range c.Entries() {
+	//	fmt.Print(i)
+	//		fmt.Printf("e: %v\n", e)
+	//		fmt.Println(e.WrappedJob)
+	//	}
 }
 
 func logit(actionType string, data string) {

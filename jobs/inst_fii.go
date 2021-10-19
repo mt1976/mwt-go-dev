@@ -10,6 +10,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
+	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html"
 )
 
@@ -83,6 +84,40 @@ type MIBondData struct {
 	URI               string
 }
 
+func InstFII_Job() globals.JobDefinition {
+	var j globals.JobDefinition
+	j.ID = "INST_FII"
+	j.Name = "INST_FII"
+	j.Period = "15 7-19 * * 1-5"
+	j.Description = "Update Bond like Instruments from Fixed Income Investor"
+	j.Type = globals.Aquirer
+	return j
+}
+
+func InstFII_Register(c *cron.Cron) {
+	application.RegisterSchedule(InstFII_Job().ID, InstFII_Job().Name, InstFII_Job().Description, InstFII_Job().Period, InstFII_Job().Type)
+	c.AddFunc(InstFII_Job().Period, func() { InstFII_Run() })
+}
+
+// RunJobRollover is a Rollover function
+func InstFII_Run() {
+	logStart(InstFII_Job().Name)
+	var message string
+	/// CONTENT STARTS
+
+	OnPage(FIICorporateBonds, "Corporate Bonds")
+	OnPage(FIIIndexLinkedCorporateBonds, "Index Linked Corporate Bonds")
+	OnPage(FIIUKGilts, "Gilts")
+	OnPage(FIIUKIndexLinkedGilts, "Index Linked Gilts")
+	OnPage(FIIPIBS, "Interest Baring Share")
+	OnPage(FIIORB, "Retail Bond")
+	OnPage(FIIORBBONDS, "Retail Bond")
+
+	/// CONTENT ENDS
+	application.UpdateSchedule(InstFII_Job().Name, InstFII_Job().Type, message)
+	logEnd(InstFII_Job().Name)
+}
+
 func getInternalDate(in string) string {
 	return getInternalDateGen(in, LSEDateFormat)
 }
@@ -108,30 +143,6 @@ func getInternalDateGen(in string, format string) string {
 
 func getInternalDateFII(in string) string {
 	return getInternalDateGen(in, FIIDateFormat)
-}
-
-func RunJobFII(actionType string) {
-	logStart(actionType)
-	//	log.Println("SONIA=", sonia)
-	var message string
-	OnPage(FIICorporateBonds, "Corporate Bonds")
-	OnPage(FIIIndexLinkedCorporateBonds, "Index Linked Corporate Bonds")
-	OnPage(FIIUKGilts, "Gilts")
-	OnPage(FIIUKIndexLinkedGilts, "Index Linked Gilts")
-
-	//OnPage(FIIBenchmarks,"Bencmark")
-	//	OnPage(FIIBondIndex)
-	OnPage(FIIPIBS, "Interest Baring Share")
-	OnPage(FIIORB, "Retail Bond")
-	OnPage(FIIORBBONDS, "Retail Bond")
-	//dataFile := "poo"
-	//log.Println(len(dataFile))
-	//if len(dataFile) == 0 {
-	//	message = "No Data Aquired"
-	//}
-	application.UpdateSchedule("FII", globals.Aquirer, message)
-	//logit(actionType, "*** DONE ***")
-	logEnd(actionType)
 }
 
 func OnPage(link string, nitype string) {

@@ -13,6 +13,7 @@ import (
 	"github.com/jimlawless/cfg"
 )
 
+var startTime = time.Now()
 var SessionToken = ""
 var UUID = "authorAdjust"
 var SecurityViolation = ""
@@ -123,6 +124,18 @@ type DateItem struct {
 	Siena     string
 	YYYYMMDD  string
 	PICKEpoch string
+}
+
+type JobDefinition struct {
+	ID          string
+	Name        string
+	Period      string
+	Description string
+	Type        string
+}
+
+type JobList struct {
+	Job []JobDefinition
 }
 
 func Initialise() {
@@ -326,4 +339,12 @@ func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
 	wrkThis := "{{" + replaceThis + "}}"
 	//log.Printf("Replace %s with %q", wrkThis, withThis)
 	return strings.ReplaceAll(orig, wrkThis, withThis)
+}
+
+func Uptime() time.Duration {
+	return time.Since(startTime)
+}
+
+func Log_uptime() {
+	log.Println("App Uptime    :", Uptime().String())
 }

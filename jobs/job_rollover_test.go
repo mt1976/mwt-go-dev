@@ -3,6 +3,6 @@ package jobs
 import "testing"
 
 // TestRunJobHeartBeat is a test
-func TestRunJobDispatch(t *testing.T) {
-	RunJobDispatch("TEST")
+func TestRunJobCob(t *testing.T) {
+	Rollover_Run()
 }
