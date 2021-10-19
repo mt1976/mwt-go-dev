@@ -13,6 +13,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 	tools "github.com/mt1976/mwtgostringtools"
+	cron "github.com/robfig/cron/v3"
 )
 
 const constRateLen = 8
@@ -29,6 +30,48 @@ type fxRate struct {
 
 type fxRateCard struct {
 	fxRates []fxRate
+}
+
+func RatesFXSpot_Job() globals.JobDefinition {
+	var j globals.JobDefinition
+	j.ID = "RATES_FXSP"
+	j.Name = "RATES_FXSP"
+	j.Period = "*/10 7-19 * * 1-5"
+	j.Description = "Update FX Spot rate from barchart.com"
+	j.Type = globals.Aquirer
+	return j
+}
+
+func RatesFXSpot_Register(c *cron.Cron) {
+	application.RegisterSchedule(RatesFXSpot_Job().ID, RatesFXSpot_Job().Name, RatesFXSpot_Job().Description, RatesFXSpot_Job().Period, RatesFXSpot_Job().Type)
+	c.AddFunc(RatesFXSpot_Job().Period, func() { RatesFXSpot_Run() })
+}
+
+// RunJobRollover is a Rollover function
+func RatesFXSpot_Run() {
+	logStart(RatesFXSpot_Job().Name)
+	var message string
+	/// CONTENT STARTS
+
+	_, cacheList, err := application.GetCacheStoreListByOBJECT("CurrencyPair")
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	var rateCard fxRateCard
+
+	for _, cacheData := range cacheList {
+		//	fmt.Println(i, ccyPair)
+		rateCard.fxRates = append(rateCard.fxRates, getFXrate(cacheData.Value))
+	}
+
+	if err != nil {
+		message = err.Error()
+	}
+
+	/// CONTENT ENDS
+	application.UpdateSchedule(RatesFXSpot_Job().Name, RatesFXSpot_Job().Type, message)
+	logEnd(RatesFXSpot_Job().Name)
 }
 
 func getFXrate(inCCYpair string) fxRate {
@@ -188,46 +231,4 @@ func deliverRVData(name string, record string) {
 		log.Fatal(err2)
 	}
 
-}
-
-func RunJobFXSPOT(actionType string) {
-	//funcName = "RunJobFXSPOT"
-	//	//logit(actionType, "*** REFRESH RATES ***")
-	//	buildRateCard()
-	logStart(actionType)
-	_, cacheList, err := application.GetCacheStoreListByOBJECT("CurrencyPair")
-	if err != nil {
-		log.Println(err.Error())
-	}
-
-	var rateCard fxRateCard
-
-	for _, cacheData := range cacheList {
-		//	fmt.Println(i, ccyPair)
-		rateCard.fxRates = append(rateCard.fxRates, getFXrate(cacheData.Value))
-	}
-	/*rateCard.fxRates = append(rateCard.fxRates, getFXrate("AUDUSD"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURGBP"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURJPY"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("EURUSD"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("GBPUSD"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("NZDUSD"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDCAD"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDCHF"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDHKD"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDJPY"))
-	rateCard.fxRates = append(rateCard.fxRates, getFXrate("USDSGD"))*/
-	//log.Println(rateCard, len(rateCard.fxRates))
-	//fmt.Println(rateCard, len(rateCard.fxRates))
-	////logit(actionType, "*** BUILD RV RATES ***")
-	//outputString := buldFXRVRates(rateCard)
-	////logit(actionType, "*** DELIVER RATES ***")
-	//deliverRVData("RVMARKET", outputString)
-	////logit(actionType, "*** DONE ***")
-	message := ""
-	if err != nil {
-		message = err.Error()
-	}
-	application.UpdateSchedule("fxspot", globals.Aquirer, message)
-	logEnd(actionType)
 }

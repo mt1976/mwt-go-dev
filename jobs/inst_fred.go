@@ -9,6 +9,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
+	cron "github.com/robfig/cron/v3"
 )
 
 const (
@@ -60,11 +61,26 @@ type FredSeriesInfo struct {
 	} `json:"seriess"`
 }
 
-func RunJobFRED(actionType string) {
-	logStart(actionType)
-	//logit(actionType, "*** START ***")
-	////logit(actionType, apiKey)
-	////logit(actionType, uri)
+func InstFRED_Job() globals.JobDefinition {
+	var j globals.JobDefinition
+	j.ID = "INST_FRED"
+	j.Name = "INST_FRED"
+	j.Period = "58 7-19 * * 1-5"
+	j.Description = "Update Bond like Instruments from FRED"
+	j.Type = globals.Aquirer
+	return j
+}
+
+func InstFRED_Register(c *cron.Cron) {
+	application.RegisterSchedule(InstFRED_Job().ID, InstFRED_Job().Name, InstFRED_Job().Description, InstFRED_Job().Period, InstFRED_Job().Type)
+	c.AddFunc(InstFRED_Job().Period, func() { InstFRED_Run() })
+}
+
+// RunJobRollover is a Rollover function
+func InstFRED_Run() {
+	logStart(InstFRED_Job().Name)
+	var message string
+	/// CONTENT STARTS
 
 	seriesList := []string{"TB3MS", "TB1YR", "DTB6", "TB4WK", "DTB4WK", "BAMLC1A0C13YEY", "SOFR", "CBBTCUSD", "CPALTT01USM657N", "JPNCPIALLMINMEI", "GBRCPIALLMINMEI"}
 
@@ -93,13 +109,9 @@ func RunJobFRED(actionType string) {
 
 	}
 
-	//requestURI := fmt.Sprintf(uri, "BUM", apiKey)
-	////logit(actionType, requestURI)
-
-	application.UpdateSchedule("fred", globals.Aquirer, "")
-
-	//logit(actionType, "*** DONE ***")
-	logEnd(actionType)
+	/// CONTENT ENDS
+	application.UpdateSchedule(InstFRED_Job().Name, InstFRED_Job().Type, message)
+	logEnd(InstFRED_Job().Name)
 }
 
 func getFredAPIData(inURI string) (string, string) {

@@ -451,6 +451,10 @@ func newScheduleStoreID() string {
 	return id
 }
 
+func PostSchedule(sched globals.JobDefinition) {
+	RegisterSchedule(sched.ID, sched.Name, sched.Description, sched.Period, sched.Type)
+}
+
 func RegisterSchedule(id string, name string, description string, schedule string, inType string) {
 	var s appScheduleStoreItem
 	s.Id = id + globals.IDSep + inType

@@ -303,6 +303,8 @@ func main() {
 	// Wrap your handlers with the LoadAndSave() middleware.
 	http.ListenAndServe(httpPort, globals.SessionManager.LoadAndSave(mux))
 
+	globals.Log_uptime()
+
 }
 
 //// TODO: migrage the following three functions to appsupport

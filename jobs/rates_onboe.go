@@ -13,6 +13,7 @@ import (
 	"github.com/bjarneh/latinx"
 	application "github.com/mt1976/mwt-go-dev/application"
 	globals "github.com/mt1976/mwt-go-dev/globals"
+	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/encoding/charmap"
 )
@@ -55,29 +56,33 @@ type CubeItem struct {
 	LASTUPDATED string `xml:"LAST_UPDATED,attr"`
 }
 
-func RunJobBOESONIA(actionType string) {
+func IndexSONIABOE_Job() globals.JobDefinition {
+	var j globals.JobDefinition
+	j.ID = "RATES_ONBOE"
+	j.Name = "RATES_ONBOE"
+	j.Period = "30 10 * * 1-5"
+	j.Description = "Update SONIA from BOE"
+	j.Type = globals.Aquirer
+	return j
+}
 
-	logStart(actionType)
-	//logit(actionType, "*** START ***")
-	//funcName = "RunJobFXSPOT"
-	//date := "1999-12-31"
-	//t, err := time.Parse("2006-01-02", date)
-	//fmt.Println(BOEdateFormat, t, date, err, t.Format(BOEdateFormat)) // 1999-12-31 00:00:00 +0000 UTC
-	//fmt.Println(BOEbaseuri)
+func IndexSONIABOE_Register(c *cron.Cron) {
+	application.RegisterSchedule(IndexSONIABOE_Job().ID, IndexSONIABOE_Job().Name, IndexSONIABOE_Job().Description, IndexSONIABOE_Job().Period, IndexSONIABOE_Job().Type)
+	c.AddFunc(IndexSONIABOE_Job().Period, func() { IndexSONIABOE_Run() })
+}
 
-	//currentTime := time.Now()
-	//fmt.Println("Current Date=", currentTime.Format(BOEdateFormat))
+// RunJobRollover is a Rollover function
+func IndexSONIABOE_Run() {
+	logStart(IndexSONIABOE_Job().Name)
+	var message string
+	/// CONTENT STARTS
 
 	today := time.Now()
 	yesterday := today.Add(-24 * time.Hour)
 	daybefore := yesterday.Add(-24 * time.Hour)
-	//tomorrow := today.Add(24 * time.Hour)
-	//fmt.Println(yesterday.Format(BOEdateFormat), today.Format(BOEdateFormat), tomorrow.Format(BOEdateFormat))
 
 	url := fmt.Sprintf(BOEbaseuri, daybefore.Format(BOEdateFormat), yesterday.Format(BOEdateFormat), BOEdataSeries)
 
-	//	url := fmt.Sprintf("https://www.barchart.com/forex/quotes/%s/overview", thisPair)
-	//	log.Println(url)
 	resp, err := http.Get(url)
 	// handle the error if there is one
 	if err != nil {
@@ -93,15 +98,6 @@ func RunJobBOESONIA(actionType string) {
 		panic(err)
 	}
 
-	//myString := string(html[:])
-	//log.Print(">>>>>", myString, "<<<<<")
-	//newString := strings.Replace(myString, "ISO-8859-1", "UTF8", 1)
-	//log.Print(newString)
-	// show the HTML code as a string %s
-	//fmt.Printf("%s\n", html)
-	//	inString := string(html)
-	//	fmt.Println(inString)
-
 	// fetch converter for desired charset
 	converter := latinx.Get(latinx.ISO_8859_1)
 
@@ -109,7 +105,6 @@ func RunJobBOESONIA(actionType string) {
 	utf8bytes, err := converter.Decode(html)
 	//log.Println(utf8bytes)
 	// encode a UTF-8 stream as ISO_8859_1
-	//latin1bytes, size, err := converter.Encode(utf8bytes)
 
 	if err != nil {
 		log.Fatalf("encoded: %d, not: %d, err: %s", 1, len(utf8bytes), err)
@@ -122,18 +117,8 @@ func RunJobBOESONIA(actionType string) {
 	decoder.CharsetReader = charset.NewReaderLabel
 	err = decoder.Decode(&boeData)
 
-	//err := ISO8859toUTF8(resp.Body, html2)
-	//fmt.Println(err, boeData)
-
-	//fmt.Println("poo", boeData.Cube.COUNTRY, "wee")
-	//fmt.Println("poo", boeData.XMLName, "wee")
-	//fmt.Println("poo", boeData.Xmlns, "wee")
-	//fmt.Println("poo", boeData.Cube, "wee")
-	//fmt.Println(boeData.Xmlns)
 	thisCube := boeData.Cube
-	//fmt.Println("len", len(thisCube.CubeItems))
-	//fmt.Println(thisCube)
-	//fmt.Println("t", string(thisCube.DESC), "t")
+
 	var sonia string
 	sonia = ""
 	for _, myCube := range thisCube.CubeItems {
@@ -142,7 +127,7 @@ func RunJobBOESONIA(actionType string) {
 			sonia = myCube.OBSVALUE
 		}
 	}
-	log.Println("SONIA=", sonia)
+	//log.Println("SONIA=", sonia)
 
 	var ratesData RatesDataStore
 	ratesData.mid = sonia
@@ -153,13 +138,14 @@ func RunJobBOESONIA(actionType string) {
 	ratesData.source = "BankOfEnglang"
 	ratesData.destination = "RVMARKET"
 	RatesDataStorePut(ratesData)
-	message := ""
+
 	if err != nil {
 		message = err.Error()
 	}
-	application.UpdateSchedule("sonia", globals.Aquirer, message)
-	//logit(actionType, "*** DONE ***")
-	logEnd(actionType)
+
+	/// CONTENT ENDS
+	application.UpdateSchedule(IndexSONIABOE_Job().Name, IndexSONIABOE_Job().Type, message)
+	logEnd(IndexSONIABOE_Job().Name)
 }
 
 func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {
