@@ -19,18 +19,18 @@ var sienaPortfolioSQL = "Code, 	Name"
 var sqlPRTCode, sqlPRTName sql.NullString
 
 //sienaPortfolioPage is cheese
-type sienaPortfolioListPage struct {
+type portfolio_listpage struct {
 	UserMenu            []application.AppMenuItem
 	UserRole            string
 	UserNavi            string
 	Title               string
 	PageTitle           string
 	SienaPortfolioCount int
-	SienaPortfolioList  []sienaPortfolioItem
+	SienaPortfolioList  []portfolio_item
 }
 
-//sienaPortfolioPage is cheese
-type sienaPortfolioPage struct {
+//portfolio_page is cheese
+type portfolio_page struct {
 	UserMenu  []application.AppMenuItem
 	UserRole  string
 	UserNavi  string
@@ -41,14 +41,23 @@ type sienaPortfolioPage struct {
 	Name      string
 }
 
-//sienaPortfolioItem is cheese
-type sienaPortfolioItem struct {
+//portfolio_item is cheese
+type portfolio_item struct {
 	Code   string
 	Name   string
 	Action string
 }
 
-func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func Portfolio_MUX(mux http.ServeMux) {
+	log.Println("MUX Siena Firm")
+	mux.HandleFunc("/listSienaPortfolio/", Portfolio_HandlerList)
+	mux.HandleFunc("/viewSienaPortfolio/", Portfolio_HandlerView)
+	mux.HandleFunc("/editSienaPortfolio/", Portfolio_HandlerEdit)
+	mux.HandleFunc("/saveSienaPortfolio/", Portfolio_HandlerSave)
+	mux.HandleFunc("/newSienaPortfolio/", Portfolio_HandlerNew)
+}
+
+func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
@@ -63,13 +72,13 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaPortfolioItem
+	var returnList []portfolio_item
 	noItems, returnList, _ := getSienaPortfolioList(thisConnection)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
-	pageSienaPortfolioList := sienaPortfolioListPage{
+	pageSienaPortfolioList := portfolio_listpage{
 		UserMenu:            application.GetUserMenu(r),
 		UserRole:            application.GetUserRole(r),
 		UserNavi:            "NOT USED",
@@ -84,7 +93,7 @@ func ListSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
@@ -99,14 +108,14 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaPortfolioItem
+	var returnList []portfolio_item
 	searchID := application.GetURLparam(r, "SienaPortfolio")
 	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
-	pageSienaPortfolioList := sienaPortfolioPage{
+	pageSienaPortfolioList := portfolio_page{
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -122,7 +131,7 @@ func ViewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
@@ -137,14 +146,14 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
-	var returnList []sienaPortfolioItem
+	var returnList []portfolio_item
 	searchID := application.GetURLparam(r, "SienaPortfolio")
 	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
-	pageSienaPortfolioList := sienaPortfolioPage{
+	pageSienaPortfolioList := portfolio_page{
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -160,7 +169,7 @@ func EditSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
@@ -174,7 +183,7 @@ func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	application.ServiceMessageAction(inUTL, "Save", "")
 
-	var item sienaPortfolioItem
+	var item portfolio_item
 
 	item.Code = r.FormValue("code")
 	if len(item.Code) == 0 {
@@ -230,11 +239,11 @@ func SaveSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err.Error())
 	}
 
-	ListSienaPortfolioHandler(w, r)
+	Portfolio_HandlerList(w, r)
 
 }
 
-func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
+func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
 		application.LogoutHandler(w, r)
@@ -248,7 +257,7 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	application.ServiceMessage(inUTL)
 
-	pageSienaPortfolioList := sienaPortfolioPage{
+	pageSienaPortfolioList := portfolio_page{
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -265,7 +274,7 @@ func NewSienaPortfolioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // getSienaPortfolioList read all employees
-func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
+func getSienaPortfolioList(db *sql.DB) (int, []portfolio_item, error) {
 
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, globals.SienaPropertiesDB["schema"])
 	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
@@ -273,7 +282,7 @@ func getSienaPortfolioList(db *sql.DB) (int, []sienaPortfolioItem, error) {
 }
 
 // getSienaPortfolioList read all employees
-func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
+func getSienaPortfolio(db *sql.DB, id string) (int, portfolio_item, error) {
 
 	//fmt.Println(db.Stats().OpenConnections)
 	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, globals.SienaPropertiesDB["schema"], id)
@@ -282,7 +291,7 @@ func getSienaPortfolio(db *sql.DB, id string) (int, sienaPortfolioItem, error) {
 }
 
 // getSienaPortfolioList read all employees
-func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
+func putSienaPortfolio(db *sql.DB, updateItem portfolio_item) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
 	fmt.Println(globals.SienaPropertiesDB["schema"])
@@ -291,10 +300,10 @@ func putSienaPortfolio(db *sql.DB, updateItem sienaPortfolioItem) error {
 }
 
 // getSienaPortfolioList read all employees
-func fetchSienaPortfolioData(db *sql.DB, tsql string) (int, []sienaPortfolioItem, sienaPortfolioItem, error) {
+func fetchSienaPortfolioData(db *sql.DB, tsql string) (int, []portfolio_item, portfolio_item, error) {
 	log.Println("QUERY", tsql)
-	var sienaPortfolioList []sienaPortfolioItem
-	var sienaPortfolio sienaPortfolioItem
+	var sienaPortfolioList []portfolio_item
+	var sienaPortfolio portfolio_item
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")

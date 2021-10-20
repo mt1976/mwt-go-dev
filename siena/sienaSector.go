@@ -47,6 +47,15 @@ type sienaSectorItem struct {
 	Action string
 }
 
+func Sector_MUX(mux http.ServeMux) {
+	log.Println("MUX Siena Sector")
+	mux.HandleFunc("/listSienaSector/", ListSienaSectorHandler)
+	mux.HandleFunc("/viewSienaSector/", ViewSienaSectorHandler)
+	mux.HandleFunc("/editSienaSector/", EditSienaSectorHandler)
+	mux.HandleFunc("/saveSienaSector/", SaveSienaSectorHandler)
+	mux.HandleFunc("/newSienaSector/", NewSienaSectorHandler)
+}
+
 func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {

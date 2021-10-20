@@ -18,15 +18,6 @@ import (
 	siena "github.com/mt1976/mwt-go-dev/siena"
 )
 
-//CONST_CONFIG_FILE is cheese
-const (
-	DATEFORMATPICK  = "20060102T150405"
-	DATEFORMATSIENA = "2006-01-02"
-	DATEFORMATYMD   = "20060102"
-	DATEFORMATUSER  = "Monday, 02 Jan 2006"
-	SIENACPTYSEP    = "\u22EE"
-)
-
 func main() {
 
 	//ascii := figlet4go.NewAsciiRender()
@@ -39,25 +30,25 @@ func main() {
 	line := strings.Repeat("-", 100)
 	log.Println(line)
 
-	header("Initialising ...")
+	msg_header("Initialising ...")
 
 	globals.Initialise()
 
-	done("Initialised")
+	msg_done("Initialised")
 	//	log.Println(line)
-	header("Caching ...")
+	msg_header("Caching ...")
 	//application.InitialiseCache()
-	done("Cache Refreshed")
+	msg_done("Cache Refreshed")
 	//log.Println(line)
 
-	header("Scheduling Jobs")
+	msg_header("Scheduling Jobs")
 	//log.Println("TEST>")
 	//scheduler.RunJobCob("TEST")
 	//log.Println("<TEST")
 	scheduler.Start()
-	done("Jobs Scheduled")
+	msg_done("Jobs Scheduled")
 
-	header("Starting Handlers")
+	msg_header("Starting Handlers")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/put", putHandler)
 	mux.HandleFunc("/get", getHandler)
@@ -101,29 +92,10 @@ func main() {
 	mux.HandleFunc("/newLoaderMapStore/", application.NewLoaderMapStoreHandler)
 	mux.HandleFunc("/runLoader/", siena.RunDataLoaderHandler)
 
-	mux.HandleFunc("/listSienaCountry/", siena.ListSienaCountryHandler)
-	mux.HandleFunc("/viewSienaCountry/", siena.ViewSienaCountryHandler)
-	mux.HandleFunc("/editSienaCountry/", siena.EditSienaCountryHandler)
-	mux.HandleFunc("/saveSienaCountry/", siena.SaveSienaCountryHandler)
-	mux.HandleFunc("/newSienaCountry/", siena.NewSienaCountryHandler)
-
-	mux.HandleFunc("/listSienaSector/", siena.ListSienaSectorHandler)
-	mux.HandleFunc("/viewSienaSector/", siena.ViewSienaSectorHandler)
-	mux.HandleFunc("/editSienaSector/", siena.EditSienaSectorHandler)
-	mux.HandleFunc("/saveSienaSector/", siena.SaveSienaSectorHandler)
-	mux.HandleFunc("/newSienaSector/", siena.NewSienaSectorHandler)
-
-	mux.HandleFunc("/listSienaFirm/", siena.ListSienaFirmHandler)
-	mux.HandleFunc("/viewSienaFirm/", siena.ViewSienaFirmHandler)
-	mux.HandleFunc("/editSienaFirm/", siena.EditSienaFirmHandler)
-	mux.HandleFunc("/saveSienaFirm/", siena.SaveSienaFirmHandler)
-	mux.HandleFunc("/newSienaFirm/", siena.NewSienaFirmHandler)
-
-	mux.HandleFunc("/listSienaPortfolio/", siena.ListSienaPortfolioHandler)
-	mux.HandleFunc("/viewSienaPortfolio/", siena.ViewSienaPortfolioHandler)
-	mux.HandleFunc("/editSienaPortfolio/", siena.EditSienaPortfolioHandler)
-	mux.HandleFunc("/saveSienaPortfolio/", siena.SaveSienaPortfolioHandler)
-	mux.HandleFunc("/newSienaPortfolio/", siena.NewSienaPortfolioHandler)
+	siena.Country_MUX(*mux)
+	siena.Sector_MUX(*mux)
+	siena.Firm_MUX(*mux)
+	siena.Portfolio_MUX(*mux)
 
 	mux.HandleFunc("/listSienaCentre/", siena.ListSienaCentreHandler)
 	mux.HandleFunc("/viewSienaCentre/", siena.ViewSienaCentreHandler)
@@ -241,56 +213,56 @@ func main() {
 
 	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	done("Handlers Started")
+	msg_done("Handlers Started")
 	log.Println(line)
-	header("Application Information")
-	header("Application")
-	info("Name", globals.ApplicationProperties["appname"])
-	info("Host Name", tmpHostname)
-	info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
-	info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
+	msg_header("Application Information")
+	msg_header("Application")
+	msg_info("Name", globals.ApplicationProperties["appname"])
+	msg_info("Host Name", tmpHostname)
+	msg_info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
+	msg_info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
 	if globals.IsChildInstance {
-		info("Server Mode", "Primary System")
+		msg_info("Server Mode", "Primary System")
 	} else {
-		info("Server Mode", "Secondary System")
+		msg_info("Server Mode", "Secondary System")
 	}
-	info("Licence", globals.ApplicationProperties["licname"])
-	info("Lic URL", globals.ApplicationProperties["liclink"])
+	msg_info("Licence", globals.ApplicationProperties["licname"])
+	msg_info("Lic URL", globals.ApplicationProperties["liclink"])
 
-	header("Application Database (MSSQL)")
-	info("Server", globals.ApplicationPropertiesDB["server"])
-	info("Database", globals.ApplicationPropertiesDB["database"])
-	info("Schema", globals.ApplicationPropertiesDB["schema"])
-	info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
+	msg_header("Application Database (MSSQL)")
+	msg_info("Server", globals.ApplicationPropertiesDB["server"])
+	msg_info("Database", globals.ApplicationPropertiesDB["database"])
+	msg_info("Schema", globals.ApplicationPropertiesDB["schema"])
+	msg_info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
 
-	header("Siena")
+	msg_header("Siena")
 	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
 	globals.SienaSystemDate = tempDate
-	info("System", globals.SienaProperties["name"])
-	info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+	msg_info("System", globals.SienaProperties["name"])
+	msg_info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
 
-	header("Siena Database (MSSQL)")
-	info("Server", globals.SienaPropertiesDB["server"])
-	info("Database", globals.SienaPropertiesDB["database"])
-	info("Schema", globals.SienaPropertiesDB["schema"])
-	info("Parent Schema", globals.SienaPropertiesDB["parentschema"])
+	msg_header("Siena Database (MSSQL)")
+	msg_info("Server", globals.SienaPropertiesDB["server"])
+	msg_info("Database", globals.SienaPropertiesDB["database"])
+	msg_info("Schema", globals.SienaPropertiesDB["schema"])
+	msg_info("Parent Schema", globals.SienaPropertiesDB["parentschema"])
 
-	header("Siena Connectivity")
-	info("TXNs Delivery", globals.SienaProperties["transactional_in"])
-	info("TXNs Response", globals.SienaProperties["transactional_out"])
-	info("Static Delivery", globals.SienaProperties["static_in"])
-	info("Static Response", globals.SienaProperties["static_out"])
-	info("Funds Check Request", globals.SienaProperties["funds_out"])
-	info("Funds Check Response", globals.SienaProperties["funds_in"])
-	info("Rates & Prices Delivery", globals.SienaProperties["rates_in"])
+	msg_header("Siena Connectivity")
+	msg_info("TXNs Delivery", globals.SienaProperties["transactional_in"])
+	msg_info("TXNs Response", globals.SienaProperties["transactional_out"])
+	msg_info("Static Delivery", globals.SienaProperties["static_in"])
+	msg_info("Static Response", globals.SienaProperties["static_out"])
+	msg_info("Funds Check Request", globals.SienaProperties["funds_out"])
+	msg_info("Funds Check Response", globals.SienaProperties["funds_in"])
+	msg_info("Rates & Prices Delivery", globals.SienaProperties["rates_in"])
 
-	header("Sessions")
-	info("Session Life", globals.ApplicationProperties["sessionlife"])
+	msg_header("Sessions")
+	msg_info("Session Life", globals.ApplicationProperties["sessionlife"])
 
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 
-	header("READY STEADY GO!!!")
+	msg_header("READY STEADY GO!!!")
 	log.Println("URI           :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
 	log.Println(line)
 
@@ -354,16 +326,17 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	application.HomePageHandler(w, r)
 }
-func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
-	//var propertiesFileName = "config/properties.cfg"
-	//	wctProperties := application.GetProperties(globals.APPCONFIG)
-	//	tmpl := "viewResponse"
-	inUTL := r.URL.Path
-	//requestID := uuid.New()
-	log.Println("Servicing :", inUTL)
-	application.RemoveContents(globals.ApplicationProperties["receivepath"])
-	application.HomePageHandler(w, r)
-}
+
+// func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
+// 	//var propertiesFileName = "config/properties.cfg"
+// 	//	wctProperties := application.GetProperties(globals.APPCONFIG)
+// 	//	tmpl := "viewResponse"
+// 	inUTL := r.URL.Path
+// 	//requestID := uuid.New()
+// 	log.Println("Servicing :", inUTL)
+// 	application.RemoveContents(globals.ApplicationProperties["receivepath"])
+// 	application.HomePageHandler(w, r)
+// }
 
 func putHandler(w http.ResponseWriter, r *http.Request) {
 	// Store a new key and value in the session data.
@@ -377,14 +350,14 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, msg)
 }
 
-func header(s string) {
+func msg_header(s string) {
 	log.Println(globals.ColorYellow + "Information   : " + s + " " + globals.ColorReset)
 	//log.Println(strings.Repeat("-", len(s)))
 }
-func done(s string) {
+func msg_done(s string) {
 	log.Println(globals.ColorYellow + "Success       : " + s + " " + globals.ColorReset + globals.Tick)
 }
-func info(what string, value string) {
+func msg_info(what string, value string) {
 	output := fmt.Sprintf("Information   : %-25s %s", what, value)
 	log.Println(globals.ColorCyan + output + globals.ColorReset)
 }

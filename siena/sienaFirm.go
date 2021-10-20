@@ -58,6 +58,15 @@ type sienaFirmItem struct {
 	Action      string
 }
 
+func Firm_MUX(mux http.ServeMux) {
+	log.Println("MUX Siena Firm")
+	mux.HandleFunc("/listSienaFirm/", ListSienaFirmHandler)
+	mux.HandleFunc("/viewSienaFirm/", ViewSienaFirmHandler)
+	mux.HandleFunc("/editSienaFirm/", EditSienaFirmHandler)
+	mux.HandleFunc("/saveSienaFirm/", SaveSienaFirmHandler)
+	mux.HandleFunc("/newSienaFirm/", NewSienaFirmHandler)
+}
+
 func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {

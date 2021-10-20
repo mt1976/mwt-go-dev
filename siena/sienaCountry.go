@@ -49,6 +49,15 @@ type sienaCountryItem struct {
 	Action    string
 }
 
+func Country_MUX(mux http.ServeMux) {
+	log.Println("MUX Siena Country")
+	mux.HandleFunc("/listSienaCountry/", ListSienaCountryHandler)
+	mux.HandleFunc("/viewSienaCountry/", ViewSienaCountryHandler)
+	mux.HandleFunc("/editSienaCountry/", EditSienaCountryHandler)
+	mux.HandleFunc("/saveSienaCountry/", SaveSienaCountryHandler)
+	mux.HandleFunc("/newSienaCountry/", NewSienaCountryHandler)
+}
+
 func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(application.SessionValidate(w, r)) {
