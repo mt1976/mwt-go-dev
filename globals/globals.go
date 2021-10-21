@@ -198,7 +198,6 @@ func Initialise() {
 func getProperties(inPropertiesFile string) map[string]string {
 	wctProperties := make(map[string]string)
 	//machineName, _ := os.Hostname()
-	// TODO: Dockerise
 	// For docker - if can't find properties file (create one from the template properties file)
 	propertiesFileName := "config/" + inPropertiesFile
 	if fileExists(propertiesFileName) {
