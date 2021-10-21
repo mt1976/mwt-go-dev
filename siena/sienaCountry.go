@@ -50,7 +50,7 @@ type sienaCountryItem struct {
 }
 
 func Country_MUX(mux http.ServeMux) {
-	LOG_info("MUX Siena - Country")
+	globals.LOG_info("MUX Siena","Country")
 	mux.HandleFunc("/listSienaCountry/", ListSienaCountryHandler)
 	mux.HandleFunc("/viewSienaCountry/", ViewSienaCountryHandler)
 	mux.HandleFunc("/editSienaCountry/", EditSienaCountryHandler)
