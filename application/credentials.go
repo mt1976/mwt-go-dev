@@ -143,7 +143,7 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Code Continues Below
-
+	//bloop
 	tmpl := "CredentialsStoreView"
 
 	inUTL := r.URL.Path
