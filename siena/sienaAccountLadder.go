@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -83,8 +83,8 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:                application.GetUserMenu(r),
 		UserRole:                application.GetUserRole(r),
 		UserNavi:                "NOT USED",
-		Title:                   globals.ApplicationProperties["appname"],
-		PageTitle:               globals.ApplicationProperties["appname"] + " - " + "Account Ladder - View",
+		Title:                   core.ApplicationProperties["appname"],
+		PageTitle:               core.ApplicationProperties["appname"] + " - " + "Account Ladder - View",
 		SienaAccountLadderCount: noItems,
 		SienaAccountLadderList:  returnList,
 		ID:                      account.AccountNumber,
@@ -99,7 +99,7 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaAccountLadderList read all employees
 func getSienaAccountLadderList(idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, globals.SienaPropertiesDB["schema"], idRef)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, core.SienaPropertiesDB["schema"], idRef)
 	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(tsql)
 	return count, sienaAccountLadderList, nil
 }
@@ -110,7 +110,7 @@ func fetchSienaAccountLadderData(tsql string) (int, []sienaAccountLadderItem, si
 	var sienaAccountLadder sienaAccountLadderItem
 	var sienaAccountLadderList []sienaAccountLadderItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -98,8 +98,8 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 	_, account, _ := getSienaAccount(accountID)
 
 	pageSienaAccountTransactionsList := sienaAccountTransactionListPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Account Transactions - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Account Transactions - View",
 
 		SienaAccountTransactionCount: noItems,
 		SienaAccountTransactionList:  returnList,
@@ -118,7 +118,7 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 // getSienaAccountTransactionsList read all employees
 func getSienaAccountTransactionsList(idRef string, accountCCY string) (int, []sienaAccountTransactionItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, globals.SienaPropertiesDB["schema"], idRef)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, core.SienaPropertiesDB["schema"], idRef)
 	count, sienaAccountTransactionsList, _, _ := fetchSienaAccountTransactionData(tsql)
 	return count, sienaAccountTransactionsList, nil
 }
@@ -129,7 +129,7 @@ func fetchSienaAccountTransactionData(tsql string) (int, []sienaAccountTransacti
 	var sienaAccountTransaction sienaAccountTransactionItem
 	var sienaAccountTransactionList []sienaAccountTransactionItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

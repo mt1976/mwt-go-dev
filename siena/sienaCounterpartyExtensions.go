@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaCounterpartyExtensionsSQL = "NameFirm, 	NameCentre, 	BICCode, 	ContactIndicator, 	CoverTrade, 	CustomerCategory, 	FSCSInclusive, 	FeeFactor, 	InactiveStatus, 	Indemnity, 	KnowYourCustomerStatus, 	LERLimitCarveOut, 	LastAmended, 	LastLogin, 	LossGivenDefault, 	MIC, 	ProtectedDepositor, 	RPTCurrency, 	RateTimeout, 	RateValidation, 	Registered, 	RegulatoryCategory, 	SecuredSettlement, 	SettlementLimitCarveOut, 	SortCode, 	Training, 	TrainingCode, 	TrainingReceived, 	Unencumbered, 	LEIExpiryDate, 	MIFIDReviewDate, 	GDPRReviewDate, 	DelegatedReporting, 	BOReconcile, 	MIFIDReportableDealsAllowed, 	SignedInvestmentAgreement, 	AppropriatenessAssessment, 	FinancialCounterparty, 	Collateralisation, 	PortfolioCode, 	ReconciliationLetterFrequency, 	DirectDealing"
@@ -152,8 +152,8 @@ func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information",
 
 		SienaCounterpartyExtensionsCount: noItems,
 		SienaCounterpartyExtensionsList:  returnList,
@@ -189,8 +189,8 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		UserMenu:                      application.GetUserMenu(r),
 		UserRole:                      application.GetUserRole(r),
 		UserNavi:                      "NOT USED",
-		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle:                     globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - View",
+		Title:                         core.ApplicationProperties["appname"],
+		PageTitle:                     core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - View",
 		NameFirm:                      returnRecord.NameFirm,
 		NameCentre:                    returnRecord.NameCentre,
 		BICCode:                       returnRecord.BICCode,
@@ -269,8 +269,8 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		UserMenu:                      application.GetUserMenu(r),
 		UserRole:                      application.GetUserRole(r),
 		UserNavi:                      "NOT USED",
-		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle:                     globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - Edit",
+		Title:                         core.ApplicationProperties["appname"],
+		PageTitle:                     core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - Edit",
 		NameFirm:                      returnRecord.NameFirm,
 		NameCentre:                    returnRecord.NameCentre,
 		BICCode:                       returnRecord.BICCode,
@@ -428,7 +428,7 @@ func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -463,8 +463,8 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 		UserMenu:                      application.GetUserMenu(r),
 		UserRole:                      application.GetUserRole(r),
 		UserNavi:                      "NOT USED",
-		Title:                         globals.ApplicationProperties["appname"],
-		PageTitle:                     globals.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - New",
+		Title:                         core.ApplicationProperties["appname"],
+		PageTitle:                     core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - New",
 		ID:                            "NEW",
 		NameFirm:                      "",
 		NameCentre:                    "",
@@ -518,7 +518,7 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsList() (int, []sienaCounterpartyExtensionsItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions;", sienaCounterpartyExtensionsSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions;", sienaCounterpartyExtensionsSQL, core.SienaPropertiesDB["schema"])
 	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(tsql)
 	return count, sienaCounterpartyExtensionsList, nil
 }
@@ -526,7 +526,7 @@ func getSienaCounterpartyExtensionsList() (int, []sienaCounterpartyExtensionsIte
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensionsListByCounterparty(idFirm string, idCentre string) (int, []sienaCounterpartyExtensionsItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, globals.SienaPropertiesDB["schema"], idFirm, idCentre)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
 	count, sienaCounterpartyExtensionsList, _, _ := fetchSienaCounterpartyExtensionsData(tsql)
 	return count, sienaCounterpartyExtensionsList, nil
 }
@@ -534,7 +534,7 @@ func getSienaCounterpartyExtensionsListByCounterparty(idFirm string, idCentre st
 // getSienaCounterpartyExtensionsList read all employees
 func getSienaCounterpartyExtensions(sfid string, scid string) (int, sienaCounterpartyExtensionsItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, globals.SienaPropertiesDB["schema"], sfid, scid)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyExtensions WHERE NameFirm='%s' AND NameCentre='%s';", sienaCounterpartyExtensionsSQL, core.SienaPropertiesDB["schema"], sfid, scid)
 	_, _, sienaCounterpartyExtensions, _ := fetchSienaCounterpartyExtensionsData(tsql)
 	return 1, sienaCounterpartyExtensions, nil
 }
@@ -543,7 +543,7 @@ func getSienaCounterpartyExtensions(sfid string, scid string) (int, sienaCounter
 func putSienaCounterpartyExtensions(updateItem sienaCounterpartyExtensionsItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -554,7 +554,7 @@ func fetchSienaCounterpartyExtensionsData(tsql string) (int, []sienaCounterparty
 	var sienaCounterpartyExtensions sienaCounterpartyExtensionsItem
 	var sienaCounterpartyExtensionsList []sienaCounterpartyExtensionsItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

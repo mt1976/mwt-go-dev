@@ -10,9 +10,9 @@ import (
 
 	"github.com/andreyvit/sqlexpr"
 	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
 	"github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -28,7 +28,7 @@ var dsCredentials dm.DataStoreMessages
 //var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsView WHERE username='%s';"
 
 func init() {
-	FullTableName := globals.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
+	FullTableName := core.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
 	dsCredentials = dm.DataStoreMessages{
 		Table: FullTableName,
 		//		Columns:   "id, username, password, firstname, lastname, knownas, email, issued, expiry, role, brand, _created, _who, _host, _updated",
@@ -101,45 +101,45 @@ const (
 
 func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	tmpl := "CredentialsStoreList"
-	if globals.IsChildInstance {
+	if core.IsChildInstance {
 		// This is a child instance running, deliver the cut down Page
 		tmpl = tmpl + "_Child"
 	}
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []dm.AppCredentialsStoreItem
 
 	noItems, returnList, _ := dao.GetCredentialsStoreList()
 
 	pageCredentialsStoreList := appCredentialsStoreListPage{
-		UserMenu:              globals.GetUserMenu(r),
-		UserRole:              globals.GetUserRole(r),
+		UserMenu:              core.GetUserMenu(r),
+		UserRole:              core.GetUserRole(r),
 		UserNavi:              "NOT USED",
-		Title:                 globals.ApplicationProperties["appname"],
-		PageTitle:             globals.ApplicationProperties["appname"] + " - " + "Credentials",
+		Title:                 core.ApplicationProperties["appname"],
+		PageTitle:             core.ApplicationProperties["appname"] + " - " + "Credentials",
 		CredentialsStoreCount: noItems,
 		CredentialsStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialsStoreList)
 
 }
 
 func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -148,17 +148,17 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, "CredentialsStore")
 	_, returnRecord, _ := dao.GetCredentialsStoreByID(searchID)
 
 	pageCredentialStoreList := appCredentialsStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Credentials - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - View",
 		Action:    "",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -181,15 +181,15 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -198,9 +198,9 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, "CredentialsStore")
 	_, returnRecord, _ := dao.GetCredentialsStoreByID(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -209,10 +209,10 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageCredentialStoreList := appCredentialsStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Credentials - Edit",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - Edit",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -235,20 +235,20 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 	inUTL := r.URL.Path
-	globals.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s dm.AppCredentialsStoreItem
 
@@ -272,15 +272,15 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "CredentialsStore")
-	globals.ServiceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "CredentialsStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteCredentialsStore(searchID)
 	ListCredentialsStoreHandler(w, r)
 
@@ -288,36 +288,36 @@ func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, "CredentialsStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	globals.ServiceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banCredentialsStore(searchID, r)
 	ListCredentialsStoreHandler(w, r)
 }
 
 func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, "CredentialsStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	globals.ServiceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateCredentialsStore(searchID, r)
 	ListCredentialsStoreHandler(w, r)
 
@@ -325,8 +325,8 @@ func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -335,13 +335,13 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appCredentialsStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Credentials - New",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - New",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -349,29 +349,29 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func getExpiryDate() string {
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
+	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
 	expiryDate = expiryDate.AddDate(0, 0, life)
-	return expiryDate.Format(globals.DATETIMEFORMATUSER)
+	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
 func deleteCredentialsStore(id string) {
 	//fmt.Println(credentialStore)
 
-	deletesql := sqlexpr.Delete{Table: sqlexpr.Table(globals.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
+	deletesql := sqlexpr.Delete{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
 	deletesql.AddWhere(sqlexpr.Eq(credId, id))
 
 	tsql, args := sqlexpr.Build(deletesql)
 	fmt.Printf("tsql: %v\n", tsql)
 	fmt.Printf("args: %v\n", args)
 	//deletesql := fmt.Sprintf(dsCredentials.Delete, id)
-	_, err := globals.ApplicationDB.Exec(tsql, args...)
+	_, err := core.ApplicationDB.Exec(tsql, args...)
 	if err != nil {
 		log.Panicf("%e", err)
 	}

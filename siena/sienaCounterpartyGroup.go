@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaCounterpartyGroupSQL = "Name, 	CountryCode, 	SuperGroup, 	CountryName"
@@ -72,8 +72,8 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupListPage{
-		Title:                       globals.ApplicationProperties["appname"],
-		PageTitle:                   globals.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
+		Title:                       core.ApplicationProperties["appname"],
+		PageTitle:                   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
 		UserMenu:                    application.GetUserMenu(r),
@@ -104,8 +104,8 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -141,8 +141,8 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	_, groupList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Counterparty Group - View",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Group - View",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -229,7 +229,7 @@ func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -263,8 +263,8 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	_, groupList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Group - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Group - New",
 
 		Name:        "",
 		CountryCode: "",
@@ -286,7 +286,7 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCounterpartyGroupList read all employees
 func getSienaCounterpartyGroupList() (int, []sienaCounterpartyGroupItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup;", sienaCounterpartyGroupSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup;", sienaCounterpartyGroupSQL, core.SienaPropertiesDB["schema"])
 	count, sienaCounterpartyGroupList, _, _ := fetchSienaCounterpartyGroupData(tsql)
 	return count, sienaCounterpartyGroupList, nil
 }
@@ -294,7 +294,7 @@ func getSienaCounterpartyGroupList() (int, []sienaCounterpartyGroupItem, error) 
 // getSienaCounterpartyGroupList read all employees
 func getSienaCounterpartyGroup(id string) (int, sienaCounterpartyGroupItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup WHERE Name='%s';", sienaCounterpartyGroupSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup WHERE Name='%s';", sienaCounterpartyGroupSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaCounterpartyGroup, _ := fetchSienaCounterpartyGroupData(tsql)
 	return 1, sienaCounterpartyGroup, nil
 }
@@ -303,7 +303,7 @@ func getSienaCounterpartyGroup(id string) (int, sienaCounterpartyGroupItem, erro
 func putSienaCounterpartyGroup(updateItem sienaCounterpartyGroupItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -314,7 +314,7 @@ func fetchSienaCounterpartyGroupData(tsql string) (int, []sienaCounterpartyGroup
 	var sienaCounterpartyGroup sienaCounterpartyGroupItem
 	var sienaCounterpartyGroupList []sienaCounterpartyGroupItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"net/http"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 //srvCatalogPage ...
@@ -43,30 +43,30 @@ func ServiceCatalogHandler(w http.ResponseWriter, r *http.Request) {
 
 		w.Header().Set("Content-Type", "text/html")
 
-		title := globals.ApplicationProperties["appname"]
+		title := core.ApplicationProperties["appname"]
 
 		//p, _ := loadsrvCatalogPage(title)
 
-		noResp, _, respList := GetResponsesList(globals.ApplicationProperties, "json", w)
+		noResp, _, respList := GetResponsesList(core.ApplicationProperties, "json", w)
 
-		noServices, servicesList, serviceCatalog := GetServices(globals.ApplicationProperties, "json", r)
+		noServices, servicesList, serviceCatalog := GetServices(core.ApplicationProperties, "json", r)
 
 		p := srvCatalogPage{Title: title,
 			Body:           "",
-			RequestPath:    globals.ApplicationProperties["deliverpath"],
-			ResponsePath:   globals.ApplicationProperties["receivepath"],
-			ProcessedPath:  globals.ApplicationProperties["processedpath"],
+			RequestPath:    core.ApplicationProperties["deliverpath"],
+			ResponsePath:   core.ApplicationProperties["receivepath"],
+			ProcessedPath:  core.ApplicationProperties["processedpath"],
 			NoResponses:    noResp,
 			Responses:      respList,
 			NoServices:     noServices,
 			Services:       servicesList,
 			ServiceCatalog: serviceCatalog,
 			Description:    "A description of the srvCatalogPage.",
-			ResponseType:   globals.ApplicationProperties["responseformat"],
+			ResponseType:   core.ApplicationProperties["responseformat"],
 			UserMenu:       GetUserMenu(r),
 			UserRole:       GetUserRole(r),
 			UserNavi:       "NOT USED",
-			PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Service Catalog",
+			PageTitle:      core.ApplicationProperties["appname"] + " - " + "Service Catalog",
 		}
 
 		//	fmt.Println("serviceCatalog", serviceCatalog)

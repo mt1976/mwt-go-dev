@@ -10,8 +10,8 @@ import (
 	"os/user"
 	"time"
 
+	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -70,7 +70,7 @@ type DispatchStoreItem struct {
 
 func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -80,28 +80,28 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []DispatchStoreItem
 	noItems, returnList, _ := GetDispatchStoreList()
 
 	pageDispatchStoreList := appDispatchStoreListPage{
-		UserMenu:           globals.GetUserMenu(r),
-		UserRole:           globals.GetUserRole(r),
+		UserMenu:           core.GetUserMenu(r),
+		UserRole:           core.GetUserRole(r),
 		UserNavi:           "NOT USED",
-		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Dispatch",
+		Title:              core.ApplicationProperties["appname"],
+		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Dispatch",
 		DispatchStoreCount: noItems,
 		DispatchStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -111,17 +111,17 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "DispatchStore")
+	searchID := core.GetURLparam(r, "DispatchStore")
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
 
 	pageDispatchStoreList := appDispatchStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - View",
 		Action:    "",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -137,14 +137,14 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageDispatchStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -154,16 +154,16 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "DispatchStore")
+	searchID := core.GetURLparam(r, "DispatchStore")
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
 
 	pageDispatchStoreList := appDispatchStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -179,14 +179,14 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageDispatchStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -195,7 +195,7 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	globals.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s DispatchStoreItem
 
@@ -218,15 +218,15 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "DispatchStore")
-	globals.ServiceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "DispatchStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 
@@ -234,36 +234,36 @@ func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "DispatchStore")
+	searchID := core.GetURLparam(r, "DispatchStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	globals.ServiceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 }
 
 func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "DispatchStore")
+	searchID := core.GetURLparam(r, "DispatchStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	globals.ServiceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 
@@ -271,7 +271,7 @@ func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -281,13 +281,13 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageDispatchStoreList := appDispatchStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - New",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - New",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -295,35 +295,35 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 // getDispatchStoreList read all employees
 func GetDispatchStoreList() (int, []DispatchStoreItem, error) {
-	tsql := fmt.Sprintf(appDispatchStoreSQLSELECT, appDispatchStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appDispatchStoreSQLSELECT, appDispatchStoreSQL, core.ApplicationPropertiesDB["schema"])
 	count, appDispatchStoreList, _, _ := fetchDispatchStoreData(tsql)
 	return count, appDispatchStoreList, nil
 }
 
 // getDispatchStoreList read all employees
 func GetDispatchStoreByID(id string) (int, DispatchStoreItem, error) {
-	tsql := fmt.Sprintf(appDispatchStoreSQLGET, appDispatchStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appDispatchStoreSQLGET, appDispatchStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, DispatchStoreItem, _ := fetchDispatchStoreData(tsql)
 	return 1, DispatchStoreItem, nil
 }
 
 // getDispatchStoreList read all employees
 func GetDispatchStoreByTYPE(id string) (int, []DispatchStoreItem, error) {
-	tsql := fmt.Sprintf(appDispatchStoreSQLGETTYPE, appDispatchStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appDispatchStoreSQLGETTYPE, appDispatchStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, DispatchStoreItem, _, _ := fetchDispatchStoreData(tsql)
 	return 1, DispatchStoreItem, nil
 }
 
 func putDispatchStore(r DispatchStoreItem) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
 	}
@@ -344,18 +344,18 @@ func putDispatchStore(r DispatchStoreItem) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appDispatchStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appDispatchStoreSQL, r.Id, r.System, r.Type, r.Path, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appDispatchStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appDispatchStoreSQL, r.Id, r.System, r.Type, r.Path, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
 	//	log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	//	log.Println(fred, err)
 	if err != nil {
 		log.Println(err.Error())
@@ -364,9 +364,9 @@ func putDispatchStore(r DispatchStoreItem) {
 
 func deleteDispatchStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -399,7 +399,7 @@ func fetchDispatchStoreData(tsql string) (int, []DispatchStoreItem, DispatchStor
 	var appDispatchStore DispatchStoreItem
 	var appDispatchStoreList []DispatchStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -137,7 +137,7 @@ func ListFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           "Outstanding Request",
-		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Funds Check Approvals",
+		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Funds Check Approvals",
 		FundsCheckCount: noItems,
 		FundsCheckList:  returnList,
 	}
@@ -162,7 +162,7 @@ func ViewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	fundsCheckPage := editViewFundsCheck(w, r)
-	fundsCheckPage.PageTitle = globals.ApplicationProperties["appname"] + " - Funds Check - View"
+	fundsCheckPage.PageTitle = core.ApplicationProperties["appname"] + " - Funds Check - View"
 	fundsCheckPage.Title = "Request Message Detail"
 	//log.Println(fundsCheckPage)
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
@@ -183,7 +183,7 @@ func ActionFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	fundsCheckPage := editViewFundsCheck(w, r)
-	fundsCheckPage.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Process"
+	fundsCheckPage.PageTitle = core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Process"
 	fundsCheckPage.Title = "Response Message Detail"
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
@@ -197,8 +197,8 @@ func editViewFundsCheck(w http.ResponseWriter, r *http.Request) simFundsCheckPag
 	_, returnRecord, _ := GetFundsCheckByID(searchID)
 
 	fundsCheckPage := simFundsCheckPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Request",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Request",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -248,7 +248,7 @@ func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.ACC = simFundsCheckItem.BODY.FundsCheck.ACC
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.CCY = simFundsCheckItem.BODY.FundsCheck.CCY
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.AMOUNT = balance
-	createDate := time.Now().Format(globals.DFNANO)
+	createDate := time.Now().Format(core.DFNANO)
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.QUERYTIMESTAMP = createDate
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.RESULTCODE = resultCode
 
@@ -262,8 +262,8 @@ func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	newID := uuid.New().String()
 	fileName := newID + ".xml"
 
-	delivertopath := globals.SienaProperties["funds_out"]
-	deletefrompath := globals.SienaProperties["funds_in"]
+	delivertopath := core.SienaProperties["funds_out"]
+	deletefrompath := core.SienaProperties["funds_in"]
 
 	log.Printf("Delivery      : %s -> %s", deletefrompath, delivertopath)
 	WriteDataFile(fileName, delivertopath, string(newMsg))
@@ -307,8 +307,8 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	fundsCheckPage := simFundsCheckPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Funds Check Approval - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -325,9 +325,9 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 // getFundsCheckList read all employees
 func GetFundsCheckList() (int, []FundsCheckItem, error) {
-	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, globals.ApplicationPropertiesDB["schema"])
+	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, core.ApplicationPropertiesDB["schema"])
 	var simFundsCheckList []FundsCheckItem
-	requestPath := globals.SienaProperties["funds_in"]
+	requestPath := core.SienaProperties["funds_in"]
 	pwd, _ := os.Getwd()
 	files, err := ioutil.ReadDir(pwd + requestPath + "/")
 	if err != nil {
@@ -351,7 +351,7 @@ func GetFundsCheckList() (int, []FundsCheckItem, error) {
 // getFundsCheckList read all employees
 func GetFundsCheckByID(id string) (int, FundsCheckItem, error) {
 	var simFundsCheckItem FundsCheckItem
-	requestPath := globals.SienaProperties["funds_in"]
+	requestPath := core.SienaProperties["funds_in"]
 	pwd, _ := os.Getwd()
 	dat, err := ioutil.ReadFile(pwd + requestPath + "/" + id)
 	if err != nil {
@@ -393,18 +393,18 @@ func putFundsCheck(r FundsCheckItem) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	//	deletesql := fmt.Sprintf(simFundsCheckSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	//	inserttsql := fmt.Sprintf(simFundsCheckSQLINSERT, globals.ApplicationPropertiesDB["schema"], simFundsCheckSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	//	deletesql := fmt.Sprintf(simFundsCheckSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	//	inserttsql := fmt.Sprintf(simFundsCheckSQLINSERT, core.ApplicationPropertiesDB["schema"], simFundsCheckSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
 	/*
-		_, err2 := globals.ApplicationDB.Exec(deletesql)
+		_, err2 := core.ApplicationDB.Exec(deletesql)
 		if err2 != nil {
 			log.Println(err2.Error())
 		}
 		//	log.Println(fred2, err2)
-		_, err := globals.ApplicationDB.Exec(inserttsql)
+		_, err := core.ApplicationDB.Exec(inserttsql)
 		//	log.Println(fred, err)
 		if err != nil {
 			log.Println(err.Error())
@@ -414,9 +414,9 @@ func putFundsCheck(r FundsCheckItem) {
 
 func DeleteFundsCheck(id string) {
 	//fmt.Println(credentialStore)
-	//	deletesql := fmt.Sprintf(simFundsCheckSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//_, err := globals.ApplicationDB.Exec(deletesql)
+	//	deletesql := fmt.Sprintf(simFundsCheckSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//_, err := core.ApplicationDB.Exec(deletesql)
 	//if err != nil {
 	//	log.Println(err.Error())
 	//}

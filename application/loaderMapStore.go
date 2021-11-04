@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -91,8 +91,8 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:            GetUserMenu(r),
 		UserRole:            GetUserRole(r),
 		UserNavi:            "NOT USED",
-		Title:               globals.ApplicationProperties["appname"],
-		PageTitle:           globals.ApplicationProperties["appname"] + " - " + "Import Data Map",
+		Title:               core.ApplicationProperties["appname"],
+		PageTitle:           core.ApplicationProperties["appname"] + " - " + "Import Data Map",
 		LoaderMapStoreCount: noItems,
 		LoaderMapStoreList:  returnList,
 		LoaderID:            searchID,
@@ -121,8 +121,8 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLoaderMapStoreByID(searchID)
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data Map - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -166,8 +166,8 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLoaderMapStoreByIDLoader(searchID, loaderID)
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data Map - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -297,8 +297,8 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	nextPosition = nextPosition + 1
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Data Map - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -316,35 +316,35 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getLoaderMapStoreList read all employees
 func GetLoaderMapStoreList() (int, []LoaderMapStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderMapStoreSQLSELECT, appLoaderMapStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appLoaderMapStoreSQLSELECT, appLoaderMapStoreSQL, core.ApplicationPropertiesDB["schema"])
 	count, appLoaderMapStoreList, _, _ := fetchLoaderMapStoreData(tsql)
 	return count, appLoaderMapStoreList, nil
 }
 
 // getLoaderMapStoreList read all employees
 func GetLoaderMapStoreListByLoader(id string) (int, []LoaderMapStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderMapStoreSQLSELECTBYLOADER, appLoaderMapStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appLoaderMapStoreSQLSELECTBYLOADER, appLoaderMapStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	count, appLoaderMapStoreList, _, _ := fetchLoaderMapStoreData(tsql)
 	return count, appLoaderMapStoreList, nil
 }
 
 // getLoaderMapStoreList read all employees
 func GetLoaderMapStoreByID(id string) (int, LoaderMapStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderMapStoreSQLGET, appLoaderMapStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appLoaderMapStoreSQLGET, appLoaderMapStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, LoaderMapStoreItem, _ := fetchLoaderMapStoreData(tsql)
 	return 1, LoaderMapStoreItem, nil
 }
 
 // getLoaderMapStoreList read all employees
 func GetLoaderMapStoreByIDLoader(id string, loaderID string) (int, LoaderMapStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderMapStoreSQLGETIDLOADER, appLoaderMapStoreSQL, globals.ApplicationPropertiesDB["schema"], id, loaderID)
+	tsql := fmt.Sprintf(appLoaderMapStoreSQLGETIDLOADER, appLoaderMapStoreSQL, core.ApplicationPropertiesDB["schema"], id, loaderID)
 	_, _, LoaderMapStoreItem, _ := fetchLoaderMapStoreData(tsql)
 	return 1, LoaderMapStoreItem, nil
 }
 
 func putLoaderMapStore(r LoaderMapStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.Id) == 0 {
 		r.Id = ""
 	}
@@ -366,18 +366,18 @@ func putLoaderMapStore(r LoaderMapStoreItem, req *http.Request) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLoaderMapStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLoaderMapStoreSQL, r.Id, r.Name, r.Position, r.Loader, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appLoaderMapStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLoaderMapStoreSQL, r.Id, r.Name, r.Position, r.Loader, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
 	//	log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	//	log.Println(fred, err)
 	if err != nil {
 		log.Println(err.Error())
@@ -386,9 +386,9 @@ func putLoaderMapStore(r LoaderMapStoreItem, req *http.Request) {
 
 func deleteLoaderMapStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -397,9 +397,9 @@ func deleteLoaderMapStore(id string) {
 
 func DeleteLoaderMapStoreByLoader(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETELOADER, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appLoaderMapStoreSQLDELETELOADER, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -432,7 +432,7 @@ func fetchLoaderMapStoreData(tsql string) (int, []LoaderMapStoreItem, LoaderMapS
 	var appLoaderMapStore LoaderMapStoreItem
 	var appLoaderMapStoreList []LoaderMapStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

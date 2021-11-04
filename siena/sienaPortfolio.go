@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaPortfolioSQL = "Code, 	Name"
@@ -82,8 +82,8 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:            application.GetUserMenu(r),
 		UserRole:            application.GetUserRole(r),
 		UserNavi:            "NOT USED",
-		Title:               globals.ApplicationProperties["appname"],
-		PageTitle:           globals.ApplicationProperties["appname"] + " - " + "Bank Portfolios",
+		Title:               core.ApplicationProperties["appname"],
+		PageTitle:           core.ApplicationProperties["appname"] + " - " + "Bank Portfolios",
 		SienaPortfolioCount: noItems,
 		SienaPortfolioList:  returnList,
 	}
@@ -119,8 +119,8 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bank Portfolio - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bank Portfolio - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -157,8 +157,8 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bank Portfolio - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bank Portfolio - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -228,7 +228,7 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -261,8 +261,8 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bank Portfolio - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bank Portfolio - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
@@ -276,7 +276,7 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // getSienaPortfolioList read all employees
 func getSienaPortfolioList(db *sql.DB) (int, []portfolio_item, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio;", sienaPortfolioSQL, core.SienaPropertiesDB["schema"])
 	count, sienaPortfolioList, _, _ := fetchSienaPortfolioData(db, tsql)
 	return count, sienaPortfolioList, nil
 }
@@ -285,7 +285,7 @@ func getSienaPortfolioList(db *sql.DB) (int, []portfolio_item, error) {
 func getSienaPortfolio(db *sql.DB, id string) (int, portfolio_item, error) {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaPortfolio WHERE Code='%s';", sienaPortfolioSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaPortfolio, _ := fetchSienaPortfolioData(db, tsql)
 	return 1, sienaPortfolio, nil
 }
@@ -294,7 +294,7 @@ func getSienaPortfolio(db *sql.DB, id string) (int, portfolio_item, error) {
 func putSienaPortfolio(db *sql.DB, updateItem portfolio_item) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }

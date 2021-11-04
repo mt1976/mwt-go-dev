@@ -11,8 +11,8 @@ import (
 
 	"github.com/andreyvit/sqlexpr"
 	"github.com/kisielk/sqlstruct"
+	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -21,7 +21,7 @@ import (
 var dsCache dm.DataStoreMessages
 
 func init() {
-	fullTableName := globals.ApplicationPropertiesDB["scheme"] + "." + "cacheStore"
+	fullTableName := core.ApplicationPropertiesDB["scheme"] + "." + "cacheStore"
 
 	dsCache = dm.DataStoreMessages{
 		//Table: fullTableName,
@@ -103,8 +103,8 @@ const (
 
 func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -113,28 +113,28 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []appCacheStoreItem
 	noItems, returnList, _ := GetCacheStoreList()
 
 	pageCacheStoreList := appCacheStoreListPage{
-		UserMenu:        globals.GetUserMenu(r),
-		UserRole:        globals.GetUserRole(r),
+		UserMenu:        core.GetUserMenu(r),
+		UserRole:        core.GetUserRole(r),
 		UserNavi:        "NOT USED",
-		Title:           globals.ApplicationProperties["appname"],
-		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Cache",
+		Title:           core.ApplicationProperties["appname"],
+		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Cache",
 		CacheStoreCount: noItems,
 		CacheStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -144,17 +144,17 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "CacheStore")
+	searchID := core.GetURLparam(r, "CacheStore")
 	_, returnRecord, _ := GetCacheStoreByID(searchID)
 
 	pageCacheStoreList := appCacheStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Cache",
 		Action:    "",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -172,14 +172,14 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCacheStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -189,16 +189,16 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "CacheStore")
+	searchID := core.GetURLparam(r, "CacheStore")
 	_, returnRecord, _ := GetCacheStoreByID(searchID)
 
 	pageCacheStoreList := appCacheStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Cache",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -216,14 +216,14 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCacheStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -232,7 +232,7 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	globals.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appCacheStoreItem
 
@@ -257,15 +257,15 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "CacheStore")
-	globals.ServiceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "CacheStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteCacheStore(searchID)
 	ListCacheStoreHandler(w, r)
 
@@ -273,7 +273,7 @@ func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -283,13 +283,13 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCacheStoreList := appCacheStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Cache",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -297,7 +297,7 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
@@ -325,10 +325,10 @@ func GetCacheStoreListByOBJECT(object string) (int, []appCacheStoreItem, error) 
 
 // getCacheStoreList read all employees
 //func HousekeepCacheStore() (int, error) {
-//	expiry := time.Now().Format(globals.DATETIMEFORMATSQLSERVER)
+//	expiry := time.Now().Format(core.DATETIMEFORMATSQLSERVER)
 //	deletesql := fmt.Sprintf(appCacheStoreSQLDELETEEXPIRED, expiry)
-//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-//	_, err := globals.ApplicationDB.Exec(deletesql)
+//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+//	_, err := core.ApplicationDB.Exec(deletesql)
 //	return 0, err
 //}
 
@@ -355,7 +355,7 @@ func PutCacheDataSampleItem(o string, f string, v string, sourceDB string, x *ht
 
 func putCacheStore(r appCacheStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
 	}
@@ -367,7 +367,7 @@ func putCacheStore(r appCacheStoreItem, req *http.Request) {
 	if len(r.Id) == 0 {
 		r.Id = newCacheStoreID(r)
 		r.SYSCreated = createDate
-		r.SYSWho = globals.GetUserName(req)
+		r.SYSWho = core.GetUserName(req)
 		r.SYSHost = host
 	}
 
@@ -393,19 +393,19 @@ func putCacheStore(r appCacheStoreItem, req *http.Request) {
 	inserttsql.Set(csSYSUpdated, r.SYSUpdated)
 	inserttsql.Set(csSource, r.Source)
 
-	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	log.Println("DELETE:", deletesql, core.ApplicationDB)
 
 	sql, args := sqlexpr.Build(inserttsql)
 
 	fmt.Printf("sql: %v\n", sql)
 	fmt.Printf("args: %v\n", args)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panic(err2)
 	}
 	//log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(sql, args...)
+	_, err := core.ApplicationDB.Exec(sql, args...)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -415,8 +415,8 @@ func putCacheStore(r appCacheStoreItem, req *http.Request) {
 func deleteCacheStore(id string) {
 	//fmt.Println(credentialStore)
 	deletesql := fmt.Sprintf(dsCache.Delete, id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panicln(err2.Error())
 	}
@@ -429,7 +429,7 @@ func fetchCacheStoreData(tsql string) (int, []appCacheStoreItem, appCacheStoreIt
 	var appCacheStore appCacheStoreItem
 	var appCacheStoreList []appCacheStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -454,25 +454,25 @@ func fetchCacheStoreData(tsql string) (int, []appCacheStoreItem, appCacheStoreIt
 }
 
 func newCacheStoreID(r appCacheStoreItem) string {
-	id := r.Object + globals.IDSep + r.Field + globals.IDSep + r.Value + globals.IDSep + r.Source
+	id := r.Object + core.IDSep + r.Field + core.IDSep + r.Value + core.IDSep + r.Source
 	return id
 }
 
 func InitialiseCache(r *http.Request) {
-	InitialiseCacheData("CounterpartyImportID", "KeyImportID", "Counterparty", "ID", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("Book", "BookName", "", "ID", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("Currency", "Code", "", "ID", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("CurrencyPair", "Code", "", "ID", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("CounterpartyImportID", "KeyImportID", "Counterparty", "ID", core.SienaPropertiesDB, r)
+	InitialiseCacheData("Book", "BookName", "", "ID", core.SienaPropertiesDB, r)
+	InitialiseCacheData("Currency", "Code", "", "ID", core.SienaPropertiesDB, r)
+	InitialiseCacheData("CurrencyPair", "Code", "", "ID", core.SienaPropertiesDB, r)
 	//	InitialiseCacheData("Reason", "Reason")
-	InitialiseCacheData("Portfolio", "Code", "", "ID", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("User", "UserName", "", "Name", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("MandatedUser", "MandatedUserKeyUserName", "", "Name", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("BusinessDate", "Today", "", "", globals.SienaPropertiesDB, r)
-	InitialiseCacheData("Broker", "Code", "", "ID", globals.SienaPropertiesDB, r)
+	InitialiseCacheData("Portfolio", "Code", "", "ID", core.SienaPropertiesDB, r)
+	InitialiseCacheData("User", "UserName", "", "Name", core.SienaPropertiesDB, r)
+	InitialiseCacheData("MandatedUser", "MandatedUserKeyUserName", "", "Name", core.SienaPropertiesDB, r)
+	InitialiseCacheData("BusinessDate", "Today", "", "", core.SienaPropertiesDB, r)
+	InitialiseCacheData("Broker", "Code", "", "ID", core.SienaPropertiesDB, r)
 }
 
 func InitialiseCacheData(table string, field string, objectName string, fieldName string, sourceProperties map[string]string, r *http.Request) {
-	basesql := fmt.Sprintf("SELECT %s FROM %s.siena%s;", field, globals.SienaPropertiesDB["schema"], table)
+	basesql := fmt.Sprintf("SELECT %s FROM %s.siena%s;", field, core.SienaPropertiesDB["schema"], table)
 
 	storeObjectName := objectName
 	if len(objectName) == 0 {
@@ -568,7 +568,7 @@ func sourceConnect(sourceProperties map[string]string) (*sql.DB, error) {
 // SQLInjectionHander
 func RefreshCacheHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}

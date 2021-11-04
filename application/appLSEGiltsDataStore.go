@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -136,14 +136,14 @@ func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 	var returnList []AppLSEGiltsDataStoreItem
 
-	noItems, returnList, _ := GetLSEGiltsDataStoreList(globals.ApplicationDB)
+	noItems, returnList, _ := GetLSEGiltsDataStoreList(core.ApplicationDB)
 
 	pageLSEGiltsDataStoreList := appLSEGiltsDataStoreListPage{
 		UserMenu:               GetUserMenu(r),
 		UserRole:               GetUserRole(r),
 		UserNavi:               "NOT USED",
-		Title:                  globals.ApplicationProperties["appname"],
-		PageTitle:              globals.ApplicationProperties["appname"] + " - " + "LSE Gilts",
+		Title:                  core.ApplicationProperties["appname"],
+		PageTitle:              core.ApplicationProperties["appname"] + " - " + "LSE Gilts",
 		LSEGiltsDataStoreCount: noItems,
 		LSEGiltsDataStoreList:  returnList,
 	}
@@ -171,8 +171,8 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLSEGiltsDataStoreByID(searchID)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "LSE Gilts - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -238,8 +238,8 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLSEGiltsDataStoreByID(searchID)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "LSE Gilts - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -410,8 +410,8 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "LSE Gilts - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -428,15 +428,15 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getLSEGiltsDataStoreList read all employees
 func GetLSEGiltsDataStoreList(unused *sql.DB) (int, []AppLSEGiltsDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLSELECT, appLSEGiltsDataStoreSQL, globals.ApplicationPropertiesDB["schema"])
-	count, appLSEGiltsDataStoreList, _, _ := fetchLSEGiltsDataStoreData(globals.ApplicationDB, tsql)
+	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLSELECT, appLSEGiltsDataStoreSQL, core.ApplicationPropertiesDB["schema"])
+	count, appLSEGiltsDataStoreList, _, _ := fetchLSEGiltsDataStoreData(core.ApplicationDB, tsql)
 	return count, appLSEGiltsDataStoreList, nil
 }
 
 // getLSEGiltsDataStoreList read all employees
 func GetLSEGiltsDataStoreByID(id string) (int, AppLSEGiltsDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLGET, appLSEGiltsDataStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
-	_, _, AppLSEGiltsDataStoreItem, _ := fetchLSEGiltsDataStoreData(globals.ApplicationDB, tsql)
+	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLGET, appLSEGiltsDataStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	_, _, AppLSEGiltsDataStoreItem, _ := fetchLSEGiltsDataStoreData(core.ApplicationDB, tsql)
 	return 1, AppLSEGiltsDataStoreItem, nil
 }
 
@@ -453,13 +453,13 @@ func PutLSEGiltsDataStoreSystem(r AppLSEGiltsDataStoreItem) {
 func putLSEGiltsDataStoreSystem(r AppLSEGiltsDataStoreItem) {
 	//fmt.Println(credentialStore)
 	user, _ := user.Current()
-	putLSEGiltsDataStoreUser(r, "os"+globals.IDSep+user.Username)
+	putLSEGiltsDataStoreUser(r, "os"+core.IDSep+user.Username)
 }
 
 func putLSEGiltsDataStoreUser(r AppLSEGiltsDataStoreItem, userID string) {
 	//fmt.Println(credentialStore)
 
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.Id) == 0 {
 		r.Id = getLSEGiltsDataStoreID(r)
 	}
@@ -480,17 +480,17 @@ func putLSEGiltsDataStoreUser(r AppLSEGiltsDataStoreItem, userID string) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLSEGiltsDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLSEGiltsDataStoreSQLInsert, r.Id, r.LongName, r.Isin, r.Tidm, r.Sedol, r.IssueDate, r.MaturityDate, r.CouponValue, r.CouponType, r.Segment, r.Sector, r.CodeConventionCalculateAccrual, r.MinimumDenomination, r.DenominationCurrency, r.TradingCurrency, r.Type, r.FlatYield, r.PaymentCouponDate, r.PeriodOfCoupon, r.ExCouponDate, r.DateOfIndexInflation, r.UnitOfQuotation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Issuer, r.IssueAmount, r.RunningYield, r.Lei, r.Cusip)
+	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appLSEGiltsDataStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLSEGiltsDataStoreSQLInsert, r.Id, r.LongName, r.Isin, r.Tidm, r.Sedol, r.IssueDate, r.MaturityDate, r.CouponValue, r.CouponType, r.Segment, r.Sector, r.CodeConventionCalculateAccrual, r.MinimumDenomination, r.DenominationCurrency, r.TradingCurrency, r.Type, r.FlatYield, r.PaymentCouponDate, r.PeriodOfCoupon, r.ExCouponDate, r.DateOfIndexInflation, r.UnitOfQuotation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Issuer, r.IssueAmount, r.RunningYield, r.Lei, r.Cusip)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panicf("%e", err2)
 	}
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	if err != nil {
 		log.Panicf("%e", err)
 	}
@@ -498,9 +498,9 @@ func putLSEGiltsDataStoreUser(r AppLSEGiltsDataStoreItem, userID string) {
 
 func deleteLSEGiltsDataStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
 	//log.Println("DELETE:", deletesql)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
@@ -533,7 +533,7 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 	var appLSEGiltsDataStore AppLSEGiltsDataStoreItem
 	var appLSEGiltsDataStoreList []AppLSEGiltsDataStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -595,7 +595,7 @@ func fetchLSEGiltsDataStoreData(unused *sql.DB, tsql string) (int, []AppLSEGilts
 func getSelected(inID string) string {
 	returnValue := ""
 	if len(inID) != 0 {
-		returnValue = globals.Tick
+		returnValue = core.Tick
 	}
 	return returnValue
 }

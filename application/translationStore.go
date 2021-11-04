@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -84,14 +84,14 @@ func ListTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 	var returnList []appTranslationStoreItem
 
-	noItems, returnList, _ := GetTranslationStoreList(globals.ApplicationDB)
+	noItems, returnList, _ := GetTranslationStoreList(core.ApplicationDB)
 
 	pageTranslationStoreList := appTranslationStoreListPage{
 		UserMenu:              GetUserMenu(r),
 		UserRole:              GetUserRole(r),
 		UserNavi:              "NOT USED",
-		Title:                 globals.ApplicationProperties["appname"],
-		PageTitle:             globals.ApplicationProperties["appname"] + " - " + "System Translation Translation",
+		Title:                 core.ApplicationProperties["appname"],
+		PageTitle:             core.ApplicationProperties["appname"] + " - " + "System Translation Translation",
 		TranslationStoreCount: noItems,
 		TranslationStoreList:  returnList,
 	}
@@ -119,8 +119,8 @@ func ViewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetTranslationStoreByID(searchID)
 
 	pageCredentialStoreList := appTranslationStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "System Translation Translation - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Translation Translation - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -162,8 +162,8 @@ func EditTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetTranslationStoreByID(searchID)
 
 	pageCredentialStoreList := appTranslationStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "System Translation Translation - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Translation Translation - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -284,8 +284,8 @@ func NewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appTranslationStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "System Translation Translation - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Translation Translation - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -302,15 +302,15 @@ func NewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getTranslationStoreList read all employees
 func GetTranslationStoreList(unused *sql.DB) (int, []appTranslationStoreItem, error) {
-	tsql := fmt.Sprintf(appTranslationStoreSQLSELECT, appTranslationStoreSQL, globals.ApplicationPropertiesDB["schema"])
-	count, appTranslationStoreList, _, _ := fetchTranslationStoreData(globals.ApplicationDB, tsql)
+	tsql := fmt.Sprintf(appTranslationStoreSQLSELECT, appTranslationStoreSQL, core.ApplicationPropertiesDB["schema"])
+	count, appTranslationStoreList, _, _ := fetchTranslationStoreData(core.ApplicationDB, tsql)
 	return count, appTranslationStoreList, nil
 }
 
 // getTranslationStoreList read all employees
 func GetTranslationStoreByID(id string) (int, appTranslationStoreItem, error) {
-	tsql := fmt.Sprintf(appTranslationStoreSQLGET, appTranslationStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
-	_, _, appTranslationStoreItem, _ := fetchTranslationStoreData(globals.ApplicationDB, tsql)
+	tsql := fmt.Sprintf(appTranslationStoreSQLGET, appTranslationStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	_, _, appTranslationStoreItem, _ := fetchTranslationStoreData(core.ApplicationDB, tsql)
 	return 1, appTranslationStoreItem, nil
 }
 
@@ -328,7 +328,7 @@ func putTranslationStoreSystem(r appTranslationStoreItem) {
 func putTranslationStoreUser(r appTranslationStoreItem, userID string) {
 	//fmt.Println(credentialStore)
 
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 
 	//	currentUserID, _ := user.Current()
 	//	userID := currentUserID.Name
@@ -346,17 +346,17 @@ func putTranslationStoreUser(r appTranslationStoreItem, userID string) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appTranslationStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appTranslationStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appTranslationStoreSQL, r.Id, r.Class, r.Message, r.Translation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appTranslationStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appTranslationStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appTranslationStoreSQL, r.Id, r.Class, r.Message, r.Translation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panicf("%e", err2)
 	}
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	if err != nil {
 		log.Panicf("%e", err)
 	}
@@ -364,9 +364,9 @@ func putTranslationStoreUser(r appTranslationStoreItem, userID string) {
 
 func deleteTranslationStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appTranslationStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appTranslationStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
 	//log.Println("DELETE:", deletesql)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
@@ -399,7 +399,7 @@ func fetchTranslationStoreData(unused *sql.DB, tsql string) (int, []appTranslati
 	var appTranslationStore appTranslationStoreItem
 	var appTranslationStoreList []appTranslationStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -464,6 +464,6 @@ func getTranslationStoreID(class string, message string) string {
 	var translationStoreID string
 	message = strings.ReplaceAll(message, " ", "-")
 	message = RemoveSpecialChars(message)
-	translationStoreID = class + globals.IDSep + message
+	translationStoreID = class + core.IDSep + message
 	return translationStoreID
 }

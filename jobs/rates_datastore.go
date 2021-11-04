@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 type RatesDataStore struct {
@@ -155,24 +155,24 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 
 	//db, _ := application.DataStoreConnect()
 
-	//mssqlConfig := application.GetProperties(globals.DATASTORECONFIG)
-	inserttsql := fmt.Sprintf(appRatesDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
-	deletesql := fmt.Sprintf(appRatesDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], sql.ID)
+	//mssqlConfig := application.GetProperties(core.DATASTORECONFIG)
+	inserttsql := fmt.Sprintf(appRatesDataStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
+	deletesql := fmt.Sprintf(appRatesDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], sql.ID)
 	//var appRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, created, who, host, [date]"
 
-	//log.Println(inserttsql, globals.ApplicationDB)
-	//log.Println(deletesql, globals.ApplicationDB)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	//log.Println(inserttsql, core.ApplicationDB)
+	//log.Println(deletesql, core.ApplicationDB)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panicf("%e", err2)
 	}
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	if err != nil {
 		log.Panicf("%e", err)
 	}
 }
 
 func getRatesDataStoreKey(ratesData RatesDataStore) string {
-	key := strings.ToUpper(ratesData.market) + globals.IDSep + strings.ToUpper(ratesData.tenor) + globals.IDSep + strings.ToUpper(ratesData.class) + globals.IDSep + strings.ToUpper(ratesData.series)
+	key := strings.ToUpper(ratesData.market) + core.IDSep + strings.ToUpper(ratesData.tenor) + core.IDSep + strings.ToUpper(ratesData.class) + core.IDSep + strings.ToUpper(ratesData.series)
 	return key
 }

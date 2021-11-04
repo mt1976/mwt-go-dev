@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 //sienaDashboardPage is cheese
@@ -65,8 +65,8 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:          application.GetUserMenu(r),
 		UserRole:          application.GetUserRole(r),
 		UserNavi:          "NOT USED",
-		Title:             globals.ApplicationProperties["appname"],
-		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "Dashboard",
+		Title:             core.ApplicationProperties["appname"],
+		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Dashboard",
 		TotCounterparties: strconv.Itoa(noCps),
 		NoGDPRExp:         strconv.Itoa(noDepd),
 		NoLEIExp:          strconv.Itoa(noSecs),

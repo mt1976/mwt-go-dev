@@ -1,4 +1,4 @@
-package jobs
+package datamodel
 
 type JobDefinition struct {
 	ID          string

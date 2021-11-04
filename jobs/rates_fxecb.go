@@ -4,19 +4,20 @@ import (
 	"fmt"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	"github.com/openprovider/rates"
 	"github.com/openprovider/rates/providers"
 	cron "github.com/robfig/cron/v3"
 )
 
-func RatesFXECB_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func RatesFXECB_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "RATES_FXECB"
 	j.Name = "RATES_FXECB"
 	j.Period = "30 16 * * 1-5"
 	j.Description = "Update ECB Benchmark FX Spot rate"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 

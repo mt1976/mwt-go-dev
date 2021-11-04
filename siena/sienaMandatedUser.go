@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaMandatedUserSQL = "MandatedUserKeyCounterpartyFirm, 	MandatedUserKeyCounterpartyCentre, 	MandatedUserKeyUserName, 	TelephoneNumber, 	EmailAddress, 	Active, 	FirstName, 	Surname, 	DateOfBirth, 	Postcode, 	NationalIDNo, 	PassportNo, 	Country, 	CountryName, 	FirmName, 	CentreName, 	Notify, 	SystemUser"
@@ -108,8 +108,8 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               application.GetUserMenu(r),
 		UserRole:               application.GetUserRole(r),
 		UserNavi:               "NOT USED",
-		Title:                  globals.ApplicationProperties["appname"],
-		PageTitle:              globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandates",
+		Title:                  core.ApplicationProperties["appname"],
+		PageTitle:              core.ApplicationProperties["appname"] + " - " + "Counterparty Mandates",
 		SienaMandatedUserCount: noItems,
 		SienaMandatedUserList:  returnList,
 	}
@@ -145,8 +145,8 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:                          application.GetUserMenu(r),
 		UserRole:                          application.GetUserRole(r),
 		UserNavi:                          "NOT USED",
-		Title:                             globals.ApplicationProperties["appname"],
-		PageTitle:                         globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - View",
+		Title:                             core.ApplicationProperties["appname"],
+		PageTitle:                         core.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - View",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
 		MandatedUserKeyCounterpartyCentre: returnRecord.MandatedUserKeyCounterpartyCentre,
 		MandatedUserKeyUserName:           returnRecord.MandatedUserKeyUserName,
@@ -207,8 +207,8 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:                          application.GetUserMenu(r),
 		UserRole:                          application.GetUserRole(r),
 		UserNavi:                          "NOT USED",
-		Title:                             globals.ApplicationProperties["appname"],
-		PageTitle:                         globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - Edit",
+		Title:                             core.ApplicationProperties["appname"],
+		PageTitle:                         core.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - Edit",
 		MandatedUserKeyCounterpartyFirm:   returnRecord.MandatedUserKeyCounterpartyFirm,
 		MandatedUserKeyCounterpartyCentre: returnRecord.MandatedUserKeyCounterpartyCentre,
 		MandatedUserKeyUserName:           returnRecord.MandatedUserKeyUserName,
@@ -397,8 +397,8 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:                          application.GetUserMenu(r),
 		UserRole:                          application.GetUserRole(r),
 		UserNavi:                          "NOT USED",
-		Title:                             globals.ApplicationProperties["appname"],
-		PageTitle:                         globals.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - New",
+		Title:                             core.ApplicationProperties["appname"],
+		PageTitle:                         core.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - New",
 		ID:                                "NEW",
 		MandatedUserKeyCounterpartyFirm:   "",
 		MandatedUserKeyCounterpartyCentre: "",
@@ -434,7 +434,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaMandatedUserList read all employees
 func getSienaMandatedUserList() (int, []sienaMandatedUserItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser;", sienaMandatedUserSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser;", sienaMandatedUserSQL, core.SienaPropertiesDB["schema"])
 	count, sienaMandatedUserList, _, _ := fetchSienaMandatedUserData(tsql)
 	return count, sienaMandatedUserList, nil
 }
@@ -442,7 +442,7 @@ func getSienaMandatedUserList() (int, []sienaMandatedUserItem, error) {
 // getSienaMandatedUserList read all employees
 func getSienaMandatedUserListByCounterparty(idFirm string, idCentre string) (int, []sienaMandatedUserItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser WHERE MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", sienaMandatedUserSQL, globals.SienaPropertiesDB["schema"], idFirm, idCentre)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser WHERE MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", sienaMandatedUserSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
 	//	fmt.Println("MS SQL:", tsql)
 	count, sienaMandatedUserList, _, _ := fetchSienaMandatedUserData(tsql)
 	return count, sienaMandatedUserList, nil
@@ -451,7 +451,7 @@ func getSienaMandatedUserListByCounterparty(idFirm string, idCentre string) (int
 // getSienaMandatedUserList read all employees
 func getSienaMandatedUser(suid string, sfid string, scid string) (int, sienaMandatedUserItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser WHERE MandatedUserKeyUserName='%s' AND MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", sienaMandatedUserSQL, globals.SienaPropertiesDB["schema"], suid, sfid, scid)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaMandatedUser WHERE MandatedUserKeyUserName='%s' AND MandatedUserKeyCounterpartyFirm='%s' AND MandatedUserKeyCounterpartyCentre='%s';", sienaMandatedUserSQL, core.SienaPropertiesDB["schema"], suid, sfid, scid)
 	_, _, sienaMandatedUser, _ := fetchSienaMandatedUserData(tsql)
 	return 1, sienaMandatedUser, nil
 }
@@ -460,7 +460,7 @@ func getSienaMandatedUser(suid string, sfid string, scid string) (int, sienaMand
 func putSienaMandatedUser(updateItem sienaMandatedUserItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -471,7 +471,7 @@ func fetchSienaMandatedUserData(tsql string) (int, []sienaMandatedUserItem, sien
 	var sienaMandatedUser sienaMandatedUserItem
 	var sienaMandatedUserList []sienaMandatedUserItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

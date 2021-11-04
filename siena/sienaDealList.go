@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -149,8 +149,8 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:           application.GetUserMenu(r),
 		UserRole:           application.GetUserRole(r),
 		UserNavi:           "NOT USED",
-		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Transactions",
+		Title:              core.ApplicationProperties["appname"],
+		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Transactions",
 		SienaDealListCount: noItems,
 		SienaDealListList:  returnList,
 	}
@@ -182,8 +182,8 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:           application.GetUserMenu(r),
 		UserRole:           application.GetUserRole(r),
 		UserNavi:           "NOT USED",
-		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Transaction - View",
+		Title:              core.ApplicationProperties["appname"],
+		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Transaction - View",
 		Action:             "",
 		SienaReference:     returnRecord.SienaReference,
 		CustomerSienaView:  returnRecord.CustomerSienaView,
@@ -237,7 +237,7 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaDealListList read all employees
 func getSienaDealListList() (int, []sienaDealListItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList;", sienaDealListSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList;", sienaDealListSQL, core.SienaPropertiesDB["schema"])
 	count, sienaDealListList, _, _ := fetchSienaDealListData(tsql)
 
 	return count, sienaDealListList, nil
@@ -245,7 +245,7 @@ func getSienaDealListList() (int, []sienaDealListItem, error) {
 
 // getSienaDealListList read all employees
 func getSienaDealListListByCounterparty(idFirm string, idCentre string) (int, []sienaDealListItem, error) {
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE Firm='%s' AND Centre='%s';", sienaDealListSQL, globals.SienaPropertiesDB["schema"], idFirm, idCentre)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE Firm='%s' AND Centre='%s';", sienaDealListSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
 	count, sienaDealListList, _, _ := fetchSienaDealListData(tsql)
 	return count, sienaDealListList, nil
 }
@@ -253,7 +253,7 @@ func getSienaDealListListByCounterparty(idFirm string, idCentre string) (int, []
 // getSienaDealListList read all employees
 func getSienaDealList(sienaDealListID string) (int, sienaDealListItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE SienaReference='%s';", sienaDealListSQL, globals.SienaPropertiesDB["schema"], sienaDealListID)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealList WHERE SienaReference='%s';", sienaDealListSQL, core.SienaPropertiesDB["schema"], sienaDealListID)
 	_, _, sienaDealList, _ := fetchSienaDealListData(tsql)
 	return 1, sienaDealList, nil
 }
@@ -262,7 +262,7 @@ func getSienaDealList(sienaDealListID string) (int, sienaDealListItem, error) {
 func putSienaDealList(updateItem sienaDealListItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -273,7 +273,7 @@ func fetchSienaDealListData(tsql string) (int, []sienaDealListItem, sienaDealLis
 	var sienaDealList sienaDealListItem
 	var sienaDealListList []sienaDealListItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -333,7 +333,7 @@ func fetchSienaDealListData(tsql string) (int, []sienaDealListItem, sienaDealLis
 		sienaDealList.PartyName = sqlDLSTPartyName.String
 
 		if sienaDealList.Firm != "" {
-			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, globals.SIENACPTYSEP, sienaDealList.Centre)
+			sienaDealList.PartyName = fmt.Sprintf("%s%s%s", sienaDealList.Firm, core.SIENACPTYSEP, sienaDealList.Centre)
 		}
 
 		if sienaDealList.Instrument == "" {

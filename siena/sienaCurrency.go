@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaCurrencySQL = "Code, 	Name, 	AmountDp, 	Country, 	CountryName"
@@ -77,8 +77,8 @@ func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:           application.GetUserMenu(r),
 		UserRole:           application.GetUserRole(r),
 		UserNavi:           "NOT USED",
-		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Currencies",
+		Title:              core.ApplicationProperties["appname"],
+		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Currencies",
 		SienaCurrencyCount: noItems,
 		SienaCurrencyList:  returnList,
 	}
@@ -110,8 +110,8 @@ func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetUserMenu(r),
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Currency - View",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Currency - View",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -153,8 +153,8 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetUserMenu(r),
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Currency - Edit",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Currency - Edit",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -239,7 +239,7 @@ func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -275,8 +275,8 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Currency - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Currency - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
@@ -294,7 +294,7 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCurrencyList read all employees
 func getSienaCurrencyList() (int, []sienaCurrencyItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, core.SienaPropertiesDB["schema"])
 	count, sienaCurrencyList, _, _ := fetchSienaCurrencyData(tsql)
 	return count, sienaCurrencyList, nil
 }
@@ -302,7 +302,7 @@ func getSienaCurrencyList() (int, []sienaCurrencyItem, error) {
 // getSienaCurrencyList read all employees
 func getSienaCurrency(id string) (int, sienaCurrencyItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaCurrency, _ := fetchSienaCurrencyData(tsql)
 	return 1, sienaCurrency, nil
 }
@@ -311,7 +311,7 @@ func getSienaCurrency(id string) (int, sienaCurrencyItem, error) {
 func putSienaCurrency(updateItem sienaCurrencyItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -322,7 +322,7 @@ func fetchSienaCurrencyData(tsql string) (int, []sienaCurrencyItem, sienaCurrenc
 	var sienaCurrency sienaCurrencyItem
 	var sienaCurrencyList []sienaCurrencyItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

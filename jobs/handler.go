@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"strings"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 
 	cron "github.com/robfig/cron/v3"
 )
@@ -30,21 +30,21 @@ func Start() {
 
 	HeartBeat_Register(c)
 
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		RatesFXSpot_Register(c)
 	}
 
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		RatesFXECB_Register(c)
 	}
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		IndexSONIABOE_Register(c)
 	}
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		InstFRED_Register(c)
 	}
 
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		InstFII_Register(c)
 	}
 
@@ -77,15 +77,15 @@ func logit(actionType string, data string) {
 	//log.Println(len(outcall), depth, depth2)
 	callerName := outcall[depth2] + "/" + outcall[depth]
 	op := fmt.Sprintf("%v '%v' {%v}", actionType, data, callerName)
-	globals.LOG_msg("Scheduler", op)
+	core.LOG_msg("Scheduler", op)
 }
 
 func logStart(data string) {
-	globals.LOG_msg("Scheduler", "Start"+data)
+	core.LOG_msg("Scheduler", "Start"+data)
 	logit("Job Start", data)
 }
 
 func logEnd(data string) {
-	globals.LOG_msg("Scheduler", "Stop "+data)
+	core.LOG_msg("Scheduler", "Stop "+data)
 	logit("Job End", data)
 }

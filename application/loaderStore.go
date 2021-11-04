@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -97,8 +97,8 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         GetUserMenu(r),
 		UserRole:         GetUserRole(r),
 		UserNavi:         "NOT USED",
-		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Import Run",
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Import Run",
 		LoaderStoreCount: noItems,
 		LoaderStoreList:  returnList,
 	}
@@ -126,8 +126,8 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLoaderStoreByID(searchID)
 
 	pageLoaderStoreList := appLoaderStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Run - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -174,8 +174,8 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, instanceList, _ := GetSystemStoreList()
 
 	pageLoaderStoreList := appLoaderStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Run - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -310,8 +310,8 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageLoaderStoreList := appLoaderStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Import Run - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -330,14 +330,14 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getLoaderStoreList read all employees
 func GetLoaderStoreList() (int, []LoaderStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderStoreSQLSELECT, appLoaderStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appLoaderStoreSQLSELECT, appLoaderStoreSQL, core.ApplicationPropertiesDB["schema"])
 	count, appLoaderStoreList, _, _ := fetchLoaderStoreData(tsql)
 	return count, appLoaderStoreList, nil
 }
 
 // getLoaderStoreList read all employees
 func GetLoaderStoreByID(id string) (int, LoaderStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderStoreSQLGET, appLoaderStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appLoaderStoreSQLGET, appLoaderStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, LoaderStoreItem, _ := fetchLoaderStoreData(tsql)
 	return 1, LoaderStoreItem, nil
 }
@@ -356,7 +356,7 @@ func PutLoaderStore(r LoaderStoreItem, req *http.Request) {
 
 func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 
 	//	currentUserID, _ := user.Current()
 	//	userID := currentUserID.Name
@@ -374,18 +374,18 @@ func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLoaderStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appLoaderStoreSQL, r.Id, r.Name, r.Description, r.Filename, r.Lastrun, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type, r.Instance, r.Extension)
+	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appLoaderStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLoaderStoreSQL, r.Id, r.Name, r.Description, r.Filename, r.Lastrun, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type, r.Instance, r.Extension)
 
-	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
 	//	log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	//	log.Println(fred, err)
 	if err != nil {
 		log.Println(err.Error())
@@ -394,9 +394,9 @@ func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 
 func DeleteLoaderStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -429,7 +429,7 @@ func fetchLoaderStoreData(tsql string) (int, []LoaderStoreItem, LoaderStoreItem,
 	var appLoaderStore LoaderStoreItem
 	var appLoaderStoreList []LoaderStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

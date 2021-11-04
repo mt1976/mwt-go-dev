@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaBIcounterpartyPerSectorSQL = "SectorCode, 	Count"
@@ -22,7 +22,7 @@ type sienaBIcounterpartyPerSectorItem struct {
 // getSienaBIcounterpartyPerSectorList read all employees
 func getSienaBIcounterpartyPerSectorList() (int, []sienaBIcounterpartyPerSectorItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIcounterpartyPerSector;", sienaBIcounterpartyPerSectorSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIcounterpartyPerSector;", sienaBIcounterpartyPerSectorSQL, core.SienaPropertiesDB["schema"])
 	count, sienaBIcounterpartyPerSectorList, _, _ := fetchSienaBIcounterpartyPerSectorData(tsql)
 	return count, sienaBIcounterpartyPerSectorList, nil
 }
@@ -33,7 +33,7 @@ func fetchSienaBIcounterpartyPerSectorData(tsql string) (int, []sienaBIcounterpa
 	var sienaBIcounterpartyPerSector sienaBIcounterpartyPerSectorItem
 	var sienaBIcounterpartyPerSectorList []sienaBIcounterpartyPerSectorItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

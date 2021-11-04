@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaCountrySQL = "Code, 	Name, 	ShortCode, 	EU_EEA"
@@ -50,7 +50,7 @@ type sienaCountryItem struct {
 }
 
 func Country_MUX(mux http.ServeMux) {
-	globals.LOG_success("Muxed Siena Country")
+	core.LOG_success("Muxed Siena Country")
 	mux.HandleFunc("/listSienaCountry/", ListSienaCountryHandler)
 	mux.HandleFunc("/viewSienaCountry/", ViewSienaCountryHandler)
 	mux.HandleFunc("/editSienaCountry/", EditSienaCountryHandler)
@@ -79,8 +79,8 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:          application.GetUserMenu(r),
 		UserRole:          application.GetUserRole(r),
 		UserNavi:          "NOT USED",
-		Title:             globals.ApplicationProperties["appname"],
-		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "Countries",
+		Title:             core.ApplicationProperties["appname"],
+		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Countries",
 		SienaCountryCount: noItems,
 		SienaCountryList:  returnList,
 	}
@@ -115,8 +115,8 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Country - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Country - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -152,8 +152,8 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Country - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Country - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -259,8 +259,8 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Country - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Country - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
@@ -277,7 +277,7 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCountryList read all employees
 func getSienaCountryList() (int, []sienaCountryItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry;", sienaCountrySQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry;", sienaCountrySQL, core.SienaPropertiesDB["schema"])
 	count, sienaCountryList, _, _ := fetchSienaCountryData(tsql)
 	return count, sienaCountryList, nil
 }
@@ -285,7 +285,7 @@ func getSienaCountryList() (int, []sienaCountryItem, error) {
 // getSienaCountryList read all employees
 func getSienaCountry(id string) (int, sienaCountryItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry WHERE Code='%s';", sienaCountrySQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry WHERE Code='%s';", sienaCountrySQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaCountry, _ := fetchSienaCountryData(tsql)
 	return 1, sienaCountry, nil
 }
@@ -294,7 +294,7 @@ func getSienaCountry(id string) (int, sienaCountryItem, error) {
 func putSienaCountry(updateItem sienaCountryItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 
 	return nil
@@ -306,7 +306,7 @@ func fetchSienaCountryData(tsql string) (int, []sienaCountryItem, sienaCountryIt
 	var sienaCountry sienaCountryItem
 	var sienaCountryList []sienaCountryItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

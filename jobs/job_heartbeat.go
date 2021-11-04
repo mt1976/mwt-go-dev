@@ -4,17 +4,18 @@ import (
 	"fmt"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	"github.com/robfig/cron/v3"
 )
 
-func HeartBeat_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func HeartBeat_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "HEARTBEAT"
 	j.Name = "HEARTBEAT"
 	j.Period = "*/5 * * * *"
 	j.Description = "System Heartbeat"
-	j.Type = globals.Monitor
+	j.Type = core.Monitor
 	return j
 }
 
@@ -27,11 +28,11 @@ func HeartBeat_Register(c *cron.Cron) {
 func HeartBeat_Run() {
 
 	logStart(HeartBeat_Job().Name)
-	globals.Log_uptime()
-	globals.ApplicationDB = globals.GlobalsDatabasePoke(globals.ApplicationDB, globals.ApplicationPropertiesDB)
-	globals.SienaDB = globals.GlobalsDatabasePoke(globals.SienaDB, globals.SienaPropertiesDB)
+	core.Log_uptime()
+	core.ApplicationDB = core.GlobalsDatabasePoke(core.ApplicationDB, core.ApplicationPropertiesDB)
+	core.SienaDB = core.GlobalsDatabasePoke(core.SienaDB, core.SienaPropertiesDB)
 
-	message := fmt.Sprintf("Uptime = %v", globals.Uptime())
+	message := fmt.Sprintf("Uptime = %v", core.Uptime())
 
 	application.UpdateSchedule(HeartBeat_Job(), message)
 	logEnd(HeartBeat_Job().Name)

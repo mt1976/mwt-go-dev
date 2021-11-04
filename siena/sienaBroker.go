@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaBrokerSQL = "Code, 	Name, 	FullName, 	Contact, 	Address, 	LEI"
@@ -78,8 +78,8 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaBrokerList := sienaBrokerListPage{
-		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Brokers",
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Brokers",
 		SienaBrokerCount: noItems,
 		SienaBrokerList:  returnList,
 		UserMenu:         application.GetUserMenu(r),
@@ -115,8 +115,8 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaBrokerList := sienaBrokerPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Broker - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Broker - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -162,8 +162,8 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaBrokerList := sienaBrokerPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -275,7 +275,7 @@ func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	//fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -305,8 +305,8 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 
 	pageSienaBrokerList := sienaBrokerPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
@@ -327,7 +327,7 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaBrokerList read all employees
 func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker;", sienaBrokerSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker;", sienaBrokerSQL, core.SienaPropertiesDB["schema"])
 	count, sienaBrokerList, _, _ := fetchSienaBrokerData(db, tsql)
 	return count, sienaBrokerList, nil
 }
@@ -335,7 +335,7 @@ func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
 // getSienaBrokerList read all employees
 func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker WHERE Code='%s';", sienaBrokerSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker WHERE Code='%s';", sienaBrokerSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaBroker, _ := fetchSienaBrokerData(db, tsql)
 	return 1, sienaBroker, nil
 }
@@ -344,7 +344,7 @@ func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
 func putSienaBroker(db *sql.DB, updateItem sienaBrokerItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(core.SienaPropertiesDB["schema"])
 	//fmt.Println(updateItem)
 	return nil
 }

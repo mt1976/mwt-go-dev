@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -71,10 +71,10 @@ type appScheduleStoreItem struct {
 	HumanSchedule string
 }
 
-var dsSchedule globals.DataStoreMessages
+var dsSchedule core.DataStoreMessages
 
 func init() {
-	dsSchedule = globals.DataStoreMessages{
+	dsSchedule = core.DataStoreMessages{
 		Table: "scheduleStore",
 		Columns: "id, 	name, 	description, 	schedule, 	started, 	lastrun, 	message, 	_created, 	_who, 	_host, 	_updated, type",
 		Insert: "INSERT INTO %s.scheduleStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
@@ -106,8 +106,8 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:           GetUserMenu(r),
 		UserRole:           GetUserRole(r),
 		UserNavi:           "NOT USED",
-		Title:              globals.ApplicationProperties["appname"],
-		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Scheduler",
+		Title:              core.ApplicationProperties["appname"],
+		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Scheduler",
 		ScheduleStoreCount: noItems,
 		ScheduleStoreList:  returnList,
 	}
@@ -134,8 +134,8 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
 	pageCredentialStoreList := appScheduleStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Schedule - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Schedule - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -182,8 +182,8 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
 	pageCredentialStoreList := appScheduleStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Scheduler - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Scheduler - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -314,8 +314,8 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appScheduleStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Scheduler - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Scheduler - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -333,14 +333,14 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 // getScheduleStoreList read all employees
 func GetScheduleStoreList() (int, []appScheduleStoreItem, error) {
 
-	tsql := fmt.Sprintf(dsSchedule.Select, dsSchedule.Columns, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(dsSchedule.Select, dsSchedule.Columns, core.ApplicationPropertiesDB["schema"])
 	count, appScheduleStoreList, _, _ := fetchScheduleStoreData(tsql)
 	return count, appScheduleStoreList, nil
 }
 
 // getScheduleStoreList read all employees
 func GetScheduleStoreByID(id string) (int, appScheduleStoreItem, error) {
-	tsql := fmt.Sprintf(dsSchedule.Get, dsSchedule.Columns, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(dsSchedule.Get, dsSchedule.Columns, core.ApplicationPropertiesDB["schema"], id)
 	_, _, appScheduleStoreItem, _ := fetchScheduleStoreData(tsql)
 	return 1, appScheduleStoreItem, nil
 }
@@ -348,22 +348,22 @@ func GetScheduleStoreByID(id string) (int, appScheduleStoreItem, error) {
 func putScheduleStore(r appScheduleStoreItem) {
 	//fmt.Println(credentialStore)
 
-	r.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
+	r.SYSUpdated = time.Now().Format(core.DATETIMEFORMATUSER)
 
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(dsSchedule.Delete, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(dsSchedule.Insert, globals.ApplicationPropertiesDB["schema"], dsSchedule.Columns, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type)
+	deletesql := fmt.Sprintf(dsSchedule.Delete, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(dsSchedule.Insert, core.ApplicationPropertiesDB["schema"], dsSchedule.Columns, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type)
 
 	//log.Println("DELETE:", deletesql, db)
 	//log.Println("INSERT:", inserttsql, db)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panic(err2)
 	}
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -372,10 +372,10 @@ func putScheduleStore(r appScheduleStoreItem) {
 func deleteScheduleStore(id string) {
 	//fmt.Println(credentialStore)
 
-	deletesql := fmt.Sprintf(dsSchedule.Delete, globals.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(dsSchedule.Delete, core.ApplicationPropertiesDB["schema"], id)
 	//	log.Println("DELETE:", deletesql, db)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panic(err2)
 	}
@@ -408,7 +408,7 @@ func fetchScheduleStoreData(tsql string) (int, []appScheduleStoreItem, appSchedu
 	var appScheduleStore appScheduleStoreItem
 	var appScheduleStoreList []appScheduleStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -453,6 +453,6 @@ func newScheduleStoreID() string {
 	return id
 }
 
-func PostSchedule(sched globals.JobDefinition) {
+func PostSchedule(sched core.JobDefinition) {
 	RegisterSchedule(sched)
 }

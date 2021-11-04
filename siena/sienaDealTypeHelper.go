@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaDealTypeHelperSQL = "DealTypeKey, 	DealTypeShortName, 	NegotiableInstrumentType, 	ProductCode, 	ProductCodeName"
@@ -25,7 +25,7 @@ type sienaDealTypeHelperItem struct {
 // getSienaDealTypeHelperList read all employees
 func getSienaDealTypeHelperList(db *sql.DB) (int, []sienaDealTypeHelperItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealTypeHelper;", sienaDealTypeHelperSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaDealTypeHelper;", sienaDealTypeHelperSQL, core.SienaPropertiesDB["schema"])
 	count, sienaDealTypeHelperList, _, _ := fetchSienaDealTypeHelperData(db, tsql)
 	return count, sienaDealTypeHelperList, nil
 }

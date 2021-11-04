@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaBookSQL = "BookName, 	FullName"
@@ -71,8 +71,8 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaBookList := sienaBookListPage{
-		Title:          globals.ApplicationProperties["appname"],
-		PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Books",
+		Title:          core.ApplicationProperties["appname"],
+		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
 		UserMenu:       application.GetUserMenu(r),
@@ -108,8 +108,8 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaBookList := sienaBookPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -149,8 +149,8 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaBookList := sienaBookPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -229,7 +229,7 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	//fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -259,8 +259,8 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	application.ServiceMessage(inUTL)
 
 	pageSienaBookList := sienaBookPage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Book - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
@@ -278,7 +278,7 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaBookList read all employees
 func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook;", sienaBookSQL, core.SienaPropertiesDB["schema"])
 	count, sienaBookList, _, _ := fetchSienaBookData(db, tsql)
 	return count, sienaBookList, nil
 }
@@ -286,16 +286,16 @@ func getSienaBookList(db *sql.DB) (int, []sienaBookItem, error) {
 // getSienaBookList read all employees
 func getSienaBook(db *sql.DB, id string) (int, sienaBookItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBook WHERE BookName='%s';", sienaBookSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaBook, _ := fetchSienaBookData(db, tsql)
 	return 1, sienaBook, nil
 }
 
 // getSienaBookList read all employees
 func putSienaBook(db *sql.DB, updateItem sienaBookItem) error {
-	//globals.SienaPropertiesDB := application.GetProperties(cSQL_CONFIG)
+	//core.SienaPropertiesDB := application.GetProperties(cSQL_CONFIG)
 	//fmt.Println(db.Stats().OpenConnections)
-	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(core.SienaPropertiesDB["schema"])
 	//fmt.Println(updateItem)
 	return nil
 }

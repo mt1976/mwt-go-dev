@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -72,8 +72,8 @@ type appSessionStorePage struct {
 
 func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -82,29 +82,29 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []dm.AppSessionStoreItem
 	noItems, returnList, _ := dao.GetSessionStoreList()
 
 	pageSessionStoreList := appSessionStoreListPage{
-		UserMenu:          globals.GetUserMenu(r),
-		UserRole:          globals.GetUserRole(r),
+		UserMenu:          core.GetUserMenu(r),
+		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
-		Title:             globals.ApplicationProperties["appname"],
-		PageTitle:         globals.ApplicationProperties["appname"] + " - " + "Sessions",
+		Title:             core.ApplicationProperties["appname"],
+		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Sessions",
 		SessionStoreCount: noItems,
 		SessionStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
 
 func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -113,17 +113,17 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "SessionStore")
-	_, returnRecord, _ := globals.GetSessionStoreByID(searchID)
+	searchID := core.GetURLparam(r, "SessionStore")
+	_, returnRecord, _ := core.GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Session - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - View",
 		Action:    "",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -152,15 +152,15 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageSessionStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
 
 func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -169,16 +169,16 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := globals.GetURLparam(r, "SessionStore")
-	_, returnRecord, _ := globals.GetSessionStoreByID(searchID)
+	searchID := core.GetURLparam(r, "SessionStore")
+	_, returnRecord, _ := core.GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Session - Edit",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - Edit",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -207,15 +207,15 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSessionStoreList)
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
 
 func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -223,7 +223,7 @@ func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	globals.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s dm.AppSessionStoreItem
 
@@ -259,15 +259,15 @@ func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "SessionStore")
-	globals.ServiceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "SessionStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	dao.DeleteSessionStore(searchID)
 	ListSessionStoreHandler(w, r)
 
@@ -275,36 +275,36 @@ func DeleteSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "SessionStore")
+	searchID := core.GetURLparam(r, "SessionStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	globals.ServiceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banSessionStore(searchID)
 	ListSessionStoreHandler(w, r)
 }
 
 func ActivateSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := globals.GetURLparam(r, "SessionStore")
+	searchID := core.GetURLparam(r, "SessionStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	globals.ServiceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateSessionStore(searchID)
 	ListSessionStoreHandler(w, r)
 
@@ -312,8 +312,8 @@ func ActivateSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
-		globals.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -322,13 +322,13 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	globals.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Session - New",
-		UserMenu:  globals.GetUserMenu(r),
-		UserRole:  globals.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - New",
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -336,16 +336,16 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSessionStoreList)
 
 }
 
 func getSessionExpiryTime() string {
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
+	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
 	expiryDate = expiryDate.AddDate(0, 0, life)
-	return expiryDate.Format(globals.DATETIMEFORMATUSER)
+	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
 func banSessionStore(id string) {

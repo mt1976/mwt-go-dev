@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaCentreSQL = "Code, 	Name, 	Country, 	CountryName"
@@ -75,8 +75,8 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCentreList := sienaCentreListPage{
-		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Centers",
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Centers",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
 		UserMenu:         application.GetUserMenu(r),
@@ -111,8 +111,8 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Center - View",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Center - View",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -149,8 +149,8 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Center - Edit",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Center - Edit",
 		ID:          returnRecord.Code,
 		Code:        returnRecord.Code,
 		Name:        returnRecord.Name,
@@ -237,7 +237,7 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	//fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -271,8 +271,8 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	_, countryList, _ := getSienaCountryList()
 
 	pageSienaCentreList := sienaCentrePage{
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Center - New",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Center - New",
 		ID:          "NEW",
 		Code:        "",
 		Name:        "",
@@ -292,7 +292,7 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCentreList read all employees
 func getSienaCentreList() (int, []sienaCentreItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre;", sienaCentreSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre;", sienaCentreSQL, core.SienaPropertiesDB["schema"])
 	count, sienaCentreList, _, _ := fetchSienaCentreData(tsql)
 	return count, sienaCentreList, nil
 }
@@ -300,7 +300,7 @@ func getSienaCentreList() (int, []sienaCentreItem, error) {
 // getSienaCentreList read all employees
 func getSienaCentre(id string) (int, sienaCentreItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre WHERE Code='%s';", sienaCentreSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCentre WHERE Code='%s';", sienaCentreSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaCentre, _ := fetchSienaCentreData(tsql)
 	return 1, sienaCentre, nil
 }
@@ -309,7 +309,7 @@ func getSienaCentre(id string) (int, sienaCentreItem, error) {
 func putSienaCentre(updateItem sienaCentreItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -320,7 +320,7 @@ func fetchSienaCentreData(tsql string) (int, []sienaCentreItem, sienaCentreItem,
 	var sienaCentre sienaCentreItem
 	var sienaCentreList []sienaCentreItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

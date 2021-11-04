@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -78,14 +78,14 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 	var returnList []AppNISelectedStoreItem
 
-	noItems, returnList, _ := GetNISelectedStoreList(globals.ApplicationDB)
+	noItems, returnList, _ := GetNISelectedStoreList(core.ApplicationDB)
 
 	pageNISelectedStoreList := appNISelectedStoreListPage{
 		UserMenu:             GetUserMenu(r),
 		UserRole:             GetUserRole(r),
 		UserNavi:             "NOT USED",
-		Title:                globals.ApplicationProperties["appname"],
-		PageTitle:            globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts",
+		Title:                core.ApplicationProperties["appname"],
+		PageTitle:            core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts",
 		NISelectedStoreCount: noItems,
 		NISelectedStoreList:  returnList,
 	}
@@ -113,8 +113,8 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetNISelectedStoreByID(searchID)
 
 	pageCredentialStoreList := appNISelectedStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -153,8 +153,8 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetNISelectedStoreByID(searchID)
 
 	pageCredentialStoreList := appNISelectedStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -269,8 +269,8 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageCredentialStoreList := appNISelectedStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -287,15 +287,15 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getNISelectedStoreList read all employees
 func GetNISelectedStoreList(unused *sql.DB) (int, []AppNISelectedStoreItem, error) {
-	tsql := fmt.Sprintf(appNISelectedStoreSQLSELECT, appNISelectedStoreSQL, globals.ApplicationPropertiesDB["schema"])
-	count, appNISelectedStoreList, _, _ := fetchNISelectedStoreData(globals.ApplicationDB, tsql)
+	tsql := fmt.Sprintf(appNISelectedStoreSQLSELECT, appNISelectedStoreSQL, core.ApplicationPropertiesDB["schema"])
+	count, appNISelectedStoreList, _, _ := fetchNISelectedStoreData(core.ApplicationDB, tsql)
 	return count, appNISelectedStoreList, nil
 }
 
 // getNISelectedStoreList read all employees
 func GetNISelectedStoreByID(id string) (int, AppNISelectedStoreItem, error) {
-	tsql := fmt.Sprintf(appNISelectedStoreSQLGET, appNISelectedStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
-	_, _, AppNISelectedStoreItem, _ := fetchNISelectedStoreData(globals.ApplicationDB, tsql)
+	tsql := fmt.Sprintf(appNISelectedStoreSQLGET, appNISelectedStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	_, _, AppNISelectedStoreItem, _ := fetchNISelectedStoreData(core.ApplicationDB, tsql)
 	return 1, AppNISelectedStoreItem, nil
 }
 
@@ -317,7 +317,7 @@ func putNISelectedStoreSystem(r AppNISelectedStoreItem) {
 func putNISelectedStoreUser(r AppNISelectedStoreItem, userID string) {
 	//fmt.Println(credentialStore)
 
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.Id) == 0 {
 		r.Id = getNISelectedStoreID(r)
 	}
@@ -337,17 +337,17 @@ func putNISelectedStoreUser(r AppNISelectedStoreItem, userID string) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appNISelectedStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appNISelectedStoreSQL, r.Id, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appNISelectedStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appNISelectedStoreSQL, r.Id, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panicf("%e", err2)
 	}
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	if err != nil {
 		log.Panicf("%e", err)
 	}
@@ -355,9 +355,9 @@ func putNISelectedStoreUser(r AppNISelectedStoreItem, userID string) {
 
 func deleteNISelectedStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
 	//log.Println("DELETE:", deletesql)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
@@ -390,7 +390,7 @@ func fetchNISelectedStoreData(unused *sql.DB, tsql string) (int, []AppNISelected
 	var appNISelectedStore AppNISelectedStoreItem
 	var appNISelectedStoreList []AppNISelectedStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

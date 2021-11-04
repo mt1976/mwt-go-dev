@@ -5,17 +5,18 @@ import (
 	"log"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	cron "github.com/robfig/cron/v3"
 )
 
-func DataDispatcher_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func DataDispatcher_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "DISPATCH"
 	j.Name = "DISPATCH"
 	j.Period = "10 1 * * *"
 	j.Description = "Dispatch %q rates & pricing information"
-	j.Type = globals.Dispatcher
+	j.Type = core.Dispatcher
 	return j
 }
 
@@ -47,7 +48,7 @@ func DataDispatcher_Run(actionType string) {
 }
 
 func DispatchByType(dispatchType string) {
-	log.Printf("Dispatch      : Issue %q -> %q \n", dispatchType, globals.SienaProperties["rates"])
+	log.Printf("Dispatch      : Issue %q -> %q \n", dispatchType, core.SienaProperties["rates"])
 
 	/// BRANCH HERE FOR DELIVERY METHODS
 

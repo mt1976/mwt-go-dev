@@ -8,7 +8,8 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -61,13 +62,13 @@ type FredSeriesInfo struct {
 	} `json:"seriess"`
 }
 
-func InstFRED_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func InstFRED_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "INST_FRED"
 	j.Name = "INST_FRED"
 	j.Period = "58 7-19 * * 1-5"
 	j.Description = "Update Bond like Instruments from FRED"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 

@@ -11,7 +11,8 @@ import (
 
 	"github.com/bjarneh/latinx"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html/charset"
 )
@@ -54,13 +55,13 @@ type CubeItem struct {
 	LASTUPDATED string `xml:"LAST_UPDATED,attr"`
 }
 
-func IndexSONIABOE_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func IndexSONIABOE_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "RATES_ONBOE"
 	j.Name = "RATES_ONBOE"
 	j.Period = "30 10 * * 1-5"
 	j.Description = "Update SONIA from BOE"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 

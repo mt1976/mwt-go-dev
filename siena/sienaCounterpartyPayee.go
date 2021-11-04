@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -118,8 +118,8 @@ func ListSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:                    application.GetUserMenu(r),
 		UserRole:                    application.GetUserRole(r),
 		UserNavi:                    "NOT USED",
-		Title:                       globals.ApplicationProperties["appname"],
-		PageTitle:                   globals.ApplicationProperties["appname"] + " - " + "Counterparty Payees",
+		Title:                       core.ApplicationProperties["appname"],
+		PageTitle:                   core.ApplicationProperties["appname"] + " - " + "Counterparty Payees",
 		SienaCounterpartyPayeeCount: noItems,
 		SienaCounterpartyPayeeList:  returnList,
 	}
@@ -161,8 +161,8 @@ func ViewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Payee - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Payee - View",
 
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
@@ -229,8 +229,8 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Payee - Edit",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Payee - Edit",
 
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
@@ -351,7 +351,7 @@ func SaveSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	//fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
@@ -384,8 +384,8 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  application.GetUserMenu(r),
 		UserRole:  application.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Counterparty Payee - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Payee - New",
 
 		ID:                    "NEW",
 		SourceTable:           "",
@@ -424,7 +424,7 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayeeList() (int, []sienaCounterpartyPayeeItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, core.SienaPropertiesDB["schema"])
 	count, sienaCounterpartyPayeeList, _, _ := fetchSienaCounterpartyPayeeData(tsql)
 	return count, sienaCounterpartyPayeeList, nil
 }
@@ -432,7 +432,7 @@ func getSienaCounterpartyPayeeList() (int, []sienaCounterpartyPayeeItem, error) 
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayee(id string) (int, sienaCounterpartyPayeeItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE Code='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE Code='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaCounterpartyPayee, _ := fetchSienaCounterpartyPayeeData(tsql)
 	return 1, sienaCounterpartyPayee, nil
 }
@@ -440,14 +440,14 @@ func getSienaCounterpartyPayee(id string) (int, sienaCounterpartyPayeeItem, erro
 // getSienaCounterpartyPayeeList read all employees
 func getSienaCounterpartyPayeeListByCounterparty(idFirm string, idCentre string) (int, []sienaCounterpartyPayeeItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, globals.SienaPropertiesDB["schema"], idFirm, idCentre)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
 	count, sienaCounterpartyPayeeList, _, _ := fetchSienaCounterpartyPayeeData(tsql)
 	return count, sienaCounterpartyPayeeList, nil
 }
 
 func getSienaCounterpartyPayeeByKey(idSource string, idFirm string, idCentre string, idCCY string, idName string, idNumber string, idDirection string, idType string) (int, sienaCounterpartyPayeeItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE SourceTable='%s' AND KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' AND KeyCurrency='%s' AND KeyName='%s' AND KeyNumber='%s' AND KeyDirection='%s' AND KeyType='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, globals.SienaPropertiesDB["schema"], idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyPayee WHERE SourceTable='%s' AND KeyCounterpartyFirm='%s' AND KeyCounterpartyCentre='%s' AND KeyCurrency='%s' AND KeyName='%s' AND KeyNumber='%s' AND KeyDirection='%s' AND KeyType='%s' ORDER BY KeyCounterpartyFirm, KeyCounterpartyCentre, KeyCurrency DESC;", sienaCounterpartyPayeeSQL, core.SienaPropertiesDB["schema"], idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 	_, _, sienaCounterpartyPayee, _ := fetchSienaCounterpartyPayeeData(tsql)
 	return 1, sienaCounterpartyPayee, nil
 }
@@ -456,7 +456,7 @@ func getSienaCounterpartyPayeeByKey(idSource string, idFirm string, idCentre str
 func putSienaCounterpartyPayee(updateItem sienaCounterpartyPayeeItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	//fmt.Println(globals.SienaPropertiesDB["schema"])
+	//fmt.Println(core.SienaPropertiesDB["schema"])
 	//fmt.Println(updateItem)
 	return nil
 }
@@ -467,7 +467,7 @@ func fetchSienaCounterpartyPayeeData(tsql string) (int, []sienaCounterpartyPayee
 	var sienaCounterpartyPayee sienaCounterpartyPayeeItem
 	var sienaCounterpartyPayeeList []sienaCounterpartyPayeeItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

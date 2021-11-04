@@ -9,31 +9,31 @@ import (
 
 	"github.com/lnquy/cron"
 	hcron "github.com/lnquy/cron"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
-func RegisterSchedule(thisJob globals.JobDefinition) {
+func RegisterSchedule(thisJob core.JobDefinition) {
 	var s appScheduleStoreItem
-	s.Id = thisJob.ID + globals.IDSep + thisJob.Type
+	s.Id = thisJob.ID + core.IDSep + thisJob.Type
 	s.Name = thisJob.Name
 	s.Description = thisJob.Description
 	s.Schedule = thisJob.Period
-	s.Started = time.Now().Format(globals.DATETIMEFORMATUSER)
+	s.Started = time.Now().Format(core.DATETIMEFORMATUSER)
 	s.Lastrun = ""
 	s.Message = ""
-	s.SYSCreated = time.Now().Format(globals.DATETIMEFORMATUSER)
+	s.SYSCreated = time.Now().Format(core.DATETIMEFORMATUSER)
 	currentUserID, _ := user.Current()
 	host, _ := os.Hostname()
 	s.SYSWho = currentUserID.Name
 	s.SYSHost = host
-	s.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
+	s.SYSUpdated = time.Now().Format(core.DATETIMEFORMATUSER)
 	s.Type = thisJob.Type
 	//log.Println("STORE", s)
 
 	registerIt := true
 
-	if globals.IsChildInstance {
-		if s.Type == globals.Aquirer {
+	if core.IsChildInstance {
+		if s.Type == core.Aquirer {
 			registerIt = false
 		}
 	}
@@ -41,16 +41,16 @@ func RegisterSchedule(thisJob globals.JobDefinition) {
 		putScheduleStore(s)
 		//desc := GetCronScheduleHuman(s.Schedule)
 		op := fmt.Sprintf("Scheduled Job : %-11s %-20s %-20s %q", s.Type, s.Name, s.Schedule, GetCronScheduleHuman(s.Schedule))
-		globals.LOG_success(op)
+		core.LOG_success(op)
 	}
 }
 
-func UpdateSchedule(thisJob globals.JobDefinition, message string) {
-	scheduleID := thisJob.ID + globals.IDSep + thisJob.Type
+func UpdateSchedule(thisJob core.JobDefinition, message string) {
+	scheduleID := thisJob.ID + core.IDSep + thisJob.Type
 	if len(scheduleID) > 1 {
 		_, s, _ := GetScheduleStoreByID(scheduleID)
 		if len(s.Name) > 0 {
-			s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
+			s.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 			s.Message = message
 			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
 			Logit("Scheduler", thisMess)

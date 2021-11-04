@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaBusinessDateSQL = "Today"
@@ -89,11 +89,11 @@ func isChecked(inValue string) string {
 func Connect() (*sql.DB, error) {
 	// Connect to SQL Server DB
 
-	server := globals.SienaPropertiesDB["server"]
-	user := globals.SienaPropertiesDB["user"]
-	password := globals.SienaPropertiesDB["password"]
-	port := globals.SienaPropertiesDB["port"]
-	database := globals.SienaPropertiesDB["database"]
+	server := core.SienaPropertiesDB["server"]
+	user := core.SienaPropertiesDB["user"]
+	password := core.SienaPropertiesDB["password"]
+	port := core.SienaPropertiesDB["port"]
+	database := core.SienaPropertiesDB["database"]
 	/*
 		fmt.Println("SQL SERVER - CONNECTING...")
 		fmt.Println("Server     :", server)
@@ -127,18 +127,18 @@ func Connect() (*sql.DB, error) {
 }
 
 // getSienaBusinessDate read all employees
-func GetBusinessDate(db *sql.DB) (int, globals.DateItem, error) {
+func GetBusinessDate(db *sql.DB) (int, core.DateItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBusinessDate;", sienaBusinessDateSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBusinessDate;", sienaBusinessDateSQL, core.SienaPropertiesDB["schema"])
 	_, _, SienaBusinessDate, _ := fetchSienaBusinessDateData(db, tsql)
 	return 1, SienaBusinessDate, nil
 }
 
 // fetchSienaBusinessDateData read all employees
-func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []globals.DateItem, globals.DateItem, error) {
+func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []core.DateItem, core.DateItem, error) {
 
-	var sienaBusinessDate globals.DateItem
-	var sienaBusinessDateList []globals.DateItem
+	var sienaBusinessDate core.DateItem
+	var sienaBusinessDateList []core.DateItem
 
 	rows, err := db.Query(tsql)
 	//fmt.Println("back from dq Q")
@@ -159,9 +159,9 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []globals.DateIte
 		sienaBusinessDate.Today = sqlSYSDToday.String
 
 		sienaBusinessDate.Internal, _ = time.Parse(time.RFC3339, sqlSYSDToday.String)
-		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(globals.DATEFORMATSIENA)
-		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(globals.DATEFORMATYMD)
-		sienaBusinessDate.PICKEpoch = sienaBusinessDate.Internal.Format(globals.DATEFORMATPICK)
+		sienaBusinessDate.Siena = sienaBusinessDate.Internal.Format(core.DATEFORMATSIENA)
+		sienaBusinessDate.YYYYMMDD = sienaBusinessDate.Internal.Format(core.DATEFORMATYMD)
+		sienaBusinessDate.PICKEpoch = sienaBusinessDate.Internal.Format(core.DATEFORMATPICK)
 		sienaBusinessDateList = append(sienaBusinessDateList, sienaBusinessDate)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
@@ -175,7 +175,7 @@ func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
@@ -185,7 +185,7 @@ func sienaDispatchStaticDataXML(sienaXMLContent sienaXML) error {
 		fmt.Println("Error creating XML file: ", err)
 		return err
 	}
-	xmlFile.WriteString(globals.SienaProperties["static_xml_encoding"] + "\n")
+	xmlFile.WriteString(core.SienaProperties["static_xml_encoding"] + "\n")
 	encoder := xml.NewEncoder(xmlFile)
 	encoder.Indent("", "\t")
 	err = encoder.Encode(sienaXMLContent)

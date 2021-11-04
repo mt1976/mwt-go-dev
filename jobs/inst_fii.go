@@ -9,7 +9,8 @@ import (
 	"time"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html"
 )
@@ -84,13 +85,13 @@ type MIBondData struct {
 	URI               string
 }
 
-func InstFII_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func InstFII_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "INST_FII"
 	j.Name = "INST_FII"
 	j.Period = "15 7-19 * * 1-5"
 	j.Description = "Update Bond like Instruments from Fixed Income Investor"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 
@@ -125,14 +126,14 @@ func getInternalDate(in string) string {
 func getInternalDateGen(in string, format string) string {
 	var intDate string
 	if len(in) > 0 {
-		//log.Println(LSEDateFormat, globals.DATEFORMATSIENA
+		//log.Println(LSEDateFormat, core.DATEFORMATSIENA
 		if in != "Perpetual" {
 			time, err := time.Parse(format, in)
 			if err != nil {
 				log.Println(err.Error())
 			}
 
-			intDate = time.Format(globals.DATEFORMATSIENA)
+			intDate = time.Format(core.DATEFORMATSIENA)
 		} else {
 			intDate = ""
 		}

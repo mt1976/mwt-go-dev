@@ -11,7 +11,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaFirmSQL = "FirmName, 	FullName, 	Country, 	Sector, 	SectorName, 	CountryName"
@@ -59,7 +59,7 @@ type sienaFirmItem struct {
 }
 
 func Firm_MUX(mux http.ServeMux) {
-	globals.LOG_success("Muxed Siena Firm")
+	core.LOG_success("Muxed Siena Firm")
 
 	mux.HandleFunc("/listSienaFirm/", ListSienaFirmHandler)
 	mux.HandleFunc("/viewSienaFirm/", ViewSienaFirmHandler)
@@ -89,8 +89,8 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:       application.GetUserMenu(r),
 		UserRole:       application.GetUserRole(r),
 		UserNavi:       "NOT USED",
-		Title:          globals.ApplicationProperties["appname"],
-		PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Firms",
+		Title:          core.ApplicationProperties["appname"],
+		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Firms",
 		SienaFirmCount: noItems,
 		SienaFirmList:  returnList,
 	}
@@ -121,8 +121,8 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetUserMenu(r),
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Firm - View",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Firm - View",
 		ID:          returnRecord.FirmName,
 		FirmName:    returnRecord.FirmName,
 		FullName:    returnRecord.FullName,
@@ -165,8 +165,8 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetUserMenu(r),
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Firm - Edit",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Firm - Edit",
 		ID:          returnRecord.FirmName,
 		FirmName:    returnRecord.FirmName,
 		FullName:    returnRecord.FullName,
@@ -259,7 +259,7 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	preparedXML, _ := xml.Marshal(sienaXMLContent)
 	fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := globals.SienaProperties["static_in"]
+	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
 	fmt.Println(fileName)
@@ -269,7 +269,7 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error creating XML file: ", err)
 		return
 	}
-	xmlFile.WriteString(globals.SienaProperties["static_xml_encoding"] + "\n")
+	xmlFile.WriteString(core.SienaProperties["static_xml_encoding"] + "\n")
 	encoder := xml.NewEncoder(xmlFile)
 	encoder.Indent("", "\t")
 	err = encoder.Encode(sienaXMLContent)
@@ -304,8 +304,8 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    application.GetUserMenu(r),
 		UserRole:    application.GetUserRole(r),
 		UserNavi:    "NOT USED",
-		Title:       globals.ApplicationProperties["appname"],
-		PageTitle:   globals.ApplicationProperties["appname"] + " - " + "Firm - New",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Firm - New",
 		ID:          "NEW",
 		FirmName:    "",
 		FullName:    "",
@@ -324,7 +324,7 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 // getSienaFirmList read all employees
 func getSienaFirmList() (int, []sienaFirmItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm;", sienaFirmSQL, core.SienaPropertiesDB["schema"])
 	count, sienaFirmList, _, _ := fetchSienaFirmData(tsql)
 
 	return count, sienaFirmList, nil
@@ -333,7 +333,7 @@ func getSienaFirmList() (int, []sienaFirmItem, error) {
 // getSienaFirmList read all employees
 func getSienaFirm(id string) (int, sienaFirmItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, globals.SienaPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaFirm WHERE FirmName='%s';", sienaFirmSQL, core.SienaPropertiesDB["schema"], id)
 	_, _, sienaFirm, _ := fetchSienaFirmData(tsql)
 
 	return 1, sienaFirm, nil
@@ -343,7 +343,7 @@ func getSienaFirm(id string) (int, sienaFirmItem, error) {
 func putSienaFirm(updateItem sienaFirmItem) error {
 
 	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(globals.SienaPropertiesDB["schema"])
+	fmt.Println(core.SienaPropertiesDB["schema"])
 	fmt.Println(updateItem)
 	return nil
 }
@@ -354,7 +354,7 @@ func fetchSienaFirmData(tsql string) (int, []sienaFirmItem, sienaFirmItem, error
 	var sienaFirm sienaFirmItem
 	var sienaFirmList []sienaFirmItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

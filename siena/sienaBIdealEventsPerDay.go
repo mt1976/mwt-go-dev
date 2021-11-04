@@ -6,7 +6,7 @@ import (
 	"log"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 var sienaBIdealEventsPerDaySQL = "StartInterestDate, 	Count"
@@ -23,7 +23,7 @@ type sienaBIdealEventsPerDayItem struct {
 // getSienaBIdealEventsPerDayList read all employees
 func getSienaBIdealEventsPerDayList() (int, []sienaBIdealEventsPerDayItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, globals.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, core.SienaPropertiesDB["schema"])
 	count, sienaBIdealEventsPerDayList, _, _ := fetchSienaBIdealEventsPerDayData(tsql)
 	return count, sienaBIdealEventsPerDayList, nil
 }
@@ -34,7 +34,7 @@ func fetchSienaBIdealEventsPerDayData(tsql string) (int, []sienaBIdealEventsPerD
 	var sienaBIdealEventsPerDay sienaBIdealEventsPerDayItem
 	var sienaBIdealEventsPerDayList []sienaBIdealEventsPerDayItem
 
-	rows, err := globals.SienaDB.Query(tsql)
+	rows, err := core.SienaDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

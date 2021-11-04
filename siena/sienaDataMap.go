@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 //SvcDataMapPage is cheese
@@ -106,8 +106,8 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:        application.GetUserMenu(r),
 		UserRole:        application.GetUserRole(r),
 		UserNavi:        "NOT USED",
-		Title:           globals.ApplicationProperties["appname"],
-		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Data Loaders",
+		Title:           core.ApplicationProperties["appname"],
+		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Data Loaders",
 		NoDataMapIDs:    noRows,
 		SvcDataMapItems: dataMapItemsList,
 	}
@@ -137,7 +137,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	thisID := application.GetURLparam(r, "loaderID")
 	application.ServiceMessage(inUTL)
-	title := globals.ApplicationProperties["appname"]
+	title := core.ApplicationProperties["appname"]
 	var wrkDataMapCols []DataHdr
 	noColumns, wrkLoaderHeadersList, _ := application.GetLoaderMapStoreListByLoader(thisID)
 	for _, colData := range wrkLoaderHeadersList {
@@ -180,7 +180,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 		UserRole:       application.GetUserRole(r),
 		UserNavi:       "NOT USED",
 		Title:          title,
-		PageTitle:      globals.ApplicationProperties["appname"] + " - " + "Data Loader - View",
+		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Data Loader - View",
 		NoDataMapIDs:   0,
 		SvcDataMapCols: wrkDataMapCols,
 		DataMapPageID:  thisID,
@@ -241,7 +241,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:      application.GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         "Title",
-		PageTitle:     globals.ApplicationProperties["appname"] + " - " + "Data Loader - View Import XML",
+		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Data Loader - View Import XML",
 		DataMapPageID: thisID,
 		JSRows:        35,
 		FullRecord:    html.UnescapeString(text),
@@ -253,7 +253,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getXMLtemplateBody(thisID string) (string, error) {
-	path := globals.ApplicationProperties["datamaptemplatepath"]
+	path := core.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
 	content, err := application.ReadDataFile(fileName, path)
@@ -264,7 +264,7 @@ func getXMLtemplateBody(thisID string) (string, error) {
 }
 
 func putXMLtemplateBody(thisID string, content string) int {
-	path := globals.ApplicationProperties["datamaptemplatepath"]
+	path := core.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
 	status := application.WriteDataFile(fileName, path, content)
@@ -287,7 +287,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	application.ServiceMessage(inUTL)
 
-	title := globals.ApplicationProperties["appname"]
+	title := core.ApplicationProperties["appname"]
 
 	// Get Data Here
 	fullRec, _ := getXMLtemplateBody(thisID)
@@ -297,7 +297,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:      application.GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         title,
-		PageTitle:     globals.ApplicationProperties["appname"] + " - " + "Data Loader - Edit XML Template",
+		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Data Loader - Edit XML Template",
 		DataMapPageID: thisID,
 		JSRows:        35,
 		FullRecord:    html.UnescapeString(fullRec),
@@ -394,7 +394,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	application.ServiceMessage(inUTL)
 
-	title := globals.ApplicationProperties["appname"]
+	title := core.ApplicationProperties["appname"]
 
 	_, instanceList, _ := application.GetSystemStoreList()
 
@@ -403,7 +403,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:     application.GetUserRole(r),
 		UserNavi:     "NOT USED",
 		Title:        title,
-		PageTitle:    globals.ApplicationProperties["appname"] + " - " + "Data Loader - New",
+		PageTitle:    core.ApplicationProperties["appname"] + " - " + "Data Loader - New",
 		InstanceList: instanceList,
 	}
 	//fmt.Println("WCT : Page :", pageDM)
@@ -458,7 +458,7 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	application.ServiceMessage(inUTL)
 	id := application.GetURLparam(r, "loaderID")
-	path := globals.ApplicationProperties["datamaptemplatepath"]
+	path := core.ApplicationProperties["datamaptemplatepath"]
 	status := application.DeleteDataFile(id+".template", path)
 	if status != 1 {
 		//do nothing
@@ -489,7 +489,7 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	//instanceID := loader.Instance
 	//extensionID := loader.Extension
 	//log.Printf("instance id %s %s", instanceID, extensionID)
-	importtemplate, err := application.ReadDataFile(loader.Filename+".template", globals.ApplicationProperties["datamaptemplatepath"])
+	importtemplate, err := application.ReadDataFile(loader.Filename+".template", core.ApplicationProperties["datamaptemplatepath"])
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -504,9 +504,9 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	noColumns, listColumns, _ := application.GetLoaderMapStoreListByLoader(id)
 	//	log.Println("No Cols=", noColumns, "List", listColumns)
 
-	path := globals.SienaProperties["transactional_in"]
+	path := core.SienaProperties["transactional_in"]
 	if loader.Type == "static" {
-		path = globals.SienaProperties["static_in"]
+		path = core.SienaProperties["static_in"]
 	}
 
 	log.Println("Delivery      : " + path)
@@ -529,36 +529,36 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 		importtemplate = replaceWildcard(importtemplate, "!MSG.ID", newID)
 		today := time.Now()
 		dayOfYear := fmt.Sprintf("%03d", today.YearDay())
-		importtemplate = replaceWildcard(importtemplate, "!TODAY", today.Format(globals.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!TODAY", today.Format(core.DATEFORMATSIENA))
 		importtemplate = replaceWildcard(importtemplate, "!DDD", dayOfYear)
-		importtemplate = replaceWildcard(importtemplate, "!DD", today.Format(globals.DFDD))
-		importtemplate = replaceWildcard(importtemplate, "!MM", today.Format(globals.DFMM))
-		importtemplate = replaceWildcard(importtemplate, "!YY", today.Format(globals.DFYY))
-		importtemplate = replaceWildcard(importtemplate, "!YYYY", today.Format(globals.DFYYYY))
-		importtemplate = replaceWildcard(importtemplate, "!hh", today.Format(globals.DFhh))
-		importtemplate = replaceWildcard(importtemplate, "!mm", today.Format(globals.DFmm))
-		importtemplate = replaceWildcard(importtemplate, "!ss", today.Format(globals.DFss))
+		importtemplate = replaceWildcard(importtemplate, "!DD", today.Format(core.DFDD))
+		importtemplate = replaceWildcard(importtemplate, "!MM", today.Format(core.DFMM))
+		importtemplate = replaceWildcard(importtemplate, "!YY", today.Format(core.DFYY))
+		importtemplate = replaceWildcard(importtemplate, "!YYYY", today.Format(core.DFYYYY))
+		importtemplate = replaceWildcard(importtemplate, "!hh", today.Format(core.DFhh))
+		importtemplate = replaceWildcard(importtemplate, "!mm", today.Format(core.DFmm))
+		importtemplate = replaceWildcard(importtemplate, "!ss", today.Format(core.DFss))
 		spot := application.CalculateSpotDate(today)
 
-		importtemplate = replaceWildcard(importtemplate, "!SPOT", spot.Format(globals.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!SPOT", spot.Format(core.DATEFORMATSIENA))
 
-		importtemplate = replaceWildcard(importtemplate, "!1M", application.CalculateTenorDate(today, "1").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!2M", application.CalculateTenorDate(today, "2").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!3M", application.CalculateTenorDate(today, "3").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!4M", application.CalculateTenorDate(today, "4").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!5M", application.CalculateTenorDate(today, "5").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!6M", application.CalculateTenorDate(today, "6").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!7M", application.CalculateTenorDate(today, "7").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!8M", application.CalculateTenorDate(today, "8").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!9M", application.CalculateTenorDate(today, "9").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!10M", application.CalculateTenorDate(today, "10").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!11M", application.CalculateTenorDate(today, "11").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!12M", application.CalculateTenorDate(today, "12").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!1Y", application.CalculateTenorDate(today, "12").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!2Y", application.CalculateTenorDate(today, "23").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!3Y", application.CalculateTenorDate(today, "36").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!5Y", application.CalculateTenorDate(today, "60").Format(globals.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!FDY", application.CalculateFirstDateOfYear(today).Format(globals.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!1M", application.CalculateTenorDate(today, "1").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!2M", application.CalculateTenorDate(today, "2").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!3M", application.CalculateTenorDate(today, "3").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!4M", application.CalculateTenorDate(today, "4").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!5M", application.CalculateTenorDate(today, "5").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!6M", application.CalculateTenorDate(today, "6").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!7M", application.CalculateTenorDate(today, "7").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!8M", application.CalculateTenorDate(today, "8").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!9M", application.CalculateTenorDate(today, "9").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!10M", application.CalculateTenorDate(today, "10").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!11M", application.CalculateTenorDate(today, "11").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!12M", application.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!1Y", application.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!2Y", application.CalculateTenorDate(today, "23").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!3Y", application.CalculateTenorDate(today, "36").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!5Y", application.CalculateTenorDate(today, "60").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!FDY", application.CalculateFirstDateOfYear(today).Format(core.DATEFORMATSIENA))
 		importtemplate = replaceWildcard(importtemplate, "!SEQ", strconv.Itoa(thisRow))
 		importtemplate = replaceWildcard(importtemplate, "!LEI", "213800APCD7UDNQHOI68")
 
@@ -574,7 +574,7 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	loader.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
+	loader.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 	application.PutLoaderStore(loader, r)
 
 	ListSvcDataMapHandler(w, r)

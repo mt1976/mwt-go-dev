@@ -11,7 +11,8 @@ import (
 
 	"github.com/mt1976/common"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	tools "github.com/mt1976/mwtgostringtools"
 	cron "github.com/robfig/cron/v3"
 )
@@ -32,13 +33,13 @@ type fxRateCard struct {
 	fxRates []fxRate
 }
 
-func RatesFXSpot_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func RatesFXSpot_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "RATES_FXSP"
 	j.Name = "RATES_FXSP"
 	j.Period = "*/10 7-19 * * 1-5"
 	j.Description = "Update FX Spot rate from barchart.com"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 

@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -83,7 +83,7 @@ type SystemStoreItem struct {
 
 func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(globals.SessionValidate(w, r)) {
+	if !(core.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -101,8 +101,8 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         GetUserMenu(r),
 		UserRole:         GetUserRole(r),
 		UserNavi:         "NOT USED",
-		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Connected Systems",
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Connected Systems",
 		SystemStoreCount: noItems,
 		SystemStoreList:  returnList,
 	}
@@ -127,7 +127,7 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Connected System - View"
+	pageSystemStoreList.PageTitle = core.ApplicationProperties["appname"] + " - " + "Connected System - View"
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
@@ -146,7 +146,7 @@ func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Connected System - Edit"
+	pageSystemStoreList.PageTitle = core.ApplicationProperties["appname"] + " - " + "Connected System - Edit"
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
@@ -159,8 +159,8 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 	_, returnRecord, _ := GetSystemStoreByID(searchID)
 
 	pageSystemStoreList := appSystemStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Connected System - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - View",
 		Action:    "",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
@@ -288,8 +288,8 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	serviceMessage(inUTL)
 
 	pageSystemStoreList := appSystemStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Connected System - New",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - New",
 		UserMenu:  GetUserMenu(r),
 		UserRole:  GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -306,14 +306,14 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSystemStoreList read all employees
 func GetSystemStoreList() (int, []SystemStoreItem, error) {
-	tsql := fmt.Sprintf(appSystemStoreSQLSELECT, appSystemStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appSystemStoreSQLSELECT, appSystemStoreSQL, core.ApplicationPropertiesDB["schema"])
 	count, appSystemStoreList, _, _ := fetchSystemStoreData(tsql)
 	return count, appSystemStoreList, nil
 }
 
 // getSystemStoreList read all employees
 func GetSystemStoreByID(id string) (int, SystemStoreItem, error) {
-	tsql := fmt.Sprintf(appSystemStoreSQLGET, appSystemStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appSystemStoreSQLGET, appSystemStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, SystemStoreItem, _ := fetchSystemStoreData(tsql)
 	return 1, SystemStoreItem, nil
 }
@@ -332,7 +332,7 @@ func PutSystemStore(r SystemStoreItem, req *http.Request) {
 
 func putSystemStore(r SystemStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 
 	host, _ := os.Hostname()
 
@@ -348,18 +348,18 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSystemStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSystemStoreSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appSystemStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appSystemStoreSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
 	//	log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	//	log.Println(fred, err)
 	if err != nil {
 		log.Println(err.Error())
@@ -368,9 +368,9 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 
 func DeleteSystemStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -403,7 +403,7 @@ func fetchSystemStoreData(tsql string) (int, []SystemStoreItem, SystemStoreItem,
 	var appSystemStore SystemStoreItem
 	var appSystemStoreList []SystemStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -442,7 +442,7 @@ func fetchSystemStoreData(tsql string) (int, []SystemStoreItem, SystemStoreItem,
 
 func GetDeliveryPath(instanceID string, loaderType string, instanceDirection string) string {
 
-	path := globals.SienaProperties[loaderType]
+	path := core.SienaProperties[loaderType]
 	instancePath := ""
 	//log.Println(instanceID, loaderType, instanceDirection)
 	if len(instanceID) != 0 {

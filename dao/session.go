@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -73,38 +73,38 @@ type appSessionStorePage struct {
 
 // getSessionStoreList read all employees
 func GetSessionStoreList() (int, []dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLSELECT, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appSessionStoreSQLSELECT, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"])
 	count, appSessionStoreList, _, _ := FetchSessionStoreData(tsql)
 	return count, appSessionStoreList, nil
 }
 
 // getSessionStoreList returns a specific Session Instance
 func GetSessionStoreByID(id string) (int, dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLGET, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appSessionStoreSQLGET, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, appSessionStoreItem, _ := FetchSessionStoreData(tsql)
 	return 1, appSessionStoreItem, nil
 }
 
 // getSessionStoreList read all employees
 func GetSessionStoreByTokenID(id string) (int, dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLGETTOKEN, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appSessionStoreSQLGETTOKEN, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, appSessionStoreItem, _ := FetchSessionStoreData(tsql)
 	return 1, appSessionStoreItem, nil
 }
 
 // getSessionStoreList read all employees
 func GetSessionStoreByUserName(id string) (int, dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLGETUSER, appSessionStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appSessionStoreSQLGETUSER, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, appSessionStoreItem, _ := FetchSessionStoreData(tsql)
 	return 1, appSessionStoreItem, nil
 }
 
 // getSessionStoreList read all employees
 func HousekeepSessionStore() (int, error) {
-	expiry := time.Now().Format(globals.DATETIMEFORMATSQLSERVER)
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETEEXPIRED, globals.ApplicationPropertiesDB["schema"], expiry)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	expiry := time.Now().Format(core.DATETIMEFORMATSQLSERVER)
+	deletesql := fmt.Sprintf(appSessionStoreSQLDELETEEXPIRED, core.ApplicationPropertiesDB["schema"], expiry)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	return 0, err
 }
 
@@ -115,7 +115,7 @@ func PutSessionStore(r dm.AppSessionStoreItem) {
 
 func putSessionStore(r dm.AppSessionStoreItem) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
 	}
@@ -131,10 +131,10 @@ func putSessionStore(r dm.AppSessionStoreItem) {
 		r.SYSHost = host
 		r.Issued = createDate
 		//expiryDate := time.Now()
-		//life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
+		//life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
 		//expiryDate = expiryDate.AddDate(0, 0, life)
 		r.Expiry = ""
-		r.Password = globals.ApplicationProperties["defaultpassword"]
+		r.Password = core.ApplicationProperties["defaultpassword"]
 	}
 
 	r.SYSUpdated = createDate
@@ -142,18 +142,18 @@ func putSessionStore(r dm.AppSessionStoreItem) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id, r.Expires)
+	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id, r.Expires)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
 	//log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	//log.Println(fred, err)
 	if err != nil {
 		log.Println(err.Error())
@@ -162,17 +162,17 @@ func putSessionStore(r dm.AppSessionStoreItem) {
 
 func getSessionExpiryTime() string {
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
+	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
 	expiryDate = expiryDate.AddDate(0, 0, life)
-	return expiryDate.Format(globals.DATETIMEFORMATUSER)
+	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
 //DeleteSessionStore deletes a session instance
 func DeleteSessionStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
@@ -206,7 +206,7 @@ func FetchSessionStoreData(tsql string) (int, []dm.AppSessionStoreItem, dm.AppSe
 	var appSessionStore dm.AppSessionStoreItem
 	var appSessionStoreList []dm.AppSessionStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())

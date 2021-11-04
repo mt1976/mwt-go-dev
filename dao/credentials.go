@@ -10,8 +10,8 @@ import (
 
 	"github.com/andreyvit/sqlexpr"
 	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -27,7 +27,7 @@ var dsCredentials dm.DataStoreMessages
 //var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsView WHERE username='%s';"
 
 func init() {
-	FullTableName := globals.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
+	FullTableName := core.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
 	dsCredentials = dm.DataStoreMessages{
 		Table: FullTableName,
 		//		Columns:   "id, username, password, firstname, lastname, knownas, email, issued, expiry, role, brand, _created, _who, _host, _updated",
@@ -67,7 +67,7 @@ func GetCredentialsStoreList() (int, []dm.AppCredentialsStoreItem, error) {
 
 	selectsql := buildStatement()
 
-	//log.Println("SELECT:", selectsql, globals.ApplicationDB)
+	//log.Println("SELECT:", selectsql, core.ApplicationDB)
 
 	tsql, args := sqlexpr.Build(selectsql)
 
@@ -82,7 +82,7 @@ func GetCredentialsStoreByID(id string) (int, dm.AppCredentialsStoreItem, error)
 	selectsql := buildStatement()
 	selectsql.AddWhere(sqlexpr.Eq(credId, id))
 
-	//log.Println("SELECT:", selectsql, globals.ApplicationDB)
+	//log.Println("SELECT:", selectsql, core.ApplicationDB)
 
 	tsql, args := sqlexpr.Build(selectsql)
 
@@ -106,7 +106,7 @@ func GetCredentialsStoreByUserName(userName string) (int, dm.AppCredentialsStore
 func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
 	}
@@ -118,14 +118,14 @@ func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 	if len(r.Id) == 0 {
 		r.Id = newCredentialsStoreID()
 		r.SYSCreated = createDate
-		r.SYSWho = globals.GetUserName(req)
+		r.SYSWho = core.GetUserName(req)
 		r.SYSHost = host
 		r.Issued = createDate
 		//expiryDate := time.Now()
-		//life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
+		//life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
 		//expiryDate = expiryDate.AddDate(0, 0, life)
 		r.Expiry = ""
-		r.Password = globals.ApplicationProperties["defaultpassword"]
+		r.Password = core.ApplicationProperties["defaultpassword"]
 	}
 
 	r.SYSUpdated = createDate
@@ -137,12 +137,12 @@ func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 
 	//inserttsql := fmt.Sprintf(dsCredentials.Insert, dsCredentials.Columns, r.Id, r.Username, r.Password, r.Firstname, r.Lastname, r.Knownas, r.Email, r.Issued, r.Expiry, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
 	//tableName :=
 
-	inserttsql := sqlexpr.Insert{Table: sqlexpr.Table(globals.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
+	inserttsql := sqlexpr.Insert{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
 	inserttsql.Set(credId, r.Id)
 
 	inserttsql.Set(credUsername, r.Username)
@@ -160,18 +160,18 @@ func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 	inserttsql.Set(credSYSHost, r.SYSHost)
 	inserttsql.Set(credSYSUpdated, r.SYSCreated)
 
-	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+	log.Println("DELETE:", deletesql, core.ApplicationDB)
 
 	sql, args := sqlexpr.Build(inserttsql)
 
 	fmt.Printf("sql: %v\n", sql)
 	fmt.Printf("args: %v\n", args)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panicf("%e", err2)
 	}
-	_, err := globals.ApplicationDB.Exec(sql, args...)
+	_, err := core.ApplicationDB.Exec(sql, args...)
 	if err != nil {
 		log.Panicf("%e", err)
 	}
@@ -180,14 +180,14 @@ func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 func DeleteCredentialsStore(id string) {
 	//fmt.Println(credentialStore)
 
-	deletesql := sqlexpr.Delete{Table: sqlexpr.Table(globals.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
+	deletesql := sqlexpr.Delete{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
 	deletesql.AddWhere(sqlexpr.Eq(credId, id))
 
 	tsql, args := sqlexpr.Build(deletesql)
 	fmt.Printf("tsql: %v\n", tsql)
 	fmt.Printf("args: %v\n", args)
 	//deletesql := fmt.Sprintf(dsCredentials.Delete, id)
-	_, err := globals.ApplicationDB.Exec(tsql, args...)
+	_, err := core.ApplicationDB.Exec(tsql, args...)
 	if err != nil {
 		log.Panicf("%e", err)
 	}
@@ -207,7 +207,7 @@ func fetchCredentialsStoreData(tsql string, args []interface{}) (int, []dm.AppCr
 	var appCredentialsStore dm.AppCredentialsStoreItem
 	var appCredentialsStoreList []dm.AppCredentialsStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql, args...)
+	rows, err := core.ApplicationDB.Query(tsql, args...)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -256,13 +256,13 @@ func newCredentialsStoreID() string {
 
 func getExpiryDate() string {
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(globals.ApplicationProperties["credentialslife"])
+	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
 	expiryDate = expiryDate.AddDate(0, 0, life)
-	return expiryDate.Format(globals.DATETIMEFORMATUSER)
+	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
 func buildStatement() sqlexpr.Select {
-	selectsql := sqlexpr.Select{From: sqlexpr.Table(globals.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
+	selectsql := sqlexpr.Select{From: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
 	selectsql.AddField(credId)
 	selectsql.AddField(credUsername)
 	selectsql.AddField(credPassword)

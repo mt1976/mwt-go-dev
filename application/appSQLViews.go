@@ -3,7 +3,7 @@ package application
 import (
 	"net/http"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
 )
 
 // SQLInjectionHander
@@ -13,6 +13,6 @@ func SQLInjectionHandler(w http.ResponseWriter, r *http.Request) {
 		LogoutHandler(w, r)
 		return
 	}
-	globals.CreateDatabaseObjects(globals.SienaDB, globals.SienaPropertiesDB, "/config/database/views", false)
+	core.CreateDatabaseObjects(core.SienaDB, core.SienaPropertiesDB, "/config/database/views", false)
 	HomePageHandler(w, r)
 }
