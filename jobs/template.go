@@ -2,17 +2,18 @@ package jobs
 
 import (
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	cron "github.com/robfig/cron/v3"
 )
 
-func Template_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func Template_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "ROLLOVER"
 	j.Name = "ROLLOVER"
 	j.Period = "10 1 * * *"
 	j.Description = "Siena System Rollover Refresh"
-	j.Type = globals.Monitor
+	j.Type = core.Monitor
 	return j
 }
 
