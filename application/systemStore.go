@@ -83,7 +83,7 @@ type SystemStoreItem struct {
 
 func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -438,4 +438,46 @@ func fetchSystemStoreData(tsql string) (int, []SystemStoreItem, SystemStoreItem,
 	}
 	//log.Println(count, appSystemStoreList, appSystemStore)
 	return count, appSystemStoreList, appSystemStore, nil
+}
+
+func GetDeliveryPath(instanceID string, loaderType string, instanceDirection string) string {
+
+	path := globals.SienaProperties[loaderType]
+	instancePath := ""
+	//log.Println(instanceID, loaderType, instanceDirection)
+	if len(instanceID) != 0 {
+		// If we have an instanceID load its details and work out which path to build
+		//	log.Println("fetch", instanceID)
+		_, systemDetails, _ := GetSystemStoreByID(instanceID)
+		//log.Println("returned", systemDetails)
+		loaderDirection := loaderType + instanceDirection
+		//log.Println(loaderDirection)
+		switch loaderDirection {
+		case "static":
+			instancePath = systemDetails.Staticin
+		case "staticin":
+			instancePath = systemDetails.Staticin
+		case "staticout":
+			instancePath = systemDetails.Staticout
+		case "transactional":
+			instancePath = systemDetails.Txnin
+		case "transactionalin":
+			instancePath = systemDetails.Txnin
+		case "transactionalout":
+			instancePath = systemDetails.Txnout
+		case "funds":
+			instancePath = systemDetails.Fundscheckin
+		case "fundsin":
+			instancePath = systemDetails.Fundscheckin
+		case "fundsout":
+			instancePath = systemDetails.Fundscheckout
+		default:
+			instancePath = instanceID
+		}
+	}
+	if len(instancePath) != 0 {
+		path = instancePath
+	}
+	//	log.Println("RETURNING ", path)
+	return path
 }

@@ -1,7 +1,6 @@
 package jobs
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
@@ -28,7 +27,9 @@ type RatesDataStore struct {
 }
 
 var appRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, _created, _who, _host, [date]"
-var sqlRatesDataStoreID, sqlRatesDataStorebid, sqlRatesDataStoremid, sqlRatesDataStoreoffer, sqlRatesDataStoremarket, sqlRatesDataStoretenor, sqlRatesDataStoreseries, sqlRatesDataStorename, sqlRatesDataStoresource, sqlRatesDataStoredestination, sqlRatesDataStoreclass, sqlRatesDataStorecreated, sqlRatesDataStoreby, sqlRatesDataStoreon, sqlRatesDataStoredate sql.NullString
+
+// Commented out sqlRatesDataStore... until we implement a read function
+//var sqlRatesDataStoreID, sqlRatesDataStorebid, sqlRatesDataStoremid, sqlRatesDataStoreoffer, sqlRatesDataStoremarket, sqlRatesDataStoretenor, sqlRatesDataStoreseries, sqlRatesDataStorename, sqlRatesDataStoresource, sqlRatesDataStoredestination, sqlRatesDataStoreclass, sqlRatesDataStorecreated, sqlRatesDataStoreby, sqlRatesDataStoreon, sqlRatesDataStoredate sql.NullString
 var appRatesDataStoreSQLINSERT = "INSERT INTO %s.rateDataStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
 var appRatesDataStoreSQLDELETE = "DELETE FROM %s.rateDataStore WHERE id='%s';"
 

@@ -6,25 +6,14 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
-	"os/user"
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/lnquy/cron"
-	hcron "github.com/lnquy/cron"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
-var appScheduleStoreSQL = "id, 	name, 	description, 	schedule, 	started, 	lastrun, 	message, 	_created, 	_who, 	_host, 	_updated, type"
-
 var sqlScheduleStoreId, sqlScheduleStoreName, sqlScheduleStoreDescription, sqlScheduleStoreSchedule, sqlScheduleStoreStarted, sqlScheduleStoreLastrun, sqlScheduleStoreMessage, sqlScheduleStoreSYSCreated, sqlScheduleStoreSYSWho, sqlScheduleStoreSYSHost, sqlScheduleStoreSYSUpdated, sqlScheduleStoreType sql.NullString
-
-var appScheduleStoreSQLINSERT = "INSERT INTO %s.scheduleStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
-var appScheduleStoreSQLDELETE = "DELETE FROM %s.scheduleStore WHERE id='%s';"
-var appScheduleStoreSQLSELECT = "SELECT %s FROM %s.scheduleStore;"
-var appScheduleStoreSQLGET = "SELECT %s FROM %s.scheduleStore WHERE id='%s';"
 
 //appScheduleStorePage is cheese
 type appScheduleStoreListPage struct {
@@ -80,6 +69,19 @@ type appScheduleStoreItem struct {
 	Type        string
 	// Calclated Post SQL
 	HumanSchedule string
+}
+
+var dsSchedule globals.DataStoreMessages
+
+func init() {
+	dsSchedule = globals.DataStoreMessages{
+		Table: "scheduleStore",
+		Columns: "id, 	name, 	description, 	schedule, 	started, 	lastrun, 	message, 	_created, 	_who, 	_host, 	_updated, type",
+		Insert: "INSERT INTO %s.scheduleStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+		Delete: "DELETE FROM %s.scheduleStore WHERE id='%s';",
+		Select: "SELECT %s FROM %s.scheduleStore;",
+		Get:    "SELECT %s FROM %s.scheduleStore WHERE id='%s';",
+	}
 }
 
 func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
@@ -331,14 +333,14 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 // getScheduleStoreList read all employees
 func GetScheduleStoreList() (int, []appScheduleStoreItem, error) {
 
-	tsql := fmt.Sprintf(appScheduleStoreSQLSELECT, appScheduleStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(dsSchedule.Select, dsSchedule.Columns, globals.ApplicationPropertiesDB["schema"])
 	count, appScheduleStoreList, _, _ := fetchScheduleStoreData(tsql)
 	return count, appScheduleStoreList, nil
 }
 
 // getScheduleStoreList read all employees
 func GetScheduleStoreByID(id string) (int, appScheduleStoreItem, error) {
-	tsql := fmt.Sprintf(appScheduleStoreSQLGET, appScheduleStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(dsSchedule.Get, dsSchedule.Columns, globals.ApplicationPropertiesDB["schema"], id)
 	_, _, appScheduleStoreItem, _ := fetchScheduleStoreData(tsql)
 	return 1, appScheduleStoreItem, nil
 }
@@ -351,8 +353,8 @@ func putScheduleStore(r appScheduleStoreItem) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appScheduleStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appScheduleStoreSQL, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type)
+	deletesql := fmt.Sprintf(dsSchedule.Delete, globals.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(dsSchedule.Insert, globals.ApplicationPropertiesDB["schema"], dsSchedule.Columns, r.Id, r.Name, r.Description, r.Schedule, r.Started, r.Lastrun, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type)
 
 	//log.Println("DELETE:", deletesql, db)
 	//log.Println("INSERT:", inserttsql, db)
@@ -370,7 +372,7 @@ func putScheduleStore(r appScheduleStoreItem) {
 func deleteScheduleStore(id string) {
 	//fmt.Println(credentialStore)
 
-	deletesql := fmt.Sprintf(appScheduleStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(dsSchedule.Delete, globals.ApplicationPropertiesDB["schema"], id)
 	//	log.Println("DELETE:", deletesql, db)
 
 	_, err2 := globals.ApplicationDB.Exec(deletesql)
@@ -452,80 +454,5 @@ func newScheduleStoreID() string {
 }
 
 func PostSchedule(sched globals.JobDefinition) {
-	RegisterSchedule(sched.ID, sched.Name, sched.Description, sched.Period, sched.Type)
-}
-
-func RegisterSchedule(id string, name string, description string, schedule string, inType string) {
-	var s appScheduleStoreItem
-	s.Id = id + globals.IDSep + inType
-	s.Name = name
-	s.Description = description
-	s.Schedule = schedule
-	s.Started = time.Now().Format(globals.DATETIMEFORMATUSER)
-	s.Lastrun = ""
-	s.Message = ""
-	s.SYSCreated = time.Now().Format(globals.DATETIMEFORMATUSER)
-	currentUserID, _ := user.Current()
-	host, _ := os.Hostname()
-	s.SYSWho = currentUserID.Name
-	s.SYSHost = host
-	s.SYSUpdated = time.Now().Format(globals.DATETIMEFORMATUSER)
-	s.Type = inType
-	//log.Println("STORE", s)
-
-	registerIt := true
-
-	if globals.IsChildInstance {
-		if inType == globals.Aquirer {
-			registerIt = false
-		}
-	}
-	if registerIt {
-		putScheduleStore(s)
-		desc := GetCronScheduleHuman(s.Schedule)
-		log.Printf("Scheduled Job : %-11s %-20s %-20s %q", inType, name, schedule, desc)
-	}
-}
-
-func UpdateSchedule(id string, inType string, message string) {
-	scheduleID := id + globals.IDSep + inType
-	if len(scheduleID) > 1 {
-		_, s, _ := GetScheduleStoreByID(scheduleID)
-		if len(s.Name) > 0 {
-			s.Lastrun = time.Now().Format(globals.DATETIMEFORMATUSER)
-			s.Message = message
-			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", inType, s.Name, message)
-			Logit("Diagnostic", thisMess)
-			putScheduleStore(s)
-		} else {
-			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", id, inType, message, scheduleID)
-			Logit("Diagnostic", thisMess)
-			//spew.Dump(s)
-		}
-	} else {
-		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", id, inType, message)
-		Logit("Diagnostic", thisMess)
-	}
-}
-
-func GetCronScheduleHuman(in string) string {
-	desc := ""
-	if len(in) != 0 {
-		exprDesc, err := hcron.NewDescriptor(
-			cron.Use24HourTimeFormat(true),
-			cron.DayOfWeekStartsAtOne(false),
-			cron.Verbose(true),
-			cron.SetLogger(log.New(os.Stdout, "cron: ", 0)),
-			cron.SetLocales(hcron.Locale_en),
-		)
-		if err != nil {
-			log.Panicf("failed to create CRON expression descriptor: %s", err)
-		}
-		desc, err = exprDesc.ToDescription(in, hcron.Locale_en)
-		if err != nil {
-			log.Panicf("failed to convert CRON expression to human readable description: %s", err)
-		}
-	}
-
-	return desc
+	RegisterSchedule(sched)
 }

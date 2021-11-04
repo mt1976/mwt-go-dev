@@ -1,7 +1,7 @@
 package jobs
 
 import (
-	"log"
+	"fmt"
 	"runtime"
 	"strings"
 
@@ -76,13 +76,16 @@ func logit(actionType string, data string) {
 	depth2 := depth - 1
 	//log.Println(len(outcall), depth, depth2)
 	callerName := outcall[depth2] + "/" + outcall[depth]
-	log.Printf("Scheduler     : %v '%v' {%v}", actionType, data, callerName)
+	op := fmt.Sprintf("%v '%v' {%v}", actionType, data, callerName)
+	globals.LOG_msg("Scheduler", op)
 }
 
 func logStart(data string) {
+	globals.LOG_msg("Scheduler", "Start"+data)
 	logit("Job Start", data)
 }
 
 func logEnd(data string) {
+	globals.LOG_msg("Scheduler", "Stop "+data)
 	logit("Job End", data)
 }

@@ -21,7 +21,8 @@ func Rollover_Job() globals.JobDefinition {
 }
 
 func Rollover_Register(c *cron.Cron) {
-	application.RegisterSchedule(Rollover_Job().ID, Rollover_Job().Name, Rollover_Job().Description, Rollover_Job().Period, Rollover_Job().Type)
+	//application.RegisterSchedule(Rollover_Job().ID, Rollover_Job().Name, Rollover_Job().Description, Rollover_Job().Period, Rollover_Job().Type)
+	application.RegisterSchedule(Rollover_Job())
 	c.AddFunc(Rollover_Job().Period, func() { Rollover_Run() })
 }
 
@@ -41,9 +42,9 @@ func Rollover_Run() {
 
 	message := fmt.Sprintf("Rolled from %v to %v", oldSysDate.Internal, globals.SienaSystemDate.Internal)
 
-	application.UpdateSchedule("SRO", globals.Monitor, message)
+	//application.UpdateSchedule("SRO", globals.Monitor, message)
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(Rollover_Job().Name, Rollover_Job().Type, "")
+	application.UpdateSchedule(Rollover_Job(), message)
 	logEnd(Rollover_Job().Name)
 }

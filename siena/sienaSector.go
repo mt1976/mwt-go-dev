@@ -48,7 +48,7 @@ type sienaSectorItem struct {
 }
 
 func Sector_MUX(mux http.ServeMux) {
-	log.Println("MUX Siena Sector")
+	globals.LOG_success("Muxed Siena Sector")
 	mux.HandleFunc("/listSienaSector/", ListSienaSectorHandler)
 	mux.HandleFunc("/viewSienaSector/", ViewSienaSectorHandler)
 	mux.HandleFunc("/editSienaSector/", EditSienaSectorHandler)

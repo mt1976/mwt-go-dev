@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -15,7 +14,6 @@ import (
 	globals "github.com/mt1976/mwt-go-dev/globals"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html/charset"
-	"golang.org/x/text/encoding/charmap"
 )
 
 const (
@@ -67,7 +65,7 @@ func IndexSONIABOE_Job() globals.JobDefinition {
 }
 
 func IndexSONIABOE_Register(c *cron.Cron) {
-	application.RegisterSchedule(IndexSONIABOE_Job().ID, IndexSONIABOE_Job().Name, IndexSONIABOE_Job().Description, IndexSONIABOE_Job().Period, IndexSONIABOE_Job().Type)
+	application.RegisterSchedule(IndexSONIABOE_Job())
 	c.AddFunc(IndexSONIABOE_Job().Period, func() { IndexSONIABOE_Run() })
 }
 
@@ -144,14 +142,14 @@ func IndexSONIABOE_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(IndexSONIABOE_Job().Name, IndexSONIABOE_Job().Type, message)
+	application.UpdateSchedule(IndexSONIABOE_Job(), message)
 	logEnd(IndexSONIABOE_Job().Name)
 }
 
-func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {
-	if charset == "ISO-8859-1" {
-		// Windows-1252 is a superset of ISO-8859-1, so should do here
-		return charmap.Windows1252.NewDecoder().Reader(input), nil
-	}
-	return nil, fmt.Errorf("Unknown charset: %s", charset)
-}
+// func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {
+// 	if charset == "ISO-8859-1" {
+// 		// Windows-1252 is a superset of ISO-8859-1, so should do here
+// 		return charmap.Windows1252.NewDecoder().Reader(input), nil
+// 	}
+// 	return nil, fmt.Errorf("Unknown charset: %s", charset)
+// }

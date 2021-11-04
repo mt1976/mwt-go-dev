@@ -1,4 +1,4 @@
-package application
+package globals
 
 import (
 	"bytes"
@@ -15,16 +15,6 @@ import (
 	"time"
 
 	"github.com/leekchan/accounting"
-	globals "github.com/mt1976/mwt-go-dev/globals"
-)
-
-//CONST_CONFIG_FILE is cheese
-const (
-	DATEFORMATPICK  = "20060102T150405"
-	DATEFORMATSIENA = "2006-01-02"
-	DATEFORMATYMD   = "20060102"
-	DATEFORMATUSER  = "Monday, 02 Jan 2006"
-	SIENACPTYSEP    = "\u22EE"
 )
 
 // Converts a siena style date, as a user readable date
@@ -411,48 +401,6 @@ func DeleteDataFile(fileName string, path string) int {
 	return 1
 }
 
-func GetDeliveryPath(instanceID string, loaderType string, instanceDirection string) string {
-
-	path := globals.SienaProperties[loaderType]
-	instancePath := ""
-	//log.Println(instanceID, loaderType, instanceDirection)
-	if len(instanceID) != 0 {
-		// If we have an instanceID load its details and work out which path to build
-		//	log.Println("fetch", instanceID)
-		_, systemDetails, _ := GetSystemStoreByID(instanceID)
-		//log.Println("returned", systemDetails)
-		loaderDirection := loaderType + instanceDirection
-		//log.Println(loaderDirection)
-		switch loaderDirection {
-		case "static":
-			instancePath = systemDetails.Staticin
-		case "staticin":
-			instancePath = systemDetails.Staticin
-		case "staticout":
-			instancePath = systemDetails.Staticout
-		case "transactional":
-			instancePath = systemDetails.Txnin
-		case "transactionalin":
-			instancePath = systemDetails.Txnin
-		case "transactionalout":
-			instancePath = systemDetails.Txnout
-		case "funds":
-			instancePath = systemDetails.Fundscheckin
-		case "fundsin":
-			instancePath = systemDetails.Fundscheckin
-		case "fundsout":
-			instancePath = systemDetails.Fundscheckout
-		default:
-			instancePath = instanceID
-		}
-	}
-	if len(instancePath) != 0 {
-		path = instancePath
-	}
-	//	log.Println("RETURNING ", path)
-	return path
-}
-
 // CalculateSpotDate(inTime invalid type)
 func CalculateSpotDate(inTime time.Time) time.Time {
 	spot := inTime.AddDate(0, 0, 2)
@@ -480,10 +428,6 @@ func CalculateFirstDateOfYear(inTime time.Time) time.Time {
 	// Assuking 1st Jan is a holiday therefore first day is 2, then wibble the date.
 	tempDate := time.Date(inTime.Year(), 1, 2, 0, 0, 0, inTime.Nanosecond(), inTime.Location())
 	return wibbleDate(tempDate)
-}
-
-func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
-	return globals.ReplaceWildcard(orig, replaceThis, withThis)
 }
 
 func Logit(actionType string, data string) {

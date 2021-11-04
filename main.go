@@ -30,25 +30,25 @@ func main() {
 	line := strings.Repeat("-", 100)
 	log.Println(line)
 
-	msg_header("Initialising ...")
+	globals.LOG_header("Initialising ...")
 
 	globals.Initialise()
 
-	msg_done("Initialised")
+	globals.LOG_success("Initialised")
 	//	log.Println(line)
-	msg_header("Caching ...")
+	globals.LOG_header("Caching ...")
 	//application.InitialiseCache()
-	msg_done("Cache Refreshed")
+	globals.LOG_success("Cache Refreshed")
 	//log.Println(line)
 
-	msg_header("Scheduling Jobs")
+	globals.LOG_header("Scheduling Jobs")
 	//log.Println("TEST>")
 	//scheduler.RunJobCob("TEST")
 	//log.Println("<TEST")
 	scheduler.Start()
-	msg_done("Jobs Scheduled")
+	globals.LOG_success("Jobs Scheduled")
 
-	msg_header("Starting Handlers")
+	globals.LOG_header("Starting Handlers")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/put", putHandler)
 	mux.HandleFunc("/get", getHandler)
@@ -213,57 +213,57 @@ func main() {
 
 	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	msg_done("Handlers Started")
+	globals.LOG_success("Handlers Started")
 	log.Println(line)
-	msg_header("Application Information")
-	msg_header("Application")
-	msg_info("Name", globals.ApplicationProperties["appname"])
-	msg_info("Host Name", tmpHostname)
-	msg_info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
-	msg_info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
+	globals.LOG_header("Application Information")
+	globals.LOG_header("Application")
+	globals.LOG_info("Name", globals.ApplicationProperties["appname"])
+	globals.LOG_info("Host Name", tmpHostname)
+	globals.LOG_info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
+	globals.LOG_info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
 	if globals.IsChildInstance {
-		msg_info("Server Mode", "Primary System")
+		globals.LOG_info("Server Mode", "Primary System")
 	} else {
-		msg_info("Server Mode", "Secondary System")
+		globals.LOG_info("Server Mode", "Secondary System")
 	}
-	msg_info("Licence", globals.ApplicationProperties["licname"])
-	msg_info("Lic URL", globals.ApplicationProperties["liclink"])
+	globals.LOG_info("Licence", globals.ApplicationProperties["licname"])
+	globals.LOG_info("Lic URL", globals.ApplicationProperties["liclink"])
 
-	msg_header("Application Database (MSSQL)")
-	msg_info("Server", globals.ApplicationPropertiesDB["server"])
-	msg_info("Database", globals.ApplicationPropertiesDB["database"])
-	msg_info("Schema", globals.ApplicationPropertiesDB["schema"])
-	msg_info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
+	globals.LOG_header("Application Database (MSSQL)")
+	globals.LOG_info("Server", globals.ApplicationPropertiesDB["server"])
+	globals.LOG_info("Database", globals.ApplicationPropertiesDB["database"])
+	globals.LOG_info("Schema", globals.ApplicationPropertiesDB["schema"])
+	globals.LOG_info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
 
-	msg_header("Siena")
+	globals.LOG_header("Siena")
 	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
 	globals.SienaSystemDate = tempDate
-	msg_info("System", globals.SienaProperties["name"])
-	msg_info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+	globals.LOG_info("System", globals.SienaProperties["name"])
+	globals.LOG_info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
 
-	msg_header("Siena Database (MSSQL)")
-	msg_info("Server", globals.SienaPropertiesDB["server"])
-	msg_info("Database", globals.SienaPropertiesDB["database"])
-	msg_info("Schema", globals.SienaPropertiesDB["schema"])
-	msg_info("Parent Schema", globals.SienaPropertiesDB["parentschema"])
+	globals.LOG_header("Siena Database (MSSQL)")
+	globals.LOG_info("Server", globals.SienaPropertiesDB["server"])
+	globals.LOG_info("Database", globals.SienaPropertiesDB["database"])
+	globals.LOG_info("Schema", globals.SienaPropertiesDB["schema"])
+	globals.LOG_info("Parent Schema", globals.SienaPropertiesDB["parentschema"])
 
-	msg_header("Siena Connectivity")
-	msg_info("TXNs Delivery", globals.SienaProperties["transactional_in"])
-	msg_info("TXNs Response", globals.SienaProperties["transactional_out"])
-	msg_info("Static Delivery", globals.SienaProperties["static_in"])
-	msg_info("Static Response", globals.SienaProperties["static_out"])
-	msg_info("Funds Check Request", globals.SienaProperties["funds_out"])
-	msg_info("Funds Check Response", globals.SienaProperties["funds_in"])
-	msg_info("Rates & Prices Delivery", globals.SienaProperties["rates_in"])
+	globals.LOG_header("Siena Connectivity")
+	globals.LOG_info("TXNs Delivery", globals.SienaProperties["transactional_in"])
+	globals.LOG_info("TXNs Response", globals.SienaProperties["transactional_out"])
+	globals.LOG_info("Static Delivery", globals.SienaProperties["static_in"])
+	globals.LOG_info("Static Response", globals.SienaProperties["static_out"])
+	globals.LOG_info("Funds Check Request", globals.SienaProperties["funds_out"])
+	globals.LOG_info("Funds Check Response", globals.SienaProperties["funds_in"])
+	globals.LOG_info("Rates & Prices Delivery", globals.SienaProperties["rates_in"])
 
-	msg_header("Sessions")
-	msg_info("Session Life", globals.ApplicationProperties["sessionlife"])
+	globals.LOG_header("Sessions")
+	globals.LOG_info("Session Life", globals.ApplicationProperties["sessionlife"])
 
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 
-	msg_header("READY STEADY GO!!!")
-	log.Println("URI           :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
+	globals.LOG_header("READY STEADY GO!!!")
+	log.Println("URI            :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
 	log.Println(line)
 
 	httpPort := ":" + globals.ApplicationProperties["port"]
@@ -348,16 +348,4 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 	// key. The zero value is returned if the key does not exist.
 	msg := globals.SessionManager.GetString(r.Context(), "message")
 	io.WriteString(w, msg)
-}
-
-func msg_header(s string) {
-	log.Println(globals.ColorYellow + "Information   : " + s + " " + globals.ColorReset)
-	//log.Println(strings.Repeat("-", len(s)))
-}
-func msg_done(s string) {
-	log.Println(globals.ColorYellow + "Success       : " + s + " " + globals.ColorReset + globals.Tick)
-}
-func msg_info(what string, value string) {
-	output := fmt.Sprintf("Information   : %-25s %s", what, value)
-	log.Println(globals.ColorCyan + output + globals.ColorReset)
 }

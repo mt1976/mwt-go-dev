@@ -17,7 +17,7 @@ func Template_Job() globals.JobDefinition {
 }
 
 func Template_Register(c cron.Cron) {
-	application.RegisterSchedule(Template_Job().ID, Template_Job().Name, Template_Job().Description, Template_Job().Period, Template_Job().Type)
+	application.RegisterSchedule(Template_Job())
 	c.AddFunc(Template_Job().Period, func() { Template_Run() })
 }
 
@@ -28,6 +28,6 @@ func Template_Run() {
 	/// CONTENT STARTS
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(Template_Job().Name, Template_Job().Type, message)
+	application.UpdateSchedule(Template_Job(), message)
 	logEnd(Template_Job().Name)
 }

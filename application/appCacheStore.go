@@ -9,25 +9,37 @@ import (
 	"os"
 	"time"
 
+	"github.com/andreyvit/sqlexpr"
+	"github.com/kisielk/sqlstruct"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
 // Defines the Fields to Fetch from SQL
-var appCacheStoreSQL = "id, 	object, 	field, 	value, 	expiry, 	_created, 	_who, 	_host, 	_updated, source"
 
-var sqlCacheStoreId, sqlCacheStoreObject, sqlCacheStoreField, sqlCacheStoreValue, sqlCacheStoreExpiry, sqlCacheStoreSYSCreated, sqlCacheStoreSYSWho, sqlCacheStoreSYSHost, sqlCacheStoreSYSUpdated, sqlCacheStoreSource sql.NullString
+//var sqlCacheStoreId, sqlCacheStoreObject, sqlCacheStoreField, sqlCacheStoreValue, sqlCacheStoreExpiry, sqlCacheStoreSYSCreated, sqlCacheStoreSYSWho, sqlCacheStoreSYSHost, sqlCacheStoreSYSUpdated, sqlCacheStoreSource sql.NullString
+var dsCache dm.DataStoreMessages
 
-var appCacheStoreSQLINSERT = "INSERT INTO %s.cacheStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
-var appCacheStoreSQLDELETE = "DELETE FROM %s.cacheStore WHERE id='%s';"
-var appCacheStoreSQLSELECT = "SELECT %s FROM %s.cacheStore;"
-var appCacheStoreSQLGET = "SELECT %s FROM %s.cacheStore WHERE id='%s';"
-var appCacheStoreSQLGETOBJECT = "SELECT %s FROM %s.cacheStore WHERE object='%s';"
+func init() {
+	fullTableName := globals.ApplicationPropertiesDB["scheme"] + "." + "cacheStore"
+
+	dsCache = dm.DataStoreMessages{
+		//Table: fullTableName,
+		//Columns: "id, 	object, 	field, 	value, 	expiry, 	_created, 	_who, 	_host, 	_updated, source",
+		Insert:    "INSERT INTO " + fullTableName + "(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+		Delete:    "DELETE FROM " + fullTableName + " WHERE id='%s';",
+		Select:    "SELECT %s FROM " + fullTableName + ";",
+		Get:       "SELECT %s FROM " + fullTableName + " WHERE id='%s';",
+		GetAlt:    "SELECT %s FROM " + fullTableName + " WHERE object='%s';",
+		DeleteAlt: "DELETE FROM " + fullTableName + " WHERE expires < '%s';",
+	}
+}
 
 //var appCacheStoreSQLDELETEEXPIRED = "DELETE FROM %s.cacheStore WHERE expires < '%s';"
 
 //appCacheStorePage is cheese
 type appCacheStoreListPage struct {
-	UserMenu        []AppMenuItem
+	UserMenu        []dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -38,7 +50,7 @@ type appCacheStoreListPage struct {
 
 //appCacheStorePage is cheese
 type appCacheStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -60,23 +72,39 @@ type appCacheStorePage struct {
 
 //appCacheStoreItem is cheese
 type appCacheStoreItem struct {
-	Action     string
-	Id         string
-	Object     string
-	Field      string
-	Value      string
-	Expiry     string
-	SYSCreated string
-	SYSWho     string
-	SYSHost    string
-	SYSUpdated string
-	Source     string
+	//Action     string
+	Id         string `sql:"id"`
+	Object     string `sql:"object"`
+	Field      string `sql:"field"`
+	Value      string `sql:"value"`
+	Expiry     string `sql:"expiry"`
+	SYSCreated string `sql:"_created"`
+	SYSWho     string `sql:"_who"`
+	SYSHost    string `sql:"_host"`
+	SYSUpdated string `sql:"_updated"`
+	Source     string `sql:"source"`
 }
+
+//appCacheStoreItem is cheese
+const (
+	//Action     string
+	csTable      = sqlexpr.Table("cacheStore")
+	csId         = sqlexpr.Column("id")
+	csObject     = sqlexpr.Column("object")
+	csField      = sqlexpr.Column("field")
+	csValue      = sqlexpr.Column("value")
+	csExpiry     = sqlexpr.Column("expiry")
+	csSYSCreated = sqlexpr.Column("_created")
+	csSYSWho     = sqlexpr.Column("_who")
+	csSYSHost    = sqlexpr.Column("_host")
+	csSYSUpdated = sqlexpr.Column("_updated")
+	csSource     = sqlexpr.Column("source")
+)
 
 func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(globals.SessionValidate(w, r)) {
+		globals.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -85,13 +113,13 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 	var returnList []appCacheStoreItem
 	noItems, returnList, _ := GetCacheStoreList()
 
 	pageCacheStoreList := appCacheStoreListPage{
-		UserMenu:        GetUserMenu(r),
-		UserRole:        GetUserRole(r),
+		UserMenu:        globals.GetUserMenu(r),
+		UserRole:        globals.GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           globals.ApplicationProperties["appname"],
 		PageTitle:       globals.ApplicationProperties["appname"] + " - " + "Cache",
@@ -99,14 +127,14 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 		CacheStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -116,17 +144,17 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "CacheStore")
+	searchID := globals.GetURLparam(r, "CacheStore")
 	_, returnRecord, _ := GetCacheStoreByID(searchID)
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  globals.GetUserMenu(r),
+		UserRole:  globals.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -144,14 +172,14 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCacheStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -161,16 +189,16 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "CacheStore")
+	searchID := globals.GetURLparam(r, "CacheStore")
 	_, returnRecord, _ := GetCacheStoreByID(searchID)
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  globals.GetUserMenu(r),
+		UserRole:  globals.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -188,14 +216,14 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCacheStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -204,7 +232,7 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	globals.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appCacheStoreItem
 
@@ -229,15 +257,15 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "CacheStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := globals.GetURLparam(r, "CacheStore")
+	globals.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteCacheStore(searchID)
 	ListCacheStoreHandler(w, r)
 
@@ -245,7 +273,7 @@ func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -255,13 +283,13 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Cache",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  globals.GetUserMenu(r),
+		UserRole:  globals.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -269,28 +297,28 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageCacheStoreList)
 
 }
 
 // getCacheStoreList read all employees
 func GetCacheStoreList() (int, []appCacheStoreItem, error) {
-	tsql := fmt.Sprintf(appCacheStoreSQLSELECT, appCacheStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(dsCache.Select, sqlstruct.Columns(appCacheStoreItem{}))
 	count, appCacheStoreList, _, _ := fetchCacheStoreData(tsql)
 	return count, appCacheStoreList, nil
 }
 
 // getCacheStoreList read all employees
 func GetCacheStoreByID(id string) (int, appCacheStoreItem, error) {
-	tsql := fmt.Sprintf(appCacheStoreSQLGET, appCacheStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(dsCache.Get, sqlstruct.Columns(appCacheStoreItem{}), id)
 	_, _, appCacheStoreItem, _ := fetchCacheStoreData(tsql)
 	return 1, appCacheStoreItem, nil
 }
 
 // getCacheStoreList read all employees
 func GetCacheStoreListByOBJECT(object string) (int, []appCacheStoreItem, error) {
-	tsql := fmt.Sprintf(appCacheStoreSQLGETOBJECT, appCacheStoreSQL, globals.ApplicationPropertiesDB["schema"], object)
+	tsql := fmt.Sprintf(dsCache.GetAlt, sqlstruct.Columns(appCacheStoreItem{}), object)
 	count, appCacheStoreItem, _, _ := fetchCacheStoreData(tsql)
 	return count, appCacheStoreItem, nil
 }
@@ -298,7 +326,7 @@ func GetCacheStoreListByOBJECT(object string) (int, []appCacheStoreItem, error) 
 // getCacheStoreList read all employees
 //func HousekeepCacheStore() (int, error) {
 //	expiry := time.Now().Format(globals.DATETIMEFORMATSQLSERVER)
-//	deletesql := fmt.Sprintf(appCacheStoreSQLDELETEEXPIRED, globals.ApplicationPropertiesDB["schema"], expiry)
+//	deletesql := fmt.Sprintf(appCacheStoreSQLDELETEEXPIRED, expiry)
 //	log.Println("DELETE:", deletesql, globals.ApplicationDB)
 //	_, err := globals.ApplicationDB.Exec(deletesql)
 //	return 0, err
@@ -339,7 +367,7 @@ func putCacheStore(r appCacheStoreItem, req *http.Request) {
 	if len(r.Id) == 0 {
 		r.Id = newCacheStoreID(r)
 		r.SYSCreated = createDate
-		r.SYSWho = GetUserName(req)
+		r.SYSWho = globals.GetUserName(req)
 		r.SYSHost = host
 	}
 
@@ -347,19 +375,37 @@ func putCacheStore(r appCacheStoreItem, req *http.Request) {
 
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
+	//spew.Dump(dsCache)
 
-	deletesql := fmt.Sprintf(appCacheStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appCacheStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appCacheStoreSQL, r.Id, r.Object, r.Field, r.Value, r.Expiry, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Source)
+	deletesql := fmt.Sprintf(dsCache.Delete, r.Id)
+	//inserttsql := fmt.Sprintf(dsCache.Insert, sqlstruct.Columns(appCacheStoreItem{}), r.Id, r.Object, r.Field, r.Value, r.Expiry, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Source)
+	//log.Println(sqlstruct.TagName)
 
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	inserttsql := sqlexpr.Insert{Table: csTable}
+	inserttsql.Set(csId, r.Id)
+	inserttsql.Set(csObject, r.Object)
+	inserttsql.Set(csField, r.Field)
+	inserttsql.Set(csValue, r.Value)
+	inserttsql.Set(csExpiry, r.Expiry)
+	inserttsql.Set(csSYSCreated, r.SYSCreated)
+	inserttsql.Set(csSYSWho, r.SYSWho)
+	inserttsql.Set(csSYSHost, r.SYSHost)
+	inserttsql.Set(csSYSUpdated, r.SYSUpdated)
+	inserttsql.Set(csSource, r.Source)
+
+	log.Println("DELETE:", deletesql, globals.ApplicationDB)
+
+	sql, args := sqlexpr.Build(inserttsql)
+
+	fmt.Printf("sql: %v\n", sql)
+	fmt.Printf("args: %v\n", args)
 
 	_, err2 := globals.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Panic(err2)
 	}
 	//log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := globals.ApplicationDB.Exec(sql, args...)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -368,7 +414,7 @@ func putCacheStore(r appCacheStoreItem, req *http.Request) {
 
 func deleteCacheStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appCacheStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(dsCache.Delete, id)
 	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
 	_, err2 := globals.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
@@ -393,22 +439,11 @@ func fetchCacheStoreData(tsql string) (int, []appCacheStoreItem, appCacheStoreIt
 	defer rows.Close()
 	count := 0
 	for rows.Next() {
-		err := rows.Scan(&sqlCacheStoreId, &sqlCacheStoreObject, &sqlCacheStoreField, &sqlCacheStoreValue, &sqlCacheStoreExpiry, &sqlCacheStoreSYSCreated, &sqlCacheStoreSYSWho, &sqlCacheStoreSYSHost, &sqlCacheStoreSYSUpdated, &sqlCacheStoreSource)
+		err := rows.Scan(&appCacheStore.Id, &appCacheStore.Object, &appCacheStore.Field, &appCacheStore.Value, &appCacheStore.Expiry, &appCacheStore.SYSCreated, &appCacheStore.SYSWho, &appCacheStore.SYSHost, &appCacheStore.SYSUpdated, &appCacheStore.Source)
 		if err != nil {
 			log.Println("Error reading rows: " + err.Error())
 			return -1, nil, appCacheStore, err
 		}
-		// Populate Arrays etc.
-		appCacheStore.Id = sqlCacheStoreId.String
-		appCacheStore.Object = sqlCacheStoreObject.String
-		appCacheStore.Field = sqlCacheStoreField.String
-		appCacheStore.Value = sqlCacheStoreValue.String
-		appCacheStore.Expiry = sqlCacheStoreExpiry.String
-		appCacheStore.SYSCreated = sqlCacheStoreSYSCreated.String
-		appCacheStore.SYSWho = sqlCacheStoreSYSWho.String
-		appCacheStore.SYSHost = sqlCacheStoreSYSHost.String
-		appCacheStore.SYSUpdated = sqlCacheStoreSYSUpdated.String
-		appCacheStore.Source = sqlCacheStoreSource.String
 		// no change below
 		appCacheStoreList = append(appCacheStoreList, appCacheStore)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
@@ -488,7 +523,6 @@ func buildCache(table string, field string, fieldName string, objectName string,
 		//count++
 	}
 	//log.Println(count, appCredentialsStoreList, appCredentialsStore)
-	return
 }
 
 func sourceConnect(sourceProperties map[string]string) (*sql.DB, error) {
@@ -519,7 +553,7 @@ func sourceConnect(sourceProperties map[string]string) (*sql.DB, error) {
 
 	//defer dbInstance.Close()
 
-	stmt, err := dbInstance.Prepare("select @@version")
+	stmt, _ := dbInstance.Prepare("select @@version")
 	row := stmt.QueryRow()
 	var result string
 
@@ -534,10 +568,11 @@ func sourceConnect(sourceProperties map[string]string) (*sql.DB, error) {
 // SQLInjectionHander
 func RefreshCacheHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	InitialiseCache(r)
-	HomePageHandler(w, r)
+	//HomePageHandler(w, r)
+	http.Redirect(w, r, "/home", http.StatusFound)
 }

@@ -1,4 +1,4 @@
-package application
+package globals
 
 import (
 	"html/template"
@@ -6,12 +6,12 @@ import (
 	"os"
 	"time"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 //sienaMandatedUserPage is cheese
 type sienaHomePage struct {
-	UserMenu           []AppMenuItem
+	UserMenu           []dm.AppMenuItem
 	UserNavi           string
 	UserRole           string
 	Title              string
@@ -68,45 +68,45 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           "Home",
-		PageTitle:       globals.ApplicationProperties["appname"],
-		AppReleaseID:    globals.ApplicationProperties["releaseid"],
-		AppReleaseLevel: globals.ApplicationProperties["releaselevel"],
-		AppReleaseNo:    globals.ApplicationProperties["releasenumber"],
-		SienaName:       globals.SienaProperties["name"],
-		SQLServer:       globals.SienaPropertiesDB["server"],
-		SQLDB:           globals.SienaPropertiesDB["database"],
-		SQLSchema:       globals.SienaPropertiesDB["schema"],
-		SQLParentSchema: globals.SienaPropertiesDB["parentschema"],
+		PageTitle:       ApplicationProperties["appname"],
+		AppReleaseID:    ApplicationProperties["releaseid"],
+		AppReleaseLevel: ApplicationProperties["releaselevel"],
+		AppReleaseNo:    ApplicationProperties["releasenumber"],
+		SienaName:       SienaProperties["name"],
+		SQLServer:       SienaPropertiesDB["server"],
+		SQLDB:           SienaPropertiesDB["database"],
+		SQLSchema:       SienaPropertiesDB["schema"],
+		SQLParentSchema: SienaPropertiesDB["parentschema"],
 		UserName:        GetUserName(r),
 		UserKnowAs:      GetUserKnowAs(r),
-		SienaDate:       globals.SienaSystemDate.Siena,
-		AppServerDate:   time.Now().Format(globals.DATEFORMATSIENA),
+		SienaDate:       SienaSystemDate.Siena,
+		AppServerDate:   time.Now().Format(DATEFORMATSIENA),
 		AppServerName:   tmpHostname,
 
-		DealImportInPath:   globals.SienaProperties["transactional_in"],
-		StaticDataInPath:   globals.SienaProperties["static_in"],
-		FundsCheckInPath:   globals.SienaProperties["funds_in"],
-		RatesDataInPath:    globals.SienaProperties["rates_in"],
-		DealImportOutPath:  globals.SienaProperties["transactional_out"],
-		StaticDataOutPath:  globals.SienaProperties["static_out"],
-		FundsCheckOutPath:  globals.SienaProperties["funds_out"],
-		RatesDataOutPath:   globals.SienaProperties["rates_out"],
-		AppSQLServer:       globals.ApplicationPropertiesDB["server"],
-		AppSQLSchema:       globals.ApplicationPropertiesDB["schema"],
-		AppSQLParentSchema: globals.ApplicationPropertiesDB["parentschema"],
+		DealImportInPath:   SienaProperties["transactional_in"],
+		StaticDataInPath:   SienaProperties["static_in"],
+		FundsCheckInPath:   SienaProperties["funds_in"],
+		RatesDataInPath:    SienaProperties["rates_in"],
+		DealImportOutPath:  SienaProperties["transactional_out"],
+		StaticDataOutPath:  SienaProperties["static_out"],
+		FundsCheckOutPath:  SienaProperties["funds_out"],
+		RatesDataOutPath:   SienaProperties["rates_out"],
+		AppSQLServer:       ApplicationPropertiesDB["server"],
+		AppSQLSchema:       ApplicationPropertiesDB["schema"],
+		AppSQLParentSchema: ApplicationPropertiesDB["parentschema"],
 	}
 
 	homePage.InstanceState = "Primary System"
-	homePage.AppSQLDatabase = globals.ApplicationPropertiesDB["database"]
+	homePage.AppSQLDatabase = ApplicationPropertiesDB["database"]
 
-	if globals.IsChildInstance {
+	if IsChildInstance {
 		homePage.InstanceState = "Child System"
-		//	homePage.AppSQLDatabase = globals.ApplicationPropertiesDB["database"] + "-" + globals.ApplicationPropertiesDB["instance"]
+		//	homePage.AppSQLDatabase = ApplicationPropertiesDB["database"] + "-" + ApplicationPropertiesDB["instance"]
 	}
 
 	homePage.DateSyncIssue = ""
 	if homePage.AppServerDate != homePage.SienaDate {
-		homePage.DateSyncIssue = globals.WarningLabel
+		homePage.DateSyncIssue = WarningLabel
 	}
 
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))

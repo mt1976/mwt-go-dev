@@ -24,7 +24,7 @@ func extractCreate(in string) string {
 func PokeDatabase(DB *sql.DB) error {
 	errordb := DB.Ping()
 	if errordb != nil {
-
+		log.Println(errordb.Error())
 	}
 	return errordb
 }
@@ -38,7 +38,8 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	database := mssqlConfig["database"]
 	//	instance := mssqlConfig["instance"]
 	if database != "master" {
-		log.Println("Information   : Attemping connection to " + server + " " + database)
+		//log.Println("Information   : Attemping connection to " + server + " " + database)
+		LOG_msg("Connecting", "Attemping connection to "+server+" "+database)
 	}
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;database=%s;", server, user, password, port, database)
 	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;", server, user, password, port)
@@ -46,10 +47,12 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	//log.Println("Connection    : " + connString)
 	dbInstance, err := sql.Open("mssql", connString)
 	if err != nil {
-		log.Fatal("ERROR!        : Connection attempt with "+database+connString+" failed:", err.Error())
+		//log.Fatal("ERROR!        : Connection attempt with "+database+connString+" failed:", err.Error())
+		LOG_error("Connection attempt with "+database+connString+" failed:", err)
 	}
 	if database != "master" {
-		log.Println("Information   : Connected to " + server + " " + database)
+		LOG_success("Connected to " + server + " " + database)
+		//	log.Println("Information   : Connected to " + server + " " + database)
 	}
 	keepalive, _ := time.ParseDuration("-1h")
 	dbInstance.SetConnMaxLifetime(keepalive)
@@ -96,7 +99,8 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 
 	err2 = dbCheck.Scan(&result2)
 	if err2 != nil {
-		log.Println("Information   : Database " + dbName + " does not exists. GENERATING")
+
+		LOG_it("Database " + dbName + " does not exists. GENERATING")
 		CreateDatabase(dbInstance, ApplicationPropertiesDB, dbName)
 
 		ApplicationPropertiesDB["database"] = dbName
@@ -113,7 +117,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 		CreateDatabaseObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)
 		returnDB = newDBInstance
 	} else {
-		log.Println("Information   : Database " + dbName + " exists Created: " + result2)
+		LOG_it("Database " + dbName + " exists Created: " + result2)
 		if len(mssqlConfig["instance"]) != 0 {
 			mssqlConfig["database"] = database + "-" + mssqlConfig["instance"]
 		}

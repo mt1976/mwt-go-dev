@@ -59,7 +59,8 @@ type sienaFirmItem struct {
 }
 
 func Firm_MUX(mux http.ServeMux) {
-	log.Println("MUX Siena Firm")
+	globals.LOG_success("Muxed Siena Firm")
+
 	mux.HandleFunc("/listSienaFirm/", ListSienaFirmHandler)
 	mux.HandleFunc("/viewSienaFirm/", ViewSienaFirmHandler)
 	mux.HandleFunc("/editSienaFirm/", EditSienaFirmHandler)

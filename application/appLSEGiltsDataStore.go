@@ -607,7 +607,6 @@ func newLSEGiltsDataStoreID() string {
 
 // Returns a valid lseGiltsDataStore store ID
 func getLSEGiltsDataStoreID(r AppLSEGiltsDataStoreItem) string {
-	var lseGiltsDataStoreID string
-	lseGiltsDataStoreID = r.Isin
+	lseGiltsDataStoreID := r.Isin
 	return lseGiltsDataStoreID
 }

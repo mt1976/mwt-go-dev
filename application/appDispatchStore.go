@@ -10,6 +10,7 @@ import (
 	"os/user"
 	"time"
 
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	globals "github.com/mt1976/mwt-go-dev/globals"
 )
 
@@ -26,7 +27,7 @@ var appDispatchStoreSQLGETTYPE = "SELECT %s FROM %s.dispatchStore WHERE type='%s
 
 //appDispatchStorePage is cheese
 type appDispatchStoreListPage struct {
-	UserMenu           []AppMenuItem
+	UserMenu           []dm.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -37,7 +38,7 @@ type appDispatchStoreListPage struct {
 
 //appDispatchStorePage is cheese
 type appDispatchStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -69,7 +70,7 @@ type DispatchStoreItem struct {
 
 func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -79,13 +80,13 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 	var returnList []DispatchStoreItem
 	noItems, returnList, _ := GetDispatchStoreList()
 
 	pageDispatchStoreList := appDispatchStoreListPage{
-		UserMenu:           GetUserMenu(r),
-		UserRole:           GetUserRole(r),
+		UserMenu:           globals.GetUserMenu(r),
+		UserRole:           globals.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              globals.ApplicationProperties["appname"],
 		PageTitle:          globals.ApplicationProperties["appname"] + " - " + "Dispatch",
@@ -93,14 +94,14 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		DispatchStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -110,17 +111,17 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "DispatchStore")
+	searchID := globals.GetURLparam(r, "DispatchStore")
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  globals.GetUserMenu(r),
+		UserRole:  globals.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -136,14 +137,14 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageDispatchStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -153,16 +154,16 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "DispatchStore")
+	searchID := globals.GetURLparam(r, "DispatchStore")
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  globals.GetUserMenu(r),
+		UserRole:  globals.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -178,14 +179,14 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageDispatchStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }
 
 func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -194,7 +195,7 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	globals.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s DispatchStoreItem
 
@@ -217,15 +218,15 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "DispatchStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := globals.GetURLparam(r, "DispatchStore")
+	globals.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 
@@ -233,36 +234,36 @@ func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "DispatchStore")
+	searchID := globals.GetURLparam(r, "DispatchStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	globals.ServiceMessageAction(inUTL, "Ban", searchID)
 	banDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 }
 
 func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "DispatchStore")
+	searchID := globals.GetURLparam(r, "DispatchStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	globals.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateDispatchStore(searchID)
 	ListDispatchStoreHandler(w, r)
 
@@ -270,7 +271,7 @@ func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
+	if !(globals.SessionValidate(w, r)) {
 		LogoutHandler(w, r)
 		return
 	}
@@ -280,13 +281,13 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	globals.ServiceMessage(inUTL)
 
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     globals.ApplicationProperties["appname"],
 		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Dispatch - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  globals.GetUserMenu(r),
+		UserRole:  globals.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -294,7 +295,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(globals.GetTemplateID(tmpl, globals.GetUserRole(r)))
 	t.Execute(w, pageDispatchStoreList)
 
 }

@@ -95,7 +95,7 @@ func InstFII_Job() globals.JobDefinition {
 }
 
 func InstFII_Register(c *cron.Cron) {
-	application.RegisterSchedule(InstFII_Job().ID, InstFII_Job().Name, InstFII_Job().Description, InstFII_Job().Period, InstFII_Job().Type)
+	application.RegisterSchedule(InstFII_Job())
 	c.AddFunc(InstFII_Job().Period, func() { InstFII_Run() })
 }
 
@@ -114,7 +114,7 @@ func InstFII_Run() {
 	OnPage(FIIORBBONDS, "Retail Bond")
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(InstFII_Job().Name, InstFII_Job().Type, message)
+	application.UpdateSchedule(InstFII_Job(), message)
 	logEnd(InstFII_Job().Name)
 }
 

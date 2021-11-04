@@ -19,7 +19,7 @@ func HeartBeat_Job() globals.JobDefinition {
 }
 
 func HeartBeat_Register(c *cron.Cron) {
-	application.RegisterSchedule(HeartBeat_Job().ID, HeartBeat_Job().Name, HeartBeat_Job().Description, HeartBeat_Job().Period, HeartBeat_Job().Type)
+	application.RegisterSchedule(HeartBeat_Job())
 	c.AddFunc(HeartBeat_Job().Period, func() { HeartBeat_Run() })
 }
 
@@ -33,6 +33,6 @@ func HeartBeat_Run() {
 
 	message := fmt.Sprintf("Uptime = %v", globals.Uptime())
 
-	application.UpdateSchedule(HeartBeat_Job().Name, HeartBeat_Job().Type, message)
+	application.UpdateSchedule(HeartBeat_Job(), message)
 	logEnd(HeartBeat_Job().Name)
 }
