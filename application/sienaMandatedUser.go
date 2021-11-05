@@ -136,8 +136,8 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	suID := core.GetURLparam(r, "SU")
 	sfID := core.GetURLparam(r, "SF")
 	scID := core.GetURLparam(r, "SC")
-	noItems, returnRecord, _ := getSienaMandatedUser(suID, sfID, scID)
-	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
+	_, returnRecord, _ := getSienaMandatedUser(suID, sfID, scID)
+	//fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
@@ -192,8 +192,8 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	suID := core.GetURLparam(r, "SU")
 	sfID := core.GetURLparam(r, "SF")
 	scID := core.GetURLparam(r, "SC")
-	noItems, returnRecord, _ := getSienaMandatedUser(suID, sfID, scID)
-	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
+	_, returnRecord, _ := getSienaMandatedUser(suID, sfID, scID)
+	//fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
@@ -234,7 +234,7 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          returnRecord.CBNotify,
 	}
 
-	fmt.Println(pageSienaMandatedUserList)
+	//fmt.Println(pageSienaMandatedUserList)
 
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)

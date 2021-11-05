@@ -74,7 +74,7 @@ func main() {
 	// mux.HandleFunc("/viewSrvConfiguration/", application.ViewSrvConfigurationHandler)
 	// mux.HandleFunc("/editSrvConfiguration/", application.EditSrvConfigurationHandler)
 	// mux.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
-	// mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
+	mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
 
 	mux.HandleFunc("/listSvcDataMap/", application.ListSvcDataMapHandler)
 	mux.HandleFunc("/viewSvcDataMap/", application.ViewSvcDataMapHandler)
@@ -115,8 +115,7 @@ func main() {
 	mux.HandleFunc("/saveSienaBroker/", application.SaveSienaBrokerHandler)
 	mux.HandleFunc("/newSienaBroker/", application.NewSienaBrokerHandler)
 
-	mux.HandleFunc("/listSienaAccount/", application.ListSienaAccountHandler)
-	mux.HandleFunc("/viewSienaAccount/", application.ViewSienaAccountHandler)
+	application.Account_Publish(*mux)
 
 	mux.HandleFunc("/listSienaCurrency/", application.ListSienaCurrencyHandler)
 	mux.HandleFunc("/listSienaCurrencyPair/", application.ListSienaCurrencyPairHandler)

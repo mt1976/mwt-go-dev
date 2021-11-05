@@ -1,7 +1,6 @@
 package application
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"runtime"
@@ -117,7 +116,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//	_, systems, _ := GetSystemStoreList()
 	//	pageAppConfigView.SienaSystems = systems
 
-	fmt.Printf("pageAppConfigView: %v\n", pageAppConfigView)
+	//fmt.Printf("pageAppConfigView: %v\n", pageAppConfigView)
 	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageAppConfigView)

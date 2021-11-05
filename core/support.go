@@ -51,7 +51,7 @@ func GetURLparam(r *http.Request, paramID string) string {
 	//fmt.Println(paramID)
 	//fmt.Println(r.URL)
 	key := r.FormValue(paramID)
-	log.Printf("URL Parameter : %q = %q", paramID, string(key))
+	log.Printf("URL Parameter : Key=%q Value=%q", paramID, string(key))
 	return key
 }
 
@@ -325,7 +325,7 @@ func GetIncomingRequestIP(r *http.Request) string {
 }
 
 func serviceMessage(i string) {
-	msg := "Servicing     : Information %q"
+	msg := "Servicing     : %q"
 	log.Printf(msg, i)
 }
 func serviceMessageAction(i string, act string, id string) {

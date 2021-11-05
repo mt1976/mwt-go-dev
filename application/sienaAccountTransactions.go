@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -95,7 +96,7 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
-	_, account, _ := getSienaAccount(accountID)
+	_, account, _ := dao.Account_GetByID(accountID)
 
 	pageSienaAccountTransactionsList := sienaAccountTransactionListPage{
 		Title:     core.ApplicationProperties["appname"],

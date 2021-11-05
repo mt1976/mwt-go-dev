@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -67,7 +68,7 @@ type sienaCounterpartyPage struct {
 	NoExtensions    int
 	ExtensionsList  []sienaCounterpartyExtensionsItem
 	NoAccounts      int
-	AccountsList    []sienaAccountItem
+	AccountsList    []dm.Account
 	NoTxns          int
 	TxnList         []sienaDealListItem
 	NoSectors       int
@@ -166,7 +167,7 @@ func ViewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 	noExtn, extnList, _ := getSienaCounterpartyExtensionsListByCounterparty(firmID, centreID)
 
-	noAcct, acctList, _ := getSienaAccountListByCounterParty(firmID, centreID)
+	noAcct, acctList, _ := dao.Account_GetListByCounterparty(firmID, centreID)
 
 	noTxns, txnList, _ := getSienaDealListListByCounterparty(firmID, centreID)
 
