@@ -116,7 +116,7 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	searchID := core.GetURLparam(r, "SessionStore")
-	_, returnRecord, _ := core.GetSessionStoreByID(searchID)
+	_, returnRecord, _ := dao.GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
 		Title:     core.ApplicationProperties["appname"],
@@ -172,7 +172,7 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	searchID := core.GetURLparam(r, "SessionStore")
-	_, returnRecord, _ := core.GetSessionStoreByID(searchID)
+	_, returnRecord, _ := dao.GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
 		Title:     core.ApplicationProperties["appname"],

@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -28,7 +29,7 @@ var appSystemStoreSQLGET = "SELECT %s FROM %s.systemStore WHERE id='%s';"
 
 //appSystemStorePage is cheese
 type appSystemStoreListPage struct {
-	UserMenu         []AppMenuItem
+	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -39,7 +40,7 @@ type appSystemStoreListPage struct {
 
 //appSystemStorePage is cheese
 type appSystemStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -84,7 +85,7 @@ type SystemStoreItem struct {
 func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -93,13 +94,13 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []SystemStoreItem
 	noItems, returnList, _ := GetSystemStoreList()
 
 	pageSystemStoreList := appSystemStoreListPage{
-		UserMenu:         GetUserMenu(r),
-		UserRole:         GetUserRole(r),
+		UserMenu:         core.GetUserMenu(r),
+		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Connected Systems",
@@ -107,15 +108,15 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SystemStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -124,46 +125,46 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
 	pageSystemStoreList.PageTitle = core.ApplicationProperties["appname"] + " - " + "Connected System - View"
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 	tmpl := "SystemStoreEdit"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
 	pageSystemStoreList.PageTitle = core.ApplicationProperties["appname"] + " - " + "Connected System - Edit"
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePage {
 
-	searchID := GetURLparam(r, "SystemStore")
+	searchID := core.GetURLparam(r, "SystemStore")
 	_, returnRecord, _ := GetSystemStoreByID(searchID)
 
 	pageSystemStoreList := appSystemStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -186,8 +187,8 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 
 func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -195,7 +196,7 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s SystemStoreItem
 
@@ -222,15 +223,15 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "SystemStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "SystemStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	DeleteSystemStore(searchID)
 	ListSystemStoreHandler(w, r)
 
@@ -238,36 +239,36 @@ func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "SystemStore")
+	searchID := core.GetURLparam(r, "SystemStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banSystemStore(searchID, r)
 	ListSystemStoreHandler(w, r)
 }
 
 func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "SystemStore")
+	searchID := core.GetURLparam(r, "SystemStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateSystemStore(searchID, r)
 	ListSystemStoreHandler(w, r)
 
@@ -275,8 +276,8 @@ func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -285,13 +286,13 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := appSystemStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -299,7 +300,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
@@ -338,7 +339,7 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = GetUserName(req)
+		r.SYSWho = core.GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}

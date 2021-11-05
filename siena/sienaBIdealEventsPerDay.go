@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 )
 
@@ -50,7 +49,7 @@ func fetchSienaBIdealEventsPerDayData(tsql string) (int, []sienaBIdealEventsPerD
 			return -1, nil, sienaBIdealEventsPerDay, err
 		}
 
-		sienaBIdealEventsPerDay.StartInterestDate = application.SqlDateToHTMLDate(sqlBIDEPDStartInterestDate.String)
+		sienaBIdealEventsPerDay.StartInterestDate = core.SqlDateToHTMLDate(sqlBIDEPDStartInterestDate.String)
 		sienaBIdealEventsPerDay.Count = sqlBIDEPDCount.String
 
 		sienaBIdealEventsPerDayList = append(sienaBIdealEventsPerDayList, sienaBIdealEventsPerDay)

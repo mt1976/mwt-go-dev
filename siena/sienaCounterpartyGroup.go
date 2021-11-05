@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaCounterpartyGroupSQL = "Name, 	CountryCode, 	SuperGroup, 	CountryName"
@@ -20,7 +20,7 @@ var sqlCGRPName, sqlCGRPCountryCode, sqlCGRPSuperGroup, sqlCGRPCountryName sql.N
 
 //sienaCounterpartyGroupPage is cheese
 type sienaCounterpartyGroupListPage struct {
-	UserMenu                    []application.AppMenuItem
+	UserMenu                    []dm.AppMenuItem
 	UserRole                    string
 	UserNavi                    string
 	Title                       string
@@ -31,7 +31,7 @@ type sienaCounterpartyGroupListPage struct {
 
 //sienaCounterpartyGroupPage is cheese
 type sienaCounterpartyGroupPage struct {
-	UserMenu    []application.AppMenuItem
+	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -56,8 +56,8 @@ type sienaCounterpartyGroupItem struct {
 
 func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -66,7 +66,7 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyGroupItem
 	noItems, returnList, _ := getSienaCounterpartyGroupList()
@@ -76,20 +76,20 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:                   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
-		UserMenu:                    application.GetUserMenu(r),
-		UserRole:                    application.GetUserRole(r),
+		UserMenu:                    core.GetUserMenu(r),
+		UserRole:                    core.GetUserRole(r),
 		UserNavi:                    "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
 func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -98,9 +98,9 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "SienaCounterpartyGroup")
+	searchID := core.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
@@ -111,20 +111,20 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		SuperGroup:  returnRecord.SuperGroup,
 		CountryName: returnRecord.CountryName,
 		Action:      "",
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
 func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -133,9 +133,9 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "SienaCounterpartyGroup")
+	searchID := core.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
 	_, countryList, _ := getSienaCountryList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
@@ -149,22 +149,22 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName: returnRecord.CountryName,
 		Action:      "",
 		CountryList: countryList,
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		GroupList:   groupList,
 	}
 	//fmt.Println(pageSienaCounterpartyGroupList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }
 
 func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -173,7 +173,7 @@ func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyGroupItem
 
@@ -246,8 +246,8 @@ func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -256,7 +256,7 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList()
@@ -270,15 +270,15 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 		CountryCode: "",
 		SuperGroup:  "",
 		CountryName: "",
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Action:      "NEW",
 		CountryList: countryList,
 		GroupList:   groupList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyGroupList)
 
 }

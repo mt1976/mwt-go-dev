@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -19,7 +19,7 @@ var sqlDLSTSienaReference, sqlDLSTCustomerSienaView, sqlDLSTStatus, sqlDLSTValue
 
 //sienaDealListPage is cheese
 type sienaDealListListPage struct {
-	UserMenu           []application.AppMenuItem
+	UserMenu           []dm.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -30,7 +30,7 @@ type sienaDealListListPage struct {
 
 //sienaDealListPage is cheese
 type sienaDealListPage struct {
-	UserMenu           []application.AppMenuItem
+	UserMenu           []dm.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -130,8 +130,8 @@ type sienaDealListItem struct {
 
 func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -140,14 +140,14 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaDealListItem
 	noItems, returnList, _ := getSienaDealListList()
 
 	pageSienaDealListList := sienaDealListListPage{
-		UserMenu:           application.GetUserMenu(r),
-		UserRole:           application.GetUserRole(r),
+		UserMenu:           core.GetUserMenu(r),
+		UserRole:           core.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              core.ApplicationProperties["appname"],
 		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Transactions",
@@ -155,15 +155,15 @@ func ListSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		SienaDealListList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaDealListList)
 
 }
 
 func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -172,15 +172,15 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, tmpl, "")
+	core.ServiceMessageAction(inUTL, tmpl, "")
 
-	sienaDealListID := application.GetURLparam(r, "SienaRef")
+	sienaDealListID := core.GetURLparam(r, "SienaRef")
 	_, returnRecord, _ := getSienaDealList(sienaDealListID)
 	//fmt.Println("NoSienaItems", noItems, sienaDealListID, returnRecord.Status)
 
 	pageSienaDealListList := sienaDealListPage{
-		UserMenu:           application.GetUserMenu(r),
-		UserRole:           application.GetUserRole(r),
+		UserMenu:           core.GetUserMenu(r),
+		UserRole:           core.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              core.ApplicationProperties["appname"],
 		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Transaction - View",
@@ -229,7 +229,7 @@ func ViewSienaDealListHandler(w http.ResponseWriter, r *http.Request) {
 		PartyName:          returnRecord.PartyName,
 	}
 	//fmt.Println("PAGE", pageSienaDealListList)
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaDealListList)
 
 }
@@ -292,8 +292,8 @@ func fetchSienaDealListData(tsql string) (int, []sienaDealListItem, sienaDealLis
 		sienaDealList.SienaReference = sqlDLSTSienaReference.String
 		sienaDealList.CustomerSienaView = sqlDLSTCustomerSienaView.String
 		sienaDealList.Status = sqlDLSTStatus.String
-		sienaDealList.ValueDate = application.SqlDateToHTMLDate(sqlDLSTValueDate.String)
-		sienaDealList.MaturityDate = application.SqlDateToHTMLDate(sqlDLSTMaturityDate.String)
+		sienaDealList.ValueDate = core.SqlDateToHTMLDate(sqlDLSTValueDate.String)
+		sienaDealList.MaturityDate = core.SqlDateToHTMLDate(sqlDLSTMaturityDate.String)
 		sienaDealList.ContractNumber = sqlDLSTContractNumber.String
 		sienaDealList.ExternalReference = sqlDLSTExternalReference.String
 		sienaDealList.Book = sqlDLSTBook.String
@@ -308,11 +308,11 @@ func fetchSienaDealListData(tsql string) (int, []sienaDealListItem, sienaDealLis
 		sienaDealList.Firm = sqlDLSTFirm.String
 		sienaDealList.DealTypeShortName = sqlDLSTDealTypeShortName.String
 		sienaDealList.FullDealType = sqlDLSTFullDealType.String
-		sienaDealList.TradeDate = application.SqlDateToHTMLDate(sqlDLSTTradeDate.String)
+		sienaDealList.TradeDate = core.SqlDateToHTMLDate(sqlDLSTTradeDate.String)
 		sienaDealList.DealtCcy = sqlDLSTDealtCcy.String
-		sienaDealList.DealtAmount = application.FormatCurrency(sqlDLSTDealtAmount.String, sqlDLSTDealtCcy.String)
+		sienaDealList.DealtAmount = core.FormatCurrency(sqlDLSTDealtAmount.String, sqlDLSTDealtCcy.String)
 		sienaDealList.AgainstCcy = sqlDLSTAgainstCcy.String
-		sienaDealList.AgainstAmount = application.FormatCurrency(sqlDLSTAgainstAmount.String, sqlDLSTAgainstCcy.String)
+		sienaDealList.AgainstAmount = core.FormatCurrency(sqlDLSTAgainstAmount.String, sqlDLSTAgainstCcy.String)
 		sienaDealList.AllInRate = sqlDLSTAllInRate.String
 		sienaDealList.MktRate = sqlDLSTMktRate.String
 		sienaDealList.SettleCcy = sqlDLSTSettleCcy.String
@@ -325,7 +325,7 @@ func fetchSienaDealListData(tsql string) (int, []sienaDealListItem, sienaDealLis
 		sienaDealList.CCYPair = sqlDLSTCCYPair.String
 		sienaDealList.Instrument = sqlDLSTInstrument.String
 		sienaDealList.PortfolioName = sqlDLSTPortfolioName.String
-		sienaDealList.RVDate = application.SqlDateToHTMLDate(sqlDLSTRVDate.String)
+		sienaDealList.RVDate = core.SqlDateToHTMLDate(sqlDLSTRVDate.String)
 		sienaDealList.RVMTM = sqlDLSTRVMTM.String
 		sienaDealList.CounterBook = sqlDLSTCounterBook.String
 		sienaDealList.CounterBookName = sqlDLSTCounterBookName.String

@@ -11,6 +11,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -25,7 +26,7 @@ var appLoaderStoreSQLGET = "SELECT %s FROM %s.loaderStore WHERE id='%s';"
 
 //appLoaderStorePage is cheese
 type appLoaderStoreListPage struct {
-	UserMenu         []AppMenuItem
+	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -36,7 +37,7 @@ type appLoaderStoreListPage struct {
 
 //appLoaderStorePage is cheese
 type appLoaderStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -79,8 +80,8 @@ type LoaderStoreItem struct {
 
 func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -89,13 +90,13 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []LoaderStoreItem
 	noItems, returnList, _ := GetLoaderStoreList()
 
 	pageLoaderStoreList := appLoaderStoreListPage{
-		UserMenu:         GetUserMenu(r),
-		UserRole:         GetUserRole(r),
+		UserMenu:         core.GetUserMenu(r),
+		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Import Run",
@@ -103,15 +104,15 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		LoaderStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageLoaderStoreList)
 
 }
 
 func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -120,17 +121,17 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "LoaderStore")
+	searchID := core.GetURLparam(r, "LoaderStore")
 	_, returnRecord, _ := GetLoaderStoreByID(searchID)
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -150,15 +151,15 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageLoaderStoreList)
 
 }
 
 func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -167,17 +168,17 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "LoaderStore")
+	searchID := core.GetURLparam(r, "LoaderStore")
 	_, returnRecord, _ := GetLoaderStoreByID(searchID)
 	_, instanceList, _ := GetSystemStoreList()
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -201,15 +202,15 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageLoaderStoreList)
 
 }
 
 func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -217,7 +218,7 @@ func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s LoaderStoreItem
 
@@ -244,15 +245,15 @@ func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "LoaderStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "LoaderStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	DeleteLoaderStore(searchID)
 	ListLoaderStoreHandler(w, r)
 
@@ -260,36 +261,36 @@ func DeleteLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "LoaderStore")
+	searchID := core.GetURLparam(r, "LoaderStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banLoaderStore(searchID, r)
 	ListLoaderStoreHandler(w, r)
 }
 
 func ActivateLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "LoaderStore")
+	searchID := core.GetURLparam(r, "LoaderStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateLoaderStore(searchID, r)
 	ListLoaderStoreHandler(w, r)
 
@@ -297,8 +298,8 @@ func ActivateLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -307,13 +308,13 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -323,7 +324,7 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, instanceList, _ := GetSystemStoreList()
 	pageLoaderStoreList.InstanceList = instanceList
 	log.Println(pageLoaderStoreList)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageLoaderStoreList)
 
 }
@@ -364,7 +365,7 @@ func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = GetUserName(req)
+		r.SYSWho = core.GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}

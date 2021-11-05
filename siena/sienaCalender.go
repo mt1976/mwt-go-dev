@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var calenderSQL = "ID, 	Type, 	Date, 	Time, 	ShortName, 	Description"
@@ -17,7 +17,7 @@ var sqlCALID, sqlCALType, sqlCALDate, sqlCALTime, sqlCALShortName, sqlCALDescrip
 
 //calenderPage is cheese
 type calenderListPage struct {
-	UserMenu      []application.AppMenuItem
+	UserMenu      []dm.AppMenuItem
 	UserRole      string
 	UserNavi      string
 	Title         string
@@ -28,7 +28,7 @@ type calenderListPage struct {
 
 //calenderPage is cheese
 type calenderPage struct {
-	UserMenu      []application.AppMenuItem
+	UserMenu      []dm.AppMenuItem
 	UserRole      string
 	UserNavi      string
 	Title         string
@@ -51,8 +51,8 @@ type calenderItem struct {
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -61,7 +61,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []calenderItem
@@ -75,11 +75,11 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Calenders",
 		CalenderCount: noItems,
 		CalenderList:  returnList,
-		UserRole:      application.GetUserRole(r),
+		UserRole:      core.GetUserRole(r),
 		UserNavi:      "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pagecalenderList)
 
 }

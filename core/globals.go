@@ -82,6 +82,7 @@ const (
 	Monitor                  = "Monitor"
 	Dispatcher               = "Dispatcher"
 	Aquirer                  = "Aquirer"
+	Character_MapTo          = "\u21D4"
 )
 
 type Connection struct {

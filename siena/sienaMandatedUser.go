@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaMandatedUserSQL = "MandatedUserKeyCounterpartyFirm, 	MandatedUserKeyCounterpartyCentre, 	MandatedUserKeyUserName, 	TelephoneNumber, 	EmailAddress, 	Active, 	FirstName, 	Surname, 	DateOfBirth, 	Postcode, 	NationalIDNo, 	PassportNo, 	Country, 	CountryName, 	FirmName, 	CentreName, 	Notify, 	SystemUser"
@@ -17,7 +17,7 @@ var sqlMDUMandatedUserKeyCounterpartyFirm, sqlMDUMandatedUserKeyCounterpartyCent
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserListPage struct {
-	UserMenu               []application.AppMenuItem
+	UserMenu               []dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -28,7 +28,7 @@ type sienaMandatedUserListPage struct {
 
 //sienaMandatedUserPage is cheese
 type sienaMandatedUserPage struct {
-	UserMenu                          []application.AppMenuItem
+	UserMenu                          []dm.AppMenuItem
 	UserRole                          string
 	UserNavi                          string
 	Title                             string
@@ -90,8 +90,8 @@ type sienaMandatedUserItem struct {
 
 func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -100,13 +100,13 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []sienaMandatedUserItem
 	noItems, returnList, _ := getSienaMandatedUserList()
 
 	pageSienaMandatedUserList := sienaMandatedUserListPage{
-		UserMenu:               application.GetUserMenu(r),
-		UserRole:               application.GetUserRole(r),
+		UserMenu:               core.GetUserMenu(r),
+		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  core.ApplicationProperties["appname"],
 		PageTitle:              core.ApplicationProperties["appname"] + " - " + "Counterparty Mandates",
@@ -114,15 +114,15 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		SienaMandatedUserList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
 
 func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -131,19 +131,19 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	suID := application.GetURLparam(r, "SU")
-	sfID := application.GetURLparam(r, "SF")
-	scID := application.GetURLparam(r, "SC")
+	suID := core.GetURLparam(r, "SU")
+	sfID := core.GetURLparam(r, "SF")
+	scID := core.GetURLparam(r, "SC")
 	noItems, returnRecord, _ := getSienaMandatedUser(suID, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
-		UserMenu:                          application.GetUserMenu(r),
-		UserRole:                          application.GetUserRole(r),
+		UserMenu:                          core.GetUserMenu(r),
+		UserRole:                          core.GetUserRole(r),
 		UserNavi:                          "NOT USED",
 		Title:                             core.ApplicationProperties["appname"],
 		PageTitle:                         core.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - View",
@@ -170,15 +170,15 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          returnRecord.CBNotify,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
 
 func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -187,11 +187,11 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	suID := application.GetURLparam(r, "SU")
-	sfID := application.GetURLparam(r, "SF")
-	scID := application.GetURLparam(r, "SC")
+	suID := core.GetURLparam(r, "SU")
+	sfID := core.GetURLparam(r, "SF")
+	scID := core.GetURLparam(r, "SC")
 	noItems, returnRecord, _ := getSienaMandatedUser(suID, sfID, scID)
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 	//	fmt.Println(returnList)
@@ -204,8 +204,8 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
-		UserMenu:                          application.GetUserMenu(r),
-		UserRole:                          application.GetUserRole(r),
+		UserMenu:                          core.GetUserMenu(r),
+		UserRole:                          core.GetUserRole(r),
 		UserNavi:                          "NOT USED",
 		Title:                             core.ApplicationProperties["appname"],
 		PageTitle:                         core.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - Edit",
@@ -236,22 +236,22 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(pageSienaMandatedUserList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
 
 func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaMandatedUserItem
 
@@ -374,8 +374,8 @@ func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -384,7 +384,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
@@ -394,8 +394,8 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
-		UserMenu:                          application.GetUserMenu(r),
-		UserRole:                          application.GetUserRole(r),
+		UserMenu:                          core.GetUserMenu(r),
+		UserRole:                          core.GetUserRole(r),
 		UserNavi:                          "NOT USED",
 		Title:                             core.ApplicationProperties["appname"],
 		PageTitle:                         core.ApplicationProperties["appname"] + " - " + "Counterparty Mandate - New",
@@ -426,7 +426,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 		CBNotify:                          "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaMandatedUserList)
 
 }
@@ -495,7 +495,7 @@ func fetchSienaMandatedUserData(tsql string) (int, []sienaMandatedUserItem, sien
 		sienaMandatedUser.Active = sienaYN(sqlMDUActive.String)
 		sienaMandatedUser.FirstName = sqlMDUFirstName.String
 		sienaMandatedUser.Surname = sqlMDUSurname.String
-		sienaMandatedUser.DateOfBirth = application.SqlDateToHTMLDate(sqlMDUDateOfBirth.String)
+		sienaMandatedUser.DateOfBirth = core.SqlDateToHTMLDate(sqlMDUDateOfBirth.String)
 		sienaMandatedUser.Postcode = sqlMDUPostcode.String
 		sienaMandatedUser.NationalIDNo = sqlMDUNationalIDNo.String
 		sienaMandatedUser.PassportNo = sqlMDUPassportNo.String

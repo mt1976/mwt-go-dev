@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaCounterpartyExtensionsSQL = "NameFirm, 	NameCentre, 	BICCode, 	ContactIndicator, 	CoverTrade, 	CustomerCategory, 	FSCSInclusive, 	FeeFactor, 	InactiveStatus, 	Indemnity, 	KnowYourCustomerStatus, 	LERLimitCarveOut, 	LastAmended, 	LastLogin, 	LossGivenDefault, 	MIC, 	ProtectedDepositor, 	RPTCurrency, 	RateTimeout, 	RateValidation, 	Registered, 	RegulatoryCategory, 	SecuredSettlement, 	SettlementLimitCarveOut, 	SortCode, 	Training, 	TrainingCode, 	TrainingReceived, 	Unencumbered, 	LEIExpiryDate, 	MIFIDReviewDate, 	GDPRReviewDate, 	DelegatedReporting, 	BOReconcile, 	MIFIDReportableDealsAllowed, 	SignedInvestmentAgreement, 	AppropriatenessAssessment, 	FinancialCounterparty, 	Collateralisation, 	PortfolioCode, 	ReconciliationLetterFrequency, 	DirectDealing"
@@ -21,7 +21,7 @@ var sqlCPEXNameFirm, sqlCPEXNameCentre, sqlCPEXBICCode, sqlCPEXContactIndicator,
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsListPage struct {
-	UserMenu                         []application.AppMenuItem
+	UserMenu                         []dm.AppMenuItem
 	UserRole                         string
 	UserNavi                         string
 	Title                            string
@@ -32,7 +32,7 @@ type sienaCounterpartyExtensionsListPage struct {
 
 //sienaCounterpartyExtensionsPage is cheese
 type sienaCounterpartyExtensionsPage struct {
-	UserMenu                      []application.AppMenuItem
+	UserMenu                      []dm.AppMenuItem
 	UserRole                      string
 	UserNavi                      string
 	Title                         string
@@ -133,8 +133,8 @@ type sienaCounterpartyExtensionsItem struct {
 
 func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -143,14 +143,14 @@ func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyExtensionsItem
 	noItems, returnList, _ := getSienaCounterpartyExtensionsList()
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsListPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information",
@@ -159,15 +159,15 @@ func ListSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		SienaCounterpartyExtensionsList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
 func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -176,18 +176,18 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//var returnList []sienaCounterpartyExtensionsItem
-	suID := application.GetURLparam(r, "SU")
-	sfID := application.GetURLparam(r, "SF")
-	scID := application.GetURLparam(r, "SC")
+	suID := core.GetURLparam(r, "SU")
+	sfID := core.GetURLparam(r, "SF")
+	scID := core.GetURLparam(r, "SC")
 	noItems, returnRecord, _ := getSienaCounterpartyExtensions(sfID, scID)
 	fmt.Println("NoSienaItems", noItems, suID, sfID, scID)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
-		UserMenu:                      application.GetUserMenu(r),
-		UserRole:                      application.GetUserRole(r),
+		UserMenu:                      core.GetUserMenu(r),
+		UserRole:                      core.GetUserRole(r),
 		UserNavi:                      "NOT USED",
 		Title:                         core.ApplicationProperties["appname"],
 		PageTitle:                     core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - View",
@@ -236,15 +236,15 @@ func ViewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 		Action:                        "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
 func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -253,11 +253,11 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//var returnList []sienaCounterpartyExtensionsItem
-	sfID := application.GetURLparam(r, "SienaFirm")
-	scID := application.GetURLparam(r, "SienaCentre")
+	sfID := core.GetURLparam(r, "SienaFirm")
+	scID := core.GetURLparam(r, "SienaCentre")
 	noItems, returnRecord, _ := getSienaCounterpartyExtensions(sfID, scID)
 	fmt.Println("NoSienaItems", noItems, sfID, scID)
 
@@ -266,8 +266,8 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
-		UserMenu:                      application.GetUserMenu(r),
-		UserRole:                      application.GetUserRole(r),
+		UserMenu:                      core.GetUserMenu(r),
+		UserRole:                      core.GetUserRole(r),
 		UserNavi:                      "NOT USED",
 		Title:                         core.ApplicationProperties["appname"],
 		PageTitle:                     core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - Edit",
@@ -319,15 +319,15 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	fmt.Println(pageSienaCounterpartyExtensionsList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
 
 func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -336,7 +336,7 @@ func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyExtensionsItem
 
@@ -445,8 +445,8 @@ func SaveSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 
 func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -455,13 +455,13 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
-		UserMenu:                      application.GetUserMenu(r),
-		UserRole:                      application.GetUserRole(r),
+		UserMenu:                      core.GetUserMenu(r),
+		UserRole:                      core.GetUserRole(r),
 		UserNavi:                      "NOT USED",
 		Title:                         core.ApplicationProperties["appname"],
 		PageTitle:                     core.ApplicationProperties["appname"] + " - " + "Counterparty Additional Information - New",
@@ -510,7 +510,7 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 		DirectDealing:                 "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyExtensionsList)
 
 }
@@ -599,9 +599,9 @@ func fetchSienaCounterpartyExtensionsData(tsql string) (int, []sienaCounterparty
 		sienaCounterpartyExtensions.TrainingCode = sqlCPEXTrainingCode.String
 		sienaCounterpartyExtensions.TrainingReceived = sienaYN(sqlCPEXTrainingReceived.String)
 		sienaCounterpartyExtensions.Unencumbered = sqlCPEXUnencumbered.String
-		sienaCounterpartyExtensions.LEIExpiryDate = application.SqlDateToHTMLDate(sqlCPEXLEIExpiryDate.String)
-		sienaCounterpartyExtensions.MIFIDReviewDate = application.SqlDateToHTMLDate(sqlCPEXMIFIDReviewDate.String)
-		sienaCounterpartyExtensions.GDPRReviewDate = application.SqlDateToHTMLDate(sqlCPEXGDPRReviewDate.String)
+		sienaCounterpartyExtensions.LEIExpiryDate = core.SqlDateToHTMLDate(sqlCPEXLEIExpiryDate.String)
+		sienaCounterpartyExtensions.MIFIDReviewDate = core.SqlDateToHTMLDate(sqlCPEXMIFIDReviewDate.String)
+		sienaCounterpartyExtensions.GDPRReviewDate = core.SqlDateToHTMLDate(sqlCPEXGDPRReviewDate.String)
 		sienaCounterpartyExtensions.DelegatedReporting = sqlCPEXDelegatedReporting.String
 		sienaCounterpartyExtensions.BOReconcile = sqlCPEXBOReconcile.String
 		sienaCounterpartyExtensions.MIFIDReportableDealsAllowed = sqlCPEXMIFIDReportableDealsAllowed.String

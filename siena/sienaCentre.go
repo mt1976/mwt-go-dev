@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaCentreSQL = "Code, 	Name, 	Country, 	CountryName"
@@ -20,7 +20,7 @@ var sqlCENTCode, sqlCENTName, sqlCENTCountry, sqlCENTCountryName sql.NullString
 
 //sienaCentrePage is cheese
 type sienaCentreListPage struct {
-	UserMenu         []application.AppMenuItem
+	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -31,7 +31,7 @@ type sienaCentreListPage struct {
 
 //sienaCentrePage is cheese
 type sienaCentrePage struct {
-	UserMenu    []application.AppMenuItem
+	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -56,8 +56,8 @@ type sienaCentreItem struct {
 
 func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -66,7 +66,7 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCentreItem
 	noItems, returnList, _ := getSienaCentreList()
@@ -79,20 +79,20 @@ func ListSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Centers",
 		SienaCentreCount: noItems,
 		SienaCentreList:  returnList,
-		UserMenu:         application.GetUserMenu(r),
-		UserRole:         application.GetUserRole(r),
+		UserMenu:         core.GetUserMenu(r),
+		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -101,10 +101,10 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaCentreItem
-	searchID := application.GetURLparam(r, "SienaCentre")
+	searchID := core.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCentre(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -119,20 +119,20 @@ func ViewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		Country:     returnRecord.Country,
 		CountryName: returnRecord.CountryName,
 		Action:      "",
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -141,8 +141,8 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
-	searchID := application.GetURLparam(r, "SienaCentre")
+	core.ServiceMessage(inUTL)
+	searchID := core.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCentre(searchID)
 	_, countryList, _ := getSienaCountryList()
 
@@ -158,21 +158,21 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		CountryName: returnRecord.CountryName,
 		Action:      "",
 		CountryList: countryList,
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 	}
 	//fmt.Println(pageSienaCentreList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCentreList)
 
 }
 
 func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -181,7 +181,7 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCentreItem
 
@@ -254,8 +254,8 @@ func SaveSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -264,7 +264,7 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
@@ -277,14 +277,14 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 		Code:        "",
 		Name:        "",
 		Country:     "",
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Action:      "NEW",
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCentreList)
 
 }

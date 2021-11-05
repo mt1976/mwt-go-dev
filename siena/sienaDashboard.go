@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"strconv"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 //sienaDashboardPage is cheese
 type sienaDashboardPage struct {
-	UserMenu          []application.AppMenuItem
+	UserMenu          []dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string
@@ -31,8 +31,8 @@ type sienaDashboardPage struct {
 
 func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -41,7 +41,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	noCps, _, _ := getSienaCounterpartyList()
 	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList()
@@ -62,8 +62,8 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	p := sienaDashboardPage{
-		UserMenu:          application.GetUserMenu(r),
-		UserRole:          application.GetUserRole(r),
+		UserMenu:          core.GetUserMenu(r),
+		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
 		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Dashboard",
@@ -80,7 +80,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(p)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, p)
 
 }

@@ -12,6 +12,7 @@ import (
 	"github.com/mt1976/common"
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	tools "github.com/mt1976/mwtgostringtools"
 	cron "github.com/robfig/cron/v3"
@@ -54,7 +55,7 @@ func RatesFXSpot_Run() {
 	var message string
 	/// CONTENT STARTS
 
-	_, cacheList, err := application.GetCacheStoreListByOBJECT("CurrencyPair")
+	_, cacheList, err := dao.DataCache_GetListByObject("CurrencyPair")
 	if err != nil {
 		log.Println(err.Error())
 	}

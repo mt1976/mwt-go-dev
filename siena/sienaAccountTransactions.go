@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -17,7 +17,7 @@ var sqlACTXSienaReference, sqlACTXLegNo, sqlACTXMMLegNo, sqlACTXNarrative, sqlAC
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionListPage struct {
-	UserMenu                     []application.AppMenuItem
+	UserMenu                     []dm.AppMenuItem
 	UserRole                     string
 	UserNavi                     string
 	Title                        string
@@ -30,7 +30,7 @@ type sienaAccountTransactionListPage struct {
 
 //sienaAccountTransactionsPage is cheese
 type sienaAccountTransactionPage struct {
-	UserMenu                []application.AppMenuItem
+	UserMenu                []dm.AppMenuItem
 	UserRole                string
 	UserNavi                string
 	Title                   string
@@ -76,8 +76,8 @@ type sienaAccountTransactionItem struct {
 
 func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -86,11 +86,11 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountTransactionItem
-	accountID := application.GetURLparam(r, "SienaAccountID")
-	accountCCY := application.GetURLparam(r, "CCY")
+	accountID := core.GetURLparam(r, "SienaAccountID")
+	accountCCY := core.GetURLparam(r, "CCY")
 	noItems, returnList, _ := getSienaAccountTransactionsList(accountID, accountCCY)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
@@ -105,12 +105,12 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 		SienaAccountTransactionList:  returnList,
 		ID:                           account.AccountNumber,
 		Name:                         account.AccountName,
-		UserMenu:                     application.GetUserMenu(r),
-		UserRole:                     application.GetUserRole(r),
+		UserMenu:                     core.GetUserMenu(r),
+		UserRole:                     core.GetUserRole(r),
 		UserNavi:                     "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountTransactionsList)
 
 }
@@ -148,15 +148,15 @@ func fetchSienaAccountTransactionData(tsql string) (int, []sienaAccountTransacti
 		sienaAccountTransaction.LegNo = sqlACTXLegNo.String
 		sienaAccountTransaction.MMLegNo = sqlACTXMMLegNo.String
 		sienaAccountTransaction.Narrative = sqlACTXNarrative.String
-		sienaAccountTransaction.Amount = application.FormatCurrencyDps(sqlACTXAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
-		sienaAccountTransaction.StartInterestDate = application.SqlDateToHTMLDate(sqlACTXStartInterestDate.String)
-		sienaAccountTransaction.EndInterestDate = application.SqlDateToHTMLDate(sqlACTXEndInterestDate.String)
+		sienaAccountTransaction.Amount = core.FormatCurrencyDps(sqlACTXAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
+		sienaAccountTransaction.StartInterestDate = core.SqlDateToHTMLDate(sqlACTXStartInterestDate.String)
+		sienaAccountTransaction.EndInterestDate = core.SqlDateToHTMLDate(sqlACTXEndInterestDate.String)
 		sienaAccountTransaction.Amortisation = sqlACTXAmortisation.String
 		sienaAccountTransaction.InterestAmount = sqlACTXInterestAmount.String
 		sienaAccountTransaction.InterestAction = sqlACTXInterestAction.String
-		sienaAccountTransaction.FixingDate = application.SqlDateToHTMLDate(sqlACTXFixingDate.String)
-		sienaAccountTransaction.InterestCalculationDate = application.SqlDateToHTMLDate(sqlACTXInterestCalculationDate.String)
-		sienaAccountTransaction.AmendmentAmount = application.FormatCurrencyDps(sqlACTXAmendmentAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
+		sienaAccountTransaction.FixingDate = core.SqlDateToHTMLDate(sqlACTXFixingDate.String)
+		sienaAccountTransaction.InterestCalculationDate = core.SqlDateToHTMLDate(sqlACTXInterestCalculationDate.String)
+		sienaAccountTransaction.AmendmentAmount = core.FormatCurrencyDps(sqlACTXAmendmentAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
 		sienaAccountTransaction.DealtCcy = sqlACTXDealtCcy.String
 		sienaAccountTransaction.AmountDp = sqlACTXAmountDp.String
 		sienaAccountTransactionList = append(sienaAccountTransactionList, sienaAccountTransaction)

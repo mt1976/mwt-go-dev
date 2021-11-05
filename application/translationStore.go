@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -28,7 +29,7 @@ var appTranslationStoreSQLGET = "SELECT %s FROM %s.translationStore WHERE id='%s
 
 //appTranslationStorePage is cheese
 type appTranslationStoreListPage struct {
-	UserMenu              []AppMenuItem
+	UserMenu              []dm.AppMenuItem
 	UserRole              string
 	UserNavi              string
 	Title                 string
@@ -39,7 +40,7 @@ type appTranslationStoreListPage struct {
 
 //appTranslationStorePage is cheese
 type appTranslationStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -71,8 +72,8 @@ type appTranslationStoreItem struct {
 
 func ListTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -81,14 +82,14 @@ func ListTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []appTranslationStoreItem
 
 	noItems, returnList, _ := GetTranslationStoreList(core.ApplicationDB)
 
 	pageTranslationStoreList := appTranslationStoreListPage{
-		UserMenu:              GetUserMenu(r),
-		UserRole:              GetUserRole(r),
+		UserMenu:              core.GetUserMenu(r),
+		UserRole:              core.GetUserRole(r),
 		UserNavi:              "NOT USED",
 		Title:                 core.ApplicationProperties["appname"],
 		PageTitle:             core.ApplicationProperties["appname"] + " - " + "System Translation Translation",
@@ -96,15 +97,15 @@ func ListTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 		TranslationStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageTranslationStoreList)
 
 }
 
 func ViewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -113,17 +114,17 @@ func ViewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "TranslationStore")
+	searchID := core.GetURLparam(r, "TranslationStore")
 	_, returnRecord, _ := GetTranslationStoreByID(searchID)
 
 	pageCredentialStoreList := appTranslationStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Translation Translation - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -139,15 +140,15 @@ func ViewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func EditTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -156,16 +157,16 @@ func EditTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "TranslationStore")
+	searchID := core.GetURLparam(r, "TranslationStore")
 	_, returnRecord, _ := GetTranslationStoreByID(searchID)
 
 	pageCredentialStoreList := appTranslationStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Translation Translation - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -181,21 +182,21 @@ func EditTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func SaveTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appTranslationStoreItem
 
@@ -218,15 +219,15 @@ func SaveTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "TranslationStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "TranslationStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteTranslationStore(searchID)
 	ListTranslationStoreHandler(w, r)
 
@@ -234,36 +235,36 @@ func DeleteTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "TranslationStore")
+	searchID := core.GetURLparam(r, "TranslationStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banTranslationStore(searchID, r)
 	ListTranslationStoreHandler(w, r)
 }
 
 func ActivateTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "TranslationStore")
+	searchID := core.GetURLparam(r, "TranslationStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateTranslationStore(searchID, r)
 	ListTranslationStoreHandler(w, r)
 
@@ -271,8 +272,8 @@ func ActivateTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -281,13 +282,13 @@ func NewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appTranslationStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Translation Translation - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -295,7 +296,7 @@ func NewTranslationStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -316,7 +317,7 @@ func GetTranslationStoreByID(id string) (int, appTranslationStoreItem, error) {
 
 func putTranslationStore(r appTranslationStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	userID := GetUserName(req)
+	userID := core.GetUserName(req)
 	putTranslationStoreUser(r, userID)
 }
 
@@ -463,7 +464,7 @@ func GetTranslation(class string, message string) string {
 func getTranslationStoreID(class string, message string) string {
 	var translationStoreID string
 	message = strings.ReplaceAll(message, " ", "-")
-	message = RemoveSpecialChars(message)
+	message = core.RemoveSpecialChars(message)
 	translationStoreID = class + core.IDSep + message
 	return translationStoreID
 }

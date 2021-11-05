@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -28,7 +29,7 @@ var appNISelectedStoreSQLGET = "SELECT %s FROM %s.niSelectedStore WHERE id='%s';
 
 //appNISelectedStorePage is cheese
 type appNISelectedStoreListPage struct {
-	UserMenu             []AppMenuItem
+	UserMenu             []dm.AppMenuItem
 	UserRole             string
 	UserNavi             string
 	Title                string
@@ -39,7 +40,7 @@ type appNISelectedStoreListPage struct {
 
 //appNISelectedStorePage is cheese
 type appNISelectedStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -65,8 +66,8 @@ type AppNISelectedStoreItem struct {
 
 func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -75,14 +76,14 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []AppNISelectedStoreItem
 
 	noItems, returnList, _ := GetNISelectedStoreList(core.ApplicationDB)
 
 	pageNISelectedStoreList := appNISelectedStoreListPage{
-		UserMenu:             GetUserMenu(r),
-		UserRole:             GetUserRole(r),
+		UserMenu:             core.GetUserMenu(r),
+		UserRole:             core.GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                core.ApplicationProperties["appname"],
 		PageTitle:            core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts",
@@ -90,15 +91,15 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		NISelectedStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageNISelectedStoreList)
 
 }
 
 func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -107,17 +108,17 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "NISelectedStore")
+	searchID := core.GetURLparam(r, "NISelectedStore")
 	_, returnRecord, _ := GetNISelectedStoreByID(searchID)
 
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -130,15 +131,15 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -147,16 +148,16 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "NISelectedStore")
+	searchID := core.GetURLparam(r, "NISelectedStore")
 	_, returnRecord, _ := GetNISelectedStoreByID(searchID)
 
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -169,21 +170,21 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func SaveNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s AppNISelectedStoreItem
 
@@ -203,15 +204,15 @@ func SaveNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "NISelectedStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "NISelectedStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteNISelectedStore(searchID)
 	ListNISelectedStoreHandler(w, r)
 
@@ -219,36 +220,36 @@ func DeleteNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func SelectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "NISelectedStore")
+	searchID := core.GetURLparam(r, "NISelectedStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banNISelectedStore(searchID, r)
 	ListNISelectedStoreHandler(w, r)
 }
 
 func DeselectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "NISelectedStore")
+	searchID := core.GetURLparam(r, "NISelectedStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateNISelectedStore(searchID, r)
 	ListNISelectedStoreHandler(w, r)
 
@@ -256,8 +257,8 @@ func DeselectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -266,13 +267,13 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -280,7 +281,7 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -301,7 +302,7 @@ func GetNISelectedStoreByID(id string) (int, AppNISelectedStoreItem, error) {
 
 func putNISelectedStore(r AppNISelectedStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	userID := GetUserName(req)
+	userID := core.GetUserName(req)
 	putNISelectedStoreUser(r, userID)
 }
 

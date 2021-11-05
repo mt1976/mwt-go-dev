@@ -10,6 +10,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -17,7 +18,7 @@ var sqlScheduleStoreId, sqlScheduleStoreName, sqlScheduleStoreDescription, sqlSc
 
 //appScheduleStorePage is cheese
 type appScheduleStoreListPage struct {
-	UserMenu           []AppMenuItem
+	UserMenu           []dm.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -28,7 +29,7 @@ type appScheduleStoreListPage struct {
 
 //appScheduleStorePage is cheese
 type appScheduleStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -71,10 +72,10 @@ type appScheduleStoreItem struct {
 	HumanSchedule string
 }
 
-var dsSchedule core.DataStoreMessages
+var dsSchedule dm.DataStoreMessages
 
 func init() {
-	dsSchedule = core.DataStoreMessages{
+	dsSchedule = dm.DataStoreMessages{
 		Table: "scheduleStore",
 		Columns: "id, 	name, 	description, 	schedule, 	started, 	lastrun, 	message, 	_created, 	_who, 	_host, 	_updated, type",
 		Insert: "INSERT INTO %s.scheduleStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
@@ -86,8 +87,8 @@ func init() {
 
 func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -96,15 +97,15 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []appScheduleStoreItem
 
 	noItems, returnList, _ := GetScheduleStoreList()
 
 	pageScheduleStoreList := appScheduleStoreListPage{
-		UserMenu:           GetUserMenu(r),
-		UserRole:           GetUserRole(r),
+		UserMenu:           core.GetUserMenu(r),
+		UserRole:           core.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              core.ApplicationProperties["appname"],
 		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Scheduler",
@@ -112,15 +113,15 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		ScheduleStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageScheduleStoreList)
 
 }
 
 func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -129,16 +130,16 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
-	searchID := GetURLparam(r, "ScheduleStore")
+	core.ServiceMessage(inUTL)
+	searchID := core.GetURLparam(r, "ScheduleStore")
 	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Schedule - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -160,15 +161,15 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -177,15 +178,15 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
-	searchID := GetURLparam(r, "ScheduleStore")
+	core.ServiceMessage(inUTL)
+	searchID := core.GetURLparam(r, "ScheduleStore")
 	_, returnRecord, _ := GetScheduleStoreByID(searchID)
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Scheduler - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -207,21 +208,21 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appScheduleStoreItem
 
@@ -248,15 +249,15 @@ func SaveScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "ScheduleStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "ScheduleStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteScheduleStore(searchID)
 	ListScheduleStoreHandler(w, r)
 
@@ -264,36 +265,36 @@ func DeleteScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "ScheduleStore")
+	searchID := core.GetURLparam(r, "ScheduleStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banScheduleStore(searchID)
 	ListScheduleStoreHandler(w, r)
 }
 
 func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "ScheduleStore")
+	searchID := core.GetURLparam(r, "ScheduleStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateScheduleStore(searchID)
 	ListScheduleStoreHandler(w, r)
 
@@ -301,8 +302,8 @@ func ActivateScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -311,13 +312,13 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Scheduler - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -325,7 +326,7 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -453,6 +454,6 @@ func newScheduleStoreID() string {
 	return id
 }
 
-func PostSchedule(sched core.JobDefinition) {
+func PostSchedule(sched dm.JobDefinition) {
 	RegisterSchedule(sched)
 }

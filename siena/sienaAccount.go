@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"strings"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaAccountSQL = "SienaReference, 	CustomerSienaView, 	SienaCommonRef, 	Status, 	StartDate, 	MaturityDate, 	ContractNumber, 	ExternalReference, 	CCY, 	Book, 	MandatedUser, 	BackOfficeNotes, 	CashBalance, 	AccountNumber, 	AccountName, 	LedgerBalance, 	Portfolio, 	AgreementId, 	BackOfficeRefNo, 	PaymentSystemSienaView, 	ISIN, 	UTI, 	CCYName, 	BookName, 	PortfolioName, 	Centre, 	Firm, 	CCYDp"
@@ -17,7 +17,7 @@ var sqlACCTSienaReference, sqlACCTCustomerSienaView, sqlACCTSienaCommonRef, sqlA
 
 //sienaAccountPage is cheese
 type sienaAccountListPage struct {
-	UserMenu          []application.AppMenuItem
+	UserMenu          []dm.AppMenuItem
 	Title             string
 	PageTitle         string
 	SienaAccountCount int
@@ -28,7 +28,7 @@ type sienaAccountListPage struct {
 
 //sienaAccountPage is cheese
 type sienaAccountPage struct {
-	UserMenu               []application.AppMenuItem
+	UserMenu               []dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -102,8 +102,8 @@ type sienaAccountItem struct {
 
 func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -112,7 +112,7 @@ func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountItem
 	noItems, returnList, _ := getSienaAccountList()
@@ -125,20 +125,20 @@ func ListSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Accounts",
 		SienaAccountCount: noItems,
 		SienaAccountList:  returnList,
-		UserMenu:          application.GetUserMenu(r),
-		UserRole:          application.GetUserRole(r),
+		UserMenu:          core.GetUserMenu(r),
+		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -147,17 +147,17 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "SienaAccountID")
+	searchID := core.GetURLparam(r, "SienaAccountID")
 	_, returnRecord, _ := getSienaAccount(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
 	pageSienaAccountList := sienaAccountPage{
-		UserMenu:               application.GetUserMenu(r),
-		UserRole:               application.GetUserRole(r),
+		UserMenu:               core.GetUserMenu(r),
+		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  core.ApplicationProperties["appname"],
 		PageTitle:              core.ApplicationProperties["appname"] + " - " + "Account - View",
@@ -193,15 +193,15 @@ func ViewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		Action:                 "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -210,9 +210,9 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "SienaAccount")
+	searchID := core.GetURLparam(r, "SienaAccount")
 	_, returnRecord, _ := getSienaAccount(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -225,8 +225,8 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaAccountList := sienaAccountPage{
-		UserMenu:               application.GetUserMenu(r),
-		UserRole:               application.GetUserRole(r),
+		UserMenu:               core.GetUserMenu(r),
+		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  core.ApplicationProperties["appname"],
 		PageTitle:              core.ApplicationProperties["appname"] + " - " + "Account - Edit",
@@ -266,15 +266,15 @@ func EditSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaAccountList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
 
 func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -284,7 +284,7 @@ func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	//	var item sienaAccountItem
 
@@ -294,8 +294,8 @@ func SaveSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -304,15 +304,15 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList()
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaAccountList := sienaAccountPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Account - New",
@@ -321,7 +321,7 @@ func NewSienaAccountHandler(w http.ResponseWriter, r *http.Request) {
 		CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountList)
 
 }
@@ -385,18 +385,18 @@ func fetchSienaAccountData(tsql string) (int, []sienaAccountItem, sienaAccountIt
 		sienaAccount.CustomerSienaView = sqlACCTCustomerSienaView.String
 		sienaAccount.SienaCommonRef = sqlACCTSienaCommonRef.String
 		sienaAccount.Status = sqlACCTStatus.String
-		sienaAccount.StartDate = application.SqlDateToHTMLDate(sqlACCTStartDate.String)
-		sienaAccount.MaturityDate = application.SqlDateToHTMLDate(sqlACCTMaturityDate.String)
+		sienaAccount.StartDate = core.SqlDateToHTMLDate(sqlACCTStartDate.String)
+		sienaAccount.MaturityDate = core.SqlDateToHTMLDate(sqlACCTMaturityDate.String)
 		sienaAccount.ContractNumber = sqlACCTContractNumber.String
 		sienaAccount.ExternalReference = sqlACCTExternalReference.String
 		sienaAccount.CCY = sqlACCTCCY.String
 		sienaAccount.Book = sqlACCTBook.String
 		sienaAccount.MandatedUser = sqlACCTMandatedUser.String
 		sienaAccount.BackOfficeNotes = sqlACCTBackOfficeNotes.String
-		sienaAccount.CashBalance = application.FormatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.CashBalance = core.FormatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
 		sienaAccount.AccountNumber = sqlACCTAccountNumber.String
 		sienaAccount.AccountName = sqlACCTAccountName.String
-		sienaAccount.LedgerBalance = application.FormatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
+		sienaAccount.LedgerBalance = core.FormatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
 		sienaAccount.Portfolio = sqlACCTPortfolio.String
 		sienaAccount.AgreementId = sqlACCTAgreementId.String
 		sienaAccount.BackOfficeRefNo = sqlACCTBackOfficeRefNo.String

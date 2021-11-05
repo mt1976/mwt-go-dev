@@ -9,10 +9,10 @@ import (
 // SQLInjectionHander
 func SQLInjectionHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	core.CreateDatabaseObjects(core.SienaDB, core.SienaPropertiesDB, "/config/database/views", false)
-	HomePageHandler(w, r)
+	core.HomePageHandler(w, r)
 }

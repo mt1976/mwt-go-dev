@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaBrokerSQL = "Code, 	Name, 	FullName, 	Contact, 	Address, 	LEI"
@@ -20,7 +20,7 @@ var sqlBRKRCode, sqlBRKRName, sqlBRKRFullName, sqlBRKRContact, sqlBRKRAddress, s
 
 //sienaBrokerPage is cheese
 type sienaBrokerListPage struct {
-	UserMenu         []application.AppMenuItem
+	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -31,7 +31,7 @@ type sienaBrokerListPage struct {
 
 //sienaBrokerPage is cheese
 type sienaBrokerPage struct {
-	UserMenu  []application.AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -58,8 +58,8 @@ type sienaBrokerItem struct {
 
 func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -68,7 +68,7 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBrokerItem
@@ -82,20 +82,20 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Brokers",
 		SienaBrokerCount: noItems,
 		SienaBrokerList:  returnList,
-		UserMenu:         application.GetUserMenu(r),
-		UserRole:         application.GetUserRole(r),
+		UserMenu:         core.GetUserMenu(r),
+		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
 func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -104,11 +104,11 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
-	searchID := application.GetURLparam(r, "SienaBroker")
+	searchID := core.GetURLparam(r, "SienaBroker")
 	_, returnRecord, _ := getSienaBroker(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
 	//fmt.Println(returnList)
@@ -125,22 +125,22 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Address:   returnRecord.Address,
 		LEI:       returnRecord.LEI,
 		Action:    "",
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 	}
 
 	//fmt.Println(pageSienaBrokerList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
 func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -149,11 +149,11 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBrokerItem
-	searchID := application.GetURLparam(r, "SienaBroker")
+	searchID := core.GetURLparam(r, "SienaBroker")
 	_, returnRecord, _ := getSienaBroker(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -171,8 +171,8 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		Contact:   returnRecord.Contact,
 		Address:   returnRecord.Address,
 		LEI:       returnRecord.LEI,
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		//	Country:     returnRecord.Country,
 		//	CountryName: returnRecord.CountryName,
@@ -181,15 +181,15 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaBrokerList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }
 
 func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -198,7 +198,7 @@ func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, " : Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, " : Save", r.FormValue("Id"))
 
 	var item sienaBrokerItem
 
@@ -292,8 +292,8 @@ func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -302,7 +302,7 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSienaBrokerList := sienaBrokerPage{
 		Title:     core.ApplicationProperties["appname"],
@@ -310,8 +310,8 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		//		Country:   "",
 
@@ -319,7 +319,7 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 		//	CountryList: countryList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBrokerList)
 
 }

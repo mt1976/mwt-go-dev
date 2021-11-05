@@ -10,8 +10,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaSectorSQL = "Code, 	Name"
@@ -19,7 +19,7 @@ var sqlSCTCode, sqlSCTName sql.NullString
 
 //sienaSectorPage is cheese
 type sienaSectorListPage struct {
-	UserMenu         []application.AppMenuItem
+	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -30,7 +30,7 @@ type sienaSectorListPage struct {
 
 //sienaSectorPage is cheese
 type sienaSectorPage struct {
-	UserMenu  []application.AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -48,7 +48,9 @@ type sienaSectorItem struct {
 }
 
 func Sector_MUX(mux http.ServeMux) {
-	core.LOG_success("Muxed Siena Sector")
+
+	core.LOG_mux("Siena", "Sector")
+
 	mux.HandleFunc("/listSienaSector/", ListSienaSectorHandler)
 	mux.HandleFunc("/viewSienaSector/", ViewSienaSectorHandler)
 	mux.HandleFunc("/editSienaSector/", EditSienaSectorHandler)
@@ -58,8 +60,8 @@ func Sector_MUX(mux http.ServeMux) {
 
 func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -68,14 +70,14 @@ func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaSectorItem
 	noItems, returnList, _ := getSienaSectorList()
 
 	pageSienaSectorList := sienaSectorListPage{
-		UserMenu:         application.GetUserMenu(r),
-		UserRole:         application.GetUserRole(r),
+		UserMenu:         core.GetUserMenu(r),
+		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Sectors",
@@ -83,15 +85,15 @@ func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		SienaSectorList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -100,15 +102,15 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "sienaSector")
+	searchID := core.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(searchID)
 	fmt.Println("NoSienaCountries", noItems)
 
 	pageSienaSectorList := sienaSectorPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Sectors - View",
@@ -117,15 +119,15 @@ func ViewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -134,15 +136,15 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "sienaSector")
+	searchID := core.GetURLparam(r, "sienaSector")
 	noItems, returnRecord, _ := getSienaSector(searchID)
 	fmt.Println("NoSienaCountries", noItems)
 
 	pageSienaSectorList := sienaSectorPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Sectors - Edit",
@@ -151,15 +153,15 @@ func EditSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }
 
 func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -168,7 +170,7 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaSectorItem
 
@@ -251,8 +253,8 @@ func SaveSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -261,11 +263,11 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSienaSectorList := sienaSectorPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Sector - New",
@@ -274,7 +276,7 @@ func NewSienaSectorHandler(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaSectorList)
 
 }

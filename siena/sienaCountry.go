@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaCountrySQL = "Code, 	Name, 	ShortCode, 	EU_EEA"
@@ -16,7 +16,7 @@ var sqlCNTRCode, sqlCNTRName, sqlCNTRShortCode, sqlCNTREU_EEA sql.NullString
 
 //sienaCountryPage is cheese
 type sienaCountryListPage struct {
-	UserMenu          []application.AppMenuItem
+	UserMenu          []dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string
@@ -27,7 +27,7 @@ type sienaCountryListPage struct {
 
 //sienaCountryPage is cheese
 type sienaCountryPage struct {
-	UserMenu  []application.AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -50,7 +50,7 @@ type sienaCountryItem struct {
 }
 
 func Country_MUX(mux http.ServeMux) {
-	core.LOG_success("Muxed Siena Country")
+	core.LOG_mux("Siena", "Country")
 	mux.HandleFunc("/listSienaCountry/", ListSienaCountryHandler)
 	mux.HandleFunc("/viewSienaCountry/", ViewSienaCountryHandler)
 	mux.HandleFunc("/editSienaCountry/", EditSienaCountryHandler)
@@ -60,8 +60,8 @@ func Country_MUX(mux http.ServeMux) {
 
 func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -70,14 +70,14 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaCountryItem
 	noItems, returnList, _ := getSienaCountryList()
 
 	pageSienaCountryList := sienaCountryListPage{
-		UserMenu:          application.GetUserMenu(r),
-		UserRole:          application.GetUserRole(r),
+		UserMenu:          core.GetUserMenu(r),
+		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
 		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Countries",
@@ -85,15 +85,15 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		SienaCountryList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
 func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -102,9 +102,9 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "sienaCountry")
+	searchID := core.GetURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(searchID)
 	_, ynList, _ := getSienaYNList()
 
@@ -112,8 +112,8 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCountryList := sienaCountryPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Country - View",
@@ -125,15 +125,15 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
 func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -142,15 +142,15 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "sienaCountry")
+	searchID := core.GetURLparam(r, "sienaCountry")
 	_, returnRecord, _ := getSienaCountry(searchID)
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCountryList := sienaCountryPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Country - Edit",
@@ -162,21 +162,21 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }
 
 func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCountryItem
 
@@ -241,8 +241,8 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -251,13 +251,13 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCountryList := sienaCountryPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Country - New",
@@ -269,7 +269,7 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 		YNList:    ynList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
 }

@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaBookSQL = "BookName, 	FullName"
@@ -20,7 +20,7 @@ var sqlBOOKBookName, sqlBOOKFullName sql.NullString
 
 //sienaBookPage is cheese
 type sienaBookListPage struct {
-	UserMenu       []application.AppMenuItem
+	UserMenu       []dm.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -31,7 +31,7 @@ type sienaBookListPage struct {
 
 //sienaBookPage is cheese
 type sienaBookPage struct {
-	UserMenu  []application.AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -51,8 +51,8 @@ type sienaBookItem struct {
 
 func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -61,7 +61,7 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaBookItem
@@ -75,20 +75,20 @@ func ListSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Books",
 		SienaBookCount: noItems,
 		SienaBookList:  returnList,
-		UserMenu:       application.GetUserMenu(r),
-		UserRole:       application.GetUserRole(r),
+		UserMenu:       core.GetUserMenu(r),
+		UserRole:       core.GetUserRole(r),
 		UserNavi:       "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -97,11 +97,11 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBookItem
-	searchID := application.GetURLparam(r, "SienaBook")
+	searchID := core.GetURLparam(r, "SienaBook")
 	_, returnRecord, _ := getSienaBook(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -114,20 +114,20 @@ func ViewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
 		Action:    "",
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -136,11 +136,11 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//fmt.Println(thisConnection.Stats().OpenConnections)
 	//var returnList []sienaBookItem
-	searchID := application.GetURLparam(r, "SienaBook")
+	searchID := core.GetURLparam(r, "SienaBook")
 	_, returnRecord, _ := getSienaBook(thisConnection, searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
@@ -154,22 +154,22 @@ func EditSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 	}
 	//fmt.Println(pageSienaBookList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }
 
 func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -178,7 +178,7 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaBookItem
 
@@ -246,8 +246,8 @@ func SaveSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -256,7 +256,7 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSienaBookList := sienaBookPage{
 		Title:     core.ApplicationProperties["appname"],
@@ -264,13 +264,13 @@ func NewSienaBookHandler(w http.ResponseWriter, r *http.Request) {
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaBookList)
 
 }

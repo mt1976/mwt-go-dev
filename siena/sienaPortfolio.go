@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaPortfolioSQL = "Code, 	Name"
@@ -20,7 +20,7 @@ var sqlPRTCode, sqlPRTName sql.NullString
 
 //sienaPortfolioPage is cheese
 type portfolio_listpage struct {
-	UserMenu            []application.AppMenuItem
+	UserMenu            []dm.AppMenuItem
 	UserRole            string
 	UserNavi            string
 	Title               string
@@ -31,7 +31,7 @@ type portfolio_listpage struct {
 
 //portfolio_page is cheese
 type portfolio_page struct {
-	UserMenu  []application.AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -59,8 +59,8 @@ func Portfolio_MUX(mux http.ServeMux) {
 
 func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -69,7 +69,7 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []portfolio_item
@@ -79,8 +79,8 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := portfolio_listpage{
-		UserMenu:            application.GetUserMenu(r),
-		UserRole:            application.GetUserRole(r),
+		UserMenu:            core.GetUserMenu(r),
+		UserRole:            core.GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               core.ApplicationProperties["appname"],
 		PageTitle:           core.ApplicationProperties["appname"] + " - " + "Bank Portfolios",
@@ -88,15 +88,15 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 		SienaPortfolioList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
 func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -105,19 +105,19 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []portfolio_item
-	searchID := application.GetURLparam(r, "SienaPortfolio")
+	searchID := core.GetURLparam(r, "SienaPortfolio")
 	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := portfolio_page{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bank Portfolio - View",
@@ -126,15 +126,15 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
 func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -143,19 +143,19 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []portfolio_item
-	searchID := application.GetURLparam(r, "SienaPortfolio")
+	searchID := core.GetURLparam(r, "SienaPortfolio")
 	noItems, returnRecord, _ := getSienaPortfolio(thisConnection, searchID)
 	fmt.Println("NoSienaCountries", noItems)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
 	pageSienaPortfolioList := portfolio_page{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bank Portfolio - Edit",
@@ -164,15 +164,15 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		Name:      returnRecord.Name,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }
 
 func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -181,7 +181,7 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item portfolio_item
 
@@ -245,8 +245,8 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -255,11 +255,11 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSienaPortfolioList := portfolio_page{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bank Portfolio - New",
@@ -268,7 +268,7 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		Name:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaPortfolioList)
 
 }

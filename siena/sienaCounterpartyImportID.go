@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaCounterpartyImportIDSQL = "KeyImportID, 	Firm, 	Centre, 	FirmName, 	CentreName, 	KeyOriginID"
@@ -20,7 +20,7 @@ var sqlCPIDKeyImportID, sqlCPIDFirm, sqlCPIDCentre, sqlCPIDFirmName, sqlCPIDCent
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDListPage struct {
-	UserMenu                       []application.AppMenuItem
+	UserMenu                       []dm.AppMenuItem
 	UserRole                       string
 	UserNavi                       string
 	Title                          string
@@ -31,7 +31,7 @@ type sienaCounterpartyImportIDListPage struct {
 
 //sienaCounterpartyImportIDPage is cheese
 type sienaCounterpartyImportIDPage struct {
-	UserMenu    []application.AppMenuItem
+	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -60,8 +60,8 @@ type sienaCounterpartyImportIDItem struct {
 
 func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -70,14 +70,14 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyImportIDItem
 	noItems, returnList, _ := getSienaCounterpartyImportIDList()
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDListPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifiers",
@@ -86,15 +86,15 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		SienaCounterpartyImportIDList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
 func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -103,18 +103,18 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []sienaCounterpartyImportIDItem
-	idImport := application.GetURLparam(r, "II")
-	idOrigin := application.GetURLparam(r, "IO")
+	idImport := core.GetURLparam(r, "II")
+	idOrigin := core.GetURLparam(r, "IO")
 	noItems, returnRecord, _ := getSienaCounterpartyImportID(idImport, idOrigin)
 	fmt.Println("NoSienaItems", noItems, idImport, idOrigin)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifier - View",
@@ -128,15 +128,15 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
 func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -145,11 +145,11 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaCounterpartyImportIDItem
-	idImport := application.GetURLparam(r, "II")
-	idOrigin := application.GetURLparam(r, "IO")
+	idImport := core.GetURLparam(r, "II")
+	idOrigin := core.GetURLparam(r, "IO")
 	noItems, returnRecord, _ := getSienaCounterpartyImportID(idImport, idOrigin)
 	fmt.Println("NoSienaItems", noItems, idImport, idOrigin)
 	fmt.Println(returnList)
@@ -158,8 +158,8 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	//fmt.Println(displayList)
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifier - Edit",
@@ -174,15 +174,15 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 	}
 	fmt.Println(pageSienaCounterpartyImportIDList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }
 
 func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -191,7 +191,7 @@ func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCounterpartyImportIDItem
 
@@ -268,8 +268,8 @@ func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 
 func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -278,13 +278,13 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Import Identifier - New",
@@ -299,7 +299,7 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 		Action: "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCounterpartyImportIDList)
 
 }

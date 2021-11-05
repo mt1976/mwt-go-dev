@@ -13,7 +13,8 @@ import (
 	_ "github.com/denisenkom/go-mssqldb"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	"github.com/mt1976/mwt-go-dev/core"
+	globals "github.com/mt1976/mwt-go-dev/core"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	siena "github.com/mt1976/mwt-go-dev/siena"
 )
@@ -53,28 +54,28 @@ func main() {
 	mux.HandleFunc("/put", putHandler)
 	mux.HandleFunc("/get", getHandler)
 
-	mux.HandleFunc("/", application.LoginHandler)
-	mux.HandleFunc("/login", application.ValidateLoginHandler)
-	mux.HandleFunc("/logout", application.LogoutHandler)
-	mux.HandleFunc("/home", application.HomePageHandler)
-	mux.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
+	mux.HandleFunc("/", core.LoginHandler)
+	mux.HandleFunc("/login", core.ValidateLoginHandler)
+	mux.HandleFunc("/logout", core.LogoutHandler)
+	mux.HandleFunc("/home", core.HomePageHandler)
+	//mux.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
 	mux.HandleFunc("/favicon.ico", application.FaviconHandler)
 	mux.HandleFunc("/favicon-32x32.png", application.Favicon32Handler)
 	mux.HandleFunc("/site.webmanifest", application.FaviconManifestHandler)
 	mux.HandleFunc("/favicon-16x16.png", application.Favicon16Handler)
 	mux.HandleFunc("/browserconfig.xml", application.FaviconBrowserConfigHandler)
-	mux.HandleFunc("/listResponses/", application.ListResponsesHandler)
-	mux.HandleFunc("/previewRequest/", application.PreviewRequestHandler)
-	mux.HandleFunc("/executeRequest/", application.ExecuteRequestHandler)
-	mux.HandleFunc("/viewResponse/", application.ViewResponseHandler)
-	mux.HandleFunc("/deleteResponse/", application.DeleteResponseHandler)
+	// mux.HandleFunc("/listResponses/", application.ListResponsesHandler)
+	// mux.HandleFunc("/previewRequest/", application.PreviewRequestHandler)
+	// mux.HandleFunc("/executeRequest/", application.ExecuteRequestHandler)
+	// mux.HandleFunc("/viewResponse/", application.ViewResponseHandler)
+	// mux.HandleFunc("/deleteResponse/", application.DeleteResponseHandler)
 	mux.HandleFunc("/clearQueues/", clearQueuesHandler)
-	mux.HandleFunc("/viewSrvEnvironment/", application.ViewSrvEnvironmentHandler)
-	mux.HandleFunc("/listSrvConfiguration/", application.ListSrvConfigurationHandler)
-	mux.HandleFunc("/viewSrvConfiguration/", application.ViewSrvConfigurationHandler)
-	mux.HandleFunc("/editSrvConfiguration/", application.EditSrvConfigurationHandler)
-	mux.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
-	mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
+	// mux.HandleFunc("/viewSrvEnvironment/", application.ViewSrvEnvironmentHandler)
+	// mux.HandleFunc("/listSrvConfiguration/", application.ListSrvConfigurationHandler)
+	// mux.HandleFunc("/viewSrvConfiguration/", application.ViewSrvConfigurationHandler)
+	// mux.HandleFunc("/editSrvConfiguration/", application.EditSrvConfigurationHandler)
+	// mux.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
+	// mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
 
 	mux.HandleFunc("/listSvcDataMap/", siena.ListSvcDataMapHandler)
 	mux.HandleFunc("/viewSvcDataMap/", siena.ViewSvcDataMapHandler)
@@ -204,7 +205,8 @@ func main() {
 
 	mux.HandleFunc("/injectSQLViews/", application.SQLInjectionHandler)
 
-	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
+	//	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
+	application.DataCache_MUX(*mux)
 
 	mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
 	mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
@@ -310,21 +312,21 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	//requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := application.RemoveContents(globals.ApplicationProperties["deliverpath"])
+	err1 := core.RemoveContents(globals.ApplicationProperties["deliverpath"])
 	if err1 != nil {
 		fmt.Println(err1)
 	}
 	//fmt.Println("recPath", wctProperties["receivepath"])
-	err2 := application.RemoveContents(globals.ApplicationProperties["receivepath"])
+	err2 := core.RemoveContents(globals.ApplicationProperties["receivepath"])
 	if err2 != nil {
 		fmt.Println(err2)
 	}
 	//fmt.Println("procPath", wctProperties["processedpath"])
-	err3 := application.RemoveContents(globals.ApplicationProperties["processedpath"])
+	err3 := core.RemoveContents(globals.ApplicationProperties["processedpath"])
 	if err3 != nil {
 		fmt.Println(err3)
 	}
-	application.HomePageHandler(w, r)
+	core.HomePageHandler(w, r)
 }
 
 // func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {

@@ -11,8 +11,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaCurrencyPairSQL = "CodeMajorCurrencyIsoCode, 	CodeMinorCurrencyIsoCode, 	ReciprocalActive, 	Code, 	MajorName, 	MinorName"
@@ -21,7 +21,7 @@ var sqlCCYPCodeMajorCurrencyIsoCode, sqlCCYPCodeMinorCurrencyIsoCode, sqlCCYPRec
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairListPage struct {
-	UserMenu               []application.AppMenuItem
+	UserMenu               []dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -32,7 +32,7 @@ type sienaCurrencyPairListPage struct {
 
 //sienaCurrencyPairPage is cheese
 type sienaCurrencyPairPage struct {
-	UserMenu                 []application.AppMenuItem
+	UserMenu                 []dm.AppMenuItem
 	UserRole                 string
 	UserNavi                 string
 	Title                    string
@@ -60,8 +60,8 @@ type sienaCurrencyPairItem struct {
 
 func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -70,7 +70,7 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
@@ -80,8 +80,8 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairListPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Currency Pairs",
@@ -90,15 +90,15 @@ func ListSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		SienaCurrencyPairList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -107,19 +107,19 @@ func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
-	searchID := application.GetURLparam(r, "SienaCurrencyPair")
+	searchID := core.GetURLparam(r, "SienaCurrencyPair")
 	noItems, returnRecord, _ := getSienaCurrencyPair(thisConnection, searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
 	fmt.Println(tmpl)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Currency Pair - View",
@@ -130,15 +130,15 @@ func ViewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -147,11 +147,11 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	thisConnection, _ := Connect()
 	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaCurrencyPairItem
-	searchID := application.GetURLparam(r, "SienaCurrencyPair")
+	searchID := core.GetURLparam(r, "SienaCurrencyPair")
 	noItems, returnRecord, _ := getSienaCurrencyPair(thisConnection, searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
 	fmt.Println(returnList)
@@ -160,8 +160,8 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Currency Pair - Edit",
@@ -174,15 +174,15 @@ func EditSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(pageSienaCurrencyPairList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }
 
 func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -191,7 +191,7 @@ func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaCurrencyPairItem
 
@@ -264,8 +264,8 @@ func SaveSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -274,13 +274,13 @@ func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 
 	pageSienaCurrencyPairList := sienaCurrencyPairPage{
-		UserMenu:  application.GetUserMenu(r),
-		UserRole:  application.GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Currency Pair - New",
@@ -291,7 +291,7 @@ func NewSienaCurrencyPairHandler(w http.ResponseWriter, r *http.Request) {
 		Action:    "NEW",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCurrencyPairList)
 
 }

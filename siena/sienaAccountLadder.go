@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -17,7 +17,7 @@ var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBa
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderListPage struct {
-	UserMenu                []application.AppMenuItem
+	UserMenu                []dm.AppMenuItem
 	UserRole                string
 	UserNavi                string
 	Title                   string
@@ -30,7 +30,7 @@ type sienaAccountLadderListPage struct {
 
 //sienaAccountLadderPage is cheese
 type sienaAccountLadderPage struct {
-	UserMenu       []application.AppMenuItem
+	UserMenu       []dm.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -58,8 +58,8 @@ type sienaAccountLadderItem struct {
 
 func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -68,11 +68,11 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	//	fmt.Println(thisConnection.Stats().OpenConnections)
 	var returnList []sienaAccountLadderItem
-	accountID := application.GetURLparam(r, "SienaAccountID")
-	accountCCY := application.GetURLparam(r, "CCY")
+	accountID := core.GetURLparam(r, "SienaAccountID")
+	accountCCY := core.GetURLparam(r, "CCY")
 	noItems, returnList, _ := getSienaAccountLadderList(accountID, accountCCY)
 	//	fmt.Println("NoSienaCountries", noItems)
 	//	fmt.Println(returnList)
@@ -80,8 +80,8 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 	_, account, _ := getSienaAccount(accountID)
 
 	pageSienaAccountLadderList := sienaAccountLadderListPage{
-		UserMenu:                application.GetUserMenu(r),
-		UserRole:                application.GetUserRole(r),
+		UserMenu:                core.GetUserMenu(r),
+		UserRole:                core.GetUserRole(r),
 		UserNavi:                "NOT USED",
 		Title:                   core.ApplicationProperties["appname"],
 		PageTitle:               core.ApplicationProperties["appname"] + " - " + "Account Ladder - View",
@@ -91,7 +91,7 @@ func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
 		Name:                    account.AccountName,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaAccountLadderList)
 
 }
@@ -127,10 +127,10 @@ func fetchSienaAccountLadderData(tsql string) (int, []sienaAccountLadderItem, si
 		}
 
 		sienaAccountLadder.SienaReference = sqlACCLSienaReference.String
-		sienaAccountLadder.BusinessDate = application.SqlDateToHTMLDate(sqlACCLBusinessDate.String)
+		sienaAccountLadder.BusinessDate = core.SqlDateToHTMLDate(sqlACCLBusinessDate.String)
 		sienaAccountLadder.ContractNumber = sqlACCLContractNumber.String
 		sienaAccountLadder.DealtCcy = sqlACCLDealtCcy.String
-		sienaAccountLadder.Balance = application.FormatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
+		sienaAccountLadder.Balance = core.FormatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
 		sienaAccountLadder.AmountDP = sqlACCLAmountDP.String
 		sienaAccountLadderList = append(sienaAccountLadderList, sienaAccountLadder)
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)

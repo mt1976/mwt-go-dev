@@ -11,6 +11,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -25,7 +26,7 @@ var appMessageStoreSQLGET = "SELECT %s FROM %s.messageStore WHERE id='%s';"
 
 //appMessageStorePage is cheese
 type appMessageStoreListPage struct {
-	UserMenu          []AppMenuItem
+	UserMenu          []dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string
@@ -36,7 +37,7 @@ type appMessageStoreListPage struct {
 
 //appMessageStorePage is cheese
 type appMessageStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -65,8 +66,8 @@ type appMessageStoreItem struct {
 
 func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -75,14 +76,14 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []appMessageStoreItem
 
 	noItems, returnList, _ := GetMessageStoreList(core.ApplicationDB)
 
 	pageMessageStoreList := appMessageStoreListPage{
-		UserMenu:          GetUserMenu(r),
-		UserRole:          GetUserRole(r),
+		UserMenu:          core.GetUserMenu(r),
+		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
 		PageTitle:         core.ApplicationProperties["appname"] + " - " + "System Message Translation",
@@ -90,15 +91,15 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		MessageStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageMessageStoreList)
 
 }
 
 func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -107,17 +108,17 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "MessageStore")
+	searchID := core.GetURLparam(r, "MessageStore")
 	_, returnRecord, _ := GetMessageStoreByID(core.ApplicationDB, searchID)
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -131,15 +132,15 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -148,16 +149,16 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "MessageStore")
+	searchID := core.GetURLparam(r, "MessageStore")
 	_, returnRecord, _ := GetMessageStoreByID(core.ApplicationDB, searchID)
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -171,21 +172,21 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s appMessageStoreItem
 
@@ -206,15 +207,15 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "MessageStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "MessageStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteMessageStore(searchID)
 	ListMessageStoreHandler(w, r)
 
@@ -222,36 +223,36 @@ func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "MessageStore")
+	searchID := core.GetURLparam(r, "MessageStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banMessageStore(searchID, r)
 	ListMessageStoreHandler(w, r)
 }
 
 func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "MessageStore")
+	searchID := core.GetURLparam(r, "MessageStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateMessageStore(searchID, r)
 	ListMessageStoreHandler(w, r)
 
@@ -259,8 +260,8 @@ func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -269,13 +270,13 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -283,7 +284,7 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -313,7 +314,7 @@ func putMessageStore(r appMessageStoreItem, req *http.Request) {
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = GetUserName(req)
+		r.SYSWho = core.GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}

@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -29,7 +30,7 @@ var simFundsCheckSQLGET = "SELECT %s FROM %s.fundsCheck WHERE id='%s';"
 */
 //simFundsCheckPage is cheese
 type simFundsCheckListPage struct {
-	UserMenu        []AppMenuItem
+	UserMenu        []dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -40,7 +41,7 @@ type simFundsCheckListPage struct {
 
 //simFundsCheckPage is cheese
 type simFundsCheckPage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -118,8 +119,8 @@ type FundsCheckReponse struct {
 
 func ListFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -128,13 +129,13 @@ func ListFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []FundsCheckItem
 	noItems, returnList, _ := GetFundsCheckList()
 
 	fundsCheckPage := simFundsCheckListPage{
-		UserMenu:        GetUserMenu(r),
-		UserRole:        GetUserRole(r),
+		UserMenu:        core.GetUserMenu(r),
+		UserRole:        core.GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           "Outstanding Request",
 		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Funds Check Approvals",
@@ -142,15 +143,15 @@ func ListFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 		FundsCheckList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 
 }
 
 func ViewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -159,49 +160,49 @@ func ViewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	fundsCheckPage := editViewFundsCheck(w, r)
 	fundsCheckPage.PageTitle = core.ApplicationProperties["appname"] + " - Funds Check - View"
 	fundsCheckPage.Title = "Request Message Detail"
 	//log.Println(fundsCheckPage)
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 
 }
 
 func ActionFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 	tmpl := "FundsCheckAction"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	fundsCheckPage := editViewFundsCheck(w, r)
 	fundsCheckPage.PageTitle = core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Process"
 	fundsCheckPage.Title = "Response Message Detail"
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 
 }
 
 func editViewFundsCheck(w http.ResponseWriter, r *http.Request) simFundsCheckPage {
 
-	searchID := GetURLparam(r, "FundsCheck")
+	searchID := core.GetURLparam(r, "FundsCheck")
 	_, returnRecord, _ := GetFundsCheckByID(searchID)
 
 	fundsCheckPage := simFundsCheckPage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Request",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -217,8 +218,8 @@ func editViewFundsCheck(w http.ResponseWriter, r *http.Request) simFundsCheckPag
 
 func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -226,7 +227,7 @@ func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	thisID := r.FormValue("ID")
 	balance := r.FormValue("Balance")
@@ -266,9 +267,9 @@ func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	deletefrompath := core.SienaProperties["funds_in"]
 
 	log.Printf("Delivery      : %s -> %s", deletefrompath, delivertopath)
-	WriteDataFile(fileName, delivertopath, string(newMsg))
+	core.WriteDataFile(fileName, delivertopath, string(newMsg))
 
-	resp := DeleteDataFile(searchID, deletefrompath)
+	resp := core.DeleteDataFile(searchID, deletefrompath)
 	if resp != 1 {
 		//do nothing
 	}
@@ -278,15 +279,15 @@ func SubmitFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "FundsCheck")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "FundsCheck")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	DeleteFundsCheck(searchID)
 	ListFundsCheckHandler(w, r)
 
@@ -294,8 +295,8 @@ func DeleteFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -304,13 +305,13 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	fundsCheckPage := simFundsCheckPage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -318,7 +319,7 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 
 }

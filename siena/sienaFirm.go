@@ -10,8 +10,8 @@ import (
 	"os"
 
 	"github.com/google/uuid"
-	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 var sienaFirmSQL = "FirmName, 	FullName, 	Country, 	Sector, 	SectorName, 	CountryName"
@@ -19,7 +19,7 @@ var sqlFRMFirmName, sqlFRMFullName, sqlFRMCountry, sqlFRMSector, sqlFRMSectorNam
 
 //sienaFirmPage is cheese
 type sienaFirmListPage struct {
-	UserMenu       []application.AppMenuItem
+	UserMenu       []dm.AppMenuItem
 	UserRole       string
 	UserNavi       string
 	Title          string
@@ -30,7 +30,7 @@ type sienaFirmListPage struct {
 
 //sienaFirmPage is cheese
 type sienaFirmPage struct {
-	UserMenu    []application.AppMenuItem
+	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string
@@ -59,7 +59,7 @@ type sienaFirmItem struct {
 }
 
 func Firm_MUX(mux http.ServeMux) {
-	core.LOG_success("Muxed Siena Firm")
+	core.LOG_mux("Siena", "Firm")
 
 	mux.HandleFunc("/listSienaFirm/", ListSienaFirmHandler)
 	mux.HandleFunc("/viewSienaFirm/", ViewSienaFirmHandler)
@@ -70,8 +70,8 @@ func Firm_MUX(mux http.ServeMux) {
 
 func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -80,14 +80,14 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	var returnList []sienaFirmItem
 	noItems, returnList, _ := getSienaFirmList()
 
 	pageSienaFirmList := sienaFirmListPage{
-		UserMenu:       application.GetUserMenu(r),
-		UserRole:       application.GetUserRole(r),
+		UserMenu:       core.GetUserMenu(r),
+		UserRole:       core.GetUserRole(r),
 		UserNavi:       "NOT USED",
 		Title:          core.ApplicationProperties["appname"],
 		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Firms",
@@ -95,15 +95,15 @@ func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		SienaFirmList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
 func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -112,14 +112,14 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "SienaFirm")
+	searchID := core.GetURLparam(r, "SienaFirm")
 	_, returnRecord, _ := getSienaFirm(searchID)
 
 	pageSienaFirmList := sienaFirmPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Firm - View",
@@ -133,15 +133,15 @@ func ViewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		Action:      "",
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
 func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -150,9 +150,9 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := application.GetURLparam(r, "SienaFirm")
+	searchID := core.GetURLparam(r, "SienaFirm")
 	_, returnRecord, _ := getSienaFirm(searchID)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
@@ -162,8 +162,8 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaFirmList := sienaFirmPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Firm - Edit",
@@ -180,15 +180,15 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageSienaFirmList)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }
 
 func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -197,7 +197,7 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessageAction(inUTL, "Save", "")
+	core.ServiceMessageAction(inUTL, "Save", "")
 
 	var item sienaFirmItem
 
@@ -284,8 +284,8 @@ func SaveSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -294,15 +294,15 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	//Get Country List & Populate and Array of sienaCountryItem Items
 	_, countryList, _ := getSienaCountryList()
 	_, sectorList, _ := getSienaSectorList()
 
 	pageSienaFirmList := sienaFirmPage{
-		UserMenu:    application.GetUserMenu(r),
-		UserRole:    application.GetUserRole(r),
+		UserMenu:    core.GetUserMenu(r),
+		UserRole:    core.GetUserRole(r),
 		UserNavi:    "NOT USED",
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Firm - New",
@@ -316,7 +316,7 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 		SectorList:  sectorList,
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaFirmList)
 
 }

@@ -36,6 +36,10 @@ func LOG_it(w string) {
 	LOG_msg("Information", w)
 }
 
+func LOG_mux(w string, v string) {
+	msg_mux(v + " " + Character_MapTo + " " + w)
+}
+
 func msg_header(s string) {
 	log.Println(ColorWhite + "Information    : " + s + " " + ColorReset)
 	//log.Println(strings.Repeat("-", len(s)))
@@ -46,4 +50,9 @@ func msg_done(s string) {
 func msg_info(what string, value string) {
 	output := fmt.Sprintf("Information    : %s %s", rightPad2Len(what, " ", 25), value)
 	log.Println(ColorCyan + output + ColorReset)
+}
+
+func msg_mux(s string) {
+	log.Println(ColorWhite + "Publish        : " + ColorGreen + s + " " + ColorReset + Tick)
+	//log.Println(strings.Repeat("-", len(s)))
 }

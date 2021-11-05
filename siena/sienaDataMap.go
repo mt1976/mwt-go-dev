@@ -13,11 +13,12 @@ import (
 	"github.com/google/uuid"
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 //SvcDataMapPage is cheese
 type SvcDataMapPage struct {
-	UserMenu        []application.AppMenuItem
+	UserMenu        []dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -68,8 +69,8 @@ type SvcDataMapItem struct {
 
 func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -79,7 +80,7 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	//	requestID := uuid.New()
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	noRows, loaderList, _ := application.GetLoaderStoreList()
 	_, instanceList, _ := application.GetSystemStoreList()
@@ -103,8 +104,8 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:        application.GetUserMenu(r),
-		UserRole:        application.GetUserRole(r),
+		UserMenu:        core.GetUserMenu(r),
+		UserRole:        core.GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           core.ApplicationProperties["appname"],
 		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Data Loaders",
@@ -114,16 +115,16 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= application.GetTemplateID(tmpl,application.GetUserRole(r))
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }
 
 func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -135,8 +136,8 @@ func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	inUTL := r.URL.Path
-	thisID := application.GetURLparam(r, "loaderID")
-	application.ServiceMessage(inUTL)
+	thisID := core.GetURLparam(r, "loaderID")
+	core.ServiceMessage(inUTL)
 	title := core.ApplicationProperties["appname"]
 	var wrkDataMapCols []DataHdr
 	noColumns, wrkLoaderHeadersList, _ := application.GetLoaderMapStoreListByLoader(thisID)
@@ -176,8 +177,8 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:       application.GetUserMenu(r),
-		UserRole:       application.GetUserRole(r),
+		UserMenu:       core.GetUserMenu(r),
+		UserRole:       core.GetUserRole(r),
 		UserNavi:       "NOT USED",
 		Title:          title,
 		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Data Loader - View",
@@ -189,8 +190,8 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 		JSRows:         noRows,
 	}
 
-	application.GetTemplateID(tmpl, application.GetUserRole(r))
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	core.GetTemplateID(tmpl, core.GetUserRole(r))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 }
 
@@ -206,8 +207,8 @@ func getDataListFile(fileID string) string {
 
 func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -218,8 +219,8 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -230,15 +231,15 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 
-	thisID := application.GetURLparam(r, "loaderID")
+	thisID := core.GetURLparam(r, "loaderID")
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	text, _ := getXMLtemplateBody(thisID)
 
 	pageSrvEvironment := SvcDataMapPage{
-		UserMenu:      application.GetUserMenu(r),
-		UserRole:      application.GetUserRole(r),
+		UserMenu:      core.GetUserMenu(r),
+		UserRole:      core.GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         "Title",
 		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Data Loader - View Import XML",
@@ -247,7 +248,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		FullRecord:    html.UnescapeString(text),
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSrvEvironment)
 
 }
@@ -256,7 +257,7 @@ func getXMLtemplateBody(thisID string) (string, error) {
 	path := core.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
-	content, err := application.ReadDataFile(fileName, path)
+	content, err := core.ReadDataFile(fileName, path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -267,14 +268,14 @@ func putXMLtemplateBody(thisID string, content string) int {
 	path := core.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := application.GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
-	status := application.WriteDataFile(fileName, path, content)
+	status := core.WriteDataFile(fileName, path, content)
 	return status
 }
 
 func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -283,9 +284,9 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	thisID := application.GetURLparam(r, "loaderID")
+	thisID := core.GetURLparam(r, "loaderID")
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	title := core.ApplicationProperties["appname"]
 
@@ -293,8 +294,8 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	fullRec, _ := getXMLtemplateBody(thisID)
 
 	pageEditSvcDataMapXML := SvcDataMapPage{
-		UserMenu:      application.GetUserMenu(r),
-		UserRole:      application.GetUserRole(r),
+		UserMenu:      core.GetUserMenu(r),
+		UserRole:      core.GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         title,
 		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Data Loader - Edit XML Template",
@@ -303,7 +304,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		FullRecord:    html.UnescapeString(fullRec),
 	}
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 
 	//fmt.Println("error", err)
 	t.Execute(w, pageEditSvcDataMapXML)
@@ -312,8 +313,8 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -322,7 +323,7 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	tableColumns := r.FormValue("tableColumns")
 	tableRows := r.FormValue("tableRows")
@@ -358,8 +359,8 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -367,7 +368,7 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	body := r.FormValue("pgContent")
 	thisID := r.FormValue("pgid")
@@ -382,8 +383,8 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -392,15 +393,15 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	title := core.ApplicationProperties["appname"]
 
 	_, instanceList, _ := application.GetSystemStoreList()
 
 	pageDM := SvcDataMapPage{
-		UserMenu:     application.GetUserMenu(r),
-		UserRole:     application.GetUserRole(r),
+		UserMenu:     core.GetUserMenu(r),
+		UserRole:     core.GetUserRole(r),
 		UserNavi:     "NOT USED",
 		Title:        title,
 		PageTitle:    core.ApplicationProperties["appname"] + " - " + "Data Loader - New",
@@ -408,15 +409,15 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println("WCT : Page :", pageDM)
 
-	t, _ := template.ParseFiles(application.GetTemplateID(tmpl, application.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageDM)
 
 }
 
 func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -424,7 +425,7 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
-	application.ServiceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	body := r.FormValue("descr")
 	id := r.FormValue("name")
@@ -448,18 +449,18 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	application.ServiceMessage(inUTL)
-	id := application.GetURLparam(r, "loaderID")
+	core.ServiceMessage(inUTL)
+	id := core.GetURLparam(r, "loaderID")
 	path := core.ApplicationProperties["datamaptemplatepath"]
-	status := application.DeleteDataFile(id+".template", path)
+	status := core.DeleteDataFile(id+".template", path)
 	if status != 1 {
 		//do nothing
 	}
@@ -473,15 +474,15 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(application.SessionValidate(w, r)) {
-		application.LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	application.ServiceMessage(inUTL)
-	id := application.GetURLparam(r, "loaderID")
+	core.ServiceMessage(inUTL)
+	id := core.GetURLparam(r, "loaderID")
 
 	_, loader, _ := application.GetLoaderStoreByID(id)
 
@@ -489,7 +490,7 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	//instanceID := loader.Instance
 	//extensionID := loader.Extension
 	//log.Printf("instance id %s %s", instanceID, extensionID)
-	importtemplate, err := application.ReadDataFile(loader.Filename+".template", core.ApplicationProperties["datamaptemplatepath"])
+	importtemplate, err := core.ReadDataFile(loader.Filename+".template", core.ApplicationProperties["datamaptemplatepath"])
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -538,27 +539,27 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 		importtemplate = replaceWildcard(importtemplate, "!hh", today.Format(core.DFhh))
 		importtemplate = replaceWildcard(importtemplate, "!mm", today.Format(core.DFmm))
 		importtemplate = replaceWildcard(importtemplate, "!ss", today.Format(core.DFss))
-		spot := application.CalculateSpotDate(today)
+		spot := core.CalculateSpotDate(today)
 
 		importtemplate = replaceWildcard(importtemplate, "!SPOT", spot.Format(core.DATEFORMATSIENA))
 
-		importtemplate = replaceWildcard(importtemplate, "!1M", application.CalculateTenorDate(today, "1").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!2M", application.CalculateTenorDate(today, "2").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!3M", application.CalculateTenorDate(today, "3").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!4M", application.CalculateTenorDate(today, "4").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!5M", application.CalculateTenorDate(today, "5").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!6M", application.CalculateTenorDate(today, "6").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!7M", application.CalculateTenorDate(today, "7").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!8M", application.CalculateTenorDate(today, "8").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!9M", application.CalculateTenorDate(today, "9").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!10M", application.CalculateTenorDate(today, "10").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!11M", application.CalculateTenorDate(today, "11").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!12M", application.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!1Y", application.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!2Y", application.CalculateTenorDate(today, "23").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!3Y", application.CalculateTenorDate(today, "36").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!5Y", application.CalculateTenorDate(today, "60").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!FDY", application.CalculateFirstDateOfYear(today).Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!1M", core.CalculateTenorDate(today, "1").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!2M", core.CalculateTenorDate(today, "2").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!3M", core.CalculateTenorDate(today, "3").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!4M", core.CalculateTenorDate(today, "4").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!5M", core.CalculateTenorDate(today, "5").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!6M", core.CalculateTenorDate(today, "6").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!7M", core.CalculateTenorDate(today, "7").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!8M", core.CalculateTenorDate(today, "8").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!9M", core.CalculateTenorDate(today, "9").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!10M", core.CalculateTenorDate(today, "10").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!11M", core.CalculateTenorDate(today, "11").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!12M", core.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!1Y", core.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!2Y", core.CalculateTenorDate(today, "23").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!3Y", core.CalculateTenorDate(today, "36").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!5Y", core.CalculateTenorDate(today, "60").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!FDY", core.CalculateFirstDateOfYear(today).Format(core.DATEFORMATSIENA))
 		importtemplate = replaceWildcard(importtemplate, "!SEQ", strconv.Itoa(thisRow))
 		importtemplate = replaceWildcard(importtemplate, "!LEI", "213800APCD7UDNQHOI68")
 
@@ -566,7 +567,7 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 
 		filename := newID + extensionID
 
-		val := application.WriteDataFile(filename, path, importtemplate)
+		val := core.WriteDataFile(filename, path, importtemplate)
 		if val != 0 {
 			//do nothing
 		}
@@ -581,5 +582,5 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func replaceWildcard(orig string, replaceThis string, withThis string) string {
-	return application.ReplaceWildcard(orig, replaceThis, withThis)
+	return core.ReplaceWildcard(orig, replaceThis, withThis)
 }

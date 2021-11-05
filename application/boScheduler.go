@@ -10,9 +10,10 @@ import (
 	"github.com/lnquy/cron"
 	hcron "github.com/lnquy/cron"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
-func RegisterSchedule(thisJob core.JobDefinition) {
+func RegisterSchedule(thisJob dm.JobDefinition) {
 	var s appScheduleStoreItem
 	s.Id = thisJob.ID + core.IDSep + thisJob.Type
 	s.Name = thisJob.Name
@@ -45,7 +46,7 @@ func RegisterSchedule(thisJob core.JobDefinition) {
 	}
 }
 
-func UpdateSchedule(thisJob core.JobDefinition, message string) {
+func UpdateSchedule(thisJob dm.JobDefinition, message string) {
 	scheduleID := thisJob.ID + core.IDSep + thisJob.Type
 	if len(scheduleID) > 1 {
 		_, s, _ := GetScheduleStoreByID(scheduleID)
@@ -53,16 +54,16 @@ func UpdateSchedule(thisJob core.JobDefinition, message string) {
 			s.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 			s.Message = message
 			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
-			Logit("Scheduler", thisMess)
+			core.Logit("Scheduler", thisMess)
 			putScheduleStore(s)
 		} else {
 			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", thisJob.ID, thisJob.ID, message, scheduleID)
-			Logit("Scheduler", thisMess)
+			core.Logit("Scheduler", thisMess)
 			//spew.Dump(s)
 		}
 	} else {
 		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", thisJob.ID, thisJob.Type, message)
-		Logit("Scheduler", thisMess)
+		core.Logit("Scheduler", thisMess)
 	}
 }
 

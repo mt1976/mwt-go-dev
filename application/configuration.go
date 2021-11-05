@@ -6,11 +6,12 @@ import (
 	"strings"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 //AppConfigurationPage is cheese
 type AppConfigurationPage struct {
-	UserMenu               []AppMenuItem
+	UserMenu               []dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -46,8 +47,8 @@ type AppConfigurationPage struct {
 
 func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -55,15 +56,15 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := "ConfigurationView"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	title := core.ApplicationProperties["appname"]
 
 	// Get Data Here
 
 	pageAppConfigView := AppConfigurationPage{
-		UserMenu:               GetUserMenu(r),
-		UserRole:               GetUserRole(r),
+		UserMenu:               core.GetUserMenu(r),
+		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  title,
 		PageTitle:              core.ApplicationProperties["appname"] + " - " + "Application Configuration",
@@ -112,8 +113,8 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageAppConfigView)
 
-	//thisTemplate:= GetTemplateID(tmpl,GetUserRole(r))
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageAppConfigView)
 
 }

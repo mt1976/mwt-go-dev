@@ -13,6 +13,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -31,7 +32,7 @@ var appLSEGiltsDataStoreSQLGET = "SELECT %s FROM %s.niDataView WHERE id='%s';"
 
 //appLSEGiltsDataStorePage is cheese
 type appLSEGiltsDataStoreListPage struct {
-	UserMenu               []AppMenuItem
+	UserMenu               []dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -42,7 +43,7 @@ type appLSEGiltsDataStoreListPage struct {
 
 //appLSEGiltsDataStorePage is cheese
 type appLSEGiltsDataStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -123,8 +124,8 @@ type AppLSEGiltsDataStoreItem struct {
 
 func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -133,14 +134,14 @@ func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []AppLSEGiltsDataStoreItem
 
 	noItems, returnList, _ := GetLSEGiltsDataStoreList(core.ApplicationDB)
 
 	pageLSEGiltsDataStoreList := appLSEGiltsDataStoreListPage{
-		UserMenu:               GetUserMenu(r),
-		UserRole:               GetUserRole(r),
+		UserMenu:               core.GetUserMenu(r),
+		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  core.ApplicationProperties["appname"],
 		PageTitle:              core.ApplicationProperties["appname"] + " - " + "LSE Gilts",
@@ -148,15 +149,15 @@ func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		LSEGiltsDataStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageLSEGiltsDataStoreList)
 
 }
 
 func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -165,17 +166,17 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "LSEGiltsDataStore")
+	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
 	_, returnRecord, _ := GetLSEGiltsDataStoreByID(searchID)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - View",
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -215,15 +216,15 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -232,16 +233,16 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
-	searchID := GetURLparam(r, "LSEGiltsDataStore")
+	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
 	_, returnRecord, _ := GetLSEGiltsDataStoreByID(searchID)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - Edit",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -281,21 +282,21 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
 
 func SaveLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s AppLSEGiltsDataStoreItem
 
@@ -340,15 +341,15 @@ func SaveLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "LSEGiltsDataStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	deleteLSEGiltsDataStore(searchID)
 	ListLSEGiltsDataStoreHandler(w, r)
 
@@ -356,18 +357,18 @@ func DeleteLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func SelectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "LSEGiltsDataStore")
+	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Select", searchID)
+	core.ServiceMessageAction(inUTL, "Select", searchID)
 	var thisRec AppNISelectedStoreItem
 	thisRec.Id = searchID
 	putNISelectedStore(thisRec, r)
@@ -377,18 +378,18 @@ func SelectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeselectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "LSEGiltsDataStore")
+	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Deselect", searchID)
+	core.ServiceMessageAction(inUTL, "Deselect", searchID)
 	//var thisRec AppNISelectedStoreItem
 	//thisRec.Id = searchID
 	deleteNISelectedStore(searchID)
@@ -397,8 +398,8 @@ func DeselectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.LogoutHandler(w, r)
 		return
 	}
 	// Code Continues Below
@@ -407,13 +408,13 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  core.GetUserMenu(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -421,7 +422,7 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
 
 }
@@ -442,7 +443,7 @@ func GetLSEGiltsDataStoreByID(id string) (int, AppLSEGiltsDataStoreItem, error) 
 
 func putLSEGiltsDataStore(r AppLSEGiltsDataStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	userID := GetUserName(req)
+	userID := core.GetUserName(req)
 	putLSEGiltsDataStoreUser(r, userID)
 }
 
