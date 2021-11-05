@@ -85,7 +85,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetDispatchStoreList()
 
 	pageDispatchStoreList := appDispatchStoreListPage{
-		UserMenu:           core.GetUserMenu(r),
+		UserMenu:           UserMenu_Get(r),
 		UserRole:           core.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              core.ApplicationProperties["appname"],
@@ -120,7 +120,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -162,7 +162,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -286,7 +286,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageDispatchStoreList := appDispatchStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

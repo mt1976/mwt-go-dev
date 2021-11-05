@@ -14,10 +14,9 @@ import (
 	_ "github.com/denisenkom/go-mssqldb"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	"github.com/mt1976/mwt-go-dev/core"
+	core "github.com/mt1976/mwt-go-dev/core"
 	globals "github.com/mt1976/mwt-go-dev/core"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
-	siena "github.com/mt1976/mwt-go-dev/siena"
 )
 
 func main() {
@@ -52,13 +51,12 @@ func main() {
 
 	globals.LOG_header("Starting Handlers")
 	mux := http.NewServeMux()
-	mux.HandleFunc("/put", putHandler)
-	mux.HandleFunc("/get", getHandler)
 
+	Main_Publish(*mux)
 	mux.HandleFunc("/", core.LoginHandler)
 	mux.HandleFunc("/login", core.ValidateLoginHandler)
 	mux.HandleFunc("/logout", core.LogoutHandler)
-	mux.HandleFunc("/home", core.HomePageHandler)
+	mux.HandleFunc("/home", application.HomePageHandler)
 	//mux.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
 	mux.HandleFunc("/favicon.ico", application.FaviconHandler)
 	mux.HandleFunc("/favicon-32x32.png", application.Favicon32Handler)
@@ -70,7 +68,7 @@ func main() {
 	// mux.HandleFunc("/executeRequest/", application.ExecuteRequestHandler)
 	// mux.HandleFunc("/viewResponse/", application.ViewResponseHandler)
 	// mux.HandleFunc("/deleteResponse/", application.DeleteResponseHandler)
-	mux.HandleFunc("/clearQueues/", clearQueuesHandler)
+
 	// mux.HandleFunc("/viewSrvEnvironment/", application.ViewSrvEnvironmentHandler)
 	// mux.HandleFunc("/listSrvConfiguration/", application.ListSrvConfigurationHandler)
 	// mux.HandleFunc("/viewSrvConfiguration/", application.ViewSrvConfigurationHandler)
@@ -78,94 +76,94 @@ func main() {
 	// mux.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
 	// mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
 
-	mux.HandleFunc("/listSvcDataMap/", siena.ListSvcDataMapHandler)
-	mux.HandleFunc("/viewSvcDataMap/", siena.ViewSvcDataMapHandler)
-	mux.HandleFunc("/editSvcDataMap/", siena.EditSvcDataMapHandler)
-	mux.HandleFunc("/saveSvcDataMap/", siena.SaveSvcDataMapHandler)
-	mux.HandleFunc("/viewSvcDataMapXML/", siena.ViewSvcDataMapXMLHandler)
-	mux.HandleFunc("/editSvcDataMapXML/", siena.EditSvcDataMapXMLHandler)
-	mux.HandleFunc("/saveSvcDataMapXML/", siena.SaveSvcDataMapXMLHandler)
-	mux.HandleFunc("/newSvcDataMap/", siena.NewSvcDataMapHandler)
-	mux.HandleFunc("/genSvcDataMap/", siena.GenSvcDataMapHandler)
-	mux.HandleFunc("/deleteSvcDataMap/", siena.DeleteSvcDataMapHandler)
+	mux.HandleFunc("/listSvcDataMap/", application.ListSvcDataMapHandler)
+	mux.HandleFunc("/viewSvcDataMap/", application.ViewSvcDataMapHandler)
+	mux.HandleFunc("/editSvcDataMap/", application.EditSvcDataMapHandler)
+	mux.HandleFunc("/saveSvcDataMap/", application.SaveSvcDataMapHandler)
+	mux.HandleFunc("/viewSvcDataMapXML/", application.ViewSvcDataMapXMLHandler)
+	mux.HandleFunc("/editSvcDataMapXML/", application.EditSvcDataMapXMLHandler)
+	mux.HandleFunc("/saveSvcDataMapXML/", application.SaveSvcDataMapXMLHandler)
+	mux.HandleFunc("/newSvcDataMap/", application.NewSvcDataMapHandler)
+	mux.HandleFunc("/genSvcDataMap/", application.GenSvcDataMapHandler)
+	mux.HandleFunc("/deleteSvcDataMap/", application.DeleteSvcDataMapHandler)
 	mux.HandleFunc("/editDataMapColumns/", application.ListLoaderMapStoreHandler)
 	mux.HandleFunc("/editLoaderMapStore/", application.EditLoaderMapStoreHandler)
 	mux.HandleFunc("/saveLoaderMapStore/", application.SaveLoaderMapStoreHandler)
 	mux.HandleFunc("/newLoaderMapStore/", application.NewLoaderMapStoreHandler)
-	mux.HandleFunc("/runLoader/", siena.RunDataLoaderHandler)
+	mux.HandleFunc("/runLoader/", application.RunDataLoaderHandler)
 
-	siena.Country_MUX(*mux)
-	siena.Sector_MUX(*mux)
-	siena.Firm_MUX(*mux)
-	siena.Portfolio_MUX(*mux)
+	application.Country_Publish(*mux)
+	application.Sector_Publish(*mux)
+	application.Firm_Publish(*mux)
+	application.Portfolio_Publish(*mux)
 
-	mux.HandleFunc("/listSienaCentre/", siena.ListSienaCentreHandler)
-	mux.HandleFunc("/viewSienaCentre/", siena.ViewSienaCentreHandler)
-	mux.HandleFunc("/editSienaCentre/", siena.EditSienaCentreHandler)
-	mux.HandleFunc("/saveSienaCentre/", siena.SaveSienaCentreHandler)
-	mux.HandleFunc("/newSienaCentre/", siena.NewSienaCentreHandler)
+	mux.HandleFunc("/listSienaCentre/", application.ListSienaCentreHandler)
+	mux.HandleFunc("/viewSienaCentre/", application.ViewSienaCentreHandler)
+	mux.HandleFunc("/editSienaCentre/", application.EditSienaCentreHandler)
+	mux.HandleFunc("/saveSienaCentre/", application.SaveSienaCentreHandler)
+	mux.HandleFunc("/newSienaCentre/", application.NewSienaCentreHandler)
 
-	mux.HandleFunc("/listSienaBook/", siena.ListSienaBookHandler)
-	mux.HandleFunc("/viewSienaBook/", siena.ViewSienaBookHandler)
-	mux.HandleFunc("/editSienaBook/", siena.EditSienaBookHandler)
-	mux.HandleFunc("/saveSienaBook/", siena.SaveSienaBookHandler)
-	mux.HandleFunc("/newSienaBook/", siena.NewSienaBookHandler)
+	mux.HandleFunc("/listSienaBook/", application.ListSienaBookHandler)
+	mux.HandleFunc("/viewSienaBook/", application.ViewSienaBookHandler)
+	mux.HandleFunc("/editSienaBook/", application.EditSienaBookHandler)
+	mux.HandleFunc("/saveSienaBook/", application.SaveSienaBookHandler)
+	mux.HandleFunc("/newSienaBook/", application.NewSienaBookHandler)
 
-	mux.HandleFunc("/listSienaBroker/", siena.ListSienaBrokerHandler)
-	mux.HandleFunc("/viewSienaBroker/", siena.ViewSienaBrokerHandler)
-	mux.HandleFunc("/editSienaBroker/", siena.EditSienaBrokerHandler)
-	mux.HandleFunc("/saveSienaBroker/", siena.SaveSienaBrokerHandler)
-	mux.HandleFunc("/newSienaBroker/", siena.NewSienaBrokerHandler)
+	mux.HandleFunc("/listSienaBroker/", application.ListSienaBrokerHandler)
+	mux.HandleFunc("/viewSienaBroker/", application.ViewSienaBrokerHandler)
+	mux.HandleFunc("/editSienaBroker/", application.EditSienaBrokerHandler)
+	mux.HandleFunc("/saveSienaBroker/", application.SaveSienaBrokerHandler)
+	mux.HandleFunc("/newSienaBroker/", application.NewSienaBrokerHandler)
 
-	mux.HandleFunc("/listSienaAccount/", siena.ListSienaAccountHandler)
-	mux.HandleFunc("/viewSienaAccount/", siena.ViewSienaAccountHandler)
+	mux.HandleFunc("/listSienaAccount/", application.ListSienaAccountHandler)
+	mux.HandleFunc("/viewSienaAccount/", application.ViewSienaAccountHandler)
 
-	mux.HandleFunc("/listSienaCurrency/", siena.ListSienaCurrencyHandler)
-	mux.HandleFunc("/listSienaCurrencyPair/", siena.ListSienaCurrencyPairHandler)
+	mux.HandleFunc("/listSienaCurrency/", application.ListSienaCurrencyHandler)
+	mux.HandleFunc("/listSienaCurrencyPair/", application.ListSienaCurrencyPairHandler)
 
-	mux.HandleFunc("/listSienaMandatedUser/", siena.ListSienaMandatedUserHandler)
-	mux.HandleFunc("/viewSienaMandatedUser/", siena.ViewSienaMandatedUserHandler)
-	mux.HandleFunc("/editSienaMandatedUser/", siena.EditSienaMandatedUserHandler)
-	mux.HandleFunc("/saveSienaMandatedUser/", siena.SaveSienaMandatedUserHandler)
-	mux.HandleFunc("/newSienaMandatedUser/", siena.NewSienaMandatedUserHandler)
+	mux.HandleFunc("/listSienaMandatedUser/", application.ListSienaMandatedUserHandler)
+	mux.HandleFunc("/viewSienaMandatedUser/", application.ViewSienaMandatedUserHandler)
+	mux.HandleFunc("/editSienaMandatedUser/", application.EditSienaMandatedUserHandler)
+	mux.HandleFunc("/saveSienaMandatedUser/", application.SaveSienaMandatedUserHandler)
+	mux.HandleFunc("/newSienaMandatedUser/", application.NewSienaMandatedUserHandler)
 
-	mux.HandleFunc("/listSienaCounterparty/", siena.ListSienaCounterpartyHandler)
-	mux.HandleFunc("/viewSienaCounterparty/", siena.ViewSienaCounterpartyHandler)
-	mux.HandleFunc("/editSienaCounterparty/", siena.EditSienaCounterpartyHandler)
-	mux.HandleFunc("/saveSienaCounterparty/", siena.SaveSienaCounterpartyHandler)
-	mux.HandleFunc("/newSienaCounterparty/", siena.NewSienaCounterpartyHandler)
+	mux.HandleFunc("/listSienaCounterparty/", application.ListSienaCounterpartyHandler)
+	mux.HandleFunc("/viewSienaCounterparty/", application.ViewSienaCounterpartyHandler)
+	mux.HandleFunc("/editSienaCounterparty/", application.EditSienaCounterpartyHandler)
+	mux.HandleFunc("/saveSienaCounterparty/", application.SaveSienaCounterpartyHandler)
+	mux.HandleFunc("/newSienaCounterparty/", application.NewSienaCounterpartyHandler)
 
-	mux.HandleFunc("/editSienaCounterpartyAddress/", siena.EditSienaCounterpartyAddressHandler)
-	mux.HandleFunc("/saveSienaCounterpartyAddress/", siena.SaveSienaCounterpartyAddressHandler)
-	mux.HandleFunc("/editSienaCounterpartyExtensions/", siena.EditSienaCounterpartyExtensionsHandler)
-	mux.HandleFunc("/saveSienaCounterpartyExtensions/", siena.SaveSienaCounterpartyExtensionsHandler)
+	mux.HandleFunc("/editSienaCounterpartyAddress/", application.EditSienaCounterpartyAddressHandler)
+	mux.HandleFunc("/saveSienaCounterpartyAddress/", application.SaveSienaCounterpartyAddressHandler)
+	mux.HandleFunc("/editSienaCounterpartyExtensions/", application.EditSienaCounterpartyExtensionsHandler)
+	mux.HandleFunc("/saveSienaCounterpartyExtensions/", application.SaveSienaCounterpartyExtensionsHandler)
 
-	mux.HandleFunc("/listSienaCounterpartyPayee/", siena.ListSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/viewSienaCounterpartyPayee/", siena.ViewSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/editSienaCounterpartyPayee/", siena.EditSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/saveSienaCounterpartyPayee/", siena.SaveSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/newSienaCounterpartyPayee/", siena.NewSienaCounterpartyPayeeHandler)
+	mux.HandleFunc("/listSienaCounterpartyPayee/", application.ListSienaCounterpartyPayeeHandler)
+	mux.HandleFunc("/viewSienaCounterpartyPayee/", application.ViewSienaCounterpartyPayeeHandler)
+	mux.HandleFunc("/editSienaCounterpartyPayee/", application.EditSienaCounterpartyPayeeHandler)
+	mux.HandleFunc("/saveSienaCounterpartyPayee/", application.SaveSienaCounterpartyPayeeHandler)
+	mux.HandleFunc("/newSienaCounterpartyPayee/", application.NewSienaCounterpartyPayeeHandler)
 
-	mux.HandleFunc("/listSienaCounterpartyImportID/", siena.ListSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/viewSienaCounterpartyImportID/", siena.ViewSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/editSienaCounterpartyImportID/", siena.EditSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/saveSienaCounterpartyImportID/", siena.SaveSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/newSienaCounterpartyImportID/", siena.NewSienaCounterpartyImportIDHandler)
+	mux.HandleFunc("/listSienaCounterpartyImportID/", application.ListSienaCounterpartyImportIDHandler)
+	mux.HandleFunc("/viewSienaCounterpartyImportID/", application.ViewSienaCounterpartyImportIDHandler)
+	mux.HandleFunc("/editSienaCounterpartyImportID/", application.EditSienaCounterpartyImportIDHandler)
+	mux.HandleFunc("/saveSienaCounterpartyImportID/", application.SaveSienaCounterpartyImportIDHandler)
+	mux.HandleFunc("/newSienaCounterpartyImportID/", application.NewSienaCounterpartyImportIDHandler)
 
-	mux.HandleFunc("/listSienaDealList/", siena.ListSienaDealListHandler)
-	mux.HandleFunc("/viewSienaDealList/", siena.ViewSienaDealListHandler)
-	mux.HandleFunc("/listSienaAccountLadder/", siena.ListSienaAccountLadderHandler)
-	mux.HandleFunc("/listSienaAccountTransactions/", siena.ListSienaAccountTransactionsHandler)
-	//mux.HandleFunc("/saveSienaDealList/", siena.SaveSienaDealListHandler)
-	//mux.HandleFunc("/newSienaDealList/", siena.NewSienaDealListHandler)
+	mux.HandleFunc("/listSienaDealList/", application.ListSienaDealListHandler)
+	mux.HandleFunc("/viewSienaDealList/", application.ViewSienaDealListHandler)
+	mux.HandleFunc("/listSienaAccountLadder/", application.ListSienaAccountLadderHandler)
+	mux.HandleFunc("/listSienaAccountTransactions/", application.ListSienaAccountTransactionsHandler)
+	//mux.HandleFunc("/saveSienaDealList/", application.SaveSienaDealListHandler)
+	//mux.HandleFunc("/newSienaDealList/", application.NewSienaDealListHandler)
 
-	mux.HandleFunc("/listSienaCounterpartyGroup/", siena.ListSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/viewSienaCounterpartyGroup/", siena.ViewSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/editSienaCounterpartyGroup/", siena.EditSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/saveSienaCounterpartyGroup/", siena.SaveSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/newSienaCounterpartyGroup/", siena.NewSienaCounterpartyGroupHandler)
+	mux.HandleFunc("/listSienaCounterpartyGroup/", application.ListSienaCounterpartyGroupHandler)
+	mux.HandleFunc("/viewSienaCounterpartyGroup/", application.ViewSienaCounterpartyGroupHandler)
+	mux.HandleFunc("/editSienaCounterpartyGroup/", application.EditSienaCounterpartyGroupHandler)
+	mux.HandleFunc("/saveSienaCounterpartyGroup/", application.SaveSienaCounterpartyGroupHandler)
+	mux.HandleFunc("/newSienaCounterpartyGroup/", application.NewSienaCounterpartyGroupHandler)
 
-	mux.HandleFunc("/dashboard/", siena.SienaDashboardHandler)
+	mux.HandleFunc("/dashboard/", application.SienaDashboardHandler)
 
 	mux.HandleFunc("/listCredentialsStore/", application.ListCredentialsStoreHandler)
 	mux.HandleFunc("/viewCredentialsStore/", application.ViewCredentialStoreHandler)
@@ -181,10 +179,11 @@ func main() {
 	mux.HandleFunc("/editMessageStore/", application.EditMessageStoreHandler)
 	mux.HandleFunc("/saveMessageStore/", application.SaveMessageStoreHandler)
 
-	mux.HandleFunc("/listTranslationStore/", application.ListTranslationStoreHandler)
-	mux.HandleFunc("/viewTranslationStore/", application.ViewTranslationStoreHandler)
-	mux.HandleFunc("/editTranslationStore/", application.EditTranslationStoreHandler)
-	mux.HandleFunc("/saveTranslationStore/", application.SaveTranslationStoreHandler)
+	// mux.HandleFunc("/listTranslationStore/", application.ListTranslationStoreHandler)
+	// mux.HandleFunc("/viewTranslationStore/", application.ViewTranslationStoreHandler)
+	// mux.HandleFunc("/editTranslationStore/", application.EditTranslationStoreHandler)
+	// mux.HandleFunc("/saveTranslationStore/", application.SaveTranslationStoreHandler)
+	application.Translation_Publish(*mux)
 
 	mux.HandleFunc("/listScheduleStore/", application.ListScheduleStoreHandler)
 	mux.HandleFunc("/viewScheduleStore/", application.ViewScheduleStoreHandler)
@@ -204,17 +203,17 @@ func main() {
 	mux.HandleFunc("/actionFundsCheck/", application.ActionFundsCheckHandler)
 	mux.HandleFunc("/submitFundsCheck/", application.SubmitFundsCheckHandler)
 
-	mux.HandleFunc("/injectSQLViews/", application.SQLInjectionHandler)
+	//mux.HandleFunc("/injectSQLViews/", application.SQLInjection_HandlerRun)
+	application.SQLInjection_Publish(*mux)
 
 	//	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
-	application.DataCache_MUX(*mux)
+	application.DataCache_Publish(*mux)
 
 	mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
 	mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
 	mux.HandleFunc("/selectLSEGiltsDataStore/", application.SelectLSEGiltsDataStoreHandler)
 	mux.HandleFunc("/deselectLSEGiltsDataStore/", application.DeselectLSEGiltsDataStoreHandler)
 
-	mux.HandleFunc("/shutdown/", shutdownHandler)
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	globals.LOG_success("Handlers Started")
 	log.Println(line)
@@ -241,7 +240,7 @@ func main() {
 	globals.LOG_info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
 
 	globals.LOG_header("Siena")
-	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
+	_, tempDate, _ := application.GetBusinessDate(globals.SienaDB)
 	globals.SienaSystemDate = tempDate
 	globals.LOG_info("System", globals.SienaProperties["name"])
 	globals.LOG_info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
@@ -282,6 +281,15 @@ func main() {
 
 	globals.Log_uptime()
 
+}
+
+func Main_Publish(mux http.ServeMux) {
+
+	mux.HandleFunc("/shutdown/", shutdownHandler)
+	mux.HandleFunc("/clearQueues/", clearQueuesHandler)
+	mux.HandleFunc("/put", putHandler)
+	mux.HandleFunc("/get", getHandler)
+	core.LOG_mux("Main", "Application")
 }
 
 //// TODO: migrage the following three functions to appsupport
@@ -329,7 +337,7 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	if err3 != nil {
 		fmt.Println(err3)
 	}
-	core.HomePageHandler(w, r)
+	application.HomePageHandler(w, r)
 }
 
 // func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {

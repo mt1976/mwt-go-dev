@@ -140,7 +140,7 @@ func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetLSEGiltsDataStoreList(core.ApplicationDB)
 
 	pageLSEGiltsDataStoreList := appLSEGiltsDataStoreListPage{
-		UserMenu:               core.GetUserMenu(r),
+		UserMenu:               UserMenu_Get(r),
 		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  core.ApplicationProperties["appname"],
@@ -175,7 +175,7 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -241,7 +241,7 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -413,7 +413,7 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

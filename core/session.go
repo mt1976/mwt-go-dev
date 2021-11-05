@@ -41,11 +41,11 @@ func ValidateLoginHandler(w http.ResponseWriter, r *http.Request) {
 	if tok.ResponseCode == "200" {
 		SecurityViolation = ""
 		serviceMessageAction("ACCESS GRANTED", GetUserName(r), tok.ResponseCode)
-		HomePageHandler(w, r)
+		http.Redirect(w, r, "/home", http.StatusFound)
 	} else {
 		SecurityViolation = tok.SecurityViolation
 		serviceMessageAction(tok.SecurityViolation, GetUserName(r), tok.ResponseCode)
-		LogoutHandler(w, r)
+		http.Redirect(w, r, "/logout", http.StatusFound)
 	}
 }
 
@@ -137,27 +137,27 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 	//	}
 
 	//log.Println("session=", sess)
-	if len(cred.Id) == 0 {
-		//no credentials found
-		s.ResponseCode = "512"
-		s.SecurityViolation = "SECURITY VIOLATION"
-		//	log.Println(s.ResponseCode, s.SecurityViolation)
-		return false
-	}
-	if cred.Username != GetUserName(r) {
-		s.ResponseCode = "512"
-		s.SecurityViolation = "SECURITY VIOLATION"
-		//log.Println(s.ResponseCode, s.SecurityViolation)
+	// if len(cred.Id) == 0 {
+	// 	//no credentials found
+	// 	s.ResponseCode = "512"
+	// 	s.SecurityViolation = "SECURITY VIOLATION"
+	// 	//	log.Println(s.ResponseCode, s.SecurityViolation)
+	// 	return false
+	// }
+	// if cred.Username != GetUserName(r) {
+	// 	s.ResponseCode = "512"
+	// 	s.SecurityViolation = "SECURITY VIOLATION"
+	// 	//log.Println(s.ResponseCode, s.SecurityViolation)
 
-		return false
-	}
-	if len(cred.Expiry) == 0 {
-		s.ResponseCode = "512"
-		s.SecurityViolation = "SECURITY VIOLATION"
-		//	log.Println(s.ResponseCode, s.SecurityViolation)
+	// 	return false
+	// }
+	// if len(cred.Expiry) == 0 {
+	// 	s.ResponseCode = "512"
+	// 	s.SecurityViolation = "SECURITY VIOLATION"
+	// 	//	log.Println(s.ResponseCode, s.SecurityViolation)
 
-		return false
-	}
+	// 	return false
+	// }
 	// TODO: insert password check
 	// TODO: insert server cred check
 	// insert password check here

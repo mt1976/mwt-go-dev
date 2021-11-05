@@ -45,7 +45,7 @@ type appCacheStorePage struct {
 	Source     string
 }
 
-func DataCache_MUX(mux http.ServeMux) {
+func DataCache_Publish(mux http.ServeMux) {
 	core.LOG_mux("Application", "DataCache")
 	mux.HandleFunc("/refreshCache/", RefreshCacheHandler)
 }
@@ -67,11 +67,12 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DataCache_GetList()
 
 	pageCacheStoreList := appCacheStoreListPage{
-		UserMenu:        core.GetUserMenu(r),
-		UserRole:        core.GetUserRole(r),
-		UserNavi:        "NOT USED",
-		Title:           core.ApplicationProperties["appname"],
-		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Cache",
+		UserMenu: UserMenu_Get(r),
+		UserRole: core.GetUserRole(r),
+		UserNavi: "NOT USED",
+		Title:    core.ApplicationProperties["appname"],
+		//PageTitle:       core.ApplicationProperties["appname"] + " - " + "Cache",
+		PageTitle:       PageTitle(dm.DataCache_Title, "List"),
 		CacheStoreCount: noItems,
 		CacheStoreList:  returnList,
 	}
@@ -100,9 +101,9 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Cache",
+		PageTitle: PageTitle(dm.DataCache_Title, "View"),
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -145,8 +146,8 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Cache",
-		UserMenu:  core.GetUserMenu(r),
+		PageTitle: PageTitle(dm.DataCache_Title, "Edit"),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -215,7 +216,7 @@ func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	searchID := core.GetURLparam(r, "CacheStore")
 	core.ServiceMessageAction(inUTL, "Delete", searchID)
-	dao.DataCache_DeleteItemByUD(searchID)
+	dao.DataCache_DeleteItemByID(searchID)
 	ListCacheStoreHandler(w, r)
 
 }
@@ -236,8 +237,8 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCacheStoreList := appCacheStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Cache",
-		UserMenu:  core.GetUserMenu(r),
+		PageTitle: PageTitle(dm.DataCache_Title, "New"),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

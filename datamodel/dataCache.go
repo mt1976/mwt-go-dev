@@ -14,3 +14,14 @@ type DataCache struct {
 	SYSUpdated string `sql:"_updated"`
 	Source     string `sql:"source"`
 }
+
+const (
+	DataCache_Title          = "Translation"
+	DataCache_URI            = "TranslationStore"
+	DataCache_TemplateList   = "TranslationStoreList"
+	DataCache_TemplateView   = "TranslationStoreView"
+	DataCache_TemplateEdit   = "TranslationStoreEdit"
+	DataCache_TemplateSave   = "TranslationStoreSave"
+	DataCache_TemplateDelete = "TranslationStoreDelete"
+	DataCache_TemplateNew    = "TranslationStoreNew"
+)

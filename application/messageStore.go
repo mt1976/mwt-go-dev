@@ -82,7 +82,7 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetMessageStoreList(core.ApplicationDB)
 
 	pageMessageStoreList := appMessageStoreListPage{
-		UserMenu:          core.GetUserMenu(r),
+		UserMenu:          UserMenu_Get(r),
 		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
@@ -117,7 +117,7 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -157,7 +157,7 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -275,7 +275,7 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appMessageStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

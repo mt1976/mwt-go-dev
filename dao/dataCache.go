@@ -164,7 +164,7 @@ func putCacheStore(r dm.DataCache, req *http.Request) {
 	//log.Println(fred, err)
 }
 
-func DataCache_DeleteItemByUD(id string) {
+func DataCache_DeleteItemByID(id string) {
 	deleteCacheStore(id)
 }
 

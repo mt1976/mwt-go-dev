@@ -67,7 +67,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	// Get Data Here
 
 	pageAppConfigView := AppConfigurationPage{
-		UserMenu:               core.GetUserMenu(r),
+		UserMenu:               UserMenu_Get(r),
 		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  title,

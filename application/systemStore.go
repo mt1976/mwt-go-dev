@@ -99,7 +99,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetSystemStoreList()
 
 	pageSystemStoreList := appSystemStoreListPage{
-		UserMenu:         core.GetUserMenu(r),
+		UserMenu:         UserMenu_Get(r),
 		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
@@ -163,7 +163,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -291,7 +291,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageSystemStoreList := appSystemStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

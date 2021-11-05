@@ -87,7 +87,7 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.GetSessionStoreList()
 
 	pageSessionStoreList := appSessionStoreListPage{
-		UserMenu:          core.GetUserMenu(r),
+		UserMenu:          UserMenu_Get(r),
 		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
@@ -122,7 +122,7 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -177,7 +177,7 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageSessionStoreList := appSessionStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -327,7 +327,7 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageSessionStoreList := appSessionStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

@@ -82,7 +82,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetNISelectedStoreList(core.ApplicationDB)
 
 	pageNISelectedStoreList := appNISelectedStoreListPage{
-		UserMenu:             core.GetUserMenu(r),
+		UserMenu:             UserMenu_Get(r),
 		UserRole:             core.GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                core.ApplicationProperties["appname"],
@@ -117,7 +117,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -156,7 +156,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -272,7 +272,7 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appNISelectedStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

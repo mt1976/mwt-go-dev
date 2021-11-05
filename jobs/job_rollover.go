@@ -7,7 +7,6 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	"github.com/mt1976/mwt-go-dev/siena"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -35,7 +34,7 @@ func Rollover_Run() {
 
 	core.SienaDB = core.GlobalsDatabasePoke(core.SienaDB, core.SienaPropertiesDB)
 	oldSysDate := core.SienaSystemDate
-	_, tempDate, _ := siena.GetBusinessDate(core.SienaDB)
+	_, tempDate, _ := application.GetBusinessDate(core.SienaDB)
 	core.SienaSystemDate = tempDate
 
 	log.Printf("Old System Date: %v\n", oldSysDate)

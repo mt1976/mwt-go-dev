@@ -37,7 +37,7 @@ func LOG_it(w string) {
 }
 
 func LOG_mux(w string, v string) {
-	msg_mux(v + " " + Character_MapTo + " " + w)
+	msg_mux(v + " " + Character_MapTo + "  " + w)
 }
 
 func msg_header(s string) {

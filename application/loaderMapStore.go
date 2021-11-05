@@ -89,7 +89,7 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetLoaderMapStoreListByLoader(searchID)
 
 	pageLoaderMapStoreList := appLoaderMapStoreListPage{
-		UserMenu:            core.GetUserMenu(r),
+		UserMenu:            UserMenu_Get(r),
 		UserRole:            core.GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               core.ApplicationProperties["appname"],
@@ -125,7 +125,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -169,7 +169,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -300,7 +300,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

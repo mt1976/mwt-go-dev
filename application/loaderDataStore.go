@@ -93,7 +93,7 @@ func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetLoaderDataStoreList()
 
 	pageLoaderDataStoreList := appLoaderDataStoreListPage{
-		UserMenu:             core.GetUserMenu(r),
+		UserMenu:             UserMenu_Get(r),
 		UserRole:             core.GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                core.ApplicationProperties["appname"],
@@ -128,7 +128,7 @@ func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -172,7 +172,7 @@ func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageLoaderDataStoreList := appLoaderDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -300,7 +300,7 @@ func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageLoaderDataStoreList := appLoaderDataStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

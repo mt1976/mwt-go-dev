@@ -134,7 +134,7 @@ func ListFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetFundsCheckList()
 
 	fundsCheckPage := simFundsCheckListPage{
-		UserMenu:        core.GetUserMenu(r),
+		UserMenu:        UserMenu_Get(r),
 		UserRole:        core.GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           "Outstanding Request",
@@ -201,7 +201,7 @@ func editViewFundsCheck(w http.ResponseWriter, r *http.Request) simFundsCheckPag
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - Request",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -310,7 +310,7 @@ func NewFundsCheckHandler(w http.ResponseWriter, r *http.Request) {
 	fundsCheckPage := simFundsCheckPage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Funds Check Approval - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

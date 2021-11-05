@@ -104,7 +104,7 @@ func ListScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetScheduleStoreList()
 
 	pageScheduleStoreList := appScheduleStoreListPage{
-		UserMenu:           core.GetUserMenu(r),
+		UserMenu:           UserMenu_Get(r),
 		UserRole:           core.GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              core.ApplicationProperties["appname"],
@@ -138,7 +138,7 @@ func ViewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Schedule - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -185,7 +185,7 @@ func EditScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Scheduler - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -317,7 +317,7 @@ func NewScheduleStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appScheduleStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Scheduler - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

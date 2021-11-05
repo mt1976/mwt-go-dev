@@ -95,7 +95,7 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := GetLoaderStoreList()
 
 	pageLoaderStoreList := appLoaderStoreListPage{
-		UserMenu:         core.GetUserMenu(r),
+		UserMenu:         UserMenu_Get(r),
 		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
@@ -130,7 +130,7 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -177,7 +177,7 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -313,7 +313,7 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

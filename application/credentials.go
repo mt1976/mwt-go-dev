@@ -122,7 +122,7 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.GetCredentialsStoreList()
 
 	pageCredentialsStoreList := appCredentialsStoreListPage{
-		UserMenu:              core.GetUserMenu(r),
+		UserMenu:              UserMenu_Get(r),
 		UserRole:              core.GetUserRole(r),
 		UserNavi:              "NOT USED",
 		Title:                 core.ApplicationProperties["appname"],
@@ -157,7 +157,7 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - View",
 		Action:    "",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
@@ -211,7 +211,7 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - Edit",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
@@ -340,7 +340,7 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - New",
-		UserMenu:  core.GetUserMenu(r),
+		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",

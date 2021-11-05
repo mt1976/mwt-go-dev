@@ -320,7 +320,7 @@ func processRow(row []string, noCols int, inURI string, nitype string) {
 func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	//	var bondRec application.AppLSEGiltsDataStoreItem
 	_, bondRec, _ := application.GetLSEGiltsDataStoreByID(row[3])
-	bondRec.LongName = application.GetTranslation("NI-Name", row[2])
+	bondRec.LongName = application.Translation_Lookup("NI-Name", row[2])
 	bondRec.Isin = row[3]
 	//	bondRec.IssueDate = bondRow.IssueDate
 	bondRec.MaturityDate = getInternalDateFII(row[5])
@@ -334,21 +334,21 @@ func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	}
 
 	if bondRec.Segment == "UKGT" {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", "UK Government")
+		bondRec.Issuer = application.Translation_Lookup("NI-Issuer", "UK Government")
 	} else {
 		bondRec.Type = nitype
 	}
 
 	if len(bondRec.Type) == 0 {
-		bondRec.Type = application.GetTranslation("NI-Type", bondRec.Segment)
+		bondRec.Type = application.Translation_Lookup("NI-Type", bondRec.Segment)
 	}
 	if len(bondRec.Type) == 0 {
-		bondRec.Type = application.GetTranslation("NI-Type", "Corporate Bond")
+		bondRec.Type = application.Translation_Lookup("NI-Type", "Corporate Bond")
 	}
 
 	//log.Println(bondRec.Issuer)
 	if bondRec.Issuer == "" {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
+		bondRec.Issuer = application.Translation_Lookup("NI-Issuer", bondRec.LongName)
 	}
 
 	//fmt.Printf("bondRec: %v\n", bondRec)
@@ -388,11 +388,11 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 		bondRec.Sector = miData.Issuer
 	}
 
-	bondRec.Sector = application.GetTranslation("NI-Sector", bondRec.Sector)
+	bondRec.Sector = application.Translation_Lookup("NI-Sector", bondRec.Sector)
 
 	//fmt.Printf("bondRec.Sector: %v\n", bondRec.Sector)
 
-	bondRec.PeriodOfCoupon = application.GetTranslation("NI-CouponPeriod", couponFreq)
+	bondRec.PeriodOfCoupon = application.Translation_Lookup("NI-CouponPeriod", couponFreq)
 	bondRec.FlatYield = strings.ReplaceAll(yield, "%", "")
 	bondRec.RunningYield = strings.ReplaceAll(runningYield, "%", "")
 	bondRec.IssueAmount = issueAmount
@@ -404,13 +404,13 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 	bondRec.PaymentCouponDate = getInternalDateGen(miData.CouponPaymentDate, MIDate)
 
 	if miData.Name != "" {
-		bondRec.LongName = strings.ToUpper(application.GetTranslation("NI-Name", miData.Name))
+		bondRec.LongName = strings.ToUpper(application.Translation_Lookup("NI-Name", miData.Name))
 	}
 	if miData.Issuer != "" {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", miData.Issuer)
+		bondRec.Issuer = application.Translation_Lookup("NI-Issuer", miData.Issuer)
 	}
 	if bondRec.Segment == "" {
-		bondRec.Segment = application.GetTranslation("NI-Segment", miData.Issuer)
+		bondRec.Segment = application.Translation_Lookup("NI-Segment", miData.Issuer)
 	}
 	//log.Printf("ISIN=%q LEI=%q", bondRec.Isin, bondRec.Lei)
 	bondRec.Lei, err = application.GLIEF_leiLookup(bondRec.Isin)
@@ -700,7 +700,7 @@ func processPrice(row []string, noCols int) {
 	ratesData.market = "NI"
 	ratesData.tenor = ""
 	ratesData.series = row[3]
-	ratesData.name = application.GetTranslation("NI-Name", row[2])
+	ratesData.name = application.Translation_Lookup("NI-Name", row[2])
 	ratesData.class = "Market"
 	ratesData.source = "FII"
 	ratesData.destination = "RVNI"
