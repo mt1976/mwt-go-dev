@@ -1,8 +1,10 @@
 package application
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
+	"runtime"
 	"strings"
 
 	core "github.com/mt1976/mwt-go-dev/core"
@@ -43,6 +45,8 @@ type AppConfigurationPage struct {
 	AppSessionLife         string
 	AppDefaultSienaSystem  string
 	SienaSystems           []SystemStoreItem
+	GoVersion              string
+	OS                     string
 }
 
 func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
@@ -84,6 +88,8 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		SienaDBUser:            core.SienaPropertiesDB["user"],
 		SienaDBPassword:        strings.Repeat("*", len(core.SienaPropertiesDB["password"])),
 		SienaDBPort:            core.SienaPropertiesDB["port"],
+		GoVersion:              runtime.Version(),
+		OS:                     runtime.GOOS,
 	}
 	pageAppConfigView.SienaSystemDate = core.SienaSystemDate.Today
 	pageAppConfigView.AppDBServer = core.ApplicationPropertiesDB["server"]
@@ -111,8 +117,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//	_, systems, _ := GetSystemStoreList()
 	//	pageAppConfigView.SienaSystems = systems
 
-	//fmt.Println("Page Data", pageAppConfigView)
-
+	fmt.Printf("pageAppConfigView: %v\n", pageAppConfigView)
 	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageAppConfigView)

@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"runtime"
 	"strings"
 	"time"
 
@@ -230,7 +231,9 @@ func main() {
 	}
 	globals.LOG_info("Licence", globals.ApplicationProperties["licname"])
 	globals.LOG_info("Lic URL", globals.ApplicationProperties["liclink"])
-
+	globals.LOG_header("Runtime")
+	globals.LOG_info("GO Version", runtime.Version())
+	globals.LOG_info("Operating System", runtime.GOOS)
 	globals.LOG_header("Application Database (MSSQL)")
 	globals.LOG_info("Server", globals.ApplicationPropertiesDB["server"])
 	globals.LOG_info("Database", globals.ApplicationPropertiesDB["database"])
