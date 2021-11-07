@@ -157,7 +157,6 @@ func Initialise() {
 	LOG_msg("Initialisation", "Connecting to application databases...")
 
 	//MasterDB, _ = GlobalsDatabaseConnect(MasterPropertiesDB)
-
 	ApplicationDB, _ = GlobalsDatabaseConnect(ApplicationPropertiesDB)
 
 	SienaDB, _ = GlobalsDatabaseConnect(SienaPropertiesDB)

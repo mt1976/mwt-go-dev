@@ -71,14 +71,18 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	// Connect to SQL Server DB
 	//mssqlConfig := getProperties(config)
+
 	var returnDB *sql.DB
 	database := mssqlConfig["database"]
 	instance := mssqlConfig["instance"]
+
+	LOG_msg("Connecting", "Attemping connection to "+mssqlConfig["server"]+" "+database)
 
 	mssqlConfig["database"] = "master"
 
 	dbInstance, errConnect := connect(mssqlConfig)
 	if errConnect != nil {
+		LOG_error("Connection attempt with "+database+" failed:", errConnect)
 		log.Panic(errConnect.Error())
 	}
 
@@ -94,6 +98,9 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	stmt2, err2 := dbInstance.Prepare(checkDBstmt)
 	//log.Println(checkDBstmt)
 	//spew.Dump(stmt2)
+	if err2 != nil {
+		log.Panic(err2.Error())
+	}
 	dbCheck := stmt2.QueryRow()
 	var result2 string
 
@@ -129,6 +136,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	}
 	//log.Printf("%d %s", returnDB.Stats().OpenConnections, mssqlConfig["database"])
 	//fmt.Printf("%s\n", result)
+	LOG_success("Connected to " + mssqlConfig["server"] + " " + mssqlConfig["database"])
 	return returnDB, errConnect
 }
 

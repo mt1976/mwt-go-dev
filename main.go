@@ -16,6 +16,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	globals "github.com/mt1976/mwt-go-dev/core"
+	das "github.com/mt1976/mwt-go-dev/das"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 )
 
@@ -36,11 +37,6 @@ func main() {
 	globals.Initialise()
 
 	globals.LOG_success("Initialised")
-	//	log.Println(line)
-	globals.LOG_header("Caching ...")
-	//application.InitialiseCache()
-	globals.LOG_success("Cache Refreshed")
-	//log.Println(line)
 
 	globals.LOG_header("Scheduling Jobs")
 	//log.Println("TEST>")
@@ -268,6 +264,10 @@ func main() {
 	globals.LOG_header("READY STEADY GO!!!")
 	log.Println("URI            :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
 	log.Println(line)
+
+	rec, err := das.Query(*core.ApplicationDB, "SELECT & FROM dbo.credentialsStore")
+
+	log.Println("rec:", rec, err)
 
 	httpPort := ":" + globals.ApplicationProperties["port"]
 	//http.ListenAndServe(httpPort, nil)
