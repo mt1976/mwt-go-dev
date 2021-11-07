@@ -58,6 +58,9 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	dbInstance.SetConnMaxLifetime(keepalive)
 	//log.Printf("Test Connection %d %d", dbInstance.Stats().OpenConnections, dbInstance.Stats().Idle)
 	stmt, err := dbInstance.Prepare("select @@version")
+	if err != nil {
+		LOG_error("Connection attempt with "+database+connString+" failed:", err)
+	}
 	row := stmt.QueryRow()
 	var result string
 	err = row.Scan(&result)
