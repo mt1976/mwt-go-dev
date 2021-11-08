@@ -15,8 +15,8 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
-	globals "github.com/mt1976/mwt-go-dev/core"
 	das "github.com/mt1976/mwt-go-dev/das"
+	"github.com/mt1976/mwt-go-dev/jobs"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 )
 
@@ -32,20 +32,20 @@ func main() {
 	line := strings.Repeat("-", 100)
 	log.Println(line)
 
-	globals.LOG_header("Initialising ...")
+	core.LOG_header("Initialising ...")
 
-	globals.Initialise()
+	core.Initialise()
 
-	globals.LOG_success("Initialised")
+	core.LOG_success("Initialised")
 
-	globals.LOG_header("Scheduling Jobs")
+	core.LOG_header("Scheduling Jobs")
 	//log.Println("TEST>")
 	//scheduler.RunJobCob("TEST")
 	//log.Println("<TEST")
 	scheduler.Start()
-	globals.LOG_success("Jobs Scheduled")
+	core.LOG_success("Jobs Scheduled")
 
-	globals.LOG_header("Starting Handlers")
+	core.LOG_header("Starting Handlers")
 	mux := http.NewServeMux()
 
 	Main_Publish(*mux)
@@ -210,59 +210,59 @@ func main() {
 	mux.HandleFunc("/deselectLSEGiltsDataStore/", application.DeselectLSEGiltsDataStoreHandler)
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	globals.LOG_success("Handlers Started")
+	core.LOG_success("Handlers Started")
 	log.Println(line)
-	globals.LOG_header("Application Information")
-	globals.LOG_header("Application")
-	globals.LOG_info("Name", globals.ApplicationProperties["appname"])
-	globals.LOG_info("Host Name", tmpHostname)
-	globals.LOG_info("Server Release", fmt.Sprintf("%s [r%s-%s]", globals.ApplicationProperties["releaseid"], globals.ApplicationProperties["releaselevel"], globals.ApplicationProperties["releasenumber"]))
-	globals.LOG_info("Server Date", time.Now().Format(globals.DATEFORMATUSER))
-	if globals.IsChildInstance {
-		globals.LOG_info("Server Mode", "Primary System")
+	core.LOG_header("Application Information")
+	core.LOG_header("Application")
+	core.LOG_info("Name", core.ApplicationProperties["appname"])
+	core.LOG_info("Host Name", tmpHostname)
+	core.LOG_info("Server Release", fmt.Sprintf("%s [r%s-%s]", core.ApplicationProperties["releaseid"], core.ApplicationProperties["releaselevel"], core.ApplicationProperties["releasenumber"]))
+	core.LOG_info("Server Date", time.Now().Format(core.DATEFORMATUSER))
+	if core.IsChildInstance {
+		core.LOG_info("Server Mode", "Primary System")
 	} else {
-		globals.LOG_info("Server Mode", "Secondary System")
+		core.LOG_info("Server Mode", "Secondary System")
 	}
-	globals.LOG_info("Licence", globals.ApplicationProperties["licname"])
-	globals.LOG_info("Lic URL", globals.ApplicationProperties["liclink"])
-	globals.LOG_header("Runtime")
-	globals.LOG_info("GO Version", runtime.Version())
-	globals.LOG_info("Operating System", runtime.GOOS)
-	globals.LOG_header("Application Database (MSSQL)")
-	globals.LOG_info("Server", globals.ApplicationPropertiesDB["server"])
-	globals.LOG_info("Database", globals.ApplicationPropertiesDB["database"])
-	globals.LOG_info("Schema", globals.ApplicationPropertiesDB["schema"])
-	globals.LOG_info("Parent Schema", globals.ApplicationPropertiesDB["parentschema"])
+	core.LOG_info("Licence", core.ApplicationProperties["licname"])
+	core.LOG_info("Lic URL", core.ApplicationProperties["liclink"])
+	core.LOG_header("Runtime")
+	core.LOG_info("GO Version", runtime.Version())
+	core.LOG_info("Operating System", runtime.GOOS)
+	core.LOG_header("Application Database (MSSQL)")
+	core.LOG_info("Server", core.ApplicationPropertiesDB["server"])
+	core.LOG_info("Database", core.ApplicationPropertiesDB["database"])
+	core.LOG_info("Schema", core.ApplicationPropertiesDB["schema"])
+	core.LOG_info("Parent Schema", core.ApplicationPropertiesDB["parentschema"])
 
-	globals.LOG_header("Siena")
-	_, tempDate, _ := application.GetBusinessDate(globals.SienaDB)
-	globals.SienaSystemDate = tempDate
-	globals.LOG_info("System", globals.SienaProperties["name"])
-	globals.LOG_info("System Date", globals.SienaSystemDate.Internal.Format(globals.DATEFORMATUSER))
+	core.LOG_header("Siena")
+	_, tempDate, _ := application.GetBusinessDate(core.SienaDB)
+	core.SienaSystemDate = tempDate
+	core.LOG_info("System", core.SienaProperties["name"])
+	core.LOG_info("System Date", core.SienaSystemDate.Internal.Format(core.DATEFORMATUSER))
 
-	globals.LOG_header("Siena Database (MSSQL)")
-	globals.LOG_info("Server", globals.SienaPropertiesDB["server"])
-	globals.LOG_info("Database", globals.SienaPropertiesDB["database"])
-	globals.LOG_info("Schema", globals.SienaPropertiesDB["schema"])
-	globals.LOG_info("Parent Schema", globals.SienaPropertiesDB["parentschema"])
+	core.LOG_header("Siena Database (MSSQL)")
+	core.LOG_info("Server", core.SienaPropertiesDB["server"])
+	core.LOG_info("Database", core.SienaPropertiesDB["database"])
+	core.LOG_info("Schema", core.SienaPropertiesDB["schema"])
+	core.LOG_info("Parent Schema", core.SienaPropertiesDB["parentschema"])
 
-	globals.LOG_header("Siena Connectivity")
-	globals.LOG_info("TXNs Delivery", globals.SienaProperties["transactional_in"])
-	globals.LOG_info("TXNs Response", globals.SienaProperties["transactional_out"])
-	globals.LOG_info("Static Delivery", globals.SienaProperties["static_in"])
-	globals.LOG_info("Static Response", globals.SienaProperties["static_out"])
-	globals.LOG_info("Funds Check Request", globals.SienaProperties["funds_out"])
-	globals.LOG_info("Funds Check Response", globals.SienaProperties["funds_in"])
-	globals.LOG_info("Rates & Prices Delivery", globals.SienaProperties["rates_in"])
+	core.LOG_header("Siena Connectivity")
+	core.LOG_info("TXNs Delivery", core.SienaProperties["transactional_in"])
+	core.LOG_info("TXNs Response", core.SienaProperties["transactional_out"])
+	core.LOG_info("Static Delivery", core.SienaProperties["static_in"])
+	core.LOG_info("Static Response", core.SienaProperties["static_out"])
+	core.LOG_info("Funds Check Request", core.SienaProperties["funds_out"])
+	core.LOG_info("Funds Check Response", core.SienaProperties["funds_in"])
+	core.LOG_info("Rates & Prices Delivery", core.SienaProperties["rates_in"])
 
-	globals.LOG_header("Sessions")
-	globals.LOG_info("Session Life", globals.ApplicationProperties["sessionlife"])
+	core.LOG_header("Sessions")
+	core.LOG_info("Session Life", core.ApplicationProperties["sessionlife"])
 
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 
-	globals.LOG_header("READY STEADY GO!!!")
-	log.Println("URI            :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
+	core.LOG_header("READY STEADY GO!!!")
+	log.Println("URI            :", core.ColorPurple+"http://localhost:"+core.ApplicationProperties["port"]+core.ColorReset)
 	log.Println(line)
 
 	rec, err := das.Query(*core.ApplicationDB, "SELECT * FROM dbo.credentialsStore")
@@ -270,19 +270,28 @@ func main() {
 
 	log.Println("rec:", rec, err, len(rec))
 	for i, _ := range rec {
-		log.Println("row:", rec[i])
+		log.Println("row:", i, rec[i])
 		//	log.Println("row:", row[])
 	}
-	httpPort := ":" + globals.ApplicationProperties["port"]
+	//spew.Dump(rec)
+
+	jobs.RatesFXSpot_Run()
+	jobs.SessionHouseKeeping_Run()
+	jobs.RatesFXSpot_Run()
+	jobs.SessionHouseKeeping_Run()
+	jobs.RatesFXSpot_Run()
+	jobs.SessionHouseKeeping_Run()
+
+	httpPort := ":" + core.ApplicationProperties["port"]
 	//http.ListenAndServe(httpPort, nil)
 
 	//scheduler.RunJobFII("")
 	//s, _ := application.GLIEF_leiLookup("GB00BL68HJ26")
 	//info("LEI", s)
 	// Wrap your handlers with the LoadAndSave() middleware.
-	http.ListenAndServe(httpPort, globals.SessionManager.LoadAndSave(mux))
+	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
 
-	globals.Log_uptime()
+	core.Log_uptime()
 
 }
 
@@ -308,10 +317,10 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("requestMessage", requestMessage)
 	//fmt.Println("SEND MESSAGE")
-	//application.SendRequest(requestMessage, requestID.String(), globals.ApplicationProperties)
+	//application.SendRequest(requestMessage, requestID.String(), core.ApplicationProperties)
 	m := http.NewServeMux()
 
-	s := http.Server{Addr: globals.ApplicationProperties["port"], Handler: m}
+	s := http.Server{Addr: core.ApplicationProperties["port"], Handler: m}
 	s.Shutdown(context.Background())
 	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
 	//	viewResponseHandler(w, r)
@@ -326,17 +335,17 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 	//requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := core.RemoveContents(globals.ApplicationProperties["deliverpath"])
+	err1 := core.RemoveContents(core.ApplicationProperties["deliverpath"])
 	if err1 != nil {
 		fmt.Println(err1)
 	}
 	//fmt.Println("recPath", wctProperties["receivepath"])
-	err2 := core.RemoveContents(globals.ApplicationProperties["receivepath"])
+	err2 := core.RemoveContents(core.ApplicationProperties["receivepath"])
 	if err2 != nil {
 		fmt.Println(err2)
 	}
 	//fmt.Println("procPath", wctProperties["processedpath"])
-	err3 := core.RemoveContents(globals.ApplicationProperties["processedpath"])
+	err3 := core.RemoveContents(core.ApplicationProperties["processedpath"])
 	if err3 != nil {
 		fmt.Println(err3)
 	}
@@ -345,23 +354,23 @@ func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
 
 // func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
 // 	//var propertiesFileName = "config/properties.cfg"
-// 	//	wctProperties := application.GetProperties(globals.APPCONFIG)
+// 	//	wctProperties := application.GetProperties(core.APPCONFIG)
 // 	//	tmpl := "viewResponse"
 // 	inUTL := r.URL.Path
 // 	//requestID := uuid.New()
 // 	log.Println("Servicing :", inUTL)
-// 	application.RemoveContents(globals.ApplicationProperties["receivepath"])
+// 	application.RemoveContents(core.ApplicationProperties["receivepath"])
 // 	application.HomePageHandler(w, r)
 // }
 
 func putHandler(w http.ResponseWriter, r *http.Request) {
 	// Store a new key and value in the session data.
-	globals.SessionManager.Put(r.Context(), "message", "Hello from a session!")
+	core.SessionManager.Put(r.Context(), "message", "Hello from a session!")
 }
 
 func getHandler(w http.ResponseWriter, r *http.Request) {
 	// Use the GetString helper to retrieve the string value associated with a
 	// key. The zero value is returned if the key does not exist.
-	msg := globals.SessionManager.GetString(r.Context(), "message")
+	msg := core.SessionManager.GetString(r.Context(), "message")
 	io.WriteString(w, msg)
 }

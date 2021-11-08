@@ -67,7 +67,9 @@ func DataCache_GetItemByID(id string) (int, dm.DataCache, error) {
 // getCacheStoreList read all employees
 func DataCache_GetListByObject(object string) (int, []dm.DataCache, error) {
 	tsql := fmt.Sprintf(dsCache.GetAlt, sqlstruct.Columns(dm.DataCache{}), object)
+	log.Println(tsql)
 	count, returnItem, _, _ := fetchCacheStoreData(tsql)
+	log.Println(count, returnItem)
 	return count, returnItem, nil
 }
 
@@ -181,10 +183,10 @@ func deleteCacheStore(id string) {
 
 // fetchCacheStoreData read all employees
 func fetchCacheStoreData(tsql string) (int, []dm.DataCache, dm.DataCache, error) {
-	//log.Println(tsql)
+	log.Println(tsql)
 	var appCacheStore dm.DataCache
 	var appCacheStoreList []dm.DataCache
-
+	log.Println(core.ApplicationDB)
 	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
@@ -197,7 +199,7 @@ func fetchCacheStoreData(tsql string) (int, []dm.DataCache, dm.DataCache, error)
 	for rows.Next() {
 		err := rows.Scan(&appCacheStore.Id, &appCacheStore.Object, &appCacheStore.Field, &appCacheStore.Value, &appCacheStore.Expiry, &appCacheStore.SYSCreated, &appCacheStore.SYSWho, &appCacheStore.SYSHost, &appCacheStore.SYSUpdated, &appCacheStore.Source)
 		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
+			log.Println("Error scanning rows: " + err.Error())
 			return -1, nil, appCacheStore, err
 		}
 		// no change below
