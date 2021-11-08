@@ -2,21 +2,23 @@ package das
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
-func Query(db sql.DB, query string) (map[string]interface{}, error) {
+func Query(db sql.DB, query string) ([]map[string]interface{}, error) {
 
 	log.Println("Query:", query)
 	rows, _ := db.Query(query) // Note: Ignoring errors for brevity
 	cols, _ := rows.Columns()
 
-	m := make(map[string]interface{})
+	recs := []map[string]interface{}{}
 
 	for rows.Next() {
 		// Create a slice of interface{}'s to represent each column,
 		// and a second slice to contain pointers to each item in the columns slice.
+		m := make(map[string]interface{})
 		columns := make([]interface{}, len(cols))
 		columnPointers := make([]interface{}, len(cols))
 		for i := range columns {
@@ -37,7 +39,20 @@ func Query(db sql.DB, query string) (map[string]interface{}, error) {
 		}
 
 		// Outputs: map[columnName:value columnName2:value2 columnName3:value3 ...]
-		fmt.Print(m)
+		//fmt.Println(m)
+		log.Println("Append", m)
+		recs = append(recs, m)
 	}
-	return m, nil
+	//log.Println("Recs:", recs)
+	spew.Dump(recs)
+	//log.Println("Query:", m)
+	return recs, nil
+}
+
+func Poke(DB *sql.DB) error {
+	errordb := DB.Ping()
+	if errordb != nil {
+		log.Println(errordb.Error())
+	}
+	return errordb
 }

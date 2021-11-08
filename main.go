@@ -265,10 +265,14 @@ func main() {
 	log.Println("URI            :", globals.ColorPurple+"http://localhost:"+globals.ApplicationProperties["port"]+globals.ColorReset)
 	log.Println(line)
 
-	rec, err := das.Query(*core.ApplicationDB, "SELECT & FROM dbo.credentialsStore")
+	rec, err := das.Query(*core.ApplicationDB, "SELECT * FROM dbo.credentialsStore")
+	log.Println(line)
 
-	log.Println("rec:", rec, err)
-
+	log.Println("rec:", rec, err, len(rec))
+	for i, _ := range rec {
+		log.Println("row:", rec[i])
+		//	log.Println("row:", row[])
+	}
 	httpPort := ":" + globals.ApplicationProperties["port"]
 	//http.ListenAndServe(httpPort, nil)
 
