@@ -11,6 +11,7 @@ import (
 	"github.com/andreyvit/sqlexpr"
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	das "github.com/mt1976/mwt-go-dev/das"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -27,17 +28,17 @@ var dsCredentials dm.DataStoreMessages
 //var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsView WHERE username='%s';"
 
 func init() {
-	FullTableName := core.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
-	dsCredentials = dm.DataStoreMessages{
-		Table: FullTableName,
-		//		Columns:   "id, username, password, firstname, lastname, knownas, email, issued, expiry, role, brand, _created, _who, _host, _updated",
-		Insert:    "INSERT INTO " + FullTableName + "(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');",
-		Delete:    "DELETE FROM " + FullTableName + " WHERE id='%s';",
-		Select:    "SELECT %s FROM " + FullTableName + ";",
-		Get:       "SELECT %s FROM " + FullTableName + " WHERE id='%s';",
-		GetAlt:    "SELECT %s FROM " + FullTableName + " WHERE username='%s';",
-		DeleteAlt: "",
-	}
+	//FullTableName := core.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
+	// dsCredentials = dm.DataStoreMessages{
+	// 	Table: FullTableName,
+	// 	//		Columns:   "id, username, password, firstname, lastname, knownas, email, issued, expiry, role, brand, _created, _who, _host, _updated",
+	// 	Insert:    "INSERT INTO " + FullTableName + "(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');",
+	// 	Delete:    "DELETE FROM " + FullTableName + " WHERE id='%s';",
+	// 	Select:    "SELECT %s FROM " + FullTableName + ";",
+	// 	Get:       "SELECT %s FROM " + FullTableName + " WHERE id='%s';",
+	// 	GetAlt:    "SELECT %s FROM " + FullTableName + " WHERE username='%s';",
+	// 	DeleteAlt: "",
+	// }
 }
 
 //appCacheStoreItem is cheese
@@ -62,50 +63,59 @@ const (
 )
 
 // getCredentialsStoreList read all employees
-func GetCredentialsStoreList() (int, []dm.AppCredentialsStoreItem, error) {
+func Credentials_GetList() (int, []dm.AppCredentialsStoreItem, error) {
 	//tsql := fmt.Sprintf(dsCredentials.Select, sqlstruct.Columns(appCredentialsStoreItem{}))
 
-	selectsql := buildStatement()
-	log.Printf("credBrand: %q", credBrand)
-	log.Printf("credSYSWho: %q", credSYSWho)
+	//selectsql := buildStatement()
+	//log.Printf("credBrand: %q", credBrand)
+	//log.Printf("credSYSWho: %q", credSYSWho)
 	//log.Println("SELECT:", selectsql, core.ApplicationDB)
 
-	tsql, args := sqlexpr.Build(selectsql)
+	//	tsql, args := sqlexpr.Build(selectsql)
 
-	count, appCredentialsStoreList, _, _ := fetchCredentialsStoreData(tsql, args)
+	//Credentials_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
+
+	tsql := "SELECT * FROM " + tableName()
+	// + " WHERE " + dm.Country_Code + " = '" + id + "'"
+
+	count, appCredentialsStoreList, _, _ := fetchCredentialsStoreData(tsql)
 	return count, appCredentialsStoreList, nil
 }
 
 // getCredentialsStoreList read all employees
-func GetCredentialsStoreByID(id string) (int, dm.AppCredentialsStoreItem, error) {
+func Credentials_GetByID(id string) (int, dm.AppCredentialsStoreItem, error) {
 	//tsql := fmt.Sprintf(dsCredentials.Get, sqlstruct.Columns(appCredentialsStoreItem{}), id)
 
-	selectsql := buildStatement()
-	selectsql.AddWhere(sqlexpr.Eq(credId, id))
-	fmt.Printf("credBrand: %v\n", credBrand)
+	//selectsql := buildStatement()
+	//selectsql.AddWhere(sqlexpr.Eq(credId, id))
+	//fmt.Printf("credBrand: %v\n", credBrand)
 
+	//Credentials_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
+
+	tsql := "SELECT * FROM " + tableName()
+	tsql = tsql + " WHERE " + dm.Credentials_ID + " = '" + id + "'"
+
+	// + " WHERE " + dm.Country_Code + " = '" + id + "'"
 	//log.Println("SELECT:", selectsql, core.ApplicationDB)
 
-	tsql, args := sqlexpr.Build(selectsql)
-
-	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql, args)
+	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql)
 	return 1, appCredentialsStoreItem, nil
 }
 
 // getCredentialsStoreList read all employees
-func GetCredentialsStoreByUserName(userName string) (int, dm.AppCredentialsStoreItem, error) {
+func Credentials_GetByUserName(userName string) (int, dm.AppCredentialsStoreItem, error) {
 	//tsql := fmt.Sprintf(dsCredentials.GetAlt, sqlstruct.Columns(appCredentialsStoreItem{}), userName)
 
-	selectsql := buildStatement()
-	selectsql.AddWhere(sqlexpr.Eq(credUsername, userName))
+	//Credentials_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
 
-	tsql, args := sqlexpr.Build(selectsql)
+	tsql := "SELECT * FROM " + tableName()
+	tsql = tsql + " WHERE " + dm.Credentials_Username + " = '" + userName + "'"
 
-	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql, args)
+	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql)
 	return 1, appCredentialsStoreItem, nil
 }
 
-func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
+func Credentials_Store(r dm.AppCredentialsStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
 
 	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
@@ -135,7 +145,7 @@ func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(dsCredentials.Delete, r.Id)
+	//deletesql := fmt.Sprintf(dsCredentials.Delete, r.Id)
 
 	//inserttsql := fmt.Sprintf(dsCredentials.Insert, dsCredentials.Columns, r.Id, r.Username, r.Password, r.Firstname, r.Lastname, r.Knownas, r.Email, r.Issued, r.Expiry, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
@@ -144,112 +154,100 @@ func PutCredentialsStore(r dm.AppCredentialsStoreItem, req *http.Request) {
 
 	//tableName :=
 
-	inserttsql := sqlexpr.Insert{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
-	inserttsql.Set(credId, r.Id)
+	// inserttsql := sqlexpr.Insert{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
+	// inserttsql.Set(credId, r.Id)
 
-	inserttsql.Set(credUsername, r.Username)
-	inserttsql.Set(credPassword, r.Password)
-	inserttsql.Set(credFirstname, r.Firstname)
-	inserttsql.Set(credLastname, r.Lastname)
-	inserttsql.Set(credKnownas, r.Knownas)
-	inserttsql.Set(credEmail, r.Email)
-	inserttsql.Set(credIssued, r.Issued)
-	inserttsql.Set(credExpiry, r.Expiry)
-	inserttsql.Set(credRole, r.Role)
-	inserttsql.Set(credBrand, r.Brand)
-	inserttsql.Set(credSYSCreated, r.SYSCreated)
-	inserttsql.Set(credSYSWho, r.SYSWho)
-	inserttsql.Set(credSYSHost, r.SYSHost)
-	inserttsql.Set(credSYSUpdated, r.SYSCreated)
+	// inserttsql.Set(credUsername, r.Username)
+	// inserttsql.Set(credPassword, r.Password)
+	// inserttsql.Set(credFirstname, r.Firstname)
+	// inserttsql.Set(credLastname, r.Lastname)
+	// inserttsql.Set(credKnownas, r.Knownas)
+	// inserttsql.Set(credEmail, r.Email)
+	// inserttsql.Set(credIssued, r.Issued)
+	// inserttsql.Set(credExpiry, r.Expiry)
+	// inserttsql.Set(credRole, r.Role)
+	// inserttsql.Set(credBrand, r.Brand)
+	// inserttsql.Set(credSYSCreated, r.SYSCreated)
+	// inserttsql.Set(credSYSWho, r.SYSWho)
+	// inserttsql.Set(credSYSHost, r.SYSHost)
+	// inserttsql.Set(credSYSUpdated, r.SYSCreated)
 
-	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 
-	sql, args := sqlexpr.Build(inserttsql)
+	// sql, args := sqlexpr.Build(inserttsql)
 
-	fmt.Printf("sql: %v\n", sql)
-	fmt.Printf("args: %v\n", args)
+	// fmt.Printf("sql: %v\n", sql)
+	// fmt.Printf("args: %v\n", args)
 
-	_, err2 := core.ApplicationDB.Exec(deletesql)
-	if err2 != nil {
-		log.Panicf("%e", err2)
-	}
-	_, err := core.ApplicationDB.Exec(sql, args...)
-	if err != nil {
-		log.Panicf("%e", err)
-	}
+	tsql := "INSERT INTO " + tableName()
+	tsql = tsql + " (" + dm.Credentials_ID + ", " + dm.Credentials_Username + ", " + dm.Credentials_Password + ", " + dm.Credentials_Firstname + ", " + dm.Credentials_Lastname + ", " + dm.Credentials_Knownas + ", " + dm.Credentials_Email + ", " + dm.Credentials_Issued + ", " + dm.Credentials_Expiry + ", " + dm.Credentials_Role + ", " + dm.Credentials_Brand + ", " + dm.Credentials_SYSCreated + ", " + dm.Credentials_SYSWho + ", " + dm.Credentials_SYSHost + ", " + dm.Credentials_SYSUpdated + ")"
+	tsql = tsql + " VALUES (" + sq(r.Id) + ", " + sq(r.Username) + ", " + sq(r.Password) + ", " + sq(r.Firstname) + ", " + sq(r.Lastname) + ", " + sq(r.Knownas) + ", " + sq(r.Email) + ", " + sq(r.Issued) + ", " + sq(r.Expiry) + ", " + sq(r.Role) + ", " + sq(r.Brand) + ", " + sq(r.SYSCreated) + ", " + sq(r.SYSWho) + ", " + sq(r.SYSHost) + ", " + sq(r.SYSUpdated) + ")"
+
+	DeleteCredentialsStore(r.Id)
+
+	// _, err2 := core.ApplicationDB.Exec(deletesql)
+	// if err2 != nil {
+	// 	log.Panicf("%e", err2)
+	// }
+
+	das.Execute(tsql)
+
+	// _, err := core.ApplicationDB.Exec(sql, args...)
+	// if err != nil {
+	// 	log.Panicf("%e", err)
+	// }
 }
 
 func DeleteCredentialsStore(id string) {
-	//fmt.Println(credentialStore)
 
-	deletesql := sqlexpr.Delete{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
-	deletesql.AddWhere(sqlexpr.Eq(credId, id))
+	//log.Println("id:", id)
+	Credentials_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
 
-	tsql, args := sqlexpr.Build(deletesql)
-	fmt.Printf("tsql: %v\n", tsql)
-	fmt.Printf("args: %v\n", args)
-	//deletesql := fmt.Sprintf(dsCredentials.Delete, id)
-	_, err := core.ApplicationDB.Exec(tsql, args...)
-	if err != nil {
-		log.Panicf("%e", err)
-	}
-}
+	tsql := "DELETE FROM " + Credentials_Table
+	tsql = tsql + " WHERE " + dm.Credentials_ID + " = '" + id + "'"
 
-func FetchCredentialsStoreData(tsql string, args []interface{}) (int, []dm.AppCredentialsStoreItem, dm.AppCredentialsStoreItem, error) {
-	c, l, i, _ := fetchCredentialsStoreData(tsql, args)
-	return c, l, i, nil
+	das.Execute(tsql)
+
 }
 
 // fetchCredentialsStoreData read all employees
-func fetchCredentialsStoreData(tsql string, args []interface{}) (int, []dm.AppCredentialsStoreItem, dm.AppCredentialsStoreItem, error) {
-
-	fmt.Printf("tsql: %v\n", tsql)
-	fmt.Printf("args: %v\n", args)
+func fetchCredentialsStoreData(tsql string) (int, []dm.AppCredentialsStoreItem, dm.AppCredentialsStoreItem, error) {
 
 	var appCredentialsStore dm.AppCredentialsStoreItem
 	var appCredentialsStoreList []dm.AppCredentialsStoreItem
 
-	rows, err := core.ApplicationDB.Query(tsql, args...)
-	//fmt.Println("back from dq Q")
+	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, appCredentialsStore, err
+		log.Fatal(err.Error())
 	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		err := rows.Scan(
-			&appCredentialsStore.Id,
-			&appCredentialsStore.Username,
-			&appCredentialsStore.Password,
-			&appCredentialsStore.Firstname,
-			&appCredentialsStore.Lastname,
-			&appCredentialsStore.Knownas,
-			&appCredentialsStore.Email,
-			&appCredentialsStore.Issued,
-			&appCredentialsStore.Expiry,
-			&appCredentialsStore.Role,
-			&appCredentialsStore.Brand,
-			&appCredentialsStore.SYSCreated,
-			&appCredentialsStore.SYSWho,
-			&appCredentialsStore.SYSHost,
-			&appCredentialsStore.SYSUpdated,
-		)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, appCredentialsStore, err
-		}
 
-		fmt.Printf("appCredentialsStore: %v\n", appCredentialsStore)
-		// no change below
+	//	spew.Dump(returnList)
+
+	for i := 0; i < noitems; i++ {
+
+		tc := returnList[i]
+
+		appCredentialsStore.Id = tc[dm.Credentials_ID].(string)
+		appCredentialsStore.Username = tc[dm.Credentials_Username].(string)
+		appCredentialsStore.Password = tc[dm.Credentials_Password].(string)
+		appCredentialsStore.Firstname = tc[dm.Credentials_Firstname].(string)
+		appCredentialsStore.Lastname = tc[dm.Credentials_Lastname].(string)
+		appCredentialsStore.Knownas = tc[dm.Credentials_Knownas].(string)
+		appCredentialsStore.Email = tc[dm.Credentials_Email].(string)
+		appCredentialsStore.Issued = tc[dm.Credentials_Issued].(string)
+		appCredentialsStore.Expiry = tc[dm.Credentials_Expiry].(string)
+		appCredentialsStore.Role = tc[dm.Credentials_Role].(string)
+		appCredentialsStore.Brand = tc[dm.Credentials_Brand].(string)
+		appCredentialsStore.SYSCreated = tc[dm.Credentials_SYSCreated].(string)
+		appCredentialsStore.SYSWho = tc[dm.Credentials_SYSWho].(string)
+		appCredentialsStore.SYSHost = tc[dm.Credentials_SYSHost].(string)
+		appCredentialsStore.SYSUpdated = tc[dm.Credentials_SYSUpdated].(string)
+
 		appCredentialsStoreList = append(appCredentialsStoreList, appCredentialsStore)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
+
 	}
-	//rows.Close()
-	//log.Println(count, appCredentialsStoreList, appCredentialsStore)
-	return count, appCredentialsStoreList, appCredentialsStore, nil
+
+	return noitems, appCredentialsStoreList, appCredentialsStore, nil
 }
 
 func newCredentialsStoreID() string {
@@ -264,22 +262,6 @@ func getExpiryDate() string {
 	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
-func buildStatement() sqlexpr.Select {
-	selectsql := sqlexpr.Select{From: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
-	selectsql.AddField(credId)
-	selectsql.AddField(credUsername)
-	selectsql.AddField(credPassword)
-	selectsql.AddField(credFirstname)
-	selectsql.AddField(credLastname)
-	selectsql.AddField(credKnownas)
-	selectsql.AddField(credEmail)
-	selectsql.AddField(credIssued)
-	selectsql.AddField(credExpiry)
-	selectsql.AddField(credRole)
-	selectsql.AddField(credBrand)
-	selectsql.AddField(credSYSCreated)
-	selectsql.AddField(credSYSWho)
-	selectsql.AddField(credSYSHost)
-	selectsql.AddField(credSYSUpdated)
-	return selectsql
+func tableName() string {
+	return core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
 }

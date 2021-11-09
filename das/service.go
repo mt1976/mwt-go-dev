@@ -65,4 +65,13 @@ func Poke(DB *sql.DB) error {
 }
 
 //TODO: implement
-func Execute() {}
+func Execute(tsql string) {
+
+	core.LOG_message("Delete Stmt", tsql)
+
+	_, err := core.ApplicationDB.Exec(tsql)
+	if err != nil {
+		log.Panicf("%e", err)
+	}
+
+}

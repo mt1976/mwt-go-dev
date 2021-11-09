@@ -19,3 +19,25 @@ type AppCredentialsStoreItem struct {
 	SYSHost    string `sql:"_host"`
 	SYSUpdated string `sql:"_updated"`
 }
+
+const (
+	//Action     string
+	Credentials_Title       = "User Credentials"
+	Credentials_QueryString = "CredentialsStore"
+	Credentials_SQLTable    = "credentialsStore"
+	Credentials_ID          = "id"
+	Credentials_Username    = "username"
+	Credentials_Password    = "password"
+	Credentials_Firstname   = "firstname"
+	Credentials_Lastname    = "lastname"
+	Credentials_Knownas     = "knownas"
+	Credentials_Email       = "email"
+	Credentials_Issued      = "issued"
+	Credentials_Expiry      = "expiry"
+	Credentials_Role        = "role"
+	Credentials_Brand       = "brand"
+	Credentials_SYSCreated  = "_created"
+	Credentials_SYSWho      = "_who"
+	Credentials_SYSHost     = "_host"
+	Credentials_SYSUpdated  = "_updated"
+)

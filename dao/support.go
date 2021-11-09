@@ -32,3 +32,7 @@ func sienaDBBoolYN(inBool bool) string {
 	}
 	return outValue
 }
+
+func sq(in string) string {
+	return "'" + in + "'"
+}

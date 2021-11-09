@@ -23,6 +23,7 @@ type Country struct {
 //appCacheStoreItem is cheese
 const (
 	//Action     string
+	Country_Title     = "Countries"
 	Country_Table     = "sienaCountry"
 	Country_Code      = "Code"
 	Country_Name      = "Name"

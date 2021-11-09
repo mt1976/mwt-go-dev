@@ -158,14 +158,7 @@ func main() {
 
 	mux.HandleFunc("/dashboard/", application.SienaDashboardHandler)
 
-	mux.HandleFunc("/listCredentialsStore/", application.ListCredentialsStoreHandler)
-	mux.HandleFunc("/viewCredentialsStore/", application.ViewCredentialStoreHandler)
-	mux.HandleFunc("/editCredentialsStore/", application.EditCredentialStoreHandler)
-	mux.HandleFunc("/deleteCredentialsStore/", application.DeleteCredentialStoreHandler)
-	mux.HandleFunc("/saveCredentialsStore/", application.SaveCredentialStoreHandler)
-	mux.HandleFunc("/newCredentialsStore/", application.NewCredentialStoreHandler)
-	mux.HandleFunc("/banCredentialsStore/", application.BanCredentialStoreHandler)
-	mux.HandleFunc("/activateCredentialsStore/", application.ActivateCredentialStoreHandler)
+	application.Credentials_Publish(*mux)
 
 	mux.HandleFunc("/listMessageStore/", application.ListMessageStoreHandler)
 	mux.HandleFunc("/viewMessageStore/", application.ViewMessageStoreHandler)

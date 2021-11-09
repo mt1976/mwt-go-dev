@@ -1,14 +1,11 @@
 package application
 
 import (
-	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"github.com/andreyvit/sqlexpr"
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	"github.com/mt1976/mwt-go-dev/dao"
@@ -20,12 +17,6 @@ import (
 
 //var sqlCredentialsStoreId, sqlCredentialsStoreUsername, sqlCredentialsStorePassword, sqlCredentialsStoreFirstname, sqlCredentialsStoreLastname, sqlCredentialsStoreKnownas, sqlCredentialsStoreEmail, sqlCredentialsStoreIssued, sqlCredentialsStoreExpiry, sqlCredentialsStoreRole, sqlCredentialsStoreBrand, sqlCredentialsStoreSYSCreated, sqlCredentialsStoreSYSWho, sqlCredentialsStoreSYSHost, sqlCredentialsStoreSYSUpdated sql.NullString
 var dsCredentials dm.DataStoreMessages
-
-//var appCredentialsStoreSQLINSERT = "INSERT INTO %s.credentialsStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');"
-//var appCredentialsStoreSQLDELETE = "DELETE FROM %s.credentialsStore WHERE id='%s';"
-//var appCredentialsStoreSQLSELECT = "SELECT %s FROM %s.credentialsView;"
-//var appCredentialsStoreSQLGET = "SELECT %s FROM %s.credentialsView WHERE id='%s';"
-//var appCredentialsStoreSQLGETUSER = "SELECT %s FROM %s.credentialsView WHERE username='%s';"
 
 func init() {
 	FullTableName := core.ApplicationPropertiesDB["schema"] + "." + "credentialsStore"
@@ -78,28 +69,22 @@ type appCredentialsStorePage struct {
 	SYSUpdated string
 }
 
-//appCacheStoreItem is cheese
 const (
-	//Action     string
-	credTable      = sqlexpr.Table("credentialsStore")
-	credId         = sqlexpr.Column("id")
-	credUsername   = sqlexpr.Column("username")
-	credPassword   = sqlexpr.Column("password")
-	credFirstname  = sqlexpr.Column("firstname")
-	credLastname   = sqlexpr.Column("lastname")
-	credKnownas    = sqlexpr.Column("knownas")
-	credEmail      = sqlexpr.Column("email")
-	credIssued     = sqlexpr.Column("issued")
-	credExpiry     = sqlexpr.Column("expiry")
-	credRole       = sqlexpr.Column("role")
-	credBrand      = sqlexpr.Column("brand")
-	credSYSCreated = sqlexpr.Column("_created")
-	credSYSWho     = sqlexpr.Column("_who")
-	credSYSHost    = sqlexpr.Column("_host")
-	credSYSUpdated = sqlexpr.Column("_updated")
+	Credentials_Redirect = "/listCredentialsStore/"
 )
 
-func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_Publish(mux http.ServeMux) {
+	mux.HandleFunc(Credentials_Redirect, Credentials_HandlerList)
+	mux.HandleFunc("/viewCredentialsStore/", Credentials_HandlerView)
+	mux.HandleFunc("/editCredentialsStore/", Credentials_HandlerEdit)
+	mux.HandleFunc("/deleteCredentialsStore/", Credentials_HandlerDelete)
+	mux.HandleFunc("/saveCredentialsStore/", Credentials_HandlerSave)
+	mux.HandleFunc("/newCredentialsStore/", Credentials_HandlerNew)
+	mux.HandleFunc("/banCredentialsStore/", Credentials_HandlerBan)
+	mux.HandleFunc("/activateCredentialsStore/", Credentials_HandlerActivate)
+}
+
+func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -119,14 +104,14 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	var returnList []dm.AppCredentialsStoreItem
 
-	noItems, returnList, _ := dao.GetCredentialsStoreList()
+	noItems, returnList, _ := dao.Credentials_GetList()
 
 	pageCredentialsStoreList := appCredentialsStoreListPage{
 		UserMenu:              UserMenu_Get(r),
 		UserRole:              core.GetUserRole(r),
 		UserNavi:              "NOT USED",
 		Title:                 core.ApplicationProperties["appname"],
-		PageTitle:             core.ApplicationProperties["appname"] + " - " + "Credentials",
+		PageTitle:             PageTitle(dm.Credentials_Title, core.Action_List),
 		CredentialsStoreCount: noItems,
 		CredentialsStoreList:  returnList,
 	}
@@ -136,7 +121,7 @@ func ListCredentialsStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -150,12 +135,12 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	searchID := core.GetURLparam(r, "CredentialsStore")
-	_, returnRecord, _ := dao.GetCredentialsStoreByID(searchID)
+	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
+	_, returnRecord, _ := dao.Credentials_GetByID(searchID)
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - View",
+		PageTitle: PageTitle(dm.Credentials_Title, core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -186,7 +171,7 @@ func ViewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -200,8 +185,8 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	searchID := core.GetURLparam(r, "CredentialsStore")
-	_, returnRecord, _ := dao.GetCredentialsStoreByID(searchID)
+	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
+	_, returnRecord, _ := dao.Credentials_GetByID(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
@@ -210,7 +195,7 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - Edit",
+		PageTitle: PageTitle(dm.Credentials_Title, core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -240,7 +225,7 @@ func EditCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -264,13 +249,13 @@ func SaveCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	s.Role = r.FormValue("Role")
 	s.Brand = r.FormValue("Brand")
 
-	dao.PutCredentialsStore(s, r)
+	dao.Credentials_Store(s, r)
 
-	http.Redirect(w, r, "/listCredentialsStore", http.StatusFound)
+	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
 
 }
 
-func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -279,14 +264,14 @@ func DeleteCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := core.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
 	core.ServiceMessageAction(inUTL, "Delete", searchID)
-	deleteCredentialsStore(searchID)
-	ListCredentialsStoreHandler(w, r)
+	dao.DeleteCredentialsStore(searchID)
+	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
 
 }
 
-func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerBan(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -295,16 +280,16 @@ func BanCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := core.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
 	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banCredentialsStore(searchID, r)
-	ListCredentialsStoreHandler(w, r)
+	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
 }
 
-func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerActivate(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -313,17 +298,17 @@ func ActivateCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := core.GetURLparam(r, "CredentialsStore")
+	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
 	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateCredentialsStore(searchID, r)
-	ListCredentialsStoreHandler(w, r)
+	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
 
 }
 
-func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
+func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -339,7 +324,7 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageCredentialStoreList := appCredentialsStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Credentials - New",
+		PageTitle: PageTitle(dm.Credentials_Title, core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -351,7 +336,6 @@ func NewCredentialStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageCredentialStoreList)
-
 }
 
 func getExpiryDate() string {
@@ -361,40 +345,19 @@ func getExpiryDate() string {
 	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
-func deleteCredentialsStore(id string) {
-	//fmt.Println(credentialStore)
-
-	deletesql := sqlexpr.Delete{Table: sqlexpr.Table(core.ApplicationPropertiesDB["schema"] + dsCredentials.Table)}
-	deletesql.AddWhere(sqlexpr.Eq(credId, id))
-
-	tsql, args := sqlexpr.Build(deletesql)
-	fmt.Printf("tsql: %v\n", tsql)
-	fmt.Printf("args: %v\n", args)
-	//deletesql := fmt.Sprintf(dsCredentials.Delete, id)
-	_, err := core.ApplicationDB.Exec(tsql, args...)
-	if err != nil {
-		log.Panicf("%e", err)
-	}
-}
-
 func banCredentialsStore(id string, req *http.Request) {
-	//fmt.Println(credentialStore)
-	//	fmt.Println("RECORD", id)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
-	_, r, _ := dao.GetCredentialsStoreByID(id)
+
+	_, r, _ := dao.Credentials_GetByID(id)
 	r.Expiry = ""
 	r.Password = ""
-	dao.PutCredentialsStore(r, req)
+	dao.Credentials_Store(r, req)
 }
 
 func activateCredentialsStore(id string, req *http.Request) {
-	//fmt.Println(credentialStore)
-	//	fmt.Println("RECORD", id)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	_, r, _ := dao.GetCredentialsStoreByID(id)
+	_, r, _ := dao.Credentials_GetByID(id)
 	r.Expiry = getExpiryDate()
-	dao.PutCredentialsStore(r, req)
+	dao.Credentials_Store(r, req)
 }
 
 func newCredentialsStoreID() string {
