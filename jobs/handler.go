@@ -77,15 +77,15 @@ func logit(actionType string, data string) {
 	//log.Println(len(outcall), depth, depth2)
 	callerName := outcall[depth2] + "/" + outcall[depth]
 	op := fmt.Sprintf("%v '%v' {%v}", actionType, data, callerName)
-	core.LOG_msg("Scheduler", op)
+	core.LOG_message("Scheduler", op)
 }
 
 func logStart(data string) {
-	core.LOG_msg("Scheduler", "Start"+data)
+	core.LOG_message("Scheduler", "Start"+data)
 	logit("Job Start", data)
 }
 
 func logEnd(data string) {
-	core.LOG_msg("Scheduler", "Stop "+data)
+	core.LOG_message("Scheduler", "Stop "+data)
 	logit("Job End", data)
 }

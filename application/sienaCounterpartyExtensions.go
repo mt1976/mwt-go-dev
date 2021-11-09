@@ -261,7 +261,7 @@ func EditSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reque
 	noItems, returnRecord, _ := getSienaCounterpartyExtensions(sfID, scID)
 	fmt.Println("NoSienaItems", noItems, sfID, scID)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
+	//Get Country List & Populate and Array of dm.Country Items
 	_, ynList, _ := getSienaYNList()
 	//fmt.Println(displayList)
 
@@ -457,7 +457,7 @@ func NewSienaCounterpartyExtensionsHandler(w http.ResponseWriter, r *http.Reques
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
+	//Get Country List & Populate and Array of dm.Country Items
 
 	pageSienaCounterpartyExtensionsList := sienaCounterpartyExtensionsPage{
 		UserMenu:                      UserMenu_Get(r),

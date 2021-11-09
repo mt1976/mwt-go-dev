@@ -53,7 +53,7 @@ type sienaCounterpartyPage struct {
 	CountryCodeName string
 	SectorCodeName  string
 	Action          string
-	CountryList     []sienaCountryItem
+	CountryList     []dm.Country
 	PayeeList       []sienaCounterpartyPayeeItem
 	NoPayees        int
 	Address1        string
@@ -241,8 +241,8 @@ func EditSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
 	_, sectorList, _ := getSienaSectorList()
 	_, ynList, _ := getSienaYNList()
@@ -440,7 +440,7 @@ func NewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	_, countryList, _ := getSienaCountryList()
+	_, countryList, _ := dao.Country_GetList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
 	_, sectorList, _ := getSienaSectorList()
 	_, ynList, _ := getSienaYNList()

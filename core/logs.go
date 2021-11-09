@@ -22,9 +22,9 @@ func LOG_warning(s string) {
 
 }
 
-func LOG_msg(w string, v string) {
+func LOG_message(w string, v string) {
 	//log.Println(ColorReset + "Warning       : " + s + " " + ColorReset)
-	output := fmt.Sprintf("%s : %s", rightPad2Len(w, " ", 14), v)
+	output := fmt.Sprintf("%s : %s", rightPad2Len(w, " ", 13), v)
 	log.Println(ColorReset + output + ColorReset)
 }
 
@@ -33,7 +33,7 @@ func LOG_error(s string, e error) {
 }
 
 func LOG_it(w string) {
-	LOG_msg("Information", w)
+	LOG_message("Information", w)
 }
 
 func LOG_mux(w string, v string) {

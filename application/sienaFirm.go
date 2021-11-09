@@ -11,6 +11,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -43,7 +44,7 @@ type sienaFirmPage struct {
 	SectorName  string
 	CountryName string
 	Action      string
-	CountryList []sienaCountryItem
+	CountryList []dm.Country
 	SectorList  []sienaSectorItem
 }
 
@@ -155,8 +156,8 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, "SienaFirm")
 	_, returnRecord, _ := getSienaFirm(searchID)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	_, sectorList, _ := getSienaSectorList()
 
 	//fmt.Println(displayList)
@@ -296,8 +297,8 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	_, sectorList, _ := getSienaSectorList()
 
 	pageSienaFirmList := sienaFirmPage{

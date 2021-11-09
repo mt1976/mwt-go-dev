@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -43,7 +44,7 @@ type sienaCurrencyPage struct {
 	Country     string
 	CountryName string
 	Action      string
-	CountryList []sienaCountryItem
+	CountryList []dm.Country
 }
 
 //sienaCurrencyItem is cheese
@@ -144,8 +145,8 @@ func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnRecord, _ := getSienaCurrency(searchID)
 	fmt.Println("NoSienaItems", noItems, searchID)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 
 	//fmt.Println(displayList)
 
@@ -268,8 +269,8 @@ func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 
 	pageSienaCurrencyList := sienaCurrencyPage{
 		UserMenu:  UserMenu_Get(r),

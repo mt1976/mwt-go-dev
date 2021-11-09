@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -64,7 +65,7 @@ type sienaCounterpartyPayeePage struct {
 	Approved              string
 
 	Action      string
-	CountryList []sienaCountryItem
+	CountryList []dm.Country
 }
 
 //sienaCounterpartyPayeeItem is cheese
@@ -222,8 +223,8 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := getSienaCounterpartyPayeeByKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 	//fmt.Println("NoSienaItems", noItems, idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 
 	pageSienaCounterpartyPayeeList := sienaCounterpartyPayeePage{
 		UserMenu:  UserMenu_Get(r),

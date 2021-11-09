@@ -12,6 +12,7 @@ import (
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -42,7 +43,7 @@ type sienaCounterpartyGroupPage struct {
 	SuperGroup  string
 	CountryName string
 	GroupList   []sienaCounterpartyGroupItem
-	CountryList []sienaCountryItem
+	CountryList []dm.Country
 }
 
 //sienaCounterpartyGroupItem is cheese
@@ -137,7 +138,7 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 
 	searchID := core.GetURLparam(r, "SienaCounterpartyGroup")
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
-	_, countryList, _ := getSienaCountryList()
+	_, countryList, _ := dao.Country_GetList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
@@ -258,8 +259,8 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{

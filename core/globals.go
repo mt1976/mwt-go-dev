@@ -131,7 +131,7 @@ type DateItem struct {
 }
 
 func Initialise() {
-	LOG_msg("Initialisation", "Vroom")
+	LOG_message("Initialisation", "Vroom")
 
 	SessionToken = ""
 	UUID = "authorAdjust"
@@ -154,7 +154,7 @@ func Initialise() {
 	}
 	//
 
-	LOG_msg("Initialisation", "Connecting to application databases...")
+	LOG_message("Initialisation", "Connecting to application databases...")
 
 	//MasterDB, _ = GlobalsDatabaseConnect(MasterPropertiesDB)
 

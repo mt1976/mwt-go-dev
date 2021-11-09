@@ -3,19 +3,23 @@ package das
 import (
 	"database/sql"
 	"log"
+	"strconv"
 
-	"github.com/davecgh/go-spew/spew"
+	"github.com/mt1976/mwt-go-dev/core"
 )
 
-func Query(db sql.DB, query string) ([]map[string]interface{}, error) {
+func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
-	log.Println("Query:", query)
+	//log.Println("Query:", query)
+	core.LOG_message("Query Stmt", query)
 	rows, _ := db.Query(query) // Note: Ignoring errors for brevity
 	cols, _ := rows.Columns()
-
+	noResults := 0
 	recs := []map[string]interface{}{}
+	defer rows.Close()
 
 	for rows.Next() {
+		noResults++
 		// Create a slice of interface{}'s to represent each column,
 		// and a second slice to contain pointers to each item in the columns slice.
 		m := make(map[string]interface{})
@@ -27,7 +31,7 @@ func Query(db sql.DB, query string) ([]map[string]interface{}, error) {
 
 		// Scan the result into the column pointers...
 		if err := rows.Scan(columnPointers...); err != nil {
-			return nil, err
+			return nil, 0, err
 		}
 
 		// Create our map, and retrieve the value for each column from the pointers slice,
@@ -40,13 +44,16 @@ func Query(db sql.DB, query string) ([]map[string]interface{}, error) {
 
 		// Outputs: map[columnName:value columnName2:value2 columnName3:value3 ...]
 		//fmt.Println(m)
-		log.Println("Append", m)
+		//log.Println("Append", m)
 		recs = append(recs, m)
 	}
+	//rows.Close()
 	//log.Println("Recs:", recs)
-	spew.Dump(recs)
+	//spew.Dump(recs)
 	//log.Println("Query:", m)
-	return recs, nil
+	//log.Println("No Results:", noResults)
+	core.LOG_message("Query Results", strconv.Itoa(noResults))
+	return recs, noResults, nil
 }
 
 func Poke(DB *sql.DB) error {
@@ -56,3 +63,6 @@ func Poke(DB *sql.DB) error {
 	}
 	return errordb
 }
+
+//TODO: implement
+func Execute() {}

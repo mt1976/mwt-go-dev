@@ -39,7 +39,7 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	//	instance := mssqlConfig["instance"]
 	if database != "master" {
 		//log.Println("Information   : Attemping connection to " + server + " " + database)
-		LOG_msg("Connecting", "Attemping connection to "+server+" "+database)
+		LOG_message("Connecting", "Attemping connection to "+server+" "+database)
 	}
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;database=%s;", server, user, password, port, database)
 	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;", server, user, password, port)
@@ -79,7 +79,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	database := mssqlConfig["database"]
 	instance := mssqlConfig["instance"]
 
-	LOG_msg("Connecting", "Attemping connection to "+mssqlConfig["server"]+" "+database)
+	LOG_message("Connecting", "Attemping connection to "+mssqlConfig["server"]+" "+database)
 
 	mssqlConfig["database"] = "master"
 

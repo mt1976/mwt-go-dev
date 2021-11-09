@@ -13,6 +13,7 @@ import (
 	"github.com/google/uuid"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -43,7 +44,7 @@ type sienaCentrePage struct {
 	Country     string
 	CountryName string
 	Action      string
-	CountryList []sienaCountryItem
+	CountryList []dm.Country
 }
 
 //sienaCentreItem is cheese
@@ -145,7 +146,7 @@ func EditSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 	searchID := core.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCentre(searchID)
-	_, countryList, _ := getSienaCountryList()
+	_, countryList, _ := dao.Country_GetList()
 
 	//fmt.Println(displayList)
 
@@ -267,9 +268,9 @@ func NewSienaCentreHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
+	//Get Country List & Populate and Array of dm.Country Items
 
-	_, countryList, _ := getSienaCountryList()
+	_, countryList, _ := dao.Country_GetList()
 
 	pageSienaCentreList := sienaCentrePage{
 		Title:       core.ApplicationProperties["appname"],

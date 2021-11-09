@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -22,7 +23,7 @@ type sienaCountryListPage struct {
 	Title             string
 	PageTitle         string
 	SienaCountryCount int
-	SienaCountryList  []sienaCountryItem
+	SienaCountryList  []dm.Country
 }
 
 //sienaCountryPage is cheese
@@ -40,26 +41,17 @@ type sienaCountryPage struct {
 	YNList    []sienaYNItem
 }
 
-//sienaCountryItem is cheese
-type sienaCountryItem struct {
-	Code      string
-	Name      string
-	ShortCode string
-	EU_EEA    string
-	Action    string
-}
-
 func Country_Publish(mux http.ServeMux) {
 
-	mux.HandleFunc("/listSienaCountry/", ListSienaCountryHandler)
-	mux.HandleFunc("/viewSienaCountry/", ViewSienaCountryHandler)
-	mux.HandleFunc("/editSienaCountry/", EditSienaCountryHandler)
-	mux.HandleFunc("/saveSienaCountry/", SaveSienaCountryHandler)
-	mux.HandleFunc("/newSienaCountry/", NewSienaCountryHandler)
+	mux.HandleFunc("/listSienaCountry/", Country_HandlerList)
+	mux.HandleFunc("/viewSienaCountry/", Country_HandlerView)
+	mux.HandleFunc("/editSienaCountry/", Country_HandlerEdit)
+	mux.HandleFunc("/saveSienaCountry/", Country_HandlerSave)
+	mux.HandleFunc("/newSienaCountry/", Country_HandlerNew)
 	core.LOG_mux("Siena", "Country")
 }
 
-func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -73,8 +65,8 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	var returnList []sienaCountryItem
-	noItems, returnList, _ := getSienaCountryList()
+	var returnList []dm.Country
+	noItems, returnList, _ := dao.Country_GetList()
 
 	pageSienaCountryList := sienaCountryListPage{
 		UserMenu:          UserMenu_Get(r),
@@ -91,7 +83,7 @@ func ListSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -106,7 +98,7 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	searchID := core.GetURLparam(r, "sienaCountry")
-	_, returnRecord, _ := getSienaCountry(searchID)
+	_, returnRecord, _ := dao.Country_GetByID(searchID)
 	_, ynList, _ := getSienaYNList()
 
 	///	fmt.Println(returnList)
@@ -131,7 +123,7 @@ func ViewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -146,7 +138,7 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	searchID := core.GetURLparam(r, "sienaCountry")
-	_, returnRecord, _ := getSienaCountry(searchID)
+	_, returnRecord, _ := dao.Country_GetByID(searchID)
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCountryList := sienaCountryPage{
@@ -168,7 +160,7 @@ func EditSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -179,7 +171,7 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessageAction(inUTL, "Save", "")
 
-	var item sienaCountryItem
+	var item dm.Country
 
 	item.Code = r.FormValue("code")
 	if len(item.Code) == 0 {
@@ -237,10 +229,10 @@ func SaveSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	if thisError != nil {
 		log.Println("Error in XML dispatch: ", thisError)
 	}
-	ListSienaCountryHandler(w, r)
+	Country_HandlerList(w, r)
 }
 
-func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
+func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
 		core.LogoutHandler(w, r)
@@ -273,64 +265,4 @@ func NewSienaCountryHandler(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSienaCountryList)
 
-}
-
-// getSienaCountryList read all employees
-func getSienaCountryList() (int, []sienaCountryItem, error) {
-
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry;", sienaCountrySQL, core.SienaPropertiesDB["schema"])
-	count, sienaCountryList, _, _ := fetchSienaCountryData(tsql)
-	return count, sienaCountryList, nil
-}
-
-// getSienaCountryList read all employees
-func getSienaCountry(id string) (int, sienaCountryItem, error) {
-
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCountry WHERE Code='%s';", sienaCountrySQL, core.SienaPropertiesDB["schema"], id)
-	_, _, sienaCountry, _ := fetchSienaCountryData(tsql)
-	return 1, sienaCountry, nil
-}
-
-// getSienaCountryList read all employees
-func putSienaCountry(updateItem sienaCountryItem) error {
-
-	//fmt.Println(db.Stats().OpenConnections)
-	fmt.Println(core.SienaPropertiesDB["schema"])
-	fmt.Println(updateItem)
-
-	return nil
-}
-
-// fetchSienaCountryData read all employees
-func fetchSienaCountryData(tsql string) (int, []sienaCountryItem, sienaCountryItem, error) {
-
-	var sienaCountry sienaCountryItem
-	var sienaCountryList []sienaCountryItem
-
-	rows, err := core.SienaDB.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, sienaCountry, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		err := rows.Scan(&sqlCNTRCode, &sqlCNTRName, &sqlCNTRShortCode, &sqlCNTREU_EEA)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, sienaCountry, err
-		}
-
-		sienaCountry.Code = sqlCNTRCode.String
-		sienaCountry.Name = sqlCNTRName.String
-		sienaCountry.ShortCode = sqlCNTRShortCode.String
-		sienaCountry.EU_EEA = sienaYN(sqlCNTREU_EEA.String)
-
-		sienaCountryList = append(sienaCountryList, sienaCountry)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
-	return count, sienaCountryList, sienaCountry, nil
 }

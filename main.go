@@ -15,8 +15,6 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	"github.com/mt1976/mwt-go-dev/jobs"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 )
 
@@ -265,22 +263,22 @@ func main() {
 	log.Println("URI            :", core.ColorPurple+"http://localhost:"+core.ApplicationProperties["port"]+core.ColorReset)
 	log.Println(line)
 
-	rec, err := das.Query(*core.ApplicationDB, "SELECT * FROM dbo.credentialsStore")
+	//rec, err := das.Query(core.ApplicationDB, "SELECT * FROM dbo.credentialsStore")
 	log.Println(line)
 
-	log.Println("rec:", rec, err, len(rec))
-	for i, _ := range rec {
-		log.Println("row:", i, rec[i])
-		//	log.Println("row:", row[])
-	}
+	// log.Println("rec:", rec, err, len(rec))
+	// for i, _ := range rec {
+	// 	log.Println("row:", i, rec[i])
+	// 	//	log.Println("row:", row[])
+	// }
 	//spew.Dump(rec)
 
-	jobs.RatesFXSpot_Run()
-	jobs.SessionHouseKeeping_Run()
-	jobs.RatesFXSpot_Run()
-	jobs.SessionHouseKeeping_Run()
-	jobs.RatesFXSpot_Run()
-	jobs.SessionHouseKeeping_Run()
+	// jobs.RatesFXSpot_Run()
+	// jobs.SessionHouseKeeping_Run()
+	// jobs.RatesFXSpot_Run()
+	// jobs.SessionHouseKeeping_Run()
+	// jobs.RatesFXSpot_Run()
+	// jobs.SessionHouseKeeping_Run()
 
 	httpPort := ":" + core.ApplicationProperties["port"]
 	//http.ListenAndServe(httpPort, nil)

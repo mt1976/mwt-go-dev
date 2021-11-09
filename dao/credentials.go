@@ -66,7 +66,8 @@ func GetCredentialsStoreList() (int, []dm.AppCredentialsStoreItem, error) {
 	//tsql := fmt.Sprintf(dsCredentials.Select, sqlstruct.Columns(appCredentialsStoreItem{}))
 
 	selectsql := buildStatement()
-
+	log.Printf("credBrand: %q", credBrand)
+	log.Printf("credSYSWho: %q", credSYSWho)
 	//log.Println("SELECT:", selectsql, core.ApplicationDB)
 
 	tsql, args := sqlexpr.Build(selectsql)
@@ -81,6 +82,7 @@ func GetCredentialsStoreByID(id string) (int, dm.AppCredentialsStoreItem, error)
 
 	selectsql := buildStatement()
 	selectsql.AddWhere(sqlexpr.Eq(credId, id))
+	fmt.Printf("credBrand: %v\n", credBrand)
 
 	//log.Println("SELECT:", selectsql, core.ApplicationDB)
 
@@ -245,6 +247,7 @@ func fetchCredentialsStoreData(tsql string, args []interface{}) (int, []dm.AppCr
 		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
 		count++
 	}
+	//rows.Close()
 	//log.Println(count, appCredentialsStoreList, appCredentialsStore)
 	return count, appCredentialsStoreList, appCredentialsStore, nil
 }

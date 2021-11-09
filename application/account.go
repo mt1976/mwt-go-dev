@@ -57,7 +57,7 @@ type account_Page struct {
 	Firm                   string
 	CCYDp                  string
 	Action                 string
-	CountryList            []sienaCountryItem
+	CountryList            []dm.Country
 
 	//	SectorList  []sienaSectorItem
 }
@@ -183,8 +183,8 @@ func Account_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(returnList)
 	//fmt.Println(tmpl)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	//_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	//fmt.Println(displayList)
@@ -269,8 +269,8 @@ func Account_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	//	_, sectorList, _ := getSienaSectorList(thisConnection)
 
 	pageSienaAccountList := account_Page{

@@ -280,7 +280,7 @@ func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request)
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
+	//Get Country List & Populate and Array of dm.Country Items
 
 	pageSienaCounterpartyImportIDList := sienaCounterpartyImportIDPage{
 		UserMenu:    UserMenu_Get(r),

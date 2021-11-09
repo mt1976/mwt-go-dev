@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -53,7 +54,7 @@ type sienaMandatedUserPage struct {
 	Notify                            string
 	SystemUser                        string
 	Action                            string
-	CountryList                       []sienaCountryItem
+	CountryList                       []dm.Country
 	FirmList                          []sienaFirmItem
 	CentreList                        []sienaCentreItem
 	CounterpartyName                  string
@@ -197,8 +198,8 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(returnList)
 	//	fmt.Println(tmpl)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
-	_, countryList, _ := getSienaCountryList()
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
 	_, ynList, _ := getSienaYNList()
 
 	//fmt.Println(displayList)
@@ -386,9 +387,9 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//Get Country List & Populate and Array of sienaCountryItem Items
+	//Get Country List & Populate and Array of dm.Country Items
 
-	_, countryList, _ := getSienaCountryList()
+	_, countryList, _ := dao.Country_GetList()
 	_, firmList, _ := getSienaFirmList()
 	_, centreList, _ := getSienaCentreList()
 	_, ynList, _ := getSienaYNList()
