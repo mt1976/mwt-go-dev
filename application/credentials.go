@@ -40,7 +40,7 @@ type appCredentialsStoreListPage struct {
 	Title                 string
 	PageTitle             string
 	CredentialsStoreCount int
-	CredentialsStoreList  []dm.AppCredentialsStoreItem
+	CredentialsStoreList  []dm.Credentials
 }
 
 //appCredentialsStorePage is cheese
@@ -82,6 +82,7 @@ func Credentials_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/newCredentialsStore/", Credentials_HandlerNew)
 	mux.HandleFunc("/banCredentialsStore/", Credentials_HandlerBan)
 	mux.HandleFunc("/activateCredentialsStore/", Credentials_HandlerActivate)
+	core.LOG_mux("Application", "Credentials")
 }
 
 func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -102,7 +103,7 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	var returnList []dm.AppCredentialsStoreItem
+	var returnList []dm.Credentials
 
 	noItems, returnList, _ := dao.Credentials_GetList()
 
@@ -235,7 +236,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
-	var s dm.AppCredentialsStoreItem
+	var s dm.Credentials
 
 	s.Id = r.FormValue("Id")
 	s.Username = r.FormValue("Username")

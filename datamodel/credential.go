@@ -1,7 +1,7 @@
 package datamodel
 
 //appCredentialsStoreItem is cheese
-type AppCredentialsStoreItem struct {
+type Credentials struct {
 	//Action     string
 	Id         string `sql:"id"`
 	Username   string

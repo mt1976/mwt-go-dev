@@ -36,3 +36,7 @@ func sienaDBBoolYN(inBool bool) string {
 func sq(in string) string {
 	return "'" + in + "'"
 }
+
+func queryTableName(in string, in2 string) string {
+	return in + "." + in2
+}

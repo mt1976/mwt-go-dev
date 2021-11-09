@@ -83,7 +83,7 @@ func loginValidate(appToken string, username string, password string, r *http.Re
 	s.ResponseCode = "200"
 	//s.host = host
 
-	var cred dm.AppCredentialsStoreItem
+	var cred dm.Credentials
 	cred.Role = ""
 	cred.Knownas = "mock"
 	cred.Username = "mock"
@@ -122,7 +122,7 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 	//log.Println("VALIDATE SESSION", session_username, session_session, session_uuid)
 
 	// were only going to check that uid and the username mactc
-	var cred dm.AppCredentialsStoreItem
+	var cred dm.Credentials
 	cred.Role = ""
 	cred.Knownas = "mock"
 	cred.Username = "mock"

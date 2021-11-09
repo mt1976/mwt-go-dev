@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"log"
 	"strings"
+	"time"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/das"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -16,7 +18,9 @@ var sqlACCTSienaReference, sqlACCTCustomerSienaView, sqlACCTSienaCommonRef, sqlA
 // getSienaAccountList read all employees
 func Account_GetList() (int, []dm.Account, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, core.SienaPropertiesDB["schema"])
+	//	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, core.SienaPropertiesDB["schema"])
+
+	tsql := "SELECT * FROM " + queryTableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
 	count, sienaAccountList, _, _ := fetchSienaAccountData(tsql)
 	return count, sienaAccountList, nil
 }
@@ -24,7 +28,10 @@ func Account_GetList() (int, []dm.Account, error) {
 // getSienaAccountListByCounterParty read all employees
 func Account_GetListByCounterparty(idFirm string, idCentre string) (int, []dm.Account, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
+	//tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
+	tsql := "SELECT * FROM " + queryTableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
+	tsql = tsql + " WHERE " + dm.Account_Firm + "='" + idFirm + "' AND " + dm.Account_Centre + "='" + idCentre + "'"
+
 	count, sienaAccountList, _, _ := fetchSienaAccountData(tsql)
 	return count, sienaAccountList, nil
 }
@@ -32,7 +39,10 @@ func Account_GetListByCounterparty(idFirm string, idCentre string) (int, []dm.Ac
 // getSienaAccount read all employees
 func Account_GetByID(id string) (int, dm.Account, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, core.SienaPropertiesDB["schema"], id)
+	//tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, core.SienaPropertiesDB["schema"], id)
+
+	tsql := "SELECT * FROM " + queryTableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
+	tsql = tsql + " WHERE " + dm.Account_SienaReference + "='" + id + "'"
 	_, _, sienaAccount, _ := fetchSienaAccountData(tsql)
 	return 1, sienaAccount, nil
 }
@@ -52,54 +62,81 @@ func fetchSienaAccountData(tsql string) (int, []dm.Account, dm.Account, error) {
 	var sienaAccount dm.Account
 	var sienaAccountList []dm.Account
 
-	rows, err := core.SienaDB.Query(tsql)
-	//fmt.Println("back from dq Q")
+	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, sienaAccount, err
+		log.Fatal(err.Error())
 	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		err := rows.Scan(&sqlACCTSienaReference, &sqlACCTCustomerSienaView, &sqlACCTSienaCommonRef, &sqlACCTStatus, &sqlACCTStartDate, &sqlACCTMaturityDate, &sqlACCTContractNumber, &sqlACCTExternalReference, &sqlACCTCCY, &sqlACCTBook, &sqlACCTMandatedUser, &sqlACCTBackOfficeNotes, &sqlACCTCashBalance, &sqlACCTAccountNumber, &sqlACCTAccountName, &sqlACCTLedgerBalance, &sqlACCTPortfolio, &sqlACCTAgreementId, &sqlACCTBackOfficeRefNo, &sqlACCTPaymentSystemSienaView, &sqlACCTISIN, &sqlACCTUTI, &sqlACCTCCYName, &sqlACCTBookName, &sqlACCTPortfolioName, &sqlACCTCentre, &sqlACCTFirm, &sqlACCTCCYDp)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, sienaAccount, err
-		}
 
-		sienaAccount.SienaReference = sqlACCTSienaReference.String
-		sienaAccount.CustomerSienaView = sqlACCTCustomerSienaView.String
-		sienaAccount.SienaCommonRef = sqlACCTSienaCommonRef.String
-		sienaAccount.Status = sqlACCTStatus.String
-		sienaAccount.StartDate = core.SqlDateToHTMLDate(sqlACCTStartDate.String)
-		sienaAccount.MaturityDate = core.SqlDateToHTMLDate(sqlACCTMaturityDate.String)
-		sienaAccount.ContractNumber = sqlACCTContractNumber.String
-		sienaAccount.ExternalReference = sqlACCTExternalReference.String
-		sienaAccount.CCY = sqlACCTCCY.String
-		sienaAccount.Book = sqlACCTBook.String
-		sienaAccount.MandatedUser = sqlACCTMandatedUser.String
-		sienaAccount.BackOfficeNotes = sqlACCTBackOfficeNotes.String
-		sienaAccount.CashBalance = core.FormatCurrencyDps(sqlACCTCashBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
-		sienaAccount.AccountNumber = sqlACCTAccountNumber.String
-		sienaAccount.AccountName = sqlACCTAccountName.String
-		sienaAccount.LedgerBalance = core.FormatCurrencyDps(sqlACCTLedgerBalance.String, sqlACCTCCY.String, sqlACCTCCYDp.String)
-		sienaAccount.Portfolio = sqlACCTPortfolio.String
-		sienaAccount.AgreementId = sqlACCTAgreementId.String
-		sienaAccount.BackOfficeRefNo = sqlACCTBackOfficeRefNo.String
-		sienaAccount.PaymentSystemSienaView = sqlACCTPaymentSystemSienaView.String
-		sienaAccount.ISIN = sqlACCTISIN.String
-		sienaAccount.UTI = sqlACCTUTI.String
-		sienaAccount.CCYName = sqlACCTCCYName.String
-		sienaAccount.BookName = sqlACCTBookName.String
-		sienaAccount.PortfolioName = sqlACCTPortfolioName.String
-		sienaAccount.Centre = strings.TrimSpace(sqlACCTCentre.String)
-		sienaAccount.Firm = strings.TrimSpace(sqlACCTFirm.String)
-		sienaAccount.CCYDp = sqlACCTCCYDp.String
+	//	spew.Dump(returnList)
 
+	for i := 0; i < noitems; i++ {
+
+		rec := returnList[i]
+
+		sienaAccount.SienaReference = rec[dm.Account_SienaReference].(string)
+		sienaAccount.CustomerSienaView = rec[dm.Account_CustomerSienaView].(string)
+		sienaAccount.SienaCommonRef = loadString(rec[dm.Account_SienaCommonRef])
+		sienaAccount.Status = loadString(rec[dm.Account_Status])
+		sienaAccount.StartDate = loadTime(rec[dm.Account_StartDate])
+		sienaAccount.MaturityDate = loadTime(rec[dm.Account_MaturityDate])
+		sienaAccount.ContractNumber = rec[dm.Account_ContractNumber].(string)
+		sienaAccount.ExternalReference = loadString(rec[dm.Account_ExternalReference])
+		sienaAccount.CCY = rec[dm.Account_CCY].(string)
+		sienaAccount.Book = rec[dm.Account_Book].(string)
+		sienaAccount.MandatedUser = loadString(rec[dm.Account_MandatedUser])
+		sienaAccount.BackOfficeNotes = loadString(rec[dm.Account_BackOfficeNotes])
+		sienaAccount.CashBalance = fmt.Sprintf("%f", rec[dm.Account_CashBalance].(float64))
+		sienaAccount.AccountNumber = rec[dm.Account_AccountNumber].(string)
+		sienaAccount.AccountName = rec[dm.Account_AccountName].(string)
+		sienaAccount.LedgerBalance = fmt.Sprintf("%f", rec[dm.Account_LedgerBalance].(float64))
+		sienaAccount.Portfolio = loadString(rec[dm.Account_Portfolio])
+		sienaAccount.AgreementId = loadString(rec[dm.Account_AgreementId])
+		sienaAccount.BackOfficeRefNo = loadString(rec[dm.Account_BackOfficeRefNo])
+		sienaAccount.PaymentSystemSienaView = loadString(rec[dm.Account_PaymentSystemSienaView])
+		sienaAccount.ISIN = loadString(rec[dm.Account_ISIN])
+		sienaAccount.UTI = loadString(rec[dm.Account_UTI])
+		sienaAccount.CCYName = loadString(rec[dm.Account_CCYName])
+		sienaAccount.Firm = loadString(rec[dm.Account_Firm])
+		sienaAccount.Centre = loadString(rec[dm.Account_Centre])
+		sienaAccount.CCYDp = loadInt(rec[dm.Account_CCYDp])
+		sienaAccount.BookName = loadString(rec[dm.Account_BookName])
+		sienaAccount.PortfolioName = loadString(rec[dm.Account_PortfolioName])
+		sienaAccount.CCYName = loadString(rec[dm.Account_CCYName])
+
+		sienaAccount.CashBalance = core.FormatCurrencyDps(sienaAccount.CashBalance, sienaAccount.CCY, sienaAccount.CCYDp)
+		sienaAccount.LedgerBalance = core.FormatCurrencyDps(sienaAccount.LedgerBalance, sienaAccount.CCY, sienaAccount.CCYDp)
+		sienaAccount.Centre = strings.TrimSpace(sienaAccount.Centre)
+		sienaAccount.Firm = strings.TrimSpace(sienaAccount.Firm)
 		sienaAccountList = append(sienaAccountList, sienaAccount)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
+
 	}
-	return count, sienaAccountList, sienaAccount, nil
+
+	return noitems, sienaAccountList, sienaAccount, nil
+}
+
+//Convert time.Time to string
+func loadTime(t interface{}) string {
+	fmt.Printf("t: %v\n", t)
+	if t == nil {
+		return ""
+	}
+	return core.TimeToString(t.(time.Time))
+}
+
+//Convert time.Time to string
+func loadString(t interface{}) string {
+	fmt.Printf("t: %v\n", t)
+	if t == nil {
+		return ""
+	}
+	return t.(string)
+}
+
+//Convert time.Time to string
+func loadInt(t interface{}) string {
+	fmt.Printf("t: %v\n", t)
+	if t != nil {
+		return fmt.Sprintf("%d", t.(int64))
+	}
+	return ""
 }

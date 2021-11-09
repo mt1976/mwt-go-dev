@@ -65,7 +65,7 @@ type account_Page struct {
 func Account_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/listSienaAccount/", Account_HandlerList)
 	mux.HandleFunc("/viewSienaAccount/", Account_HandlerView)
-	core.LOG_mux("Siena", "Account")
+	core.LOG_mux("Siena", dm.Account_Title)
 }
 
 func Account_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -114,7 +114,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	searchID := core.GetURLparam(r, dm.Account_URI)
+	searchID := core.GetURLparam(r, dm.Account_QueryString)
 	_, returnRecord, _ := dao.Account_GetByID(searchID)
 	//fmt.Println("NoSienaItems", noItems, searchID)
 	//fmt.Println(returnList)

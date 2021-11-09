@@ -483,3 +483,9 @@ func finAbbrToNumeric(str string) int {
 
 	return retNum
 }
+
+//Convert time.Time to string
+func TimeToString(t time.Time) string {
+	fmt.Printf("t: %v\n", t)
+	return t.Format(DATEFORMATSIENA)
+}
