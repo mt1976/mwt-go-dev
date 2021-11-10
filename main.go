@@ -91,11 +91,7 @@ func main() {
 	application.Firm_Publish(*mux)
 	application.Portfolio_Publish(*mux)
 
-	mux.HandleFunc("/listSienaCentre/", application.ListSienaCentreHandler)
-	mux.HandleFunc("/viewSienaCentre/", application.ViewSienaCentreHandler)
-	mux.HandleFunc("/editSienaCentre/", application.EditSienaCentreHandler)
-	mux.HandleFunc("/saveSienaCentre/", application.SaveSienaCentreHandler)
-	mux.HandleFunc("/newSienaCentre/", application.NewSienaCentreHandler)
+	application.Centre_Publish(*mux)
 
 	mux.HandleFunc("/listSienaBook/", application.ListSienaBookHandler)
 	mux.HandleFunc("/viewSienaBook/", application.ViewSienaBookHandler)

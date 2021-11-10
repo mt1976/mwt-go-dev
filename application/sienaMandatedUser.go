@@ -56,7 +56,7 @@ type sienaMandatedUserPage struct {
 	Action                            string
 	CountryList                       []dm.Country
 	FirmList                          []sienaFirmItem
-	CentreList                        []sienaCentreItem
+	CentreList                        []dm.Centre
 	CounterpartyName                  string
 	YNList                            []sienaYNItem
 	CBActive                          string
@@ -391,7 +391,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	_, countryList, _ := dao.Country_GetList()
 	_, firmList, _ := getSienaFirmList()
-	_, centreList, _ := getSienaCentreList()
+	_, centreList, _ := dao.Centre_GetList()
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaMandatedUserList := sienaMandatedUserPage{
