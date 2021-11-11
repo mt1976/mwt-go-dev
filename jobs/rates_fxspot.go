@@ -14,6 +14,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 	tools "github.com/mt1976/mwtgostringtools"
 	cron "github.com/robfig/cron/v3"
 )
@@ -51,7 +52,9 @@ func RatesFXSpot_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func RatesFXSpot_Run() {
-	logStart(RatesFXSpot_Job().Name)
+	//logs.StartJob(RatesFXSpot_Job().Name)
+
+	logs.StartJob(RatesFXSpot_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -73,7 +76,7 @@ func RatesFXSpot_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(RatesFXSpot_Job(), message)
-	logEnd(RatesFXSpot_Job().Name)
+	logs.EndJob(RatesFXSpot_Job().Name)
 }
 
 func getFXrate(inCCYpair string) fxRate {

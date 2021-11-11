@@ -6,6 +6,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	"github.com/robfig/cron/v3"
 )
 
@@ -27,7 +28,7 @@ func HeartBeat_Register(c *cron.Cron) {
 // RunJobHeartBeat is a HeartBeat function
 func HeartBeat_Run() {
 
-	logStart(HeartBeat_Job().Name)
+	logs.StartJob(HeartBeat_Job().Name)
 	core.Log_uptime()
 	core.ApplicationDB = core.GlobalsDatabasePoke(core.ApplicationDB, core.ApplicationPropertiesDB)
 	core.SienaDB = core.GlobalsDatabasePoke(core.SienaDB, core.SienaPropertiesDB)
@@ -35,5 +36,10 @@ func HeartBeat_Run() {
 	message := fmt.Sprintf("Uptime = %v", core.Uptime())
 
 	application.UpdateSchedule(HeartBeat_Job(), message)
-	logEnd(HeartBeat_Job().Name)
+	logs.EndJob(HeartBeat_Job().Name)
+
+	logs.Break()
+	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
+	logs.Break()
+
 }

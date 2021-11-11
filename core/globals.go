@@ -3,13 +3,13 @@ package core
 import (
 	"database/sql"
 	"io/ioutil"
-	"log"
 	"os"
 	"strings"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/jimlawless/cfg"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 var startTime = time.Now()
@@ -88,6 +88,10 @@ const (
 	Character_Poke           = "👉"
 	Character_Time           = "🕒"
 	Character_Break          = "≫"
+	Character_Monitor        = "👁"
+	Character_Aquirer        = "🛒"
+	Character_Dispatcher     = "📡"
+	Character_Gears          = "⚙️"
 )
 
 type Connection struct {
@@ -131,7 +135,8 @@ type DateItem struct {
 }
 
 func Initialise() {
-	LOG_message("Initialisation", "Vroom")
+	//logs.Message("Initialisation", "Vroom")
+	logs.Information("Initialisation", "Vroom "+Bike)
 
 	SessionToken = ""
 	UUID = "authorAdjust"
@@ -154,16 +159,16 @@ func Initialise() {
 	}
 	//
 
-	LOG_message("Initialisation", "Connecting to application databases...")
+	logs.Information("Connecting to application databases...", "")
 
 	//MasterDB, _ = GlobalsDatabaseConnect(MasterPropertiesDB)
 
 	ApplicationDB, _ = GlobalsDatabaseConnect(ApplicationPropertiesDB)
-	log.Printf("Initialisation", ApplicationDB.Stats())
+	//log.Printf("Initialisation", ApplicationDB.Stats())
 
 	SienaDB, _ = GlobalsDatabaseConnect(SienaPropertiesDB)
-	log.Printf("Initialisation", SienaDB.Stats())
-	LOG_success("Connections established")
+	//log.Printf("Initialisation", SienaDB.Stats())
+	logs.Success("Connections established")
 
 	//
 
@@ -174,7 +179,7 @@ func Initialise() {
 	SessionManager = scs.New()
 	life, err := time.ParseDuration(ApplicationProperties["sessionlife"])
 	if err != nil {
-		log.Fatal("No Session Life Found", err, life)
+		logs.Fatal("No Session Life Found", err)
 	}
 	SessionManager.Lifetime = life
 	SessionManager.IdleTimeout = 20 * time.Minute
@@ -184,7 +189,7 @@ func Initialise() {
 	//SessionManager.Cookie.SameSite = http.SameSiteStrictMode
 	SessionManager.Cookie.Secure = false
 
-	LOG_success("Vroooom Vrooooom VROOOOM! " + Bike)
+	logs.Information("Initialisation", "Vroooom Vrooooom! "+Bike+Bike)
 }
 
 // Load a Properties File
@@ -199,13 +204,13 @@ func getProperties(inPropertiesFile string) map[string]string {
 
 		ok := copyDataFile(inPropertiesFile, "config/", "config/fileSystem/config")
 		if !ok {
-			log.Println("Issue in Copy Function")
+			logs.Error("Issue in Copy Function", nil)
 		}
 	}
 
 	err := cfg.Load(propertiesFileName, wctProperties)
 	if err != nil {
-		log.Fatal(err)
+		logs.Fatal("Cannot Load Properties File "+propertiesFileName, err)
 	}
 	return wctProperties
 }
@@ -234,7 +239,7 @@ func writeDataFile(fileName string, path string, content string) (bool, error) {
 	message := []byte(content)
 	err := ioutil.WriteFile(filePath, message, 0644)
 	if err != nil {
-		log.Fatal(err)
+		logs.Fatal("Write Error", err)
 		return false, err
 	}
 	return false, nil
@@ -253,30 +258,30 @@ func deleteDataFile(fileName string, path string) int {
 	if fileExists(filePath) {
 		var err = os.Remove(filePath)
 		if err != nil {
-			log.Fatal(err.Error())
+			logs.Fatal("File Error", err)
 			return -1
 		}
 	}
-	LOG_info("File Deleted", fileName+" - "+path)
+	logs.Information("File Deleted", fileName+" - "+path)
 	return 1
 }
 
 func copyDataFile(fileName string, fromPath string, toPath string) bool {
 
-	log.Panicln("Copying " + fileName + " from " + fromPath + " to " + toPath)
+	logs.Warning("Copying " + fileName + " from " + fromPath + " to " + toPath)
 
 	content, err := ReadDataFile(fileName, fromPath)
 	if err != nil {
-		log.Panicln(err.Error())
+		logs.Fatal("File Read Error", err)
 	}
 
 	ok, err2 := writeDataFile(fileName, toPath, content)
 	if err2 != nil {
-		log.Panicln(err2.Error())
+		logs.Fatal("File Write Error", err2)
 	}
 
 	if !ok {
-		log.Panicln("Unable to Copy " + fileName + " from " + fromPath + " to " + toPath)
+		logs.Fatal("Unable to Copy "+fileName+" from "+fromPath+" to "+toPath, nil)
 	}
 
 	return true
@@ -291,7 +296,7 @@ func GetDataList(basePath string) (int, []string, error) {
 	//log.Println(pwd + requestPath + "/")
 	files, err := ioutil.ReadDir(pwd + basePath)
 	if err != nil {
-		log.Fatal(err)
+		logs.Fatal("Directory Error", err)
 	}
 	//spew.Dump(files)
 
@@ -315,7 +320,7 @@ func Uptime() time.Duration {
 }
 
 func Log_uptime() {
-	log.Println("App Uptime    :", Uptime().String())
+	logs.System("App Uptime : " + Uptime().String())
 }
 
 /*
@@ -354,4 +359,11 @@ func leftPad2Len(s string, padStr string, overallLen int) string {
 	padCountInt := 1 + ((overallLen - len(padStr)) / len(padStr))
 	var retStr = strings.Repeat(padStr, padCountInt) + s
 	return retStr[(len(retStr) - overallLen):]
+}
+
+func PadRight(s string, p string, l int) string {
+	return rightPad2Len(s, p, l)
+}
+func PadLeft(s string, p string, l int) string {
+	return leftPad2Len(s, p, l)
 }

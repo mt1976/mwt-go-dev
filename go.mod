@@ -3,6 +3,7 @@ module github.com/mt1976/mwt-go-dev
 go 1.16
 
 require (
+	github.com/TwiN/go-color v1.0.1 // indirect
 	github.com/alexedwards/scs/v2 v2.4.0
 	github.com/andreyvit/sqlexpr v0.1.2
 	github.com/bjarneh/latinx v0.0.0-20120329061922-4dfe9ba2a293

@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/logs"
 
 	cron "github.com/robfig/cron/v3"
 )
@@ -26,7 +27,7 @@ func Start() {
 
 	//logit("info", c.Location().String())
 
-	logit("cron Locale", c.Location().String())
+	//logit("cron Locale", c.Location().String())
 
 	HeartBeat_Register(c)
 
@@ -77,15 +78,5 @@ func logit(actionType string, data string) {
 	//log.Println(len(outcall), depth, depth2)
 	callerName := outcall[depth2] + "/" + outcall[depth]
 	op := fmt.Sprintf("%v '%v' {%v}", actionType, data, callerName)
-	core.LOG_message("Scheduler", op)
-}
-
-func logStart(data string) {
-	core.LOG_message("Scheduler", "Start"+data)
-	logit("Job Start", data)
-}
-
-func logEnd(data string) {
-	core.LOG_message("Scheduler", "Stop "+data)
-	logit("Job End", data)
+	logs.Message("Scheduler", op)
 }

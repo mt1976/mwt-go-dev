@@ -7,6 +7,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -38,13 +39,13 @@ func DataDispatcher_Run(actionType string) {
 	overideJ := DataDispatcher_Job()
 	overideJ.Name = DataDispatcher_Job().Name + "_" + actionType
 	overideJ.ID = DataDispatcher_Job().ID + "_" + actionType
-	logStart(overideJ.Name)
+	logs.StartJob(overideJ.Name)
 
 	DispatchByType("RV" + actionType)
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(overideJ, message)
-	logEnd(overideJ.Name + " - " + actionType)
+	logs.EndJob(overideJ.Name + " - " + actionType)
 }
 
 func DispatchByType(dispatchType string) {

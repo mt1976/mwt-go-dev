@@ -13,6 +13,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html/charset"
 )
@@ -72,7 +73,7 @@ func IndexSONIABOE_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func IndexSONIABOE_Run() {
-	logStart(IndexSONIABOE_Job().Name)
+	logs.StartJob(IndexSONIABOE_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -144,7 +145,7 @@ func IndexSONIABOE_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(IndexSONIABOE_Job(), message)
-	logEnd(IndexSONIABOE_Job().Name)
+	logs.EndJob(IndexSONIABOE_Job().Name)
 }
 
 // func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {

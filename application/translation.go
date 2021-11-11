@@ -8,6 +8,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 //appTranslationStorePage is cheese
@@ -46,7 +47,7 @@ func Translation_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/viewTranslationStore/", Translation_HandlerView)
 	mux.HandleFunc("/editTranslationStore/", Translation_HandlerEdit)
 	mux.HandleFunc("/saveTranslationStore/", Translation_HandlerSave)
-	core.LOG_mux("Application", "Translation")
+	logs.Publish("Application", "Translation")
 }
 
 func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {

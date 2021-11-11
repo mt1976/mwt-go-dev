@@ -11,6 +11,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html"
 )
@@ -102,7 +103,7 @@ func InstFII_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func InstFII_Run() {
-	logStart(InstFII_Job().Name)
+	logs.StartJob(InstFII_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -116,7 +117,7 @@ func InstFII_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(InstFII_Job(), message)
-	logEnd(InstFII_Job().Name)
+	logs.EndJob(InstFII_Job().Name)
 }
 
 func getInternalDate(in string) string {
@@ -147,7 +148,8 @@ func getInternalDateFII(in string) string {
 }
 
 func OnPage(link string, nitype string) {
-	log.Printf("link: %v\n", link)
+	//log.Printf("link: %v\n", link)
+	logs.Accessing(link)
 	req, err := http.NewRequest("GET", link, nil)
 	if err != nil {
 		log.Fatalln(err)

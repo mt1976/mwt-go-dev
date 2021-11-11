@@ -13,6 +13,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 var sienaFirmSQL = "FirmName, 	FullName, 	Country, 	Sector, 	SectorName, 	CountryName"
@@ -66,7 +67,7 @@ func Firm_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/editSienaFirm/", EditSienaFirmHandler)
 	mux.HandleFunc("/saveSienaFirm/", SaveSienaFirmHandler)
 	mux.HandleFunc("/newSienaFirm/", NewSienaFirmHandler)
-	core.LOG_mux("Siena", "Firm")
+	logs.Publish("Siena", "Firm")
 }
 
 func ListSienaFirmHandler(w http.ResponseWriter, r *http.Request) {

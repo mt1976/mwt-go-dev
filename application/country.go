@@ -10,6 +10,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 var sienaCountrySQL = "Code, 	Name, 	ShortCode, 	EU_EEA"
@@ -48,7 +49,7 @@ func Country_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/editSienaCountry/", Country_HandlerEdit)
 	mux.HandleFunc("/saveSienaCountry/", Country_HandlerSave)
 	mux.HandleFunc("/newSienaCountry/", Country_HandlerNew)
-	core.LOG_mux("Siena", "Country")
+	logs.Publish("Siena", "Country")
 }
 
 func Country_HandlerList(w http.ResponseWriter, r *http.Request) {

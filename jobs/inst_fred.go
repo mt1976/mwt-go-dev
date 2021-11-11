@@ -10,6 +10,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -79,7 +80,7 @@ func InstFRED_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func InstFRED_Run() {
-	logStart(InstFRED_Job().Name)
+	logs.StartJob(InstFRED_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -112,7 +113,7 @@ func InstFRED_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(InstFRED_Job(), message)
-	logEnd(InstFRED_Job().Name)
+	logs.EndJob(InstFRED_Job().Name)
 }
 
 func getFredAPIData(inURI string) (string, string) {

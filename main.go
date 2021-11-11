@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 	"runtime"
-	"strings"
 	"time"
 
 	_ "github.com/denisenkom/go-mssqldb"
@@ -16,6 +15,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 func main() {
@@ -27,23 +27,30 @@ func main() {
 	// The underscore would be an error
 	//	renderStr, _ := ascii.Render(wctProperties["appname"])
 	tmpHostname, _ := os.Hostname()
-	line := strings.Repeat("-", 100)
-	log.Println(line)
+	logs.Break()
+	logs.Header("MISSION CONTROL")
+	logs.Break()
 
-	core.LOG_header("Initialising ...")
+	logs.Information("Initialising...", "")
 
 	core.Initialise()
 
-	core.LOG_success("Initialised")
+	logs.Success("Initialised")
+	logs.Break()
+	logs.Header("Scheduling Jobs")
+	logs.Break()
 
-	core.LOG_header("Scheduling Jobs")
 	//log.Println("TEST>")
 	//scheduler.RunJobCob("TEST")
 	//log.Println("<TEST")
-	scheduler.Start()
-	core.LOG_success("Jobs Scheduled")
 
-	core.LOG_header("Starting Handlers")
+	scheduler.Start()
+
+	logs.Success("Jobs Scheduled")
+	logs.Break()
+	logs.Header("Starting Handlers")
+	logs.Break()
+
 	mux := http.NewServeMux()
 
 	Main_Publish(*mux)
@@ -197,87 +204,71 @@ func main() {
 	mux.HandleFunc("/deselectLSEGiltsDataStore/", application.DeselectLSEGiltsDataStoreHandler)
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	core.LOG_success("Handlers Started")
-	log.Println(line)
-	core.LOG_header("Application Information")
-	core.LOG_header("Application")
-	core.LOG_info("Name", core.ApplicationProperties["appname"])
-	core.LOG_info("Host Name", tmpHostname)
-	core.LOG_info("Server Release", fmt.Sprintf("%s [r%s-%s]", core.ApplicationProperties["releaseid"], core.ApplicationProperties["releaselevel"], core.ApplicationProperties["releasenumber"]))
-	core.LOG_info("Server Date", time.Now().Format(core.DATEFORMATUSER))
-	if core.IsChildInstance {
-		core.LOG_info("Server Mode", "Primary System")
-	} else {
-		core.LOG_info("Server Mode", "Secondary System")
-	}
-	core.LOG_info("Licence", core.ApplicationProperties["licname"])
-	core.LOG_info("Lic URL", core.ApplicationProperties["liclink"])
-	core.LOG_header("Runtime")
-	core.LOG_info("GO Version", runtime.Version())
-	core.LOG_info("Operating System", runtime.GOOS)
-	core.LOG_header("Application Database (MSSQL)")
-	core.LOG_info("Server", core.ApplicationPropertiesDB["server"])
-	core.LOG_info("Database", core.ApplicationPropertiesDB["database"])
-	core.LOG_info("Schema", core.ApplicationPropertiesDB["schema"])
-	core.LOG_info("Parent Schema", core.ApplicationPropertiesDB["parentschema"])
+	logs.Success("Handlers Started")
+	logs.Break()
+	logs.Header("Application Information")
+	logs.Break()
 
-	core.LOG_header("Siena")
+	logs.Header("Application")
+	logs.Information("Name", core.ApplicationProperties["appname"])
+	logs.Information("Host Name", tmpHostname)
+	logs.Information("Server Release", fmt.Sprintf("%s [r%s-%s]", core.ApplicationProperties["releaseid"], core.ApplicationProperties["releaselevel"], core.ApplicationProperties["releasenumber"]))
+	logs.Information("Server Date", time.Now().Format(core.DATEFORMATUSER))
+	if core.IsChildInstance {
+		logs.Information("Server Mode", "Primary System")
+	} else {
+		logs.Information("Server Mode", "Secondary System")
+	}
+	logs.Information("Licence", core.ApplicationProperties["licname"])
+	logs.Information("Lic URL", core.ApplicationProperties["liclink"])
+	logs.Header("Runtime")
+	logs.Information("GO Version", runtime.Version())
+	logs.Information("Operating System", runtime.GOOS)
+	logs.Header("Application Database (MSSQL)")
+	logs.Information("Server", core.ApplicationPropertiesDB["server"])
+	logs.Information("Database", core.ApplicationPropertiesDB["database"])
+	logs.Information("Schema", core.ApplicationPropertiesDB["schema"])
+	logs.Information("Parent Schema", core.ApplicationPropertiesDB["parentschema"])
+
+	logs.Header("Siena")
 	_, tempDate, _ := application.GetBusinessDate(core.SienaDB)
 	core.SienaSystemDate = tempDate
-	core.LOG_info("System", core.SienaProperties["name"])
-	core.LOG_info("System Date", core.SienaSystemDate.Internal.Format(core.DATEFORMATUSER))
+	logs.Information("System", core.SienaProperties["name"])
+	logs.Information("System Date", core.SienaSystemDate.Internal.Format(core.DATEFORMATUSER))
 
-	core.LOG_header("Siena Database (MSSQL)")
-	core.LOG_info("Server", core.SienaPropertiesDB["server"])
-	core.LOG_info("Database", core.SienaPropertiesDB["database"])
-	core.LOG_info("Schema", core.SienaPropertiesDB["schema"])
-	core.LOG_info("Parent Schema", core.SienaPropertiesDB["parentschema"])
+	logs.Header("Siena Database (MSSQL)")
+	logs.Information("Server", core.SienaPropertiesDB["server"])
+	logs.Information("Database", core.SienaPropertiesDB["database"])
+	logs.Information("Schema", core.SienaPropertiesDB["schema"])
+	logs.Information("Parent Schema", core.SienaPropertiesDB["parentschema"])
 
-	core.LOG_header("Siena Connectivity")
-	core.LOG_info("TXNs Delivery", core.SienaProperties["transactional_in"])
-	core.LOG_info("TXNs Response", core.SienaProperties["transactional_out"])
-	core.LOG_info("Static Delivery", core.SienaProperties["static_in"])
-	core.LOG_info("Static Response", core.SienaProperties["static_out"])
-	core.LOG_info("Funds Check Request", core.SienaProperties["funds_out"])
-	core.LOG_info("Funds Check Response", core.SienaProperties["funds_in"])
-	core.LOG_info("Rates & Prices Delivery", core.SienaProperties["rates_in"])
+	logs.Header("Siena Connectivity")
+	logs.Information("TXNs Delivery", core.SienaProperties["transactional_in"])
+	logs.Information("TXNs Response", core.SienaProperties["transactional_out"])
+	logs.Information("Static Delivery", core.SienaProperties["static_in"])
+	logs.Information("Static Response", core.SienaProperties["static_out"])
+	logs.Information("Funds Check Request", core.SienaProperties["funds_out"])
+	logs.Information("Funds Check Response", core.SienaProperties["funds_in"])
+	logs.Information("Rates & Prices Delivery", core.SienaProperties["rates_in"])
 
-	core.LOG_header("Sessions")
-	core.LOG_info("Session Life", core.ApplicationProperties["sessionlife"])
+	logs.Header("Sessions")
+	logs.Information("Session Life", core.ApplicationProperties["sessionlife"])
 
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 
-	core.LOG_header("READY STEADY GO!!!")
-	log.Println("URI            :", core.ColorPurple+"http://localhost:"+core.ApplicationProperties["port"]+core.ColorReset)
-	log.Println(line)
-
-	//rec, err := das.Query(core.ApplicationDB, "SELECT * FROM dbo.credentialsStore")
-	log.Println(line)
-
-	// log.Println("rec:", rec, err, len(rec))
-	// for i, _ := range rec {
-	// 	log.Println("row:", i, rec[i])
-	// 	//	log.Println("row:", row[])
-	// }
-	//spew.Dump(rec)
-
-	// jobs.RatesFXSpot_Run()
-	// jobs.SessionHouseKeeping_Run()
-	// jobs.RatesFXSpot_Run()
-	// jobs.SessionHouseKeeping_Run()
-	// jobs.RatesFXSpot_Run()
-	// jobs.SessionHouseKeeping_Run()
+	logs.Header("READY STEADY GO!!!")
+	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Bike+logs.Bike+logs.Bike+logs.Bike)
+	logs.Break()
+	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
+	logs.Break()
 
 	httpPort := ":" + core.ApplicationProperties["port"]
-	//http.ListenAndServe(httpPort, nil)
 
-	//scheduler.RunJobFII("")
-	//s, _ := application.GLIEF_leiLookup("GB00BL68HJ26")
-	//info("LEI", s)
 	// Wrap your handlers with the LoadAndSave() middleware.
-	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
 
+	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
+	logs.Break()
 	core.Log_uptime()
 
 }
@@ -288,7 +279,7 @@ func Main_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/clearQueues/", clearQueuesHandler)
 	mux.HandleFunc("/put", putHandler)
 	mux.HandleFunc("/get", getHandler)
-	core.LOG_mux("Main", "Application")
+	logs.Publish("Main", "Application")
 }
 
 //// TODO: migrage the following three functions to appsupport

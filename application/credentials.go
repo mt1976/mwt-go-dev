@@ -10,6 +10,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	"github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -82,7 +83,7 @@ func Credentials_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/newCredentialsStore/", Credentials_HandlerNew)
 	mux.HandleFunc("/banCredentialsStore/", Credentials_HandlerBan)
 	mux.HandleFunc("/activateCredentialsStore/", Credentials_HandlerActivate)
-	core.LOG_mux("Application", "Credentials")
+	logs.Publish("Application", "Credentials")
 }
 
 func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {

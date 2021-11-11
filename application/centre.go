@@ -4,10 +4,11 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/mt1976/mwt-go-dev/adaptor"
+	adaptor "github.com/mt1976/mwt-go-dev/adaptor"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //sienaCentrePage is cheese
@@ -47,7 +48,7 @@ func Centre_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/editSienaCentre/", Centre_HandlerEdit)
 	mux.HandleFunc("/newSienaCentre/", Centre_HandlerNew)
 	mux.HandleFunc("/saveSienaCentre/", Centre_HandlerSave)
-	core.LOG_mux("Siena", dm.Centre_Title)
+	logs.Publish("Siena", dm.Centre_Title)
 }
 
 func Centre_HandlerList(w http.ResponseWriter, r *http.Request) {

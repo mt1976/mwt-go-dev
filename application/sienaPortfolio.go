@@ -13,6 +13,7 @@ import (
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 var sienaPortfolioSQL = "Code, 	Name"
@@ -54,7 +55,7 @@ func Portfolio_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/editSienaPortfolio/", Portfolio_HandlerEdit)
 	mux.HandleFunc("/saveSienaPortfolio/", Portfolio_HandlerSave)
 	mux.HandleFunc("/newSienaPortfolio/", Portfolio_HandlerNew)
-	core.LOG_mux("Siena", "Portfolio")
+	logs.Publish("Siena", "Portfolio")
 }
 
 func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {

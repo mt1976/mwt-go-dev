@@ -11,6 +11,7 @@ import (
 	hcron "github.com/lnquy/cron"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 func RegisterSchedule(thisJob dm.JobDefinition) {
@@ -41,8 +42,18 @@ func RegisterSchedule(thisJob dm.JobDefinition) {
 	if registerIt {
 		putScheduleStore(s)
 		//desc := GetCronScheduleHuman(s.Schedule)
-		op := fmt.Sprintf("Scheduled Job : %-11s %-20s %-20s %q", s.Type, s.Name, s.Schedule, GetCronScheduleHuman(s.Schedule))
-		core.LOG_success(op)
+
+		icon := core.Character_Gears
+		switch s.Type {
+		case core.Aquirer:
+			icon = core.Character_Aquirer
+		case core.Monitor:
+			icon = core.Character_Monitor + " "
+		case core.Dispatcher:
+			icon = core.Character_Dispatcher
+		}
+		op := fmt.Sprintf("%s %-18s %-18s %q", icon, s.Name, s.Schedule, GetCronScheduleHuman(s.Schedule))
+		logs.Schedule(op)
 	}
 }
 
@@ -54,16 +65,16 @@ func UpdateSchedule(thisJob dm.JobDefinition, message string) {
 			s.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 			s.Message = message
 			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
-			core.Logit("Scheduler", thisMess)
+			logs.Schedule(thisMess)
 			putScheduleStore(s)
 		} else {
 			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", thisJob.ID, thisJob.ID, message, scheduleID)
-			core.Logit("Scheduler", thisMess)
+			logs.Schedule(thisMess)
 			//spew.Dump(s)
 		}
 	} else {
 		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", thisJob.ID, thisJob.Type, message)
-		core.Logit("Scheduler", thisMess)
+		logs.Schedule(thisMess)
 	}
 }
 
@@ -78,11 +89,11 @@ func GetCronScheduleHuman(in string) string {
 			cron.SetLocales(hcron.Locale_en),
 		)
 		if err != nil {
-			log.Panicf("failed to create CRON expression descriptor: %s", err)
+			logs.Error("failed to create CRON expression descriptor:", err)
 		}
 		desc, err = exprDesc.ToDescription(in, hcron.Locale_en)
 		if err != nil {
-			log.Panicf("failed to convert CRON expression to human readable description: %s", err)
+			logs.Error("failed to convert CRON expression to human readable description:", err)
 		}
 	}
 

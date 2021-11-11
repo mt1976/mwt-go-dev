@@ -6,12 +6,13 @@ import (
 	"strconv"
 
 	"github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
 	//log.Println("Query:", query)
-	core.LOG_message("Query Stmt", query)
+	logs.Database("Query :", query)
 	rows, _ := db.Query(query) // Note: Ignoring errors for brevity
 	cols, _ := rows.Columns()
 	noResults := 0
@@ -52,7 +53,7 @@ func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 	//spew.Dump(recs)
 	//log.Println("Query:", m)
 	//log.Println("No Results:", noResults)
-	core.LOG_message("Query Results", strconv.Itoa(noResults))
+	logs.Database("Count :", strconv.Itoa(noResults))
 	return recs, noResults, nil
 }
 
@@ -67,11 +68,11 @@ func Poke(DB *sql.DB) error {
 //TODO: implement
 func Execute(tsql string) {
 
-	core.LOG_message("Delete Stmt", tsql)
+	logs.Database("Delete :", tsql)
 
 	_, err := core.ApplicationDB.Exec(tsql)
 	if err != nil {
-		log.Panicf("%e", err)
+		logs.Panic("Execution Error", err)
 	}
 
 }

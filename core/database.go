@@ -6,6 +6,8 @@ import (
 	"log"
 	"strings"
 	"time"
+
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 func extractCreate(in string) string {
@@ -24,7 +26,8 @@ func extractCreate(in string) string {
 func PokeDatabase(DB *sql.DB) error {
 	errordb := DB.Ping()
 	if errordb != nil {
-		log.Println(errordb.Error())
+		//log.Println(errordb.Error())
+		logs.Error("Poke Error", errordb)
 	}
 	return errordb
 }
@@ -39,7 +42,7 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	//	instance := mssqlConfig["instance"]
 	if database != "master" {
 		//log.Println("Information   : Attemping connection to " + server + " " + database)
-		LOG_message("Connecting", "Attemping connection to "+server+" "+database)
+		logs.Message("Connecting", "Attemping connection to "+server+" "+database)
 	}
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;database=%s;", server, user, password, port, database)
 	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%s;", server, user, password, port)
@@ -48,10 +51,10 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	dbInstance, err := sql.Open("mssql", connString)
 	if err != nil {
 		//log.Fatal("ERROR!        : Connection attempt with "+database+connString+" failed:", err.Error())
-		LOG_error("Connection attempt with "+database+connString+" failed:", err)
+		logs.Error("Connection attempt with "+database+connString+" failed:", err)
 	}
 	if database != "master" {
-		LOG_success("Connected to " + server + " " + database)
+		logs.Success("Connected to " + server + " " + database)
 		//	log.Println("Information   : Connected to " + server + " " + database)
 	}
 	keepalive, _ := time.ParseDuration("-1h")
@@ -59,7 +62,7 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	//log.Printf("Test Connection %d %d", dbInstance.Stats().OpenConnections, dbInstance.Stats().Idle)
 	stmt, err := dbInstance.Prepare("select @@version")
 	if err != nil {
-		LOG_error("Connection attempt with "+database+connString+" failed:", err)
+		logs.Error("Connection attempt with "+database+connString+" failed:", err)
 	}
 	row := stmt.QueryRow()
 	var result string
@@ -79,14 +82,14 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	database := mssqlConfig["database"]
 	instance := mssqlConfig["instance"]
 
-	LOG_message("Connecting", "Attemping connection to "+mssqlConfig["server"]+" "+database)
+	logs.Message("Connecting", mssqlConfig["server"]+" "+database+" "+instance)
 
 	mssqlConfig["database"] = "master"
 
 	dbInstance, errConnect := connect(mssqlConfig)
 	if errConnect != nil {
-		LOG_error("Connection attempt with "+database+" failed:", errConnect)
-		log.Panic(errConnect.Error())
+		logs.Information("Connection attempt with "+database+" failed:", errConnect.Error())
+		//log.Panic(errConnect.Error())
 	}
 
 	mssqlConfig["database"] = database
@@ -110,7 +113,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	err2 = dbCheck.Scan(&result2)
 	if err2 != nil {
 
-		LOG_it("Database " + dbName + " does not exists. GENERATING")
+		logs.Warning("Database " + dbName + " does not exists. GENERATING")
 		CreateDatabase(dbInstance, ApplicationPropertiesDB, dbName)
 
 		ApplicationPropertiesDB["database"] = dbName
@@ -127,7 +130,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 		CreateDatabaseObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)
 		returnDB = newDBInstance
 	} else {
-		LOG_it("Database " + dbName + " exists Created: " + result2)
+		logs.Success("Database " + dbName + " exists Created: " + result2)
 		if len(mssqlConfig["instance"]) != 0 {
 			mssqlConfig["database"] = database + "-" + mssqlConfig["instance"]
 		}
@@ -139,7 +142,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	}
 	//log.Printf("%d %s", returnDB.Stats().OpenConnections, mssqlConfig["database"])
 	//fmt.Printf("%s\n", result)
-	LOG_success("Connected to " + mssqlConfig["server"] + " " + mssqlConfig["database"])
+	logs.Success("Connected to " + mssqlConfig["server"] + " " + mssqlConfig["database"])
 	return returnDB, errConnect
 }
 
@@ -157,10 +160,10 @@ func CreateDatabase(dbInstance *sql.DB, mssqlConfig map[string]string, dbName st
 }
 
 func GlobalsDatabasePoke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
-	log.Printf("Fingering     : Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"])
+	logs.Poke(fmt.Sprintf("Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"]), "")
 	err := dbInstance.Ping()
 	if err != nil {
-		log.Printf("Reconnecting  : Server '%s' Database '%s' Schema '%s' (%s)", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"], err.Error())
+		logs.Error(fmt.Sprintf("Reconnecting  : Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"]), err)
 		// Try to reconnect
 		dbInstance, err = GlobalsDatabaseConnect(mssqlConfig)
 		if err != nil {
@@ -175,7 +178,7 @@ func CreateDatabaseObjects(DB *sql.DB, dbConfig map[string]string, sourcePath st
 
 	errdb := DB.Ping()
 	if errdb != nil {
-		log.Println(errdb.Error())
+		logs.Warning("Unable to Find DB")
 	}
 	//spew.Dump(DB)
 	//spew.Dump(DB.Stats())

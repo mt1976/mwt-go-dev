@@ -5,13 +5,13 @@ import (
 	"io/ioutil"
 	"os"
 
-	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 func Centre_XMLExport(item dm.Centre) {
 
-	core.LOG_message("Centre_XMLExport", "Doing it!")
+	//application.LOG_message("Centre_XMLExport", "Doing it!")
 
 	// Create XML File
 	item.Action = "UPDATE"
@@ -60,11 +60,11 @@ func Centre_XMLExport(item dm.Centre) {
 
 	pwd, _ := os.Getwd()
 	fileName := pwd + staticImportPath() + "/" + getNewFileID() + ".xml"
-	core.LOG_info("Centre_XMLExport", "Writing XML to file: "+fileName)
+	logs.Information("Centre_XMLExport", "Writing XML to file: "+fileName)
 	err := ioutil.WriteFile(fileName, preparedXML, 0644)
 	if err != nil {
-		core.LOG_error(err.Error(), err)
+		logs.Error(err.Error(), err)
 	}
-	core.LOG_message("Centre_XMLExport", "Done it!")
+	//application.LOG_message("Centre_XMLExport", "Done it!")
 
 }

@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/leekchan/accounting"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 // Converts a siena style date, as a user readable date
@@ -51,7 +52,8 @@ func GetURLparam(r *http.Request, paramID string) string {
 	//fmt.Println(paramID)
 	//fmt.Println(r.URL)
 	key := r.FormValue(paramID)
-	log.Printf("URL Parameter : Key=%q Value=%q", paramID, string(key))
+	//log.Printf("URL Parameter : Key=%q Value=%q", paramID, string(key))
+	logs.Information("URL Parameter :", fmt.Sprintf("Key=%q Value=%q", paramID, string(key)))
 	return key
 }
 
@@ -88,7 +90,8 @@ func GetTemplateID(tmpl string, userRole string) string {
 	if FileExists(roleTemplate) {
 		//	templateName = roleTemplate
 	}
-	log.Printf("Using Template: Source %q", templateName)
+	//log.Printf("Using Template: Source %q", templateName)
+	logs.Template(templateName)
 	return templateName
 }
 
@@ -104,7 +107,8 @@ func GetMenuID(tmpl string, userRole string) string {
 	if FileExists(roleTemplate) {
 		templateName = roleTemplate
 	}
-	log.Printf("Using Menu    : Source %q", templateName)
+	//log.Printf("Using Menu    : Source %q", templateName)
+	logs.Menu(templateName)
 	return templateName
 }
 
@@ -325,8 +329,9 @@ func GetIncomingRequestIP(r *http.Request) string {
 }
 
 func serviceMessage(i string) {
-	msg := "Servicing     : %q"
-	log.Printf(msg, i)
+	//msg := "Servicing     : %q"
+	//log.Printf(msg, i)
+	logs.Servicing(i)
 }
 func serviceMessageAction(i string, act string, id string) {
 	msgSuffix := fmt.Sprintf("%s %s %q", i, act, id)
@@ -438,6 +443,7 @@ func Logit(actionType string, data string) {
 	//log.Println(len(outcall), depth, depth2)
 	//callerName := outcall[depth2] + "/" + outcall[depth]
 	log.Println("Information   :", data)
+	logs.Information(data, "")
 	//	log.Println(callerName, actionType, data)
 }
 

@@ -4,11 +4,12 @@ import (
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 //SQLInjection_Publish Publishes the endpoint
 func SQLInjection_Publish(mux http.ServeMux) {
-	core.LOG_mux("Application", "SQLInjection")
+	logs.Publish("Application", "SQLInjection")
 	mux.HandleFunc("/injectSQLViews/", SQLInjection_HandlerRun)
 }
 

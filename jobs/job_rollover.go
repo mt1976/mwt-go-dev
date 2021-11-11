@@ -7,6 +7,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -28,7 +29,7 @@ func Rollover_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func Rollover_Run() {
-	logStart(Rollover_Job().Name)
+	logs.StartJob(Rollover_Job().Name)
 	/// CONTENT STARTS
 	core.Log_uptime()
 
@@ -46,5 +47,5 @@ func Rollover_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(Rollover_Job(), message)
-	logEnd(Rollover_Job().Name)
+	logs.EndJob(Rollover_Job().Name)
 }

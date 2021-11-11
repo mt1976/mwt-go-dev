@@ -9,6 +9,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 // Defines the Fields to onscreen for Cache Data
@@ -46,7 +47,7 @@ type appCacheStorePage struct {
 }
 
 func DataCache_Publish(mux http.ServeMux) {
-	core.LOG_mux("Application", "DataCache")
+	logs.Publish("Application", "DataCache")
 	mux.HandleFunc("/refreshCache/", RefreshCacheHandler)
 }
 

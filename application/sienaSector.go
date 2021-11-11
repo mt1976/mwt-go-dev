@@ -12,6 +12,7 @@ import (
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 var sienaSectorSQL = "Code, 	Name"
@@ -54,7 +55,7 @@ func Sector_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/editSienaSector/", EditSienaSectorHandler)
 	mux.HandleFunc("/saveSienaSector/", SaveSienaSectorHandler)
 	mux.HandleFunc("/newSienaSector/", NewSienaSectorHandler)
-	core.LOG_mux("Siena", "Sector")
+	logs.Publish("Siena", "Sector")
 }
 
 func ListSienaSectorHandler(w http.ResponseWriter, r *http.Request) {

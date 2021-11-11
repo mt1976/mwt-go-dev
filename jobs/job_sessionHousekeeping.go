@@ -4,6 +4,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -24,7 +25,7 @@ func SessionHouseKeeping_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func SessionHouseKeeping_Run() {
-	logStart(SessionHouseKeeping_Job().Name)
+	logs.StartJob(SessionHouseKeeping_Job().Name)
 	/// CONTENT STARTS
 
 	// _, err := application.HousekeepSessionStore()
@@ -40,5 +41,5 @@ func SessionHouseKeeping_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(SessionHouseKeeping_Job(), "")
-	logEnd(SessionHouseKeeping_Job().Name)
+	logs.EndJob(SessionHouseKeeping_Job().Name)
 }

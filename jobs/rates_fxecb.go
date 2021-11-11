@@ -6,6 +6,7 @@ import (
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	"github.com/openprovider/rates"
 	"github.com/openprovider/rates/providers"
 	cron "github.com/robfig/cron/v3"
@@ -28,7 +29,7 @@ func RatesFXECB_Register(c *cron.Cron) {
 
 // RunJobRollover is a Rollover function
 func RatesFXECB_Run() {
-	logStart(RatesFXECB_Job().Name)
+	logs.StartJob(RatesFXECB_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -64,5 +65,5 @@ func RatesFXECB_Run() {
 
 	/// CONTENT ENDS
 	application.UpdateSchedule(RatesFXECB_Job(), message)
-	logEnd(RatesFXECB_Job().Name)
+	logs.EndJob(RatesFXECB_Job().Name)
 }

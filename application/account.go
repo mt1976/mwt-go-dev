@@ -7,6 +7,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	dao "github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //sienaAccountPage is cheese
@@ -65,7 +66,7 @@ type account_Page struct {
 func Account_Publish(mux http.ServeMux) {
 	mux.HandleFunc("/listSienaAccount/", Account_HandlerList)
 	mux.HandleFunc("/viewSienaAccount/", Account_HandlerView)
-	core.LOG_mux("Siena", dm.Account_Title)
+	logs.Publish("Siena", dm.Account_Title)
 }
 
 func Account_HandlerList(w http.ResponseWriter, r *http.Request) {
