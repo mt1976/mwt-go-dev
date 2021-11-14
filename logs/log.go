@@ -145,6 +145,7 @@ func Error(s string, e error) {
 }
 
 func Fatal(s string, e error) {
+
 	Error(s, e)
 }
 
@@ -166,9 +167,13 @@ func msg_raw(pref string, what string, value string, clr string) {
 }
 
 func Break() {
-	log.Println(strings.Repeat("-", 100))
+	log.Println(colour.Bold + strings.Repeat("-", 100) + colour.Reset)
 }
 
 func Header(s string) {
 	log.Println(colour.Green + color.Bold + s + colour.Reset)
+}
+
+func Clear() {
+	fmt.Print("\033[H\033[2J")
 }
