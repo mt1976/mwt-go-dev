@@ -1,23 +1,23 @@
 // ----------------------------------------------------------------
-// Automatically generated  "/application/template.go"
+// Automatically generated  "/application/cache.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Template
-// Endpoint Root 	  : Template
-// Search QueryString : TemplateID
+// Object 			  : Cache
+// Endpoint Root 	  : Cache
+// Search QueryString : ID
 // From   			  : 
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:10
+// Date & Time		  : 15/11/2021 at 19:03:09
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
     {
-      "ID": "b6be80af-e2bd-45ac-89ad-1c1e418ec076",
-      "Text": "Template Contents",
+      "ID": "2d17c8a0-b4c8-4e1d-af9c-7a37d5e7fb43",
+      "Text": "Cache Contents",
       "Glyph": "fas fa-poo",
-      "HREF": "/TemplateList",
+      "HREF": "/CacheList",
       "OnClick": "",
       "TextClass": ""
     }

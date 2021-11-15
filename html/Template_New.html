@@ -52,7 +52,7 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/TemplateSave?TemplateID={{.ID}}" method="POST" class="form">
+    <form action="/TemplateSave?TemplateID={{.ID}}" method="GET" class="form">
       <div class="card">
         <div class="card-header font-weight-bold">
           <div class="row">
@@ -61,7 +61,7 @@
             </div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-save"  method="POST" formaction="/TemplateSave&TemplateID={{.ID}}" onclick="/TemplateSave/?TemplateID={{.ID}}"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-save"  method="GET" formaction="/TemplateSave&TemplateID={{.ID}}" onclick="/TemplateSave/?TemplateID={{.ID}}"></i>&nbsp;&nbsp;Save</button>
                 <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
@@ -71,79 +71,79 @@
             <div class="row">
               <div class="col-sm">
                 <label for="SYSId" hidden>SYSId</label>
-                <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled="disabled" value="" hidden required>
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="FIELD1" >FIELD1</label>
-                <input type="text" class="form-control" id="FIELD1" name="FIELD1" aria-describedby="FIELD1Help" placeholder=""  value="" >
+                <input type="text" class="form-control" id="FIELD1" name="FIELD1" aria-describedby="FIELD1Help" placeholder=""  value=""  >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="FIELD2" >FIELD2</label>
-                <input type="text" class="form-control" id="FIELD2" name="FIELD2" aria-describedby="FIELD2Help" placeholder=""  value="" >
+                <input type="text" class="form-control" id="FIELD2" name="FIELD2" aria-describedby="FIELD2Help" placeholder=""  value=""  >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSCreated" hidden>SYSCreated</label>
-                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSWho" hidden>SYSWho</label>
-                <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSHost" hidden>SYSHost</label>
-                <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSUpdated" hidden>SYSUpdated</label>
-                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="ID" >ID</label>
-                <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="" >
+                <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value=""  required>
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="SYSVersion" hidden>SYSVersion</label>
-                <input type="text" class="form-control" id="SYSVersion" name="SYSVersion" aria-describedby="SYSVersionHelp" placeholder="" disabled="disabled" value="" hidden>
+                <input type="text" class="form-control" id="SYSVersion" name="SYSVersion" aria-describedby="SYSVersionHelp" placeholder="" disabled="disabled" value="" hidden >
               </div>
             </div>
         </div>

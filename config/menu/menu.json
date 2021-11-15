@@ -285,7 +285,34 @@
       "Break": "<hr class=\"hr-list\">"
     },
 
-
+    {
+      "ID": "e4c42a22-e963-4109-b5c6-d7d0606c982b",
+      "Text": "Rates Store Contents",
+      "Glyph": "fas fa-poo",
+      "HREF": "/MarketRatesList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "ID": "197c2880-8888-4122-94d6-4ea41d7fad1e",
+      "Text": "Cache Contents",
+      "Glyph": "fas fa-poo",
+      "HREF": "/CacheList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "ID": "cc2a92bc-6c42-4b89-beb4-fa3b246dbd13",
+      "Text": "Deal Conversation Contents",
+      "Glyph": "fas fa-poo",
+      "HREF": "/DealConversationList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    
     {
       "ID": "bf6058bb-870b-46e5-ad26-571ae7c8c632",
       "Text": "Template Contents",

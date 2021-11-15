@@ -3,17 +3,17 @@ module github.com/mt1976/mwt-go-dev
 go 1.16
 
 require (
-	github.com/TwiN/go-color v1.0.1 // indirect
+	github.com/TwiN/go-color v1.0.1
 	github.com/alexedwards/scs/v2 v2.4.0
 	github.com/andreyvit/sqlexpr v0.1.2
 	github.com/bjarneh/latinx v0.0.0-20120329061922-4dfe9ba2a293
 	github.com/davecgh/go-spew v1.1.1
 	github.com/denisenkom/go-mssqldb v0.11.0
-	github.com/doug-martin/goqu/v9 v9.18.0 // indirect
 	github.com/google/uuid v1.2.0
 	github.com/jimlawless/cfg v0.0.0-20160326141742-136e0c264d31
 	github.com/kisielk/sqlstruct v0.0.0-20210630145711-dae28ed37023
 	github.com/leekchan/accounting v1.0.0
+	github.com/lib/pq v1.10.1 // indirect
 	github.com/lnquy/cron v1.1.1
 	github.com/mt1976/common v0.0.0-20210422161630-37e909fa7e33
 	github.com/mt1976/mwtgostringtools v0.0.0-20210421215111-38c8d0f02812

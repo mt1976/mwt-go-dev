@@ -193,6 +193,9 @@ func main() {
 	mux.HandleFunc("/submitFundsCheck/", application.SubmitFundsCheckHandler)
 
 	application.Template_Publish(*mux)
+	application.MarketRates_Publish(*mux)
+	application.Cache_Publish(*mux)
+	application.DealConversation_Publish(*mux)
 
 	//mux.HandleFunc("/injectSQLViews/", application.SQLInjection_HandlerRun)
 	application.SQLInjection_Publish(*mux)

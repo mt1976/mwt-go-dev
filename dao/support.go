@@ -108,3 +108,13 @@ func get_Float(t map[string]interface{}, v string, d string) string {
 	}
 	return d
 }
+
+//Convert bool to string
+func get_Bool(t map[string]interface{}, v string, d string) string {
+	i := t[v]
+	fmt.Printf("%q: %b %q\n", v, i, d)
+	if i != nil {
+		return fmt.Sprintf("%b", i.(bool))
+	}
+	return d
+}

@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 16:52:52
+// Date & Time		  : 15/11/2021 at 19:03:10
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -30,8 +30,8 @@ import (
 func Template_GetList() (int, []dm.Template, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Template_SQLTable)
-	count, recordList, _, _ := fetchData(tsql)
-	return count, recordList, nil
+	count, templateList, _, _ := template_Fetch(tsql)
+	return count, templateList, nil
 }
 
 // Template_GetByID() returns a single Template record
@@ -40,8 +40,8 @@ func Template_GetByID(id string) (int, dm.Template, error) {
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Template_SQLTable)
 	tsql = tsql + " WHERE " + dm.Template_SQLSearchID + "='" + id + "'"
 
-	_, _, recordItem, _ := fetchData(tsql)
-	return 1, recordItem, nil
+	_, _, templateItem, _ := template_Fetch(tsql)
+	return 1, templateItem, nil
 }
 
 // Template_DeleteByID() deletes a single Template record
@@ -105,15 +105,15 @@ func Template_Store(r dm.Template) error {
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " VALUES (" + values(ts) + ")"
 
-	Template_Delete(r.AppInternalID)
+	Template_Delete(r.ID)
 
 	das.Execute(tsql)
 
 	return nil
 }
 
-// fetchData read all employees
-func fetchData(tsql string) (int, []dm.Template, dm.Template, error) {
+// template_Fetch read all employees
+func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 
 	var recItem dm.Template
 	var recList []dm.Template

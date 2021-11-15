@@ -1,10 +1,10 @@
 // ----------------------------------------------------------------
-// Automatically generated  "/application/template.go"
+// Automatically generated  "/application/dealconversation.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Template
-// Endpoint Root 	  : Template
-// Search QueryString : TemplateID
+// Object 			  : DealConversation
+// Endpoint Root 	  : DealConversation
+// Search QueryString : ID
 // From   			  : 
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
@@ -14,10 +14,10 @@
 // ----------------------------------------------------------------
 
     {
-      "ID": "b6be80af-e2bd-45ac-89ad-1c1e418ec076",
-      "Text": "Template Contents",
+      "ID": "d5f49ddd-cdb8-44e1-a197-8c2e0546b176",
+      "Text": "Deal Conversation Contents",
       "Glyph": "fas fa-poo",
-      "HREF": "/TemplateList",
+      "HREF": "/DealConversationList",
       "OnClick": "",
       "TextClass": ""
     }

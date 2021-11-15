@@ -1,20 +1,20 @@
 // ----------------------------------------------------------------
-// Automatically generated  "/application/template.go"
+// Automatically generated  "/application/marketrates.go"
 // ----------------------------------------------------------------
 // Package              : main
-// Object 			    : Template
-// Endpoint Root 	    : Template
-// Search QueryString   : TemplateID
+// Object 			    : MarketRates
+// Endpoint Root 	    : MarketRates
+// Search QueryString   : ID
 // From   			    : 
 // ----------------------------------------------------------------
 // Database Information
 // ----------------------------------------------------------------
-// SQL Table Name       : template
-// SQL Table Search Col : ID
+// SQL Table Name       : rateDataStore
+// SQL Table Search Col : Id
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 15/11/2021 at 19:03:10
+// Date & Time		    : 15/11/2021 at 19:03:09
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -24,18 +24,22 @@
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
 // | SYSId                     | Int        |          0 | _id                       |  true |
-// | FIELD1                    | String     |            | FIELD1                    | false |
-// | FIELD2                    | String     |            | FIELD2                    | false |
+// | Id                        | String     |            | id                        |  true |
+// | Bid                       | String     |            | bid                       | false |
+// | Mid                       | String     |            | mid                       | false |
+// | Offer                     | String     |            | offer                     | false |
+// | Market                    | String     |            | market                    | false |
+// | Tenor                     | String     |            | tenor                     | false |
+// | Series                    | String     |            | series                    | false |
+// | Name                      | String     |            | name                      | false |
+// | Source                    | String     |            | source                    | false |
+// | Destination               | String     |            | destination               | false |
+// | Class                     | String     |            | class                     | false |
 // | SYSCreated                | String     |            | _created                  | false |
 // | SYSWho                    | String     |            | _who                      | false |
 // | SYSHost                   | String     |            | _host                     | false |
-// | SYSCreatedBy              | String     |            | _createdBy                | false |
-// | SYSCreatedHost            | String     |            | _createdHost              | false |
+// | Date                      | String     |            | date                      | false |
 // | SYSUpdated                | String     |            | _updated                  | false |
-// | SYSUpdatedHost            | String     |            | _updatedHost              | false |
-// | SYSUpdatedBy              | String     |            | _updatedBy                | false |
-// | ID                        | String     |            | ID                        |  true |
-// | SYSVersion                | String     |            | _version                  | false |
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated
@@ -43,12 +47,9 @@
 // * dao
 // * application
 // * datamodel
-// * job
 // * menu
 // * html -> list
 // * html -> view
-// * html -> edit
-// * html -> new
 // ----------------------------------------------------------------
 // End of File
 // ----------------------------------------------------------------
