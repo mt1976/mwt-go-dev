@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:09
+// Date & Time		  : 15/11/2021 at 23:39:13
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -18,7 +18,6 @@ import (
 	"html/template"
 	"net/http"
 
-	
 	core    "github.com/mt1976/mwt-go-dev/core"
 	dao     "github.com/mt1976/mwt-go-dev/dao"
 	dm      "github.com/mt1976/mwt-go-dev/datamodel"
@@ -60,6 +59,10 @@ type marketrates_Page struct {
 		SYSHost string
 		Date string
 		SYSUpdated string
+		SYSCreatedBy string
+		SYSCreatedHost string
+		SYSUpdatedBy string
+		SYSUpdatedHost string
 	
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 }
@@ -148,6 +151,10 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 		SYSHost: rD.SYSHost,
 		Date: rD.Date,
 		SYSUpdated: rD.SYSUpdated,
+		SYSCreatedBy: rD.SYSCreatedBy,
+		SYSCreatedHost: rD.SYSCreatedHost,
+		SYSUpdatedBy: rD.SYSUpdatedBy,
+		SYSUpdatedHost: rD.SYSUpdatedHost,
 		
 		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//
@@ -197,6 +204,10 @@ func MarketRates_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 			SYSHost: rD.SYSHost,
 			Date: rD.Date,
 			SYSUpdated: rD.SYSUpdated,
+			SYSCreatedBy: rD.SYSCreatedBy,
+			SYSCreatedHost: rD.SYSCreatedHost,
+			SYSUpdatedBy: rD.SYSUpdatedBy,
+			SYSUpdatedHost: rD.SYSUpdatedHost,
 		
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions - START
@@ -242,12 +253,12 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSHost = r.FormValue("SYSHost")
 		item.Date = r.FormValue("Date")
 		item.SYSUpdated = r.FormValue("SYSUpdated")
+		item.SYSCreatedBy = r.FormValue("SYSCreatedBy")
+		item.SYSCreatedHost = r.FormValue("SYSCreatedHost")
+		item.SYSUpdatedBy = r.FormValue("SYSUpdatedBy")
+		item.SYSUpdatedHost = r.FormValue("SYSUpdatedHost")
 	
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
-
-	// Alternative Leave this to an adaptor
-	// adaptor.MarketRates_XMLExport(item)
-
 
 	dao.MarketRates_Store(item)	
 
@@ -291,6 +302,10 @@ func MarketRates_HandlerNew(w http.ResponseWriter, r *http.Request) {
 			SYSHost: "",
 			Date: "",
 			SYSUpdated: "",
+			SYSCreatedBy: "",
+			SYSCreatedHost: "",
+			SYSUpdatedBy: "",
+			SYSUpdatedHost: "",
 		
 		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//

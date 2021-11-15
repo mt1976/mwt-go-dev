@@ -3,6 +3,8 @@ package dao
 import (
 	"fmt"
 	"log"
+	"os"
+	"os/user"
 	"strconv"
 	"strings"
 	"time"
@@ -112,9 +114,9 @@ func get_Float(t map[string]interface{}, v string, d string) string {
 //Convert bool to string
 func get_Bool(t map[string]interface{}, v string, d string) string {
 	i := t[v]
-	fmt.Printf("%q: %b %q\n", v, i, d)
+	fmt.Printf("%q: %v %q\n", v, i, d)
 	if i != nil {
-		return fmt.Sprintf("%b", i.(bool))
+		return fmt.Sprintf("%v", i.(bool))
 	}
 	return d
 }
@@ -124,4 +126,18 @@ func Audit_Update(val string, replace string) string {
 		return replace
 	}
 	return val
+}
+
+func Audit_User() string {
+	thisUser, _ := user.Current()
+	return thisUser.Name
+}
+
+func Audit_TimeStamp() string {
+	return time.Now().Format(core.DATETIMEFORMATUSER)
+}
+
+func Audit_Host() string {
+	host, _ := os.Hostname()
+	return host
 }

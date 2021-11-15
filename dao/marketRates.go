@@ -10,20 +10,19 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:09
+// Date & Time		  : 15/11/2021 at 23:39:13
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
-	"fmt"
 	"log"
-	"os"
-	"os/user"
-	"time"
+	"fmt"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
 // MarketRates_GetList() returns a list of all MarketRates records
@@ -58,31 +57,24 @@ func MarketRates_Delete(id string) {
 // MarketRates_Store() saves/stores a MarketRates record to the database
 func MarketRates_Store(r dm.MarketRates) error {
 
-	// TODO Implement Store Function for MarketRates
-	fmt.Println(r)
+	logs.Warning(fmt.Sprintf("%s", r))
+
+	if len(r.Id) == 0 {
+		r.Id= marketrates_NewID(r)
+	}
 
 
-//TODO Deal with the if its Application or null add this bit, otherwise dont.
+
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 		//fmt.Println(credentialStore)
-	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
-	if len(r.SYSCreated) == 0 {
-		r.SYSCreated = createDate
-	}
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
-	host, _ := os.Hostname()
-
-	if len(r.AppInternalID) == 0 {
-		r.AppInternalID = newmarketratesStoreID()
-		r.SYSCreated = createDate
-		r.SYSWho = userID
-		r.SYSHost = host
-	}
-
-	r.SYSUpdated = createDate
-//TODO Deal with the if its Application or null add this bit, otherwise dont.
-
+	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
+	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
+	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
+	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
+	r.SYSUpdatedBy = Audit_Update("",Audit_User())
+	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 
 	ts := SQLData{}
 
@@ -103,6 +95,10 @@ func MarketRates_Store(r dm.MarketRates) error {
 	ts = addData(ts, dm.MarketRates_SYSHost, r.SYSHost)
 	ts = addData(ts, dm.MarketRates_Date, r.Date)
 	ts = addData(ts, dm.MarketRates_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.MarketRates_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.MarketRates_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.MarketRates_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.MarketRates_SYSUpdatedHost, r.SYSUpdatedHost)
 	
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
@@ -110,8 +106,8 @@ func MarketRates_Store(r dm.MarketRates) error {
 	tsql = tsql + " VALUES (" + values(ts) + ")"
 
 	MarketRates_Delete(r.Id)
-
 	das.Execute(tsql)
+
 
 	return nil
 }
@@ -149,6 +145,10 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
    recItem.SYSHost  = get_String(rec, dm.MarketRates_SYSHost, "")
    recItem.Date  = get_String(rec, dm.MarketRates_Date, "")
    recItem.SYSUpdated  = get_String(rec, dm.MarketRates_SYSUpdated, "")
+   recItem.SYSCreatedBy  = get_String(rec, dm.MarketRates_SYSCreatedBy, "")
+   recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost, "")
+   recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy, "")
+   recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost, "")
 // Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions
 
@@ -158,7 +158,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	return noitems, recList, recItem, nil
 }
 
-func newmarketratesStoreID() string {
+func marketrates_NewID(r dm.MarketRates) string {
 	id := uuid.New().String()
 	return id
 }

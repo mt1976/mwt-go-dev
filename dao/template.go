@@ -10,20 +10,19 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:10
+// Date & Time		  : 15/11/2021 at 23:39:14
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
-	"fmt"
 	"log"
-	"os"
-	"os/user"
-	"time"
+	"fmt"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
 // Template_GetList() returns a list of all Template records
@@ -58,31 +57,24 @@ func Template_Delete(id string) {
 // Template_Store() saves/stores a Template record to the database
 func Template_Store(r dm.Template) error {
 
-	// TODO Implement Store Function for Template
-	fmt.Println(r)
+	logs.Warning(fmt.Sprintf("%s", r))
+
+	if len(r.ID) == 0 {
+		r.ID= template_NewID(r)
+	}
 
 
-//TODO Deal with the if its Application or null add this bit, otherwise dont.
+
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 		//fmt.Println(credentialStore)
-	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
-	if len(r.SYSCreated) == 0 {
-		r.SYSCreated = createDate
-	}
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
-	host, _ := os.Hostname()
-
-	if len(r.AppInternalID) == 0 {
-		r.AppInternalID = newtemplateStoreID()
-		r.SYSCreated = createDate
-		r.SYSWho = userID
-		r.SYSHost = host
-	}
-
-	r.SYSUpdated = createDate
-//TODO Deal with the if its Application or null add this bit, otherwise dont.
-
+	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
+	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
+	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
+	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
+	r.SYSUpdatedBy = Audit_Update("",Audit_User())
+	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 
 	ts := SQLData{}
 
@@ -90,15 +82,12 @@ func Template_Store(r dm.Template) error {
 	ts = addData(ts, dm.Template_FIELD1, r.FIELD1)
 	ts = addData(ts, dm.Template_FIELD2, r.FIELD2)
 	ts = addData(ts, dm.Template_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Template_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Template_SYSHost, r.SYSHost)
 	ts = addData(ts, dm.Template_SYSCreatedBy, r.SYSCreatedBy)
 	ts = addData(ts, dm.Template_SYSCreatedHost, r.SYSCreatedHost)
 	ts = addData(ts, dm.Template_SYSUpdated, r.SYSUpdated)
 	ts = addData(ts, dm.Template_SYSUpdatedHost, r.SYSUpdatedHost)
 	ts = addData(ts, dm.Template_SYSUpdatedBy, r.SYSUpdatedBy)
 	ts = addData(ts, dm.Template_ID, r.ID)
-	ts = addData(ts, dm.Template_SYSVersion, r.SYSVersion)
 	
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Template_SQLTable)
@@ -106,8 +95,8 @@ func Template_Store(r dm.Template) error {
 	tsql = tsql + " VALUES (" + values(ts) + ")"
 
 	Template_Delete(r.ID)
-
 	das.Execute(tsql)
+
 
 	return nil
 }
@@ -132,15 +121,12 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
    recItem.FIELD2  = get_String(rec, dm.Template_FIELD2, "")
    recItem.SYSCreated  = get_String(rec, dm.Template_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.Template_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.Template_SYSHost, "")
    recItem.SYSCreatedBy  = get_String(rec, dm.Template_SYSCreatedBy, "")
    recItem.SYSCreatedHost  = get_String(rec, dm.Template_SYSCreatedHost, "")
    recItem.SYSUpdated  = get_String(rec, dm.Template_SYSUpdated, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Template_SYSUpdatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Template_SYSUpdatedBy, "")
    recItem.ID  = get_String(rec, dm.Template_ID, "")
-   recItem.SYSVersion  = get_String(rec, dm.Template_SYSVersion, "")
 // Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions
 
@@ -150,7 +136,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	return noitems, recList, recItem, nil
 }
 
-func newtemplateStoreID() string {
+func template_NewID(r dm.Template) string {
 	id := uuid.New().String()
 	return id
 }

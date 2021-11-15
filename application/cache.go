@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:09
+// Date & Time		  : 15/11/2021 at 23:39:13
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -18,7 +18,6 @@ import (
 	"html/template"
 	"net/http"
 
-	
 	core    "github.com/mt1976/mwt-go-dev/core"
 	dao     "github.com/mt1976/mwt-go-dev/dao"
 	dm      "github.com/mt1976/mwt-go-dev/datamodel"
@@ -54,6 +53,10 @@ type cache_Page struct {
 		SYSHost string
 		SYSUpdated string
 		Source string
+		SYSCreatedBy string
+		SYSCreatedHost string
+		SYSUpdatedBy string
+		SYSUpdatedHost string
 	
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 }
@@ -136,6 +139,10 @@ func Cache_HandlerView(w http.ResponseWriter, r *http.Request) {
 		SYSHost: rD.SYSHost,
 		SYSUpdated: rD.SYSUpdated,
 		Source: rD.Source,
+		SYSCreatedBy: rD.SYSCreatedBy,
+		SYSCreatedHost: rD.SYSCreatedHost,
+		SYSUpdatedBy: rD.SYSUpdatedBy,
+		SYSUpdatedHost: rD.SYSUpdatedHost,
 		
 		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//
@@ -179,6 +186,10 @@ func Cache_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 			SYSHost: rD.SYSHost,
 			SYSUpdated: rD.SYSUpdated,
 			Source: rD.Source,
+			SYSCreatedBy: rD.SYSCreatedBy,
+			SYSCreatedHost: rD.SYSCreatedHost,
+			SYSUpdatedBy: rD.SYSUpdatedBy,
+			SYSUpdatedHost: rD.SYSUpdatedHost,
 		
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions - START
@@ -218,12 +229,12 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSHost = r.FormValue("SYSHost")
 		item.SYSUpdated = r.FormValue("SYSUpdated")
 		item.Source = r.FormValue("Source")
+		item.SYSCreatedBy = r.FormValue("SYSCreatedBy")
+		item.SYSCreatedHost = r.FormValue("SYSCreatedHost")
+		item.SYSUpdatedBy = r.FormValue("SYSUpdatedBy")
+		item.SYSUpdatedHost = r.FormValue("SYSUpdatedHost")
 	
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
-
-	// Alternative Leave this to an adaptor
-	// adaptor.Cache_XMLExport(item)
-
 
 	dao.Cache_Store(item)	
 
@@ -261,6 +272,10 @@ func Cache_HandlerNew(w http.ResponseWriter, r *http.Request) {
 			SYSHost: "",
 			SYSUpdated: "",
 			Source: "",
+			SYSCreatedBy: "",
+			SYSCreatedHost: "",
+			SYSUpdatedBy: "",
+			SYSUpdatedHost: "",
 		
 		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//

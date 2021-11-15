@@ -11,7 +11,7 @@ package datamodel
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:09
+// Date & Time		  : 15/11/2021 at 23:39:13
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -29,6 +29,10 @@ SYSWho        string
 SYSHost        string
 SYSUpdated        string
 Source        string
+SYSCreatedBy        string
+SYSCreatedHost        string
+SYSUpdatedBy        string
+SYSUpdatedHost        string
 
 }
 
@@ -67,6 +71,10 @@ const (
 	Cache_SYSHost   = "_host" // SYSHost is a String
 	Cache_SYSUpdated   = "_updated" // SYSUpdated is a String
 	Cache_Source   = "source" // Source is a String
+	Cache_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
+	Cache_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
+	Cache_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
+	Cache_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
 )

@@ -61,7 +61,9 @@
             </div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-warning"><i class="fas fa-pen"  method="POST" formaction="/TemplateEdit/?TemplateID={{.ID}}" onclick="/TemplateEdit/?TemplateID={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
+              
+                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/TemplateEdit/?TemplateID={{.ID}}" onclick="/TemplateEdit/?TemplateID={{.ID}}"></i>&nbsp;&nbsp;Edit</button>
+                
                 <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
@@ -90,18 +92,6 @@
               <div class="col-sm">
                 <label for="SYSCreated">SYSCreated</label>
                 <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled="disabled" value="{{.SYSCreated}}">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSWho">SYSWho</label>
-                <input type="text" class="form-control" id="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled="disabled" value="{{.SYSWho}}">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSHost">SYSHost</label>
-                <input type="text" class="form-control" id="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled="disabled" value="{{.SYSHost}}">
               </div>
             </div>
             <div class="row">
@@ -138,12 +128,6 @@
               <div class="col-sm">
                 <label for="ID">ID</label>
                 <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled="disabled" value="{{.ID}}">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSVersion">SYSVersion</label>
-                <input type="text" class="form-control" id="SYSVersion" aria-describedby="SYSVersionHelp" placeholder="" disabled="disabled" value="{{.SYSVersion}}">
               </div>
             </div>
         </div>

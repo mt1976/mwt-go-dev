@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 15/11/2021 at 19:03:10
+// Date & Time		    : 15/11/2021 at 23:39:14
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -27,15 +27,12 @@
 // | FIELD1                    | String     |            | FIELD1                    | false |
 // | FIELD2                    | String     |            | FIELD2                    | false |
 // | SYSCreated                | String     |            | _created                  | false |
-// | SYSWho                    | String     |            | _who                      | false |
-// | SYSHost                   | String     |            | _host                     | false |
 // | SYSCreatedBy              | String     |            | _createdBy                | false |
 // | SYSCreatedHost            | String     |            | _createdHost              | false |
 // | SYSUpdated                | String     |            | _updated                  | false |
 // | SYSUpdatedHost            | String     |            | _updatedHost              | false |
 // | SYSUpdatedBy              | String     |            | _updatedBy                | false |
 // | ID                        | String     |            | ID                        |  true |
-// | SYSVersion                | String     |            | _version                  | false |
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

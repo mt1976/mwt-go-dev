@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 19:03:10
+// Date & Time		  : 15/11/2021 at 23:39:14
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -18,7 +18,6 @@ import (
 	"html/template"
 	"net/http"
 
-	
 	core    "github.com/mt1976/mwt-go-dev/core"
 	dao     "github.com/mt1976/mwt-go-dev/dao"
 	dm      "github.com/mt1976/mwt-go-dev/datamodel"
@@ -47,15 +46,12 @@ type template_Page struct {
 		FIELD1 string
 		FIELD2 string
 		SYSCreated string
-		SYSWho string
-		SYSHost string
 		SYSCreatedBy string
 		SYSCreatedHost string
 		SYSUpdated string
 		SYSUpdatedHost string
 		SYSUpdatedBy string
 		ID string
-		SYSVersion string
 	
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 }
@@ -131,15 +127,12 @@ func Template_HandlerView(w http.ResponseWriter, r *http.Request) {
 		FIELD1: rD.FIELD1,
 		FIELD2: rD.FIELD2,
 		SYSCreated: rD.SYSCreated,
-		SYSWho: rD.SYSWho,
-		SYSHost: rD.SYSHost,
 		SYSCreatedBy: rD.SYSCreatedBy,
 		SYSCreatedHost: rD.SYSCreatedHost,
 		SYSUpdated: rD.SYSUpdated,
 		SYSUpdatedHost: rD.SYSUpdatedHost,
 		SYSUpdatedBy: rD.SYSUpdatedBy,
 		ID: rD.ID,
-		SYSVersion: rD.SYSVersion,
 		
 		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//
@@ -176,15 +169,12 @@ func Template_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 			FIELD1: rD.FIELD1,
 			FIELD2: rD.FIELD2,
 			SYSCreated: rD.SYSCreated,
-			SYSWho: rD.SYSWho,
-			SYSHost: rD.SYSHost,
 			SYSCreatedBy: rD.SYSCreatedBy,
 			SYSCreatedHost: rD.SYSCreatedHost,
 			SYSUpdated: rD.SYSUpdated,
 			SYSUpdatedHost: rD.SYSUpdatedHost,
 			SYSUpdatedBy: rD.SYSUpdatedBy,
 			ID: rD.ID,
-			SYSVersion: rD.SYSVersion,
 		
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions - START
@@ -217,21 +207,14 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.FIELD1 = r.FormValue("FIELD1")
 		item.FIELD2 = r.FormValue("FIELD2")
 		item.SYSCreated = r.FormValue("SYSCreated")
-		item.SYSWho = r.FormValue("SYSWho")
-		item.SYSHost = r.FormValue("SYSHost")
 		item.SYSCreatedBy = r.FormValue("SYSCreatedBy")
 		item.SYSCreatedHost = r.FormValue("SYSCreatedHost")
 		item.SYSUpdated = r.FormValue("SYSUpdated")
 		item.SYSUpdatedHost = r.FormValue("SYSUpdatedHost")
 		item.SYSUpdatedBy = r.FormValue("SYSUpdatedBy")
 		item.ID = r.FormValue("ID")
-		item.SYSVersion = r.FormValue("SYSVersion")
 	
 	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
-
-	// Alternative Leave this to an adaptor
-	// adaptor.Template_XMLExport(item)
-
 
 	dao.Template_Store(item)	
 
@@ -262,15 +245,12 @@ func Template_HandlerNew(w http.ResponseWriter, r *http.Request) {
 			FIELD1: "",
 			FIELD2: "",
 			SYSCreated: "",
-			SYSWho: "",
-			SYSHost: "",
 			SYSCreatedBy: "",
 			SYSCreatedHost: "",
 			SYSUpdated: "",
 			SYSUpdatedHost: "",
 			SYSUpdatedBy: "",
 			ID: "",
-			SYSVersion: "",
 		
 		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
 		//
