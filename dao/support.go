@@ -118,3 +118,10 @@ func get_Bool(t map[string]interface{}, v string, d string) string {
 	}
 	return d
 }
+
+func Audit_Update(val string, replace string) string {
+	if val == "" {
+		return replace
+	}
+	return val
+}
