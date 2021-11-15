@@ -284,6 +284,22 @@
     {
       "Break": "<hr class=\"hr-list\">"
     },
+
+
+    {
+      "ID": "bf6058bb-870b-46e5-ad26-571ae7c8c632",
+      "Text": "Template Contents",
+      "Glyph": "fas fa-poo",
+      "HREF": "/TemplateList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "Break": "<hr class=\"hr-list\">"
+    },
+
+
     {
       "ID": "27",
       "Text": "Logout",

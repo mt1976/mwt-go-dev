@@ -192,6 +192,8 @@ func main() {
 	mux.HandleFunc("/actionFundsCheck/", application.ActionFundsCheckHandler)
 	mux.HandleFunc("/submitFundsCheck/", application.SubmitFundsCheckHandler)
 
+	application.Template_Publish(*mux)
+
 	//mux.HandleFunc("/injectSQLViews/", application.SQLInjection_HandlerRun)
 	application.SQLInjection_Publish(*mux)
 

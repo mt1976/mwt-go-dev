@@ -1,0 +1,54 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/template.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : Template
+// Endpoint Root 	    : Template
+// Search QueryString   : TemplateID
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : template
+// SQL Table Search Col : ID
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 15/11/2021 at 16:52:52
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | SYSId                     | Int        |          0 | _id                       |
+// | FIELD1                    | String     |            | FIELD1                    |
+// | FIELD2                    | String     |            | FIELD2                    |
+// | SYSCreated                | String     |            | _created                  |
+// | SYSWho                    | String     |            | _who                      |
+// | SYSHost                   | String     |            | _host                     |
+// | SYSCreatedBy              | String     |            | _createdBy                |
+// | SYSCreatedHost            | String     |            | _createdHost              |
+// | SYSUpdated                | String     |            | _updated                  |
+// | SYSUpdatedHost            | String     |            | _updatedHost              |
+// | SYSUpdatedBy              | String     |            | _updatedBy                |
+// | ID                        | String     |            | ID                        |
+// | SYSVersion                | String     |            | _version                  |
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// * dao
+// * application
+// * datamodel
+// * job
+// * menu
+// * html -> list
+// * html -> view
+// * html -> edit
+// * html -> new
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

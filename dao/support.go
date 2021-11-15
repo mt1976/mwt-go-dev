@@ -4,10 +4,32 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"strings"
 	"time"
 
 	core "github.com/mt1976/mwt-go-dev/core"
 )
+
+type SQLData struct {
+	fields []string
+	values []string
+}
+
+func addData(d SQLData, f string, v string) SQLData {
+	if f != "_id" {
+		d.fields = append(d.fields, f)
+		d.values = append(d.values, sq(v))
+	}
+	return d
+}
+
+func fields(ts SQLData) string {
+	return strings.Join(ts.fields[:], ",")
+}
+
+func values(ts SQLData) string {
+	return strings.Join(ts.values[:], ",")
+}
 
 func sienaYN(inValue string) string {
 	log.Println("inValue", inValue)
