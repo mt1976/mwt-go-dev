@@ -64,15 +64,11 @@
 
           <div class="row">
             <div class="col">
-              Template&nbsp;&nbsp;<span class="badge badge-dark">{{.ItemsOnPage}}</span>
+              DealConversation&nbsp;&nbsp;<span class="badge badge-dark">{{.ItemsOnPage}}</span>
             </div>
 
             <div class="col text-right">
               <div class="btn-group">
-              
-              <button type="submit" value="" class="btn btn-outline-primary" formaction="/TemplateNew" method="POST">
-                <i class="fas fa-plus"></i>&nbsp;&nbsp;New
-              </button>
               
               
               <button id="export" type="button" class="btn btn-outline-info"><i class="fas fa-file-csv" ></i>&nbsp;&nbsp;Export</button>
@@ -87,20 +83,23 @@
 
         <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-striped table-bordered table-hover" id="Table_Template">
+              <table class="table table-striped table-bordered table-hover" id="Table_DealConversation">
                 <thead class="thead-light">
                   <tr>
                     <th class="text-center">#</th>
+                    <th class="text-center">SienaReference</th>
+                    <th class="text-center">Status</th>
+                  
+                    <th class="text-center">ContractNumber</th>
+                    <th class="text-center">LegNo</th>
+                    <th class="text-center">AckReference</th>
+               
+                
                     
-                    <th class="text-center">FIELD1</th>
-                    <th class="text-center">FIELD2</th>
-                    
-                    
-                    
-                    
-                    
-                    
-                    <th class="text-center">ID</th>
+                    <th class="text-center">BusinessDate</th>
+             
+                    <th class="text-center">ExternalSystem</th>
+                   <th class="text-center">Summary</th>
                     
                     <th class="text-center">Actions</th>
                   </tr>
@@ -109,39 +108,41 @@
                   {{range .ItemList}}
                   <tr>
                     <td class="text-center align-middle"></td>
-                    
+                    <td class="align-middle">{{.SienaReference}}</td>
         
-                    <td class="align-middle">{{.FIELD1}}</td>
-        
-                    <td class="align-middle">{{.FIELD2}}</td>
+                    <td class="align-middle">{{.Status}}</td>
         
                     
         
-                    
+                    <td class="align-middle">{{.ContractNumber}}</td>
         
                     
         
-                    
+      
+        
+                    <td class="align-middle">{{.LegNo}}</td>
+        
+        <td class="align-middle">{{.AckReference}}</td>
+
+            
+        
+                    <td class="align-middle">{{.BusinessDate}}</td>
         
                     
         
-                    
+                    <td class="align-middle">{{.ExternalSystem}}</td>
         
-                    <td class="align-middle">{{.ID}}</td>
+                         <td class="align-middle">{{.Summary}}</td>
         
                     
                     <td class="text-center" style="width:1px;">
                       <div class="btn-group">
                       
-                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/TemplateView?TemplateID={{.ID}}" method="POST">
+                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/DealConversationView?ID={{.MessageLogReference}}" method="POST">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
                       
                       
-                        <button type="submit" value="" class="btn btn-warning btn-sm" formaction="/TemplateEdit?TemplateID={{.ID}}" method="POST">
-                          <i class="fas fa-pen" style="font-size: 22px"></i>
-                        </button>
-                        
                       </div>
 
                     </td>
@@ -172,7 +173,7 @@
 
   <script>
 $(document).ready(function(){
-    $('#Table_Template').dataTable({
+    $('#Table_DealConversation').dataTable({
       "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
       stateSave: true
     } );
@@ -212,7 +213,7 @@ $(document).ready(function(){
       document.body.removeChild(link);
     };
 
-    const table = document.getElementById('Table_Template');
+    const table = document.getElementById('Table_DealConversation');
     const exportBtn = document.getElementById('export');
 
     exportBtn.addEventListener('click', function() {
@@ -220,7 +221,7 @@ $(document).ready(function(){
       const csv = toCsv(table);
 
       // Download it
-      download(csv, 'Template.csv');
+      download(csv, 'DealConversation.csv');
     });
     </script>
 

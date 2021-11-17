@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 23:50:08
+// Date & Time		  : 17/11/2021 at 22:28:19
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type dealconversation_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		MessageType string
@@ -55,7 +55,7 @@ type dealconversation_Page struct {
 		ExternalSystem string
 		MessageLogReference string
 	
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -124,7 +124,7 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
 		// 
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 		SienaReference: rD.SienaReference,
 		Status: rD.Status,
 		MessageType: rD.MessageType,
@@ -138,7 +138,7 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 		ExternalSystem: rD.ExternalSystem,
 		MessageLogReference: rD.MessageLogReference,
 		
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//
 	}
 
@@ -168,7 +168,7 @@ func DealConversation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 			SienaReference: rD.SienaReference,
 			Status: rD.Status,
 			MessageType: rD.MessageType,
@@ -182,7 +182,7 @@ func DealConversation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 			ExternalSystem: rD.ExternalSystem,
 			MessageLogReference: rD.MessageLogReference,
 		
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions - START
 
 		// Post Import Actions - END
@@ -208,7 +208,7 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.DealConversation
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue("SienaReference")
 		item.Status = r.FormValue("Status")
 		item.MessageType = r.FormValue("MessageType")
@@ -222,7 +222,7 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ExternalSystem = r.FormValue("ExternalSystem")
 		item.MessageLogReference = r.FormValue("MessageLogReference")
 	
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealConversation_Store(item)	
 
@@ -248,7 +248,7 @@ func DealConversation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:   "NEW",
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 			SienaReference: "",
 			Status: "",
 			MessageType: "",
@@ -262,7 +262,7 @@ func DealConversation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 			ExternalSystem: "",
 			MessageLogReference: "",
 		
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//
 		// Post Import Actions - START
 

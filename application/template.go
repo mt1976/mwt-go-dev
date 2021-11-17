@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 23:50:09
+// Date & Time		  : 17/11/2021 at 22:28:20
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type template_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		FIELD1 string
 		FIELD2 string
@@ -53,7 +53,7 @@ type template_Page struct {
 		SYSUpdatedBy string
 		ID string
 	
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -122,7 +122,7 @@ func Template_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
 		// 
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 		SYSId: rD.SYSId,
 		FIELD1: rD.FIELD1,
 		FIELD2: rD.FIELD2,
@@ -134,7 +134,7 @@ func Template_HandlerView(w http.ResponseWriter, r *http.Request) {
 		SYSUpdatedBy: rD.SYSUpdatedBy,
 		ID: rD.ID,
 		
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//
 	}
 
@@ -164,7 +164,7 @@ func Template_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 			SYSId: rD.SYSId,
 			FIELD1: rD.FIELD1,
 			FIELD2: rD.FIELD2,
@@ -176,7 +176,7 @@ func Template_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 			SYSUpdatedBy: rD.SYSUpdatedBy,
 			ID: rD.ID,
 		
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions - START
 
 		// Post Import Actions - END
@@ -202,7 +202,7 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Template
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue("SYSId")
 		item.FIELD1 = r.FormValue("FIELD1")
 		item.FIELD2 = r.FormValue("FIELD2")
@@ -214,7 +214,7 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue("SYSUpdatedBy")
 		item.ID = r.FormValue("ID")
 	
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 
 	dao.Template_Store(item)	
 
@@ -240,7 +240,7 @@ func Template_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:   "NEW",
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
 			SYSId: "0",
 			FIELD1: "",
 			FIELD2: "",
@@ -252,7 +252,7 @@ func Template_HandlerNew(w http.ResponseWriter, r *http.Request) {
 			SYSUpdatedBy: "",
 			ID: "",
 		
-		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+		// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//
 		// Post Import Actions - START
 

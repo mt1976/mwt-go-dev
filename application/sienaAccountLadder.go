@@ -13,7 +13,7 @@ import (
 )
 
 // Defines the Fields to Fetch from SQL
-var sienaAccountLadderSQL = "SienaReference, BusinessDate, ContractNumber, Balance, DealtCcy,AmountDP"
+var sienaAccountLadderSQL = "SienaReference, BusinessDate, ContractNumber, Balance, DealtCcy, AmountDp"
 var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBalance, sqlACCLDealtCcy, sqlACCLAmountDP sql.NullString
 
 //sienaAccountLadderPage is cheese

@@ -68,7 +68,7 @@ func Poke(DB *sql.DB) error {
 //TODO: implement
 func Execute(tsql string) {
 
-	logs.Database("Delete :", tsql)
+	logs.Database("Execute :", tsql)
 
 	_, err := core.ApplicationDB.Exec(tsql)
 	if err != nil {

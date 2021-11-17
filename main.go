@@ -261,6 +261,7 @@ func main() {
 
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
+	//jobs.RatesFXSpot_Run()
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Bike+logs.Bike+logs.Bike+logs.Bike)

@@ -58,15 +58,16 @@ func RatesFXSpot_Run() {
 	var message string
 	/// CONTENT STARTS
 
-	_, cacheList, err := dao.DataCache_GetListByObject("CurrencyPair")
+	noItems, cacheList, err := dao.DataCache_GetListByObject("CurrencyPair")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	var rateCard fxRateCard
 
-	for _, cacheData := range cacheList {
-		//	fmt.Println(i, ccyPair)
+	for i := 0; i < noItems; i++ {
+		//fmt.Printf("%s\n", cacheList[i])
+		cacheData := cacheList[i]
 		rateCard.fxRates = append(rateCard.fxRates, getFXrate(cacheData.Value))
 	}
 
@@ -84,6 +85,7 @@ func getFXrate(inCCYpair string) fxRate {
 	thisRate.ccyPair = inCCYpair
 	thisPair := "%5E" + inCCYpair
 	url := fmt.Sprintf("https://www.barchart.com/forex/quotes/%s/overview", thisPair)
+	logs.Accessing(url)
 	//fmt.Printf("HTML code of %s ...\n", url)
 	resp, err := http.Get(url)
 	// handle the error if there is one
@@ -102,7 +104,7 @@ func getFXrate(inCCYpair string) fxRate {
 	// show the HTML code as a string %s
 	//fmt.Printf("%s\n", html)
 	inString := string(html)
-
+	//fmt.Println(inString)
 	searchString := "\"bidPrice\":\""
 	searchString2 := "\",\"askPrice\":\""
 	searchString3 := "\",\"bidSize\":\""
@@ -126,12 +128,13 @@ func getFXrate(inCCYpair string) fxRate {
 	var ratesData RatesDataStore
 	ratesData.bid = fmt.Sprintf("%f", thisRate.bidRate)
 	ratesData.offer = fmt.Sprintf("%f", thisRate.askRate)
-	ratesData.market = "FX"
-	ratesData.tenor = "SP"
+	ratesData.market = dm.Market_FX
+	ratesData.tenor = dm.Tenor_SP
 	ratesData.series = inCCYpair
-	ratesData.class = "Market"
+	ratesData.class = dm.RateCategory_Market
+	ratesData.name = application.Translation_Lookup("CurrencyPair", inCCYpair)
 	ratesData.source = "Barchart.com"
-	ratesData.destination = "RVMARKET"
+	ratesData.destination = "RV" + dm.RateCategory_Market
 
 	RatesDataStorePut(ratesData)
 	return thisRate
@@ -146,7 +149,7 @@ func getASYCFXrate(inCCYpair string, rateChan chan fxRate) {
 	thisRate.ccyPair = inCCYpair
 	thisPair := "%5E" + inCCYpair
 	url := fmt.Sprintf("https://www.barchart.com/forex/quotes/%s/overview", thisPair)
-	//fmt.Printf("HTML code of %s ...\n", url)
+	fmt.Printf("HTML code of %s ...\n", url)
 	resp, err := http.Get(url)
 	// handle the error if there is one
 	if err != nil {
@@ -184,6 +187,8 @@ func getASYCFXrate(inCCYpair string, rateChan chan fxRate) {
 	thisRate.askRate, _ = strconv.ParseFloat(inString[askPriceStart:askPriceStop], 64)
 	thisRate.askString = tools.TruncateString(inString[askPriceStart:askPriceStop], constRateLen)
 	//fmt.Println("askPrice=", askPrice)
+
+	fmt.Printf("thisRate: %v\n", thisRate)
 
 	rateChan <- thisRate
 

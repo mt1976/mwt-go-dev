@@ -252,7 +252,7 @@ func CreateDatabaseObjects(DB *sql.DB, dbConfig map[string]string, sourcePath st
 		//fmt.Println("***************************************")
 
 		log.Println("Generating    :", objectName)
-		log.Println(sqlBody)
+		//log.Println(sqlBody)
 		if !initialiseDB {
 			//log.Println(">>>", thisDrop, "<<<")
 			_, erra := DB.Exec(thisDrop)
@@ -276,9 +276,11 @@ func CreateDatabaseObjects(DB *sql.DB, dbConfig map[string]string, sourcePath st
 		_, err2 := DB.Exec(sqlBody)
 
 		if err2 != nil {
+			logs.Error("Unable to Create View", err2)
 			log.Println(err2.Error())
 		} else {
-			log.Println("Generated     :", objectName, Tick)
+			logs.Success("View Created" + objectName)
+			//log.Println("Generated     :", objectName, Tick)
 		}
 		//spew.Dump(err2)
 

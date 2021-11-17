@@ -83,16 +83,27 @@ func RemoveContents(dir string) error {
 
 // GetTemplateID returns the template to use when providing HTML page templates
 func GetTemplateID(tmpl string, userRole string) string {
+	returnTemplate := ""
 	templateName := "html/" + tmpl + ".html"
-	roleTemplate := "html" + userRole + "/" + tmpl + ".html"
+	roleTemplate := "html/versions/roles/" + userRole + "/" + tmpl + ".html"
+	versionTemplate := "html/versions/" + tmpl + ".html"
+
 	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	//log.Println("Testing", templateName, FileExists(templateName))
+	if FileExists(templateName) {
+		returnTemplate = templateName
+	}
+
+	if FileExists(versionTemplate) {
+		returnTemplate = versionTemplate
+	}
+
 	if FileExists(roleTemplate) {
-		//	templateName = roleTemplate
+		returnTemplate = roleTemplate
 	}
 	//log.Printf("Using Template: Source %q", templateName)
-	logs.Template(templateName)
-	return templateName
+	logs.Template(returnTemplate)
+	return returnTemplate
 }
 
 // GetMenuID returns the menu template to use when providing HTML meny templates

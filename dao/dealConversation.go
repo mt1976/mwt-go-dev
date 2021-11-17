@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 23:50:08
+// Date & Time		  : 17/11/2021 at 22:28:19
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -86,7 +86,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealConversation_MessageLogReference,"")
    recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference, "")
    recItem.Status  = get_String(rec, dm.DealConversation_Status, "")
@@ -100,7 +100,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
    recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo, "0")
    recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem, "")
    recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference, "")
-// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions
 
 		//Add to the list

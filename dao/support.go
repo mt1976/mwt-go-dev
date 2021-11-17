@@ -72,7 +72,7 @@ func get_TableName(in string, in2 string) string {
 //Gets a string from the interface map & default a value if not found
 func get_String(t map[string]interface{}, v string, d string) string {
 	i := t[v]
-	fmt.Printf("%q: %q %q\n", v, i, d)
+	//fmt.Printf("%q: %q %q\n", v, i, d)
 	if i == nil {
 		return d
 	}
@@ -83,7 +83,7 @@ func get_String(t map[string]interface{}, v string, d string) string {
 func get_Time(t map[string]interface{}, v string, d string) string {
 	i := t[v]
 
-	fmt.Printf("%q: %q %q\n", v, i, d)
+	//fmt.Printf("%q: %q %q\n", v, i, d)
 	if i == nil {
 		return d
 	}
@@ -93,7 +93,7 @@ func get_Time(t map[string]interface{}, v string, d string) string {
 //Convert time.Time to string
 func get_Int(t map[string]interface{}, v string, d string) string {
 	i := t[v]
-	fmt.Printf("%q: %q %q\n", v, i, d)
+	//fmt.Printf("%q: %q %q\n", v, i, d)
 
 	if i != nil {
 		return fmt.Sprintf("%d", i.(int64))
@@ -104,7 +104,7 @@ func get_Int(t map[string]interface{}, v string, d string) string {
 //Convert float64 to string
 func get_Float(t map[string]interface{}, v string, d string) string {
 	i := t[v]
-	fmt.Printf("%q: %q %q\n", v, i, d)
+	//fmt.Printf("%q: %q %q\n", v, i, d)
 	if i != nil {
 		return fmt.Sprintf("%f", i.(float64))
 	}
@@ -114,7 +114,7 @@ func get_Float(t map[string]interface{}, v string, d string) string {
 //Convert bool to string
 func get_Bool(t map[string]interface{}, v string, d string) string {
 	i := t[v]
-	fmt.Printf("%q: %v %q\n", v, i, d)
+	//fmt.Printf("%q: %v %q\n", v, i, d)
 	if i != nil {
 		return fmt.Sprintf("%v", i.(bool))
 	}

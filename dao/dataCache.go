@@ -11,6 +11,7 @@ import (
 	"github.com/andreyvit/sqlexpr"
 	"github.com/kisielk/sqlstruct"
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/das"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -51,25 +52,28 @@ const (
 )
 
 // getCacheStoreList read all employees
-func DataCache_GetList() (int, []dm.DataCache, error) {
+func DataCache_GetList() (int, []dm.Cache, error) {
 	tsql := fmt.Sprintf(dsCache.Select, sqlstruct.Columns(dm.DataCache{}))
 	count, appCacheStoreList, _, _ := fetchCacheStoreData(tsql)
 	return count, appCacheStoreList, nil
 }
 
 // getCacheStoreList read all employees
-func DataCache_GetItemByID(id string) (int, dm.DataCache, error) {
+func DataCache_GetItemByID(id string) (int, dm.Cache, error) {
 	tsql := fmt.Sprintf(dsCache.Get, sqlstruct.Columns(dm.DataCache{}), id)
 	_, _, returnItem, _ := fetchCacheStoreData(tsql)
 	return 1, returnItem, nil
 }
 
 // getCacheStoreList read all employees
-func DataCache_GetListByObject(object string) (int, []dm.DataCache, error) {
-	tsql := fmt.Sprintf(dsCache.GetAlt, sqlstruct.Columns(dm.DataCache{}), object)
-	log.Println(tsql)
+func DataCache_GetListByObject(id string) (int, []dm.Cache, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Cache_SQLTable)
+	tsql = tsql + " WHERE " + dm.Cache_Object + "='" + id + "'"
+
+	//log.Println(tsql)
 	count, returnItem, _, _ := fetchCacheStoreData(tsql)
-	log.Println(count, returnItem)
+	//log.Println(count, returnItem)
 	return count, returnItem, nil
 }
 
@@ -182,33 +186,44 @@ func deleteCacheStore(id string) {
 }
 
 // fetchCacheStoreData read all employees
-func fetchCacheStoreData(tsql string) (int, []dm.DataCache, dm.DataCache, error) {
-	log.Println(tsql)
-	var appCacheStore dm.DataCache
-	var appCacheStoreList []dm.DataCache
-	log.Println(core.ApplicationDB)
-	rows, err := core.ApplicationDB.Query(tsql)
-	//fmt.Println("back from dq Q")
+func fetchCacheStoreData(tsql string) (int, []dm.Cache, dm.Cache, error) {
+	//	log.Println(tsql)
+
+	var recItem dm.Cache
+	var recList []dm.Cache
+
+	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, appCacheStore, err
+		log.Fatal(err.Error())
 	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		err := rows.Scan(&appCacheStore.Id, &appCacheStore.Object, &appCacheStore.Field, &appCacheStore.Value, &appCacheStore.Expiry, &appCacheStore.SYSCreated, &appCacheStore.SYSWho, &appCacheStore.SYSHost, &appCacheStore.SYSUpdated, &appCacheStore.Source)
-		if err != nil {
-			log.Println("Error scanning rows: " + err.Error())
-			return -1, nil, appCacheStore, err
-		}
-		// no change below
-		appCacheStoreList = append(appCacheStoreList, appCacheStore)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
+
+	for i := 0; i < noitems; i++ {
+
+		rec := returnList[i]
+		// Automatically generated 15/11/2021 by matttownsend on silicon.local - START
+		//recItem.AppInternalID = get_String(rec, dm.Cache_Id, "")
+		recItem.SYSId = get_Int(rec, dm.Cache_SYSId, "0")
+		recItem.Id = get_String(rec, dm.Cache_Id, "")
+		recItem.Object = get_String(rec, dm.Cache_Object, "")
+		recItem.Field = get_String(rec, dm.Cache_Field, "")
+		recItem.Value = get_String(rec, dm.Cache_Value, "")
+		recItem.Expiry = get_String(rec, dm.Cache_Expiry, "")
+		recItem.SYSCreated = get_String(rec, dm.Cache_SYSCreated, "")
+		recItem.SYSWho = get_String(rec, dm.Cache_SYSWho, "")
+		recItem.SYSHost = get_String(rec, dm.Cache_SYSHost, "")
+		recItem.SYSUpdated = get_String(rec, dm.Cache_SYSUpdated, "")
+		recItem.Source = get_String(rec, dm.Cache_Source, "")
+		recItem.SYSCreatedBy = get_String(rec, dm.Cache_SYSCreatedBy, "")
+		recItem.SYSCreatedHost = get_String(rec, dm.Cache_SYSCreatedHost, "")
+		recItem.SYSUpdatedBy = get_String(rec, dm.Cache_SYSUpdatedBy, "")
+		recItem.SYSUpdatedHost = get_String(rec, dm.Cache_SYSUpdatedHost, "")
+		// Automatically generated 15/11/2021 by matttownsend on silicon.local - END
+		//Post Import Actions
+
+		//Add to the list
+		recList = append(recList, recItem)
 	}
-	//log.Println(count, appCacheStoreList, appCacheStore)
-	return count, appCacheStoreList, appCacheStore, nil
+	return noitems, recList, recItem, nil
 }
 
 func newCacheStoreID(r dm.DataCache) string {

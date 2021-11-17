@@ -7,7 +7,7 @@ package datamodel
 // Object 			  : Cache
 // Endpoint Root 	  : Cache
 // Search QueryString : ID
-// From   			  : 
+// From   			  :
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
@@ -17,23 +17,22 @@ package datamodel
 
 //Centre is cheese
 type Cache struct {
-	AppInternalID string  // Special field for internal use only
-SYSId        string
-Id        string
-Object        string
-Field        string
-Value        string
-Expiry        string
-SYSCreated        string
-SYSWho        string
-SYSHost        string
-SYSUpdated        string
-Source        string
-SYSCreatedBy        string
-SYSCreatedHost        string
-SYSUpdatedBy        string
-SYSUpdatedHost        string
-
+	AppInternalID  string // Special field for internal use only
+	SYSId          string
+	Id             string
+	Object         string
+	Field          string
+	Value          string
+	Expiry         string
+	SYSCreated     string
+	SYSWho         string
+	SYSHost        string
+	SYSUpdated     string
+	Source         string
+	SYSCreatedBy   string
+	SYSCreatedHost string
+	SYSUpdatedBy   string
+	SYSUpdatedHost string
 }
 
 const (
@@ -60,21 +59,21 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	Cache_SYSId   = "_id" // SYSId is a Int
-	Cache_Id   = "id" // Id is a String
-	Cache_Object   = "object" // Object is a String
-	Cache_Field   = "field" // Field is a String
-	Cache_Value   = "value" // Value is a String
-	Cache_Expiry   = "expiry" // Expiry is a String
-	Cache_SYSCreated   = "_created" // SYSCreated is a String
-	Cache_SYSWho   = "_who" // SYSWho is a String
-	Cache_SYSHost   = "_host" // SYSHost is a String
-	Cache_SYSUpdated   = "_updated" // SYSUpdated is a String
-	Cache_Source   = "source" // Source is a String
-	Cache_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
-	Cache_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
-	Cache_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
-	Cache_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
+	Cache_SYSId          = "_id"          // SYSId is a Int
+	Cache_Id             = "id"           // Id is a String
+	Cache_Object         = "object"       // Object is a String
+	Cache_Field          = "field"        // Field is a String
+	Cache_Value          = "value"        // Value is a String
+	Cache_Expiry         = "expiry"       // Expiry is a String
+	Cache_SYSCreated     = "_created"     // SYSCreated is a String
+	Cache_SYSWho         = "_who"         // SYSWho is a String
+	Cache_SYSHost        = "_host"        // SYSHost is a String
+	Cache_SYSUpdated     = "_updated"     // SYSUpdated is a String
+	Cache_Source         = "source"       // Source is a String
+	Cache_SYSCreatedBy   = "_createdBy"   // SYSCreatedBy is a String
+	Cache_SYSCreatedHost = "_createdHost" // SYSCreatedHost is a String
+	Cache_SYSUpdatedBy   = "_updatedBy"   // SYSUpdatedBy is a String
+	Cache_SYSUpdatedHost = "_updatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
 )

@@ -21,7 +21,7 @@ type appCacheStoreListPage struct {
 	Title           string
 	PageTitle       string
 	CacheStoreCount int
-	CacheStoreList  []dm.DataCache
+	CacheStoreList  []dm.Cache
 }
 
 //appCacheStorePage is cheese
@@ -64,7 +64,7 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
-	var returnList []dm.DataCache
+	//	var returnList []dm.Cache
 	noItems, returnList, _ := dao.DataCache_GetList()
 
 	pageCacheStoreList := appCacheStoreListPage{
