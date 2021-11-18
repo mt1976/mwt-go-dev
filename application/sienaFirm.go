@@ -46,7 +46,7 @@ type sienaFirmPage struct {
 	CountryName string
 	Action      string
 	CountryList []dm.Country
-	SectorList  []sienaSectorItem
+	SectorList  []dm.Sector
 }
 
 //sienaFirmItem is cheese
@@ -159,7 +159,7 @@ func EditSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	//Get Country List & Populate and Array of dm.Country Items
 	_, countryList, _ := dao.Country_GetList()
-	_, sectorList, _ := getSienaSectorList()
+	_, sectorList, _ := dao.Sector_GetList()
 
 	//fmt.Println(displayList)
 
@@ -300,7 +300,7 @@ func NewSienaFirmHandler(w http.ResponseWriter, r *http.Request) {
 
 	//Get Country List & Populate and Array of dm.Country Items
 	_, countryList, _ := dao.Country_GetList()
-	_, sectorList, _ := getSienaSectorList()
+	_, sectorList, _ := dao.Sector_GetList()
 
 	pageSienaFirmList := sienaFirmPage{
 		UserMenu:    UserMenu_Get(r),

@@ -1,0 +1,56 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/dealinginterface.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : DealingInterface
+// Endpoint Root 	    : DealingInterface
+// Search QueryString   : Name
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaDealingInterface
+// SQL Table Search Col : Name
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 18/11/2021 at 17:39:05
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | Name                      | String     |            | Name                      |  true |
+// | AcceptReducedAmount       | Bool       |       True | AcceptReducedAmount       | false |
+// | QuoteAsIndicative         | Bool       |       True | QuoteAsIndicative         | false |
+// | RateTimeOut               | Int        |          0 | RateTimeOut               | false |
+// | PropagationDelay          | Int        |          0 | PropagationDelay          | false |
+// | CheckLiquidity            | Bool       |       True | CheckLiquidity            | false |
+// | ChangeQuoteDirection      | Bool       |       True | ChangeQuoteDirection      | false |
+// | GenerateRejectedDeals     | Bool       |       True | GenerateRejectedDeals     | false |
+// | SpotUpdatesForForwardQuotes | Bool       |       True | SpotUpdatesForForwardQuotes | false |
+// | SettlementInstructionStyle | String     |            | SettlementInstructionStyle | false |
+// | CanRetractQuotes          | Bool       |       True | CanRetractQuotes          | false |
+// | CancelESPifNotPriced      | Bool       |       True | CancelESPifNotPriced      | false |
+// | CancelRFQSifNotPriced     | Bool       |       True | CancelRFQSifNotPriced     | false |
+// | CancelonDealingSuspended  | Bool       |       True | CancelonDealingSuspended  | false |
+// | CreditCheckedatDI         | Bool       |       True | CreditCheckedatDI         | false |
+// | DuplicateCheckonExternalRef | Bool       |       True | DuplicateCheckonExternalRef | false |
+// | LimitCheckQuote           | Bool       |       True | LimitCheckQuote           | false |
+// | LimitCheckonRFQDealSubmission | Bool       |       True | LimitCheckonRFQDealSubmission | false |
+// | ListenonLimits            | Bool       |       True | ListenonLimits            | false |
+// | MarginStyle               | String     |            | MarginStyle               | false |
+// | UseRerouteDefinitionOnly  | Bool       |       True | UseRerouteDefinitionOnly  | false |
+// | BypassConfirmation        | Bool       |       True | BypassConfirmation        | false |
+// | DIOnAcceptance            | Bool       |       True | DIOnAcceptance            | false |
+// | IgnoreESPAmountRules      | Bool       |       True | IgnoreESPAmountRules      | false |
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

@@ -26,11 +26,8 @@
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   <!-- END OF INSERTS -->
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
-
 </head>
-
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
@@ -55,72 +52,83 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/saveSienaCountry" method="GET">
-      <div hidden>
-        <input type="text" id="ID" name="ID" value="{{.ID}}">
-      </div>
+    <form action="/BookSave?Book={{.BookName}}" method="GET" class="form">
       <div class="card">
-
         <div class="card-header font-weight-bold">
-
           <div class="row">
             <div class="col">
-              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              Country&nbsp;:&nbsp;<code>{{.ID}}</code>
+              Book&nbsp;:&nbsp;<code>{{.BookName}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
-
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" onclick="/saveSienaCountry" formaction="/saveSienaCountry"></i>&nbsp;&nbsp;Save</button>
-
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-
+              
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/BookSave/?Book={{.BookName}}" onclick="/BookSave/?Book={{.BookName}}"></i>&nbsp;&nbsp;Save</button>
+              
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
-
         <div class="card-body">
-          <div class="">
-
+        <br><h4>Identification</h4>
             <div class="row">
-
               <div class="col-sm">
-                <label for="code">Code</label>
-                <input type="text" class="form-control" id="code" name="code" aria-describedby="emailHelp" placeholder="Enter code" disabled="disabled" value="{{.Code}}" maxlength="3">
+                <label for="BookName" >Name</label>
+                <input type="text" class="form-control" id="BookName" name="BookName" aria-describedby="BookNameHelp" placeholder=""  value="{{.BookName}}" required maxlength="4">
               </div>
-
+      
               <div class="col-sm">
-                <label for="shortcode">Short Code</label>
-                <input type="text" class="form-control" id="shortcode" name="shortcode" aria-describedby="emailHelp" placeholder="Enter code" value="{{.ShortCode}}" maxlength="2">
+                <label for="FullName" >FullName</label>
+                <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}" maxlength="30">
               </div>
-
+            </div>
+            <br><h4>Profit &amp; Loss</h4>
+            <div class="row">
               <div class="col-sm">
-                <label class="form-check-label" for="isEUEEA">EU/EAA?</label>
-                <select class="custom-select" id="isEUEEA" name="isEUEEA" required="required">
-                  <option id="{{.EU_EEA}}" selected="selected">{{.EU_EEA}}</option>
-                  {{range .YNList}}<option value="{{.Code}}">{{.Name}}</option>{{end}}
+                <label for="PLManage" >Manage P&amp;L</label>
+                <input type="text" class="form-control" id="PLManage" name="PLManage" aria-describedby="PLManageHelp" placeholder=""  value="{{.PLManage}}" >
+              </div>
+              <div class="col-sm">
+                <label for="PLTransfer" >Transfer P&amp;L</label>
+                <input type="text" class="form-control" id="PLTransfer" name="PLTransfer" aria-describedby="PLTransferHelp" placeholder=""  value="{{.PLTransfer}}" >
+              </div>
+              <div class="col-sm">
+                <label for="DerivePL" >Dervice P&amp;L</label>
+              
+                           <select id="DerivePL" class="form-control">
+                <option selected>{{.DerivePL}}</option>
+                <option>true</option>
+                 <option>false</option>
                 </select>
               </div>
-
             </div>
+                        <br><h4>Cost of Carry</h4>
 
             <div class="row">
-
               <div class="col-sm">
-                <label for="name">Description</label>
-                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}">
+                <label for="CostOfCarry" >Cost of Carry</label>
+                 <select id="CostOfCarry" class="form-control">
+                <option selected>{{.CostOfCarry}}</option>
+                <option>true</option>
+                 <option>false</option>
+                </select>
+              
               </div>
+          
+              <div class="col-sm">
+                <label for="CostOfFunding" >Cost of Funding</label>
+                <select id="CostOfFunding" class="form-control">
+                <option selected>{{.CostOfFunding}}</option>
+                <option>true</option>
+                 <option>false</option>
+                </select>
 
+              </div>
             </div>
-
-
-
-          </div>
-
+            
         </div>
-
+      </div>
     </form>
   </div>
-
 </body>

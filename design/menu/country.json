@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/country.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : Country
+// Endpoint Root 	  : Country
+// Search QueryString : Code
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 18/11/2021 at 17:07:31
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "288b7a48-13e8-4271-a9fa-b476ae09b5b6",
+      "Text": "Countries",
+      "Glyph": "fas fa-globe-americas",
+      "HREF": "/CountryList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

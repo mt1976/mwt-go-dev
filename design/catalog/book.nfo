@@ -1,0 +1,41 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/book.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : Book
+// Endpoint Root 	    : Book
+// Search QueryString   : Book
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaBook
+// SQL Table Search Col : BookName
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 18/11/2021 at 17:07:04
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | BookName                  | String     |            | BookName                  |  true |
+// | FullName                  | String     |            | FullName                  | false |
+// | PLManage                  | String     |            | PLManage                  | false |
+// | PLTransfer                | String     |            | PLTransfer                | false |
+// | DerivePL                  | Bool       |       True | DerivePL                  | false |
+// | CostOfCarry               | Bool       |       True | CostOfCarry               | false |
+// | CostOfFunding             | Bool       |       True | CostOfFunding             | false |
+// | LotAllocationMethod       | String     |            | LotAllocationMethod       | false |
+// | InternalId                | Int        |          0 | InternalId                |  true |
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

@@ -17,35 +17,33 @@
     }
     ,
     {
-      "ID": "2",
+      "ID": "3605b5f7-a6bb-4399-b6c9-47ecd28a9f71",
       "Text": "Sectors",
       "Glyph": "fas fa-industry",
-      "HREF": "/listSienaSector",
+      "HREF": "/SectorList",
       "OnClick": "",
       "TextClass": ""
     }
-
     ,
     {
-      "ID": "3",
-      "Text": "Countrys",
+      "ID": "288b7a48-13e8-4271-a9fa-b476ae09b5b6",
+      "Text": "Countries",
       "Glyph": "fas fa-globe-americas",
-      "HREF": "/listSienaCountry",
+      "HREF": "/CountryList",
       "OnClick": "",
       "TextClass": ""
     }
-
+    
 
     ,
     {
-      "ID": "4",
-      "Text": "Currencys",
+      "ID": "3b719dce-0773-44fa-b475-988efb03a4ba",
+      "Text": "Currencies",
       "Glyph": "fas fa-dollar-sign",
-      "HREF": "/listSienaCurrency",
+      "HREF": "/CurrencyList",
       "OnClick": "",
       "TextClass": ""
     }
-
     ,
     {
       "ID": "5",
@@ -78,15 +76,15 @@
 
     ,
     {
-      "ID": "8",
+      "ID": "e11ee958-5778-4175-9604-56a393d274ad",
       "Text": "Books",
       "Glyph": "fas fa-book",
-      "HREF": "/listSienaBook",
+      "HREF": "/BookList",
       "OnClick": "",
       "TextClass": ""
     }
-
     ,
+    
     {
       "ID": "9",
       "Text": "Brokers",
@@ -174,7 +172,20 @@
     {
       "Break": "<hr class=\"hr-list\">"
     }
-
+,
+    {
+      "ID": "3cb48d88-b295-4027-919f-e76ade61a5ad",
+      "Text": "Dealing Interface",
+      "Glyph": "fas fas-plug",
+      "HREF": "/DealingInterfaceList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    
+    {
+      "Break": "<hr class=\"hr-list\">"
+    }
     ,
     {
       "ID": "credentialsStore",

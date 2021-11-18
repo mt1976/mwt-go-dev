@@ -26,11 +26,8 @@
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   <!-- END OF INSERTS -->
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
-
 </head>
-
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
@@ -55,59 +52,81 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/saveSienaSector" method="GET">
-
+    <form action="/BookEdit?Book={{.BookName}}" method="POST" class="form">
       <div class="card">
-
         <div class="card-header font-weight-bold">
-
-
           <div class="row">
             <div class="col">
-              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              Sector&nbsp;:&nbsp;<code>{{.ID}}</code>
+              Book&nbsp;:&nbsp;<code>{{.BookName}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
-
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save" method="GET" onclick="/saveSienaSector" formaction="/saveSienaSector"></i>&nbsp;&nbsp;Save</button>
-
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
-
+              
+                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/BookEdit/?Book={{.BookName}}" onclick="/BookEdit/?Book={{.BookName}}"></i>&nbsp;&nbsp;Edit</button>
+                
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
-
         </div>
-
         <div class="card-body">
-          <div class="">
-
             <div class="row">
-
               <div class="col-sm">
-                <label for="code">Code</label>
-                <input type="code" class="form-control" id="code" name="code" aria-describedby="emailHelp" placeholder="Enter code" value="{{.Code}}" maxlength="3">
+                <label for="BookName">BookName</label>
+                <input type="text" class="form-control" id="BookName" aria-describedby="BookNameHelp" placeholder="" disabled="disabled" value="{{.BookName}}">
               </div>
-
             </div>
-
             <div class="row">
-
               <div class="col-sm">
-                <label for="name">Description</label>
-                <input type="name" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter a description" value="{{.Name}}">
+                <label for="FullName">FullName</label>
+                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled="disabled" value="{{.FullName}}">
               </div>
-
             </div>
-
-
-
-          </div>
-
+            <div class="row">
+              <div class="col-sm">
+                <label for="PLManage">PLManage</label>
+                <input type="text" class="form-control" id="PLManage" aria-describedby="PLManageHelp" placeholder="" disabled="disabled" value="{{.PLManage}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="PLTransfer">PLTransfer</label>
+                <input type="text" class="form-control" id="PLTransfer" aria-describedby="PLTransferHelp" placeholder="" disabled="disabled" value="{{.PLTransfer}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="DerivePL">DerivePL</label>
+                <input type="text" class="form-control" id="DerivePL" aria-describedby="DerivePLHelp" placeholder="True" disabled="disabled" value="{{.DerivePL}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CostOfCarry">CostOfCarry</label>
+                <input type="text" class="form-control" id="CostOfCarry" aria-describedby="CostOfCarryHelp" placeholder="True" disabled="disabled" value="{{.CostOfCarry}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CostOfFunding">CostOfFunding</label>
+                <input type="text" class="form-control" id="CostOfFunding" aria-describedby="CostOfFundingHelp" placeholder="True" disabled="disabled" value="{{.CostOfFunding}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="LotAllocationMethod">LotAllocationMethod</label>
+                <input type="text" class="form-control" id="LotAllocationMethod" aria-describedby="LotAllocationMethodHelp" placeholder="" disabled="disabled" value="{{.LotAllocationMethod}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="InternalId">InternalId</label>
+                <input type="text" class="form-control" id="InternalId" aria-describedby="InternalIdHelp" placeholder="0" disabled="disabled" value="{{.InternalId}}">
+              </div>
+            </div>
         </div>
-
-
+      </div>
     </form>
   </div>
 

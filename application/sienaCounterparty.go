@@ -72,7 +72,7 @@ type sienaCounterpartyPage struct {
 	NoTxns          int
 	TxnList         []sienaDealListItem
 	NoSectors       int
-	SectorsList     []sienaSectorItem
+	SectorsList     []dm.Sector
 	NoGroups        int
 	GroupsList      []sienaCounterpartyGroupItem
 	YNList          []sienaYNItem
@@ -244,7 +244,7 @@ func EditSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	//Get Country List & Populate and Array of dm.Country Items
 	_, countryList, _ := dao.Country_GetList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
-	_, sectorList, _ := getSienaSectorList()
+	_, sectorList, _ := dao.Sector_GetList()
 	_, ynList, _ := getSienaYNList()
 	//fmt.Println(displayList)
 
@@ -442,7 +442,7 @@ func NewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 
 	_, countryList, _ := dao.Country_GetList()
 	_, groupList, _ := getSienaCounterpartyGroupList()
-	_, sectorList, _ := getSienaSectorList()
+	_, sectorList, _ := dao.Sector_GetList()
 	_, ynList, _ := getSienaYNList()
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{

@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/sector.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : Sector
+// Endpoint Root 	  : Sector
+// Search QueryString : Sector
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 18/11/2021 at 15:58:44
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "f20bc999-6131-4f47-bd1a-b0d11a8cd047",
+      "Text": "Sectors",
+      "Glyph": "fas fa-industry",
+      "HREF": "/SectorList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

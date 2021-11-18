@@ -26,11 +26,8 @@
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   <!-- END OF INSERTS -->
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
-
 </head>
-
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
@@ -55,59 +52,69 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/saveSienaSector?sienaSector={{.ID}}" method="GET" class="form">
-
+    <form action="/BookEdit?Book={{.BookName}}" method="POST" class="form">
       <div class="card">
-
         <div class="card-header font-weight-bold">
-
-
-
           <div class="row">
             <div class="col">
-              <img src="../assets/siena.png" alt="Siena" style="width:1.75rem;margin-right:.5rem;">
-              Sector&nbsp;:&nbsp;<code>{{.ID}}</code>
+              Book&nbsp;:&nbsp;<code>{{.BookName}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-danger"><i class="fas fa-save"  method="GET" formaction="/saveSienaSector/?sienaSector={{.ID}}" onclick="/saveSienaSector/?sienaSector={{.ID}}"></i>&nbsp;&nbsp;Save</button>
-
-            <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              
+                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/BookEdit/?Book={{.BookName}}" onclick="/BookEdit/?Book={{.BookName}}"></i>&nbsp;&nbsp;Edit</button>
+                
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
-
         </div>
-
         <div class="card-body">
-
-
-
+        <br>
+        <h4>Identification</h4>
             <div class="row">
-
               <div class="col-sm">
-                <label for="code">Code</label>
-                <input type="text" class="form-control" id="code" name="code" aria-describedby="code" placeholder="<<BLANK>>" disabled="disabled" value="{{.Code}}" maxlength="3">
-                    <input type="text" class="form-control" id="ID" name="ID" aria-describedby="ID" placeholder="<<BLANK>>" value="{{.Code}}" hidden>
+                <label for="BookName">Name</label>
+                <input type="text" class="form-control" id="BookName" aria-describedby="BookNameHelp" placeholder="" disabled="disabled" value="{{.BookName}}" maxlength="4" size="4">
               </div>
-
-
-
+    
+              <div class="col-sm">
+                <label for="FullName">Full Name</label>
+                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled="disabled" value="{{.FullName}}">
+              </div>
             </div>
-
+<br><h4>Profit &amp; Loss</h4>
+           
             <div class="row">
-
               <div class="col-sm">
-                <label for="name">Description</label>
-                <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="<<BLANK>>" value="{{.Name}}" required>
+                <label for="PLManage">Manage P&amp;L</label>
+                <input type="text" class="form-control" id="PLManage" aria-describedby="PLManageHelp" placeholder="" disabled="disabled" value="{{.PLManage}}">
               </div>
-
+           
+              <div class="col-sm">
+                <label for="PLTransfer">Transfer P&amp;L</label>
+                <input type="text" class="form-control" id="PLTransfer" aria-describedby="PLTransferHelp" placeholder="" disabled="disabled" value="{{.PLTransfer}}">
+              </div>
+     
+              <div class="col-sm">
+                <label for="DerivePL">Derive P&amp;L</label>
+                <input type="text" class="form-control" id="DerivePL" aria-describedby="DerivePLHelp" placeholder="True" disabled="disabled" value="{{.DerivePL}}">
+              </div>
             </div>
-
+            <br><h4>Cost of Carry</h4>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CostOfCarry">Cost of Carry</label>
+                <input type="text" class="form-control" id="CostOfCarry" aria-describedby="CostOfCarryHelp" placeholder="True" disabled="disabled" value="{{.CostOfCarry}}">
+              </div>
+          
+              <div class="col-sm">
+                <label for="CostOfFunding">Cost of Funding</label>
+                <input type="text" class="form-control" id="CostOfFunding" aria-describedby="CostOfFundingHelp" placeholder="True" disabled="disabled" value="{{.CostOfFunding}}">
+              </div>
+            </div>
         </div>
-
-
-
       </div>
     </form>
   </div>

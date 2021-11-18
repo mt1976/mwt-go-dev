@@ -100,11 +100,7 @@ func main() {
 
 	application.Centre_Publish(*mux)
 
-	mux.HandleFunc("/listSienaBook/", application.ListSienaBookHandler)
-	mux.HandleFunc("/viewSienaBook/", application.ViewSienaBookHandler)
-	mux.HandleFunc("/editSienaBook/", application.EditSienaBookHandler)
-	mux.HandleFunc("/saveSienaBook/", application.SaveSienaBookHandler)
-	mux.HandleFunc("/newSienaBook/", application.NewSienaBookHandler)
+	application.Book_Publish(*mux)
 
 	mux.HandleFunc("/listSienaBroker/", application.ListSienaBrokerHandler)
 	mux.HandleFunc("/viewSienaBroker/", application.ViewSienaBrokerHandler)
@@ -114,8 +110,7 @@ func main() {
 
 	application.Account_Publish(*mux)
 
-	mux.HandleFunc("/listSienaCurrency/", application.ListSienaCurrencyHandler)
-	mux.HandleFunc("/listSienaCurrencyPair/", application.ListSienaCurrencyPairHandler)
+	application.Currency_Publish(*mux)
 
 	mux.HandleFunc("/listSienaMandatedUser/", application.ListSienaMandatedUserHandler)
 	mux.HandleFunc("/viewSienaMandatedUser/", application.ViewSienaMandatedUserHandler)
@@ -160,6 +155,7 @@ func main() {
 	mux.HandleFunc("/newSienaCounterpartyGroup/", application.NewSienaCounterpartyGroupHandler)
 
 	mux.HandleFunc("/dashboard/", application.SienaDashboardHandler)
+	application.DealingInterface_Publish(*mux)
 
 	application.Credentials_Publish(*mux)
 

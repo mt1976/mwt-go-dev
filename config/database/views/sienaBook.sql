@@ -7,7 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaBook]
 AS
-SELECT        BookName, FullName
+SELECT        BookName, FullName, PLManage, PLTransfer, DerivePL, CostOfCarry, CostOfFunding, LotAllocationMethod, InternalId
 FROM            {{!SQL.SOURCE}}.Book
 WHERE        (InternalDeleted IS NULL)
 GO

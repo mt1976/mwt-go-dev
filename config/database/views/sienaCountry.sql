@@ -7,7 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaCountry]
 AS
-SELECT        Code, Name, ShortCode, EU_EEA
+SELECT        Code, Name, ShortCode, EU_EEA, HolidaysWeekend
 FROM            {{!SQL.SOURCE}}.Country
 WHERE        (InternalDeleted IS NULL)
 GO
