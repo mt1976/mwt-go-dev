@@ -7,7 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaPortfolio]
 AS
-SELECT        Code, Description1 AS Name
+SELECT        *
 FROM            {{!SQL.SOURCE}}.Portfolio
 WHERE        (InternalDeleted IS NULL)
 GO

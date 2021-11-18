@@ -7,7 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaProduct]
 AS
-SELECT        Code, Name
+SELECT        *
 FROM            {{!SQL.SOURCE}}.Product
 WHERE        (InternalDeleted IS NULL)
 GO

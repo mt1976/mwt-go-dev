@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/dealtypefundamental.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : DealTypeFundamental
+// Endpoint Root 	  : DealTypeFundamental
+// Search QueryString : DealTypeKey
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 18/11/2021 at 21:34:19
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "c064f23e-178f-4f4f-aee4-c44f8b3ab5dc",
+      "Text": "Deal Type Fundamentals",
+      "Glyph": "fas fa-plug",
+      "HREF": "/DealTypeFundamentalList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

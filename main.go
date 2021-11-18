@@ -101,12 +101,11 @@ func main() {
 	application.Centre_Publish(*mux)
 
 	application.Book_Publish(*mux)
+	application.Product_Publish(*mux)
+	application.DealType_Publish(*mux)
+	application.DealTypeFundamental_Publish(*mux)
 
-	mux.HandleFunc("/listSienaBroker/", application.ListSienaBrokerHandler)
-	mux.HandleFunc("/viewSienaBroker/", application.ViewSienaBrokerHandler)
-	mux.HandleFunc("/editSienaBroker/", application.EditSienaBrokerHandler)
-	mux.HandleFunc("/saveSienaBroker/", application.SaveSienaBrokerHandler)
-	mux.HandleFunc("/newSienaBroker/", application.NewSienaBrokerHandler)
+	application.Broker_Publish(*mux)
 
 	application.Account_Publish(*mux)
 

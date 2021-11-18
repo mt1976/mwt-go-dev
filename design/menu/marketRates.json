@@ -9,12 +9,12 @@
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 15/11/2021 at 23:50:08
+// Date & Time		  : 18/11/2021 at 21:34:21
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
     {
-      "ID": "3c77a995-0e76-409b-ae8c-ca73e02963b2",
+      "ID": "3e6d413b-f41f-409d-8f62-24c8d91bff27",
       "Text": "Rates Store Contents",
       "Glyph": "fas fa-poo",
       "HREF": "/MarketRatesList",

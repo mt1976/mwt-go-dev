@@ -55,7 +55,7 @@ type sienaMandatedUserPage struct {
 	SystemUser                        string
 	Action                            string
 	CountryList                       []dm.Country
-	FirmList                          []sienaFirmItem
+	FirmList                          []dm.Firm
 	CentreList                        []dm.Centre
 	CounterpartyName                  string
 	YNList                            []sienaYNItem
@@ -390,7 +390,7 @@ func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	//Get Country List & Populate and Array of dm.Country Items
 
 	_, countryList, _ := dao.Country_GetList()
-	_, firmList, _ := getSienaFirmList()
+	_, firmList, _ := dao.Firm_GetList()
 	_, centreList, _ := dao.Centre_GetList()
 	_, ynList, _ := getSienaYNList()
 

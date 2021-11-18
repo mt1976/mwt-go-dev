@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/portfolio.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : Portfolio
+// Endpoint Root 	  : Portfolio
+// Search QueryString : Code
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 18/11/2021 at 21:34:20
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "d7a44473-c054-4035-9579-23ce6cfdeed6",
+      "Text": "Bank Porfolios",
+      "Glyph": "fas fa-plug",
+      "HREF": "/PortfolioList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

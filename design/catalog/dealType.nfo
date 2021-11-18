@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/dealtype.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : DealType
+// Endpoint Root 	    : DealType
+// Search QueryString   : DealTypeKey
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaDealType
+// SQL Table Search Col : DealTypeKey
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 18/11/2021 at 21:34:19
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | DealTypeKey               | String     |            | DealTypeKey               |  true |
+// | DealTypeShortName         | String     |            | DealTypeShortName         | false |
+// | HostKey                   | String     |            | HostKey                   | false |
+// | IsActive                  | Bool       |       True | IsActive                  | false |
+// | Interbook                 | Bool       |       True | Interbook                 | false |
+// | BackOfficeLink            | Bool       |       True | BackOfficeLink            | false |
+// | HasTicket                 | Bool       |       True | HasTicket                 | false |
+// | CurrencyOverride          | Bool       |       True | CurrencyOverride          | false |
+// | CurrencyHolderCurrency    | String     |            | CurrencyHolderCurrency    | false |
+// | AllBooks                  | Bool       |       True | AllBooks                  | false |
+// | FundamentalDealTypeKey    | String     |            | FundamentalDealTypeKey    | false |
+// | RelatedDealType           | String     |            | RelatedDealType           | false |
+// | BookName                  | String     |            | BookName                  | false |
+// | ExportMethod              | String     |            | ExportMethod              | false |
+// | DefaultUserLayoffBooks    | Bool       |       True | DefaultUserLayoffBooks    | false |
+// | RFQ                       | Bool       |       True | RFQ                       | false |
+// | OBS                       | Bool       |       True | OBS                       | false |
+// | KID                       | Bool       |       True | KID                       | false |
+// | InternalId                | Int        |          0 | InternalId                |  true |
+// | InternalDeleted           | Time       |            | InternalDeleted           | false |
+// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |
+// | UpdatedUserId             | String     |            | UpdatedUserId             | false |
+// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |
+// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |
+// | DeletedUserId             | String     |            | DeletedUserId             | false |
+// | ChangeType                | String     |            | ChangeType                | false |
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

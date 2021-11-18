@@ -1,5 +1,4 @@
 package application
-
 // ----------------------------------------------------------------
 // Automatically generated  "/application/country.go"
 // ----------------------------------------------------------------
@@ -7,11 +6,11 @@ package application
 // Object 			  : Country
 // Endpoint Root 	  : Country
 // Search QueryString : Code
-// From   			  :
+// From   			  : 
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 17:07:31
+// Date & Time		  : 18/11/2021 at 21:34:18
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -19,36 +18,36 @@ import (
 	"html/template"
 	"net/http"
 
-	core "github.com/mt1976/mwt-go-dev/core"
-	dao "github.com/mt1976/mwt-go-dev/dao"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	core    "github.com/mt1976/mwt-go-dev/core"
+	dao     "github.com/mt1976/mwt-go-dev/dao"
+	dm      "github.com/mt1976/mwt-go-dev/datamodel"
+	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //country_PageList provides the information for the template for a list of Countrys
 type country_PageList struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	ItemsOnPage int
-	ItemList    []dm.Country
+	UserMenu         []dm.AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []dm.Country
 }
 
 //country_Page provides the information for the template for an individual Country
 type country_Page struct {
-	UserMenu      []dm.AppMenuItem
-	UserRole      string
-	Title         string
-	PageTitle     string
-	AppInternalID string
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	Title       string
+	PageTitle   string
+	AppInternalID  string
 	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-	Code            string
-	Name            string
-	ShortCode       string
-	EU_EEA          string
-	HolidaysWeekend string
-
+		Code string
+		Name string
+		ShortCode string
+		EU_EEA string
+		HolidaysWeekend string
+	
 	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
 }
 
@@ -63,7 +62,7 @@ func Country_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Country_PathEdit, Country_HandlerEdit)
 	mux.HandleFunc(dm.Country_PathNew, Country_HandlerNew)
 	mux.HandleFunc(dm.Country_PathSave, Country_HandlerSave)
-
+	
 	logs.Publish("Siena", dm.Country_Title)
 }
 
@@ -82,13 +81,14 @@ func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Country
 	noItems, returnList, _ := dao.Country_GetList()
 
+
 	pageDetail := country_PageList{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Country_Title, core.Action_List),
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        PageTitle(dm.Country_Title, core.Action_List),
 		ItemsOnPage: noItems,
-		ItemList:    returnList,
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		ItemList:  returnList,
+		UserMenu:         UserMenu_Get(r),
+		UserRole:         core.GetUserRole(r),
 	}
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateList, core.GetUserRole(r)))
@@ -111,19 +111,19 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Country_GetByID(searchID)
 
 	pageDetail := country_Page{
-		Title:         core.ApplicationProperties["appname"],
-		PageTitle:     PageTitle(dm.Country_Title, core.Action_View),
-		UserMenu:      UserMenu_Get(r),
-		UserRole:      core.GetUserRole(r),
-		AppInternalID: rD.AppInternalID,
-		//
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.Country_Title, core.Action_View),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		AppInternalID:		     rD.AppInternalID,
+		// 
 		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Code:            rD.Code,
-		Name:            rD.Name,
-		ShortCode:       rD.ShortCode,
-		EU_EEA:          rD.EU_EEA,
+		Code: rD.Code,
+		Name: rD.Name,
+		ShortCode: rD.ShortCode,
+		EU_EEA: rD.EU_EEA,
 		HolidaysWeekend: rD.HolidaysWeekend,
-
+		
 		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
 		//
 	}
@@ -147,21 +147,21 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	searchID := core.GetURLparam(r, dm.Country_QueryString)
 	_, rD, _ := dao.Country_GetByID(searchID)
-
+	
 	pageDetail := country_Page{
-		Title:         core.ApplicationProperties["appname"],
-		PageTitle:     PageTitle(dm.Country_Title, core.Action_Edit),
-		UserMenu:      UserMenu_Get(r),
-		UserRole:      core.GetUserRole(r),
-		AppInternalID: rD.AppInternalID,
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.Country_Title, core.Action_Edit),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		AppInternalID:          rD.AppInternalID,
 		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Code:            rD.Code,
-		Name:            rD.Name,
-		ShortCode:       rD.ShortCode,
-		EU_EEA:          rD.EU_EEA,
-		HolidaysWeekend: rD.HolidaysWeekend,
-
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+			Code: rD.Code,
+			Name: rD.Name,
+			ShortCode: rD.ShortCode,
+			EU_EEA: rD.EU_EEA,
+			HolidaysWeekend: rD.HolidaysWeekend,
+		
+	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions - START
 
 		// Post Import Actions - END
@@ -182,21 +182,21 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path + r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("ID"))
 
 	var item dm.Country
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
 	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-	item.Code = r.FormValue(dm.Country_Code)
-	item.Name = r.FormValue(dm.Country_Name)
-	item.ShortCode = r.FormValue(dm.Country_ShortCode)
-	item.EU_EEA = r.FormValue(dm.Country_EU_EEA)
-	item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend)
-
+		item.Code = r.FormValue(dm.Country_Code)
+		item.Name = r.FormValue(dm.Country_Name)
+		item.ShortCode = r.FormValue(dm.Country_ShortCode)
+		item.EU_EEA = r.FormValue(dm.Country_EU_EEA)
+		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend)
+	
 	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
 
-	dao.Country_Store(item)
+	dao.Country_Store(item)	
 
 	http.Redirect(w, r, Country_Redirect, http.StatusFound)
 }
@@ -215,18 +215,18 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := country_Page{
-		Title:         core.ApplicationProperties["appname"],
-		PageTitle:     PageTitle(dm.Country_Title, core.Action_New),
-		UserMenu:      UserMenu_Get(r),
-		UserRole:      core.GetUserRole(r),
-		AppInternalID: "NEW",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.Country_Title, core.Action_New),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		AppInternalID:   "NEW",
 		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Code:            "",
-		Name:            "",
-		ShortCode:       "",
-		EU_EEA:          "True",
-		HolidaysWeekend: "",
-
+			Code: "",
+			Name: "",
+			ShortCode: "",
+			EU_EEA: "True",
+			HolidaysWeekend: "",
+		
 		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
 		//
 		// Post Import Actions - START
@@ -251,7 +251,7 @@ func Country_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Country_QueryString)
 
-	dao.Country_Delete(searchID)
+	dao.Country_Delete(searchID)	
 
 	http.Redirect(w, r, Country_Redirect, http.StatusFound)
 }

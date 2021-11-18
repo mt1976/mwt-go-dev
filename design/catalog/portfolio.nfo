@@ -1,0 +1,44 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/portfolio.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : Portfolio
+// Endpoint Root 	    : Portfolio
+// Search QueryString   : Code
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaPortfolio
+// SQL Table Search Col : Code
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 18/11/2021 at 21:34:20
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | Code                      | String     |            | Code                      |  true |
+// | Description1              | String     |            | Description1              | false |
+// | Description2              | String     |            | Description2              | false |
+// | IsDefault                 | Bool       |       True | isDefault                 | false |
+// | InternalId                | Int        |          0 | InternalId                |  true |
+// | InternalDeleted           | Time       |            | InternalDeleted           | false |
+// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |
+// | UpdatedUserId             | String     |            | UpdatedUserId             | false |
+// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |
+// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |
+// | DeletedUserId             | String     |            | DeletedUserId             | false |
+// | ChangeType                | String     |            | ChangeType                | false |
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

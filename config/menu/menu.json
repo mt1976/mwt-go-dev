@@ -34,7 +34,7 @@
       "TextClass": ""
     }
     
-
+ 
     ,
     {
       "ID": "3b719dce-0773-44fa-b475-988efb03a4ba",
@@ -56,13 +56,14 @@
 
     ,
     {
-      "ID": "6",
+      "ID": "1103b68f-f011-4366-98b4-9ef1652449bb",
       "Text": "Firms",
       "Glyph": "fas fa-city",
-      "HREF": "/listSienaFirm",
+      "HREF": "/FirmList",
       "OnClick": "",
       "TextClass": ""
     }
+    
 
     ,
     {
@@ -89,7 +90,7 @@
       "ID": "9",
       "Text": "Brokers",
       "Glyph": "far fa-handshake",
-      "HREF": "/listSienaBroker",
+      "HREF": "/BrokerList",
       "OnClick": "",
       "TextClass": ""
     },
@@ -121,10 +122,43 @@
       "ID": "13",
       "Text": "Bank Portfolios",
       "Glyph": "far fa-folder-open",
-      "HREF": "/listSienaPortfolio",
+      "HREF": "/PortfolioList",
       "OnClick": "",
       "TextClass": ""
     },
+
+
+
+    {
+      "ID": "5a4f28e6-f2f6-4f8c-92f5-e308288deeab",
+      "Text": "Product Groups",
+      "Glyph": "fas fa-plug",
+      "HREF": "/ProductList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "ID": "bed189dd-2629-4803-82a2-389ecbc01840",
+      "Text": "Deal Types",
+      "Glyph": "fas fa-plug",
+      "HREF": "/DealTypeList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+
+    {
+      "ID": "dd8bc369-8827-4baa-a382-b9aaadd78e56",
+      "Text": "Deal Type Fundamentals",
+      "Glyph": "fas fa-plug",
+      "HREF": "/DealTypeFundamentalList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+
+
     {
       "ID": "14",
       "Text": "Accounts",

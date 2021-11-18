@@ -1,0 +1,44 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/product.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : Product
+// Endpoint Root 	    : Product
+// Search QueryString   : Code
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaProduct
+// SQL Table Search Col : Code
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 18/11/2021 at 21:34:20
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | Code                      | String     |            | Code                      |  true |
+// | Name                      | String     |            | Name                      | false |
+// | Factor                    | Float      |       0.00 | Factor                    | false |
+// | MaxTermPrecedence         | Bool       |       True | MaxTermPrecedence         | false |
+// | InternalId                | Int        |          0 | InternalId                |  true |
+// | InternalDeleted           | Time       |            | InternalDeleted           | false |
+// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |
+// | UpdatedUserId             | String     |            | UpdatedUserId             | false |
+// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |
+// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |
+// | DeletedUserId             | String     |            | DeletedUserId             | false |
+// | ChangeType                | String     |            | ChangeType                | false |
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

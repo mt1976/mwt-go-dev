@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/firm.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : Firm
+// Endpoint Root 	  : Firm
+// Search QueryString : FirmName
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 18/11/2021 at 21:34:20
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "e56cd4b0-507c-4296-8b88-05e6526a9f2d",
+      "Text": "Firms",
+      "Glyph": "fas fa-city",
+      "HREF": "/FirmList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

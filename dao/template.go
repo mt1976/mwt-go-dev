@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 17/11/2021 at 22:28:20
+// Date & Time		  : 18/11/2021 at 21:34:21
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -115,7 +115,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 17/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Template_ID,"")
    recItem.SYSId  = get_Int(rec, dm.Template_SYSId, "0")
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
@@ -127,7 +127,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Template_SYSUpdatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Template_SYSUpdatedBy, "")
    recItem.ID  = get_String(rec, dm.Template_ID, "")
-// Automatically generated 17/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
 		//Post Import Actions
 
 		//Add to the list

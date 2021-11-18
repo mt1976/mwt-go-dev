@@ -1,0 +1,6 @@
+<xml>
+<shortname>{{SHORTNAME}}</shortname>
+<fullname>{{FULLNAME}}</fullname>
+<country>{{COUNTRY}}</country>
+<date>{{!TODAY}}</date>
+</xml>
