@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/centre.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : Centre
+// Endpoint Root 	  : Centre
+// Search QueryString : Code
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 19/11/2021 at 17:16:03
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "f30bb0f9-8c01-4b4e-9edc-a271845ea317",
+      "Text": "Centres",
+      "Glyph": "fas fa-map-marker-alt",
+      "HREF": "/CentreList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

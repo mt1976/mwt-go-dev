@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,10 @@ func DealConversation_GetByID(id string) (int, dm.DealConversation, error) {
 	_, _, dealconversationItem, _ := dealconversation_Fetch(tsql)
 	return 1, dealconversationItem, nil
 }
+
+
+
+
 
 // DealConversation_DeleteByID() deletes a single DealConversation record
 func DealConversation_Delete(id string) {
@@ -86,7 +90,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealConversation_MessageLogReference,"")
    recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference, "")
    recItem.Status  = get_String(rec, dm.DealConversation_Status, "")
@@ -100,9 +104,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
    recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo, "0")
    recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem, "")
    recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:03
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,10 @@ func Cache_GetByID(id string) (int, dm.Cache, error) {
 	_, _, cacheItem, _ := cache_Fetch(tsql)
 	return 1, cacheItem, nil
 }
+
+
+
+
 
 // Cache_DeleteByID() deletes a single Cache record
 func Cache_Delete(id string) {
@@ -120,7 +124,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Cache_Id,"")
    recItem.SYSId  = get_Int(rec, dm.Cache_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Cache_Id, "")
@@ -137,9 +141,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
    recItem.SYSCreatedHost  = get_String(rec, dm.Cache_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Cache_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Cache_SYSUpdatedHost, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

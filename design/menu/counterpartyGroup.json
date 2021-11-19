@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/counterpartygroup.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : CounterpartyGroup
+// Endpoint Root 	  : CounterpartyGroup
+// Search QueryString : Group
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 19/11/2021 at 17:16:03
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "93951b51-aee6-4c94-9079-5a5f2932a545",
+      "Text": "Counterparty Groups",
+      "Glyph": "fa fa-users",
+      "HREF": "/CounterpartyGroupList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

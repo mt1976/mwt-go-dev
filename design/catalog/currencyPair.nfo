@@ -1,0 +1,40 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/currencypair.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : CurrencyPair
+// Endpoint Root 	    : CurrencyPair
+// Search QueryString   : Code
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaCurrencyPair
+// SQL Table Search Col : Code
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 19/11/2021 at 17:16:04
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | CodeMajorCurrencyIsoCode  | String     |            | CodeMajorCurrencyIsoCode  |  true |  true | false |            |            |            |           
+// | CodeMinorCurrencyIsoCode  | String     |            | CodeMinorCurrencyIsoCode  |  true |  true | false |            |            |            |           
+// | ReciprocalActive          | Bool       |       True | ReciprocalActive          | false |  true | false |            |            |            |           
+// | Code                      | String     |            | Code                      |  true |  true | false |            |            |            |           
+// | MajorName                 | String     |            | MajorName                 | false |  true | false |            |            |            |           
+// | MinorName                 | String     |            | MinorName                 | false |  true | false |            |            |            |           
+// | Major_Enri                | String     |            | Major_Enri                |  true | false |  true | Currency   | CodeMajorCurrencyIsoCode | Name       | {{range .Major_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}
+// | Minor_Enri                | String     |            | Minor_Enri                |  true | false |  true | Currency   | CodeMinorCurrencyIsoCode | Name       | {{range .Minor_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

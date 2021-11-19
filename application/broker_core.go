@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:03
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type broker_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		FullName string
@@ -49,7 +49,17 @@ type broker_Page struct {
 		Address string
 		LEI string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -117,18 +127,19 @@ func Broker_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Code: rD.Code,
-		Name: rD.Name,
-		FullName: rD.FullName,
-		Contact: rD.Contact,
-		Address: rD.Address,
-		LEI: rD.LEI,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = rD.Code
+pageDetail.Name = rD.Name
+pageDetail.FullName = rD.FullName
+pageDetail.Contact = rD.Contact
+pageDetail.Address = rD.Address
+pageDetail.LEI = rD.LEI
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Broker_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -156,19 +167,20 @@ func Broker_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Code: rD.Code,
-			Name: rD.Name,
-			FullName: rD.FullName,
-			Contact: rD.Contact,
-			Address: rD.Address,
-			LEI: rD.LEI,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = rD.Code
+pageDetail.Name = rD.Name
+pageDetail.FullName = rD.FullName
+pageDetail.Contact = rD.Contact
+pageDetail.Address = rD.Address
+pageDetail.LEI = rD.LEI
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Broker_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -190,7 +202,7 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Broker
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Broker_Code)
 		item.Name = r.FormValue(dm.Broker_Name)
 		item.FullName = r.FormValue(dm.Broker_FullName)
@@ -198,7 +210,7 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Address = r.FormValue(dm.Broker_Address)
 		item.LEI = r.FormValue(dm.Broker_LEI)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.Broker_Store(item)	
 
@@ -223,21 +235,20 @@ func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Broker_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Code: "",
-			Name: "",
-			FullName: "",
-			Contact: "",
-			Address: "",
-			LEI: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = ""
+pageDetail.Name = ""
+pageDetail.FullName = ""
+pageDetail.Contact = ""
+pageDetail.Address = ""
+pageDetail.LEI = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Broker_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

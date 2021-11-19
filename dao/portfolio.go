@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:20
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,18 @@ func Portfolio_GetByID(id string) (int, dm.Portfolio, error) {
 	_, _, portfolioItem, _ := portfolio_Fetch(tsql)
 	return 1, portfolioItem, nil
 }
+
+// Portfolio_GetByReverseLookup(id string) returns a single Portfolio record
+func Portfolio_GetByReverseLookup(id string) (int, dm.Portfolio, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Portfolio_SQLTable)
+	tsql = tsql + " WHERE Description1 = '" + id + "'"
+
+	_, _, portfolioItem, _ := portfolio_Fetch(tsql)
+	return 1, portfolioItem, nil
+}
+
+
 
 // Portfolio_DeleteByID() deletes a single Portfolio record
 func Portfolio_Delete(id string) {
@@ -86,7 +98,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Portfolio_Code,"")
    recItem.Code  = get_String(rec, dm.Portfolio_Code, "")
    recItem.Description1  = get_String(rec, dm.Portfolio_Description1, "")
@@ -100,9 +112,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

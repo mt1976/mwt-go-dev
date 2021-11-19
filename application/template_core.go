@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:21
+// Date & Time		  : 19/11/2021 at 17:16:06
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type template_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		FIELD1 string
 		FIELD2 string
@@ -53,7 +53,21 @@ type template_Page struct {
 		SYSUpdatedBy string
 		ID string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -121,22 +135,23 @@ func Template_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		SYSId: rD.SYSId,
-		FIELD1: rD.FIELD1,
-		FIELD2: rD.FIELD2,
-		SYSCreated: rD.SYSCreated,
-		SYSCreatedBy: rD.SYSCreatedBy,
-		SYSCreatedHost: rD.SYSCreatedHost,
-		SYSUpdated: rD.SYSUpdated,
-		SYSUpdatedHost: rD.SYSUpdatedHost,
-		SYSUpdatedBy: rD.SYSUpdatedBy,
-		ID: rD.ID,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = rD.SYSId
+pageDetail.FIELD1 = rD.FIELD1
+pageDetail.FIELD2 = rD.FIELD2
+pageDetail.SYSCreated = rD.SYSCreated
+pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+pageDetail.SYSUpdated = rD.SYSUpdated
+pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+pageDetail.ID = rD.ID
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Template_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -164,23 +179,24 @@ func Template_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SYSId: rD.SYSId,
-			FIELD1: rD.FIELD1,
-			FIELD2: rD.FIELD2,
-			SYSCreated: rD.SYSCreated,
-			SYSCreatedBy: rD.SYSCreatedBy,
-			SYSCreatedHost: rD.SYSCreatedHost,
-			SYSUpdated: rD.SYSUpdated,
-			SYSUpdatedHost: rD.SYSUpdatedHost,
-			SYSUpdatedBy: rD.SYSUpdatedBy,
-			ID: rD.ID,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = rD.SYSId
+pageDetail.FIELD1 = rD.FIELD1
+pageDetail.FIELD2 = rD.FIELD2
+pageDetail.SYSCreated = rD.SYSCreated
+pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+pageDetail.SYSUpdated = rD.SYSUpdated
+pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+pageDetail.ID = rD.ID
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Template_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -202,7 +218,7 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Template
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Template_SYSId)
 		item.FIELD1 = r.FormValue(dm.Template_FIELD1)
 		item.FIELD2 = r.FormValue(dm.Template_FIELD2)
@@ -214,7 +230,7 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Template_SYSUpdatedBy)
 		item.ID = r.FormValue(dm.Template_ID)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.Template_Store(item)	
 
@@ -239,25 +255,24 @@ func Template_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Template_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SYSId: "0",
-			FIELD1: "",
-			FIELD2: "",
-			SYSCreated: "",
-			SYSCreatedBy: "",
-			SYSCreatedHost: "",
-			SYSUpdated: "",
-			SYSUpdatedHost: "",
-			SYSUpdatedBy: "",
-			ID: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = ""
+pageDetail.FIELD1 = ""
+pageDetail.FIELD2 = ""
+pageDetail.SYSCreated = ""
+pageDetail.SYSCreatedBy = ""
+pageDetail.SYSCreatedHost = ""
+pageDetail.SYSUpdated = ""
+pageDetail.SYSUpdatedHost = ""
+pageDetail.SYSUpdatedBy = ""
+pageDetail.ID = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Template_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

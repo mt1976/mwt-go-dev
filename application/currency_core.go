@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type currency_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		AmountDp string
@@ -67,7 +67,35 @@ type currency_Page struct {
 		OvernightFundingSpreadBid string
 		OvernightFundingSpreadOffer string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -135,36 +163,37 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Code: rD.Code,
-		Name: rD.Name,
-		AmountDp: rD.AmountDp,
-		Country: rD.Country,
-		CountryName: rD.CountryName,
-		IntBase: rD.IntBase,
-		KeydateBase: rD.KeydateBase,
-		InterestRateTolerance: rD.InterestRateTolerance,
-		CheckPayTo: rD.CheckPayTo,
-		LatinAmericanSettlement: rD.LatinAmericanSettlement,
-		DefaultLayOffBookKey: rD.DefaultLayOffBookKey,
-		CutOffTimeCutOffTime: rD.CutOffTimeCutOffTime,
-		CutOffTimeTimeZone: rD.CutOffTimeTimeZone,
-		CutOffTimeDerivedDataUTCOffset: rD.CutOffTimeDerivedDataUTCOffset,
-		CutOffTimeDerivedDataHasDaylightSaving: rD.CutOffTimeDerivedDataHasDaylightSaving,
-		CutOffTimeDerivedDataDaylightStart: rD.CutOffTimeDerivedDataDaylightStart,
-		CutOffTimeDerivedDataDaylightEnd: rD.CutOffTimeDerivedDataDaylightEnd,
-		DealerInterventionQuoteTimeout: rD.DealerInterventionQuoteTimeout,
-		CutOffTimeCutOffPeriod: rD.CutOffTimeCutOffPeriod,
-		StripRateFutureExchangeCode: rD.StripRateFutureExchangeCode,
-		StripRateFutureCurrencyContractCurrencyIsoCode: rD.StripRateFutureCurrencyContractCurrencyIsoCode,
-		StripRateFutureCurrencyContractFutureContractCode: rD.StripRateFutureCurrencyContractFutureContractCode,
-		OvernightFundingSpreadBid: rD.OvernightFundingSpreadBid,
-		OvernightFundingSpreadOffer: rD.OvernightFundingSpreadOffer,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = rD.Code
+pageDetail.Name = rD.Name
+pageDetail.AmountDp = rD.AmountDp
+pageDetail.Country = rD.Country
+pageDetail.CountryName = rD.CountryName
+pageDetail.IntBase = rD.IntBase
+pageDetail.KeydateBase = rD.KeydateBase
+pageDetail.InterestRateTolerance = rD.InterestRateTolerance
+pageDetail.CheckPayTo = rD.CheckPayTo
+pageDetail.LatinAmericanSettlement = rD.LatinAmericanSettlement
+pageDetail.DefaultLayOffBookKey = rD.DefaultLayOffBookKey
+pageDetail.CutOffTimeCutOffTime = rD.CutOffTimeCutOffTime
+pageDetail.CutOffTimeTimeZone = rD.CutOffTimeTimeZone
+pageDetail.CutOffTimeDerivedDataUTCOffset = rD.CutOffTimeDerivedDataUTCOffset
+pageDetail.CutOffTimeDerivedDataHasDaylightSaving = rD.CutOffTimeDerivedDataHasDaylightSaving
+pageDetail.CutOffTimeDerivedDataDaylightStart = rD.CutOffTimeDerivedDataDaylightStart
+pageDetail.CutOffTimeDerivedDataDaylightEnd = rD.CutOffTimeDerivedDataDaylightEnd
+pageDetail.DealerInterventionQuoteTimeout = rD.DealerInterventionQuoteTimeout
+pageDetail.CutOffTimeCutOffPeriod = rD.CutOffTimeCutOffPeriod
+pageDetail.StripRateFutureExchangeCode = rD.StripRateFutureExchangeCode
+pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = rD.StripRateFutureCurrencyContractCurrencyIsoCode
+pageDetail.StripRateFutureCurrencyContractFutureContractCode = rD.StripRateFutureCurrencyContractFutureContractCode
+pageDetail.OvernightFundingSpreadBid = rD.OvernightFundingSpreadBid
+pageDetail.OvernightFundingSpreadOffer = rD.OvernightFundingSpreadOffer
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Currency_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -192,37 +221,38 @@ func Currency_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Code: rD.Code,
-			Name: rD.Name,
-			AmountDp: rD.AmountDp,
-			Country: rD.Country,
-			CountryName: rD.CountryName,
-			IntBase: rD.IntBase,
-			KeydateBase: rD.KeydateBase,
-			InterestRateTolerance: rD.InterestRateTolerance,
-			CheckPayTo: rD.CheckPayTo,
-			LatinAmericanSettlement: rD.LatinAmericanSettlement,
-			DefaultLayOffBookKey: rD.DefaultLayOffBookKey,
-			CutOffTimeCutOffTime: rD.CutOffTimeCutOffTime,
-			CutOffTimeTimeZone: rD.CutOffTimeTimeZone,
-			CutOffTimeDerivedDataUTCOffset: rD.CutOffTimeDerivedDataUTCOffset,
-			CutOffTimeDerivedDataHasDaylightSaving: rD.CutOffTimeDerivedDataHasDaylightSaving,
-			CutOffTimeDerivedDataDaylightStart: rD.CutOffTimeDerivedDataDaylightStart,
-			CutOffTimeDerivedDataDaylightEnd: rD.CutOffTimeDerivedDataDaylightEnd,
-			DealerInterventionQuoteTimeout: rD.DealerInterventionQuoteTimeout,
-			CutOffTimeCutOffPeriod: rD.CutOffTimeCutOffPeriod,
-			StripRateFutureExchangeCode: rD.StripRateFutureExchangeCode,
-			StripRateFutureCurrencyContractCurrencyIsoCode: rD.StripRateFutureCurrencyContractCurrencyIsoCode,
-			StripRateFutureCurrencyContractFutureContractCode: rD.StripRateFutureCurrencyContractFutureContractCode,
-			OvernightFundingSpreadBid: rD.OvernightFundingSpreadBid,
-			OvernightFundingSpreadOffer: rD.OvernightFundingSpreadOffer,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = rD.Code
+pageDetail.Name = rD.Name
+pageDetail.AmountDp = rD.AmountDp
+pageDetail.Country = rD.Country
+pageDetail.CountryName = rD.CountryName
+pageDetail.IntBase = rD.IntBase
+pageDetail.KeydateBase = rD.KeydateBase
+pageDetail.InterestRateTolerance = rD.InterestRateTolerance
+pageDetail.CheckPayTo = rD.CheckPayTo
+pageDetail.LatinAmericanSettlement = rD.LatinAmericanSettlement
+pageDetail.DefaultLayOffBookKey = rD.DefaultLayOffBookKey
+pageDetail.CutOffTimeCutOffTime = rD.CutOffTimeCutOffTime
+pageDetail.CutOffTimeTimeZone = rD.CutOffTimeTimeZone
+pageDetail.CutOffTimeDerivedDataUTCOffset = rD.CutOffTimeDerivedDataUTCOffset
+pageDetail.CutOffTimeDerivedDataHasDaylightSaving = rD.CutOffTimeDerivedDataHasDaylightSaving
+pageDetail.CutOffTimeDerivedDataDaylightStart = rD.CutOffTimeDerivedDataDaylightStart
+pageDetail.CutOffTimeDerivedDataDaylightEnd = rD.CutOffTimeDerivedDataDaylightEnd
+pageDetail.DealerInterventionQuoteTimeout = rD.DealerInterventionQuoteTimeout
+pageDetail.CutOffTimeCutOffPeriod = rD.CutOffTimeCutOffPeriod
+pageDetail.StripRateFutureExchangeCode = rD.StripRateFutureExchangeCode
+pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = rD.StripRateFutureCurrencyContractCurrencyIsoCode
+pageDetail.StripRateFutureCurrencyContractFutureContractCode = rD.StripRateFutureCurrencyContractFutureContractCode
+pageDetail.OvernightFundingSpreadBid = rD.OvernightFundingSpreadBid
+pageDetail.OvernightFundingSpreadOffer = rD.OvernightFundingSpreadOffer
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Currency_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -244,7 +274,7 @@ func Currency_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Currency
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Currency_Code)
 		item.Name = r.FormValue(dm.Currency_Name)
 		item.AmountDp = r.FormValue(dm.Currency_AmountDp)
@@ -270,7 +300,7 @@ func Currency_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.OvernightFundingSpreadBid = r.FormValue(dm.Currency_OvernightFundingSpreadBid)
 		item.OvernightFundingSpreadOffer = r.FormValue(dm.Currency_OvernightFundingSpreadOffer)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.Currency_Store(item)	
 
@@ -295,39 +325,38 @@ func Currency_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Currency_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Code: "",
-			Name: "",
-			AmountDp: "0",
-			Country: "",
-			CountryName: "",
-			IntBase: "",
-			KeydateBase: "",
-			InterestRateTolerance: "0.00",
-			CheckPayTo: "True",
-			LatinAmericanSettlement: "True",
-			DefaultLayOffBookKey: "",
-			CutOffTimeCutOffTime: "",
-			CutOffTimeTimeZone: "",
-			CutOffTimeDerivedDataUTCOffset: "",
-			CutOffTimeDerivedDataHasDaylightSaving: "True",
-			CutOffTimeDerivedDataDaylightStart: "",
-			CutOffTimeDerivedDataDaylightEnd: "",
-			DealerInterventionQuoteTimeout: "0",
-			CutOffTimeCutOffPeriod: "",
-			StripRateFutureExchangeCode: "",
-			StripRateFutureCurrencyContractCurrencyIsoCode: "",
-			StripRateFutureCurrencyContractFutureContractCode: "",
-			OvernightFundingSpreadBid: "0.00",
-			OvernightFundingSpreadOffer: "0.00",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = ""
+pageDetail.Name = ""
+pageDetail.AmountDp = ""
+pageDetail.Country = ""
+pageDetail.CountryName = ""
+pageDetail.IntBase = ""
+pageDetail.KeydateBase = ""
+pageDetail.InterestRateTolerance = ""
+pageDetail.CheckPayTo = ""
+pageDetail.LatinAmericanSettlement = ""
+pageDetail.DefaultLayOffBookKey = ""
+pageDetail.CutOffTimeCutOffTime = ""
+pageDetail.CutOffTimeTimeZone = ""
+pageDetail.CutOffTimeDerivedDataUTCOffset = ""
+pageDetail.CutOffTimeDerivedDataHasDaylightSaving = ""
+pageDetail.CutOffTimeDerivedDataDaylightStart = ""
+pageDetail.CutOffTimeDerivedDataDaylightEnd = ""
+pageDetail.DealerInterventionQuoteTimeout = ""
+pageDetail.CutOffTimeCutOffPeriod = ""
+pageDetail.StripRateFutureExchangeCode = ""
+pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = ""
+pageDetail.StripRateFutureCurrencyContractFutureContractCode = ""
+pageDetail.OvernightFundingSpreadBid = ""
+pageDetail.OvernightFundingSpreadOffer = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Currency_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:03
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,18 @@ func Broker_GetByID(id string) (int, dm.Broker, error) {
 	_, _, brokerItem, _ := broker_Fetch(tsql)
 	return 1, brokerItem, nil
 }
+
+// Broker_GetByReverseLookup(id string) returns a single Broker record
+func Broker_GetByReverseLookup(id string) (int, dm.Broker, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Broker_SQLTable)
+	tsql = tsql + " WHERE Name = '" + id + "'"
+
+	_, _, brokerItem, _ := broker_Fetch(tsql)
+	return 1, brokerItem, nil
+}
+
+
 
 // Broker_DeleteByID() deletes a single Broker record
 func Broker_Delete(id string) {
@@ -86,7 +98,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Broker_Code,"")
    recItem.Code  = get_String(rec, dm.Broker_Code, "")
    recItem.Name  = get_String(rec, dm.Broker_Name, "")
@@ -94,9 +106,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
    recItem.Contact  = get_String(rec, dm.Broker_Contact, "")
    recItem.Address  = get_String(rec, dm.Broker_Address, "")
    recItem.LEI  = get_String(rec, dm.Broker_LEI, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

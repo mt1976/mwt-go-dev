@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:21
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type marketrates_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Bid string
@@ -64,7 +64,32 @@ type marketrates_Page struct {
 		SYSUpdatedBy string
 		SYSUpdatedHost string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -132,33 +157,34 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		SYSId: rD.SYSId,
-		Id: rD.Id,
-		Bid: rD.Bid,
-		Mid: rD.Mid,
-		Offer: rD.Offer,
-		Market: rD.Market,
-		Tenor: rD.Tenor,
-		Series: rD.Series,
-		Name: rD.Name,
-		Source: rD.Source,
-		Destination: rD.Destination,
-		Class: rD.Class,
-		SYSCreated: rD.SYSCreated,
-		SYSWho: rD.SYSWho,
-		SYSHost: rD.SYSHost,
-		Date: rD.Date,
-		SYSUpdated: rD.SYSUpdated,
-		SYSCreatedBy: rD.SYSCreatedBy,
-		SYSCreatedHost: rD.SYSCreatedHost,
-		SYSUpdatedBy: rD.SYSUpdatedBy,
-		SYSUpdatedHost: rD.SYSUpdatedHost,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = rD.SYSId
+pageDetail.Id = rD.Id
+pageDetail.Bid = rD.Bid
+pageDetail.Mid = rD.Mid
+pageDetail.Offer = rD.Offer
+pageDetail.Market = rD.Market
+pageDetail.Tenor = rD.Tenor
+pageDetail.Series = rD.Series
+pageDetail.Name = rD.Name
+pageDetail.Source = rD.Source
+pageDetail.Destination = rD.Destination
+pageDetail.Class = rD.Class
+pageDetail.SYSCreated = rD.SYSCreated
+pageDetail.SYSWho = rD.SYSWho
+pageDetail.SYSHost = rD.SYSHost
+pageDetail.Date = rD.Date
+pageDetail.SYSUpdated = rD.SYSUpdated
+pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.MarketRates_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -186,34 +212,35 @@ func MarketRates_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SYSId: rD.SYSId,
-			Id: rD.Id,
-			Bid: rD.Bid,
-			Mid: rD.Mid,
-			Offer: rD.Offer,
-			Market: rD.Market,
-			Tenor: rD.Tenor,
-			Series: rD.Series,
-			Name: rD.Name,
-			Source: rD.Source,
-			Destination: rD.Destination,
-			Class: rD.Class,
-			SYSCreated: rD.SYSCreated,
-			SYSWho: rD.SYSWho,
-			SYSHost: rD.SYSHost,
-			Date: rD.Date,
-			SYSUpdated: rD.SYSUpdated,
-			SYSCreatedBy: rD.SYSCreatedBy,
-			SYSCreatedHost: rD.SYSCreatedHost,
-			SYSUpdatedBy: rD.SYSUpdatedBy,
-			SYSUpdatedHost: rD.SYSUpdatedHost,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = rD.SYSId
+pageDetail.Id = rD.Id
+pageDetail.Bid = rD.Bid
+pageDetail.Mid = rD.Mid
+pageDetail.Offer = rD.Offer
+pageDetail.Market = rD.Market
+pageDetail.Tenor = rD.Tenor
+pageDetail.Series = rD.Series
+pageDetail.Name = rD.Name
+pageDetail.Source = rD.Source
+pageDetail.Destination = rD.Destination
+pageDetail.Class = rD.Class
+pageDetail.SYSCreated = rD.SYSCreated
+pageDetail.SYSWho = rD.SYSWho
+pageDetail.SYSHost = rD.SYSHost
+pageDetail.Date = rD.Date
+pageDetail.SYSUpdated = rD.SYSUpdated
+pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.MarketRates_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -235,7 +262,7 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.MarketRates
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.MarketRates_SYSId)
 		item.Id = r.FormValue(dm.MarketRates_Id)
 		item.Bid = r.FormValue(dm.MarketRates_Bid)
@@ -258,7 +285,7 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.MarketRates_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.MarketRates_SYSUpdatedHost)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.MarketRates_Store(item)	
 
@@ -283,36 +310,35 @@ func MarketRates_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.MarketRates_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SYSId: "0",
-			Id: "",
-			Bid: "",
-			Mid: "",
-			Offer: "",
-			Market: "",
-			Tenor: "",
-			Series: "",
-			Name: "",
-			Source: "",
-			Destination: "",
-			Class: "",
-			SYSCreated: "",
-			SYSWho: "",
-			SYSHost: "",
-			Date: "",
-			SYSUpdated: "",
-			SYSCreatedBy: "",
-			SYSCreatedHost: "",
-			SYSUpdatedBy: "",
-			SYSUpdatedHost: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = ""
+pageDetail.Id = ""
+pageDetail.Bid = ""
+pageDetail.Mid = ""
+pageDetail.Offer = ""
+pageDetail.Market = ""
+pageDetail.Tenor = ""
+pageDetail.Series = ""
+pageDetail.Name = ""
+pageDetail.Source = ""
+pageDetail.Destination = ""
+pageDetail.Class = ""
+pageDetail.SYSCreated = ""
+pageDetail.SYSWho = ""
+pageDetail.SYSHost = ""
+pageDetail.Date = ""
+pageDetail.SYSUpdated = ""
+pageDetail.SYSCreatedBy = ""
+pageDetail.SYSCreatedHost = ""
+pageDetail.SYSUpdatedBy = ""
+pageDetail.SYSUpdatedHost = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.MarketRates_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

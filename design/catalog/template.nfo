@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:21
+// Date & Time		    : 19/11/2021 at 17:16:06
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,16 +23,16 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | SYSId                     | Int        |          0 | _id                       |  true |
-// | FIELD1                    | String     |            | FIELD1                    | false |
-// | FIELD2                    | String     |            | FIELD2                    | false |
-// | SYSCreated                | String     |            | _created                  | false |
-// | SYSCreatedBy              | String     |            | _createdBy                | false |
-// | SYSCreatedHost            | String     |            | _createdHost              | false |
-// | SYSUpdated                | String     |            | _updated                  | false |
-// | SYSUpdatedHost            | String     |            | _updatedHost              | false |
-// | SYSUpdatedBy              | String     |            | _updatedBy                | false |
-// | ID                        | String     |            | ID                        |  true |
+// | SYSId                     | Int        |          0 | _id                       |  true |  true | false |            |            |            |           
+// | FIELD1                    | String     |            | FIELD1                    | false |  true | false |            |            |            |           
+// | FIELD2                    | String     |            | FIELD2                    | false |  true | false |            |            |            |           
+// | SYSCreated                | String     |            | _created                  | false |  true | false |            |            |            |           
+// | SYSCreatedBy              | String     |            | _createdBy                | false |  true | false |            |            |            |           
+// | SYSCreatedHost            | String     |            | _createdHost              | false |  true | false |            |            |            |           
+// | SYSUpdated                | String     |            | _updated                  | false |  true | false |            |            |            |           
+// | SYSUpdatedHost            | String     |            | _updatedHost              | false |  true | false |            |            |            |           
+// | SYSUpdatedBy              | String     |            | _updatedBy                | false |  true | false |            |            |            |           
+// | ID                        | String     |            | ID                        |  true |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

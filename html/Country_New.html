@@ -74,33 +74,35 @@
             <div class="row">
               <div class="col-sm">
                 <label for="Code" >Code</label>
-                <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value=""  required>
+                <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required>
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="Name" >Name</label>
-                <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value=""  >
+                <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="ShortCode" >ShortCode</label>
-                <input type="text" class="form-control" id="ShortCode" name="ShortCode" aria-describedby="ShortCodeHelp" placeholder=""  value=""  >
+                <input type="text" class="form-control" id="ShortCode" name="ShortCode" aria-describedby="ShortCodeHelp" placeholder=""  value="{{.ShortCode}}" >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="EU_EEA" >EU_EEA</label>
-                <input type="text" class="form-control" id="EU_EEA" name="EU_EEA" aria-describedby="EU_EEAHelp" placeholder="True"  value=""  >
+                <input type="text" class="form-control" id="EU_EEA" name="EU_EEA" aria-describedby="EU_EEAHelp" placeholder="True"  value="{{.EU_EEA}}" >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="HolidaysWeekend" >HolidaysWeekend</label>
-                <input type="text" class="form-control" id="HolidaysWeekend" name="HolidaysWeekend" aria-describedby="HolidaysWeekendHelp" placeholder=""  value=""  >
+                <input type="text" class="form-control" id="HolidaysWeekend" name="HolidaysWeekend" aria-describedby="HolidaysWeekendHelp" placeholder=""  value="{{.HolidaysWeekend}}" >
               </div>
             </div>
+
+     
         </div>
       </div>
     </form>

@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:19
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,10 @@ func DealType_GetByID(id string) (int, dm.DealType, error) {
 	_, _, dealtypeItem, _ := dealtype_Fetch(tsql)
 	return 1, dealtypeItem, nil
 }
+
+
+
+
 
 // DealType_DeleteByID() deletes a single DealType record
 func DealType_Delete(id string) {
@@ -86,7 +90,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealType_DealTypeKey,"")
    recItem.DealTypeKey  = get_String(rec, dm.DealType_DealTypeKey, "")
    recItem.DealTypeShortName  = get_String(rec, dm.DealType_DealTypeShortName, "")
@@ -114,9 +118,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.DealType_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealType_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealType_ChangeType, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,18 @@ func Currency_GetByID(id string) (int, dm.Currency, error) {
 	_, _, currencyItem, _ := currency_Fetch(tsql)
 	return 1, currencyItem, nil
 }
+
+// Currency_GetByReverseLookup(id string) returns a single Currency record
+func Currency_GetByReverseLookup(id string) (int, dm.Currency, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Currency_SQLTable)
+	tsql = tsql + " WHERE Name = '" + id + "'"
+
+	_, _, currencyItem, _ := currency_Fetch(tsql)
+	return 1, currencyItem, nil
+}
+
+
 
 // Currency_DeleteByID() deletes a single Currency record
 func Currency_Delete(id string) {
@@ -86,7 +98,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Currency_Code,"")
    recItem.Code  = get_String(rec, dm.Currency_Code, "")
    recItem.Name  = get_String(rec, dm.Currency_Name, "")
@@ -112,9 +124,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
    recItem.StripRateFutureCurrencyContractFutureContractCode  = get_String(rec, dm.Currency_StripRateFutureCurrencyContractFutureContractCode, "")
    recItem.OvernightFundingSpreadBid  = get_Float(rec, dm.Currency_OvernightFundingSpreadBid, "0.00")
    recItem.OvernightFundingSpreadOffer  = get_Float(rec, dm.Currency_OvernightFundingSpreadOffer, "0.00")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

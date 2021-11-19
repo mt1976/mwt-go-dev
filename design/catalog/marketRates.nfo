@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:21
+// Date & Time		    : 19/11/2021 at 17:16:05
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,27 +23,27 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | SYSId                     | Int        |          0 | _id                       |  true |
-// | Id                        | String     |            | id                        |  true |
-// | Bid                       | String     |            | bid                       | false |
-// | Mid                       | String     |            | mid                       | false |
-// | Offer                     | String     |            | offer                     | false |
-// | Market                    | String     |            | market                    | false |
-// | Tenor                     | String     |            | tenor                     | false |
-// | Series                    | String     |            | series                    | false |
-// | Name                      | String     |            | name                      | false |
-// | Source                    | String     |            | source                    | false |
-// | Destination               | String     |            | destination               | false |
-// | Class                     | String     |            | class                     | false |
-// | SYSCreated                | String     |            | _created                  | false |
-// | SYSWho                    | String     |            | _who                      | false |
-// | SYSHost                   | String     |            | _host                     | false |
-// | Date                      | String     |            | date                      | false |
-// | SYSUpdated                | String     |            | _updated                  | false |
-// | SYSCreatedBy              | String     |            | _createdBy                | false |
-// | SYSCreatedHost            | String     |            | _createdHost              | false |
-// | SYSUpdatedBy              | String     |            | _updatedBy                | false |
-// | SYSUpdatedHost            | String     |            | _updatedHost              | false |
+// | SYSId                     | Int        |          0 | _id                       |  true |  true | false |            |            |            |           
+// | Id                        | String     |            | id                        |  true |  true | false |            |            |            |           
+// | Bid                       | String     |            | bid                       | false |  true | false |            |            |            |           
+// | Mid                       | String     |            | mid                       | false |  true | false |            |            |            |           
+// | Offer                     | String     |            | offer                     | false |  true | false |            |            |            |           
+// | Market                    | String     |            | market                    | false |  true | false |            |            |            |           
+// | Tenor                     | String     |            | tenor                     | false |  true | false |            |            |            |           
+// | Series                    | String     |            | series                    | false |  true | false |            |            |            |           
+// | Name                      | String     |            | name                      | false |  true | false |            |            |            |           
+// | Source                    | String     |            | source                    | false |  true | false |            |            |            |           
+// | Destination               | String     |            | destination               | false |  true | false |            |            |            |           
+// | Class                     | String     |            | class                     | false |  true | false |            |            |            |           
+// | SYSCreated                | String     |            | _created                  | false |  true | false |            |            |            |           
+// | SYSWho                    | String     |            | _who                      | false |  true | false |            |            |            |           
+// | SYSHost                   | String     |            | _host                     | false |  true | false |            |            |            |           
+// | Date                      | String     |            | date                      | false |  true | false |            |            |            |           
+// | SYSUpdated                | String     |            | _updated                  | false |  true | false |            |            |            |           
+// | SYSCreatedBy              | String     |            | _createdBy                | false |  true | false |            |            |            |           
+// | SYSCreatedHost            | String     |            | _createdHost              | false |  true | false |            |            |            |           
+// | SYSUpdatedBy              | String     |            | _updatedBy                | false |  true | false |            |            |            |           
+// | SYSUpdatedHost            | String     |            | _updatedHost              | false |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:18
+// Date & Time		    : 19/11/2021 at 17:16:03
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,21 +23,21 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | SYSId                     | Int        |          0 | _id                       |  true |
-// | Id                        | String     |            | id                        |  true |
-// | Object                    | String     |            | object                    | false |
-// | Field                     | String     |            | field                     | false |
-// | Value                     | String     |            | value                     | false |
-// | Expiry                    | String     |            | expiry                    | false |
-// | SYSCreated                | String     |            | _created                  | false |
-// | SYSWho                    | String     |            | _who                      | false |
-// | SYSHost                   | String     |            | _host                     | false |
-// | SYSUpdated                | String     |            | _updated                  | false |
-// | Source                    | String     |            | source                    | false |
-// | SYSCreatedBy              | String     |            | _createdBy                | false |
-// | SYSCreatedHost            | String     |            | _createdHost              | false |
-// | SYSUpdatedBy              | String     |            | _updatedBy                | false |
-// | SYSUpdatedHost            | String     |            | _updatedHost              | false |
+// | SYSId                     | Int        |          0 | _id                       |  true |  true | false |            |            |            |           
+// | Id                        | String     |            | id                        |  true |  true | false |            |            |            |           
+// | Object                    | String     |            | object                    | false |  true | false |            |            |            |           
+// | Field                     | String     |            | field                     | false |  true | false |            |            |            |           
+// | Value                     | String     |            | value                     | false |  true | false |            |            |            |           
+// | Expiry                    | String     |            | expiry                    | false |  true | false |            |            |            |           
+// | SYSCreated                | String     |            | _created                  | false |  true | false |            |            |            |           
+// | SYSWho                    | String     |            | _who                      | false |  true | false |            |            |            |           
+// | SYSHost                   | String     |            | _host                     | false |  true | false |            |            |            |           
+// | SYSUpdated                | String     |            | _updated                  | false |  true | false |            |            |            |           
+// | Source                    | String     |            | source                    | false |  true | false |            |            |            |           
+// | SYSCreatedBy              | String     |            | _createdBy                | false |  true | false |            |            |            |           
+// | SYSCreatedHost            | String     |            | _createdHost              | false |  true | false |            |            |            |           
+// | SYSUpdatedBy              | String     |            | _updatedBy                | false |  true | false |            |            |            |           
+// | SYSUpdatedHost            | String     |            | _updatedHost              | false |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

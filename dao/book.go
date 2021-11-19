@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:17
+// Date & Time		  : 19/11/2021 at 17:16:02
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,18 @@ func Book_GetByID(id string) (int, dm.Book, error) {
 	_, _, bookItem, _ := book_Fetch(tsql)
 	return 1, bookItem, nil
 }
+
+// Book_GetByReverseLookup(id string) returns a single Book record
+func Book_GetByReverseLookup(id string) (int, dm.Book, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Book_SQLTable)
+	tsql = tsql + " WHERE FullName = '" + id + "'"
+
+	_, _, bookItem, _ := book_Fetch(tsql)
+	return 1, bookItem, nil
+}
+
+
 
 // Book_DeleteByID() deletes a single Book record
 func Book_Delete(id string) {
@@ -86,7 +98,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Book_BookName,"")
    recItem.BookName  = get_String(rec, dm.Book_BookName, "")
    recItem.FullName  = get_String(rec, dm.Book_FullName, "")
@@ -97,9 +109,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
    recItem.CostOfFunding  = get_Bool(rec, dm.Book_CostOfFunding, "True")
    recItem.LotAllocationMethod  = get_String(rec, dm.Book_LotAllocationMethod, "")
    recItem.InternalId  = get_Int(rec, dm.Book_InternalId, "0")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

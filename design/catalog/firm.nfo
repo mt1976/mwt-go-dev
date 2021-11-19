@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:20
+// Date & Time		    : 19/11/2021 at 17:16:05
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,12 +23,12 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | FirmName                  | String     |            | FirmName                  |  true |
-// | FullName                  | String     |            | FullName                  | false |
-// | Country                   | String     |            | Country                   | false |
-// | Sector                    | String     |            | Sector                    | false |
-// | SectorName                | String     |            | SectorName                | false |
-// | CountryName               | String     |            | CountryName               | false |
+// | FirmName                  | String     |            | FirmName                  |  true |  true | false |            |            |            |           
+// | FullName                  | String     |            | FullName                  | false |  true | false |            |            |            |           
+// | Country                   | String     |            | Country                   | false |  true | false |            |            |            |           
+// | Sector                    | String     |            | Sector                    | false |  true | false |            |            |            |           
+// | Sector_Enri               | String     |            | Sector_Enri               | false | false |  true | Sector     | Sector     | Name       | {{range .Sector_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}
+// | Country_Enri              | String     |            | Country_Enri              | false | false |  true | Country    | Country    | Name       | {{range .Country_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

@@ -1,0 +1,37 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/counterpartygroup.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : CounterpartyGroup
+// Endpoint Root 	    : CounterpartyGroup
+// Search QueryString   : Group
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : sienaCounterpartyGroup
+// SQL Table Search Col : Name
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 19/11/2021 at 17:16:03
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | Name                      | String     |            | Name                      |  true |  true | false |            |            |            |           
+// | CountryCode               | String     |            | CountryCode               | false |  true | false |            |            |            |           
+// | SuperGroup                | String     |            | SuperGroup                | false |  true | false |            |            |            |           
+// | Country_Enri              | String     |            | Country_Enri              |  true | false |  true | Country    | CountryCode | Name       | {{range .Country_Enri_List}}<option name="{{.Name}}">{{.Name}}</option>{{end}}
+// | Parent_Enri               | String     |            | Parent_Enri               |  true | false |  true | CounterpartyGroup | SuperGroup | Name       | {{range .Parent_Enri_List}}<option name="{{.Name}}">{{.Name}}</option>{{end}}
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

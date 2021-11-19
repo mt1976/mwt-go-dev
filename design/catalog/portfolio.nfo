@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:20
+// Date & Time		    : 19/11/2021 at 17:16:05
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,18 +23,18 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | Code                      | String     |            | Code                      |  true |
-// | Description1              | String     |            | Description1              | false |
-// | Description2              | String     |            | Description2              | false |
-// | IsDefault                 | Bool       |       True | isDefault                 | false |
-// | InternalId                | Int        |          0 | InternalId                |  true |
-// | InternalDeleted           | Time       |            | InternalDeleted           | false |
-// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |
-// | UpdatedUserId             | String     |            | UpdatedUserId             | false |
-// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |
-// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |
-// | DeletedUserId             | String     |            | DeletedUserId             | false |
-// | ChangeType                | String     |            | ChangeType                | false |
+// | Code                      | String     |            | Code                      |  true |  true | false |            |            |            |           
+// | Description1              | String     |            | Description1              | false |  true | false |            |            |            |           
+// | Description2              | String     |            | Description2              | false |  true | false |            |            |            |           
+// | IsDefault                 | Bool       |       True | isDefault                 | false |  true | false |            |            |            |           
+// | InternalId                | Int        |          0 | InternalId                |  true |  true | false |            |            |            |           
+// | InternalDeleted           | Time       |            | InternalDeleted           | false |  true | false |            |            |            |           
+// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |  true | false |            |            |            |           
+// | UpdatedUserId             | String     |            | UpdatedUserId             | false |  true | false |            |            |            |           
+// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |  true | false |            |            |            |           
+// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |  true | false |            |            |            |           
+// | DeletedUserId             | String     |            | DeletedUserId             | false |  true | false |            |            |            |           
+// | ChangeType                | String     |            | ChangeType                | false |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

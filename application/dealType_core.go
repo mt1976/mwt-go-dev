@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:19
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type dealtype_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		DealTypeKey string
 		DealTypeShortName string
 		HostKey string
@@ -69,7 +69,37 @@ type dealtype_Page struct {
 		DeletedUserId string
 		ChangeType string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -137,38 +167,39 @@ func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		DealTypeKey: rD.DealTypeKey,
-		DealTypeShortName: rD.DealTypeShortName,
-		HostKey: rD.HostKey,
-		IsActive: rD.IsActive,
-		Interbook: rD.Interbook,
-		BackOfficeLink: rD.BackOfficeLink,
-		HasTicket: rD.HasTicket,
-		CurrencyOverride: rD.CurrencyOverride,
-		CurrencyHolderCurrency: rD.CurrencyHolderCurrency,
-		AllBooks: rD.AllBooks,
-		FundamentalDealTypeKey: rD.FundamentalDealTypeKey,
-		RelatedDealType: rD.RelatedDealType,
-		BookName: rD.BookName,
-		ExportMethod: rD.ExportMethod,
-		DefaultUserLayoffBooks: rD.DefaultUserLayoffBooks,
-		RFQ: rD.RFQ,
-		OBS: rD.OBS,
-		KID: rD.KID,
-		InternalId: rD.InternalId,
-		InternalDeleted: rD.InternalDeleted,
-		UpdatedTransactionId: rD.UpdatedTransactionId,
-		UpdatedUserId: rD.UpdatedUserId,
-		UpdatedDateTime: rD.UpdatedDateTime,
-		DeletedTransactionId: rD.DeletedTransactionId,
-		DeletedUserId: rD.DeletedUserId,
-		ChangeType: rD.ChangeType,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.DealTypeKey = rD.DealTypeKey
+pageDetail.DealTypeShortName = rD.DealTypeShortName
+pageDetail.HostKey = rD.HostKey
+pageDetail.IsActive = rD.IsActive
+pageDetail.Interbook = rD.Interbook
+pageDetail.BackOfficeLink = rD.BackOfficeLink
+pageDetail.HasTicket = rD.HasTicket
+pageDetail.CurrencyOverride = rD.CurrencyOverride
+pageDetail.CurrencyHolderCurrency = rD.CurrencyHolderCurrency
+pageDetail.AllBooks = rD.AllBooks
+pageDetail.FundamentalDealTypeKey = rD.FundamentalDealTypeKey
+pageDetail.RelatedDealType = rD.RelatedDealType
+pageDetail.BookName = rD.BookName
+pageDetail.ExportMethod = rD.ExportMethod
+pageDetail.DefaultUserLayoffBooks = rD.DefaultUserLayoffBooks
+pageDetail.RFQ = rD.RFQ
+pageDetail.OBS = rD.OBS
+pageDetail.KID = rD.KID
+pageDetail.InternalId = rD.InternalId
+pageDetail.InternalDeleted = rD.InternalDeleted
+pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+pageDetail.UpdatedUserId = rD.UpdatedUserId
+pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+pageDetail.DeletedUserId = rD.DeletedUserId
+pageDetail.ChangeType = rD.ChangeType
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealType_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -196,39 +227,40 @@ func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			DealTypeKey: rD.DealTypeKey,
-			DealTypeShortName: rD.DealTypeShortName,
-			HostKey: rD.HostKey,
-			IsActive: rD.IsActive,
-			Interbook: rD.Interbook,
-			BackOfficeLink: rD.BackOfficeLink,
-			HasTicket: rD.HasTicket,
-			CurrencyOverride: rD.CurrencyOverride,
-			CurrencyHolderCurrency: rD.CurrencyHolderCurrency,
-			AllBooks: rD.AllBooks,
-			FundamentalDealTypeKey: rD.FundamentalDealTypeKey,
-			RelatedDealType: rD.RelatedDealType,
-			BookName: rD.BookName,
-			ExportMethod: rD.ExportMethod,
-			DefaultUserLayoffBooks: rD.DefaultUserLayoffBooks,
-			RFQ: rD.RFQ,
-			OBS: rD.OBS,
-			KID: rD.KID,
-			InternalId: rD.InternalId,
-			InternalDeleted: rD.InternalDeleted,
-			UpdatedTransactionId: rD.UpdatedTransactionId,
-			UpdatedUserId: rD.UpdatedUserId,
-			UpdatedDateTime: rD.UpdatedDateTime,
-			DeletedTransactionId: rD.DeletedTransactionId,
-			DeletedUserId: rD.DeletedUserId,
-			ChangeType: rD.ChangeType,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.DealTypeKey = rD.DealTypeKey
+pageDetail.DealTypeShortName = rD.DealTypeShortName
+pageDetail.HostKey = rD.HostKey
+pageDetail.IsActive = rD.IsActive
+pageDetail.Interbook = rD.Interbook
+pageDetail.BackOfficeLink = rD.BackOfficeLink
+pageDetail.HasTicket = rD.HasTicket
+pageDetail.CurrencyOverride = rD.CurrencyOverride
+pageDetail.CurrencyHolderCurrency = rD.CurrencyHolderCurrency
+pageDetail.AllBooks = rD.AllBooks
+pageDetail.FundamentalDealTypeKey = rD.FundamentalDealTypeKey
+pageDetail.RelatedDealType = rD.RelatedDealType
+pageDetail.BookName = rD.BookName
+pageDetail.ExportMethod = rD.ExportMethod
+pageDetail.DefaultUserLayoffBooks = rD.DefaultUserLayoffBooks
+pageDetail.RFQ = rD.RFQ
+pageDetail.OBS = rD.OBS
+pageDetail.KID = rD.KID
+pageDetail.InternalId = rD.InternalId
+pageDetail.InternalDeleted = rD.InternalDeleted
+pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+pageDetail.UpdatedUserId = rD.UpdatedUserId
+pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+pageDetail.DeletedUserId = rD.DeletedUserId
+pageDetail.ChangeType = rD.ChangeType
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealType_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -250,7 +282,7 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.DealType
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey)
 		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName)
 		item.HostKey = r.FormValue(dm.DealType_HostKey)
@@ -278,7 +310,7 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealType_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealType_ChangeType)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealType_Store(item)	
 
@@ -303,41 +335,40 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			DealTypeKey: "",
-			DealTypeShortName: "",
-			HostKey: "",
-			IsActive: "True",
-			Interbook: "True",
-			BackOfficeLink: "True",
-			HasTicket: "True",
-			CurrencyOverride: "True",
-			CurrencyHolderCurrency: "",
-			AllBooks: "True",
-			FundamentalDealTypeKey: "",
-			RelatedDealType: "",
-			BookName: "",
-			ExportMethod: "",
-			DefaultUserLayoffBooks: "True",
-			RFQ: "True",
-			OBS: "True",
-			KID: "True",
-			InternalId: "0",
-			InternalDeleted: "",
-			UpdatedTransactionId: "",
-			UpdatedUserId: "",
-			UpdatedDateTime: "",
-			DeletedTransactionId: "",
-			DeletedUserId: "",
-			ChangeType: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.DealTypeKey = ""
+pageDetail.DealTypeShortName = ""
+pageDetail.HostKey = ""
+pageDetail.IsActive = ""
+pageDetail.Interbook = ""
+pageDetail.BackOfficeLink = ""
+pageDetail.HasTicket = ""
+pageDetail.CurrencyOverride = ""
+pageDetail.CurrencyHolderCurrency = ""
+pageDetail.AllBooks = ""
+pageDetail.FundamentalDealTypeKey = ""
+pageDetail.RelatedDealType = ""
+pageDetail.BookName = ""
+pageDetail.ExportMethod = ""
+pageDetail.DefaultUserLayoffBooks = ""
+pageDetail.RFQ = ""
+pageDetail.OBS = ""
+pageDetail.KID = ""
+pageDetail.InternalId = ""
+pageDetail.InternalDeleted = ""
+pageDetail.UpdatedTransactionId = ""
+pageDetail.UpdatedUserId = ""
+pageDetail.UpdatedDateTime = ""
+pageDetail.DeletedTransactionId = ""
+pageDetail.DeletedUserId = ""
+pageDetail.ChangeType = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealType_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

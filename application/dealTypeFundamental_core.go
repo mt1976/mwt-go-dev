@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:19
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type dealtypefundamental_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		DealTypeKey string
 		Amendment string
 		DefaultFrequency string
@@ -132,7 +132,100 @@ type dealtypefundamental_Page struct {
 		DeletedUserId string
 		ChangeType string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -200,101 +293,102 @@ func DealTypeFundamental_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		DealTypeKey: rD.DealTypeKey,
-		Amendment: rD.Amendment,
-		DefaultFrequency: rD.DefaultFrequency,
-		Directions: rD.Directions,
-		SettledTermDealType: rD.SettledTermDealType,
-		Optn: rD.Optn,
-		AllowPledge: rD.AllowPledge,
-		Takeup: rD.Takeup,
-		MismatchDealType: rD.MismatchDealType,
-		SettledHedgeTermDealType: rD.SettledHedgeTermDealType,
-		SettlementCode: rD.SettlementCode,
-		TermSubType: rD.TermSubType,
-		FundingDealType: rD.FundingDealType,
-		TransferType: rD.TransferType,
-		TermDealType: rD.TermDealType,
-		NegotiableInstrumentType: rD.NegotiableInstrumentType,
-		Mismatch: rD.Mismatch,
-		ComplexTransferSubType: rD.ComplexTransferSubType,
-		LayOffDealType: rD.LayOffDealType,
-		NIAccount: rD.NIAccount,
-		SimpleMMsubtype: rD.SimpleMMsubtype,
-		SwapDealType: rD.SwapDealType,
-		Positions: rD.Positions,
-		OptionOutright: rD.OptionOutright,
-		SettledHedgeSpotDealType: rD.SettledHedgeSpotDealType,
-		StraightThroughInterestMethod: rD.StraightThroughInterestMethod,
-		SubType: rD.SubType,
-		Rollover: rD.Rollover,
-		DefaultIssuer: rD.DefaultIssuer,
-		DefaultStartDate: rD.DefaultStartDate,
-		Fee: rD.Fee,
-		NDF: rD.NDF,
-		FXFX: rD.FXFX,
-		ONIA: rD.ONIA,
-		MarginSubType: rD.MarginSubType,
-		TransferDealType: rD.TransferDealType,
-		IsFX: rD.IsFX,
-		Ordr: rD.Ordr,
-		OptionStyle: rD.OptionStyle,
-		SpotDealType: rD.SpotDealType,
-		CanIssue: rD.CanIssue,
-		CanShort: rD.CanShort,
-		FXMarginTradingType: rD.FXMarginTradingType,
-		Internal: rD.Internal,
-		TicketBasename: rD.TicketBasename,
-		InterestRateFutureType: rD.InterestRateFutureType,
-		TradingLimitProductCode: rD.TradingLimitProductCode,
-		Forward: rD.Forward,
-		MaturityNotificationPeriod: rD.MaturityNotificationPeriod,
-		NotificationEvents: rD.NotificationEvents,
-		SwapSubType: rD.SwapSubType,
-		ProductCode: rD.ProductCode,
-		Funding: rD.Funding,
-		AllocationPricing: rD.AllocationPricing,
-		CancelPeriod: rD.CancelPeriod,
-		MMMarginTradingType: rD.MMMarginTradingType,
-		OptionSpot: rD.OptionSpot,
-		Transfer: rD.Transfer,
-		NotificationPeriod: rD.NotificationPeriod,
-		Paymentdateshift: rD.Paymentdateshift,
-		CloseOut: rD.CloseOut,
-		FXOptionPricing: rD.FXOptionPricing,
-		SettledHedgeOutrightDealType: rD.SettledHedgeOutrightDealType,
-		RepoBond: rD.RepoBond,
-		RepoTerm: rD.RepoTerm,
-		RepoType: rD.RepoType,
-		DateRule: rD.DateRule,
-		CorpTransferDealType: rD.CorpTransferDealType,
-		GenerateFXImage: rD.GenerateFXImage,
-		Variant: rD.Variant,
-		HedgeTermDealType: rD.HedgeTermDealType,
-		PricingModel: rD.PricingModel,
-		HedgeOutrightDealType: rD.HedgeOutrightDealType,
-		Fixing: rD.Fixing,
-		Payment: rD.Payment,
-		MT: rD.MT,
-		SettlementInstructionStyle: rD.SettlementInstructionStyle,
-		QuoteHistoryRequired: rD.QuoteHistoryRequired,
-		Brokerage: rD.Brokerage,
-		ExposureDisabled: rD.ExposureDisabled,
-		ChildInheritsTradingEntity: rD.ChildInheritsTradingEntity,
-		InternalId: rD.InternalId,
-		InternalDeleted: rD.InternalDeleted,
-		UpdatedTransactionId: rD.UpdatedTransactionId,
-		UpdatedUserId: rD.UpdatedUserId,
-		UpdatedDateTime: rD.UpdatedDateTime,
-		DeletedTransactionId: rD.DeletedTransactionId,
-		DeletedUserId: rD.DeletedUserId,
-		ChangeType: rD.ChangeType,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.DealTypeKey = rD.DealTypeKey
+pageDetail.Amendment = rD.Amendment
+pageDetail.DefaultFrequency = rD.DefaultFrequency
+pageDetail.Directions = rD.Directions
+pageDetail.SettledTermDealType = rD.SettledTermDealType
+pageDetail.Optn = rD.Optn
+pageDetail.AllowPledge = rD.AllowPledge
+pageDetail.Takeup = rD.Takeup
+pageDetail.MismatchDealType = rD.MismatchDealType
+pageDetail.SettledHedgeTermDealType = rD.SettledHedgeTermDealType
+pageDetail.SettlementCode = rD.SettlementCode
+pageDetail.TermSubType = rD.TermSubType
+pageDetail.FundingDealType = rD.FundingDealType
+pageDetail.TransferType = rD.TransferType
+pageDetail.TermDealType = rD.TermDealType
+pageDetail.NegotiableInstrumentType = rD.NegotiableInstrumentType
+pageDetail.Mismatch = rD.Mismatch
+pageDetail.ComplexTransferSubType = rD.ComplexTransferSubType
+pageDetail.LayOffDealType = rD.LayOffDealType
+pageDetail.NIAccount = rD.NIAccount
+pageDetail.SimpleMMsubtype = rD.SimpleMMsubtype
+pageDetail.SwapDealType = rD.SwapDealType
+pageDetail.Positions = rD.Positions
+pageDetail.OptionOutright = rD.OptionOutright
+pageDetail.SettledHedgeSpotDealType = rD.SettledHedgeSpotDealType
+pageDetail.StraightThroughInterestMethod = rD.StraightThroughInterestMethod
+pageDetail.SubType = rD.SubType
+pageDetail.Rollover = rD.Rollover
+pageDetail.DefaultIssuer = rD.DefaultIssuer
+pageDetail.DefaultStartDate = rD.DefaultStartDate
+pageDetail.Fee = rD.Fee
+pageDetail.NDF = rD.NDF
+pageDetail.FXFX = rD.FXFX
+pageDetail.ONIA = rD.ONIA
+pageDetail.MarginSubType = rD.MarginSubType
+pageDetail.TransferDealType = rD.TransferDealType
+pageDetail.IsFX = rD.IsFX
+pageDetail.Ordr = rD.Ordr
+pageDetail.OptionStyle = rD.OptionStyle
+pageDetail.SpotDealType = rD.SpotDealType
+pageDetail.CanIssue = rD.CanIssue
+pageDetail.CanShort = rD.CanShort
+pageDetail.FXMarginTradingType = rD.FXMarginTradingType
+pageDetail.Internal = rD.Internal
+pageDetail.TicketBasename = rD.TicketBasename
+pageDetail.InterestRateFutureType = rD.InterestRateFutureType
+pageDetail.TradingLimitProductCode = rD.TradingLimitProductCode
+pageDetail.Forward = rD.Forward
+pageDetail.MaturityNotificationPeriod = rD.MaturityNotificationPeriod
+pageDetail.NotificationEvents = rD.NotificationEvents
+pageDetail.SwapSubType = rD.SwapSubType
+pageDetail.ProductCode = rD.ProductCode
+pageDetail.Funding = rD.Funding
+pageDetail.AllocationPricing = rD.AllocationPricing
+pageDetail.CancelPeriod = rD.CancelPeriod
+pageDetail.MMMarginTradingType = rD.MMMarginTradingType
+pageDetail.OptionSpot = rD.OptionSpot
+pageDetail.Transfer = rD.Transfer
+pageDetail.NotificationPeriod = rD.NotificationPeriod
+pageDetail.Paymentdateshift = rD.Paymentdateshift
+pageDetail.CloseOut = rD.CloseOut
+pageDetail.FXOptionPricing = rD.FXOptionPricing
+pageDetail.SettledHedgeOutrightDealType = rD.SettledHedgeOutrightDealType
+pageDetail.RepoBond = rD.RepoBond
+pageDetail.RepoTerm = rD.RepoTerm
+pageDetail.RepoType = rD.RepoType
+pageDetail.DateRule = rD.DateRule
+pageDetail.CorpTransferDealType = rD.CorpTransferDealType
+pageDetail.GenerateFXImage = rD.GenerateFXImage
+pageDetail.Variant = rD.Variant
+pageDetail.HedgeTermDealType = rD.HedgeTermDealType
+pageDetail.PricingModel = rD.PricingModel
+pageDetail.HedgeOutrightDealType = rD.HedgeOutrightDealType
+pageDetail.Fixing = rD.Fixing
+pageDetail.Payment = rD.Payment
+pageDetail.MT = rD.MT
+pageDetail.SettlementInstructionStyle = rD.SettlementInstructionStyle
+pageDetail.QuoteHistoryRequired = rD.QuoteHistoryRequired
+pageDetail.Brokerage = rD.Brokerage
+pageDetail.ExposureDisabled = rD.ExposureDisabled
+pageDetail.ChildInheritsTradingEntity = rD.ChildInheritsTradingEntity
+pageDetail.InternalId = rD.InternalId
+pageDetail.InternalDeleted = rD.InternalDeleted
+pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+pageDetail.UpdatedUserId = rD.UpdatedUserId
+pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+pageDetail.DeletedUserId = rD.DeletedUserId
+pageDetail.ChangeType = rD.ChangeType
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealTypeFundamental_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -322,102 +416,103 @@ func DealTypeFundamental_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			DealTypeKey: rD.DealTypeKey,
-			Amendment: rD.Amendment,
-			DefaultFrequency: rD.DefaultFrequency,
-			Directions: rD.Directions,
-			SettledTermDealType: rD.SettledTermDealType,
-			Optn: rD.Optn,
-			AllowPledge: rD.AllowPledge,
-			Takeup: rD.Takeup,
-			MismatchDealType: rD.MismatchDealType,
-			SettledHedgeTermDealType: rD.SettledHedgeTermDealType,
-			SettlementCode: rD.SettlementCode,
-			TermSubType: rD.TermSubType,
-			FundingDealType: rD.FundingDealType,
-			TransferType: rD.TransferType,
-			TermDealType: rD.TermDealType,
-			NegotiableInstrumentType: rD.NegotiableInstrumentType,
-			Mismatch: rD.Mismatch,
-			ComplexTransferSubType: rD.ComplexTransferSubType,
-			LayOffDealType: rD.LayOffDealType,
-			NIAccount: rD.NIAccount,
-			SimpleMMsubtype: rD.SimpleMMsubtype,
-			SwapDealType: rD.SwapDealType,
-			Positions: rD.Positions,
-			OptionOutright: rD.OptionOutright,
-			SettledHedgeSpotDealType: rD.SettledHedgeSpotDealType,
-			StraightThroughInterestMethod: rD.StraightThroughInterestMethod,
-			SubType: rD.SubType,
-			Rollover: rD.Rollover,
-			DefaultIssuer: rD.DefaultIssuer,
-			DefaultStartDate: rD.DefaultStartDate,
-			Fee: rD.Fee,
-			NDF: rD.NDF,
-			FXFX: rD.FXFX,
-			ONIA: rD.ONIA,
-			MarginSubType: rD.MarginSubType,
-			TransferDealType: rD.TransferDealType,
-			IsFX: rD.IsFX,
-			Ordr: rD.Ordr,
-			OptionStyle: rD.OptionStyle,
-			SpotDealType: rD.SpotDealType,
-			CanIssue: rD.CanIssue,
-			CanShort: rD.CanShort,
-			FXMarginTradingType: rD.FXMarginTradingType,
-			Internal: rD.Internal,
-			TicketBasename: rD.TicketBasename,
-			InterestRateFutureType: rD.InterestRateFutureType,
-			TradingLimitProductCode: rD.TradingLimitProductCode,
-			Forward: rD.Forward,
-			MaturityNotificationPeriod: rD.MaturityNotificationPeriod,
-			NotificationEvents: rD.NotificationEvents,
-			SwapSubType: rD.SwapSubType,
-			ProductCode: rD.ProductCode,
-			Funding: rD.Funding,
-			AllocationPricing: rD.AllocationPricing,
-			CancelPeriod: rD.CancelPeriod,
-			MMMarginTradingType: rD.MMMarginTradingType,
-			OptionSpot: rD.OptionSpot,
-			Transfer: rD.Transfer,
-			NotificationPeriod: rD.NotificationPeriod,
-			Paymentdateshift: rD.Paymentdateshift,
-			CloseOut: rD.CloseOut,
-			FXOptionPricing: rD.FXOptionPricing,
-			SettledHedgeOutrightDealType: rD.SettledHedgeOutrightDealType,
-			RepoBond: rD.RepoBond,
-			RepoTerm: rD.RepoTerm,
-			RepoType: rD.RepoType,
-			DateRule: rD.DateRule,
-			CorpTransferDealType: rD.CorpTransferDealType,
-			GenerateFXImage: rD.GenerateFXImage,
-			Variant: rD.Variant,
-			HedgeTermDealType: rD.HedgeTermDealType,
-			PricingModel: rD.PricingModel,
-			HedgeOutrightDealType: rD.HedgeOutrightDealType,
-			Fixing: rD.Fixing,
-			Payment: rD.Payment,
-			MT: rD.MT,
-			SettlementInstructionStyle: rD.SettlementInstructionStyle,
-			QuoteHistoryRequired: rD.QuoteHistoryRequired,
-			Brokerage: rD.Brokerage,
-			ExposureDisabled: rD.ExposureDisabled,
-			ChildInheritsTradingEntity: rD.ChildInheritsTradingEntity,
-			InternalId: rD.InternalId,
-			InternalDeleted: rD.InternalDeleted,
-			UpdatedTransactionId: rD.UpdatedTransactionId,
-			UpdatedUserId: rD.UpdatedUserId,
-			UpdatedDateTime: rD.UpdatedDateTime,
-			DeletedTransactionId: rD.DeletedTransactionId,
-			DeletedUserId: rD.DeletedUserId,
-			ChangeType: rD.ChangeType,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.DealTypeKey = rD.DealTypeKey
+pageDetail.Amendment = rD.Amendment
+pageDetail.DefaultFrequency = rD.DefaultFrequency
+pageDetail.Directions = rD.Directions
+pageDetail.SettledTermDealType = rD.SettledTermDealType
+pageDetail.Optn = rD.Optn
+pageDetail.AllowPledge = rD.AllowPledge
+pageDetail.Takeup = rD.Takeup
+pageDetail.MismatchDealType = rD.MismatchDealType
+pageDetail.SettledHedgeTermDealType = rD.SettledHedgeTermDealType
+pageDetail.SettlementCode = rD.SettlementCode
+pageDetail.TermSubType = rD.TermSubType
+pageDetail.FundingDealType = rD.FundingDealType
+pageDetail.TransferType = rD.TransferType
+pageDetail.TermDealType = rD.TermDealType
+pageDetail.NegotiableInstrumentType = rD.NegotiableInstrumentType
+pageDetail.Mismatch = rD.Mismatch
+pageDetail.ComplexTransferSubType = rD.ComplexTransferSubType
+pageDetail.LayOffDealType = rD.LayOffDealType
+pageDetail.NIAccount = rD.NIAccount
+pageDetail.SimpleMMsubtype = rD.SimpleMMsubtype
+pageDetail.SwapDealType = rD.SwapDealType
+pageDetail.Positions = rD.Positions
+pageDetail.OptionOutright = rD.OptionOutright
+pageDetail.SettledHedgeSpotDealType = rD.SettledHedgeSpotDealType
+pageDetail.StraightThroughInterestMethod = rD.StraightThroughInterestMethod
+pageDetail.SubType = rD.SubType
+pageDetail.Rollover = rD.Rollover
+pageDetail.DefaultIssuer = rD.DefaultIssuer
+pageDetail.DefaultStartDate = rD.DefaultStartDate
+pageDetail.Fee = rD.Fee
+pageDetail.NDF = rD.NDF
+pageDetail.FXFX = rD.FXFX
+pageDetail.ONIA = rD.ONIA
+pageDetail.MarginSubType = rD.MarginSubType
+pageDetail.TransferDealType = rD.TransferDealType
+pageDetail.IsFX = rD.IsFX
+pageDetail.Ordr = rD.Ordr
+pageDetail.OptionStyle = rD.OptionStyle
+pageDetail.SpotDealType = rD.SpotDealType
+pageDetail.CanIssue = rD.CanIssue
+pageDetail.CanShort = rD.CanShort
+pageDetail.FXMarginTradingType = rD.FXMarginTradingType
+pageDetail.Internal = rD.Internal
+pageDetail.TicketBasename = rD.TicketBasename
+pageDetail.InterestRateFutureType = rD.InterestRateFutureType
+pageDetail.TradingLimitProductCode = rD.TradingLimitProductCode
+pageDetail.Forward = rD.Forward
+pageDetail.MaturityNotificationPeriod = rD.MaturityNotificationPeriod
+pageDetail.NotificationEvents = rD.NotificationEvents
+pageDetail.SwapSubType = rD.SwapSubType
+pageDetail.ProductCode = rD.ProductCode
+pageDetail.Funding = rD.Funding
+pageDetail.AllocationPricing = rD.AllocationPricing
+pageDetail.CancelPeriod = rD.CancelPeriod
+pageDetail.MMMarginTradingType = rD.MMMarginTradingType
+pageDetail.OptionSpot = rD.OptionSpot
+pageDetail.Transfer = rD.Transfer
+pageDetail.NotificationPeriod = rD.NotificationPeriod
+pageDetail.Paymentdateshift = rD.Paymentdateshift
+pageDetail.CloseOut = rD.CloseOut
+pageDetail.FXOptionPricing = rD.FXOptionPricing
+pageDetail.SettledHedgeOutrightDealType = rD.SettledHedgeOutrightDealType
+pageDetail.RepoBond = rD.RepoBond
+pageDetail.RepoTerm = rD.RepoTerm
+pageDetail.RepoType = rD.RepoType
+pageDetail.DateRule = rD.DateRule
+pageDetail.CorpTransferDealType = rD.CorpTransferDealType
+pageDetail.GenerateFXImage = rD.GenerateFXImage
+pageDetail.Variant = rD.Variant
+pageDetail.HedgeTermDealType = rD.HedgeTermDealType
+pageDetail.PricingModel = rD.PricingModel
+pageDetail.HedgeOutrightDealType = rD.HedgeOutrightDealType
+pageDetail.Fixing = rD.Fixing
+pageDetail.Payment = rD.Payment
+pageDetail.MT = rD.MT
+pageDetail.SettlementInstructionStyle = rD.SettlementInstructionStyle
+pageDetail.QuoteHistoryRequired = rD.QuoteHistoryRequired
+pageDetail.Brokerage = rD.Brokerage
+pageDetail.ExposureDisabled = rD.ExposureDisabled
+pageDetail.ChildInheritsTradingEntity = rD.ChildInheritsTradingEntity
+pageDetail.InternalId = rD.InternalId
+pageDetail.InternalDeleted = rD.InternalDeleted
+pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+pageDetail.UpdatedUserId = rD.UpdatedUserId
+pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+pageDetail.DeletedUserId = rD.DeletedUserId
+pageDetail.ChangeType = rD.ChangeType
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealTypeFundamental_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -439,7 +534,7 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.DealTypeFundamental
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.DealTypeKey = r.FormValue(dm.DealTypeFundamental_DealTypeKey)
 		item.Amendment = r.FormValue(dm.DealTypeFundamental_Amendment)
 		item.DefaultFrequency = r.FormValue(dm.DealTypeFundamental_DefaultFrequency)
@@ -530,7 +625,7 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealTypeFundamental_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealTypeFundamental_ChangeType)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealTypeFundamental_Store(item)	
 
@@ -555,104 +650,103 @@ func DealTypeFundamental_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			DealTypeKey: "",
-			Amendment: "True",
-			DefaultFrequency: "0",
-			Directions: "",
-			SettledTermDealType: "",
-			Optn: "True",
-			AllowPledge: "True",
-			Takeup: "True",
-			MismatchDealType: "",
-			SettledHedgeTermDealType: "",
-			SettlementCode: "",
-			TermSubType: "",
-			FundingDealType: "",
-			TransferType: "",
-			TermDealType: "",
-			NegotiableInstrumentType: "",
-			Mismatch: "True",
-			ComplexTransferSubType: "",
-			LayOffDealType: "",
-			NIAccount: "0",
-			SimpleMMsubtype: "0",
-			SwapDealType: "",
-			Positions: "",
-			OptionOutright: "",
-			SettledHedgeSpotDealType: "",
-			StraightThroughInterestMethod: "True",
-			SubType: "",
-			Rollover: "True",
-			DefaultIssuer: "",
-			DefaultStartDate: "0",
-			Fee: "",
-			NDF: "True",
-			FXFX: "True",
-			ONIA: "True",
-			MarginSubType: "0",
-			TransferDealType: "",
-			IsFX: "True",
-			Ordr: "",
-			OptionStyle: "",
-			SpotDealType: "",
-			CanIssue: "True",
-			CanShort: "True",
-			FXMarginTradingType: "0",
-			Internal: "True",
-			TicketBasename: "",
-			InterestRateFutureType: "",
-			TradingLimitProductCode: "",
-			Forward: "True",
-			MaturityNotificationPeriod: "",
-			NotificationEvents: "",
-			SwapSubType: "",
-			ProductCode: "",
-			Funding: "True",
-			AllocationPricing: "",
-			CancelPeriod: "",
-			MMMarginTradingType: "0",
-			OptionSpot: "",
-			Transfer: "True",
-			NotificationPeriod: "",
-			Paymentdateshift: "0",
-			CloseOut: "True",
-			FXOptionPricing: "",
-			SettledHedgeOutrightDealType: "",
-			RepoBond: "",
-			RepoTerm: "",
-			RepoType: "0",
-			DateRule: "",
-			CorpTransferDealType: "",
-			GenerateFXImage: "True",
-			Variant: "",
-			HedgeTermDealType: "",
-			PricingModel: "",
-			HedgeOutrightDealType: "",
-			Fixing: "True",
-			Payment: "True",
-			MT: "True",
-			SettlementInstructionStyle: "",
-			QuoteHistoryRequired: "True",
-			Brokerage: "True",
-			ExposureDisabled: "True",
-			ChildInheritsTradingEntity: "True",
-			InternalId: "0",
-			InternalDeleted: "",
-			UpdatedTransactionId: "",
-			UpdatedUserId: "",
-			UpdatedDateTime: "",
-			DeletedTransactionId: "",
-			DeletedUserId: "",
-			ChangeType: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.DealTypeKey = ""
+pageDetail.Amendment = ""
+pageDetail.DefaultFrequency = ""
+pageDetail.Directions = ""
+pageDetail.SettledTermDealType = ""
+pageDetail.Optn = ""
+pageDetail.AllowPledge = ""
+pageDetail.Takeup = ""
+pageDetail.MismatchDealType = ""
+pageDetail.SettledHedgeTermDealType = ""
+pageDetail.SettlementCode = ""
+pageDetail.TermSubType = ""
+pageDetail.FundingDealType = ""
+pageDetail.TransferType = ""
+pageDetail.TermDealType = ""
+pageDetail.NegotiableInstrumentType = ""
+pageDetail.Mismatch = ""
+pageDetail.ComplexTransferSubType = ""
+pageDetail.LayOffDealType = ""
+pageDetail.NIAccount = ""
+pageDetail.SimpleMMsubtype = ""
+pageDetail.SwapDealType = ""
+pageDetail.Positions = ""
+pageDetail.OptionOutright = ""
+pageDetail.SettledHedgeSpotDealType = ""
+pageDetail.StraightThroughInterestMethod = ""
+pageDetail.SubType = ""
+pageDetail.Rollover = ""
+pageDetail.DefaultIssuer = ""
+pageDetail.DefaultStartDate = ""
+pageDetail.Fee = ""
+pageDetail.NDF = ""
+pageDetail.FXFX = ""
+pageDetail.ONIA = ""
+pageDetail.MarginSubType = ""
+pageDetail.TransferDealType = ""
+pageDetail.IsFX = ""
+pageDetail.Ordr = ""
+pageDetail.OptionStyle = ""
+pageDetail.SpotDealType = ""
+pageDetail.CanIssue = ""
+pageDetail.CanShort = ""
+pageDetail.FXMarginTradingType = ""
+pageDetail.Internal = ""
+pageDetail.TicketBasename = ""
+pageDetail.InterestRateFutureType = ""
+pageDetail.TradingLimitProductCode = ""
+pageDetail.Forward = ""
+pageDetail.MaturityNotificationPeriod = ""
+pageDetail.NotificationEvents = ""
+pageDetail.SwapSubType = ""
+pageDetail.ProductCode = ""
+pageDetail.Funding = ""
+pageDetail.AllocationPricing = ""
+pageDetail.CancelPeriod = ""
+pageDetail.MMMarginTradingType = ""
+pageDetail.OptionSpot = ""
+pageDetail.Transfer = ""
+pageDetail.NotificationPeriod = ""
+pageDetail.Paymentdateshift = ""
+pageDetail.CloseOut = ""
+pageDetail.FXOptionPricing = ""
+pageDetail.SettledHedgeOutrightDealType = ""
+pageDetail.RepoBond = ""
+pageDetail.RepoTerm = ""
+pageDetail.RepoType = ""
+pageDetail.DateRule = ""
+pageDetail.CorpTransferDealType = ""
+pageDetail.GenerateFXImage = ""
+pageDetail.Variant = ""
+pageDetail.HedgeTermDealType = ""
+pageDetail.PricingModel = ""
+pageDetail.HedgeOutrightDealType = ""
+pageDetail.Fixing = ""
+pageDetail.Payment = ""
+pageDetail.MT = ""
+pageDetail.SettlementInstructionStyle = ""
+pageDetail.QuoteHistoryRequired = ""
+pageDetail.Brokerage = ""
+pageDetail.ExposureDisabled = ""
+pageDetail.ChildInheritsTradingEntity = ""
+pageDetail.InternalId = ""
+pageDetail.InternalDeleted = ""
+pageDetail.UpdatedTransactionId = ""
+pageDetail.UpdatedUserId = ""
+pageDetail.UpdatedDateTime = ""
+pageDetail.DeletedTransactionId = ""
+pageDetail.DeletedUserId = ""
+pageDetail.ChangeType = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealTypeFundamental_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

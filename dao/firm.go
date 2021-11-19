@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:20
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,10 @@ func Firm_GetByID(id string) (int, dm.Firm, error) {
 	_, _, firmItem, _ := firm_Fetch(tsql)
 	return 1, firmItem, nil
 }
+
+
+
+
 
 // Firm_DeleteByID() deletes a single Firm record
 func Firm_Delete(id string) {
@@ -86,17 +90,15 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Firm_FirmName,"")
    recItem.FirmName  = get_String(rec, dm.Firm_FirmName, "")
    recItem.FullName  = get_String(rec, dm.Firm_FullName, "")
    recItem.Country  = get_String(rec, dm.Firm_Country, "")
    recItem.Sector  = get_String(rec, dm.Firm_Sector, "")
-   recItem.SectorName  = get_String(rec, dm.Firm_SectorName, "")
-   recItem.CountryName  = get_String(rec, dm.Firm_CountryName, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
 
+
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -1,24 +1,76 @@
 package datamodel
 
-//Translation defines a instance of the translationStore
+// ----------------------------------------------------------------
+// Automatically generated  "/datamodel/translation.go"
+// ----------------------------------------------------------------
+// Package            : datamodel
+// Object 			  : Translation
+// Endpoint Root 	  : Translation
+// Search QueryString : Message
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 19/11/2021 at 18:23:53
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+//Centre is cheese
 type Translation struct {
-	Id          string
-	Class       string
-	Message     string
-	Translation string
-	SYSCreated  string
-	SYSWho      string
-	SYSHost     string
-	SYSUpdated  string
+	AppInternalID string  // Special field for internal use only
+SYSId        string
+Id        string
+Class        string
+Message        string
+Translation        string
+SYSCreated        string
+SYSWho        string
+SYSHost        string
+SYSUpdated        string
+SYSCreatedBy        string
+SYSCreatedHost        string
+SYSUpdatedBy        string
+SYSUpdatedHost        string
+
 }
 
 const (
-	Translation_Title          = "Translation"
-	Translation_URI            = "TranslationStore"
-	Translation_TemplateList   = "TranslationStoreList"
-	Translation_TemplateView   = "TranslationStoreView"
-	Translation_TemplateEdit   = "TranslationStoreEdit"
-	Translation_TemplateSave   = "TranslationStoreSave"
-	Translation_TemplateDelete = "TranslationStoreDelete"
-	Translation_TemplateNew    = "TranslationStoreNew"
+	Translation_Title       = "Message Translation"
+	Translation_SQLTable    = "translationStore"
+	Translation_SQLSearchID = "Id"
+	Translation_QueryString = "Message"
+	///
+	/// Handler Defintions
+	///
+	Translation_TemplateList = "Translation_List"
+	Translation_TemplateView = "Translation_View"
+	Translation_TemplateEdit = "Translation_Edit"
+	Translation_TemplateNew  = "Translation_New"
+	///
+	/// Handler Monitor Paths
+	///
+	Translation_PathList   = "/TranslationList/"
+	Translation_PathView   = "/TranslationView/"
+	Translation_PathEdit   = "/TranslationEdit/"
+	Translation_PathNew    = "/TranslationNew/"
+	Translation_PathSave   = "/TranslationSave/"
+	Translation_PathDelete = "/TranslationDelete/"
+	///
+	/// SQL Field Definitions
+	///
+	Translation_SYSId   = "_id" // SYSId is a Int
+	Translation_Id   = "Id" // Id is a String
+	Translation_Class   = "Class" // Class is a String
+	Translation_Message   = "Message" // Message is a String
+	Translation_Translation   = "Translation" // Translation is a String
+	Translation_SYSCreated   = "_created" // SYSCreated is a String
+	Translation_SYSWho   = "_who" // SYSWho is a String
+	Translation_SYSHost   = "_host" // SYSHost is a String
+	Translation_SYSUpdated   = "_updated" // SYSUpdated is a String
+	Translation_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
+	Translation_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
+	Translation_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
+	Translation_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
+
+	/// Definitions End
 )

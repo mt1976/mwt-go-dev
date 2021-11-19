@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:19
+// Date & Time		    : 19/11/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,32 +23,32 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | DealTypeKey               | String     |            | DealTypeKey               |  true |
-// | DealTypeShortName         | String     |            | DealTypeShortName         | false |
-// | HostKey                   | String     |            | HostKey                   | false |
-// | IsActive                  | Bool       |       True | IsActive                  | false |
-// | Interbook                 | Bool       |       True | Interbook                 | false |
-// | BackOfficeLink            | Bool       |       True | BackOfficeLink            | false |
-// | HasTicket                 | Bool       |       True | HasTicket                 | false |
-// | CurrencyOverride          | Bool       |       True | CurrencyOverride          | false |
-// | CurrencyHolderCurrency    | String     |            | CurrencyHolderCurrency    | false |
-// | AllBooks                  | Bool       |       True | AllBooks                  | false |
-// | FundamentalDealTypeKey    | String     |            | FundamentalDealTypeKey    | false |
-// | RelatedDealType           | String     |            | RelatedDealType           | false |
-// | BookName                  | String     |            | BookName                  | false |
-// | ExportMethod              | String     |            | ExportMethod              | false |
-// | DefaultUserLayoffBooks    | Bool       |       True | DefaultUserLayoffBooks    | false |
-// | RFQ                       | Bool       |       True | RFQ                       | false |
-// | OBS                       | Bool       |       True | OBS                       | false |
-// | KID                       | Bool       |       True | KID                       | false |
-// | InternalId                | Int        |          0 | InternalId                |  true |
-// | InternalDeleted           | Time       |            | InternalDeleted           | false |
-// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |
-// | UpdatedUserId             | String     |            | UpdatedUserId             | false |
-// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |
-// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |
-// | DeletedUserId             | String     |            | DeletedUserId             | false |
-// | ChangeType                | String     |            | ChangeType                | false |
+// | DealTypeKey               | String     |            | DealTypeKey               |  true |  true | false |            |            |            |           
+// | DealTypeShortName         | String     |            | DealTypeShortName         | false |  true | false |            |            |            |           
+// | HostKey                   | String     |            | HostKey                   | false |  true | false |            |            |            |           
+// | IsActive                  | Bool       |       True | IsActive                  | false |  true | false |            |            |            |           
+// | Interbook                 | Bool       |       True | Interbook                 | false |  true | false |            |            |            |           
+// | BackOfficeLink            | Bool       |       True | BackOfficeLink            | false |  true | false |            |            |            |           
+// | HasTicket                 | Bool       |       True | HasTicket                 | false |  true | false |            |            |            |           
+// | CurrencyOverride          | Bool       |       True | CurrencyOverride          | false |  true | false |            |            |            |           
+// | CurrencyHolderCurrency    | String     |            | CurrencyHolderCurrency    | false |  true | false |            |            |            |           
+// | AllBooks                  | Bool       |       True | AllBooks                  | false |  true | false |            |            |            |           
+// | FundamentalDealTypeKey    | String     |            | FundamentalDealTypeKey    | false |  true | false |            |            |            |           
+// | RelatedDealType           | String     |            | RelatedDealType           | false |  true | false |            |            |            |           
+// | BookName                  | String     |            | BookName                  | false |  true | false |            |            |            |           
+// | ExportMethod              | String     |            | ExportMethod              | false |  true | false |            |            |            |           
+// | DefaultUserLayoffBooks    | Bool       |       True | DefaultUserLayoffBooks    | false |  true | false |            |            |            |           
+// | RFQ                       | Bool       |       True | RFQ                       | false |  true | false |            |            |            |           
+// | OBS                       | Bool       |       True | OBS                       | false |  true | false |            |            |            |           
+// | KID                       | Bool       |       True | KID                       | false |  true | false |            |            |            |           
+// | InternalId                | Int        |          0 | InternalId                |  true |  true | false |            |            |            |           
+// | InternalDeleted           | Time       |            | InternalDeleted           | false |  true | false |            |            |            |           
+// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |  true | false |            |            |            |           
+// | UpdatedUserId             | String     |            | UpdatedUserId             | false |  true | false |            |            |            |           
+// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |  true | false |            |            |            |           
+// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |  true | false |            |            |            |           
+// | DeletedUserId             | String     |            | DeletedUserId             | false |  true | false |            |            |            |           
+// | ChangeType                | String     |            | ChangeType                | false |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

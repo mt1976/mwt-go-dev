@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:18
+// Date & Time		    : 19/11/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,18 +23,18 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | SienaReference            | String     |            | SienaReference            | false |
-// | Status                    | String     |            | Status                    | false |
-// | MessageType               | String     |            | MessageType               | false |
-// | ContractNumber            | String     |            | ContractNumber            | false |
-// | AckReference              | String     |            | AckReference              | false |
-// | NewTX                     | Bool       |       True | NewTX                     | false |
-// | LegNo                     | Int        |          0 | LegNo                     | false |
-// | Summary                   | String     |            | Summary                   | false |
-// | BusinessDate              | Time       |            | BusinessDate              | false |
-// | TXNo                      | Int        |          0 | TXNo                      | false |
-// | ExternalSystem            | String     |            | ExternalSystem            | false |
-// | MessageLogReference       | String     |            | MessageLogReference       |  true |
+// | SienaReference            | String     |            | SienaReference            | false |  true | false |            |            |            |           
+// | Status                    | String     |            | Status                    | false |  true | false |            |            |            |           
+// | MessageType               | String     |            | MessageType               | false |  true | false |            |            |            |           
+// | ContractNumber            | String     |            | ContractNumber            | false |  true | false |            |            |            |           
+// | AckReference              | String     |            | AckReference              | false |  true | false |            |            |            |           
+// | NewTX                     | Bool       |       True | NewTX                     | false |  true | false |            |            |            |           
+// | LegNo                     | Int        |          0 | LegNo                     | false |  true | false |            |            |            |           
+// | Summary                   | String     |            | Summary                   | false |  true | false |            |            |            |           
+// | BusinessDate              | Time       |            | BusinessDate              | false |  true | false |            |            |            |           
+// | TXNo                      | Int        |          0 | TXNo                      | false |  true | false |            |            |            |           
+// | ExternalSystem            | String     |            | ExternalSystem            | false |  true | false |            |            |            |           
+// | MessageLogReference       | String     |            | MessageLogReference       |  true |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

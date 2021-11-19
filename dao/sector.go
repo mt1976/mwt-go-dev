@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:21
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,18 @@ func Sector_GetByID(id string) (int, dm.Sector, error) {
 	_, _, sectorItem, _ := sector_Fetch(tsql)
 	return 1, sectorItem, nil
 }
+
+// Sector_GetByReverseLookup(id string) returns a single Sector record
+func Sector_GetByReverseLookup(id string) (int, dm.Sector, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Sector_SQLTable)
+	tsql = tsql + " WHERE Name = '" + id + "'"
+
+	_, _, sectorItem, _ := sector_Fetch(tsql)
+	return 1, sectorItem, nil
+}
+
+
 
 // Sector_DeleteByID() deletes a single Sector record
 func Sector_Delete(id string) {
@@ -86,13 +98,11 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Sector_Code,"")
    recItem.Code  = get_String(rec, dm.Sector_Code, "")
    recItem.Name  = get_String(rec, dm.Sector_Name, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

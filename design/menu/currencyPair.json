@@ -1,0 +1,25 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/currencypair.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			  : CurrencyPair
+// Endpoint Root 	  : CurrencyPair
+// Search QueryString : Code
+// From   			  : 
+// ----------------------------------------------------------------
+// Template Generator : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		  : 19/11/2021 at 17:16:04
+// Who & Where		  : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+    {
+      "ID": "5c100d22-4894-4d8e-87eb-f913c1d06e6c",
+      "Text": "Currency Pairs",
+      "Glyph": "fas fa-coins",
+      "HREF": "/CurrencyPairList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

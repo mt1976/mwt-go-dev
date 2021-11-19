@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:03
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type cache_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Object string
@@ -58,7 +58,26 @@ type cache_Page struct {
 		SYSUpdatedBy string
 		SYSUpdatedHost string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -126,27 +145,28 @@ func Cache_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		SYSId: rD.SYSId,
-		Id: rD.Id,
-		Object: rD.Object,
-		Field: rD.Field,
-		Value: rD.Value,
-		Expiry: rD.Expiry,
-		SYSCreated: rD.SYSCreated,
-		SYSWho: rD.SYSWho,
-		SYSHost: rD.SYSHost,
-		SYSUpdated: rD.SYSUpdated,
-		Source: rD.Source,
-		SYSCreatedBy: rD.SYSCreatedBy,
-		SYSCreatedHost: rD.SYSCreatedHost,
-		SYSUpdatedBy: rD.SYSUpdatedBy,
-		SYSUpdatedHost: rD.SYSUpdatedHost,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = rD.SYSId
+pageDetail.Id = rD.Id
+pageDetail.Object = rD.Object
+pageDetail.Field = rD.Field
+pageDetail.Value = rD.Value
+pageDetail.Expiry = rD.Expiry
+pageDetail.SYSCreated = rD.SYSCreated
+pageDetail.SYSWho = rD.SYSWho
+pageDetail.SYSHost = rD.SYSHost
+pageDetail.SYSUpdated = rD.SYSUpdated
+pageDetail.Source = rD.Source
+pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Cache_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -174,28 +194,29 @@ func Cache_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SYSId: rD.SYSId,
-			Id: rD.Id,
-			Object: rD.Object,
-			Field: rD.Field,
-			Value: rD.Value,
-			Expiry: rD.Expiry,
-			SYSCreated: rD.SYSCreated,
-			SYSWho: rD.SYSWho,
-			SYSHost: rD.SYSHost,
-			SYSUpdated: rD.SYSUpdated,
-			Source: rD.Source,
-			SYSCreatedBy: rD.SYSCreatedBy,
-			SYSCreatedHost: rD.SYSCreatedHost,
-			SYSUpdatedBy: rD.SYSUpdatedBy,
-			SYSUpdatedHost: rD.SYSUpdatedHost,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = rD.SYSId
+pageDetail.Id = rD.Id
+pageDetail.Object = rD.Object
+pageDetail.Field = rD.Field
+pageDetail.Value = rD.Value
+pageDetail.Expiry = rD.Expiry
+pageDetail.SYSCreated = rD.SYSCreated
+pageDetail.SYSWho = rD.SYSWho
+pageDetail.SYSHost = rD.SYSHost
+pageDetail.SYSUpdated = rD.SYSUpdated
+pageDetail.Source = rD.Source
+pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Cache_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -217,7 +238,7 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Cache
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Cache_SYSId)
 		item.Id = r.FormValue(dm.Cache_Id)
 		item.Object = r.FormValue(dm.Cache_Object)
@@ -234,7 +255,7 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Cache_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Cache_SYSUpdatedHost)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.Cache_Store(item)	
 
@@ -259,30 +280,29 @@ func Cache_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Cache_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SYSId: "0",
-			Id: "",
-			Object: "",
-			Field: "",
-			Value: "",
-			Expiry: "",
-			SYSCreated: "",
-			SYSWho: "",
-			SYSHost: "",
-			SYSUpdated: "",
-			Source: "",
-			SYSCreatedBy: "",
-			SYSCreatedHost: "",
-			SYSUpdatedBy: "",
-			SYSUpdatedHost: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SYSId = ""
+pageDetail.Id = ""
+pageDetail.Object = ""
+pageDetail.Field = ""
+pageDetail.Value = ""
+pageDetail.Expiry = ""
+pageDetail.SYSCreated = ""
+pageDetail.SYSWho = ""
+pageDetail.SYSHost = ""
+pageDetail.SYSUpdated = ""
+pageDetail.Source = ""
+pageDetail.SYSCreatedBy = ""
+pageDetail.SYSCreatedHost = ""
+pageDetail.SYSUpdatedBy = ""
+pageDetail.SYSUpdatedHost = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Cache_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

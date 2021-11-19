@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:18
+// Date & Time		    : 19/11/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,11 +23,11 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | Code                      | String     |            | Code                      |  true |
-// | Name                      | String     |            | Name                      | false |
-// | ShortCode                 | String     |            | ShortCode                 | false |
-// | EU_EEA                    | Bool       |       True | EU_EEA                    | false |
-// | HolidaysWeekend           | String     |            | HolidaysWeekend           | false |
+// | Code                      | String     |            | Code                      |  true |  true | false |            |            |            |           
+// | Name                      | String     |            | Name                      | false |  true | false |            |            |            |           
+// | ShortCode                 | String     |            | ShortCode                 | false |  true | false |            |            |            |           
+// | EU_EEA                    | Bool       |       True | EU_EEA                    | false |  true | false |            |            |            |           
+// | HolidaysWeekend           | String     |            | HolidaysWeekend           | false |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

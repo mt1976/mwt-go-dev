@@ -1,0 +1,45 @@
+// ----------------------------------------------------------------
+// Automatically generated  "/application/translation.go"
+// ----------------------------------------------------------------
+// Package              : main
+// Object 			    : Translation
+// Endpoint Root 	    : Translation
+// Search QueryString   : Message
+// From   			    : 
+// ----------------------------------------------------------------
+// Database Information
+// ----------------------------------------------------------------
+// SQL Table Name       : translationStore
+// SQL Table Search Col : Id
+// ----------------------------------------------------------------
+// Template Generator   : RussetAlbatross [r0-21.11.01]
+// ----------------------------------------------------------------
+// Date & Time		    : 19/11/2021 at 18:23:53
+// Who & Where		    : matttownsend on silicon.local
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Fields Generated
+// ----------------------------------------------------------------
+// *---------------------------+------------+------------+---------------------------*
+// | Field Name                | Type       | Default    |SQL Field Name             |
+// *---------------------------+------------+------------+---------------------------*
+// | SYSId                     | Int        |          0 | _id                       |  true |  true | false |            |            |            |           
+// | Id                        | String     |            | Id                        | false |  true | false |            |            |            |           
+// | Class                     | String     |            | Class                     | false |  true | false |            |            |            |           
+// | Message                   | String     |            | Message                   | false |  true | false |            |            |            |           
+// | Translation               | String     |            | Translation               | false |  true | false |            |            |            |           
+// | SYSCreated                | String     |            | _created                  | false |  true | false |            |            |            |           
+// | SYSWho                    | String     |            | _who                      | false |  true | false |            |            |            |           
+// | SYSHost                   | String     |            | _host                     | false |  true | false |            |            |            |           
+// | SYSUpdated                | String     |            | _updated                  | false |  true | false |            |            |            |           
+// | SYSCreatedBy              | String     |            | _createdBy                | false |  true | false |            |            |            |           
+// | SYSCreatedHost            | String     |            | _createdHost              | false |  true | false |            |            |            |           
+// | SYSUpdatedBy              | String     |            | _updatedBy                | false |  true | false |            |            |            |           
+// | SYSUpdatedHost            | String     |            | _updatedHost              | false |  true | false |            |            |            |           
+// *---------------------------+------------+------------+---------------------------*
+// ----------------------------------------------------------------
+// Artifacts Generated
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// End of File
+// ----------------------------------------------------------------

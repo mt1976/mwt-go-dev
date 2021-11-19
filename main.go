@@ -110,6 +110,7 @@ func main() {
 	application.Account_Publish(*mux)
 
 	application.Currency_Publish(*mux)
+	application.CurrencyPair_Publish(*mux)
 
 	mux.HandleFunc("/listSienaMandatedUser/", application.ListSienaMandatedUserHandler)
 	mux.HandleFunc("/viewSienaMandatedUser/", application.ViewSienaMandatedUserHandler)
@@ -147,11 +148,7 @@ func main() {
 	//mux.HandleFunc("/saveSienaDealList/", application.SaveSienaDealListHandler)
 	//mux.HandleFunc("/newSienaDealList/", application.NewSienaDealListHandler)
 
-	mux.HandleFunc("/listSienaCounterpartyGroup/", application.ListSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/viewSienaCounterpartyGroup/", application.ViewSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/editSienaCounterpartyGroup/", application.EditSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/saveSienaCounterpartyGroup/", application.SaveSienaCounterpartyGroupHandler)
-	mux.HandleFunc("/newSienaCounterpartyGroup/", application.NewSienaCounterpartyGroupHandler)
+	application.CounterpartyGroup_Publish(*mux)
 
 	mux.HandleFunc("/dashboard/", application.SienaDashboardHandler)
 	application.DealingInterface_Publish(*mux)

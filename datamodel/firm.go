@@ -11,7 +11,7 @@ package datamodel
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:20
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,8 +22,8 @@ FirmName        string
 FullName        string
 Country        string
 Sector        string
-SectorName        string
-CountryName        string
+Sector_Enri        string
+Country_Enri        string
 
 }
 
@@ -55,8 +55,8 @@ const (
 	Firm_FullName   = "FullName" // FullName is a String
 	Firm_Country   = "Country" // Country is a String
 	Firm_Sector   = "Sector" // Sector is a String
-	Firm_SectorName   = "SectorName" // SectorName is a String
-	Firm_CountryName   = "CountryName" // CountryName is a String
+	Firm_Sector_Enri   = "Sector_Enri" // Sector_Enri is a String
+	Firm_Country_Enri   = "Country_Enri" // Country_Enri is a String
 
 	/// Definitions End
 )

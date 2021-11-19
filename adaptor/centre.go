@@ -1,70 +1,41 @@
 package adaptor
 
 import (
-	"encoding/xml"
-	"io/ioutil"
-	"os"
+	//"encoding/xml"
+	//"io/ioutil"
+	//"os"
 
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	"github.com/mt1976/mwt-go-dev/logs"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Centre_XMLExport(item dm.Centre) {
 
-	//application.LOG_message("Centre_XMLExport", "Doing it!")
+func Centre_Delete(id string) error {
+	var er error
 
-	// Create XML File
-	item.Action = "UPDATE"
+	message:= "Implement Centre_Delete: " + id
 
-	//fmt.Println("ITEM", item)
-	// DEFINE THE XML FIELDS/KEYFIELDS HERE
-	var sFldCode StaticImport_KeyField
-	var sFldName StaticImport_Field
-	var sFldCountry StaticImport_Field
+	// Implement Centre_Delete_Impl in centre_Impl.go
+	// Uncomment the line below to use the implementation
+	//
+	// er := Centre_Delete_Impl(item)
+	//
 
-	// POPULATE THE XML FIELDS
-	sFldCode.Name = "shortName"
-	sFldCode.Text = item.Code
+	logs.Success(message)
+	return er
+}
 
-	sFldName.Name = "fullName"
-	sFldName.Text = item.Name
+func Centre_Update(item dm.Centre) error {
+	var er error
 
-	sFldCountry.Name = "country"
-	sFldCountry.Text = item.Country
+	message:= "Implement Centre_Update: " + item.Code
 
-	// IGNORE
-	var sienaKeyFields []StaticImport_KeyField
-	var sienaFields []StaticImport_Field
-	// ADD THE FIELDS TO THE LISTS ABOVE
-	sienaKeyFields = append(sienaKeyFields, sFldCode)
-	sienaFields = append(sienaFields, sFldName)
-	sienaFields = append(sienaFields, sFldCountry)
-	// IGNORE
-	sienaRecord := &StaticImport_Record{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
-	var sienaRecords []StaticImport_Record
-	sienaRecords = append(sienaRecords, *sienaRecord)
+	// Implement Centre_Update_Impl in centre_Impl.go
+	// Uncomment the line below to use the implementation
+	//
+	// er := Centre_Update_Impl(item)
+	//
 
-	var sienaTable StaticImport_Table
-	sienaTable.Name = "Centre"
-	sienaTable.Classname = "com.eurobase.siena.data.centres.Centre"
-	sienaTable.RECORD = sienaRecords
-
-	var sienaTransaction StaticImport_Transaction
-	sienaTransaction.Type = "IMPORT"
-	sienaTransaction.TABLE = sienaTable
-
-	var StaticImport_XMLContent StaticImport_XML
-	StaticImport_XMLContent.TRANSACTIONS = sienaTransaction
-
-	preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
-
-	pwd, _ := os.Getwd()
-	fileName := pwd + staticImportPath() + "/" + getNewFileID() + ".xml"
-	logs.Information("Centre_XMLExport", "Writing XML to file: "+fileName)
-	err := ioutil.WriteFile(fileName, preparedXML, 0644)
-	if err != nil {
-		logs.Error(err.Error(), err)
-	}
-	//application.LOG_message("Centre_XMLExport", "Done it!")
-
+	logs.Success(message)
+	return er
 }

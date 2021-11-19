@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:20
+// Date & Time		  : 19/11/2021 at 17:16:05
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,18 @@ func Product_GetByID(id string) (int, dm.Product, error) {
 	_, _, productItem, _ := product_Fetch(tsql)
 	return 1, productItem, nil
 }
+
+// Product_GetByReverseLookup(id string) returns a single Product record
+func Product_GetByReverseLookup(id string) (int, dm.Product, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Product_SQLTable)
+	tsql = tsql + " WHERE Name = '" + id + "'"
+
+	_, _, productItem, _ := product_Fetch(tsql)
+	return 1, productItem, nil
+}
+
+
 
 // Product_DeleteByID() deletes a single Product record
 func Product_Delete(id string) {
@@ -86,7 +98,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Product_Code,"")
    recItem.Code  = get_String(rec, dm.Product_Code, "")
    recItem.Name  = get_String(rec, dm.Product_Name, "")
@@ -100,9 +112,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Product_ChangeType, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

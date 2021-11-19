@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------
 // Template Generator   : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		    : 18/11/2021 at 21:34:19
+// Date & Time		    : 19/11/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
@@ -23,30 +23,30 @@
 // *---------------------------+------------+------------+---------------------------*
 // | Field Name                | Type       | Default    |SQL Field Name             |
 // *---------------------------+------------+------------+---------------------------*
-// | Name                      | String     |            | Name                      |  true |
-// | AcceptReducedAmount       | Bool       |       True | AcceptReducedAmount       | false |
-// | QuoteAsIndicative         | Bool       |       True | QuoteAsIndicative         | false |
-// | RateTimeOut               | Int        |          0 | RateTimeOut               | false |
-// | PropagationDelay          | Int        |          0 | PropagationDelay          | false |
-// | CheckLiquidity            | Bool       |       True | CheckLiquidity            | false |
-// | ChangeQuoteDirection      | Bool       |       True | ChangeQuoteDirection      | false |
-// | GenerateRejectedDeals     | Bool       |       True | GenerateRejectedDeals     | false |
-// | SpotUpdatesForForwardQuotes | Bool       |       True | SpotUpdatesForForwardQuotes | false |
-// | SettlementInstructionStyle | String     |            | SettlementInstructionStyle | false |
-// | CanRetractQuotes          | Bool       |       True | CanRetractQuotes          | false |
-// | CancelESPifNotPriced      | Bool       |       True | CancelESPifNotPriced      | false |
-// | CancelRFQSifNotPriced     | Bool       |       True | CancelRFQSifNotPriced     | false |
-// | CancelonDealingSuspended  | Bool       |       True | CancelonDealingSuspended  | false |
-// | CreditCheckedatDI         | Bool       |       True | CreditCheckedatDI         | false |
-// | DuplicateCheckonExternalRef | Bool       |       True | DuplicateCheckonExternalRef | false |
-// | LimitCheckQuote           | Bool       |       True | LimitCheckQuote           | false |
-// | LimitCheckonRFQDealSubmission | Bool       |       True | LimitCheckonRFQDealSubmission | false |
-// | ListenonLimits            | Bool       |       True | ListenonLimits            | false |
-// | MarginStyle               | String     |            | MarginStyle               | false |
-// | UseRerouteDefinitionOnly  | Bool       |       True | UseRerouteDefinitionOnly  | false |
-// | BypassConfirmation        | Bool       |       True | BypassConfirmation        | false |
-// | DIOnAcceptance            | Bool       |       True | DIOnAcceptance            | false |
-// | IgnoreESPAmountRules      | Bool       |       True | IgnoreESPAmountRules      | false |
+// | Name                      | String     |            | Name                      |  true |  true | false |            |            |            |           
+// | AcceptReducedAmount       | Bool       |       True | AcceptReducedAmount       | false |  true | false |            |            |            |           
+// | QuoteAsIndicative         | Bool       |       True | QuoteAsIndicative         | false |  true | false |            |            |            |           
+// | RateTimeOut               | Int        |          0 | RateTimeOut               | false |  true | false |            |            |            |           
+// | PropagationDelay          | Int        |          0 | PropagationDelay          | false |  true | false |            |            |            |           
+// | CheckLiquidity            | Bool       |       True | CheckLiquidity            | false |  true | false |            |            |            |           
+// | ChangeQuoteDirection      | Bool       |       True | ChangeQuoteDirection      | false |  true | false |            |            |            |           
+// | GenerateRejectedDeals     | Bool       |       True | GenerateRejectedDeals     | false |  true | false |            |            |            |           
+// | SpotUpdatesForForwardQuotes | Bool       |       True | SpotUpdatesForForwardQuotes | false |  true | false |            |            |            |           
+// | SettlementInstructionStyle | String     |            | SettlementInstructionStyle | false |  true | false |            |            |            |           
+// | CanRetractQuotes          | Bool       |       True | CanRetractQuotes          | false |  true | false |            |            |            |           
+// | CancelESPifNotPriced      | Bool       |       True | CancelESPifNotPriced      | false |  true | false |            |            |            |           
+// | CancelRFQSifNotPriced     | Bool       |       True | CancelRFQSifNotPriced     | false |  true | false |            |            |            |           
+// | CancelonDealingSuspended  | Bool       |       True | CancelonDealingSuspended  | false |  true | false |            |            |            |           
+// | CreditCheckedatDI         | Bool       |       True | CreditCheckedatDI         | false |  true | false |            |            |            |           
+// | DuplicateCheckonExternalRef | Bool       |       True | DuplicateCheckonExternalRef | false |  true | false |            |            |            |           
+// | LimitCheckQuote           | Bool       |       True | LimitCheckQuote           | false |  true | false |            |            |            |           
+// | LimitCheckonRFQDealSubmission | Bool       |       True | LimitCheckonRFQDealSubmission | false |  true | false |            |            |            |           
+// | ListenonLimits            | Bool       |       True | ListenonLimits            | false |  true | false |            |            |            |           
+// | MarginStyle               | String     |            | MarginStyle               | false |  true | false |            |            |            |           
+// | UseRerouteDefinitionOnly  | Bool       |       True | UseRerouteDefinitionOnly  | false |  true | false |            |            |            |           
+// | BypassConfirmation        | Bool       |       True | BypassConfirmation        | false |  true | false |            |            |            |           
+// | DIOnAcceptance            | Bool       |       True | DIOnAcceptance            | false |  true | false |            |            |            |           
+// | IgnoreESPAmountRules      | Bool       |       True | IgnoreESPAmountRules      | false |  true | false |            |            |            |           
 // *---------------------------+------------+------------+---------------------------*
 // ----------------------------------------------------------------
 // Artifacts Generated

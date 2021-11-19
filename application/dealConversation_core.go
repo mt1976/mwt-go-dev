@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type dealconversation_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		MessageType string
@@ -55,7 +55,23 @@ type dealconversation_Page struct {
 		ExternalSystem string
 		MessageLogReference string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -123,24 +139,25 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		SienaReference: rD.SienaReference,
-		Status: rD.Status,
-		MessageType: rD.MessageType,
-		ContractNumber: rD.ContractNumber,
-		AckReference: rD.AckReference,
-		NewTX: rD.NewTX,
-		LegNo: rD.LegNo,
-		Summary: rD.Summary,
-		BusinessDate: rD.BusinessDate,
-		TXNo: rD.TXNo,
-		ExternalSystem: rD.ExternalSystem,
-		MessageLogReference: rD.MessageLogReference,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SienaReference = rD.SienaReference
+pageDetail.Status = rD.Status
+pageDetail.MessageType = rD.MessageType
+pageDetail.ContractNumber = rD.ContractNumber
+pageDetail.AckReference = rD.AckReference
+pageDetail.NewTX = rD.NewTX
+pageDetail.LegNo = rD.LegNo
+pageDetail.Summary = rD.Summary
+pageDetail.BusinessDate = rD.BusinessDate
+pageDetail.TXNo = rD.TXNo
+pageDetail.ExternalSystem = rD.ExternalSystem
+pageDetail.MessageLogReference = rD.MessageLogReference
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealConversation_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -168,25 +185,26 @@ func DealConversation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SienaReference: rD.SienaReference,
-			Status: rD.Status,
-			MessageType: rD.MessageType,
-			ContractNumber: rD.ContractNumber,
-			AckReference: rD.AckReference,
-			NewTX: rD.NewTX,
-			LegNo: rD.LegNo,
-			Summary: rD.Summary,
-			BusinessDate: rD.BusinessDate,
-			TXNo: rD.TXNo,
-			ExternalSystem: rD.ExternalSystem,
-			MessageLogReference: rD.MessageLogReference,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SienaReference = rD.SienaReference
+pageDetail.Status = rD.Status
+pageDetail.MessageType = rD.MessageType
+pageDetail.ContractNumber = rD.ContractNumber
+pageDetail.AckReference = rD.AckReference
+pageDetail.NewTX = rD.NewTX
+pageDetail.LegNo = rD.LegNo
+pageDetail.Summary = rD.Summary
+pageDetail.BusinessDate = rD.BusinessDate
+pageDetail.TXNo = rD.TXNo
+pageDetail.ExternalSystem = rD.ExternalSystem
+pageDetail.MessageLogReference = rD.MessageLogReference
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealConversation_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -208,7 +226,7 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.DealConversation
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.DealConversation_SienaReference)
 		item.Status = r.FormValue(dm.DealConversation_Status)
 		item.MessageType = r.FormValue(dm.DealConversation_MessageType)
@@ -222,7 +240,7 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ExternalSystem = r.FormValue(dm.DealConversation_ExternalSystem)
 		item.MessageLogReference = r.FormValue(dm.DealConversation_MessageLogReference)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealConversation_Store(item)	
 
@@ -247,27 +265,26 @@ func DealConversation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealConversation_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			SienaReference: "",
-			Status: "",
-			MessageType: "",
-			ContractNumber: "",
-			AckReference: "",
-			NewTX: "True",
-			LegNo: "0",
-			Summary: "",
-			BusinessDate: "",
-			TXNo: "0",
-			ExternalSystem: "",
-			MessageLogReference: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.SienaReference = ""
+pageDetail.Status = ""
+pageDetail.MessageType = ""
+pageDetail.ContractNumber = ""
+pageDetail.AckReference = ""
+pageDetail.NewTX = ""
+pageDetail.LegNo = ""
+pageDetail.Summary = ""
+pageDetail.BusinessDate = ""
+pageDetail.TXNo = ""
+pageDetail.ExternalSystem = ""
+pageDetail.MessageLogReference = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealConversation_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

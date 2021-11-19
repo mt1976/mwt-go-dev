@@ -7,8 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaCounterpartyGroup]
 AS
-SELECT        {{!SQL.SOURCE}}.CpartyGroup.Name, {{!SQL.SOURCE}}.CpartyGroup.CountryCode, {{!SQL.SOURCE}}.CpartyGroup.SuperGroup, {{!SQL.SOURCE}}.Country.Name AS CountryName
-FROM            {{!SQL.SOURCE}}.CpartyGroup LEFT OUTER JOIN
-                         {{!SQL.SOURCE}}.Country ON {{!SQL.SOURCE}}.CpartyGroup.CountryCode = {{!SQL.SOURCE}}.Country.Code
+SELECT        {{!SQL.SOURCE}}.CpartyGroup.Name, {{!SQL.SOURCE}}.CpartyGroup.CountryCode, {{!SQL.SOURCE}}.CpartyGroup.SuperGroup
+FROM            {{!SQL.SOURCE}}.CpartyGroup 
 WHERE        ({{!SQL.SOURCE}}.CpartyGroup.InternalDeleted IS NULL)
 GO

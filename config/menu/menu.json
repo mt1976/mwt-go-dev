@@ -49,7 +49,7 @@
       "ID": "5",
       "Text": "Currency Pairs",
       "Glyph": "fas fa-coins",
-      "HREF": "/listSienaCurrencyPair",
+      "HREF": "/CurrencyPairList",
       "OnClick": "",
       "TextClass": ""
     }
@@ -70,7 +70,7 @@
       "ID": "7",
       "Text": "Centres",
       "Glyph": "fas fa-map-marker-alt",
-      "HREF": "/listSienaCentre",
+      "HREF": "/CentreList",
       "OnClick": "",
       "TextClass": ""
     }
@@ -114,7 +114,7 @@
       "ID": "12",
       "Text": "Counterparty Groups",
       "Glyph": "fa fa-users",
-      "HREF": "/listSienaCounterpartyGroup",
+      "HREF": "/CounterpartyGroupList",
       "OnClick": "",
       "TextClass": ""
     },
@@ -255,7 +255,7 @@
       "ID": "translationStore",
       "Text": "Translations",
       "Glyph": "fas fa-retweet",
-      "HREF": "/listTranslationStore",
+      "HREF": "/TranslationList",
       "OnClick": "",
       "TextClass": "text-info"
     }

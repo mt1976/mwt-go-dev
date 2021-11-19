@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:19
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,7 +41,7 @@ type dealinginterface_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		Name string
 		AcceptReducedAmount string
 		QuoteAsIndicative string
@@ -67,7 +67,35 @@ type dealinginterface_Page struct {
 		DIOnAcceptance string
 		IgnoreESPAmountRules string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -135,36 +163,37 @@ func DealingInterface_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Name: rD.Name,
-		AcceptReducedAmount: rD.AcceptReducedAmount,
-		QuoteAsIndicative: rD.QuoteAsIndicative,
-		RateTimeOut: rD.RateTimeOut,
-		PropagationDelay: rD.PropagationDelay,
-		CheckLiquidity: rD.CheckLiquidity,
-		ChangeQuoteDirection: rD.ChangeQuoteDirection,
-		GenerateRejectedDeals: rD.GenerateRejectedDeals,
-		SpotUpdatesForForwardQuotes: rD.SpotUpdatesForForwardQuotes,
-		SettlementInstructionStyle: rD.SettlementInstructionStyle,
-		CanRetractQuotes: rD.CanRetractQuotes,
-		CancelESPifNotPriced: rD.CancelESPifNotPriced,
-		CancelRFQSifNotPriced: rD.CancelRFQSifNotPriced,
-		CancelonDealingSuspended: rD.CancelonDealingSuspended,
-		CreditCheckedatDI: rD.CreditCheckedatDI,
-		DuplicateCheckonExternalRef: rD.DuplicateCheckonExternalRef,
-		LimitCheckQuote: rD.LimitCheckQuote,
-		LimitCheckonRFQDealSubmission: rD.LimitCheckonRFQDealSubmission,
-		ListenonLimits: rD.ListenonLimits,
-		MarginStyle: rD.MarginStyle,
-		UseRerouteDefinitionOnly: rD.UseRerouteDefinitionOnly,
-		BypassConfirmation: rD.BypassConfirmation,
-		DIOnAcceptance: rD.DIOnAcceptance,
-		IgnoreESPAmountRules: rD.IgnoreESPAmountRules,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Name = rD.Name
+pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
+pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
+pageDetail.RateTimeOut = rD.RateTimeOut
+pageDetail.PropagationDelay = rD.PropagationDelay
+pageDetail.CheckLiquidity = rD.CheckLiquidity
+pageDetail.ChangeQuoteDirection = rD.ChangeQuoteDirection
+pageDetail.GenerateRejectedDeals = rD.GenerateRejectedDeals
+pageDetail.SpotUpdatesForForwardQuotes = rD.SpotUpdatesForForwardQuotes
+pageDetail.SettlementInstructionStyle = rD.SettlementInstructionStyle
+pageDetail.CanRetractQuotes = rD.CanRetractQuotes
+pageDetail.CancelESPifNotPriced = rD.CancelESPifNotPriced
+pageDetail.CancelRFQSifNotPriced = rD.CancelRFQSifNotPriced
+pageDetail.CancelonDealingSuspended = rD.CancelonDealingSuspended
+pageDetail.CreditCheckedatDI = rD.CreditCheckedatDI
+pageDetail.DuplicateCheckonExternalRef = rD.DuplicateCheckonExternalRef
+pageDetail.LimitCheckQuote = rD.LimitCheckQuote
+pageDetail.LimitCheckonRFQDealSubmission = rD.LimitCheckonRFQDealSubmission
+pageDetail.ListenonLimits = rD.ListenonLimits
+pageDetail.MarginStyle = rD.MarginStyle
+pageDetail.UseRerouteDefinitionOnly = rD.UseRerouteDefinitionOnly
+pageDetail.BypassConfirmation = rD.BypassConfirmation
+pageDetail.DIOnAcceptance = rD.DIOnAcceptance
+pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealingInterface_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -192,37 +221,38 @@ func DealingInterface_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Name: rD.Name,
-			AcceptReducedAmount: rD.AcceptReducedAmount,
-			QuoteAsIndicative: rD.QuoteAsIndicative,
-			RateTimeOut: rD.RateTimeOut,
-			PropagationDelay: rD.PropagationDelay,
-			CheckLiquidity: rD.CheckLiquidity,
-			ChangeQuoteDirection: rD.ChangeQuoteDirection,
-			GenerateRejectedDeals: rD.GenerateRejectedDeals,
-			SpotUpdatesForForwardQuotes: rD.SpotUpdatesForForwardQuotes,
-			SettlementInstructionStyle: rD.SettlementInstructionStyle,
-			CanRetractQuotes: rD.CanRetractQuotes,
-			CancelESPifNotPriced: rD.CancelESPifNotPriced,
-			CancelRFQSifNotPriced: rD.CancelRFQSifNotPriced,
-			CancelonDealingSuspended: rD.CancelonDealingSuspended,
-			CreditCheckedatDI: rD.CreditCheckedatDI,
-			DuplicateCheckonExternalRef: rD.DuplicateCheckonExternalRef,
-			LimitCheckQuote: rD.LimitCheckQuote,
-			LimitCheckonRFQDealSubmission: rD.LimitCheckonRFQDealSubmission,
-			ListenonLimits: rD.ListenonLimits,
-			MarginStyle: rD.MarginStyle,
-			UseRerouteDefinitionOnly: rD.UseRerouteDefinitionOnly,
-			BypassConfirmation: rD.BypassConfirmation,
-			DIOnAcceptance: rD.DIOnAcceptance,
-			IgnoreESPAmountRules: rD.IgnoreESPAmountRules,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Name = rD.Name
+pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
+pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
+pageDetail.RateTimeOut = rD.RateTimeOut
+pageDetail.PropagationDelay = rD.PropagationDelay
+pageDetail.CheckLiquidity = rD.CheckLiquidity
+pageDetail.ChangeQuoteDirection = rD.ChangeQuoteDirection
+pageDetail.GenerateRejectedDeals = rD.GenerateRejectedDeals
+pageDetail.SpotUpdatesForForwardQuotes = rD.SpotUpdatesForForwardQuotes
+pageDetail.SettlementInstructionStyle = rD.SettlementInstructionStyle
+pageDetail.CanRetractQuotes = rD.CanRetractQuotes
+pageDetail.CancelESPifNotPriced = rD.CancelESPifNotPriced
+pageDetail.CancelRFQSifNotPriced = rD.CancelRFQSifNotPriced
+pageDetail.CancelonDealingSuspended = rD.CancelonDealingSuspended
+pageDetail.CreditCheckedatDI = rD.CreditCheckedatDI
+pageDetail.DuplicateCheckonExternalRef = rD.DuplicateCheckonExternalRef
+pageDetail.LimitCheckQuote = rD.LimitCheckQuote
+pageDetail.LimitCheckonRFQDealSubmission = rD.LimitCheckonRFQDealSubmission
+pageDetail.ListenonLimits = rD.ListenonLimits
+pageDetail.MarginStyle = rD.MarginStyle
+pageDetail.UseRerouteDefinitionOnly = rD.UseRerouteDefinitionOnly
+pageDetail.BypassConfirmation = rD.BypassConfirmation
+pageDetail.DIOnAcceptance = rD.DIOnAcceptance
+pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealingInterface_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -244,7 +274,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.DealingInterface
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.DealingInterface_Name)
 		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount)
 		item.QuoteAsIndicative = r.FormValue(dm.DealingInterface_QuoteAsIndicative)
@@ -270,7 +300,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DIOnAcceptance = r.FormValue(dm.DealingInterface_DIOnAcceptance)
 		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealingInterface_Store(item)	
 
@@ -295,39 +325,38 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Name: "",
-			AcceptReducedAmount: "True",
-			QuoteAsIndicative: "True",
-			RateTimeOut: "0",
-			PropagationDelay: "0",
-			CheckLiquidity: "True",
-			ChangeQuoteDirection: "True",
-			GenerateRejectedDeals: "True",
-			SpotUpdatesForForwardQuotes: "True",
-			SettlementInstructionStyle: "",
-			CanRetractQuotes: "True",
-			CancelESPifNotPriced: "True",
-			CancelRFQSifNotPriced: "True",
-			CancelonDealingSuspended: "True",
-			CreditCheckedatDI: "True",
-			DuplicateCheckonExternalRef: "True",
-			LimitCheckQuote: "True",
-			LimitCheckonRFQDealSubmission: "True",
-			ListenonLimits: "True",
-			MarginStyle: "",
-			UseRerouteDefinitionOnly: "True",
-			BypassConfirmation: "True",
-			DIOnAcceptance: "True",
-			IgnoreESPAmountRules: "True",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Name = ""
+pageDetail.AcceptReducedAmount = ""
+pageDetail.QuoteAsIndicative = ""
+pageDetail.RateTimeOut = ""
+pageDetail.PropagationDelay = ""
+pageDetail.CheckLiquidity = ""
+pageDetail.ChangeQuoteDirection = ""
+pageDetail.GenerateRejectedDeals = ""
+pageDetail.SpotUpdatesForForwardQuotes = ""
+pageDetail.SettlementInstructionStyle = ""
+pageDetail.CanRetractQuotes = ""
+pageDetail.CancelESPifNotPriced = ""
+pageDetail.CancelRFQSifNotPriced = ""
+pageDetail.CancelonDealingSuspended = ""
+pageDetail.CreditCheckedatDI = ""
+pageDetail.DuplicateCheckonExternalRef = ""
+pageDetail.LimitCheckQuote = ""
+pageDetail.LimitCheckonRFQDealSubmission = ""
+pageDetail.ListenonLimits = ""
+pageDetail.MarginStyle = ""
+pageDetail.UseRerouteDefinitionOnly = ""
+pageDetail.BypassConfirmation = ""
+pageDetail.DIOnAcceptance = ""
+pageDetail.IgnoreESPAmountRules = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealingInterface_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

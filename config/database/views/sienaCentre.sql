@@ -7,8 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaCentre]
 AS
-SELECT        {{!SQL.SOURCE}}.Centre.ShortName AS Code, {{!SQL.SOURCE}}.Centre.FullName AS Name, {{!SQL.SOURCE}}.Centre.Country, {{!SQL.SOURCE}}.Country.Name AS CountryName
-FROM            {{!SQL.SOURCE}}.Centre INNER JOIN
-                         {{!SQL.SOURCE}}.Country ON {{!SQL.SOURCE}}.Centre.Country = {{!SQL.SOURCE}}.Country.Code
+SELECT        {{!SQL.SOURCE}}.Centre.ShortName AS Code, {{!SQL.SOURCE}}.Centre.FullName AS Name, {{!SQL.SOURCE}}.Centre.Country
+FROM            {{!SQL.SOURCE}}.Centre 
 WHERE        ({{!SQL.SOURCE}}.Centre.InternalDeleted IS NULL)
 GO

@@ -10,7 +10,7 @@ package dao
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 import (
@@ -42,6 +42,10 @@ func Country_GetByID(id string) (int, dm.Country, error) {
 	_, _, countryItem, _ := country_Fetch(tsql)
 	return 1, countryItem, nil
 }
+
+
+
+
 
 // Country_DeleteByID() deletes a single Country record
 func Country_Delete(id string) {
@@ -86,16 +90,14 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Country_Code,"")
    recItem.Code  = get_String(rec, dm.Country_Code, "")
    recItem.Name  = get_String(rec, dm.Country_Name, "")
    recItem.ShortCode  = get_String(rec, dm.Country_ShortCode, "")
    recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA, "True")
    recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend, "")
-// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions
-
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

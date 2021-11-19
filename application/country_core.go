@@ -10,7 +10,7 @@ package application
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
-// Date & Time		  : 18/11/2021 at 21:34:18
+// Date & Time		  : 19/11/2021 at 17:16:04
 // Who & Where		  : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,14 +41,23 @@ type country_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		ShortCode string
 		EU_EEA string
 		HolidaysWeekend string
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+
+
+	
+	
+	
+	
+	
+	
+
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -116,17 +125,18 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:		     rD.AppInternalID,
-		// 
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-		Code: rD.Code,
-		Name: rD.Name,
-		ShortCode: rD.ShortCode,
-		EU_EEA: rD.EU_EEA,
-		HolidaysWeekend: rD.HolidaysWeekend,
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = rD.Code
+pageDetail.Name = rD.Name
+pageDetail.ShortCode = rD.ShortCode
+pageDetail.EU_EEA = rD.EU_EEA
+pageDetail.HolidaysWeekend = rD.HolidaysWeekend
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -154,18 +164,19 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
 		AppInternalID:          rD.AppInternalID,
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Code: rD.Code,
-			Name: rD.Name,
-			ShortCode: rD.ShortCode,
-			EU_EEA: rD.EU_EEA,
-			HolidaysWeekend: rD.HolidaysWeekend,
-		
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//Post Import Actions - START
-
-		// Post Import Actions - END
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = rD.Code
+pageDetail.Name = rD.Name
+pageDetail.ShortCode = rD.ShortCode
+pageDetail.EU_EEA = rD.EU_EEA
+pageDetail.HolidaysWeekend = rD.HolidaysWeekend
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -187,14 +198,14 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Country
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Country_Code)
 		item.Name = r.FormValue(dm.Country_Name)
 		item.ShortCode = r.FormValue(dm.Country_ShortCode)
 		item.EU_EEA = r.FormValue(dm.Country_EU_EEA)
 		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend)
 	
-	// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
 
 	dao.Country_Store(item)	
 
@@ -219,20 +230,19 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - START
-			Code: "",
-			Name: "",
-			ShortCode: "",
-			EU_EEA: "True",
-			HolidaysWeekend: "",
-		
-		// Automatically generated 18/11/2021 by matttownsend on silicon.local - END
-		//
-		// Post Import Actions - START
-
-		// Post Import Actions - END
+		AppInternalID:   "NEW",	
 	}
+
+		// 
+		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+pageDetail.Code = ""
+pageDetail.Name = ""
+pageDetail.ShortCode = ""
+pageDetail.EU_EEA = ""
+pageDetail.HolidaysWeekend = ""
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateNew, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)

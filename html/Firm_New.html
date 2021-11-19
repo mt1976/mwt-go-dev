@@ -74,39 +74,41 @@
             <div class="row">
               <div class="col-sm">
                 <label for="FirmName" >FirmName</label>
-                <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value=""  required>
+                <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}" required>
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="FullName" >FullName</label>
-                <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value=""  >
+                <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}" >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="Country" >Country</label>
-                <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value=""  >
+                <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value="{{.Country}}" >
               </div>
             </div>
             <div class="row">
               <div class="col-sm">
                 <label for="Sector" >Sector</label>
-                <input type="text" class="form-control" id="Sector" name="Sector" aria-describedby="SectorHelp" placeholder=""  value=""  >
+                <input type="text" class="form-control" id="Sector" name="Sector" aria-describedby="SectorHelp" placeholder=""  value="{{.Sector}}" >
               </div>
             </div>
-            <div class="row">
+
+             <div class="row">
               <div class="col-sm">
-                <label for="SectorName" >SectorName</label>
-                <input type="text" class="form-control" id="SectorName" name="SectorName" aria-describedby="SectorNameHelp" placeholder=""  value=""  >
+                <label for="Sector_Enri" >Sector_Enri</label>
+                <select id="Sector_Enri" name="Sector_Enri" class="form-control"><option name="!{{.Sector_Enri}}" selected>{{.Sector_Enri}}</option>{{range .Sector_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
               </div>
             </div>
-            <div class="row">
+             <div class="row">
               <div class="col-sm">
-                <label for="CountryName" >CountryName</label>
-                <input type="text" class="form-control" id="CountryName" name="CountryName" aria-describedby="CountryNameHelp" placeholder=""  value=""  >
+                <label for="Country_Enri" >Country_Enri</label>
+                <select id="Country_Enri" name="Country_Enri" class="form-control"><option name="!{{.Country_Enri}}" selected>{{.Country_Enri}}</option>{{range .Country_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
               </div>
             </div>
+     
         </div>
       </div>
     </form>
