@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/dealconversation.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : DealConversation
-// Endpoint Root 	  : DealConversation
-// Search QueryString : ID
-// From   			  : 
+// Package              : application
+// Object 			    : DealConversation (dealconversation)
+// Endpoint 	        : DealConversation (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:02
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //dealconversation_PageList provides the information for the template for a list of DealConversations
-type dealconversation_PageList struct {
+type DealConversation_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,13 +33,13 @@ type dealconversation_PageList struct {
 }
 
 //dealconversation_Page provides the information for the template for an individual DealConversation
-type dealconversation_Page struct {
+type DealConversation_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		MessageType string
@@ -55,8 +53,6 @@ type dealconversation_Page struct {
 		ExternalSystem string
 		MessageLogReference string
 	
-
-
 	
 	
 	
@@ -70,8 +66,7 @@ type dealconversation_Page struct {
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -87,6 +82,7 @@ func DealConversation_Publish(mux http.ServeMux) {
 	
 	
 	logs.Publish("Siena", dm.DealConversation_Title)
+	
 }
 
 //DealConversation_HandlerList is the handler for the list page
@@ -105,7 +101,7 @@ func DealConversation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DealConversation_GetList()
 
 
-	pageDetail := dealconversation_PageList{
+	pageDetail := DealConversation_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.DealConversation_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -133,7 +129,7 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealConversation_QueryString)
 	_, rD, _ := dao.DealConversation_GetByID(searchID)
 
-	pageDetail := dealconversation_Page{
+	pageDetail := DealConversation_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealConversation_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -142,7 +138,7 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.MessageType = rD.MessageType
@@ -155,9 +151,13 @@ pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.TXNo = rD.TXNo
 pageDetail.ExternalSystem = rD.ExternalSystem
 pageDetail.MessageLogReference = rD.MessageLogReference
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealConversation_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -179,7 +179,7 @@ func DealConversation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealConversation_QueryString)
 	_, rD, _ := dao.DealConversation_GetByID(searchID)
 	
-	pageDetail := dealconversation_Page{
+	pageDetail := DealConversation_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealConversation_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -188,7 +188,7 @@ func DealConversation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.MessageType = rD.MessageType
@@ -201,10 +201,11 @@ pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.TXNo = rD.TXNo
 pageDetail.ExternalSystem = rD.ExternalSystem
 pageDetail.MessageLogReference = rD.MessageLogReference
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealConversation_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -221,12 +222,12 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("MessageLogReference"))
 
 	var item dm.DealConversation
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.DealConversation_SienaReference)
 		item.Status = r.FormValue(dm.DealConversation_Status)
 		item.MessageType = r.FormValue(dm.DealConversation_MessageType)
@@ -240,7 +241,9 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ExternalSystem = r.FormValue(dm.DealConversation_ExternalSystem)
 		item.MessageLogReference = r.FormValue(dm.DealConversation_MessageLogReference)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealConversation_Store(item)	
 
@@ -260,7 +263,7 @@ func DealConversation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := dealconversation_Page{
+	pageDetail := DealConversation_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealConversation_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -269,7 +272,7 @@ func DealConversation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.Status = ""
 pageDetail.MessageType = ""
@@ -282,8 +285,8 @@ pageDetail.BusinessDate = ""
 pageDetail.TXNo = ""
 pageDetail.ExternalSystem = ""
 pageDetail.MessageLogReference = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealConversation_TemplateNew, core.GetUserRole(r)))

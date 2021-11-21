@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/product.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Product
-// Endpoint Root 	  : Product
-// Search QueryString : Code
+// Object 			    : Product (product)
+// Endpoint 	        : Product (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:04
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -53,8 +52,6 @@ func Product_GetByReverseLookup(id string) (int, dm.Product, error) {
 	return 1, productItem, nil
 }
 
-
-
 // Product_DeleteByID() deletes a single Product record
 func Product_Delete(id string) {
 
@@ -72,7 +69,7 @@ func Product_Store(r dm.Product) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= product_NewID(r)
+		r.Code = Product_NewID(r)
 	}
 
 
@@ -98,7 +95,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Product_Code,"")
    recItem.Code  = get_String(rec, dm.Product_Code, "")
    recItem.Name  = get_String(rec, dm.Product_Name, "")
@@ -112,15 +109,19 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Product_ChangeType, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func product_NewID(r dm.Product) string {
-	id := uuid.New().String()
+func Product_NewID(r dm.Product) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

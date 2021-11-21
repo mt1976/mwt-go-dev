@@ -234,19 +234,19 @@
                       <td class="align-middle">{{.FullName}}</td>
                       <td class="align-middle text-center">{{.KeyCurrency}}</td>
                       <td class="align-middle">{{.KeyName}}</td>
-                      <td class="align-middle text-center">{{.Approved}}</td>
+                      <td class="align-middle text-center">{{.SourceTable}}</td>
 
                       <td class="alight-right" style="width:1px;">
 
                         <div class="btn-group">
                           <button type="submit" value="" class="btn btn-outline-info btn-inner"
-                            formaction="/viewSienaCounterpartyPayee?csrc={{.SourceTable}}&cfrm={{.KeyCounterpartyFirm}}&ccen={{.KeyCounterpartyCentre}}&cccy={{.KeyCurrency}}&cnam={{.KeyName}}&cnum={{.KeyNumber}}&cdir={{.KeyDirection}}&ctyp={{.KeyType}}"
+                            formaction="/PayeeViewItem?csrc={{.SourceTable}}&cfrm={{.KeyCounterpartyFirm}}&ccen={{.KeyCounterpartyCentre}}&cccy={{.KeyCurrency}}&cnam={{.KeyName}}&cnum={{.KeyNumber}}&cdir={{.KeyDirection}}&ctyp={{.KeyType}}"
                             method="POST">
                             <i class="far fa-eye"></i>
                           </button>
 
                           <button type="submit" value="" class="btn btn-outline-primary btn-inner"
-                            formaction="/editSienaCounterpartyPayee?csrc={{.SourceTable}}&cfrm={{.KeyCounterpartyFirm}}&ccen={{.KeyCounterpartyCentre}}&cccy={{.KeyCurrency}}&cnam={{.KeyName}}&cnum={{.KeyNumber}}&cdir={{.KeyDirection}}&ctyp={{.KeyType}}"
+                            formaction="/PayeeViewItem?csrc={{.SourceTable}}&cfrm={{.KeyCounterpartyFirm}}&ccen={{.KeyCounterpartyCentre}}&cccy={{.KeyCurrency}}&cnam={{.KeyName}}&cnum={{.KeyNumber}}&cdir={{.KeyDirection}}&ctyp={{.KeyType}}"
                             method="POST">
                             <i class="far fa-edit"></i>
                           </button>
@@ -512,7 +512,7 @@
                       <td class="alight-right" style="width:1px;">
 
                         <div class="btn-group">
-                          <button type="submit" value="" class="btn btn-outline-info btn-inner" formaction="/viewSienaAccount?SienaAccountID={{.SienaReference}}" method="POST">
+                          <button type="submit" value="" class="btn btn-info" formaction="/AccountView?AccountNo={{.SienaReference}}" method="POST">
                             <i class="far fa-eye" style="font-size: 22px"></i>
                           </button>
 

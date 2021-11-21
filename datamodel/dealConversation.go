@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/dealconversation.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : DealConversation
-// Endpoint Root 	  : DealConversation
-// Search QueryString : ID
-// From   			  : 
+// Package              : application
+// Object 			    : DealConversation (dealconversation)
+// Endpoint 	        : DealConversation (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:02
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

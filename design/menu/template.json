@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/template.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Template
-// Endpoint Root 	  : Template
-// Search QueryString : TemplateID
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:06
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "5d311c35-bc54-458b-8e6b-12bdfc60c93c",
+      "ID": "2ab9e0a6-8ecc-48dc-afe0-a7677d6651b7",
       "Text": "Template Contents",
       "Glyph": "fas fa-poo",
       "HREF": "/TemplateList",

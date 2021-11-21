@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/broker.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Broker
-// Endpoint Root 	  : Broker
-// Search QueryString : Code
-// From   			  : 
+// Package              : application
+// Object 			    : Broker (broker)
+// Endpoint 	        : Broker (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

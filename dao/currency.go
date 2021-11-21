@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/currency.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Currency
-// Endpoint Root 	  : Currency
-// Search QueryString : Code
+// Object 			    : Currency (currency)
+// Endpoint 	        : Currency (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:02
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -53,8 +52,6 @@ func Currency_GetByReverseLookup(id string) (int, dm.Currency, error) {
 	return 1, currencyItem, nil
 }
 
-
-
 // Currency_DeleteByID() deletes a single Currency record
 func Currency_Delete(id string) {
 
@@ -72,7 +69,7 @@ func Currency_Store(r dm.Currency) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= currency_NewID(r)
+		r.Code = Currency_NewID(r)
 	}
 
 
@@ -98,7 +95,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Currency_Code,"")
    recItem.Code  = get_String(rec, dm.Currency_Code, "")
    recItem.Name  = get_String(rec, dm.Currency_Name, "")
@@ -124,15 +121,19 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
    recItem.StripRateFutureCurrencyContractFutureContractCode  = get_String(rec, dm.Currency_StripRateFutureCurrencyContractFutureContractCode, "")
    recItem.OvernightFundingSpreadBid  = get_Float(rec, dm.Currency_OvernightFundingSpreadBid, "0.00")
    recItem.OvernightFundingSpreadOffer  = get_Float(rec, dm.Currency_OvernightFundingSpreadOffer, "0.00")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func currency_NewID(r dm.Currency) string {
-	id := uuid.New().String()
+func Currency_NewID(r dm.Currency) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

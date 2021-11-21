@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/centre.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Centre
-// Endpoint Root 	  : Centre
-// Search QueryString : Code
-// From   			  : 
+// Package              : application
+// Object 			    : Centre (centre)
+// Endpoint 	        : Centre (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese
@@ -21,7 +19,7 @@ type Centre struct {
 Code        string
 Name        string
 Country        string
-Country_Enri        string
+Country_Impl        string
 
 }
 
@@ -52,7 +50,7 @@ const (
 	Centre_Code   = "Code" // Code is a String
 	Centre_Name   = "Name" // Name is a String
 	Centre_Country   = "Country" // Country is a String
-	Centre_Country_Enri   = "Country_Enri" // Country_Enri is a String
+	Centre_Country_Impl   = "Country_Impl" // Country_Impl is a String
 
 	/// Definitions End
 )

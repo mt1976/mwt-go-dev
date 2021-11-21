@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/centre.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Centre
-// Endpoint Root 	  : Centre
-// Search QueryString : Code
+// Object 			    : Centre (centre)
+// Endpoint 	        : Centre (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -53,8 +52,6 @@ func Centre_GetByReverseLookup(id string) (int, dm.Centre, error) {
 	return 1, centreItem, nil
 }
 
-
-
 // Centre_DeleteByID() deletes a single Centre record
 func Centre_Delete(id string) {
 
@@ -72,7 +69,7 @@ func Centre_Store(r dm.Centre) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= centre_NewID(r)
+		r.Code = Centre_NewID(r)
 	}
 
 
@@ -98,21 +95,25 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Centre_Code,"")
    recItem.Code  = get_String(rec, dm.Centre_Code, "")
    recItem.Name  = get_String(rec, dm.Centre_Name, "")
    recItem.Country  = get_String(rec, dm.Centre_Country, "")
 
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func centre_NewID(r dm.Centre) string {
-	id := uuid.New().String()
+func Centre_NewID(r dm.Centre) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/marketrates.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : MarketRates
-// Endpoint Root 	  : MarketRates
-// Search QueryString : ID
-// From   			  : 
+// Package              : application
+// Object 			    : MarketRates (marketrates)
+// Endpoint 	        : MarketRates (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:04
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //marketrates_PageList provides the information for the template for a list of MarketRatess
-type marketrates_PageList struct {
+type MarketRates_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,13 +33,13 @@ type marketrates_PageList struct {
 }
 
 //marketrates_Page provides the information for the template for an individual MarketRates
-type marketrates_Page struct {
+type MarketRates_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Bid string
@@ -64,8 +62,6 @@ type marketrates_Page struct {
 		SYSUpdatedBy string
 		SYSUpdatedHost string
 	
-
-
 	
 	
 	
@@ -88,8 +84,7 @@ type marketrates_Page struct {
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -105,6 +100,7 @@ func MarketRates_Publish(mux http.ServeMux) {
 	
 	
 	logs.Publish("Application", dm.MarketRates_Title)
+	
 }
 
 //MarketRates_HandlerList is the handler for the list page
@@ -123,7 +119,7 @@ func MarketRates_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.MarketRates_GetList()
 
 
-	pageDetail := marketrates_PageList{
+	pageDetail := MarketRates_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.MarketRates_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -151,7 +147,7 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.MarketRates_QueryString)
 	_, rD, _ := dao.MarketRates_GetByID(searchID)
 
-	pageDetail := marketrates_Page{
+	pageDetail := MarketRates_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.MarketRates_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -160,7 +156,7 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Bid = rD.Bid
@@ -182,9 +178,13 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.MarketRates_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -206,7 +206,7 @@ func MarketRates_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.MarketRates_QueryString)
 	_, rD, _ := dao.MarketRates_GetByID(searchID)
 	
-	pageDetail := marketrates_Page{
+	pageDetail := MarketRates_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.MarketRates_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -215,7 +215,7 @@ func MarketRates_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Bid = rD.Bid
@@ -237,10 +237,11 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.MarketRates_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -257,12 +258,12 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.MarketRates
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.MarketRates_SYSId)
 		item.Id = r.FormValue(dm.MarketRates_Id)
 		item.Bid = r.FormValue(dm.MarketRates_Bid)
@@ -285,7 +286,9 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.MarketRates_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.MarketRates_SYSUpdatedHost)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.MarketRates_Store(item)	
 
@@ -305,7 +308,7 @@ func MarketRates_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := marketrates_Page{
+	pageDetail := MarketRates_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.MarketRates_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -314,7 +317,7 @@ func MarketRates_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Bid = ""
@@ -336,8 +339,8 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.MarketRates_TemplateNew, core.GetUserRole(r)))

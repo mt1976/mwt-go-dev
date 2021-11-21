@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 13:10:42
+// Date & Time		    : 21/11/2021 at 15:44:05
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,7 +23,7 @@ import (
 )
 
 //schedule_PageList provides the information for the template for a list of Schedules
-type schedule_PageList struct {
+type Schedule_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -33,7 +33,7 @@ type schedule_PageList struct {
 }
 
 //schedule_Page provides the information for the template for an individual Schedule
-type schedule_Page struct {
+type Schedule_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
@@ -120,7 +120,7 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Schedule_GetList()
 
 
-	pageDetail := schedule_PageList{
+	pageDetail := Schedule_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Schedule_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -148,7 +148,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Schedule_QueryString)
 	_, rD, _ := dao.Schedule_GetByID(searchID)
 
-	pageDetail := schedule_Page{
+	pageDetail := Schedule_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -180,6 +180,16 @@ pageDetail.Human = rD.Human
 // Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+
+	// schedule_HandlerViewImpl should be specified in application/schedule_Impl.go
+	// to provide the implementation for the special case.
+	// override should return mux - override function should be defined as
+	// func schedule_HandlerViewImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
+	pageDetail = schedule_HandlerViewImpl(pageDetail)
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Schedule_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
 
@@ -200,7 +210,7 @@ func Schedule_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Schedule_QueryString)
 	_, rD, _ := dao.Schedule_GetByID(searchID)
 	
-	pageDetail := schedule_Page{
+	pageDetail := Schedule_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -232,6 +242,13 @@ pageDetail.Human = rD.Human
 // Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// schedule_HandlerEditImpl should be specified in application/schedule_Impl.go
+	// to provide the implementation for the special case.
+	// override should return mux - override function should be defined as
+	// func schedule_HandlerEditImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
+	pageDetail = schedule_HandlerEditImpl(pageDetail)
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Schedule_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -248,7 +265,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Schedule
 
@@ -275,6 +292,14 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	
 	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
+	// schedule_HandlerSaveImpl should be specified in application/schedule_Impl.go
+	// to provide the implementation for the special case.
+	// override should return mux - override function should be defined as
+	// func schedule_HandlerSaveImpl(item dm.Schedule) dm.Schedule {return item}
+	item = schedule_HandlerSaveImpl(item)
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 	dao.Schedule_Store(item)	
 
 	http.Redirect(w, r, Schedule_Redirect, http.StatusFound)
@@ -293,7 +318,7 @@ func Schedule_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := schedule_Page{
+	pageDetail := Schedule_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),

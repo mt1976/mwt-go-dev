@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/currency.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Currency
-// Endpoint Root 	  : Currency
-// Search QueryString : Code
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "c957fc32-8c84-41f3-8da2-1b008e920d87",
+      "ID": "452c2a06-e53d-408a-9d75-84177bb2b3f8",
       "Text": "Currencies",
       "Glyph": "fas fa-dollar-sign",
       "HREF": "/CurrencyList",

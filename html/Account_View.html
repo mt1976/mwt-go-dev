@@ -1,0 +1,269 @@
+<head>
+  <!-- START OF INSERTS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <!-- FAVICON BUMPF -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+  <meta name="msapplication-TileColor" content="#322a77">
+  <meta name="theme-color" content="#ffffff">
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <!-- Add CUSTOM ICONS, FONTS & STYLES -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <script src="../assets/custom.js"></script>
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+  </link>
+  <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <!-- END OF INSERTS -->
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+  <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
+</head>
+<body>
+
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
+  <!-- DO NOT CHANGE -->
+
+  <div class="container-fluid">
+    <form action="/AccountEdit?AccountNo={{.SienaReference}}" method="POST" class="form">
+      <div class="card">
+        <div class="card-header font-weight-bold">
+          <div class="row">
+            <div class="col">
+              Account&nbsp;:&nbsp;<code>{{.SienaReference}}</code>
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+                
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm">
+                <label for="SienaReference">SienaReference</label>
+                <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled="disabled" value="{{.SienaReference}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CustomerSienaView">CustomerSienaView</label>
+                <input type="text" class="form-control" id="CustomerSienaView" aria-describedby="CustomerSienaViewHelp" placeholder="" disabled="disabled" value="{{.CustomerSienaView}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SienaCommonRef">SienaCommonRef</label>
+                <input type="text" class="form-control" id="SienaCommonRef" aria-describedby="SienaCommonRefHelp" placeholder="" disabled="disabled" value="{{.SienaCommonRef}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Status">Status</label>
+                <input type="text" class="form-control" id="Status" aria-describedby="StatusHelp" placeholder="" disabled="disabled" value="{{.Status}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="StartDate">StartDate</label>
+                <input type="text" class="form-control" id="StartDate" aria-describedby="StartDateHelp" placeholder="" disabled="disabled" value="{{.StartDate}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MaturityDate">MaturityDate</label>
+                <input type="text" class="form-control" id="MaturityDate" aria-describedby="MaturityDateHelp" placeholder="" disabled="disabled" value="{{.MaturityDate}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ContractNumber">ContractNumber</label>
+                <input type="text" class="form-control" id="ContractNumber" aria-describedby="ContractNumberHelp" placeholder="" disabled="disabled" value="{{.ContractNumber}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ExternalReference">ExternalReference</label>
+                <input type="text" class="form-control" id="ExternalReference" aria-describedby="ExternalReferenceHelp" placeholder="" disabled="disabled" value="{{.ExternalReference}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CCY">CCY</label>
+                <input type="text" class="form-control" id="CCY" aria-describedby="CCYHelp" placeholder="" disabled="disabled" value="{{.CCY}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Book">Book</label>
+                <input type="text" class="form-control" id="Book" aria-describedby="BookHelp" placeholder="" disabled="disabled" value="{{.Book}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MandatedUser">MandatedUser</label>
+                <input type="text" class="form-control" id="MandatedUser" aria-describedby="MandatedUserHelp" placeholder="" disabled="disabled" value="{{.MandatedUser}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="BackOfficeNotes">BackOfficeNotes</label>
+                <input type="text" class="form-control" id="BackOfficeNotes" aria-describedby="BackOfficeNotesHelp" placeholder="" disabled="disabled" value="{{.BackOfficeNotes}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CashBalance">CashBalance</label>
+                <input type="text" class="form-control" id="CashBalance" aria-describedby="CashBalanceHelp" placeholder="0.00" disabled="disabled" value="{{.CashBalance}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="AccountNumber">AccountNumber</label>
+                <input type="text" class="form-control" id="AccountNumber" aria-describedby="AccountNumberHelp" placeholder="" disabled="disabled" value="{{.AccountNumber}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="AccountName">AccountName</label>
+                <input type="text" class="form-control" id="AccountName" aria-describedby="AccountNameHelp" placeholder="" disabled="disabled" value="{{.AccountName}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="LedgerBalance">LedgerBalance</label>
+                <input type="text" class="form-control" id="LedgerBalance" aria-describedby="LedgerBalanceHelp" placeholder="0.00" disabled="disabled" value="{{.LedgerBalance}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Portfolio">Portfolio</label>
+                <input type="text" class="form-control" id="Portfolio" aria-describedby="PortfolioHelp" placeholder="" disabled="disabled" value="{{.Portfolio}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="AgreementId">AgreementId</label>
+                <input type="text" class="form-control" id="AgreementId" aria-describedby="AgreementIdHelp" placeholder="0" disabled="disabled" value="{{.AgreementId}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="BackOfficeRefNo">BackOfficeRefNo</label>
+                <input type="text" class="form-control" id="BackOfficeRefNo" aria-describedby="BackOfficeRefNoHelp" placeholder="" disabled="disabled" value="{{.BackOfficeRefNo}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ISIN">ISIN</label>
+                <input type="text" class="form-control" id="ISIN" aria-describedby="ISINHelp" placeholder="" disabled="disabled" value="{{.ISIN}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="UTI">UTI</label>
+                <input type="text" class="form-control" id="UTI" aria-describedby="UTIHelp" placeholder="" disabled="disabled" value="{{.UTI}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CCYName">CCYName</label>
+                <input type="text" class="form-control" id="CCYName" aria-describedby="CCYNameHelp" placeholder="" disabled="disabled" value="{{.CCYName}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="BookName">BookName</label>
+                <input type="text" class="form-control" id="BookName" aria-describedby="BookNameHelp" placeholder="" disabled="disabled" value="{{.BookName}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="PortfolioName">PortfolioName</label>
+                <input type="text" class="form-control" id="PortfolioName" aria-describedby="PortfolioNameHelp" placeholder="" disabled="disabled" value="{{.PortfolioName}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Centre">Centre</label>
+                <input type="text" class="form-control" id="Centre" aria-describedby="CentreHelp" placeholder="" disabled="disabled" value="{{.Centre}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Firm">Firm</label>
+                <input type="text" class="form-control" id="Firm" aria-describedby="FirmHelp" placeholder="" disabled="disabled" value="{{.Firm}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CCYDp">CCYDp</label>
+                <input type="text" class="form-control" id="CCYDp" aria-describedby="CCYDpHelp" placeholder="0" disabled="disabled" value="{{.CCYDp}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CCY_Impl">CCY_Impl</label>
+                <input type="text" class="form-control" id="CCY_Impl" aria-describedby="CCY_ImplHelp" placeholder="" disabled="disabled" value="{{.CCY_Impl}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Book_Impl">Book_Impl</label>
+                <input type="text" class="form-control" id="Book_Impl" aria-describedby="Book_ImplHelp" placeholder="" disabled="disabled" value="{{.Book_Impl}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Portfolio_Impl">Portfolio_Impl</label>
+                <input type="text" class="form-control" id="Portfolio_Impl" aria-describedby="Portfolio_ImplHelp" placeholder="" disabled="disabled" value="{{.Portfolio_Impl}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Centre_Impl">Centre_Impl</label>
+                <input type="text" class="form-control" id="Centre_Impl" aria-describedby="Centre_ImplHelp" placeholder="" disabled="disabled" value="{{.Centre_Impl}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Firm_Impl">Firm_Impl</label>
+                <input type="text" class="form-control" id="Firm_Impl" aria-describedby="Firm_ImplHelp" placeholder="" disabled="disabled" value="{{.Firm_Impl}}">
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>

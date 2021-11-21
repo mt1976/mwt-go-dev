@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/dealinginterface.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : DealingInterface
-// Endpoint Root 	  : DealingInterface
-// Search QueryString : Name
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "dc528ede-d680-4716-be32-a47776a70ef8",
+      "ID": "bff01f53-b22e-4805-a439-589d4ad9f744",
       "Text": "Dealing Interface",
       "Glyph": "fas fa-plug",
       "HREF": "/DealingInterfaceList",

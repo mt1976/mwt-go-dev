@@ -1,4 +1,16 @@
 package adaptor
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/centre.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Centre (centre)
+// Endpoint 	        : Centre (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
 	//"encoding/xml"

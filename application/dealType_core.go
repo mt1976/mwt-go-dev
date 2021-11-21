@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/dealtype.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : DealType
-// Endpoint Root 	  : DealType
-// Search QueryString : DealTypeKey
-// From   			  : 
+// Package              : application
+// Object 			    : DealType (dealtype)
+// Endpoint 	        : DealType (DealTypeKey)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //dealtype_PageList provides the information for the template for a list of DealTypes
-type dealtype_PageList struct {
+type DealType_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,13 +33,13 @@ type dealtype_PageList struct {
 }
 
 //dealtype_Page provides the information for the template for an individual DealType
-type dealtype_Page struct {
+type DealType_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		DealTypeKey string
 		DealTypeShortName string
 		HostKey string
@@ -69,8 +67,6 @@ type dealtype_Page struct {
 		DeletedUserId string
 		ChangeType string
 	
-
-
 	
 	
 	
@@ -98,8 +94,7 @@ type dealtype_Page struct {
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -115,6 +110,7 @@ func DealType_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.DealType_PathSave, DealType_HandlerSave)
 	mux.HandleFunc(dm.DealType_PathDelete, DealType_HandlerDelete)
 	logs.Publish("Siena", dm.DealType_Title)
+	
 }
 
 //DealType_HandlerList is the handler for the list page
@@ -133,7 +129,7 @@ func DealType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DealType_GetList()
 
 
-	pageDetail := dealtype_PageList{
+	pageDetail := DealType_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.DealType_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -161,7 +157,7 @@ func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealType_QueryString)
 	_, rD, _ := dao.DealType_GetByID(searchID)
 
-	pageDetail := dealtype_Page{
+	pageDetail := DealType_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -170,7 +166,7 @@ func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.DealTypeShortName = rD.DealTypeShortName
 pageDetail.HostKey = rD.HostKey
@@ -197,9 +193,13 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealType_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -221,7 +221,7 @@ func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealType_QueryString)
 	_, rD, _ := dao.DealType_GetByID(searchID)
 	
-	pageDetail := dealtype_Page{
+	pageDetail := DealType_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -230,7 +230,7 @@ func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.DealTypeShortName = rD.DealTypeShortName
 pageDetail.HostKey = rD.HostKey
@@ -257,10 +257,11 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealType_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -277,12 +278,12 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("DealTypeKey"))
 
 	var item dm.DealType
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey)
 		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName)
 		item.HostKey = r.FormValue(dm.DealType_HostKey)
@@ -310,7 +311,9 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealType_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealType_ChangeType)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealType_Store(item)	
 
@@ -330,7 +333,7 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := dealtype_Page{
+	pageDetail := DealType_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -339,7 +342,7 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = ""
 pageDetail.DealTypeShortName = ""
 pageDetail.HostKey = ""
@@ -366,8 +369,8 @@ pageDetail.UpdatedDateTime = ""
 pageDetail.DeletedTransactionId = ""
 pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealType_TemplateNew, core.GetUserRole(r)))

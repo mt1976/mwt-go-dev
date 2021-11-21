@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/template.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Template
-// Endpoint Root 	  : Template
-// Search QueryString : TemplateID
-// From   			  : 
+// Package              : application
+// Object 			    : Template (template)
+// Endpoint 	        : Template (TemplateID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:06
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:05
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

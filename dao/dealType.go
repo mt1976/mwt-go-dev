@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/dealtype.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : DealType
-// Endpoint Root 	  : DealType
-// Search QueryString : DealTypeKey
+// Object 			    : DealType (dealtype)
+// Endpoint 	        : DealType (DealTypeKey)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func DealType_GetByID(id string) (int, dm.DealType, error) {
 
 
 
-
-
 // DealType_DeleteByID() deletes a single DealType record
 func DealType_Delete(id string) {
 
@@ -64,7 +61,7 @@ func DealType_Store(r dm.DealType) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.DealTypeKey) == 0 {
-		r.DealTypeKey= dealtype_NewID(r)
+		r.DealTypeKey = DealType_NewID(r)
 	}
 
 
@@ -90,7 +87,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealType_DealTypeKey,"")
    recItem.DealTypeKey  = get_String(rec, dm.DealType_DealTypeKey, "")
    recItem.DealTypeShortName  = get_String(rec, dm.DealType_DealTypeShortName, "")
@@ -118,15 +115,19 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.DealType_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealType_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealType_ChangeType, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func dealtype_NewID(r dm.DealType) string {
-	id := uuid.New().String()
+func DealType_NewID(r dm.DealType) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

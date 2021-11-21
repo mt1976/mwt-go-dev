@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/sector.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Sector
-// Endpoint Root 	  : Sector
-// Search QueryString : Sector
+// Object 			    : Sector (sector)
+// Endpoint 	        : Sector (Sector)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:05
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -53,8 +52,6 @@ func Sector_GetByReverseLookup(id string) (int, dm.Sector, error) {
 	return 1, sectorItem, nil
 }
 
-
-
 // Sector_DeleteByID() deletes a single Sector record
 func Sector_Delete(id string) {
 
@@ -72,7 +69,7 @@ func Sector_Store(r dm.Sector) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= sector_NewID(r)
+		r.Code = Sector_NewID(r)
 	}
 
 
@@ -98,19 +95,23 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Sector_Code,"")
    recItem.Code  = get_String(rec, dm.Sector_Code, "")
    recItem.Name  = get_String(rec, dm.Sector_Name, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func sector_NewID(r dm.Sector) string {
-	id := uuid.New().String()
+func Sector_NewID(r dm.Sector) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

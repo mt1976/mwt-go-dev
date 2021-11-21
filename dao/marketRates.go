@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/marketrates.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : MarketRates
-// Endpoint Root 	  : MarketRates
-// Search QueryString : ID
+// Object 			    : MarketRates (marketrates)
+// Endpoint 	        : MarketRates (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:04
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func MarketRates_GetByID(id string) (int, dm.MarketRates, error) {
 
 
 
-
-
 // MarketRates_DeleteByID() deletes a single MarketRates record
 func MarketRates_Delete(id string) {
 
@@ -64,7 +61,7 @@ func MarketRates_Store(r dm.MarketRates) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Id) == 0 {
-		r.Id= marketrates_NewID(r)
+		r.Id = MarketRates_NewID(r)
 	}
 
 
@@ -130,7 +127,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.MarketRates_Id,"")
    recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId, "0")
    recItem.Id  = get_String(rec, dm.MarketRates_Id, "")
@@ -153,15 +150,19 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func marketrates_NewID(r dm.MarketRates) string {
-	id := uuid.New().String()
+func MarketRates_NewID(r dm.MarketRates) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

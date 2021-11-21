@@ -71,14 +71,16 @@
           </div>
         </div>
         <div class="card-body">
-            <br><h4>Identification</h4>
+            <br><h4>Identity</h4>
                             <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""  value="{{.Id}}" hidden>
                             <input type="text" class="form-control" id="Message" name="Message" aria-describedby="IdHelp" placeholder=""  value="{{.Message}}" hidden>
 
             <div class="row">
               <div class="col-sm">
                 <label for="Class" >Class</label>
-                <input type="text" class="form-control" id="Class" name="Class" aria-describedby="ClassHelp" placeholder=""  value="{{.Class}}" >
+                <input type="text" class="form-control" id="VClass" name="VClass" aria-describedby="VClassHelp" placeholder=""  value="{{.Class}}" disabled="disabled">          
+                      <input type="text" class="form-control" id="Class" name="Class" aria-describedby="ClassHelp" placeholder=""  value="{{.Class}}" hidden>
+
               </div>
             </div>
             <br><h4>Translation</h4>

@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/dealtype.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : DealType
-// Endpoint Root 	  : DealType
-// Search QueryString : DealTypeKey
-// From   			  : 
+// Package              : application
+// Object 			    : DealType (dealtype)
+// Endpoint 	        : DealType (DealTypeKey)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

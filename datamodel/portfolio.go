@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/portfolio.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Portfolio
-// Endpoint Root 	  : Portfolio
-// Search QueryString : Code
-// From   			  : 
+// Package              : application
+// Object 			    : Portfolio (portfolio)
+// Endpoint 	        : Portfolio (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 17:50:39
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

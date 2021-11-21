@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/template.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Template
-// Endpoint Root 	  : Template
-// Search QueryString : TemplateID
+// Object 			    : Template (template)
+// Endpoint 	        : Template (TemplateID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:05
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:06
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func Template_GetByID(id string) (int, dm.Template, error) {
 
 
 
-
-
 // Template_DeleteByID() deletes a single Template record
 func Template_Delete(id string) {
 
@@ -64,7 +61,7 @@ func Template_Store(r dm.Template) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.ID) == 0 {
-		r.ID= template_NewID(r)
+		r.ID = Template_NewID(r)
 	}
 
 
@@ -119,7 +116,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Template_ID,"")
    recItem.SYSId  = get_Int(rec, dm.Template_SYSId, "0")
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
@@ -131,15 +128,19 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Template_SYSUpdatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Template_SYSUpdatedBy, "")
    recItem.ID  = get_String(rec, dm.Template_ID, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func template_NewID(r dm.Template) string {
-	id := uuid.New().String()
+func Template_NewID(r dm.Template) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

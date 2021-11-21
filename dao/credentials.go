@@ -1,154 +1,175 @@
 package dao
+// ----------------------------------------------------------------
+// Automatically generated  "/dao/credentials.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			    : Credentials (credentials)
+// Endpoint 	        : Credentials (Id)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:01
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
-	"net/http"
-	"os"
-	"strconv"
-	"time"
+	"fmt"
 
-	"github.com/google/uuid"
+	
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
-func init() {
-
-}
-
-// getCredentialsStoreList read all employees
+// Credentials_GetList() returns a list of all Credentials records
 func Credentials_GetList() (int, []dm.Credentials, error) {
 
-	tsql := "SELECT * FROM " + tableName()
-
-	count, appCredentialsStoreList, _, _ := fetchCredentialsStoreData(tsql)
-	return count, appCredentialsStoreList, nil
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
+	count, credentialsList, _, _ := credentials_Fetch(tsql)
+	return count, credentialsList, nil
 }
 
-// getCredentialsStoreList read all employees
+// Credentials_GetByID() returns a single Credentials record
 func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 
-	tsql := "SELECT * FROM " + tableName()
-	tsql = tsql + " WHERE " + dm.Credentials_ID + " = '" + id + "'"
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
+	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + "='" + id + "'"
 
-	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql)
-	return 1, appCredentialsStoreItem, nil
+	_, _, credentialsItem, _ := credentials_Fetch(tsql)
+	return 1, credentialsItem, nil
 }
 
-// getCredentialsStoreList read all employees
-func Credentials_GetByUserName(userName string) (int, dm.Credentials, error) {
 
-	tsql := "SELECT * FROM " + tableName()
-	tsql = tsql + " WHERE " + dm.Credentials_Username + " = '" + userName + "'"
 
-	_, _, appCredentialsStoreItem, _ := fetchCredentialsStoreData(tsql)
-	return 1, appCredentialsStoreItem, nil
+// Credentials_DeleteByID() deletes a single Credentials record
+func Credentials_Delete(id string) {
+
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
+
+	tsql := "DELETE FROM " + object_Table
+	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + " = '" + id + "'"
+
+	das.Execute(tsql)
 }
 
-func Credentials_Store(r dm.Credentials, req *http.Request) {
+// Credentials_Store() saves/stores a Credentials record to the database
+func Credentials_Store(r dm.Credentials) error {
 
-	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
-	if len(r.SYSCreated) == 0 {
-		r.SYSCreated = createDate
-	}
-
-	//currentUserID, _ := user.Current()
-	//userID := currentUserID.Name
-	host, _ := os.Hostname()
+	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Id) == 0 {
-		r.Id = newCredentialsStoreID()
-		r.SYSCreated = createDate
-		r.SYSWho = core.GetUserName(req)
-		r.SYSHost = host
-		r.Issued = createDate
-		//expiryDate := time.Now()
-		//life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
-		//expiryDate = expiryDate.AddDate(0, 0, life)
-		r.Expiry = ""
-		r.Password = core.ApplicationProperties["defaultpassword"]
+		r.Id = Credentials_NewID(r)
 	}
 
-	r.SYSUpdated = createDate
 
-	fmt.Println("RECORD", r)
 
-	tsql := "INSERT INTO " + tableName()
-	tsql = tsql + " (" + dm.Credentials_ID + ", " + dm.Credentials_Username + ", " + dm.Credentials_Password + ", " + dm.Credentials_Firstname + ", " + dm.Credentials_Lastname + ", " + dm.Credentials_Knownas + ", " + dm.Credentials_Email + ", " + dm.Credentials_Issued + ", " + dm.Credentials_Expiry + ", " + dm.Credentials_Role + ", " + dm.Credentials_Brand + ", " + dm.Credentials_SYSCreated + ", " + dm.Credentials_SYSWho + ", " + dm.Credentials_SYSHost + ", " + dm.Credentials_SYSUpdated + ")"
-	tsql = tsql + " VALUES (" + sq(r.Id) + ", " + sq(r.Username) + ", " + sq(r.Password) + ", " + sq(r.Firstname) + ", " + sq(r.Lastname) + ", " + sq(r.Knownas) + ", " + sq(r.Email) + ", " + sq(r.Issued) + ", " + sq(r.Expiry) + ", " + sq(r.Role) + ", " + sq(r.Brand) + ", " + sq(r.SYSCreated) + ", " + sq(r.SYSWho) + ", " + sq(r.SYSHost) + ", " + sq(r.SYSUpdated) + ")"
 
-	DeleteCredentialsStore(r.Id)
+//Deal with the if its Application or null add this bit, otherwise dont.
+		//fmt.Println(credentialStore)
 
+	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
+	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
+	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
+	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
+	r.SYSUpdatedBy = Audit_Update("",Audit_User())
+	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+
+	ts := SQLData{}
+
+	ts = addData(ts, dm.Credentials_SYSId, r.SYSId)
+	ts = addData(ts, dm.Credentials_Id, r.Id)
+	ts = addData(ts, dm.Credentials_Username, r.Username)
+	ts = addData(ts, dm.Credentials_Password, r.Password)
+	ts = addData(ts, dm.Credentials_Firstname, r.Firstname)
+	ts = addData(ts, dm.Credentials_Lastname, r.Lastname)
+	ts = addData(ts, dm.Credentials_Knownas, r.Knownas)
+	ts = addData(ts, dm.Credentials_Email, r.Email)
+	ts = addData(ts, dm.Credentials_Issued, r.Issued)
+	ts = addData(ts, dm.Credentials_Expiry, r.Expiry)
+	ts = addData(ts, dm.Credentials_RoleType, r.RoleType)
+	ts = addData(ts, dm.Credentials_Brand, r.Brand)
+	ts = addData(ts, dm.Credentials_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.Credentials_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.Credentials_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.Credentials_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.Credentials_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.Credentials_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.Credentials_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Credentials_SYSUpdatedHost, r.SYSUpdatedHost)
+	
+
+	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
+	tsql = tsql + " (" + fields(ts) + ")"
+	tsql = tsql + " VALUES (" + values(ts) + ")"
+
+	Credentials_Delete(r.Id)
 	das.Execute(tsql)
 
+
+	return nil
 }
 
-func DeleteCredentialsStore(id string) {
+// credentials_Fetch read all employees
+func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, error) {
 
-	//log.Println("id:", id)
-	Credentials_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
-
-	tsql := "DELETE FROM " + Credentials_Table
-	tsql = tsql + " WHERE " + dm.Credentials_ID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
-}
-
-// fetchCredentialsStoreData read all employees
-func fetchCredentialsStoreData(tsql string) (int, []dm.Credentials, dm.Credentials, error) {
-
-	var appCredentialsStore dm.Credentials
-	var appCredentialsStoreList []dm.Credentials
+	var recItem dm.Credentials
+	var recList []dm.Credentials
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 
-	//	spew.Dump(returnList)
-
 	for i := 0; i < noitems; i++ {
 
-		tc := returnList[i]
-
-		appCredentialsStore.Id = tc[dm.Credentials_ID].(string)
-		appCredentialsStore.Username = tc[dm.Credentials_Username].(string)
-		appCredentialsStore.Password = tc[dm.Credentials_Password].(string)
-		appCredentialsStore.Firstname = tc[dm.Credentials_Firstname].(string)
-		appCredentialsStore.Lastname = tc[dm.Credentials_Lastname].(string)
-		appCredentialsStore.Knownas = tc[dm.Credentials_Knownas].(string)
-		appCredentialsStore.Email = tc[dm.Credentials_Email].(string)
-		appCredentialsStore.Issued = tc[dm.Credentials_Issued].(string)
-		appCredentialsStore.Expiry = tc[dm.Credentials_Expiry].(string)
-		appCredentialsStore.Role = tc[dm.Credentials_Role].(string)
-		appCredentialsStore.Brand = tc[dm.Credentials_Brand].(string)
-		appCredentialsStore.SYSCreated = tc[dm.Credentials_SYSCreated].(string)
-		appCredentialsStore.SYSWho = tc[dm.Credentials_SYSWho].(string)
-		appCredentialsStore.SYSHost = tc[dm.Credentials_SYSHost].(string)
-		appCredentialsStore.SYSUpdated = tc[dm.Credentials_SYSUpdated].(string)
-
-		appCredentialsStoreList = append(appCredentialsStoreList, appCredentialsStore)
-
+		rec := returnList[i]
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+    recItem.AppInternalID = get_String(rec, dm.Credentials_Id,"")
+   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId, "0")
+   recItem.Id  = get_String(rec, dm.Credentials_Id, "")
+   recItem.Username  = get_String(rec, dm.Credentials_Username, "")
+   recItem.Password  = get_String(rec, dm.Credentials_Password, "")
+   recItem.Firstname  = get_String(rec, dm.Credentials_Firstname, "")
+   recItem.Lastname  = get_String(rec, dm.Credentials_Lastname, "")
+   recItem.Knownas  = get_String(rec, dm.Credentials_Knownas, "")
+   recItem.Email  = get_String(rec, dm.Credentials_Email, "")
+   recItem.Issued  = get_String(rec, dm.Credentials_Issued, "")
+   recItem.Expiry  = get_String(rec, dm.Credentials_Expiry, "")
+   recItem.RoleType  = get_String(rec, dm.Credentials_RoleType, "")
+   recItem.Brand  = get_String(rec, dm.Credentials_Brand, "")
+   recItem.SYSCreated  = get_String(rec, dm.Credentials_SYSCreated, "")
+   recItem.SYSWho  = get_String(rec, dm.Credentials_SYSWho, "")
+   recItem.SYSHost  = get_String(rec, dm.Credentials_SYSHost, "")
+   recItem.SYSUpdated  = get_String(rec, dm.Credentials_SYSUpdated, "")
+   recItem.SYSCreatedBy  = get_String(rec, dm.Credentials_SYSCreatedBy, "")
+   recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost, "")
+   recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy, "")
+   recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost, "")
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+		//Add to the list
+		recList = append(recList, recItem)
 	}
-
-	return noitems, appCredentialsStoreList, appCredentialsStore, nil
+	return noitems, recList, recItem, nil
 }
 
-func newCredentialsStoreID() string {
-	id := uuid.New().String()
+func Credentials_NewID(r dm.Credentials) string {
+	
+	
+
+		// credentials_NewIDImpl should be specified in dao/Credentials_Impl.go
+		// to provide the implementation for the special case.
+		// override should return id - override function should be defined as
+		// credentials_NewIDImpl(r dm.Credentials) string {...}
+		//
+		id := credentials_NewIDImpl(r)
+	
+	
 	return id
 }
+// ----------------------------------------------------------------
+// ADD Aditional Functions below this line
+// ----------------------------------------------------------------
 
-func getExpiryDate() string {
-	expiryDate := time.Now()
-	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
-	expiryDate = expiryDate.AddDate(0, 0, life)
-	return expiryDate.Format(core.DATETIMEFORMATUSER)
-}
-
-func tableName() string {
-	return core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
-}

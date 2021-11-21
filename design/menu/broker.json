@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/broker.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Broker
-// Endpoint Root 	  : Broker
-// Search QueryString : Code
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "c3a764d3-7da3-411f-82b1-e1dcf0beb164",
+      "ID": "a24dda26-3ce4-4ba8-b1d4-a91bb34c94fe",
       "Text": "Brokers",
       "Glyph": "fas fa-plug",
       "HREF": "/BrokerList",

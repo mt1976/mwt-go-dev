@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/dealtype.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : DealType
-// Endpoint Root 	  : DealType
-// Search QueryString : DealTypeKey
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "e699459b-14a4-4702-8208-6625c70ce8e6",
+      "ID": "ed315fd6-a23d-40dc-bc0b-d9e583939276",
       "Text": "Deal Types",
       "Glyph": "fas fa-plug",
       "HREF": "/DealTypeList",

@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/cache.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Cache
-// Endpoint Root 	  : Cache
-// Search QueryString : ID
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "b7ce4d25-4ea6-4337-ad1e-1752fe50209f",
+      "ID": "c18ff80a-1364-4781-b84e-c6a6dbab5967",
       "Text": "Cache Contents",
       "Glyph": "fas fa-poo",
       "HREF": "/CacheList",

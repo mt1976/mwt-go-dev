@@ -1,4 +1,16 @@
 package adaptor
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/dealinginterface.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : DealingInterface (dealinginterface)
+// Endpoint 	        : DealingInterface (Name)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
 	//"encoding/xml"

@@ -1,4 +1,16 @@
 package adaptor
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/product.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Product (product)
+// Endpoint 	        : Product (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:04
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
 	//"encoding/xml"

@@ -1,114 +1,150 @@
 package dao
+// ----------------------------------------------------------------
+// Automatically generated  "/dao/account.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			    : Account (account)
+// Endpoint 	        : Account (AccountNo)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 18:11:56
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
-	"database/sql"
 	"log"
-	"strings"
+	"fmt"
 
+	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
-	"github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
-var sienaAccountSQL = "SienaReference, 	CustomerSienaView, 	SienaCommonRef, 	Status, 	StartDate, 	MaturityDate, 	ContractNumber, 	ExternalReference, 	CCY, 	Book, 	MandatedUser, 	BackOfficeNotes, 	CashBalance, 	AccountNumber, 	AccountName, 	LedgerBalance, 	Portfolio, 	AgreementId, 	BackOfficeRefNo, 	PaymentSystemSienaView, 	ISIN, 	UTI, 	CCYName, 	BookName, 	PortfolioName, 	Centre, 	Firm, 	CCYDp"
-var sqlACCTSienaReference, sqlACCTCustomerSienaView, sqlACCTSienaCommonRef, sqlACCTStatus, sqlACCTStartDate, sqlACCTMaturityDate, sqlACCTContractNumber, sqlACCTExternalReference, sqlACCTCCY, sqlACCTBook, sqlACCTMandatedUser, sqlACCTBackOfficeNotes, sqlACCTCashBalance, sqlACCTAccountNumber, sqlACCTAccountName, sqlACCTLedgerBalance, sqlACCTPortfolio, sqlACCTAgreementId, sqlACCTBackOfficeRefNo, sqlACCTPaymentSystemSienaView, sqlACCTISIN, sqlACCTUTI, sqlACCTCCYName, sqlACCTBookName, sqlACCTPortfolioName, sqlACCTCentre, sqlACCTFirm, sqlACCTCCYDp sql.NullString
-
-// getSienaAccountList read all employees
+// Account_GetList() returns a list of all Account records
 func Account_GetList() (int, []dm.Account, error) {
 
-	//	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount;", sienaAccountSQL, core.SienaPropertiesDB["schema"])
-
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
-	count, sienaAccountList, _, _ := fetchSienaAccountData(tsql)
-	return count, sienaAccountList, nil
+	count, accountList, _, _ := account_Fetch(tsql)
+	return count, accountList, nil
 }
 
-// getSienaAccountListByCounterParty read all employees
-func Account_GetListByCounterparty(idFirm string, idCentre string) (int, []dm.Account, error) {
-
-	//tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE Firm='%s' AND Centre='%s';", sienaAccountSQL, core.SienaPropertiesDB["schema"], idFirm, idCentre)
-	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
-	tsql = tsql + " WHERE " + dm.Account_Firm + "='" + idFirm + "' AND " + dm.Account_Centre + "='" + idCentre + "'"
-
-	count, sienaAccountList, _, _ := fetchSienaAccountData(tsql)
-	return count, sienaAccountList, nil
-}
-
-// getSienaAccount read all employees
+// Account_GetByID() returns a single Account record
 func Account_GetByID(id string) (int, dm.Account, error) {
 
-	//tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccount WHERE SienaReference='%s';", sienaAccountSQL, core.SienaPropertiesDB["schema"], id)
-
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
-	tsql = tsql + " WHERE " + dm.Account_SienaReference + "='" + id + "'"
-	_, _, sienaAccount, _ := fetchSienaAccountData(tsql)
-	return 1, sienaAccount, nil
+	tsql = tsql + " WHERE " + dm.Account_SQLSearchID + "='" + id + "'"
+
+	_, _, accountItem, _ := account_Fetch(tsql)
+	return 1, accountItem, nil
 }
 
-// getSienaAccountList read all employees
-func Account_Store(updateItem dm.Account) error {
+// Account_GetByReverseLookup(id string) returns a single Account record
+func Account_GetByReverseLookup(id string) (int, dm.Account, error) {
 
-	//fmt.Println(db.Stats().OpenConnections)
-	//fmt.Println(core.SienaPropertiesDB["schema"])
-	//fmt.Println(updateItem)
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
+	tsql = tsql + " WHERE CashBalance = '" + id + "'"
+
+	_, _, accountItem, _ := account_Fetch(tsql)
+	return 1, accountItem, nil
+}
+
+// Account_DeleteByID() deletes a single Account record
+func Account_Delete(id string) {
+
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Account_SQLTable
+
+	tsql := "DELETE FROM " + object_Table
+	tsql = tsql + " WHERE " + dm.Account_SQLSearchID + " = '" + id + "'"
+
+	das.Execute(tsql)
+}
+
+// Account_Store() saves/stores a Account record to the database
+func Account_Store(r dm.Account) error {
+
+	logs.Warning(fmt.Sprintf("%s", r))
+
+	if len(r.SienaReference) == 0 {
+		r.SienaReference = Account_NewID(r)
+	}
+
+
+
+	adaptor.Account_Delete(r.SienaReference)
+	adaptor.Account_Update(r)
+
+
 	return nil
 }
 
-// fetchSienaAccountData read all employees
-func fetchSienaAccountData(tsql string) (int, []dm.Account, dm.Account, error) {
+// account_Fetch read all employees
+func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
-	var sienaAccount dm.Account
-	var sienaAccountList []dm.Account
+	var recItem dm.Account
+	var recList []dm.Account
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 
-	//	spew.Dump(returnList)
-
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+    recItem.AppInternalID = get_String(rec, dm.Account_SienaReference,"")
+   recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
+   recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
+   recItem.SienaCommonRef  = get_String(rec, dm.Account_SienaCommonRef, "")
+   recItem.Status  = get_String(rec, dm.Account_Status, "")
+   recItem.StartDate  = get_Time(rec, dm.Account_StartDate, "")
+   recItem.MaturityDate  = get_Time(rec, dm.Account_MaturityDate, "")
+   recItem.ContractNumber  = get_String(rec, dm.Account_ContractNumber, "")
+   recItem.ExternalReference  = get_String(rec, dm.Account_ExternalReference, "")
+   recItem.CCY  = get_String(rec, dm.Account_CCY, "")
+   recItem.Book  = get_String(rec, dm.Account_Book, "")
+   recItem.MandatedUser  = get_String(rec, dm.Account_MandatedUser, "")
+   recItem.BackOfficeNotes  = get_String(rec, dm.Account_BackOfficeNotes, "")
+   recItem.CashBalance  = get_Float(rec, dm.Account_CashBalance, "0.00")
+   recItem.AccountNumber  = get_String(rec, dm.Account_AccountNumber, "")
+   recItem.AccountName  = get_String(rec, dm.Account_AccountName, "")
+   recItem.LedgerBalance  = get_Float(rec, dm.Account_LedgerBalance, "0.00")
+   recItem.Portfolio  = get_String(rec, dm.Account_Portfolio, "")
+   recItem.AgreementId  = get_Int(rec, dm.Account_AgreementId, "0")
+   recItem.BackOfficeRefNo  = get_String(rec, dm.Account_BackOfficeRefNo, "")
+   recItem.ISIN  = get_String(rec, dm.Account_ISIN, "")
+   recItem.UTI  = get_String(rec, dm.Account_UTI, "")
+   recItem.CCYName  = get_String(rec, dm.Account_CCYName, "")
+   recItem.BookName  = get_String(rec, dm.Account_BookName, "")
+   recItem.PortfolioName  = get_String(rec, dm.Account_PortfolioName, "")
+   recItem.Centre  = get_String(rec, dm.Account_Centre, "")
+   recItem.Firm  = get_String(rec, dm.Account_Firm, "")
+   recItem.CCYDp  = get_Int(rec, dm.Account_CCYDp, "0")
 
-		sienaAccount.SienaReference = get_String(rec, dm.Account_SienaReference, "")
-		sienaAccount.CustomerSienaView = get_String(rec, dm.Account_CustomerSienaView, "")
-		sienaAccount.SienaCommonRef = get_String(rec, dm.Account_SienaCommonRef, "")
-		sienaAccount.Status = get_String(rec, dm.Account_Status, "")
-		sienaAccount.StartDate = get_Time(rec, dm.Account_StartDate, "")
-		sienaAccount.MaturityDate = get_Time(rec, dm.Account_MaturityDate, "")
-		sienaAccount.ContractNumber = get_String(rec, dm.Account_ContractNumber, "")
-		sienaAccount.ExternalReference = get_String(rec, dm.Account_ExternalReference, "")
-		sienaAccount.CCY = get_String(rec, dm.Account_CCY, "")
-		sienaAccount.Book = get_String(rec, dm.Account_Book, "")
-		sienaAccount.MandatedUser = get_String(rec, dm.Account_MandatedUser, "")
-		sienaAccount.BackOfficeNotes = get_String(rec, dm.Account_BackOfficeNotes, "")
-		sienaAccount.CashBalance = get_Float(rec, dm.Account_CashBalance, "0.0")
-		sienaAccount.AccountNumber = get_String(rec, dm.Account_AccountNumber, "")
-		sienaAccount.AccountName = get_String(rec, dm.Account_AccountName, "")
-		sienaAccount.LedgerBalance = get_Float(rec, dm.Account_LedgerBalance, "0.0")
-		sienaAccount.Portfolio = get_String(rec, dm.Account_Portfolio, "")
-		sienaAccount.AgreementId = get_String(rec, dm.Account_AgreementId, "")
-		sienaAccount.BackOfficeRefNo = get_String(rec, dm.Account_BackOfficeRefNo, "")
-		sienaAccount.PaymentSystemSienaView = get_String(rec, dm.Account_PaymentSystemSienaView, "")
-		sienaAccount.ISIN = get_String(rec, dm.Account_ISIN, "")
-		sienaAccount.UTI = get_String(rec, dm.Account_UTI, "")
-		sienaAccount.CCYName = get_String(rec, dm.Account_CCYName, "")
-		sienaAccount.Firm = get_String(rec, dm.Account_Firm, "")
-		sienaAccount.Centre = get_String(rec, dm.Account_Centre, "")
-		sienaAccount.CCYDp = get_Int(rec, dm.Account_CCYDp, "2")
-		sienaAccount.BookName = get_String(rec, dm.Account_BookName, "")
-		sienaAccount.PortfolioName = get_String(rec, dm.Account_PortfolioName, "")
-		sienaAccount.CCYName = get_String(rec, dm.Account_CCYName, "")
-		//Post Import Actions
-		sienaAccount.CashBalance = core.FormatCurrencyDps(sienaAccount.CashBalance, sienaAccount.CCY, sienaAccount.CCYDp)
-		sienaAccount.LedgerBalance = core.FormatCurrencyDps(sienaAccount.LedgerBalance, sienaAccount.CCY, sienaAccount.CCYDp)
-		sienaAccount.Centre = strings.TrimSpace(sienaAccount.Centre)
-		sienaAccount.Firm = strings.TrimSpace(sienaAccount.Firm)
+
+
+
+
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
-		sienaAccountList = append(sienaAccountList, sienaAccount)
-
+		recList = append(recList, recItem)
 	}
-
-	return noitems, sienaAccountList, sienaAccount, nil
+	return noitems, recList, recItem, nil
 }
+
+func Account_NewID(r dm.Account) string {
+	
+	
+			id := uuid.New().String()
+
+	
+	return id
+}
+// ----------------------------------------------------------------
+// ADD Aditional Functions below this line
+// ----------------------------------------------------------------
+

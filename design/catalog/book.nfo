@@ -1,41 +1,47 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/book.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : Book
-// Endpoint Root 	    : Book
-// Search QueryString   : Book
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaBook
-// SQL Table Search Col : BookName
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:02
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | BookName                  | String     |            | BookName                  |  true |  true | false |            |            |            |           
-// | FullName                  | String     |            | FullName                  | false |  true | false |            |            |            |           
-// | PLManage                  | String     |            | PLManage                  | false |  true | false |            |            |            |           
-// | PLTransfer                | String     |            | PLTransfer                | false |  true | false |            |            |            |           
-// | DerivePL                  | Bool       |       True | DerivePL                  | false |  true | false |            |            |            |           
-// | CostOfCarry               | Bool       |       True | CostOfCarry               | false |  true | false |            |            |            |           
-// | CostOfFunding             | Bool       |       True | CostOfFunding             | false |  true | false |            |            |            |           
-// | LotAllocationMethod       | String     |            | LotAllocationMethod       | false |  true | false |            |            |            |           
-// | InternalId                | Int        |          0 | InternalId                |  true |  true | false |            |            |            |           
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/book.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Book (book)
+Endpoint 	         : Book (Book)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 15:44:00
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaBook
+SQL Table Search Col : BookName
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| BookName                            | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| PLManage                            | String     |            | false | true   | false |                 |            |            | 
+| PLTransfer                          | String     |            | false | true   | false |                 |            |            | 
+| DerivePL                            | Bool       | True       | false | true   | false |                 |            |            | 
+| CostOfCarry                         | Bool       | True       | false | true   | false |                 |            |            | 
+| CostOfFunding                       | Bool       | True       | false | true   | false |                 |            |            | 
+| LotAllocationMethod                 | String     |            | false | true   | false |                 |            |            | 
+| InternalId                          | Int        | 0          | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/book_core.go)
+* adaptor (/adaptor/book.go)
+* dao (/dao/book.go)
+* datamodel (/datamodel/book.go)
+* menu (/design/menu/book.json)
+* html -> List (/html/Book_List.html)
+* html -> View (/html/Book_View.html)
+* html -> Edit (/html/Book_Edit.html)
+* catalog (/design/catalog/book.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

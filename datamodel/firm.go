@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/firm.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Firm
-// Endpoint Root 	  : Firm
-// Search QueryString : FirmName
-// From   			  : 
+// Package              : application
+// Object 			    : Firm (firm)
+// Endpoint 	        : Firm (FirmName)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese
@@ -22,8 +20,8 @@ FirmName        string
 FullName        string
 Country        string
 Sector        string
-Sector_Enri        string
-Country_Enri        string
+Sector_Impl        string
+Country_Impl        string
 
 }
 
@@ -55,8 +53,8 @@ const (
 	Firm_FullName   = "FullName" // FullName is a String
 	Firm_Country   = "Country" // Country is a String
 	Firm_Sector   = "Sector" // Sector is a String
-	Firm_Sector_Enri   = "Sector_Enri" // Sector_Enri is a String
-	Firm_Country_Enri   = "Country_Enri" // Country_Enri is a String
+	Firm_Sector_Impl   = "Sector_Impl" // Sector_Impl is a String
+	Firm_Country_Impl   = "Country_Impl" // Country_Impl is a String
 
 	/// Definitions End
 )

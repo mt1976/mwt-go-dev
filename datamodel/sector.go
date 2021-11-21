@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/sector.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Sector
-// Endpoint Root 	  : Sector
-// Search QueryString : Sector
-// From   			  : 
+// Package              : application
+// Object 			    : Sector (sector)
+// Endpoint 	        : Sector (Sector)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:05
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

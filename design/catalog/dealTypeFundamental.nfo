@@ -1,121 +1,128 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/dealtypefundamental.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : DealTypeFundamental
-// Endpoint Root 	    : DealTypeFundamental
-// Search QueryString   : DealTypeKey
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaDealTypeFundamentals
-// SQL Table Search Col : DealTypeKey
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:05
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | DealTypeKey               | String     |            | DealTypeKey               |  true |  true | false |            |            |            |           
-// | Amendment                 | Bool       |       True | Amendment                 | false |  true | false |            |            |            |           
-// | DefaultFrequency          | Int        |          0 | DefaultFrequency          | false |  true | false |            |            |            |           
-// | Directions                | String     |            | Directions                | false |  true | false |            |            |            |           
-// | SettledTermDealType       | String     |            | SettledTermDealType       | false |  true | false |            |            |            |           
-// | Optn                      | Bool       |       True | Optn                      | false |  true | false |            |            |            |           
-// | AllowPledge               | Bool       |       True | AllowPledge               | false |  true | false |            |            |            |           
-// | Takeup                    | Bool       |       True | Takeup                    | false |  true | false |            |            |            |           
-// | MismatchDealType          | String     |            | MismatchDealType          | false |  true | false |            |            |            |           
-// | SettledHedgeTermDealType  | String     |            | SettledHedgeTermDealType  | false |  true | false |            |            |            |           
-// | SettlementCode            | String     |            | SettlementCode            | false |  true | false |            |            |            |           
-// | TermSubType               | String     |            | TermSubType               | false |  true | false |            |            |            |           
-// | FundingDealType           | String     |            | FundingDealType           | false |  true | false |            |            |            |           
-// | TransferType              | String     |            | TransferType              | false |  true | false |            |            |            |           
-// | TermDealType              | String     |            | TermDealType              | false |  true | false |            |            |            |           
-// | NegotiableInstrumentType  | String     |            | NegotiableInstrumentType  | false |  true | false |            |            |            |           
-// | Mismatch                  | Bool       |       True | Mismatch                  | false |  true | false |            |            |            |           
-// | ComplexTransferSubType    | String     |            | ComplexTransferSubType    | false |  true | false |            |            |            |           
-// | LayOffDealType            | String     |            | LayOffDealType            | false |  true | false |            |            |            |           
-// | NIAccount                 | Int        |          0 | NIAccount                 | false |  true | false |            |            |            |           
-// | SimpleMMsubtype           | Int        |          0 | SimpleMMsubtype           | false |  true | false |            |            |            |           
-// | SwapDealType              | String     |            | SwapDealType              | false |  true | false |            |            |            |           
-// | Positions                 | String     |            | Positions                 | false |  true | false |            |            |            |           
-// | OptionOutright            | String     |            | OptionOutright            | false |  true | false |            |            |            |           
-// | SettledHedgeSpotDealType  | String     |            | SettledHedgeSpotDealType  | false |  true | false |            |            |            |           
-// | StraightThroughInterestMethod | Bool       |       True | StraightThroughInterestMethod | false |  true | false |            |            |            |           
-// | SubType                   | String     |            | SubType                   | false |  true | false |            |            |            |           
-// | Rollover                  | Bool       |       True | Rollover                  | false |  true | false |            |            |            |           
-// | DefaultIssuer             | String     |            | DefaultIssuer             | false |  true | false |            |            |            |           
-// | DefaultStartDate          | Int        |          0 | DefaultStartDate          | false |  true | false |            |            |            |           
-// | Fee                       | String     |            | Fee                       | false |  true | false |            |            |            |           
-// | NDF                       | Bool       |       True | NDF                       | false |  true | false |            |            |            |           
-// | FXFX                      | Bool       |       True | FXFX                      | false |  true | false |            |            |            |           
-// | ONIA                      | Bool       |       True | ONIA                      | false |  true | false |            |            |            |           
-// | MarginSubType             | Int        |          0 | MarginSubType             | false |  true | false |            |            |            |           
-// | TransferDealType          | String     |            | TransferDealType          | false |  true | false |            |            |            |           
-// | IsFX                      | Bool       |       True | IsFX                      | false |  true | false |            |            |            |           
-// | Ordr                      | String     |            | Ordr                      | false |  true | false |            |            |            |           
-// | OptionStyle               | String     |            | OptionStyle               | false |  true | false |            |            |            |           
-// | SpotDealType              | String     |            | SpotDealType              | false |  true | false |            |            |            |           
-// | CanIssue                  | Bool       |       True | CanIssue                  | false |  true | false |            |            |            |           
-// | CanShort                  | Bool       |       True | CanShort                  | false |  true | false |            |            |            |           
-// | FXMarginTradingType       | Int        |          0 | FXMarginTradingType       | false |  true | false |            |            |            |           
-// | Internal                  | Bool       |       True | Internal                  | false |  true | false |            |            |            |           
-// | TicketBasename            | String     |            | TicketBasename            | false |  true | false |            |            |            |           
-// | InterestRateFutureType    | String     |            | InterestRateFutureType    | false |  true | false |            |            |            |           
-// | TradingLimitProductCode   | String     |            | TradingLimitProductCode   | false |  true | false |            |            |            |           
-// | Forward                   | Bool       |       True | Forward                   | false |  true | false |            |            |            |           
-// | MaturityNotificationPeriod | String     |            | MaturityNotificationPeriod | false |  true | false |            |            |            |           
-// | NotificationEvents        | String     |            | NotificationEvents        | false |  true | false |            |            |            |           
-// | SwapSubType               | String     |            | SwapSubType               | false |  true | false |            |            |            |           
-// | ProductCode               | String     |            | ProductCode               | false |  true | false |            |            |            |           
-// | Funding                   | Bool       |       True | Funding                   | false |  true | false |            |            |            |           
-// | AllocationPricing         | String     |            | AllocationPricing         | false |  true | false |            |            |            |           
-// | CancelPeriod              | String     |            | CancelPeriod              | false |  true | false |            |            |            |           
-// | MMMarginTradingType       | Int        |          0 | MMMarginTradingType       | false |  true | false |            |            |            |           
-// | OptionSpot                | String     |            | OptionSpot                | false |  true | false |            |            |            |           
-// | Transfer                  | Bool       |       True | Transfer                  | false |  true | false |            |            |            |           
-// | NotificationPeriod        | String     |            | NotificationPeriod        | false |  true | false |            |            |            |           
-// | Paymentdateshift          | Int        |          0 | Paymentdateshift          | false |  true | false |            |            |            |           
-// | CloseOut                  | Bool       |       True | CloseOut                  | false |  true | false |            |            |            |           
-// | FXOptionPricing           | String     |            | FXOptionPricing           | false |  true | false |            |            |            |           
-// | SettledHedgeOutrightDealType | String     |            | SettledHedgeOutrightDealType | false |  true | false |            |            |            |           
-// | RepoBond                  | String     |            | RepoBond                  | false |  true | false |            |            |            |           
-// | RepoTerm                  | String     |            | RepoTerm                  | false |  true | false |            |            |            |           
-// | RepoType                  | Int        |          0 | RepoType                  | false |  true | false |            |            |            |           
-// | DateRule                  | String     |            | DateRule                  | false |  true | false |            |            |            |           
-// | CorpTransferDealType      | String     |            | CorpTransferDealType      | false |  true | false |            |            |            |           
-// | GenerateFXImage           | Bool       |       True | GenerateFXImage           | false |  true | false |            |            |            |           
-// | Variant                   | String     |            | Variant                   | false |  true | false |            |            |            |           
-// | HedgeTermDealType         | String     |            | HedgeTermDealType         | false |  true | false |            |            |            |           
-// | PricingModel              | String     |            | PricingModel              | false |  true | false |            |            |            |           
-// | HedgeOutrightDealType     | String     |            | HedgeOutrightDealType     | false |  true | false |            |            |            |           
-// | Fixing                    | Bool       |       True | Fixing                    | false |  true | false |            |            |            |           
-// | Payment                   | Bool       |       True | Payment                   | false |  true | false |            |            |            |           
-// | MT                        | Bool       |       True | MT                        | false |  true | false |            |            |            |           
-// | SettlementInstructionStyle | String     |            | SettlementInstructionStyle | false |  true | false |            |            |            |           
-// | QuoteHistoryRequired      | Bool       |       True | QuoteHistoryRequired      | false |  true | false |            |            |            |           
-// | Brokerage                 | Bool       |       True | Brokerage                 | false |  true | false |            |            |            |           
-// | ExposureDisabled          | Bool       |       True | ExposureDisabled          | false |  true | false |            |            |            |           
-// | ChildInheritsTradingEntity | Bool       |       True | ChildInheritsTradingEntity | false |  true | false |            |            |            |           
-// | InternalId                | Int        |          0 | InternalId                |  true |  true | false |            |            |            |           
-// | InternalDeleted           | Time       |            | InternalDeleted           | false |  true | false |            |            |            |           
-// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |  true | false |            |            |            |           
-// | UpdatedUserId             | String     |            | UpdatedUserId             | false |  true | false |            |            |            |           
-// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |  true | false |            |            |            |           
-// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |  true | false |            |            |            |           
-// | DeletedUserId             | String     |            | DeletedUserId             | false |  true | false |            |            |            |           
-// | ChangeType                | String     |            | ChangeType                | false |  true | false |            |            |            |           
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/dealtypefundamental.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : DealTypeFundamental (dealtypefundamental)
+Endpoint 	         : DealTypeFundamental (DealTypeKey)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 15:44:03
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaDealTypeFundamentals
+SQL Table Search Col : DealTypeKey
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| DealTypeKey                         | String     |            | true  | true   | false |                 |            |            | 
+| Amendment                           | Bool       | True       | false | true   | false |                 |            |            | 
+| DefaultFrequency                    | Int        | 0          | false | true   | false |                 |            |            | 
+| Directions                          | String     |            | false | true   | false |                 |            |            | 
+| SettledTermDealType                 | String     |            | false | true   | false |                 |            |            | 
+| Optn                                | Bool       | True       | false | true   | false |                 |            |            | 
+| AllowPledge                         | Bool       | True       | false | true   | false |                 |            |            | 
+| Takeup                              | Bool       | True       | false | true   | false |                 |            |            | 
+| MismatchDealType                    | String     |            | false | true   | false |                 |            |            | 
+| SettledHedgeTermDealType            | String     |            | false | true   | false |                 |            |            | 
+| SettlementCode                      | String     |            | false | true   | false |                 |            |            | 
+| TermSubType                         | String     |            | false | true   | false |                 |            |            | 
+| FundingDealType                     | String     |            | false | true   | false |                 |            |            | 
+| TransferType                        | String     |            | false | true   | false |                 |            |            | 
+| TermDealType                        | String     |            | false | true   | false |                 |            |            | 
+| NegotiableInstrumentType            | String     |            | false | true   | false |                 |            |            | 
+| Mismatch                            | Bool       | True       | false | true   | false |                 |            |            | 
+| ComplexTransferSubType              | String     |            | false | true   | false |                 |            |            | 
+| LayOffDealType                      | String     |            | false | true   | false |                 |            |            | 
+| NIAccount                           | Int        | 0          | false | true   | false |                 |            |            | 
+| SimpleMMsubtype                     | Int        | 0          | false | true   | false |                 |            |            | 
+| SwapDealType                        | String     |            | false | true   | false |                 |            |            | 
+| Positions                           | String     |            | false | true   | false |                 |            |            | 
+| OptionOutright                      | String     |            | false | true   | false |                 |            |            | 
+| SettledHedgeSpotDealType            | String     |            | false | true   | false |                 |            |            | 
+| StraightThroughInterestMethod       | Bool       | True       | false | true   | false |                 |            |            | 
+| SubType                             | String     |            | false | true   | false |                 |            |            | 
+| Rollover                            | Bool       | True       | false | true   | false |                 |            |            | 
+| DefaultIssuer                       | String     |            | false | true   | false |                 |            |            | 
+| DefaultStartDate                    | Int        | 0          | false | true   | false |                 |            |            | 
+| Fee                                 | String     |            | false | true   | false |                 |            |            | 
+| NDF                                 | Bool       | True       | false | true   | false |                 |            |            | 
+| FXFX                                | Bool       | True       | false | true   | false |                 |            |            | 
+| ONIA                                | Bool       | True       | false | true   | false |                 |            |            | 
+| MarginSubType                       | Int        | 0          | false | true   | false |                 |            |            | 
+| TransferDealType                    | String     |            | false | true   | false |                 |            |            | 
+| IsFX                                | Bool       | True       | false | true   | false |                 |            |            | 
+| Ordr                                | String     |            | false | true   | false |                 |            |            | 
+| OptionStyle                         | String     |            | false | true   | false |                 |            |            | 
+| SpotDealType                        | String     |            | false | true   | false |                 |            |            | 
+| CanIssue                            | Bool       | True       | false | true   | false |                 |            |            | 
+| CanShort                            | Bool       | True       | false | true   | false |                 |            |            | 
+| FXMarginTradingType                 | Int        | 0          | false | true   | false |                 |            |            | 
+| Internal                            | Bool       | True       | false | true   | false |                 |            |            | 
+| TicketBasename                      | String     |            | false | true   | false |                 |            |            | 
+| InterestRateFutureType              | String     |            | false | true   | false |                 |            |            | 
+| TradingLimitProductCode             | String     |            | false | true   | false |                 |            |            | 
+| Forward                             | Bool       | True       | false | true   | false |                 |            |            | 
+| MaturityNotificationPeriod          | String     |            | false | true   | false |                 |            |            | 
+| NotificationEvents                  | String     |            | false | true   | false |                 |            |            | 
+| SwapSubType                         | String     |            | false | true   | false |                 |            |            | 
+| ProductCode                         | String     |            | false | true   | false |                 |            |            | 
+| Funding                             | Bool       | True       | false | true   | false |                 |            |            | 
+| AllocationPricing                   | String     |            | false | true   | false |                 |            |            | 
+| CancelPeriod                        | String     |            | false | true   | false |                 |            |            | 
+| MMMarginTradingType                 | Int        | 0          | false | true   | false |                 |            |            | 
+| OptionSpot                          | String     |            | false | true   | false |                 |            |            | 
+| Transfer                            | Bool       | True       | false | true   | false |                 |            |            | 
+| NotificationPeriod                  | String     |            | false | true   | false |                 |            |            | 
+| Paymentdateshift                    | Int        | 0          | false | true   | false |                 |            |            | 
+| CloseOut                            | Bool       | True       | false | true   | false |                 |            |            | 
+| FXOptionPricing                     | String     |            | false | true   | false |                 |            |            | 
+| SettledHedgeOutrightDealType        | String     |            | false | true   | false |                 |            |            | 
+| RepoBond                            | String     |            | false | true   | false |                 |            |            | 
+| RepoTerm                            | String     |            | false | true   | false |                 |            |            | 
+| RepoType                            | Int        | 0          | false | true   | false |                 |            |            | 
+| DateRule                            | String     |            | false | true   | false |                 |            |            | 
+| CorpTransferDealType                | String     |            | false | true   | false |                 |            |            | 
+| GenerateFXImage                     | Bool       | True       | false | true   | false |                 |            |            | 
+| Variant                             | String     |            | false | true   | false |                 |            |            | 
+| HedgeTermDealType                   | String     |            | false | true   | false |                 |            |            | 
+| PricingModel                        | String     |            | false | true   | false |                 |            |            | 
+| HedgeOutrightDealType               | String     |            | false | true   | false |                 |            |            | 
+| Fixing                              | Bool       | True       | false | true   | false |                 |            |            | 
+| Payment                             | Bool       | True       | false | true   | false |                 |            |            | 
+| MT                                  | Bool       | True       | false | true   | false |                 |            |            | 
+| SettlementInstructionStyle          | String     |            | false | true   | false |                 |            |            | 
+| QuoteHistoryRequired                | Bool       | True       | false | true   | false |                 |            |            | 
+| Brokerage                           | Bool       | True       | false | true   | false |                 |            |            | 
+| ExposureDisabled                    | Bool       | True       | false | true   | false |                 |            |            | 
+| ChildInheritsTradingEntity          | Bool       | True       | false | true   | false |                 |            |            | 
+| InternalId                          | Int        | 0          | true  | true   | false |                 |            |            | 
+| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
+| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
+| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/dealTypeFundamental_core.go)
+* adaptor (/adaptor/dealTypeFundamental.go)
+* dao (/dao/dealTypeFundamental.go)
+* datamodel (/datamodel/dealTypeFundamental.go)
+* menu (/design/menu/dealTypeFundamental.json)
+* html -> List (/html/DealTypeFundamental_List.html)
+* html -> View (/html/DealTypeFundamental_View.html)
+* html -> Edit (/html/DealTypeFundamental_Edit.html)
+* html -> New (/html/DealTypeFundamental_New.html)
+* catalog (/design/catalog/dealTypeFundamental.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

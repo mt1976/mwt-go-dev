@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/counterpartygroup.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : CounterpartyGroup
-// Endpoint Root 	  : CounterpartyGroup
-// Search QueryString : Group
+// Object 			    : CounterpartyGroup (counterpartygroup)
+// Endpoint 	        : CounterpartyGroup (Group)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:01
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func CounterpartyGroup_GetByID(id string) (int, dm.CounterpartyGroup, error) {
 
 
 
-
-
 // CounterpartyGroup_DeleteByID() deletes a single CounterpartyGroup record
 func CounterpartyGroup_Delete(id string) {
 
@@ -64,7 +61,7 @@ func CounterpartyGroup_Store(r dm.CounterpartyGroup) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Name) == 0 {
-		r.Name= counterpartygroup_NewID(r)
+		r.Name = CounterpartyGroup_NewID(r)
 	}
 
 
@@ -90,22 +87,26 @@ func counterpartygroup_Fetch(tsql string) (int, []dm.CounterpartyGroup, dm.Count
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.CounterpartyGroup_Name,"")
    recItem.Name  = get_String(rec, dm.CounterpartyGroup_Name, "")
    recItem.CountryCode  = get_String(rec, dm.CounterpartyGroup_CountryCode, "")
    recItem.SuperGroup  = get_String(rec, dm.CounterpartyGroup_SuperGroup, "")
 
 
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func counterpartygroup_NewID(r dm.CounterpartyGroup) string {
-	id := uuid.New().String()
+func CounterpartyGroup_NewID(r dm.CounterpartyGroup) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

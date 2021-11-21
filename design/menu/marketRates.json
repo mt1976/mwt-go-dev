@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/marketrates.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : MarketRates
-// Endpoint Root 	  : MarketRates
-// Search QueryString : ID
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "b25fc8a2-5a79-44cb-8302-0459fd507573",
+      "ID": "8e5dfe3d-3a76-4943-9adf-723ac06d715d",
       "Text": "Rates Store Contents",
       "Glyph": "fas fa-poo",
       "HREF": "/MarketRatesList",

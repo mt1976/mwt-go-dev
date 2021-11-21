@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/broker.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Broker
-// Endpoint Root 	  : Broker
-// Search QueryString : Code
+// Object 			    : Broker (broker)
+// Endpoint 	        : Broker (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -53,8 +52,6 @@ func Broker_GetByReverseLookup(id string) (int, dm.Broker, error) {
 	return 1, brokerItem, nil
 }
 
-
-
 // Broker_DeleteByID() deletes a single Broker record
 func Broker_Delete(id string) {
 
@@ -72,7 +69,7 @@ func Broker_Store(r dm.Broker) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= broker_NewID(r)
+		r.Code = Broker_NewID(r)
 	}
 
 
@@ -98,7 +95,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Broker_Code,"")
    recItem.Code  = get_String(rec, dm.Broker_Code, "")
    recItem.Name  = get_String(rec, dm.Broker_Name, "")
@@ -106,15 +103,19 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
    recItem.Contact  = get_String(rec, dm.Broker_Contact, "")
    recItem.Address  = get_String(rec, dm.Broker_Address, "")
    recItem.LEI  = get_String(rec, dm.Broker_LEI, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func broker_NewID(r dm.Broker) string {
-	id := uuid.New().String()
+func Broker_NewID(r dm.Broker) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

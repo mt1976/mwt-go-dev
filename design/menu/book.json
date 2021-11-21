@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/book.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Book
-// Endpoint Root 	  : Book
-// Search QueryString : Book
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:02
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "dfa39eca-a851-47e8-90d6-1bc35bbd75b6",
+      "ID": "8ab83c5a-2275-43ed-a5ac-6c87562f04c8",
       "Text": "Books",
       "Glyph": "fas fa-book",
       "HREF": "/BookList",

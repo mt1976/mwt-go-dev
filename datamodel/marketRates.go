@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/marketrates.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : MarketRates
-// Endpoint Root 	  : MarketRates
-// Search QueryString : ID
-// From   			  : 
+// Package              : application
+// Object 			    : MarketRates (marketrates)
+// Endpoint 	        : MarketRates (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:04
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

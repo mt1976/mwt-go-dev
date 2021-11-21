@@ -1,4 +1,16 @@
 package adaptor
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/dealtypefundamental.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : DealTypeFundamental (dealtypefundamental)
+// Endpoint 	        : DealTypeFundamental (DealTypeKey)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
 	//"encoding/xml"

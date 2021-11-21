@@ -121,3 +121,9 @@ func Schedule_GetCronHuman(in string) string {
 
 	return desc
 }
+
+func schedule_HandlerViewImpl(pageDetail Schedule_Page) Schedule_Page { return pageDetail }
+func schedule_HandlerEditImpl(pageDetail Schedule_Page) Schedule_Page { return pageDetail }
+func schedule_HandlerSaveImpl(item dm.Schedule) dm.Schedule {
+	return item
+}

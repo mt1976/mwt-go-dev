@@ -141,3 +141,8 @@ func Audit_Host() string {
 	host, _ := os.Hostname()
 	return host
 }
+
+func tsql_AND(tsql string, inField string, inValue string) string {
+	tsql = tsql + " AND " + inField + " = " + sq(inValue)
+	return tsql
+}

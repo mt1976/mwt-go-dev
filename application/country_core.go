@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/country.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : Country
-// Endpoint Root 	  : Country
-// Search QueryString : Code
-// From   			  : 
+// Package              : application
+// Object 			    : Country (country)
+// Endpoint 	        : Country (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:01
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //country_PageList provides the information for the template for a list of Countrys
-type country_PageList struct {
+type Country_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,29 +33,26 @@ type country_PageList struct {
 }
 
 //country_Page provides the information for the template for an individual Country
-type country_Page struct {
+type Country_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		ShortCode string
 		EU_EEA string
 		HolidaysWeekend string
 	
-
-
 	
 	
 	
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -73,6 +68,7 @@ func Country_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Country_PathSave, Country_HandlerSave)
 	
 	logs.Publish("Siena", dm.Country_Title)
+	
 }
 
 //Country_HandlerList is the handler for the list page
@@ -91,7 +87,7 @@ func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Country_GetList()
 
 
-	pageDetail := country_PageList{
+	pageDetail := Country_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Country_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -119,7 +115,7 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Country_QueryString)
 	_, rD, _ := dao.Country_GetByID(searchID)
 
-	pageDetail := country_Page{
+	pageDetail := Country_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -128,15 +124,19 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.ShortCode = rD.ShortCode
 pageDetail.EU_EEA = rD.EU_EEA
 pageDetail.HolidaysWeekend = rD.HolidaysWeekend
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -158,7 +158,7 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Country_QueryString)
 	_, rD, _ := dao.Country_GetByID(searchID)
 	
-	pageDetail := country_Page{
+	pageDetail := Country_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -167,16 +167,17 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.ShortCode = rD.ShortCode
 pageDetail.EU_EEA = rD.EU_EEA
 pageDetail.HolidaysWeekend = rD.HolidaysWeekend
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -193,19 +194,21 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Country
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Country_Code)
 		item.Name = r.FormValue(dm.Country_Name)
 		item.ShortCode = r.FormValue(dm.Country_ShortCode)
 		item.EU_EEA = r.FormValue(dm.Country_EU_EEA)
 		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.Country_Store(item)	
 
@@ -225,7 +228,7 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := country_Page{
+	pageDetail := Country_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -234,14 +237,14 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.ShortCode = ""
 pageDetail.EU_EEA = ""
 pageDetail.HolidaysWeekend = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Country_TemplateNew, core.GetUserRole(r)))

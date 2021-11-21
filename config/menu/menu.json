@@ -163,7 +163,7 @@
       "ID": "14",
       "Text": "Accounts",
       "Glyph": "fas fa-landmark",
-      "HREF": "/listSienaAccount",
+      "HREF": "/AccountList",
       "OnClick": "",
       "TextClass": ""
     }
@@ -222,12 +222,12 @@
     }
     ,
     {
-      "ID": "credentialsStore",
+      "ID": "d6a83bb0-e520-4251-88e2-33eb38b38e2e",
       "Text": "Credentials",
-      "Glyph": "fas fa-key",
-      "HREF": "/listCredentialsStore",
+      "Glyph": "fas fa-key text-danger",
+      "HREF": "/CredentialsList",
       "OnClick": "",
-      "TextClass": "text-danger"
+      "TextClass": ""
     }
     ,
 
@@ -366,9 +366,41 @@
       "TextClass": ""
     }
     ,
+
+    {
+      "ID": "fbda22e3-180f-4aa7-ba5d-540a4924080f",
+      "Text": "Account Transactions",
+      "Glyph": "fas fa-landmark",
+      "HREF": "/AccountTransactionList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+
+    {
+      "ID": "004115e1-75d6-4d10-aef7-fe34087d1807",
+      "Text": "Account Ladder",
+      "Glyph": "fas fa-landmark",
+      "HREF": "/AccountLadderList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    {
+      "ID": "6722d374-f8aa-48b5-b10e-09641ed12e93",
+      "Text": "Payees",
+      "Glyph": "fas fa-landmark",
+      "HREF": "/PayeeList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    
+
     {
       "Break": "<hr class=\"hr-list\">"
     },
+
 
 
     {

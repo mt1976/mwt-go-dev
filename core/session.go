@@ -84,13 +84,13 @@ func loginValidate(appToken string, username string, password string, r *http.Re
 	//s.host = host
 
 	var cred dm.Credentials
-	cred.Role = ""
+	cred.RoleType = ""
 	cred.Knownas = "mock"
 	cred.Username = "mock"
 	cred.Id = "mock"
 
-	SessionManager.Put(r.Context(), SessionRole, cred.Role)
-	SessionManager.Put(r.Context(), SessionNavi, GetNavigationID(cred.Role))
+	SessionManager.Put(r.Context(), SessionRole, cred.RoleType)
+	SessionManager.Put(r.Context(), SessionNavi, GetNavigationID(cred.RoleType))
 	SessionManager.Put(r.Context(), SessionKnowAs, cred.Knownas)
 	SessionManager.Put(r.Context(), SessionUserName, cred.Username)
 	SessionManager.Put(r.Context(), SessionAppToken, ApplicationProperties["apptoken"])
@@ -123,7 +123,7 @@ func SessionValidate(w http.ResponseWriter, r *http.Request) bool {
 
 	// were only going to check that uid and the username mactc
 	var cred dm.Credentials
-	cred.Role = ""
+	cred.RoleType = ""
 	cred.Knownas = "mock"
 	cred.Username = "mock"
 	cred.Id = session_uuid

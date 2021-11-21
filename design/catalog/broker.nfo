@@ -1,38 +1,45 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/broker.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : Broker
-// Endpoint Root 	    : Broker
-// Search QueryString   : Code
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaBroker
-// SQL Table Search Col : Code
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:03
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | Code                      | String     |            | Code                      |  true |  true | false |            |            |            |           
-// | Name                      | String     |            | Name                      | false |  true | false |            |            |            |           
-// | FullName                  | String     |            | FullName                  | false |  true | false |            |            |            |           
-// | Contact                   | String     |            | Contact                   | false |  true | false |            |            |            |           
-// | Address                   | String     |            | Address                   | false |  true | false |            |            |            |           
-// | LEI                       | String     |            | LEI                       | false |  true | false |            |            |            |           
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/broker.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Broker (broker)
+Endpoint 	         : Broker (Code)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 15:44:00
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaBroker
+SQL Table Search Col : Code
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Code                                | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| Contact                             | String     |            | false | true   | false |                 |            |            | 
+| Address                             | String     |            | false | true   | false |                 |            |            | 
+| LEI                                 | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/broker_core.go)
+* adaptor (/adaptor/broker.go)
+* dao (/dao/broker.go)
+* datamodel (/datamodel/broker.go)
+* menu (/design/menu/broker.json)
+* html -> List (/html/Broker_List.html)
+* html -> View (/html/Broker_View.html)
+* html -> Edit (/html/Broker_Edit.html)
+* html -> New (/html/Broker_New.html)
+* catalog (/design/catalog/broker.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

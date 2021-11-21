@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/book.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : Book
-// Endpoint Root 	  : Book
-// Search QueryString : Book
-// From   			  : 
+// Package              : application
+// Object 			    : Book (book)
+// Endpoint 	        : Book (Book)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:02
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //book_PageList provides the information for the template for a list of Books
-type book_PageList struct {
+type Book_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,13 +33,13 @@ type book_PageList struct {
 }
 
 //book_Page provides the information for the template for an individual Book
-type book_Page struct {
+type Book_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		BookName string
 		FullName string
 		PLManage string
@@ -52,8 +50,6 @@ type book_Page struct {
 		LotAllocationMethod string
 		InternalId string
 	
-
-
 	
 	
 	
@@ -64,8 +60,7 @@ type book_Page struct {
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -81,6 +76,7 @@ func Book_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Book_PathSave, Book_HandlerSave)
 	mux.HandleFunc(dm.Book_PathDelete, Book_HandlerDelete)
 	logs.Publish("Siena", dm.Book_Title)
+	
 }
 
 //Book_HandlerList is the handler for the list page
@@ -99,7 +95,7 @@ func Book_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Book_GetList()
 
 
-	pageDetail := book_PageList{
+	pageDetail := Book_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Book_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -127,7 +123,7 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Book_QueryString)
 	_, rD, _ := dao.Book_GetByID(searchID)
 
-	pageDetail := book_Page{
+	pageDetail := Book_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -136,7 +132,7 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -146,9 +142,13 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Book_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -170,7 +170,7 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Book_QueryString)
 	_, rD, _ := dao.Book_GetByID(searchID)
 	
-	pageDetail := book_Page{
+	pageDetail := Book_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -179,7 +179,7 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -189,10 +189,11 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Book_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -209,12 +210,12 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("BookName"))
 
 	var item dm.Book
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.BookName = r.FormValue(dm.Book_BookName)
 		item.FullName = r.FormValue(dm.Book_FullName)
 		item.PLManage = r.FormValue(dm.Book_PLManage)
@@ -225,7 +226,9 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod)
 		item.InternalId = r.FormValue(dm.Book_InternalId)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.Book_Store(item)	
 
@@ -245,7 +248,7 @@ func Book_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := book_Page{
+	pageDetail := Book_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -254,7 +257,7 @@ func Book_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = ""
 pageDetail.FullName = ""
 pageDetail.PLManage = ""
@@ -264,8 +267,8 @@ pageDetail.CostOfCarry = ""
 pageDetail.CostOfFunding = ""
 pageDetail.LotAllocationMethod = ""
 pageDetail.InternalId = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Book_TemplateNew, core.GetUserRole(r)))

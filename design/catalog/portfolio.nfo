@@ -1,44 +1,51 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/portfolio.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : Portfolio
-// Endpoint Root 	    : Portfolio
-// Search QueryString   : Code
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaPortfolio
-// SQL Table Search Col : Code
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:05
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | Code                      | String     |            | Code                      |  true |  true | false |            |            |            |           
-// | Description1              | String     |            | Description1              | false |  true | false |            |            |            |           
-// | Description2              | String     |            | Description2              | false |  true | false |            |            |            |           
-// | IsDefault                 | Bool       |       True | isDefault                 | false |  true | false |            |            |            |           
-// | InternalId                | Int        |          0 | InternalId                |  true |  true | false |            |            |            |           
-// | InternalDeleted           | Time       |            | InternalDeleted           | false |  true | false |            |            |            |           
-// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |  true | false |            |            |            |           
-// | UpdatedUserId             | String     |            | UpdatedUserId             | false |  true | false |            |            |            |           
-// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |  true | false |            |            |            |           
-// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |  true | false |            |            |            |           
-// | DeletedUserId             | String     |            | DeletedUserId             | false |  true | false |            |            |            |           
-// | ChangeType                | String     |            | ChangeType                | false |  true | false |            |            |            |           
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/portfolio.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Portfolio (portfolio)
+Endpoint 	         : Portfolio (Code)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 17:50:39
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaPortfolio
+SQL Table Search Col : Code
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Code                                | String     |            | true  | true   | false |                 |            |            | 
+| Description1                        | String     |            | false | true   | false |                 |            |            | 
+| Description2                        | String     |            | false | true   | false |                 |            |            | 
+| IsDefault                           | Bool       | True       | false | true   | false |                 |            |            | 
+| InternalId                          | Int        | 0          | true  | true   | false |                 |            |            | 
+| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
+| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
+| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/portfolio_core.go)
+* adaptor (/adaptor/portfolio.go)
+* dao (/dao/portfolio.go)
+* datamodel (/datamodel/portfolio.go)
+* menu (/design/menu/portfolio.json)
+* html -> List (/html/Portfolio_List.html)
+* html -> View (/html/Portfolio_View.html)
+* html -> Edit (/html/Portfolio_Edit.html)
+* html -> New (/html/Portfolio_New.html)
+* catalog (/design/catalog/portfolio.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

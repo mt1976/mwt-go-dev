@@ -1,38 +1,45 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/firm.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : Firm
-// Endpoint Root 	    : Firm
-// Search QueryString   : FirmName
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaFirm
-// SQL Table Search Col : FirmName
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:05
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | FirmName                  | String     |            | FirmName                  |  true |  true | false |            |            |            |           
-// | FullName                  | String     |            | FullName                  | false |  true | false |            |            |            |           
-// | Country                   | String     |            | Country                   | false |  true | false |            |            |            |           
-// | Sector                    | String     |            | Sector                    | false |  true | false |            |            |            |           
-// | Sector_Enri               | String     |            | Sector_Enri               | false | false |  true | Sector     | Sector     | Name       | {{range .Sector_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}
-// | Country_Enri              | String     |            | Country_Enri              | false | false |  true | Country    | Country    | Name       | {{range .Country_Enri_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/firm.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Firm (firm)
+Endpoint 	         : Firm (FirmName)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 15:44:03
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaFirm
+SQL Table Search Col : FirmName
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| FirmName                            | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| Country                             | String     |            | false | true   | false |                 |            |            | 
+| Sector                              | String     |            | false | true   | false |                 |            |            | 
+| Sector_Impl                         | String     |            | false | false  | true  | Sector          | Sector     | Name       | 
+| Country_Impl                        | String     |            | false | false  | true  | Country         | Country    | Name       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/firm_core.go)
+* adaptor (/adaptor/firm.go)
+* dao (/dao/firm.go)
+* datamodel (/datamodel/firm.go)
+* menu (/design/menu/firm.json)
+* html -> List (/html/Firm_List.html)
+* html -> View (/html/Firm_View.html)
+* html -> Edit (/html/Firm_Edit.html)
+* html -> New (/html/Firm_New.html)
+* catalog (/design/catalog/firm.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

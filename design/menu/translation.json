@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/translation.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Translation
-// Endpoint Root 	  : Translation
-// Search QueryString : Message
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 18:23:53
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "ae506856-5ce4-423a-a977-0b66bd139a72",
+      "ID": "fbfa0a28-ea5d-4509-bde3-31d34f10392b",
       "Text": "Message Translation",
       "Glyph": "fas fa-city",
       "HREF": "/TranslationList",

@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/currencypair.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : CurrencyPair
-// Endpoint Root 	  : CurrencyPair
-// Search QueryString : Code
+// Object 			    : CurrencyPair (currencypair)
+// Endpoint 	        : CurrencyPair (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:02
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func CurrencyPair_GetByID(id string) (int, dm.CurrencyPair, error) {
 
 
 
-
-
 // CurrencyPair_DeleteByID() deletes a single CurrencyPair record
 func CurrencyPair_Delete(id string) {
 
@@ -64,7 +61,7 @@ func CurrencyPair_Store(r dm.CurrencyPair) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= currencypair_NewID(r)
+		r.Code = CurrencyPair_NewID(r)
 	}
 
 
@@ -90,7 +87,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.CurrencyPair_Code,"")
    recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
    recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
@@ -100,15 +97,19 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
    recItem.MinorName  = get_String(rec, dm.CurrencyPair_MinorName, "")
 
 
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func currencypair_NewID(r dm.CurrencyPair) string {
-	id := uuid.New().String()
+func CurrencyPair_NewID(r dm.CurrencyPair) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

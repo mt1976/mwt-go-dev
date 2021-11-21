@@ -108,6 +108,10 @@ func main() {
 	application.Broker_Publish(*mux)
 
 	application.Account_Publish(*mux)
+	application.AccountTransaction_Publish(*mux)
+	application.AccountLadder_Publish(*mux)
+	application.Payee_Publish(*mux)
+	application.Payee_PublishImpl(*mux)
 
 	application.Currency_Publish(*mux)
 	application.CurrencyPair_Publish(*mux)
@@ -128,12 +132,6 @@ func main() {
 	mux.HandleFunc("/saveSienaCounterpartyAddress/", application.SaveSienaCounterpartyAddressHandler)
 	mux.HandleFunc("/editSienaCounterpartyExtensions/", application.EditSienaCounterpartyExtensionsHandler)
 	mux.HandleFunc("/saveSienaCounterpartyExtensions/", application.SaveSienaCounterpartyExtensionsHandler)
-
-	mux.HandleFunc("/listSienaCounterpartyPayee/", application.ListSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/viewSienaCounterpartyPayee/", application.ViewSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/editSienaCounterpartyPayee/", application.EditSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/saveSienaCounterpartyPayee/", application.SaveSienaCounterpartyPayeeHandler)
-	mux.HandleFunc("/newSienaCounterpartyPayee/", application.NewSienaCounterpartyPayeeHandler)
 
 	mux.HandleFunc("/listSienaCounterpartyImportID/", application.ListSienaCounterpartyImportIDHandler)
 	mux.HandleFunc("/viewSienaCounterpartyImportID/", application.ViewSienaCounterpartyImportIDHandler)
@@ -263,7 +261,7 @@ func main() {
 	httpPort := ":" + core.ApplicationProperties["port"]
 
 	// Wrap your handlers with the LoadAndSave() middleware.
-
+	//spew.Dump(mux)
 	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
 	logs.Break()
 	core.Log_uptime()

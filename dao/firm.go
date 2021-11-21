@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/firm.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Firm
-// Endpoint Root 	  : Firm
-// Search QueryString : FirmName
+// Object 			    : Firm (firm)
+// Endpoint 	        : Firm (FirmName)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -43,9 +42,15 @@ func Firm_GetByID(id string) (int, dm.Firm, error) {
 	return 1, firmItem, nil
 }
 
+// Firm_GetByReverseLookup(id string) returns a single Firm record
+func Firm_GetByReverseLookup(id string) (int, dm.Firm, error) {
 
+	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Firm_SQLTable)
+	tsql = tsql + " WHERE FullName = '" + id + "'"
 
-
+	_, _, firmItem, _ := firm_Fetch(tsql)
+	return 1, firmItem, nil
+}
 
 // Firm_DeleteByID() deletes a single Firm record
 func Firm_Delete(id string) {
@@ -64,7 +69,7 @@ func Firm_Store(r dm.Firm) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.FirmName) == 0 {
-		r.FirmName= firm_NewID(r)
+		r.FirmName = Firm_NewID(r)
 	}
 
 
@@ -90,7 +95,7 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Firm_FirmName,"")
    recItem.FirmName  = get_String(rec, dm.Firm_FirmName, "")
    recItem.FullName  = get_String(rec, dm.Firm_FullName, "")
@@ -98,15 +103,19 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
    recItem.Sector  = get_String(rec, dm.Firm_Sector, "")
 
 
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func firm_NewID(r dm.Firm) string {
-	id := uuid.New().String()
+func Firm_NewID(r dm.Firm) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

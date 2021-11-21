@@ -1,20 +1,6 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/product.go"
-// ----------------------------------------------------------------
-// Package            : dao
-// Object 			  : Product
-// Endpoint Root 	  : Product
-// Search QueryString : Code
-// From   			  : 
-// ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
 
     {
-      "ID": "f1e4fcdb-4233-4746-8045-7d56d84611ed",
+      "ID": "463bab9a-f463-42f0-ad1b-4ae610581a20",
       "Text": "Product Groups",
       "Glyph": "fas fa-plug",
       "HREF": "/ProductList",

@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/portfolio.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Portfolio
-// Endpoint Root 	  : Portfolio
-// Search QueryString : Code
+// Object 			    : Portfolio (portfolio)
+// Endpoint 	        : Portfolio (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 17:50:39
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -53,8 +52,6 @@ func Portfolio_GetByReverseLookup(id string) (int, dm.Portfolio, error) {
 	return 1, portfolioItem, nil
 }
 
-
-
 // Portfolio_DeleteByID() deletes a single Portfolio record
 func Portfolio_Delete(id string) {
 
@@ -72,7 +69,7 @@ func Portfolio_Store(r dm.Portfolio) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
-		r.Code= portfolio_NewID(r)
+		r.Code = Portfolio_NewID(r)
 	}
 
 
@@ -98,7 +95,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Portfolio_Code,"")
    recItem.Code  = get_String(rec, dm.Portfolio_Code, "")
    recItem.Description1  = get_String(rec, dm.Portfolio_Description1, "")
@@ -112,15 +109,19 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func portfolio_NewID(r dm.Portfolio) string {
-	id := uuid.New().String()
+func Portfolio_NewID(r dm.Portfolio) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

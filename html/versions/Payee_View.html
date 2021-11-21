@@ -1,0 +1,198 @@
+<head>
+  <!-- START OF INSERTS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <!-- FAVICON BUMPF -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+  <meta name="msapplication-TileColor" content="#322a77">
+  <meta name="theme-color" content="#ffffff">
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <!-- Add CUSTOM ICONS, FONTS & STYLES -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <script src="../assets/custom.js"></script>
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+  </link>
+  <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <!-- END OF INSERTS -->
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+  <title>{{.PageTitle}}</title>
+</head>
+<body>
+
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
+  <!-- DO NOT CHANGE -->
+
+  <div class="container-fluid">
+    <form action="/PayeeEdit?ID={{.KeyCounterpartyFirm}}" method="POST" class="form">
+      <div class="card">
+        <div class="card-header font-weight-bold">
+          <div class="row">
+            <div class="col">
+              Payee&nbsp;:&nbsp;<code>{{.FullName}} - {{.KeyCurrency}}</code>
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+                
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm">
+                <input type="text" class="form-control" id="SourceTable" aria-describedby="SourceTableHelp" placeholder="" disabled="disabled" value="{{.SourceTable}}" hidden>
+      
+                <input type="text" class="form-control" id="KeyCounterpartyFirm" aria-describedby="KeyCounterpartyFirmHelp" placeholder="" disabled="disabled" value="{{.KeyCounterpartyFirm}}" hidden>
+   
+                <input type="text" class="form-control" id="KeyCounterpartyCentre" aria-describedby="KeyCounterpartyCentreHelp" placeholder="" disabled="disabled" value="{{.KeyCounterpartyCentre}}" hidden>
+                <input type="text" class="form-control" id="KeyName" aria-describedby="KeyNameHelp" placeholder="" disabled="disabled" value="{{.KeyName}}" hidden>
+                <input type="text" class="form-control" id="KeyNumber" aria-describedby="KeyNumberHelp" placeholder="" disabled="disabled" value="{{.KeyNumber}}" hidden>
+                <input type="text" class="form-control" id="KeyDirection" aria-describedby="KeyDirectionHelp" placeholder="" disabled="disabled" value="{{.KeyDirection}}" hidden>
+                <input type="text" class="form-control" id="KeyType" aria-describedby="KeyTypeHelp" placeholder="" disabled="disabled" value="{{.KeyType}}" hidden>
+        
+              </div>
+            </div>
+            <br><h4>Identity</h4>
+
+            <div class="row">
+              <div class="col-sm">
+                <label for="KeyCurrency">KeyCurrency</label>
+                <input type="text" class="form-control" id="KeyCurrency" aria-describedby="KeyCurrencyHelp" placeholder="" disabled="disabled" value="{{.KeyCurrency}}">
+              </div>
+
+              <div class="col-sm">
+                <label for="Currency_Impl">Currency_Impl</label>
+                <input type="text" class="form-control" id="Currency_Impl" aria-describedby="Currency_ImplHelp" placeholder="" disabled="disabled" value="{{.Currency_Impl}}">
+              </div>
+   
+              <div class="col-sm">
+                <label for="BankSettlementAcct">BankSettlementAcct</label>
+                <input type="text" class="form-control" id="BankSettlementAcct" aria-describedby="BankSettlementAcctHelp" placeholder="True" disabled="disabled" value="{{.BankSettlementAcct}}">
+              </div>
+              <div class="col-sm">
+                <label for="UpdatedUserId">UpdatedUserId</label>
+                <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled="disabled" value="{{.UpdatedUserId}}">
+              </div>
+            </div>
+
+            <br><h4>Payee Details</h4>
+            <div class="row">
+              <div class="col-sm">
+                <label for="FullName">Full Name</label>
+                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled="disabled" value="{{.FullName}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Address">Address</label>
+                <input type="text" class="form-control" id="Address" aria-describedby="AddressHelp" placeholder="" disabled="disabled" value="{{.Address}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="Country">Country</label>
+                <input type="text" class="form-control" id="Country" aria-describedby="CountryHelp" placeholder="" disabled="disabled" value="{{.Country}}" hidden>
+                                <input type="text" class="form-control" id="Country_Impl" aria-describedby="Country_ImplHelp" placeholder="" disabled="disabled" value="{{.Country_Impl}}">
+
+              </div>
+              <div class="col-sm">
+                <label for="PhoneNo">PhoneNo</label>
+                <input type="text" class="form-control" id="PhoneNo" aria-describedby="PhoneNoHelp" placeholder="" disabled="disabled" value="{{.PhoneNo}}">
+              </div>
+            </div>
+                        <div class="row">
+              <div class="col-sm">
+                <label for="Reason">Reason</label>
+                <input type="text" class="form-control" id="Reason" aria-describedby="ReasonHelp" placeholder="" disabled="disabled" value="{{.Reason}}">
+              </div>
+            </div>
+
+            <br><h4>Account Details</h4>
+    
+            <div class="row">
+              
+       
+              
+              <div class="col-sm">
+                <label for="SortCode">SortCode</label>
+                <input type="text" class="form-control" id="SortCode" aria-describedby="SortCodeHelp" placeholder="" disabled="disabled" value="{{.SortCode}}">
+              </div>
+              <div class="col-sm">
+                <label for="AccountNo">AccountNo</label>
+                <input type="text" class="form-control" id="AccountNo" aria-describedby="AccountNoHelp" placeholder="" disabled="disabled" value="{{.AccountNo}}">
+              </div>
+              <div class="col-sm">
+                <label for="Iban">Iban</label>
+                <input type="text" class="form-control" id="Iban" aria-describedby="IbanHelp" placeholder="" disabled="disabled" value="{{.Iban}}">
+              </div>
+              <div class="col-sm">
+                <label for="FedWireNo">FedWireNo</label>
+                <input type="text" class="form-control" id="FedWireNo" aria-describedby="FedWireNoHelp" placeholder="" disabled="disabled" value="{{.FedWireNo}}">
+              </div>
+    <div class="col-sm">
+                <label for="Bic">Bic</label>
+                <input type="text" class="form-control" id="Bic" aria-describedby="BicHelp" placeholder="" disabled="disabled" value="{{.Bic}}">
+              </div>
+            </div>
+            <br><h4>Routing Information</h4>
+            <div class="row">
+              <div class="col-sm">
+                <label for="BankName">BankName</label>
+                <input type="text" class="form-control" id="BankName" aria-describedby="BankNameHelp" placeholder="" disabled="disabled" value="{{.BankName}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="BankAddress">BankAddress</label>
+                <input type="text" class="form-control" id="BankAddress" aria-describedby="BankAddressHelp" placeholder="" disabled="disabled" value="{{.BankAddress}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="BankPinCode">BankPinCode</label>
+                <input type="text" class="form-control" id="BankPinCode" aria-describedby="BankPinCodeHelp" placeholder="" disabled="disabled" value="{{.BankPinCode}}">
+              </div>
+            </div>
+     
+
+   <br><br>
+       
+
+     
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>

@@ -1,4 +1,16 @@
 package adaptor
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/portfolio.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Portfolio (portfolio)
+// Endpoint 	        : Portfolio (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 17:50:39
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
 	//"encoding/xml"

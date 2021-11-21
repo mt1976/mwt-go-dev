@@ -3,16 +3,14 @@ package datamodel
 // ----------------------------------------------------------------
 // Automatically generated  "/datamodel/translation.go"
 // ----------------------------------------------------------------
-// Package            : datamodel
-// Object 			  : Translation
-// Endpoint Root 	  : Translation
-// Search QueryString : Message
-// From   			  : 
+// Package              : application
+// Object 			    : Translation (translation)
+// Endpoint 	        : Translation (Message)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 18:23:53
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:05
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese

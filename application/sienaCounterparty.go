@@ -54,7 +54,7 @@ type sienaCounterpartyPage struct {
 	SectorCodeName  string
 	Action          string
 	CountryList     []dm.Country
-	PayeeList       []sienaCounterpartyPayeeItem
+	PayeeList       []dm.Payee
 	NoPayees        int
 	Address1        string
 	Address2        string
@@ -157,7 +157,7 @@ func ViewSienaCounterpartyHandler(w http.ResponseWriter, r *http.Request) {
 	centreID := core.GetURLparam(r, "SienaCentre")
 	_, returnRecord, _ := getSienaCounterparty(firmID, centreID)
 
-	noPayees, returnPayeeList, _ := getSienaCounterpartyPayeeListByCounterparty(firmID, centreID)
+	noPayees, returnPayeeList, _ := dao.Payee_GetByCounterparty(firmID, centreID)
 
 	_, returnAddress, _ := getSienaCounterpartyAddress(firmID, centreID)
 

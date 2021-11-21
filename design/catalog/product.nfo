@@ -1,44 +1,51 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/product.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : Product
-// Endpoint Root 	    : Product
-// Search QueryString   : Code
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaProduct
-// SQL Table Search Col : Code
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:05
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | Code                      | String     |            | Code                      |  true |  true | false |            |            |            |           
-// | Name                      | String     |            | Name                      | false |  true | false |            |            |            |           
-// | Factor                    | Float      |       0.00 | Factor                    | false |  true | false |            |            |            |           
-// | MaxTermPrecedence         | Bool       |       True | MaxTermPrecedence         | false |  true | false |            |            |            |           
-// | InternalId                | Int        |          0 | InternalId                |  true |  true | false |            |            |            |           
-// | InternalDeleted           | Time       |            | InternalDeleted           | false |  true | false |            |            |            |           
-// | UpdatedTransactionId      | String     |            | UpdatedTransactionId      | false |  true | false |            |            |            |           
-// | UpdatedUserId             | String     |            | UpdatedUserId             | false |  true | false |            |            |            |           
-// | UpdatedDateTime           | Time       |            | UpdatedDateTime           | false |  true | false |            |            |            |           
-// | DeletedTransactionId      | String     |            | DeletedTransactionId      | false |  true | false |            |            |            |           
-// | DeletedUserId             | String     |            | DeletedUserId             | false |  true | false |            |            |            |           
-// | ChangeType                | String     |            | ChangeType                | false |  true | false |            |            |            |           
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/product.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Product (product)
+Endpoint 	         : Product (Code)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 15:44:04
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaProduct
+SQL Table Search Col : Code
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Code                                | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| Factor                              | Float      | 0.00       | false | true   | false |                 |            |            | 
+| MaxTermPrecedence                   | Bool       | True       | false | true   | false |                 |            |            | 
+| InternalId                          | Int        | 0          | true  | true   | false |                 |            |            | 
+| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
+| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
+| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/product_core.go)
+* adaptor (/adaptor/product.go)
+* dao (/dao/product.go)
+* datamodel (/datamodel/product.go)
+* menu (/design/menu/product.json)
+* html -> List (/html/Product_List.html)
+* html -> View (/html/Product_View.html)
+* html -> Edit (/html/Product_Edit.html)
+* html -> New (/html/Product_New.html)
+* catalog (/design/catalog/product.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/cache.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : Cache
-// Endpoint Root 	  : Cache
-// Search QueryString : ID
+// Object 			    : Cache (cache)
+// Endpoint 	        : Cache (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:00
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:03
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func Cache_GetByID(id string) (int, dm.Cache, error) {
 
 
 
-
-
 // Cache_DeleteByID() deletes a single Cache record
 func Cache_Delete(id string) {
 
@@ -64,7 +61,7 @@ func Cache_Store(r dm.Cache) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.Id) == 0 {
-		r.Id= cache_NewID(r)
+		r.Id = Cache_NewID(r)
 	}
 
 
@@ -124,7 +121,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Cache_Id,"")
    recItem.SYSId  = get_Int(rec, dm.Cache_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Cache_Id, "")
@@ -141,15 +138,19 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
    recItem.SYSCreatedHost  = get_String(rec, dm.Cache_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Cache_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Cache_SYSUpdatedHost, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func cache_NewID(r dm.Cache) string {
-	id := uuid.New().String()
+func Cache_NewID(r dm.Cache) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

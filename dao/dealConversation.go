@@ -1,18 +1,17 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/dealconversation.go"
 // ----------------------------------------------------------------
 // Package            : dao
-// Object 			  : DealConversation
-// Endpoint Root 	  : DealConversation
-// Search QueryString : ID
+// Object 			    : DealConversation (dealconversation)
+// Endpoint 	        : DealConversation (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:02
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
-// ----------------------------------------------------------------
+
 import (
 	"log"
 	"fmt"
@@ -45,8 +44,6 @@ func DealConversation_GetByID(id string) (int, dm.DealConversation, error) {
 
 
 
-
-
 // DealConversation_DeleteByID() deletes a single DealConversation record
 func DealConversation_Delete(id string) {
 
@@ -64,7 +61,7 @@ func DealConversation_Store(r dm.DealConversation) error {
 	logs.Warning(fmt.Sprintf("%s", r))
 
 	if len(r.MessageLogReference) == 0 {
-		r.MessageLogReference= dealconversation_NewID(r)
+		r.MessageLogReference = DealConversation_NewID(r)
 	}
 
 
@@ -90,7 +87,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealConversation_MessageLogReference,"")
    recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference, "")
    recItem.Status  = get_String(rec, dm.DealConversation_Status, "")
@@ -104,15 +101,19 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
    recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo, "0")
    recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem, "")
    recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference, "")
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 	return noitems, recList, recItem, nil
 }
 
-func dealconversation_NewID(r dm.DealConversation) string {
-	id := uuid.New().String()
+func DealConversation_NewID(r dm.DealConversation) string {
+	
+	
+			id := uuid.New().String()
+
+	
 	return id
 }
 // ----------------------------------------------------------------

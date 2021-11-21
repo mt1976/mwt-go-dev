@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/translation.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : Translation
-// Endpoint Root 	  : Translation
-// Search QueryString : Message
-// From   			  : 
+// Package              : application
+// Object 			    : Translation (translation)
+// Endpoint 	        : Translation (Message)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 18:23:53
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:05
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //translation_PageList provides the information for the template for a list of Translations
-type translation_PageList struct {
+type Translation_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,13 +33,13 @@ type translation_PageList struct {
 }
 
 //translation_Page provides the information for the template for an individual Translation
-type translation_Page struct {
+type Translation_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Class string
@@ -56,8 +54,6 @@ type translation_Page struct {
 		SYSUpdatedBy string
 		SYSUpdatedHost string
 	
-
-
 	
 	
 	
@@ -72,8 +68,7 @@ type translation_Page struct {
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -89,6 +84,7 @@ func Translation_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Translation_PathSave, Translation_HandlerSave)
 	
 	logs.Publish("Application", dm.Translation_Title)
+	
 }
 
 //Translation_HandlerList is the handler for the list page
@@ -107,7 +103,7 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Translation_GetList()
 
 
-	pageDetail := translation_PageList{
+	pageDetail := Translation_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Translation_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -135,7 +131,7 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Translation_QueryString)
 	_, rD, _ := dao.Translation_GetByID(searchID)
 
-	pageDetail := translation_Page{
+	pageDetail := Translation_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Translation_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -144,7 +140,7 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Class = rD.Class
@@ -158,9 +154,13 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -182,7 +182,7 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Translation_QueryString)
 	_, rD, _ := dao.Translation_GetByID(searchID)
 	
-	pageDetail := translation_Page{
+	pageDetail := Translation_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Translation_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -191,7 +191,7 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Class = rD.Class
@@ -205,10 +205,11 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -225,12 +226,12 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Translation
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Translation_SYSId)
 		item.Id = r.FormValue(dm.Translation_Id)
 		item.Class = r.FormValue(dm.Translation_Class)
@@ -245,7 +246,9 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.Translation_Store(item)	
 
@@ -265,7 +268,7 @@ func Translation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := translation_Page{
+	pageDetail := Translation_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Translation_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -274,7 +277,7 @@ func Translation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Class = ""
@@ -288,8 +291,8 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateNew, core.GetUserRole(r)))

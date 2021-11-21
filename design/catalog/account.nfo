@@ -1,0 +1,69 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/account.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Account (account)
+Endpoint 	         : Account (AccountNo)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 18:11:56
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaAccount
+SQL Table Search Col : SienaReference
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SienaReference                      | String     |            | true  | true   | false |                 |            |            | 
+| CustomerSienaView                   | String     |            | false | true   | false |                 |            |            | 
+| SienaCommonRef                      | String     |            | true  | true   | false |                 |            |            | 
+| Status                              | String     |            | false | true   | false |                 |            |            | 
+| StartDate                           | Time       |            | false | true   | false |                 |            |            | 
+| MaturityDate                        | Time       |            | false | true   | false |                 |            |            | 
+| ContractNumber                      | String     |            | false | true   | false |                 |            |            | 
+| ExternalReference                   | String     |            | false | true   | false |                 |            |            | 
+| CCY                                 | String     |            | false | true   | false |                 |            |            | 
+| Book                                | String     |            | false | true   | false |                 |            |            | 
+| MandatedUser                        | String     |            | false | true   | false |                 |            |            | 
+| BackOfficeNotes                     | String     |            | false | true   | false |                 |            |            | 
+| CashBalance                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| AccountNumber                       | String     |            | false | true   | false |                 |            |            | 
+| AccountName                         | String     |            | false | true   | false |                 |            |            | 
+| LedgerBalance                       | Float      | 0.00       | false | true   | false |                 |            |            | 
+| Portfolio                           | String     |            | false | true   | false |                 |            |            | 
+| AgreementId                         | Int        | 0          | false | true   | false |                 |            |            | 
+| BackOfficeRefNo                     | String     |            | false | true   | false |                 |            |            | 
+| ISIN                                | String     |            | false | true   | false |                 |            |            | 
+| UTI                                 | String     |            | false | true   | false |                 |            |            | 
+| CCYName                             | String     |            | false | true   | false |                 |            |            | 
+| BookName                            | String     |            | false | true   | false |                 |            |            | 
+| PortfolioName                       | String     |            | false | true   | false |                 |            |            | 
+| Centre                              | String     |            | false | true   | false |                 |            |            | 
+| Firm                                | String     |            | false | true   | false |                 |            |            | 
+| CCYDp                               | Int        | 0          | false | true   | false |                 |            |            | 
+| CCY_Impl                            | String     |            | false | false  | true  | Currency        | CCY        | Name       | 
+| Book_Impl                           | String     |            | false | false  | true  | Book            | Book       | FullName   | 
+| Portfolio_Impl                      | String     |            | false | false  | true  | Portfolio       | Portfolio  | Description1 | 
+| Centre_Impl                         | String     |            | false | false  | true  | Centre          | Centre     | Name       | 
+| Firm_Impl                           | String     |            | false | false  | true  | Firm            | Firm       | FullName   | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/account_core.go)
+* adaptor (/adaptor/account.go)
+* dao (/dao/account.go)
+* datamodel (/datamodel/account.go)
+* menu (/design/menu/account.json)
+* html -> List (/html/Account_List.html)
+* html -> View (/html/Account_View.html)
+* catalog (/design/catalog/account.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

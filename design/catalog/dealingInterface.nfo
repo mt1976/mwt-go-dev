@@ -1,56 +1,63 @@
-// ----------------------------------------------------------------
-// Automatically generated  "/application/dealinginterface.go"
-// ----------------------------------------------------------------
-// Package              : main
-// Object 			    : DealingInterface
-// Endpoint Root 	    : DealingInterface
-// Search QueryString   : Name
-// From   			    : 
-// ----------------------------------------------------------------
-// Database Information
-// ----------------------------------------------------------------
-// SQL Table Name       : sienaDealingInterface
-// SQL Table Search Col : Name
-// ----------------------------------------------------------------
-// Template Generator   : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		    : 19/11/2021 at 17:16:04
-// Who & Where		    : matttownsend on silicon.local
-// For Project          : github.com/mt1976/mwt-go-dev/
-// ----------------------------------------------------------------
-// Fields Generated
-// ----------------------------------------------------------------
-// *---------------------------+------------+------------+---------------------------*
-// | Field Name                | Type       | Default    |SQL Field Name             |
-// *---------------------------+------------+------------+---------------------------*
-// | Name                      | String     |            | Name                      |  true |  true | false |            |            |            |           
-// | AcceptReducedAmount       | Bool       |       True | AcceptReducedAmount       | false |  true | false |            |            |            |           
-// | QuoteAsIndicative         | Bool       |       True | QuoteAsIndicative         | false |  true | false |            |            |            |           
-// | RateTimeOut               | Int        |          0 | RateTimeOut               | false |  true | false |            |            |            |           
-// | PropagationDelay          | Int        |          0 | PropagationDelay          | false |  true | false |            |            |            |           
-// | CheckLiquidity            | Bool       |       True | CheckLiquidity            | false |  true | false |            |            |            |           
-// | ChangeQuoteDirection      | Bool       |       True | ChangeQuoteDirection      | false |  true | false |            |            |            |           
-// | GenerateRejectedDeals     | Bool       |       True | GenerateRejectedDeals     | false |  true | false |            |            |            |           
-// | SpotUpdatesForForwardQuotes | Bool       |       True | SpotUpdatesForForwardQuotes | false |  true | false |            |            |            |           
-// | SettlementInstructionStyle | String     |            | SettlementInstructionStyle | false |  true | false |            |            |            |           
-// | CanRetractQuotes          | Bool       |       True | CanRetractQuotes          | false |  true | false |            |            |            |           
-// | CancelESPifNotPriced      | Bool       |       True | CancelESPifNotPriced      | false |  true | false |            |            |            |           
-// | CancelRFQSifNotPriced     | Bool       |       True | CancelRFQSifNotPriced     | false |  true | false |            |            |            |           
-// | CancelonDealingSuspended  | Bool       |       True | CancelonDealingSuspended  | false |  true | false |            |            |            |           
-// | CreditCheckedatDI         | Bool       |       True | CreditCheckedatDI         | false |  true | false |            |            |            |           
-// | DuplicateCheckonExternalRef | Bool       |       True | DuplicateCheckonExternalRef | false |  true | false |            |            |            |           
-// | LimitCheckQuote           | Bool       |       True | LimitCheckQuote           | false |  true | false |            |            |            |           
-// | LimitCheckonRFQDealSubmission | Bool       |       True | LimitCheckonRFQDealSubmission | false |  true | false |            |            |            |           
-// | ListenonLimits            | Bool       |       True | ListenonLimits            | false |  true | false |            |            |            |           
-// | MarginStyle               | String     |            | MarginStyle               | false |  true | false |            |            |            |           
-// | UseRerouteDefinitionOnly  | Bool       |       True | UseRerouteDefinitionOnly  | false |  true | false |            |            |            |           
-// | BypassConfirmation        | Bool       |       True | BypassConfirmation        | false |  true | false |            |            |            |           
-// | DIOnAcceptance            | Bool       |       True | DIOnAcceptance            | false |  true | false |            |            |            |           
-// | IgnoreESPAmountRules      | Bool       |       True | IgnoreESPAmountRules      | false |  true | false |            |            |            |           
-// *---------------------------+------------+------------+---------------------------*
-// ----------------------------------------------------------------
-// Artifacts Generated
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// End of File
-// ----------------------------------------------------------------
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/dealinginterface.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : DealingInterface (dealinginterface)
+Endpoint 	         : DealingInterface (Name)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 15:44:03
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaDealingInterface
+SQL Table Search Col : Name
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Name                                | String     |            | true  | true   | false |                 |            |            | 
+| AcceptReducedAmount                 | Bool       | True       | false | true   | false |                 |            |            | 
+| QuoteAsIndicative                   | Bool       | True       | false | true   | false |                 |            |            | 
+| RateTimeOut                         | Int        | 0          | false | true   | false |                 |            |            | 
+| PropagationDelay                    | Int        | 0          | false | true   | false |                 |            |            | 
+| CheckLiquidity                      | Bool       | True       | false | true   | false |                 |            |            | 
+| ChangeQuoteDirection                | Bool       | True       | false | true   | false |                 |            |            | 
+| GenerateRejectedDeals               | Bool       | True       | false | true   | false |                 |            |            | 
+| SpotUpdatesForForwardQuotes         | Bool       | True       | false | true   | false |                 |            |            | 
+| SettlementInstructionStyle          | String     |            | false | true   | false |                 |            |            | 
+| CanRetractQuotes                    | Bool       | True       | false | true   | false |                 |            |            | 
+| CancelESPifNotPriced                | Bool       | True       | false | true   | false |                 |            |            | 
+| CancelRFQSifNotPriced               | Bool       | True       | false | true   | false |                 |            |            | 
+| CancelonDealingSuspended            | Bool       | True       | false | true   | false |                 |            |            | 
+| CreditCheckedatDI                   | Bool       | True       | false | true   | false |                 |            |            | 
+| DuplicateCheckonExternalRef         | Bool       | True       | false | true   | false |                 |            |            | 
+| LimitCheckQuote                     | Bool       | True       | false | true   | false |                 |            |            | 
+| LimitCheckonRFQDealSubmission       | Bool       | True       | false | true   | false |                 |            |            | 
+| ListenonLimits                      | Bool       | True       | false | true   | false |                 |            |            | 
+| MarginStyle                         | String     |            | false | true   | false |                 |            |            | 
+| UseRerouteDefinitionOnly            | Bool       | True       | false | true   | false |                 |            |            | 
+| BypassConfirmation                  | Bool       | True       | false | true   | false |                 |            |            | 
+| DIOnAcceptance                      | Bool       | True       | false | true   | false |                 |            |            | 
+| IgnoreESPAmountRules                | Bool       | True       | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/dealingInterface_core.go)
+* adaptor (/adaptor/dealingInterface.go)
+* dao (/dao/dealingInterface.go)
+* datamodel (/datamodel/dealingInterface.go)
+* menu (/design/menu/dealingInterface.json)
+* html -> List (/html/DealingInterface_List.html)
+* html -> View (/html/DealingInterface_View.html)
+* html -> Edit (/html/DealingInterface_Edit.html)
+* html -> New (/html/DealingInterface_New.html)
+* catalog (/design/catalog/dealingInterface.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

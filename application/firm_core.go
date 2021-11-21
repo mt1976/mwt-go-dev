@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/firm.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : Firm
-// Endpoint Root 	  : Firm
-// Search QueryString : FirmName
-// From   			  : 
+// Package              : application
+// Object 			    : Firm (firm)
+// Endpoint 	        : Firm (FirmName)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:05
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //firm_PageList provides the information for the template for a list of Firms
-type firm_PageList struct {
+type Firm_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,31 +33,28 @@ type firm_PageList struct {
 }
 
 //firm_Page provides the information for the template for an individual Firm
-type firm_Page struct {
+type Firm_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		FirmName string
 		FullName string
 		Country string
 		Sector string
-		Sector_Enri string
-		Country_Enri string
-	
-
-
+		Sector_Impl string
+		Country_Impl string
 	
 	
 	
 	
-	Sector_Enri_List	[]dm.Sector
-	Country_Enri_List	[]dm.Country
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	Sector_Impl_List	[]dm.Sector
+	Country_Impl_List	[]dm.Country
+	
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -75,6 +70,7 @@ func Firm_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Firm_PathSave, Firm_HandlerSave)
 	mux.HandleFunc(dm.Firm_PathDelete, Firm_HandlerDelete)
 	logs.Publish("Siena", dm.Firm_Title)
+	
 }
 
 //Firm_HandlerList is the handler for the list page
@@ -93,7 +89,7 @@ func Firm_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Firm_GetList()
 
 
-	pageDetail := firm_PageList{
+	pageDetail := Firm_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Firm_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -121,7 +117,7 @@ func Firm_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Firm_QueryString)
 	_, rD, _ := dao.Firm_GetByID(searchID)
 
-	pageDetail := firm_Page{
+	pageDetail := Firm_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -130,18 +126,22 @@ func Firm_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.FirmName = rD.FirmName
 pageDetail.FullName = rD.FullName
 pageDetail.Country = rD.Country
 pageDetail.Sector = rD.Sector
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Sector_Lookup,_:= dao.Sector_GetByID(rD.Sector)
-pageDetail.Sector_Enri = Sector_Lookup.Name
+pageDetail.Sector_Impl = Sector_Lookup.Name
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
-pageDetail.Country_Enri = Country_Lookup.Name
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+pageDetail.Country_Impl = Country_Lookup.Name
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Firm_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -163,7 +163,7 @@ func Firm_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Firm_QueryString)
 	_, rD, _ := dao.Firm_GetByID(searchID)
 	
-	pageDetail := firm_Page{
+	pageDetail := Firm_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -172,21 +172,22 @@ func Firm_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.FirmName = rD.FirmName
 pageDetail.FullName = rD.FullName
 pageDetail.Country = rD.Country
 pageDetail.Sector = rD.Sector
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Sector_Lookup,_:= dao.Sector_GetByID(rD.Sector)
-pageDetail.Sector_Enri = Sector_Lookup.Name
-_,pageDetail.Sector_Enri_List,_ = dao.Sector_GetList()
+pageDetail.Sector_Impl = Sector_Lookup.Name
+_,pageDetail.Sector_Impl_List,_ = dao.Sector_GetList()
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
-pageDetail.Country_Enri = Country_Lookup.Name
-_,pageDetail.Country_Enri_List,_ = dao.Country_GetList()
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+pageDetail.Country_Impl = Country_Lookup.Name
+_,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Firm_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -203,20 +204,22 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("FirmName"))
 
 	var item dm.Firm
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.FirmName = r.FormValue(dm.Firm_FirmName)
 		item.FullName = r.FormValue(dm.Firm_FullName)
 		item.Country = r.FormValue(dm.Firm_Country)
 		item.Sector = r.FormValue(dm.Firm_Sector)
-		item.Sector_Enri = r.FormValue(dm.Firm_Sector_Enri)
-		item.Country_Enri = r.FormValue(dm.Firm_Country_Enri)
+		item.Sector_Impl = r.FormValue(dm.Firm_Sector_Impl)
+		item.Country_Impl = r.FormValue(dm.Firm_Country_Impl)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.Firm_Store(item)	
 
@@ -236,7 +239,7 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := firm_Page{
+	pageDetail := Firm_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -245,17 +248,17 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.FirmName = ""
 pageDetail.FullName = ""
 pageDetail.Country = ""
 pageDetail.Sector = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-pageDetail.Sector_Enri = ""
-_,pageDetail.Sector_Enri_List,_ = dao.Sector_GetList()
-pageDetail.Country_Enri = ""
-_,pageDetail.Country_Enri_List,_ = dao.Country_GetList()
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+pageDetail.Sector_Impl = ""
+_,pageDetail.Sector_Impl_List,_ = dao.Sector_GetList()
+pageDetail.Country_Impl = ""
+_,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Firm_TemplateNew, core.GetUserRole(r)))

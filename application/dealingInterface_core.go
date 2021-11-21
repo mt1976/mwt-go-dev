@@ -2,16 +2,14 @@ package application
 // ----------------------------------------------------------------
 // Automatically generated  "/application/dealinginterface.go"
 // ----------------------------------------------------------------
-// Package            : application
-// Object 			  : DealingInterface
-// Endpoint Root 	  : DealingInterface
-// Search QueryString : Name
-// From   			  : 
+// Package              : application
+// Object 			    : DealingInterface (dealinginterface)
+// Endpoint 	        : DealingInterface (Name)
+// For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator : RussetAlbatross [r0-21.11.01]
-// ----------------------------------------------------------------
-// Date & Time		  : 19/11/2021 at 17:16:04
-// Who & Where		  : matttownsend on silicon.local
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 21/11/2021 at 15:44:03
+// Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,7 +23,7 @@ import (
 )
 
 //dealinginterface_PageList provides the information for the template for a list of DealingInterfaces
-type dealinginterface_PageList struct {
+type DealingInterface_PageList struct {
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -35,13 +33,13 @@ type dealinginterface_PageList struct {
 }
 
 //dealinginterface_Page provides the information for the template for an individual DealingInterface
-type dealinginterface_Page struct {
+type DealingInterface_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		Name string
 		AcceptReducedAmount string
 		QuoteAsIndicative string
@@ -67,8 +65,6 @@ type dealinginterface_Page struct {
 		DIOnAcceptance string
 		IgnoreESPAmountRules string
 	
-
-
 	
 	
 	
@@ -94,8 +90,7 @@ type dealinginterface_Page struct {
 	
 	
 	
-
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -111,6 +106,7 @@ func DealingInterface_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.DealingInterface_PathSave, DealingInterface_HandlerSave)
 	mux.HandleFunc(dm.DealingInterface_PathDelete, DealingInterface_HandlerDelete)
 	logs.Publish("Siena", dm.DealingInterface_Title)
+	
 }
 
 //DealingInterface_HandlerList is the handler for the list page
@@ -129,7 +125,7 @@ func DealingInterface_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DealingInterface_GetList()
 
 
-	pageDetail := dealinginterface_PageList{
+	pageDetail := DealingInterface_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.DealingInterface_Title, core.Action_List),
 		ItemsOnPage: noItems,
@@ -157,7 +153,7 @@ func DealingInterface_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealingInterface_QueryString)
 	_, rD, _ := dao.DealingInterface_GetByID(searchID)
 
-	pageDetail := dealinginterface_Page{
+	pageDetail := DealingInterface_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -166,7 +162,7 @@ func DealingInterface_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
 pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
@@ -191,9 +187,13 @@ pageDetail.UseRerouteDefinitionOnly = rD.UseRerouteDefinitionOnly
 pageDetail.BypassConfirmation = rD.BypassConfirmation
 pageDetail.DIOnAcceptance = rD.DIOnAcceptance
 pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
+
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealingInterface_TemplateView, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -215,7 +215,7 @@ func DealingInterface_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealingInterface_QueryString)
 	_, rD, _ := dao.DealingInterface_GetByID(searchID)
 	
-	pageDetail := dealinginterface_Page{
+	pageDetail := DealingInterface_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -224,7 +224,7 @@ func DealingInterface_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
 pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
@@ -249,10 +249,11 @@ pageDetail.UseRerouteDefinitionOnly = rD.UseRerouteDefinitionOnly
 pageDetail.BypassConfirmation = rD.BypassConfirmation
 pageDetail.DIOnAcceptance = rD.DIOnAcceptance
 pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealingInterface_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -269,12 +270,12 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.DealingInterface
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.DealingInterface_Name)
 		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount)
 		item.QuoteAsIndicative = r.FormValue(dm.DealingInterface_QuoteAsIndicative)
@@ -300,7 +301,9 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DIOnAcceptance = r.FormValue(dm.DealingInterface_DIOnAcceptance)
 		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules)
 	
-	// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealingInterface_Store(item)	
 
@@ -320,7 +323,7 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	pageDetail := dealinginterface_Page{
+	pageDetail := DealingInterface_Page{
 		Title:       core.ApplicationProperties["appname"],
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -329,7 +332,7 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 19/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.AcceptReducedAmount = ""
 pageDetail.QuoteAsIndicative = ""
@@ -354,8 +357,8 @@ pageDetail.UseRerouteDefinitionOnly = ""
 pageDetail.BypassConfirmation = ""
 pageDetail.DIOnAcceptance = ""
 pageDetail.IgnoreESPAmountRules = ""
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 19/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealingInterface_TemplateNew, core.GetUserRole(r)))
