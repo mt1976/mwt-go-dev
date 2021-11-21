@@ -232,15 +232,14 @@
     ,
 
     {
-      "ID": "scheduleStore",
-      "Text": "Schedule",
-      "Glyph": "far fa-clock",
-      "HREF": "/listScheduleStore",
+      "ID": "0a1cfbc7-df5a-486f-ac65-54bf04ba20e1",
+      "Text": "Scheduler",
+      "Glyph": "far fa-clock text-info",
+      "HREF": "/ScheduleList",
       "OnClick": "",
-      "TextClass": "text-info"
+      "TextClass": ""
     }
     ,
-
     {
       "ID": "messageStore",
       "Text": "System Messages",

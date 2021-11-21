@@ -46,7 +46,7 @@ func RatesFXSpot_Job() dm.JobDefinition {
 }
 
 func RatesFXSpot_Register(c *cron.Cron) {
-	application.RegisterSchedule(RatesFXSpot_Job())
+	application.Schedule_Register(RatesFXSpot_Job())
 	c.AddFunc(RatesFXSpot_Job().Period, func() { RatesFXSpot_Run() })
 }
 
@@ -76,7 +76,7 @@ func RatesFXSpot_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(RatesFXSpot_Job(), message)
+	application.Schedule_Update(RatesFXSpot_Job(), message)
 	logs.EndJob(RatesFXSpot_Job().Name)
 }
 

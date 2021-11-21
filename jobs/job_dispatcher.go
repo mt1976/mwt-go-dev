@@ -28,7 +28,7 @@ func DataDispatcher_Register(c *cron.Cron, actionType string, period string) {
 	overideJ.Name = DataDispatcher_Job().Name + "_" + actionType
 	overideJ.ID = DataDispatcher_Job().ID + "_" + actionType
 
-	application.RegisterSchedule(overideJ)
+	application.Schedule_Register(overideJ)
 	c.AddFunc(DataDispatcher_Job().Period, func() { DataDispatcher_Run(overideJ.Name) })
 }
 
@@ -44,7 +44,7 @@ func DataDispatcher_Run(actionType string) {
 	DispatchByType("RV" + actionType)
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(overideJ, message)
+	application.Schedule_Update(overideJ, message)
 	logs.EndJob(overideJ.Name + " - " + actionType)
 }
 

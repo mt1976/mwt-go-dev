@@ -12,7 +12,7 @@ import (
 func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
 	//log.Println("Query:", query)
-	logs.Database("Query :", query)
+	logs.Query(query)
 	rows, _ := db.Query(query) // Note: Ignoring errors for brevity
 	cols, _ := rows.Columns()
 	noResults := 0
@@ -53,7 +53,7 @@ func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 	//spew.Dump(recs)
 	//log.Println("Query:", m)
 	//log.Println("No Results:", noResults)
-	logs.Database("Count :", strconv.Itoa(noResults))
+	logs.Result(query, strconv.Itoa(noResults))
 	return recs, noResults, nil
 }
 

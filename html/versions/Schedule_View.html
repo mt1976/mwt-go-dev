@@ -26,11 +26,8 @@
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   <!-- END OF INSERTS -->
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-
   <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
-
 </head>
-
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
@@ -55,116 +52,113 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/editScheduleStore?ScheduleStore={{.Id}}" method="POST">
-      <div hidden="hidden">
-        <input type="text" id="ID" name="ID" value="{{.Id}}">
-      </div>
+    <form action="/ScheduleEdit?Schedule={{.Id}}" method="POST" class="form">
       <div class="card">
-
         <div class="card-header font-weight-bold">
-
-
           <div class="row">
             <div class="col">
-              Schedule<code></code>
+              Schedule&nbsp;:&nbsp;<code>{{.Name}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
-
-
-                <button type="button"  class="btn  btn-outline-secondary" method="POST" onclick="history.back()">
-                  <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-
+                
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
-
         </div>
-
         <div class="card-body">
-          <div class="">
-
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="Type">Type</label>
-                <input type="text" class="form-control" id="Type" name="Type" aria-describedby="Type" placeholder="Enter code" disabled="disabled" value="{{.Type}}" maxlength="10">
-              </div>
-              <div class="col-sm">
-                <label for="Name">Name</label>
-                <input type="text" class="form-control" id="Name" name="Name" aria-describedby="Name" placeholder="Enter code" disabled="disabled" value="{{.Name}}" maxlength="10">
-              </div>
-            </div>
+             <br><h4>Identity</h4>
 
             <div class="row">
               <div class="col-sm">
                 <label for="Description">Description</label>
-                <input type="text" class="form-control" id="Description" name="Description" aria-describedby="Description" placeholder="Enter an email address" value="{{.Description}}" disabled="disabled">
+                <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp" placeholder="" disabled="disabled" value="{{.Description}}">
+              </div>
+              <div class="col-sm">
+                <label for="Type">Type</label>
+                <input type="text" class="form-control" id="Type" aria-describedby="TypeHelp" placeholder="" disabled="disabled" value="{{.Type}}">
               </div>
             </div>
-
+            <br><h4>Schedule</h4>
             <div class="row">
               <div class="col-sm">
-                <label for="Schedule">Schedule</label>
-                <input type="text" class="form-control" id="Schedule" name="Schedule" aria-describedby="Schedule" placeholder="Enter an email address" value="{{.Schedule}}" disabled="disabled">
+                <label for="Schedule">Frequency</label>
+                <input type="text" class="form-control" id="Schedule" aria-describedby="ScheduleHelp" placeholder="" disabled="disabled" value="{{.Schedule}}">
               </div>
-
+           
               <div class="col-sm">
-                <label for="Lastrun">Lastrun</label>
-                <input type="text" class="form-control" id="Lastrun" name="Lastrun" aria-describedby="Lastrun" placeholder="Enter an email address" value="{{.Lastrun}}" disabled="disabled">
+                <label for="Human">Human</label>
+                <input type="text" class="form-control" id="Human" aria-describedby="HumanHelp" placeholder="" disabled="disabled" value="{{.Human}}">
               </div>
-
+            </div>
+            <div class="row">
               <div class="col-sm">
                 <label for="Started">Started</label>
-                <input type="text" class="form-control" id="Started" name="Started" aria-describedby="Started" placeholder="Enter an email address" value="{{.Started}}" disabled="disabled">
+                <input type="text" class="form-control" id="Started" aria-describedby="StartedHelp" placeholder="" disabled="disabled" value="{{.Started}}">
               </div>
-
-
-
-            </div>
-
-            <div class="row">
+         
               <div class="col-sm">
-                <label for="Human">Human Readable Schedule</label>
-                <input type="text" class="form-control" id="Human" name="Human" aria-describedby="Human" placeholder="Human" value="{{.HumanSchedule}}" disabled="disabled" style="font-weight: bold">
+                <label for="Lastrun">Lastrun</label>
+                <input type="text" class="form-control" id="Lastrun" aria-describedby="LastrunHelp" placeholder="" disabled="disabled" value="{{.Lastrun}}">
               </div>
             </div>
-
+                        <br><h4>Information</h4>
 
             <div class="row">
               <div class="col-sm">
                 <label for="Message">Message</label>
-                <input type="text" class="form-control" id="Message" name="Message" aria-describedby="Message" placeholder="Enter an email address" value="{{.Message}}" disabled="disabled">
+                <input type="text" class="form-control" id="Message" aria-describedby="MessageHelp" placeholder="" disabled="disabled" value="{{.Message}}">
               </div>
             </div>
+           
 
-<hr>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSCreated">Created</label>
-                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreated" placeholder="Enter a description" value="{{.SYSCreated}}" disabled="disabled">
-              </div>
-
-              <div class="col-sm">
-                <label for="SYSWho">By</label>
-                <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWho" placeholder="Enter a description" value="{{.SYSWho}}" disabled="disabled">
-              </div>
-              <div class="col-sm">
-                <label for="SYSHost">On</label>
-                <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHost" placeholder="Enter a description" value="{{.SYSHost}}" disabled="disabled">
-              </div>
-              <div class="col-sm">
-                <label for="SYSUpdated">Last Updated</label>
-                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdated" placeholder="Enter a description" value="{{.SYSUpdated}}" disabled="disabled">
-              </div>
-            </div>
+   
 
 
-          </div>
+    
+                 <br>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+        <h2>Audit Information</h2>      
+             <tr>
+             <th></th>
+                <th>Action</th>
+                <th>When</th>
+                <th>Who</th>
+                <th>Server</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+              <tr>
+                <td/>
+                <td class="font-weight-bold">Create</td>
+                <td>{{.SYSCreated}}</td>
+                <td>{{.SYSCreatedBy}}</td>
+                <td>{{.SYSCreatedHost}}</td>
+              </tr>
+              <tr>
+                <td/>
+                <td class="font-weight-bold">Last Update</td>
+                <td>{{.SYSUpdated}}</td>
+                <td>{{.SYSUpdatedBy}}</td>
+                <td>{{.SYSUpdatedHost}}</td>
+              </tr>
 
+              </tbody>
+          </table>
+          <br>
+      </div>
         </div>
+      </div>
 
-      </form>
-    </div>
 
-  </body>
+<br>
+
+    </form>
+  </div>
+
+</body>

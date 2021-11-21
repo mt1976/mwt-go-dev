@@ -23,7 +23,7 @@ func Rollover_Job() dm.JobDefinition {
 
 func Rollover_Register(c *cron.Cron) {
 	//application.RegisterSchedule(Rollover_Job().ID, Rollover_Job().Name, Rollover_Job().Description, Rollover_Job().Period, Rollover_Job().Type)
-	application.RegisterSchedule(Rollover_Job())
+	application.Schedule_Register(Rollover_Job())
 	c.AddFunc(Rollover_Job().Period, func() { Rollover_Run() })
 }
 
@@ -46,6 +46,6 @@ func Rollover_Run() {
 	//application.UpdateSchedule("SRO", core.Monitor, message)
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(Rollover_Job(), message)
+	application.Schedule_Update(Rollover_Job(), message)
 	logs.EndJob(Rollover_Job().Name)
 }

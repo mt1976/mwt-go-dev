@@ -166,8 +166,7 @@ func main() {
 	// mux.HandleFunc("/saveTranslationStore/", application.SaveTranslationStoreHandler)
 	application.Translation_Publish(*mux)
 
-	mux.HandleFunc("/listScheduleStore/", application.ListScheduleStoreHandler)
-	mux.HandleFunc("/viewScheduleStore/", application.ViewScheduleStoreHandler)
+	application.Schedule_Publish(*mux)
 
 	mux.HandleFunc("/listSessionStore/", application.ListSessionStoreHandler)
 	mux.HandleFunc("/deleteSessionStore/", application.DeleteSessionStoreHandler)
@@ -220,7 +219,7 @@ func main() {
 	logs.Information("Lic URL", core.ApplicationProperties["liclink"])
 	logs.Header("Runtime")
 	logs.Information("GO Version", runtime.Version())
-	logs.Information("Operating System", runtime.GOOS)
+	logs.Information("Operating System", runtime.GOOS+" ("+runtime.GOARCH+")")
 	logs.Header("Application Database (MSSQL)")
 	logs.Information("Server", core.ApplicationPropertiesDB["server"])
 	logs.Information("Database", core.ApplicationPropertiesDB["database"])
@@ -256,7 +255,7 @@ func main() {
 	//jobs.RatesFXSpot_Run()
 
 	logs.Header("READY STEADY GO!!!")
-	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Bike+logs.Bike+logs.Bike+logs.Bike)
+	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()
 	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
 	logs.Break()

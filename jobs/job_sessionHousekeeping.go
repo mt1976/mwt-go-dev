@@ -19,7 +19,7 @@ func SessionHouseKeeping_Job() dm.JobDefinition {
 }
 
 func SessionHouseKeeping_Register(c *cron.Cron) {
-	application.RegisterSchedule(SessionHouseKeeping_Job())
+	application.Schedule_Register(SessionHouseKeeping_Job())
 	c.AddFunc(SessionHouseKeeping_Job().Period, func() { SessionHouseKeeping_Run() })
 }
 
@@ -40,6 +40,6 @@ func SessionHouseKeeping_Run() {
 	// }
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(SessionHouseKeeping_Job(), "")
+	application.Schedule_Update(SessionHouseKeeping_Job(), "")
 	logs.EndJob(SessionHouseKeeping_Job().Name)
 }

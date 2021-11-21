@@ -67,7 +67,7 @@ func IndexSONIABOE_Job() dm.JobDefinition {
 }
 
 func IndexSONIABOE_Register(c *cron.Cron) {
-	application.RegisterSchedule(IndexSONIABOE_Job())
+	application.Schedule_Register(IndexSONIABOE_Job())
 	c.AddFunc(IndexSONIABOE_Job().Period, func() { IndexSONIABOE_Run() })
 }
 
@@ -144,7 +144,7 @@ func IndexSONIABOE_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(IndexSONIABOE_Job(), message)
+	application.Schedule_Update(IndexSONIABOE_Job(), message)
 	logs.EndJob(IndexSONIABOE_Job().Name)
 }
 

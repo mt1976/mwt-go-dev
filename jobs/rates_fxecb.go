@@ -23,7 +23,7 @@ func RatesFXECB_Job() dm.JobDefinition {
 }
 
 func RatesFXECB_Register(c *cron.Cron) {
-	application.RegisterSchedule(RatesFXECB_Job())
+	application.Schedule_Register(RatesFXECB_Job())
 	c.AddFunc(RatesFXECB_Job().Period, func() { RatesFXECB_Run() })
 }
 
@@ -64,6 +64,6 @@ func RatesFXECB_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(RatesFXECB_Job(), message)
+	application.Schedule_Update(RatesFXECB_Job(), message)
 	logs.EndJob(RatesFXECB_Job().Name)
 }

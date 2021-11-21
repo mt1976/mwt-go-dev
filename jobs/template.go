@@ -1,4 +1,5 @@
 package jobs
+
 // ----------------------------------------------------------------
 // Automatically generated  "/application/template.go"
 // ----------------------------------------------------------------
@@ -6,7 +7,7 @@ package jobs
 // Object 			  : Template
 // Endpoint Root 	  : Template
 // Search QueryString : TemplateID
-// From   			  : 
+// From   			  :
 // ----------------------------------------------------------------
 // Template Generator : RussetAlbatross [r0-21.11.01]
 // ----------------------------------------------------------------
@@ -16,10 +17,10 @@ package jobs
 
 import (
 	application "github.com/mt1976/mwt-go-dev/application"
-	core        "github.com/mt1976/mwt-go-dev/core"
-	dm          "github.com/mt1976/mwt-go-dev/datamodel"
-	logs        "github.com/mt1976/mwt-go-dev/logs"
-	cron        "github.com/robfig/cron/v3"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+	cron "github.com/robfig/cron/v3"
 )
 
 func Template_Job() dm.JobDefinition {
@@ -33,7 +34,7 @@ func Template_Job() dm.JobDefinition {
 }
 
 func Template_Register(c *cron.Cron) {
-	application.RegisterSchedule(Template_Job())
+	application.Schedule_Register(Template_Job())
 	c.AddFunc(Template_Job().Period, func() { Template_Run() })
 }
 
@@ -42,9 +43,8 @@ func Template_Run() {
 	logs.StartJob(Template_Job().Name)
 	message := ""
 	/// CONTENT STARTS
-	
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(Template_Job(), message)
+	application.Schedule_Update(Template_Job(), message)
 	logs.EndJob(Template_Job().Name)
 }

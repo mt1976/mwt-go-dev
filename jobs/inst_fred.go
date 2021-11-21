@@ -74,7 +74,7 @@ func InstFRED_Job() dm.JobDefinition {
 }
 
 func InstFRED_Register(c *cron.Cron) {
-	application.RegisterSchedule(InstFRED_Job())
+	application.Schedule_Register(InstFRED_Job())
 	c.AddFunc(InstFRED_Job().Period, func() { InstFRED_Run() })
 }
 
@@ -112,7 +112,7 @@ func InstFRED_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(InstFRED_Job(), message)
+	application.Schedule_Update(InstFRED_Job(), message)
 	logs.EndJob(InstFRED_Job().Name)
 }
 

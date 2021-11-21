@@ -21,7 +21,7 @@ func HeartBeat_Job() dm.JobDefinition {
 }
 
 func HeartBeat_Register(c *cron.Cron) {
-	application.RegisterSchedule(HeartBeat_Job())
+	application.Schedule_Register(HeartBeat_Job())
 	c.AddFunc(HeartBeat_Job().Period, func() { HeartBeat_Run() })
 }
 
@@ -35,7 +35,7 @@ func HeartBeat_Run() {
 
 	message := fmt.Sprintf("Uptime = %v", core.Uptime())
 
-	application.UpdateSchedule(HeartBeat_Job(), message)
+	application.Schedule_Update(HeartBeat_Job(), message)
 	logs.EndJob(HeartBeat_Job().Name)
 
 	logs.Break()

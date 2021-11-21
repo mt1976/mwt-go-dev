@@ -1,0 +1,54 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/schedule.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Schedule (schedule)
+Endpoint 	         : Schedule (Schedule)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 21/11/2021 at 13:10:42
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : scheduleStore
+SQL Table Search Col : id
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| Id                                  | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| Description                         | String     |            | false | true   | false |                 |            |            | 
+| Schedule                            | String     |            | false | true   | false |                 |            |            | 
+| Started                             | String     |            | false | true   | false |                 |            |            | 
+| Lastrun                             | String     |            | false | true   | false |                 |            |            | 
+| Message                             | String     |            | false | true   | false |                 |            |            | 
+| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
+| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
+| Type                                | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| Human                               | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/schedule_core.go)
+* dao (/dao/schedule.go)
+* datamodel (/datamodel/schedule.go)
+* menu (/design/menu/schedule.json)
+* html -> List (/html/Schedule_List.html)
+* html -> View (/html/Schedule_View.html)
+* catalog (/design/catalog/schedule.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------
