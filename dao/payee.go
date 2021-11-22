@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 21:30:57
+// Date & Time		    : 22/11/2021 at 11:25:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func Payee_Delete(id string) {
 // Payee_Store() saves/stores a Payee record to the database
 func Payee_Store(r dm.Payee) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Payee",fmt.Sprintf("%s", r))
 
 	if len(r.KeyCounterpartyFirm) == 0 {
 		r.KeyCounterpartyFirm = Payee_NewID(r)
@@ -87,7 +87,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Payee_KeyCounterpartyFirm,"")
    recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable, "")
    recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm, "")
@@ -116,7 +116,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 
 
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:04
+// Date & Time		    : 22/11/2021 at 11:25:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func Mandate_Delete(id string) {
 // Mandate_Store() saves/stores a Mandate record to the database
 func Mandate_Store(r dm.Mandate) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Mandate",fmt.Sprintf("%s", r))
 
 	if len(r.FirmName) == 0 {
 		r.FirmName = Mandate_NewID(r)
@@ -87,7 +87,7 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Mandate_FirmName,"")
    recItem.MandatedUserKeyCounterpartyFirm  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyFirm, "")
    recItem.MandatedUserKeyCounterpartyCentre  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyCentre, "")
@@ -110,7 +110,7 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 
 
 
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

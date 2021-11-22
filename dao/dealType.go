@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:03
+// Date & Time		    : 22/11/2021 at 11:25:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func DealType_Delete(id string) {
 // DealType_Store() saves/stores a DealType record to the database
 func DealType_Store(r dm.DealType) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("DealType",fmt.Sprintf("%s", r))
 
 	if len(r.DealTypeKey) == 0 {
 		r.DealTypeKey = DealType_NewID(r)
@@ -87,7 +87,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealType_DealTypeKey,"")
    recItem.DealTypeKey  = get_String(rec, dm.DealType_DealTypeKey, "")
    recItem.DealTypeShortName  = get_String(rec, dm.DealType_DealTypeShortName, "")
@@ -115,7 +115,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.DealType_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealType_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealType_ChangeType, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

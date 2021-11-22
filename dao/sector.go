@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:05
+// Date & Time		    : 22/11/2021 at 11:25:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Sector_Delete(id string) {
 // Sector_Store() saves/stores a Sector record to the database
 func Sector_Store(r dm.Sector) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Sector",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Sector_NewID(r)
@@ -95,11 +95,11 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Sector_Code,"")
    recItem.Code  = get_String(rec, dm.Sector_Code, "")
    recItem.Name  = get_String(rec, dm.Sector_Name, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

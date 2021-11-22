@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:02
+// Date & Time		    : 22/11/2021 at 11:25:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func CurrencyPair_Delete(id string) {
 // CurrencyPair_Store() saves/stores a CurrencyPair record to the database
 func CurrencyPair_Store(r dm.CurrencyPair) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("CurrencyPair",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = CurrencyPair_NewID(r)
@@ -87,7 +87,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.CurrencyPair_Code,"")
    recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
    recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
@@ -97,7 +97,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
    recItem.MinorName  = get_String(rec, dm.CurrencyPair_MinorName, "")
 
 
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

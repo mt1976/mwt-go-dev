@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:01
+// Date & Time		    : 22/11/2021 at 11:25:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func Credentials_Delete(id string) {
 // Credentials_Store() saves/stores a Credentials record to the database
 func Credentials_Store(r dm.Credentials) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Credentials",fmt.Sprintf("%s", r))
 
 	if len(r.Id) == 0 {
 		r.Id = Credentials_NewID(r)
@@ -126,7 +126,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Credentials_Id,"")
    recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Credentials_Id, "")
@@ -148,7 +148,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

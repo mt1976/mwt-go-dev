@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 21:30:57
+// Date & Time		    : 22/11/2021 at 11:25:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -39,7 +39,7 @@ type Payee_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		SourceTable string
 		KeyCounterpartyFirm string
 		KeyCounterpartyCentre string
@@ -96,7 +96,7 @@ type Payee_Page struct {
 	Centre_Impl_List	[]dm.Centre
 	Currency_Impl_List	[]dm.Currency
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -176,7 +176,7 @@ func Payee_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SourceTable = rD.SourceTable
 pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
 pageDetail.KeyCounterpartyCentre = rD.KeyCounterpartyCentre
@@ -200,7 +200,7 @@ pageDetail.BankAddress = rD.BankAddress
 pageDetail.Reason = rD.Reason
 pageDetail.BankSettlementAcct = rD.BankSettlementAcct
 pageDetail.UpdatedUserId = rD.UpdatedUserId
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup.Name
 _,KeyCounterpartyFirm_Lookup,_:= dao.Firm_GetByID(rD.KeyCounterpartyFirm)
@@ -209,7 +209,7 @@ _,KeyCounterpartyCentre_Lookup,_:= dao.Centre_GetByID(rD.KeyCounterpartyCentre)
 pageDetail.Centre_Impl = KeyCounterpartyCentre_Lookup.Name
 _,KeyCurrency_Lookup,_:= dao.Currency_GetByID(rD.KeyCurrency)
 pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -219,7 +219,7 @@ pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 	// func payee_HandlerViewImpl(pageDetail Payee_Page) Payee_Page {return pageDetail}
 	pageDetail = payee_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateView, core.GetUserRole(r)))
@@ -251,7 +251,7 @@ func Payee_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SourceTable = rD.SourceTable
 pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
 pageDetail.KeyCounterpartyCentre = rD.KeyCounterpartyCentre
@@ -275,7 +275,7 @@ pageDetail.BankAddress = rD.BankAddress
 pageDetail.Reason = rD.Reason
 pageDetail.BankSettlementAcct = rD.BankSettlementAcct
 pageDetail.UpdatedUserId = rD.UpdatedUserId
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
@@ -288,7 +288,7 @@ _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 _,KeyCurrency_Lookup,_:= dao.Currency_GetByID(rD.KeyCurrency)
 pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 _,pageDetail.Currency_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	// payee_HandlerEditImpl should be specified in application/payee_Impl.go
@@ -297,7 +297,7 @@ _,pageDetail.Currency_Impl_List,_ = dao.Currency_GetList()
 	// func payee_HandlerEditImpl(pageDetail Payee_Page) Payee_Page {return pageDetail}
 	pageDetail = payee_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -319,7 +319,7 @@ func Payee_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Payee
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		item.SourceTable = r.FormValue(dm.Payee_SourceTable)
 		item.KeyCounterpartyFirm = r.FormValue(dm.Payee_KeyCounterpartyFirm)
 		item.KeyCounterpartyCentre = r.FormValue(dm.Payee_KeyCounterpartyCentre)
@@ -348,7 +348,7 @@ func Payee_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Centre_Impl = r.FormValue(dm.Payee_Centre_Impl)
 		item.Currency_Impl = r.FormValue(dm.Payee_Currency_Impl)
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	// payee_HandlerSaveImpl should be specified in application/payee_Impl.go
 	// to provide the implementation for the special case.
@@ -356,7 +356,7 @@ func Payee_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func payee_HandlerSaveImpl(item dm.Payee) dm.Payee {return item}
 	item = payee_HandlerSaveImpl(item)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	dao.Payee_Store(item)	
 
@@ -385,7 +385,7 @@ func Payee_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SourceTable = ""
 pageDetail.KeyCounterpartyFirm = ""
 pageDetail.KeyCounterpartyCentre = ""
@@ -409,7 +409,7 @@ pageDetail.BankAddress = ""
 pageDetail.Reason = ""
 pageDetail.BankSettlementAcct = ""
 pageDetail.UpdatedUserId = ""
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 pageDetail.Firm_Impl = ""
@@ -418,7 +418,7 @@ pageDetail.Centre_Impl = ""
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 pageDetail.Currency_Impl = ""
 _,pageDetail.Currency_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateNew, core.GetUserRole(r)))

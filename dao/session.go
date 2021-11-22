@@ -1,259 +1,183 @@
 package dao
+// ----------------------------------------------------------------
+// Automatically generated  "/dao/session.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			    : Session (session)
+// Endpoint 	        : Session (SessionID)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r0-21.11.01]
+// Date & Time		    : 22/11/2021 at 20:23:09
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
 
 import (
-	"database/sql"
-	"fmt"
 	"log"
-	"os"
-	"os/user"
-	"strconv"
-	"time"
+	"fmt"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
-// Defines the Fields to Fetch from SQL
-var appSessionStoreSQL = "apptoken, 	createdate, 	createtime, 	uniqueid, 	sessiontoken, 	username, 	password, 	userip, 	userhost, 	appip, 	apphost, 	issued, 	expiry, 	expiryraw, 	role, 	brand, 	_created, 	_who, 	_host, 	_updated, 	id, expires"
+// Session_GetList() returns a list of all Session records
+func Session_GetList() (int, []dm.Session, error) {
 
-var sqlSessionStoreApptoken, sqlSessionStoreCreatedate, sqlSessionStoreCreatetime, sqlSessionStoreUniqueid, sqlSessionStoreSessiontoken, sqlSessionStoreUsername, sqlSessionStorePassword, sqlSessionStoreUserip, sqlSessionStoreUserhost, sqlSessionStoreAppip, sqlSessionStoreApphost, sqlSessionStoreIssued, sqlSessionStoreExpiry, sqlSessionStoreExpiryraw, sqlSessionStoreRole, sqlSessionStoreBrand, sqlSessionStoreSYSCreated, sqlSessionStoreSYSWho, sqlSessionStoreSYSHost, sqlSessionStoreSYSUpdated, sqlSessionStoreId, sqlSessionStoreExpires sql.NullString
-
-var appSessionStoreSQLINSERT = "INSERT INTO %s.sessionStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');"
-var appSessionStoreSQLDELETE = "DELETE FROM %s.sessionStore WHERE id='%s';"
-var appSessionStoreSQLSELECT = "SELECT %s FROM %s.sessionStore;"
-var appSessionStoreSQLGET = "SELECT %s FROM %s.sessionStore WHERE id='%s';"
-var appSessionStoreSQLGETTOKEN = "SELECT %s FROM %s.sessionStore WHERE sessiontoken='%s';"
-var appSessionStoreSQLGETUSER = "SELECT %s FROM %s.sessionStore WHERE username='%s';"
-var appSessionStoreSQLDELETEEXPIRED = "DELETE FROM %s.sessionStore WHERE expires < '%s';"
-
-//appSessionStorePage is cheese
-type appSessionStoreListPage struct {
-	UserMenu          []dm.AppMenuItem
-	UserRole          string
-	UserNavi          string
-	Title             string
-	PageTitle         string
-	SessionStoreCount int
-	SessionStoreList  []dm.AppSessionStoreItem
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
+	count, sessionList, _, _ := session_Fetch(tsql)
+	return count, sessionList, nil
 }
 
-//appSessionStorePage is cheese
-type appSessionStorePage struct {
-	UserMenu  []dm.AppMenuItem
-	UserRole  string
-	UserNavi  string
-	Title     string
-	PageTitle string
-	ID        string
-	Action    string
-	// Variable Bits Below
-	Apptoken     string
-	Createdate   string
-	Createtime   string
-	Uniqueid     string
-	Sessiontoken string
-	Username     string
-	Password     string
-	Userip       string
-	Userhost     string
-	Appip        string
-	Apphost      string
-	Issued       string
-	Expiry       string
-	Expiryraw    string
-	Role         string
-	Brand        string
-	SYSCreated   string
-	SYSWho       string
-	SYSHost      string
-	SYSUpdated   string
-	Id           string
+// Session_GetByID() returns a single Session record
+func Session_GetByID(id string) (int, dm.Session, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
+	tsql = tsql + " WHERE " + dm.Session_SQLSearchID + "='" + id + "'"
+
+	_, _, sessionItem, _ := session_Fetch(tsql)
+	return 1, sessionItem, nil
 }
 
-// getSessionStoreList read all employees
-func GetSessionStoreList() (int, []dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLSELECT, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"])
-	count, appSessionStoreList, _, _ := FetchSessionStoreData(tsql)
-	return count, appSessionStoreList, nil
+
+
+// Session_DeleteByID() deletes a single Session record
+func Session_Delete(id string) {
+
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Session_SQLTable
+
+	tsql := "DELETE FROM " + object_Table
+	tsql = tsql + " WHERE " + dm.Session_SQLSearchID + " = '" + id + "'"
+
+	das.Execute(tsql)
 }
 
-// getSessionStoreList returns a specific Session Instance
-func GetSessionStoreByID(id string) (int, dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLGET, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"], id)
-	_, _, appSessionStoreItem, _ := FetchSessionStoreData(tsql)
-	return 1, appSessionStoreItem, nil
-}
+// Session_Store() saves/stores a Session record to the database
+func Session_Store(r dm.Session) error {
 
-// getSessionStoreList read all employees
-func GetSessionStoreByTokenID(id string) (int, dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLGETTOKEN, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"], id)
-	_, _, appSessionStoreItem, _ := FetchSessionStoreData(tsql)
-	return 1, appSessionStoreItem, nil
-}
-
-// getSessionStoreList read all employees
-func GetSessionStoreByUserName(id string) (int, dm.AppSessionStoreItem, error) {
-	tsql := fmt.Sprintf(appSessionStoreSQLGETUSER, appSessionStoreSQL, core.ApplicationPropertiesDB["schema"], id)
-	_, _, appSessionStoreItem, _ := FetchSessionStoreData(tsql)
-	return 1, appSessionStoreItem, nil
-}
-
-// getSessionStoreList read all employees
-func HousekeepSessionStore() (int, error) {
-	expiry := time.Now().Format(core.DATETIMEFORMATSQLSERVER)
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETEEXPIRED, core.ApplicationPropertiesDB["schema"], expiry)
-	//log.Println("DELETE:", deletesql, core.ApplicationDB)
-	_, err := core.ApplicationDB.Exec(deletesql)
-	return 0, err
-}
-
-//PutSessionStore stores session data
-func PutSessionStore(r dm.AppSessionStoreItem) {
-	putSessionStore(r)
-}
-
-func putSessionStore(r dm.AppSessionStoreItem) {
-	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
-	if len(r.SYSCreated) == 0 {
-		r.SYSCreated = createDate
-	}
-
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
-	host, _ := os.Hostname()
+	logs.Storing("Session",fmt.Sprintf("%s", r))
 
 	if len(r.Id) == 0 {
-		r.Id = newSessionStoreID()
-		r.SYSCreated = createDate
-		r.SYSWho = userID
-		r.SYSHost = host
-		r.Issued = createDate
-		//expiryDate := time.Now()
-		//life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
-		//expiryDate = expiryDate.AddDate(0, 0, life)
-		r.Expiry = ""
-		r.Password = core.ApplicationProperties["defaultpassword"]
+		r.Id = Session_NewID(r)
 	}
 
-	r.SYSUpdated = createDate
 
-	//fmt.Println("RECORD", r)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSessionStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appSessionStoreSQL, r.Apptoken, r.Createdate, r.Createtime, r.Uniqueid, r.Sessiontoken, r.Username, r.Password, r.Userip, r.Userhost, r.Appip, r.Apphost, r.Issued, r.Expiry, r.Expiryraw, r.Role, r.Brand, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Id, r.Expires)
 
-	//log.Println("DELETE:", deletesql, core.ApplicationDB)
-	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
+//Deal with the if its Application or null add this bit, otherwise dont.
+		//fmt.Println(credentialStore)
 
-	_, err2 := core.ApplicationDB.Exec(deletesql)
-	if err2 != nil {
-		log.Println(err2.Error())
-	}
-	//log.Println(fred2, err2)
-	_, err := core.ApplicationDB.Exec(inserttsql)
-	//log.Println(fred, err)
+	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
+	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
+	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
+	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
+	r.SYSUpdatedBy = Audit_Update("",Audit_User())
+	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+
+	ts := SQLData{}
+
+	ts = addData(ts, dm.Session_SYSId, r.SYSId)
+	ts = addData(ts, dm.Session_Apptoken, r.Apptoken)
+	ts = addData(ts, dm.Session_Createdate, r.Createdate)
+	ts = addData(ts, dm.Session_Createtime, r.Createtime)
+	ts = addData(ts, dm.Session_Uniqueid, r.Uniqueid)
+	ts = addData(ts, dm.Session_Sessiontoken, r.Sessiontoken)
+	ts = addData(ts, dm.Session_Username, r.Username)
+	ts = addData(ts, dm.Session_Password, r.Password)
+	ts = addData(ts, dm.Session_Userip, r.Userip)
+	ts = addData(ts, dm.Session_Userhost, r.Userhost)
+	ts = addData(ts, dm.Session_Appip, r.Appip)
+	ts = addData(ts, dm.Session_Apphost, r.Apphost)
+	ts = addData(ts, dm.Session_Issued, r.Issued)
+	ts = addData(ts, dm.Session_Expiry, r.Expiry)
+	ts = addData(ts, dm.Session_Expiryraw, r.Expiryraw)
+	ts = addData(ts, dm.Session_Brand, r.Brand)
+	ts = addData(ts, dm.Session_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.Session_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.Session_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.Session_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.Session_Id, r.Id)
+	ts = addData(ts, dm.Session_Expires, r.Expires)
+	ts = addData(ts, dm.Session_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.Session_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.Session_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Session_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Session_SessionRole, r.SessionRole)
+	
+
+	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
+	tsql = tsql + " (" + fields(ts) + ")"
+	tsql = tsql + " VALUES (" + values(ts) + ")"
+
+	Session_Delete(r.Id)
+	das.Execute(tsql)
+
+
+	return nil
+}
+
+// session_Fetch read all employees
+func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
+
+	var recItem dm.Session
+	var recList []dm.Session
+
+	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Println(err.Error())
+		log.Fatal(err.Error())
 	}
-}
 
-func getSessionExpiryTime() string {
-	expiryDate := time.Now()
-	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
-	expiryDate = expiryDate.AddDate(0, 0, life)
-	return expiryDate.Format(core.DATETIMEFORMATUSER)
-}
+	for i := 0; i < noitems; i++ {
 
-//DeleteSessionStore deletes a session instance
-func DeleteSessionStore(id string) {
-	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appSessionStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, core.ApplicationDB)
-	_, err2 := core.ApplicationDB.Exec(deletesql)
-	if err2 != nil {
-		log.Println(err2.Error())
+		rec := returnList[i]
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+    recItem.AppInternalID = get_String(rec, dm.Session_Id,"")
+   recItem.SYSId  = get_Int(rec, dm.Session_SYSId, "0")
+   recItem.Apptoken  = get_String(rec, dm.Session_Apptoken, "")
+   recItem.Createdate  = get_String(rec, dm.Session_Createdate, "")
+   recItem.Createtime  = get_String(rec, dm.Session_Createtime, "")
+   recItem.Uniqueid  = get_String(rec, dm.Session_Uniqueid, "")
+   recItem.Sessiontoken  = get_String(rec, dm.Session_Sessiontoken, "")
+   recItem.Username  = get_String(rec, dm.Session_Username, "")
+   recItem.Password  = get_String(rec, dm.Session_Password, "")
+   recItem.Userip  = get_String(rec, dm.Session_Userip, "")
+   recItem.Userhost  = get_String(rec, dm.Session_Userhost, "")
+   recItem.Appip  = get_String(rec, dm.Session_Appip, "")
+   recItem.Apphost  = get_String(rec, dm.Session_Apphost, "")
+   recItem.Issued  = get_String(rec, dm.Session_Issued, "")
+   recItem.Expiry  = get_String(rec, dm.Session_Expiry, "")
+   recItem.Expiryraw  = get_String(rec, dm.Session_Expiryraw, "")
+   recItem.Brand  = get_String(rec, dm.Session_Brand, "")
+   recItem.SYSCreated  = get_String(rec, dm.Session_SYSCreated, "")
+   recItem.SYSWho  = get_String(rec, dm.Session_SYSWho, "")
+   recItem.SYSHost  = get_String(rec, dm.Session_SYSHost, "")
+   recItem.SYSUpdated  = get_String(rec, dm.Session_SYSUpdated, "")
+   recItem.Id  = get_String(rec, dm.Session_Id, "")
+   recItem.Expires  = get_Time(rec, dm.Session_Expires, "")
+   recItem.SYSCreatedBy  = get_String(rec, dm.Session_SYSCreatedBy, "")
+   recItem.SYSCreatedHost  = get_String(rec, dm.Session_SYSCreatedHost, "")
+   recItem.SYSUpdatedBy  = get_String(rec, dm.Session_SYSUpdatedBy, "")
+   recItem.SYSUpdatedHost  = get_String(rec, dm.Session_SYSUpdatedHost, "")
+   recItem.SessionRole  = get_String(rec, dm.Session_SessionRole, "")
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+		//Add to the list
+		recList = append(recList, recItem)
 	}
-	//log.Println(fred2, err2)
+	return noitems, recList, recItem, nil
 }
 
-func banSessionStore(id string) {
-	//fmt.Println(credentialStore)
-	//	fmt.Println("RECORD", id)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
+func Session_NewID(r dm.Session) string {
+	
+	
+			id := uuid.New().String()
 
-	_, r, _ := GetSessionStoreByID(id)
-	r.Expiry = ""
-	r.Password = ""
-	putSessionStore(r)
-}
-
-func activateSessionStore(id string) {
-	//fmt.Println(credentialStore)
-	//fmt.Println("RECORD", id)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
-
-	_, r, _ := GetSessionStoreByID(id)
-	//r.Expiry = getExpiryDate()
-	putSessionStore(r)
-}
-
-// fetchSessionStoreData read all employees
-func FetchSessionStoreData(tsql string) (int, []dm.AppSessionStoreItem, dm.AppSessionStoreItem, error) {
-	//	log.Println(tsql)
-	var appSessionStore dm.AppSessionStoreItem
-	var appSessionStoreList []dm.AppSessionStoreItem
-
-	rows, err := core.ApplicationDB.Query(tsql)
-	//fmt.Println("back from dq Q")
-	if err != nil {
-		log.Println("Error reading rows: " + err.Error())
-		return -1, nil, appSessionStore, err
-	}
-	//fmt.Println(rows)
-	defer rows.Close()
-	count := 0
-	for rows.Next() {
-		err := rows.Scan(&sqlSessionStoreApptoken, &sqlSessionStoreCreatedate, &sqlSessionStoreCreatetime, &sqlSessionStoreUniqueid, &sqlSessionStoreSessiontoken, &sqlSessionStoreUsername, &sqlSessionStorePassword, &sqlSessionStoreUserip, &sqlSessionStoreUserhost, &sqlSessionStoreAppip, &sqlSessionStoreApphost, &sqlSessionStoreIssued, &sqlSessionStoreExpiry, &sqlSessionStoreExpiryraw, &sqlSessionStoreRole, &sqlSessionStoreBrand, &sqlSessionStoreSYSCreated, &sqlSessionStoreSYSWho, &sqlSessionStoreSYSHost, &sqlSessionStoreSYSUpdated, &sqlSessionStoreId, &sqlSessionStoreExpires)
-		if err != nil {
-			log.Println("Error reading rows: " + err.Error())
-			return -1, nil, appSessionStore, err
-		}
-		// Populate Arrays etc.
-		appSessionStore.Apptoken = sqlSessionStoreApptoken.String
-		appSessionStore.Createdate = sqlSessionStoreCreatedate.String
-		appSessionStore.Createtime = sqlSessionStoreCreatetime.String
-		appSessionStore.Uniqueid = sqlSessionStoreUniqueid.String
-		appSessionStore.Sessiontoken = sqlSessionStoreSessiontoken.String
-		appSessionStore.Username = sqlSessionStoreUsername.String
-		appSessionStore.Password = sqlSessionStorePassword.String
-		appSessionStore.Userip = sqlSessionStoreUserip.String
-		appSessionStore.Userhost = sqlSessionStoreUserhost.String
-		appSessionStore.Appip = sqlSessionStoreAppip.String
-		appSessionStore.Apphost = sqlSessionStoreApphost.String
-		appSessionStore.Issued = sqlSessionStoreIssued.String
-		appSessionStore.Expiry = sqlSessionStoreExpiry.String
-		appSessionStore.Expiryraw = sqlSessionStoreExpiryraw.String
-		appSessionStore.Role = sqlSessionStoreRole.String
-		appSessionStore.Brand = sqlSessionStoreBrand.String
-		appSessionStore.SYSCreated = sqlSessionStoreSYSCreated.String
-		appSessionStore.SYSWho = sqlSessionStoreSYSWho.String
-		appSessionStore.SYSHost = sqlSessionStoreSYSHost.String
-		appSessionStore.SYSUpdated = sqlSessionStoreSYSUpdated.String
-		appSessionStore.Id = sqlSessionStoreId.String
-		appSessionStore.Expires = sqlSessionStoreExpires.String
-		// no change below
-		appSessionStoreList = append(appSessionStoreList, appSessionStore)
-		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-		count++
-	}
-	//log.Println(count, appSessionStoreList, appSessionStore)
-	return count, appSessionStoreList, appSessionStore, nil
-}
-
-func newSessionStoreID() string {
-	id := uuid.New().String()
+	
 	return id
 }
+// ----------------------------------------------------------------
+// ADD Aditional Functions below this line
+// ----------------------------------------------------------------
+

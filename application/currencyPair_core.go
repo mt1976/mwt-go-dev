@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:02
+// Date & Time		    : 22/11/2021 at 11:25:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -39,7 +39,7 @@ type CurrencyPair_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		CodeMajorCurrencyIsoCode string
 		CodeMinorCurrencyIsoCode string
 		ReciprocalActive string
@@ -58,7 +58,7 @@ type CurrencyPair_Page struct {
 	Major_Impl_List	[]dm.Currency
 	Minor_Impl_List	[]dm.Currency
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -130,23 +130,23 @@ func CurrencyPair_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
 pageDetail.ReciprocalActive = rD.ReciprocalActive
 pageDetail.Code = rD.Code
 pageDetail.MajorName = rD.MajorName
 pageDetail.MinorName = rD.MinorName
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CodeMajorCurrencyIsoCode_Lookup,_:= dao.Currency_GetByID(rD.CodeMajorCurrencyIsoCode)
 pageDetail.Major_Impl = CodeMajorCurrencyIsoCode_Lookup.Name
 _,CodeMinorCurrencyIsoCode_Lookup,_:= dao.Currency_GetByID(rD.CodeMinorCurrencyIsoCode)
 pageDetail.Minor_Impl = CodeMinorCurrencyIsoCode_Lookup.Name
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CurrencyPair_TemplateView, core.GetUserRole(r)))
@@ -178,24 +178,24 @@ func CurrencyPair_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
 pageDetail.ReciprocalActive = rD.ReciprocalActive
 pageDetail.Code = rD.Code
 pageDetail.MajorName = rD.MajorName
 pageDetail.MinorName = rD.MinorName
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CodeMajorCurrencyIsoCode_Lookup,_:= dao.Currency_GetByID(rD.CodeMajorCurrencyIsoCode)
 pageDetail.Major_Impl = CodeMajorCurrencyIsoCode_Lookup.Name
 _,pageDetail.Major_Impl_List,_ = dao.Currency_GetList()
 _,CodeMinorCurrencyIsoCode_Lookup,_:= dao.Currency_GetByID(rD.CodeMinorCurrencyIsoCode)
 pageDetail.Minor_Impl = CodeMinorCurrencyIsoCode_Lookup.Name
 _,pageDetail.Minor_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CurrencyPair_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -217,7 +217,7 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.CurrencyPair
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		item.CodeMajorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMajorCurrencyIsoCode)
 		item.CodeMinorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMinorCurrencyIsoCode)
 		item.ReciprocalActive = r.FormValue(dm.CurrencyPair_ReciprocalActive)
@@ -227,9 +227,9 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Major_Impl = r.FormValue(dm.CurrencyPair_Major_Impl)
 		item.Minor_Impl = r.FormValue(dm.CurrencyPair_Minor_Impl)
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	dao.CurrencyPair_Store(item)	
 
@@ -258,19 +258,19 @@ func CurrencyPair_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = ""
 pageDetail.CodeMinorCurrencyIsoCode = ""
 pageDetail.ReciprocalActive = ""
 pageDetail.Code = ""
 pageDetail.MajorName = ""
 pageDetail.MinorName = ""
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Major_Impl = ""
 _,pageDetail.Major_Impl_List,_ = dao.Currency_GetList()
 pageDetail.Minor_Impl = ""
 _,pageDetail.Minor_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CurrencyPair_TemplateNew, core.GetUserRole(r)))

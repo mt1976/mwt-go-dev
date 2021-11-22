@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:05
+// Date & Time		    : 22/11/2021 at 11:25:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -39,7 +39,7 @@ type Schedule_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -78,7 +78,7 @@ type Schedule_Page struct {
 	
 	
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -97,10 +97,11 @@ func Schedule_Publish(mux http.ServeMux) {
 	
 	// schedule_PublishImpl should be specified in application/schedule_Impl.go
 	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// schedule_PublishImpl(mux http.ServeMux) http.ServeMux {...}
-	mux = schedule_PublishImpl(mux)
-	logs.Publish("Application", dm.Schedule_Title + " Special")
+	// override function should be defined as
+	// schedule_PublishImpl(mux http.ServeMux) {...}
+	// TODO - this is a temporary hack to get the special case working
+	// Add to main.go >>> schedule_PublishImpl(mux)
+	
 	
 }
 
@@ -157,7 +158,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -176,8 +177,8 @@ pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -187,7 +188,7 @@ pageDetail.Human = rD.Human
 	// func schedule_HandlerViewImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
 	pageDetail = schedule_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Schedule_TemplateView, core.GetUserRole(r)))
@@ -219,7 +220,7 @@ func Schedule_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -238,8 +239,8 @@ pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	// schedule_HandlerEditImpl should be specified in application/schedule_Impl.go
@@ -248,7 +249,7 @@ pageDetail.Human = rD.Human
 	// func schedule_HandlerEditImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
 	pageDetail = schedule_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Schedule_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -270,7 +271,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Schedule
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Schedule_SYSId)
 		item.Id = r.FormValue(dm.Schedule_Id)
 		item.Name = r.FormValue(dm.Schedule_Name)
@@ -290,7 +291,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Schedule_SYSUpdatedHost)
 		item.Human = r.FormValue(dm.Schedule_Human)
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	// schedule_HandlerSaveImpl should be specified in application/schedule_Impl.go
 	// to provide the implementation for the special case.
@@ -298,7 +299,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func schedule_HandlerSaveImpl(item dm.Schedule) dm.Schedule {return item}
 	item = schedule_HandlerSaveImpl(item)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	dao.Schedule_Store(item)	
 
@@ -327,7 +328,7 @@ func Schedule_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -346,8 +347,8 @@ pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
 pageDetail.Human = ""
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Schedule_TemplateNew, core.GetUserRole(r)))

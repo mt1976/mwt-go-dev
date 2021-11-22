@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:03
+// Date & Time		    : 22/11/2021 at 11:25:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Firm_Delete(id string) {
 // Firm_Store() saves/stores a Firm record to the database
 func Firm_Store(r dm.Firm) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Firm",fmt.Sprintf("%s", r))
 
 	if len(r.FirmName) == 0 {
 		r.FirmName = Firm_NewID(r)
@@ -95,7 +95,7 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Firm_FirmName,"")
    recItem.FirmName  = get_String(rec, dm.Firm_FirmName, "")
    recItem.FullName  = get_String(rec, dm.Firm_FullName, "")
@@ -103,7 +103,7 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
    recItem.Sector  = get_String(rec, dm.Firm_Sector, "")
 
 
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

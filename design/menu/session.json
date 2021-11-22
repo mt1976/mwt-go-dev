@@ -1,0 +1,11 @@
+
+    {
+      "ID": "8fe06558-7e25-4937-8b98-4c5c3a1676e4",
+      "Text": "Sessions",
+      "Glyph": "fas fa-history text-info",
+      "HREF": "/SessionList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

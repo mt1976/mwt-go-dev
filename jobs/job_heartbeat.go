@@ -30,8 +30,8 @@ func HeartBeat_Run() {
 
 	logs.StartJob(HeartBeat_Job().Name)
 	core.Log_uptime()
-	core.ApplicationDB = core.GlobalsDatabasePoke(core.ApplicationDB, core.ApplicationPropertiesDB)
-	core.SienaDB = core.GlobalsDatabasePoke(core.SienaDB, core.SienaPropertiesDB)
+	core.ApplicationDB = core.Database_Poke(core.ApplicationDB, core.ApplicationPropertiesDB)
+	core.SienaDB = core.Database_Poke(core.SienaDB, core.SienaPropertiesDB)
 
 	message := fmt.Sprintf("Uptime = %v", core.Uptime())
 

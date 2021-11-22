@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:04
+// Date & Time		    : 22/11/2021 at 11:25:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -39,7 +39,7 @@ type Mandate_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		MandatedUserKeyCounterpartyFirm string
 		MandatedUserKeyCounterpartyCentre string
 		MandatedUserKeyUserName string
@@ -84,7 +84,7 @@ type Mandate_Page struct {
 	Firm_Impl_List	[]dm.Firm
 	Centre_Impl_List	[]dm.Centre
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -103,10 +103,11 @@ func Mandate_Publish(mux http.ServeMux) {
 	
 	// mandate_PublishImpl should be specified in application/mandate_Impl.go
 	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// mandate_PublishImpl(mux http.ServeMux) http.ServeMux {...}
-	mux = mandate_PublishImpl(mux)
-	logs.Publish("Siena", dm.Mandate_Title + " Special")
+	// override function should be defined as
+	// mandate_PublishImpl(mux http.ServeMux) {...}
+	// TODO - this is a temporary hack to get the special case working
+	// Add to main.go >>> mandate_PublishImpl(mux)
+	
 	
 }
 
@@ -163,7 +164,7 @@ func Mandate_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
 pageDetail.MandatedUserKeyUserName = rD.MandatedUserKeyUserName
@@ -182,14 +183,14 @@ pageDetail.FirmName = rD.FirmName
 pageDetail.CentreName = rD.CentreName
 pageDetail.Notify = rD.Notify
 pageDetail.SystemUser = rD.SystemUser
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup.Name
 _,MandatedUserKeyCounterpartyFirm_Lookup,_:= dao.Firm_GetByID(rD.MandatedUserKeyCounterpartyFirm)
 pageDetail.Firm_Impl = MandatedUserKeyCounterpartyFirm_Lookup.FullName
 _,MandatedUserKeyCounterpartyCentre_Lookup,_:= dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
 pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup.Name
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -199,7 +200,7 @@ pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup.Name
 	// func mandate_HandlerViewImpl(pageDetail Mandate_Page) Mandate_Page {return pageDetail}
 	pageDetail = mandate_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Mandate_TemplateView, core.GetUserRole(r)))
@@ -231,7 +232,7 @@ func Mandate_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
 pageDetail.MandatedUserKeyUserName = rD.MandatedUserKeyUserName
@@ -250,7 +251,7 @@ pageDetail.FirmName = rD.FirmName
 pageDetail.CentreName = rD.CentreName
 pageDetail.Notify = rD.Notify
 pageDetail.SystemUser = rD.SystemUser
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
@@ -260,7 +261,7 @@ _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
 _,MandatedUserKeyCounterpartyCentre_Lookup,_:= dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
 pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup.Name
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	// mandate_HandlerEditImpl should be specified in application/mandate_Impl.go
@@ -269,7 +270,7 @@ _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 	// func mandate_HandlerEditImpl(pageDetail Mandate_Page) Mandate_Page {return pageDetail}
 	pageDetail = mandate_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Mandate_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -291,7 +292,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Mandate
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm)
 		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre)
 		item.MandatedUserKeyUserName = r.FormValue(dm.Mandate_MandatedUserKeyUserName)
@@ -314,7 +315,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Firm_Impl = r.FormValue(dm.Mandate_Firm_Impl)
 		item.Centre_Impl = r.FormValue(dm.Mandate_Centre_Impl)
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	// mandate_HandlerSaveImpl should be specified in application/mandate_Impl.go
 	// to provide the implementation for the special case.
@@ -322,7 +323,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func mandate_HandlerSaveImpl(item dm.Mandate) dm.Mandate {return item}
 	item = mandate_HandlerSaveImpl(item)
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	dao.Mandate_Store(item)	
 
@@ -351,7 +352,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = ""
 pageDetail.MandatedUserKeyCounterpartyCentre = ""
 pageDetail.MandatedUserKeyUserName = ""
@@ -370,14 +371,14 @@ pageDetail.FirmName = ""
 pageDetail.CentreName = ""
 pageDetail.Notify = ""
 pageDetail.SystemUser = ""
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 pageDetail.Firm_Impl = ""
 _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
 pageDetail.Centre_Impl = ""
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Mandate_TemplateNew, core.GetUserRole(r)))

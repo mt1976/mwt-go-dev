@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:05
+// Date & Time		    : 22/11/2021 at 11:25:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func Translation_Delete(id string) {
 // Translation_Store() saves/stores a Translation record to the database
 func Translation_Store(r dm.Translation) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Translation",fmt.Sprintf("%s", r))
 
 	if len(r.Id) == 0 {
 		r.Id = Translation_NewID(r)
@@ -119,7 +119,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Translation_Id,"")
    recItem.SYSId  = get_Int(rec, dm.Translation_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Translation_Id, "")
@@ -134,7 +134,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.Translation_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Translation_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Translation_SYSUpdatedHost, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:03
+// Date & Time		    : 22/11/2021 at 11:25:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func DealingInterface_Delete(id string) {
 // DealingInterface_Store() saves/stores a DealingInterface record to the database
 func DealingInterface_Store(r dm.DealingInterface) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("DealingInterface",fmt.Sprintf("%s", r))
 
 	if len(r.Name) == 0 {
 		r.Name = DealingInterface_NewID(r)
@@ -87,7 +87,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.DealingInterface_Name,"")
    recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
    recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
@@ -113,7 +113,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
    recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation, "True")
    recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance, "True")
    recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules, "True")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

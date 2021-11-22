@@ -74,7 +74,7 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 }
 
 // DataStoreConnect connects application to its datastore database
-func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
+func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	// Connect to SQL Server DB
 	//mssqlConfig := getProperties(config)
 
@@ -114,7 +114,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	if err2 != nil {
 
 		logs.Warning("Database " + dbName + " does not exists. GENERATING")
-		CreateDatabase(dbInstance, ApplicationPropertiesDB, dbName)
+		Database_Create(dbInstance, ApplicationPropertiesDB, dbName)
 
 		ApplicationPropertiesDB["database"] = dbName
 		//Connect to the specific instance
@@ -126,8 +126,8 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 		if len(instance) != 0 {
 			ApplicationPropertiesDB["database"] = database + "-" + instance
 		}
-		CreateDatabaseObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/tables", true)
-		CreateDatabaseObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)
+		Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/tables", true)
+		Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)
 		returnDB = newDBInstance
 	} else {
 		logs.Success("Database " + dbName + " exists Created: " + result2)
@@ -146,7 +146,7 @@ func GlobalsDatabaseConnect(mssqlConfig map[string]string) (*sql.DB, error) {
 	return returnDB, errConnect
 }
 
-func CreateDatabase(dbInstance *sql.DB, mssqlConfig map[string]string, dbName string) {
+func Database_Create(dbInstance *sql.DB, mssqlConfig map[string]string, dbName string) {
 
 	createDBSQL := "CREATE DATABASE [" + dbName + "]"
 	//log.Println(createDBSQL)
@@ -159,13 +159,13 @@ func CreateDatabase(dbInstance *sql.DB, mssqlConfig map[string]string, dbName st
 
 }
 
-func GlobalsDatabasePoke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
+func Database_Poke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
 	logs.Poke(fmt.Sprintf("Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"]), "")
 	err := dbInstance.Ping()
 	if err != nil {
 		logs.Error(fmt.Sprintf("Reconnecting  : Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"]), err)
 		// Try to reconnect
-		dbInstance, err = GlobalsDatabaseConnect(mssqlConfig)
+		dbInstance, err = Database_Connect(mssqlConfig)
 		if err != nil {
 			log.Println(err.Error())
 		}
@@ -173,7 +173,7 @@ func GlobalsDatabasePoke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql
 	return dbInstance
 }
 
-func CreateDatabaseObjects(DB *sql.DB, dbConfig map[string]string, sourcePath string, initialiseDB bool) {
+func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath string, initialiseDB bool) {
 	log.Println("Information   : Creating Database Objects in " + dbConfig["database"] + " from " + sourcePath)
 
 	errdb := DB.Ping()

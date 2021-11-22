@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:00
+// Date & Time		    : 22/11/2021 at 11:25:53
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Centre_Delete(id string) {
 // Centre_Store() saves/stores a Centre record to the database
 func Centre_Store(r dm.Centre) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Centre",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Centre_NewID(r)
@@ -95,13 +95,13 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Centre_Code,"")
    recItem.Code  = get_String(rec, dm.Centre_Code, "")
    recItem.Name  = get_String(rec, dm.Centre_Name, "")
    recItem.Country  = get_String(rec, dm.Centre_Country, "")
 
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

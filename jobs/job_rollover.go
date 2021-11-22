@@ -33,7 +33,7 @@ func Rollover_Run() {
 	/// CONTENT STARTS
 	core.Log_uptime()
 
-	core.SienaDB = core.GlobalsDatabasePoke(core.SienaDB, core.SienaPropertiesDB)
+	core.SienaDB = core.Database_Poke(core.SienaDB, core.SienaPropertiesDB)
 	oldSysDate := core.SienaSystemDate
 	_, tempDate, _ := application.GetBusinessDate(core.SienaDB)
 	core.SienaSystemDate = tempDate

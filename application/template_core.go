@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:05
+// Date & Time		    : 22/11/2021 at 11:25:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -39,7 +39,7 @@ type Template_Page struct {
 	Title       string
 	PageTitle   string
 	AppInternalID  string
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		SYSId string
 		FIELD1 string
 		FIELD2 string
@@ -62,7 +62,7 @@ type Template_Page struct {
 	
 	
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -134,7 +134,7 @@ func Template_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.FIELD1 = rD.FIELD1
 pageDetail.FIELD2 = rD.FIELD2
@@ -145,12 +145,12 @@ pageDetail.SYSUpdated = rD.SYSUpdated
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.ID = rD.ID
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Template_TemplateView, core.GetUserRole(r)))
@@ -182,7 +182,7 @@ func Template_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.FIELD1 = rD.FIELD1
 pageDetail.FIELD2 = rD.FIELD2
@@ -193,11 +193,11 @@ pageDetail.SYSUpdated = rD.SYSUpdated
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.ID = rD.ID
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Template_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -219,7 +219,7 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	var item dm.Template
 
 	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Template_SYSId)
 		item.FIELD1 = r.FormValue(dm.Template_FIELD1)
 		item.FIELD2 = r.FormValue(dm.Template_FIELD2)
@@ -231,9 +231,9 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Template_SYSUpdatedBy)
 		item.ID = r.FormValue(dm.Template_ID)
 	
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 
 	dao.Template_Store(item)	
 
@@ -262,7 +262,7 @@ func Template_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.FIELD1 = ""
 pageDetail.FIELD2 = ""
@@ -273,8 +273,8 @@ pageDetail.SYSUpdated = ""
 pageDetail.SYSUpdatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.ID = ""
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Template_TemplateNew, core.GetUserRole(r)))

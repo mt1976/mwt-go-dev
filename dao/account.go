@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 18:11:56
+// Date & Time		    : 22/11/2021 at 11:25:52
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Account_Delete(id string) {
 // Account_Store() saves/stores a Account record to the database
 func Account_Store(r dm.Account) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Account",fmt.Sprintf("%s", r))
 
 	if len(r.SienaReference) == 0 {
 		r.SienaReference = Account_NewID(r)
@@ -95,7 +95,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Account_SienaReference,"")
    recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
    recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
@@ -129,7 +129,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 
 
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

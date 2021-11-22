@@ -38,6 +38,7 @@ const (
 	log_Processing    = "Processing"
 	log_Query         = "Query"
 	log_Result        = "Result"
+	log_Storing       = "Storing"
 
 	ColorReset        = "\033[0m"
 	ColorRed          = "\033[31m"
@@ -60,6 +61,7 @@ const (
 	Character_Created = "💾"
 	Character_Query   = "🔎"
 	Character_Result  = "?"
+	Character_Storing = "📀"
 )
 
 type Config struct {
@@ -157,6 +159,14 @@ func Query(w string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
 		msg_raw(log_Query, w, Character_Query, colour.White)
+	}
+}
+
+func Storing(t string, w string) {
+	//msg_info(w, v)
+	if CFG.VerboseMode {
+
+		msg_raw(log_Storing, t+" "+w, Character_Storing, colour.Yellow)
 	}
 }
 

@@ -26,11 +26,8 @@
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   <!-- END OF INSERTS -->
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-
-  <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
-
+  <title>{{.PageTitle}}</title>
 </head>
-
 <body>
 
   <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
@@ -55,123 +52,94 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/editSystemStore?SystemStore={{.Id}}" method="POST">
-      <div hidden="hidden">
-        <input type="text" id="ID" name="ID" value="{{.Id}}">
-      </div>
+    <form action="/MessageEdit?Message={{.Id}}" method="POST" class="form">
       <div class="card">
-
         <div class="card-header font-weight-bold">
-
-
           <div class="row">
             <div class="col">
-              Connected System Information<code></code>
+              Message&nbsp;:&nbsp;<code>{{.Id}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
-
-                 <button type="submit"  class="btn btn-warning" method="GET" onclick="/editSystemStore?SystemStore={{.Id}}" formaction="/editSystemStore?SystemStore={{.Id}}">
-                  <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit
-                </button>
-
-
-                <button type="button"  class="btn  btn-outline-secondary" method="POST" onclick="history.back()">
-                  <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-
+              
+                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/MessageEdit/?Message={{.Id}}" onclick="/MessageEdit/?Message={{.Id}}"></i>&nbsp;&nbsp;Edit</button>
+                
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
-
         </div>
-
         <div class="card-body">
-          <div class="">
-
             <div class="row">
-
+              <div class="col-sm">
+                <label for="SYSId">SYSId</label>
+                <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled="disabled" value="{{.SYSId}}">
+              </div>
+            </div>
+            <div class="row">
               <div class="col-sm">
                 <label for="Id">Id</label>
-                <input type="text" class="form-control" id="Username" name="Id" aria-describedby="Id" placeholder="Enter Id" disabled="disabled" value="{{.Id}}" maxlength="10">
-              </div>
-              <div class="col-sm">
-                <label for="Name">Short Name</label>
-                <input type="text" class="form-control" id="Name" name="Name" aria-describedby="Name" placeholder="Enter code" disabled="disabled" value="{{.Name}}" maxlength="10">
-              </div>
-              <div class="col-sm">
-
-              </div>
-              <div class="col-sm">
-
-              </div>
-
-            </div>
-
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="Staticin">Static Delivery</label>
-                <input type="text" class="form-control" id="Staticin" name="Staticin" aria-describedby="Staticin" placeholder="Enter the OS path to deliver Static Data" value="{{.Staticin}}" disabled="disabled">
-              </div>
-
-              <div class="col-sm">
-                <label for="Staticout">Static Responses</label>
-                <input type="text" class="form-control" id="Staticout" name="Staticout" aria-describedby="Staticout" placeholder="Enter the OS path to accept Static Data response" value="{{.Staticout}}" disabled="disabled">
+                <input type="text" class="form-control" id="Id" aria-describedby="IdHelp" placeholder="" disabled="disabled" value="{{.Id}}">
               </div>
             </div>
-
-
-            <div class="row">
-
-              <div class="col-sm">
-                <label for="Txnin">Transactions Delivery</label>
-                <input type="text" class="form-control" id="Txnin" name="Txnin" aria-describedby="Txnin" placeholder="Enter the OS path to deliver deals" value="{{.Txnin}}" disabled="disabled">
-              </div>
-
-              <div class="col-sm">
-                <label for="Txnout">Transaction Responses</label>
-                <input type="text" class="form-control" id="Txnout" name="Txnout" aria-describedby="Txnout" placeholder="Enter the OS path to accept deal import responses" value="{{.Txnout}}" disabled="disabled">
-              </div>
-            </div>
-
             <div class="row">
               <div class="col-sm">
-                <label for="Fundscheckin">Funds Checking Requests</label>
-                <input type="text" class="form-control" id="Fundscheckin" name="Fundscheckin" aria-describedby="Fundscheckin" placeholder="Enter the path to monitor for funds check requests" value="{{.Fundscheckin}}" disabled="disabled">
-              </div>
-
-              <div class="col-sm">
-                <label for="Fundscheckout">Funds Checking Responses</label>
-                <input type="text" class="form-control" id="Fundscheckout" name="Fundscheckout" aria-describedby="Fundscheckout" placeholder="Enter the path to respond to funds check requests" value="{{.Fundscheckout}}" disabled="disabled">
+                <label for="Message">Message</label>
+                <input type="text" class="form-control" id="Message" aria-describedby="MessageHelp" placeholder="" disabled="disabled" value="{{.Message}}">
               </div>
             </div>
-<hr>
             <div class="row">
               <div class="col-sm">
-                <label for="SYSCreated">Created</label>
-                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreated" placeholder="Imported" value="{{.SYSCreated}}" disabled="disabled">
-              </div>
-
-              <div class="col-sm">
-                <label for="SYSWho">By</label>
-                <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWho" placeholder="Imported" value="{{.SYSWho}}" disabled="disabled">
-              </div>
-              <div class="col-sm">
-                <label for="SYSHost">On</label>
-                <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHost" placeholder="Imported" value="{{.SYSHost}}" disabled="disabled">
-              </div>
-              <div class="col-sm">
-                <label for="SYSUpdated">Last Updated</label>
-                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdated" placeholder="Imported" value="{{.SYSUpdated}}" disabled="disabled">
+                <label for="SYSCreated">SYSCreated</label>
+                <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled="disabled" value="{{.SYSCreated}}">
               </div>
             </div>
-
-
-          </div>
-
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSWho">SYSWho</label>
+                <input type="text" class="form-control" id="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled="disabled" value="{{.SYSWho}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSHost">SYSHost</label>
+                <input type="text" class="form-control" id="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled="disabled" value="{{.SYSHost}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSUpdated">SYSUpdated</label>
+                <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled="disabled" value="{{.SYSUpdated}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSCreatedBy">SYSCreatedBy</label>
+                <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled="disabled" value="{{.SYSCreatedBy}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSCreatedHost">SYSCreatedHost</label>
+                <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled="disabled" value="{{.SYSCreatedHost}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSUpdatedBy">SYSUpdatedBy</label>
+                <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled="disabled" value="{{.SYSUpdatedBy}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSUpdatedHost">SYSUpdatedHost</label>
+                <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled="disabled" value="{{.SYSUpdatedHost}}">
+              </div>
+            </div>
         </div>
+      </div>
+    </form>
+  </div>
 
-      </form>
-    </div>
-
-  </body>
+</body>

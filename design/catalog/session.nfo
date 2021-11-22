@@ -1,0 +1,63 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/session.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Session (session)
+Endpoint 	         : Session (SessionID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 22/11/2021 at 20:23:09
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sessionStore
+SQL Table Search Col : Id
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| Apptoken                            | String     |            | true  | true   | false |                 |            |            | 
+| Createdate                          | String     |            | false | true   | false |                 |            |            | 
+| Createtime                          | String     |            | false | true   | false |                 |            |            | 
+| Uniqueid                            | String     |            | false | true   | false |                 |            |            | 
+| Sessiontoken                        | String     |            | false | true   | false |                 |            |            | 
+| Username                            | String     |            | false | true   | false |                 |            |            | 
+| Password                            | String     |            | false | true   | false |                 |            |            | 
+| Userip                              | String     |            | false | true   | false |                 |            |            | 
+| Userhost                            | String     |            | false | true   | false |                 |            |            | 
+| Appip                               | String     |            | false | true   | false |                 |            |            | 
+| Apphost                             | String     |            | false | true   | false |                 |            |            | 
+| Issued                              | String     |            | false | true   | false |                 |            |            | 
+| Expiry                              | String     |            | false | true   | false |                 |            |            | 
+| Expiryraw                           | String     |            | false | true   | false |                 |            |            | 
+| Brand                               | String     |            | false | true   | false |                 |            |            | 
+| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
+| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
+| Id                                  | String     |            | false | true   | false |                 |            |            | 
+| Expires                             | Time       |            | false | true   | false |                 |            |            | 
+| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SessionRole                         | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/session_core.go)
+* dao (/dao/session.go)
+* datamodel (/datamodel/session.go)
+* menu (/design/menu/session.json)
+* html -> List (/html/Session_List.html)
+* html -> View (/html/Session_View.html)
+* catalog (/design/catalog/session.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

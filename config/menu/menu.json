@@ -240,13 +240,14 @@
       "TextClass": ""
     }
     ,
+ 
     {
-      "ID": "messageStore",
+      "ID": "ecf00ba2-c8f1-417d-8e91-6b638e0e9c25",
       "Text": "System Messages",
-      "Glyph": "fas fa-info-circle",
-      "HREF": "/listMessageStore",
+      "Glyph": "fas fa-info-circle text-info",
+      "HREF": "/MessageList",
       "OnClick": "",
-      "TextClass": "text-info"
+      "TextClass": ""
     }
     ,
 
@@ -260,15 +261,17 @@
     }
     ,
 
+
     {
-      "ID": "sessionStore",
+      "ID": "8fe06558-7e25-4937-8b98-4c5c3a1676e4",
       "Text": "Sessions",
-      "Glyph": "fas fa-history",
-      "HREF": "/listSessionStore",
+      "Glyph": "fas fa-history text-info",
+      "HREF": "/SessionList",
       "OnClick": "",
-      "TextClass": "text-info"
+      "TextClass": ""
     }
     ,
+    
     {
       "ID": "fundsCheck",
       "Text": "Funds Check Approvals",
@@ -279,15 +282,13 @@
     }
     ,
     {
-      "ID": "systemStore",
+      "ID": "3dbecb81-443e-410f-a92a-835c46572631",
       "Text": "Connected Systems",
       "Glyph": "fas fa-plug",
-      "HREF": "/listSystemStore",
+      "HREF": "/SystemsList",
       "OnClick": "",
-      "TextClass": "text-info"
+      "TextClass": ""
     }
-
-
     ,
     {
       "ID": "19",

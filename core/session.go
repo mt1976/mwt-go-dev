@@ -200,7 +200,7 @@ func CreateSessionToken(req *http.Request) string {
 	currentUserID, _ := user.Current()
 	userID := currentUserID.Name
 	host, _ := os.Hostname()
-	var r dm.AppSessionStoreItem
+	var r dm.Session
 	r.Id = id
 	r.Sessiontoken = id
 	r.Apptoken = ApplicationProperties["applicationtoken"]
@@ -220,7 +220,7 @@ func CreateSessionToken(req *http.Request) string {
 
 	r.Expiry = expiry.Format(DATETIMEFORMATUSER)
 	r.Expiryraw = expiry.String()
-	r.Role = GetUserRole(req)
+	r.SessionRole = GetUserRole(req)
 	r.Brand = ""
 	r.SYSCreated = time.Now().Format(DATETIMEFORMATUSER)
 	r.SYSWho = userID

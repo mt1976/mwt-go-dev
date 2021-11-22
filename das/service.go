@@ -76,3 +76,16 @@ func Execute(tsql string) {
 	}
 
 }
+
+//TODO: implement
+func Process(tsql string) sql.Result {
+
+	logs.Database("Execute :", tsql)
+
+	res, err := core.ApplicationDB.Exec(tsql)
+	if err != nil {
+		logs.Panic("Execution Error", err)
+		return nil
+	}
+	return res
+}

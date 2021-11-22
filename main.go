@@ -141,8 +141,7 @@ func main() {
 
 	mux.HandleFunc("/listSienaDealList/", application.ListSienaDealListHandler)
 	mux.HandleFunc("/viewSienaDealList/", application.ViewSienaDealListHandler)
-	mux.HandleFunc("/listSienaAccountLadder/", application.ListSienaAccountLadderHandler)
-	mux.HandleFunc("/listSienaAccountTransactions/", application.ListSienaAccountTransactionsHandler)
+
 	//mux.HandleFunc("/saveSienaDealList/", application.SaveSienaDealListHandler)
 	//mux.HandleFunc("/newSienaDealList/", application.NewSienaDealListHandler)
 
@@ -153,28 +152,22 @@ func main() {
 
 	application.Credentials_Publish(*mux)
 
-	mux.HandleFunc("/listMessageStore/", application.ListMessageStoreHandler)
-	mux.HandleFunc("/viewMessageStore/", application.ViewMessageStoreHandler)
-	mux.HandleFunc("/editMessageStore/", application.EditMessageStoreHandler)
-	mux.HandleFunc("/saveMessageStore/", application.SaveMessageStoreHandler)
+	application.Message_Publish(*mux)
 
-	// mux.HandleFunc("/listTranslationStore/", application.ListTranslationStoreHandler)
-	// mux.HandleFunc("/viewTranslationStore/", application.ViewTranslationStoreHandler)
-	// mux.HandleFunc("/editTranslationStore/", application.EditTranslationStoreHandler)
-	// mux.HandleFunc("/saveTranslationStore/", application.SaveTranslationStoreHandler)
 	application.Translation_Publish(*mux)
 
 	application.Schedule_Publish(*mux)
 
-	mux.HandleFunc("/listSessionStore/", application.ListSessionStoreHandler)
-	mux.HandleFunc("/deleteSessionStore/", application.DeleteSessionStoreHandler)
+	application.Session_Publish(*mux)
 
-	mux.HandleFunc("/listSystemStore/", application.ListSystemStoreHandler)
-	mux.HandleFunc("/viewSystemStore/", application.ViewSystemStoreHandler)
-	mux.HandleFunc("/editSystemStore/", application.EditSystemStoreHandler)
-	mux.HandleFunc("/deleteSystemStore/", application.DeleteSystemStoreHandler)
-	mux.HandleFunc("/saveSystemStore/", application.SaveSystemStoreHandler)
-	mux.HandleFunc("/newSystemStore/", application.NewSystemStoreHandler)
+	// mux.HandleFunc("/listSystemStore/", application.ListSystemStoreHandler)
+	// mux.HandleFunc("/viewSystemStore/", application.ViewSystemStoreHandler)
+	// mux.HandleFunc("/editSystemStore/", application.EditSystemStoreHandler)
+	// mux.HandleFunc("/deleteSystemStore/", application.DeleteSystemStoreHandler)
+	// mux.HandleFunc("/saveSystemStore/", application.SaveSystemStoreHandler)
+	// mux.HandleFunc("/newSystemStore/", application.NewSystemStoreHandler)
+
+	application.Systems_Publish(*mux)
 
 	mux.HandleFunc("/listFundsCheck/", application.ListFundsCheckHandler)
 	mux.HandleFunc("/viewFundsCheck/", application.ViewFundsCheckHandler)

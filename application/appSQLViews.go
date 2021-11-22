@@ -11,6 +11,7 @@ import (
 func SQLInjection_Publish(mux http.ServeMux) {
 	logs.Publish("Application", "SQLInjection")
 	mux.HandleFunc("/injectSQLViews/", SQLInjection_HandlerRun)
+
 }
 
 // SQLInjectionHander
@@ -20,6 +21,7 @@ func SQLInjection_HandlerRun(w http.ResponseWriter, r *http.Request) {
 		core.LogoutHandler(w, r)
 		return
 	}
-	core.CreateDatabaseObjects(core.SienaDB, core.SienaPropertiesDB, "/config/database/views", false)
-	HomePageHandler(w, r)
+	core.Database_CreateObjects(core.SienaDB, core.SienaPropertiesDB, "/config/database/views", false)
+	http.Redirect(w, r, "/", http.StatusFound)
+
 }

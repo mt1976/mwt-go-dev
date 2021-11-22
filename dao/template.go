@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:05
+// Date & Time		    : 22/11/2021 at 11:25:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,7 +58,7 @@ func Template_Delete(id string) {
 // Template_Store() saves/stores a Template record to the database
 func Template_Store(r dm.Template) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Template",fmt.Sprintf("%s", r))
 
 	if len(r.ID) == 0 {
 		r.ID = Template_NewID(r)
@@ -116,7 +116,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Template_ID,"")
    recItem.SYSId  = get_Int(rec, dm.Template_SYSId, "0")
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
@@ -128,7 +128,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Template_SYSUpdatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Template_SYSUpdatedBy, "")
    recItem.ID  = get_String(rec, dm.Template_ID, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

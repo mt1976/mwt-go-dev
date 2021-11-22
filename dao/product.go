@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:04
+// Date & Time		    : 22/11/2021 at 11:25:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Product_Delete(id string) {
 // Product_Store() saves/stores a Product record to the database
 func Product_Store(r dm.Product) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Product",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Product_NewID(r)
@@ -95,7 +95,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Product_Code,"")
    recItem.Code  = get_String(rec, dm.Product_Code, "")
    recItem.Name  = get_String(rec, dm.Product_Name, "")
@@ -109,7 +109,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Product_ChangeType, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:01
+// Date & Time		    : 22/11/2021 at 11:25:54
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Country_Delete(id string) {
 // Country_Store() saves/stores a Country record to the database
 func Country_Store(r dm.Country) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Country",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Country_NewID(r)
@@ -95,14 +95,14 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Country_Code,"")
    recItem.Code  = get_String(rec, dm.Country_Code, "")
    recItem.Name  = get_String(rec, dm.Country_Name, "")
    recItem.ShortCode  = get_String(rec, dm.Country_ShortCode, "")
    recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA, "True")
    recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend, "")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 15:44:00
+// Date & Time		    : 22/11/2021 at 11:25:52
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,7 +66,7 @@ func Book_Delete(id string) {
 // Book_Store() saves/stores a Book record to the database
 func Book_Store(r dm.Book) error {
 
-	logs.Warning(fmt.Sprintf("%s", r))
+	logs.Storing("Book",fmt.Sprintf("%s", r))
 
 	if len(r.BookName) == 0 {
 		r.BookName = Book_NewID(r)
@@ -95,7 +95,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 21/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
     recItem.AppInternalID = get_String(rec, dm.Book_BookName,"")
    recItem.BookName  = get_String(rec, dm.Book_BookName, "")
    recItem.FullName  = get_String(rec, dm.Book_FullName, "")
@@ -106,7 +106,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
    recItem.CostOfFunding  = get_Bool(rec, dm.Book_CostOfFunding, "True")
    recItem.LotAllocationMethod  = get_String(rec, dm.Book_LotAllocationMethod, "")
    recItem.InternalId  = get_Int(rec, dm.Book_InternalId, "0")
-// Automatically generated 21/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
