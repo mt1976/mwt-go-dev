@@ -1,417 +1,390 @@
 {
-  "menu_Nodes": [{
-      "ID": "1",
-      "Text": "Home",
-      "Glyph": "fa fa-home",
-      "HREF": "/home",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "30",
-      "Text": "Dashboard",
-      "Glyph": "fas fa-tachometer-alt",
-      "HREF": "/dashboard",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "3605b5f7-a6bb-4399-b6c9-47ecd28a9f71",
-      "Text": "Sectors",
-      "Glyph": "fas fa-industry",
-      "HREF": "/SectorList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "288b7a48-13e8-4271-a9fa-b476ae09b5b6",
-      "Text": "Countries",
-      "Glyph": "fas fa-globe-americas",
-      "HREF": "/CountryList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    
- 
-    ,
-    {
-      "ID": "3b719dce-0773-44fa-b475-988efb03a4ba",
-      "Text": "Currencies",
-      "Glyph": "fas fa-dollar-sign",
-      "HREF": "/CurrencyList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "5",
-      "Text": "Currency Pairs",
-      "Glyph": "fas fa-coins",
-      "HREF": "/CurrencyPairList",
-      "OnClick": "",
-      "TextClass": ""
-    }
+    "menu_Nodes": [{
+            "ID": "1",
+            "Text": "Home",
+            "Glyph": "fa fa-home",
+            "HREF": "/home",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "30",
+            "Text": "Dashboard",
+            "Glyph": "fas fa-tachometer-alt",
+            "HREF": "/dashboard",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "90568e74-a40e-4436-813d-fa24e6749548",
+            "Text": "Sectors",
+            "Glyph": "fas fa-industry",
+            "HREF": "/SectorList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-    ,
-    {
-      "ID": "1103b68f-f011-4366-98b4-9ef1652449bb",
-      "Text": "Firms",
-      "Glyph": "fas fa-city",
-      "HREF": "/FirmList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    
+        {
+            "ID": "636db017-7c60-4132-8b00-5922834ae3f9",
+            "Text": "Countries",
+            "Glyph": "fas fa-globe-americas",
+            "HREF": "/CountryList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-    ,
-    {
-      "ID": "7",
-      "Text": "Centres",
-      "Glyph": "fas fa-map-marker-alt",
-      "HREF": "/CentreList",
-      "OnClick": "",
-      "TextClass": ""
-    }
+        {
+            "ID": "c1feb220-4f72-40e6-972d-5047abdefa0a",
+            "Text": "Currencies",
+            "Glyph": "fas fa-dollar-sign",
+            "HREF": "/CurrencyList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "c856a12f-52a8-42f0-a24d-cd31641a5922",
+            "Text": "Currency Pairs",
+            "Glyph": "fas fa-coins",
+            "HREF": "/CurrencyPairList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "66191dde-a54c-402f-9839-094cbc665b9d",
+            "Text": "Firms",
+            "Glyph": "fas fa-city",
+            "HREF": "/FirmList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "6b4d88b4-0a4b-46bc-9ed5-3ec83c00da72",
+            "Text": "Centres",
+            "Glyph": "fas fa-map-marker-alt",
+            "HREF": "/CentreList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-    ,
-    {
-      "ID": "e11ee958-5778-4175-9604-56a393d274ad",
-      "Text": "Books",
-      "Glyph": "fas fa-book",
-      "HREF": "/BookList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    
-    {
-      "ID": "9",
-      "Text": "Brokers",
-      "Glyph": "far fa-handshake",
-      "HREF": "/BrokerList",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "10",
-      "Text": "Counterpartys",
-      "Glyph": "fa fa-user",
-      "HREF": "/listSienaCounterparty",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "11",
-      "Text": "Mandated Users",
-      "Glyph": "fas fa-user-check",
-      "HREF": "/listSienaMandatedUser",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "12",
-      "Text": "Counterparty Groups",
-      "Glyph": "fa fa-users",
-      "HREF": "/CounterpartyGroupList",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "13",
-      "Text": "Bank Portfolios",
-      "Glyph": "far fa-folder-open",
-      "HREF": "/PortfolioList",
-      "OnClick": "",
-      "TextClass": ""
-    },
+        {
+            "ID": "d723fb94-e903-47a1-baf9-5e7dfd5c504f",
+            "Text": "Books",
+            "Glyph": "fas fa-book",
+            "HREF": "/BookList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+
+        {
+            "ID": "4f6b3df1-453b-44f0-ba7f-6a16dc2b46e1",
+            "Text": "Brokers",
+            "Glyph": "far fa-handshake ",
+            "HREF": "/BrokerList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+        {
+            "ID": "10",
+            "Text": "Counterpartys",
+            "Glyph": "fa fa-user",
+            "HREF": "/listSienaCounterparty",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "35217f13-422c-4f6e-aaab-730f9a4ea59c",
+            "Text": "Mandates",
+            "Glyph": "fas fa-city",
+            "HREF": "/MandateList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "06a43331-0019-4d30-af69-f1c0bfeb9148",
+            "Text": "Counterparty Groups",
+            "Glyph": "fa fa-users",
+            "HREF": "/CounterpartyGroupList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "c8b18803-3f2c-4a5a-80cc-3db66bb1da02",
+            "Text": "Bank Porfolios",
+            "Glyph": "fas fa-plug",
+            "HREF": "/PortfolioList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
 
 
-    {
-      "ID": "5a4f28e6-f2f6-4f8c-92f5-e308288deeab",
-      "Text": "Product Groups",
-      "Glyph": "fas fa-plug",
-      "HREF": "/ProductList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "bed189dd-2629-4803-82a2-389ecbc01840",
-      "Text": "Deal Types",
-      "Glyph": "fas fa-plug",
-      "HREF": "/DealTypeList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
+        {
+            "ID": "dd432174-5cf3-4626-b415-4c9fbbb544a3",
+            "Text": "Product Groups",
+            "Glyph": "fas fa-object-group",
+            "HREF": "/ProductList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "2710fac3-5448-4379-9639-f835d38910d9",
+            "Text": "Deal Types",
+            "Glyph": "fas fa-toolbox",
+            "HREF": "/DealTypeList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-    {
-      "ID": "dd8bc369-8827-4baa-a382-b9aaadd78e56",
-      "Text": "Deal Type Fundamentals",
-      "Glyph": "fas fa-plug",
-      "HREF": "/DealTypeFundamentalList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
+        {
+            "ID": "680b7b57-0a86-48e4-accd-df07572dfa29",
+            "Text": "Deal Type Fundamentals",
+            "Glyph": "fas fa-toolbox",
+            "HREF": "/DealTypeFundamentalList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
 
-    {
-      "ID": "14",
-      "Text": "Accounts",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/AccountList",
-      "OnClick": "",
-      "TextClass": ""
-    }
+        {
+            "ID": "df9bb1c6-d156-47fb-9ecd-d4cbd1041ad9",
+            "Text": "Accounts",
+            "Glyph": "fas fa-landmark",
+            "HREF": "/AccountList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-    ,
-    {
-      "ID": "15",
-      "Text": "Payees",
-      "Glyph": "fas fa-wallet",
-      "HREF": "/listSienaCounterpartyPayee",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "16",
-      "Text": "Counterparty Import",
-      "Glyph": "fas fa-file-import",
-      "HREF": "/listSienaCounterpartyImportID",
-      "OnClick": "",
-      "TextClass": ""
-    },
-    {
-      "ID": "17",
-      "Text": "Transactions",
-      "Glyph": "fas fa-shopping-basket",
-      "HREF": "/listSienaDealList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "nego",
-      "Text": "Instruments",
-      "Glyph": "fas fa-money-check",
-      "HREF": "/listGiltsDataStore",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "Break": "<hr class=\"hr-list\">"
-    }
-,
-    {
-      "ID": "3cb48d88-b295-4027-919f-e76ade61a5ad",
-      "Text": "Dealing Interface",
-      "Glyph": "fas fas-plug",
-      "HREF": "/DealingInterfaceList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    
-    {
-      "Break": "<hr class=\"hr-list\">"
-    }
-    ,
-    {
-      "ID": "d6a83bb0-e520-4251-88e2-33eb38b38e2e",
-      "Text": "Credentials",
-      "Glyph": "fas fa-key text-danger",
-      "HREF": "/CredentialsList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
+        {
+            "ID": "ecc8cc74-8a0d-490e-add8-27000dfa11b9",
+            "Text": "Payees",
+            "Glyph": "fas fa-wallet",
+            "HREF": "/PayeeList",
+            "OnClick": "",
+            "TextClass": ""
 
-    {
-      "ID": "0a1cfbc7-df5a-486f-ac65-54bf04ba20e1",
-      "Text": "Scheduler",
-      "Glyph": "far fa-clock text-info",
-      "HREF": "/ScheduleList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
- 
-    {
-      "ID": "ecf00ba2-c8f1-417d-8e91-6b638e0e9c25",
-      "Text": "System Messages",
-      "Glyph": "fas fa-info-circle text-info",
-      "HREF": "/MessageList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
+        },
+        {
+            "ID": "16",
+            "Text": "Counterparty Import",
+            "Glyph": "fas fa-file-import",
+            "HREF": "/listSienaCounterpartyImportID",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "17",
+            "Text": "Transactions",
+            "Glyph": "fas fa-shopping-basket",
+            "HREF": "/listSienaDealList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "87dedcd5-6a00-42ad-a8d9-90a4d166aca3",
+            "Text": "Deal Conversation Contents",
+            "Glyph": "fas fa-exchange-alt",
+            "HREF": "/DealConversationList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "0af8aa47-147c-49d4-ae95-f9772228d566",
+            "Text": "Negotiable Instruments",
+            "Glyph": "fas fa-file-signature",
+            "HREF": "/NegotiableInstrumentList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
+        {
+            "ID": "13dc5e34-6a41-43a6-b82a-859b892beea4",
+            "Text": "Dealing Interface",
+            "Glyph": "fas fa-share-alt",
+            "HREF": "/DealingInterfaceList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-    {
-      "ID": "translationStore",
-      "Text": "Translations",
-      "Glyph": "fas fa-retweet",
-      "HREF": "/TranslationList",
-      "OnClick": "",
-      "TextClass": "text-info"
-    }
-    ,
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
+        {
+            "ID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
+            "Text": "Credentials",
+            "Glyph": "fas fa-key",
+            "HREF": "/CredentialsList",
+            "OnClick": "",
+            "TextClass": "text-danger"
+        },
+
+        {
+            "ID": "da98ab1a-9562-4e1a-a6c8-c5b1cee31f67",
+            "Text": "Scheduler",
+            "Glyph": "far fa-clock",
+            "HREF": "/ScheduleList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+
+        {
+            "ID": "3dd5889c-efee-4bdd-8dde-cc39037f78d7",
+            "Text": "System Messages",
+            "Glyph": "fas fa-info-circle",
+            "HREF": "/MessageList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
 
 
-    {
-      "ID": "8fe06558-7e25-4937-8b98-4c5c3a1676e4",
-      "Text": "Sessions",
-      "Glyph": "fas fa-history text-info",
-      "HREF": "/SessionList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    
-    {
-      "ID": "fundsCheck",
-      "Text": "Funds Check Approvals",
-      "Glyph": "fas fa-check",
-      "HREF": "/listFundsCheck",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "3dbecb81-443e-410f-a92a-835c46572631",
-      "Text": "Connected Systems",
-      "Glyph": "fas fa-plug",
-      "HREF": "/SystemsList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "19",
-      "Text": "Data Loader",
-      "Glyph": "fas fa-dice-d6",
-      "HREF": "/listSvcDataMap",
-      "OnClick": "",
-      "TextClass": "text-warning"
-    }
-    ,
-    {
-      "Break": "<hr class=\"hr-list\">"
-    },
-    {
-      "ID": "23",
-      "Text": "App Environment",
-      "Glyph": "fa fa-server",
-      "HREF": "/viewAppConfiguration",
-      "OnClick": "",
-      "TextClass": "text-info"
-    },
-    {
-      "ID": "sqlinject",
-      "Text": "Refresh SQL Views",
-      "Glyph": "fas fa-syringe",
-      "HREF": "/injectSQLViews",
-      "OnClick": "",
-      "TextClass": "text-danger"
-    },
-    {
-      "ID": "refreshCache",
-      "Text": "Refresh Cache",
-      "Glyph": "fas fa-redo-alt",
-      "HREF": "/refreshCache",
-      "OnClick": "",
-      "TextClass": "text-danger"
-    },
-    {
-      "Break": "<hr class=\"hr-list\">"
-    },
-
-    {
-      "ID": "e4c42a22-e963-4109-b5c6-d7d0606c982b",
-      "Text": "Rates Store Contents",
-      "Glyph": "fas fa-poo",
-      "HREF": "/MarketRatesList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "197c2880-8888-4122-94d6-4ea41d7fad1e",
-      "Text": "Cache Contents",
-      "Glyph": "fas fa-poo",
-      "HREF": "/CacheList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "cc2a92bc-6c42-4b89-beb4-fa3b246dbd13",
-      "Text": "Deal Conversation Contents",
-      "Glyph": "fas fa-poo",
-      "HREF": "/DealConversationList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    
-    {
-      "ID": "bf6058bb-870b-46e5-ad26-571ae7c8c632",
-      "Text": "Template Contents",
-      "Glyph": "fas fa-poo",
-      "HREF": "/TemplateList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-
-    {
-      "ID": "fbda22e3-180f-4aa7-ba5d-540a4924080f",
-      "Text": "Account Transactions",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/AccountTransactionList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-
-    {
-      "ID": "004115e1-75d6-4d10-aef7-fe34087d1807",
-      "Text": "Account Ladder",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/AccountLadderList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    {
-      "ID": "6722d374-f8aa-48b5-b10e-09641ed12e93",
-      "Text": "Payees",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/PayeeList",
-      "OnClick": "",
-      "TextClass": ""
-    }
-    ,
-    
-
-    {
-      "Break": "<hr class=\"hr-list\">"
-    },
+        {
+            "ID": "4db530c0-5e07-4481-aea3-7c683d46c117",
+            "Text": "Message Translation",
+            "Glyph": "fas fa-city",
+            "HREF": "/TranslationList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
 
 
-    {
-      "ID": "27",
-      "Text": "Logout",
-      "Glyph": "fas fa-sign-out-alt",
-      "HREF": "/logout",
-      "OnClick": "",
-      "TextClass": "text-muted"
-    }
+        {
+            "ID": "bf71274d-fba9-410f-af04-eeaae40f5157",
+            "Text": "Sessions",
+            "Glyph": "fas fa-history",
+            "HREF": "/SessionList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
 
-  ]
+        {
+            "ID": "fundsCheck",
+            "Text": "Funds Check Approvals",
+            "Glyph": "fas fa-check",
+            "HREF": "/Simulator_FundsCheckerList/",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "90f69497-f454-4622-bf94-4827de82eb0f",
+            "Text": "Connected Systems",
+            "Glyph": "fas fa-plug",
+            "HREF": "/SystemsList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+        {
+            "ID": "19",
+            "Text": "Data Loader",
+            "Glyph": "fas fa-dice-d6",
+            "HREF": "/listSvcDataMap",
+            "OnClick": "",
+            "TextClass": "text-warning"
+        },
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
+        {
+            "ID": "23",
+            "Text": "App Environment",
+            "Glyph": "fa fa-server",
+            "HREF": "/viewAppConfiguration",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+        {
+            "ID": "sqlinject",
+            "Text": "Refresh SQL Views",
+            "Glyph": "fas fa-syringe",
+            "HREF": "/injectSQLViews",
+            "OnClick": "",
+            "TextClass": "text-danger"
+        },
+        {
+            "ID": "refreshCache",
+            "Text": "Refresh Cache",
+            "Glyph": "fas fa-redo-alt",
+            "HREF": "/refreshCache",
+            "OnClick": "",
+            "TextClass": "text-danger"
+        },
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
+
+        {
+            "ID": "1f4c2bf1-9d2f-428f-a4e5-e8d00a3e4903",
+            "Text": "Rates &amp; Prices",
+            "Glyph": "fas fa-file-invoice-dollar",
+            "HREF": "/MarketRatesList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+        {
+            "ID": "0d89ae10-6eab-498b-a192-29ea8d3170f1",
+            "Text": "Cache Contents",
+            "Glyph": "fas fa-database",
+            "HREF": "/CacheList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+
+
+
+        {
+            "ID": "9a815f6e-256d-4859-9c9b-a245392ad436",
+            "Text": "Template Contents",
+            "Glyph": "fas fa-poo",
+            "HREF": "/TemplateList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+
+        {
+            "ID": "5272ef87-80c4-4289-be8d-5e2b71b8de1e",
+            "Text": "Account Transactions",
+            "Glyph": "fas fa-landmark",
+            "HREF": "/AccountTransactionList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+        {
+            "ID": "004115e1-75d6-4d10-aef7-fe34087d1807",
+            "Text": "Account Ladder",
+            "Glyph": "fas fa-landmark",
+            "HREF": "/AccountLadderList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "6722d374-f8aa-48b5-b10e-09641ed12e93",
+            "Text": "Payees",
+            "Glyph": "fas fa-landmark",
+            "HREF": "/PayeeList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
+
+
+
+        {
+            "ID": "27",
+            "Text": "Logout",
+            "Glyph": "fas fa-sign-out-alt",
+            "HREF": "/logout",
+            "OnClick": "",
+            "TextClass": "text-muted"
+        }
+
+    ]
 }

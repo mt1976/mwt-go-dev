@@ -1,11 +1,11 @@
 
     {
-      "ID": "3dbecb81-443e-410f-a92a-835c46572631",
+      "ID": "90f69497-f454-4622-bf94-4827de82eb0f",
       "Text": "Connected Systems",
       "Glyph": "fas fa-plug",
       "HREF": "/SystemsList",
       "OnClick": "",
-      "TextClass": ""
+      "TextClass": "text-info"
     }
     ,
     

@@ -169,10 +169,7 @@ func main() {
 
 	application.Systems_Publish(*mux)
 
-	mux.HandleFunc("/listFundsCheck/", application.ListFundsCheckHandler)
-	mux.HandleFunc("/viewFundsCheck/", application.ViewFundsCheckHandler)
-	mux.HandleFunc("/actionFundsCheck/", application.ActionFundsCheckHandler)
-	mux.HandleFunc("/submitFundsCheck/", application.SubmitFundsCheckHandler)
+	application.Simulator_FundsChecker_PublishImpl(*mux)
 
 	application.Template_Publish(*mux)
 	application.MarketRates_Publish(*mux)
@@ -184,11 +181,8 @@ func main() {
 
 	//	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
 	application.DataCache_Publish(*mux)
-
-	mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
-	mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
-	mux.HandleFunc("/selectLSEGiltsDataStore/", application.SelectLSEGiltsDataStoreHandler)
-	mux.HandleFunc("/deselectLSEGiltsDataStore/", application.DeselectLSEGiltsDataStoreHandler)
+	application.NegotiableInstrument_Publish(*mux)
+	application.NegotiableInstrument_PublishImpl(*mux)
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	logs.Success("Handlers Started")

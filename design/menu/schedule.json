@@ -1,11 +1,11 @@
 
     {
-      "ID": "69ffd755-657d-46bf-918a-4ba253502f82",
+      "ID": "da98ab1a-9562-4e1a-a6c8-c5b1cee31f67",
       "Text": "Scheduler",
-      "Glyph": "far fa-clock text-info",
+      "Glyph": "far fa-clock",
       "HREF": "/ScheduleList",
       "OnClick": "",
-      "TextClass": ""
+      "TextClass": "text-info"
     }
     ,
     

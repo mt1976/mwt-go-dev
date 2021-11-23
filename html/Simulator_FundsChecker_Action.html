@@ -55,7 +55,7 @@
   <!-- DO NOT CHANGE -->
 
   <div class="container-fluid">
-    <form action="/submitFundsCheck?FundsCheck={{.Id}}" method="GET">
+    <form action="/Simulator_FundsCheckerSubmit/?FundsCheck={{.Id}}" method="GET">
     <div hidden="hidden">
       <input type="text" id="ID" name="ID" value="{{.Id}}">
     </div>
@@ -65,7 +65,7 @@
           <div class="col">{{.Title}}<code></code></div>
             <div class="col">
               <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-primary"><i class="far fa-paper-plane" method="GET" onclick="//submitFundsCheck?FundsCheck={{.Id}}" formaction="//submitFundsCheck?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
+                <button type="submit" value="" class="btn btn-outline-primary"><i class="far fa-paper-plane" method="GET" onclick="/Simulator_FundsCheckerSubmit/?FundsCheck={{.Id}}" formaction="/Simulator_FundsCheckerSubmit/?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
                 <button type="button"  class="btn  btn-outline-secondary" method="POST" onclick="history.back()">
                   <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
@@ -74,6 +74,7 @@
       </div>
 
       <div class="card-body">
+      <br><h4>Identity</h4>
           <div class="row">
             <div class="col-sm">
               <label for="Name">Name</label>
@@ -87,8 +88,7 @@
               <label for="Source">Source</label>                <input type="text" class="form-control" id="Source" name="Source" aria-describedby="Source" placeholder="Enter an email address" value="{{.Source}}" disabled="disabled">
             </div>
           </div>
-          <hr>
-          <h4>Request Message Attributes</h4>
+          <br><h4>Message Header</h4>
           <div style="height: 10px"></div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -114,6 +114,7 @@
             </div>
             <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.DESTINATION}}" disabled>
           </div>
+          <br><h4>Message Body</h4>
           <div style="height: 8px"></div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">

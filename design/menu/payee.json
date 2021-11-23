@@ -1,11 +1,11 @@
 
     {
-      "ID": "3fcd6f25-1c8e-4e40-a5c4-e891c9d8a47e",
+      "ID": "ecc8cc74-8a0d-490e-add8-27000dfa11b9",
       "Text": "Payees",
-      "Glyph": "fas fa-landmark",
+      "Glyph": "fas fa-wallet",
       "HREF": "/PayeeList",
       "OnClick": "",
-      "TextClass": ""
+      "TextClass": """"
     }
     ,
     

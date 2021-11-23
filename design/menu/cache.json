@@ -1,11 +1,11 @@
 
     {
-      "ID": "5f68f950-dd43-4f2a-a0d9-dc48e613eb7a",
+      "ID": "0d89ae10-6eab-498b-a192-29ea8d3170f1",
       "Text": "Cache Contents",
-      "Glyph": "fas fa-poo",
+      "Glyph": "fas fa-database",
       "HREF": "/CacheList",
       "OnClick": "",
-      "TextClass": ""
+      "TextClass": "text-info"
     }
     ,
     

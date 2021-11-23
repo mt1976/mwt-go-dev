@@ -355,47 +355,6 @@ func DeleteLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func SelectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
-		return
-	}
-	// Code Continues Below
-
-	inUTL := r.URL.Path
-	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
-	if len(searchID) == 0 {
-		searchID = r.FormValue("Id")
-	}
-	core.ServiceMessageAction(inUTL, "Select", searchID)
-	var thisRec AppNISelectedStoreItem
-	thisRec.Id = searchID
-	putNISelectedStore(thisRec, r)
-
-	ListLSEGiltsDataStoreHandler(w, r)
-}
-
-func DeselectLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
-		return
-	}
-	// Code Continues Below
-
-	inUTL := r.URL.Path
-	searchID := core.GetURLparam(r, "LSEGiltsDataStore")
-	if len(searchID) == 0 {
-		searchID = r.FormValue("Id")
-	}
-	core.ServiceMessageAction(inUTL, "Deselect", searchID)
-	//var thisRec AppNISelectedStoreItem
-	//thisRec.Id = searchID
-	deleteNISelectedStore(searchID)
-	ListLSEGiltsDataStoreHandler(w, r)
-}
-
 func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {

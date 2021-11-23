@@ -10,6 +10,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
@@ -321,7 +322,7 @@ func processRow(row []string, noCols int, inURI string, nitype string) {
 
 func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	//	var bondRec application.AppLSEGiltsDataStoreItem
-	_, bondRec, _ := application.GetLSEGiltsDataStoreByID(row[3])
+	_, bondRec, _ := dao.NegotiableInstrument_GetByID(row[3])
 	bondRec.LongName = application.Translation_Lookup("NI-Name", row[2])
 	bondRec.Isin = row[3]
 	//	bondRec.IssueDate = bondRow.IssueDate
@@ -363,10 +364,10 @@ func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	// TODO: isinlookup  (might need to go into the Dispatcher Job)
 	//spew.Dump(bondRec)
 	fmt.Printf("bondRec: %v\n", bondRec)
-	application.PutLSEGiltsDataStoreSystem(bondRec)
+	dao.NegotiableInstrument_Store(bondRec)
 }
 
-func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem) application.AppLSEGiltsDataStoreItem {
+func getFIIEnrichment(inURI string, bondRec dm.NegotiableInstrument) dm.NegotiableInstrument {
 	//log.Println("URI=" + inURI)
 	req, err := http.NewRequest("GET", inURI, nil)
 	if err != nil {
@@ -415,7 +416,7 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 		bondRec.Segment = application.Translation_Lookup("NI-Segment", miData.Issuer)
 	}
 	//log.Printf("ISIN=%q LEI=%q", bondRec.Isin, bondRec.Lei)
-	bondRec.Lei, err = application.GLIEF_leiLookup(bondRec.Isin)
+	bondRec.LEI, err = application.GLIEF_leiLookup(bondRec.Isin)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -426,7 +427,7 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 	return bondRec
 }
 
-func getMIenrichment(inISIN string, bondRec application.AppLSEGiltsDataStoreItem) MIBondData {
+func getMIenrichment(inISIN string, bondRec dm.NegotiableInstrument) MIBondData {
 
 	req, err := http.NewRequest("GET", MIBaseURI+inISIN, nil)
 	if err != nil {

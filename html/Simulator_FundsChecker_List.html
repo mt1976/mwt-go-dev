@@ -64,7 +64,9 @@
 
             <div class="row">
               <div class="col">
-                {{.Title}} &nbsp;<span class="badge badge-info">{{.FundsCheckCount}}</span>
+               
+                &nbsp;&nbsp;Funds Check Requests&nbsp;&nbsp;<span class="text-muted">[{{.FundsCheckCount}}]</span>
+
               </div>
               <div class="col text-right">
                 <div class="btn-group">
@@ -78,7 +80,7 @@
         <div class="card-body">
           <div class="table-responsive">
 
-            <table class="table table-striped table-bordered table-hover" id="wctFundsCheckTable">
+            <table class="table table-striped table-bordered table-hover" id="SimulatorFundsCheckTable">
               <thead class="thead-light">
                 <tr>
                   <th scope="col" class="text-center">#</th>
@@ -93,14 +95,13 @@
                   <td class="align-middle">{{.Name}}</td>
                   <td class="align-middle text-center" style="width:1px; white-space:nowrap;padding:0.25rem">
                     <div class="btn-group">
-                      <button type="submit" value="" class="btn  btn-outline-info" formaction="/viewFundsCheck?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="View '{{.Name}}' data mapping">
+                      <button type="submit" value="" class="btn  btn-info" formaction="/Simulator_FundsCheckerView?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="View '{{.Name}}' data mapping">
                         <i class="far fa-eye"></i>
                       </button>
-
-                      <button type="submit" value="" class="btn  btn-outline-danger" style="border:none" formaction="/deleteFundsCheck?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete '{{.Name}}'">
+                      <button type="submit" value="" class="btn  btn-danger" style="border:none" formaction="/Simulator_FundsCheckerDelete?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete '{{.Name}}'">
                         <i class="fas fa-trash-alt"></i>
                       </button>
-                      <button type="submit" value="" class="btn  btn-outline-primary" style="border:none" formaction="/actionFundsCheck?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.Name}}'">
+                      <button type="submit" value="" class="btn  btn-primary" style="border:none" formaction="/Simulator_FundsCheckerAction?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.Name}}'">
                         <i class="fas fa-paper-plane"></i>
                       </button>
 
@@ -118,6 +119,8 @@
 
   </div>
 
+  <!-- SCRIPTS DO NOT CHANGE -->
+
   <script>
     $(document).ready(function() {
       $("#myFilter").on("keyup", function() {
@@ -131,11 +134,59 @@
 
   <script>
 $(document).ready(function(){
-    $('#wctFundsCheckTable').dataTable();
+    $('#SimulatorFundsCheckTable').dataTable({
+      "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
+      stateSave: true
+    } );
 });
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
 </script>
+
+
+
+  <script>
+    const toCsv = function(table) {
+      // Query all rows
+      const rows = table.querySelectorAll('tr');
+
+      return [].slice.call(rows)
+        .map(function(row) {
+          // Query all cells
+          const cells = row.querySelectorAll('th,td');
+          return [].slice.call(cells)
+            .map(function(cell) {
+              return '"' + cell.textContent + '"';
+            })
+            .join(',');
+        })
+        .join('\n');
+    };
+
+    const download = function(text, fileName) {
+      const link = document.createElement('a');
+      link.setAttribute('href', `data:text/csv;charset=utf-8,${encodeURIComponent(text)}`);
+      link.setAttribute('download', fileName);
+
+      link.style.display = 'none';
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+    };
+
+    const table = document.getElementById('Table_Template');
+    const exportBtn = document.getElementById('export');
+
+    exportBtn.addEventListener('click', function() {
+      // Export to csv
+      const csv = toCsv(table);
+
+      // Download it
+      download(csv, 'FundsChecks.csv');
+    });
+    </script>
+
+
+  <!-- SCRIPTS DO NOT CHANGE -->
 
 </body>

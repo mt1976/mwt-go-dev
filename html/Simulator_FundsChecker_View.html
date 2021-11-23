@@ -82,7 +82,7 @@
 
         <div class="card-body">
           <div class="">
-
+            <br><h4>Identity</h4>
             <div class="row">
 
               <div class="col-sm">
@@ -101,8 +101,7 @@
 
 
 
-<hr>
-<h4>Message Attributes</h4>
+<br><h4>Message Header</h4>
 <div style="height: 10px"></div>
 <div class="input-group mb-2">
   <div class="input-group-prepend">
@@ -128,6 +127,7 @@
   </div>
   <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.DESTINATION}}" disabled>
 </div>
+<br><h4>Message Body</h4>
 <div style="height: 8px"></div>
   <div class="input-group mb-2">
     <div class="input-group-prepend">
@@ -161,8 +161,7 @@
     </div>
     <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.VALDATE}}" disabled>
   </div>
-  <hr>
-  <h4>Message Content</h4>
+  <br><h4>Message Content</h4>
   <div style="height: 10px"></div>
   <div class="row">
     <div class="col">

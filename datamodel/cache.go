@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 11:25:53
+// Date & Time		    : 22/11/2021 at 21:11:39
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

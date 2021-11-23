@@ -1,8 +1,8 @@
 
     {
-      "ID": "9b3c1f1d-fed3-43c4-8500-fe18dd400c15",
+      "ID": "dd432174-5cf3-4626-b415-4c9fbbb544a3",
       "Text": "Product Groups",
-      "Glyph": "fas fa-plug",
+      "Glyph": "fas fa-object-group",
       "HREF": "/ProductList",
       "OnClick": "",
       "TextClass": ""
