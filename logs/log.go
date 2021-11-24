@@ -39,6 +39,7 @@ const (
 	log_Query         = "Query"
 	log_Result        = "Result"
 	log_Storing       = "Storing"
+	log_Generating    = "Generating"
 
 	ColorReset        = "\033[0m"
 	ColorRed          = "\033[31m"
@@ -93,6 +94,11 @@ func Skipping(s string) {
 func Created(s string) {
 	//msg_done(s)
 	msg_raw(log_Created, s, Character_Created, colour.Blue)
+}
+
+func Generate(s string) {
+	//msg_done(s)
+	msg_raw(log_Generating, s, Character_Created, colour.Blue)
 }
 
 func System(s string) {

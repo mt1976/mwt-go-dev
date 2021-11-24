@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -293,12 +294,13 @@ func GetDataList(basePath string) (int, []string, error) {
 	var listing []string
 	//	log.Println(basePath, kind, direction, requestPath)
 	pwd, _ := os.Getwd()
-	//log.Println(pwd + requestPath + "/")
+	logs.Accessing(pwd + basePath)
 	files, err := ioutil.ReadDir(pwd + basePath)
 	if err != nil {
 		logs.Fatal("Directory Error", err)
 	}
-	//spew.Dump(files)
+
+	logs.Information("Files Found", strconv.Itoa(len(files)))
 
 	for _, k := range files {
 		//fmt.Println("key:", k)

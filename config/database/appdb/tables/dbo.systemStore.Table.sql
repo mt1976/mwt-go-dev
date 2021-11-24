@@ -1,24 +1,30 @@
 USE [SRS]
 GO
-/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[systemStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [dbo].[systemStore]    Script Date: 24/11/2021 19:43:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[systemStore](
+CREATE TABLE [dbo].[systemStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
-	[id] [nvarchar](max) NOT NULL,
-	[name] [nvarchar](max) NULL,
-	[staticin] [nvarchar](max) NULL,
-	[staticout] [nvarchar](max) NULL,
-	[txnin] [nvarchar](max) NULL,
-	[txnout] [nvarchar](max) NULL,
-	[fundscheckin] [nvarchar](max) NULL,
-	[fundscheckout] [nvarchar](max) NULL,
+	[Id] [nvarchar](max) NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Staticin] [nvarchar](max) NULL,
+	[Staticout] [nvarchar](max) NULL,
+	[Txnin] [nvarchar](max) NULL,
+	[Txnout] [nvarchar](max) NULL,
+	[Fundscheckin] [nvarchar](max) NULL,
+	[Fundscheckout] [nvarchar](max) NULL,
 	[_created] [nvarchar](max) NULL,
 	[_who] [nvarchar](max) NULL,
 	[_host] [nvarchar](max) NULL,
 	[_updated] [nvarchar](max) NULL,
+	[_createdBy] [nvarchar](max) NULL,
+	[_createdHost] [nvarchar](max) NULL,
+	[_updatedBy] [nvarchar](max) NULL,
+	[_updatedHost] [nvarchar](max) NULL,
+	[SWIFTin] [nvarchar](max) NULL,
+	[SWIFTout] [nvarchar](max) NULL,
  CONSTRAINT [PK_systemStore] PRIMARY KEY CLUSTERED 
 (
 	[_id] ASC

@@ -1,11 +1,11 @@
 USE [SRS]
 GO
-/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sienadbStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [dbo].[sienadbStore]    Script Date: 24/11/2021 19:43:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sienadbStore](
+CREATE TABLE [dbo].[sienadbStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[ID] [nvarchar](max) NOT NULL,
 	[server] [nvarchar](max) NULL,
@@ -18,6 +18,10 @@ CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sienadbStore](
 	[_who] [nvarchar](max) NULL,
 	[_host] [nvarchar](max) NULL,
 	[_updated] [nvarchar](max) NULL,
-	[active] [nvarchar](max) NULL
+	[active] [nvarchar](max) NULL,
+	[_createdBy] [nvarchar](max) NULL,
+	[_createdHost] [nvarchar](max) NULL,
+	[_updatedBy] [nvarchar](max) NULL,
+	[_updatedHost] [nvarchar](max) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO

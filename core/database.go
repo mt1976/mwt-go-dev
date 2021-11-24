@@ -174,7 +174,7 @@ func Database_Poke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
 }
 
 func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath string, initialiseDB bool) {
-	log.Println("Information   : Creating Database Objects in " + dbConfig["database"] + " from " + sourcePath)
+	logs.Generate("Database Objects in " + dbConfig["database"] + " from " + sourcePath)
 
 	errdb := DB.Ping()
 	if errdb != nil {
@@ -201,7 +201,7 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 	schemaName := dbConfig["schema"]
 	databaseName := dbConfig["database"]
 	parentschema := dbConfig["parentschema"]
-
+	fmt.Printf("dbConfig: %v\n", dbConfig)
 	schemaTemplate = ReplaceWildcard(schemaTemplate, "!SQL.SCHEMA", schemaName)
 
 	//	fmt.Println("***************************************")
@@ -211,79 +211,86 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 	if err4 != nil {
 		log.Println(err.Error())
 	}
-
+	fmt.Printf("requiredViews: %v\n", requiredViews)
 	for _, view := range requiredViews {
 		thisDrop := dropTemplate
 		thisCreate := createTemplate
 
-		fileID := view
-		objectName := strings.ReplaceAll(fileID, ".sql", "")
-		//	fmt.Println("view name:", objectName)
+		//if the last 3 characters of requiredViews is "sql" then we are dealing with a sql file
+		if view[len(view)-3:] == "sql" {
 
-		thisDrop = ReplaceWildcard(thisDrop, "!SQL.DB", databaseName)
-		thisDrop = ReplaceWildcard(thisDrop, "!SQL.SCHEMA", schemaName)
-		thisDrop = ReplaceWildcard(thisDrop, "!SQL.VIEW", objectName)
+			fileID := view
+			objectName := strings.ReplaceAll(fileID, ".View.sql", "")
+			objectName = strings.ReplaceAll(objectName, schemaName+".", "")
+			//	fmt.Println("view name:", objectName)
+			logs.Processing(objectName)
+			thisDrop = ReplaceWildcard(thisDrop, "!SQL.DB", databaseName)
+			thisDrop = ReplaceWildcard(thisDrop, "!SQL.SCHEMA", schemaName)
+			thisDrop = ReplaceWildcard(thisDrop, "!SQL.VIEW", objectName)
 
-		sqlBody, err := ReadDataFile(fileID, sourcePath)
-		if err != nil {
-			log.Println(err.Error())
-		}
-
-		sqlBody = extractCreate(sqlBody)
-
-		//log.Println("***", sqlBody, "***")
-
-		thisCreate = ReplaceWildcard(thisCreate, "!SQL.DB", databaseName)
-		thisCreate = ReplaceWildcard(thisCreate, "!SQL.SCHEMA", schemaName)
-		thisCreate = ReplaceWildcard(thisCreate, "!SQL.VIEW", objectName)
-		thisCreate = ReplaceWildcard(thisCreate, "!SQL.SOURCE", parentschema)
-
-		sqlBody = ReplaceWildcard(sqlBody, "!SQL.DB", databaseName)
-		sqlBody = ReplaceWildcard(sqlBody, "!SQL.SCHEMA", schemaName)
-		sqlBody = ReplaceWildcard(sqlBody, "!SQL.VIEW", objectName)
-		sqlBody = ReplaceWildcard(sqlBody, "!SQL.SOURCE", parentschema)
-
-		thisCreate = ReplaceWildcard(thisCreate, "!SQL.BODY", sqlBody)
-		//fmt.Println("index:", i, fileID, thisDrop, thisCreate)
-		//	fmt.Println("***************************************")
-		//	fmt.Println(fileID, objectName)
-		//	fmt.Println("***************************************")
-		//	fmt.Println(thisDrop)
-		//fmt.Println("***************************************")
-
-		log.Println("Generating    :", objectName)
-		//log.Println(sqlBody)
-		if !initialiseDB {
-			//log.Println(">>>", thisDrop, "<<<")
-			_, erra := DB.Exec(thisDrop)
-			//spew.Dump(info)
-			//spew.Dump(erra)
-			if erra != nil {
-				log.Panic("ARSE", err.Error())
+			sqlBody, err := ReadDataFile(fileID, sourcePath)
+			if err != nil {
+				log.Println(err.Error())
 			}
-		}
 
-		//fmt.Println("***************************************")
-		//fmt.Println(info)
-		//fmt.Println("***************************************")
-		//fmt.Println(sqlBody)
-		//fmt.Println("***************************************")
-		//fmt.Println(thisCreate)
-		//fmt.Println("***************************************")
+			sqlBody = extractCreate(sqlBody)
 
-		//spew.Dump(thisCreate)
-		//log.Println(">>>", sqlBody, "<<<")
-		_, err2 := DB.Exec(sqlBody)
+			//log.Println("***", sqlBody, "***")
 
-		if err2 != nil {
-			logs.Error("Unable to Create View", err2)
-			log.Println(err2.Error())
+			thisCreate = ReplaceWildcard(thisCreate, "!SQL.DB", databaseName)
+			thisCreate = ReplaceWildcard(thisCreate, "!SQL.SCHEMA", schemaName)
+			thisCreate = ReplaceWildcard(thisCreate, "!SQL.VIEW", objectName)
+			thisCreate = ReplaceWildcard(thisCreate, "!SQL.SOURCE", parentschema)
+
+			sqlBody = ReplaceWildcard(sqlBody, "!SQL.DB", databaseName)
+			sqlBody = ReplaceWildcard(sqlBody, "!SQL.SCHEMA", schemaName)
+			sqlBody = ReplaceWildcard(sqlBody, "!SQL.VIEW", objectName)
+			sqlBody = ReplaceWildcard(sqlBody, "!SQL.SOURCE", parentschema)
+
+			thisCreate = ReplaceWildcard(thisCreate, "!SQL.BODY", sqlBody)
+			//fmt.Println("index:", i, fileID, thisDrop, thisCreate)
+			//	fmt.Println("***************************************")
+			//	fmt.Println(fileID, objectName)
+			//	fmt.Println("***************************************")
+			//	fmt.Println(thisDrop)
+			//fmt.Println("***************************************")
+
+			log.Println("Generating    :", objectName)
+			//log.Println(sqlBody)
+			if !initialiseDB {
+				//log.Println(">>>", thisDrop, "<<<")
+				_, erra := DB.Exec(thisDrop)
+				//spew.Dump(info)
+				//spew.Dump(erra)
+				if erra != nil {
+					log.Panic("ARSE", err.Error())
+				}
+			}
+
+			//fmt.Println("***************************************")
+			//fmt.Println(info)
+			//fmt.Println("***************************************")
+			//fmt.Println(sqlBody)
+			//fmt.Println("***************************************")
+			//fmt.Println(thisCreate)
+			//fmt.Println("***************************************")
+
+			//spew.Dump(thisCreate)
+			//log.Println(">>>", sqlBody, "<<<")
+			_, err2 := DB.Exec(sqlBody)
+
+			if err2 != nil {
+				logs.Error("Unable to Create View", err2)
+				log.Println(err2.Error())
+			} else {
+				logs.Created("View : " + objectName)
+				//log.Println("Generated     :", objectName, Tick)
+			}
+			//spew.Dump(err2)
+
+			//log.Println("***************************************")
 		} else {
-			logs.Success("View Created" + objectName)
-			//log.Println("Generated     :", objectName, Tick)
+			logs.Skipping(view)
 		}
-		//spew.Dump(err2)
-
-		//log.Println("***************************************")
 	}
 }
