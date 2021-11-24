@@ -370,6 +370,16 @@
             "TextClass": ""
         },
 
+        {
+            "ID": "c53513a6-9d1d-438e-abcf-91666a05d07f",
+            "Text": "Customer Notes",
+            "Glyph": "fas fa-poo",
+            "HREF": "/CMNotesList",
+            "OnClick": "",
+            "TextClass": ""
+
+        },
+
 
         {
             "Break": "<hr class=\"hr-list\">"

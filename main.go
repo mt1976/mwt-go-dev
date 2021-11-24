@@ -184,6 +184,8 @@ func main() {
 	application.NegotiableInstrument_Publish(*mux)
 	application.NegotiableInstrument_PublishImpl(*mux)
 
+	application.CMNotes_Publish(*mux)
+
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	logs.Success("Handlers Started")
 	logs.Break()
