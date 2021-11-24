@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXFWDMarketEURLVL--ON" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--ON</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--TN" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--TN</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--SN" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--SN</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--1W" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--1W</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--2W" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--2W</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--3W" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--3W</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--1M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--1M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--2M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--2M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--3M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--3M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--4M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--4M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--5M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--5M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--6M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--6M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--7M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--7M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--8M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--8M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--9M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--9M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--10M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--10M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--11M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--11M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURLVL--1Y" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURLVL--1Y</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="FilterStore-FXFWDMarketEURLVL-1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-FXFWDMarketEURLVL-1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="BlenderStore-FXFWDMarketEURLVL-1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-FXFWDMarketEURLVL-1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketEURLVL-1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketEURLVL-1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+
+</beans>

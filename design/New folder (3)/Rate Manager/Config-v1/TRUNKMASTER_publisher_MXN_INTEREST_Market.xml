@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="filters-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter data below this line*** -->
+
+<bean id="INTERESTMarketMXN--ON-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--ON-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--ON-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--TN-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--TN-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--TN-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--SN-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--SN-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--SN-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--1W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--1W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--1W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--2W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--2W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--2W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--3W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--3W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--3W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--1M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--1M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--1M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--2M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--2M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--2M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--3M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--3M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--3M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--4M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--4M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--4M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--5M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--5M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--5M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--6M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--6M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--6M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--7M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--7M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--7M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--8M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--8M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--8M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--9M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--9M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--9M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--10M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--10M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--10M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--11M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--11M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--11M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMXN--1Y-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMXN--1Y-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketMXN--1Y-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<!-- ***Enter data above this line*** -->
+
+</beans>

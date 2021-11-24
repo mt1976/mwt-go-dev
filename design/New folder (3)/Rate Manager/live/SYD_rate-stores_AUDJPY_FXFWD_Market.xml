@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="XRateStore-FXFWDMarketAUDJPY-1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>XRateStore-FXFWDMarketAUDJPY-1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+<bean id="ControllerStore-FXFWDMarketAUDJPY-1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-FXFWDMarketAUDJPY-1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${default_Capacity}</value>
+  </property>
+</bean>
+
+
+</beans>

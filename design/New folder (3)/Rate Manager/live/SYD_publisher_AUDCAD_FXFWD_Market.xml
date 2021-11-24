@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXFWDMarketAUDCAD-ON-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-ON-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-ON-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-TN-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-TN-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-TN-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-SN-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-SN-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-SN-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-1W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-1W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-1W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-2W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-2W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-2W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-3W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-3W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-3W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-1M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-1M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-1M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-2M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-2M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-2M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-3M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-3M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-3M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-4M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-4M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-4M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-5M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-5M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-5M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-6M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-6M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-6M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-7M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-7M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-7M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-8M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-8M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-8M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-9M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-9M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-9M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-10M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-10M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-10M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-11M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-11M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-11M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketAUDCAD-1Y-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketAUDCAD-1Y-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketAUDCAD-1Y-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+</bean>
+
+
+</beans>

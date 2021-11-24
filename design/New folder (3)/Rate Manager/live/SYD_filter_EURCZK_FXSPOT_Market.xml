@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXSPOTMarketEURCZK-SP-Market-Filter" class="com.eurobase.ratemanager.processing.filter.DatumFilterCollectionImpl">
+  <constructor-arg index="0">
+    <value>FXSPOTMarketEURCZK-SP-Market-Filter</value>
+  </constructor-arg>
+  <property name="processes">
+    <list>
+      
+    </list>
+  </property>
+  <property name="writer">
+    <ref bean="FilterStore-FXSPOTMarketEURCZK-SP-Market"/>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXSPOTMarketEURCZK-SP-Market-RateBean"/>
+  </property>
+</bean>
+
+</beans>

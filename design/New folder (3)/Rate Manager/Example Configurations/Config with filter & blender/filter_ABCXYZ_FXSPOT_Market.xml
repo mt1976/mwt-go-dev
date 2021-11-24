@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXSPOTMarketABCXYZ-SP-Market-Filter" class="com.eurobase.ratemanager.processing.filter.DatumFilterCollectionImpl">
+  <constructor-arg index="0">
+    <value>FXSPOTMarketABCXYZ-SP-Market-Filter</value>
+  </constructor-arg>
+  <property name="processes">
+    <list>
+      <ref bean="FXSPOTMarketABCXYZ-SP-Market-rangeFilter"/>
+      <ref bean="FXSPOTMarketABCXYZ-SP-Market-spreadFilter"/>
+      <ref bean="FXSPOTMarketABCXYZ-SP-Market-gradientFilter"/>
+    </list>
+  </property>
+  <property name="writer">
+    <ref bean="FilterStore-FXSPOTMarketABCXYZ-SP-Market"/>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXSPOTMarketABCXYZ-SP-Market-RateBean"/>
+  </property>
+</bean>
+
+<bean id="FXSPOTMarketABCXYZ-SP-Market-rangeFilter" class="com.eurobase.ratemanager.processing.filter.checks.RangeFilterCheckImpl">
+  <property name="minAcceptancePrice">
+    <value>0.4472</value>
+  </property>
+  <property name="maxAcceptancePrice">
+    <value>1.3745</value>
+  </property>
+</bean>
+
+<bean id="FXSPOTMarketABCXYZ-SP-Market-spreadFilter" class="com.eurobase.ratemanager.processing.filter.checks.SpreadCheckImpl">
+  <property name="pipsValue">
+    <value>64</value>
+  </property>
+  <property name="isPips">
+    <value>${default_FX_IsPips}</value>
+  </property>
+</bean>
+
+<bean id="FXSPOTMarketABCXYZ-SP-Market-gradientFilter" class="com.eurobase.ratemanager.processing.filter.checks.GradientFilter">
+  <property name="pips">
+    <value>1000</value>
+  </property>
+  <property name="periodOfTime">
+    <value>1000</value>
+  </property>
+  <property name="minimumUpdatePeriod">
+    <value>1000</value>
+  </property>
+</bean>
+</beans>
+

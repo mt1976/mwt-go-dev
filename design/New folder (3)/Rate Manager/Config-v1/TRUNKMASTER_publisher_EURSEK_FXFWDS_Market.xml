@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="filters-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter data below this line*** -->
+
+<bean id="FXFWDMarketEURSEK--ON-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--ON-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--ON-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--TN-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--TN-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--TN-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--SN-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--SN-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--SN-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--1W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--1W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--1W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--2W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--2W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--2W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--3W-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--3W-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--3W-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--1M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--1M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--1M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--2M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--2M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--2M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--3M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--3M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--3M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--4M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--4M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--4M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--5M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--5M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--5M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--6M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--6M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--6M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--7M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--7M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--7M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--8M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--8M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--8M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--9M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--9M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--9M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--10M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--10M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--10M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--11M-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--11M-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--11M-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURSEK--1Y-Market-Publisher" class="com.eurobase.ratemanager.external.out.RatePublisher">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURSEK--1Y-Market-Publisher</value>
+  </constructor-arg>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketEURSEK--1Y-Market-RateBean"/>
+  </property>
+  <property name="service">
+    <ref bean="publisherService" /> 
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" /> 
+  </property>
+</bean>
+
+<!-- ***Enter bean id above this line*** -->
+
+</beans>

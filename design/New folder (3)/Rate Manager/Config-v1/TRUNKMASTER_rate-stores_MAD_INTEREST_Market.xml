@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="filters-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter data below this line*** -->
+
+<bean id="INTERESTMarketMAD--ON" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--ON</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--ON-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--ON-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--TN" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--TN</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--TN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--TN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--SN" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--SN</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--SN-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--SN-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--1W" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--1W</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--1W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--1W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--2W" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--2W</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--2W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--2W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--3W" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--3W</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--3W-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--3W-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--1M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--1M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--1M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--1M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--2M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--2M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--2M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--2M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--3M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--3M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--3M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--3M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--4M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--4M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--4M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--4M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--5M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--5M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--5M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--5M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--6M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--6M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--6M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--6M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--7M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--7M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--7M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--7M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--8M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--8M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--8M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--8M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--9M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--9M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--9M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--9M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--10M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--10M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--10M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--10M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--11M" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--11M</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--11M-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--11M-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketMAD--1Y" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>INTERESTMarketMAD--1Y</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="FilterStore-INTERESTMarketMAD--1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>FilterStore-INTERESTMarketMAD--1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="BlenderStore-INTERESTMarketMAD--1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>BlenderStore-INTERESTMarketMAD--1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+<bean id="ControllerStore-INTERESTMarketMAD--1Y-Market" class="com.eurobase.ratemanager.data.Rates">
+  <constructor-arg index="0">
+    <value>ControllerStore-INTERESTMarketMAD--1Y-Market</value>
+  </constructor-arg>
+  <property name="capacity">
+    <value>${defaultCapacity}</value>
+  </property>
+</bean>
+
+<!-- ***Enter data above this line*** -->
+
+</beans>

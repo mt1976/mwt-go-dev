@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <bean id="volatilityProtectionManager" class="com.eurobase.ratemanager.processing.volatility.VolatilityProtection" scope="singleton" depends-on="accControlFactory" init-method="init">
+    <constructor-arg index="0" type="java.lang.String" value="VolatilityProtectionManager"/>
+    <property name="tiers">
+      <list>
+        <bean class="com.eurobase.ratemanager.processing.volatility.VolatilityTier">
+          <constructor-arg index="0" type="java.lang.String" value="Low"/>
+          <constructor-arg index="1" value="0"/>
+        </bean>
+        <bean class="com.eurobase.ratemanager.processing.volatility.VolatilityTier">
+          <constructor-arg index="0" type="java.lang.String" value="Medium"/>
+          <constructor-arg index="1" value="3"/>
+        </bean>
+        <bean class="com.eurobase.ratemanager.processing.volatility.VolatilityTier">
+          <constructor-arg index="0" type="java.lang.String" value="High"/>
+          <constructor-arg index="1" value="5"/>
+        </bean>
+      </list>
+    </property>
+    <property name="selectedTier" value="0"/>
+    <property name="multicastEventSystem" ref="multicastEventSystem"/>
+  </bean>
+
+</beans>

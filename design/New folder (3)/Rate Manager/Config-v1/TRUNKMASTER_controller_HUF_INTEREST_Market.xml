@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="filters-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter data below this line*** -->
+
+<bean id="INTERESTMarketHUF--ON-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--ON-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--ON-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--ON-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--TN-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--TN-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--TN-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--TN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--SN-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--SN-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--SN-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--SN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--1W-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--1W-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--1W-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--1W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--2W-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--2W-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--2W-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--2W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--3W-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--3W-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--3W-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--3W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--1M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--1M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--1M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--1M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--2M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--2M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--2M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--2M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--3M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--3M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--3M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--3M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--4M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--4M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--4M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--4M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--5M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--5M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--5M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--5M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--6M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--6M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--6M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--6M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--7M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--7M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--7M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--7M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--8M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--8M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--8M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--8M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--9M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--9M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--9M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--9M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--10M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--10M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--10M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--10M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--11M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--11M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--11M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--11M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTMarketHUF--1Y-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>INTERESTMarketHUF--1Y-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_MM_Skew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_MM_Spread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="INTERESTMarketHUF--1Y-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-INTERESTMarketHUF--1Y-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="MMRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="active">
+    <value>${default_MM_Active}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties" /> 
+  </property>
+  <property name="priceStream">
+    <value>${default_MM_PriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_MM_InactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_MM_PublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_MM_MaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_MM_MaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<!-- ***Enter data above this line*** -->
+
+</beans>

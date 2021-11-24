@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="RMContainer" class="com.eurobase.nsengine.data.DatumsContainer" init-method="init">
+  <constructor-arg index="0">
+    <value>Rate Manager Container</value>
+  </constructor-arg>
+  <property name="datums">
+    <list>
+
+     <ref bean="FXSPOTMarketABCXYZ-EBS-SP"/>
+     <ref bean="FilterStore-FXSPOTMarketABCXYZ-EBS-SP-Market"/>
+     <ref bean="FXSPOTMarketABCXYZ-HSBC-SP"/>
+     <ref bean="FilterStore-FXSPOTMarketABCXYZ-HSBC-SP-Market"/>
+
+      <ref bean="FXSPOTMarketABCXYZ--SP"/>
+      <ref bean="FilterStore-FXSPOTMarketABCXYZ-SP-Market"/>
+      <ref bean="BlenderStore-FXSPOTMarketABCXYZ-SP-Market"/>
+      <ref bean="ControllerStore-FXSPOTMarketABCXYZ-SP-Market"/>
+
+    </list>
+  </property>
+
+  <property name="observers">
+    <list>
+
+ <map>      
+        
+<entry>
+          <key>
+          <value>FXSPOTMarketABCXYZ-EBS-SP</value>
+           </key>
+               <ref bean="FXSPOTMarketABCXYZ-EBS-SP-Market-Filter"/>
+</entry>
+<entry>
+          <key>
+             <value>FXSPOTMarketABCXYZ-HSBC-SP</value>
+          </key>
+             <ref bean="FXSPOTMarketABCXYZ-HSBC-SP-Market-Filter"/>
+/entry>
+<entry>
+          <key>
+            <value>FXSPOTMarketABCXYZ--SP</value>
+          </key>
+          	<ref bean="FXSPOTMarketABCXYZ-SP-Market-Filter"/>
+        
+</entry>
+                    <entry>
+                        <key>
+                            <value>FilterStore-FXSPOTMarketABCXYZ-EBS-SP-Market</value>  
+                        </key>
+                        <ref bean="FXSPOTMarketABCXYZ-SP-Market-Blender"/>
+                    </entry>  
+
+<entry>
+                        <key>
+                            <value>FilterStore-FXSPOTMarketABCXYZ-HSBC-SP-Market</value>
+                        </key>
+                        <ref bean="FXSPOTMarketABCXYZ-SP-Market-Blender"/>
+</entry>            
+ 
+        <entry>
+          <key>
+            <value>FilterStore-FXSPOTMarketABCXYZ-SP-Market</value>
+          </key>
+          <ref bean="FXSPOTMarketABCXYZ-SP-Market-Blender"/>
+        </entry>
+        <entry>
+          <key>
+            <value>BlenderStore-FXSPOTMarketABCXYZ-SP-Market</value>
+          </key>
+	<ref bean="FXSPOTMarketABCXYZ-SP-Market-Controller"/>
+        </entry>
+        <entry>
+          <key>
+            <value>ControllerStore-FXSPOTMarketABCXYZ-SP-Market</value>
+          </key>
+          <ref bean="FXSPOTMarketABCXYZ-SP-Market-Publisher"/>
+        </entry>
+      </map>
+
+                      <map>
+                    <entry>
+                        <key>
+                            <value>FXSPOTMarketABCXYZ--SP</value>
+                        </key>
+                        <ref bean="FXSPOTMarketABCXYZ-EBS-SP-Market-toleranceFilter"/>
+                    </entry>
+                </map>
+                <map>
+                    <entry>
+                        <key>
+                            <value>FXSPOTMarketABCXYZ-HSBC-SP</value>
+                        </key>
+                        <ref bean="FXSPOTMarketABCXYZ-EBS-SP-Market-toleranceFilter"/>
+                    </entry>
+                </map>
+                <map>
+                    <entry>
+                        <key>
+                            <value>FXSPOTMarketABCXYZ-EBS-SP</value>
+                        </key>
+                        <ref bean="FXSPOTMarketABCXYZ-EBS-SP-Market-toleranceFilter"/>
+                    </entry>
+                </map>
+                    </list>
+  </property>
+
+</bean>
+
+</beans>

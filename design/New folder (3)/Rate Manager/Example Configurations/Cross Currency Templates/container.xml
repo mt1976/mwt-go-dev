@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="RMContainer" class="com.eurobase.nsengine.data.DatumsContainer" init-method="init">
+  <constructor-arg index="0">
+    <value>Rate Manager Container</value>
+  </constructor-arg>
+  <property name="datums">
+    <list>
+
+      <ref bean="FXSPOTMarketEURXYZ--SP"/>
+      <ref bean="ControllerStore-FXSPOTMarketEURXYZ-SP-Market"/>
+
+      <ref bean="FXSPOTMarketEURUSD--SP"/>
+      <ref bean="ControllerStore-FXSPOTMarketEURUSD-SP-Market"/>
+
+      <ref bean="XRateStore-FXSPOTMarketUSDXYZ-SP-Market"/>
+      <ref bean="ControllerStore-FXSPOTMarketUSDXYZ-SP-Market"/>
+
+
+    </list>
+  </property>
+
+  <property name="observers">
+    <list>
+
+ <map> 
+        <entry>
+          <key>
+            <value>FXSPOTMarketEURXYZ--SP</value>
+          </key>
+          <ref bean="crossrateengine"/>
+        </entry>
+        <entry>
+          <key>
+            <value>ControllerStore-FXSPOTMarketEURXYZ-SP-Market</value>
+          </key>
+          <ref bean="crossrateengine"/>
+        </entry>
+
+        <entry>
+          <key>
+            <value>FXSPOTMarketEURUSD--SP</value>
+          </key>
+          <ref bean="crossrateengine"/>
+        </entry>
+        <entry>
+          <key>
+            <value>ControllerStore-FXSPOTMarketEURUSD-SP-Market</value>
+          </key>
+          <ref bean="crossrateengine"/>
+        </entry>
+  
+</map>
+<map>    
+        <entry>
+          <key>
+            <value>FXSPOTMarketEURXYZ--SP</value>
+          </key>
+          <ref bean="FXSPOTMarketEURXYZ-SP-Market-Controller"/>
+        </entry>
+        <entry>
+          <key>
+            <value>ControllerStore-FXSPOTMarketEURXYZ-SP-Market</value>
+          </key>
+          <ref bean="FXSPOTMarketEURXYZ-SP-Market-Publisher"/>
+        </entry>
+       <entry>
+          <key>
+            <value>FXSPOTMarketEURUSD--SP</value>
+          </key>
+          <ref bean="FXSPOTMarketEURUSD-SP-Market-Controller"/>
+        </entry>
+        <entry>
+          <key>
+            <value>ControllerStore-FXSPOTMarketEURUSD-SP-Market</value>
+          </key>
+          <ref bean="FXSPOTMarketEURUSD-SP-Market-Publisher"/>
+        </entry>
+      
+</map>
+<map>
+        <entry>
+          <key>
+            <value>XRateStore-FXSPOTMarketUSDXYZ-SP-Market</value>
+          </key>
+          <ref bean="FXSPOTMarketUSDXYZ-SP-Market-Controller"/>
+        </entry>
+        <entry>
+          <key>
+            <value>ControllerStore-FXSPOTMarketUSDXYZ-SP-Market</value>
+          </key>
+          <ref bean="FXSPOTMarketUSDXYZ-SP-Market-Publisher"/>
+        </entry>
+</map>
+
+    </list>
+  </property>
+
+</bean>
+
+</beans>

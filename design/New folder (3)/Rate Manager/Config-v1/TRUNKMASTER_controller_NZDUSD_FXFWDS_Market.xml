@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter bean id below this line*** -->
+
+<bean id="FXFWDMarketNZDUSD--ON-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--ON-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--ON-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--ON-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--TN-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--TN-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--TN-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--TN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--SN-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--SN-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--SN-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--SN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--1W-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--1W-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--1W-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--1W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--2W-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--2W-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--2W-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--2W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--3W-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--3W-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--3W-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--3W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--1M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--1M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--1M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--1M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--2M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--2M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--2M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--2M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--3M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--3M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--3M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--3M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--4M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--4M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--4M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--4M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--5M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--5M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--5M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--5M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--6M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--6M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--6M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--6M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--7M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--7M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--7M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--7M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--8M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--8M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--8M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--8M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--9M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--9M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--9M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--9M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--10M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--10M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--10M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--10M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--11M-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--11M-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--11M-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--11M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketNZDUSD--1Y-Market-Controller" class="com.eurobase.ratemanager.processing.controller.MulticastSkewAndSpreadControllerImpl" init-method="init" depends-on="accControlFactory">
+  <constructor-arg index="0">
+    <value>FXFWDMarketNZDUSD--1Y-Market-Controller</value>
+  </constructor-arg>
+  <property name="skew">
+    <value>${default_FX_FwdSkew}</value>
+  </property>
+  <property name="spread">
+    <value>${default_FX_FwdSpread}</value>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXFWDMarketNZDUSD--1Y-Market-RateBean"/>
+  </property>
+  <property name="writer">
+    <ref bean="ControllerStore-FXFWDMarketNZDUSD--1Y-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem"/>
+  </property>
+  <property name="active">
+    <value>${default_FX_FwdActive}</value>
+  </property>
+  <property name="rmProperties">
+    <ref bean="rmProperties"/>
+  </property>
+  <property name="priceStream">
+    <value>${default_FX_FwdPriceStream}</value>
+  </property>
+  <property name="inactiveStatus">
+    <value>${default_FX_FwdInactiveStatus}</value>
+  </property>
+  <property name="publishInactiveRate">
+    <value>${default_FX_FwdPublishInactiveRate}</value>
+  </property>
+  <property name="maxSpread">
+    <value>${default_FX_FwdMaxSpreadPermitted}</value>
+  </property>
+  <property name="maxSkew">
+    <value>${default_FX_FwdMaxSkewPermitted}</value>
+  </property>
+</bean>
+
+<!-- ***Enter data above this line*** -->
+
+</beans>

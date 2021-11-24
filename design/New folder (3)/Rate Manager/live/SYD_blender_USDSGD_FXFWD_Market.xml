@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXFWDMarketUSDSGD-ON-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-ON-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-ON-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-TN-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-TN-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-TN-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-SN-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-SN-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-SN-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-1W-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-1W-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-1W-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-2W-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-2W-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-2W-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-3W-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-3W-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-3W-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-1M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-1M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-1M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-2M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-2M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-2M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-3M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-3M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-3M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-4M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-4M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-4M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-5M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-5M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-5M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-6M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-6M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-6M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-7M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-7M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-7M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-8M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-8M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-8M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-9M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-9M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-9M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-10M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-10M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-10M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-11M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-11M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-11M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketUSDSGD-1Y-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketUSDSGD-1Y-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketUSDSGD-1Y-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+
+</beans>
