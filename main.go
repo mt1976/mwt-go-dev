@@ -14,6 +14,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/dao"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
@@ -240,6 +241,8 @@ func main() {
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 	//jobs.RatesFXSpot_Run()
+
+	dao.Onboard_Test()
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)

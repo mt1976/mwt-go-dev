@@ -1,0 +1,237 @@
+<MESSAGE>
+<TRANSACTION type="IMPORT">
+<TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm">
+<RECORD>
+ <KEYFIELD name="firmName">strawberr</KEYFIELD>
+ <FIELD name="fullName">Strawberry Ltd</FIELD>
+ <FIELD name="country">IE</FIELD>
+ <FIELD name="sector">New</FIELD>
+</RECORD>
+</TABLE>
+<TABLE name="Counterparty" classname="com.eurobase.siena.data.counterparty.Counterparty">
+<RECORD>
+ <KEYFIELD name="name.firm">strawberr</KEYFIELD>
+ <KEYFIELD name="name.centre">ROI</KEYFIELD>
+ <FIELD name="fullName">Strawberry Ltd</FIELD>
+ <FIELD name="countryCode">IE</FIELD>
+ <FIELD name="sectorCode">New</FIELD>
+ <FIELD name="customerType">Corporate</FIELD>
+ <SLOT name="Address" classname="com.eurobase.common.tech.types.FixedSlotType" memberClassname="com.eurobase.common.tech.types.FixedSlotType$FixedData">
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Address 1</SLOTKEYFIELD>
+         <SLOTFIELD name="value">Wexford</SLOTFIELD>
+     </SLOTRECORD>
+ </SLOT>
+ <FIELD name="telephoneNumber">456456465</FIELD>
+ <FIELD name="owner"></FIELD>
+ <FIELD name="timeBandID">TBCM</FIELD>
+ <SLOT name="Extensions" classname="com.eurobase.common.tech.types.FixedSlotType" memberClassname="com.eurobase.common.tech.types.FixedSlotType$FixedData">
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Business Online Profile Number</SLOTKEYFIELD>
+         <SLOTFIELD name="value">0</SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Relationship Distribution Code</SLOTKEYFIELD>
+         <SLOTFIELD name="value">70000</SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">RPT Currency</SLOTKEYFIELD>
+         <SLOTFIELD name="value">EUR</SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Gm Client Model ID</SLOTKEYFIELD>
+         <SLOTFIELD name="value">0</SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Sort Code</SLOTKEYFIELD>
+         <SLOTFIELD name="value">901538</SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Customer Category</SLOTKEYFIELD>
+         <SLOTFIELD name="value"></SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">LER Limit Carve-Out</SLOTKEYFIELD>
+         <SLOTFIELD name="value">N</SLOTFIELD>
+     </SLOTRECORD>
+     <SLOTRECORD>
+         <SLOTKEYFIELD name="key">Settlement Limit Carve-Out</SLOTKEYFIELD>
+         <SLOTFIELD name="value">N</SLOTFIELD>
+     </SLOTRECORD>
+ </SLOT>
+</RECORD>
+</TABLE>
+<TABLE name="CounterpartyImportID" classname="com.eurobase.siena.data.counterparty.CounterpartyImportID">
+<RECORD>
+ <KEYFIELD name="key.originID">LIMIT</KEYFIELD>
+ <KEYFIELD name="key.importID">0</KEYFIELD>
+ <FIELD name="counterparty.firm">strawberr</FIELD>
+ <FIELD name="counterparty.centre">ROI</FIELD>
+</RECORD>
+</TABLE>
+<TABLE name="CounterpartySettlementInstructionsName" classname="com.eurobase.siena.data.counterparty.CounterpartySettlementInstructionsName">
+<RECORD>
+ <KEYFIELD name="name">99946372 EUR</KEYFIELD>
+</RECORD>
+</TABLE>
+<TABLE name="CounterpartySettlementInstructions" classname="com.eurobase.siena.data.counterparty.CounterpartySettlementInstructions">
+<RECORD>
+ <KEYFIELD name="key.counterparty.firm">strawberr</KEYFIELD>
+ <KEYFIELD name="key.counterparty.centre">ROI</KEYFIELD>
+ <KEYFIELD name="key.currency">EUR</KEYFIELD>
+ <KEYFIELD name="key.name">99946372 EUR</KEYFIELD>
+ <KEYFIELD name="key.number">1</KEYFIELD>
+ <KEYFIELD name="key.type">PAYMENT</KEYFIELD>
+ <FIELD name="isDefault">Y</FIELD>
+ <FIELD name="isActive">Y</FIELD>
+</RECORD>
+</TABLE>
+<TABLE name="Payee" classname="com.eurobase.siena.data.payee.Payee">
+<RECORD>
+ <KEYFIELD name="key.counterparty.firm">strawberr</KEYFIELD>
+ <KEYFIELD name="key.counterparty.centre">ROI</KEYFIELD>
+ <KEYFIELD name="key.currency">EUR</KEYFIELD>
+ <KEYFIELD name="key.name">99946372 EUR</KEYFIELD>
+ <KEYFIELD name="key.number">1</KEYFIELD>
+ <KEYFIELD name="key.type">PAYMENT</KEYFIELD>
+ <FIELD name="address">Wexford</FIELD>
+ <FIELD name="country">IE</FIELD>
+ <FIELD name="bic">BOFIIE2D</FIELD>
+ <FIELD name="iban">IE32BOFI90153899946372</FIELD>
+ <FIELD name="fullName">Strawberry Ltd</FIELD>
+ <FIELD name="address">Wexford</FIELD>
+ <FIELD name="phoneNo">456456465</FIELD>
+ <FIELD name="sortCode">901538</FIELD>
+ <FIELD name="bankSettlementAcct">Y</FIELD>
+ <FIELD name="reason">.</FIELD>
+ <FIELD name="accountNo">99946372</FIELD>
+ <FIELD name="bankName">BOI</FIELD>
+</RECORD>
+</TABLE>
+<TABLE name="Agreement" classname="com.eurobase.siena.data.tradingentity.AgreementImpl">
+<RECORD>
+ <KEYFIELD name="key.priceMaker.type">Sales Desk</KEYFIELD>
+ <KEYFIELD name="key.priceMaker.tradingEntity">Republic of Ireland</KEYFIELD>
+ <KEYFIELD name="key.priceTaker.type">Counterparty</KEYFIELD>
+ <KEYFIELD name="key.priceTaker.tradingEntity">strawberrROI</KEYFIELD>
+</RECORD>
+</TABLE>
+<TABLE name="MandatedUser" classname="com.eurobase.siena.data.user.MandatedUser">
+<RECORD>
+ <KEYFIELD name="mandatedUserKey.counterparty.firm">strawberr</KEYFIELD>
+ <KEYFIELD name="mandatedUserKey.counterparty.centre">ROI</KEYFIELD>
+ <KEYFIELD name="mandatedUserKey.userName">Straw Berry</KEYFIELD>
+ <FIELD name="type">Both</FIELD>
+ <FIELD name="telephoneNumber">456456465</FIELD>
+ <FIELD name="emailAddress">mary@mary.com</FIELD>
+ <FIELD name="systemUser">strawberr1</FIELD>
+ <FIELD name="notify">Y</FIELD>
+ <FIELD name="active">Y</FIELD>
+</RECORD>
+</TABLE>
+<TABLE name="User" classname="com.eurobase.siena.info.security.User">
+<RECORD>
+ <KEYFIELD name="userId">strawberr1</KEYFIELD>
+ <FIELD name="fullname">Straw Berry</FIELD>
+</RECORD>
+</TABLE>
+</TRANSACTION>
+<CL>
+run CreateUser database=database() sourceUser="templateWebUser" targetUser="strawberr1" changePassword="false" password="" targetUserFullName="Straw Berry";
+
+run SetSettings database=database()
+username="strawberr1"
+name="UserDetails"
+type="user"
+keys="Email Address", "Default Book", "Default Enter Book", "Dealer Intervention", "Local Currency", "Telephone Number"
+values="mary@mary.com", "WEB=RSM", "RSM", "true", "EUR", "456456465"
+override="true";
+
+run SetSettings database=database()
+username="strawberr1"
+name="WebUser"
+type="user"
+keys="Security Data", "User Currency", "User Currency Pair", "Region"
+values="Place of Birth=Wexford,Middle Name=Wexford,Mother's Maiden Name=Road,Date of Birth=31/12/8263", "EUR", "EURGBP", "ROI"
+override="true";
+
+run SetSettings database=database()
+username="strawberr1"
+name="Deals"
+type="user"
+keys="Use Reciprocal Rates"
+values="Based on local currency"
+override="true";
+
+run GroupCreate database=database()
+userName="strawberr1"
+groupList=&quot;LicenceEtrader&quot;, &quot;eTrader External Direct Base&quot;, &quot;eTrader External Direct Admin&quot;, &quot;eTrader FX View &amp; Add Payee&quot;, &quot;eTrader FX View &amp; Add Payments&quot;, &quot;eTrader FX Dealing&quot;
+mode="MAKE_MEMBER";
+
+run MakeResource group = "G_External"
+name = "strawberr1"
+description = "strawberr1"
+type = "Users"
+attribute_names = "ADD_GROUP", "ADD_OPERATION", "CHANGE_PASSWORD", "DELETE_OPERATION", "EDIT_PROFILE", "REMOVE_GROUP"
+attribute_types = "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "strawberr1"
+description = "strawberr1"
+type = "Users"
+attribute_names = "CHANGE_PASSWORD"
+attribute_types = "BOOLEAN";
+
+run ResourceUpdater database=database()
+type="Users"
+add_ops = "ADD_GROUP", "ADD_OPERATION", "ADD_RESOURCE", "ALLOW_OPERATION", "CHANGE_PASSWORD",
+"DELETE", "DELETE_OPERATION", "DENY_OPERATION", "EDIT", "EDIT_PROFILE", "REMOVE_GROUP", "REMOVE_RESOURCE", "TRADE_IN_THE_NAME_OF";
+
+run MakeResource group = "G_External"
+name = "strawberr1 UserDetails"
+description = "strawberr1 UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "strawberr1 WebUser"
+description = "strawberr1 WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "strawberr1 Deals"
+description = "strawberr1 Deals Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "strawberr1 UserDetails"
+description = "strawberr1 UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET"
+EDIT_SETTING = "External User Ids,Enabled";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "strawberr1 WebUser"
+description = "strawberr1 WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+</CL>
+<CL1>
+run SetSettings database=database()
+username="strawberr1"
+name="UserDetails"
+type="user"
+keys="Trading Entity"
+values="Counterparty:strawberrROI"
+override="true";
+
+</CL1>
+</MESSAGE>
