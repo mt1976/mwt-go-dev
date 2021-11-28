@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/country.go"
 // ----------------------------------------------------------------
@@ -9,20 +8,20 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:39
+// Date & Time		    : 28/11/2021 at 21:22:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
+	"fmt"
 
 	"github.com/google/uuid"
-	adaptor "github.com/mt1976/mwt-go-dev/adaptor"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Country_GetList() returns a list of all Country records
@@ -33,7 +32,8 @@ func Country_GetList() (int, []dm.Country, error) {
 	return count, countryList, nil
 }
 
-// Country_GetLookup() returns a list of all Country records ready for lookup
+
+// Country_GetLookup() returns a lookup list of all Country items in lookup format
 func Country_GetLookup() []dm.Lookup_Item {
 
 	var returnList []dm.Lookup_Item
@@ -43,6 +43,7 @@ func Country_GetLookup() []dm.Lookup_Item {
 	}
 	return returnList
 }
+
 
 // Country_GetByID() returns a single Country record
 func Country_GetByID(id string) (int, dm.Country, error) {
@@ -75,19 +76,25 @@ func Country_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Country_Store() saves/stores a Country record to the database
 func Country_Store(r dm.Country) error {
 
-	logs.Storing("Country", fmt.Sprintf("%s", r))
+	logs.Storing("Country",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Country_NewID(r)
 	}
 
+
+
 	adaptor.Country_Delete(r.Code)
 	adaptor.Country_Update(r)
 
+
+
 	return nil
+
 }
 
 // country_Fetch read all employees
@@ -104,14 +111,13 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-		recItem.AppInternalID = get_String(rec, dm.Country_Code, "")
-		recItem.Code = get_String(rec, dm.Country_Code, "")
-		recItem.Name = get_String(rec, dm.Country_Name, "")
-		recItem.ShortCode = get_String(rec, dm.Country_ShortCode, "")
-		recItem.EU_EEA = get_Bool(rec, dm.Country_EU_EEA, "True")
-		recItem.HolidaysWeekend = get_String(rec, dm.Country_HolidaysWeekend, "")
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+   recItem.Code  = get_String(rec, dm.Country_Code, "")
+   recItem.Name  = get_String(rec, dm.Country_Name, "")
+   recItem.ShortCode  = get_String(rec, dm.Country_ShortCode, "")
+   recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA, "True")
+   recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend, "")
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -119,12 +125,14 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 }
 
 func Country_NewID(r dm.Country) string {
+	
+	
+			id := uuid.New().String()
 
-	id := uuid.New().String()
-
+	
 	return id
 }
-
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+

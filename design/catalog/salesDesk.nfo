@@ -1,41 +1,39 @@
 ----------------------------------------------------------------
-Automatically generated  "/design/catalog/sector.nfo"
+Automatically generated  "/design/catalog/salesdesk.nfo"
 ----------------------------------------------------------------
 Package              : n/a
-Object 			     : Sector (sector)
-Endpoint 	         : Sector (Sector)
+Object 			     : SalesDesk (salesdesk)
+Endpoint 	         : SalesDesk (Desk)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : cryptoidCalcium [r0-21.11.01]
-Date & Time		     : 28/11/2021 at 21:11:37
+Date & Time		     : 28/11/2021 at 21:21:16
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
 ----------------------------------------------------------------
-SQL Table Name       : sienaSector
-SQL Table Search Col : Code
+SQL Table Name       : sienaSalesDesk
+SQL Table Search Col : Name
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
 *-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
 | Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
 *-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Code                                | String     |            | true  | true   | false |                 |            |            | 
-| Name                                | String     |            | false | true   | false |                 |            |            | 
+| Name                                | String     |            | true  | true   | false |                 |            |            | 
+| ReportDealsOver                     | String     |            | false | true   | false |                 |            |            | 
+| ReportDealsOverCCY                  | String     |            | false | true   | false |                 |            |            | 
+| AccountTransferCutOffTime           | Time       |            | false | true   | false |                 |            |            | 
+| AccountTransferCutOffTimeTimeZone   | String     |            | false | true   | false |                 |            |            | 
+| AccountTransferCutOffTimeCutOffPeriod | String     |            | false | true   | false |                 |            |            | 
 *-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
-* application (/application/sector_core.go)
-* adaptor (/adaptor/sector.go)
-* dao (/dao/sector.go)
-* datamodel (/datamodel/sector.go)
-* menu (/design/menu/sector.json)
-* html -> List (/html/Sector_List.html)
-* html -> View (/html/Sector_View.html)
-* html -> Edit (/html/Sector_Edit.html)
-* html -> New (/html/Sector_New.html)
-* catalog (/design/catalog/sector.nfo)
+* application (/application/salesDesk_core.go)
+* dao (/dao/salesDesk.go)
+* datamodel (/datamodel/salesDesk.go)
+* catalog (/design/catalog/salesDesk.nfo)
 ----------------------------------------------------------------
 End of File
 ----------------------------------------------------------------

@@ -1,0 +1,48 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/owner.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Owner (owner)
+Endpoint 	         : Owner (Owner)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 28/11/2021 at 22:33:56
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaOwner
+SQL Table Search Col : UserName
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| UserName                            | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| Type                                | String     |            | false | true   | false |                 |            |            | 
+| TradingEntity                       | String     |            | false | true   | false |                 |            |            | 
+| DefaultEnterBook                    | String     |            | false | true   | false |                 |            |            | 
+| EmailAddress                        | String     |            | false | true   | false |                 |            |            | 
+| Enabled                             | String     |            | false | true   | false |                 |            |            | 
+| ExternalUserIds                     | String     |            | false | true   | false |                 |            |            | 
+| Language                            | String     |            | false | true   | false |                 |            |            | 
+| LocalCurrency                       | String     |            | false | true   | false |                 |            |            | 
+| Role                                | String     |            | false | true   | false |                 |            |            | 
+| TelephoneNumber                     | String     |            | false | true   | false |                 |            |            | 
+| TokenId                             | String     |            | false | true   | false |                 |            |            | 
+| Entity                              | String     |            | false | true   | false |                 |            |            | 
+| UserCode                            | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/owner_core.go)
+* dao (/dao/owner.go)
+* datamodel (/datamodel/owner.go)
+* catalog (/design/catalog/owner.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:40
+// Date & Time		    : 28/11/2021 at 21:11:09
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,19 @@ func Currency_GetList() (int, []dm.Currency, error) {
 	count, currencyList, _, _ := currency_Fetch(tsql)
 	return count, currencyList, nil
 }
+
+
+// Currency_GetLookup() returns a lookup list of all Currency items in lookup format
+func Currency_GetLookup() []dm.Lookup_Item {
+
+	var returnList []dm.Lookup_Item
+	count, currencyList, _ := Currency_GetList()
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: currencyList[i].Code, Name: currencyList[i].Name})
+	}
+	return returnList
+}
+
 
 // Currency_GetByID() returns a single Currency record
 func Currency_GetByID(id string) (int, dm.Currency, error) {
@@ -95,8 +108,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Currency_Code,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Currency_Code, "")
    recItem.Name  = get_String(rec, dm.Currency_Name, "")
    recItem.AmountDp  = get_Int(rec, dm.Currency_AmountDp, "0")
@@ -121,7 +133,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
    recItem.StripRateFutureCurrencyContractFutureContractCode  = get_String(rec, dm.Currency_StripRateFutureCurrencyContractFutureContractCode, "")
    recItem.OvernightFundingSpreadBid  = get_Float(rec, dm.Currency_OvernightFundingSpreadBid, "0.00")
    recItem.OvernightFundingSpreadOffer  = get_Float(rec, dm.Currency_OvernightFundingSpreadOffer, "0.00")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

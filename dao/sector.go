@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/sector.go"
 // ----------------------------------------------------------------
@@ -9,20 +8,20 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:43
+// Date & Time		    : 28/11/2021 at 21:11:37
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
+	"fmt"
 
 	"github.com/google/uuid"
-	adaptor "github.com/mt1976/mwt-go-dev/adaptor"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Sector_GetList() returns a list of all Sector records
@@ -33,16 +32,18 @@ func Sector_GetList() (int, []dm.Sector, error) {
 	return count, sectorList, nil
 }
 
-// Sector_GetLookup() returns a list of all Sector records ready for lookup
+
+// Sector_GetLookup() returns a lookup list of all Sector items in lookup format
 func Sector_GetLookup() []dm.Lookup_Item {
 
 	var returnList []dm.Lookup_Item
-	count, centreList, _ := Sector_GetList()
+	count, sectorList, _ := Sector_GetList()
 	for i := 0; i < count; i++ {
-		returnList = append(returnList, dm.Lookup_Item{ID: centreList[i].Code, Name: centreList[i].Name})
+		returnList = append(returnList, dm.Lookup_Item{ID: sectorList[i].Code, Name: sectorList[i].Name})
 	}
 	return returnList
 }
+
 
 // Sector_GetByID() returns a single Sector record
 func Sector_GetByID(id string) (int, dm.Sector, error) {
@@ -78,14 +79,17 @@ func Sector_Delete(id string) {
 // Sector_Store() saves/stores a Sector record to the database
 func Sector_Store(r dm.Sector) error {
 
-	logs.Storing("Sector", fmt.Sprintf("%s", r))
+	logs.Storing("Sector",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Sector_NewID(r)
 	}
 
+
+
 	adaptor.Sector_Delete(r.Code)
 	adaptor.Sector_Update(r)
+
 
 	return nil
 }
@@ -104,11 +108,10 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-		recItem.AppInternalID = get_String(rec, dm.Sector_Code, "")
-		recItem.Code = get_String(rec, dm.Sector_Code, "")
-		recItem.Name = get_String(rec, dm.Sector_Name, "")
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+   recItem.Code  = get_String(rec, dm.Sector_Code, "")
+   recItem.Name  = get_String(rec, dm.Sector_Name, "")
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -116,12 +119,14 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 }
 
 func Sector_NewID(r dm.Sector) string {
+	
+	
+			id := uuid.New().String()
 
-	id := uuid.New().String()
-
+	
 	return id
 }
-
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+
