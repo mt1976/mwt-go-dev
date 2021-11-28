@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 24/11/2021 at 20:53:04
+// Date & Time		    : 28/11/2021 at 22:54:53
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,8 +38,7 @@ type CMNotes_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	AppInternalID  string
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		NoteId string
 		StreamId string
 		Summary string
@@ -56,7 +55,7 @@ type CMNotes_Page struct {
 	
 	
 	
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -124,11 +123,10 @@ func CMNotes_HandlerView(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.CMNotes_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:		     rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 24/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = rD.NoteId
 pageDetail.StreamId = rD.StreamId
 pageDetail.Summary = rD.Summary
@@ -136,12 +134,12 @@ pageDetail.Details = rD.Details
 pageDetail.RecordState = rD.RecordState
 pageDetail.CreatedBy = rD.CreatedBy
 pageDetail.CreatedDateTime = rD.CreatedDateTime
-// Automatically generated 24/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateView, core.GetUserRole(r)))
@@ -169,11 +167,10 @@ func CMNotes_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.CMNotes_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:          rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 24/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = rD.NoteId
 pageDetail.StreamId = rD.StreamId
 pageDetail.Summary = rD.Summary
@@ -181,11 +178,11 @@ pageDetail.Details = rD.Details
 pageDetail.RecordState = rD.RecordState
 pageDetail.CreatedBy = rD.CreatedBy
 pageDetail.CreatedDateTime = rD.CreatedDateTime
-// Automatically generated 24/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -202,12 +199,10 @@ func CMNotes_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("noteId"))
+	logs.Servicing(r.URL.Path+r.FormValue("NoteId"))
 
 	var item dm.CMNotes
-
-	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		item.NoteId = r.FormValue(dm.CMNotes_NoteId)
 		item.StreamId = r.FormValue(dm.CMNotes_StreamId)
 		item.Summary = r.FormValue(dm.CMNotes_Summary)
@@ -216,9 +211,9 @@ func CMNotes_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CreatedBy = r.FormValue(dm.CMNotes_CreatedBy)
 		item.CreatedDateTime = r.FormValue(dm.CMNotes_CreatedDateTime)
 	
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	dao.CMNotes_Store(item)	
 
@@ -243,11 +238,10 @@ func CMNotes_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.CMNotes_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",	
 	}
 
 		// 
-		// Automatically generated 24/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = ""
 pageDetail.StreamId = ""
 pageDetail.Summary = ""
@@ -255,8 +249,8 @@ pageDetail.Details = ""
 pageDetail.RecordState = ""
 pageDetail.CreatedBy = ""
 pageDetail.CreatedDateTime = ""
-// Automatically generated 24/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateNew, core.GetUserRole(r)))

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 21:11:37
+// Date & Time		    : 28/11/2021 at 22:55:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -76,6 +76,7 @@ func Sector_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Sector_Store() saves/stores a Sector record to the database
 func Sector_Store(r dm.Sector) error {
 
@@ -91,7 +92,9 @@ func Sector_Store(r dm.Sector) error {
 	adaptor.Sector_Update(r)
 
 
+
 	return nil
+
 }
 
 // sector_Fetch read all employees

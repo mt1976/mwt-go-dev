@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:40
+// Date & Time		    : 28/11/2021 at 22:54:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func DealingInterface_GetList() (int, []dm.DealingInterface, error) {
 	count, dealinginterfaceList, _, _ := dealinginterface_Fetch(tsql)
 	return count, dealinginterfaceList, nil
 }
+
+
 
 // DealingInterface_GetByID() returns a single DealingInterface record
 func DealingInterface_GetByID(id string) (int, dm.DealingInterface, error) {
@@ -55,6 +57,7 @@ func DealingInterface_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // DealingInterface_Store() saves/stores a DealingInterface record to the database
 func DealingInterface_Store(r dm.DealingInterface) error {
 
@@ -70,7 +73,9 @@ func DealingInterface_Store(r dm.DealingInterface) error {
 	adaptor.DealingInterface_Update(r)
 
 
+
 	return nil
+
 }
 
 // dealinginterface_Fetch read all employees
@@ -87,8 +92,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.DealingInterface_Name,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
    recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
    recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative, "True")
@@ -113,7 +117,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
    recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation, "True")
    recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance, "True")
    recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules, "True")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func Mandate_GetList() (int, []dm.Mandate, error) {
 	count, mandateList, _, _ := mandate_Fetch(tsql)
 	return count, mandateList, nil
 }
+
+
 
 // Mandate_GetByID() returns a single Mandate record
 func Mandate_GetByID(id string) (int, dm.Mandate, error) {
@@ -55,6 +57,7 @@ func Mandate_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Mandate_Store() saves/stores a Mandate record to the database
 func Mandate_Store(r dm.Mandate) error {
 
@@ -70,7 +73,9 @@ func Mandate_Store(r dm.Mandate) error {
 	adaptor.Mandate_Update(r)
 
 
+
 	return nil
+
 }
 
 // mandate_Fetch read all employees
@@ -87,8 +92,7 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Mandate_FirmName,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.MandatedUserKeyCounterpartyFirm  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyFirm, "")
    recItem.MandatedUserKeyCounterpartyCentre  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyCentre, "")
    recItem.MandatedUserKeyUserName  = get_String(rec, dm.Mandate_MandatedUserKeyUserName, "")
@@ -110,7 +114,7 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 
 
 
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

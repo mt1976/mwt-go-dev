@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:38
+// Date & Time		    : 28/11/2021 at 22:54:52
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,8 +38,7 @@ type Book_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	AppInternalID  string
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		BookName string
 		FullName string
 		PLManage string
@@ -60,7 +59,7 @@ type Book_Page struct {
 	
 	
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -128,11 +127,10 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:		     rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -142,12 +140,12 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Book_TemplateView, core.GetUserRole(r)))
@@ -175,11 +173,10 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:          rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -189,11 +186,11 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Book_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -213,9 +210,7 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("BookName"))
 
 	var item dm.Book
-
-	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		item.BookName = r.FormValue(dm.Book_BookName)
 		item.FullName = r.FormValue(dm.Book_FullName)
 		item.PLManage = r.FormValue(dm.Book_PLManage)
@@ -226,9 +221,9 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod)
 		item.InternalId = r.FormValue(dm.Book_InternalId)
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	dao.Book_Store(item)	
 
@@ -253,11 +248,10 @@ func Book_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",	
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = ""
 pageDetail.FullName = ""
 pageDetail.PLManage = ""
@@ -267,8 +261,8 @@ pageDetail.CostOfCarry = ""
 pageDetail.CostOfFunding = ""
 pageDetail.LotAllocationMethod = ""
 pageDetail.InternalId = ""
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Book_TemplateNew, core.GetUserRole(r)))

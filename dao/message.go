@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,8 @@ func Message_GetList() (int, []dm.Message, error) {
 	return count, messageList, nil
 }
 
+
+
 // Message_GetByID() returns a single Message record
 func Message_GetByID(id string) (int, dm.Message, error) {
 
@@ -54,6 +56,7 @@ func Message_Delete(id string) {
 
 	das.Execute(tsql)
 }
+
 
 // Message_Store() saves/stores a Message record to the database
 func Message_Store(r dm.Message) error {
@@ -100,7 +103,9 @@ func Message_Store(r dm.Message) error {
 	das.Execute(tsql)
 
 
+
 	return nil
+
 }
 
 // message_Fetch read all employees
@@ -117,8 +122,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Message_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Message_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Message_Id, "")
    recItem.Message  = get_String(rec, dm.Message_Message, "")
@@ -130,7 +134,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
    recItem.SYSCreatedHost  = get_String(rec, dm.Message_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Message_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Message_SYSUpdatedHost, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

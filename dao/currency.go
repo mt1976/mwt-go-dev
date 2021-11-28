@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 21:11:09
+// Date & Time		    : 28/11/2021 at 22:54:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -21,7 +21,7 @@ import (
 	das  "github.com/mt1976/mwt-go-dev/das"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
+	
 )
 
 // Currency_GetList() returns a list of all Currency records
@@ -76,22 +76,14 @@ func Currency_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Currency_Store() saves/stores a Currency record to the database
 func Currency_Store(r dm.Currency) error {
 
 	logs.Storing("Currency",fmt.Sprintf("%s", r))
 
-	if len(r.Code) == 0 {
-		r.Code = Currency_NewID(r)
-	}
-
-
-
-	adaptor.Currency_Delete(r.Code)
-	adaptor.Currency_Update(r)
-
-
 	return nil
+
 }
 
 // currency_Fetch read all employees

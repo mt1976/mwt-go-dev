@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:43
+// Date & Time		    : 28/11/2021 at 22:55:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func Session_GetList() (int, []dm.Session, error) {
 	count, sessionList, _, _ := session_Fetch(tsql)
 	return count, sessionList, nil
 }
+
+
 
 // Session_GetByID() returns a single Session record
 func Session_GetByID(id string) (int, dm.Session, error) {
@@ -55,68 +57,14 @@ func Session_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Session_Store() saves/stores a Session record to the database
 func Session_Store(r dm.Session) error {
 
 	logs.Storing("Session",fmt.Sprintf("%s", r))
 
-	if len(r.Id) == 0 {
-		r.Id = Session_NewID(r)
-	}
-
-
-
-
-//Deal with the if its Application or null add this bit, otherwise dont.
-		//fmt.Println(credentialStore)
-
-	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
-	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
-	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",Audit_User())
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
-
-	ts := SQLData{}
-
-	ts = addData(ts, dm.Session_SYSId, r.SYSId)
-	ts = addData(ts, dm.Session_Apptoken, r.Apptoken)
-	ts = addData(ts, dm.Session_Createdate, r.Createdate)
-	ts = addData(ts, dm.Session_Createtime, r.Createtime)
-	ts = addData(ts, dm.Session_Uniqueid, r.Uniqueid)
-	ts = addData(ts, dm.Session_Sessiontoken, r.Sessiontoken)
-	ts = addData(ts, dm.Session_Username, r.Username)
-	ts = addData(ts, dm.Session_Password, r.Password)
-	ts = addData(ts, dm.Session_Userip, r.Userip)
-	ts = addData(ts, dm.Session_Userhost, r.Userhost)
-	ts = addData(ts, dm.Session_Appip, r.Appip)
-	ts = addData(ts, dm.Session_Apphost, r.Apphost)
-	ts = addData(ts, dm.Session_Issued, r.Issued)
-	ts = addData(ts, dm.Session_Expiry, r.Expiry)
-	ts = addData(ts, dm.Session_Expiryraw, r.Expiryraw)
-	ts = addData(ts, dm.Session_Brand, r.Brand)
-	ts = addData(ts, dm.Session_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Session_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Session_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.Session_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Session_Id, r.Id)
-	ts = addData(ts, dm.Session_Expires, r.Expires)
-	ts = addData(ts, dm.Session_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Session_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Session_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Session_SYSUpdatedHost, r.SYSUpdatedHost)
-	ts = addData(ts, dm.Session_SessionRole, r.SessionRole)
-	
-
-	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
-	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
-
-	Session_Delete(r.Id)
-	das.Execute(tsql)
-
-
 	return nil
+
 }
 
 // session_Fetch read all employees
@@ -133,8 +81,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Session_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Session_SYSId, "0")
    recItem.Apptoken  = get_String(rec, dm.Session_Apptoken, "")
    recItem.Createdate  = get_String(rec, dm.Session_Createdate, "")
@@ -162,7 +109,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
    recItem.SYSUpdatedBy  = get_String(rec, dm.Session_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Session_SYSUpdatedHost, "")
    recItem.SessionRole  = get_String(rec, dm.Session_SessionRole, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

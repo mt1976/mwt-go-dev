@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/owner.go"
 // ----------------------------------------------------------------
@@ -9,19 +8,20 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:33:56
+// Date & Time		    : 28/11/2021 at 22:54:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
+	"fmt"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
 // Owner_GetList() returns a list of all Owner records
@@ -31,6 +31,7 @@ func Owner_GetList() (int, []dm.Owner, error) {
 	count, ownerList, _, _ := owner_Fetch(tsql)
 	return count, ownerList, nil
 }
+
 
 // Owner_GetLookup() returns a lookup list of all Owner items in lookup format
 func Owner_GetLookup() []dm.Lookup_Item {
@@ -42,6 +43,7 @@ func Owner_GetLookup() []dm.Lookup_Item {
 	}
 	return returnList
 }
+
 
 // Owner_GetByID() returns a single Owner record
 func Owner_GetByID(id string) (int, dm.Owner, error) {
@@ -74,10 +76,11 @@ func Owner_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Owner_Store() saves/stores a Owner record to the database
 func Owner_Store(r dm.Owner) error {
 
-	logs.Storing("Owner", fmt.Sprintf("%s", r))
+	logs.Storing("Owner",fmt.Sprintf("%s", r))
 
 	return nil
 
@@ -97,23 +100,23 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
-		recItem.UserName = get_String(rec, dm.Owner_UserName, "")
-		recItem.FullName = get_String(rec, dm.Owner_FullName, "")
-		recItem.Type = get_String(rec, dm.Owner_Type, "")
-		recItem.TradingEntity = get_String(rec, dm.Owner_TradingEntity, "")
-		recItem.DefaultEnterBook = get_String(rec, dm.Owner_DefaultEnterBook, "")
-		recItem.EmailAddress = get_String(rec, dm.Owner_EmailAddress, "")
-		recItem.Enabled = get_String(rec, dm.Owner_Enabled, "")
-		recItem.ExternalUserIds = get_String(rec, dm.Owner_ExternalUserIds, "")
-		recItem.Language = get_String(rec, dm.Owner_Language, "")
-		recItem.LocalCurrency = get_String(rec, dm.Owner_LocalCurrency, "")
-		recItem.Role = get_String(rec, dm.Owner_Role, "")
-		recItem.TelephoneNumber = get_String(rec, dm.Owner_TelephoneNumber, "")
-		recItem.TokenId = get_String(rec, dm.Owner_TokenId, "")
-		recItem.Entity = get_String(rec, dm.Owner_Entity, "")
-		recItem.UserCode = get_String(rec, dm.Owner_UserCode, "")
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+   recItem.UserName  = get_String(rec, dm.Owner_UserName, "")
+   recItem.FullName  = get_String(rec, dm.Owner_FullName, "")
+   recItem.Type  = get_String(rec, dm.Owner_Type, "")
+   recItem.TradingEntity  = get_String(rec, dm.Owner_TradingEntity, "")
+   recItem.DefaultEnterBook  = get_String(rec, dm.Owner_DefaultEnterBook, "")
+   recItem.EmailAddress  = get_String(rec, dm.Owner_EmailAddress, "")
+   recItem.Enabled  = get_String(rec, dm.Owner_Enabled, "")
+   recItem.ExternalUserIds  = get_String(rec, dm.Owner_ExternalUserIds, "")
+   recItem.Language  = get_String(rec, dm.Owner_Language, "")
+   recItem.LocalCurrency  = get_String(rec, dm.Owner_LocalCurrency, "")
+   recItem.Role  = get_String(rec, dm.Owner_Role, "")
+   recItem.TelephoneNumber  = get_String(rec, dm.Owner_TelephoneNumber, "")
+   recItem.TokenId  = get_String(rec, dm.Owner_TokenId, "")
+   recItem.Entity  = get_String(rec, dm.Owner_Entity, "")
+   recItem.UserCode  = get_String(rec, dm.Owner_UserCode, "")
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -121,12 +124,14 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 }
 
 func Owner_NewID(r dm.Owner) string {
+	
+	
+			id := uuid.New().String()
 
-	id := uuid.New().String()
-
+	
 	return id
 }
-
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+

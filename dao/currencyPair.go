@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:40
+// Date & Time		    : 28/11/2021 at 22:54:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func CurrencyPair_GetList() (int, []dm.CurrencyPair, error) {
 	count, currencypairList, _, _ := currencypair_Fetch(tsql)
 	return count, currencypairList, nil
 }
+
+
 
 // CurrencyPair_GetByID() returns a single CurrencyPair record
 func CurrencyPair_GetByID(id string) (int, dm.CurrencyPair, error) {
@@ -55,6 +57,7 @@ func CurrencyPair_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // CurrencyPair_Store() saves/stores a CurrencyPair record to the database
 func CurrencyPair_Store(r dm.CurrencyPair) error {
 
@@ -70,7 +73,9 @@ func CurrencyPair_Store(r dm.CurrencyPair) error {
 	adaptor.CurrencyPair_Update(r)
 
 
+
 	return nil
+
 }
 
 // currencypair_Fetch read all employees
@@ -87,8 +92,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.CurrencyPair_Code,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
    recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
    recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive, "True")
@@ -97,7 +101,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
    recItem.MinorName  = get_String(rec, dm.CurrencyPair_MinorName, "")
 
 
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

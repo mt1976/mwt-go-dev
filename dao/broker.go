@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:39
+// Date & Time		    : 28/11/2021 at 22:54:52
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func Broker_GetList() (int, []dm.Broker, error) {
 	count, brokerList, _, _ := broker_Fetch(tsql)
 	return count, brokerList, nil
 }
+
+
 
 // Broker_GetByID() returns a single Broker record
 func Broker_GetByID(id string) (int, dm.Broker, error) {
@@ -63,6 +65,7 @@ func Broker_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Broker_Store() saves/stores a Broker record to the database
 func Broker_Store(r dm.Broker) error {
 
@@ -78,7 +81,9 @@ func Broker_Store(r dm.Broker) error {
 	adaptor.Broker_Update(r)
 
 
+
 	return nil
+
 }
 
 // broker_Fetch read all employees
@@ -95,15 +100,14 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Broker_Code,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Broker_Code, "")
    recItem.Name  = get_String(rec, dm.Broker_Name, "")
    recItem.FullName  = get_String(rec, dm.Broker_FullName, "")
    recItem.Contact  = get_String(rec, dm.Broker_Contact, "")
    recItem.Address  = get_String(rec, dm.Broker_Address, "")
    recItem.LEI  = get_String(rec, dm.Broker_LEI, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

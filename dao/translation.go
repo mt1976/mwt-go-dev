@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:44
+// Date & Time		    : 28/11/2021 at 22:55:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,8 @@ func Translation_GetList() (int, []dm.Translation, error) {
 	return count, translationList, nil
 }
 
+
+
 // Translation_GetByID() returns a single Translation record
 func Translation_GetByID(id string) (int, dm.Translation, error) {
 
@@ -54,6 +56,7 @@ func Translation_Delete(id string) {
 
 	das.Execute(tsql)
 }
+
 
 // Translation_Store() saves/stores a Translation record to the database
 func Translation_Store(r dm.Translation) error {
@@ -102,7 +105,9 @@ func Translation_Store(r dm.Translation) error {
 	das.Execute(tsql)
 
 
+
 	return nil
+
 }
 
 // translation_Fetch read all employees
@@ -119,8 +124,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Translation_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Translation_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Translation_Id, "")
    recItem.Class  = get_String(rec, dm.Translation_Class, "")
@@ -134,7 +138,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.Translation_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Translation_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Translation_SYSUpdatedHost, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -1,5 +1,4 @@
 package adaptor
-
 // ----------------------------------------------------------------
 // Automatically generated  "/adaptor/cmnotes.go"
 // ----------------------------------------------------------------
@@ -9,7 +8,7 @@ package adaptor
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 24/11/2021 at 20:53:04
+// Date & Time		    : 28/11/2021 at 22:54:53
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -18,14 +17,15 @@ import (
 	//"io/ioutil"
 	//"os"
 
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
+
 
 func CMNotes_Delete(id string) error {
 	var er error
 
-	message := "Implement CMNotes_Delete: " + id
+	message:= "Implement CMNotes_Delete: " + id
 
 	// Implement CMNotes_Delete_Impl in cmnotes_Impl.go
 	// Uncomment the line below to use the implementation
@@ -40,7 +40,7 @@ func CMNotes_Delete(id string) error {
 func CMNotes_Update(item dm.CMNotes) error {
 	var er error
 
-	message := "Implement CMNotes_Update: " + item.NoteId
+	message:= "Implement CMNotes_Update: " + item.NoteId
 
 	// Implement CMNotes_Update_Impl in cmnotes_Impl.go
 	// Uncomment the line below to use the implementation

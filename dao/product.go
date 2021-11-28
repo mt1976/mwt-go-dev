@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:42
+// Date & Time		    : 28/11/2021 at 22:55:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func Product_GetList() (int, []dm.Product, error) {
 	count, productList, _, _ := product_Fetch(tsql)
 	return count, productList, nil
 }
+
+
 
 // Product_GetByID() returns a single Product record
 func Product_GetByID(id string) (int, dm.Product, error) {
@@ -63,6 +65,7 @@ func Product_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Product_Store() saves/stores a Product record to the database
 func Product_Store(r dm.Product) error {
 
@@ -78,7 +81,9 @@ func Product_Store(r dm.Product) error {
 	adaptor.Product_Update(r)
 
 
+
 	return nil
+
 }
 
 // product_Fetch read all employees
@@ -95,8 +100,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Product_Code,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Product_Code, "")
    recItem.Name  = get_String(rec, dm.Product_Name, "")
    recItem.Factor  = get_Float(rec, dm.Product_Factor, "0.00")
@@ -109,7 +113,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Product_ChangeType, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

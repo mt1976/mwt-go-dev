@@ -1,8 +1,11 @@
-{
-    "ID": "4f6b3df1-453b-44f0-ba7f-6a16dc2b46e1",
-    "Text": "Brokers",
-    "Glyph": "far fa-handshake ",
-    "HREF": "/BrokerList",
-    "OnClick": "",
-    "TextClass": ""
-},
+
+    {
+      "ID": "28eacb22-4579-4ca5-a81b-0ada793aa4e7",
+      "Text": "Brokers",
+      "Glyph": "fas fa-plug",
+      "HREF": "/BrokerList",
+      "OnClick": "",
+      "TextClass": ""
+    }
+    ,
+    

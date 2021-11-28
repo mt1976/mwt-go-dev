@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:38
+// Date & Time		    : 28/11/2021 at 22:54:51
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,8 +38,7 @@ type Account_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	AppInternalID  string
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		CustomerSienaView string
 		SienaCommonRef string
@@ -106,7 +105,7 @@ type Account_Page struct {
 	Centre_Impl_List	[]dm.Centre
 	Firm_Impl_List	[]dm.Firm
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -174,11 +173,10 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Account_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:		     rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.CustomerSienaView = rD.CustomerSienaView
 pageDetail.SienaCommonRef = rD.SienaCommonRef
@@ -206,7 +204,7 @@ pageDetail.PortfolioName = rD.PortfolioName
 pageDetail.Centre = rD.Centre
 pageDetail.Firm = rD.Firm
 pageDetail.CCYDp = rD.CCYDp
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CCY_Lookup,_:= dao.Currency_GetByID(rD.CCY)
 pageDetail.CCY_Impl = CCY_Lookup.Name
 _,Book_Lookup,_:= dao.Book_GetByID(rD.Book)
@@ -217,11 +215,11 @@ _,Centre_Lookup,_:= dao.Centre_GetByID(rD.Centre)
 pageDetail.Centre_Impl = Centre_Lookup.Name
 _,Firm_Lookup,_:= dao.Firm_GetByID(rD.Firm)
 pageDetail.Firm_Impl = Firm_Lookup.FullName
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Account_TemplateView, core.GetUserRole(r)))
@@ -249,11 +247,10 @@ func Account_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Account_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:          rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.CustomerSienaView = rD.CustomerSienaView
 pageDetail.SienaCommonRef = rD.SienaCommonRef
@@ -281,7 +278,7 @@ pageDetail.PortfolioName = rD.PortfolioName
 pageDetail.Centre = rD.Centre
 pageDetail.Firm = rD.Firm
 pageDetail.CCYDp = rD.CCYDp
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CCY_Lookup,_:= dao.Currency_GetByID(rD.CCY)
 pageDetail.CCY_Impl = CCY_Lookup.Name
 _,pageDetail.CCY_Impl_List,_ = dao.Currency_GetList()
@@ -297,10 +294,10 @@ _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 _,Firm_Lookup,_:= dao.Firm_GetByID(rD.Firm)
 pageDetail.Firm_Impl = Firm_Lookup.FullName
 _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Account_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -320,9 +317,7 @@ func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.Account
-
-	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.Account_SienaReference)
 		item.CustomerSienaView = r.FormValue(dm.Account_CustomerSienaView)
 		item.SienaCommonRef = r.FormValue(dm.Account_SienaCommonRef)
@@ -356,9 +351,9 @@ func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Centre_Impl = r.FormValue(dm.Account_Centre_Impl)
 		item.Firm_Impl = r.FormValue(dm.Account_Firm_Impl)
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	dao.Account_Store(item)	
 
@@ -383,11 +378,10 @@ func Account_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.Account_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",	
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.CustomerSienaView = ""
 pageDetail.SienaCommonRef = ""
@@ -415,7 +409,7 @@ pageDetail.PortfolioName = ""
 pageDetail.Centre = ""
 pageDetail.Firm = ""
 pageDetail.CCYDp = ""
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.CCY_Impl = ""
 _,pageDetail.CCY_Impl_List,_ = dao.Currency_GetList()
 pageDetail.Book_Impl = ""
@@ -426,7 +420,7 @@ pageDetail.Centre_Impl = ""
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 pageDetail.Firm_Impl = ""
 _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.Account_TemplateNew, core.GetUserRole(r)))

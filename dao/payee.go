@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -21,7 +21,7 @@ import (
 	das  "github.com/mt1976/mwt-go-dev/das"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
+	
 )
 
 // Payee_GetList() returns a list of all Payee records
@@ -31,6 +31,8 @@ func Payee_GetList() (int, []dm.Payee, error) {
 	count, payeeList, _, _ := payee_Fetch(tsql)
 	return count, payeeList, nil
 }
+
+
 
 // Payee_GetByID() returns a single Payee record
 func Payee_GetByID(id string) (int, dm.Payee, error) {
@@ -55,22 +57,14 @@ func Payee_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Payee_Store() saves/stores a Payee record to the database
 func Payee_Store(r dm.Payee) error {
 
 	logs.Storing("Payee",fmt.Sprintf("%s", r))
 
-	if len(r.KeyCounterpartyFirm) == 0 {
-		r.KeyCounterpartyFirm = Payee_NewID(r)
-	}
-
-
-
-	adaptor.Payee_Delete(r.KeyCounterpartyFirm)
-	adaptor.Payee_Update(r)
-
-
 	return nil
+
 }
 
 // payee_Fetch read all employees
@@ -87,8 +81,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Payee_KeyCounterpartyFirm,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable, "")
    recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm, "")
    recItem.KeyCounterpartyCentre  = get_String(rec, dm.Payee_KeyCounterpartyCentre, "")
@@ -116,7 +109,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 
 
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

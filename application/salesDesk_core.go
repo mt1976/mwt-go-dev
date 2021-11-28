@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 21:21:16
+// Date & Time		    : 28/11/2021 at 22:55:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

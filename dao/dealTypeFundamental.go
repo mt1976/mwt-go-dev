@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func DealTypeFundamental_GetList() (int, []dm.DealTypeFundamental, error) {
 	count, dealtypefundamentalList, _, _ := dealtypefundamental_Fetch(tsql)
 	return count, dealtypefundamentalList, nil
 }
+
+
 
 // DealTypeFundamental_GetByID() returns a single DealTypeFundamental record
 func DealTypeFundamental_GetByID(id string) (int, dm.DealTypeFundamental, error) {
@@ -55,6 +57,7 @@ func DealTypeFundamental_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // DealTypeFundamental_Store() saves/stores a DealTypeFundamental record to the database
 func DealTypeFundamental_Store(r dm.DealTypeFundamental) error {
 
@@ -70,7 +73,9 @@ func DealTypeFundamental_Store(r dm.DealTypeFundamental) error {
 	adaptor.DealTypeFundamental_Update(r)
 
 
+
 	return nil
+
 }
 
 // dealtypefundamental_Fetch read all employees
@@ -87,8 +92,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.DealTypeFundamental_DealTypeKey,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey, "")
    recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment, "True")
    recItem.DefaultFrequency  = get_Int(rec, dm.DealTypeFundamental_DefaultFrequency, "0")
@@ -169,7 +173,8 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
    recItem.QuoteHistoryRequired  = get_Bool(rec, dm.DealTypeFundamental_QuoteHistoryRequired, "True")
    recItem.Brokerage  = get_Bool(rec, dm.DealTypeFundamental_Brokerage, "True")
    recItem.ExposureDisabled  = get_Bool(rec, dm.DealTypeFundamental_ExposureDisabled, "True")
-   recItem.ChildInheritsTradingEntity  = get_Bool(rec, dm.DealTypeFundamental_ChildInheritsTradingEntity, "True")
+   recItem.CreditLine  = get_String(rec, dm.DealTypeFundamental_CreditLine, "")
+   recItem.Encumbered  = get_Bool(rec, dm.DealTypeFundamental_Encumbered, "True")
    recItem.InternalId  = get_Int(rec, dm.DealTypeFundamental_InternalId, "0")
    recItem.InternalDeleted  = get_Time(rec, dm.DealTypeFundamental_InternalDeleted, "")
    recItem.UpdatedTransactionId  = get_String(rec, dm.DealTypeFundamental_UpdatedTransactionId, "")
@@ -178,7 +183,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
    recItem.DeletedTransactionId  = get_String(rec, dm.DealTypeFundamental_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealTypeFundamental_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealTypeFundamental_ChangeType, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

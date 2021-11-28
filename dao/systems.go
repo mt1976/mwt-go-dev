@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:43
+// Date & Time		    : 28/11/2021 at 22:55:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,8 @@ func Systems_GetList() (int, []dm.Systems, error) {
 	return count, systemsList, nil
 }
 
+
+
 // Systems_GetByID() returns a single Systems record
 func Systems_GetByID(id string) (int, dm.Systems, error) {
 
@@ -54,6 +56,7 @@ func Systems_Delete(id string) {
 
 	das.Execute(tsql)
 }
+
 
 // Systems_Store() saves/stores a Systems record to the database
 func Systems_Store(r dm.Systems) error {
@@ -108,7 +111,9 @@ func Systems_Store(r dm.Systems) error {
 	das.Execute(tsql)
 
 
+
 	return nil
+
 }
 
 // systems_Fetch read all employees
@@ -125,8 +130,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Systems_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Systems_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Systems_Id, "")
    recItem.Name  = get_String(rec, dm.Systems_Name, "")
@@ -146,7 +150,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Systems_SYSUpdatedHost, "")
    recItem.SWIFTin  = get_String(rec, dm.Systems_SWIFTin, "")
    recItem.SWIFTout  = get_String(rec, dm.Systems_SWIFTout, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

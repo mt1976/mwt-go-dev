@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func DealType_GetList() (int, []dm.DealType, error) {
 	count, dealtypeList, _, _ := dealtype_Fetch(tsql)
 	return count, dealtypeList, nil
 }
+
+
 
 // DealType_GetByID() returns a single DealType record
 func DealType_GetByID(id string) (int, dm.DealType, error) {
@@ -55,6 +57,7 @@ func DealType_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // DealType_Store() saves/stores a DealType record to the database
 func DealType_Store(r dm.DealType) error {
 
@@ -70,7 +73,9 @@ func DealType_Store(r dm.DealType) error {
 	adaptor.DealType_Update(r)
 
 
+
 	return nil
+
 }
 
 // dealtype_Fetch read all employees
@@ -87,8 +92,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.DealType_DealTypeKey,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.DealTypeKey  = get_String(rec, dm.DealType_DealTypeKey, "")
    recItem.DealTypeShortName  = get_String(rec, dm.DealType_DealTypeShortName, "")
    recItem.HostKey  = get_String(rec, dm.DealType_HostKey, "")
@@ -115,7 +119,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.DealType_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealType_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealType_ChangeType, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

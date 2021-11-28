@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/cmnotes.go"
 // ----------------------------------------------------------------
@@ -9,20 +8,20 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 24/11/2021 at 20:53:04
+// Date & Time		    : 28/11/2021 at 22:54:53
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
+	"fmt"
 
 	"github.com/google/uuid"
-	adaptor "github.com/mt1976/mwt-go-dev/adaptor"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
 // CMNotes_GetList() returns a list of all CMNotes records
@@ -33,6 +32,8 @@ func CMNotes_GetList() (int, []dm.CMNotes, error) {
 	return count, cmnotesList, nil
 }
 
+
+
 // CMNotes_GetByID() returns a single CMNotes record
 func CMNotes_GetByID(id string) (int, dm.CMNotes, error) {
 
@@ -42,6 +43,8 @@ func CMNotes_GetByID(id string) (int, dm.CMNotes, error) {
 	_, _, cmnotesItem, _ := cmnotes_Fetch(tsql)
 	return 1, cmnotesItem, nil
 }
+
+
 
 // CMNotes_DeleteByID() deletes a single CMNotes record
 func CMNotes_Delete(id string) {
@@ -54,19 +57,14 @@ func CMNotes_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // CMNotes_Store() saves/stores a CMNotes record to the database
 func CMNotes_Store(r dm.CMNotes) error {
 
-	logs.Storing("CMNotes", fmt.Sprintf("%s", r))
-
-	if len(r.NoteId) == 0 {
-		r.NoteId = CMNotes_NewID(r)
-	}
-
-	adaptor.CMNotes_Delete(r.NoteId)
-	adaptor.CMNotes_Update(r)
+	logs.Storing("CMNotes",fmt.Sprintf("%s", r))
 
 	return nil
+
 }
 
 // cmnotes_Fetch read all employees
@@ -83,16 +81,15 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 24/11/2021 by matttownsend on silicon.local - START
-		recItem.AppInternalID = get_Int(rec, dm.CMNotes_NoteId, "")
-		recItem.NoteId = get_Int(rec, dm.CMNotes_NoteId, "0")
-		recItem.StreamId = get_Int(rec, dm.CMNotes_StreamId, "0")
-		recItem.Summary = get_String(rec, dm.CMNotes_Summary, "")
-		recItem.Details = get_String(rec, dm.CMNotes_Details, "")
-		recItem.RecordState = get_Int(rec, dm.CMNotes_RecordState, "0")
-		recItem.CreatedBy = get_String(rec, dm.CMNotes_CreatedBy, "")
-		recItem.CreatedDateTime = get_Time(rec, dm.CMNotes_CreatedDateTime, "")
-		// Automatically generated 24/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+   recItem.NoteId  = get_Int(rec, dm.CMNotes_NoteId, "0")
+   recItem.StreamId  = get_Int(rec, dm.CMNotes_StreamId, "0")
+   recItem.Summary  = get_String(rec, dm.CMNotes_Summary, "")
+   recItem.Details  = get_String(rec, dm.CMNotes_Details, "")
+   recItem.RecordState  = get_Int(rec, dm.CMNotes_RecordState, "0")
+   recItem.CreatedBy  = get_String(rec, dm.CMNotes_CreatedBy, "")
+   recItem.CreatedDateTime  = get_Time(rec, dm.CMNotes_CreatedDateTime, "")
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -100,12 +97,14 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 }
 
 func CMNotes_NewID(r dm.CMNotes) string {
+	
+	
+			id := uuid.New().String()
 
-	id := uuid.New().String()
-
+	
 	return id
 }
-
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+

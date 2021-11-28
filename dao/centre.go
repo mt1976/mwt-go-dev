@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/centre.go"
 // ----------------------------------------------------------------
@@ -9,20 +8,20 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:39
+// Date & Time		    : 28/11/2021 at 22:54:53
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
+	"fmt"
 
 	"github.com/google/uuid"
-	adaptor "github.com/mt1976/mwt-go-dev/adaptor"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Centre_GetList() returns a list of all Centre records
@@ -33,7 +32,8 @@ func Centre_GetList() (int, []dm.Centre, error) {
 	return count, centreList, nil
 }
 
-// Centre_GetLookup() returns a list of all Centre records ready for lookup
+
+// Centre_GetLookup() returns a lookup list of all Centre items in lookup format
 func Centre_GetLookup() []dm.Lookup_Item {
 
 	var returnList []dm.Lookup_Item
@@ -43,6 +43,7 @@ func Centre_GetLookup() []dm.Lookup_Item {
 	}
 	return returnList
 }
+
 
 // Centre_GetByID() returns a single Centre record
 func Centre_GetByID(id string) (int, dm.Centre, error) {
@@ -75,19 +76,25 @@ func Centre_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Centre_Store() saves/stores a Centre record to the database
 func Centre_Store(r dm.Centre) error {
 
-	logs.Storing("Centre", fmt.Sprintf("%s", r))
+	logs.Storing("Centre",fmt.Sprintf("%s", r))
 
 	if len(r.Code) == 0 {
 		r.Code = Centre_NewID(r)
 	}
 
+
+
 	adaptor.Centre_Delete(r.Code)
 	adaptor.Centre_Update(r)
 
+
+
 	return nil
+
 }
 
 // centre_Fetch read all employees
@@ -104,13 +111,12 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-		recItem.AppInternalID = get_String(rec, dm.Centre_Code, "")
-		recItem.Code = get_String(rec, dm.Centre_Code, "")
-		recItem.Name = get_String(rec, dm.Centre_Name, "")
-		recItem.Country = get_String(rec, dm.Centre_Country, "")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+   recItem.Code  = get_String(rec, dm.Centre_Code, "")
+   recItem.Name  = get_String(rec, dm.Centre_Name, "")
+   recItem.Country  = get_String(rec, dm.Centre_Country, "")
 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -118,12 +124,14 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 }
 
 func Centre_NewID(r dm.Centre) string {
+	
+	
+			id := uuid.New().String()
 
-	id := uuid.New().String()
-
+	
 	return id
 }
-
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+

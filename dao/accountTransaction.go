@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:38
+// Date & Time		    : 28/11/2021 at 22:54:51
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -21,7 +21,7 @@ import (
 	das  "github.com/mt1976/mwt-go-dev/das"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
+	
 )
 
 // AccountTransaction_GetList() returns a list of all AccountTransaction records
@@ -31,6 +31,8 @@ func AccountTransaction_GetList() (int, []dm.AccountTransaction, error) {
 	count, accounttransactionList, _, _ := accounttransaction_Fetch(tsql)
 	return count, accounttransactionList, nil
 }
+
+
 
 // AccountTransaction_GetByID() returns a single AccountTransaction record
 func AccountTransaction_GetByID(id string) (int, dm.AccountTransaction, error) {
@@ -55,22 +57,14 @@ func AccountTransaction_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // AccountTransaction_Store() saves/stores a AccountTransaction record to the database
 func AccountTransaction_Store(r dm.AccountTransaction) error {
 
 	logs.Storing("AccountTransaction",fmt.Sprintf("%s", r))
 
-	if len(r.SienaReference) == 0 {
-		r.SienaReference = AccountTransaction_NewID(r)
-	}
-
-
-
-	adaptor.AccountTransaction_Delete(r.SienaReference)
-	adaptor.AccountTransaction_Update(r)
-
-
 	return nil
+
 }
 
 // accounttransaction_Fetch read all employees
@@ -87,8 +81,7 @@ func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.Acc
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.AccountTransaction_SienaReference,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.AccountTransaction_SienaReference, "")
    recItem.LegNo  = get_Int(rec, dm.AccountTransaction_LegNo, "0")
    recItem.MMLegNo  = get_Int(rec, dm.AccountTransaction_MMLegNo, "0")
@@ -104,7 +97,7 @@ func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.Acc
    recItem.AmendmentAmount  = get_Float(rec, dm.AccountTransaction_AmendmentAmount, "0.00")
    recItem.DealtCcy  = get_String(rec, dm.AccountTransaction_DealtCcy, "")
    recItem.AmountDp  = get_Int(rec, dm.AccountTransaction_AmountDp, "0")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

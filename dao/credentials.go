@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:40
+// Date & Time		    : 28/11/2021 at 22:54:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,8 @@ func Credentials_GetList() (int, []dm.Credentials, error) {
 	return count, credentialsList, nil
 }
 
+
+
 // Credentials_GetByID() returns a single Credentials record
 func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 
@@ -54,6 +56,7 @@ func Credentials_Delete(id string) {
 
 	das.Execute(tsql)
 }
+
 
 // Credentials_Store() saves/stores a Credentials record to the database
 func Credentials_Store(r dm.Credentials) error {
@@ -109,7 +112,9 @@ func Credentials_Store(r dm.Credentials) error {
 	das.Execute(tsql)
 
 
+
 	return nil
+
 }
 
 // credentials_Fetch read all employees
@@ -126,8 +131,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Credentials_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Credentials_Id, "")
    recItem.Username  = get_String(rec, dm.Credentials_Username, "")
@@ -148,7 +152,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

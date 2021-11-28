@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func Firm_GetList() (int, []dm.Firm, error) {
 	count, firmList, _, _ := firm_Fetch(tsql)
 	return count, firmList, nil
 }
+
+
 
 // Firm_GetByID() returns a single Firm record
 func Firm_GetByID(id string) (int, dm.Firm, error) {
@@ -63,6 +65,7 @@ func Firm_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Firm_Store() saves/stores a Firm record to the database
 func Firm_Store(r dm.Firm) error {
 
@@ -78,7 +81,9 @@ func Firm_Store(r dm.Firm) error {
 	adaptor.Firm_Update(r)
 
 
+
 	return nil
+
 }
 
 // firm_Fetch read all employees
@@ -95,15 +100,14 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Firm_FirmName,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.FirmName  = get_String(rec, dm.Firm_FirmName, "")
    recItem.FullName  = get_String(rec, dm.Firm_FullName, "")
    recItem.Country  = get_String(rec, dm.Firm_Country, "")
    recItem.Sector  = get_String(rec, dm.Firm_Sector, "")
 
 
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

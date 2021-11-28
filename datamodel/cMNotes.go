@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 24/11/2021 at 20:53:04
+// Date & Time		    : 28/11/2021 at 22:54:53
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese
 type CMNotes struct {
-	AppInternalID string  // Special field for internal use only
+
 NoteId        string
 StreamId        string
 Summary        string

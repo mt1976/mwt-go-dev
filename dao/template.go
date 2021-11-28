@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:43
+// Date & Time		    : 28/11/2021 at 22:55:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,8 @@ func Template_GetList() (int, []dm.Template, error) {
 	return count, templateList, nil
 }
 
+
+
 // Template_GetByID() returns a single Template record
 func Template_GetByID(id string) (int, dm.Template, error) {
 
@@ -54,6 +56,7 @@ func Template_Delete(id string) {
 
 	das.Execute(tsql)
 }
+
 
 // Template_Store() saves/stores a Template record to the database
 func Template_Store(r dm.Template) error {
@@ -99,7 +102,9 @@ func Template_Store(r dm.Template) error {
 	das.Execute(tsql)
 
 
+
 	return nil
+
 }
 
 // template_Fetch read all employees
@@ -116,8 +121,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Template_ID,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Template_SYSId, "0")
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
    recItem.FIELD2  = get_String(rec, dm.Template_FIELD2, "")
@@ -128,7 +132,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Template_SYSUpdatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Template_SYSUpdatedBy, "")
    recItem.ID  = get_String(rec, dm.Template_ID, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

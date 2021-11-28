@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:39
+// Date & Time		    : 28/11/2021 at 22:54:54
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,8 +38,7 @@ type CounterpartyGroup_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	AppInternalID  string
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		Name string
 		CountryCode string
 		SuperGroup string
@@ -52,7 +51,7 @@ type CounterpartyGroup_Page struct {
 	Country_Impl_List	[]dm.Country
 	Parent_Impl_List	[]dm.CounterpartyGroup
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -120,24 +119,23 @@ func CounterpartyGroup_HandlerView(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.CounterpartyGroup_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:		     rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.CountryCode = rD.CountryCode
 pageDetail.SuperGroup = rD.SuperGroup
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CountryCode_Lookup,_:= dao.Country_GetByID(rD.CountryCode)
 pageDetail.Country_Impl = CountryCode_Lookup.Name
 _,SuperGroup_Lookup,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
 pageDetail.Parent_Impl = SuperGroup_Lookup.Name
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CounterpartyGroup_TemplateView, core.GetUserRole(r)))
@@ -165,25 +163,24 @@ func CounterpartyGroup_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.CounterpartyGroup_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:          rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.CountryCode = rD.CountryCode
 pageDetail.SuperGroup = rD.SuperGroup
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CountryCode_Lookup,_:= dao.Country_GetByID(rD.CountryCode)
 pageDetail.Country_Impl = CountryCode_Lookup.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 _,SuperGroup_Lookup,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
 pageDetail.Parent_Impl = SuperGroup_Lookup.Name
 _,pageDetail.Parent_Impl_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CounterpartyGroup_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -203,18 +200,16 @@ func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.CounterpartyGroup
-
-	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.CounterpartyGroup_Name)
 		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode)
 		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup)
 		item.Country_Impl = r.FormValue(dm.CounterpartyGroup_Country_Impl)
 		item.Parent_Impl = r.FormValue(dm.CounterpartyGroup_Parent_Impl)
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	dao.CounterpartyGroup_Store(item)	
 
@@ -239,20 +234,19 @@ func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.CounterpartyGroup_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",	
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.CountryCode = ""
 pageDetail.SuperGroup = ""
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 pageDetail.Parent_Impl = ""
 _,pageDetail.Parent_Impl_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.CounterpartyGroup_TemplateNew, core.GetUserRole(r)))

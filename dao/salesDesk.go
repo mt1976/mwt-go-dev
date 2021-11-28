@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/salesdesk.go"
 // ----------------------------------------------------------------
@@ -9,19 +8,20 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 21:21:16
+// Date & Time		    : 28/11/2021 at 22:55:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"log"
+	"fmt"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	das  "github.com/mt1976/mwt-go-dev/das"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+	
 )
 
 // SalesDesk_GetList() returns a list of all SalesDesk records
@@ -31,6 +31,7 @@ func SalesDesk_GetList() (int, []dm.SalesDesk, error) {
 	count, salesdeskList, _, _ := salesdesk_Fetch(tsql)
 	return count, salesdeskList, nil
 }
+
 
 // SalesDesk_GetLookup() returns a lookup list of all SalesDesk items in lookup format
 func SalesDesk_GetLookup() []dm.Lookup_Item {
@@ -42,6 +43,7 @@ func SalesDesk_GetLookup() []dm.Lookup_Item {
 	}
 	return returnList
 }
+
 
 // SalesDesk_GetByID() returns a single SalesDesk record
 func SalesDesk_GetByID(id string) (int, dm.SalesDesk, error) {
@@ -74,10 +76,11 @@ func SalesDesk_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // SalesDesk_Store() saves/stores a SalesDesk record to the database
 func SalesDesk_Store(r dm.SalesDesk) error {
 
-	logs.Storing("SalesDesk", fmt.Sprintf("%s", r))
+	logs.Storing("SalesDesk",fmt.Sprintf("%s", r))
 
 	return nil
 
@@ -97,14 +100,14 @@ func salesdesk_Fetch(tsql string) (int, []dm.SalesDesk, dm.SalesDesk, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
-		recItem.Name = get_String(rec, dm.SalesDesk_Name, "")
-		recItem.ReportDealsOver = get_String(rec, dm.SalesDesk_ReportDealsOver, "")
-		recItem.ReportDealsOverCCY = get_String(rec, dm.SalesDesk_ReportDealsOverCCY, "")
-		recItem.AccountTransferCutOffTime = get_Time(rec, dm.SalesDesk_AccountTransferCutOffTime, "")
-		recItem.AccountTransferCutOffTimeTimeZone = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeTimeZone, "")
-		recItem.AccountTransferCutOffTimeCutOffPeriod = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod, "")
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+   recItem.Name  = get_String(rec, dm.SalesDesk_Name, "")
+   recItem.ReportDealsOver  = get_String(rec, dm.SalesDesk_ReportDealsOver, "")
+   recItem.ReportDealsOverCCY  = get_String(rec, dm.SalesDesk_ReportDealsOverCCY, "")
+   recItem.AccountTransferCutOffTime  = get_Time(rec, dm.SalesDesk_AccountTransferCutOffTime, "")
+   recItem.AccountTransferCutOffTimeTimeZone  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeTimeZone, "")
+   recItem.AccountTransferCutOffTimeCutOffPeriod  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod, "")
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -112,12 +115,14 @@ func salesdesk_Fetch(tsql string) (int, []dm.SalesDesk, dm.SalesDesk, error) {
 }
 
 func SalesDesk_NewID(r dm.SalesDesk) string {
+	
+	
+			id := uuid.New().String()
 
-	id := uuid.New().String()
-
+	
 	return id
 }
-
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+

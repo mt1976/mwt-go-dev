@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,8 +38,7 @@ type DealTypeFundamental_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	AppInternalID  string
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		DealTypeKey string
 		Amendment string
 		DefaultFrequency string
@@ -120,7 +119,8 @@ type DealTypeFundamental_Page struct {
 		QuoteHistoryRequired string
 		Brokerage string
 		ExposureDisabled string
-		ChildInheritsTradingEntity string
+		CreditLine string
+		Encumbered string
 		InternalId string
 		InternalDeleted string
 		UpdatedTransactionId string
@@ -220,7 +220,8 @@ type DealTypeFundamental_Page struct {
 	
 	
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -288,11 +289,10 @@ func DealTypeFundamental_HandlerView(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:		     rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.Amendment = rD.Amendment
 pageDetail.DefaultFrequency = rD.DefaultFrequency
@@ -373,7 +373,8 @@ pageDetail.SettlementInstructionStyle = rD.SettlementInstructionStyle
 pageDetail.QuoteHistoryRequired = rD.QuoteHistoryRequired
 pageDetail.Brokerage = rD.Brokerage
 pageDetail.ExposureDisabled = rD.ExposureDisabled
-pageDetail.ChildInheritsTradingEntity = rD.ChildInheritsTradingEntity
+pageDetail.CreditLine = rD.CreditLine
+pageDetail.Encumbered = rD.Encumbered
 pageDetail.InternalId = rD.InternalId
 pageDetail.InternalDeleted = rD.InternalDeleted
 pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
@@ -382,12 +383,12 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealTypeFundamental_TemplateView, core.GetUserRole(r)))
@@ -415,11 +416,10 @@ func DealTypeFundamental_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:          rD.AppInternalID,
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.Amendment = rD.Amendment
 pageDetail.DefaultFrequency = rD.DefaultFrequency
@@ -500,7 +500,8 @@ pageDetail.SettlementInstructionStyle = rD.SettlementInstructionStyle
 pageDetail.QuoteHistoryRequired = rD.QuoteHistoryRequired
 pageDetail.Brokerage = rD.Brokerage
 pageDetail.ExposureDisabled = rD.ExposureDisabled
-pageDetail.ChildInheritsTradingEntity = rD.ChildInheritsTradingEntity
+pageDetail.CreditLine = rD.CreditLine
+pageDetail.Encumbered = rD.Encumbered
 pageDetail.InternalId = rD.InternalId
 pageDetail.InternalDeleted = rD.InternalDeleted
 pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
@@ -509,11 +510,11 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealTypeFundamental_TemplateEdit, core.GetUserRole(r)))
 	t.Execute(w, pageDetail)
@@ -533,9 +534,7 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("DealTypeKey"))
 
 	var item dm.DealTypeFundamental
-
-	//item.AppInternalID = r.FormValue("AppInternalID")
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 		item.DealTypeKey = r.FormValue(dm.DealTypeFundamental_DealTypeKey)
 		item.Amendment = r.FormValue(dm.DealTypeFundamental_Amendment)
 		item.DefaultFrequency = r.FormValue(dm.DealTypeFundamental_DefaultFrequency)
@@ -616,7 +615,8 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.QuoteHistoryRequired = r.FormValue(dm.DealTypeFundamental_QuoteHistoryRequired)
 		item.Brokerage = r.FormValue(dm.DealTypeFundamental_Brokerage)
 		item.ExposureDisabled = r.FormValue(dm.DealTypeFundamental_ExposureDisabled)
-		item.ChildInheritsTradingEntity = r.FormValue(dm.DealTypeFundamental_ChildInheritsTradingEntity)
+		item.CreditLine = r.FormValue(dm.DealTypeFundamental_CreditLine)
+		item.Encumbered = r.FormValue(dm.DealTypeFundamental_Encumbered)
 		item.InternalId = r.FormValue(dm.DealTypeFundamental_InternalId)
 		item.InternalDeleted = r.FormValue(dm.DealTypeFundamental_InternalDeleted)
 		item.UpdatedTransactionId = r.FormValue(dm.DealTypeFundamental_UpdatedTransactionId)
@@ -626,9 +626,9 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealTypeFundamental_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealTypeFundamental_ChangeType)
 	
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 
 	dao.DealTypeFundamental_Store(item)	
 
@@ -653,11 +653,10 @@ func DealTypeFundamental_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    core.GetUserRole(r),
-		AppInternalID:   "NEW",	
 	}
 
 		// 
-		// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = ""
 pageDetail.Amendment = ""
 pageDetail.DefaultFrequency = ""
@@ -738,7 +737,8 @@ pageDetail.SettlementInstructionStyle = ""
 pageDetail.QuoteHistoryRequired = ""
 pageDetail.Brokerage = ""
 pageDetail.ExposureDisabled = ""
-pageDetail.ChildInheritsTradingEntity = ""
+pageDetail.CreditLine = ""
+pageDetail.Encumbered = ""
 pageDetail.InternalId = ""
 pageDetail.InternalDeleted = ""
 pageDetail.UpdatedTransactionId = ""
@@ -747,8 +747,8 @@ pageDetail.UpdatedDateTime = ""
 pageDetail.DeletedTransactionId = ""
 pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//
 
 	t, _ := template.ParseFiles(core.GetTemplateID(dm.DealTypeFundamental_TemplateNew, core.GetUserRole(r)))

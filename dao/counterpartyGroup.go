@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:39
+// Date & Time		    : 28/11/2021 at 22:54:54
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func CounterpartyGroup_GetList() (int, []dm.CounterpartyGroup, error) {
 	count, counterpartygroupList, _, _ := counterpartygroup_Fetch(tsql)
 	return count, counterpartygroupList, nil
 }
+
+
 
 // CounterpartyGroup_GetByID() returns a single CounterpartyGroup record
 func CounterpartyGroup_GetByID(id string) (int, dm.CounterpartyGroup, error) {
@@ -55,6 +57,7 @@ func CounterpartyGroup_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // CounterpartyGroup_Store() saves/stores a CounterpartyGroup record to the database
 func CounterpartyGroup_Store(r dm.CounterpartyGroup) error {
 
@@ -70,7 +73,9 @@ func CounterpartyGroup_Store(r dm.CounterpartyGroup) error {
 	adaptor.CounterpartyGroup_Update(r)
 
 
+
 	return nil
+
 }
 
 // counterpartygroup_Fetch read all employees
@@ -87,14 +92,13 @@ func counterpartygroup_Fetch(tsql string) (int, []dm.CounterpartyGroup, dm.Count
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.CounterpartyGroup_Name,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.Name  = get_String(rec, dm.CounterpartyGroup_Name, "")
    recItem.CountryCode  = get_String(rec, dm.CounterpartyGroup_CountryCode, "")
    recItem.SuperGroup  = get_String(rec, dm.CounterpartyGroup_SuperGroup, "")
 
 
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

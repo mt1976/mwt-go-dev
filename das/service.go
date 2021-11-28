@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"strconv"
+	"strings"
 
 	"github.com/mt1976/mwt-go-dev/core"
 	"github.com/mt1976/mwt-go-dev/logs"
@@ -12,7 +13,10 @@ import (
 func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
 	//log.Println("Query:", query)
-	logs.Query(query)
+	//if query containts dbo.transalationStore then dont do anything
+	if !(strings.Contains(query, "dbo.translationStore")) {
+		logs.Query(query)
+	}
 	rows, _ := db.Query(query) // Note: Ignoring errors for brevity
 	cols, _ := rows.Columns()
 	noResults := 0
@@ -53,7 +57,9 @@ func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 	//spew.Dump(recs)
 	//log.Println("Query:", m)
 	//log.Println("No Results:", noResults)
-	logs.Result(query, strconv.Itoa(noResults))
+	if !(strings.Contains(query, "dbo.translationStore")) {
+		logs.Result(query, strconv.Itoa(noResults))
+	}
 	return recs, noResults, nil
 }
 

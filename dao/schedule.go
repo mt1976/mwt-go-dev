@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:42
+// Date & Time		    : 28/11/2021 at 22:55:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func Schedule_GetList() (int, []dm.Schedule, error) {
 	count, scheduleList, _, _ := schedule_Fetch(tsql)
 	return count, scheduleList, nil
 }
+
+
 
 // Schedule_GetByID() returns a single Schedule record
 func Schedule_GetByID(id string) (int, dm.Schedule, error) {
@@ -55,59 +57,14 @@ func Schedule_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // Schedule_Store() saves/stores a Schedule record to the database
 func Schedule_Store(r dm.Schedule) error {
 
 	logs.Storing("Schedule",fmt.Sprintf("%s", r))
 
-	if len(r.Id) == 0 {
-		r.Id = Schedule_NewID(r)
-	}
-
-
-
-
-//Deal with the if its Application or null add this bit, otherwise dont.
-		//fmt.Println(credentialStore)
-
-	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
-	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
-	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",Audit_User())
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
-
-	ts := SQLData{}
-
-	ts = addData(ts, dm.Schedule_SYSId, r.SYSId)
-	ts = addData(ts, dm.Schedule_Id, r.Id)
-	ts = addData(ts, dm.Schedule_Name, r.Name)
-	ts = addData(ts, dm.Schedule_Description, r.Description)
-	ts = addData(ts, dm.Schedule_Schedule, r.Schedule)
-	ts = addData(ts, dm.Schedule_Started, r.Started)
-	ts = addData(ts, dm.Schedule_Lastrun, r.Lastrun)
-	ts = addData(ts, dm.Schedule_Message, r.Message)
-	ts = addData(ts, dm.Schedule_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Schedule_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Schedule_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.Schedule_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Schedule_Type, r.Type)
-	ts = addData(ts, dm.Schedule_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Schedule_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Schedule_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Schedule_SYSUpdatedHost, r.SYSUpdatedHost)
-	ts = addData(ts, dm.Schedule_Human, r.Human)
-	
-
-	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Schedule_SQLTable)
-	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
-
-	Schedule_Delete(r.Id)
-	das.Execute(tsql)
-
-
 	return nil
+
 }
 
 // schedule_Fetch read all employees
@@ -124,8 +81,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Schedule_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Schedule_Id, "")
    recItem.Name  = get_String(rec, dm.Schedule_Name, "")
@@ -144,7 +100,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
    recItem.SYSUpdatedBy  = get_String(rec, dm.Schedule_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Schedule_SYSUpdatedHost, "")
    recItem.Human  = get_String(rec, dm.Schedule_Human, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:41
+// Date & Time		    : 28/11/2021 at 22:54:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese
 type DealTypeFundamental struct {
-	AppInternalID string  // Special field for internal use only
+
 DealTypeKey        string
 Amendment        string
 DefaultFrequency        string
@@ -96,7 +96,8 @@ SettlementInstructionStyle        string
 QuoteHistoryRequired        string
 Brokerage        string
 ExposureDisabled        string
-ChildInheritsTradingEntity        string
+CreditLine        string
+Encumbered        string
 InternalId        string
 InternalDeleted        string
 UpdatedTransactionId        string
@@ -212,7 +213,8 @@ const (
 	DealTypeFundamental_QuoteHistoryRequired   = "QuoteHistoryRequired" // QuoteHistoryRequired is a Bool
 	DealTypeFundamental_Brokerage   = "Brokerage" // Brokerage is a Bool
 	DealTypeFundamental_ExposureDisabled   = "ExposureDisabled" // ExposureDisabled is a Bool
-	DealTypeFundamental_ChildInheritsTradingEntity   = "ChildInheritsTradingEntity" // ChildInheritsTradingEntity is a Bool
+	DealTypeFundamental_CreditLine   = "CreditLine" // CreditLine is a String
+	DealTypeFundamental_Encumbered   = "Encumbered" // Encumbered is a Bool
 	DealTypeFundamental_InternalId   = "InternalId" // InternalId is a Int
 	DealTypeFundamental_InternalDeleted   = "InternalDeleted" // InternalDeleted is a Time
 	DealTypeFundamental_UpdatedTransactionId   = "UpdatedTransactionId" // UpdatedTransactionId is a String

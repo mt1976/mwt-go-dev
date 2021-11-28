@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:42
+// Date & Time		    : 28/11/2021 at 22:55:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,6 +31,8 @@ func MarketRates_GetList() (int, []dm.MarketRates, error) {
 	count, marketratesList, _, _ := marketrates_Fetch(tsql)
 	return count, marketratesList, nil
 }
+
+
 
 // MarketRates_GetByID() returns a single MarketRates record
 func MarketRates_GetByID(id string) (int, dm.MarketRates, error) {
@@ -55,62 +57,14 @@ func MarketRates_Delete(id string) {
 	das.Execute(tsql)
 }
 
+
 // MarketRates_Store() saves/stores a MarketRates record to the database
 func MarketRates_Store(r dm.MarketRates) error {
 
 	logs.Storing("MarketRates",fmt.Sprintf("%s", r))
 
-	if len(r.Id) == 0 {
-		r.Id = MarketRates_NewID(r)
-	}
-
-
-
-
-//Deal with the if its Application or null add this bit, otherwise dont.
-		//fmt.Println(credentialStore)
-
-	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
-	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, Audit_User())
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
-	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",Audit_User())
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
-
-	ts := SQLData{}
-
-	ts = addData(ts, dm.MarketRates_SYSId, r.SYSId)
-	ts = addData(ts, dm.MarketRates_Id, r.Id)
-	ts = addData(ts, dm.MarketRates_Bid, r.Bid)
-	ts = addData(ts, dm.MarketRates_Mid, r.Mid)
-	ts = addData(ts, dm.MarketRates_Offer, r.Offer)
-	ts = addData(ts, dm.MarketRates_Market, r.Market)
-	ts = addData(ts, dm.MarketRates_Tenor, r.Tenor)
-	ts = addData(ts, dm.MarketRates_Series, r.Series)
-	ts = addData(ts, dm.MarketRates_Name, r.Name)
-	ts = addData(ts, dm.MarketRates_Source, r.Source)
-	ts = addData(ts, dm.MarketRates_Destination, r.Destination)
-	ts = addData(ts, dm.MarketRates_Class, r.Class)
-	ts = addData(ts, dm.MarketRates_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.MarketRates_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.MarketRates_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.MarketRates_Date, r.Date)
-	ts = addData(ts, dm.MarketRates_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.MarketRates_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.MarketRates_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.MarketRates_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.MarketRates_SYSUpdatedHost, r.SYSUpdatedHost)
-	
-
-	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
-	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
-
-	MarketRates_Delete(r.Id)
-	das.Execute(tsql)
-
-
 	return nil
+
 }
 
 // marketrates_Fetch read all employees
@@ -127,8 +81,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.MarketRates_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId, "0")
    recItem.Id  = get_String(rec, dm.MarketRates_Id, "")
    recItem.Bid  = get_String(rec, dm.MarketRates_Bid, "")
@@ -150,7 +103,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

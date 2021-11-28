@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 22/11/2021 at 21:11:39
+// Date & Time		    : 28/11/2021 at 22:54:52
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,8 @@ func Cache_GetList() (int, []dm.Cache, error) {
 	return count, cacheList, nil
 }
 
+
+
 // Cache_GetByID() returns a single Cache record
 func Cache_GetByID(id string) (int, dm.Cache, error) {
 
@@ -54,6 +56,7 @@ func Cache_Delete(id string) {
 
 	das.Execute(tsql)
 }
+
 
 // Cache_Store() saves/stores a Cache record to the database
 func Cache_Store(r dm.Cache) error {
@@ -104,7 +107,9 @@ func Cache_Store(r dm.Cache) error {
 	das.Execute(tsql)
 
 
+
 	return nil
+
 }
 
 // cache_Fetch read all employees
@@ -121,8 +126,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 22/11/2021 by matttownsend on silicon.local - START
-    recItem.AppInternalID = get_String(rec, dm.Cache_Id,"")
+	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Cache_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Cache_Id, "")
    recItem.Object  = get_String(rec, dm.Cache_Object, "")
@@ -138,7 +142,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
    recItem.SYSCreatedHost  = get_String(rec, dm.Cache_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Cache_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Cache_SYSUpdatedHost, "")
-// Automatically generated 22/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
