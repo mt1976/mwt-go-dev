@@ -3,13 +3,17 @@ package dao
 import (
 	"encoding/json"
 	"io/ioutil"
+	"os"
+	"text/template"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/google/uuid"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 type Onboard_Message struct {
+	TxnID             string
 	FirmName          string
 	FirmFullName      string
 	FirmCountry       string
@@ -23,6 +27,7 @@ type Onboard_Message struct {
 	BOI_RDC           string
 	BOI_GM            string
 	BaseCCY           string
+	BaseCCYPair       string
 	OurSortCode       string
 	Category          string
 	ImportIDs         []Onboard_CounterpartyImport
@@ -39,6 +44,7 @@ type Onboard_Message struct {
 	SystemUserList    []dm.Lookup_Item
 	OriginList        []dm.Lookup_Item
 	OwnerList         []dm.Lookup_Item
+	BaseCCYPairList   []dm.Lookup_Item
 }
 
 type Onboard_CounterpartyImport struct {
@@ -64,6 +70,7 @@ type Onboard_Payee struct {
 }
 
 type Onboard_User struct {
+	UserName         string
 	UserFullName     string
 	UserPhoneNumber  string
 	UserEmail        string
@@ -82,44 +89,65 @@ func Onboard_Test() {
 	file, _ := json.MarshalIndent(xx, "", " ")
 
 	//Get a uuid
-	id := uuid.New().String()
 	//Get current path
 	path := "/Volumes/External HD/matttownsend/Documents/GitHub/mwt-go-dev/data/onboarding/"
-	filename := path + id + ".json"
+	filename := path + xx.TxnID + ".json"
+	filenameXML := path + xx.TxnID + ".xml"
 
 	_ = ioutil.WriteFile(filename, file, 0644)
+
+	fp := path + "/templates/" + "a982234_Strawberry.xml"
+	//read template from file
+
+	t, err := template.ParseFiles(fp)
+	if err != nil {
+		logs.Error("Load Template :", err)
+	}
+	f, err := os.Create(filenameXML)
+	if err != nil {
+		logs.Error("Create file: ", err)
+
+	}
+
+	err2 := t.Execute(f, xx)
+	if err2 != nil {
+		logs.Error("Process Template", err2)
+	}
+	f.Close()
+	logs.Created(f.Name())
 
 }
 
 func Onboard_Build() Onboard_Message {
 	var onboard_message Onboard_Message
-	onboard_message.FirmName = "FirmName"
-	onboard_message.FirmFullName = "FirmFullName"
-	onboard_message.FirmCountry = "FirmCountry"
+	onboard_message.FirmName = "Telia"
+	onboard_message.FirmFullName = "Telia International"
+	onboard_message.FirmCountry = "GBR"
 	onboard_message.FirmCountryList = Country_GetLookup()
-	onboard_message.FirmCentre = "FirmCentre"
+	onboard_message.FirmCentre = "WEB"
 	///_, centrelist, _ := Centre_GetList()
 	onboard_message.FirmCentreList = Centre_GetLookup()
-	onboard_message.FirmSector = "FirmSector"
+	onboard_message.FirmSector = "Telephony"
 	onboard_message.FirmSectorList = Sector_GetLookup()
-	onboard_message.CustomerType = "CustomerType"
+	onboard_message.CustomerType = "Corporate"
 	onboard_message.CustomerTypeList = CounterpartyType_GetLookup()
-	onboard_message.FirmAddress = "FirmAddress"
-	onboard_message.PhoneNumber = "PhoneNumber"
-	onboard_message.Owner = "Owner"
+	onboard_message.FirmAddress = "22 Bedford Place, Leeds"
+	onboard_message.PhoneNumber = "+44 7837 8272"
+	onboard_message.Owner = "SalesDesk"
 	onboard_message.OwnerList = Owner_GetLookup()
-	onboard_message.BOI_BOLNO = "BOI_BOLNO"
-	onboard_message.BOI_RDC = "BOI_RDC"
-	onboard_message.BOI_GM = "BOI_GM"
-	onboard_message.BaseCCY = "BaseCCY"
+	onboard_message.BOI_BOLNO = "123456789"
+	onboard_message.BOI_RDC = "23456789"
+	onboard_message.BOI_GM = "34567890"
+	onboard_message.BaseCCY = "GBP"
 	ccyList := Currency_GetLookup()
+	onboard_message.BaseCCYPair = "GBPUSD"
 	onboard_message.BaseCCYList = ccyList
-	onboard_message.OurSortCode = "OurSortCode"
-	onboard_message.Category = "Category"
+	onboard_message.OurSortCode = "60-09-09"
+	onboard_message.Category = "Retail Client"
 	onboard_message.CategoryList = Counterparty_MiFIDCategory_GetLookup()
 	onboard_message.ImportIDs = []Onboard_CounterpartyImport{}
 	onboard_message.Payees = []Onboard_Payee{}
-	onboard_message.TradingEntity = "TradingEntity"
+	onboard_message.TradingEntity = "Sales Desk"
 	onboard_message.TradingEntityList = SalesDesk_GetLookup()
 	onboard_message.MandatedUsers = []Onboard_User{}
 	onboard_message.OriginList = Counterparty_Origin_GetLookup()
@@ -131,32 +159,48 @@ func Onboard_Build() Onboard_Message {
 	cpi.ID = "ID"
 	onboard_message.ImportIDs = append(onboard_message.ImportIDs, cpi)
 	var payee Onboard_Payee
-	payee.PayeeID = "PayeeID"
-	payee.PayeeCCY = ccyList[0].ID
-	payee.PayeeAddress = "PayeeAddress"
-	payee.PayeeCountry = onboard_message.FirmCountryList[0].ID
+	payee.PayeeID = "APPLEUSD"
+	payee.PayeeCCY = "USD"
+	payee.PayeeAddress = "1 Apple Way, Cupertino"
+	payee.PayeeCountry = "USA"
 
-	payee.PayeeBIC = "PayeeBIC"
-	payee.PayeeIBAN = "PayeeIBAN"
-	payee.PayeeFullName = "PayeeFullName"
-	payee.PayeePhoneNumber = "PayeePhoneNumber"
-	payee.PayeeSortCode = "PayeeSortCode"
-	payee.BankSettlementAccount = "BankSettlementAccount"
-	payee.PayeeReason = "PayeeReason"
-	payee.PayeeAccountNo = "PayeeAccountNo"
-	payee.PayeeBankName = "PayeeBankName"
+	payee.PayeeBIC = "CSCHUS6SXXX"
+	payee.PayeeIBAN = "GB94BARC10201530093459"
+	payee.PayeeFullName = "Apple USA"
+	payee.PayeePhoneNumber = "+1 2345678"
+	payee.PayeeSortCode = "99-99-99"
+	payee.BankSettlementAccount = "false"
+	payee.PayeeReason = "Goods & Services"
+	payee.PayeeAccountNo = "987654321"
+	payee.PayeeBankName = "Charles Schwabb"
 	onboard_message.Payees = append(onboard_message.Payees, payee)
 	var user Onboard_User
-	user.UserFullName = "UserFullName"
-	user.UserPhoneNumber = "UserPhoneNumber"
-	user.UserEmail = "UserEmail"
+	user.UserName = "tim@apple.com"
+	user.UserFullName = "Tim Cook"
+	user.UserPhoneNumber = "+1 123456789"
+	user.UserEmail = "tim@apple.com"
 	user.SystemUser = onboard_message.SystemUserList[0].ID
 
-	user.UserDOB = "UserDOB"
-	user.UserMaidenName = "UserMaidenName"
-	user.UserPlaceOfBirth = "UserPlaceOfBirth"
-	user.UserMiddleName = "UserMiddleName"
+	user.UserDOB = "1960-11-1"
+	user.UserMaidenName = "Brown"
+	user.UserPlaceOfBirth = "Mobile, Alabama"
+	user.UserMiddleName = "Donald"
 	onboard_message.MandatedUsers = append(onboard_message.MandatedUsers, user)
 
+	var user2 Onboard_User
+	user2.UserName = "steve@apple.com"
+	user2.UserFullName = "Steve Wozniak"
+	user2.UserPhoneNumber = "+1 123456789"
+	user2.UserEmail = "steve@apple.com"
+	user2.SystemUser = onboard_message.SystemUserList[1].ID
+
+	user2.UserDOB = "1950-08-11"
+	user2.UserMaidenName = "Steve Woznia"
+	user2.UserPlaceOfBirth = "San Jose, California"
+	user2.UserMiddleName = "Gary"
+	onboard_message.MandatedUsers = append(onboard_message.MandatedUsers, user2)
+
+	id := uuid.New().String()
+	onboard_message.TxnID = id
 	return onboard_message
 }
