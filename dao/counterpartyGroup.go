@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:54:54
+// Date & Time		    : 01/12/2021 at 20:36:38
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,13 +92,13 @@ func counterpartygroup_Fetch(tsql string) (int, []dm.CounterpartyGroup, dm.Count
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
    recItem.Name  = get_String(rec, dm.CounterpartyGroup_Name, "")
    recItem.CountryCode  = get_String(rec, dm.CounterpartyGroup_CountryCode, "")
    recItem.SuperGroup  = get_String(rec, dm.CounterpartyGroup_SuperGroup, "")
 
 
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,12 +8,12 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:55:00
+// Date & Time		    : 01/12/2021 at 20:36:42
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"html/template"
+	
 	"net/http"
 
 	core    "github.com/mt1976/mwt-go-dev/core"
@@ -38,7 +38,7 @@ type SalesDesk_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		Name string
 		ReportDealsOver string
 		ReportDealsOverCCY string
@@ -53,7 +53,7 @@ type SalesDesk_Page struct {
 	
 	
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -87,7 +87,6 @@ func SalesDesk_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.SalesDesk
 	noItems, returnList, _ := dao.SalesDesk_GetList()
 
-
 	pageDetail := SalesDesk_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.SalesDesk_Title, core.Action_List),
@@ -97,8 +96,8 @@ func SalesDesk_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.SalesDesk_TemplateList, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.SalesDesk_TemplateList, w, r, pageDetail)
+
 }
 
 //SalesDesk_HandlerView is the handler used to View a page
@@ -124,23 +123,23 @@ func SalesDesk_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.ReportDealsOver = rD.ReportDealsOver
 pageDetail.ReportDealsOverCCY = rD.ReportDealsOverCCY
 pageDetail.AccountTransferCutOffTime = rD.AccountTransferCutOffTime
 pageDetail.AccountTransferCutOffTimeTimeZone = rD.AccountTransferCutOffTimeTimeZone
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.SalesDesk_TemplateView, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.SalesDesk_TemplateView, w, r, pageDetail)
+
 
 }
 
@@ -167,21 +166,21 @@ func SalesDesk_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.ReportDealsOver = rD.ReportDealsOver
 pageDetail.ReportDealsOverCCY = rD.ReportDealsOverCCY
 pageDetail.AccountTransferCutOffTime = rD.AccountTransferCutOffTime
 pageDetail.AccountTransferCutOffTimeTimeZone = rD.AccountTransferCutOffTimeTimeZone
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.SalesDesk_TemplateEdit, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.SalesDesk_TemplateEdit, w, r, pageDetail)
+
 
 }
 
@@ -198,7 +197,7 @@ func SalesDesk_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.SalesDesk
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.SalesDesk_Name)
 		item.ReportDealsOver = r.FormValue(dm.SalesDesk_ReportDealsOver)
 		item.ReportDealsOverCCY = r.FormValue(dm.SalesDesk_ReportDealsOverCCY)
@@ -206,9 +205,9 @@ func SalesDesk_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.AccountTransferCutOffTimeTimeZone = r.FormValue(dm.SalesDesk_AccountTransferCutOffTimeTimeZone)
 		item.AccountTransferCutOffTimeCutOffPeriod = r.FormValue(dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod)
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	dao.SalesDesk_Store(item)	
 
@@ -236,19 +235,18 @@ func SalesDesk_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.ReportDealsOver = ""
 pageDetail.ReportDealsOverCCY = ""
 pageDetail.AccountTransferCutOffTime = ""
 pageDetail.AccountTransferCutOffTimeTimeZone = ""
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = ""
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.SalesDesk_TemplateNew, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.SalesDesk_TemplateNew, w, r, pageDetail)
 
 }
 

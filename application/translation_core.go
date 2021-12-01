@@ -8,12 +8,12 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:55:01
+// Date & Time		    : 01/12/2021 at 20:36:43
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"html/template"
+	
 	"net/http"
 
 	core    "github.com/mt1976/mwt-go-dev/core"
@@ -38,7 +38,7 @@ type Translation_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Class string
@@ -67,7 +67,7 @@ type Translation_Page struct {
 	
 	
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -101,7 +101,6 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Translation
 	noItems, returnList, _ := dao.Translation_GetList()
 
-
 	pageDetail := Translation_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Translation_Title, core.Action_List),
@@ -111,8 +110,8 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateList, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Translation_TemplateList, w, r, pageDetail)
+
 }
 
 //Translation_HandlerView is the handler used to View a page
@@ -138,7 +137,7 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Class = rD.Class
@@ -152,16 +151,16 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateView, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Translation_TemplateView, w, r, pageDetail)
+
 
 }
 
@@ -188,7 +187,7 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Class = rD.Class
@@ -202,14 +201,14 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateEdit, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Translation_TemplateEdit, w, r, pageDetail)
+
 
 }
 
@@ -226,7 +225,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Translation
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Translation_SYSId)
 		item.Id = r.FormValue(dm.Translation_Id)
 		item.Class = r.FormValue(dm.Translation_Class)
@@ -241,9 +240,9 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost)
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	dao.Translation_Store(item)	
 
@@ -271,7 +270,7 @@ func Translation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Class = ""
@@ -285,12 +284,11 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Translation_TemplateNew, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Translation_TemplateNew, w, r, pageDetail)
 
 }
 

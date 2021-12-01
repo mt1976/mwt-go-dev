@@ -186,6 +186,8 @@ func main() {
 	application.NegotiableInstrument_PublishImpl(*mux)
 
 	application.CMNotes_Publish(*mux)
+	dao.Onboard_Test()
+	application.CounterpartyOnboarding_Publish(*mux)
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	logs.Success("Handlers Started")
@@ -241,8 +243,6 @@ func main() {
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 	//jobs.RatesFXSpot_Run()
-
-	dao.Onboard_Test()
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)

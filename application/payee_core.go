@@ -8,12 +8,12 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:54:58
+// Date & Time		    : 01/12/2021 at 20:36:41
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"html/template"
+	
 	"net/http"
 
 	core    "github.com/mt1976/mwt-go-dev/core"
@@ -38,7 +38,7 @@ type Payee_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		SourceTable string
 		KeyCounterpartyFirm string
 		KeyCounterpartyCentre string
@@ -95,7 +95,7 @@ type Payee_Page struct {
 	Centre_Impl_List	[]dm.Centre
 	Currency_Impl_List	[]dm.Currency
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -119,7 +119,6 @@ func Payee_Publish(mux http.ServeMux) {
 	// TODO - this is a temporary hack to get the special case working
 	// Add to main.go >>> payee_PublishImpl(mux)
 	
-	
 }
 
 //Payee_HandlerList is the handler for the list page
@@ -137,7 +136,6 @@ func Payee_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Payee
 	noItems, returnList, _ := dao.Payee_GetList()
 
-
 	pageDetail := Payee_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Payee_Title, core.Action_List),
@@ -147,8 +145,8 @@ func Payee_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateList, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Payee_TemplateList, w, r, pageDetail)
+
 }
 
 //Payee_HandlerView is the handler used to View a page
@@ -174,7 +172,7 @@ func Payee_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SourceTable = rD.SourceTable
 pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
 pageDetail.KeyCounterpartyCentre = rD.KeyCounterpartyCentre
@@ -198,7 +196,7 @@ pageDetail.BankAddress = rD.BankAddress
 pageDetail.Reason = rD.Reason
 pageDetail.BankSettlementAcct = rD.BankSettlementAcct
 pageDetail.UpdatedUserId = rD.UpdatedUserId
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup.Name
 _,KeyCounterpartyFirm_Lookup,_:= dao.Firm_GetByID(rD.KeyCounterpartyFirm)
@@ -207,7 +205,7 @@ _,KeyCounterpartyCentre_Lookup,_:= dao.Centre_GetByID(rD.KeyCounterpartyCentre)
 pageDetail.Centre_Impl = KeyCounterpartyCentre_Lookup.Name
 _,KeyCurrency_Lookup,_:= dao.Currency_GetByID(rD.KeyCurrency)
 pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -217,11 +215,11 @@ pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 	// func payee_HandlerViewImpl(pageDetail Payee_Page) Payee_Page {return pageDetail}
 	pageDetail = payee_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateView, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Payee_TemplateView, w, r, pageDetail)
+
 
 }
 
@@ -248,7 +246,7 @@ func Payee_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SourceTable = rD.SourceTable
 pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
 pageDetail.KeyCounterpartyCentre = rD.KeyCounterpartyCentre
@@ -272,7 +270,7 @@ pageDetail.BankAddress = rD.BankAddress
 pageDetail.Reason = rD.Reason
 pageDetail.BankSettlementAcct = rD.BankSettlementAcct
 pageDetail.UpdatedUserId = rD.UpdatedUserId
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
@@ -285,7 +283,7 @@ _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 _,KeyCurrency_Lookup,_:= dao.Currency_GetByID(rD.KeyCurrency)
 pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 _,pageDetail.Currency_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 	// payee_HandlerEditImpl should be specified in application/payee_Impl.go
@@ -294,10 +292,10 @@ _,pageDetail.Currency_Impl_List,_ = dao.Currency_GetList()
 	// func payee_HandlerEditImpl(pageDetail Payee_Page) Payee_Page {return pageDetail}
 	pageDetail = payee_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateEdit, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Payee_TemplateEdit, w, r, pageDetail)
+
 
 }
 
@@ -314,7 +312,7 @@ func Payee_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("KeyCounterpartyFirm"))
 
 	var item dm.Payee
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		item.SourceTable = r.FormValue(dm.Payee_SourceTable)
 		item.KeyCounterpartyFirm = r.FormValue(dm.Payee_KeyCounterpartyFirm)
 		item.KeyCounterpartyCentre = r.FormValue(dm.Payee_KeyCounterpartyCentre)
@@ -343,7 +341,7 @@ func Payee_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Centre_Impl = r.FormValue(dm.Payee_Centre_Impl)
 		item.Currency_Impl = r.FormValue(dm.Payee_Currency_Impl)
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	// payee_HandlerSaveImpl should be specified in application/payee_Impl.go
 	// to provide the implementation for the special case.
@@ -351,7 +349,7 @@ func Payee_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func payee_HandlerSaveImpl(item dm.Payee) dm.Payee {return item}
 	item = payee_HandlerSaveImpl(item)
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	dao.Payee_Store(item)	
 
@@ -379,7 +377,7 @@ func Payee_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SourceTable = ""
 pageDetail.KeyCounterpartyFirm = ""
 pageDetail.KeyCounterpartyCentre = ""
@@ -403,7 +401,7 @@ pageDetail.BankAddress = ""
 pageDetail.Reason = ""
 pageDetail.BankSettlementAcct = ""
 pageDetail.UpdatedUserId = ""
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 pageDetail.Firm_Impl = ""
@@ -412,11 +410,10 @@ pageDetail.Centre_Impl = ""
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 pageDetail.Currency_Impl = ""
 _,pageDetail.Currency_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateNew, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Payee_TemplateNew, w, r, pageDetail)
 
 }
 

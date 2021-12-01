@@ -8,12 +8,12 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:54:53
+// Date & Time		    : 01/12/2021 at 20:36:38
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"html/template"
+	
 	"net/http"
 
 	core    "github.com/mt1976/mwt-go-dev/core"
@@ -38,7 +38,7 @@ type CMNotes_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		NoteId string
 		StreamId string
 		Summary string
@@ -55,7 +55,7 @@ type CMNotes_Page struct {
 	
 	
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -89,7 +89,6 @@ func CMNotes_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.CMNotes
 	noItems, returnList, _ := dao.CMNotes_GetList()
 
-
 	pageDetail := CMNotes_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.CMNotes_Title, core.Action_List),
@@ -99,8 +98,8 @@ func CMNotes_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateList, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.CMNotes_TemplateList, w, r, pageDetail)
+
 }
 
 //CMNotes_HandlerView is the handler used to View a page
@@ -126,7 +125,7 @@ func CMNotes_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = rD.NoteId
 pageDetail.StreamId = rD.StreamId
 pageDetail.Summary = rD.Summary
@@ -134,16 +133,16 @@ pageDetail.Details = rD.Details
 pageDetail.RecordState = rD.RecordState
 pageDetail.CreatedBy = rD.CreatedBy
 pageDetail.CreatedDateTime = rD.CreatedDateTime
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateView, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.CMNotes_TemplateView, w, r, pageDetail)
+
 
 }
 
@@ -170,7 +169,7 @@ func CMNotes_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = rD.NoteId
 pageDetail.StreamId = rD.StreamId
 pageDetail.Summary = rD.Summary
@@ -178,14 +177,14 @@ pageDetail.Details = rD.Details
 pageDetail.RecordState = rD.RecordState
 pageDetail.CreatedBy = rD.CreatedBy
 pageDetail.CreatedDateTime = rD.CreatedDateTime
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateEdit, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.CMNotes_TemplateEdit, w, r, pageDetail)
+
 
 }
 
@@ -202,7 +201,7 @@ func CMNotes_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("NoteId"))
 
 	var item dm.CMNotes
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		item.NoteId = r.FormValue(dm.CMNotes_NoteId)
 		item.StreamId = r.FormValue(dm.CMNotes_StreamId)
 		item.Summary = r.FormValue(dm.CMNotes_Summary)
@@ -211,9 +210,9 @@ func CMNotes_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CreatedBy = r.FormValue(dm.CMNotes_CreatedBy)
 		item.CreatedDateTime = r.FormValue(dm.CMNotes_CreatedDateTime)
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	dao.CMNotes_Store(item)	
 
@@ -241,7 +240,7 @@ func CMNotes_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = ""
 pageDetail.StreamId = ""
 pageDetail.Summary = ""
@@ -249,12 +248,11 @@ pageDetail.Details = ""
 pageDetail.RecordState = ""
 pageDetail.CreatedBy = ""
 pageDetail.CreatedDateTime = ""
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.CMNotes_TemplateNew, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.CMNotes_TemplateNew, w, r, pageDetail)
 
 }
 

@@ -88,6 +88,7 @@ func GetTemplateID(tmpl string, userRole string) string {
 	roleTemplate := "html/versions/roles/" + userRole + "/" + tmpl + ".html"
 	versionTemplate := "html/versions/" + tmpl + ".html"
 
+	//logs.Information("Template Checks:", tmpl+" "+templateName+" "+roleTemplate+" "+versionTemplate)
 	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	//log.Println("Testing", templateName, FileExists(templateName))
 	if FileExists(templateName) {

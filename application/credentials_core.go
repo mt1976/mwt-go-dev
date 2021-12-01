@@ -8,12 +8,12 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 28/11/2021 at 22:54:55
+// Date & Time		    : 01/12/2021 at 20:36:38
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"html/template"
+	
 	"net/http"
 
 	core    "github.com/mt1976/mwt-go-dev/core"
@@ -38,7 +38,7 @@ type Credentials_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Username string
@@ -81,7 +81,7 @@ type Credentials_Page struct {
 	
 	
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -105,7 +105,6 @@ func Credentials_Publish(mux http.ServeMux) {
 	// TODO - this is a temporary hack to get the special case working
 	// Add to main.go >>> credentials_PublishImpl(mux)
 	
-	
 }
 
 //Credentials_HandlerList is the handler for the list page
@@ -123,7 +122,6 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Credentials
 	noItems, returnList, _ := dao.Credentials_GetList()
 
-
 	pageDetail := Credentials_PageList{
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle(dm.Credentials_Title, core.Action_List),
@@ -133,8 +131,8 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Credentials_TemplateList, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Credentials_TemplateList, w, r, pageDetail)
+
 }
 
 //Credentials_HandlerView is the handler used to View a page
@@ -160,7 +158,7 @@ func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Username = rD.Username
@@ -181,8 +179,8 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -192,11 +190,11 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 	// func credentials_HandlerViewImpl(pageDetail Credentials_Page) Credentials_Page {return pageDetail}
 	pageDetail = credentials_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Credentials_TemplateView, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Credentials_TemplateView, w, r, pageDetail)
+
 
 }
 
@@ -223,7 +221,7 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Username = rD.Username
@@ -244,8 +242,8 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
 	// credentials_HandlerEditImpl should be specified in application/credentials_Impl.go
@@ -254,10 +252,10 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 	// func credentials_HandlerEditImpl(pageDetail Credentials_Page) Credentials_Page {return pageDetail}
 	pageDetail = credentials_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Credentials_TemplateEdit, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Credentials_TemplateEdit, w, r, pageDetail)
+
 
 }
 
@@ -274,7 +272,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Credentials
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Credentials_SYSId)
 		item.Id = r.FormValue(dm.Credentials_Id)
 		item.Username = r.FormValue(dm.Credentials_Username)
@@ -296,7 +294,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost)
 	
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	// credentials_HandlerSaveImpl should be specified in application/credentials_Impl.go
 	// to provide the implementation for the special case.
@@ -304,7 +302,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func credentials_HandlerSaveImpl(item dm.Credentials) dm.Credentials {return item}
 	item = credentials_HandlerSaveImpl(item)
 
-	// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 
 	dao.Credentials_Store(item)	
 
@@ -332,7 +330,7 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
+		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Username = ""
@@ -353,12 +351,11 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 28/11/2021 by matttownsend on silicon.local - END
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
 		//
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Credentials_TemplateNew, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+		ExecuteTemplate(dm.Credentials_TemplateNew, w, r, pageDetail)
 
 }
 
