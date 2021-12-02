@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:36
+// Date & Time		    : 02/12/2021 at 19:39:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -89,7 +89,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
    recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
    recItem.SienaCommonRef  = get_String(rec, dm.Account_SienaCommonRef, "")
@@ -115,14 +115,53 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
    recItem.BookName  = get_String(rec, dm.Account_BookName, "")
    recItem.PortfolioName  = get_String(rec, dm.Account_PortfolioName, "")
    recItem.Centre  = get_String(rec, dm.Account_Centre, "")
-   recItem.Firm  = get_String(rec, dm.Account_Firm, "")
+   recItem.DealTypeKey  = get_String(rec, dm.Account_DealTypeKey, "")
+   recItem.DealTypeShortName  = get_String(rec, dm.Account_DealTypeShortName, "")
+   recItem.InternalId  = get_Int(rec, dm.Account_InternalId, "0")
+   recItem.InternalDeleted  = get_Time(rec, dm.Account_InternalDeleted, "")
+   recItem.UpdatedTransactionId  = get_String(rec, dm.Account_UpdatedTransactionId, "")
+   recItem.UpdatedUserId  = get_String(rec, dm.Account_UpdatedUserId, "")
+   recItem.UpdatedDateTime  = get_Time(rec, dm.Account_UpdatedDateTime, "")
+   recItem.DeletedTransactionId  = get_String(rec, dm.Account_DeletedTransactionId, "")
+   recItem.DeletedUserId  = get_String(rec, dm.Account_DeletedUserId, "")
+   recItem.ChangeType  = get_String(rec, dm.Account_ChangeType, "")
    recItem.CCYDp  = get_Int(rec, dm.Account_CCYDp, "0")
+   recItem.CompID  = get_String(rec, dm.Account_CompID, "")
+   recItem.Firm  = get_String(rec, dm.Account_Firm, "")
+   recItem.DealType  = get_String(rec, dm.Account_DealType, "")
+   recItem.FullDealType  = get_String(rec, dm.Account_FullDealType, "")
+   recItem.DealingInterface  = get_String(rec, dm.Account_DealingInterface, "")
+   recItem.DealtAmount  = get_Float(rec, dm.Account_DealtAmount, "0.00")
+   recItem.ParentContractNumber  = get_String(rec, dm.Account_ParentContractNumber, "")
+   recItem.InterestFrequency  = get_String(rec, dm.Account_InterestFrequency, "")
+   recItem.InterestAction  = get_String(rec, dm.Account_InterestAction, "")
+   recItem.InterestStrategy  = get_String(rec, dm.Account_InterestStrategy, "")
+   recItem.InterestBasis  = get_String(rec, dm.Account_InterestBasis, "")
+   recItem.SienaDealer  = get_String(rec, dm.Account_SienaDealer, "")
+   recItem.DealOwner  = get_String(rec, dm.Account_DealOwner, "")
+   recItem.OriginUser  = get_String(rec, dm.Account_OriginUser, "")
+   recItem.EditedByUser  = get_String(rec, dm.Account_EditedByUser, "")
+   recItem.DealOwnerMnemonic  = get_String(rec, dm.Account_DealOwnerMnemonic, "")
+   recItem.UTCOriginTime  = get_String(rec, dm.Account_UTCOriginTime, "")
+   recItem.UTCUpdateTime  = get_String(rec, dm.Account_UTCUpdateTime, "")
+   recItem.CustomerStatementNotes  = get_String(rec, dm.Account_CustomerStatementNotes, "")
+   recItem.NotesMargin  = get_Float(rec, dm.Account_NotesMargin, "0.00")
+   recItem.RequestedBy  = get_String(rec, dm.Account_RequestedBy, "")
+   recItem.EditReason  = get_String(rec, dm.Account_EditReason, "")
+   recItem.EditOtherReason  = get_String(rec, dm.Account_EditOtherReason, "")
+   recItem.NoticeDays  = get_Int(rec, dm.Account_NoticeDays, "0")
+   recItem.DebitFrequency  = get_String(rec, dm.Account_DebitFrequency, "")
+   recItem.CreditFrequency  = get_String(rec, dm.Account_CreditFrequency, "")
+   recItem.EURAmount  = get_Float(rec, dm.Account_EURAmount, "0.00")
+   recItem.EUROtherAmount  = get_Float(rec, dm.Account_EUROtherAmount, "0.00")
+   recItem.PaymentSystemSienaView  = get_String(rec, dm.Account_PaymentSystemSienaView, "")
+   recItem.PaymentSystemExternalView  = get_String(rec, dm.Account_PaymentSystemExternalView, "")
 
 
 
 
 
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

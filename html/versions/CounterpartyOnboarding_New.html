@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="col-sm">
-                                <label for="Category">Regulatory Category</label>
+                                <label for="Category">Category</label>
                                 <select id="Category" name="Category" class="form-control">
                 {{range .Item.CategoryList}}
                   <option value="{{.ID}}" {{if eq .ID $.Item.Category}}selected{{end}}>{{.Name}}</option>{{end}}
@@ -135,14 +135,14 @@
                     <hr>
 
                     <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
-                        <li class="nav-item"><a data-toggle="tab" href="#altids" role="tab" id="altids-tabl" class="nav-link active" aria-controls="altids" aria-selected="true">Alternate IDs</a></li>
-                        <li class="nav-item"><a data-toggle="tab" href="#payees" role="tab" id="payees-tabl" class="nav-link" aria-controls="payees" aria-selected="false">Payees</a></li>
-                        <li class="nav-item"><a data-toggle="tab" href="#users" role="tab" id="users-tabl" class="nav-link" aria-controls="users" aria-selected="false">Users</a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#altids" role="tab" id="altids-tabl" class="nav-link active" aria-controls="altids" aria-selected="true"><h3><i class="fas fa-link"></h3></i><h5>Linked Systems</h5></a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#payees" role="tab" id="payees-tabl" class="nav-link" aria-controls="payees" aria-selected="false"><h3><i class="fas fa-wallet"></i></h3><h5>Payees</h5></a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#users" role="tab" id="users-tabl" class="nav-link" aria-controls="users" aria-selected="false"><h3><i class="far fa-user"></i></h3><h5>Users</h5></a></li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
 
                         <div class="tab-pane fade show active" id="altids" role="tabpanel" aria-labelledby="altids-tab">
-                            <button type="button" class="btn btn-outline-success float-right"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add System</button>
+                            <button type="button" class="btn btn-outline-success float-right" onclick="addRow('tablealtids')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add System</button>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-sm" id="tablealtids">
                                     <thead class="thead-light">
@@ -173,7 +173,7 @@
 
                         <div class="tab-pane fade" role="tabpanel" id="payees" aria-labelledby="payees-tab">
 
-                            <button type="button" class="btn btn-outline-success float-right"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Payee</button>
+                            <button type="button" class="btn btn-outline-success float-right" onclick="addRow('tablepayees')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Payee</button>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-sm" id="tablepayees">
                                     <thead class="thead-light">
@@ -236,7 +236,7 @@
 
 
                         <div class="tab-pane fade" role="tabpanel" id="users" aria-labelledby="users-tab">
-                            <button type="button" class="btn btn-outline-success float-right"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add User</button>
+                            <button type="button" class="btn btn-outline-success float-right" onclick="addRow('tableusers')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add User</button>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-sm" id="tableusers">
                                     <thead class="thead-light">
@@ -296,5 +296,69 @@
             $('#tableusers').dataTable();
         });
     </script>
+
+
+<script>
+//  $(document).ready(function() {
+//    $('#sienaDataMapTable').dataTable();
+//  });
+function addRow(actionTable){
+
+
+
+  var columnsElem = document.getElementById(actionTable+'Cols');
+  // var rowsElem = document.getElementById(actionTable+'Rows');
+  
+//alert("Received >"+actionTable+"<"+columnsElem.value+"<"+rowsElem.value);
+
+
+  var table = document.getElementById(actionTable)
+
+    var rowCount = table.rows.length;
+
+    var columns = (table.rows[0].cells.length)-2;
+  var rows = parseInt(rowCount)
+  //var newRow = rows
+  //var pRow = rows -1 
+ // console.log("I am the walrus! Rows="+ rows +" Columns="+columns+" NewRow="+newRow+" RowCount="+rowCount);
+
+var prevRow = $( rowCount ).parent().prev(1);   
+console.log("prevRow"+prevRow+" "+rowCount+" "+JSON.stringify(prevRow));
+
+  //alert("I am the walrus! New Row="+newRow);
+  var addRow = table.insertRow(rowCount);
+  var cell = addRow.insertCell(0);
+  
+  cell.style="padding:0";
+  cell.classList.add("text-center");
+  cell.classList.add("align-middle");
+  
+  for (i = 0; i < columns; i++) {
+  //  alert("poo"+i);
+
+var fh = table.rows[1].cells[i+1].innerHTML
+console.log("fh="+fh+">"+JSON.stringify(fh)+"<"+fh.type)
+
+    var cell = addRow.insertCell(i+1);
+    var field = document.createElement('input')
+    console.log("child "+cell.childNodes.length);
+    field.type = "text";
+    field.classList.add("form-control");
+    field.name = "R"+(rowCount-1)+"C"+i+" "+actionTable;
+    field.id = field.name
+    field.placeholder = "<< Empty >> '"+field.name+"'";
+    field.innerHTML = fh;
+  //  field.type = fh.innerHTML
+    //console.log(field+"-"+JSON.stringify(field.id)+fh);
+    cell.style="padding:0";
+    cell.classList.add("text-center");
+    cell.classList.add("align-middle");
+    cell.appendChild(field);
+    //console.log(JSON.stringify(table))
+  }
+  //rowsElem.value = newRow;
+}
+
+</script>
 
 </body>

@@ -1,7 +1,6 @@
 package application
 
 import (
-	"html/template"
 	"net/http"
 	"runtime"
 	"strings"
@@ -118,7 +117,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Printf("pageAppConfigView: %v\n", pageAppConfigView)
 	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageAppConfigView)
+
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageAppConfigView)
 
 }

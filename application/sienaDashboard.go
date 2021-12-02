@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
@@ -43,7 +44,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	noCps, _, _ := getSienaCounterpartyList()
+	noCps, _, _ := dao.Counterparty_GetList()
 	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList()
 	noSecs, dataSect, _ := getSienaBIcounterpartyPerSectorList()
 
@@ -82,5 +83,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, p)
+
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, p)
 
 }

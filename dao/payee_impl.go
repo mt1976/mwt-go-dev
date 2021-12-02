@@ -1,6 +1,9 @@
 package dao
 
 import (
+	"fmt"
+	"strings"
+
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
@@ -35,4 +38,16 @@ func Payee_GetByFullKey(ID_source string, ID_firm string, ID_centre string, ID_c
 
 	_, _, payeeItem, _ := payee_Fetch(tsql)
 	return 1, payeeItem, nil
+}
+
+// Payee_GetListByCounterparty returns a list of accounts for a counterparty.
+func Payee_GetListByCounterpartyID(id string) (int, []dm.Payee, error) {
+
+	// tokenise the id to get firm and centre
+	parts := strings.Split(id, "|")
+	if len(parts) != 2 {
+		return 0, nil, fmt.Errorf("Invalid counterparty id: %s", id)
+	}
+	count, sienaPayeeList, er := Payee_GetByCounterparty(parts[0], parts[1])
+	return count, sienaPayeeList, er
 }

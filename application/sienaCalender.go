@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"time"
@@ -79,8 +78,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 		UserNavi:      "NOT USED",
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pagecalenderList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pagecalenderList)
 
 }
 

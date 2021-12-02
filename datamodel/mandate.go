@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:40
+// Date & Time		    : 02/12/2021 at 19:40:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,6 +34,7 @@ FirmName        string
 CentreName        string
 Notify        string
 SystemUser        string
+CompID        string
 Country_Impl        string
 Firm_Impl        string
 Centre_Impl        string
@@ -43,7 +44,7 @@ Centre_Impl        string
 const (
 	Mandate_Title       = "Mandates"
 	Mandate_SQLTable    = "sienaMandatedUser"
-	Mandate_SQLSearchID = "FirmName"
+	Mandate_SQLSearchID = "CompID"
 	Mandate_QueryString = "Mandate"
 	///
 	/// Handler Defintions
@@ -82,6 +83,7 @@ const (
 	Mandate_CentreName   = "CentreName" // CentreName is a String
 	Mandate_Notify   = "Notify" // Notify is a Bool
 	Mandate_SystemUser   = "SystemUser" // SystemUser is a String
+	Mandate_CompID   = "CompID" // CompID is a String
 	Mandate_Country_Impl   = "Country_Impl" // Country_Impl is a String
 	Mandate_Firm_Impl   = "Firm_Impl" // Firm_Impl is a String
 	Mandate_Centre_Impl   = "Centre_Impl" // Centre_Impl is a String

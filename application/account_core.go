@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:36
+// Date & Time		    : 02/12/2021 at 19:39:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type Account_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		CustomerSienaView string
 		SienaCommonRef string
@@ -64,13 +64,91 @@ type Account_Page struct {
 		BookName string
 		PortfolioName string
 		Centre string
-		Firm string
+		DealTypeKey string
+		DealTypeShortName string
+		InternalId string
+		InternalDeleted string
+		UpdatedTransactionId string
+		UpdatedUserId string
+		UpdatedDateTime string
+		DeletedTransactionId string
+		DeletedUserId string
+		ChangeType string
 		CCYDp string
+		CompID string
+		Firm string
+		DealType string
+		FullDealType string
+		DealingInterface string
+		DealtAmount string
+		ParentContractNumber string
+		InterestFrequency string
+		InterestAction string
+		InterestStrategy string
+		InterestBasis string
+		SienaDealer string
+		DealOwner string
+		OriginUser string
+		EditedByUser string
+		DealOwnerMnemonic string
+		UTCOriginTime string
+		UTCUpdateTime string
+		CustomerStatementNotes string
+		NotesMargin string
+		RequestedBy string
+		EditReason string
+		EditOtherReason string
+		NoticeDays string
+		DebitFrequency string
+		CreditFrequency string
+		EURAmount string
+		EUROtherAmount string
+		PaymentSystemSienaView string
+		PaymentSystemExternalView string
 		CCY_Impl string
 		Book_Impl string
 		Portfolio_Impl string
 		Centre_Impl string
 		Firm_Impl string
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -105,7 +183,7 @@ type Account_Page struct {
 	Centre_Impl_List	[]dm.Centre
 	Firm_Impl_List	[]dm.Firm
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -175,7 +253,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.CustomerSienaView = rD.CustomerSienaView
 pageDetail.SienaCommonRef = rD.SienaCommonRef
@@ -201,9 +279,48 @@ pageDetail.CCYName = rD.CCYName
 pageDetail.BookName = rD.BookName
 pageDetail.PortfolioName = rD.PortfolioName
 pageDetail.Centre = rD.Centre
-pageDetail.Firm = rD.Firm
+pageDetail.DealTypeKey = rD.DealTypeKey
+pageDetail.DealTypeShortName = rD.DealTypeShortName
+pageDetail.InternalId = rD.InternalId
+pageDetail.InternalDeleted = rD.InternalDeleted
+pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+pageDetail.UpdatedUserId = rD.UpdatedUserId
+pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+pageDetail.DeletedUserId = rD.DeletedUserId
+pageDetail.ChangeType = rD.ChangeType
 pageDetail.CCYDp = rD.CCYDp
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+pageDetail.CompID = rD.CompID
+pageDetail.Firm = rD.Firm
+pageDetail.DealType = rD.DealType
+pageDetail.FullDealType = rD.FullDealType
+pageDetail.DealingInterface = rD.DealingInterface
+pageDetail.DealtAmount = rD.DealtAmount
+pageDetail.ParentContractNumber = rD.ParentContractNumber
+pageDetail.InterestFrequency = rD.InterestFrequency
+pageDetail.InterestAction = rD.InterestAction
+pageDetail.InterestStrategy = rD.InterestStrategy
+pageDetail.InterestBasis = rD.InterestBasis
+pageDetail.SienaDealer = rD.SienaDealer
+pageDetail.DealOwner = rD.DealOwner
+pageDetail.OriginUser = rD.OriginUser
+pageDetail.EditedByUser = rD.EditedByUser
+pageDetail.DealOwnerMnemonic = rD.DealOwnerMnemonic
+pageDetail.UTCOriginTime = rD.UTCOriginTime
+pageDetail.UTCUpdateTime = rD.UTCUpdateTime
+pageDetail.CustomerStatementNotes = rD.CustomerStatementNotes
+pageDetail.NotesMargin = rD.NotesMargin
+pageDetail.RequestedBy = rD.RequestedBy
+pageDetail.EditReason = rD.EditReason
+pageDetail.EditOtherReason = rD.EditOtherReason
+pageDetail.NoticeDays = rD.NoticeDays
+pageDetail.DebitFrequency = rD.DebitFrequency
+pageDetail.CreditFrequency = rD.CreditFrequency
+pageDetail.EURAmount = rD.EURAmount
+pageDetail.EUROtherAmount = rD.EUROtherAmount
+pageDetail.PaymentSystemSienaView = rD.PaymentSystemSienaView
+pageDetail.PaymentSystemExternalView = rD.PaymentSystemExternalView
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CCY_Lookup,_:= dao.Currency_GetByID(rD.CCY)
 pageDetail.CCY_Impl = CCY_Lookup.Name
 _,Book_Lookup,_:= dao.Book_GetByID(rD.Book)
@@ -214,11 +331,11 @@ _,Centre_Lookup,_:= dao.Centre_GetByID(rD.Centre)
 pageDetail.Centre_Impl = Centre_Lookup.Name
 _,Firm_Lookup,_:= dao.Firm_GetByID(rD.Firm)
 pageDetail.Firm_Impl = Firm_Lookup.FullName
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.Account_TemplateView, w, r, pageDetail)
@@ -249,7 +366,7 @@ func Account_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.CustomerSienaView = rD.CustomerSienaView
 pageDetail.SienaCommonRef = rD.SienaCommonRef
@@ -275,9 +392,48 @@ pageDetail.CCYName = rD.CCYName
 pageDetail.BookName = rD.BookName
 pageDetail.PortfolioName = rD.PortfolioName
 pageDetail.Centre = rD.Centre
-pageDetail.Firm = rD.Firm
+pageDetail.DealTypeKey = rD.DealTypeKey
+pageDetail.DealTypeShortName = rD.DealTypeShortName
+pageDetail.InternalId = rD.InternalId
+pageDetail.InternalDeleted = rD.InternalDeleted
+pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+pageDetail.UpdatedUserId = rD.UpdatedUserId
+pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+pageDetail.DeletedUserId = rD.DeletedUserId
+pageDetail.ChangeType = rD.ChangeType
 pageDetail.CCYDp = rD.CCYDp
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+pageDetail.CompID = rD.CompID
+pageDetail.Firm = rD.Firm
+pageDetail.DealType = rD.DealType
+pageDetail.FullDealType = rD.FullDealType
+pageDetail.DealingInterface = rD.DealingInterface
+pageDetail.DealtAmount = rD.DealtAmount
+pageDetail.ParentContractNumber = rD.ParentContractNumber
+pageDetail.InterestFrequency = rD.InterestFrequency
+pageDetail.InterestAction = rD.InterestAction
+pageDetail.InterestStrategy = rD.InterestStrategy
+pageDetail.InterestBasis = rD.InterestBasis
+pageDetail.SienaDealer = rD.SienaDealer
+pageDetail.DealOwner = rD.DealOwner
+pageDetail.OriginUser = rD.OriginUser
+pageDetail.EditedByUser = rD.EditedByUser
+pageDetail.DealOwnerMnemonic = rD.DealOwnerMnemonic
+pageDetail.UTCOriginTime = rD.UTCOriginTime
+pageDetail.UTCUpdateTime = rD.UTCUpdateTime
+pageDetail.CustomerStatementNotes = rD.CustomerStatementNotes
+pageDetail.NotesMargin = rD.NotesMargin
+pageDetail.RequestedBy = rD.RequestedBy
+pageDetail.EditReason = rD.EditReason
+pageDetail.EditOtherReason = rD.EditOtherReason
+pageDetail.NoticeDays = rD.NoticeDays
+pageDetail.DebitFrequency = rD.DebitFrequency
+pageDetail.CreditFrequency = rD.CreditFrequency
+pageDetail.EURAmount = rD.EURAmount
+pageDetail.EUROtherAmount = rD.EUROtherAmount
+pageDetail.PaymentSystemSienaView = rD.PaymentSystemSienaView
+pageDetail.PaymentSystemExternalView = rD.PaymentSystemExternalView
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CCY_Lookup,_:= dao.Currency_GetByID(rD.CCY)
 pageDetail.CCY_Impl = CCY_Lookup.Name
 _,pageDetail.CCY_Impl_List,_ = dao.Currency_GetList()
@@ -293,10 +449,10 @@ _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 _,Firm_Lookup,_:= dao.Firm_GetByID(rD.Firm)
 pageDetail.Firm_Impl = Firm_Lookup.FullName
 _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.Account_TemplateEdit, w, r, pageDetail)
 
@@ -316,7 +472,7 @@ func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.Account
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.Account_SienaReference)
 		item.CustomerSienaView = r.FormValue(dm.Account_CustomerSienaView)
 		item.SienaCommonRef = r.FormValue(dm.Account_SienaCommonRef)
@@ -342,17 +498,56 @@ func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.BookName = r.FormValue(dm.Account_BookName)
 		item.PortfolioName = r.FormValue(dm.Account_PortfolioName)
 		item.Centre = r.FormValue(dm.Account_Centre)
-		item.Firm = r.FormValue(dm.Account_Firm)
+		item.DealTypeKey = r.FormValue(dm.Account_DealTypeKey)
+		item.DealTypeShortName = r.FormValue(dm.Account_DealTypeShortName)
+		item.InternalId = r.FormValue(dm.Account_InternalId)
+		item.InternalDeleted = r.FormValue(dm.Account_InternalDeleted)
+		item.UpdatedTransactionId = r.FormValue(dm.Account_UpdatedTransactionId)
+		item.UpdatedUserId = r.FormValue(dm.Account_UpdatedUserId)
+		item.UpdatedDateTime = r.FormValue(dm.Account_UpdatedDateTime)
+		item.DeletedTransactionId = r.FormValue(dm.Account_DeletedTransactionId)
+		item.DeletedUserId = r.FormValue(dm.Account_DeletedUserId)
+		item.ChangeType = r.FormValue(dm.Account_ChangeType)
 		item.CCYDp = r.FormValue(dm.Account_CCYDp)
+		item.CompID = r.FormValue(dm.Account_CompID)
+		item.Firm = r.FormValue(dm.Account_Firm)
+		item.DealType = r.FormValue(dm.Account_DealType)
+		item.FullDealType = r.FormValue(dm.Account_FullDealType)
+		item.DealingInterface = r.FormValue(dm.Account_DealingInterface)
+		item.DealtAmount = r.FormValue(dm.Account_DealtAmount)
+		item.ParentContractNumber = r.FormValue(dm.Account_ParentContractNumber)
+		item.InterestFrequency = r.FormValue(dm.Account_InterestFrequency)
+		item.InterestAction = r.FormValue(dm.Account_InterestAction)
+		item.InterestStrategy = r.FormValue(dm.Account_InterestStrategy)
+		item.InterestBasis = r.FormValue(dm.Account_InterestBasis)
+		item.SienaDealer = r.FormValue(dm.Account_SienaDealer)
+		item.DealOwner = r.FormValue(dm.Account_DealOwner)
+		item.OriginUser = r.FormValue(dm.Account_OriginUser)
+		item.EditedByUser = r.FormValue(dm.Account_EditedByUser)
+		item.DealOwnerMnemonic = r.FormValue(dm.Account_DealOwnerMnemonic)
+		item.UTCOriginTime = r.FormValue(dm.Account_UTCOriginTime)
+		item.UTCUpdateTime = r.FormValue(dm.Account_UTCUpdateTime)
+		item.CustomerStatementNotes = r.FormValue(dm.Account_CustomerStatementNotes)
+		item.NotesMargin = r.FormValue(dm.Account_NotesMargin)
+		item.RequestedBy = r.FormValue(dm.Account_RequestedBy)
+		item.EditReason = r.FormValue(dm.Account_EditReason)
+		item.EditOtherReason = r.FormValue(dm.Account_EditOtherReason)
+		item.NoticeDays = r.FormValue(dm.Account_NoticeDays)
+		item.DebitFrequency = r.FormValue(dm.Account_DebitFrequency)
+		item.CreditFrequency = r.FormValue(dm.Account_CreditFrequency)
+		item.EURAmount = r.FormValue(dm.Account_EURAmount)
+		item.EUROtherAmount = r.FormValue(dm.Account_EUROtherAmount)
+		item.PaymentSystemSienaView = r.FormValue(dm.Account_PaymentSystemSienaView)
+		item.PaymentSystemExternalView = r.FormValue(dm.Account_PaymentSystemExternalView)
 		item.CCY_Impl = r.FormValue(dm.Account_CCY_Impl)
 		item.Book_Impl = r.FormValue(dm.Account_Book_Impl)
 		item.Portfolio_Impl = r.FormValue(dm.Account_Portfolio_Impl)
 		item.Centre_Impl = r.FormValue(dm.Account_Centre_Impl)
 		item.Firm_Impl = r.FormValue(dm.Account_Firm_Impl)
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 	dao.Account_Store(item)	
 
@@ -380,7 +575,7 @@ func Account_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.CustomerSienaView = ""
 pageDetail.SienaCommonRef = ""
@@ -406,9 +601,48 @@ pageDetail.CCYName = ""
 pageDetail.BookName = ""
 pageDetail.PortfolioName = ""
 pageDetail.Centre = ""
-pageDetail.Firm = ""
+pageDetail.DealTypeKey = ""
+pageDetail.DealTypeShortName = ""
+pageDetail.InternalId = ""
+pageDetail.InternalDeleted = ""
+pageDetail.UpdatedTransactionId = ""
+pageDetail.UpdatedUserId = ""
+pageDetail.UpdatedDateTime = ""
+pageDetail.DeletedTransactionId = ""
+pageDetail.DeletedUserId = ""
+pageDetail.ChangeType = ""
 pageDetail.CCYDp = ""
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+pageDetail.CompID = ""
+pageDetail.Firm = ""
+pageDetail.DealType = ""
+pageDetail.FullDealType = ""
+pageDetail.DealingInterface = ""
+pageDetail.DealtAmount = ""
+pageDetail.ParentContractNumber = ""
+pageDetail.InterestFrequency = ""
+pageDetail.InterestAction = ""
+pageDetail.InterestStrategy = ""
+pageDetail.InterestBasis = ""
+pageDetail.SienaDealer = ""
+pageDetail.DealOwner = ""
+pageDetail.OriginUser = ""
+pageDetail.EditedByUser = ""
+pageDetail.DealOwnerMnemonic = ""
+pageDetail.UTCOriginTime = ""
+pageDetail.UTCUpdateTime = ""
+pageDetail.CustomerStatementNotes = ""
+pageDetail.NotesMargin = ""
+pageDetail.RequestedBy = ""
+pageDetail.EditReason = ""
+pageDetail.EditOtherReason = ""
+pageDetail.NoticeDays = ""
+pageDetail.DebitFrequency = ""
+pageDetail.CreditFrequency = ""
+pageDetail.EURAmount = ""
+pageDetail.EUROtherAmount = ""
+pageDetail.PaymentSystemSienaView = ""
+pageDetail.PaymentSystemExternalView = ""
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.CCY_Impl = ""
 _,pageDetail.CCY_Impl_List,_ = dao.Currency_GetList()
 pageDetail.Book_Impl = ""
@@ -419,7 +653,7 @@ pageDetail.Centre_Impl = ""
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 pageDetail.Firm_Impl = ""
 _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.Account_TemplateNew, w, r, pageDetail)

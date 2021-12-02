@@ -32,7 +32,14 @@
             "OnClick": "",
             "TextClass": ""
         },
-
+        {
+            "ID": "d723fb94-e903-47a1-baf9-5e7dfd5c504f",
+            "Text": "Books",
+            "Glyph": "fas fa-book",
+            "HREF": "/BookList",
+            "OnClick": "",
+            "TextClass": ""
+        },
         {
             "ID": "c1feb220-4f72-40e6-972d-5047abdefa0a",
             "Text": "Currencies",
@@ -65,12 +72,27 @@
             "OnClick": "",
             "TextClass": ""
         },
-
         {
-            "ID": "d723fb94-e903-47a1-baf9-5e7dfd5c504f",
-            "Text": "Books",
-            "Glyph": "fas fa-book",
-            "HREF": "/BookList",
+            "ID": "b960fac3-5848-46f3-9143-13d32a360cb4",
+            "Text": "Counterparty",
+            "Glyph": "fas fa-user",
+            "HREF": "/CounterpartyList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "16",
+            "Text": "Counterparty Import",
+            "Glyph": "fas fa-file-import",
+            "HREF": "/listSienaCounterpartyImportID",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "06a43331-0019-4d30-af69-f1c0bfeb9148",
+            "Text": "Counterparty Groups",
+            "Glyph": "fa fa-users",
+            "HREF": "/CounterpartyGroupList",
             "OnClick": "",
             "TextClass": ""
         },
@@ -85,63 +107,12 @@
             "TextClass": ""
         },
 
-        {
-            "ID": "10",
-            "Text": "Counterpartys",
-            "Glyph": "fa fa-user",
-            "HREF": "/listSienaCounterparty",
-            "OnClick": "",
-            "TextClass": ""
-        },
+
         {
             "ID": "35217f13-422c-4f6e-aaab-730f9a4ea59c",
             "Text": "Mandates",
             "Glyph": "fas fa-city",
             "HREF": "/MandateList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-        {
-            "ID": "06a43331-0019-4d30-af69-f1c0bfeb9148",
-            "Text": "Counterparty Groups",
-            "Glyph": "fa fa-users",
-            "HREF": "/CounterpartyGroupList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-        {
-            "ID": "c8b18803-3f2c-4a5a-80cc-3db66bb1da02",
-            "Text": "Bank Porfolios",
-            "Glyph": "fas fa-plug",
-            "HREF": "/PortfolioList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-
-
-
-        {
-            "ID": "dd432174-5cf3-4626-b415-4c9fbbb544a3",
-            "Text": "Product Groups",
-            "Glyph": "fas fa-object-group",
-            "HREF": "/ProductList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-        {
-            "ID": "2710fac3-5448-4379-9639-f835d38910d9",
-            "Text": "Deal Types",
-            "Glyph": "fas fa-toolbox",
-            "HREF": "/DealTypeList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-
-        {
-            "ID": "680b7b57-0a86-48e4-accd-df07572dfa29",
-            "Text": "Deal Type Fundamentals",
-            "Glyph": "fas fa-toolbox",
-            "HREF": "/DealTypeFundamentalList",
             "OnClick": "",
             "TextClass": ""
         },
@@ -165,30 +136,16 @@
             "TextClass": ""
 
         },
+
         {
-            "ID": "16",
-            "Text": "Counterparty Import",
-            "Glyph": "fas fa-file-import",
-            "HREF": "/listSienaCounterpartyImportID",
-            "OnClick": "",
-            "TextClass": ""
-        },
-        {
-            "ID": "17",
+            "ID": "dfc6cea9-595b-4f0b-b22b-6e44ede7f317",
             "Text": "Transactions",
-            "Glyph": "fas fa-shopping-basket",
-            "HREF": "/listSienaDealList",
+            "Glyph": "far fa-handshake",
+            "HREF": "/TransactionList",
             "OnClick": "",
             "TextClass": ""
         },
-        {
-            "ID": "87dedcd5-6a00-42ad-a8d9-90a4d166aca3",
-            "Text": "Deal Conversation Contents",
-            "Glyph": "fas fa-exchange-alt",
-            "HREF": "/DealConversationList",
-            "OnClick": "",
-            "TextClass": ""
-        },
+
         {
             "ID": "0af8aa47-147c-49d4-ae95-f9772228d566",
             "Text": "Negotiable Instruments",
@@ -198,8 +155,54 @@
             "TextClass": "text-info"
         },
         {
+            "ID": "1f4c2bf1-9d2f-428f-a4e5-e8d00a3e4903",
+            "Text": "Rates & Prices",
+            "Glyph": "fas fa-file-invoice-dollar",
+            "HREF": "/MarketRatesList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+        {
             "Break": "<hr class=\"hr-list\">"
         },
+        {
+            "ID": "c8b18803-3f2c-4a5a-80cc-3db66bb1da02",
+            "Text": "Bank Porfolios",
+            "Glyph": "fas fa-plug",
+            "HREF": "/PortfolioList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+
+
+        {
+            "ID": "2710fac3-5448-4379-9639-f835d38910d9",
+            "Text": "Deal Types",
+            "Glyph": "fas fa-toolbox",
+            "HREF": "/DealTypeList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+        {
+            "ID": "680b7b57-0a86-48e4-accd-df07572dfa29",
+            "Text": "Deal Type Fundamentals",
+            "Glyph": "fas fa-toolbox",
+            "HREF": "/DealTypeFundamentalList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+        {
+            "ID": "dd432174-5cf3-4626-b415-4c9fbbb544a3",
+            "Text": "Product Groups",
+            "Glyph": "fas fa-object-group",
+            "HREF": "/ProductList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
         {
             "ID": "13dc5e34-6a41-43a6-b82a-859b892beea4",
             "Text": "Dealing Interface",
@@ -207,6 +210,35 @@
             "HREF": "/DealingInterfaceList",
             "OnClick": "",
             "TextClass": ""
+        },
+        {
+            "ID": "87dedcd5-6a00-42ad-a8d9-90a4d166aca3",
+            "Text": "Deal Conversations",
+            "Glyph": "fas fa-exchange-alt",
+            "HREF": "/DealConversationList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
+
+        {
+            "ID": "fundsCheck",
+            "Text": "Funds Check Approvals",
+            "Glyph": "fas fa-check",
+            "HREF": "/Simulator_FundsCheckerList/",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "19",
+            "Text": "Data Loader",
+            "Glyph": "fas fa-dice-d6",
+            "HREF": "/listSvcDataMap",
+            "OnClick": "",
+            "TextClass": "text-warning"
         },
 
         {
@@ -260,14 +292,7 @@
             "TextClass": "text-info"
         },
 
-        {
-            "ID": "fundsCheck",
-            "Text": "Funds Check Approvals",
-            "Glyph": "fas fa-check",
-            "HREF": "/Simulator_FundsCheckerList/",
-            "OnClick": "",
-            "TextClass": ""
-        },
+
         {
             "ID": "90f69497-f454-4622-bf94-4827de82eb0f",
             "Text": "Connected Systems",
@@ -276,14 +301,7 @@
             "OnClick": "",
             "TextClass": "text-info"
         },
-        {
-            "ID": "19",
-            "Text": "Data Loader",
-            "Glyph": "fas fa-dice-d6",
-            "HREF": "/listSvcDataMap",
-            "OnClick": "",
-            "TextClass": "text-warning"
-        },
+
         {
             "Break": "<hr class=\"hr-list\">"
         },
@@ -311,18 +329,8 @@
             "OnClick": "",
             "TextClass": "text-danger"
         },
-        {
-            "Break": "<hr class=\"hr-list\">"
-        },
 
-        {
-            "ID": "1f4c2bf1-9d2f-428f-a4e5-e8d00a3e4903",
-            "Text": "Rates &amp; Prices",
-            "Glyph": "fas fa-file-invoice-dollar",
-            "HREF": "/MarketRatesList",
-            "OnClick": "",
-            "TextClass": "text-info"
-        },
+
         {
             "ID": "0d89ae10-6eab-498b-a192-29ea8d3170f1",
             "Text": "Cache Contents",
@@ -332,43 +340,10 @@
             "TextClass": "text-info"
         },
 
-
-
         {
-            "ID": "9a815f6e-256d-4859-9c9b-a245392ad436",
-            "Text": "Template Contents",
-            "Glyph": "fas fa-poo",
-            "HREF": "/TemplateList",
-            "OnClick": "",
-            "TextClass": ""
+            "Break": "<hr class=\"hr-list\"><BR><H6>TEST</H6>"
         },
 
-
-        {
-            "ID": "5272ef87-80c4-4289-be8d-5e2b71b8de1e",
-            "Text": "Account Transactions",
-            "Glyph": "fas fa-landmark",
-            "HREF": "/AccountTransactionList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-
-        {
-            "ID": "004115e1-75d6-4d10-aef7-fe34087d1807",
-            "Text": "Account Ladder",
-            "Glyph": "fas fa-landmark",
-            "HREF": "/AccountLadderList",
-            "OnClick": "",
-            "TextClass": ""
-        },
-        {
-            "ID": "6722d374-f8aa-48b5-b10e-09641ed12e93",
-            "Text": "Payees",
-            "Glyph": "fas fa-landmark",
-            "HREF": "/PayeeList",
-            "OnClick": "",
-            "TextClass": ""
-        },
 
         {
             "ID": "c53513a6-9d1d-438e-abcf-91666a05d07f",
@@ -381,11 +356,10 @@
         },
 
 
+
         {
             "Break": "<hr class=\"hr-list\">"
         },
-
-
 
         {
             "ID": "27",

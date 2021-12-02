@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:37
+// Date & Time		    : 02/12/2021 at 19:40:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -111,12 +111,12 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Centre_Code, "")
    recItem.Name  = get_String(rec, dm.Centre_Name, "")
    recItem.Country  = get_String(rec, dm.Centre_Country, "")
 
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

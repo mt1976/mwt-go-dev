@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:41
+// Date & Time		    : 02/12/2021 at 19:40:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type MarketRates_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Bid string
@@ -83,7 +83,7 @@ type MarketRates_Page struct {
 	
 	
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -153,7 +153,7 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Bid = rD.Bid
@@ -175,12 +175,12 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.MarketRates_TemplateView, w, r, pageDetail)
@@ -211,7 +211,7 @@ func MarketRates_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Bid = rD.Bid
@@ -233,11 +233,11 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.MarketRates_TemplateEdit, w, r, pageDetail)
 
@@ -257,7 +257,7 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.MarketRates
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.MarketRates_SYSId)
 		item.Id = r.FormValue(dm.MarketRates_Id)
 		item.Bid = r.FormValue(dm.MarketRates_Bid)
@@ -280,9 +280,9 @@ func MarketRates_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.MarketRates_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.MarketRates_SYSUpdatedHost)
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 	dao.MarketRates_Store(item)	
 
@@ -310,7 +310,7 @@ func MarketRates_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Bid = ""
@@ -332,8 +332,8 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.MarketRates_TemplateNew, w, r, pageDetail)

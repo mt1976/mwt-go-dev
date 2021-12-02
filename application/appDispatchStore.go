@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -94,8 +93,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		DispatchStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageDispatchStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
 
 }
 
@@ -137,8 +135,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageDispatchStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageDispatchStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
 
 }
 
@@ -179,8 +176,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageDispatchStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageDispatchStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
 
 }
 
@@ -295,8 +291,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageDispatchStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
 
 }
 

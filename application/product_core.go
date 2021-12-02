@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:41
+// Date & Time		    : 02/12/2021 at 19:40:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type Product_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		Factor string
@@ -65,7 +65,7 @@ type Product_Page struct {
 	
 	
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -135,7 +135,7 @@ func Product_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Factor = rD.Factor
@@ -148,12 +148,12 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.Product_TemplateView, w, r, pageDetail)
@@ -184,7 +184,7 @@ func Product_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Factor = rD.Factor
@@ -197,11 +197,11 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.Product_TemplateEdit, w, r, pageDetail)
 
@@ -221,7 +221,7 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Product
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Product_Code)
 		item.Name = r.FormValue(dm.Product_Name)
 		item.Factor = r.FormValue(dm.Product_Factor)
@@ -235,9 +235,9 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.Product_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.Product_ChangeType)
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 	dao.Product_Store(item)	
 
@@ -265,7 +265,7 @@ func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.Factor = ""
@@ -278,8 +278,8 @@ pageDetail.UpdatedDateTime = ""
 pageDetail.DeletedTransactionId = ""
 pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.Product_TemplateNew, w, r, pageDetail)

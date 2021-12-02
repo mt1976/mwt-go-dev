@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -91,8 +90,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		NISelectedStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageNISelectedStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageNISelectedStoreList)
 
 }
 
@@ -131,8 +129,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageCredentialStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageCredentialStoreList)
 
 }
 
@@ -170,8 +167,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageCredentialStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageCredentialStoreList)
 
 }
 
@@ -281,8 +277,7 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageCredentialStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageCredentialStoreList)
 
 }
 

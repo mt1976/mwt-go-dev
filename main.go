@@ -65,17 +65,7 @@ func main() {
 	mux.HandleFunc("/site.webmanifest", application.FaviconManifestHandler)
 	mux.HandleFunc("/favicon-16x16.png", application.Favicon16Handler)
 	mux.HandleFunc("/browserconfig.xml", application.FaviconBrowserConfigHandler)
-	// mux.HandleFunc("/listResponses/", application.ListResponsesHandler)
-	// mux.HandleFunc("/previewRequest/", application.PreviewRequestHandler)
-	// mux.HandleFunc("/executeRequest/", application.ExecuteRequestHandler)
-	// mux.HandleFunc("/viewResponse/", application.ViewResponseHandler)
-	// mux.HandleFunc("/deleteResponse/", application.DeleteResponseHandler)
 
-	// mux.HandleFunc("/viewSrvEnvironment/", application.ViewSrvEnvironmentHandler)
-	// mux.HandleFunc("/listSrvConfiguration/", application.ListSrvConfigurationHandler)
-	// mux.HandleFunc("/viewSrvConfiguration/", application.ViewSrvConfigurationHandler)
-	// mux.HandleFunc("/editSrvConfiguration/", application.EditSrvConfigurationHandler)
-	// mux.HandleFunc("/saveSrvConfiguration/", application.SaveSrvConfigurationHandler)
 	mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
 
 	mux.HandleFunc("/listSvcDataMap/", application.ListSvcDataMapHandler)
@@ -111,40 +101,16 @@ func main() {
 	application.Account_Publish(*mux)
 	application.AccountTransaction_Publish(*mux)
 	application.AccountLadder_Publish(*mux)
+	application.AccountTransaction_PublishImpl(*mux)
+	application.AccountLadder_PublishImpl(*mux)
 	application.Payee_Publish(*mux)
 	application.Payee_PublishImpl(*mux)
 
 	application.Currency_Publish(*mux)
 	application.CurrencyPair_Publish(*mux)
 
-	mux.HandleFunc("/listSienaMandatedUser/", application.ListSienaMandatedUserHandler)
-	mux.HandleFunc("/viewSienaMandatedUser/", application.ViewSienaMandatedUserHandler)
-	mux.HandleFunc("/editSienaMandatedUser/", application.EditSienaMandatedUserHandler)
-	mux.HandleFunc("/saveSienaMandatedUser/", application.SaveSienaMandatedUserHandler)
-	mux.HandleFunc("/newSienaMandatedUser/", application.NewSienaMandatedUserHandler)
-
-	mux.HandleFunc("/listSienaCounterparty/", application.ListSienaCounterpartyHandler)
-	mux.HandleFunc("/viewSienaCounterparty/", application.ViewSienaCounterpartyHandler)
-	mux.HandleFunc("/editSienaCounterparty/", application.EditSienaCounterpartyHandler)
-	mux.HandleFunc("/saveSienaCounterparty/", application.SaveSienaCounterpartyHandler)
-	mux.HandleFunc("/newSienaCounterparty/", application.NewSienaCounterpartyHandler)
-
-	mux.HandleFunc("/editSienaCounterpartyAddress/", application.EditSienaCounterpartyAddressHandler)
-	mux.HandleFunc("/saveSienaCounterpartyAddress/", application.SaveSienaCounterpartyAddressHandler)
-	mux.HandleFunc("/editSienaCounterpartyExtensions/", application.EditSienaCounterpartyExtensionsHandler)
-	mux.HandleFunc("/saveSienaCounterpartyExtensions/", application.SaveSienaCounterpartyExtensionsHandler)
-
-	mux.HandleFunc("/listSienaCounterpartyImportID/", application.ListSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/viewSienaCounterpartyImportID/", application.ViewSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/editSienaCounterpartyImportID/", application.EditSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/saveSienaCounterpartyImportID/", application.SaveSienaCounterpartyImportIDHandler)
-	mux.HandleFunc("/newSienaCounterpartyImportID/", application.NewSienaCounterpartyImportIDHandler)
-
-	mux.HandleFunc("/listSienaDealList/", application.ListSienaDealListHandler)
-	mux.HandleFunc("/viewSienaDealList/", application.ViewSienaDealListHandler)
-
-	//mux.HandleFunc("/saveSienaDealList/", application.SaveSienaDealListHandler)
-	//mux.HandleFunc("/newSienaDealList/", application.NewSienaDealListHandler)
+	application.Mandate_Publish(*mux)
+	application.Mandate_PublishImpl(*mux)
 
 	application.CounterpartyGroup_Publish(*mux)
 
@@ -161,13 +127,6 @@ func main() {
 
 	application.Session_Publish(*mux)
 
-	// mux.HandleFunc("/listSystemStore/", application.ListSystemStoreHandler)
-	// mux.HandleFunc("/viewSystemStore/", application.ViewSystemStoreHandler)
-	// mux.HandleFunc("/editSystemStore/", application.EditSystemStoreHandler)
-	// mux.HandleFunc("/deleteSystemStore/", application.DeleteSystemStoreHandler)
-	// mux.HandleFunc("/saveSystemStore/", application.SaveSystemStoreHandler)
-	// mux.HandleFunc("/newSystemStore/", application.NewSystemStoreHandler)
-
 	application.Systems_Publish(*mux)
 
 	application.Simulator_FundsChecker_PublishImpl(*mux)
@@ -177,17 +136,22 @@ func main() {
 	application.Cache_Publish(*mux)
 	application.DealConversation_Publish(*mux)
 
-	//mux.HandleFunc("/injectSQLViews/", application.SQLInjection_HandlerRun)
 	application.SQLInjection_Publish(*mux)
 
-	//	mux.HandleFunc("/refreshCache/", application.RefreshCacheHandler)
-	application.DataCache_Publish(*mux)
 	application.NegotiableInstrument_Publish(*mux)
 	application.NegotiableInstrument_PublishImpl(*mux)
 
 	application.CMNotes_Publish(*mux)
 	dao.Onboard_Test()
 	application.CounterpartyOnboarding_Publish(*mux)
+	application.CounterpartyImport_Publish(*mux)
+	application.CounterpartyName_Publish(*mux)
+	application.CounterpartyAddress_Publish(*mux)
+	application.CounterpartyExtensions_Publish(*mux)
+	application.CounterpartyCreditRating_Publish(*mux)
+	application.Counterparty_Publish(*mux)
+	application.Transaction_Publish(*mux)
+	application.Counterparty_PublishImpl(*mux)
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	logs.Success("Handlers Started")

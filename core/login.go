@@ -42,7 +42,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
 	//log.Println(t, GetTemplateID(tmpl, GetUserRole(r)), err)
 	t.Execute(w, loginPageContent)
-
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {

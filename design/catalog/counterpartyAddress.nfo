@@ -1,0 +1,47 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/counterpartyaddress.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : CounterpartyAddress (counterpartyaddress)
+Endpoint 	         : CounterpartyAddress (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 02/12/2021 at 19:40:01
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCounterpartyAddress
+SQL Table Search Col : CompID
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| NameFirm                            | String     |            | true  | true   | false |                 |            |            | 
+| NameCentre                          | String     |            | true  | true   | false |                 |            |            | 
+| Address1                            | String     |            | false | true   | false |                 |            |            | 
+| Address2                            | String     |            | false | true   | false |                 |            |            | 
+| CityTown                            | String     |            | false | true   | false |                 |            |            | 
+| County                              | String     |            | false | true   | false |                 |            |            | 
+| Postcode                            | String     |            | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/counterpartyAddress_core.go)
+* adaptor (/adaptor/counterpartyAddress.go)
+* dao (/dao/counterpartyAddress.go)
+* datamodel (/datamodel/counterpartyAddress.go)
+* menu (/design/menu/counterpartyAddress.json)
+* html -> List (/html/CounterpartyAddress_List.html)
+* html -> View (/html/CounterpartyAddress_View.html)
+* html -> Edit (/html/CounterpartyAddress_Edit.html)
+* html -> New (/html/CounterpartyAddress_New.html)
+* catalog (/design/catalog/counterpartyAddress.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

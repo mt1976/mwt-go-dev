@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:41
+// Date & Time		    : 02/12/2021 at 19:40:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId, "0")
    recItem.Id  = get_String(rec, dm.MarketRates_Id, "")
    recItem.Bid  = get_String(rec, dm.MarketRates_Bid, "")
@@ -103,7 +103,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost, "")
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

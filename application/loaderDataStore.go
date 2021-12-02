@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -102,8 +101,7 @@ func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		LoaderDataStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderDataStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderDataStoreList)
 
 }
 
@@ -147,8 +145,7 @@ func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderDataStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderDataStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderDataStoreList)
 
 }
 
@@ -191,8 +188,7 @@ func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageLoaderDataStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderDataStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderDataStoreList)
 
 }
 
@@ -309,8 +305,7 @@ func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderDataStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderDataStoreList)
 
 }
 

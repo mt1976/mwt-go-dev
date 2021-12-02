@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 21/11/2021 at 19:48:01
+// Date & Time		    : 02/12/2021 at 19:44:03
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 //Centre is cheese
 type AccountLadder struct {
-	AppInternalID string  // Special field for internal use only
+
 SienaReference        string
 BusinessDate        string
 ContractNumber        string

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:36
+// Date & Time		    : 02/12/2021 at 19:39:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,8 +41,47 @@ CCYName        string
 BookName        string
 PortfolioName        string
 Centre        string
-Firm        string
+DealTypeKey        string
+DealTypeShortName        string
+InternalId        string
+InternalDeleted        string
+UpdatedTransactionId        string
+UpdatedUserId        string
+UpdatedDateTime        string
+DeletedTransactionId        string
+DeletedUserId        string
+ChangeType        string
 CCYDp        string
+CompID        string
+Firm        string
+DealType        string
+FullDealType        string
+DealingInterface        string
+DealtAmount        string
+ParentContractNumber        string
+InterestFrequency        string
+InterestAction        string
+InterestStrategy        string
+InterestBasis        string
+SienaDealer        string
+DealOwner        string
+OriginUser        string
+EditedByUser        string
+DealOwnerMnemonic        string
+UTCOriginTime        string
+UTCUpdateTime        string
+CustomerStatementNotes        string
+NotesMargin        string
+RequestedBy        string
+EditReason        string
+EditOtherReason        string
+NoticeDays        string
+DebitFrequency        string
+CreditFrequency        string
+EURAmount        string
+EUROtherAmount        string
+PaymentSystemSienaView        string
+PaymentSystemExternalView        string
 CCY_Impl        string
 Book_Impl        string
 Portfolio_Impl        string
@@ -100,8 +139,47 @@ const (
 	Account_BookName   = "BookName" // BookName is a String
 	Account_PortfolioName   = "PortfolioName" // PortfolioName is a String
 	Account_Centre   = "Centre" // Centre is a String
-	Account_Firm   = "Firm" // Firm is a String
+	Account_DealTypeKey   = "DealTypeKey" // DealTypeKey is a String
+	Account_DealTypeShortName   = "DealTypeShortName" // DealTypeShortName is a String
+	Account_InternalId   = "InternalId" // InternalId is a Int
+	Account_InternalDeleted   = "InternalDeleted" // InternalDeleted is a Time
+	Account_UpdatedTransactionId   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+	Account_UpdatedUserId   = "UpdatedUserId" // UpdatedUserId is a String
+	Account_UpdatedDateTime   = "UpdatedDateTime" // UpdatedDateTime is a Time
+	Account_DeletedTransactionId   = "DeletedTransactionId" // DeletedTransactionId is a String
+	Account_DeletedUserId   = "DeletedUserId" // DeletedUserId is a String
+	Account_ChangeType   = "ChangeType" // ChangeType is a String
 	Account_CCYDp   = "CCYDp" // CCYDp is a Int
+	Account_CompID   = "CompID" // CompID is a String
+	Account_Firm   = "Firm" // Firm is a String
+	Account_DealType   = "DealType" // DealType is a String
+	Account_FullDealType   = "FullDealType" // FullDealType is a String
+	Account_DealingInterface   = "DealingInterface" // DealingInterface is a String
+	Account_DealtAmount   = "DealtAmount" // DealtAmount is a Float
+	Account_ParentContractNumber   = "ParentContractNumber" // ParentContractNumber is a String
+	Account_InterestFrequency   = "InterestFrequency" // InterestFrequency is a String
+	Account_InterestAction   = "InterestAction" // InterestAction is a String
+	Account_InterestStrategy   = "InterestStrategy" // InterestStrategy is a String
+	Account_InterestBasis   = "InterestBasis" // InterestBasis is a String
+	Account_SienaDealer   = "SienaDealer" // SienaDealer is a String
+	Account_DealOwner   = "DealOwner" // DealOwner is a String
+	Account_OriginUser   = "OriginUser" // OriginUser is a String
+	Account_EditedByUser   = "EditedByUser" // EditedByUser is a String
+	Account_DealOwnerMnemonic   = "DealOwnerMnemonic" // DealOwnerMnemonic is a String
+	Account_UTCOriginTime   = "UTCOriginTime" // UTCOriginTime is a String
+	Account_UTCUpdateTime   = "UTCUpdateTime" // UTCUpdateTime is a String
+	Account_CustomerStatementNotes   = "customerStatementNotes" // CustomerStatementNotes is a String
+	Account_NotesMargin   = "NotesMargin" // NotesMargin is a Float
+	Account_RequestedBy   = "RequestedBy" // RequestedBy is a String
+	Account_EditReason   = "EditReason" // EditReason is a String
+	Account_EditOtherReason   = "EditOtherReason" // EditOtherReason is a String
+	Account_NoticeDays   = "NoticeDays" // NoticeDays is a Int
+	Account_DebitFrequency   = "DebitFrequency" // DebitFrequency is a String
+	Account_CreditFrequency   = "CreditFrequency" // CreditFrequency is a String
+	Account_EURAmount   = "EURAmount" // EURAmount is a Float
+	Account_EUROtherAmount   = "EUROtherAmount" // EUROtherAmount is a Float
+	Account_PaymentSystemSienaView   = "PaymentSystemSienaView" // PaymentSystemSienaView is a String
+	Account_PaymentSystemExternalView   = "PaymentSystemExternalView" // PaymentSystemExternalView is a String
 	Account_CCY_Impl   = "CCY_Impl" // CCY_Impl is a String
 	Account_Book_Impl   = "Book_Impl" // Book_Impl is a String
 	Account_Portfolio_Impl   = "Portfolio_Impl" // Portfolio_Impl is a String

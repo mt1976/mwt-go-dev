@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:38
+// Date & Time		    : 02/12/2021 at 19:40:03
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type Currency_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		AmountDp string
@@ -89,7 +89,7 @@ type Currency_Page struct {
 	
 	
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -159,7 +159,7 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.AmountDp = rD.AmountDp
@@ -184,12 +184,12 @@ pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = rD.StripRateFutureCu
 pageDetail.StripRateFutureCurrencyContractFutureContractCode = rD.StripRateFutureCurrencyContractFutureContractCode
 pageDetail.OvernightFundingSpreadBid = rD.OvernightFundingSpreadBid
 pageDetail.OvernightFundingSpreadOffer = rD.OvernightFundingSpreadOffer
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.Currency_TemplateView, w, r, pageDetail)
@@ -220,7 +220,7 @@ func Currency_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.AmountDp = rD.AmountDp
@@ -245,11 +245,11 @@ pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = rD.StripRateFutureCu
 pageDetail.StripRateFutureCurrencyContractFutureContractCode = rD.StripRateFutureCurrencyContractFutureContractCode
 pageDetail.OvernightFundingSpreadBid = rD.OvernightFundingSpreadBid
 pageDetail.OvernightFundingSpreadOffer = rD.OvernightFundingSpreadOffer
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.Currency_TemplateEdit, w, r, pageDetail)
 
@@ -269,7 +269,7 @@ func Currency_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Currency
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Currency_Code)
 		item.Name = r.FormValue(dm.Currency_Name)
 		item.AmountDp = r.FormValue(dm.Currency_AmountDp)
@@ -295,9 +295,9 @@ func Currency_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.OvernightFundingSpreadBid = r.FormValue(dm.Currency_OvernightFundingSpreadBid)
 		item.OvernightFundingSpreadOffer = r.FormValue(dm.Currency_OvernightFundingSpreadOffer)
 	
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 
 	dao.Currency_Store(item)	
 
@@ -325,7 +325,7 @@ func Currency_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.AmountDp = ""
@@ -350,8 +350,8 @@ pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = ""
 pageDetail.StripRateFutureCurrencyContractFutureContractCode = ""
 pageDetail.OvernightFundingSpreadBid = ""
 pageDetail.OvernightFundingSpreadOffer = ""
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.Currency_TemplateNew, w, r, pageDetail)

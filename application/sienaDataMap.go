@@ -3,7 +3,6 @@ package application
 import (
 	"fmt"
 	"html"
-	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -114,9 +113,7 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageSrvEvironment)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageSrvEvironment)
 
 }
 
@@ -189,9 +186,8 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 		JSRows:         noRows,
 	}
 
-	core.GetTemplateID(tmpl, core.GetUserRole(r))
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageSrvEvironment)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageSrvEvironment)
+
 }
 
 func getDataListFile(fileID string) string {
@@ -247,8 +243,7 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		FullRecord:    html.UnescapeString(text),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageSrvEvironment)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageSrvEvironment)
 
 }
 
@@ -303,10 +298,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		FullRecord:    html.UnescapeString(fullRec),
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-
-	//fmt.Println("error", err)
-	t.Execute(w, pageEditSvcDataMapXML)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageEditSvcDataMapXML)
 
 }
 
@@ -408,8 +400,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println("WCT : Page :", pageDM)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageDM)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDM)
 
 }
 

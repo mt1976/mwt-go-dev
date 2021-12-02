@@ -1,7 +1,6 @@
 package application
 
 import (
-	"html/template"
 	"net/http"
 	"os"
 	"time"
@@ -110,10 +109,6 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		homePage.DateSyncIssue = core.WarningLabel
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-
-	//log.Println(GetTemplateID(tmpl, GetUserRole(r)), tmpl, t, GetUserRole(r), "NOT USED", homePage.UserRole, homePage.UserNavi, homePage.UserMenu)
-	//log.Println("about to execute")
-	t.Execute(w, homePage)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, homePage)
 
 }

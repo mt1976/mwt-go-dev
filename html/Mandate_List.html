@@ -56,6 +56,7 @@
                     <th class="text-center">CentreName</th>
                     <th class="text-center">Notify</th>
                     <th class="text-center">SystemUser</th>
+                    <th class="text-center">CompID</th>
                     
                     
                     
@@ -103,6 +104,8 @@
         
                     <td class="align-middle">{{.SystemUser}}</td>
         
+                    <td class="align-middle">{{.CompID}}</td>
+        
                     
         
                     
@@ -113,19 +116,15 @@
                     <td class="text-center" style="width:1px;">
                       <div class="btn-group">
                       
-                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/MandateView?Mandate={{.FirmName}}" method="POST">
+                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/MandateView?Mandate={{.CompID}}" method="POST">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
                       
                       
-                        <button type="submit" value="" class="btn btn-warning btn-sm" formaction="/MandateEdit?Mandate={{.FirmName}}" method="POST">
+                        <button type="submit" value="" class="btn btn-warning btn-sm" formaction="/MandateEdit?Mandate={{.CompID}}" method="POST">
                           <i class="fas fa-pen" style="font-size: 22px"></i>
                         </button>
                         
-                        
-                        <button type="submit" value="" class="btn btn-danger btn-sm" formaction="/MandateDelete?Mandate={{.FirmName}}" method="POST">
-                          <i class="fas fa-trash-alt" style="font-size: 22px"></i>
-                        </button>
                         
                       </div>
 

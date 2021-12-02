@@ -1,7 +1,6 @@
 package application
 
 import (
-	"html/template"
 	"log"
 	"net/http"
 
@@ -54,10 +53,9 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail := Payee_Page{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: PageTitle(dm.Payee_Title, core.Action_List),
-
-		UserMenu: UserMenu_Get(r),
-		UserRole: core.GetUserRole(r),
+		PageTitle: PageTitle(dm.Payee_Title, core.Action_View),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
@@ -93,7 +91,6 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	_, KeyCurrency_Lookup, _ := dao.Currency_GetByID(returnRecord.KeyCurrency)
 	pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Payee_TemplateView, core.GetUserRole(r)))
-	t.Execute(w, pageDetail)
+	ExecuteTemplate(core.GetTemplateID(dm.Payee_TemplateView, core.GetUserRole(r)), w, r, pageDetail)
 
 }

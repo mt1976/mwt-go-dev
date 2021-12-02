@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -104,8 +103,7 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		LoaderStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
 
 }
 
@@ -151,8 +149,7 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
 
 }
 
@@ -202,8 +199,7 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
 
 }
 
@@ -323,9 +319,7 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	_, instanceList, _ := GetSystemStoreList()
 	pageLoaderStoreList.InstanceList = instanceList
-	log.Println(pageLoaderStoreList)
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
 
 }
 

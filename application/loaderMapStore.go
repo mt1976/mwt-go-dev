@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -99,8 +98,7 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		LoaderID:            searchID,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderMapStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
 
 }
 
@@ -142,8 +140,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderMapStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderMapStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
 
 }
 
@@ -186,8 +183,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageLoaderMapStoreList)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderMapStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
 
 }
 
@@ -310,8 +306,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Loader:   loaderID,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageLoaderMapStoreList)
+	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
 
 }
 

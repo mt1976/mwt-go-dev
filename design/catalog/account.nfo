@@ -7,7 +7,7 @@ Endpoint 	         : Account (AccountNo)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : cryptoidCalcium [r0-21.11.01]
-Date & Time		     : 01/12/2021 at 20:36:36
+Date & Time		     : 02/12/2021 at 19:39:58
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -45,8 +45,47 @@ Fields Generated
 | BookName                            | String     |            | false | true   | false |                 |            |            | 
 | PortfolioName                       | String     |            | false | true   | false |                 |            |            | 
 | Centre                              | String     |            | false | true   | false |                 |            |            | 
-| Firm                                | String     |            | false | true   | false |                 |            |            | 
+| DealTypeKey                         | String     |            | false | true   | false |                 |            |            | 
+| DealTypeShortName                   | String     |            | false | true   | false |                 |            |            | 
+| InternalId                          | Int        | 0          | false | true   | false |                 |            |            | 
+| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
+| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
+| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
 | CCYDp                               | Int        | 0          | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | false | true   | false |                 |            |            | 
+| Firm                                | String     |            | false | true   | false |                 |            |            | 
+| DealType                            | String     |            | false | true   | false |                 |            |            | 
+| FullDealType                        | String     |            | false | true   | false |                 |            |            | 
+| DealingInterface                    | String     |            | false | true   | false |                 |            |            | 
+| DealtAmount                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| ParentContractNumber                | String     |            | false | true   | false |                 |            |            | 
+| InterestFrequency                   | String     |            | false | true   | false |                 |            |            | 
+| InterestAction                      | String     |            | false | true   | false |                 |            |            | 
+| InterestStrategy                    | String     |            | false | true   | false |                 |            |            | 
+| InterestBasis                       | String     |            | false | true   | false |                 |            |            | 
+| SienaDealer                         | String     |            | false | true   | false |                 |            |            | 
+| DealOwner                           | String     |            | false | true   | false |                 |            |            | 
+| OriginUser                          | String     |            | false | true   | false |                 |            |            | 
+| EditedByUser                        | String     |            | false | true   | false |                 |            |            | 
+| DealOwnerMnemonic                   | String     |            | false | true   | false |                 |            |            | 
+| UTCOriginTime                       | String     |            | false | true   | false |                 |            |            | 
+| UTCUpdateTime                       | String     |            | false | true   | false |                 |            |            | 
+| CustomerStatementNotes              | String     |            | false | true   | false |                 |            |            | 
+| NotesMargin                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| RequestedBy                         | String     |            | false | true   | false |                 |            |            | 
+| EditReason                          | String     |            | false | true   | false |                 |            |            | 
+| EditOtherReason                     | String     |            | false | true   | false |                 |            |            | 
+| NoticeDays                          | Int        | 0          | false | true   | false |                 |            |            | 
+| DebitFrequency                      | String     |            | false | true   | false |                 |            |            | 
+| CreditFrequency                     | String     |            | false | true   | false |                 |            |            | 
+| EURAmount                           | Float      | 0.00       | false | true   | false |                 |            |            | 
+| EUROtherAmount                      | Float      | 0.00       | false | true   | false |                 |            |            | 
+| PaymentSystemSienaView              | String     |            | false | true   | false |                 |            |            | 
+| PaymentSystemExternalView           | String     |            | false | true   | false |                 |            |            | 
 | CCY_Impl                            | String     |            | false | false  | true  | Currency        | CCY        | Name       | 
 | Book_Impl                           | String     |            | false | false  | true  | Book            | Book       | FullName   | 
 | Portfolio_Impl                      | String     |            | false | false  | true  | Portfolio       | Portfolio  | Description1 | 

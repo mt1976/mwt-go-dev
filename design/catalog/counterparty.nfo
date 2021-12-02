@@ -1,0 +1,56 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/counterparty.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Counterparty (counterparty)
+Endpoint 	         : Counterparty (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r0-21.11.01]
+Date & Time		     : 02/12/2021 at 19:40:00
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCounterparty
+SQL Table Search Col : CompID
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| NameCentre                          | String     |            | true  | true   | false |                 |            |            | 
+| NameFirm                            | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| TelephoneNumber                     | String     |            | false | true   | false |                 |            |            | 
+| EmailAddress                        | String     |            | false | true   | false |                 |            |            | 
+| CustomerType                        | String     |            | false | true   | false |                 |            |            | 
+| AccountOfficer                      | String     |            | false | true   | false |                 |            |            | 
+| CountryCode                         | String     |            | false | true   | false |                 |            |            | 
+| SectorCode                          | String     |            | false | true   | false |                 |            |            | 
+| CpartyGroupName                     | String     |            | false | true   | false |                 |            |            | 
+| Notes                               | String     |            | false | true   | false |                 |            |            | 
+| Owner                               | String     |            | false | true   | false |                 |            |            | 
+| Authorised                          | Bool       | True       | false | true   | false |                 |            |            | 
+| NameFirmName                        | String     |            | false | true   | false |                 |            |            | 
+| NameCentreName                      | String     |            | false | true   | false |                 |            |            | 
+| CountryCodeName                     | String     |            | false | true   | false |                 |            |            | 
+| SectorCodeName                      | String     |            | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/counterparty_core.go)
+* adaptor (/adaptor/counterparty.go)
+* dao (/dao/counterparty.go)
+* datamodel (/datamodel/counterparty.go)
+* menu (/design/menu/counterparty.json)
+* html -> List (/html/Counterparty_List.html)
+* html -> View (/html/Counterparty_View.html)
+* html -> Edit (/html/Counterparty_Edit.html)
+* catalog (/design/catalog/counterparty.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

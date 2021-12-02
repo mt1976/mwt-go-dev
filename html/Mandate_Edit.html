@@ -1,17 +1,17 @@
 {{template "header" .}}
 <body>
   <div class="container-fluid">
-    <form action="/MandateSave?Mandate={{.FirmName}}" method="GET" class="form">
+    <form action="/MandateSave?Mandate={{.CompID}}" method="GET" class="form">
       <div class="card">
         <div class="card-header font-weight-bold">
           <div class="row">
             <div class="col">
-              Mandate&nbsp;:&nbsp;<code>{{.FirmName}}</code>
+              Mandate&nbsp;:&nbsp;<code>{{.CompID}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
               
-                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MandateSave/Mandate={{.FirmName}}" onclick="/MandateSave/Mandate={{.FirmName}}"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MandateSave/Mandate={{.CompID}}" onclick="/MandateSave/Mandate={{.CompID}}"></i>&nbsp;&nbsp;Save</button>
               
                 <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
                 <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
@@ -126,6 +126,12 @@
               <div class="col-sm">
                 <label for="SystemUser" >SystemUser</label>
                 <input type="text" class="form-control" id="SystemUser" name="SystemUser" aria-describedby="SystemUserHelp" placeholder=""  value="{{.SystemUser}}" >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="CompID" >CompID</label>
+                <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required>
               </div>
             </div>
 

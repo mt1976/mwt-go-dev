@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 01/12/2021 at 20:36:40
+// Date & Time		    : 02/12/2021 at 19:40:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 01/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.NegotiableInstrument_SYSId, "0")
    recItem.Id  = get_String(rec, dm.NegotiableInstrument_Id, "")
    recItem.LongName  = get_String(rec, dm.NegotiableInstrument_LongName, "")
@@ -118,7 +118,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
    recItem.SYSCreatedBy  = get_String(rec, dm.NegotiableInstrument_SYSCreatedBy, "")
    recItem.SYSCreatedHost  = get_String(rec, dm.NegotiableInstrument_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.NegotiableInstrument_SYSUpdatedBy, "")
-// Automatically generated 01/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
