@@ -98,12 +98,12 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
-		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Import Run",
+		PageTitle:        PageTitle("Data Loader", core.Action_List),
 		LoaderStoreCount: noItems,
 		LoaderStoreList:  returnList,
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderStoreList)
 
 }
 
@@ -126,7 +126,7 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - View",
+		PageTitle: PageTitle("Data Payload", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -149,7 +149,7 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderStoreList)
 
 }
 
@@ -173,7 +173,7 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - Edit",
+		PageTitle: PageTitle("Data Payload", core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -199,7 +199,7 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderStoreList)
 
 }
 
@@ -308,7 +308,7 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderStoreList := appLoaderStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Run - New",
+		PageTitle: PageTitle("Data Loader", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -319,7 +319,7 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	_, instanceList, _ := GetSystemStoreList()
 	pageLoaderStoreList.InstanceList = instanceList
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderStoreList)
 
 }
 

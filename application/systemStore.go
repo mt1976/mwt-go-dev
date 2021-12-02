@@ -103,7 +103,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
-		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Connected Systems",
+		PageTitle:        PageTitle("Connected System", core.Action_View),
 		SystemStoreCount: noItems,
 		SystemStoreList:  returnList,
 	}
@@ -128,9 +128,9 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = core.ApplicationProperties["appname"] + " - " + "Connected System - View"
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, pageSystemStoreList)
+	pageSystemStoreList.PageTitle = PageTitle("Connect System", core.Action_View)
+
+	ExecuteTemplate(tmpl, w, r, pageSystemStoreList)
 
 }
 
@@ -147,7 +147,7 @@ func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = core.ApplicationProperties["appname"] + " - " + "Connected System - Edit"
+	pageSystemStoreList.PageTitle = PageTitle("Connected System", core.Action_Edit)
 
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
@@ -161,7 +161,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 
 	pageSystemStoreList := appSystemStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - View",
+		PageTitle: PageTitle("Conected System", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -290,7 +290,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSystemStoreList := appSystemStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Connected System - New",
+		PageTitle: PageTitle("Connected System", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",

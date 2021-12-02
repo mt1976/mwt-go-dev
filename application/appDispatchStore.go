@@ -93,7 +93,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		DispatchStoreList:  returnList,
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
+	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
 }
 
@@ -135,7 +135,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageDispatchStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
+	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
 }
 
@@ -176,7 +176,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageDispatchStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
+	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
 }
 
@@ -291,7 +291,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDispatchStoreList)
+	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
 }
 

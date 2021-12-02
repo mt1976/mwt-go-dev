@@ -106,14 +106,14 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:        core.GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           core.ApplicationProperties["appname"],
-		PageTitle:       core.ApplicationProperties["appname"] + " - " + "Data Loaders",
+		PageTitle:       PageTitle("Data Loader", core.Action_List),
 		NoDataMapIDs:    noRows,
 		SvcDataMapItems: dataMapItemsList,
 	}
 
 	//fmt.Println("Page Data", pageSrvEvironment)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageSrvEvironment)
+	ExecuteTemplate(tmpl, w, r, pageSrvEvironment)
 
 }
 
@@ -134,7 +134,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	thisID := core.GetURLparam(r, "loaderID")
 	core.ServiceMessage(inUTL)
-	title := core.ApplicationProperties["appname"]
+	//title := core.ApplicationProperties["appname"]
 	var wrkDataMapCols []DataHdr
 	noColumns, wrkLoaderHeadersList, _ := GetLoaderMapStoreListByLoader(thisID)
 	for _, colData := range wrkLoaderHeadersList {
@@ -176,8 +176,8 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 		UserMenu:       UserMenu_Get(r),
 		UserRole:       core.GetUserRole(r),
 		UserNavi:       "NOT USED",
-		Title:          title,
-		PageTitle:      core.ApplicationProperties["appname"] + " - " + "Data Loader - View",
+		Title:          core.ApplicationProperties["appname"],
+		PageTitle:      PageTitle("Data Payload", core.Action_View),
 		NoDataMapIDs:   0,
 		SvcDataMapCols: wrkDataMapCols,
 		DataMapPageID:  thisID,
@@ -186,8 +186,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 		JSRows:         noRows,
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageSrvEvironment)
-
+	ExecuteTemplate(tmpl, w, r, pageSrvEvironment)
 }
 
 func getDataListFile(fileID string) string {
@@ -236,14 +235,14 @@ func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:      UserMenu_Get(r),
 		UserRole:      core.GetUserRole(r),
 		UserNavi:      "NOT USED",
-		Title:         "Title",
-		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Data Loader - View Import XML",
+		Title:         core.ApplicationProperties["appname"],
+		PageTitle:     PageTitle("Data Loader", core.Action_View+" XML"),
 		DataMapPageID: thisID,
 		JSRows:        35,
 		FullRecord:    html.UnescapeString(text),
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageSrvEvironment)
+	ExecuteTemplate(tmpl, w, r, pageSrvEvironment)
 
 }
 
@@ -282,7 +281,7 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 	core.ServiceMessage(inUTL)
 
-	title := core.ApplicationProperties["appname"]
+	//title := core.ApplicationProperties["appname"]
 
 	// Get Data Here
 	fullRec, _ := getXMLtemplateBody(thisID)
@@ -291,14 +290,14 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:      UserMenu_Get(r),
 		UserRole:      core.GetUserRole(r),
 		UserNavi:      "NOT USED",
-		Title:         title,
-		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Data Loader - Edit XML Template",
+		Title:         core.ApplicationProperties["appname"],
+		PageTitle:     PageTitle("Data Loader", core.Action_Edit+" XML"),
 		DataMapPageID: thisID,
 		JSRows:        35,
 		FullRecord:    html.UnescapeString(fullRec),
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageEditSvcDataMapXML)
+	ExecuteTemplate(tmpl, w, r, pageEditSvcDataMapXML)
 
 }
 
@@ -345,7 +344,7 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("table", tableRows, "x", tableColumns, "loader", loaderID)
 
-	ListSvcDataMapHandler(w, r)
+	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
 }
 
 func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
@@ -369,7 +368,8 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 		// do nothing
 	}
 
-	ListSvcDataMapHandler(w, r)
+	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+
 }
 
 func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
@@ -386,7 +386,7 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	core.ServiceMessage(inUTL)
 
-	title := core.ApplicationProperties["appname"]
+	//title := core.ApplicationProperties["appname"]
 
 	_, instanceList, _ := GetSystemStoreList()
 
@@ -394,13 +394,13 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:     UserMenu_Get(r),
 		UserRole:     core.GetUserRole(r),
 		UserNavi:     "NOT USED",
-		Title:        title,
-		PageTitle:    core.ApplicationProperties["appname"] + " - " + "Data Loader - New",
+		Title:        core.ApplicationProperties["appname"],
+		PageTitle:    PageTitle("Data Loader", core.Action_New),
 		InstanceList: instanceList,
 	}
 	//fmt.Println("WCT : Page :", pageDM)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageDM)
+	ExecuteTemplate(tmpl, w, r, pageDM)
 
 }
 
@@ -433,7 +433,7 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 	NewLoaderStore(s, r)
 
-	ListSvcDataMapHandler(w, r)
+	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
 
 }
 
@@ -459,7 +459,7 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	DeleteLoaderDataStoreByLoader(id)
 	DeleteLoaderMapStoreByLoader(id)
 
-	ListSvcDataMapHandler(w, r)
+	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
 }
 
 func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
@@ -568,7 +568,8 @@ func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
 	loader.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 	PutLoaderStore(loader, r)
 
-	ListSvcDataMapHandler(w, r)
+	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+
 }
 
 func replaceWildcard(orig string, replaceThis string, withThis string) string {

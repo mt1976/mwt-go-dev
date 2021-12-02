@@ -90,7 +90,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		NISelectedStoreList:  returnList,
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageNISelectedStoreList)
+	ExecuteTemplate(tmpl, w, r, pageNISelectedStoreList)
 
 }
 
@@ -129,7 +129,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageCredentialStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageCredentialStoreList)
+	ExecuteTemplate(tmpl, w, r, pageCredentialStoreList)
 
 }
 
@@ -167,7 +167,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageCredentialStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageCredentialStoreList)
+	ExecuteTemplate(tmpl, w, r, pageCredentialStoreList)
 
 }
 
@@ -277,7 +277,7 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageCredentialStoreList)
+	ExecuteTemplate(tmpl, w, r, pageCredentialStoreList)
 
 }
 

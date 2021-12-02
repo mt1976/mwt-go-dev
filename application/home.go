@@ -56,8 +56,6 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	//	log.Println("IN HOMEPAGE")
 
-	tmpl := "home"
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -67,8 +65,8 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:        UserMenu_Get(r),
 		UserRole:        core.GetUserRole(r),
 		UserNavi:        "NOT USED",
-		Title:           "Home",
-		PageTitle:       core.ApplicationProperties["appname"],
+		Title:           core.ApplicationProperties["appname"],
+		PageTitle:       PageTitle("Home", ""),
 		AppReleaseID:    core.ApplicationProperties["releaseid"],
 		AppReleaseLevel: core.ApplicationProperties["releaselevel"],
 		AppReleaseNo:    core.ApplicationProperties["releasenumber"],
@@ -109,6 +107,6 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		homePage.DateSyncIssue = core.WarningLabel
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, homePage)
+	ExecuteTemplate("home", w, r, homePage)
 
 }

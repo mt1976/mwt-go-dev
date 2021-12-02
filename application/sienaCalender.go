@@ -71,14 +71,14 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 
 	pagecalenderList := calenderListPage{
 		Title:         core.ApplicationProperties["appname"],
-		PageTitle:     core.ApplicationProperties["appname"] + " - " + "Calenders",
+		PageTitle:     PageTitle("Calendar", core.Action_List),
 		CalenderCount: noItems,
 		CalenderList:  returnList,
 		UserRole:      core.GetUserRole(r),
 		UserNavi:      "NOT USED",
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pagecalenderList)
+	ExecuteTemplate(tmpl, w, r, pagecalenderList)
 
 }
 

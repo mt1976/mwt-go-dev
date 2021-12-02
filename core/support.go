@@ -98,9 +98,10 @@ func GetTemplateID(tmpl string, userRole string) string {
 	if FileExists(versionTemplate) {
 		returnTemplate = versionTemplate
 	}
-
-	if FileExists(roleTemplate) {
-		returnTemplate = roleTemplate
+	if userRole != "" {
+		if FileExists(roleTemplate) {
+			returnTemplate = roleTemplate
+		}
 	}
 	//log.Printf("Using Template: Source %q", templateName)
 	logs.Template(returnTemplate)

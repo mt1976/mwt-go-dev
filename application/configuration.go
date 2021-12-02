@@ -60,7 +60,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	title := core.ApplicationProperties["appname"]
+	//title := core.ApplicationProperties["appname"]
 
 	// Get Data Here
 
@@ -68,8 +68,8 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               UserMenu_Get(r),
 		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
-		Title:                  title,
-		PageTitle:              core.ApplicationProperties["appname"] + " - " + "Application Configuration",
+		Title:                  core.ApplicationProperties["appname"],
+		PageTitle:              PageTitle("Application", core.Action_Configure),
 		RequestPath:            core.ApplicationProperties["deliverpath"],
 		ResponsePath:           core.ApplicationProperties["receivepath"],
 		ProcessedPath:          core.ApplicationProperties["processedpath"],
@@ -118,6 +118,6 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Printf("pageAppConfigView: %v\n", pageAppConfigView)
 	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageAppConfigView)
+	ExecuteTemplate(tmpl, w, r, pageAppConfigView)
 
 }

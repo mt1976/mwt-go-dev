@@ -92,13 +92,13 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:            core.GetUserRole(r),
 		UserNavi:            "NOT USED",
 		Title:               core.ApplicationProperties["appname"],
-		PageTitle:           core.ApplicationProperties["appname"] + " - " + "Import Data Map",
+		PageTitle:           PageTitle("Data Map", core.Action_View),
 		LoaderMapStoreCount: noItems,
 		LoaderMapStoreList:  returnList,
 		LoaderID:            searchID,
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderMapStoreList)
 
 }
 
@@ -121,7 +121,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - View",
+		PageTitle: PageTitle("Data Map", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -140,7 +140,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(pageLoaderMapStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderMapStoreList)
 
 }
 
@@ -165,7 +165,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - Edit",
+		PageTitle: PageTitle("Data Map", core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -183,7 +183,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//fmt.Println(pageLoaderMapStoreList)
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderMapStoreList)
 
 }
 
@@ -295,7 +295,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Import Data Map - New",
+		PageTitle: PageTitle("Data Map", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -306,7 +306,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Loader:   loaderID,
 	}
 
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, pageLoaderMapStoreList)
+	ExecuteTemplate(tmpl, w, r, pageLoaderMapStoreList)
 
 }
 

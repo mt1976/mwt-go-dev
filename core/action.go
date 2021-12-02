@@ -14,4 +14,6 @@ const (
 	Action_Requests   = Action_Request + "s"
 	Action_Process    = "Process"
 	Action_Approve    = "Approve"
+	Action_Configure  = "Configure"
+	Action_Import     = "Import"
 )

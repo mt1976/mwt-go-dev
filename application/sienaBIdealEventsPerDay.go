@@ -8,7 +8,7 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 )
 
-var sienaBIdealEventsPerDaySQL = "StartInterestDate, 	Count"
+var sienaBIdealEventsPerDaySQL = "StartInterestDate, Count"
 
 var sqlBIDEPDStartInterestDate, sqlBIDEPDCount sql.NullString
 
@@ -22,14 +22,16 @@ type sienaBIdealEventsPerDayItem struct {
 // getSienaBIdealEventsPerDayList read all employees
 func getSienaBIdealEventsPerDayList() (int, []sienaBIdealEventsPerDayItem, error) {
 
-	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay;", sienaBIdealEventsPerDaySQL, core.SienaPropertiesDB["schema"])
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBIdealEventsPerDay", sienaBIdealEventsPerDaySQL, core.SienaPropertiesDB["schema"])
+	//tsql = fmt.Sprintf("%s GROUP BY %s", tsql, "StartInterestDate")
+	tsql = fmt.Sprintf("%s ORDER BY %s", tsql, "StartInterestDate")
 	count, sienaBIdealEventsPerDayList, _, _ := fetchSienaBIdealEventsPerDayData(tsql)
 	return count, sienaBIdealEventsPerDayList, nil
 }
 
 // fetchSienaBIdealEventsPerDayData read all employees
 func fetchSienaBIdealEventsPerDayData(tsql string) (int, []sienaBIdealEventsPerDayItem, sienaBIdealEventsPerDayItem, error) {
-
+	fmt.Printf("tsql: %v\n", tsql)
 	var sienaBIdealEventsPerDay sienaBIdealEventsPerDayItem
 	var sienaBIdealEventsPerDayList []sienaBIdealEventsPerDayItem
 

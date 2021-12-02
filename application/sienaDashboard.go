@@ -1,7 +1,6 @@
 package application
 
 import (
-	"html/template"
 	"net/http"
 	"strconv"
 
@@ -45,8 +44,8 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	noCps, _, _ := dao.Counterparty_GetList()
-	noDepd, dataDepd, _ := getSienaBIdealEventsPerDayList()
-	noSecs, dataSect, _ := getSienaBIcounterpartyPerSectorList()
+	_, dataDepd, _ := getSienaBIdealEventsPerDayList()
+	_, dataSect, _ := getSienaBIcounterpartyPerSectorList()
 
 	var DLlist []string
 	var DVlist []string
@@ -67,10 +66,10 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
-		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Dashboard",
+		PageTitle:         PageTitle("Dashboard", ""),
 		TotCounterparties: strconv.Itoa(noCps),
-		NoGDPRExp:         strconv.Itoa(noDepd),
-		NoLEIExp:          strconv.Itoa(noSecs),
+		NoGDPRExp:         strconv.Itoa(50),
+		NoLEIExp:          strconv.Itoa(10),
 		NoMiFIDRev:        "200",
 		DealsPerDay:       dataDepd,
 		DEPDDataValues:    DVlist,
@@ -81,9 +80,6 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println(p)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
-	t.Execute(w, p)
-
-	ExecuteTemplate(core.GetTemplateID(tmpl, core.GetUserRole(r)), w, r, p)
+	ExecuteTemplate(tmpl, w, r, p)
 
 }
