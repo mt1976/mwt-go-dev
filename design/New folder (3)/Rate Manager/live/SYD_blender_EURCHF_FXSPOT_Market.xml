@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans                             http://www.springframework.org/schema/beans/spring-beans-2.5.xsd                            http://www.springframework.org/schema/aop                             http://www.springframework.org/schema/aop/spring-aop-2.5.xsd                            http://www.springframework.org/schema/context                             http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+  <bean id="FXSPOTMarketEURCHF-SP-Market-Blender" class="com.eurobase.ratemanager.processing.blender.AggregateBlend" init-method="init">
+    <constructor-arg index="0">
+      <value>FXSPOTMarketEURCHF-SP-Market-Blender</value>
+    </constructor-arg>
+	<property name="rateBeans">
+      <set>
+        <ref bean="FXSPOTMarketEURCHF-SP-Market-RateBean" />
+        <ref bean="FXSPOTMarketEURCHF-HSBC-SP-Market-RateBean" />
+        <ref bean="FXSPOTMarketEURCHF-UBS-SP-Market-RateBean" />
+		<ref bean="FXSPOTMarketEURCHF-SWEDBANK-SP-Market-RateBean" />
+		<ref bean="FXSPOTMarketEURCHF-BOA-SP-Market-RateBean" />
+      </set>
+    </property>
+    <!-- The default minimum spread to set. -->
+    <property name="minimumSpread">
+      <value>${default_FX_SpotMinSpread}</value>
+    </property>
+    <property name="maximumSpread">
+      <value>${default_FX_SpotMaxSpread}</value>
+    </property>
+    <property name="writer">
+      <ref bean="BlenderStore-FXSPOTMarketEURCHF-SP-Market" />
+    </property>
+	<!-- Reference to the Multicast used for sending information to the UI. -->
+    <property name="multicastEventSystem">
+      <ref bean="multicastEventSystem"/>
+    </property>
+    <!-- The Subscription Handler reference to send rates to the UI. -->
+    <property name="subscriptionHandler">
+      <ref bean="subscriptionHandler" />
+    </property>
+    <!-- Flag to include indicative rates in the blend -->
+    <property name="includeIq">
+      <value>true</value>
+    </property>
+    <!-- Flag to indicate whether stale rates should be excluded from the blend. -->
+    <property name="excludeStaleRates">
+      <value>true</value>
+    </property>
+    <!-- RateDatum factory to derive the blended rates. -->
+    <property name="factory">
+      <ref bean="DefaultRateDatumFactory" />
+    </property>
+    <!-- The auditor used to audit adjusted and unadjusted rate -->
+    <property name="auditor">
+      <ref bean="auditor" />
+    </property>
+    <!-- The name of the price stream being used by this blender. -->
+    <property name="priceStream">
+      <value>${default_FX_SpotPriceStream}</value>
+    </property>
+    <!-- The asset class this blender belongs to for identifying currency permissions. -->
+    <property name="assetClass">
+      <value>FXSPOT</value>
+    </property>
+  </bean>
+</beans>

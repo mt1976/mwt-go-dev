@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="ExtsysXMLRateImporterDTS" class="com.eurobase.ratemanager.external.in.ExtsysXMLRateImporter" init-method="init">
+  <constructor-arg index="0">
+    <value>ExtsysXMLRateImporterDTS</value>
+  </constructor-arg>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+  <property name="acceptRate">
+    <value>true</value>
+  </property>
+  <property name="container">
+    <ref bean="RMContainer"/>
+  </property>
+  <property name="extsys">
+    <ref bean="extsysDTS"/>
+  </property>
+  <property name="rates">
+    <ref bean="subscribeRatesDTS"/>
+  </property>
+  <property name="executorService">
+    <bean class="java.util.concurrent.ThreadPoolExecutor">
+     
+      <constructor-arg index="0">
+        <value>40</value>
+      </constructor-arg>
+      
+      <constructor-arg index="1">
+        <value>40</value>
+      </constructor-arg>
+      
+      <constructor-arg index="2">
+        <value>500</value>
+      </constructor-arg>
+     
+      <constructor-arg index="3">
+        <value>MILLISECONDS</value>
+      </constructor-arg>
+      
+      <constructor-arg index="4">
+        <bean class="java.util.concurrent.LinkedBlockingQueue"/>
+      </constructor-arg>
+    </bean>
+  </property>
+</bean>
+
+
+<bean id="rfaImplDTS" class="com.eurobase.ratemanager.external.in.SimRateSource">
+  <property name="host">
+    <value>194.128.145.97</value>
+  </property>
+  <property name="port">
+    <value>7471</value>
+  </property>
+</bean>
+
+<bean id="extsysDTS" class="com.eurobase.external.implementation.rateimporter.ExternalRateImporter">
+  <property name="rateSource">
+    <ref bean="rfaImplDTS"/>
+  </property>
+</bean>
+
+<bean id="subscribeRatesDTS" class="com.eurobase.ratemanager.external.in.RatesCodeMap">
+  <property name="rates">
+    <map>
+
+<!-- ***Enter RIC DTS configurations below here*** -->
+      <entry>
+        <key>
+          <value>USDTRY=UBS</value>
+        </key>
+        <bean id="rateConfigKeyRicFXUSDTRYSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDTRY--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDTRYSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDTRY-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURTRY=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURTRYSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURTRY--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURTRYSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURTRY-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURCHF=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURCHFSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURCHF--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURCHFSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURCHF-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURJPY=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURJPYSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURJPY--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURJPYSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURJPY-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURUSD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURUSDSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURUSD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURUSDSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURUSD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDCHF=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDCHFSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDCHF--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDCHFSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDCHF-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDJPY=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDJPYSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDJPY--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDJPYSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDJPY-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDDKK=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDDKKSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDDKK--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDDKKSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDDKK-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>AUDUSD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXAUDUSDSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketAUDUSD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryAUDUSDSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketAUDUSD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURDKK=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURDKKSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURDKK--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURDKKSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_FwdLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURDKK-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDCAD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDCADSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDCAD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDCADSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDCAD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDCZK=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDCZKSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDCZK--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDCZKSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDCZK-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURCZK=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURCZKSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURCZK--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURCZKSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURCZK-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURGBP=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURGBPSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURGBP--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURGBPSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURGBP-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURHUF=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURHUFSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURHUF--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURHUFSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B3}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURHUF-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURNOK=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURNOKSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURNOK--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURNOKSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B3}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURNOK-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURPLN=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURPLNSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURPLN--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURPLNSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B3}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURPLN-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>EURSEK=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXEURSEKSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketEURSEK--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryEURSEKSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B3}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketEURSEK-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>GBPUSD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXGBPUSDSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketGBPUSD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryGBPUSDSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketGBPUSD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDHKD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDHKDSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDHKD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDHKDSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDHKD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDHUF=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDHUFSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDHUF--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDHUFSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDHUF-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDMXN=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDMXNSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDMXN--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDMXNSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDMXN-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+
+      <entry>
+        <key>
+          <value>NZDUSD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXNZDUSDSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketNZDUSD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryNZDUSDSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketNZDUSD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDPLN=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDPLNSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDPLN--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDPLNSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDPLN-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDSGD=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDSGDSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDSGD--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDSGDSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B1}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDSGD-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+      <entry>
+        <key>
+          <value>USDZAR=UBS</value>
+        </key>
+        <bean id="rateConfigKeyDTSFXUSDZARSP" class="com.eurobase.ratemanager.external.in.RateConfigKey">
+          <constructor-arg index="0">
+            <value>FXSPOTMarketUSDZAR--SP</value>
+          </constructor-arg>
+          <constructor-arg index="1">
+            <bean id="rateDatumFactoryUSDZARSP" class="com.eurobase.ratemanager.data.RateDatumFactory">
+              <property name="lifetime">
+                <value>${default_FX_SpotLifetime_B2}</value>
+              </property>
+              <property name="auditor">
+                <ref bean="auditor"/>
+              </property>
+            </bean>
+            </constructor-arg>
+          <constructor-arg index="2">
+            <ref bean="FXSPOTMarketUSDZAR-SP-Market-RateBean"/>
+          </constructor-arg>
+        </bean>
+      </entry>
+
+
+<!-- ***Enter RIC DTS configurations above here*** -->
+
+    </map>
+  </property>
+</bean>
+
+</beans>

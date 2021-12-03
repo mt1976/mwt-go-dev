@@ -1,11 +1,11 @@
 USE [SRS]
 GO
-/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[rateDataStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [dbo].[rateDataStore]    Script Date: 24/11/2021 19:42:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[rateDataStore](
+CREATE TABLE [dbo].[rateDataStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[id] [nvarchar](max) NOT NULL,
 	[bid] [nvarchar](max) NULL,
@@ -23,6 +23,10 @@ CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[rateDataStore](
 	[_host] [nvarchar](max) NULL,
 	[date] [nvarchar](max) NULL,
 	[_updated] [nvarchar](max) NULL,
+	[_createdBy] [nvarchar](max) NULL,
+	[_createdHost] [nvarchar](max) NULL,
+	[_updatedBy] [nvarchar](max) NULL,
+	[_updatedHost] [nvarchar](max) NULL,
  CONSTRAINT [PK_rateDataStore] PRIMARY KEY CLUSTERED 
 (
 	[_id] ASC

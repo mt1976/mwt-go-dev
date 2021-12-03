@@ -1,0 +1,82 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/counterpartyextensions.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : CounterpartyExtensions (counterpartyextensions)
+Endpoint 	         : CounterpartyExtensions (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:56
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCounterpartyExtensions
+SQL Table Search Col : CompID
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| NameFirm                            | String     |            | true  | true   | false |                 |            |            | 
+| NameCentre                          | String     |            | true  | true   | false |                 |            |            | 
+| BICCode                             | String     |            | false | true   | false |                 |            |            | 
+| ContactIndicator                    | Bool       | True       | false | true   | false |                 |            |            | 
+| CoverTrade                          | Bool       | True       | false | true   | false |                 |            |            | 
+| CustomerCategory                    | String     |            | false | true   | false |                 |            |            | 
+| FSCSInclusive                       | Bool       | True       | false | true   | false |                 |            |            | 
+| FeeFactor                           | Float      | 0.00       | false | true   | false |                 |            |            | 
+| InactiveStatus                      | Bool       | True       | false | true   | false |                 |            |            | 
+| Indemnity                           | Bool       | True       | false | true   | false |                 |            |            | 
+| KnowYourCustomerStatus              | Bool       | True       | false | true   | false |                 |            |            | 
+| LERLimitCarveOut                    | Bool       | True       | false | true   | false |                 |            |            | 
+| LastAmended                         | Time       |            | false | true   | false |                 |            |            | 
+| LastLogin                           | Time       |            | false | true   | false |                 |            |            | 
+| LossGivenDefault                    | Float      | 0.00       | false | true   | false |                 |            |            | 
+| MIC                                 | String     |            | false | true   | false |                 |            |            | 
+| ProtectedDepositor                  | Bool       | True       | false | true   | false |                 |            |            | 
+| RPTCurrency                         | String     |            | false | true   | false |                 |            |            | 
+| RateTimeout                         | Int        | 0          | false | true   | false |                 |            |            | 
+| RateValidation                      | String     |            | false | true   | false |                 |            |            | 
+| Registered                          | Bool       | True       | false | true   | false |                 |            |            | 
+| RegulatoryCategory                  | String     |            | false | true   | false |                 |            |            | 
+| SecuredSettlement                   | Bool       | True       | false | true   | false |                 |            |            | 
+| SettlementLimitCarveOut             | Bool       | True       | false | true   | false |                 |            |            | 
+| SortCode                            | String     |            | false | true   | false |                 |            |            | 
+| Training                            | Bool       | True       | false | true   | false |                 |            |            | 
+| TrainingCode                        | String     |            | false | true   | false |                 |            |            | 
+| TrainingReceived                    | Bool       | True       | false | true   | false |                 |            |            | 
+| Unencumbered                        | Bool       | True       | false | true   | false |                 |            |            | 
+| LEIExpiryDate                       | Time       |            | false | true   | false |                 |            |            | 
+| MIFIDReviewDate                     | Time       |            | false | true   | false |                 |            |            | 
+| GDPRReviewDate                      | Time       |            | false | true   | false |                 |            |            | 
+| DelegatedReporting                  | String     |            | false | true   | false |                 |            |            | 
+| BOReconcile                         | Bool       | True       | false | true   | false |                 |            |            | 
+| MIFIDReportableDealsAllowed         | Bool       | True       | false | true   | false |                 |            |            | 
+| SignedInvestmentAgreement           | Bool       | True       | false | true   | false |                 |            |            | 
+| AppropriatenessAssessment           | Bool       | True       | false | true   | false |                 |            |            | 
+| FinancialCounterparty               | Bool       | True       | false | true   | false |                 |            |            | 
+| Collateralisation                   | String     |            | false | true   | false |                 |            |            | 
+| PortfolioCode                       | String     |            | false | true   | false |                 |            |            | 
+| ReconciliationLetterFrequency       | String     |            | false | true   | false |                 |            |            | 
+| DirectDealing                       | Bool       | True       | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/counterpartyExtensions_core.go)
+* adaptor (/adaptor/counterpartyExtensions.go)
+* dao (/dao/counterpartyExtensions.go)
+* datamodel (/datamodel/counterpartyExtensions.go)
+* menu (/design/menu/counterpartyExtensions.json)
+* html -> List (/html/CounterpartyExtensions_List.html)
+* html -> View (/html/CounterpartyExtensions_View.html)
+* html -> Edit (/html/CounterpartyExtensions_Edit.html)
+* html -> New (/html/CounterpartyExtensions_New.html)
+* catalog (/design/catalog/counterpartyExtensions.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

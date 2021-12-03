@@ -1,0 +1,372 @@
+package application
+
+import (
+	"database/sql"
+	"html/template"
+	"net/http"
+	"strconv"
+	"time"
+
+	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+// Defines the Fields to Fetch from SQL
+var appSessionStoreSQL = "apptoken, 	createdate, 	createtime, 	uniqueid, 	sessiontoken, 	username, 	password, 	userip, 	userhost, 	appip, 	apphost, 	issued, 	expiry, 	expiryraw, 	role, 	brand, 	_created, 	_who, 	_host, 	_updated, 	id, expires"
+
+var sqlSessionStoreApptoken, sqlSessionStoreCreatedate, sqlSessionStoreCreatetime, sqlSessionStoreUniqueid, sqlSessionStoreSessiontoken, sqlSessionStoreUsername, sqlSessionStorePassword, sqlSessionStoreUserip, sqlSessionStoreUserhost, sqlSessionStoreAppip, sqlSessionStoreApphost, sqlSessionStoreIssued, sqlSessionStoreExpiry, sqlSessionStoreExpiryraw, sqlSessionStoreRole, sqlSessionStoreBrand, sqlSessionStoreSYSCreated, sqlSessionStoreSYSWho, sqlSessionStoreSYSHost, sqlSessionStoreSYSUpdated, sqlSessionStoreId, sqlSessionStoreExpires sql.NullString
+
+var appSessionStoreSQLINSERT = "INSERT INTO %s.sessionStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s');"
+var appSessionStoreSQLDELETE = "DELETE FROM %s.sessionStore WHERE id='%s';"
+var appSessionStoreSQLSELECT = "SELECT %s FROM %s.sessionStore;"
+var appSessionStoreSQLGET = "SELECT %s FROM %s.sessionStore WHERE id='%s';"
+var appSessionStoreSQLGETTOKEN = "SELECT %s FROM %s.sessionStore WHERE sessiontoken='%s';"
+var appSessionStoreSQLGETUSER = "SELECT %s FROM %s.sessionStore WHERE username='%s';"
+var appSessionStoreSQLDELETEEXPIRED = "DELETE FROM %s.sessionStore WHERE expires < '%s';"
+
+//appSessionStorePage is cheese
+type appSessionStoreListPage struct {
+	UserMenu          []dm.AppMenuItem
+	UserRole          string
+	UserNavi          string
+	Title             string
+	PageTitle         string
+	SessionStoreCount int
+	SessionStoreList  []dm.AppSessionStoreItem
+}
+
+//appSessionStorePage is cheese
+type appSessionStorePage struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	UserNavi  string
+	Title     string
+	PageTitle string
+	ID        string
+	Action    string
+	// Variable Bits Below
+	Apptoken     string
+	Createdate   string
+	Createtime   string
+	Uniqueid     string
+	Sessiontoken string
+	Username     string
+	Password     string
+	Userip       string
+	Userhost     string
+	Appip        string
+	Apphost      string
+	Issued       string
+	Expiry       string
+	Expiryraw    string
+	Role         string
+	Brand        string
+	SYSCreated   string
+	SYSWho       string
+	SYSHost      string
+	SYSUpdated   string
+	Id           string
+}
+
+func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "SessionStoreList"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	var returnList []dm.AppSessionStoreItem
+	noItems, returnList, _ := dao.GetSessionStoreList()
+
+	pageSessionStoreList := appSessionStoreListPage{
+		UserMenu:          UserMenu_Get(r),
+		UserRole:          core.GetUserRole(r),
+		UserNavi:          "NOT USED",
+		Title:             core.ApplicationProperties["appname"],
+		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Sessions",
+		SessionStoreCount: noItems,
+		SessionStoreList:  returnList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSessionStoreList)
+
+}
+
+func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "SessionStoreView"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SessionStore")
+	_, returnRecord, _ := dao.GetSessionStoreByID(searchID)
+
+	pageSessionStoreList := appSessionStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - View",
+		Action:    "",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		// Above are mandatory
+		// Below are variable
+		Apptoken:     returnRecord.Apptoken,
+		Createdate:   returnRecord.Createdate,
+		Createtime:   returnRecord.Createtime,
+		Uniqueid:     returnRecord.Uniqueid,
+		Sessiontoken: returnRecord.Sessiontoken,
+		Username:     returnRecord.Username,
+		Password:     returnRecord.Password,
+		Userip:       returnRecord.Userip,
+		Userhost:     returnRecord.Userhost,
+		Appip:        returnRecord.Appip,
+		Apphost:      returnRecord.Apphost,
+		Issued:       returnRecord.Issued,
+		Expiry:       returnRecord.Expiry,
+		Expiryraw:    returnRecord.Expiryraw,
+		Role:         returnRecord.Role,
+		Brand:        returnRecord.Brand,
+		SYSCreated:   returnRecord.SYSCreated,
+		SYSWho:       returnRecord.SYSWho,
+		SYSHost:      returnRecord.SYSHost,
+		SYSUpdated:   returnRecord.SYSUpdated,
+		Id:           returnRecord.Id,
+	}
+
+	//fmt.Println(pageSessionStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSessionStoreList)
+
+}
+
+func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "SessionStoreEdit"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SessionStore")
+	_, returnRecord, _ := dao.GetSessionStoreByID(searchID)
+
+	pageSessionStoreList := appSessionStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - Edit",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+		Apptoken:     returnRecord.Apptoken,
+		Createdate:   returnRecord.Createdate,
+		Createtime:   returnRecord.Createtime,
+		Uniqueid:     returnRecord.Uniqueid,
+		Sessiontoken: returnRecord.Sessiontoken,
+		Username:     returnRecord.Username,
+		Password:     returnRecord.Password,
+		Userip:       returnRecord.Userip,
+		Userhost:     returnRecord.Userhost,
+		Appip:        returnRecord.Appip,
+		Apphost:      returnRecord.Apphost,
+		Issued:       returnRecord.Issued,
+		Expiry:       returnRecord.Expiry,
+		Expiryraw:    returnRecord.Expiryraw,
+		Role:         returnRecord.Role,
+		Brand:        returnRecord.Brand,
+		SYSCreated:   returnRecord.SYSCreated,
+		SYSWho:       returnRecord.SYSWho,
+		SYSHost:      returnRecord.SYSHost,
+		SYSUpdated:   returnRecord.SYSUpdated,
+		Id:           returnRecord.Id,
+	}
+	//fmt.Println(pageSessionStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSessionStoreList)
+
+}
+
+func SaveSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "saveSienaCountry"
+
+	inUTL := r.URL.Path
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+
+	var s dm.AppSessionStoreItem
+
+	s.Apptoken = r.FormValue("Apptoken")
+	s.Createdate = r.FormValue("Createdate")
+	s.Createtime = r.FormValue("Createtime")
+	s.Uniqueid = r.FormValue("Uniqueid")
+	s.Sessiontoken = r.FormValue("Sessiontoken")
+	s.Username = r.FormValue("Username")
+	s.Password = r.FormValue("Password")
+	s.Userip = r.FormValue("Userip")
+	s.Userhost = r.FormValue("Userhost")
+	s.Appip = r.FormValue("Appip")
+	s.Apphost = r.FormValue("Apphost")
+	s.Issued = r.FormValue("Issued")
+	s.Expiry = r.FormValue("Expiry")
+	s.Expiryraw = r.FormValue("Expiryraw")
+	s.Role = r.FormValue("Role")
+	s.Brand = r.FormValue("Brand")
+	s.SYSCreated = r.FormValue("SYSCreated")
+	s.SYSWho = r.FormValue("SYSWho")
+	s.SYSHost = r.FormValue("SYSHost")
+	s.SYSUpdated = r.FormValue("SYSUpdated")
+	s.Id = r.FormValue("Id")
+
+	//log.Println("save", s)
+
+	dao.PutSessionStore(s)
+
+	ListSessionStoreHandler(w, r)
+
+}
+
+func DeleteSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "SessionStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
+	dao.DeleteSessionStore(searchID)
+	ListSessionStoreHandler(w, r)
+
+}
+
+func BanSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "SessionStore")
+	if len(searchID) == 0 {
+		searchID = r.FormValue("Id")
+	}
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
+	banSessionStore(searchID)
+	ListSessionStoreHandler(w, r)
+}
+
+func ActivateSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "SessionStore")
+	if len(searchID) == 0 {
+		searchID = r.FormValue("Id")
+	}
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
+	activateSessionStore(searchID)
+	ListSessionStoreHandler(w, r)
+
+}
+
+func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "SessionStoreNew"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	pageSessionStoreList := appSessionStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - New",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSessionStoreList)
+
+}
+
+func getSessionExpiryTime() string {
+	expiryDate := time.Now()
+	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
+	expiryDate = expiryDate.AddDate(0, 0, life)
+	return expiryDate.Format(core.DATETIMEFORMATUSER)
+}
+
+func banSessionStore(id string) {
+
+	_, r, _ := dao.GetSessionStoreByID(id)
+	r.Expiry = ""
+	r.Password = ""
+	dao.PutSessionStore(r)
+}
+
+func activateSessionStore(id string) {
+	//fmt.Println(credentialStore)
+	//fmt.Println("RECORD", id)
+	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
+
+	_, r, _ := dao.GetSessionStoreByID(id)
+	//r.Expiry = getExpiryDate()
+	dao.PutSessionStore(r)
+}
+
+func newSessionStoreID() string {
+	id := uuid.New().String()
+	return id
+}

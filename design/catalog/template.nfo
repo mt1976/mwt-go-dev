@@ -1,0 +1,48 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/template.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Template (template)
+Endpoint 	         : Template (TemplateID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:17:01
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : template
+SQL Table Search Col : ID
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| FIELD1                              | String     |            | false | true   | false |                 |            |            | 
+| FIELD2                              | String     |            | false | true   | false |                 |            |            | 
+| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| ID                                  | String     |            | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/template_core.go)
+* dao (/dao/template.go)
+* datamodel (/datamodel/template.go)
+* menu (/design/menu/template.json)
+* html -> List (/html/Template_List.html)
+* html -> View (/html/Template_View.html)
+* html -> Edit (/html/Template_Edit.html)
+* html -> New (/html/Template_New.html)
+* catalog (/design/catalog/template.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

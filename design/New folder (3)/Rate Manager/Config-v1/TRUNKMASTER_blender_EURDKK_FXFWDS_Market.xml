@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter bean id below this line*** -->
+
+<bean id="FXFWDMarketEURDKK--ON-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--ON-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--ON-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--TN-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--TN-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--TN-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--SN-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--SN-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--SN-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--1W-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--1W-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--1W-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--2W-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--2W-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--2W-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--3W-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--3W-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--3W-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--1M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--1M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--1M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--2M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--2M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--2M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--3M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--3M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--3M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--4M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--4M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--4M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--5M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--5M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--5M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--6M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--6M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--6M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--7M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--7M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--7M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--8M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--8M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--8M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--9M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--9M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--9M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--10M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--10M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--10M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--11M-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--11M-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--11M-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURDKK--1Y-Market-Blender" class="com.eurobase.ratemanager.processing.blender.LatestBlend">
+  <constructor-arg index="0">
+    <value>FXFWDMarketEURDKK--1Y-Market-Blender</value>
+  </constructor-arg>
+  <property name="minimumSpread">
+    <value>${default_FX_FwdMinSpread}</value>
+  </property>
+  <property name="maximumSpread">
+    <value>${default_FX_FwdMaxSpread}</value>
+  </property>
+  <property name="writer">
+    <ref bean="BlenderStore-FXFWDMarketEURDKK--1Y-Market"/>
+  </property>
+  <property name="includeIq">
+    <value>true</value>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory" />
+  </property>
+  <property name="auditor">
+    <ref bean="auditor" />
+  </property>
+</bean>
+
+<!-- ***Enter data above this line*** -->
+
+</beans>

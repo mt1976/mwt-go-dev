@@ -1,0 +1,43 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/centre.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Centre (centre)
+Endpoint 	         : Centre (Code)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:55
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCentre
+SQL Table Search Col : Code
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Code                                | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| Country                             | String     |            | false | true   | false |                 |            |            | 
+| Country_Impl                        | String     |            | false | false  | true  | Country         | Country    | Name       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/centre_core.go)
+* adaptor (/adaptor/centre.go)
+* dao (/dao/centre.go)
+* datamodel (/datamodel/centre.go)
+* menu (/design/menu/centre.json)
+* html -> List (/html/Centre_List.html)
+* html -> View (/html/Centre_View.html)
+* html -> Edit (/html/Centre_Edit.html)
+* html -> New (/html/Centre_New.html)
+* catalog (/design/catalog/centre.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

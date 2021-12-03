@@ -8,7 +8,9 @@ import (
 	"net/http"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
@@ -61,24 +63,24 @@ type FredSeriesInfo struct {
 	} `json:"seriess"`
 }
 
-func InstFRED_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func InstFRED_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "INST_FRED"
 	j.Name = "INST_FRED"
 	j.Period = "58 7-19 * * 1-5"
 	j.Description = "Update Bond like Instruments from FRED"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 
 func InstFRED_Register(c *cron.Cron) {
-	application.RegisterSchedule(InstFRED_Job().ID, InstFRED_Job().Name, InstFRED_Job().Description, InstFRED_Job().Period, InstFRED_Job().Type)
+	application.Schedule_Register(InstFRED_Job())
 	c.AddFunc(InstFRED_Job().Period, func() { InstFRED_Run() })
 }
 
 // RunJobRollover is a Rollover function
 func InstFRED_Run() {
-	logStart(InstFRED_Job().Name)
+	logs.StartJob(InstFRED_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -110,8 +112,8 @@ func InstFRED_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(InstFRED_Job().Name, InstFRED_Job().Type, message)
-	logEnd(InstFRED_Job().Name)
+	application.Schedule_Update(InstFRED_Job(), message)
+	logs.EndJob(InstFRED_Job().Name)
 }
 
 func getFredAPIData(inURI string) (string, string) {

@@ -1,0 +1,64 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/payee.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Payee (payee)
+Endpoint 	         : Payee (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:59
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCounterpartyPayee
+SQL Table Search Col : KeyCounterpartyFirm
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SourceTable                         | String     |            | true  | true   | false |                 |            |            | 
+| KeyCounterpartyFirm                 | String     |            | true  | true   | false |                 |            |            | 
+| KeyCounterpartyCentre               | String     |            | true  | true   | false |                 |            |            | 
+| KeyCurrency                         | String     |            | false | true   | false |                 |            |            | 
+| KeyName                             | String     |            | true  | true   | false |                 |            |            | 
+| KeyNumber                           | String     |            | true  | true   | false |                 |            |            | 
+| KeyDirection                        | String     |            | true  | true   | false |                 |            |            | 
+| KeyType                             | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| Address                             | String     |            | false | true   | false |                 |            |            | 
+| PhoneNo                             | String     |            | false | true   | false |                 |            |            | 
+| Country                             | String     |            | false | true   | false |                 |            |            | 
+| Bic                                 | String     |            | false | true   | false |                 |            |            | 
+| Iban                                | String     |            | false | true   | false |                 |            |            | 
+| AccountNo                           | String     |            | false | true   | false |                 |            |            | 
+| FedWireNo                           | String     |            | false | true   | false |                 |            |            | 
+| SortCode                            | String     |            | false | true   | false |                 |            |            | 
+| BankName                            | String     |            | false | true   | false |                 |            |            | 
+| BankPinCode                         | String     |            | false | true   | false |                 |            |            | 
+| BankAddress                         | String     |            | false | true   | false |                 |            |            | 
+| Reason                              | String     |            | false | true   | false |                 |            |            | 
+| BankSettlementAcct                  | Bool       | True       | false | true   | false |                 |            |            | 
+| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| Country_Impl                        | String     |            | false | false  | true  | Country         | Country    | Name       | 
+| Firm_Impl                           | String     |            | false | false  | true  | Firm            | KeyCounterpartyFirm | FullName   | 
+| Centre_Impl                         | String     |            | false | false  | true  | Centre          | KeyCounterpartyCentre | Name       | 
+| Currency_Impl                       | String     |            | false | false  | true  | Currency        | KeyCurrency | Name       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/payee_core.go)
+* adaptor (/adaptor/payee.go)
+* dao (/dao/payee.go)
+* datamodel (/datamodel/payee.go)
+* menu (/design/menu/payee.json)
+* html -> List (/html/Payee_List.html)
+* html -> View (/html/Payee_View.html)
+* catalog (/design/catalog/payee.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

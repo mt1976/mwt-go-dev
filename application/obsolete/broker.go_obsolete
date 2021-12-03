@@ -1,0 +1,386 @@
+package application
+
+import (
+	"database/sql"
+	"encoding/xml"
+	"fmt"
+	"html/template"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+var sienaBrokerSQL = "Code, 	Name, 	FullName, 	Contact, 	Address, 	LEI"
+var sqlBRKRCode, sqlBRKRName, sqlBRKRFullName, sqlBRKRContact, sqlBRKRAddress, sqlBRKRLEI sql.NullString
+
+//sienaBrokerPage is cheese
+type sienaBrokerListPage struct {
+	UserMenu         []dm.AppMenuItem
+	UserRole         string
+	UserNavi         string
+	Title            string
+	PageTitle        string
+	SienaBrokerCount int
+	SienaBrokerList  []sienaBrokerItem
+}
+
+//sienaBrokerPage is cheese
+type sienaBrokerPage struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	UserNavi  string
+	Title     string
+	PageTitle string
+	ID        string
+	Code      string
+	Name      string
+	Fullname  string
+	Contact   string
+	Address   string
+	LEI       string
+	Action    string
+}
+
+//sienaBrokerItem is cheese
+type sienaBrokerItem struct {
+	Code     string
+	Name     string
+	Fullname string
+	Contact  string
+	Address  string
+	LEI      string
+}
+
+func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "listSienaBroker"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//thisConnection, _ := Connect()
+	//	fmt.Println(thisConnection.Stats().OpenConnections)
+	var returnList []sienaBrokerItem
+	noItems, returnList, _ := getSienaBrokerList(core.SienaDB)
+	//	fmt.Println("NoSienaCountries", noItems)
+	//	fmt.Println(returnList)
+	//	fmt.Println(tmpl)
+
+	pageSienaBrokerList := sienaBrokerListPage{
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Brokers",
+		SienaBrokerCount: noItems,
+		SienaBrokerList:  returnList,
+		UserMenu:         UserMenu_Get(r),
+		UserRole:         core.GetUserRole(r),
+		UserNavi:         "NOT USED",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaBrokerList)
+
+}
+
+func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "viewSienaBroker"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//thisConnection, _ := Connect()
+	//fmt.Println(thisConnection.Stats().OpenConnections)
+	//var returnList []sienaBrokerItem
+	searchID := core.GetURLparam(r, "SienaBroker")
+	_, returnRecord, _ := getSienaBroker(core.SienaDB, searchID)
+	//fmt.Println("NoSienaItems", noItems, searchID, returnRecord)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
+
+	pageSienaBrokerList := sienaBrokerPage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Broker - View",
+		ID:        returnRecord.Code,
+		Code:      returnRecord.Code,
+		Name:      returnRecord.Name,
+		Fullname:  returnRecord.Fullname,
+		Contact:   returnRecord.Contact,
+		Address:   returnRecord.Address,
+		LEI:       returnRecord.LEI,
+		Action:    "",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+	}
+
+	//fmt.Println(pageSienaBrokerList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaBrokerList)
+
+}
+
+func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "editSienaBroker"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//thisConnection, _ := Connect()
+	//fmt.Println(thisConnection.Stats().OpenConnections)
+	//var returnList []sienaBrokerItem
+	searchID := core.GetURLparam(r, "SienaBroker")
+	_, returnRecord, _ := getSienaBroker(core.SienaDB, searchID)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
+
+	//fmt.Println(displayList)
+
+	pageSienaBrokerList := sienaBrokerPage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - Edit",
+		ID:        returnRecord.Code,
+		Code:      returnRecord.Code,
+		Name:      returnRecord.Name,
+		Fullname:  returnRecord.Fullname,
+		Contact:   returnRecord.Contact,
+		Address:   returnRecord.Address,
+		LEI:       returnRecord.LEI,
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		//	Country:     returnRecord.Country,
+		//	CountryName: returnRecord.CountryName,
+		Action: "",
+		//	CountryList: countryList,
+	}
+	//fmt.Println(pageSienaBrokerList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaBrokerList)
+
+}
+
+func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "saveSienaCountry"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessageAction(inUTL, " : Save", r.FormValue("Id"))
+
+	var item sienaBrokerItem
+
+	item.Code = r.FormValue("Code")
+	if len(item.Code) == 0 {
+		item.Code = r.FormValue("ID")
+	}
+	item.Name = r.FormValue("Name")
+	item.Fullname = r.FormValue("Fullname")
+	item.Contact = r.FormValue("Contact")
+	item.Address = r.FormValue("Address")
+	item.LEI = r.FormValue("LEI")
+	//	item.Country = r.FormValue("country")
+
+	//item.Action = "UPDATE"
+
+	//fmt.Println("ITEM", item)
+	// DEFINE THE XML FIELDS/KEYFIELDS HERE
+	var sFldCode StaticImport_KeyField
+	var sFldName StaticImport_Field
+	var sFullname StaticImport_Field
+	var sContact StaticImport_Field
+	var sAddress StaticImport_Field
+	var sLEI StaticImport_Field
+
+	// POPULATE THE XML FIELDS
+	sFldCode.Name = "Code"
+	sFldCode.Text = item.Code
+
+	sFldName.Name = "Name"
+	sFldName.Text = item.Name
+
+	sFullname.Name = "Fullname"
+	sFullname.Text = item.Fullname
+
+	sContact.Name = "Contact"
+	sContact.Text = item.Contact
+
+	sAddress.Name = "Address"
+	sAddress.Text = item.Address
+
+	sLEI.Name = "LEI"
+	sLEI.Text = item.LEI
+
+	// IGNORE
+	var sienaKeyFields []StaticImport_KeyField
+	var sienaFields []StaticImport_Field
+	// ADD THE FIELDS TO THE LISTS ABOVE
+	sienaKeyFields = append(sienaKeyFields, sFldCode)
+	sienaFields = append(sienaFields, sFldName)
+	sienaFields = append(sienaFields, sFullname)
+	sienaFields = append(sienaFields, sContact)
+	sienaFields = append(sienaFields, sAddress)
+	sienaFields = append(sienaFields, sLEI)
+
+	//	sienaFields = append(sienaFields, sFldCountry)
+	// IGNORE
+	sienaRecord := &StaticImport_Record{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
+	var sienaRecords []StaticImport_Record
+	sienaRecords = append(sienaRecords, *sienaRecord)
+
+	var sienaTable StaticImport_Table
+	sienaTable.Name = "Broker"
+	sienaTable.Classname = "com.eurobase.siena.data.Brokers.Broker"
+	sienaTable.RECORD = sienaRecords
+
+	var sienaTransaction StaticImport_Transaction
+	sienaTransaction.Type = "IMPORT"
+	sienaTransaction.TABLE = sienaTable
+
+	var StaticImport_XMLContent StaticImport_XML
+	StaticImport_XMLContent.TRANSACTIONS = sienaTransaction
+
+	preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
+	//fmt.Println("PreparedXML", string(preparedXML))
+
+	staticImporterPath := core.SienaProperties["static_in"]
+	fileID := uuid.New()
+	pwd, _ := os.Getwd()
+	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
+	//fmt.Println(fileName)
+
+	err := ioutil.WriteFile(fileName, preparedXML, 0644)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	ListSienaBrokerHandler(w, r)
+
+}
+
+func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "newSienaBroker"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	pageSienaBrokerList := sienaBrokerPage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - New",
+		ID:        "NEW",
+		Code:      "",
+		Name:      "",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		//		Country:   "",
+
+		Action: "NEW",
+		//	CountryList: countryList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaBrokerList)
+
+}
+
+// getSienaBrokerList read all employees
+func getSienaBrokerList(db *sql.DB) (int, []sienaBrokerItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker;", sienaBrokerSQL, core.SienaPropertiesDB["schema"])
+	count, sienaBrokerList, _, _ := fetchSienaBrokerData(db, tsql)
+	return count, sienaBrokerList, nil
+}
+
+// getSienaBrokerList read all employees
+func getSienaBroker(db *sql.DB, id string) (int, sienaBrokerItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaBroker WHERE Code='%s';", sienaBrokerSQL, core.SienaPropertiesDB["schema"], id)
+	_, _, sienaBroker, _ := fetchSienaBrokerData(db, tsql)
+	return 1, sienaBroker, nil
+}
+
+// getSienaBrokerList read all employees
+func putSienaBroker(db *sql.DB, updateItem sienaBrokerItem) error {
+
+	//fmt.Println(db.Stats().OpenConnections)
+	//fmt.Println(core.SienaPropertiesDB["schema"])
+	//fmt.Println(updateItem)
+	return nil
+}
+
+// fetchSienaBrokerData read all employees
+func fetchSienaBrokerData(db *sql.DB, tsql string) (int, []sienaBrokerItem, sienaBrokerItem, error) {
+
+	var sienaBroker sienaBrokerItem
+	var sienaBrokerList []sienaBrokerItem
+
+	rows, err := db.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaBroker, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlBRKRCode, &sqlBRKRName, &sqlBRKRFullName, &sqlBRKRContact, &sqlBRKRAddress, &sqlBRKRLEI)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaBroker, err
+		}
+
+		sienaBroker.Code = sqlBRKRCode.String
+		sienaBroker.Name = sqlBRKRName.String
+		sienaBroker.Fullname = sqlBRKRFullName.String
+		sienaBroker.Contact = sqlBRKRContact.String
+		sienaBroker.Address = sqlBRKRAddress.String
+		sienaBroker.LEI = sqlBRKRLEI.String
+
+		sienaBrokerList = append(sienaBrokerList, sienaBroker)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaBrokerList, sienaBroker, nil
+}

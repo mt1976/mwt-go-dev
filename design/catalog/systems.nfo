@@ -1,0 +1,57 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/systems.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Systems (systems)
+Endpoint 	         : Systems (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:17:01
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : systemStore
+SQL Table Search Col : Id
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| Id                                  | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| Staticin                            | String     |            | false | true   | false |                 |            |            | 
+| Staticout                           | String     |            | false | true   | false |                 |            |            | 
+| Txnin                               | String     |            | false | true   | false |                 |            |            | 
+| Txnout                              | String     |            | false | true   | false |                 |            |            | 
+| Fundscheckin                        | String     |            | false | true   | false |                 |            |            | 
+| Fundscheckout                       | String     |            | false | true   | false |                 |            |            | 
+| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
+| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SWIFTin                             | String     |            | false | true   | false |                 |            |            | 
+| SWIFTout                            | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/systems_core.go)
+* dao (/dao/systems.go)
+* datamodel (/datamodel/systems.go)
+* menu (/design/menu/systems.json)
+* html -> List (/html/Systems_List.html)
+* html -> View (/html/Systems_View.html)
+* html -> Edit (/html/Systems_Edit.html)
+* html -> New (/html/Systems_New.html)
+* catalog (/design/catalog/systems.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

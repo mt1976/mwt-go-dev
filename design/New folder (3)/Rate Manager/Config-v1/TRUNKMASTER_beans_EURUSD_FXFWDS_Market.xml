@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter bean id below this line*** -->
+
+<bean id="FXFWDMarketEURUSD--ON-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>ON</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--TN-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>TN</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--SN-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>SN</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--1W-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>1W</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--2W-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>2W</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--3W-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>3W</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--1M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>1M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--2M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>2M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--3M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>3M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--4M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>4M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--5M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>5M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--6M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>6M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--7M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>7M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--8M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>8M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--9M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>9M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--10M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>10M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--11M-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>11M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="FXFWDMarketEURUSD--1Y-Market-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>FXFWD</value>
+  </property>
+  <property name="ccy">
+    <value/>
+  </property>
+  <property name="baseCcy">
+    <value>EUR</value>
+  </property>
+  <property name="quoteCcy">
+    <value>USD</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>1Y</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_FX_FwdQuoteUnitDP}</value>
+  </property>
+</bean>
+
+<!-- ***Enter bean id above this line*** -->
+
+</beans>

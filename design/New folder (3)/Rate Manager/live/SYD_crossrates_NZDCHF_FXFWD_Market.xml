@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXFWDMarketNZDCHF-ON-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>ON</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-ON-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-ON-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-ON-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-TN-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>TN</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-TN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-TN-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-TN-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-SN-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>SN</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-SN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-SN-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-SN-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-1W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-1W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-1W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-1W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-2W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>2W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-2W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-2W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-2W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-3W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>3W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-3W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-3W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-3W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-1M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-1M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-1M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-1M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-2M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>2M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-2M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-2M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-2M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-3M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>3M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-3M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-3M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-3M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-4M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>4M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-4M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-4M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-4M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-5M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>5M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-5M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-5M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-5M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-6M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>6M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-6M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-6M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-6M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-7M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>7M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-7M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-7M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-7M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-8M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>8M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-8M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-8M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-8M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-9M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>9M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-9M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-9M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-9M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-10M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>10M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-10M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-10M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-10M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-11M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>11M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-11M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-11M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-11M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketNZDCHF-1Y-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>NZDCHF</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1Y</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>NZDUSD</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketNZDCHF-1Y-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketNZDCHF-1Y-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketNZDCHF-1Y-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+
+</beans>

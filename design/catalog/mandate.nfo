@@ -1,0 +1,61 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/mandate.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Mandate (mandate)
+Endpoint 	         : Mandate (Mandate)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:59
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaMandatedUser
+SQL Table Search Col : CompID
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| MandatedUserKeyCounterpartyFirm     | String     |            | true  | true   | false |                 |            |            | 
+| MandatedUserKeyCounterpartyCentre   | String     |            | true  | true   | false |                 |            |            | 
+| MandatedUserKeyUserName             | String     |            | true  | true   | false |                 |            |            | 
+| TelephoneNumber                     | String     |            | false | true   | false |                 |            |            | 
+| EmailAddress                        | String     |            | false | true   | false |                 |            |            | 
+| Active                              | Bool       | True       | false | true   | false |                 |            |            | 
+| FirstName                           | String     |            | false | true   | false |                 |            |            | 
+| Surname                             | String     |            | false | true   | false |                 |            |            | 
+| DateOfBirth                         | Time       |            | true  | true   | false |                 |            |            | 
+| Postcode                            | String     |            | false | true   | false |                 |            |            | 
+| NationalIDNo                        | String     |            | false | true   | false |                 |            |            | 
+| PassportNo                          | String     |            | false | true   | false |                 |            |            | 
+| Country                             | String     |            | false | true   | false |                 |            |            | 
+| CountryName                         | String     |            | false | true   | false |                 |            |            | 
+| FirmName                            | String     |            | false | true   | false |                 |            |            | 
+| CentreName                          | String     |            | false | true   | false |                 |            |            | 
+| Notify                              | Bool       | True       | false | true   | false |                 |            |            | 
+| SystemUser                          | String     |            | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | true  | true   | false |                 |            |            | 
+| Country_Impl                        | String     |            | false | false  | true  | Country         | Country    | Name       | 
+| Firm_Impl                           | String     |            | false | false  | true  | Firm            | MandatedUserKeyCounterpartyFirm | FullName   | 
+| Centre_Impl                         | String     |            | false | false  | true  | Centre          | MandatedUserKeyCounterpartyCentre | Name       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/mandate_core.go)
+* adaptor (/adaptor/mandate.go)
+* dao (/dao/mandate.go)
+* datamodel (/datamodel/mandate.go)
+* menu (/design/menu/mandate.json)
+* html -> List (/html/Mandate_List.html)
+* html -> View (/html/Mandate_View.html)
+* html -> Edit (/html/Mandate_Edit.html)
+* html -> New (/html/Mandate_New.html)
+* catalog (/design/catalog/mandate.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

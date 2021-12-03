@@ -1,0 +1,353 @@
+package application
+
+import (
+	"database/sql"
+	"encoding/xml"
+	"fmt"
+	"html/template"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+var sienaCurrencySQL = "Code, 	Name, 	AmountDp, 	Country, 	CountryName"
+var sqlCCYCode, sqlCCYName, sqlCCYAmountDp, sqlCCYCountry, sqlCCYCountryName sql.NullString
+
+//sienaCurrencyPage is cheese
+type sienaCurrencyListPage struct {
+	UserMenu           []dm.AppMenuItem
+	UserRole           string
+	UserNavi           string
+	Title              string
+	PageTitle          string
+	SienaCurrencyCount int
+	SienaCurrencyList  []sienaCurrencyItem
+}
+
+//sienaCurrencyPage is cheese
+type sienaCurrencyPage struct {
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	UserNavi    string
+	Title       string
+	PageTitle   string
+	ID          string
+	Code        string
+	Name        string
+	AmountDP    string
+	Country     string
+	CountryName string
+	Action      string
+	CountryList []dm.Country
+}
+
+//sienaCurrencyItem is cheese
+type sienaCurrencyItem struct {
+	Code        string
+	Name        string
+	AmountDP    string
+	Country     string
+	Action      string
+	CountryName string
+}
+
+func ListSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "listSienaCurrency"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	var returnList []sienaCurrencyItem
+	noItems, returnList, _ := getSienaCurrencyList()
+
+	pageSienaCurrencyList := sienaCurrencyListPage{
+		UserMenu:           UserMenu_Get(r),
+		UserRole:           core.GetUserRole(r),
+		UserNavi:           "NOT USED",
+		Title:              core.ApplicationProperties["appname"],
+		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Currencies",
+		SienaCurrencyCount: noItems,
+		SienaCurrencyList:  returnList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCurrencyList)
+
+}
+
+func ViewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "viewSienaCurrency"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SienaCurrency")
+	noItems, returnRecord, _ := getSienaCurrency(searchID)
+	fmt.Println("NoSienaItems", noItems, searchID)
+
+	pageSienaCurrencyList := sienaCurrencyPage{
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		UserNavi:    "NOT USED",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Currency - View",
+		ID:          returnRecord.Code,
+		Code:        returnRecord.Code,
+		Name:        returnRecord.Name,
+		AmountDP:    returnRecord.AmountDP,
+		Country:     returnRecord.Country,
+		CountryName: returnRecord.CountryName,
+		Action:      "",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCurrencyList)
+
+}
+
+func EditSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "editSienaCurrency"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SienaCurrency")
+	noItems, returnRecord, _ := getSienaCurrency(searchID)
+	fmt.Println("NoSienaItems", noItems, searchID)
+
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
+
+	//fmt.Println(displayList)
+
+	pageSienaCurrencyList := sienaCurrencyPage{
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		UserNavi:    "NOT USED",
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Currency - Edit",
+		ID:          returnRecord.Code,
+		Code:        returnRecord.Code,
+		Name:        returnRecord.Name,
+		Country:     returnRecord.Country,
+		CountryName: returnRecord.CountryName,
+		AmountDP:    returnRecord.AmountDP,
+		Action:      "",
+		CountryList: countryList,
+	}
+	fmt.Println(pageSienaCurrencyList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCurrencyList)
+
+}
+
+func SaveSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "saveSienaCountry"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessageAction(inUTL, "Save", "")
+
+	var item sienaCurrencyItem
+
+	item.Code = r.FormValue("Code")
+	if len(item.Code) == 0 {
+		item.Code = r.FormValue("ID")
+	}
+	item.Name = r.FormValue("Name")
+	item.Country = r.FormValue("country")
+
+	item.Action = "UPDATE"
+
+	fmt.Println("ITEM", item)
+	// DEFINE THE XML FIELDS/KEYFIELDS HERE
+	var sFldCode StaticImport_KeyField
+	var sFldName StaticImport_Field
+	var sFldCountry StaticImport_Field
+
+	// POPULATE THE XML FIELDS
+	sFldCode.Name = "shortName"
+	sFldCode.Text = item.Code
+
+	sFldName.Name = "fullName"
+	sFldName.Text = item.Name
+
+	sFldCountry.Name = "country"
+	sFldCountry.Text = item.Country
+
+	// IGNORE
+	var sienaKeyFields []StaticImport_KeyField
+	var sienaFields []StaticImport_Field
+	// ADD THE FIELDS TO THE LISTS ABOVE
+	sienaKeyFields = append(sienaKeyFields, sFldCode)
+	sienaFields = append(sienaFields, sFldName)
+	sienaFields = append(sienaFields, sFldCountry)
+	// IGNORE
+	sienaRecord := &StaticImport_Record{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
+	var sienaRecords []StaticImport_Record
+	sienaRecords = append(sienaRecords, *sienaRecord)
+
+	var sienaTable StaticImport_Table
+	sienaTable.Name = "Currency"
+	sienaTable.Classname = "com.eurobase.siena.data.Currencys.Currency"
+	sienaTable.RECORD = sienaRecords
+
+	var sienaTransaction StaticImport_Transaction
+	sienaTransaction.Type = "IMPORT"
+	sienaTransaction.TABLE = sienaTable
+
+	var StaticImport_XMLContent StaticImport_XML
+	StaticImport_XMLContent.TRANSACTIONS = sienaTransaction
+
+	preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
+	fmt.Println("PreparedXML", string(preparedXML))
+
+	staticImporterPath := core.SienaProperties["static_in"]
+	fileID := uuid.New()
+	pwd, _ := os.Getwd()
+	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
+	fmt.Println(fileName)
+
+	err := ioutil.WriteFile(fileName, preparedXML, 0644)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	ListSienaCurrencyHandler(w, r)
+
+}
+
+func NewSienaCurrencyHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "newSienaCurrency"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
+
+	pageSienaCurrencyList := sienaCurrencyPage{
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Currency - New",
+		ID:        "NEW",
+		Code:      "",
+		Name:      "",
+		Country:   "",
+
+		Action:      "NEW",
+		CountryList: countryList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCurrencyList)
+
+}
+
+// getSienaCurrencyList read all employees
+func getSienaCurrencyList() (int, []sienaCurrencyItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency;", sienaCurrencySQL, core.SienaPropertiesDB["schema"])
+	count, sienaCurrencyList, _, _ := fetchSienaCurrencyData(tsql)
+	return count, sienaCurrencyList, nil
+}
+
+// getSienaCurrencyList read all employees
+func getSienaCurrency(id string) (int, sienaCurrencyItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCurrency WHERE Code='%s';", sienaCurrencySQL, core.SienaPropertiesDB["schema"], id)
+	_, _, sienaCurrency, _ := fetchSienaCurrencyData(tsql)
+	return 1, sienaCurrency, nil
+}
+
+// getSienaCurrencyList read all employees
+func putSienaCurrency(updateItem sienaCurrencyItem) error {
+
+	//fmt.Println(db.Stats().OpenConnections)
+	fmt.Println(core.SienaPropertiesDB["schema"])
+	fmt.Println(updateItem)
+	return nil
+}
+
+// fetchSienaCurrencyData read all employees
+func fetchSienaCurrencyData(tsql string) (int, []sienaCurrencyItem, sienaCurrencyItem, error) {
+
+	var sienaCurrency sienaCurrencyItem
+	var sienaCurrencyList []sienaCurrencyItem
+
+	rows, err := core.SienaDB.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCurrency, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCCYCode, &sqlCCYName, &sqlCCYAmountDp, &sqlCCYCountry, &sqlCCYCountryName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCurrency, err
+		}
+
+		sienaCurrency.Code = sqlCCYCode.String
+		sienaCurrency.Name = sqlCCYName.String
+		sienaCurrency.AmountDP = sqlCCYAmountDp.String
+		sienaCurrency.Country = sqlCCYCountry.String
+		sienaCurrency.CountryName = sqlCCYCountryName.String
+
+		sienaCurrencyList = append(sienaCurrencyList, sienaCurrency)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCurrencyList, sienaCurrency, nil
+}

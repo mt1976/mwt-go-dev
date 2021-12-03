@@ -1,0 +1,344 @@
+package application
+
+import (
+	"database/sql"
+	"encoding/xml"
+	"fmt"
+	"html/template"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+var sienaCounterpartyGroupSQL = "Name, 	CountryCode, 	SuperGroup, 	CountryName"
+var sqlCGRPName, sqlCGRPCountryCode, sqlCGRPSuperGroup, sqlCGRPCountryName sql.NullString
+
+//sienaCounterpartyGroupPage is cheese
+type sienaCounterpartyGroupListPage struct {
+	UserMenu                    []dm.AppMenuItem
+	UserRole                    string
+	UserNavi                    string
+	Title                       string
+	PageTitle                   string
+	SienaCounterpartyGroupCount int
+	SienaCounterpartyGroupList  []sienaCounterpartyGroupItem
+}
+
+//sienaCounterpartyGroupPage is cheese
+type sienaCounterpartyGroupPage struct {
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	UserNavi    string
+	Title       string
+	PageTitle   string
+	Action      string
+	Name        string
+	CountryCode string
+	SuperGroup  string
+	CountryName string
+	GroupList   []sienaCounterpartyGroupItem
+	CountryList []dm.Country
+}
+
+//sienaCounterpartyGroupItem is cheese
+type sienaCounterpartyGroupItem struct {
+	Name        string
+	CountryCode string
+	SuperGroup  string
+	CountryName string
+	Action      string
+}
+
+func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "listSienaCounterpartyGroup"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	var returnList []sienaCounterpartyGroupItem
+	noItems, returnList, _ := getSienaCounterpartyGroupList()
+
+	pageSienaCounterpartyGroupList := sienaCounterpartyGroupListPage{
+		Title:                       core.ApplicationProperties["appname"],
+		PageTitle:                   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
+		SienaCounterpartyGroupCount: noItems,
+		SienaCounterpartyGroupList:  returnList,
+		UserMenu:                    UserMenu_Get(r),
+		UserRole:                    core.GetUserRole(r),
+		UserNavi:                    "NOT USED",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCounterpartyGroupList)
+
+}
+
+func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "viewSienaCounterpartyGroup"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SienaCounterpartyGroup")
+	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
+
+	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
+		Name:        returnRecord.Name,
+		CountryCode: returnRecord.CountryCode,
+		SuperGroup:  returnRecord.SuperGroup,
+		CountryName: returnRecord.CountryName,
+		Action:      "",
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		UserNavi:    "NOT USED",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCounterpartyGroupList)
+
+}
+
+func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "editSienaCounterpartyGroup"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SienaCounterpartyGroup")
+	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
+	_, countryList, _ := dao.Country_GetList()
+	_, groupList, _ := getSienaCounterpartyGroupList()
+
+	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Group - View",
+		Name:        returnRecord.Name,
+		CountryCode: returnRecord.CountryCode,
+		SuperGroup:  returnRecord.SuperGroup,
+		CountryName: returnRecord.CountryName,
+		Action:      "",
+		CountryList: countryList,
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		UserNavi:    "NOT USED",
+		GroupList:   groupList,
+	}
+	//fmt.Println(pageSienaCounterpartyGroupList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCounterpartyGroupList)
+
+}
+
+func SaveSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "saveSienaCountry"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessageAction(inUTL, "Save", "")
+
+	var item sienaCounterpartyGroupItem
+
+	item.Name = r.FormValue("Code")
+	if len(item.Name) == 0 {
+		item.Name = r.FormValue("ID")
+	}
+	item.Name = r.FormValue("Name")
+	item.CountryCode = r.FormValue("country")
+
+	item.Action = "UPDATE"
+
+	fmt.Println("ITEM", item)
+	// DEFINE THE XML FIELDS/KEYFIELDS HERE
+	var sFldCode StaticImport_KeyField
+	var sFldName StaticImport_Field
+	var sFldCountry StaticImport_Field
+
+	// POPULATE THE XML FIELDS
+	sFldCode.Name = "shortName"
+	sFldCode.Text = item.Name
+
+	sFldName.Name = "fullName"
+	sFldName.Text = item.Name
+
+	sFldCountry.Name = "country"
+	sFldCountry.Text = item.CountryCode
+
+	// IGNORE
+	var sienaKeyFields []StaticImport_KeyField
+	var sienaFields []StaticImport_Field
+	// ADD THE FIELDS TO THE LISTS ABOVE
+	sienaKeyFields = append(sienaKeyFields, sFldCode)
+	sienaFields = append(sienaFields, sFldName)
+	sienaFields = append(sienaFields, sFldCountry)
+	// IGNORE
+	sienaRecord := &StaticImport_Record{KEYFIELD: sienaKeyFields, FIELD: sienaFields}
+	var sienaRecords []StaticImport_Record
+	sienaRecords = append(sienaRecords, *sienaRecord)
+
+	var sienaTable StaticImport_Table
+	sienaTable.Name = "CounterpartyGroup"
+	sienaTable.Classname = "com.eurobase.siena.data.CounterpartyGroups.CounterpartyGroup"
+	sienaTable.RECORD = sienaRecords
+
+	var sienaTransaction StaticImport_Transaction
+	sienaTransaction.Type = "IMPORT"
+	sienaTransaction.TABLE = sienaTable
+
+	var StaticImport_XMLContent StaticImport_XML
+	StaticImport_XMLContent.TRANSACTIONS = sienaTransaction
+
+	preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
+	fmt.Println("PreparedXML", string(preparedXML))
+
+	staticImporterPath := core.SienaProperties["static_in"]
+	fileID := uuid.New()
+	pwd, _ := os.Getwd()
+	fileName := pwd + staticImporterPath + "/" + fileID.String() + ".xml"
+	fmt.Println(fileName)
+
+	err := ioutil.WriteFile(fileName, preparedXML, 0644)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	ListSienaCounterpartyGroupHandler(w, r)
+
+}
+
+func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "newSienaCounterpartyGroup"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
+	_, groupList, _ := getSienaCounterpartyGroupList()
+
+	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Group - New",
+
+		Name:        "",
+		CountryCode: "",
+		SuperGroup:  "",
+		CountryName: "",
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+		UserNavi:    "NOT USED",
+		Action:      "NEW",
+		CountryList: countryList,
+		GroupList:   groupList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaCounterpartyGroupList)
+
+}
+
+// getSienaCounterpartyGroupList read all employees
+func getSienaCounterpartyGroupList() (int, []sienaCounterpartyGroupItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup;", sienaCounterpartyGroupSQL, core.SienaPropertiesDB["schema"])
+	count, sienaCounterpartyGroupList, _, _ := fetchSienaCounterpartyGroupData(tsql)
+	return count, sienaCounterpartyGroupList, nil
+}
+
+// getSienaCounterpartyGroupList read all employees
+func getSienaCounterpartyGroup(id string) (int, sienaCounterpartyGroupItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaCounterpartyGroup WHERE Name='%s';", sienaCounterpartyGroupSQL, core.SienaPropertiesDB["schema"], id)
+	_, _, sienaCounterpartyGroup, _ := fetchSienaCounterpartyGroupData(tsql)
+	return 1, sienaCounterpartyGroup, nil
+}
+
+// getSienaCounterpartyGroupList read all employees
+func putSienaCounterpartyGroup(updateItem sienaCounterpartyGroupItem) error {
+
+	//fmt.Println(db.Stats().OpenConnections)
+	fmt.Println(core.SienaPropertiesDB["schema"])
+	fmt.Println(updateItem)
+	return nil
+}
+
+// fetchSienaCounterpartyGroupData read all employees
+func fetchSienaCounterpartyGroupData(tsql string) (int, []sienaCounterpartyGroupItem, sienaCounterpartyGroupItem, error) {
+
+	var sienaCounterpartyGroup sienaCounterpartyGroupItem
+	var sienaCounterpartyGroupList []sienaCounterpartyGroupItem
+
+	rows, err := core.SienaDB.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaCounterpartyGroup, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlCGRPName, &sqlCGRPCountryCode, &sqlCGRPSuperGroup, &sqlCGRPCountryName)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaCounterpartyGroup, err
+		}
+
+		sienaCounterpartyGroup.Name = sqlCGRPName.String
+		sienaCounterpartyGroup.CountryCode = sqlCGRPCountryCode.String
+		sienaCounterpartyGroup.SuperGroup = sqlCGRPSuperGroup.String
+		sienaCounterpartyGroup.CountryName = sqlCGRPCountryName.String
+
+		sienaCounterpartyGroupList = append(sienaCounterpartyGroupList, sienaCounterpartyGroup)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	return count, sienaCounterpartyGroupList, sienaCounterpartyGroup, nil
+}

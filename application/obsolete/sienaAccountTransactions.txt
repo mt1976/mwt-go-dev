@@ -1,0 +1,168 @@
+package application
+
+import (
+	"database/sql"
+	"fmt"
+	"html/template"
+	"log"
+	"net/http"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+// Defines the Fields to Fetch from SQL
+var sienaAccountTransactionsSQL = "SienaReference, 	LegNo, 	MMLegNo, 	Narrative, 	Amount, 	StartInterestDate, 	EndInterestDate, 	Amortisation, 	InterestAmount, 	InterestAction, 	FixingDate, 	InterestCalculationDate, 	AmendmentAmount, 	DealtCcy, AmountDp"
+var sqlACTXSienaReference, sqlACTXLegNo, sqlACTXMMLegNo, sqlACTXNarrative, sqlACTXAmount, sqlACTXStartInterestDate, sqlACTXEndInterestDate, sqlACTXAmortisation, sqlACTXInterestAmount, sqlACTXInterestAction, sqlACTXFixingDate, sqlACTXInterestCalculationDate, sqlACTXAmendmentAmount, sqlACTXDealtCcy, sqlACTXAmountDp sql.NullString
+
+//sienaAccountTransactionsPage is cheese
+type sienaAccountTransactionListPage struct {
+	UserMenu                     []dm.AppMenuItem
+	UserRole                     string
+	UserNavi                     string
+	Title                        string
+	PageTitle                    string
+	SienaAccountTransactionCount int
+	SienaAccountTransactionList  []sienaAccountTransactionItem
+	ID                           string
+	Name                         string
+}
+
+//sienaAccountTransactionsPage is cheese
+type sienaAccountTransactionPage struct {
+	UserMenu                []dm.AppMenuItem
+	UserRole                string
+	UserNavi                string
+	Title                   string
+	PageTitle               string
+	ID                      string
+	Action                  string
+	SienaReference          string
+	LegNo                   string
+	MMLegNo                 string
+	Narrative               string
+	Amount                  string
+	StartInterestDate       string
+	EndInterestDate         string
+	Amortisation            string
+	InterestAmount          string
+	InterestAction          string
+	FixingDate              string
+	InterestCalculationDate string
+	AmendmentAmount         string
+	DealtCcy                string
+	AmountDp                string
+}
+
+//sienaAccountTransactionItem is cheese
+type sienaAccountTransactionItem struct {
+	Action                  string
+	SienaReference          string
+	LegNo                   string
+	MMLegNo                 string
+	Narrative               string
+	Amount                  string
+	StartInterestDate       string
+	EndInterestDate         string
+	Amortisation            string
+	InterestAmount          string
+	InterestAction          string
+	FixingDate              string
+	InterestCalculationDate string
+	AmendmentAmount         string
+	DealtCcy                string
+	AmountDp                string
+}
+
+func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "listSienaAccountTransactions"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//	fmt.Println(thisConnection.Stats().OpenConnections)
+	var returnList []sienaAccountTransactionItem
+	accountID := core.GetURLparam(r, "SienaAccountID")
+	accountCCY := core.GetURLparam(r, "CCY")
+	noItems, returnList, _ := getSienaAccountTransactionsList(accountID, accountCCY)
+	//	fmt.Println("NoSienaCountries", noItems)
+	//	fmt.Println(returnList)
+	//	fmt.Println(tmpl)
+	_, account, _ := dao.Account_GetByID(accountID)
+
+	pageSienaAccountTransactionsList := sienaAccountTransactionListPage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "Account Transactions - View",
+
+		SienaAccountTransactionCount: noItems,
+		SienaAccountTransactionList:  returnList,
+		ID:                           account.AccountNumber,
+		Name:                         account.AccountName,
+		UserMenu:                     UserMenu_Get(r),
+		UserRole:                     core.GetUserRole(r),
+		UserNavi:                     "NOT USED",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaAccountTransactionsList)
+
+}
+
+// getSienaAccountTransactionsList read all employees
+func getSienaAccountTransactionsList(idRef string, accountCCY string) (int, []sienaAccountTransactionItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountTransactions WHERE SienaReference=%s;", sienaAccountTransactionsSQL, core.SienaPropertiesDB["schema"], idRef)
+	count, sienaAccountTransactionsList, _, _ := fetchSienaAccountTransactionData(tsql)
+	return count, sienaAccountTransactionsList, nil
+}
+
+// fetchSienaAccountTransactionData read all employees
+func fetchSienaAccountTransactionData(tsql string) (int, []sienaAccountTransactionItem, sienaAccountTransactionItem, error) {
+
+	var sienaAccountTransaction sienaAccountTransactionItem
+	var sienaAccountTransactionList []sienaAccountTransactionItem
+
+	rows, err := core.SienaDB.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaAccountTransaction, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlACTXSienaReference, &sqlACTXLegNo, &sqlACTXMMLegNo, &sqlACTXNarrative, &sqlACTXAmount, &sqlACTXStartInterestDate, &sqlACTXEndInterestDate, &sqlACTXAmortisation, &sqlACTXInterestAmount, &sqlACTXInterestAction, &sqlACTXFixingDate, &sqlACTXInterestCalculationDate, &sqlACTXAmendmentAmount, &sqlACTXDealtCcy, &sqlACTXAmountDp)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaAccountTransaction, err
+		}
+		sienaAccountTransaction.SienaReference = sqlACTXSienaReference.String
+		sienaAccountTransaction.LegNo = sqlACTXLegNo.String
+		sienaAccountTransaction.MMLegNo = sqlACTXMMLegNo.String
+		sienaAccountTransaction.Narrative = sqlACTXNarrative.String
+		sienaAccountTransaction.Amount = core.FormatCurrencyDps(sqlACTXAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
+		sienaAccountTransaction.StartInterestDate = core.SqlDateToHTMLDate(sqlACTXStartInterestDate.String)
+		sienaAccountTransaction.EndInterestDate = core.SqlDateToHTMLDate(sqlACTXEndInterestDate.String)
+		sienaAccountTransaction.Amortisation = sqlACTXAmortisation.String
+		sienaAccountTransaction.InterestAmount = sqlACTXInterestAmount.String
+		sienaAccountTransaction.InterestAction = sqlACTXInterestAction.String
+		sienaAccountTransaction.FixingDate = core.SqlDateToHTMLDate(sqlACTXFixingDate.String)
+		sienaAccountTransaction.InterestCalculationDate = core.SqlDateToHTMLDate(sqlACTXInterestCalculationDate.String)
+		sienaAccountTransaction.AmendmentAmount = core.FormatCurrencyDps(sqlACTXAmendmentAmount.String, sqlACTXDealtCcy.String, sqlACTXAmountDp.String)
+		sienaAccountTransaction.DealtCcy = sqlACTXDealtCcy.String
+		sienaAccountTransaction.AmountDp = sqlACTXAmountDp.String
+		sienaAccountTransactionList = append(sienaAccountTransactionList, sienaAccountTransaction)
+		count++
+	}
+	log.Println(count, sienaAccountTransactionList, sienaAccountTransaction)
+	return count, sienaAccountTransactionList, sienaAccountTransaction, nil
+}

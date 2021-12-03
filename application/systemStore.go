@@ -11,7 +11,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 // Defines the Fields to Fetch from SQL
@@ -28,7 +29,7 @@ var appSystemStoreSQLGET = "SELECT %s FROM %s.systemStore WHERE id='%s';"
 
 //appSystemStorePage is cheese
 type appSystemStoreListPage struct {
-	UserMenu         []AppMenuItem
+	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -39,7 +40,7 @@ type appSystemStoreListPage struct {
 
 //appSystemStorePage is cheese
 type appSystemStorePage struct {
-	UserMenu  []AppMenuItem
+	UserMenu  []dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -83,8 +84,8 @@ type SystemStoreItem struct {
 
 func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -93,29 +94,29 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 	var returnList []SystemStoreItem
 	noItems, returnList, _ := GetSystemStoreList()
 
 	pageSystemStoreList := appSystemStoreListPage{
-		UserMenu:         GetUserMenu(r),
-		UserRole:         GetUserRole(r),
+		UserMenu:         UserMenu_Get(r),
+		UserRole:         core.GetUserRole(r),
 		UserNavi:         "NOT USED",
-		Title:            globals.ApplicationProperties["appname"],
-		PageTitle:        globals.ApplicationProperties["appname"] + " - " + "Connected Systems",
+		Title:            core.ApplicationProperties["appname"],
+		PageTitle:        PageTitle("Connected System", core.Action_View),
 		SystemStoreCount: noItems,
 		SystemStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -124,46 +125,46 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Connected System - View"
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
-	t.Execute(w, pageSystemStoreList)
+	pageSystemStoreList.PageTitle = PageTitle("Connect System", core.Action_View)
+
+	ExecuteTemplate(tmpl, w, r, pageSystemStoreList)
 
 }
 
 func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 	tmpl := "SystemStoreEdit"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := editViewSytemStore(w, r)
-	pageSystemStoreList.PageTitle = globals.ApplicationProperties["appname"] + " - " + "Connected System - Edit"
+	pageSystemStoreList.PageTitle = PageTitle("Connected System", core.Action_Edit)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePage {
 
-	searchID := GetURLparam(r, "SystemStore")
+	searchID := core.GetURLparam(r, "SystemStore")
 	_, returnRecord, _ := GetSystemStoreByID(searchID)
 
 	pageSystemStoreList := appSystemStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Connected System - View",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle("Conected System", core.Action_View),
 		Action:    "",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -186,8 +187,8 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 
 func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -195,7 +196,7 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	//tmpl := "saveSienaCountry"
 
 	inUTL := r.URL.Path
-	serviceMessageAction(inUTL, "Save", r.FormValue("Id"))
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
 
 	var s SystemStoreItem
 
@@ -222,15 +223,15 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "SystemStore")
-	serviceMessageAction(inUTL, "Delete", searchID)
+	searchID := core.GetURLparam(r, "SystemStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
 	DeleteSystemStore(searchID)
 	ListSystemStoreHandler(w, r)
 
@@ -238,36 +239,36 @@ func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "SystemStore")
+	searchID := core.GetURLparam(r, "SystemStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Ban", searchID)
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banSystemStore(searchID, r)
 	ListSystemStoreHandler(w, r)
 }
 
 func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 
 	inUTL := r.URL.Path
-	searchID := GetURLparam(r, "SystemStore")
+	searchID := core.GetURLparam(r, "SystemStore")
 	if len(searchID) == 0 {
 		searchID = r.FormValue("Id")
 	}
-	serviceMessageAction(inUTL, "Activate", searchID)
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateSystemStore(searchID, r)
 	ListSystemStoreHandler(w, r)
 
@@ -275,8 +276,8 @@ func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(SessionValidate(w, r)) {
-		LogoutHandler(w, r)
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -285,13 +286,13 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessage(inUTL)
+	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := appSystemStorePage{
-		Title:     globals.ApplicationProperties["appname"],
-		PageTitle: globals.ApplicationProperties["appname"] + " - " + "Connected System - New",
-		UserMenu:  GetUserMenu(r),
-		UserRole:  GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle("Connected System", core.Action_New),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -299,21 +300,21 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 // getSystemStoreList read all employees
 func GetSystemStoreList() (int, []SystemStoreItem, error) {
-	tsql := fmt.Sprintf(appSystemStoreSQLSELECT, appSystemStoreSQL, globals.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appSystemStoreSQLSELECT, appSystemStoreSQL, core.ApplicationPropertiesDB["schema"])
 	count, appSystemStoreList, _, _ := fetchSystemStoreData(tsql)
 	return count, appSystemStoreList, nil
 }
 
 // getSystemStoreList read all employees
 func GetSystemStoreByID(id string) (int, SystemStoreItem, error) {
-	tsql := fmt.Sprintf(appSystemStoreSQLGET, appSystemStoreSQL, globals.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appSystemStoreSQLGET, appSystemStoreSQL, core.ApplicationPropertiesDB["schema"], id)
 	_, _, SystemStoreItem, _ := fetchSystemStoreData(tsql)
 	return 1, SystemStoreItem, nil
 }
@@ -332,13 +333,13 @@ func PutSystemStore(r SystemStoreItem, req *http.Request) {
 
 func putSystemStore(r SystemStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	createDate := time.Now().Format(globals.DATETIMEFORMATUSER)
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
 
 	host, _ := os.Hostname()
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = GetUserName(req)
+		r.SYSWho = core.GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}
@@ -348,18 +349,18 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSystemStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appSystemStoreSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appSystemStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appSystemStoreSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
-	//	log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	//	log.Println("INSERT:", inserttsql, globals.ApplicationDB)
+	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
 
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {
 		log.Println(err2.Error())
 	}
 	//	log.Println(fred2, err2)
-	_, err := globals.ApplicationDB.Exec(inserttsql)
+	_, err := core.ApplicationDB.Exec(inserttsql)
 	//	log.Println(fred, err)
 	if err != nil {
 		log.Println(err.Error())
@@ -368,9 +369,9 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 
 func DeleteSystemStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], id)
-	//log.Println("DELETE:", deletesql, globals.ApplicationDB)
-	_, err := globals.ApplicationDB.Exec(deletesql)
+	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -403,7 +404,7 @@ func fetchSystemStoreData(tsql string) (int, []SystemStoreItem, SystemStoreItem,
 	var appSystemStore SystemStoreItem
 	var appSystemStoreList []SystemStoreItem
 
-	rows, err := globals.ApplicationDB.Query(tsql)
+	rows, err := core.ApplicationDB.Query(tsql)
 	//fmt.Println("back from dq Q")
 	if err != nil {
 		log.Println("Error reading rows: " + err.Error())
@@ -438,4 +439,46 @@ func fetchSystemStoreData(tsql string) (int, []SystemStoreItem, SystemStoreItem,
 	}
 	//log.Println(count, appSystemStoreList, appSystemStore)
 	return count, appSystemStoreList, appSystemStore, nil
+}
+
+func GetDeliveryPath(instanceID string, loaderType string, instanceDirection string) string {
+
+	path := core.SienaProperties[loaderType]
+	instancePath := ""
+	//log.Println(instanceID, loaderType, instanceDirection)
+	if len(instanceID) != 0 {
+		// If we have an instanceID load its details and work out which path to build
+		//	log.Println("fetch", instanceID)
+		_, systemDetails, _ := GetSystemStoreByID(instanceID)
+		//log.Println("returned", systemDetails)
+		loaderDirection := loaderType + instanceDirection
+		//log.Println(loaderDirection)
+		switch loaderDirection {
+		case "static":
+			instancePath = systemDetails.Staticin
+		case "staticin":
+			instancePath = systemDetails.Staticin
+		case "staticout":
+			instancePath = systemDetails.Staticout
+		case "transactional":
+			instancePath = systemDetails.Txnin
+		case "transactionalin":
+			instancePath = systemDetails.Txnin
+		case "transactionalout":
+			instancePath = systemDetails.Txnout
+		case "funds":
+			instancePath = systemDetails.Fundscheckin
+		case "fundsin":
+			instancePath = systemDetails.Fundscheckin
+		case "fundsout":
+			instancePath = systemDetails.Fundscheckout
+		default:
+			instancePath = instanceID
+		}
+	}
+	if len(instancePath) != 0 {
+		path = instancePath
+	}
+	//	log.Println("RETURNING ", path)
+	return path
 }

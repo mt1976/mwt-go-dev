@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXSPOTMarketCHFJPY-SP-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>CHFJPY</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>SP</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDCHF</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXSPOTMarketCHFJPY-SP-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXSPOTMarketCHFJPY-SP-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXSPOTMarketCHFJPY-SP-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+</beans>

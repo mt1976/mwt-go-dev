@@ -5,45 +5,51 @@ import (
 	"log"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
-func DataDispatcher_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func DataDispatcher_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "DISPATCH"
 	j.Name = "DISPATCH"
 	j.Period = "10 1 * * *"
 	j.Description = "Dispatch %q rates & pricing information"
-	j.Type = globals.Dispatcher
+	j.Type = core.Dispatcher
 	return j
 }
 
 func DataDispatcher_Register(c *cron.Cron, actionType string, period string) {
-	ovr_description := fmt.Sprintf(DataDispatcher_Job().Description, actionType)
-	ovr_period := period
-	ovr_name := DataDispatcher_Job().Name + "_" + actionType
-	ovr_id := DataDispatcher_Job().ID + "_" + actionType
+	overideJ := DataDispatcher_Job()
+	overideJ.Description = fmt.Sprintf(DataDispatcher_Job().Description, actionType)
+	overideJ.Period = period
+	overideJ.Name = DataDispatcher_Job().Name + "_" + actionType
+	overideJ.ID = DataDispatcher_Job().ID + "_" + actionType
 
-	application.RegisterSchedule(ovr_id, ovr_name, ovr_description, ovr_period, DataDispatcher_Job().Type)
-	c.AddFunc(DataDispatcher_Job().Period, func() { DataDispatcher_Run(ovr_name) })
+	application.Schedule_Register(overideJ)
+	c.AddFunc(DataDispatcher_Job().Period, func() { DataDispatcher_Run(overideJ.Name) })
 }
 
 // RunJobRollover is a Rollover function
 func DataDispatcher_Run(actionType string) {
-	logStart(DataDispatcher_Job().Name + " - " + actionType)
 	var message string
 	/// CONTENT STARTS
+	overideJ := DataDispatcher_Job()
+	overideJ.Name = DataDispatcher_Job().Name + "_" + actionType
+	overideJ.ID = DataDispatcher_Job().ID + "_" + actionType
+	logs.StartJob(overideJ.Name)
 
 	DispatchByType("RV" + actionType)
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(DataDispatcher_Job().Name, DataDispatcher_Job().Type, message)
-	logEnd(DataDispatcher_Job().Name + " - " + actionType)
+	application.Schedule_Update(overideJ, message)
+	logs.EndJob(overideJ.Name + " - " + actionType)
 }
 
 func DispatchByType(dispatchType string) {
-	log.Printf("Dispatch      : Issue %q -> %q \n", dispatchType, globals.SienaProperties["rates"])
+	log.Printf("Dispatch      : Issue %q -> %q \n", dispatchType, core.SienaProperties["rates"])
 
 	/// BRANCH HERE FOR DELIVERY METHODS
 

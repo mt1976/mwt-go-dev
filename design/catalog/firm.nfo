@@ -1,0 +1,45 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/firm.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Firm (firm)
+Endpoint 	         : Firm (FirmName)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:59
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaFirm
+SQL Table Search Col : FirmName
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| FirmName                            | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| Country                             | String     |            | false | true   | false |                 |            |            | 
+| Sector                              | String     |            | false | true   | false |                 |            |            | 
+| Sector_Impl                         | String     |            | false | false  | true  | Sector          | Sector     | Name       | 
+| Country_Impl                        | String     |            | false | false  | true  | Country         | Country    | Name       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/firm_core.go)
+* adaptor (/adaptor/firm.go)
+* dao (/dao/firm.go)
+* datamodel (/datamodel/firm.go)
+* menu (/design/menu/firm.json)
+* html -> List (/html/Firm_List.html)
+* html -> View (/html/Firm_View.html)
+* html -> Edit (/html/Firm_Edit.html)
+* html -> New (/html/Firm_New.html)
+* catalog (/design/catalog/firm.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

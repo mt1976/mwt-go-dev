@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="shortName">CAN</KEYFIELD><FIELD name="fullName">CANADA</FIELD><FIELD name="country">ALB</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

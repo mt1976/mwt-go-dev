@@ -9,7 +9,10 @@ import (
 	"time"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html"
 )
@@ -84,24 +87,24 @@ type MIBondData struct {
 	URI               string
 }
 
-func InstFII_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func InstFII_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "INST_FII"
 	j.Name = "INST_FII"
 	j.Period = "15 7-19 * * 1-5"
 	j.Description = "Update Bond like Instruments from Fixed Income Investor"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 
 func InstFII_Register(c *cron.Cron) {
-	application.RegisterSchedule(InstFII_Job().ID, InstFII_Job().Name, InstFII_Job().Description, InstFII_Job().Period, InstFII_Job().Type)
+	application.Schedule_Register(InstFII_Job())
 	c.AddFunc(InstFII_Job().Period, func() { InstFII_Run() })
 }
 
 // RunJobRollover is a Rollover function
 func InstFII_Run() {
-	logStart(InstFII_Job().Name)
+	logs.StartJob(InstFII_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -114,8 +117,8 @@ func InstFII_Run() {
 	OnPage(FIIORBBONDS, "Retail Bond")
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(InstFII_Job().Name, InstFII_Job().Type, message)
-	logEnd(InstFII_Job().Name)
+	application.Schedule_Update(InstFII_Job(), message)
+	logs.EndJob(InstFII_Job().Name)
 }
 
 func getInternalDate(in string) string {
@@ -125,14 +128,14 @@ func getInternalDate(in string) string {
 func getInternalDateGen(in string, format string) string {
 	var intDate string
 	if len(in) > 0 {
-		//log.Println(LSEDateFormat, globals.DATEFORMATSIENA
+		//log.Println(LSEDateFormat, core.DATEFORMATSIENA
 		if in != "Perpetual" {
 			time, err := time.Parse(format, in)
 			if err != nil {
 				log.Println(err.Error())
 			}
 
-			intDate = time.Format(globals.DATEFORMATSIENA)
+			intDate = time.Format(core.DATEFORMATSIENA)
 		} else {
 			intDate = ""
 		}
@@ -146,7 +149,8 @@ func getInternalDateFII(in string) string {
 }
 
 func OnPage(link string, nitype string) {
-	log.Printf("link: %v\n", link)
+	//log.Printf("link: %v\n", link)
+	logs.Accessing(link)
 	req, err := http.NewRequest("GET", link, nil)
 	if err != nil {
 		log.Fatalln(err)
@@ -318,8 +322,8 @@ func processRow(row []string, noCols int, inURI string, nitype string) {
 
 func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	//	var bondRec application.AppLSEGiltsDataStoreItem
-	_, bondRec, _ := application.GetLSEGiltsDataStoreByID(row[3])
-	bondRec.LongName = application.GetTranslation("NI-Name", row[2])
+	_, bondRec, _ := dao.NegotiableInstrument_GetByID(row[3])
+	bondRec.LongName = application.Translation_Lookup("NI-Name", row[2])
 	bondRec.Isin = row[3]
 	//	bondRec.IssueDate = bondRow.IssueDate
 	bondRec.MaturityDate = getInternalDateFII(row[5])
@@ -333,21 +337,21 @@ func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	}
 
 	if bondRec.Segment == "UKGT" {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", "UK Government")
+		bondRec.Issuer = application.Translation_Lookup("NI-Issuer", "UK Government")
 	} else {
 		bondRec.Type = nitype
 	}
 
 	if len(bondRec.Type) == 0 {
-		bondRec.Type = application.GetTranslation("NI-Type", bondRec.Segment)
+		bondRec.Type = application.Translation_Lookup("NI-Type", bondRec.Segment)
 	}
 	if len(bondRec.Type) == 0 {
-		bondRec.Type = application.GetTranslation("NI-Type", "Corporate Bond")
+		bondRec.Type = application.Translation_Lookup("NI-Type", "Corporate Bond")
 	}
 
 	//log.Println(bondRec.Issuer)
 	if bondRec.Issuer == "" {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", bondRec.LongName)
+		bondRec.Issuer = application.Translation_Lookup("NI-Issuer", bondRec.LongName)
 	}
 
 	//fmt.Printf("bondRec: %v\n", bondRec)
@@ -360,10 +364,10 @@ func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	// TODO: isinlookup  (might need to go into the Dispatcher Job)
 	//spew.Dump(bondRec)
 	fmt.Printf("bondRec: %v\n", bondRec)
-	application.PutLSEGiltsDataStoreSystem(bondRec)
+	dao.NegotiableInstrument_Store(bondRec)
 }
 
-func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem) application.AppLSEGiltsDataStoreItem {
+func getFIIEnrichment(inURI string, bondRec dm.NegotiableInstrument) dm.NegotiableInstrument {
 	//log.Println("URI=" + inURI)
 	req, err := http.NewRequest("GET", inURI, nil)
 	if err != nil {
@@ -387,11 +391,11 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 		bondRec.Sector = miData.Issuer
 	}
 
-	bondRec.Sector = application.GetTranslation("NI-Sector", bondRec.Sector)
+	bondRec.Sector = application.Translation_Lookup("NI-Sector", bondRec.Sector)
 
 	//fmt.Printf("bondRec.Sector: %v\n", bondRec.Sector)
 
-	bondRec.PeriodOfCoupon = application.GetTranslation("NI-CouponPeriod", couponFreq)
+	bondRec.PeriodOfCoupon = application.Translation_Lookup("NI-CouponPeriod", couponFreq)
 	bondRec.FlatYield = strings.ReplaceAll(yield, "%", "")
 	bondRec.RunningYield = strings.ReplaceAll(runningYield, "%", "")
 	bondRec.IssueAmount = issueAmount
@@ -403,16 +407,16 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 	bondRec.PaymentCouponDate = getInternalDateGen(miData.CouponPaymentDate, MIDate)
 
 	if miData.Name != "" {
-		bondRec.LongName = strings.ToUpper(application.GetTranslation("NI-Name", miData.Name))
+		bondRec.LongName = strings.ToUpper(application.Translation_Lookup("NI-Name", miData.Name))
 	}
 	if miData.Issuer != "" {
-		bondRec.Issuer = application.GetTranslation("NI-Issuer", miData.Issuer)
+		bondRec.Issuer = application.Translation_Lookup("NI-Issuer", miData.Issuer)
 	}
 	if bondRec.Segment == "" {
-		bondRec.Segment = application.GetTranslation("NI-Segment", miData.Issuer)
+		bondRec.Segment = application.Translation_Lookup("NI-Segment", miData.Issuer)
 	}
 	//log.Printf("ISIN=%q LEI=%q", bondRec.Isin, bondRec.Lei)
-	bondRec.Lei, err = application.GLIEF_leiLookup(bondRec.Isin)
+	bondRec.LEI, err = application.GLIEF_leiLookup(bondRec.Isin)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -423,7 +427,7 @@ func getFIIEnrichment(inURI string, bondRec application.AppLSEGiltsDataStoreItem
 	return bondRec
 }
 
-func getMIenrichment(inISIN string, bondRec application.AppLSEGiltsDataStoreItem) MIBondData {
+func getMIenrichment(inISIN string, bondRec dm.NegotiableInstrument) MIBondData {
 
 	req, err := http.NewRequest("GET", MIBaseURI+inISIN, nil)
 	if err != nil {
@@ -699,7 +703,7 @@ func processPrice(row []string, noCols int) {
 	ratesData.market = "NI"
 	ratesData.tenor = ""
 	ratesData.series = row[3]
-	ratesData.name = application.GetTranslation("NI-Name", row[2])
+	ratesData.name = application.Translation_Lookup("NI-Name", row[2])
 	ratesData.class = "Market"
 	ratesData.source = "FII"
 	ratesData.destination = "RVNI"

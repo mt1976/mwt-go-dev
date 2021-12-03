@@ -1,0 +1,149 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/transaction.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Transaction (transaction)
+Endpoint 	         : Transaction (Ref)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:58
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaDealList
+SQL Table Search Col : SienaReference
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SienaReference                      | String     |            | true  | true   | false |                 |            |            | 
+| Status                              | String     |            | false | true   | false |                 |            |            | 
+| ValueDate                           | Time       |            | false | true   | false |                 |            |            | 
+| MaturityDate                        | Time       |            | false | true   | false |                 |            |            | 
+| ContractNumber                      | String     |            | false | true   | false |                 |            |            | 
+| ExternalReference                   | String     |            | false | true   | false |                 |            |            | 
+| Book                                | String     |            | false | true   | false |                 |            |            | 
+| MandatedUser                        | String     |            | false | true   | false |                 |            |            | 
+| Portfolio                           | String     |            | false | true   | false |                 |            |            | 
+| AgreementId                         | Int        | 0          | false | true   | false |                 |            |            | 
+| BackOfficeRefNo                     | String     |            | false | true   | false |                 |            |            | 
+| ISIN                                | String     |            | false | true   | false |                 |            |            | 
+| UTI                                 | String     |            | false | true   | false |                 |            |            | 
+| BookName                            | String     |            | false | true   | false |                 |            |            | 
+| Centre                              | String     |            | false | true   | false |                 |            |            | 
+| Firm                                | String     |            | false | true   | false |                 |            |            | 
+| DealTypeShortName                   | String     |            | false | true   | false |                 |            |            | 
+| FullDealType                        | String     |            | false | true   | false |                 |            |            | 
+| TradeDate                           | Time       |            | false | true   | false |                 |            |            | 
+| DealtCcy                            | String     |            | false | true   | false |                 |            |            | 
+| DealtAmount                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| AgainstAmount                       | Float      | 0.00       | false | true   | false |                 |            |            | 
+| AgainstCcy                          | String     |            | false | true   | false |                 |            |            | 
+| AllInRate                           | Float      | 0.00       | false | true   | false |                 |            |            | 
+| MktRate                             | Float      | 0.00       | false | true   | false |                 |            |            | 
+| SettleCcy                           | String     |            | false | true   | false |                 |            |            | 
+| Direction                           | String     |            | false | true   | false |                 |            |            | 
+| NpvRate                             | Float      | 0.00       | false | true   | false |                 |            |            | 
+| OriginUser                          | String     |            | false | true   | false |                 |            |            | 
+| PayInstruction                      | String     |            | false | true   | false |                 |            |            | 
+| ReceiptInstruction                  | String     |            | false | true   | false |                 |            |            | 
+| NIName                              | String     |            | false | true   | false |                 |            |            | 
+| CCYPair                             | String     |            | false | true   | false |                 |            |            | 
+| Instrument                          | String     |            | false | true   | false |                 |            |            | 
+| PortfolioName                       | String     |            | false | true   | false |                 |            |            | 
+| RVDate                              | Time       |            | false | true   | false |                 |            |            | 
+| RVMTM                               | Float      | 0.00       | false | true   | false |                 |            |            | 
+| CounterBook                         | String     |            | false | true   | false |                 |            |            | 
+| CounterBookName                     | String     |            | false | true   | false |                 |            |            | 
+| Party                               | String     |            | false | true   | false |                 |            |            | 
+| PartyName                           | String     |            | false | true   | false |                 |            |            | 
+| NameCentre                          | String     |            | false | true   | false |                 |            |            | 
+| NameFirm                            | String     |            | false | true   | false |                 |            |            | 
+| CustomerExternalView                | String     |            | false | true   | false |                 |            |            | 
+| CustomerSienaView                   | String     |            | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | false | true   | false |                 |            |            | 
+| SienaDealer                         | String     |            | false | true   | false |                 |            |            | 
+| DealOwner                           | String     |            | false | true   | false |                 |            |            | 
+| DealOwnerMnemonic                   | String     |            | false | true   | false |                 |            |            | 
+| EditedByUser                        | String     |            | false | true   | false |                 |            |            | 
+| UTCOriginTime                       | String     |            | false | true   | false |                 |            |            | 
+| UTCUpdateTime                       | String     |            | false | true   | false |                 |            |            | 
+| MarginTrading                       | Bool       | True       | false | true   | false |                 |            |            | 
+| SwapPoints                          | Float      | 0.00       | false | true   | false |                 |            |            | 
+| SpotDate                            | Time       |            | false | true   | false |                 |            |            | 
+| SpotRate                            | Float      | 0.00       | false | true   | false |                 |            |            | 
+| MktSpotRate                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| SpotSalesMargin                     | Float      | 0.00       | false | true   | false |                 |            |            | 
+| SpotChlMargin                       | Float      | 0.00       | false | true   | false |                 |            |            | 
+| RerouteCcy                          | String     |            | false | true   | false |                 |            |            | 
+| CustomerPayInstruction              | String     |            | false | true   | false |                 |            |            | 
+| CustomerReceiptInstruction          | String     |            | false | true   | false |                 |            |            | 
+| BackOfficeNotes                     | String     |            | false | true   | false |                 |            |            | 
+| CustomerStatementNotes              | String     |            | false | true   | false |                 |            |            | 
+| NotesMargin                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| RequestedBy                         | String     |            | false | true   | false |                 |            |            | 
+| EditReason                          | String     |            | false | true   | false |                 |            |            | 
+| EditOtherReason                     | String     |            | false | true   | false |                 |            |            | 
+| NICleanPrice                        | Float      | 0.00       | false | true   | false |                 |            |            | 
+| NIDirtyPrice                        | Float      | 0.00       | false | true   | false |                 |            |            | 
+| NIYield                             | Float      | 0.00       | false | true   | false |                 |            |            | 
+| NIClearingSystem                    | String     |            | false | true   | false |                 |            |            | 
+| Acceptor                            | String     |            | false | true   | false |                 |            |            | 
+| NIDiscount                          | Float      | 0.00       | false | true   | false |                 |            |            | 
+| FastPay                             | Bool       | True       | false | true   | false |                 |            |            | 
+| PaymentFee                          | Float      | 0.00       | false | true   | false |                 |            |            | 
+| PaymentFeePolicy                    | String     |            | false | true   | false |                 |            |            | 
+| PaymentReason                       | String     |            | false | true   | false |                 |            |            | 
+| PaymentDate                         | Time       |            | false | true   | false |                 |            |            | 
+| SettlementDate                      | Time       |            | false | true   | false |                 |            |            | 
+| FixingDate                          | Time       |            | false | true   | false |                 |            |            | 
+| VenueUTI                            | String     |            | false | true   | false |                 |            |            | 
+| EditVersion                         | Int        | 0          | false | true   | false |                 |            |            | 
+| BrokeragePercentage                 | Float      | 0.00       | false | true   | false |                 |            |            | 
+| BrokerageAmount                     | Float      | 0.00       | false | true   | false |                 |            |            | 
+| BrokerageCurrency                   | String     |            | false | true   | false |                 |            |            | 
+| BrokerageDate                       | Time       |            | false | true   | false |                 |            |            | 
+| AccountName                         | String     |            | false | true   | false |                 |            |            | 
+| AccountNumber                       | String     |            | false | true   | false |                 |            |            | 
+| CashBalance                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| DebitFrequency                      | String     |            | false | true   | false |                 |            |            | 
+| CreditFrequency                     | String     |            | false | true   | false |                 |            |            | 
+| ManuallyQuoted                      | String     |            | false | true   | false |                 |            |            | 
+| LedgerBalance                       | Float      | 0.00       | false | true   | false |                 |            |            | 
+| SettAmtOutstanding                  | Float      | 0.00       | false | true   | false |                 |            |            | 
+| FeePercentage                       | Float      | 0.00       | false | true   | false |                 |            |            | 
+| FeeAmount                           | Float      | 0.00       | false | true   | false |                 |            |            | 
+| Venue                               | String     |            | false | true   | false |                 |            |            | 
+| EURAmount                           | Float      | 0.00       | false | true   | false |                 |            |            | 
+| EUROtherAmount                      | Float      | 0.00       | false | true   | false |                 |            |            | 
+| LEI                                 | String     |            | false | true   | false |                 |            |            | 
+| Equity                              | String     |            | false | true   | false |                 |            |            | 
+| Shares                              | Int        | 0          | false | true   | false |                 |            |            | 
+| QuoteExpiryDate                     | Time       |            | false | true   | false |                 |            |            | 
+| Commodity                           | String     |            | false | true   | false |                 |            |            | 
+| PaymentSystemSienaView              | String     |            | false | true   | false |                 |            |            | 
+| PaymentSystemExternalView           | String     |            | false | true   | false |                 |            |            | 
+| SalesProfit                         | Float      | 0.00       | false | true   | false |                 |            |            | 
+| RejectReason                        | String     |            | false | true   | false |                 |            |            | 
+| PaymentError                        | String     |            | false | true   | false |                 |            |            | 
+| RepoPrincipal                       | Float      | 0.00       | false | true   | false |                 |            |            | 
+| FixingFrequency                     | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/transaction_core.go)
+* adaptor (/adaptor/transaction.go)
+* dao (/dao/transaction.go)
+* datamodel (/datamodel/transaction.go)
+* menu (/design/menu/transaction.json)
+* html -> List (/html/Transaction_List.html)
+* html -> View (/html/Transaction_View.html)
+* catalog (/design/catalog/transaction.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

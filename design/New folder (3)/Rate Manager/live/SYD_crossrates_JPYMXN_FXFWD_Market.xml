@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXFWDMarketJPYMXN-ON-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>ON</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-ON-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-ON-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-ON-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-TN-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>TN</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-TN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-TN-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-TN-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-SN-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>SN</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-SN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-SN-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-SN-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-1W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-1W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-1W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-1W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-2W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>2W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-2W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-2W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-2W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-3W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>3W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-3W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-3W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-3W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-1M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-1M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-1M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-1M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-2M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>2M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-2M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-2M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-2M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-3M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>3M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-3M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-3M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-3M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-4M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>4M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-4M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-4M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-4M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-5M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>5M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-5M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-5M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-5M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-6M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>6M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-6M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-6M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-6M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-7M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>7M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-7M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-7M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-7M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-8M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>8M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-8M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-8M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-8M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-9M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>9M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-9M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-9M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-9M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-10M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>10M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-10M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-10M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-10M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-11M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>11M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-11M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-11M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-11M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketJPYMXN-1Y-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>JPYMXN</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1Y</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDJPY</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDMXN</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketJPYMXN-1Y-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketJPYMXN-1Y-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketJPYMXN-1Y-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+
+</beans>

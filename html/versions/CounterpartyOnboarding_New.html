@@ -1,0 +1,364 @@
+{{template "header" .}}
+<body>
+    <div class="container-fluid">
+        <form action="/CounterpartyOnboardingSave?Code=NEW" method="GET" class="form">
+            <div class="card">
+                <div class="card-header font-weight-bold">
+                    <div class="row">
+                        <div class="col">
+                            CounterpartyOnboarding&nbsp;:&nbsp;<code>NEW</code>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group float-right">
+
+                                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-paper-plane"  method="GET" formaction="/CounterpartyOnboardingSave&Code=NEW" onclick="/CounterpartyOnboardingSave/?Code=NEW"></i>&nbsp;&nbsp;Submit</button>
+
+                                <button id="print" type="button" class="btn btn-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card-body">
+
+                    <br>
+                    <fieldset>
+                        <legend>Business</legend>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="FirmName">Business Name</label>
+                                <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder="" value="{{.Item.FirmName}}" required maxlength="6" minlength="3">
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="FirmFullName">Full Name</label>
+                                <input type="text" class="form-control" id="FirmFullName" name="FirmFullName" aria-describedby="FirmFullNameHelp" placeholder="" value="{{.Item.FirmFullName}}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="FirmCountry">Country</label>
+                                <select id="FirmCountry" name="FirmCountry" class="form-control">
+                {{range .Item.FirmCountryList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.FirmCountry}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="FirmCentre">Centre</label>
+                                <select id="FirmCentre" name="FirmCentre" class="form-control">
+                {{range .Item.FirmCentreList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.FirmCentre}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="FirmSector">Sector</label>
+                                <select id="FirmSector" name="FirmSector" class="form-control">
+                {{range .Item.FirmSectorList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.FirmSector}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="Category">Category</label>
+                                <select id="Category" name="Category" class="form-control">
+                {{range .Item.CategoryList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.Category}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="TradingEntity">Sales Desk</label>
+                                <select id="TradingEntity" name="TradingEntity" class="form-control">
+                {{range .Item.TradingEntityList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.TradingEntity}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="Owner">Relationship Manager</label>
+                                <select id="Owner" name="Owner" class="form-control">
+                {{range .Item.OwnerList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.Owner}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="BaseCCY">Default Currency</label>
+                                <select id="BaseCCY" name="BaseCCY" class="form-control">
+                {{range .Item.BaseCCYList}}
+                  <option value="{{.ID}}" {{if eq .ID $.Item.BaseCCY}}selected{{end}}>{{.Name}}</option>{{end}}
+                </select>
+                            </div>
+
+
+                            <div class="col-sm">
+                                <label for="BaseCCYPair">Default Currency Pair</label>
+                                <input type="text" class="form-control" id="BaseCCYPair" name="BaseCCYPair" aria-describedby="BaseCCYPairHelp" placeholder="" value="{{.Item.BaseCCYPair}}" required>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="FirmAddress">Address</label>
+                                <textarea class="form-control" id="FirmAddress" name="FirmAddress" aria-describedby="FirmAddressHelp" placeholder="" rows="3" cols="35" required>{{.Item.FirmAddress}}</textarea>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="PhoneNumber">Phone Number</label>
+                                <input type="tel" class="form-control" id="PhoneNumber" name="PhoneNumber" aria-describedby="PhoneNumberHelp" placeholder="" value="{{.Item.PhoneNumber}}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                <small>Format: 123-456-7890</small>
+
+                            </div>
+
+
+                            <div class="col-sm">
+                                <label for="SortCode">SortCode</label>
+                                <input type="tel" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCode" placeholder="" value="{{.Item.OurSortCode}}" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}" required>
+                                <small>Format: xx-xx-xx</small>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </fieldset>
+                    <hr>
+
+                    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                        <li class="nav-item"><a data-toggle="tab" href="#altids" role="tab" id="altids-tabl" class="nav-link active" aria-controls="altids" aria-selected="true"><h3><i class="fas fa-link"></h3></i><h5>Linked Systems</h5></a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#payees" role="tab" id="payees-tabl" class="nav-link" aria-controls="payees" aria-selected="false"><h3><i class="fas fa-wallet"></i></h3><h5>Payees</h5></a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#users" role="tab" id="users-tabl" class="nav-link" aria-controls="users" aria-selected="false"><h3><i class="far fa-user"></i></h3><h5>Users</h5></a></li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+
+                        <div class="tab-pane fade show active" id="altids" role="tabpanel" aria-labelledby="altids-tab">
+                            <button type="button" class="btn btn-outline-success float-right" onclick="addRow('tablealtids')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add System</button>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-sm" id="tablealtids">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="row">#</th>
+                                            <th>Origin</th>
+                                            <th>Known As / Alternate ID</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id=filterTable>
+                                        {{range .Item.ImportIDs}}
+                                        <tr>
+                                            <td style="padding:0" scope="row"></td>
+                                            <td style="padding:0"><select id="Origin" name="Origin" class="form-control">
+{{range $.Item.OriginList}}<option value="{{.ID}}" {{if eq .ID .ID}}selected{{end}}>{{.Name}}</option>
+{{end}}</select></td>
+                                            <td style="padding:0"><input type="text" class="form-control" id="KnownAs" name="KnownAs" aria-describedby="KnownAsHelp" placeholder="" value="{{.ID}}" required></td>
+                                            <td style="padding:0"><button type="button" class="btn btn-warning float-right"><i class="fas fa-minus"></i></button>
+                                            </td>
+                                        </tr>
+                                        {{end}}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" role="tabpanel" id="payees" aria-labelledby="payees-tab">
+
+                            <button type="button" class="btn btn-outline-success float-right" onclick="addRow('tablepayees')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Payee</button>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-sm" id="tablepayees">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="row">#</th>
+                                            <th>Name</th>
+                                            <th>Code</th>
+                                            <th>CCY</th>
+                                            <th>Address</th>
+                                            <th>Country</th>
+                                            <th>SortCode</th>
+                                            <th>Account No.</th>
+                                            <th>IBAN</th>
+                                            <th>Phone Number</th>
+                                            <th>Reason</th>
+                                            <th>SWIFT BIC</th>
+                                            <th>Bank Name</th>
+                                            <th>Settlement</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        {{range .Item.Payees}}
+                                        <tr>
+                                            <td style="padding:0" scope="row"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeID}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeFullName}}"></td>
+                                            <td style="padding:0">
+
+                                                <select id="BaseCCY" name="BaseCCY" class="form-control">
+                                  <option value="{{.PayeeCCY}}" selected>{{.PayeeCCY}}</option>
+                {{range $.Item.BaseCCYList}}
+                  <option value="{{.ID}}">{{.ID}}</option>{{end}}
+                </select>
+                                            </td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeAddress}}"></td>
+                                            <td style="padding:0">
+                                                <select id="PayeeCountry" name="PayeeCountry" class="form-control">
+                                  <option value="{{.PayeeCountry}}" selected>{{.PayeeCountry}}</option>
+                {{range $.Item.FirmCountryList}}
+                  <option value="{{.ID}}">{{.ID}}</option>{{end}}
+                </select>
+                                            </td>
+                                            <td style="padding:0"><input class="form-control" type="tel" value="{{.PayeeSortCode}}" pattern="^(\d){2}-(\d){2}-(\d){2}$" maxlength="8"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeAccountNo}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeIBAN}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="tel" value="{{.PayeePhoneNumber}}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeReason}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeBIC}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.PayeeBankName}}"></td>
+                                            <td style="padding:0">{{.BankSettlementAccount}}</td>
+                                            <td style="padding:0"><button type="button" class="btn btn-warning float-right"><i class="fas fa-minus"></i></button></td>
+                                        </tr>
+                                        {{end}}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                        <div class="tab-pane fade" role="tabpanel" id="users" aria-labelledby="users-tab">
+                            <button type="button" class="btn btn-outline-success float-right" onclick="addRow('tableusers')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add User</button>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-sm" id="tableusers">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="row">#</th>
+                                            <th>User</th>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                            <th>Date of Birth</th>
+                                            <th>Mothers Maiden Name</th>
+                                            <th>Place of Birth</th>
+                                            <th>Middle Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        {{range .Item.MandatedUsers}}
+                                        <tr>
+                                            <td style="padding:0" scope="row"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.UserName}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.UserFullName}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="tel" value="{{.UserPhoneNumber}}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
+                                            <td style="padding:0"><input class="form-control" type="email" value="{{.UserEmail}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="date" value="{{.UserDOB}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.UserMaidenName}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.UserPlaceOfBirth}}"></td>
+                                            <td style="padding:0"><input class="form-control" type="text" value="{{.UserMiddleName}}"></td>
+                                            <td style="padding:0"><button type="button" class="btn btn-warning float-right"><i class="fas fa-minus"></i></button></td>
+                                        </tr>
+                                        {{end}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#tablealtids').dataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#tablepayees').dataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#tableusers').dataTable();
+        });
+    </script>
+
+
+<script>
+//  $(document).ready(function() {
+//    $('#sienaDataMapTable').dataTable();
+//  });
+function addRow(actionTable){
+
+
+
+  var columnsElem = document.getElementById(actionTable+'Cols');
+  // var rowsElem = document.getElementById(actionTable+'Rows');
+  
+//alert("Received >"+actionTable+"<"+columnsElem.value+"<"+rowsElem.value);
+
+
+  var table = document.getElementById(actionTable)
+
+    var rowCount = table.rows.length;
+
+    var columns = (table.rows[0].cells.length)-2;
+  var rows = parseInt(rowCount)
+  //var newRow = rows
+  //var pRow = rows -1 
+ // console.log("I am the walrus! Rows="+ rows +" Columns="+columns+" NewRow="+newRow+" RowCount="+rowCount);
+
+var prevRow = $( rowCount ).parent().prev(1);   
+console.log("prevRow"+prevRow+" "+rowCount+" "+JSON.stringify(prevRow));
+
+  //alert("I am the walrus! New Row="+newRow);
+  var addRow = table.insertRow(rowCount);
+  var cell = addRow.insertCell(0);
+  
+  cell.style="padding:0";
+  cell.classList.add("text-center");
+  cell.classList.add("align-middle");
+  
+  for (i = 0; i < columns; i++) {
+  //  alert("poo"+i);
+
+var fh = table.rows[1].cells[i+1].innerHTML
+console.log("fh="+fh+">"+JSON.stringify(fh)+"<"+fh.type)
+
+    var cell = addRow.insertCell(i+1);
+    var field = document.createElement('input')
+    console.log("child "+cell.childNodes.length);
+    field.type = "text";
+    field.classList.add("form-control");
+    field.name = "R"+(rowCount-1)+"C"+i+" "+actionTable;
+    field.id = field.name
+    field.placeholder = "<< Empty >> '"+field.name+"'";
+    field.innerHTML = fh;
+  //  field.type = fh.innerHTML
+    //console.log(field+"-"+JSON.stringify(field.id)+fh);
+    cell.style="padding:0";
+    cell.classList.add("text-center");
+    cell.classList.add("align-middle");
+    cell.appendChild(field);
+    //console.log(JSON.stringify(table))
+  }
+  //rowsElem.value = newRow;
+}
+
+</script>
+
+</body>

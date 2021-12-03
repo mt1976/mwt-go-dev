@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXFWDMarketZARDKK-ON-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>ON</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-ON-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-ON-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-ON-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-TN-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>TN</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-TN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-TN-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-TN-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-SN-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>SN</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-SN-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-SN-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-SN-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-1W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-1W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-1W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-1W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-2W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>2W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-2W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-2W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-2W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-3W-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>3W</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-3W-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-3W-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-3W-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-1M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-1M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-1M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-1M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-2M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>2M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-2M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-2M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-2M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-3M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>3M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-3M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-3M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-3M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-4M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>4M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-4M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-4M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-4M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-5M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>5M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-5M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-5M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-5M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-6M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>6M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-6M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-6M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-6M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-7M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>7M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-7M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-7M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-7M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-8M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>8M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-8M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-8M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-8M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-9M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>9M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-9M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-9M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-9M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-10M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>10M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-10M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-10M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-10M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-11M-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>11M</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-11M-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-11M-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-11M-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+<bean id="FXFWDMarketZARDKK-1Y-Market-XRateCalculator" class="com.eurobase.ratemanager.processing.generator.CrossRateGeneratorImpl2" init-method="init">
+  <property name="currencyPair">
+    <value>ZARDKK</value>
+  </property>
+  <property name="category">
+    <value>Market</value>
+  </property>
+  <property name="tenor">
+    <value>1Y</value>
+  </property>
+  <property name="majorCurrencyPair">
+    <value>USDZAR</value>
+  </property>
+  <property name="minorCurrencyPair">
+    <value>USDDKK</value>
+  </property>
+  <property name="writer">
+    <ref bean="XRateStore-FXFWDMarketZARDKK-1Y-Market"/>
+  </property>
+  <property name="factory">
+    <ref bean="DefaultRateDatumFactory"/>
+  </property>
+  <property name="crossRateCalculator">
+    <ref bean="crossRateCalculator-FXFWDMarketZARDKK-1Y-Market"/>
+  </property>
+  <property name="multicastEventSystem">
+    <ref bean="multicastEventSystem" /> 
+  </property>
+  <property name="stores">
+    <value>Controller,Controller,Controller,Controller</value> 
+  </property>
+  <property name="crossRateRetriever">
+    <ref bean="crossrateengine" /> 
+  </property>
+</bean>
+
+<bean id="crossRateCalculator-FXFWDMarketZARDKK-1Y-Market" class="com.eurobase.ratemanager.crossrate.CrossRateCalculatorImpl">
+  <constructor-arg index="0">
+    <ref bean="dbConnector"/>
+  </constructor-arg>
+</bean>
+
+</beans>

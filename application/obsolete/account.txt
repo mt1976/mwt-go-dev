@@ -1,0 +1,292 @@
+package application
+
+import (
+	"html/template"
+	"net/http"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+)
+
+//sienaAccountPage is cheese
+type account_PageList struct {
+	UserMenu          []dm.AppMenuItem
+	Title             string
+	PageTitle         string
+	SienaAccountCount int
+	SienaAccountList  []dm.Account
+	UserRole          string
+	UserNavi          string
+}
+
+//account_Page is cheese
+type account_Page struct {
+	UserMenu               []dm.AppMenuItem
+	UserRole               string
+	UserNavi               string
+	Title                  string
+	PageTitle              string
+	ID                     string
+	SienaReference         string
+	CustomerSienaView      string
+	SienaCommonRef         string
+	Status                 string
+	StartDate              string
+	MaturityDate           string
+	ContractNumber         string
+	ExternalReference      string
+	CCY                    string
+	Book                   string
+	MandatedUser           string
+	BackOfficeNotes        string
+	CashBalance            string
+	AccountNumber          string
+	AccountName            string
+	LedgerBalance          string
+	Portfolio              string
+	AgreementId            string
+	BackOfficeRefNo        string
+	PaymentSystemSienaView string
+	ISIN                   string
+	UTI                    string
+	CCYName                string
+	BookName               string
+	PortfolioName          string
+	Centre                 string
+	Firm                   string
+	CCYDp                  string
+	Action                 string
+	CountryList            []dm.Country
+
+	//	SectorList  []sienaSectorItem
+}
+
+func Account_Publish(mux http.ServeMux) {
+	mux.HandleFunc("/listSienaAccount/", Account_HandlerList)
+	mux.HandleFunc("/viewSienaAccount/", Account_HandlerView)
+	logs.Publish("Siena", dm.Account_Title)
+}
+
+func Account_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "listSienaAccount"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//	fmt.Println(thisConnection.Stats().OpenConnections)
+	var returnList []dm.Account
+	noItems, returnList, _ := dao.Account_GetList()
+
+	pageSienaAccountList := account_PageList{
+		Title:             core.ApplicationProperties["appname"],
+		PageTitle:         PageTitle(dm.Account_Title, core.Action_List),
+		SienaAccountCount: noItems,
+		SienaAccountList:  returnList,
+		UserMenu:          UserMenu_Get(r),
+		UserRole:          core.GetUserRole(r),
+		UserNavi:          "NOT USED",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(dm.Account_TemplateList, core.GetUserRole(r)))
+	t.Execute(w, pageSienaAccountList)
+
+}
+
+func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "viewSienaAccount"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, dm.Account_QueryString)
+	_, returnRecord, _ := dao.Account_GetByID(searchID)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
+
+	pageSienaAccountList := account_Page{
+		UserMenu:               UserMenu_Get(r),
+		UserRole:               core.GetUserRole(r),
+		UserNavi:               "NOT USED",
+		Title:                  core.ApplicationProperties["appname"],
+		PageTitle:              PageTitle(dm.Account_Title, core.Action_View),
+		ID:                     returnRecord.SienaReference,
+		SienaReference:         returnRecord.SienaReference,
+		CustomerSienaView:      returnRecord.CustomerSienaView,
+		SienaCommonRef:         returnRecord.SienaCommonRef,
+		Status:                 returnRecord.Status,
+		StartDate:              returnRecord.StartDate,
+		MaturityDate:           returnRecord.MaturityDate,
+		ContractNumber:         returnRecord.ContractNumber,
+		ExternalReference:      returnRecord.ExternalReference,
+		CCY:                    returnRecord.CCY,
+		Book:                   returnRecord.Book,
+		MandatedUser:           returnRecord.MandatedUser,
+		BackOfficeNotes:        returnRecord.BackOfficeNotes,
+		CashBalance:            returnRecord.CashBalance,
+		AccountNumber:          returnRecord.AccountNumber,
+		AccountName:            returnRecord.AccountName,
+		LedgerBalance:          returnRecord.LedgerBalance,
+		Portfolio:              returnRecord.Portfolio,
+		AgreementId:            returnRecord.AgreementId,
+		BackOfficeRefNo:        returnRecord.BackOfficeRefNo,
+		PaymentSystemSienaView: returnRecord.PaymentSystemSienaView,
+		ISIN:                   returnRecord.ISIN,
+		UTI:                    returnRecord.UTI,
+		CCYName:                returnRecord.CCYName,
+		BookName:               returnRecord.BookName,
+		PortfolioName:          returnRecord.PortfolioName,
+		Centre:                 returnRecord.Centre,
+		Firm:                   returnRecord.Firm,
+		CCYDp:                  returnRecord.CCYDp,
+		Action:                 "",
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(dm.Account_TemplateView, core.GetUserRole(r)))
+	t.Execute(w, pageSienaAccountList)
+
+}
+
+func Account_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "editSienaAccount"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "SienaAccount")
+	_, returnRecord, _ := dao.Account_GetByID(searchID)
+	//fmt.Println("NoSienaItems", noItems, searchID)
+	//fmt.Println(returnList)
+	//fmt.Println(tmpl)
+
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
+	//_, sectorList, _ := getSienaSectorList(thisConnection)
+
+	//fmt.Println(displayList)
+
+	pageSienaAccountList := account_Page{
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Translation_Title, core.Action_Edit),
+
+		ID:                     returnRecord.SienaReference,
+		SienaReference:         returnRecord.SienaReference,
+		CustomerSienaView:      returnRecord.CustomerSienaView,
+		SienaCommonRef:         returnRecord.SienaCommonRef,
+		Status:                 returnRecord.Status,
+		StartDate:              returnRecord.StartDate,
+		MaturityDate:           returnRecord.MaturityDate,
+		ContractNumber:         returnRecord.ContractNumber,
+		ExternalReference:      returnRecord.ExternalReference,
+		CCY:                    returnRecord.CCY,
+		Book:                   returnRecord.Book,
+		MandatedUser:           returnRecord.MandatedUser,
+		BackOfficeNotes:        returnRecord.BackOfficeNotes,
+		CashBalance:            returnRecord.CashBalance,
+		AccountNumber:          returnRecord.AccountNumber,
+		AccountName:            returnRecord.AccountName,
+		LedgerBalance:          returnRecord.LedgerBalance,
+		Portfolio:              returnRecord.Portfolio,
+		AgreementId:            returnRecord.AgreementId,
+		BackOfficeRefNo:        returnRecord.BackOfficeRefNo,
+		PaymentSystemSienaView: returnRecord.PaymentSystemSienaView,
+		ISIN:                   returnRecord.ISIN,
+		UTI:                    returnRecord.UTI,
+		CCYName:                returnRecord.CCYName,
+		BookName:               returnRecord.BookName,
+		PortfolioName:          returnRecord.PortfolioName,
+		Centre:                 returnRecord.Centre,
+		Firm:                   returnRecord.Firm,
+		CCYDp:                  returnRecord.CCYDp,
+		Action:                 "",
+		CountryList:            countryList,
+
+		//	SectorList:  sectorList,
+	}
+	//fmt.Println(pageSienaAccountList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaAccountList)
+
+}
+
+func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessageAction(inUTL, "Save", "")
+
+	//	var item sienaAccountItem
+
+	Account_HandlerList(w, r)
+
+}
+
+func Account_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "newSienaAccount"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	//Get Country List & Populate and Array of dm.Country Items
+	_, countryList, _ := dao.Country_GetList()
+	//	_, sectorList, _ := getSienaSectorList(thisConnection)
+
+	pageSienaAccountList := account_Page{
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Translation_Title, core.Action_New),
+
+		ID:          "NEW",
+		Action:      "NEW",
+		CountryList: countryList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaAccountList)
+
+}

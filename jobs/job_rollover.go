@@ -5,45 +5,47 @@ import (
 	"log"
 
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
-	"github.com/mt1976/mwt-go-dev/siena"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 )
 
-func Rollover_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func Rollover_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "ROLLOVER"
 	j.Name = "ROLLOVER"
 	j.Period = "10 1 * * *"
 	j.Description = "Siena System Rollover Refresh"
-	j.Type = globals.Monitor
+	j.Type = core.Monitor
 	return j
 }
 
 func Rollover_Register(c *cron.Cron) {
-	application.RegisterSchedule(Rollover_Job().ID, Rollover_Job().Name, Rollover_Job().Description, Rollover_Job().Period, Rollover_Job().Type)
+	//application.RegisterSchedule(Rollover_Job().ID, Rollover_Job().Name, Rollover_Job().Description, Rollover_Job().Period, Rollover_Job().Type)
+	application.Schedule_Register(Rollover_Job())
 	c.AddFunc(Rollover_Job().Period, func() { Rollover_Run() })
 }
 
 // RunJobRollover is a Rollover function
 func Rollover_Run() {
-	logStart(Rollover_Job().Name)
+	logs.StartJob(Rollover_Job().Name)
 	/// CONTENT STARTS
-	globals.Log_uptime()
+	core.Log_uptime()
 
-	globals.SienaDB = globals.GlobalsDatabasePoke(globals.SienaDB, globals.SienaPropertiesDB)
-	oldSysDate := globals.SienaSystemDate
-	_, tempDate, _ := siena.GetBusinessDate(globals.SienaDB)
-	globals.SienaSystemDate = tempDate
+	core.SienaDB = core.Database_Poke(core.SienaDB, core.SienaPropertiesDB)
+	oldSysDate := core.SienaSystemDate
+	_, tempDate, _ := application.GetBusinessDate(core.SienaDB)
+	core.SienaSystemDate = tempDate
 
 	log.Printf("Old System Date: %v\n", oldSysDate)
-	log.Printf("New System Date: %v\n", globals.SienaSystemDate)
+	log.Printf("New System Date: %v\n", core.SienaSystemDate)
 
-	message := fmt.Sprintf("Rolled from %v to %v", oldSysDate.Internal, globals.SienaSystemDate.Internal)
+	message := fmt.Sprintf("Rolled from %v to %v", oldSysDate.Internal, core.SienaSystemDate.Internal)
 
-	application.UpdateSchedule("SRO", globals.Monitor, message)
+	//application.UpdateSchedule("SRO", core.Monitor, message)
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(Rollover_Job().Name, Rollover_Job().Type, "")
-	logEnd(Rollover_Job().Name)
+	application.Schedule_Update(Rollover_Job(), message)
+	logs.EndJob(Rollover_Job().Name)
 }

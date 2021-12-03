@@ -1,0 +1,44 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/counterpartygroup.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : CounterpartyGroup (counterpartygroup)
+Endpoint 	         : CounterpartyGroup (Group)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:56
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCounterpartyGroup
+SQL Table Search Col : Name
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Name                                | String     |            | true  | true   | false |                 |            |            | 
+| CountryCode                         | String     |            | false | true   | false |                 |            |            | 
+| SuperGroup                          | String     |            | false | true   | false |                 |            |            | 
+| Country_Impl                        | String     |            | true  | false  | true  | Country         | CountryCode | Name       | 
+| Parent_Impl                         | String     |            | true  | false  | true  | CounterpartyGroup | SuperGroup | Name       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/counterpartyGroup_core.go)
+* adaptor (/adaptor/counterpartyGroup.go)
+* dao (/dao/counterpartyGroup.go)
+* datamodel (/datamodel/counterpartyGroup.go)
+* menu (/design/menu/counterpartyGroup.json)
+* html -> List (/html/CounterpartyGroup_List.html)
+* html -> View (/html/CounterpartyGroup_View.html)
+* html -> Edit (/html/CounterpartyGroup_Edit.html)
+* html -> New (/html/CounterpartyGroup_New.html)
+* catalog (/design/catalog/counterpartyGroup.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

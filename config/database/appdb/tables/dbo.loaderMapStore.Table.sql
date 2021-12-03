@@ -1,11 +1,11 @@
 USE [SRS]
 GO
-/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[loaderMapStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [dbo].[loaderMapStore]    Script Date: 24/11/2021 19:42:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[loaderMapStore](
+CREATE TABLE [dbo].[loaderMapStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[id] [nvarchar](max) NOT NULL,
 	[name] [nvarchar](max) NULL,
@@ -16,6 +16,10 @@ CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[loaderMapStore](
 	[_host] [nvarchar](max) NULL,
 	[_updated] [nvarchar](max) NULL,
 	[int_position]  AS (CONVERT([int],[position])),
+	[_createdBy] [nvarchar](max) NULL,
+	[_createdHost] [nvarchar](max) NULL,
+	[_updatedBy] [nvarchar](max) NULL,
+	[_updatedHost] [nvarchar](max) NULL,
  CONSTRAINT [PK_loaderMapStore] PRIMARY KEY CLUSTERED 
 (
 	[_id] ASC

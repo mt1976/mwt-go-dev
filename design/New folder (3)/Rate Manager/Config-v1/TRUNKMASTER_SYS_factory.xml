@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="rateDatumIFactoryUniqueString" class="com.eurobase.common.util.UniqueTimeString">
+            <constructor-arg><value>DefaultRateDatumFactory</value></constructor-arg>
+            <constructor-arg><value></value></constructor-arg>
+</bean>
+
+
+<bean id="DefaultRateDatumFactory" class="com.eurobase.ratemanager.data.RateDatumFactory">
+  <property name = "lifetime">
+     <value>${defaultFactoryLifetime}</value>
+  </property>
+  <property name = "auditor">
+    <ref bean="auditor" />
+  </property>
+  <property name="uniqueString">
+    <ref bean="rateDatumIFactoryUniqueString"/>
+  </property>
+</bean> 
+
+<bean id="MMRateDatumFactory" class="com.eurobase.ratemanager.data.RateDatumFactory">
+  <property name = "lifetime">
+    <value>${defaultFactoryLifetime}</value>
+  </property>
+  <property name = "auditor">
+    <ref bean="auditor" />
+  </property>
+  <property name="uniqueString">
+    <ref bean="rateDatumIFactoryUniqueString"/>
+  </property>
+</bean>   
+
+</beans>

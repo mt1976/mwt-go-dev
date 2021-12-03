@@ -1,0 +1,174 @@
+<head>
+  <!-- START OF INSERTS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <!-- FAVICON BUMPF -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+  <meta name="msapplication-TileColor" content="#322a77">
+  <meta name="theme-color" content="#ffffff">
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  <!-- Add CUSTOM ICONS, FONTS & STYLES -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <script src="../assets/custom.js"></script>
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+  </link>
+  <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+  <!-- END OF INSERTS -->
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+
+  <title>{{.Title}}&nbsp;[{{.PageTitle}}]</title>
+
+</head>
+
+<body>
+
+  <!-- DO NOT CHANGE - APP USES CENTRAL NAVIGATION -->
+  <div class="row nav-row">
+    <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
+    <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
+  </div>
+  <div id="mySidenav" class="sidenav">
+  <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    {{range .UserMenu}}
+    <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
+      <div class="row">
+        <div class="dd-img">
+          <i class="{{.MenuGlyph}} {{.MenuTextClass}}"></i>
+        </div>
+        <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
+      </div>
+    </a>
+    {{end}}
+    </div>
+  <!-- DO NOT CHANGE -->
+
+  <div class="container-fluid">
+    <form action="/Simulator_FundsCheckerSubmit/?FundsCheck={{.Id}}" method="GET">
+    <div hidden="hidden">
+      <input type="text" id="ID" name="ID" value="{{.Id}}">
+    </div>
+    <div class="card">
+      <div class="card-header font-weight-bold">
+        <div class="row">
+          <div class="col">{{.Title}}<code></code></div>
+            <div class="col">
+              <div class="btn-group float-right">
+                <button type="submit" value="" class="btn btn-outline-primary"><i class="far fa-paper-plane" method="GET" onclick="/Simulator_FundsCheckerSubmit/?FundsCheck={{.Id}}" formaction="/Simulator_FundsCheckerSubmit/?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
+                <button type="button"  class="btn  btn-outline-secondary" method="POST" onclick="history.back()">
+                  <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+      <br><h4>Identity</h4>
+          <div class="row">
+            <div class="col-sm">
+              <label for="Name">Name</label>
+              <input type="text" class="form-control" id="Name" name="Name" aria-describedby="Name" placeholder="Enter Name" disabled="disabled" value="{{.Name}}" maxlength="10">
+            </div>
+            <div class="col-sm">
+              <label for="Id">Id</label>
+              <input type="text" class="form-control" id="Id" name="Id" aria-describedby="Id" placeholder="Enter Id" disabled="disabled" value="{{.Id}}" maxlength="10">
+            </div>
+            <div class="col-sm">
+              <label for="Source">Source</label>                <input type="text" class="form-control" id="Source" name="Source" aria-describedby="Source" placeholder="Enter an email address" value="{{.Source}}" disabled="disabled">
+            </div>
+          </div>
+          <br><h4>Message Header</h4>
+          <div style="height: 10px"></div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">XREF</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.XREF}}" disabled>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">SOURCE</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.SOURCE}}" disabled>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">OPERATION</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.OPERATION}}" disabled>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">DESTINATION</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.DESTINATION}}" disabled>
+          </div>
+          <br><h4>Message Body</h4>
+          <div style="height: 8px"></div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">BIC</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.BODY.FundsCheck.BIC}}" disabled>
+          </div>
+          <div class="row">
+            <div class="col input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">ACC</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.ACC}}"disabled>
+            </div>
+            <div class="col input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">CCY</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.CCY}}" disabled>
+            </div>
+            <div class="col input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">AMOUNT</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.AMOUNT}}" disabled>
+            </div>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">VALDATE</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.VALDATE}}" disabled>
+          </div>
+          <hr>
+          <h4>Response</h4>
+          <div style="height: 10px"></div>
+          <div class="row highlight" style="padding-top:15;padding-bottom: 15">
+            <div class="col input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">AMOUNT</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Balance" aria-label="Balance" id="Balance" name="Balance" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.AMOUNT}}">
+            </div>
+            <div class="col input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">ACTION</span>
+              </div>
+              <select class="form-control" name="ResultCode" id="ResultCode">
+                <option value="1">Approve</option>
+                <option value="0">Reject</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>

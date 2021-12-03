@@ -85,13 +85,24 @@
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <h5 class="alert-heading">Information!</h5>
               Where an attribute value is surrounded by &lcub;&lcub; &rcub;&rcub;, it will be replaced by the data in the associated column in the Data Map.
-
+  <br>
               <font size="-1">e.g. &lcub;&lcub;DESCRIPTION&rcub;&rcub; would be replaced by the content of the "DESCRIPTION" column in the Data Map.</font>
+              <br>
+              <br>
+              <pre class="text-muted">
+              A selection of "system" values are available for use in the Data Map.
+              ---------------------------------------------------------------------
+              !MSG.ID = Current UUID of the Message being generated.                          !SEQ    = A Sequence Number of the transaction
+              !TODAY  = Todays Date (as YYYY-MM-DD)       !DDD    = The Day of the year       !YYYY   = The Year (4 digits)
+              !DD     = Date of the Month (as DD)         !MM     = The Month (as 2 digits)   !YY     = The Year (2 digits)
+              !hh     = The Hour (as 2 digits)            !mm     = Minutes (as 2 digits)     !ss     = Seconds (as 2 digits)
+              !SPOT   = The Spot Date (T+2)               !1M     = Spot Date + 1 Month    -> !12M    = Spot Date + 12 Months
+              !1Y     = Spot Date + 1 Year             -> !%Y    = Spot Date + 2 Years        !FDY    = First Day of Current Year        </pre>            
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-
+            <br>
             <textarea class="form-control" name="pgContent" id="pgContent" rows="{{.JSRows}}" cols="80">{{.FullRecord}}</textarea>
 
 

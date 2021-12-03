@@ -1,0 +1,295 @@
+package application
+
+import (
+	"fmt"
+	"html/template"
+	"log"
+	"net/http"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
+)
+
+// Defines the Fields to onscreen for Cache Data
+//appCacheStorePage is cheese
+type appCacheStoreListPage struct {
+	UserMenu        []dm.AppMenuItem
+	UserRole        string
+	UserNavi        string
+	Title           string
+	PageTitle       string
+	CacheStoreCount int
+	CacheStoreList  []dm.Cache
+}
+
+//appCacheStorePage is cheese
+type appCacheStorePage struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	UserNavi  string
+	Title     string
+	PageTitle string
+	ID        string
+	Action    string
+	// Variable Bits Below
+	Id         string
+	Object     string
+	Field      string
+	Value      string
+	Expiry     string
+	SYSCreated string
+	SYSWho     string
+	SYSHost    string
+	SYSUpdated string
+	Source     string
+}
+
+func DataCache_Publish(mux http.ServeMux) {
+	logs.Publish("Application", "DataCache")
+	mux.HandleFunc("/refreshCache/", RefreshCacheHandler)
+}
+
+func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "CacheStoreList"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//	var returnList []dm.Cache
+	noItems, returnList, _ := dao.DataCache_GetList()
+
+	pageCacheStoreList := appCacheStoreListPage{
+		UserMenu: UserMenu_Get(r),
+		UserRole: core.GetUserRole(r),
+		UserNavi: "NOT USED",
+		Title:    core.ApplicationProperties["appname"],
+		//PageTitle:       core.ApplicationProperties["appname"] + " - " + "Cache",
+		PageTitle:       PageTitle(dm.DataCache_Title, "List"),
+		CacheStoreCount: noItems,
+		CacheStoreList:  returnList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCacheStoreList)
+
+}
+
+func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "CacheStoreView"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "CacheStore")
+	_, returnRecord, _ := dao.DataCache_GetItemByID(searchID)
+
+	pageCacheStoreList := appCacheStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.DataCache_Title, "View"),
+		Action:    "",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		// Above are mandatory
+		// Below are variable
+		Id:         returnRecord.Id,
+		Object:     returnRecord.Object,
+		Field:      returnRecord.Field,
+		Value:      returnRecord.Value,
+		Expiry:     returnRecord.Expiry,
+		SYSCreated: returnRecord.SYSCreated,
+		SYSWho:     returnRecord.SYSWho,
+		SYSHost:    returnRecord.SYSHost,
+		SYSUpdated: returnRecord.SYSUpdated,
+		Source:     returnRecord.Source,
+	}
+
+	//fmt.Println(pageCacheStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCacheStoreList)
+
+}
+
+func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "CacheStoreEdit"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "CacheStore")
+	_, returnRecord, _ := dao.DataCache_GetItemByID(searchID)
+
+	pageCacheStoreList := appCacheStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.DataCache_Title, "Edit"),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+		Id:         returnRecord.Id,
+		Object:     returnRecord.Object,
+		Field:      returnRecord.Field,
+		Value:      returnRecord.Value,
+		Expiry:     returnRecord.Expiry,
+		SYSCreated: returnRecord.SYSCreated,
+		SYSWho:     returnRecord.SYSWho,
+		SYSHost:    returnRecord.SYSHost,
+		SYSUpdated: returnRecord.SYSUpdated,
+		Source:     returnRecord.Source,
+	}
+	//fmt.Println(pageCacheStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCacheStoreList)
+
+}
+
+func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	//tmpl := "saveSienaCountry"
+
+	inUTL := r.URL.Path
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+
+	var s dm.DataCache
+
+	s.Id = r.FormValue("Id")
+	s.Object = r.FormValue("Object")
+	s.Field = r.FormValue("Field")
+	s.Value = r.FormValue("Value")
+	s.Expiry = r.FormValue("Expiry")
+	s.SYSCreated = r.FormValue("SYSCreated")
+	s.SYSWho = r.FormValue("SYSWho")
+	s.SYSHost = r.FormValue("SYSHost")
+	s.SYSUpdated = r.FormValue("SYSUpdated")
+	s.Source = r.FormValue("Source")
+
+	//log.Println("save", s)
+
+	dao.DataCache_Store(s, r)
+
+	ListCacheStoreHandler(w, r)
+
+}
+
+func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "CacheStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
+	dao.DataCache_DeleteItemByID(searchID)
+	ListCacheStoreHandler(w, r)
+
+}
+
+func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "CacheStoreNew"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	pageCacheStoreList := appCacheStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.DataCache_Title, "New"),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCacheStoreList)
+
+}
+
+//initaliseCache rebuilds each cashed set of date table by table
+func initialiseCache(r *http.Request) {
+	initialiseCacheData("CounterpartyImportID", "KeyImportID", "Counterparty", "ID", core.SienaPropertiesDB, r)
+	initialiseCacheData("Book", "BookName", "", "ID", core.SienaPropertiesDB, r)
+	initialiseCacheData("Currency", "Code", "", "ID", core.SienaPropertiesDB, r)
+	initialiseCacheData("CurrencyPair", "Code", "", "ID", core.SienaPropertiesDB, r)
+	//	InitialiseCacheData("Reason", "Reason")
+	initialiseCacheData("Portfolio", "Code", "", "ID", core.SienaPropertiesDB, r)
+	initialiseCacheData("User", "UserName", "", "Name", core.SienaPropertiesDB, r)
+	initialiseCacheData("MandatedUser", "MandatedUserKeyUserName", "", "Name", core.SienaPropertiesDB, r)
+	initialiseCacheData("BusinessDate", "Today", "", "", core.SienaPropertiesDB, r)
+	initialiseCacheData("Broker", "Code", "", "ID", core.SienaPropertiesDB, r)
+}
+
+//initialiseCacheData rebuilds a set of data from a table
+func initialiseCacheData(table string, field string, objectName string, fieldName string, sourceProperties map[string]string, r *http.Request) {
+	basesql := fmt.Sprintf("SELECT %s FROM %s.siena%s;", field, core.SienaPropertiesDB["schema"], table)
+
+	storeObjectName := objectName
+	if len(objectName) == 0 {
+		storeObjectName = table
+	}
+
+	log.Printf("Caching       : %-20s data -> %-20s from %-15q -> %s on %-15q", table, storeObjectName, sourceProperties["database"], sourceProperties["schema"], sourceProperties["server"])
+
+	//log.Println(basesql)
+	dao.DataCache_Build(table, field, fieldName, objectName, basesql, sourceProperties, r)
+}
+
+//RefreshCacheHandler rebuilds all Siena data caches currently define
+func RefreshCacheHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	initialiseCache(r)
+	//HomePageHandler(w, r)
+	http.Redirect(w, r, "/home", http.StatusFound)
+}

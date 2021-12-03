@@ -1,11 +1,12 @@
 package jobs
 
 import (
-	"log"
+	"fmt"
 	"runtime"
 	"strings"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/logs"
 
 	cron "github.com/robfig/cron/v3"
 )
@@ -26,25 +27,25 @@ func Start() {
 
 	//logit("info", c.Location().String())
 
-	logit("cron Locale", c.Location().String())
+	//logit("cron Locale", c.Location().String())
 
 	HeartBeat_Register(c)
 
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		RatesFXSpot_Register(c)
 	}
 
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		RatesFXECB_Register(c)
 	}
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		IndexSONIABOE_Register(c)
 	}
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		InstFRED_Register(c)
 	}
 
-	if !globals.IsChildInstance {
+	if !core.IsChildInstance {
 		InstFII_Register(c)
 	}
 
@@ -76,13 +77,6 @@ func logit(actionType string, data string) {
 	depth2 := depth - 1
 	//log.Println(len(outcall), depth, depth2)
 	callerName := outcall[depth2] + "/" + outcall[depth]
-	log.Printf("Scheduler     : %v '%v' {%v}", actionType, data, callerName)
-}
-
-func logStart(data string) {
-	logit("Job Start", data)
-}
-
-func logEnd(data string) {
-	logit("Job End", data)
+	op := fmt.Sprintf("%v '%v' {%v}", actionType, data, callerName)
+	logs.Message("Scheduler", op)
 }

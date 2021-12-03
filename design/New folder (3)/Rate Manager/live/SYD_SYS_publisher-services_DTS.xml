@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="publisherServiceDTS" class="com.eurobase.ratemanager.external.out.ExtsysXMLPublisher" init-method="init">
+  <property name="externalSystem">
+    <ref bean="DTSExternalSystem"/>
+  </property>
+  <property name="auditor">
+    <ref bean="auditor"/>
+  </property>
+  <property name="systemId">
+    <value>DTS Publisher</value>
+  </property>      
+  <property name="timeZone">
+    <value>UTC</value>
+  </property> 
+  <property name="badRateStatuses">
+    <value>${default_BadRateStatuses}</value>
+  </property>
+  <property name="idMappings">
+    <map>
+      <entry>
+        <key><value>AUDCADSPMarketFX</value></key><value>AUDCAD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>AUDCHFSPMarketFX</value></key><value>AUDCHF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>AUDDKKSPMarketFX</value></key><value>AUDDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>AUDHKDSPMarketFX</value></key><value>AUDHKD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>AUDUSDSPMarketFX</value></key><value>AUDUSD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CHFDKKSPMarketFX</value></key><value>CHFDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CHFJPYSPMarketFX</value></key><value>CHFJPY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CHFNOKSPMarketFX</value></key><value>CHFNOK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CHFSEKSPMarketFX</value></key><value>CHFSEK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CHFTRYSPMarketFX</value></key><value>CHFTRY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CHFZARSPMarketFX</value></key><value>CHFZAR=EUB</value>
+      </entry>
+      <entry>
+        <key><value>CZKDKKSPMarketFX</value></key><value>CZKDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURAUDSPMarketFX</value></key><value>EURAUD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURCADSPMarketFX</value></key><value>EURCAD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURCHFSPMarketFX</value></key><value>EURCHF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURCZKSPMarketFX</value></key><value>EURCZK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURDKKSPMarketFX</value></key><value>EURDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURGBPSPMarketFX</value></key><value>EURGBP=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURHKDSPMarketFX</value></key><value>EURHKD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURHUFSPMarketFX</value></key><value>EURHUF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURJPYSPMarketFX</value></key><value>EURJPY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURLTLSPMarketFX</value></key><value>EURLTL=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURLVLSPMarketFX</value></key><value>EURLVL=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURMXNSPMarketFX</value></key><value>EURMXN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURNOKSPMarketFX</value></key><value>EURNOK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURNZDSPMarketFX</value></key><value>EURNZD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURPLNSPMarketFX</value></key><value>EURPLN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURSEKSPMarketFX</value></key><value>EURSEK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURSGDSPMarketFX</value></key><value>EURSGD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURTHBSPMarketFX</value></key><value>EURTHB=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURTRYSPMarketFX</value></key><value>EURTRY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURUSDSPMarketFX</value></key><value>EURUSD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>EURZARSPMarketFX</value></key><value>EURZAR=EUB</value>
+      </entry>
+      <entry>
+        <key><value>GBPCHFSPMarketFX</value></key><value>GBPCHF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>GBPDKKSPMarketFX</value></key><value>GBPDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>GBPHKDSPMarketFX</value></key><value>GBPHKD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>GBPJPYSPMarketFX</value></key><value>GBPJPY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>GBPUSDSPMarketFX</value></key><value>GBPUSD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>HKDDKKSPMarketFX</value></key><value>HKDDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>HUFPLNSPMarketFX</value></key><value>HUFPLN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>HUFSEKSPMarketFX</value></key><value>HUFSEK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYCZKSPMarketFX</value></key><value>JPYCZK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYDKKSPMarketFX</value></key><value>JPYDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYHKDSPMarketFX</value></key><value>JPYHKD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYHUFSPMarketFX</value></key><value>JPYHUF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYMXNSPMarketFX</value></key><value>JPYMXN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYNOKSPMarketFX</value></key><value>JPYNOK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYPLNSPMarketFX</value></key><value>JPYPLN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYSEKSPMarketFX</value></key><value>JPYSEK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYTRYSPMarketFX</value></key><value>JPYTRY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>JPYZARSPMarketFX</value></key><value>JPYZAR=EUB</value>
+      </entry>
+      <entry>
+        <key><value>MXNDKKSPMarketFX</value></key><value>MXNDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>NOKDKKSPMarketFX</value></key><value>NOKDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>NZDDKKSPMarketFX</value></key><value>NZDDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>NZDUSDSPMarketFX</value></key><value>NZDUSD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>PLNDKKSPMarketFX</value></key><value>PLNDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>SEKDKKSPMarketFX</value></key><value>SEKDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>SEKNOKSPMarketFX</value></key><value>SEKNOK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>SGDDKKSPMarketFX</value></key><value>SGDDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>THBDKKSPMarketFX</value></key><value>THBDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>TRYDKKSPMarketFX</value></key><value>TRYDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDCADSPMarketFX</value></key><value>USDCAD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDCHFSPMarketFX</value></key><value>USDCHF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDCZKSPMarketFX</value></key><value>USDCZK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDDKKSPMarketFX</value></key><value>USDDKK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDHKDSPMarketFX</value></key><value>USDHKD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDHUFSPMarketFX</value></key><value>USDHUF=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDJPYSPMarketFX</value></key><value>USDJPY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDLTLSPMarketFX</value></key><value>USDLTL=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDLVLSPMarketFX</value></key><value>USDLVL=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDMXNSPMarketFX</value></key><value>USDMXN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDNOKSPMarketFX</value></key><value>USDNOK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDPLNSPMarketFX</value></key><value>USDPLN=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDSEKSPMarketFX</value></key><value>USDSEK=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDSGDSPMarketFX</value></key><value>USDSGD=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDTHBSPMarketFX</value></key><value>USDTHB=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDAEDSPMarketFX</value></key><value>USDAED=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDBRLSPMarketFX</value></key><value>USDBRL=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDAMDSPMarketFX</value></key><value>USDAMD=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDARSSPMarketFX</value></key><value>USDARS=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDBGNSPMarketFX</value></key><value>USDBGN=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>EURBGNSPMarketFX</value></key><value>EURBGN=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDBWPSPMarketFX</value></key><value>USDBWP=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDCLPSPMarketFX</value></key><value>USDCLP=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDCNYSPMarketFX</value></key><value>USDCNY=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDCYPSPMarketFX</value></key><value>USDCYP=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDDZDSPMarketFX</value></key><value>USDDZD=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDEGPSPMarketFX</value></key><value>USDEGP=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDHRKSPMarketFX</value></key><value>USDHRK=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDIDRSPMarketFX</value></key><value>USDIDR=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDILSSPMarketFX</value></key><value>USDILS=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDJODSPMarketFX</value></key><value>USDJOD=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDKESSPMarketFX</value></key><value>USDKES=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDKRWSPMarketFX</value></key><value>USDKRW=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDLKRSPMarketFX</value></key><value>USDLKR=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDMADSPMarketFX</value></key><value>USDMAD=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDMTLSPMarketFX</value></key><value>USDMTL=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDMYRSPMarketFX</value></key><value>USDMYR=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDPHPSPMarketFX</value></key><value>USDPHP=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDPKRSPMarketFX</value></key><value>USDPKR=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDQARSPMarketFX</value></key><value>USDQAR=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDRONSPMarketFX</value></key><value>USDRON=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDRUBSPMarketFX</value></key><value>USDRUB=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDSARSPMarketFX</value></key><value>USDSAR=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDSITSPMarketFX</value></key><value>USDSIT=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDTNDSPMarketFX</value></key><value>USDTND=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDTWDSPMarketFX</value></key><value>USDTWD=EUB</value>
+      </entry>
+
+      <entry>
+        <key><value>USDUGXSPMarketFX</value></key><value>USDUGX=EUB</value>
+      </entry>
+
+
+
+      <entry>
+        <key><value>USDTRYSPMarketFX</value></key><value>USDTRY=EUB</value>
+      </entry>
+      <entry>
+        <key><value>USDZARSPMarketFX</value></key><value>USDZAR=EUB</value>
+      </entry>
+      <entry>
+        <key><value>ZARDKKSPMarketFX</value></key><value>ZARDKK=EUB</value>
+      </entry>
+    </map>
+  </property>
+</bean>  
+
+<bean id="DTSExternalSystem" class="com.eurobase.rfa.external.SubscriptionBasedPublisher">
+  <property name="publisher">
+    <ref bean="rfaContributor"/>
+  </property>
+  <property name="subscriptions">
+    <value>
+	AUDCAD=EUB,
+	AUDCHF=EUB,
+      AUDDKK=EUB,
+      AUDHKD=EUB,
+      AUDUSD=EUB,
+      CHFDKK=EUB,
+      CHFJPY=EUB,
+      CHFNOK=EUB,
+      CHFSEK=EUB,
+      CHFTRY=EUB,
+      CHFZAR=EUB,
+      CZKDKK=EUB,
+      EURAUD=EUB,
+      EURCAD=EUB,
+      EURCHF=EUB,
+      EURCZK=EUB,
+      EURDKK=EUB,
+      EURGBP=EUB,
+      EURHKD=EUB,
+      EURHUF=EUB,
+      EURJPY=EUB,
+      EURLTL=EUB,
+      EURLVL=EUB,
+      EURMXN=EUB,
+      EURNOK=EUB,
+      EURNZD=EUB,
+      EURPLN=EUB,
+      EURSEK=EUB,
+      EURTRY=EUB,
+      EURUSD=EUB,
+      EURZAR=EUB,
+      GBPCHF=EUB,
+      GBPDKK=EUB,
+      GBPHKD=EUB,
+      GBPJPY=EUB,
+      GBPUSD=EUB,
+      HKDDKK=EUB,
+      JPYDKK=EUB,
+	JPYMXN=EUB,
+	JPYNOK=EUB,
+	JPYSEK=EUB,
+	JPYTRY=EUB,
+	JPYZAR=EUB,
+      MXNDKK=EUB,
+      NOKDKK=EUB,
+      NZDDKK=EUB,
+      NZDUSD=EUB,
+      PLNDKK=EUB,
+      SEKDKK=EUB,
+	SEKNOK=EUB,
+      SGDDKK=EUB,
+	THBDKK=EUB,
+      TRYDKK=EUB,
+      USDCAD=EUB,
+	USDCZK=EUB,
+      USDCHF=EUB,
+      USDDKK=EUB,
+      USDHKD=EUB,
+      USDHUF=EUB,
+      USDJPY=EUB,
+      USDLTL=EUB,
+      USDLVL=EUB,
+      USDMXN=EUB,
+      USDNOK=EUB,
+      USDPLN=EUB,
+      USDSEK=EUB,
+      USDSGD=EUB,
+      USDTHB=EUB,
+      USDAED=EUB,
+      USDBRL=EUB,
+      USDAMD=EUB,
+      USDARS=EUB,
+      USDBGN=EUB,
+      EURBGN=EUB,
+      USDBWP=EUB,
+      USDCLP=EUB,
+      USDCNY=EUB,
+      USDCYP=EUB,
+      USDDZD=EUB,
+      USDEGP=EUB,
+      USDHRK=EUB,
+      USDIDR=EUB,
+      USDILS=EUB,
+      USDJOD=EUB,
+      USDKES=EUB,
+      USDKRW=EUB,
+      USDLKR=EUB,
+      USDMAD=EUB,
+      USDMTL=EUB,
+      USDMYR=EUB,
+      USDPHP=EUB,
+      USDPKR=EUB,
+      USDQAR=EUB,
+      USDRON=EUB,
+      USDRUB=EUB,
+      USDSAR=EUB,
+      USDSIT=EUB,
+      USDTND=EUB,
+      USDTWD=EUB,
+      USDUGX=EUB,
+      USDTRY=EUB,
+      USDZAR=EUB,
+      ZARDKK=EUB
+    </value>
+  </property>
+</bean>
+
+<bean id="rfaContributor" class="com.eurobase.rfa.publish.RFAContributor">
+  <property name="RFAInterfaceParams">
+    <ref bean="publishParams" />
+  </property>
+  <property name="updatePricesOnStale">
+    <value>true</value>
+  </property>
+</bean>
+
+<bean id="publishParams" class="com.eurobase.rfa.core.RFAInterfaceParams">
+  <property name="name">
+    <value>RateManagerRFAContributor</value>
+  </property>
+  <property name="nameSpace">
+    <value>myNamespace</value>
+  </property>
+  <property name="sessionName">
+    <value>mySession2</value>
+  </property>      
+  <property name="serviceName">
+    <value>DTS</value>
+  </property>
+  <property name="connectionInterest">
+    <value>true</value>
+  </property>
+  <property name="entitlementInterest">
+    <value>false</value>
+  </property>
+  <property name="serviceInterest">
+    <value>true</value>
+  </property>
+  <property name="contReplyInterest">
+    <value>true</value>
+  </property>
+</bean>
+
+</beans>

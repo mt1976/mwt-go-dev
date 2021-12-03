@@ -1,0 +1,142 @@
+package application
+
+import (
+	"database/sql"
+	"fmt"
+	"html/template"
+	"log"
+	"net/http"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+// Defines the Fields to Fetch from SQL
+var sienaAccountLadderSQL = "SienaReference, BusinessDate, ContractNumber, Balance, DealtCcy, AmountDp"
+var sqlACCLSienaReference, sqlACCLBusinessDate, sqlACCLContractNumber, sqlACCLBalance, sqlACCLDealtCcy, sqlACCLAmountDP sql.NullString
+
+//sienaAccountLadderPage is cheese
+type sienaAccountLadderListPage struct {
+	UserMenu                []dm.AppMenuItem
+	UserRole                string
+	UserNavi                string
+	Title                   string
+	PageTitle               string
+	SienaAccountLadderCount int
+	SienaAccountLadderList  []sienaAccountLadderItem
+	ID                      string
+	Name                    string
+}
+
+//sienaAccountLadderPage is cheese
+type sienaAccountLadderPage struct {
+	UserMenu       []dm.AppMenuItem
+	UserRole       string
+	UserNavi       string
+	Title          string
+	PageTitle      string
+	ID             string
+	Action         string
+	SienaReference string
+	BusinessDate   string
+	ContractNumber string
+	Balance        string
+	DealtCcy       string
+	AmountDP       string
+}
+
+//sienaAccountLadderItem is cheese
+type sienaAccountLadderItem struct {
+	Action         string
+	SienaReference string
+	BusinessDate   string
+	ContractNumber string
+	Balance        string
+	DealtCcy       string
+	AmountDP       string
+}
+
+func ListSienaAccountLadderHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "listSienaAccountLadder"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	//	fmt.Println(thisConnection.Stats().OpenConnections)
+	var returnList []sienaAccountLadderItem
+	accountID := core.GetURLparam(r, "SienaAccountID")
+	accountCCY := core.GetURLparam(r, "CCY")
+	noItems, returnList, _ := getSienaAccountLadderList(accountID, accountCCY)
+	//	fmt.Println("NoSienaCountries", noItems)
+	//	fmt.Println(returnList)
+	//	fmt.Println(tmpl)
+	_, account, _ := dao.Account_GetByID(accountID)
+
+	pageSienaAccountLadderList := sienaAccountLadderListPage{
+		UserMenu:                UserMenu_Get(r),
+		UserRole:                core.GetUserRole(r),
+		UserNavi:                "NOT USED",
+		Title:                   core.ApplicationProperties["appname"],
+		PageTitle:               core.ApplicationProperties["appname"] + " - " + "Account Ladder - View",
+		SienaAccountLadderCount: noItems,
+		SienaAccountLadderList:  returnList,
+		ID:                      account.AccountNumber,
+		Name:                    account.AccountName,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageSienaAccountLadderList)
+
+}
+
+// getSienaAccountLadderList read all employees
+func getSienaAccountLadderList(idRef string, acctCCY string) (int, []sienaAccountLadderItem, error) {
+
+	tsql := fmt.Sprintf("SELECT %s FROM %s.sienaAccountLadder WHERE SienaReference=%s;", sienaAccountLadderSQL, core.SienaPropertiesDB["schema"], idRef)
+	count, sienaAccountLadderList, _, _ := fetchSienaAccountLadderData(tsql)
+	return count, sienaAccountLadderList, nil
+}
+
+// fetchSienaAccountLadderData read all employees
+func fetchSienaAccountLadderData(tsql string) (int, []sienaAccountLadderItem, sienaAccountLadderItem, error) {
+	log.Println(tsql)
+	var sienaAccountLadder sienaAccountLadderItem
+	var sienaAccountLadderList []sienaAccountLadderItem
+
+	rows, err := core.SienaDB.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, sienaAccountLadder, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlACCLSienaReference, &sqlACCLBusinessDate, &sqlACCLContractNumber, &sqlACCLBalance, &sqlACCLDealtCcy, &sqlACCLAmountDP)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, sienaAccountLadder, err
+		}
+
+		sienaAccountLadder.SienaReference = sqlACCLSienaReference.String
+		sienaAccountLadder.BusinessDate = core.SqlDateToHTMLDate(sqlACCLBusinessDate.String)
+		sienaAccountLadder.ContractNumber = sqlACCLContractNumber.String
+		sienaAccountLadder.DealtCcy = sqlACCLDealtCcy.String
+		sienaAccountLadder.Balance = core.FormatCurrencyDps(sqlACCLBalance.String, sqlACCLDealtCcy.String, sqlACCLAmountDP.String)
+		sienaAccountLadder.AmountDP = sqlACCLAmountDP.String
+		sienaAccountLadderList = append(sienaAccountLadderList, sienaAccountLadder)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	log.Println(count, sienaAccountLadderList, sienaAccountLadder)
+	return count, sienaAccountLadderList, sienaAccountLadder, nil
+}

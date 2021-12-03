@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,10 +11,11 @@ import (
 
 	"github.com/bjarneh/latinx"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 	cron "github.com/robfig/cron/v3"
 	"golang.org/x/net/html/charset"
-	"golang.org/x/text/encoding/charmap"
 )
 
 const (
@@ -56,24 +56,24 @@ type CubeItem struct {
 	LASTUPDATED string `xml:"LAST_UPDATED,attr"`
 }
 
-func IndexSONIABOE_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func IndexSONIABOE_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "RATES_ONBOE"
 	j.Name = "RATES_ONBOE"
 	j.Period = "30 10 * * 1-5"
 	j.Description = "Update SONIA from BOE"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 
 func IndexSONIABOE_Register(c *cron.Cron) {
-	application.RegisterSchedule(IndexSONIABOE_Job().ID, IndexSONIABOE_Job().Name, IndexSONIABOE_Job().Description, IndexSONIABOE_Job().Period, IndexSONIABOE_Job().Type)
+	application.Schedule_Register(IndexSONIABOE_Job())
 	c.AddFunc(IndexSONIABOE_Job().Period, func() { IndexSONIABOE_Run() })
 }
 
 // RunJobRollover is a Rollover function
 func IndexSONIABOE_Run() {
-	logStart(IndexSONIABOE_Job().Name)
+	logs.StartJob(IndexSONIABOE_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
@@ -144,14 +144,14 @@ func IndexSONIABOE_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(IndexSONIABOE_Job().Name, IndexSONIABOE_Job().Type, message)
-	logEnd(IndexSONIABOE_Job().Name)
+	application.Schedule_Update(IndexSONIABOE_Job(), message)
+	logs.EndJob(IndexSONIABOE_Job().Name)
 }
 
-func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {
-	if charset == "ISO-8859-1" {
-		// Windows-1252 is a superset of ISO-8859-1, so should do here
-		return charmap.Windows1252.NewDecoder().Reader(input), nil
-	}
-	return nil, fmt.Errorf("Unknown charset: %s", charset)
-}
+// func makeCharsetReader(charset string, input io.Reader) (io.Reader, error) {
+// 	if charset == "ISO-8859-1" {
+// 		// Windows-1252 is a superset of ISO-8859-1, so should do here
+// 		return charmap.Windows1252.NewDecoder().Reader(input), nil
+// 	}
+// 	return nil, fmt.Errorf("Unknown charset: %s", charset)
+// }

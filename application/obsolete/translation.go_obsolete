@@ -1,0 +1,245 @@
+package application
+
+import (
+	"html/template"
+	"log"
+	"net/http"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
+)
+
+//appTranslationStorePage is cheese
+type translation_PageList struct {
+	UserMenu              []dm.AppMenuItem
+	UserRole              string
+	UserNavi              string
+	Title                 string
+	PageTitle             string
+	TranslationStoreCount int
+	TranslationStoreList  []dm.Translation
+}
+
+//translation_Page is cheese
+type translation_Page struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	UserNavi  string
+	Title     string
+	PageTitle string
+	ID        string
+	Action    string
+	// Variable Part Below
+	Id          string
+	Class       string
+	Message     string
+	Translation string
+	SYSCreated  string
+	SYSWho      string
+	SYSHost     string
+	SYSUpdated  string
+}
+
+func Translation_Publish(mux http.ServeMux) {
+	mux.HandleFunc("/listTranslationStore/", Translation_HandlerList)
+	mux.HandleFunc("/viewTranslationStore/", Translation_HandlerView)
+	mux.HandleFunc("/editTranslationStore/", Translation_HandlerEdit)
+	mux.HandleFunc("/saveTranslationStore/", Translation_HandlerSave)
+	logs.Publish("Application", "Translation")
+}
+
+func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := dm.Translation_TemplateList
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	var returnList []dm.Translation
+
+	noItems, returnList, _ := dao.Translation_GetList(core.ApplicationDB)
+
+	p := translation_PageList{
+		UserMenu:              UserMenu_Get(r),
+		UserRole:              core.GetUserRole(r),
+		UserNavi:              "NOT USED",
+		Title:                 core.ApplicationProperties["appname"],
+		PageTitle:             PageTitle(dm.Translation_Title, core.Action_List),
+		TranslationStoreCount: noItems,
+		TranslationStoreList:  returnList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, p)
+
+}
+
+func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := dm.Translation_TemplateView
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, dm.Translation_URI)
+	_, returnRecord, _ := dao.Translation_GetItemByID(searchID)
+
+	l := translation_Page{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Translation_Title, core.Action_View),
+		Action:    "",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		// Above are mandatory
+		// Below are variable
+		Id:          returnRecord.Id,
+		Class:       returnRecord.Class,
+		Message:     returnRecord.Message,
+		Translation: returnRecord.Translation,
+		SYSCreated:  returnRecord.SYSCreated,
+		SYSWho:      returnRecord.SYSWho,
+		SYSHost:     returnRecord.SYSHost,
+		SYSUpdated:  returnRecord.SYSUpdated,
+	}
+
+	//fmt.Println(pageCredentialStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, l)
+
+}
+
+func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := dm.Translation_TemplateEdit
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, dm.Translation_URI)
+	_, rec, _ := dao.Translation_GetItemByID(searchID)
+
+	l := translation_Page{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Translation_Title, core.Action_Edit),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+		Id:          rec.Id,
+		Class:       rec.Class,
+		Message:     rec.Message,
+		Translation: rec.Translation,
+		SYSCreated:  rec.SYSCreated,
+		SYSWho:      rec.SYSWho,
+		SYSHost:     rec.SYSHost,
+		SYSUpdated:  rec.SYSUpdated,
+	}
+	//fmt.Println(pageCredentialStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, l)
+
+}
+
+func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+
+	var s dm.Translation
+
+	s.Id = r.FormValue("Id")
+	s.Class = r.FormValue("Class")
+	s.Message = r.FormValue("Message")
+	s.Translation = r.FormValue("Translation")
+	s.SYSCreated = r.FormValue("SYSCreated")
+	s.SYSWho = r.FormValue("SYSWho")
+	s.SYSHost = r.FormValue("SYSHost")
+	s.SYSUpdated = r.FormValue("SYSUpdated")
+
+	//log.Println("save", s)
+
+	dao.Translation_Store(s, r)
+
+	Translation_HandlerList(w, r)
+
+}
+
+func Translation_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, dm.Translation_URI)
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
+	dao.Translation_DeleteByID(searchID)
+	Translation_HandlerList(w, r)
+
+}
+
+func Translation_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := dm.Translation_TemplateNew
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	p := translation_Page{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Translation_Title, core.Action_New),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, p)
+
+}

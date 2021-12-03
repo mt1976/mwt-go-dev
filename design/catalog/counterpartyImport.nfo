@@ -1,0 +1,47 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/counterpartyimport.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : CounterpartyImport (counterpartyimport)
+Endpoint 	         : CounterpartyImport (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:56
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCounterpartyImportID
+SQL Table Search Col : CompID
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| KeyImportID                         | String     |            | true  | true   | false |                 |            |            | 
+| Firm                                | String     |            | false | true   | false |                 |            |            | 
+| Centre                              | String     |            | false | true   | false |                 |            |            | 
+| FirmName                            | String     |            | true  | true   | false |                 |            |            | 
+| CentreName                          | String     |            | false | true   | false |                 |            |            | 
+| KeyOriginID                         | String     |            | true  | true   | false |                 |            |            | 
+| FullName                            | String     |            | false | true   | false |                 |            |            | 
+| CompID                              | String     |            | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/counterpartyImport_core.go)
+* adaptor (/adaptor/counterpartyImport.go)
+* dao (/dao/counterpartyImport.go)
+* datamodel (/datamodel/counterpartyImport.go)
+* menu (/design/menu/counterpartyImport.json)
+* html -> List (/html/CounterpartyImport_List.html)
+* html -> View (/html/CounterpartyImport_View.html)
+* html -> Edit (/html/CounterpartyImport_Edit.html)
+* html -> New (/html/CounterpartyImport_New.html)
+* catalog (/design/catalog/counterpartyImport.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

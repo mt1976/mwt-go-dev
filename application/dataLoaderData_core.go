@@ -1,0 +1,333 @@
+package application
+
+// ----------------------------------------------------------------
+// Automatically generated  "/application/dataloaderdata.go"
+// ----------------------------------------------------------------
+// Package              : application
+// Object 			    : DataLoaderData (dataloaderdata)
+// Endpoint 	        : DataLoaderData (Id)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:57
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+import (
+	"net/http"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+)
+
+//dataloaderdata_PageList provides the information for the template for a list of DataLoaderDatas
+type DataLoaderData_PageList struct {
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	Title       string
+	PageTitle   string
+	ItemsOnPage int
+	ItemList    []dm.DataLoaderData
+}
+
+//dataloaderdata_Page provides the information for the template for an individual DataLoaderData
+type DataLoaderData_Page struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	Title     string
+	PageTitle string
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	SYSId                  string
+	Id                     string
+	Row                    string
+	Position               string
+	Value                  string
+	Loader                 string
+	SYSCreated             string
+	SYSWho                 string
+	SYSHost                string
+	SYSUpdated             string
+	Map                    string
+	SYSCreatedBy           string
+	SYSCreatedHost         string
+	SYSUpdatedBy           string
+	SYSUpdatedHost         string
+	Loader_Impl            string
+	LoaderDescription_Impl string
+	LoaderType_Impl        string
+
+	Loader_Impl_List            []dm.DataLoader
+	LoaderDescription_Impl_List []dm.DataLoader
+	LoaderType_Impl_List        []dm.DataLoader
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+}
+
+const (
+	DataLoaderData_Redirect = dm.DataLoaderData_PathList
+)
+
+//DataLoaderData_Publish annouces the endpoints available for this object
+func DataLoaderData_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.DataLoaderData_PathList, DataLoaderData_HandlerList)
+	mux.HandleFunc(dm.DataLoaderData_PathView, DataLoaderData_HandlerView)
+	mux.HandleFunc(dm.DataLoaderData_PathEdit, DataLoaderData_HandlerEdit)
+
+	mux.HandleFunc(dm.DataLoaderData_PathSave, DataLoaderData_HandlerSave)
+
+	logs.Publish("Application", dm.DataLoaderData_Title)
+
+}
+
+//DataLoaderData_HandlerList is the handler for the list page
+func DataLoaderData_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	var returnList []dm.DataLoaderData
+	noItems, returnList, _ := dao.DataLoaderData_GetList()
+
+	pageDetail := DataLoaderData_PageList{
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_List),
+		ItemsOnPage: noItems,
+		ItemList:    returnList,
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
+	}
+
+	ExecuteTemplate(dm.DataLoaderData_TemplateList, w, r, pageDetail)
+
+}
+
+//DataLoaderData_HandlerView is the handler used to View a page
+func DataLoaderData_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+
+	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
+	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
+
+	pageDetail := DataLoaderData_Page{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.DataLoaderData_Title, core.Action_View),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+	}
+
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.Row = rD.Row
+	pageDetail.Position = rD.Position
+	pageDetail.Value = rD.Value
+	pageDetail.Loader = rD.Loader
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.Map = rD.Map
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	_, Loader_Lookup_Name, _ := dao.DataLoader_GetByID(rD.Loader)
+	pageDetail.Loader_Impl = Loader_Lookup_Name.Name
+	_, Loader_Lookup_Description, _ := dao.DataLoader_GetByID(rD.Loader)
+	pageDetail.LoaderDescription_Impl = Loader_Lookup_Description.Description
+	_, Loader_Lookup_Type, _ := dao.DataLoader_GetByID(rD.Loader)
+	pageDetail.LoaderType_Impl = Loader_Lookup_Type.Type
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	ExecuteTemplate(dm.DataLoaderData_TemplateView, w, r, pageDetail)
+
+}
+
+//DataLoaderData_HandlerEdit is the handler used generate the Edit page
+func DataLoaderData_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+
+	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
+	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
+
+	pageDetail := DataLoaderData_Page{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.DataLoaderData_Title, core.Action_Edit),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+	}
+
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.Row = rD.Row
+	pageDetail.Position = rD.Position
+	pageDetail.Value = rD.Value
+	pageDetail.Loader = rD.Loader
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.Map = rD.Map
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	_, Loader_Lookup_Name, _ := dao.DataLoader_GetByID(rD.Loader)
+	pageDetail.Loader_Impl = Loader_Lookup_Name.Name
+	_, pageDetail.Loader_Impl_List, _ = dao.DataLoader_GetList()
+	_, Loader_Lookup_Description, _ := dao.DataLoader_GetByID(rD.Loader)
+	pageDetail.LoaderDescription_Impl = Loader_Lookup_Description.Description
+	_, pageDetail.LoaderDescription_Impl_List, _ = dao.DataLoader_GetList()
+	_, Loader_Lookup_Type, _ := dao.DataLoader_GetByID(rD.Loader)
+	pageDetail.LoaderType_Impl = Loader_Lookup_Type.Type
+	_, pageDetail.LoaderType_Impl_List, _ = dao.DataLoader_GetList()
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	ExecuteTemplate(dm.DataLoaderData_TemplateEdit, w, r, pageDetail)
+
+}
+
+//DataLoaderData_HandlerSave is the handler used process the saving of an DataLoaderData
+func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path + r.FormValue("Id"))
+
+	var item dm.DataLoaderData
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	item.SYSId = r.FormValue(dm.DataLoaderData_SYSId)
+	item.Id = r.FormValue(dm.DataLoaderData_Id)
+	item.Row = r.FormValue(dm.DataLoaderData_Row)
+	item.Position = r.FormValue(dm.DataLoaderData_Position)
+	item.Value = r.FormValue(dm.DataLoaderData_Value)
+	item.Loader = r.FormValue(dm.DataLoaderData_Loader)
+	item.SYSCreated = r.FormValue(dm.DataLoaderData_SYSCreated)
+	item.SYSWho = r.FormValue(dm.DataLoaderData_SYSWho)
+	item.SYSHost = r.FormValue(dm.DataLoaderData_SYSHost)
+	item.SYSUpdated = r.FormValue(dm.DataLoaderData_SYSUpdated)
+	item.Map = r.FormValue(dm.DataLoaderData_Map)
+	item.SYSCreatedBy = r.FormValue(dm.DataLoaderData_SYSCreatedBy)
+	item.SYSCreatedHost = r.FormValue(dm.DataLoaderData_SYSCreatedHost)
+	item.SYSUpdatedBy = r.FormValue(dm.DataLoaderData_SYSUpdatedBy)
+	item.SYSUpdatedHost = r.FormValue(dm.DataLoaderData_SYSUpdatedHost)
+	item.Loader_Impl = r.FormValue(dm.DataLoaderData_Loader_Impl)
+	item.LoaderDescription_Impl = r.FormValue(dm.DataLoaderData_LoaderDescription_Impl)
+	item.LoaderType_Impl = r.FormValue(dm.DataLoaderData_LoaderType_Impl)
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	dao.DataLoaderData_Store(item)
+
+	http.Redirect(w, r, DataLoaderData_Redirect, http.StatusFound)
+}
+
+//DataLoaderData_HandlerNew is the handler used process the creation of an DataLoaderData
+func DataLoaderData_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	pageDetail := DataLoaderData_Page{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.DataLoaderData_Title, core.Action_New),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+	}
+
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.SYSId = ""
+	pageDetail.Id = ""
+	pageDetail.Row = ""
+	pageDetail.Position = ""
+	pageDetail.Value = ""
+	pageDetail.Loader = ""
+	pageDetail.SYSCreated = ""
+	pageDetail.SYSWho = ""
+	pageDetail.SYSHost = ""
+	pageDetail.SYSUpdated = ""
+	pageDetail.Map = ""
+	pageDetail.SYSCreatedBy = ""
+	pageDetail.SYSCreatedHost = ""
+	pageDetail.SYSUpdatedBy = ""
+	pageDetail.SYSUpdatedHost = ""
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	pageDetail.Loader_Impl = ""
+	_, pageDetail.Loader_Impl_List, _ = dao.DataLoader_GetList()
+	pageDetail.LoaderDescription_Impl = ""
+	_, pageDetail.LoaderDescription_Impl_List, _ = dao.DataLoader_GetList()
+	pageDetail.LoaderType_Impl = ""
+	_, pageDetail.LoaderType_Impl_List, _ = dao.DataLoader_GetList()
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
+
+	ExecuteTemplate(dm.DataLoaderData_TemplateNew, w, r, pageDetail)
+
+}
+
+//DataLoaderData_HandlerDelete is the handler used process the deletion of an DataLoaderData
+func DataLoaderData_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	logs.Servicing(r.URL.Path)
+	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
+
+	dao.DataLoaderData_Delete(searchID)
+
+	http.Redirect(w, r, DataLoaderData_Redirect, http.StatusFound)
+}

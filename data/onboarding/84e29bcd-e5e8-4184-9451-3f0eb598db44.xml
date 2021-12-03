@@ -1,0 +1,308 @@
+<MESSAGE>
+    <TRANSACTION type="IMPORT">
+        <TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm">
+            <RECORD>
+                <KEYFIELD name="firmName">Telia</KEYFIELD>
+                <FIELD name="fullName">Telia International</FIELD>
+                <FIELD name="country">GBR</FIELD>
+                <FIELD name="sector">FirmSector</FIELD>
+            </RECORD>
+        </TABLE>
+        <TABLE name="Counterparty" classname="com.eurobase.siena.data.counterparty.Counterparty">
+            <RECORD>
+                <KEYFIELD name="name.firm">Telia</KEYFIELD>
+                <KEYFIELD name="name.centre">WEB</KEYFIELD>
+                <FIELD name="fullName">Telia International</FIELD>
+                <FIELD name="countryCode">GBR</FIELD>
+                <FIELD name="sectorCode">FirmSector</FIELD>
+                <FIELD name="customerType">Corporate</FIELD>
+                <SLOT name="Address" classname="com.eurobase.common.tech.types.FixedSlotType" memberClassname="com.eurobase.common.tech.types.FixedSlotType$FixedData">
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Address 1</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">22 Bedford Place, Leeds</SLOTFIELD>
+                    </SLOTRECORD>
+                </SLOT>
+                <FIELD name="telephoneNumber">+44 7837 8272</FIELD>
+                <FIELD name="owner">SalesDesk</FIELD>
+                <FIELD name="timeBandID">TBCM</FIELD>
+                <SLOT name="Extensions" classname="com.eurobase.common.tech.types.FixedSlotType" memberClassname="com.eurobase.common.tech.types.FixedSlotType$FixedData">
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Business Online Profile Number</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">123456789</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Relationship Distribution Code</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">23456789</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">RPT Currency</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">GBP</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Gm Client Model ID</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">34567890</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Sort Code</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">60-09-09</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Customer Category</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">Retail Client</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">LER Limit Carve-Out</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">N</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Settlement Limit Carve-Out</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">N</SLOTFIELD>
+                    </SLOTRECORD>
+                </SLOT>
+            </RECORD>
+        </TABLE>
+        <TABLE name="CounterpartyImportID" classname="com.eurobase.siena.data.counterparty.CounterpartyImportID">
+            
+            <RECORD>
+                <KEYFIELD name="key.originID">Origin</KEYFIELD>
+                <KEYFIELD name="key.importID">ID</KEYFIELD>
+                <FIELD name="counterparty.firm">Telia</FIELD>
+                <FIELD name="counterparty.centre">WEB</FIELD>
+            </RECORD>
+            
+        </TABLE>
+        <TABLE name="CounterpartySettlementInstructionsName" classname="com.eurobase.siena.data.counterparty.CounterpartySettlementInstructionsName">
+
+            <RECORD>
+                <KEYFIELD name="name">APPLEUSD</KEYFIELD>
+            </RECORD>
+
+        </TABLE>
+        <TABLE name="CounterpartySettlementInstructions" classname="com.eurobase.siena.data.counterparty.CounterpartySettlementInstructions">
+ 
+            <RECORD>
+                <KEYFIELD name="key.counterparty.firm">Telia</KEYFIELD>
+                <KEYFIELD name="key.counterparty.centre">WEB</KEYFIELD>
+                <KEYFIELD name="key.currency">USD</KEYFIELD>
+                <KEYFIELD name="key.name">APPLEUSD</KEYFIELD>
+                <KEYFIELD name="key.number">1</KEYFIELD>
+                <KEYFIELD name="key.type">PAYMENT</KEYFIELD>
+                <FIELD name="isDefault">Y</FIELD>
+                <FIELD name="isActive">Y</FIELD>
+            </RECORD>
+
+        </TABLE>
+        <TABLE name="Payee" classname="com.eurobase.siena.data.payee.Payee">
+
+            <RECORD>
+                <KEYFIELD name="key.counterparty.firm">Telia</KEYFIELD>
+                <KEYFIELD name="key.counterparty.centre">WEB</KEYFIELD>
+                <KEYFIELD name="key.currency">USD</KEYFIELD>
+                <KEYFIELD name="key.name">APPLEUSD</KEYFIELD>
+                <KEYFIELD name="key.number">1</KEYFIELD>
+                <KEYFIELD name="key.type">PAYMENT</KEYFIELD>
+                <FIELD name="address">1 Apple Way, Cupertino</FIELD>
+                <FIELD name="country">USA</FIELD>
+                <FIELD name="bic">CSCHUS6SXXX</FIELD>
+                <FIELD name="iban">GB94BARC10201530093459</FIELD>
+                <FIELD name="fullName">Apple USA</FIELD>
+                <FIELD name="address">1 Apple Way, Cupertino</FIELD>
+                <FIELD name="phoneNo">+1 2345678</FIELD>
+                <FIELD name="sortCode">99-99-99</FIELD>
+                <FIELD name="bankSettlementAcct">false</FIELD>
+                <FIELD name="reason">Goods & Services</FIELD>
+                <FIELD name="accountNo">987654321</FIELD>
+                <FIELD name="bankName">Charles Schwabb</FIELD>
+            </RECORD>
+
+        </TABLE>
+        <TABLE name="Agreement" classname="com.eurobase.siena.data.tradingentity.AgreementImpl">
+            <RECORD>
+                <KEYFIELD name="key.priceMaker.type">Sales Desk</KEYFIELD>
+                <KEYFIELD name="key.priceMaker.tradingEntity">Sales Desk</KEYFIELD>
+                <KEYFIELD name="key.priceTaker.type">Counterparty</KEYFIELD>
+                <KEYFIELD name="key.priceTaker.tradingEntity">TeliaWEB</KEYFIELD>
+            </RECORD>
+        </TABLE>
+        <TABLE name="MandatedUser" classname="com.eurobase.siena.data.user.MandatedUser">
+
+            <RECORD>
+                <KEYFIELD name="mandatedUserKey.counterparty.firm">Telia</KEYFIELD>
+                <KEYFIELD name="mandatedUserKey.counterparty.centre">WEB</KEYFIELD>
+                <KEYFIELD name="mandatedUserKey.userName">Tim Cook</KEYFIELD>
+                <FIELD name="type">Both</FIELD>
+                <FIELD name="telephoneNumber">+1 123456789</FIELD>
+                <FIELD name="emailAddress">tim@apple.com</FIELD>
+                <FIELD name="systemUser">Rod</FIELD>
+                <FIELD name="notify">Y</FIELD>
+                <FIELD name="active">Y</FIELD>
+            </RECORD>
+
+            <RECORD>
+                <KEYFIELD name="mandatedUserKey.counterparty.firm">Telia</KEYFIELD>
+                <KEYFIELD name="mandatedUserKey.counterparty.centre">WEB</KEYFIELD>
+                <KEYFIELD name="mandatedUserKey.userName">Steve Wozniak</KEYFIELD>
+                <FIELD name="type">Both</FIELD>
+                <FIELD name="telephoneNumber">+1 123456789</FIELD>
+                <FIELD name="emailAddress">steve@apple.com</FIELD>
+                <FIELD name="systemUser">Jane</FIELD>
+                <FIELD name="notify">Y</FIELD>
+                <FIELD name="active">Y</FIELD>
+            </RECORD>
+
+        </TABLE>
+        <TABLE name="User" classname="com.eurobase.siena.info.security.User">
+
+            <RECORD>
+                <KEYFIELD name="userId">tim@apple.com</KEYFIELD>
+                <FIELD name="fullname">Tim Cook</FIELD>
+            </RECORD>
+
+            <RECORD>
+                <KEYFIELD name="userId">steve@apple.com</KEYFIELD>
+                <FIELD name="fullname">Steve Wozniak</FIELD>
+            </RECORD>
+
+        </TABLE>
+    </TRANSACTION>
+    <CL>
+
+
+run CreateUser database=database() sourceUser="templateWebUser" targetUser="tim@apple.com" changePassword="false" password="" targetUserFullName="Tim Cook";
+
+run SetSettings database=database() username="tim@apple.com" name="UserDetails" type="user" keys="Email Address", "Default Book", "Default Enter Book", "Dealer Intervention", "Local Currency", "Telephone Number" values="tim@apple.com", "WEB=RSM", "RSM", "true", "GBP", "+1 123456789" override="true";
+
+run SetSettings database=database() username="tim@apple.com" name="WebUser" type="user" keys="Security Data", "User Currency", "User Currency Pair", "Region" values="Place of Birth=Mobile, Alabama,Middle Name=Donald,Mother's Maiden Name=Brown,Date of Birth=1960-11-1", "GBP", "GBPUSD", "WEB" override="true";
+
+run SetSettings database=database() username="tim@apple.com" name="Deals" type="user" keys="Use Reciprocal Rates" values="Based on local currency" override="true";
+
+run GroupCreate database=database() userName="tim@apple.com" groupList=&quot;LicenceEtrader&quot;, &quot;eTrader External Direct Base&quot;, &quot;eTrader External Direct Admin&quot;, &quot;eTrader FX View &amp; Add Payee&quot;, &quot;eTrader FX View &amp; Add Payments&quot;, &quot;eTrader FX Dealing&quot; mode="MAKE_MEMBER";
+
+run MakeResource group = "G_External"
+name = "tim@apple.com"
+description = "Tim Cook"
+type = "Users"
+attribute_names = "ADD_GROUP", "ADD_OPERATION", "CHANGE_PASSWORD", "DELETE_OPERATION", "EDIT_PROFILE", "REMOVE_GROUP"
+attribute_types = "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "tim@apple.com"
+description = "tim@apple.com"
+type = "Users"
+attribute_names = "CHANGE_PASSWORD"
+attribute_types = "BOOLEAN";
+
+run ResourceUpdater database=database() type="Users"
+add_ops = "ADD_GROUP", "ADD_OPERATION", "ADD_RESOURCE", "ALLOW_OPERATION", "CHANGE_PASSWORD",
+"DELETE", "DELETE_OPERATION", "DENY_OPERATION", "EDIT", "EDIT_PROFILE", "REMOVE_GROUP", "REMOVE_RESOURCE", "TRADE_IN_THE_NAME_OF";
+
+run MakeResource group = "G_External"
+name = "tim@apple.com UserDetails"
+description = "tim@apple.com UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "tim@apple.com WebUser"
+description = "tim@apple.com WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "tim@apple.com Deals"
+description = "tim@apple.com Deals Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "tim@apple.com UserDetails"
+description = "tim@apple.com UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET"
+EDIT_SETTING = "External User Ids,Enabled";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "tim@apple.com WebUser"
+description = "tim@apple.com WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run CreateUser database=database() sourceUser="templateWebUser" targetUser="steve@apple.com" changePassword="false" password="" targetUserFullName="Steve Wozniak";
+
+run SetSettings database=database() username="steve@apple.com" name="UserDetails" type="user" keys="Email Address", "Default Book", "Default Enter Book", "Dealer Intervention", "Local Currency", "Telephone Number" values="steve@apple.com", "WEB=RSM", "RSM", "true", "GBP", "+1 123456789" override="true";
+
+run SetSettings database=database() username="steve@apple.com" name="WebUser" type="user" keys="Security Data", "User Currency", "User Currency Pair", "Region" values="Place of Birth=San Jose, California,Middle Name=Gary,Mother's Maiden Name=Steve Woznia,Date of Birth=1950-08-11", "GBP", "GBPUSD", "WEB" override="true";
+
+run SetSettings database=database() username="steve@apple.com" name="Deals" type="user" keys="Use Reciprocal Rates" values="Based on local currency" override="true";
+
+run GroupCreate database=database() userName="steve@apple.com" groupList=&quot;LicenceEtrader&quot;, &quot;eTrader External Direct Base&quot;, &quot;eTrader External Direct Admin&quot;, &quot;eTrader FX View &amp; Add Payee&quot;, &quot;eTrader FX View &amp; Add Payments&quot;, &quot;eTrader FX Dealing&quot; mode="MAKE_MEMBER";
+
+run MakeResource group = "G_External"
+name = "steve@apple.com"
+description = "Steve Wozniak"
+type = "Users"
+attribute_names = "ADD_GROUP", "ADD_OPERATION", "CHANGE_PASSWORD", "DELETE_OPERATION", "EDIT_PROFILE", "REMOVE_GROUP"
+attribute_types = "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "steve@apple.com"
+description = "steve@apple.com"
+type = "Users"
+attribute_names = "CHANGE_PASSWORD"
+attribute_types = "BOOLEAN";
+
+run ResourceUpdater database=database() type="Users"
+add_ops = "ADD_GROUP", "ADD_OPERATION", "ADD_RESOURCE", "ALLOW_OPERATION", "CHANGE_PASSWORD",
+"DELETE", "DELETE_OPERATION", "DENY_OPERATION", "EDIT", "EDIT_PROFILE", "REMOVE_GROUP", "REMOVE_RESOURCE", "TRADE_IN_THE_NAME_OF";
+
+run MakeResource group = "G_External"
+name = "steve@apple.com UserDetails"
+description = "steve@apple.com UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "steve@apple.com WebUser"
+description = "steve@apple.com WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "steve@apple.com Deals"
+description = "steve@apple.com Deals Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "steve@apple.com UserDetails"
+description = "steve@apple.com UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET"
+EDIT_SETTING = "External User Ids,Enabled";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "steve@apple.com WebUser"
+description = "steve@apple.com WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+    </CL>
+    <CL1>
+
+run SetSettings database=database() username="tim@apple.com" name="UserDetails" type="user" keys="Trading Entity" values="Counterparty:TeliaWEB" override="true";
+
+run SetSettings database=database() username="steve@apple.com" name="UserDetails" type="user" keys="Trading Entity" values="Counterparty:TeliaWEB" override="true";
+
+    </CL1>   
+
+</MESSAGE>

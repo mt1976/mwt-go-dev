@@ -1,0 +1,65 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/dealtype.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : DealType (dealtype)
+Endpoint 	         : DealType (DealTypeKey)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:58
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaDealType
+SQL Table Search Col : DealTypeKey
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| DealTypeKey                         | String     |            | true  | true   | false |                 |            |            | 
+| DealTypeShortName                   | String     |            | false | true   | false |                 |            |            | 
+| HostKey                             | String     |            | false | true   | false |                 |            |            | 
+| IsActive                            | Bool       | True       | false | true   | false |                 |            |            | 
+| Interbook                           | Bool       | True       | false | true   | false |                 |            |            | 
+| BackOfficeLink                      | Bool       | True       | false | true   | false |                 |            |            | 
+| HasTicket                           | Bool       | True       | false | true   | false |                 |            |            | 
+| CurrencyOverride                    | Bool       | True       | false | true   | false |                 |            |            | 
+| CurrencyHolderCurrency              | String     |            | false | true   | false |                 |            |            | 
+| AllBooks                            | Bool       | True       | false | true   | false |                 |            |            | 
+| FundamentalDealTypeKey              | String     |            | false | true   | false |                 |            |            | 
+| RelatedDealType                     | String     |            | false | true   | false |                 |            |            | 
+| BookName                            | String     |            | false | true   | false |                 |            |            | 
+| ExportMethod                        | String     |            | false | true   | false |                 |            |            | 
+| DefaultUserLayoffBooks              | Bool       | True       | false | true   | false |                 |            |            | 
+| RFQ                                 | Bool       | True       | false | true   | false |                 |            |            | 
+| OBS                                 | Bool       | True       | false | true   | false |                 |            |            | 
+| KID                                 | Bool       | True       | false | true   | false |                 |            |            | 
+| InternalId                          | Int        | 0          | true  | true   | false |                 |            |            | 
+| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
+| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
+| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
+| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
+| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/dealType_core.go)
+* adaptor (/adaptor/dealType.go)
+* dao (/dao/dealType.go)
+* datamodel (/datamodel/dealType.go)
+* menu (/design/menu/dealType.json)
+* html -> List (/html/DealType_List.html)
+* html -> View (/html/DealType_View.html)
+* html -> Edit (/html/DealType_Edit.html)
+* html -> New (/html/DealType_New.html)
+* catalog (/design/catalog/dealType.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

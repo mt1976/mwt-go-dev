@@ -1,16 +1,13 @@
 package jobs
 
 import (
-	"database/sql"
 	"fmt"
-	"log"
-	"os"
-	"os/user"
 	"strconv"
 	"strings"
 	"time"
 
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/dao"
 )
 
 type RatesDataStore struct {
@@ -28,7 +25,9 @@ type RatesDataStore struct {
 }
 
 var appRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, _created, _who, _host, [date]"
-var sqlRatesDataStoreID, sqlRatesDataStorebid, sqlRatesDataStoremid, sqlRatesDataStoreoffer, sqlRatesDataStoremarket, sqlRatesDataStoretenor, sqlRatesDataStoreseries, sqlRatesDataStorename, sqlRatesDataStoresource, sqlRatesDataStoredestination, sqlRatesDataStoreclass, sqlRatesDataStorecreated, sqlRatesDataStoreby, sqlRatesDataStoreon, sqlRatesDataStoredate sql.NullString
+
+// Commented out sqlRatesDataStore... until we implement a read function
+//var sqlRatesDataStoreID, sqlRatesDataStorebid, sqlRatesDataStoremid, sqlRatesDataStoreoffer, sqlRatesDataStoremarket, sqlRatesDataStoretenor, sqlRatesDataStoreseries, sqlRatesDataStorename, sqlRatesDataStoresource, sqlRatesDataStoredestination, sqlRatesDataStoreclass, sqlRatesDataStorecreated, sqlRatesDataStoreby, sqlRatesDataStoreon, sqlRatesDataStoredate sql.NullString
 var appRatesDataStoreSQLINSERT = "INSERT INTO %s.rateDataStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');"
 var appRatesDataStoreSQLDELETE = "DELETE FROM %s.rateDataStore WHERE id='%s';"
 
@@ -116,7 +115,6 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 		ratesData.mid = fmt.Sprintf("%f", m)
 	}
 
-	createDate := time.Now().Format("2006-01-02 15:04:05")
 	if len(ratesData.date) == 0 {
 		ratesData.date = time.Now().Format("2006-01-02")
 	}
@@ -128,50 +126,27 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 	ratesData.series = strings.Replace(ratesData.series, "/", "", -1)
 	ratesData.series = strings.Replace(ratesData.series, "*", "", -1)
 
-	currentUserID, _ := user.Current()
-	userID := currentUserID.Name
-	host, _ := os.Hostname()
-	//fmt.Println(getRatesDataStoreKey(ratesData), ratesData, createDate, userID, host)
+	recordID := getRatesDataStoreKey(ratesData)
 
-	var sql DataStoreSQL
-	sql.ID = getRatesDataStoreKey(ratesData)
-	sql.bid = ratesData.bid
-	sql.mid = ratesData.mid
-	sql.offer = ratesData.offer
-	sql.date = ratesData.date
-	sql.market = ratesData.market
-	sql.tenor = ratesData.tenor
-	sql.series = ratesData.series
-	sql.class = ratesData.class
-	sql.name = ratesData.name
-	sql.source = ratesData.source
-	sql.destination = ratesData.destination
-	sql.created = createDate
-	sql.who = userID
-	sql.host = host
-	//fmt.Println("RECORD", sql)
-	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
+	_, cd, _ := dao.MarketRates_GetByID(recordID)
 
-	//db, _ := application.DataStoreConnect()
+	cd.Id = recordID
+	cd.Bid = ratesData.bid
+	cd.Offer = ratesData.offer
+	cd.Mid = ratesData.mid
+	cd.Market = ratesData.market
+	cd.Tenor = ratesData.tenor
+	cd.Series = ratesData.series
+	cd.Name = ratesData.name
+	cd.Source = ratesData.source
+	cd.Destination = ratesData.destination
+	cd.Class = ratesData.class
 
-	//mssqlConfig := application.GetProperties(globals.DATASTORECONFIG)
-	inserttsql := fmt.Sprintf(appRatesDataStoreSQLINSERT, globals.ApplicationPropertiesDB["schema"], appRatesDataStoreSQL, sql.ID, sql.bid, sql.mid, sql.offer, sql.market, sql.tenor, sql.series, sql.name, sql.source, sql.destination, sql.class, sql.created, sql.who, sql.host, sql.date)
-	deletesql := fmt.Sprintf(appRatesDataStoreSQLDELETE, globals.ApplicationPropertiesDB["schema"], sql.ID)
-	//var appRatesDataStoreSQL = "id, bid, mid, offer, market, tenor, series, name, [source], destination, class, created, who, host, [date]"
+	dao.MarketRates_Store(cd)
 
-	//log.Println(inserttsql, globals.ApplicationDB)
-	//log.Println(deletesql, globals.ApplicationDB)
-	_, err2 := globals.ApplicationDB.Exec(deletesql)
-	if err2 != nil {
-		log.Panicf("%e", err2)
-	}
-	_, err := globals.ApplicationDB.Exec(inserttsql)
-	if err != nil {
-		log.Panicf("%e", err)
-	}
 }
 
 func getRatesDataStoreKey(ratesData RatesDataStore) string {
-	key := strings.ToUpper(ratesData.market) + globals.IDSep + strings.ToUpper(ratesData.tenor) + globals.IDSep + strings.ToUpper(ratesData.class) + globals.IDSep + strings.ToUpper(ratesData.series)
+	key := strings.ToUpper(ratesData.market) + core.IDSep + strings.ToUpper(ratesData.tenor) + core.IDSep + strings.ToUpper(ratesData.class) + core.IDSep + strings.ToUpper(ratesData.series)
 	return key
 }

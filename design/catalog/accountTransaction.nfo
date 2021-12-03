@@ -1,0 +1,52 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/accounttransaction.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : AccountTransaction (accounttransaction)
+Endpoint 	         : AccountTransaction (AccountNo)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:54
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaAccountTransactions
+SQL Table Search Col : SienaReference
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SienaReference                      | String     |            | true  | true   | false |                 |            |            | 
+| LegNo                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| MMLegNo                             | Int        | 0          | true  | true   | false |                 |            |            | 
+| Narrative                           | String     |            | false | true   | false |                 |            |            | 
+| Amount                              | Float      | 0.00       | false | true   | false |                 |            |            | 
+| StartInterestDate                   | Time       |            | false | true   | false |                 |            |            | 
+| EndInterestDate                     | Time       |            | false | true   | false |                 |            |            | 
+| Amortisation                        | Float      | 0.00       | false | true   | false |                 |            |            | 
+| InterestAmount                      | Float      | 0.00       | false | true   | false |                 |            |            | 
+| InterestAction                      | String     |            | false | true   | false |                 |            |            | 
+| FixingDate                          | Time       |            | false | true   | false |                 |            |            | 
+| InterestCalculationDate             | Time       |            | false | true   | false |                 |            |            | 
+| AmendmentAmount                     | Float      | 0.00       | false | true   | false |                 |            |            | 
+| DealtCcy                            | String     |            | false | true   | false |                 |            |            | 
+| AmountDp                            | Int        | 0          | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/accountTransaction_core.go)
+* adaptor (/adaptor/accountTransaction.go)
+* dao (/dao/accountTransaction.go)
+* datamodel (/datamodel/accountTransaction.go)
+* menu (/design/menu/accountTransaction.json)
+* html -> List (/html/AccountTransaction_List.html)
+* html -> View (/html/AccountTransaction_View.html)
+* catalog (/design/catalog/accountTransaction.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

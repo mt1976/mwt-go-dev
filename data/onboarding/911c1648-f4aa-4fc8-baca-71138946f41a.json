@@ -1,0 +1,2620 @@
+{
+ "TxnID": "911c1648-f4aa-4fc8-baca-71138946f41a",
+ "FirmName": "Telia",
+ "FirmFullName": "Telia International",
+ "FirmCountry": "GBR",
+ "FirmCentre": "WEB",
+ "FirmSector": "FirmSector",
+ "CustomerType": "Corporate",
+ "FirmAddress": "22 Bedford Place, Leeds",
+ "PhoneNumber": "+44 7837 8272",
+ "Owner": "SalesDesk",
+ "BOI_BOLNO": "123456789",
+ "BOI_RDC": "23456789",
+ "BOI_GM": "34567890",
+ "BaseCCY": "GBP",
+ "BaseCCYPair": "GBPUSD",
+ "OurSortCode": "60-09-09",
+ "Category": "Retail Client",
+ "ImportIDs": [
+  {
+   "Origin": "T24",
+   "ID": "500300"
+  }
+ ],
+ "Payees": [
+  {
+   "PayeeID": "APPLEUSD",
+   "PayeeCCY": "USD",
+   "PayeeAddress": "1 Apple Way, Cupertino",
+   "PayeeCountry": "USA",
+   "PayeeBIC": "CSCHUS6SXXX",
+   "PayeeIBAN": "GB94BARC10201530093459",
+   "PayeeFullName": "Apple USA",
+   "PayeePhoneNumber": "+1 2345678",
+   "PayeeSortCode": "99-99-99",
+   "BankSettlementAccount": "false",
+   "PayeeReason": "Goods \u0026 Services",
+   "PayeeAccountNo": "987654321",
+   "PayeeBankName": "Charles Schwabb"
+  }
+ ],
+ "TradingEntity": "Sales Desk",
+ "MandatedUsers": [
+  {
+   "UserName": "tim@apple.com",
+   "UserFullName": "Tim Cook",
+   "UserPhoneNumber": "+1 123456789",
+   "UserEmail": "tim@apple.com",
+   "SystemUser": "Rod",
+   "UserDOB": "1960-11-01",
+   "UserMaidenName": "Brown",
+   "UserPlaceOfBirth": "Mobile, Alabama",
+   "UserMiddleName": "Donald"
+  },
+  {
+   "UserName": "steve@apple.com",
+   "UserFullName": "Steve Wozniak",
+   "UserPhoneNumber": "+1 123456789",
+   "UserEmail": "steve@apple.com",
+   "SystemUser": "Jane",
+   "UserDOB": "1950-08-11",
+   "UserMaidenName": "Plum",
+   "UserPlaceOfBirth": "San Jose, California",
+   "UserMiddleName": "Gary"
+  }
+ ],
+ "FirmCountryList": [
+  {
+   "ID": "AFG",
+   "Name": "Afghanistan"
+  },
+  {
+   "ID": "AGO",
+   "Name": "Angola"
+  },
+  {
+   "ID": "ALB",
+   "Name": "Albania"
+  },
+  {
+   "ID": "AND",
+   "Name": "Andorra"
+  },
+  {
+   "ID": "ANT",
+   "Name": "Netherlands Antilles"
+  },
+  {
+   "ID": "ARE",
+   "Name": "United Arab Emirates"
+  },
+  {
+   "ID": "ARG",
+   "Name": "Argentina"
+  },
+  {
+   "ID": "ASM",
+   "Name": "American Samoa"
+  },
+  {
+   "ID": "ATA",
+   "Name": "Antarctica"
+  },
+  {
+   "ID": "ATG",
+   "Name": "Antigua"
+  },
+  {
+   "ID": "ATN",
+   "Name": "Dronning Maud Island"
+  },
+  {
+   "ID": "AUS",
+   "Name": "Australia"
+  },
+  {
+   "ID": "AUT",
+   "Name": "Austria"
+  },
+  {
+   "ID": "BDI",
+   "Name": "Burundi"
+  },
+  {
+   "ID": "BEL",
+   "Name": "Belgium"
+  },
+  {
+   "ID": "BEN",
+   "Name": "Benin"
+  },
+  {
+   "ID": "BGD",
+   "Name": "Bangladesh"
+  },
+  {
+   "ID": "BGR",
+   "Name": "Bulgaria"
+  },
+  {
+   "ID": "BHR",
+   "Name": "Bahrain"
+  },
+  {
+   "ID": "BHS",
+   "Name": "Bahamas"
+  },
+  {
+   "ID": "BLR",
+   "Name": "Belarus"
+  },
+  {
+   "ID": "BLZ",
+   "Name": "Belize"
+  },
+  {
+   "ID": "BMU",
+   "Name": "Bermuda"
+  },
+  {
+   "ID": "BOL",
+   "Name": "Bolivia"
+  },
+  {
+   "ID": "BRA",
+   "Name": "Brazil"
+  },
+  {
+   "ID": "BRB",
+   "Name": "Barbados"
+  },
+  {
+   "ID": "BRN",
+   "Name": "Brunei"
+  },
+  {
+   "ID": "BTN",
+   "Name": "Bhutan"
+  },
+  {
+   "ID": "BVT",
+   "Name": "Bouvet Island"
+  },
+  {
+   "ID": "BWA",
+   "Name": "Botswana"
+  },
+  {
+   "ID": "CAF",
+   "Name": "Central African Republic"
+  },
+  {
+   "ID": "CAN",
+   "Name": "Canada"
+  },
+  {
+   "ID": "CCK",
+   "Name": "Cocos (Keeling) Islands"
+  },
+  {
+   "ID": "CHE",
+   "Name": "Switzerland"
+  },
+  {
+   "ID": "CHL",
+   "Name": "Chile"
+  },
+  {
+   "ID": "CHN",
+   "Name": "China"
+  },
+  {
+   "ID": "CIV",
+   "Name": "Ivory Coast"
+  },
+  {
+   "ID": "CMR",
+   "Name": "Cameroon"
+  },
+  {
+   "ID": "COG",
+   "Name": "Congo"
+  },
+  {
+   "ID": "COK",
+   "Name": "Cook Islands"
+  },
+  {
+   "ID": "COL",
+   "Name": "Colombia"
+  },
+  {
+   "ID": "COM",
+   "Name": "Comoros"
+  },
+  {
+   "ID": "CPV",
+   "Name": "Cape Verde"
+  },
+  {
+   "ID": "CRI",
+   "Name": "Costa Rica"
+  },
+  {
+   "ID": "CTE",
+   "Name": "Canton \u0026 Enderbury Isles"
+  },
+  {
+   "ID": "CUB",
+   "Name": "Cuba"
+  },
+  {
+   "ID": "CXR",
+   "Name": "Christmas Island"
+  },
+  {
+   "ID": "CYM",
+   "Name": "Cayman Islands"
+  },
+  {
+   "ID": "CYP",
+   "Name": "Cyprus"
+  },
+  {
+   "ID": "CZE",
+   "Name": "Czech Republic"
+  },
+  {
+   "ID": "DEU",
+   "Name": "Federal Rep of Germany"
+  },
+  {
+   "ID": "DMA",
+   "Name": "Dominica"
+  },
+  {
+   "ID": "DNK",
+   "Name": "Denmark"
+  },
+  {
+   "ID": "DOM",
+   "Name": "Dominican Republic"
+  },
+  {
+   "ID": "DZA",
+   "Name": "Algeria"
+  },
+  {
+   "ID": "ECU",
+   "Name": "Ecuador"
+  },
+  {
+   "ID": "EGY",
+   "Name": "Egypt"
+  },
+  {
+   "ID": "EMC",
+   "Name": "European Monetary Co"
+  },
+  {
+   "ID": "ESH",
+   "Name": "Western Sahara"
+  },
+  {
+   "ID": "ESP",
+   "Name": "Spain"
+  },
+  {
+   "ID": "EST",
+   "Name": "Estonia"
+  },
+  {
+   "ID": "ETH",
+   "Name": "Ethiopia"
+  },
+  {
+   "ID": "FIN",
+   "Name": "Finland"
+  },
+  {
+   "ID": "FJI",
+   "Name": "Fiji"
+  },
+  {
+   "ID": "FLK",
+   "Name": "Falkland Islands"
+  },
+  {
+   "ID": "FRA",
+   "Name": "France"
+  },
+  {
+   "ID": "FRO",
+   "Name": "Faeroe Islands"
+  },
+  {
+   "ID": "GAB",
+   "Name": "Gabon"
+  },
+  {
+   "ID": "GBR",
+   "Name": "U.K."
+  },
+  {
+   "ID": "GEO",
+   "Name": "Republic of Georgia"
+  },
+  {
+   "ID": "GHA",
+   "Name": "Ghana"
+  },
+  {
+   "ID": "GIB",
+   "Name": "Gibraltar"
+  },
+  {
+   "ID": "GIN",
+   "Name": "Guinea"
+  },
+  {
+   "ID": "GLP",
+   "Name": "Guadeloupe"
+  },
+  {
+   "ID": "GMB",
+   "Name": "Gambia"
+  },
+  {
+   "ID": "GNB",
+   "Name": "Guinea-Bissau"
+  },
+  {
+   "ID": "GNQ",
+   "Name": "Equatorial Guinea"
+  },
+  {
+   "ID": "GRC",
+   "Name": "Greece"
+  },
+  {
+   "ID": "GRD",
+   "Name": "Grenada"
+  },
+  {
+   "ID": "GRL",
+   "Name": "Greenland"
+  },
+  {
+   "ID": "GTM",
+   "Name": "Guatemala"
+  },
+  {
+   "ID": "GUF",
+   "Name": "French Guyana"
+  },
+  {
+   "ID": "GUM",
+   "Name": "Guam"
+  },
+  {
+   "ID": "GUY",
+   "Name": "Guyana"
+  },
+  {
+   "ID": "HKG",
+   "Name": "Hong Kong"
+  },
+  {
+   "ID": "HMD",
+   "Name": "Heard \u0026 MacDonald Islands"
+  },
+  {
+   "ID": "HND",
+   "Name": "Honduras"
+  },
+  {
+   "ID": "HTI",
+   "Name": "Haiti"
+  },
+  {
+   "ID": "HUN",
+   "Name": "Hungary"
+  },
+  {
+   "ID": "HVO",
+   "Name": "Upper Volta"
+  },
+  {
+   "ID": "IDN",
+   "Name": "Indonesia"
+  },
+  {
+   "ID": "IDR",
+   "Name": "Indonesia, Rupiahs"
+  },
+  {
+   "ID": "IND",
+   "Name": "India"
+  },
+  {
+   "ID": "INR",
+   "Name": "India, Rupees"
+  },
+  {
+   "ID": "IOT",
+   "Name": "Brit Ind Ocean Territory"
+  },
+  {
+   "ID": "IRL",
+   "Name": "Ireland"
+  },
+  {
+   "ID": "IRN",
+   "Name": "Iran"
+  },
+  {
+   "ID": "IRQ",
+   "Name": "Iraq"
+  },
+  {
+   "ID": "ISL",
+   "Name": "Iceland"
+  },
+  {
+   "ID": "ISR",
+   "Name": "Israel"
+  },
+  {
+   "ID": "ITA",
+   "Name": "Italy"
+  },
+  {
+   "ID": "JAM",
+   "Name": "Jamaica"
+  },
+  {
+   "ID": "JOR",
+   "Name": "Jordan"
+  },
+  {
+   "ID": "JPN",
+   "Name": "Japan"
+  },
+  {
+   "ID": "JTN",
+   "Name": "Johnston Island"
+  },
+  {
+   "ID": "KEN",
+   "Name": "Kenya"
+  },
+  {
+   "ID": "KHM",
+   "Name": "Kampuchea, Democratic"
+  },
+  {
+   "ID": "KIR",
+   "Name": "Kiribati"
+  },
+  {
+   "ID": "KNA",
+   "Name": "St. Kitts-Nevis-Anguilla"
+  },
+  {
+   "ID": "KOR",
+   "Name": "Republic of Korea"
+  },
+  {
+   "ID": "KWT",
+   "Name": "Kuwait"
+  },
+  {
+   "ID": "KZA",
+   "Name": "Kazakstan"
+  },
+  {
+   "ID": "LAO",
+   "Name": "Laos People's Dem Rep"
+  },
+  {
+   "ID": "LAP",
+   "Name": "LApland"
+  },
+  {
+   "ID": "LBN",
+   "Name": "Lebanon"
+  },
+  {
+   "ID": "LBR",
+   "Name": "Liberia"
+  },
+  {
+   "ID": "LBY",
+   "Name": "Libya Arab Jamahiriya"
+  },
+  {
+   "ID": "LCA",
+   "Name": "St. Lucia"
+  },
+  {
+   "ID": "LIE",
+   "Name": "Liechtenstein"
+  },
+  {
+   "ID": "LIT",
+   "Name": "Lithuania"
+  },
+  {
+   "ID": "LKA",
+   "Name": "Sri Lanka"
+  },
+  {
+   "ID": "LSO",
+   "Name": "Lesotho"
+  },
+  {
+   "ID": "LUX",
+   "Name": "Luxembourg"
+  },
+  {
+   "ID": "LVA",
+   "Name": "Latvia"
+  },
+  {
+   "ID": "MAC",
+   "Name": "Macau"
+  },
+  {
+   "ID": "MAR",
+   "Name": "Morocco"
+  },
+  {
+   "ID": "MCO",
+   "Name": "Monaco"
+  },
+  {
+   "ID": "MDG",
+   "Name": "Madagascar"
+  },
+  {
+   "ID": "MDV",
+   "Name": "Maldives"
+  },
+  {
+   "ID": "MEX",
+   "Name": "Mexico"
+  },
+  {
+   "ID": "MID",
+   "Name": "Midway Islands"
+  },
+  {
+   "ID": "MLI",
+   "Name": "Mali"
+  },
+  {
+   "ID": "MLT",
+   "Name": "Malta"
+  },
+  {
+   "ID": "MNG",
+   "Name": "Mongolia"
+  },
+  {
+   "ID": "MOZ",
+   "Name": "Mozambique"
+  },
+  {
+   "ID": "MRT",
+   "Name": "Mauritania"
+  },
+  {
+   "ID": "MSR",
+   "Name": "Montserrat"
+  },
+  {
+   "ID": "MTQ",
+   "Name": "Martinique"
+  },
+  {
+   "ID": "MUS",
+   "Name": "Mauritius"
+  },
+  {
+   "ID": "MWI",
+   "Name": "Malawi"
+  },
+  {
+   "ID": "MYA",
+   "Name": "Myanmar (Burma)"
+  },
+  {
+   "ID": "MYS",
+   "Name": "Malaysia"
+  },
+  {
+   "ID": "NAM",
+   "Name": "Namibia"
+  },
+  {
+   "ID": "NCL",
+   "Name": "New Caledonia"
+  },
+  {
+   "ID": "NER",
+   "Name": "Niger"
+  },
+  {
+   "ID": "NFK",
+   "Name": "Norfolk Island"
+  },
+  {
+   "ID": "NGA",
+   "Name": "Nigeria"
+  },
+  {
+   "ID": "NIC",
+   "Name": "Nicaragua"
+  },
+  {
+   "ID": "NIU",
+   "Name": "Niue"
+  },
+  {
+   "ID": "NLD",
+   "Name": "Netherlands"
+  },
+  {
+   "ID": "NOR",
+   "Name": "Norway"
+  },
+  {
+   "ID": "NPL",
+   "Name": "Nepal"
+  },
+  {
+   "ID": "NRU",
+   "Name": "Nauru"
+  },
+  {
+   "ID": "NTZ",
+   "Name": "Neutral Zone"
+  },
+  {
+   "ID": "NZL",
+   "Name": "New Zealand"
+  },
+  {
+   "ID": "OMN",
+   "Name": "Oman"
+  },
+  {
+   "ID": "PAK",
+   "Name": "Pakistan"
+  },
+  {
+   "ID": "PAN",
+   "Name": "Panama"
+  },
+  {
+   "ID": "PCI",
+   "Name": "Pacific Islands"
+  },
+  {
+   "ID": "PCN",
+   "Name": "Pitcairn Island"
+  },
+  {
+   "ID": "PER",
+   "Name": "Peru"
+  },
+  {
+   "ID": "PHL",
+   "Name": "Phillipines"
+  },
+  {
+   "ID": "PNG",
+   "Name": "Papua New Guinea"
+  },
+  {
+   "ID": "POL",
+   "Name": "Poland"
+  },
+  {
+   "ID": "PRI",
+   "Name": "Puerto Rico"
+  },
+  {
+   "ID": "PRK",
+   "Name": "People's Dem Rep of Korea"
+  },
+  {
+   "ID": "PRT",
+   "Name": "Portugal"
+  },
+  {
+   "ID": "PRY",
+   "Name": "Paraguay"
+  },
+  {
+   "ID": "PUS",
+   "Name": "United Misc Pacific Isles"
+  },
+  {
+   "ID": "PYF",
+   "Name": "French Polynesia"
+  },
+  {
+   "ID": "QAT",
+   "Name": "Qatar"
+  },
+  {
+   "ID": "REU",
+   "Name": "Reunion"
+  },
+  {
+   "ID": "ROI",
+   "Name": "Republic of Ireland"
+  },
+  {
+   "ID": "ROM",
+   "Name": "Romania"
+  },
+  {
+   "ID": "RON",
+   "Name": "Rumänien"
+  },
+  {
+   "ID": "RSA",
+   "Name": "South Africa"
+  },
+  {
+   "ID": "RUS",
+   "Name": "Russian Federation"
+  },
+  {
+   "ID": "RWA",
+   "Name": "Rwanda"
+  },
+  {
+   "ID": "SAU",
+   "Name": "Saudi Arabia"
+  },
+  {
+   "ID": "SDN",
+   "Name": "Sudan"
+  },
+  {
+   "ID": "SEN",
+   "Name": "Senegal"
+  },
+  {
+   "ID": "SGP",
+   "Name": "Singapore"
+  },
+  {
+   "ID": "SHN",
+   "Name": "Saint Helena"
+  },
+  {
+   "ID": "SJM",
+   "Name": "Svalbard \u0026 JanMayen Isles"
+  },
+  {
+   "ID": "SLB",
+   "Name": "Soloman Islands"
+  },
+  {
+   "ID": "SLE",
+   "Name": "Sierra Leone"
+  },
+  {
+   "ID": "SLV",
+   "Name": "El Salvador"
+  },
+  {
+   "ID": "SMR",
+   "Name": "San Marino"
+  },
+  {
+   "ID": "SOM",
+   "Name": "Somalia"
+  },
+  {
+   "ID": "SPM",
+   "Name": "St. Pierre and Miquelon"
+  },
+  {
+   "ID": "STP",
+   "Name": "Sao Tome and Principe"
+  },
+  {
+   "ID": "SUR",
+   "Name": "Suriname"
+  },
+  {
+   "ID": "SVK",
+   "Name": "Slovakia"
+  },
+  {
+   "ID": "SWE",
+   "Name": "Sweden"
+  },
+  {
+   "ID": "SWZ",
+   "Name": "Swaziland"
+  },
+  {
+   "ID": "SYC",
+   "Name": "Seychelles"
+  },
+  {
+   "ID": "SYR",
+   "Name": "Syrian Arab Republic"
+  },
+  {
+   "ID": "TCA",
+   "Name": "Turks and Caicos Islands"
+  },
+  {
+   "ID": "TCD",
+   "Name": "Chad"
+  },
+  {
+   "ID": "TGO",
+   "Name": "Togo"
+  },
+  {
+   "ID": "THA",
+   "Name": "Thailand"
+  },
+  {
+   "ID": "TJK",
+   "Name": "Tajikistan"
+  },
+  {
+   "ID": "TKL",
+   "Name": "Tokelau"
+  },
+  {
+   "ID": "TMP",
+   "Name": "East Timor"
+  },
+  {
+   "ID": "TON",
+   "Name": "Tonga"
+  },
+  {
+   "ID": "TTO",
+   "Name": "Trinidad and Tobago"
+  },
+  {
+   "ID": "TUN",
+   "Name": "Tunisia"
+  },
+  {
+   "ID": "TUR",
+   "Name": "Turkey"
+  },
+  {
+   "ID": "TUV",
+   "Name": "Tuvalu"
+  },
+  {
+   "ID": "TWN",
+   "Name": "Taiwan"
+  },
+  {
+   "ID": "TZA",
+   "Name": "Tanzania"
+  },
+  {
+   "ID": "UGA",
+   "Name": "Uganda"
+  },
+  {
+   "ID": "UKR",
+   "Name": "Republic of the Ukraine"
+  },
+  {
+   "ID": "URY",
+   "Name": "Uruguay"
+  },
+  {
+   "ID": "USA",
+   "Name": "United States"
+  },
+  {
+   "ID": "VAT",
+   "Name": "Vatican City State"
+  },
+  {
+   "ID": "VCT",
+   "Name": "St Vincent \u0026 Grenadines"
+  },
+  {
+   "ID": "VEN",
+   "Name": "Venezuela"
+  },
+  {
+   "ID": "VGB",
+   "Name": "Virgin Islands"
+  },
+  {
+   "ID": "VIR",
+   "Name": "U S Virgin Islands"
+  },
+  {
+   "ID": "VNM",
+   "Name": "Vietnam"
+  },
+  {
+   "ID": "VUT",
+   "Name": "Vanuatu"
+  },
+  {
+   "ID": "WAK",
+   "Name": "Wake Island"
+  },
+  {
+   "ID": "WLF",
+   "Name": "Wallis and Fortuna Island"
+  },
+  {
+   "ID": "WSM",
+   "Name": "Western Samoa"
+  },
+  {
+   "ID": "XPD",
+   "Name": "XPD - Palladium, Ounces "
+  },
+  {
+   "ID": "XPT",
+   "Name": "XPT - Platinum, Ounces "
+  },
+  {
+   "ID": "XYZ",
+   "Name": "XYZ"
+  },
+  {
+   "ID": "YEM",
+   "Name": "Yemen"
+  },
+  {
+   "ID": "YMD",
+   "Name": "Yemen Democratic"
+  },
+  {
+   "ID": "YUG",
+   "Name": "Yugoslavia"
+  },
+  {
+   "ID": "ZAR",
+   "Name": "Zaire"
+  },
+  {
+   "ID": "ZMB",
+   "Name": "Zambia"
+  },
+  {
+   "ID": "ZWE",
+   "Name": "Zimbabwe"
+  }
+ ],
+ "FirmCentreList": [
+  {
+   "ID": "_LE",
+   "Name": "UK"
+  },
+  {
+   "ID": "_LO",
+   "Name": "UK"
+  },
+  {
+   "ID": "ABJ",
+   "Name": "Abuja"
+  },
+  {
+   "ID": "ABU",
+   "Name": "Abu Dhabi"
+  },
+  {
+   "ID": "AF",
+   "Name": "AF"
+  },
+  {
+   "ID": "AUC",
+   "Name": "Auckland"
+  },
+  {
+   "ID": "BAN",
+   "Name": "Bankok"
+  },
+  {
+   "ID": "BAT",
+   "Name": "Bath"
+  },
+  {
+   "ID": "BEI",
+   "Name": "Beijing"
+  },
+  {
+   "ID": "BEL",
+   "Name": "BELGIUM"
+  },
+  {
+   "ID": "BEV",
+   "Name": "Beverley"
+  },
+  {
+   "ID": "BOS",
+   "Name": "Boston"
+  },
+  {
+   "ID": "BRA",
+   "Name": "Bradford"
+  },
+  {
+   "ID": "BRI",
+   "Name": "Brierley Hill"
+  },
+  {
+   "ID": "BRW",
+   "Name": "Barrow"
+  },
+  {
+   "ID": "BUE",
+   "Name": "Buenos Aires"
+  },
+  {
+   "ID": "CAM",
+   "Name": "Cambridge"
+  },
+  {
+   "ID": "CAN",
+   "Name": "CANADA"
+  },
+  {
+   "ID": "CAP",
+   "Name": "Capetown"
+  },
+  {
+   "ID": "CAR",
+   "Name": "Cardiff"
+  },
+  {
+   "ID": "CHA",
+   "Name": "Chalfont St Giles"
+  },
+  {
+   "ID": "CHI",
+   "Name": "Chicago"
+  },
+  {
+   "ID": "CHO",
+   "Name": "Chorley"
+  },
+  {
+   "ID": "CHR",
+   "Name": "Christchurch"
+  },
+  {
+   "ID": "COV",
+   "Name": "Coventry"
+  },
+  {
+   "ID": "CPA",
+   "Name": "Cape Town"
+  },
+  {
+   "ID": "CPN",
+   "Name": "Copenhagen"
+  },
+  {
+   "ID": "CRL",
+   "Name": "Carlisle"
+  },
+  {
+   "ID": "DEP",
+   "Name": "Deposit Transactions"
+  },
+  {
+   "ID": "DRL",
+   "Name": "Darlington"
+  },
+  {
+   "ID": "DUB",
+   "Name": "Dubai"
+  },
+  {
+   "ID": "DUN",
+   "Name": "Dunedin"
+  },
+  {
+   "ID": "EDI",
+   "Name": "Edinburgh"
+  },
+  {
+   "ID": "EPS",
+   "Name": "Epsom"
+  },
+  {
+   "ID": "EST",
+   "Name": "Eastern"
+  },
+  {
+   "ID": "ESX",
+   "Name": "Essex"
+  },
+  {
+   "ID": "EUR",
+   "Name": "EUR accounts"
+  },
+  {
+   "ID": "FFT",
+   "Name": "Frankfurt"
+  },
+  {
+   "ID": "FIN",
+   "Name": "Finland"
+  },
+  {
+   "ID": "FRA",
+   "Name": "FRANCE"
+  },
+  {
+   "ID": "GLT",
+   "Name": "Lloyds GLT"
+  },
+  {
+   "ID": "GPI",
+   "Name": "SWIFT GPI"
+  },
+  {
+   "ID": "GRP",
+   "Name": "Group"
+  },
+  {
+   "ID": "HAM",
+   "Name": "Hamilton"
+  },
+  {
+   "ID": "HAN",
+   "Name": "Hanley"
+  },
+  {
+   "ID": "HAR",
+   "Name": "Harpenden"
+  },
+  {
+   "ID": "HEL",
+   "Name": "Helsinki"
+  },
+  {
+   "ID": "INT",
+   "Name": "Internal"
+  },
+  {
+   "ID": "IPS",
+   "Name": "Ipswich"
+  },
+  {
+   "ID": "IST",
+   "Name": "Istanbul"
+  },
+  {
+   "ID": "JAK",
+   "Name": "Jakarta"
+  },
+  {
+   "ID": "JHB",
+   "Name": "Johannesburg"
+  },
+  {
+   "ID": "KUA",
+   "Name": "Kuaka Lumpur"
+  },
+  {
+   "ID": "LAG",
+   "Name": "Lagos"
+  },
+  {
+   "ID": "LEE",
+   "Name": "Leeds"
+  },
+  {
+   "ID": "LEI",
+   "Name": "Leicester"
+  },
+  {
+   "ID": "LKE",
+   "Name": "Leeke"
+  },
+  {
+   "ID": "LON",
+   "Name": "London"
+  },
+  {
+   "ID": "LOU",
+   "Name": "Loughborough"
+  },
+  {
+   "ID": "LTU",
+   "Name": "Lithuania"
+  },
+  {
+   "ID": "LUX",
+   "Name": "Luxembourg"
+  },
+  {
+   "ID": "LVA",
+   "Name": "Latvia"
+  },
+  {
+   "ID": "MAD",
+   "Name": "Madrid"
+  },
+  {
+   "ID": "MAN",
+   "Name": "Manila"
+  },
+  {
+   "ID": "MAR",
+   "Name": "Margin Trading"
+  },
+  {
+   "ID": "MCH",
+   "Name": "Manchester"
+  },
+  {
+   "ID": "MEL",
+   "Name": "Melton Mowbray"
+  },
+  {
+   "ID": "MIL",
+   "Name": "Milan"
+  },
+  {
+   "ID": "MKT",
+   "Name": "Market Harborough"
+  },
+  {
+   "ID": "MNM",
+   "Name": "Manama"
+  },
+  {
+   "ID": "MOM",
+   "Name": "Mombassa"
+  },
+  {
+   "ID": "MSF",
+   "Name": "Mansfield"
+  },
+  {
+   "ID": "MUM",
+   "Name": "Mumbai"
+  },
+  {
+   "ID": "MUS",
+   "Name": "Muscat"
+  },
+  {
+   "ID": "NAI",
+   "Name": "Nairobi"
+  },
+  {
+   "ID": "NBY",
+   "Name": "Newbury"
+  },
+  {
+   "ID": "NEL",
+   "Name": "Nelson"
+  },
+  {
+   "ID": "NEW",
+   "Name": "Newcastle Upon Type"
+  },
+  {
+   "ID": "NOR",
+   "Name": "Norway"
+  },
+  {
+   "ID": "NOS",
+   "Name": "NOSTRO"
+  },
+  {
+   "ID": "NOT",
+   "Name": "Nottingham"
+  },
+  {
+   "ID": "NPT",
+   "Name": "Newport"
+  },
+  {
+   "ID": "NYK",
+   "Name": "NEW YORK"
+  },
+  {
+   "ID": "OFF",
+   "Name": "Office"
+  },
+  {
+   "ID": "OTH",
+   "Name": "WORLDWIDE"
+  },
+  {
+   "ID": "PAR",
+   "Name": "Paris"
+  },
+  {
+   "ID": "PAY",
+   "Name": "Payments"
+  },
+  {
+   "ID": "REI",
+   "Name": "Reigate"
+  },
+  {
+   "ID": "RES",
+   "Name": "Reserve Accounts"
+  },
+  {
+   "ID": "REV",
+   "Name": "For Internal Review"
+  },
+  {
+   "ID": "ROI",
+   "Name": "Republic of Ireland"
+  },
+  {
+   "ID": "ROT",
+   "Name": "Rotterdam"
+  },
+  {
+   "ID": "SAF",
+   "Name": "Saffron Walden"
+  },
+  {
+   "ID": "SEO",
+   "Name": "Seoul"
+  },
+  {
+   "ID": "SET",
+   "Name": "Settlements"
+  },
+  {
+   "ID": "SIL",
+   "Name": "Silsden"
+  },
+  {
+   "ID": "SIN",
+   "Name": "Singapore"
+  },
+  {
+   "ID": "SIS",
+   "Name": "SIX SIS LTD"
+  },
+  {
+   "ID": "SKI",
+   "Name": "Skipton"
+  },
+  {
+   "ID": "SPG",
+   "Name": "Spalding"
+  },
+  {
+   "ID": "STF",
+   "Name": "Stafford"
+  },
+  {
+   "ID": "STK",
+   "Name": "Stockport"
+  },
+  {
+   "ID": "STO",
+   "Name": "Stockholm"
+  },
+  {
+   "ID": "SUK",
+   "Name": "Sukuk Companies"
+  },
+  {
+   "ID": "SWA",
+   "Name": "Swansea"
+  },
+  {
+   "ID": "SWP",
+   "Name": "Swap Transactions"
+  },
+  {
+   "ID": "SXC",
+   "Name": "SIX SXC LTD"
+  },
+  {
+   "ID": "SYD",
+   "Name": "Sydney"
+  },
+  {
+   "ID": "TAI",
+   "Name": "Taipei"
+  },
+  {
+   "ID": "TIP",
+   "Name": "Tipton"
+  },
+  {
+   "ID": "TOK",
+   "Name": "Tokyo"
+  },
+  {
+   "ID": "TRI",
+   "Name": "Tripoli"
+  },
+  {
+   "ID": "UKR",
+   "Name": "United Kingdom"
+  },
+  {
+   "ID": "USD",
+   "Name": "USD Transactions"
+  },
+  {
+   "ID": "WEB",
+   "Name": "(Online)"
+  },
+  {
+   "ID": "WEL",
+   "Name": "Wellington"
+  },
+  {
+   "ID": "WES",
+   "Name": "West Bromwich"
+  },
+  {
+   "ID": "WIM",
+   "Name": "Wimborne"
+  },
+  {
+   "ID": "WSW",
+   "Name": "Warsaw"
+  },
+  {
+   "ID": "YOR",
+   "Name": "York"
+  }
+ ],
+ "FirmSectorList": [
+  {
+   "ID": "AerDef",
+   "Name": "Aerospace and Defence"
+  },
+  {
+   "ID": "Asset",
+   "Name": "Asset Managers"
+  },
+  {
+   "ID": "Autos",
+   "Name": "Autos"
+  },
+  {
+   "ID": "Banks",
+   "Name": "Banking"
+  },
+  {
+   "ID": "BasInd",
+   "Name": "Basic Industries"
+  },
+  {
+   "ID": "Brews",
+   "Name": "Breweries,Pubs,Rest"
+  },
+  {
+   "ID": "BROKER",
+   "Name": "Brokers"
+  },
+  {
+   "ID": "BuildSoc",
+   "Name": "Building Society"
+  },
+  {
+   "ID": "Centr Bank",
+   "Name": "Central bank"
+  },
+  {
+   "ID": "Chems",
+   "Name": "Chemicals"
+  },
+  {
+   "ID": "Const",
+   "Name": "Construction"
+  },
+  {
+   "ID": "Devel",
+   "Name": "Developers"
+  },
+  {
+   "ID": "Dist",
+   "Name": "Distributors"
+  },
+  {
+   "ID": "Elects",
+   "Name": "Electricals"
+  },
+  {
+   "ID": "Electy",
+   "Name": "Electricity"
+  },
+  {
+   "ID": "Energy",
+   "Name": "Energy"
+  },
+  {
+   "ID": "Eng",
+   "Name": "Engineering"
+  },
+  {
+   "ID": "Entertain",
+   "Name": "Entertainment"
+  },
+  {
+   "ID": "Exchange",
+   "Name": "Futures Exchange"
+  },
+  {
+   "ID": "EXPORT",
+   "Name": "Exporters"
+  },
+  {
+   "ID": "Fin",
+   "Name": "Financials"
+  },
+  {
+   "ID": "Food",
+   "Name": "Food Producers"
+  },
+  {
+   "ID": "Gas",
+   "Name": "Gas"
+  },
+  {
+   "ID": "GenInd",
+   "Name": "General Industries"
+  },
+  {
+   "ID": "Health",
+   "Name": "Healthcare"
+  },
+  {
+   "ID": "House",
+   "Name": "Household and Textiles"
+  },
+  {
+   "ID": "IMPORT",
+   "Name": "Importers"
+  },
+  {
+   "ID": "Ins",
+   "Name": "Insurance"
+  },
+  {
+   "ID": "InvestT",
+   "Name": "Investment Trusts"
+  },
+  {
+   "ID": "InvestTSC",
+   "Name": "Investment Trusts Split Cap"
+  },
+  {
+   "ID": "ITHard",
+   "Name": "IT Hardware"
+  },
+  {
+   "ID": "ITServ",
+   "Name": "IT Services"
+  },
+  {
+   "ID": "Leisure",
+   "Name": "Leisure \u0026 Hotels"
+  },
+  {
+   "ID": "Media",
+   "Name": "Media"
+  },
+  {
+   "ID": "Metals",
+   "Name": "Metals"
+  },
+  {
+   "ID": "Mining",
+   "Name": "Mining"
+  },
+  {
+   "ID": "NPB",
+   "Name": "Non Primary Banked"
+  },
+  {
+   "ID": "OFinance",
+   "Name": "Other Financials"
+  },
+  {
+   "ID": "Oils",
+   "Name": "Oils"
+  },
+  {
+   "ID": "Payments",
+   "Name": "Payment Networks"
+  },
+  {
+   "ID": "PB",
+   "Name": "Primary Banked"
+  },
+  {
+   "ID": "Pharm",
+   "Name": "Pharmaceuticals"
+  },
+  {
+   "ID": "Print",
+   "Name": "Print,Paper \u0026 Packaging"
+  },
+  {
+   "ID": "Property",
+   "Name": "Property"
+  },
+  {
+   "ID": "Retailers",
+   "Name": "Retailers"
+  },
+  {
+   "ID": "S Exchange",
+   "Name": "Swiss Stock Exchange"
+  },
+  {
+   "ID": "Sovereign",
+   "Name": "Sovereign nation"
+  },
+  {
+   "ID": "Support",
+   "Name": "Support Services"
+  },
+  {
+   "ID": "TC",
+   "Name": "Tageted Client"
+  },
+  {
+   "ID": "Telecoms",
+   "Name": "Telecommunications"
+  },
+  {
+   "ID": "Tobaccos",
+   "Name": "Tobaccos"
+  },
+  {
+   "ID": "Transport",
+   "Name": "Transport"
+  },
+  {
+   "ID": "Water",
+   "Name": "Water"
+  }
+ ],
+ "CustomerTypeList": [
+  {
+   "ID": "Branch",
+   "Name": "Branch"
+  },
+  {
+   "ID": "Central Bank",
+   "Name": "Central Bank"
+  },
+  {
+   "ID": "Collateral",
+   "Name": "Collateral"
+  },
+  {
+   "ID": "Clearing",
+   "Name": "Clearing"
+  },
+  {
+   "ID": "Corporate",
+   "Name": "Corporate"
+  },
+  {
+   "ID": "Issuer",
+   "Name": "Issuer"
+  },
+  {
+   "ID": "Payment System",
+   "Name": "Payment System"
+  },
+  {
+   "ID": "Interbank",
+   "Name": "Interbank"
+  },
+  {
+   "ID": "Settlement",
+   "Name": "Settlement"
+  },
+  {
+   "ID": "Other",
+   "Name": "Other"
+  }
+ ],
+ "BaseCCYList": [
+  {
+   "ID": "AED",
+   "Name": "UAE Dirham TST"
+  },
+  {
+   "ID": "AFA",
+   "Name": "Afghani"
+  },
+  {
+   "ID": "ALL",
+   "Name": "Albanian Lek"
+  },
+  {
+   "ID": "ANG",
+   "Name": "Ntl Antillian Glder"
+  },
+  {
+   "ID": "AOK",
+   "Name": "Angolan Kwanza"
+  },
+  {
+   "ID": "ARS",
+   "Name": "Argentine Peso"
+  },
+  {
+   "ID": "AUD",
+   "Name": "Australian Dollar"
+  },
+  {
+   "ID": "BBD",
+   "Name": "Barbados Dollar"
+  },
+  {
+   "ID": "BDT",
+   "Name": "Bangladeshi Taka"
+  },
+  {
+   "ID": "BGL",
+   "Name": "Bulgarian Lev"
+  },
+  {
+   "ID": "BHD",
+   "Name": "Bahraini Dinar"
+  },
+  {
+   "ID": "BIF",
+   "Name": "Burundi Franc"
+  },
+  {
+   "ID": "BMD",
+   "Name": "Bermudan Dollar"
+  },
+  {
+   "ID": "BND",
+   "Name": "Brunei Dollar"
+  },
+  {
+   "ID": "BOP",
+   "Name": "Bolivian Peso"
+  },
+  {
+   "ID": "BRL",
+   "Name": "Brazilian Leira"
+  },
+  {
+   "ID": "BSD",
+   "Name": "Bahamian Dollar"
+  },
+  {
+   "ID": "BTC",
+   "Name": "Bitcoin"
+  },
+  {
+   "ID": "BWP",
+   "Name": "Botswana Pula"
+  },
+  {
+   "ID": "BZD",
+   "Name": "Belize Dollar"
+  },
+  {
+   "ID": "CAD",
+   "Name": "Canadian Dollar"
+  },
+  {
+   "ID": "CHF",
+   "Name": "Swiss Franc"
+  },
+  {
+   "ID": "CLP",
+   "Name": "Chilean Peso"
+  },
+  {
+   "ID": "CNY",
+   "Name": "China YuanlRenminbi"
+  },
+  {
+   "ID": "COP",
+   "Name": "Colombian Peso"
+  },
+  {
+   "ID": "CRC",
+   "Name": "Costa Rican Colon"
+  },
+  {
+   "ID": "CUP",
+   "Name": "Cuban Peso"
+  },
+  {
+   "ID": "CVE",
+   "Name": "Cape Verde Escudo"
+  },
+  {
+   "ID": "CYP",
+   "Name": "Cyprus Pound"
+  },
+  {
+   "ID": "CZK",
+   "Name": "Czech Koruna"
+  },
+  {
+   "ID": "DKK",
+   "Name": "Danish Krone"
+  },
+  {
+   "ID": "DOP",
+   "Name": "Dominican Peso"
+  },
+  {
+   "ID": "DZD",
+   "Name": "Algerian Dinar"
+  },
+  {
+   "ID": "ECS",
+   "Name": "Ecuadorian Sucre"
+  },
+  {
+   "ID": "EEK",
+   "Name": "Estonian Kroon"
+  },
+  {
+   "ID": "EGP",
+   "Name": "Egyptian Pound"
+  },
+  {
+   "ID": "ETB",
+   "Name": "Ethiopian Birr"
+  },
+  {
+   "ID": "ETH",
+   "Name": "Etherium"
+  },
+  {
+   "ID": "EUR",
+   "Name": "Euro"
+  },
+  {
+   "ID": "FJD",
+   "Name": "Fijian Dollar"
+  },
+  {
+   "ID": "FKP",
+   "Name": "Falkland Isles Pound"
+  },
+  {
+   "ID": "GBP",
+   "Name": "Pound Sterling"
+  },
+  {
+   "ID": "GHS",
+   "Name": "Ghana Cedi"
+  },
+  {
+   "ID": "GIP",
+   "Name": "Gibraltar Pound"
+  },
+  {
+   "ID": "GMD",
+   "Name": "Gambian Dalasi"
+  },
+  {
+   "ID": "GNS",
+   "Name": "Guinean Syli"
+  },
+  {
+   "ID": "GQE",
+   "Name": "Ekwele/Equtrl Guinea"
+  },
+  {
+   "ID": "GTQ",
+   "Name": "Guatemalan Quetzal"
+  },
+  {
+   "ID": "GWP",
+   "Name": "Guinea-Bissau Peso"
+  },
+  {
+   "ID": "GYD",
+   "Name": "Guyana Dollar"
+  },
+  {
+   "ID": "HKD",
+   "Name": "Hong Kong Dollar"
+  },
+  {
+   "ID": "HNL",
+   "Name": "Honduras Lempira"
+  },
+  {
+   "ID": "HRK",
+   "Name": "Croatian Khuna"
+  },
+  {
+   "ID": "HTG",
+   "Name": "Haiti Gourde"
+  },
+  {
+   "ID": "HUF",
+   "Name": "Hungarian Forint"
+  },
+  {
+   "ID": "IDO",
+   "Name": "Indonesian Rupiah-Onshore"
+  },
+  {
+   "ID": "IDR",
+   "Name": "Indonesian Rupiah"
+  },
+  {
+   "ID": "ILS",
+   "Name": "Israeli Shekel"
+  },
+  {
+   "ID": "INR",
+   "Name": "Indian Rupee"
+  },
+  {
+   "ID": "IQD",
+   "Name": "Iraqi Dinar"
+  },
+  {
+   "ID": "IRR",
+   "Name": "Iranian Rial"
+  },
+  {
+   "ID": "ISK",
+   "Name": "Iceland Krona"
+  },
+  {
+   "ID": "JMD",
+   "Name": "Jamaican Dollar"
+  },
+  {
+   "ID": "JOD",
+   "Name": "Jordanian Dinar"
+  },
+  {
+   "ID": "JPY",
+   "Name": "Japanese Yen"
+  },
+  {
+   "ID": "KES",
+   "Name": "Kenyan Shilling"
+  },
+  {
+   "ID": "KHR",
+   "Name": "Kampuchean Riel"
+  },
+  {
+   "ID": "KMF",
+   "Name": "Comoros Franc"
+  },
+  {
+   "ID": "KPW",
+   "Name": "North Korean Won"
+  },
+  {
+   "ID": "KRW",
+   "Name": "South Korean Won"
+  },
+  {
+   "ID": "KWD",
+   "Name": "Kuwaiti Dinar"
+  },
+  {
+   "ID": "KYD",
+   "Name": "Cayman Islands Doll"
+  },
+  {
+   "ID": "LAK",
+   "Name": "Laotian kip"
+  },
+  {
+   "ID": "LBP",
+   "Name": "Lebanese Pound"
+  },
+  {
+   "ID": "LKR",
+   "Name": "Sri Lankan Rupee"
+  },
+  {
+   "ID": "LRD",
+   "Name": "Liberian Dollar"
+  },
+  {
+   "ID": "LTC",
+   "Name": "Litecoin"
+  },
+  {
+   "ID": "LTL",
+   "Name": "Lithuanian Litas"
+  },
+  {
+   "ID": "LVL",
+   "Name": "Latvian Lats"
+  },
+  {
+   "ID": "LYD",
+   "Name": "Libyan Dinar"
+  },
+  {
+   "ID": "MAD",
+   "Name": "Moroccan Dirham"
+  },
+  {
+   "ID": "MGF",
+   "Name": "Malagasy Franc"
+  },
+  {
+   "ID": "MLF",
+   "Name": "Mali Franc"
+  },
+  {
+   "ID": "MNT",
+   "Name": "Mongolian Tugrik"
+  },
+  {
+   "ID": "MOP",
+   "Name": "Macau Pataca"
+  },
+  {
+   "ID": "MRO",
+   "Name": "Mauritaian Ouguiya"
+  },
+  {
+   "ID": "MUR",
+   "Name": "Mauritius Rupee"
+  },
+  {
+   "ID": "MVR",
+   "Name": "Maldive Rupee"
+  },
+  {
+   "ID": "MWK",
+   "Name": "Malawi Kwacha"
+  },
+  {
+   "ID": "MXN",
+   "Name": "Mexican Peso"
+  },
+  {
+   "ID": "MYA",
+   "Name": "Myanmar Kyat"
+  },
+  {
+   "ID": "MYR",
+   "Name": "Malaysian Ringgit"
+  },
+  {
+   "ID": "MZM",
+   "Name": "Mozambique Metical"
+  },
+  {
+   "ID": "NGN",
+   "Name": "Nigerian Naira"
+  },
+  {
+   "ID": "NIC",
+   "Name": "Nicaraguan Cordoba"
+  },
+  {
+   "ID": "NOK",
+   "Name": "Norwegian Krone"
+  },
+  {
+   "ID": "NPR",
+   "Name": "Nepalese Rupee"
+  },
+  {
+   "ID": "NZD",
+   "Name": "New Zealand Doll"
+  },
+  {
+   "ID": "OMR",
+   "Name": "Rial Omani"
+  },
+  {
+   "ID": "PAB",
+   "Name": "Panaman Balboa"
+  },
+  {
+   "ID": "PES",
+   "Name": "Peruvian Sol"
+  },
+  {
+   "ID": "PGK",
+   "Name": "PapuaNewGuinea Kina"
+  },
+  {
+   "ID": "PHP",
+   "Name": "Philippine Peso"
+  },
+  {
+   "ID": "PKR",
+   "Name": "Pakistan Rupee"
+  },
+  {
+   "ID": "PLN",
+   "Name": "Polish Zloty"
+  },
+  {
+   "ID": "PYG",
+   "Name": "Paraguayan Guarani"
+  },
+  {
+   "ID": "QAR",
+   "Name": "Qatar Rial"
+  },
+  {
+   "ID": "RON",
+   "Name": "Rumänien"
+  },
+  {
+   "ID": "RUB",
+   "Name": "Russian Rouble"
+  },
+  {
+   "ID": "RWF",
+   "Name": "Rwanda Franc"
+  },
+  {
+   "ID": "SAR",
+   "Name": "Saudi Riyal"
+  },
+  {
+   "ID": "SBD",
+   "Name": "Solomon Isle Dollar"
+  },
+  {
+   "ID": "SCR",
+   "Name": "Seychelles Rupee"
+  },
+  {
+   "ID": "SDP",
+   "Name": "Sudanese Pound"
+  },
+  {
+   "ID": "SEK",
+   "Name": "Swedish Krone"
+  },
+  {
+   "ID": "SGD",
+   "Name": "Singapore Dollar"
+  },
+  {
+   "ID": "SHP",
+   "Name": "St Helena Pound"
+  },
+  {
+   "ID": "SLL",
+   "Name": "Leone(SierraLeone)"
+  },
+  {
+   "ID": "SOS",
+   "Name": "Somali Shilling"
+  },
+  {
+   "ID": "SRG",
+   "Name": "Suriname Guilder"
+  },
+  {
+   "ID": "STD",
+   "Name": "Dobra (Sao Tome)"
+  },
+  {
+   "ID": "SUR",
+   "Name": "Rouble"
+  },
+  {
+   "ID": "SVC",
+   "Name": "El Salvador Colon"
+  },
+  {
+   "ID": "SYP",
+   "Name": "Syrian Pound"
+  },
+  {
+   "ID": "SZL",
+   "Name": "Swaziland Lilangeni"
+  },
+  {
+   "ID": "THB",
+   "Name": "Thai Baht"
+  },
+  {
+   "ID": "TND",
+   "Name": "Tunisian Dinar"
+  },
+  {
+   "ID": "TOP",
+   "Name": "Tongan Pa'anga"
+  },
+  {
+   "ID": "TPE",
+   "Name": "Timor Escudo"
+  },
+  {
+   "ID": "TRY",
+   "Name": "Tuerkische Lira"
+  },
+  {
+   "ID": "TTD",
+   "Name": "Trndad\u0026Tobago Dollar"
+  },
+  {
+   "ID": "TWD",
+   "Name": "New Taiwan Dollar"
+  },
+  {
+   "ID": "TZS",
+   "Name": "Tanzanian Shilling"
+  },
+  {
+   "ID": "UGX",
+   "Name": "Uganda Shilling"
+  },
+  {
+   "ID": "USD",
+   "Name": "US Dollar"
+  },
+  {
+   "ID": "UYP",
+   "Name": "Uruguayan Peso"
+  },
+  {
+   "ID": "VEB",
+   "Name": "Venezualan Bolivar"
+  },
+  {
+   "ID": "VND",
+   "Name": "Vietnamese Dong"
+  },
+  {
+   "ID": "VUV",
+   "Name": "Vanuatu Vatu"
+  },
+  {
+   "ID": "WST",
+   "Name": "Western Samoan Tala"
+  },
+  {
+   "ID": "XAF",
+   "Name": "CFA Franc BEAC"
+  },
+  {
+   "ID": "XAG",
+   "Name": "Silver"
+  },
+  {
+   "ID": "XAU",
+   "Name": "Gold"
+  },
+  {
+   "ID": "XCD",
+   "Name": "East Caribbean Doll"
+  },
+  {
+   "ID": "XOF",
+   "Name": "CFA Franc BCEAO"
+  },
+  {
+   "ID": "XPD",
+   "Name": "XPD - Palladium, Ounces "
+  },
+  {
+   "ID": "XPF",
+   "Name": "CFP Franc (Pacific)"
+  },
+  {
+   "ID": "XPT",
+   "Name": "XPT - Platinum, Ounces "
+  },
+  {
+   "ID": "XRP",
+   "Name": "Ripple"
+  },
+  {
+   "ID": "YDD",
+   "Name": "Yemeni Dinar"
+  },
+  {
+   "ID": "YER",
+   "Name": "Yemeni Rial"
+  },
+  {
+   "ID": "YUD",
+   "Name": "New Yugoslav Dinar"
+  },
+  {
+   "ID": "ZAL",
+   "Name": "Financial Rand"
+  },
+  {
+   "ID": "ZAR",
+   "Name": "South African Rand"
+  },
+  {
+   "ID": "ZMK",
+   "Name": "Zambian Kwacha"
+  },
+  {
+   "ID": "ZRZ",
+   "Name": "Zaire"
+  },
+  {
+   "ID": "ZWD",
+   "Name": "Zimbabwe Dollar"
+  }
+ ],
+ "CategoryList": [
+  {
+   "ID": "Retail Client",
+   "Name": "Retail Client"
+  },
+  {
+   "ID": "Professional Client",
+   "Name": "Professional Client"
+  },
+  {
+   "ID": "Eligible Counterparty",
+   "Name": "Eligible Counterparty"
+  }
+ ],
+ "TradingEntityList": [
+  {
+   "ID": "Sales Desk",
+   "Name": "Sales Desk"
+  },
+  {
+   "ID": "Sales Desk2",
+   "Name": "Sales Desk2"
+  },
+  {
+   "ID": "SIS",
+   "Name": "SIS"
+  },
+  {
+   "ID": "SXC",
+   "Name": "SXC"
+  }
+ ],
+ "SystemUserList": [
+  {
+   "ID": "Rod",
+   "Name": "Rod"
+  },
+  {
+   "ID": "Jane",
+   "Name": "Jane"
+  },
+  {
+   "ID": "Freddy",
+   "Name": "Freddy"
+  }
+ ],
+ "OriginList": [
+  {
+   "ID": "360T",
+   "Name": "360T"
+  },
+  {
+   "ID": "Currenex",
+   "Name": "Currenex"
+  },
+  {
+   "ID": "ExternalDealImporter",
+   "Name": "ExternalDealImporter"
+  },
+  {
+   "ID": "T24",
+   "Name": "T24"
+  },
+  {
+   "ID": "FLEXCUBE",
+   "Name": "FLEXCUBE"
+  },
+  {
+   "ID": "FXall",
+   "Name": "FXall"
+  },
+  {
+   "ID": "LIMIT",
+   "Name": "LIMIT"
+  },
+  {
+   "ID": "RFS",
+   "Name": "RFS"
+  },
+  {
+   "ID": "TOF",
+   "Name": "TOF"
+  }
+ ],
+ "OwnerList": [
+  {
+   "ID": "BackOffice",
+   "Name": "Limited Back Office"
+  },
+  {
+   "ID": "cashflow",
+   "Name": "Cashflow Control"
+  },
+  {
+   "ID": "cashmanager",
+   "Name": "cashmanager"
+  },
+  {
+   "ID": "compliance",
+   "Name": "compliance"
+  },
+  {
+   "ID": "covesting",
+   "Name": "covesting"
+  },
+  {
+   "ID": "CustomerMaint",
+   "Name": "Usermanagementuser"
+  },
+  {
+   "ID": "CustomerUser",
+   "Name": "CustomerUser"
+  },
+  {
+   "ID": "d.healer@bank.com",
+   "Name": "Graham Lord"
+  },
+  {
+   "ID": "Functional",
+   "Name": "Functionalsupportuser"
+  },
+  {
+   "ID": "homesend",
+   "Name": "Homesend Demonstration User"
+  },
+  {
+   "ID": "JuniorDealer",
+   "Name": "Junior"
+  },
+  {
+   "ID": "MiddleOffice",
+   "Name": "LimitedMiddleOffice"
+  },
+  {
+   "ID": "MWT",
+   "Name": "MWT"
+  },
+  {
+   "ID": "RateDesk",
+   "Name": "RateDesk"
+  },
+  {
+   "ID": "reg2",
+   "Name": "reg2"
+  },
+  {
+   "ID": "regulatory",
+   "Name": "regulatory"
+  },
+  {
+   "ID": "Salesdesk",
+   "Name": "Sally Decker"
+  },
+  {
+   "ID": "SeniorDealer",
+   "Name": "Terry Hader"
+  },
+  {
+   "ID": "SERVICE",
+   "Name": "Service"
+  },
+  {
+   "ID": "settle",
+   "Name": "settle"
+  },
+  {
+   "ID": "settlement",
+   "Name": "settlement"
+  },
+  {
+   "ID": "settlements",
+   "Name": "settlements"
+  },
+  {
+   "ID": "settlements_DEAD",
+   "Name": "settlements"
+  },
+  {
+   "ID": "SuperDF",
+   "Name": "David French [Dealer]"
+  },
+  {
+   "ID": "SuperGB",
+   "Name": "Gill Bacon [Dealer]"
+  },
+  {
+   "ID": "SuperMIFID",
+   "Name": "Mike Fidessa [Dealer]"
+  },
+  {
+   "ID": "SuperMWT",
+   "Name": "Matt Townsend"
+  },
+  {
+   "ID": "SuperNB",
+   "Name": "Super NB"
+  },
+  {
+   "ID": "SuperNM",
+   "Name": "SuperNM"
+  },
+  {
+   "ID": "SuperOE",
+   "Name": "Oliver Eggert [Dealer]"
+  },
+  {
+   "ID": "SuperRH",
+   "Name": "Robert Harris [Dealer]"
+  },
+  {
+   "ID": "SuperRN",
+   "Name": "SuperRN"
+  },
+  {
+   "ID": "SuperRN2",
+   "Name": "SuperRN2"
+  },
+  {
+   "ID": "SuperSett",
+   "Name": "SuperSett"
+  },
+  {
+   "ID": "Technical",
+   "Name": "Technicalsupportuser"
+  },
+  {
+   "ID": "TradeDesk",
+   "Name": "Terry Drew"
+  },
+  {
+   "ID": "xSuperDF",
+   "Name": "David French [Dealer]"
+  },
+  {
+   "ID": "xSuperRN",
+   "Name": "SuperRN"
+  },
+  {
+   "ID": "xSuperRN2",
+   "Name": "SuperRN2"
+  },
+  {
+   "ID": "zzsettlements",
+   "Name": "settlements"
+  }
+ ],
+ "BaseCCYPairList": null
+}

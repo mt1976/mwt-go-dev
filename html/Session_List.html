@@ -1,0 +1,174 @@
+{{template "header" .}}
+
+<body>
+<div class="container-fluid">
+      <div class="card border-primary">
+        <form action="/home" method="POST">
+
+        <div class="card-header font-weight-bold border-primary">
+
+
+          <div class="row">
+            <div class="col">
+              &nbsp;&nbsp;Session&nbsp;&nbsp;<span class="text-muted">[{{.ItemsOnPage}}]</span>
+              
+            </div>
+
+            <div class="col text-right">
+              <div class="btn-group">
+              
+              
+              <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()" title="Print Session"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover" id="Table_Session">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="text-center">#</th>
+                    
+                    <th class="text-center">Apptoken</th>
+                    <th class="text-center">Createdate</th>
+                    <th class="text-center">Createtime</th>
+                    <th class="text-center">Uniqueid</th>
+                    <th class="text-center">Sessiontoken</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Password</th>
+                    <th class="text-center">Userip</th>
+                    <th class="text-center">Userhost</th>
+                    <th class="text-center">Appip</th>
+                    <th class="text-center">Apphost</th>
+                    <th class="text-center">Issued</th>
+                    <th class="text-center">Expiry</th>
+                    <th class="text-center">Expiryraw</th>
+                    <th class="text-center">Brand</th>
+                    
+                    
+                    
+                    
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Expires</th>
+                    
+                    
+                    
+                    
+                    <th class="text-center">SessionRole</th>
+                    
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id=filterTable>
+                  {{range .ItemList}}
+                  <tr>
+                    <td class="text-center align-middle"></td>
+                    
+        
+                    <td class="align-middle">{{.Apptoken}}</td>
+        
+                    <td class="align-middle">{{.Createdate}}</td>
+        
+                    <td class="align-middle">{{.Createtime}}</td>
+        
+                    <td class="align-middle">{{.Uniqueid}}</td>
+        
+                    <td class="align-middle">{{.Sessiontoken}}</td>
+        
+                    <td class="align-middle">{{.Username}}</td>
+        
+                    <td class="align-middle">{{.Password}}</td>
+        
+                    <td class="align-middle">{{.Userip}}</td>
+        
+                    <td class="align-middle">{{.Userhost}}</td>
+        
+                    <td class="align-middle">{{.Appip}}</td>
+        
+                    <td class="align-middle">{{.Apphost}}</td>
+        
+                    <td class="align-middle">{{.Issued}}</td>
+        
+                    <td class="align-middle">{{.Expiry}}</td>
+        
+                    <td class="align-middle">{{.Expiryraw}}</td>
+        
+                    <td class="align-middle">{{.Brand}}</td>
+        
+                    
+        
+                    
+        
+                    
+        
+                    
+        
+                    <td class="align-middle">{{.Id}}</td>
+        
+                    <td class="align-middle">{{.Expires}}</td>
+        
+                    
+        
+                    
+        
+                    
+        
+                    
+        
+                    <td class="align-middle">{{.SessionRole}}</td>
+        
+                    
+                    <td class="text-center" style="width:1px;">
+                      <div class="btn-group">
+                      
+                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/SessionView?SessionID={{.Id}}" method="POST" title="View Session">
+                          <i class="far fa-eye" style="font-size: 22px"></i>
+                        </button>
+                      
+                      
+                        
+                      </div>
+
+                    </td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+
+            </div>
+
+        </div>
+          </form>
+      </div>
+</div>
+
+  <!-- SCRIPTS DO NOT CHANGE -->
+
+  <script>
+    $(document).ready(function() {
+      $("#myFilter").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#filterTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+  <script>
+$(document).ready(function(){
+    $('#Table_Session').dataTable({
+      "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
+      stateSave: true
+    } );
+});
+</script>
+
+
+  <!-- SCRIPTS DO NOT CHANGE -->
+
+</body>

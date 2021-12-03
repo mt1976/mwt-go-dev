@@ -1,0 +1,72 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/negotiableinstrument.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : NegotiableInstrument (negotiableinstrument)
+Endpoint 	         : NegotiableInstrument (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:59
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : lseGiltsDataStore
+SQL Table Search Col : id
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| Id                                  | String     |            | false | true   | false |                 |            |            | 
+| LongName                            | String     |            | false | true   | false |                 |            |            | 
+| Isin                                | String     |            | false | true   | false |                 |            |            | 
+| Tidm                                | String     |            | false | true   | false |                 |            |            | 
+| Sedol                               | String     |            | false | true   | false |                 |            |            | 
+| IssueDate                           | String     |            | false | true   | false |                 |            |            | 
+| MaturityDate                        | String     |            | false | true   | false |                 |            |            | 
+| CouponValue                         | String     |            | false | true   | false |                 |            |            | 
+| CouponType                          | String     |            | false | true   | false |                 |            |            | 
+| Segment                             | String     |            | false | true   | false |                 |            |            | 
+| Sector                              | String     |            | false | true   | false |                 |            |            | 
+| CodeConventionCalculateAccrual      | String     |            | false | true   | false |                 |            |            | 
+| MinimumDenomination                 | String     |            | false | true   | false |                 |            |            | 
+| DenominationCurrency                | String     |            | false | true   | false |                 |            |            | 
+| TradingCurrency                     | String     |            | false | true   | false |                 |            |            | 
+| Type                                | String     |            | false | true   | false |                 |            |            | 
+| FlatYield                           | String     |            | false | true   | false |                 |            |            | 
+| PaymentCouponDate                   | String     |            | false | true   | false |                 |            |            | 
+| PeriodOfCoupon                      | String     |            | false | true   | false |                 |            |            | 
+| ExCouponDate                        | String     |            | false | true   | false |                 |            |            | 
+| DateOfIndexInflation                | String     |            | false | true   | false |                 |            |            | 
+| UnitOfQuotation                     | String     |            | false | true   | false |                 |            |            | 
+| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
+| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
+| Issuer                              | String     |            | false | true   | false |                 |            |            | 
+| IssueAmount                         | String     |            | false | true   | false |                 |            |            | 
+| RunningYield                        | String     |            | false | true   | false |                 |            |            | 
+| LEI                                 | String     |            | false | true   | false |                 |            |            | 
+| CUSIP                               | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/negotiableInstrument_core.go)
+* dao (/dao/negotiableInstrument.go)
+* datamodel (/datamodel/negotiableInstrument.go)
+* menu (/design/menu/negotiableInstrument.json)
+* html -> List (/html/NegotiableInstrument_List.html)
+* html -> View (/html/NegotiableInstrument_View.html)
+* catalog (/design/catalog/negotiableInstrument.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

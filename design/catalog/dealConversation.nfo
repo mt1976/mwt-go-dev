@@ -1,0 +1,48 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/dealconversation.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : DealConversation (dealconversation)
+Endpoint 	         : DealConversation (ID)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:57
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaDealConversationLog
+SQL Table Search Col : MessageLogReference
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SienaReference                      | String     |            | false | true   | false |                 |            |            | 
+| Status                              | String     |            | false | true   | false |                 |            |            | 
+| MessageType                         | String     |            | false | true   | false |                 |            |            | 
+| ContractNumber                      | String     |            | false | true   | false |                 |            |            | 
+| AckReference                        | String     |            | false | true   | false |                 |            |            | 
+| NewTX                               | Bool       | True       | false | true   | false |                 |            |            | 
+| LegNo                               | Int        | 0          | false | true   | false |                 |            |            | 
+| Summary                             | String     |            | false | true   | false |                 |            |            | 
+| BusinessDate                        | Time       |            | false | true   | false |                 |            |            | 
+| TXNo                                | Int        | 0          | false | true   | false |                 |            |            | 
+| ExternalSystem                      | String     |            | false | true   | false |                 |            |            | 
+| MessageLogReference                 | String     |            | true  | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/dealConversation_core.go)
+* dao (/dao/dealConversation.go)
+* datamodel (/datamodel/dealConversation.go)
+* menu (/design/menu/dealConversation.json)
+* html -> List (/html/DealConversation_List.html)
+* html -> View (/html/DealConversation_View.html)
+* catalog (/design/catalog/dealConversation.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

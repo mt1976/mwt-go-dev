@@ -1,34 +1,38 @@
 USE [SRS]
 GO
-/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sessionStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [dbo].[sessionStore]    Script Date: 24/11/2021 19:43:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[sessionStore](
+CREATE TABLE [dbo].[sessionStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
-	[apptoken] [nvarchar](max) NOT NULL,
-	[createdate] [nvarchar](max) NULL,
-	[createtime] [nvarchar](max) NULL,
-	[uniqueid] [nvarchar](max) NULL,
-	[sessiontoken] [nvarchar](max) NULL,
-	[username] [nvarchar](max) NULL,
-	[password] [nvarchar](max) NULL,
-	[userip] [nvarchar](max) NULL,
-	[userhost] [nvarchar](max) NULL,
-	[appip] [nvarchar](max) NULL,
-	[apphost] [nvarchar](max) NULL,
-	[issued] [nvarchar](max) NULL,
-	[expiry] [nvarchar](max) NULL,
-	[expiryraw] [nvarchar](max) NULL,
-	[role] [nvarchar](max) NULL,
-	[brand] [nvarchar](max) NULL,
+	[Apptoken] [nvarchar](max) NOT NULL,
+	[Createdate] [nvarchar](max) NULL,
+	[Createtime] [nvarchar](max) NULL,
+	[Uniqueid] [nvarchar](max) NULL,
+	[Sessiontoken] [nvarchar](max) NULL,
+	[Username] [nvarchar](max) NULL,
+	[Password] [nvarchar](max) NULL,
+	[Userip] [nvarchar](max) NULL,
+	[Userhost] [nvarchar](max) NULL,
+	[Appip] [nvarchar](max) NULL,
+	[Apphost] [nvarchar](max) NULL,
+	[Issued] [nvarchar](max) NULL,
+	[Expiry] [nvarchar](max) NULL,
+	[Expiryraw] [nvarchar](max) NULL,
+	[Brand] [nvarchar](max) NULL,
 	[_created] [nvarchar](max) NULL,
 	[_who] [nvarchar](max) NULL,
 	[_host] [nvarchar](max) NULL,
 	[_updated] [nvarchar](max) NULL,
-	[id] [nvarchar](max) NULL,
-	[expires] [datetime2](7) NULL,
+	[Id] [nvarchar](max) NULL,
+	[Expires] [datetime2](7) NULL,
+	[_createdBy] [nvarchar](max) NULL,
+	[_createdHost] [nvarchar](max) NULL,
+	[_updatedBy] [nvarchar](max) NULL,
+	[_updatedHost] [nvarchar](max) NULL,
+	[SessionRole] [nvarchar](max) NULL,
  CONSTRAINT [PK_sessionStore] PRIMARY KEY CLUSTERED 
 (
 	[_id] ASC

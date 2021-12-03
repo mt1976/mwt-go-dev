@@ -11,7 +11,10 @@ import (
 
 	"github.com/mt1976/common"
 	application "github.com/mt1976/mwt-go-dev/application"
-	globals "github.com/mt1976/mwt-go-dev/globals"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 	tools "github.com/mt1976/mwtgostringtools"
 	cron "github.com/robfig/cron/v3"
 )
@@ -32,36 +35,39 @@ type fxRateCard struct {
 	fxRates []fxRate
 }
 
-func RatesFXSpot_Job() globals.JobDefinition {
-	var j globals.JobDefinition
+func RatesFXSpot_Job() dm.JobDefinition {
+	var j dm.JobDefinition
 	j.ID = "RATES_FXSP"
 	j.Name = "RATES_FXSP"
 	j.Period = "*/10 7-19 * * 1-5"
 	j.Description = "Update FX Spot rate from barchart.com"
-	j.Type = globals.Aquirer
+	j.Type = core.Aquirer
 	return j
 }
 
 func RatesFXSpot_Register(c *cron.Cron) {
-	application.RegisterSchedule(RatesFXSpot_Job().ID, RatesFXSpot_Job().Name, RatesFXSpot_Job().Description, RatesFXSpot_Job().Period, RatesFXSpot_Job().Type)
+	application.Schedule_Register(RatesFXSpot_Job())
 	c.AddFunc(RatesFXSpot_Job().Period, func() { RatesFXSpot_Run() })
 }
 
 // RunJobRollover is a Rollover function
 func RatesFXSpot_Run() {
-	logStart(RatesFXSpot_Job().Name)
+	//logs.StartJob(RatesFXSpot_Job().Name)
+
+	logs.StartJob(RatesFXSpot_Job().Name)
 	var message string
 	/// CONTENT STARTS
 
-	_, cacheList, err := application.GetCacheStoreListByOBJECT("CurrencyPair")
+	noItems, cacheList, err := dao.DataCache_GetListByObject("CurrencyPair")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	var rateCard fxRateCard
 
-	for _, cacheData := range cacheList {
-		//	fmt.Println(i, ccyPair)
+	for i := 0; i < noItems; i++ {
+		//fmt.Printf("%s\n", cacheList[i])
+		cacheData := cacheList[i]
 		rateCard.fxRates = append(rateCard.fxRates, getFXrate(cacheData.Value))
 	}
 
@@ -70,8 +76,8 @@ func RatesFXSpot_Run() {
 	}
 
 	/// CONTENT ENDS
-	application.UpdateSchedule(RatesFXSpot_Job().Name, RatesFXSpot_Job().Type, message)
-	logEnd(RatesFXSpot_Job().Name)
+	application.Schedule_Update(RatesFXSpot_Job(), message)
+	logs.EndJob(RatesFXSpot_Job().Name)
 }
 
 func getFXrate(inCCYpair string) fxRate {
@@ -79,6 +85,7 @@ func getFXrate(inCCYpair string) fxRate {
 	thisRate.ccyPair = inCCYpair
 	thisPair := "%5E" + inCCYpair
 	url := fmt.Sprintf("https://www.barchart.com/forex/quotes/%s/overview", thisPair)
+	logs.Accessing(url)
 	//fmt.Printf("HTML code of %s ...\n", url)
 	resp, err := http.Get(url)
 	// handle the error if there is one
@@ -97,7 +104,7 @@ func getFXrate(inCCYpair string) fxRate {
 	// show the HTML code as a string %s
 	//fmt.Printf("%s\n", html)
 	inString := string(html)
-
+	//fmt.Println(inString)
 	searchString := "\"bidPrice\":\""
 	searchString2 := "\",\"askPrice\":\""
 	searchString3 := "\",\"bidSize\":\""
@@ -121,12 +128,13 @@ func getFXrate(inCCYpair string) fxRate {
 	var ratesData RatesDataStore
 	ratesData.bid = fmt.Sprintf("%f", thisRate.bidRate)
 	ratesData.offer = fmt.Sprintf("%f", thisRate.askRate)
-	ratesData.market = "FX"
-	ratesData.tenor = "SP"
+	ratesData.market = dm.Market_FX
+	ratesData.tenor = dm.Tenor_SP
 	ratesData.series = inCCYpair
-	ratesData.class = "Market"
+	ratesData.class = dm.RateCategory_Market
+	ratesData.name = application.Translation_Lookup("CurrencyPair", inCCYpair)
 	ratesData.source = "Barchart.com"
-	ratesData.destination = "RVMARKET"
+	ratesData.destination = "RV" + dm.RateCategory_Market
 
 	RatesDataStorePut(ratesData)
 	return thisRate
@@ -141,7 +149,7 @@ func getASYCFXrate(inCCYpair string, rateChan chan fxRate) {
 	thisRate.ccyPair = inCCYpair
 	thisPair := "%5E" + inCCYpair
 	url := fmt.Sprintf("https://www.barchart.com/forex/quotes/%s/overview", thisPair)
-	//fmt.Printf("HTML code of %s ...\n", url)
+	fmt.Printf("HTML code of %s ...\n", url)
 	resp, err := http.Get(url)
 	// handle the error if there is one
 	if err != nil {
@@ -179,6 +187,8 @@ func getASYCFXrate(inCCYpair string, rateChan chan fxRate) {
 	thisRate.askRate, _ = strconv.ParseFloat(inString[askPriceStart:askPriceStop], 64)
 	thisRate.askString = tools.TruncateString(inString[askPriceStart:askPriceStop], constRateLen)
 	//fmt.Println("askPrice=", askPrice)
+
+	fmt.Printf("thisRate: %v\n", thisRate)
 
 	rateChan <- thisRate
 

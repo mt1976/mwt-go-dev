@@ -1,0 +1,225 @@
+<MESSAGE>
+    <TRANSACTION type="IMPORT">
+        <TABLE name="Firm" classname="com.eurobase.siena.data.firms.Firm">
+            <RECORD>
+                <KEYFIELD name="firmName">{{.FirmName}}</KEYFIELD>
+                <FIELD name="fullName">{{.FirmFullName}}</FIELD>
+                <FIELD name="country">{{.FirmCountry}}</FIELD>
+                <FIELD name="sector">{{.FirmSector}}</FIELD>
+            </RECORD>
+        </TABLE>
+        <TABLE name="Counterparty" classname="com.eurobase.siena.data.counterparty.Counterparty">
+            <RECORD>
+                <KEYFIELD name="name.firm">{{.FirmName}}</KEYFIELD>
+                <KEYFIELD name="name.centre">{{.FirmCentre}}</KEYFIELD>
+                <FIELD name="fullName">{{.FirmFullName}}</FIELD>
+                <FIELD name="countryCode">{{.FirmCountry}}</FIELD>
+                <FIELD name="sectorCode">{{.FirmSector}}</FIELD>
+                <FIELD name="customerType">{{.CustomerType}}</FIELD>
+                <SLOT name="Address" classname="com.eurobase.common.tech.types.FixedSlotType" memberClassname="com.eurobase.common.tech.types.FixedSlotType$FixedData">
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Address 1</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.FirmAddress}}</SLOTFIELD>
+                    </SLOTRECORD>
+                </SLOT>
+                <FIELD name="telephoneNumber">{{.PhoneNumber}}</FIELD>
+                <FIELD name="owner">{{.Owner}}</FIELD>
+                <FIELD name="timeBandID">TBCM</FIELD>
+                <SLOT name="Extensions" classname="com.eurobase.common.tech.types.FixedSlotType" memberClassname="com.eurobase.common.tech.types.FixedSlotType$FixedData">
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Business Online Profile Number</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.BOI_BOLNO}}</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Relationship Distribution Code</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.BOI_RDC}}</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">RPT Currency</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.BaseCCY}}</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Gm Client Model ID</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.BOI_GM}}</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Sort Code</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.OurSortCode}}</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Customer Category</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">{{.Category}}</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">LER Limit Carve-Out</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">N</SLOTFIELD>
+                    </SLOTRECORD>
+                    <SLOTRECORD>
+                        <SLOTKEYFIELD name="key">Settlement Limit Carve-Out</SLOTKEYFIELD>
+                        <SLOTFIELD name="value">N</SLOTFIELD>
+                    </SLOTRECORD>
+                </SLOT>
+            </RECORD>
+        </TABLE>
+        <TABLE name="CounterpartyImportID" classname="com.eurobase.siena.data.counterparty.CounterpartyImportID">
+            {{range .ImportIDs}}
+            <RECORD>
+                <KEYFIELD name="key.originID">{{.Origin}}</KEYFIELD>
+                <KEYFIELD name="key.importID">{{.ID}}</KEYFIELD>
+                <FIELD name="counterparty.firm">{{$.FirmName}}</FIELD>
+                <FIELD name="counterparty.centre">{{$.FirmCentre}}</FIELD>
+            </RECORD>
+            {{end}}
+        </TABLE>
+        <TABLE name="CounterpartySettlementInstructionsName" classname="com.eurobase.siena.data.counterparty.CounterpartySettlementInstructionsName">
+{{range .Payees}}
+            <RECORD>
+                <KEYFIELD name="name">{{.PayeeID}}</KEYFIELD>
+            </RECORD>
+{{end}}
+        </TABLE>
+        <TABLE name="CounterpartySettlementInstructions" classname="com.eurobase.siena.data.counterparty.CounterpartySettlementInstructions">
+{{range .Payees}} 
+            <RECORD>
+                <KEYFIELD name="key.counterparty.firm">{{$.FirmName}}</KEYFIELD>
+                <KEYFIELD name="key.counterparty.centre">{{$.FirmCentre}}</KEYFIELD>
+                <KEYFIELD name="key.currency">{{.PayeeCCY}}</KEYFIELD>
+                <KEYFIELD name="key.name">{{.PayeeID}}</KEYFIELD>
+                <KEYFIELD name="key.number">1</KEYFIELD>
+                <KEYFIELD name="key.type">PAYMENT</KEYFIELD>
+                <FIELD name="isDefault">Y</FIELD>
+                <FIELD name="isActive">Y</FIELD>
+            </RECORD>
+{{end}}
+        </TABLE>
+        <TABLE name="Payee" classname="com.eurobase.siena.data.payee.Payee">
+{{range .Payees}}
+            <RECORD>
+                <KEYFIELD name="key.counterparty.firm">{{$.FirmName}}</KEYFIELD>
+                <KEYFIELD name="key.counterparty.centre">{{$.FirmCentre}}</KEYFIELD>
+                <KEYFIELD name="key.currency">{{.PayeeCCY}}</KEYFIELD>
+                <KEYFIELD name="key.name">{{.PayeeID}}</KEYFIELD>
+                <KEYFIELD name="key.number">1</KEYFIELD>
+                <KEYFIELD name="key.type">PAYMENT</KEYFIELD>
+                <FIELD name="address">{{.PayeeAddress}}</FIELD>
+                <FIELD name="country">{{.PayeeCountry}}</FIELD>
+                <FIELD name="bic">{{.PayeeBIC}}</FIELD>
+                <FIELD name="iban">{{.PayeeIBAN}}</FIELD>
+                <FIELD name="fullName">{{.PayeeFullName}}</FIELD>
+                <FIELD name="address">{{.PayeeAddress}}</FIELD>
+                <FIELD name="phoneNo">{{.PayeePhoneNumber}}</FIELD>
+                <FIELD name="sortCode">{{.PayeeSortCode}}</FIELD>
+                <FIELD name="bankSettlementAcct">{{.BankSettlementAccount}}</FIELD>
+                <FIELD name="reason">{{.PayeeReason}}</FIELD>
+                <FIELD name="accountNo">{{.PayeeAccountNo}}</FIELD>
+                <FIELD name="bankName">{{.PayeeBankName}}</FIELD>
+            </RECORD>
+{{end}}
+        </TABLE>
+        <TABLE name="Agreement" classname="com.eurobase.siena.data.tradingentity.AgreementImpl">
+            <RECORD>
+                <KEYFIELD name="key.priceMaker.type">Sales Desk</KEYFIELD>
+                <KEYFIELD name="key.priceMaker.tradingEntity">{{.TradingEntity}}</KEYFIELD>
+                <KEYFIELD name="key.priceTaker.type">Counterparty</KEYFIELD>
+                <KEYFIELD name="key.priceTaker.tradingEntity">{{.FirmName}}{{.FirmCentre}}</KEYFIELD>
+            </RECORD>
+        </TABLE>
+        <TABLE name="MandatedUser" classname="com.eurobase.siena.data.user.MandatedUser">
+{{range .MandatedUsers}}
+            <RECORD>
+                <KEYFIELD name="mandatedUserKey.counterparty.firm">{{$.FirmName}}</KEYFIELD>
+                <KEYFIELD name="mandatedUserKey.counterparty.centre">{{$.FirmCentre}}</KEYFIELD>
+                <KEYFIELD name="mandatedUserKey.userName">{{.UserFullName}}</KEYFIELD>
+                <FIELD name="type">Both</FIELD>
+                <FIELD name="telephoneNumber">{{.UserPhoneNumber}}</FIELD>
+                <FIELD name="emailAddress">{{.UserEmail}}</FIELD>
+                <FIELD name="systemUser">{{.SystemUser}}</FIELD>
+                <FIELD name="notify">Y</FIELD>
+                <FIELD name="active">Y</FIELD>
+            </RECORD>
+{{end}}
+        </TABLE>
+        <TABLE name="User" classname="com.eurobase.siena.info.security.User">
+{{range .MandatedUsers}}
+            <RECORD>
+                <KEYFIELD name="userId">{{.UserName}}</KEYFIELD>
+                <FIELD name="fullname">{{.UserFullName}}</FIELD>
+            </RECORD>
+{{end}}
+        </TABLE>
+    </TRANSACTION>
+    <CL>
+
+{{range .MandatedUsers}}
+run CreateUser database=database() sourceUser="templateWebUser" targetUser="{{.UserName}}" changePassword="false" password="" targetUserFullName="{{.UserFullName}}";
+
+run SetSettings database=database() username="{{.UserName}}" name="UserDetails" type="user" keys="Email Address", "Default Book", "Default Enter Book", "Dealer Intervention", "Local Currency", "Telephone Number" values="{{.UserEmail}}", "WEB=RSM", "RSM", "true", "{{$.BaseCCY}}", "{{.UserPhoneNumber}}" override="true";
+
+run SetSettings database=database() username="{{.UserName}}" name="WebUser" type="user" keys="Security Data", "User Currency", "User Currency Pair", "Region" values="Place of Birth={{.UserPlaceOfBirth}},Middle Name={{.UserMiddleName}},Mother's Maiden Name={{.UserMaidenName}},Date of Birth={{.UserDOB}}", "{{$.BaseCCY}}", "{{$.BaseCCYPair}}", "{{$.FirmCentre}}" override="true";
+
+run SetSettings database=database() username="{{.UserName}}" name="Deals" type="user" keys="Use Reciprocal Rates" values="Based on local currency" override="true";
+
+run GroupCreate database=database() userName="{{.UserName}}" groupList=&quot;LicenceEtrader&quot;, &quot;eTrader External Direct Base&quot;, &quot;eTrader External Direct Admin&quot;, &quot;eTrader FX View &amp; Add Payee&quot;, &quot;eTrader FX View &amp; Add Payments&quot;, &quot;eTrader FX Dealing&quot; mode="MAKE_MEMBER";
+
+run MakeResource group = "G_External"
+name = "{{.UserName}}"
+description = "{{.UserFullName}}"
+type = "Users"
+attribute_names = "ADD_GROUP", "ADD_OPERATION", "CHANGE_PASSWORD", "DELETE_OPERATION", "EDIT_PROFILE", "REMOVE_GROUP"
+attribute_types = "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN", "BOOLEAN";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "{{.UserName}}"
+description = "{{.UserName}}"
+type = "Users"
+attribute_names = "CHANGE_PASSWORD"
+attribute_types = "BOOLEAN";
+
+run ResourceUpdater database=database() type="Users"
+add_ops = "ADD_GROUP", "ADD_OPERATION", "ADD_RESOURCE", "ALLOW_OPERATION", "CHANGE_PASSWORD",
+"DELETE", "DELETE_OPERATION", "DENY_OPERATION", "EDIT", "EDIT_PROFILE", "REMOVE_GROUP", "REMOVE_RESOURCE", "TRADE_IN_THE_NAME_OF";
+
+run MakeResource group = "G_External"
+name = "{{.UserName}} UserDetails"
+description = "{{.UserName}} UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "{{.UserName}} WebUser"
+description = "{{.UserName}} WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External"
+name = "{{.UserName}} Deals"
+description = "{{.UserName}} Deals Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "{{.UserName}} UserDetails"
+description = "{{.UserName}} UserDetails Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET"
+EDIT_SETTING = "External User Ids,Enabled";
+
+run MakeResource group = "G_External_ServiceDesk"
+name = "{{.UserName}} WebUser"
+description = "{{.UserName}} WebUser Settings"
+type = "Settings"
+attribute_names = "EDIT_SETTING"
+attribute_types = "SET";
+{{end}}
+    </CL>
+    <CL1>
+{{range .MandatedUsers}}
+run SetSettings database=database() username="{{.UserName}}" name="UserDetails" type="user" keys="Trading Entity" values="Counterparty:{{$.FirmName}}{{$.FirmCentre}}" override="true";
+{{end}}
+    </CL1>   
+
+</MESSAGE>

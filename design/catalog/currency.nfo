@@ -1,0 +1,61 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/currency.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : Currency (currency)
+Endpoint 	         : Currency (Code)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:57
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : sienaCurrency
+SQL Table Search Col : Code
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Code                                | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| AmountDp                            | Int        | 0          | false | true   | false |                 |            |            | 
+| Country                             | String     |            | false | true   | false |                 |            |            | 
+| CountryName                         | String     |            | false | true   | false |                 |            |            | 
+| IntBase                             | String     |            | false | true   | false |                 |            |            | 
+| KeydateBase                         | String     |            | false | true   | false |                 |            |            | 
+| InterestRateTolerance               | Float      | 0.00       | false | true   | false |                 |            |            | 
+| CheckPayTo                          | Bool       | True       | false | true   | false |                 |            |            | 
+| LatinAmericanSettlement             | Bool       | True       | false | true   | false |                 |            |            | 
+| DefaultLayOffBookKey                | String     |            | false | true   | false |                 |            |            | 
+| CutOffTimeCutOffTime                | Time       |            | false | true   | false |                 |            |            | 
+| CutOffTimeTimeZone                  | String     |            | false | true   | false |                 |            |            | 
+| CutOffTimeDerivedDataUTCOffset      | String     |            | false | true   | false |                 |            |            | 
+| CutOffTimeDerivedDataHasDaylightSaving | Bool       | True       | false | true   | false |                 |            |            | 
+| CutOffTimeDerivedDataDaylightStart  | Time       |            | false | true   | false |                 |            |            | 
+| CutOffTimeDerivedDataDaylightEnd    | Time       |            | false | true   | false |                 |            |            | 
+| DealerInterventionQuoteTimeout      | Int        | 0          | false | true   | false |                 |            |            | 
+| CutOffTimeCutOffPeriod              | String     |            | false | true   | false |                 |            |            | 
+| StripRateFutureExchangeCode         | String     |            | false | true   | false |                 |            |            | 
+| StripRateFutureCurrencyContractCurrencyIsoCode | String     |            | false | true   | false |                 |            |            | 
+| StripRateFutureCurrencyContractFutureContractCode | String     |            | false | true   | false |                 |            |            | 
+| OvernightFundingSpreadBid           | Float      | 0.00       | false | true   | false |                 |            |            | 
+| OvernightFundingSpreadOffer         | Float      | 0.00       | false | true   | false |                 |            |            | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/currency_core.go)
+* adaptor (/adaptor/currency.go)
+* dao (/dao/currency.go)
+* datamodel (/datamodel/currency.go)
+* menu (/design/menu/currency.json)
+* html -> List (/html/Currency_List.html)
+* html -> View (/html/Currency_View.html)
+* catalog (/design/catalog/currency.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

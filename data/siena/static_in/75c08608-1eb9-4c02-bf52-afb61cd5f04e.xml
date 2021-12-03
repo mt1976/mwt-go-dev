@@ -1,0 +1,1 @@
+<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="shortName">SXC</KEYFIELD><FIELD name="fullName">SIX SXC LTD</FIELD><FIELD name="country">AGO</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

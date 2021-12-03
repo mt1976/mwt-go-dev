@@ -1,0 +1,414 @@
+package application
+
+import (
+	"database/sql"
+	"fmt"
+	"html/template"
+	"log"
+	"net/http"
+	"os"
+	"time"
+
+	"github.com/google/uuid"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+
+// Defines the Fields to Fetch from SQL
+var appMessageStoreSQL = "id, 	message, 	_created, 	_who, 	_host, 	_updated"
+
+var sqlMessageStoreId, sqlMessageStoreMessage, sqlMessageStoreSYSCreated, sqlMessageStoreSYSWho, sqlMessageStoreSYSHost, sqlMessageStoreSYSUpdated sql.NullString
+
+var appMessageStoreSQLINSERT = "INSERT INTO %s.messageStore(%s) VALUES('%s', '%s', '%s', '%s', '%s', '%s');"
+var appMessageStoreSQLDELETE = "DELETE FROM %s.messageStore WHERE id='%s';"
+var appMessageStoreSQLSELECT = "SELECT %s FROM %s.messageStore;"
+var appMessageStoreSQLGET = "SELECT %s FROM %s.messageStore WHERE id='%s';"
+
+//appMessageStorePage is cheese
+type appMessageStoreListPage struct {
+	UserMenu          []dm.AppMenuItem
+	UserRole          string
+	UserNavi          string
+	Title             string
+	PageTitle         string
+	MessageStoreCount int
+	MessageStoreList  []appMessageStoreItem
+}
+
+//appMessageStorePage is cheese
+type appMessageStorePage struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	UserNavi  string
+	Title     string
+	PageTitle string
+	ID        string
+	Action    string
+	// Variable Part Below
+	Id         string
+	Message    string
+	SYSCreated string
+	SYSWho     string
+	SYSHost    string
+	SYSUpdated string
+}
+
+//appMessageStoreItem is cheese
+type appMessageStoreItem struct {
+	Action     string
+	Id         string
+	Message    string
+	SYSCreated string
+	SYSWho     string
+	SYSHost    string
+	SYSUpdated string
+}
+
+func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "MessageStoreList"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	var returnList []appMessageStoreItem
+
+	noItems, returnList, _ := GetMessageStoreList(core.ApplicationDB)
+
+	pageMessageStoreList := appMessageStoreListPage{
+		UserMenu:          UserMenu_Get(r),
+		UserRole:          core.GetUserRole(r),
+		UserNavi:          "NOT USED",
+		Title:             core.ApplicationProperties["appname"],
+		PageTitle:         core.ApplicationProperties["appname"] + " - " + "System Message Translation",
+		MessageStoreCount: noItems,
+		MessageStoreList:  returnList,
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageMessageStoreList)
+
+}
+
+func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "MessageStoreView"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "MessageStore")
+	_, returnRecord, _ := GetMessageStoreByID(core.ApplicationDB, searchID)
+
+	pageCredentialStoreList := appMessageStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - View",
+		Action:    "",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		// Above are mandatory
+		// Below are variable
+		Id:         returnRecord.Id,
+		Message:    returnRecord.Message,
+		SYSCreated: returnRecord.SYSCreated,
+		SYSWho:     returnRecord.SYSWho,
+		SYSHost:    returnRecord.SYSHost,
+		SYSUpdated: returnRecord.SYSUpdated,
+	}
+
+	//fmt.Println(pageCredentialStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCredentialStoreList)
+
+}
+
+func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "MessageStoreEdit"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	searchID := core.GetURLparam(r, "MessageStore")
+	_, returnRecord, _ := GetMessageStoreByID(core.ApplicationDB, searchID)
+
+	pageCredentialStoreList := appMessageStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - Edit",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+		Id:         returnRecord.Id,
+		Message:    returnRecord.Message,
+		SYSCreated: returnRecord.SYSCreated,
+		SYSWho:     returnRecord.SYSWho,
+		SYSHost:    returnRecord.SYSHost,
+		SYSUpdated: returnRecord.SYSUpdated,
+	}
+	//fmt.Println(pageCredentialStoreList)
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCredentialStoreList)
+
+}
+
+func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	core.ServiceMessageAction(inUTL, "Save", r.FormValue("Id"))
+
+	var s appMessageStoreItem
+
+	s.Id = r.FormValue("Id")
+	s.Message = r.FormValue("Message")
+	s.SYSCreated = r.FormValue("SYSCreated")
+	s.SYSWho = r.FormValue("SYSWho")
+	s.SYSHost = r.FormValue("SYSHost")
+	s.SYSUpdated = r.FormValue("SYSUpdated")
+
+	//log.Println("save", s)
+
+	putMessageStore(s, r)
+
+	ListMessageStoreHandler(w, r)
+
+}
+
+func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "MessageStore")
+	core.ServiceMessageAction(inUTL, "Delete", searchID)
+	deleteMessageStore(searchID)
+	ListMessageStoreHandler(w, r)
+
+}
+
+func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "MessageStore")
+	if len(searchID) == 0 {
+		searchID = r.FormValue("Id")
+	}
+	core.ServiceMessageAction(inUTL, "Ban", searchID)
+	banMessageStore(searchID, r)
+	ListMessageStoreHandler(w, r)
+}
+
+func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	searchID := core.GetURLparam(r, "MessageStore")
+	if len(searchID) == 0 {
+		searchID = r.FormValue("Id")
+	}
+	core.ServiceMessageAction(inUTL, "Activate", searchID)
+	activateMessageStore(searchID, r)
+	ListMessageStoreHandler(w, r)
+
+}
+
+func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(core.SessionValidate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	tmpl := "MessageStoreNew"
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	pageCredentialStoreList := appMessageStorePage{
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - New",
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
+		UserNavi:  "NOT USED",
+		Action:    "",
+		// Above are mandatory
+		// Below are variable
+
+	}
+
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t.Execute(w, pageCredentialStoreList)
+
+}
+
+// getMessageStoreList read all employees
+func GetMessageStoreList(unused *sql.DB) (int, []appMessageStoreItem, error) {
+	tsql := fmt.Sprintf(appMessageStoreSQLSELECT, appMessageStoreSQL, core.ApplicationPropertiesDB["schema"])
+	count, appMessageStoreList, _, _ := fetchMessageStoreData(core.ApplicationDB, tsql)
+	return count, appMessageStoreList, nil
+}
+
+// getMessageStoreList read all employees
+func GetMessageStoreByID(unused *sql.DB, id string) (int, appMessageStoreItem, error) {
+	tsql := fmt.Sprintf(appMessageStoreSQLGET, appMessageStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	_, _, appMessageStoreItem, _ := fetchMessageStoreData(core.ApplicationDB, tsql)
+	return 1, appMessageStoreItem, nil
+}
+
+func putMessageStore(r appMessageStoreItem, req *http.Request) {
+	//fmt.Println(credentialStore)
+
+	createDate := time.Now().Format(core.DATETIMEFORMATUSER)
+
+	//	currentUserID, _ := user.Current()
+	//	userID := currentUserID.Name
+	host, _ := os.Hostname()
+
+	if len(r.SYSCreated) == 0 {
+		r.SYSCreated = createDate
+		r.SYSWho = core.GetUserName(req)
+		r.SYSHost = host
+		// Default in info for a new RECORD
+	}
+
+	r.SYSUpdated = createDate
+
+	//fmt.Println("RECORD", r)
+	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
+
+	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
+	inserttsql := fmt.Sprintf(appMessageStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appMessageStoreSQL, r.Id, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+
+	//log.Println("DELETE:", deletesql, core.ApplicationDB)
+	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
+
+	_, err2 := core.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Panicf("%e", err2)
+	}
+	_, err := core.ApplicationDB.Exec(inserttsql)
+	if err != nil {
+		log.Panicf("%e", err)
+	}
+}
+
+func deleteMessageStore(id string) {
+	//fmt.Println(credentialStore)
+	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	//log.Println("DELETE:", deletesql)
+	_, err2 := core.ApplicationDB.Exec(deletesql)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
+	//log.Println(fred2, err2)
+}
+
+func banMessageStore(id string, req *http.Request) {
+	//fmt.Println(credentialStore)
+	//fmt.Println("RECORD", id)
+	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
+	_, r, err2 := GetMessageStoreByID(core.ApplicationDB, id)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
+	putMessageStore(r, req)
+}
+
+func activateMessageStore(id string, req *http.Request) {
+	fmt.Println("RECORD", id)
+	_, r, err2 := GetMessageStoreByID(core.ApplicationDB, id)
+	if err2 != nil {
+		log.Println(err2.Error())
+	}
+	putMessageStore(r, req)
+}
+
+// fetchMessageStoreData read all employees
+func fetchMessageStoreData(unused *sql.DB, tsql string) (int, []appMessageStoreItem, appMessageStoreItem, error) {
+	//log.Println(tsql)
+	var appMessageStore appMessageStoreItem
+	var appMessageStoreList []appMessageStoreItem
+
+	rows, err := core.ApplicationDB.Query(tsql)
+	//fmt.Println("back from dq Q")
+	if err != nil {
+		log.Println("Error reading rows: " + err.Error())
+		return -1, nil, appMessageStore, err
+	}
+	//fmt.Println(rows)
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		err := rows.Scan(&sqlMessageStoreId, &sqlMessageStoreMessage, &sqlMessageStoreSYSCreated, &sqlMessageStoreSYSWho, &sqlMessageStoreSYSHost, &sqlMessageStoreSYSUpdated)
+		if err != nil {
+			log.Println("Error reading rows: " + err.Error())
+			return -1, nil, appMessageStore, err
+		}
+		// Mapping from SQL to Struct
+		appMessageStore.Id = sqlMessageStoreId.String
+		appMessageStore.Message = sqlMessageStoreMessage.String
+		appMessageStore.SYSCreated = sqlMessageStoreSYSCreated.String
+		appMessageStore.SYSWho = sqlMessageStoreSYSWho.String
+		appMessageStore.SYSHost = sqlMessageStoreSYSHost.String
+		appMessageStore.SYSUpdated = sqlMessageStoreSYSUpdated.String
+		// no change below
+		appMessageStoreList = append(appMessageStoreList, appMessageStore)
+		//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
+		count++
+	}
+	//log.Println(count, appMessageStoreList, appMessageStore)
+	return count, appMessageStoreList, appMessageStore, nil
+}
+
+func newMessageStoreID() string {
+	id := uuid.New().String()
+	return id
+}

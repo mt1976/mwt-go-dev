@@ -1,11 +1,11 @@
 USE [SRS]
 GO
-/****** Object:  Table [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[loaderMapStore]    Script Date: 10/05/2021 22:16:26 ******/
+/****** Object:  Table [dbo].[lseGiltsDataStore]    Script Date: 24/11/2021 19:42:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[lseGiltsDataStore](
+CREATE TABLE [dbo].[lseGiltsDataStore](
 	[_id] [int] IDENTITY(1,1) NOT NULL,
 	[id] [nvarchar](max) NULL,
 	[longName] [nvarchar](max) NULL,
@@ -38,7 +38,11 @@ CREATE TABLE [{{!SQL.DB}}].[{{!SQL.SCHEMA}}].[lseGiltsDataStore](
 	[runningYield] [nvarchar](max) NULL,
 	[LEI] [nvarchar](max) NULL,
 	[CUSIP] [nvarchar](max) NULL,
- CONSTRAINT [PK_lseGiltsDataStore] PRIMARY KEY CLUSTERED
+	[_updatedHost] [nvarchar](max) NULL,
+	[_createdBy] [nvarchar](max) NULL,
+	[_createdHost] [nvarchar](max) NULL,
+	[_updatedBy] [nvarchar](max) NULL,
+ CONSTRAINT [PK_lseGiltsDataStore] PRIMARY KEY CLUSTERED 
 (
 	[_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="filters-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- ***Enter data below this line*** -->
+
+<bean id="INTERESTJIBARZAR--ON-JIBAR-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>INTEREST</value>
+  </property>
+  <property name="ccy">
+    <value>ZAR</value>
+  </property>
+  <property name="category">
+    <value>JIBAR</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>ON</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_MM_QuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTJIBARZAR--1M-JIBAR-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>INTEREST</value>
+  </property>
+  <property name="ccy">
+    <value>ZAR</value>
+  </property>
+  <property name="category">
+    <value>JIBAR</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>1M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_MM_QuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTJIBARZAR--3M-JIBAR-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>INTEREST</value>
+  </property>
+  <property name="ccy">
+    <value>ZAR</value>
+  </property>
+  <property name="category">
+    <value>JIBAR</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>3M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_MM_QuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTJIBARZAR--6M-JIBAR-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>INTEREST</value>
+  </property>
+  <property name="ccy">
+    <value>ZAR</value>
+  </property>
+  <property name="category">
+    <value>JIBAR</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>6M</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_MM_QuoteUnitDP}</value>
+  </property>
+</bean>
+
+<bean id="INTERESTJIBARZAR--1Y-JIBAR-RateBean" class="com.eurobase.ratemanager.beans.RateBean">
+  <property name="assetClass">
+    <value>INTEREST</value>
+  </property>
+  <property name="ccy">
+    <value>ZAR</value>
+  </property>
+  <property name="category">
+    <value>JIBAR</value>
+  </property>
+  <property name="contributor">
+    <value/>
+  </property>
+  <property name="period">
+    <value>true</value>
+  </property>
+  <property name="supplier">
+    <value>2</value>
+  </property>
+  <property name="tenor">
+    <value>1Y</value>
+  </property>
+  <property name="quoteUnitDP">
+    <value>${default_MM_QuoteUnitDP}</value>
+  </property>
+</bean>
+
+<!-- ***Enter data above this line*** -->
+
+</beans>

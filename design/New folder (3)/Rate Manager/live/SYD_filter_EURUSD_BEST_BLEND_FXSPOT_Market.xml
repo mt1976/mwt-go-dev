@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="persister-table.xsl" type="text/xsl"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<bean id="FXSPOTMarketEURUSD-UBS-SP-Market-Filter" class="com.eurobase.ratemanager.processing.filter.DatumFilterCollectionImpl">
+  <constructor-arg index="0">
+    <value>FXSPOTMarketEURUSD-UBS-SP-Market-Filter</value>
+  </constructor-arg>
+  <property name="processes">
+    <list>
+      
+    </list>
+  </property>
+  <property name="writer">
+    <ref bean="FilterStore-FXSPOTMarketEURUSD-UBS-SP-Market"/>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXSPOTMarketEURUSD-UBS-SP-Market-RateBean"/>
+  </property>
+</bean>
+
+<bean id="FXSPOTMarketEURUSD-HSBC-SP-Market-Filter" class="com.eurobase.ratemanager.processing.filter.DatumFilterCollectionImpl">
+  <constructor-arg index="0">
+    <value>FXSPOTMarketEURUSD-HSBC-SP-Market-Filter</value>
+  </constructor-arg>
+  <property name="processes">
+    <list>
+      
+    </list>
+  </property>
+  <property name="writer">
+    <ref bean="FilterStore-FXSPOTMarketEURUSD-HSBC-SP-Market"/>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXSPOTMarketEURUSD-HSBC-SP-Market-RateBean"/>
+  </property>
+</bean>
+
+<bean id="FXSPOTMarketEURUSD-SWEDBANK-SP-Market-Filter" class="com.eurobase.ratemanager.processing.filter.DatumFilterCollectionImpl">
+  <constructor-arg index="0">
+    <value>FXSPOTMarketEURUSD-SWEDBANK-SP-Market-Filter</value>
+  </constructor-arg>
+  <property name="processes">
+    <list>
+      
+    </list>
+  </property>
+  <property name="writer">
+    <ref bean="FilterStore-FXSPOTMarketEURUSD-SWEDBANK-SP-Market"/>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXSPOTMarketEURUSD-SWEDBANK-SP-Market-RateBean"/>
+  </property>
+</bean>
+
+<bean id="FXSPOTMarketEURUSD-BOA-SP-Market-Filter" class="com.eurobase.ratemanager.processing.filter.DatumFilterCollectionImpl">
+  <constructor-arg index="0">
+    <value>FXSPOTMarketEURUSD-BOA-SP-Market-Filter</value>
+  </constructor-arg>
+  <property name="processes">
+    <list>
+      
+    </list>
+  </property>
+  <property name="writer">
+    <ref bean="FilterStore-FXSPOTMarketEURUSD-BOA-SP-Market"/>
+  </property>
+  <property name="rateBean">
+    <ref bean="FXSPOTMarketEURUSD-BOA-SP-Market-RateBean"/>
+  </property>
+</bean>
+
+</beans>
