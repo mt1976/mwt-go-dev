@@ -53,7 +53,7 @@ func Translation_Publish(mux http.ServeMux) {
 func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -85,7 +85,7 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -128,7 +128,7 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -170,7 +170,7 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -200,7 +200,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 func Translation_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -216,7 +216,7 @@ func Translation_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 func Translation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

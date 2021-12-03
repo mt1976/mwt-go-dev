@@ -63,7 +63,7 @@ type sienaCounterpartyAddressItem struct {
 func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -96,7 +96,7 @@ func ListSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -136,7 +136,7 @@ func ViewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -177,7 +177,7 @@ func EditSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -256,7 +256,7 @@ func SaveSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request)
 func NewSienaCounterpartyAddressHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

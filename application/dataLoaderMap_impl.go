@@ -75,7 +75,7 @@ type LoaderMapStoreItem struct {
 func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -105,7 +105,7 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -147,7 +147,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -190,7 +190,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -223,7 +223,7 @@ func SaveLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -239,7 +239,7 @@ func DeleteLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func BanLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -257,7 +257,7 @@ func BanLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ActivateLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -276,7 +276,7 @@ func ActivateLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Template (TemplateID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:08
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:17:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -121,7 +121,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Template_SYSId, "0")
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
    recItem.FIELD2  = get_String(rec, dm.Template_FIELD2, "")
@@ -132,7 +132,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Template_SYSUpdatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Template_SYSUpdatedBy, "")
    recItem.ID  = get_String(rec, dm.Template_ID, "")
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

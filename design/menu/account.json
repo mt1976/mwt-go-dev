@@ -1,7 +1,7 @@
 
     {
-      "ID": "0e56216e-6bac-4f11-8c51-482ff8bce25d",
-      "Text": "Accounts",
+      "ID": "6c92d902-d2a2-45cd-b9d4-2cadb213cada",
+      "Text": "Account",
       "Glyph": "fas fa-landmark",
       "HREF": "/AccountList",
       "OnClick": "",

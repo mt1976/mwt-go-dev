@@ -61,7 +61,7 @@ type sienaCounterpartyImportIDItem struct {
 func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -94,7 +94,7 @@ func ListSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -136,7 +136,7 @@ func ViewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -182,7 +182,7 @@ func EditSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -269,7 +269,7 @@ func SaveSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request
 func NewSienaCounterpartyImportIDHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

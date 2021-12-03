@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Credentials (Id)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:03
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ SYSUpdatedHost        string
 }
 
 const (
-	Credentials_Title       = "Credentials"
+	Credentials_Title       = "Credential"
 	Credentials_SQLTable    = "credentialsStore"
 	Credentials_SQLSearchID = "id"
 	Credentials_QueryString = "Id"

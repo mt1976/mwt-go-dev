@@ -52,7 +52,7 @@ type Simulator_FundsChecker_Page struct {
 }
 
 //NegotiableInstrument_Publish annouces the endpoints available for this object
-func Simulator_FundsChecker_PublishImpl(mux http.ServeMux) {
+func Simulator_FundsChecker_Publish_Impl(mux http.ServeMux) {
 	//mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
 	//mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
 	mux.HandleFunc(dm.Simulator_FundsChecker_PathList, Simulator_FundsChecker_HandlerList)
@@ -68,7 +68,7 @@ func Simulator_FundsChecker_PublishImpl(mux http.ServeMux) {
 func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -96,7 +96,7 @@ func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) 
 func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -118,7 +118,7 @@ func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) 
 func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -138,7 +138,7 @@ func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request
 func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -160,7 +160,7 @@ func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request
 func Simulator_FundsChecker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

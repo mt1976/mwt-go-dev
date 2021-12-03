@@ -1,4 +1,5 @@
 package application
+
 // ----------------------------------------------------------------
 // Automatically generated  "/application/counterpartycreditrating.go"
 // ----------------------------------------------------------------
@@ -7,53 +8,45 @@ package application
 // Endpoint 	        : CounterpartyCreditRating (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:01
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
 	"net/http"
 
-	core    "github.com/mt1976/mwt-go-dev/core"
-	dao     "github.com/mt1976/mwt-go-dev/dao"
-	dm      "github.com/mt1976/mwt-go-dev/datamodel"
-	logs    "github.com/mt1976/mwt-go-dev/logs"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //counterpartycreditrating_PageList provides the information for the template for a list of CounterpartyCreditRatings
 type CounterpartyCreditRating_PageList struct {
-	UserMenu         []dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CounterpartyCreditRating
-}
-
-//counterpartycreditrating_Page provides the information for the template for an individual CounterpartyCreditRating
-type CounterpartyCreditRating_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-		NameFirm string
-		NameCentre string
-		CreditRatingUsage string
-		CreditRatingAgency string
-		CreditRatingName string
-		CompID string
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	ItemsOnPage int
+	ItemList    []dm.CounterpartyCreditRating
+}
+
+//counterpartycreditrating_Page provides the information for the template for an individual CounterpartyCreditRating
+type CounterpartyCreditRating_Page struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	Title     string
+	PageTitle string
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	NameFirm           string
+	NameCentre         string
+	CreditRatingUsage  string
+	CreditRatingAgency string
+	CreditRatingName   string
+	CompID             string
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -69,14 +62,14 @@ func CounterpartyCreditRating_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.CounterpartyCreditRating_PathSave, CounterpartyCreditRating_HandlerSave)
 	mux.HandleFunc(dm.CounterpartyCreditRating_PathDelete, CounterpartyCreditRating_HandlerDelete)
 	logs.Publish("Siena", dm.CounterpartyCreditRating_Title)
-	
+
 }
 
 //CounterpartyCreditRating_HandlerList is the handler for the list page
 func CounterpartyCreditRating_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 
@@ -88,15 +81,15 @@ func CounterpartyCreditRating_HandlerList(w http.ResponseWriter, r *http.Request
 	noItems, returnList, _ := dao.CounterpartyCreditRating_GetList()
 
 	pageDetail := CounterpartyCreditRating_PageList{
-		Title:            core.ApplicationProperties["appname"],
-		PageTitle:        PageTitle(dm.CounterpartyCreditRating_Title, core.Action_List),
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.CounterpartyCreditRating_Title, core.Action_List),
 		ItemsOnPage: noItems,
-		ItemList:  returnList,
-		UserMenu:         UserMenu_Get(r),
-		UserRole:         core.GetUserRole(r),
+		ItemList:    returnList,
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
 	}
 
-		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateList, w, r, pageDetail)
+	ExecuteTemplate(dm.CounterpartyCreditRating_TemplateList, w, r, pageDetail)
 
 }
 
@@ -104,7 +97,7 @@ func CounterpartyCreditRating_HandlerList(w http.ResponseWriter, r *http.Request
 func CounterpartyCreditRating_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -116,30 +109,27 @@ func CounterpartyCreditRating_HandlerView(w http.ResponseWriter, r *http.Request
 	_, rD, _ := dao.CounterpartyCreditRating_GetByID(searchID)
 
 	pageDetail := CounterpartyCreditRating_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.CounterpartyCreditRating_Title, core.Action_View),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.CounterpartyCreditRating_Title, core.Action_View),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameFirm = rD.NameFirm
-pageDetail.NameCentre = rD.NameCentre
-pageDetail.CreditRatingUsage = rD.CreditRatingUsage
-pageDetail.CreditRatingAgency = rD.CreditRatingAgency
-pageDetail.CreditRatingName = rD.CreditRatingName
-pageDetail.CompID = rD.CompID
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.NameFirm = rD.NameFirm
+	pageDetail.NameCentre = rD.NameCentre
+	pageDetail.CreditRatingUsage = rD.CreditRatingUsage
+	pageDetail.CreditRatingAgency = rD.CreditRatingAgency
+	pageDetail.CreditRatingName = rD.CreditRatingName
+	pageDetail.CompID = rD.CompID
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-
-
-		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.CounterpartyCreditRating_TemplateView, w, r, pageDetail)
 
 }
 
@@ -147,7 +137,7 @@ pageDetail.CompID = rD.CompID
 func CounterpartyCreditRating_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -157,30 +147,29 @@ func CounterpartyCreditRating_HandlerEdit(w http.ResponseWriter, r *http.Request
 
 	searchID := core.GetURLparam(r, dm.CounterpartyCreditRating_QueryString)
 	_, rD, _ := dao.CounterpartyCreditRating_GetByID(searchID)
-	
+
 	pageDetail := CounterpartyCreditRating_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.CounterpartyCreditRating_Title, core.Action_Edit),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.CounterpartyCreditRating_Title, core.Action_Edit),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameFirm = rD.NameFirm
-pageDetail.NameCentre = rD.NameCentre
-pageDetail.CreditRatingUsage = rD.CreditRatingUsage
-pageDetail.CreditRatingAgency = rD.CreditRatingAgency
-pageDetail.CreditRatingName = rD.CreditRatingName
-pageDetail.CompID = rD.CompID
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.NameFirm = rD.NameFirm
+	pageDetail.NameCentre = rD.NameCentre
+	pageDetail.CreditRatingUsage = rD.CreditRatingUsage
+	pageDetail.CreditRatingAgency = rD.CreditRatingAgency
+	pageDetail.CreditRatingName = rD.CreditRatingName
+	pageDetail.CompID = rD.CompID
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateEdit, w, r, pageDetail)
-
+	ExecuteTemplate(dm.CounterpartyCreditRating_TemplateEdit, w, r, pageDetail)
 
 }
 
@@ -188,28 +177,28 @@ pageDetail.CompID = rD.CompID
 func CounterpartyCreditRating_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
+	logs.Servicing(r.URL.Path + r.FormValue("CompID"))
 
 	var item dm.CounterpartyCreditRating
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-		item.NameFirm = r.FormValue(dm.CounterpartyCreditRating_NameFirm)
-		item.NameCentre = r.FormValue(dm.CounterpartyCreditRating_NameCentre)
-		item.CreditRatingUsage = r.FormValue(dm.CounterpartyCreditRating_CreditRatingUsage)
-		item.CreditRatingAgency = r.FormValue(dm.CounterpartyCreditRating_CreditRatingAgency)
-		item.CreditRatingName = r.FormValue(dm.CounterpartyCreditRating_CreditRatingName)
-		item.CompID = r.FormValue(dm.CounterpartyCreditRating_CompID)
-	
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	item.NameFirm = r.FormValue(dm.CounterpartyCreditRating_NameFirm)
+	item.NameCentre = r.FormValue(dm.CounterpartyCreditRating_NameCentre)
+	item.CreditRatingUsage = r.FormValue(dm.CounterpartyCreditRating_CreditRatingUsage)
+	item.CreditRatingAgency = r.FormValue(dm.CounterpartyCreditRating_CreditRatingAgency)
+	item.CreditRatingName = r.FormValue(dm.CounterpartyCreditRating_CreditRatingName)
+	item.CompID = r.FormValue(dm.CounterpartyCreditRating_CompID)
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	dao.CounterpartyCreditRating_Store(item)	
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	dao.CounterpartyCreditRating_Store(item)
 
 	http.Redirect(w, r, CounterpartyCreditRating_Redirect, http.StatusFound)
 }
@@ -218,7 +207,7 @@ func CounterpartyCreditRating_HandlerSave(w http.ResponseWriter, r *http.Request
 func CounterpartyCreditRating_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -228,25 +217,25 @@ func CounterpartyCreditRating_HandlerNew(w http.ResponseWriter, r *http.Request)
 	core.ServiceMessage(inUTL)
 
 	pageDetail := CounterpartyCreditRating_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.CounterpartyCreditRating_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.CounterpartyCreditRating_Title, core.Action_New),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameFirm = ""
-pageDetail.NameCentre = ""
-pageDetail.CreditRatingUsage = ""
-pageDetail.CreditRatingAgency = ""
-pageDetail.CreditRatingName = ""
-pageDetail.CompID = ""
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.NameFirm = ""
+	pageDetail.NameCentre = ""
+	pageDetail.CreditRatingUsage = ""
+	pageDetail.CreditRatingAgency = ""
+	pageDetail.CreditRatingName = ""
+	pageDetail.CompID = ""
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
-		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateNew, w, r, pageDetail)
+	ExecuteTemplate(dm.CounterpartyCreditRating_TemplateNew, w, r, pageDetail)
 
 }
 
@@ -254,7 +243,7 @@ pageDetail.CompID = ""
 func CounterpartyCreditRating_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -262,7 +251,7 @@ func CounterpartyCreditRating_HandlerDelete(w http.ResponseWriter, r *http.Reque
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.CounterpartyCreditRating_QueryString)
 
-	dao.CounterpartyCreditRating_Delete(searchID)	
+	dao.CounterpartyCreditRating_Delete(searchID)
 
 	http.Redirect(w, r, CounterpartyCreditRating_Redirect, http.StatusFound)
 }

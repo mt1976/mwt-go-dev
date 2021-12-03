@@ -34,7 +34,7 @@ func Mandate_PublishImpl(mux http.ServeMux) {
 func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -104,7 +104,7 @@ func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 func Mandate_HandlerEditItem(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

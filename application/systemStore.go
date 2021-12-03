@@ -85,7 +85,7 @@ type SystemStoreItem struct {
 func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -116,7 +116,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -137,7 +137,7 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -188,7 +188,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -224,7 +224,7 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -240,7 +240,7 @@ func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -258,7 +258,7 @@ func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -277,7 +277,7 @@ func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

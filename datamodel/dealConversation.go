@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : DealConversation (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:04
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,7 +32,7 @@ MessageLogReference        string
 }
 
 const (
-	DealConversation_Title       = "Deal Conversation Contents"
+	DealConversation_Title       = "Deal Conversation"
 	DealConversation_SQLTable    = "sienaDealConversationLog"
 	DealConversation_SQLSearchID = "MessageLogReference"
 	DealConversation_QueryString = "ID"

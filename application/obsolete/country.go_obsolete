@@ -55,7 +55,7 @@ func Country_Publish(mux http.ServeMux) {
 func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -87,7 +87,7 @@ func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -127,7 +127,7 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -164,7 +164,7 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -236,7 +236,7 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

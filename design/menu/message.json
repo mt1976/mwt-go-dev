@@ -1,7 +1,7 @@
 
     {
-      "ID": "bb44daa9-a76d-4ee3-8372-cae6c73e7564",
-      "Text": "System Messages",
+      "ID": "568de73a-72c3-49a1-a8a9-8bc08c48e1dd",
+      "Text": "System Message",
       "Glyph": "fas fa-info-circle",
       "HREF": "/MessageList",
       "OnClick": "",

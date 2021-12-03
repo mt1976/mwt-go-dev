@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Counterparty (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:00
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

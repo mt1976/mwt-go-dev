@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : SalesDesk (Desk)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:07
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:17:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -100,14 +100,14 @@ func salesdesk_Fetch(tsql string) (int, []dm.SalesDesk, dm.SalesDesk, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.Name  = get_String(rec, dm.SalesDesk_Name, "")
    recItem.ReportDealsOver  = get_String(rec, dm.SalesDesk_ReportDealsOver, "")
    recItem.ReportDealsOverCCY  = get_String(rec, dm.SalesDesk_ReportDealsOverCCY, "")
    recItem.AccountTransferCutOffTime  = get_Time(rec, dm.SalesDesk_AccountTransferCutOffTime, "")
    recItem.AccountTransferCutOffTimeTimeZone  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeTimeZone, "")
    recItem.AccountTransferCutOffTimeCutOffPeriod  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod, "")
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

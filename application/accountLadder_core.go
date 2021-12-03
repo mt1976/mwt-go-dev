@@ -8,8 +8,8 @@ package application
 // Endpoint 	        : AccountLadder (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:44:03
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:54
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type AccountLadder_Page struct {
 	UserRole  string
 	Title     string
 	PageTitle string
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
 	SienaReference string
 	BusinessDate   string
 	ContractNumber string
@@ -46,7 +46,7 @@ type AccountLadder_Page struct {
 	DealtCcy       string
 	AmountDp       string
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -66,7 +66,7 @@ func AccountLadder_Publish(mux http.ServeMux) {
 func AccountLadder_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 
@@ -94,7 +94,7 @@ func AccountLadder_HandlerList(w http.ResponseWriter, r *http.Request) {
 func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -113,18 +113,18 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.BusinessDate = rD.BusinessDate
 	pageDetail.ContractNumber = rD.ContractNumber
 	pageDetail.Balance = rD.Balance
 	pageDetail.DealtCcy = rD.DealtCcy
 	pageDetail.AmountDp = rD.AmountDp
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 	//
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
 	ExecuteTemplate(dm.AccountLadder_TemplateView, w, r, pageDetail)
 
@@ -134,7 +134,7 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 func AccountLadder_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -153,18 +153,18 @@ func AccountLadder_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.BusinessDate = rD.BusinessDate
 	pageDetail.ContractNumber = rD.ContractNumber
 	pageDetail.Balance = rD.Balance
 	pageDetail.DealtCcy = rD.DealtCcy
 	pageDetail.AmountDp = rD.AmountDp
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 	//
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
 	ExecuteTemplate(dm.AccountLadder_TemplateEdit, w, r, pageDetail)
 
@@ -174,7 +174,7 @@ func AccountLadder_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -183,7 +183,7 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path + r.FormValue("SienaReference"))
 
 	var item dm.AccountLadder
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
 	item.SienaReference = r.FormValue(dm.AccountLadder_SienaReference)
 	item.BusinessDate = r.FormValue(dm.AccountLadder_BusinessDate)
 	item.ContractNumber = r.FormValue(dm.AccountLadder_ContractNumber)
@@ -191,9 +191,9 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item.DealtCcy = r.FormValue(dm.AccountLadder_DealtCcy)
 	item.AmountDp = r.FormValue(dm.AccountLadder_AmountDp)
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
 	dao.AccountLadder_Store(item)
 
@@ -204,7 +204,7 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 func AccountLadder_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -221,15 +221,15 @@ func AccountLadder_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
 	pageDetail.SienaReference = ""
 	pageDetail.BusinessDate = ""
 	pageDetail.ContractNumber = ""
 	pageDetail.Balance = ""
 	pageDetail.DealtCcy = ""
 	pageDetail.AmountDp = ""
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 	//
 
 	ExecuteTemplate(dm.AccountLadder_TemplateNew, w, r, pageDetail)
@@ -240,7 +240,7 @@ func AccountLadder_HandlerNew(w http.ResponseWriter, r *http.Request) {
 func AccountLadder_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

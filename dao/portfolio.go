@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Portfolio (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:07
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:17:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -100,7 +100,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Portfolio_Code, "")
    recItem.Description1  = get_String(rec, dm.Portfolio_Description1, "")
    recItem.Description2  = get_String(rec, dm.Portfolio_Description2, "")
@@ -113,7 +113,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType, "")
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

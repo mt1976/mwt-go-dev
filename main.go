@@ -14,7 +14,6 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
-	"github.com/mt1976/mwt-go-dev/dao"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
@@ -55,9 +54,8 @@ func main() {
 	mux := http.NewServeMux()
 
 	Main_Publish(*mux)
-	mux.HandleFunc("/", core.LoginHandler)
 	mux.HandleFunc("/login", core.ValidateLoginHandler)
-	mux.HandleFunc("/logout", core.LogoutHandler)
+	core.LoginLogout_Publish_Impl(*mux)
 	mux.HandleFunc("/home", application.HomePageHandler)
 	//mux.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
 	mux.HandleFunc("/favicon.ico", application.FaviconHandler)
@@ -67,22 +65,6 @@ func main() {
 	mux.HandleFunc("/browserconfig.xml", application.FaviconBrowserConfigHandler)
 
 	mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
-
-	mux.HandleFunc("/listSvcDataMap/", application.ListSvcDataMapHandler)
-	mux.HandleFunc("/viewSvcDataMap/", application.ViewSvcDataMapHandler)
-	mux.HandleFunc("/editSvcDataMap/", application.EditSvcDataMapHandler)
-	mux.HandleFunc("/saveSvcDataMap/", application.SaveSvcDataMapHandler)
-	mux.HandleFunc("/viewSvcDataMapXML/", application.ViewSvcDataMapXMLHandler)
-	mux.HandleFunc("/editSvcDataMapXML/", application.EditSvcDataMapXMLHandler)
-	mux.HandleFunc("/saveSvcDataMapXML/", application.SaveSvcDataMapXMLHandler)
-	mux.HandleFunc("/newSvcDataMap/", application.NewSvcDataMapHandler)
-	mux.HandleFunc("/genSvcDataMap/", application.GenSvcDataMapHandler)
-	mux.HandleFunc("/deleteSvcDataMap/", application.DeleteSvcDataMapHandler)
-	mux.HandleFunc("/editDataMapColumns/", application.ListLoaderMapStoreHandler)
-	mux.HandleFunc("/editLoaderMapStore/", application.EditLoaderMapStoreHandler)
-	mux.HandleFunc("/saveLoaderMapStore/", application.SaveLoaderMapStoreHandler)
-	mux.HandleFunc("/newLoaderMapStore/", application.NewLoaderMapStoreHandler)
-	mux.HandleFunc("/runLoader/", application.RunDataLoaderHandler)
 
 	application.Country_Publish(*mux)
 	application.Sector_Publish(*mux)
@@ -101,8 +83,8 @@ func main() {
 	application.Account_Publish(*mux)
 	application.AccountTransaction_Publish(*mux)
 	application.AccountLadder_Publish(*mux)
-	application.AccountTransaction_PublishImpl(*mux)
-	application.AccountLadder_PublishImpl(*mux)
+	application.AccountTransaction_Publish_Impl(*mux)
+	application.AccountLadder_Publish_Impl(*mux)
 	application.Payee_Publish(*mux)
 	application.Payee_PublishImpl(*mux)
 
@@ -113,8 +95,7 @@ func main() {
 	application.Mandate_PublishImpl(*mux)
 
 	application.CounterpartyGroup_Publish(*mux)
-
-	mux.HandleFunc("/dashboard/", application.SienaDashboardHandler)
+	application.Dashboard_Publish_Impl(*mux)
 	application.DealingInterface_Publish(*mux)
 
 	application.Credentials_Publish(*mux)
@@ -129,7 +110,7 @@ func main() {
 
 	application.Systems_Publish(*mux)
 
-	application.Simulator_FundsChecker_PublishImpl(*mux)
+	application.Simulator_FundsChecker_Publish_Impl(*mux)
 
 	application.Template_Publish(*mux)
 	application.MarketRates_Publish(*mux)
@@ -139,10 +120,10 @@ func main() {
 	application.SQLInjection_Publish(*mux)
 
 	application.NegotiableInstrument_Publish(*mux)
-	application.NegotiableInstrument_PublishImpl(*mux)
+	application.NegotiableInstrument_Publish_Impl(*mux)
 
 	application.CMNotes_Publish(*mux)
-	dao.Onboard_Test()
+	//dao.Onboard_Test()
 	application.CounterpartyOnboarding_Publish(*mux)
 	application.CounterpartyImport_Publish(*mux)
 	application.CounterpartyName_Publish(*mux)
@@ -151,7 +132,12 @@ func main() {
 	application.CounterpartyCreditRating_Publish(*mux)
 	application.Counterparty_Publish(*mux)
 	application.Transaction_Publish(*mux)
-	application.Counterparty_PublishImpl(*mux)
+	application.Counterparty_Publish_Impl(*mux)
+
+	application.DataLoader_Publish(*mux)
+	application.DataLoaderData_Publish(*mux)
+	application.DataLoaderMap_Publish(*mux)
+	application.DataLoader_Publish_Impl(*mux)
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	logs.Success("Handlers Started")

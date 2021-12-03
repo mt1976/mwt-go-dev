@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Credentials (Id)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:03
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -131,7 +131,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Credentials_Id, "")
    recItem.Username  = get_String(rec, dm.Credentials_Username, "")
@@ -152,7 +152,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost, "")
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

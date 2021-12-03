@@ -9,7 +9,7 @@ import (
 )
 
 //NegotiableInstrument_Publish annouces the endpoints available for this object
-func NegotiableInstrument_PublishImpl(mux http.ServeMux) {
+func NegotiableInstrument_Publish_Impl(mux http.ServeMux) {
 	//mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
 	//mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
 	mux.HandleFunc("/selectLSEGiltsDataStore/", NegotiableInstrument_HandlerSelect)
@@ -22,7 +22,7 @@ func NegotiableInstrument_PublishImpl(mux http.ServeMux) {
 func NegotiableInstrument_HandlerSelect(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -43,7 +43,7 @@ func NegotiableInstrument_HandlerSelect(w http.ResponseWriter, r *http.Request) 
 func NegotiableInstrument_HandlerDeSelect(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

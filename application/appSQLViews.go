@@ -18,7 +18,7 @@ func SQLInjection_Publish(mux http.ServeMux) {
 func SQLInjection_HandlerRun(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	core.Database_CreateObjects(core.SienaDB, core.SienaPropertiesDB, "/config/database/views", false)

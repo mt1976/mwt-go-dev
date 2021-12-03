@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Account (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:39:58
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:54
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -89,7 +89,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
    recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
    recItem.SienaCommonRef  = get_String(rec, dm.Account_SienaCommonRef, "")
@@ -161,7 +161,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 
 
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

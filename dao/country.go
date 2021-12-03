@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Country (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:03
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -111,13 +111,13 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Country_Code, "")
    recItem.Name  = get_String(rec, dm.Country_Name, "")
    recItem.ShortCode  = get_String(rec, dm.Country_ShortCode, "")
    recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA, "True")
    recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend, "")
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -70,7 +70,7 @@ type DispatchStoreItem struct {
 func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -100,7 +100,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -142,7 +142,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -183,7 +183,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -215,7 +215,7 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -231,7 +231,7 @@ func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -249,7 +249,7 @@ func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -268,7 +268,7 @@ func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

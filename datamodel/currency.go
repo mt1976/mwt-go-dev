@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Currency (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:03
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,7 +44,7 @@ OvernightFundingSpreadOffer        string
 }
 
 const (
-	Currency_Title       = "Currencies"
+	Currency_Title       = "Currency"
 	Currency_SQLTable    = "sienaCurrency"
 	Currency_SQLSearchID = "Code"
 	Currency_QueryString = "Code"

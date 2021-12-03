@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Book (Book)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:39:59
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:54
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -100,7 +100,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
    recItem.BookName  = get_String(rec, dm.Book_BookName, "")
    recItem.FullName  = get_String(rec, dm.Book_FullName, "")
    recItem.PLManage  = get_String(rec, dm.Book_PLManage, "")
@@ -110,7 +110,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
    recItem.CostOfFunding  = get_Bool(rec, dm.Book_CostOfFunding, "True")
    recItem.LotAllocationMethod  = get_String(rec, dm.Book_LotAllocationMethod, "")
    recItem.InternalId  = get_Int(rec, dm.Book_InternalId, "0")
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

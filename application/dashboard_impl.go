@@ -7,10 +7,11 @@ import (
 	core "github.com/mt1976/mwt-go-dev/core"
 	"github.com/mt1976/mwt-go-dev/dao"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//sienaDashboardPage is cheese
-type sienaDashboardPage struct {
+//dashboardPage is cheese
+type dashboardPage struct {
 	UserMenu          []dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
@@ -29,10 +30,16 @@ type sienaDashboardPage struct {
 	SECTDataValues    []string
 }
 
-func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
+func Dashboard_Publish_Impl(mux http.ServeMux) {
+	mux.HandleFunc("/dashboard/", Dashboard_HandlerView)
+	logs.Publish("Application", "Dashboard"+" Impl")
+
+}
+
+func Dashboard_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -61,7 +68,7 @@ func SienaDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		SVlist = append(SVlist, SVitem.Count)
 	}
 
-	p := sienaDashboardPage{
+	p := dashboardPage{
 		UserMenu:          UserMenu_Get(r),
 		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",

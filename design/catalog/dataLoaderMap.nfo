@@ -1,0 +1,54 @@
+----------------------------------------------------------------
+Automatically generated  "/design/catalog/dataloadermap.nfo"
+----------------------------------------------------------------
+Package              : n/a
+Object 			     : DataLoaderMap (dataloadermap)
+Endpoint 	         : DataLoaderMap (Id)
+For Project          : github.com/mt1976/mwt-go-dev/
+----------------------------------------------------------------
+Template Generator   : cryptoidCalcium [r3-21.12.04]
+Date & Time		     : 03/12/2021 at 13:16:57
+Who & Where		     : matttownsend on silicon.local
+----------------------------------------------------------------
+Database Information
+----------------------------------------------------------------
+SQL Table Name       : loaderMapStore
+SQL Table Search Col : Id
+----------------------------------------------------------------
+Fields Generated
+----------------------------------------------------------------
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
+| Id                                  | String     |            | true  | true   | false |                 |            |            | 
+| Name                                | String     |            | false | true   | false |                 |            |            | 
+| Position                            | String     |            | false | true   | false |                 |            |            | 
+| Loader                              | String     |            | false | true   | false |                 |            |            | 
+| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
+| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
+| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
+| Int_position                        | Int        | 0          | false | true   | false |                 |            |            | 
+| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
+| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
+| Loader_Impl                         | String     |            | false | false  | true  | DataLoader      | Loader     | Name       | 
+| LoaderDescription_Impl              | String     |            | false | false  | true  | DataLoader      | Loader     | Description | 
+| LoaderType_Impl                     | String     |            | false | false  | true  | DataLoader      | Loader     | Type       | 
+*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+----------------------------------------------------------------
+Artifacts Generated
+----------------------------------------------------------------
+* application (/application/dataLoaderMap_core.go)
+* dao (/dao/dataLoaderMap.go)
+* datamodel (/datamodel/dataLoaderMap.go)
+* menu (/design/menu/dataLoaderMap.json)
+* html -> List (/html/DataLoaderMap_List.html)
+* html -> View (/html/DataLoaderMap_View.html)
+* html -> Edit (/html/DataLoaderMap_Edit.html)
+* catalog (/design/catalog/dataLoaderMap.nfo)
+----------------------------------------------------------------
+End of File
+----------------------------------------------------------------

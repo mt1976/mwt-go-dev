@@ -1,7 +1,7 @@
 
     {
-      "ID": "0a9260e1-1bb6-40c6-9582-a1756bedf664",
-      "Text": "Counterparty Groups",
+      "ID": "fab8139f-05db-4678-b04d-f74a317a65fd",
+      "Text": "Counterparty Group",
       "Glyph": "fa fa-users",
       "HREF": "/CounterpartyGroupList",
       "OnClick": "",

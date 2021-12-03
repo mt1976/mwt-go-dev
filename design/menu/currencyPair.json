@@ -1,7 +1,7 @@
 
     {
-      "ID": "9777d1ee-184a-4b81-8046-766d708568eb",
-      "Text": "Currency Pairs",
+      "ID": "4a619092-69c2-4bc9-9493-bd98b31c2cb7",
+      "Text": "Currency Pair",
       "Glyph": "fas fa-coins",
       "HREF": "/CurrencyPairList",
       "OnClick": "",

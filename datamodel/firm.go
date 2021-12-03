@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Firm (FirmName)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:06
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:59
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -26,7 +26,7 @@ Country_Impl        string
 }
 
 const (
-	Firm_Title       = "Firms"
+	Firm_Title       = "Firm"
 	Firm_SQLTable    = "sienaFirm"
 	Firm_SQLSearchID = "FirmName"
 	Firm_QueryString = "FirmName"

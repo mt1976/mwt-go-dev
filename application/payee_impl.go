@@ -32,7 +32,7 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	log.Println("poo")
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 

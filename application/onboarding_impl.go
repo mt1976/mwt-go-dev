@@ -64,7 +64,7 @@ func CounterpartyOnboarding_Publish(mux http.ServeMux) {
 func CounterpartyOnboarding_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 
@@ -92,7 +92,7 @@ func CounterpartyOnboarding_HandlerList(w http.ResponseWriter, r *http.Request) 
 func CounterpartyOnboarding_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -137,7 +137,7 @@ func CounterpartyOnboarding_HandlerView(w http.ResponseWriter, r *http.Request) 
 func CounterpartyOnboarding_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -182,7 +182,7 @@ func CounterpartyOnboarding_HandlerEdit(w http.ResponseWriter, r *http.Request) 
 func CounterpartyOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -216,7 +216,7 @@ func CounterpartyOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) 
 func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 
@@ -243,7 +243,7 @@ func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 func CounterpartyOnboarding_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

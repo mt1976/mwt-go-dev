@@ -1,7 +1,7 @@
 
     {
-      "ID": "aeb65b61-6bb7-4c13-ae9a-f789308ff63a",
-      "Text": "Transactions",
+      "ID": "ec8ccdb2-5e72-40bc-b67d-da9db64d7914",
+      "Text": "Transaction",
       "Glyph": "far fa-handshake",
       "HREF": "/TransactionList",
       "OnClick": "",

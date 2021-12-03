@@ -80,7 +80,7 @@ type LoaderStoreItem struct {
 func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -110,7 +110,7 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -156,7 +156,7 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -206,7 +206,7 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -242,7 +242,7 @@ func SaveLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -258,7 +258,7 @@ func DeleteLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func BanLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -276,7 +276,7 @@ func BanLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ActivateLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -295,7 +295,7 @@ func ActivateLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

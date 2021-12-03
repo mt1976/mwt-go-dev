@@ -92,7 +92,7 @@ type sienaMandatedUserItem struct {
 func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -123,7 +123,7 @@ func ListSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -179,7 +179,7 @@ func ViewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -245,7 +245,7 @@ func EditSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -376,7 +376,7 @@ func SaveSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 func NewSienaMandatedUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

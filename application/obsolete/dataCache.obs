@@ -54,7 +54,7 @@ func DataCache_Publish(mux http.ServeMux) {
 func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -86,7 +86,7 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -131,7 +131,7 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -175,7 +175,7 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -209,7 +209,7 @@ func SaveCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -225,7 +225,7 @@ func DeleteCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -286,7 +286,7 @@ func initialiseCacheData(table string, field string, objectName string, fieldNam
 func RefreshCacheHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	initialiseCache(r)

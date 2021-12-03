@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Transaction (Ref)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:05
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -132,7 +132,7 @@ FixingFrequency        string
 }
 
 const (
-	Transaction_Title       = "Transactions"
+	Transaction_Title       = "Transaction"
 	Transaction_SQLTable    = "sienaDealList"
 	Transaction_SQLSearchID = "SienaReference"
 	Transaction_QueryString = "Ref"

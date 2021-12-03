@@ -11,10 +11,10 @@
             <div class="col">
               <div class="btn-group float-right">
               
-                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/MessageEdit/?Message={{.Id}}" onclick="/MessageEdit/?Message={{.Id}}"></i>&nbsp;&nbsp;Edit</button>
+                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/MessageEdit/?Message={{.Id}}" onclick="/MessageEdit/?Message={{.Id}}" title="Edit System Message"></i>&nbsp;&nbsp;Edit</button>
                 
-                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()" title="Print System Message"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>

@@ -67,7 +67,7 @@ type appMessageStoreItem struct {
 func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -99,7 +99,7 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -140,7 +140,7 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -180,7 +180,7 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -208,7 +208,7 @@ func SaveMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -224,7 +224,7 @@ func DeleteMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -242,7 +242,7 @@ func BanMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -261,7 +261,7 @@ func ActivateMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

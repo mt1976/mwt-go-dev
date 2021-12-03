@@ -17,15 +17,15 @@
             <div class="col text-right">
               <div class="btn-group">
               
-              <button type="submit" value="" class="btn btn-outline-primary" formaction="/CounterpartyGroupNew" method="POST">
+              <button type="submit" value="" class="btn btn-outline-primary" formaction="/CounterpartyGroupNew" method="POST" title="Create a new Counterparty Group">
                 <i class="fas fa-plus"></i>&nbsp;&nbsp;New
               </button>
               
               
-              <button id="export" type="button" class="btn btn-outline-info"><i class="fas fa-file-csv" ></i>&nbsp;&nbsp;Export</button>
+              <button id="export" type="button" class="btn btn-outline-info"><i class="fas fa-file-csv" title="Export Counterparty Group as CSV"></i>&nbsp;&nbsp;Export</button>
               
-              <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()" title="Print Counterparty Group"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
@@ -65,17 +65,17 @@
                     <td class="text-center" style="width:1px;">
                       <div class="btn-group">
                       
-                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/CounterpartyGroupView?Group={{.Name}}" method="POST">
+                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/CounterpartyGroupView?Group={{.Name}}" method="POST" title="View Counterparty Group">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
                       
                       
-                        <button type="submit" value="" class="btn btn-warning btn-sm" formaction="/CounterpartyGroupEdit?Group={{.Name}}" method="POST">
+                        <button type="submit" value="" class="btn btn-warning btn-sm" formaction="/CounterpartyGroupEdit?Group={{.Name}}" method="POST" title="Edit Counterparty Group">
                           <i class="fas fa-pen" style="font-size: 22px"></i>
                         </button>
                         
                         
-                        <button type="submit" value="" class="btn btn-danger btn-sm" formaction="/CounterpartyGroupDelete?Group={{.Name}}" method="POST">
+                        <button type="submit" value="" class="btn btn-danger btn-sm" formaction="/CounterpartyGroupDelete?Group={{.Name}}" method="POST" title="Delete Counterparty Group">
                           <i class="fas fa-trash-alt" style="font-size: 22px"></i>
                         </button>
                         

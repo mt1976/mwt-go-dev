@@ -1,4 +1,5 @@
 package application
+
 // ----------------------------------------------------------------
 // Automatically generated  "/application/broker.go"
 // ----------------------------------------------------------------
@@ -7,53 +8,45 @@ package application
 // Endpoint 	        : Broker (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:39:59
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
 	"net/http"
 
-	core    "github.com/mt1976/mwt-go-dev/core"
-	dao     "github.com/mt1976/mwt-go-dev/dao"
-	dm      "github.com/mt1976/mwt-go-dev/datamodel"
-	logs    "github.com/mt1976/mwt-go-dev/logs"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //broker_PageList provides the information for the template for a list of Brokers
 type Broker_PageList struct {
-	UserMenu         []dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Broker
-}
-
-//broker_Page provides the information for the template for an individual Broker
-type Broker_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-		Code string
-		Name string
-		FullName string
-		Contact string
-		Address string
-		LEI string
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	ItemsOnPage int
+	ItemList    []dm.Broker
+}
+
+//broker_Page provides the information for the template for an individual Broker
+type Broker_Page struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	Title     string
+	PageTitle string
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	Code     string
+	Name     string
+	FullName string
+	Contact  string
+	Address  string
+	LEI      string
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -69,14 +62,14 @@ func Broker_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Broker_PathSave, Broker_HandlerSave)
 	mux.HandleFunc(dm.Broker_PathDelete, Broker_HandlerDelete)
 	logs.Publish("Siena", dm.Broker_Title)
-	
+
 }
 
 //Broker_HandlerList is the handler for the list page
 func Broker_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 
@@ -88,15 +81,15 @@ func Broker_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Broker_GetList()
 
 	pageDetail := Broker_PageList{
-		Title:            core.ApplicationProperties["appname"],
-		PageTitle:        PageTitle(dm.Broker_Title, core.Action_List),
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.Broker_Title, core.Action_List),
 		ItemsOnPage: noItems,
-		ItemList:  returnList,
-		UserMenu:         UserMenu_Get(r),
-		UserRole:         core.GetUserRole(r),
+		ItemList:    returnList,
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
 	}
 
-		ExecuteTemplate(dm.Broker_TemplateList, w, r, pageDetail)
+	ExecuteTemplate(dm.Broker_TemplateList, w, r, pageDetail)
 
 }
 
@@ -104,7 +97,7 @@ func Broker_HandlerList(w http.ResponseWriter, r *http.Request) {
 func Broker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -116,30 +109,27 @@ func Broker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Broker_GetByID(searchID)
 
 	pageDetail := Broker_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Broker_Title, core.Action_View),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Broker_Title, core.Action_View),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.FullName = rD.FullName
-pageDetail.Contact = rD.Contact
-pageDetail.Address = rD.Address
-pageDetail.LEI = rD.LEI
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	pageDetail.FullName = rD.FullName
+	pageDetail.Contact = rD.Contact
+	pageDetail.Address = rD.Address
+	pageDetail.LEI = rD.LEI
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-
-
-		ExecuteTemplate(dm.Broker_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Broker_TemplateView, w, r, pageDetail)
 
 }
 
@@ -147,7 +137,7 @@ pageDetail.LEI = rD.LEI
 func Broker_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -157,30 +147,29 @@ func Broker_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	searchID := core.GetURLparam(r, dm.Broker_QueryString)
 	_, rD, _ := dao.Broker_GetByID(searchID)
-	
+
 	pageDetail := Broker_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Broker_Title, core.Action_Edit),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Broker_Title, core.Action_Edit),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.FullName = rD.FullName
-pageDetail.Contact = rD.Contact
-pageDetail.Address = rD.Address
-pageDetail.LEI = rD.LEI
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	pageDetail.FullName = rD.FullName
+	pageDetail.Contact = rD.Contact
+	pageDetail.Address = rD.Address
+	pageDetail.LEI = rD.LEI
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Broker_TemplateEdit, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Broker_TemplateEdit, w, r, pageDetail)
 
 }
 
@@ -188,28 +177,28 @@ pageDetail.LEI = rD.LEI
 func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("Code"))
+	logs.Servicing(r.URL.Path + r.FormValue("Code"))
 
 	var item dm.Broker
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-		item.Code = r.FormValue(dm.Broker_Code)
-		item.Name = r.FormValue(dm.Broker_Name)
-		item.FullName = r.FormValue(dm.Broker_FullName)
-		item.Contact = r.FormValue(dm.Broker_Contact)
-		item.Address = r.FormValue(dm.Broker_Address)
-		item.LEI = r.FormValue(dm.Broker_LEI)
-	
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	item.Code = r.FormValue(dm.Broker_Code)
+	item.Name = r.FormValue(dm.Broker_Name)
+	item.FullName = r.FormValue(dm.Broker_FullName)
+	item.Contact = r.FormValue(dm.Broker_Contact)
+	item.Address = r.FormValue(dm.Broker_Address)
+	item.LEI = r.FormValue(dm.Broker_LEI)
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	dao.Broker_Store(item)	
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	dao.Broker_Store(item)
 
 	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
 }
@@ -218,7 +207,7 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -228,25 +217,25 @@ func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Broker_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Broker_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Broker_Title, core.Action_New),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Name = ""
-pageDetail.FullName = ""
-pageDetail.Contact = ""
-pageDetail.Address = ""
-pageDetail.LEI = ""
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.Code = ""
+	pageDetail.Name = ""
+	pageDetail.FullName = ""
+	pageDetail.Contact = ""
+	pageDetail.Address = ""
+	pageDetail.LEI = ""
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
-		ExecuteTemplate(dm.Broker_TemplateNew, w, r, pageDetail)
+	ExecuteTemplate(dm.Broker_TemplateNew, w, r, pageDetail)
 
 }
 
@@ -254,7 +243,7 @@ pageDetail.LEI = ""
 func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -262,7 +251,7 @@ func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Broker_QueryString)
 
-	dao.Broker_Delete(searchID)	
+	dao.Broker_Delete(searchID)
 
 	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
 }

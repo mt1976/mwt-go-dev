@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Systems (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:08
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:17:01
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -39,7 +39,7 @@ SWIFTout        string
 }
 
 const (
-	Systems_Title       = "Connected Systems"
+	Systems_Title       = "Connected System"
 	Systems_SQLTable    = "systemStore"
 	Systems_SQLSearchID = "Id"
 	Systems_QueryString = "ID"

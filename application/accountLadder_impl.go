@@ -10,7 +10,7 @@ import (
 )
 
 //AccountLadder_Publish annouces the endpoints available for this object
-func AccountLadder_PublishImpl(mux http.ServeMux) {
+func AccountLadder_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.AccountLadder_PathViewLadder, AccountLadder_HandlerViewLadder)
 
 	logs.Publish("Siena", dm.AccountLadder_Title+"impl")
@@ -21,7 +21,7 @@ func AccountLadder_PublishImpl(mux http.ServeMux) {
 func AccountLadder_HandlerViewLadder(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 

@@ -1,7 +1,7 @@
 
     {
-      "ID": "8ee2e486-dd49-4bae-8dff-c89c92c2ce4d",
-      "Text": "Deal Types",
+      "ID": "00e53b22-5828-497c-89a3-eaabc9cdc97e",
+      "Text": "Deal Type",
       "Glyph": "fas fa-toolbox",
       "HREF": "/DealTypeList",
       "OnClick": "",

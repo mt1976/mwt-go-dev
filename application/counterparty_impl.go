@@ -9,7 +9,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Counterparty_PublishImpl(mux http.ServeMux) {
+func Counterparty_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.Counterparty_Path360, Counterparty_Handler360)
 	logs.Publish("Siena", dm.Counterparty_Title)
 
@@ -98,7 +98,7 @@ type sienaCounterpartyItem struct {
 func Counterparty_Handler360(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

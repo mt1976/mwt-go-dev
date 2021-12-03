@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Payee (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:07
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:59
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -47,7 +47,7 @@ Currency_Impl        string
 }
 
 const (
-	Payee_Title       = "Payees"
+	Payee_Title       = "Payee"
 	Payee_SQLTable    = "sienaCounterpartyPayee"
 	Payee_SQLSearchID = "KeyCounterpartyFirm"
 	Payee_QueryString = "ID"

@@ -125,7 +125,7 @@ type AppLSEGiltsDataStoreItem struct {
 func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -157,7 +157,7 @@ func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -224,7 +224,7 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -290,7 +290,7 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -342,7 +342,7 @@ func SaveLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -358,7 +358,7 @@ func DeleteLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

@@ -354,9 +354,35 @@
             "TextClass": ""
 
         },
+        {
+            "Break": "<hr class=\"hr-list\">"
+        },
 
+        {
+            "ID": "f50b8f20-93de-464b-8044-e75a6f290317",
+            "Text": "Data Loader",
+            "Glyph": "fas fa-city",
+            "HREF": "/DataLoaderList",
+            "OnClick": "",
+            "TextClass": ""
+        },
 
-
+        {
+            "ID": "06b1a2fc-22d2-402a-88c6-863cb5e97ee6",
+            "Text": "Data Loader Data",
+            "Glyph": "fas fa-city",
+            "HREF": "/DataLoaderDataList",
+            "OnClick": "",
+            "TextClass": ""
+        },
+        {
+            "ID": "b9ca10b1-2be0-43bf-828e-a86bd10a502e",
+            "Text": "Data Loader Data Map",
+            "Glyph": "fas fa-city",
+            "HREF": "/DataLoaderMapList",
+            "OnClick": "",
+            "TextClass": ""
+        },
         {
             "Break": "<hr class=\"hr-list\">"
         },

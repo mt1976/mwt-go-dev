@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Portfolio (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:07
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:17:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,7 +32,7 @@ ChangeType        string
 }
 
 const (
-	Portfolio_Title       = "Bank Porfolios"
+	Portfolio_Title       = "Bank Porfolio"
 	Portfolio_SQLTable    = "sienaPortfolio"
 	Portfolio_SQLSearchID = "Code"
 	Portfolio_QueryString = "Code"

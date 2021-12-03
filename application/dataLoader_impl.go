@@ -12,6 +12,7 @@ import (
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //SvcDataMapPage is cheese
@@ -65,10 +66,29 @@ type SvcDataMapItem struct {
 	DataMapInstanceList []SystemStoreItem
 }
 
-func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_Publish_Impl(mux http.ServeMux) {
+	mux.HandleFunc("/listSvcDataMap/", DataLoader_HandlerList_Impl)
+	mux.HandleFunc("/viewSvcDataMap/", DataLoader_HandlerView_Impl)
+	mux.HandleFunc("/editSvcDataMap/", DataLoader_HandlerEdit_Impl)
+	mux.HandleFunc("/saveSvcDataMap/", DataLoader_HandlerSave_Impl)
+	mux.HandleFunc("/viewSvcDataMapXML/", DataLoader_HandlerViewXML_Impl)
+	mux.HandleFunc("/editSvcDataMapXML/", DataLoader_HandlerEditXML_Impl)
+	mux.HandleFunc("/saveSvcDataMapXML/", DataLoader_HandlerSaveXML_Impl)
+	mux.HandleFunc("/newSvcDataMap/", DataLoader_HandlerNew_Impl)
+	mux.HandleFunc("/genSvcDataMap/", DataLoader_HandlerGenerate_Impl)
+	mux.HandleFunc("/deleteSvcDataMap/", DataLoader_HandlerDelete_Impl)
+	mux.HandleFunc("/editDataMapColumns/", ListLoaderMapStoreHandler)
+	mux.HandleFunc("/editLoaderMapStore/", EditLoaderMapStoreHandler)
+	mux.HandleFunc("/saveLoaderMapStore/", SaveLoaderMapStoreHandler)
+	mux.HandleFunc("/newLoaderMapStore/", NewLoaderMapStoreHandler)
+	mux.HandleFunc("/runLoader/", DataLoader_HandlerRun_Impl)
+	logs.Publish("Application", dm.DataLoader_Title+" Impl")
+}
+
+func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -117,10 +137,10 @@ func ListSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ViewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerView_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -199,10 +219,10 @@ func getDataListFile(fileID string) string {
 	return string(content)
 }
 
-func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerEdit_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -211,10 +231,10 @@ func EditSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ViewSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerViewXML_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -265,10 +285,10 @@ func putXMLtemplateBody(thisID string, content string) int {
 	return status
 }
 
-func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -301,10 +321,10 @@ func EditSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -347,10 +367,10 @@ func SaveSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
 }
 
-func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerSaveXML_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -372,10 +392,10 @@ func SaveSvcDataMapXMLHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -404,10 +424,10 @@ func NewSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerGenerate_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -437,10 +457,10 @@ func GenSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerDelete_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -462,10 +482,10 @@ func DeleteSvcDataMapHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
 }
 
-func RunDataLoaderHandler(w http.ResponseWriter, r *http.Request) {
+func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

@@ -66,7 +66,7 @@ type AppNISelectedStoreItem struct {
 func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -97,7 +97,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -136,7 +136,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -174,7 +174,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SaveNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -201,7 +201,7 @@ func SaveNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -217,7 +217,7 @@ func DeleteNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func SelectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -235,7 +235,7 @@ func SelectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func DeselectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -254,7 +254,7 @@ func DeselectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

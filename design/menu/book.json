@@ -1,7 +1,7 @@
 
     {
-      "ID": "a487a725-5743-4069-b9c2-8c471353affb",
-      "Text": "Books",
+      "ID": "c4c2cdcd-0640-4425-8fd5-f5c207802129",
+      "Text": "Book",
       "Glyph": "fas fa-book",
       "HREF": "/BookList",
       "OnClick": "",

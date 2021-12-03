@@ -1,7 +1,7 @@
 
     {
-      "ID": "cda1f85e-7259-45cb-8441-b309dc03d4b4",
-      "Text": "Currencies",
+      "ID": "15d2bb16-d366-4678-b049-dda9bb4b4cef",
+      "Text": "Currency",
       "Glyph": "fas fa-dollar-sign",
       "HREF": "/CurrencyList",
       "OnClick": "",

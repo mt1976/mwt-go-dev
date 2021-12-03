@@ -1,7 +1,7 @@
 
     {
-      "ID": "7e936515-4fb0-4bf9-8c3a-1663191240d9",
-      "Text": "Payees",
+      "ID": "b33bb42b-9058-4573-9149-6b50add18b76",
+      "Text": "Payee",
       "Glyph": "fas fa-wallet",
       "HREF": "/PayeeList",
       "OnClick": "",

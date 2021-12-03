@@ -10,7 +10,7 @@ import (
 )
 
 //AccountTransaction_Publish annouces the endpoints available for this object
-func AccountTransaction_PublishImpl(mux http.ServeMux) {
+func AccountTransaction_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.AccountTransaction_PathViewTransaction, AccountTransaction_HandlerViewTransaction)
 
 	logs.Publish("Siena", dm.AccountTransaction_Title+"Impl")
@@ -21,7 +21,7 @@ func AccountTransaction_PublishImpl(mux http.ServeMux) {
 func AccountTransaction_HandlerViewTransaction(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 

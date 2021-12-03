@@ -1,4 +1,5 @@
 package application
+
 // ----------------------------------------------------------------
 // Automatically generated  "/application/owner.go"
 // ----------------------------------------------------------------
@@ -7,71 +8,54 @@ package application
 // Endpoint 	        : Owner (Owner)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:07
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:59
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
 	"net/http"
 
-	core    "github.com/mt1976/mwt-go-dev/core"
-	dao     "github.com/mt1976/mwt-go-dev/dao"
-	dm      "github.com/mt1976/mwt-go-dev/datamodel"
-	logs    "github.com/mt1976/mwt-go-dev/logs"
+	core "github.com/mt1976/mwt-go-dev/core"
+	dao "github.com/mt1976/mwt-go-dev/dao"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //owner_PageList provides the information for the template for a list of Owners
 type Owner_PageList struct {
-	UserMenu         []dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Owner
-}
-
-//owner_Page provides the information for the template for an individual Owner
-type Owner_Page struct {
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-		UserName string
-		FullName string
-		Type string
-		TradingEntity string
-		DefaultEnterBook string
-		EmailAddress string
-		Enabled string
-		ExternalUserIds string
-		Language string
-		LocalCurrency string
-		Role string
-		TelephoneNumber string
-		TokenId string
-		Entity string
-		UserCode string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	ItemsOnPage int
+	ItemList    []dm.Owner
+}
+
+//owner_Page provides the information for the template for an individual Owner
+type Owner_Page struct {
+	UserMenu  []dm.AppMenuItem
+	UserRole  string
+	Title     string
+	PageTitle string
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	UserName         string
+	FullName         string
+	Type             string
+	TradingEntity    string
+	DefaultEnterBook string
+	EmailAddress     string
+	Enabled          string
+	ExternalUserIds  string
+	Language         string
+	LocalCurrency    string
+	Role             string
+	TelephoneNumber  string
+	TokenId          string
+	Entity           string
+	UserCode         string
+
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -80,21 +64,16 @@ const (
 
 //Owner_Publish annouces the endpoints available for this object
 func Owner_Publish(mux http.ServeMux) {
-	
-	
-	
-	
-	
-	
+
 	logs.Publish("Siena", dm.Owner_Title)
-	
+
 }
 
 //Owner_HandlerList is the handler for the list page
 func Owner_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 
@@ -106,15 +85,15 @@ func Owner_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Owner_GetList()
 
 	pageDetail := Owner_PageList{
-		Title:            core.ApplicationProperties["appname"],
-		PageTitle:        PageTitle(dm.Owner_Title, core.Action_List),
+		Title:       core.ApplicationProperties["appname"],
+		PageTitle:   PageTitle(dm.Owner_Title, core.Action_List),
 		ItemsOnPage: noItems,
-		ItemList:  returnList,
-		UserMenu:         UserMenu_Get(r),
-		UserRole:         core.GetUserRole(r),
+		ItemList:    returnList,
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    core.GetUserRole(r),
 	}
 
-		ExecuteTemplate(dm.Owner_TemplateList, w, r, pageDetail)
+	ExecuteTemplate(dm.Owner_TemplateList, w, r, pageDetail)
 
 }
 
@@ -122,7 +101,7 @@ func Owner_HandlerList(w http.ResponseWriter, r *http.Request) {
 func Owner_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -134,39 +113,36 @@ func Owner_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Owner_GetByID(searchID)
 
 	pageDetail := Owner_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Owner_Title, core.Action_View),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Owner_Title, core.Action_View),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.UserName = rD.UserName
-pageDetail.FullName = rD.FullName
-pageDetail.Type = rD.Type
-pageDetail.TradingEntity = rD.TradingEntity
-pageDetail.DefaultEnterBook = rD.DefaultEnterBook
-pageDetail.EmailAddress = rD.EmailAddress
-pageDetail.Enabled = rD.Enabled
-pageDetail.ExternalUserIds = rD.ExternalUserIds
-pageDetail.Language = rD.Language
-pageDetail.LocalCurrency = rD.LocalCurrency
-pageDetail.Role = rD.Role
-pageDetail.TelephoneNumber = rD.TelephoneNumber
-pageDetail.TokenId = rD.TokenId
-pageDetail.Entity = rD.Entity
-pageDetail.UserCode = rD.UserCode
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.UserName = rD.UserName
+	pageDetail.FullName = rD.FullName
+	pageDetail.Type = rD.Type
+	pageDetail.TradingEntity = rD.TradingEntity
+	pageDetail.DefaultEnterBook = rD.DefaultEnterBook
+	pageDetail.EmailAddress = rD.EmailAddress
+	pageDetail.Enabled = rD.Enabled
+	pageDetail.ExternalUserIds = rD.ExternalUserIds
+	pageDetail.Language = rD.Language
+	pageDetail.LocalCurrency = rD.LocalCurrency
+	pageDetail.Role = rD.Role
+	pageDetail.TelephoneNumber = rD.TelephoneNumber
+	pageDetail.TokenId = rD.TokenId
+	pageDetail.Entity = rD.Entity
+	pageDetail.UserCode = rD.UserCode
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-
-
-		ExecuteTemplate(dm.Owner_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Owner_TemplateView, w, r, pageDetail)
 
 }
 
@@ -174,7 +150,7 @@ pageDetail.UserCode = rD.UserCode
 func Owner_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -184,39 +160,38 @@ func Owner_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	searchID := core.GetURLparam(r, dm.Owner_QueryString)
 	_, rD, _ := dao.Owner_GetByID(searchID)
-	
+
 	pageDetail := Owner_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Owner_Title, core.Action_Edit),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Owner_Title, core.Action_Edit),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.UserName = rD.UserName
-pageDetail.FullName = rD.FullName
-pageDetail.Type = rD.Type
-pageDetail.TradingEntity = rD.TradingEntity
-pageDetail.DefaultEnterBook = rD.DefaultEnterBook
-pageDetail.EmailAddress = rD.EmailAddress
-pageDetail.Enabled = rD.Enabled
-pageDetail.ExternalUserIds = rD.ExternalUserIds
-pageDetail.Language = rD.Language
-pageDetail.LocalCurrency = rD.LocalCurrency
-pageDetail.Role = rD.Role
-pageDetail.TelephoneNumber = rD.TelephoneNumber
-pageDetail.TokenId = rD.TokenId
-pageDetail.Entity = rD.Entity
-pageDetail.UserCode = rD.UserCode
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.UserName = rD.UserName
+	pageDetail.FullName = rD.FullName
+	pageDetail.Type = rD.Type
+	pageDetail.TradingEntity = rD.TradingEntity
+	pageDetail.DefaultEnterBook = rD.DefaultEnterBook
+	pageDetail.EmailAddress = rD.EmailAddress
+	pageDetail.Enabled = rD.Enabled
+	pageDetail.ExternalUserIds = rD.ExternalUserIds
+	pageDetail.Language = rD.Language
+	pageDetail.LocalCurrency = rD.LocalCurrency
+	pageDetail.Role = rD.Role
+	pageDetail.TelephoneNumber = rD.TelephoneNumber
+	pageDetail.TokenId = rD.TokenId
+	pageDetail.Entity = rD.Entity
+	pageDetail.UserCode = rD.UserCode
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Owner_TemplateEdit, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Owner_TemplateEdit, w, r, pageDetail)
 
 }
 
@@ -224,37 +199,37 @@ pageDetail.UserCode = rD.UserCode
 func Owner_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("UserName"))
+	logs.Servicing(r.URL.Path + r.FormValue("UserName"))
 
 	var item dm.Owner
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-		item.UserName = r.FormValue(dm.Owner_UserName)
-		item.FullName = r.FormValue(dm.Owner_FullName)
-		item.Type = r.FormValue(dm.Owner_Type)
-		item.TradingEntity = r.FormValue(dm.Owner_TradingEntity)
-		item.DefaultEnterBook = r.FormValue(dm.Owner_DefaultEnterBook)
-		item.EmailAddress = r.FormValue(dm.Owner_EmailAddress)
-		item.Enabled = r.FormValue(dm.Owner_Enabled)
-		item.ExternalUserIds = r.FormValue(dm.Owner_ExternalUserIds)
-		item.Language = r.FormValue(dm.Owner_Language)
-		item.LocalCurrency = r.FormValue(dm.Owner_LocalCurrency)
-		item.Role = r.FormValue(dm.Owner_Role)
-		item.TelephoneNumber = r.FormValue(dm.Owner_TelephoneNumber)
-		item.TokenId = r.FormValue(dm.Owner_TokenId)
-		item.Entity = r.FormValue(dm.Owner_Entity)
-		item.UserCode = r.FormValue(dm.Owner_UserCode)
-	
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	item.UserName = r.FormValue(dm.Owner_UserName)
+	item.FullName = r.FormValue(dm.Owner_FullName)
+	item.Type = r.FormValue(dm.Owner_Type)
+	item.TradingEntity = r.FormValue(dm.Owner_TradingEntity)
+	item.DefaultEnterBook = r.FormValue(dm.Owner_DefaultEnterBook)
+	item.EmailAddress = r.FormValue(dm.Owner_EmailAddress)
+	item.Enabled = r.FormValue(dm.Owner_Enabled)
+	item.ExternalUserIds = r.FormValue(dm.Owner_ExternalUserIds)
+	item.Language = r.FormValue(dm.Owner_Language)
+	item.LocalCurrency = r.FormValue(dm.Owner_LocalCurrency)
+	item.Role = r.FormValue(dm.Owner_Role)
+	item.TelephoneNumber = r.FormValue(dm.Owner_TelephoneNumber)
+	item.TokenId = r.FormValue(dm.Owner_TokenId)
+	item.Entity = r.FormValue(dm.Owner_Entity)
+	item.UserCode = r.FormValue(dm.Owner_UserCode)
 
-	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
 
-	dao.Owner_Store(item)	
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+
+	dao.Owner_Store(item)
 
 	http.Redirect(w, r, Owner_Redirect, http.StatusFound)
 }
@@ -263,7 +238,7 @@ func Owner_HandlerSave(w http.ResponseWriter, r *http.Request) {
 func Owner_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -273,34 +248,34 @@ func Owner_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Owner_Page{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   PageTitle(dm.Owner_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		Title:     core.ApplicationProperties["appname"],
+		PageTitle: PageTitle(dm.Owner_Title, core.Action_New),
+		UserMenu:  UserMenu_Get(r),
+		UserRole:  core.GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 02/12/2021 by matttownsend on silicon.local - START
-pageDetail.UserName = ""
-pageDetail.FullName = ""
-pageDetail.Type = ""
-pageDetail.TradingEntity = ""
-pageDetail.DefaultEnterBook = ""
-pageDetail.EmailAddress = ""
-pageDetail.Enabled = ""
-pageDetail.ExternalUserIds = ""
-pageDetail.Language = ""
-pageDetail.LocalCurrency = ""
-pageDetail.Role = ""
-pageDetail.TelephoneNumber = ""
-pageDetail.TokenId = ""
-pageDetail.Entity = ""
-pageDetail.UserCode = ""
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-		//
+	//
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	pageDetail.UserName = ""
+	pageDetail.FullName = ""
+	pageDetail.Type = ""
+	pageDetail.TradingEntity = ""
+	pageDetail.DefaultEnterBook = ""
+	pageDetail.EmailAddress = ""
+	pageDetail.Enabled = ""
+	pageDetail.ExternalUserIds = ""
+	pageDetail.Language = ""
+	pageDetail.LocalCurrency = ""
+	pageDetail.Role = ""
+	pageDetail.TelephoneNumber = ""
+	pageDetail.TokenId = ""
+	pageDetail.Entity = ""
+	pageDetail.UserCode = ""
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+	//
 
-		ExecuteTemplate(dm.Owner_TemplateNew, w, r, pageDetail)
+	ExecuteTemplate(dm.Owner_TemplateNew, w, r, pageDetail)
 
 }
 
@@ -308,7 +283,7 @@ pageDetail.UserCode = ""
 func Owner_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -316,7 +291,7 @@ func Owner_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Owner_QueryString)
 
-	dao.Owner_Delete(searchID)	
+	dao.Owner_Delete(searchID)
 
 	http.Redirect(w, r, Owner_Redirect, http.StatusFound)
 }

@@ -11,10 +11,10 @@
             <div class="col">
               <div class="btn-group float-right">
               
-                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MandateSave/Mandate={{.CompID}}" onclick="/MandateSave/Mandate={{.CompID}}"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MandateSave/Mandate={{.CompID}}" onclick="/MandateSave/Mandate={{.CompID}}" title="Save Mandate"></i>&nbsp;&nbsp;Save</button>
               
-                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()" title="Print Mandate"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
@@ -137,20 +137,20 @@
 
              <div class="row">
               <div class="col-sm">
-                <label for="Country_Impl" >Country_Impl</label>
-                <select id="Country_Impl" name="Country_Impl" class="form-control"><option name="!{{.Country_Impl}}" selected>{{.Country_Impl}}</option>{{range .Country_Imple_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                <label for="Country_Impl" disabled>Country_Impl</label>
+                <select id="Country_Impl" name="Country_Impl" class="form-control" disabled><option name="{{.Country_Impl}}" selected>{{.Country_Impl}}</option>{{range .Country_Impl_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
               </div>
             </div>
              <div class="row">
               <div class="col-sm">
-                <label for="Firm_Impl" >Firm_Impl</label>
-                <select id="Firm_Impl" name="Firm_Impl" class="form-control"><option name="!{{.Firm_Impl}}" selected>{{.Firm_Impl}}</option>{{range .Firm_Imple_List}}<option name="{{.FirmName}}">{{.FullName}}</option>{{end}}</select>
+                <label for="Firm_Impl" disabled>Firm_Impl</label>
+                <select id="Firm_Impl" name="Firm_Impl" class="form-control" disabled><option name="{{.Firm_Impl}}" selected>{{.Firm_Impl}}</option>{{range .Firm_Impl_List}}<option name="{{.FirmName}}">{{.FullName}}</option>{{end}}</select>
               </div>
             </div>
              <div class="row">
               <div class="col-sm">
-                <label for="Centre_Impl" >Centre_Impl</label>
-                <select id="Centre_Impl" name="Centre_Impl" class="form-control"><option name="!{{.Centre_Impl}}" selected>{{.Centre_Impl}}</option>{{range .Centre_Imple_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                <label for="Centre_Impl" disabled>Centre_Impl</label>
+                <select id="Centre_Impl" name="Centre_Impl" class="form-control" disabled><option name="{{.Centre_Impl}}" selected>{{.Centre_Impl}}</option>{{range .Centre_Impl_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
               </div>
             </div>
 

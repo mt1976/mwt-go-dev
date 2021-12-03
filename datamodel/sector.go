@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Sector (Sector)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:08
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:17:00
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,7 +22,7 @@ Name        string
 }
 
 const (
-	Sector_Title       = "Sectors"
+	Sector_Title       = "Sector"
 	Sector_SQLTable    = "sienaSector"
 	Sector_SQLSearchID = "Code"
 	Sector_QueryString = "Sector"

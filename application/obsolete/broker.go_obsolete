@@ -59,7 +59,7 @@ type sienaBrokerItem struct {
 func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -95,7 +95,7 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -140,7 +140,7 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -189,7 +189,7 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
@@ -293,7 +293,7 @@ func SaveSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(core.SessionValidate(w, r)) {
-		core.LogoutHandler(w, r)
+		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below

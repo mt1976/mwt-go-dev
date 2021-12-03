@@ -18,8 +18,8 @@
               <div class="btn-group">
               
               
-              <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()" title="Print Session"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@
                     <td class="text-center" style="width:1px;">
                       <div class="btn-group">
                       
-                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/SessionView?SessionID={{.Id}}" method="POST">
+                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/SessionView?SessionID={{.Id}}" method="POST" title="View Session">
                           <i class="far fa-eye" style="font-size: 22px"></i>
                         </button>
                       

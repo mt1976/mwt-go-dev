@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : DealTypeFundamental (DealTypeKey)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r0-21.11.01]
-// Date & Time		    : 02/12/2021 at 19:40:06
+// Template Generator   : cryptoidCalcium [r3-21.12.04]
+// Date & Time		    : 03/12/2021 at 13:16:58
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -110,7 +110,7 @@ ChangeType        string
 }
 
 const (
-	DealTypeFundamental_Title       = "Deal Type Fundamentals"
+	DealTypeFundamental_Title       = "Deal Type Fundamental"
 	DealTypeFundamental_SQLTable    = "sienaDealTypeFundamentals"
 	DealTypeFundamental_SQLSearchID = "DealTypeKey"
 	DealTypeFundamental_QueryString = "DealTypeKey"
