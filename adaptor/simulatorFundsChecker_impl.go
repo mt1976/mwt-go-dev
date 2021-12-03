@@ -2,9 +2,7 @@ package adaptor
 
 import (
 	"encoding/xml"
-	"io/ioutil"
 	"log"
-	"os"
 	"strings"
 	"time"
 
@@ -49,9 +47,9 @@ func Simulator_FundsChecker_Store(thisID string, balance string, resultCode stri
 	deletefrompath := core.SienaProperties["funds_in"]
 
 	log.Printf("Delivery      : %s -> %s", deletefrompath, delivertopath)
-	core.WriteDataFile(fileName, delivertopath, string(newMsg))
+	core.WriteDataFileAbsolute(fileName, delivertopath, string(newMsg))
 
-	resp := core.DeleteDataFile(thisID, deletefrompath)
+	resp := core.DeleteDataFileAbsolute(thisID, deletefrompath)
 	if resp != 1 {
 		//do nothing
 	}
@@ -61,7 +59,7 @@ func Simulator_FundsChecker_Store(thisID string, balance string, resultCode stri
 func Simulator_FundsChecker_DeleteByID(id string) error {
 	requestPath := core.SienaProperties["funds_in"]
 	//pwd, _ := os.Getwd()
-	rtn := core.DeleteDataFile(id, requestPath)
+	rtn := core.DeleteDataFileAbsolute(id, requestPath)
 	if rtn != 1 {
 		logs.Warning("Unable to Delete " + id)
 	}
@@ -71,11 +69,8 @@ func Simulator_FundsChecker_DeleteByID(id string) error {
 func Simulator_FundsChecker_GetByID(id string) (int, dm.Simulator_FundsChecker_Item, error) {
 	var simFundsCheckItem dm.Simulator_FundsChecker_Item
 	requestPath := core.SienaProperties["funds_in"]
-	pwd, _ := os.Getwd()
-	dat, err := ioutil.ReadFile(pwd + requestPath + "/" + id)
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	dat, _, _ := core.ReadDataFileAbsolute(id, requestPath)
 	simFundsCheckItem.Id = id
 	simFundsCheckItem.Name = strings.ReplaceAll(id, ".xml", "")
 	simFundsCheckItem.Source = requestPath
@@ -98,12 +93,8 @@ func Simulator_FundsChecker_GetList() (int, []dm.Simulator_FundsChecker_Item, er
 	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, core.ApplicationPropertiesDB["schema"])
 	var simFundsCheckList []dm.Simulator_FundsChecker_Item
 	requestPath := core.SienaProperties["funds_in"]
-	pwd, _ := os.Getwd()
-	files, err := ioutil.ReadDir(pwd + requestPath + "/")
-	if err != nil {
-		log.Fatal(err)
-	}
-	//log.Println(files)
+
+	files, _ := core.GetDirectoryContentAbsolute(requestPath)
 
 	for _, k := range files {
 		//fmt.Println("key:", k)

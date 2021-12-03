@@ -3,6 +3,7 @@ package core
 import (
 	"bytes"
 	"fmt"
+	"io/fs"
 	"io/ioutil"
 	"log"
 	"net"
@@ -381,6 +382,34 @@ func ReadDataFile(fileName string, path string) (string, error) {
 	return string(content), err
 }
 
+func GetDirectoryContentAbsolute(path string) ([]fs.FileInfo, error) {
+	files, err := ioutil.ReadDir(path + "/")
+	if err != nil {
+		log.Fatal(err)
+	}
+	return files, err
+}
+
+func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) {
+
+	absFileName := path + "/" + fileName
+
+	// Check it exists - If not create it
+	if !(FileExists(absFileName)) {
+		WriteDataFileAbsolute(fileName, path, "")
+	}
+
+	//log.Println("Read          :", filePath)
+	// Read entire file content, giving us little control but
+	// making it very simple. No need to close the file.
+	content, err := ioutil.ReadFile(absFileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Convert []byte to string and print to screen
+	return content, string(content), err
+}
+
 func WriteDataFile(fileName string, path string, content string) int {
 	pwd, _ := os.Getwd()
 	filePath := pwd + "/" + fileName
@@ -395,7 +424,40 @@ func WriteDataFile(fileName string, path string, content string) int {
 		log.Fatal(err)
 		return -1
 	}
+
+	log.Println("File Write : " + fileName + " in " + path + "[" + filePath + "]")
+
 	return 1
+}
+
+func WriteDataFileAbsolute(fileName string, path string, content string) int {
+
+	absFileName := path + "/" + fileName
+
+	message := []byte(content)
+	err := ioutil.WriteFile(absFileName, message, 0644)
+	if err != nil {
+		log.Fatal(err)
+		return -1
+	}
+
+	log.Println("File Write : " + fileName + " in " + path + "[" + absFileName + "]")
+	return 1
+}
+
+func DeleteDataFileAbsolute(fileName string, path string) int {
+
+	absFileName := path + "/" + fileName
+	if FileExists(absFileName) {
+		var err = os.Remove(absFileName)
+		if err != nil {
+			log.Fatal(err.Error())
+			return -1
+		}
+	}
+	log.Println("File Deletion : " + fileName + " in " + path + "[" + absFileName + "]")
+	return 1
+
 }
 
 func DeleteDataFile(fileName string, path string) int {
@@ -415,7 +477,7 @@ func DeleteDataFile(fileName string, path string) int {
 			return -1
 		}
 	}
-	log.Println("File Deletion : " + fileName + " in " + path)
+	log.Println("File Deletion : " + fileName + " in " + path + "[" + filePath + "]")
 	return 1
 }
 
