@@ -21,7 +21,7 @@ func NegotiableInstrument_Publish_Impl(mux http.ServeMux) {
 
 func NegotiableInstrument_HandlerSelect(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -42,7 +42,7 @@ func NegotiableInstrument_HandlerSelect(w http.ResponseWriter, r *http.Request) 
 
 func NegotiableInstrument_HandlerDeSelect(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}

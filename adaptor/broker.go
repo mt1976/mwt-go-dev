@@ -8,7 +8,7 @@ package adaptor
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 03/12/2021 at 13:16:55
+// Date & Time		    : 04/12/2021 at 17:36:42
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

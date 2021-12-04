@@ -20,7 +20,7 @@ func AccountLadder_Publish_Impl(mux http.ServeMux) {
 //AccountLadder_HandlerList is the handler for the list page
 func AccountLadder_HandlerViewLadder(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -40,7 +40,7 @@ func AccountLadder_HandlerViewLadder(w http.ResponseWriter, r *http.Request) {
 		ItemsOnPage: noItems,
 		ItemList:    returnList,
 		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		UserRole:    Session_GetUserRole(r),
 	}
 
 	ExecuteTemplate(dm.AccountLadder_TemplateList, w, r, pageDetail)

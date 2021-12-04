@@ -189,11 +189,11 @@ func PageTitle(
 }
 
 func ExecuteTemplate(tname string, w http.ResponseWriter, r *http.Request, data interface{}) {
-	fmt.Printf("tname: %v\n", tname)
+	//fmt.Printf("tname: %v\n", tname)
 
 	t := make(map[string]*template.Template)
-	baseTemplateID := core.GetTemplateID(tname, core.GetUserRole(r))
-	headerTemplateID := core.GetTemplateID("core/head", core.GetUserRole(r))
+	baseTemplateID := core.GetTemplateID(tname, Session_GetUserRole(r))
+	headerTemplateID := core.GetTemplateID("core/head", Session_GetUserRole(r))
 	//	fmt.Printf("baseTemplateID: %v\n", baseTemplateID)
 	//	fmt.Printf("headerTemplateID: %v\n", headerTemplateID)
 	t[tname] = template.Must(template.ParseFiles(baseTemplateID, headerTemplateID))

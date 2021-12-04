@@ -87,7 +87,7 @@ func DataLoader_Publish_Impl(mux http.ServeMux) {
 
 func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -123,7 +123,7 @@ func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 
 	pageSrvEvironment := SvcDataMapPage{
 		UserMenu:        UserMenu_Get(r),
-		UserRole:        core.GetUserRole(r),
+		UserRole:        Session_GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           core.ApplicationProperties["appname"],
 		PageTitle:       PageTitle("Data Loader", core.Action_List),
@@ -139,7 +139,7 @@ func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerView_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -194,7 +194,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 
 	pageSrvEvironment := SvcDataMapPage{
 		UserMenu:       UserMenu_Get(r),
-		UserRole:       core.GetUserRole(r),
+		UserRole:       Session_GetUserRole(r),
 		UserNavi:       "NOT USED",
 		Title:          core.ApplicationProperties["appname"],
 		PageTitle:      PageTitle("Data Payload", core.Action_View),
@@ -221,7 +221,7 @@ func getDataListFile(fileID string) string {
 
 func DataLoader_HandlerEdit_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -233,7 +233,7 @@ func DataLoader_HandlerEdit_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerViewXML_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -253,7 +253,7 @@ func DataLoader_HandlerViewXML_Impl(w http.ResponseWriter, r *http.Request) {
 
 	pageSrvEvironment := SvcDataMapPage{
 		UserMenu:      UserMenu_Get(r),
-		UserRole:      core.GetUserRole(r),
+		UserRole:      Session_GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         core.ApplicationProperties["appname"],
 		PageTitle:     PageTitle("Data Loader", core.Action_View+" XML"),
@@ -287,7 +287,7 @@ func putXMLtemplateBody(thisID string, content string) int {
 
 func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -308,7 +308,7 @@ func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 
 	pageEditSvcDataMapXML := SvcDataMapPage{
 		UserMenu:      UserMenu_Get(r),
-		UserRole:      core.GetUserRole(r),
+		UserRole:      Session_GetUserRole(r),
 		UserNavi:      "NOT USED",
 		Title:         core.ApplicationProperties["appname"],
 		PageTitle:     PageTitle("Data Loader", core.Action_Edit+" XML"),
@@ -323,7 +323,7 @@ func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -369,7 +369,7 @@ func DataLoader_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerSaveXML_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -394,7 +394,7 @@ func DataLoader_HandlerSaveXML_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -412,7 +412,7 @@ func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 
 	pageDM := SvcDataMapPage{
 		UserMenu:     UserMenu_Get(r),
-		UserRole:     core.GetUserRole(r),
+		UserRole:     Session_GetUserRole(r),
 		UserNavi:     "NOT USED",
 		Title:        core.ApplicationProperties["appname"],
 		PageTitle:    PageTitle("Data Loader", core.Action_New),
@@ -426,7 +426,7 @@ func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerGenerate_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -459,7 +459,7 @@ func DataLoader_HandlerGenerate_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerDelete_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -484,7 +484,7 @@ func DataLoader_HandlerDelete_Impl(w http.ResponseWriter, r *http.Request) {
 
 func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}

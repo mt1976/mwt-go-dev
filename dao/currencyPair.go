@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 03/12/2021 at 13:16:57
+// Date & Time		    : 04/12/2021 at 17:36:45
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
    recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
    recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
    recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive, "True")
@@ -101,7 +101,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
    recItem.MinorName  = get_String(rec, dm.CurrencyPair_MinorName, "")
 
 
-// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

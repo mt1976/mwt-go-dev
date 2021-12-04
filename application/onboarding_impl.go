@@ -63,7 +63,7 @@ func CounterpartyOnboarding_Publish(mux http.ServeMux) {
 //CounterpartyOnboarding_HandlerList is the handler for the list page
 func CounterpartyOnboarding_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -91,7 +91,7 @@ func CounterpartyOnboarding_HandlerList(w http.ResponseWriter, r *http.Request) 
 //CounterpartyOnboarding_HandlerView is the handler used to View a page
 func CounterpartyOnboarding_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -136,7 +136,7 @@ func CounterpartyOnboarding_HandlerView(w http.ResponseWriter, r *http.Request) 
 //CounterpartyOnboarding_HandlerEdit is the handler used generate the Edit page
 func CounterpartyOnboarding_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -181,7 +181,7 @@ func CounterpartyOnboarding_HandlerEdit(w http.ResponseWriter, r *http.Request) 
 //CounterpartyOnboarding_HandlerSave is the handler used process the saving of an CounterpartyOnboarding
 func CounterpartyOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -215,7 +215,7 @@ func CounterpartyOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) 
 //CounterpartyOnboarding_HandlerNew is the handler used process the creation of an CounterpartyOnboarding
 func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -230,7 +230,7 @@ func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle(dm.CounterpartyOnboarding_Title, core.Action_New),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 	}
 
 	pageDetail.Item = dao.CounterpartyOnboarding_Build()
@@ -242,7 +242,7 @@ func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //CounterpartyOnboarding_HandlerDelete is the handler used process the deletion of an CounterpartyOnboarding
 func CounterpartyOnboarding_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}

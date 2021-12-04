@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 03/12/2021 at 13:16:54
+// Date & Time		    : 04/12/2021 at 17:36:42
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,14 +81,14 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.AccountLadder_SienaReference, "")
    recItem.BusinessDate  = get_Time(rec, dm.AccountLadder_BusinessDate, "")
    recItem.ContractNumber  = get_String(rec, dm.AccountLadder_ContractNumber, "")
    recItem.Balance  = get_Float(rec, dm.AccountLadder_Balance, "0.00")
    recItem.DealtCcy  = get_String(rec, dm.AccountLadder_DealtCcy, "")
    recItem.AmountDp  = get_Int(rec, dm.AccountLadder_AmountDp, "0")
-// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

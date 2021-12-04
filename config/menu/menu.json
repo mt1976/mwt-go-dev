@@ -80,14 +80,16 @@
             "OnClick": "",
             "TextClass": ""
         },
+
         {
-            "ID": "16",
+            "ID": "a297d710-200e-4b31-8d48-4129efb9af02",
             "Text": "Counterparty Import",
             "Glyph": "fas fa-file-import",
-            "HREF": "/listSienaCounterpartyImportID",
+            "HREF": "/CounterpartyImportList",
             "OnClick": "",
             "TextClass": ""
         },
+
         {
             "ID": "06a43331-0019-4d30-af69-f1c0bfeb9148",
             "Text": "Counterparty Groups",

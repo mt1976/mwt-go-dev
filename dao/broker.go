@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 03/12/2021 at 13:16:55
+// Date & Time		    : 04/12/2021 at 17:36:42
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -100,14 +100,14 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Broker_Code, "")
    recItem.Name  = get_String(rec, dm.Broker_Name, "")
    recItem.FullName  = get_String(rec, dm.Broker_FullName, "")
    recItem.Contact  = get_String(rec, dm.Broker_Contact, "")
    recItem.Address  = get_String(rec, dm.Broker_Address, "")
    recItem.LEI  = get_String(rec, dm.Broker_LEI, "")
-// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

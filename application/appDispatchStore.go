@@ -69,7 +69,7 @@ type DispatchStoreItem struct {
 
 func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -85,7 +85,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageDispatchStoreList := appDispatchStoreListPage{
 		UserMenu:           UserMenu_Get(r),
-		UserRole:           core.GetUserRole(r),
+		UserRole:           Session_GetUserRole(r),
 		UserNavi:           "NOT USED",
 		Title:              core.ApplicationProperties["appname"],
 		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Dispatch",
@@ -99,7 +99,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -119,7 +119,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -141,7 +141,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -160,7 +160,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -182,7 +182,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -214,7 +214,7 @@ func SaveDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -230,7 +230,7 @@ func DeleteDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -248,7 +248,7 @@ func BanDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -267,7 +267,7 @@ func ActivateDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -283,7 +283,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - New",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory

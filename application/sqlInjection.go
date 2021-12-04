@@ -17,7 +17,7 @@ func SQLInjection_Publish(mux http.ServeMux) {
 // SQLInjectionHander
 func SQLInjection_HandlerRun(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}

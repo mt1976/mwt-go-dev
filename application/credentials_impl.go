@@ -16,7 +16,7 @@ func credentials_PublishImpl(mux http.ServeMux) http.ServeMux {
 
 func Credentials_HandlerBan(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -34,7 +34,7 @@ func Credentials_HandlerBan(w http.ResponseWriter, r *http.Request) {
 
 func Credentials_HandlerActivate(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}

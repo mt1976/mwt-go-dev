@@ -67,7 +67,7 @@ func Simulator_FundsChecker_Publish_Impl(mux http.ServeMux) {
 
 func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -81,21 +81,21 @@ func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) 
 
 	fundsCheckPage := Simulator_FundsChecker_PageList{
 		UserMenu:        UserMenu_Get(r),
-		UserRole:        core.GetUserRole(r),
+		UserRole:        Session_GetUserRole(r),
 		Title:           core.ApplicationProperties["appname"],
 		PageTitle:       PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Requests),
 		FundsCheckCount: noItems,
 		FundsCheckList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateList, core.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateList, Session_GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 
 }
 
 func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -110,14 +110,14 @@ func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) 
 	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_FundsChecker_Title, core.Action_View)
 
 	//log.Println(fundsCheckPage)
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateView, core.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateView, Session_GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 
 }
 
 func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -131,13 +131,13 @@ func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request
 	fundsCheckPage.Title = core.ApplicationProperties["appname"]
 	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Process)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateAction, core.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateAction, Session_GetUserRole(r)))
 	t.Execute(w, fundsCheckPage)
 }
 
 func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -159,7 +159,7 @@ func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request
 
 func Simulator_FundsChecker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -182,7 +182,7 @@ func simulator_FundsCheck_BuildPage(w http.ResponseWriter, r *http.Request) Simu
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Request),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		// Above are mandatory
 		// Below are variable
 		Id:      returnRecord.Id,

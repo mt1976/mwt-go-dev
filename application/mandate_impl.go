@@ -33,7 +33,7 @@ func Mandate_PublishImpl(mux http.ServeMux) {
 //Mandate_HandlerView is the handler used to View a page
 func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -54,7 +54,7 @@ func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle(dm.Mandate_Title, core.Action_View),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 	}
 
 	//
@@ -103,7 +103,7 @@ func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 //Mandate_HandlerEdit is the handler used generate the Edit page
 func Mandate_HandlerEditItem(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -124,7 +124,7 @@ func Mandate_HandlerEditItem(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle(dm.Mandate_Title, core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 	}
 
 	//

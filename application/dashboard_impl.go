@@ -38,7 +38,7 @@ func Dashboard_Publish_Impl(mux http.ServeMux) {
 
 func Dashboard_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -70,7 +70,7 @@ func Dashboard_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	p := dashboardPage{
 		UserMenu:          UserMenu_Get(r),
-		UserRole:          core.GetUserRole(r),
+		UserRole:          Session_GetUserRole(r),
 		UserNavi:          "NOT USED",
 		Title:             core.ApplicationProperties["appname"],
 		PageTitle:         PageTitle("Dashboard", ""),

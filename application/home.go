@@ -7,6 +7,7 @@ import (
 
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //sienaMandatedUserPage is cheese
@@ -45,10 +46,16 @@ type sienaHomePage struct {
 	DateSyncIssue      string
 }
 
-// HomePageHandler
-func HomePageHandler(w http.ResponseWriter, r *http.Request) {
+func Home_Publish_Impl(mux http.ServeMux) {
+	mux.HandleFunc("/home", Home_HandlerView)
+	logs.Publish("Core", "Home"+" Impl")
+
+}
+
+// Home_HandlerView
+func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -63,7 +70,7 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	homePage := sienaHomePage{
 		UserMenu:        UserMenu_Get(r),
-		UserRole:        core.GetUserRole(r),
+		UserRole:        Session_GetUserRole(r),
 		UserNavi:        "NOT USED",
 		Title:           core.ApplicationProperties["appname"],
 		PageTitle:       PageTitle("Home", ""),
@@ -75,8 +82,8 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 		SQLDB:           core.SienaPropertiesDB["database"],
 		SQLSchema:       core.SienaPropertiesDB["schema"],
 		SQLParentSchema: core.SienaPropertiesDB["parentschema"],
-		UserName:        core.GetUserName(r),
-		UserKnowAs:      core.GetUserKnowAs(r),
+		UserName:        Session_GetUserName(r),
+		UserKnowAs:      Session_GetUserKnownAs(r),
 		SienaDate:       core.SienaSystemDate.Siena,
 		AppServerDate:   time.Now().Format(core.DATEFORMATSIENA),
 		AppServerName:   tmpHostname,

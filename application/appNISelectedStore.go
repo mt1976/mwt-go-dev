@@ -65,7 +65,7 @@ type AppNISelectedStoreItem struct {
 
 func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -82,7 +82,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageNISelectedStoreList := appNISelectedStoreListPage{
 		UserMenu:             UserMenu_Get(r),
-		UserRole:             core.GetUserRole(r),
+		UserRole:             Session_GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                core.ApplicationProperties["appname"],
 		PageTitle:            core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts",
@@ -96,7 +96,7 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -116,7 +116,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -135,7 +135,7 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -154,7 +154,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -173,7 +173,7 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func SaveNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -200,7 +200,7 @@ func SaveNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -216,7 +216,7 @@ func DeleteNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func SelectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -234,7 +234,7 @@ func SelectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeselectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -253,7 +253,7 @@ func DeselectNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -269,7 +269,7 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -297,7 +297,7 @@ func GetNISelectedStoreByID(id string) (int, AppNISelectedStoreItem, error) {
 
 func putNISelectedStore(r AppNISelectedStoreItem, req *http.Request) {
 	//fmt.Println(credentialStore)
-	userID := core.GetUserName(req)
+	userID := Session_GetUserName(req)
 	putNISelectedStoreUser(r, userID)
 }
 

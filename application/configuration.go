@@ -7,6 +7,7 @@ import (
 
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 //AppConfigurationPage is cheese
@@ -47,9 +48,14 @@ type AppConfigurationPage struct {
 	OS                     string
 }
 
-func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
+func Configuration_Publish_Impl(mux http.ServeMux) {
+	mux.HandleFunc("/viewAppConfiguration/", Configuration_HandlerView)
+	logs.Publish("Core", "Configuration"+" Impl")
+}
+
+func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -66,7 +72,7 @@ func ViewAppConfigurationHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageAppConfigView := AppConfigurationPage{
 		UserMenu:               UserMenu_Get(r),
-		UserRole:               core.GetUserRole(r),
+		UserRole:               Session_GetUserRole(r),
 		UserNavi:               "NOT USED",
 		Title:                  core.ApplicationProperties["appname"],
 		PageTitle:              PageTitle("Application", core.Action_Configure),

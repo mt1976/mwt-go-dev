@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 03/12/2021 at 13:16:57
+// Date & Time		    : 04/12/2021 at 17:36:45
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -100,7 +100,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Currency_Code, "")
    recItem.Name  = get_String(rec, dm.Currency_Name, "")
    recItem.AmountDp  = get_Int(rec, dm.Currency_AmountDp, "0")
@@ -125,7 +125,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
    recItem.StripRateFutureCurrencyContractFutureContractCode  = get_String(rec, dm.Currency_StripRateFutureCurrencyContractFutureContractCode, "")
    recItem.OvernightFundingSpreadBid  = get_Float(rec, dm.Currency_OvernightFundingSpreadBid, "0.00")
    recItem.OvernightFundingSpreadOffer  = get_Float(rec, dm.Currency_OvernightFundingSpreadOffer, "0.00")
-// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

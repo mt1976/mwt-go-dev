@@ -47,7 +47,7 @@ func LoginLogout_HandlerLogin(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("Page Data", loginPageContent)
 
-	t, _ := template.ParseFiles(GetTemplateID(tmpl, GetUserRole(r)))
+	t, _ := template.ParseFiles(GetTemplateID(tmpl, SessionManager.GetString(r.Context(), SessionRole)))
 	// Does not user ExecuteTemplate because this is a special case
 	t.Execute(w, loginPageContent)
 }
@@ -56,7 +56,7 @@ func LoginLogout_HandlerLogout(w http.ResponseWriter, r *http.Request) {
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	serviceMessageAction("LOGOUT", GetUserName(r), inUTL)
+	serviceMessageAction("LOGOUT", SessionManager.GetString(r.Context(), SessionUserName), inUTL)
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 

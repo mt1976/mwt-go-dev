@@ -1,7 +1,6 @@
 package application
 
 import (
-	"log"
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
@@ -29,9 +28,9 @@ func Payee_PublishImpl(mux http.ServeMux) {
 }
 
 func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
-	log.Println("poo")
+	//log.Println("poo")
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -55,7 +54,7 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle(dm.Payee_Title, core.Action_View),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
@@ -91,6 +90,6 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	_, KeyCurrency_Lookup, _ := dao.Currency_GetByID(returnRecord.KeyCurrency)
 	pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 
-	ExecuteTemplate(core.GetTemplateID(dm.Payee_TemplateView, core.GetUserRole(r)), w, r, pageDetail)
+	ExecuteTemplate(dm.Payee_TemplateView, w, r, pageDetail)
 
 }

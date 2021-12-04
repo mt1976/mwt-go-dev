@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 03/12/2021 at 13:17:01
+// Date & Time		    : 04/12/2021 at 17:36:49
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -130,7 +130,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 03/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Systems_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Systems_Id, "")
    recItem.Name  = get_String(rec, dm.Systems_Name, "")
@@ -150,7 +150,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Systems_SYSUpdatedHost, "")
    recItem.SWIFTin  = get_String(rec, dm.Systems_SWIFTin, "")
    recItem.SWIFTout  = get_String(rec, dm.Systems_SWIFTout, "")
-// Automatically generated 03/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

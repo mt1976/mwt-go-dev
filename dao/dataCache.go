@@ -125,7 +125,7 @@ func putCacheStore(r dm.DataCache, req *http.Request) {
 	if len(r.Id) == 0 {
 		r.Id = newCacheStoreID(r)
 		r.SYSCreated = createDate
-		r.SYSWho = core.GetUserName(req)
+		r.SYSWho = Session_GetUserName(req)
 		r.SYSHost = host
 	}
 

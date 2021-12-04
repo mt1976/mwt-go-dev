@@ -20,13 +20,6 @@ import (
 
 func main() {
 
-	//ascii := figlet4go.NewAsciiRender()
-
-	//wctProperties := application.GetProperties(APPCONFIG)
-
-	// The underscore would be an error
-	//	renderStr, _ := ascii.Render(wctProperties["appname"])
-	tmpHostname, _ := os.Hostname()
 	logs.Break()
 	logs.Header("MISSION CONTROL")
 	logs.Break()
@@ -40,31 +33,25 @@ func main() {
 	logs.Header("Scheduling Jobs")
 	logs.Break()
 
-	//log.Println("TEST>")
-	//scheduler.RunJobCob("TEST")
-	//log.Println("<TEST")
-
 	scheduler.Start()
 
 	logs.Success("Jobs Scheduled")
 	logs.Break()
-	logs.Header("Starting Handlers")
+	logs.Header("Publish Endpoints")
 	logs.Break()
-
+	// Setup Endpoints
 	mux := http.NewServeMux()
+	// At least one "mux" handler is required - Dont remove this
+	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	// At least one "mux" handler is required - Dont remove this
 
 	Main_Publish(*mux)
-	mux.HandleFunc("/login", core.ValidateLoginHandler)
 	core.LoginLogout_Publish_Impl(*mux)
-	mux.HandleFunc("/home", application.HomePageHandler)
-	//mux.HandleFunc("/srvServiceCatalog", application.ServiceCatalogHandler)
-	mux.HandleFunc("/favicon.ico", application.FaviconHandler)
-	mux.HandleFunc("/favicon-32x32.png", application.Favicon32Handler)
-	mux.HandleFunc("/site.webmanifest", application.FaviconManifestHandler)
-	mux.HandleFunc("/favicon-16x16.png", application.Favicon16Handler)
-	mux.HandleFunc("/browserconfig.xml", application.FaviconBrowserConfigHandler)
+	application.Resources_Publish_Impl(*mux)
+	application.Home_Publish_Impl(*mux)
+	application.Session_Publish_Impl(*mux)
 
-	mux.HandleFunc("/viewAppConfiguration/", application.ViewAppConfigurationHandler)
+	application.Configuration_Publish_Impl(*mux)
 
 	application.Country_Publish(*mux)
 	application.Sector_Publish(*mux)
@@ -123,7 +110,6 @@ func main() {
 	application.NegotiableInstrument_Publish_Impl(*mux)
 
 	application.CMNotes_Publish(*mux)
-	//dao.Onboard_Test()
 	application.CounterpartyOnboarding_Publish(*mux)
 	application.CounterpartyImport_Publish(*mux)
 	application.CounterpartyName_Publish(*mux)
@@ -138,9 +124,114 @@ func main() {
 	application.DataLoaderData_Publish(*mux)
 	application.DataLoaderMap_Publish(*mux)
 	application.DataLoader_Publish_Impl(*mux)
+	// End of Endpoints
 
-	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	logs.Success("Handlers Started")
+	logs.Success("Endpoints Published")
+
+	Application_Info()
+	//scheduler.RunJobLSE("")
+	//scheduler.RunJobFII("")
+	//jobs.RatesFXSpot_Run()
+	//spew.Dump(mux)
+
+	logs.Header("READY STEADY GO!!!")
+	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
+	logs.Break()
+	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
+	logs.Break()
+
+	httpPort := ":" + core.ApplicationProperties["port"]
+
+	// Wrap your handlers with the LoadAndSave() middleware.
+	//spew.Dump(mux)
+	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
+	logs.Break()
+	core.Log_uptime()
+
+}
+
+func Main_Publish(mux http.ServeMux) {
+
+	mux.HandleFunc("/shutdown/", application_HandlerShutdown)
+	mux.HandleFunc("/clearQueues/", application_HandlerClearQueues)
+	mux.HandleFunc("/put", application_HandlerPUT)
+	mux.HandleFunc("/get", application_HandlerGET)
+	logs.Publish("Main", "Application")
+}
+
+//// TODO: migrage the following three functions to appsupport
+func application_HandlerShutdown(w http.ResponseWriter, r *http.Request) {
+	//	wctProperties := application.GetProperties(APPCONFIG)
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	//requestID := uuid.New()http.ListenAndServe(":8080", nil)
+
+	log.Println("Servicing :", inUTL)
+	//requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", line, line, line, wctProperties)
+
+	//fmt.Println("requestMessage", requestMessage)
+	//fmt.Println("SEND MESSAGE")
+	//application.SendRequest(requestMessage, requestID.String(), core.ApplicationProperties)
+	m := http.NewServeMux()
+
+	s := http.Server{Addr: core.ApplicationProperties["port"], Handler: m}
+	s.Shutdown(context.Background())
+	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
+	//	viewResponseHandler(w, r)
+
+}
+func application_HandlerClearQueues(w http.ResponseWriter, r *http.Request) {
+
+	//var propertiesFileName = "config/properties.cfg"
+	//wctProperties := application.GetProperties(APPCONFIG)
+	//	tmpl := "viewResponse"
+	inUTL := r.URL.Path
+	//requestID := uuid.New()
+	log.Println("Servicing :", inUTL)
+	//fmt.Println("delivPath", wctProperties["deliverpath"])
+	err1 := core.RemoveContents(core.ApplicationProperties["deliverpath"])
+	if err1 != nil {
+		fmt.Println(err1)
+	}
+	//fmt.Println("recPath", wctProperties["receivepath"])
+	err2 := core.RemoveContents(core.ApplicationProperties["receivepath"])
+	if err2 != nil {
+		fmt.Println(err2)
+	}
+	//fmt.Println("procPath", wctProperties["processedpath"])
+	err3 := core.RemoveContents(core.ApplicationProperties["processedpath"])
+	if err3 != nil {
+		fmt.Println(err3)
+	}
+	application.Home_HandlerView(w, r)
+}
+
+// func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
+// 	//var propertiesFileName = "config/properties.cfg"
+// 	//	wctProperties := application.GetProperties(core.APPCONFIG)
+// 	//	tmpl := "viewResponse"
+// 	inUTL := r.URL.Path
+// 	//requestID := uuid.New()
+// 	log.Println("Servicing :", inUTL)
+// 	application.RemoveContents(core.ApplicationProperties["receivepath"])
+// 	application.HomePageHandler(w, r)
+// }
+
+func application_HandlerPUT(w http.ResponseWriter, r *http.Request) {
+	// Store a new key and value in the session data.
+	core.SessionManager.Put(r.Context(), "message", "Hello from a session!")
+}
+
+func application_HandlerGET(w http.ResponseWriter, r *http.Request) {
+	// Use the GetString helper to retrieve the string value associated with a
+	// key. The zero value is returned if the key does not exist.
+	msg := core.SessionManager.GetString(r.Context(), "message")
+	io.WriteString(w, msg)
+}
+
+func Application_Info() {
+	tmpHostname, _ := os.Hostname()
 	logs.Break()
 	logs.Header("Application Information")
 	logs.Break()
@@ -189,103 +280,4 @@ func main() {
 
 	logs.Header("Sessions")
 	logs.Information("Session Life", core.ApplicationProperties["sessionlife"])
-
-	//scheduler.RunJobLSE("")
-	//scheduler.RunJobFII("")
-	//jobs.RatesFXSpot_Run()
-
-	logs.Header("READY STEADY GO!!!")
-	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
-	logs.Break()
-	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
-	logs.Break()
-
-	httpPort := ":" + core.ApplicationProperties["port"]
-
-	// Wrap your handlers with the LoadAndSave() middleware.
-	//spew.Dump(mux)
-	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
-	logs.Break()
-	core.Log_uptime()
-
-}
-
-func Main_Publish(mux http.ServeMux) {
-
-	mux.HandleFunc("/shutdown/", shutdownHandler)
-	mux.HandleFunc("/clearQueues/", clearQueuesHandler)
-	mux.HandleFunc("/put", putHandler)
-	mux.HandleFunc("/get", getHandler)
-	logs.Publish("Main", "Application")
-}
-
-//// TODO: migrage the following three functions to appsupport
-func shutdownHandler(w http.ResponseWriter, r *http.Request) {
-	//	wctProperties := application.GetProperties(APPCONFIG)
-
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	//requestID := uuid.New()http.ListenAndServe(":8080", nil)
-
-	log.Println("Servicing :", inUTL)
-	//requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", line, line, line, wctProperties)
-
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	//application.SendRequest(requestMessage, requestID.String(), core.ApplicationProperties)
-	m := http.NewServeMux()
-
-	s := http.Server{Addr: core.ApplicationProperties["port"], Handler: m}
-	s.Shutdown(context.Background())
-	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
-	//	viewResponseHandler(w, r)
-
-}
-func clearQueuesHandler(w http.ResponseWriter, r *http.Request) {
-
-	//var propertiesFileName = "config/properties.cfg"
-	//wctProperties := application.GetProperties(APPCONFIG)
-	//	tmpl := "viewResponse"
-	inUTL := r.URL.Path
-	//requestID := uuid.New()
-	log.Println("Servicing :", inUTL)
-	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := core.RemoveContents(core.ApplicationProperties["deliverpath"])
-	if err1 != nil {
-		fmt.Println(err1)
-	}
-	//fmt.Println("recPath", wctProperties["receivepath"])
-	err2 := core.RemoveContents(core.ApplicationProperties["receivepath"])
-	if err2 != nil {
-		fmt.Println(err2)
-	}
-	//fmt.Println("procPath", wctProperties["processedpath"])
-	err3 := core.RemoveContents(core.ApplicationProperties["processedpath"])
-	if err3 != nil {
-		fmt.Println(err3)
-	}
-	application.HomePageHandler(w, r)
-}
-
-// func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
-// 	//var propertiesFileName = "config/properties.cfg"
-// 	//	wctProperties := application.GetProperties(core.APPCONFIG)
-// 	//	tmpl := "viewResponse"
-// 	inUTL := r.URL.Path
-// 	//requestID := uuid.New()
-// 	log.Println("Servicing :", inUTL)
-// 	application.RemoveContents(core.ApplicationProperties["receivepath"])
-// 	application.HomePageHandler(w, r)
-// }
-
-func putHandler(w http.ResponseWriter, r *http.Request) {
-	// Store a new key and value in the session data.
-	core.SessionManager.Put(r.Context(), "message", "Hello from a session!")
-}
-
-func getHandler(w http.ResponseWriter, r *http.Request) {
-	// Use the GetString helper to retrieve the string value associated with a
-	// key. The zero value is returned if the key does not exist.
-	msg := core.SessionManager.GetString(r.Context(), "message")
-	io.WriteString(w, msg)
 }

@@ -20,7 +20,7 @@ func AccountTransaction_Publish_Impl(mux http.ServeMux) {
 //AccountTransaction_HandlerList is the handler for the list page
 func AccountTransaction_HandlerViewTransaction(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -38,7 +38,7 @@ func AccountTransaction_HandlerViewTransaction(w http.ResponseWriter, r *http.Re
 		ItemsOnPage: noItems,
 		ItemList:    returnList,
 		UserMenu:    UserMenu_Get(r),
-		UserRole:    core.GetUserRole(r),
+		UserRole:    Session_GetUserRole(r),
 	}
 
 	ExecuteTemplate(dm.AccountTransaction_TemplateList, w, r, pageDetail)

@@ -97,7 +97,7 @@ type sienaCounterpartyItem struct {
 
 func Counterparty_Handler360(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -131,7 +131,7 @@ func Counterparty_Handler360(w http.ResponseWriter, r *http.Request) {
 		Title:           core.ApplicationProperties["appname"],
 		PageTitle:       PageTitle(dm.Counterparty_Title, core.Action_List),
 		UserMenu:        UserMenu_Get(r),
-		UserRole:        core.GetUserRole(r),
+		UserRole:        Session_GetUserRole(r),
 		ID:              "",
 		NameCentre:      returnRecord.NameCentre,
 		NameFirm:        returnRecord.NameFirm,

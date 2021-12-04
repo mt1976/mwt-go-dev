@@ -77,7 +77,7 @@ type LoaderDataStoreItem struct {
 
 func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -93,7 +93,7 @@ func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageLoaderDataStoreList := appLoaderDataStoreListPage{
 		UserMenu:             UserMenu_Get(r),
-		UserRole:             core.GetUserRole(r),
+		UserRole:             Session_GetUserRole(r),
 		UserNavi:             "NOT USED",
 		Title:                core.ApplicationProperties["appname"],
 		PageTitle:            PageTitle("Data", core.Action_List),
@@ -107,7 +107,7 @@ func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -127,7 +127,7 @@ func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle: PageTitle("Data", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -151,7 +151,7 @@ func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -170,7 +170,7 @@ func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle("Data", core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -194,7 +194,7 @@ func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func SaveLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -228,7 +228,7 @@ func SaveLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -244,7 +244,7 @@ func DeleteLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -262,7 +262,7 @@ func BanLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func ActivateLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -281,7 +281,7 @@ func ActivateLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -297,7 +297,7 @@ func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle("Data", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -364,7 +364,7 @@ func putLoaderDataStore(r LoaderDataStoreItem, req *http.Request) {
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = core.GetUserName(req)
+		r.SYSWho = Session_GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}

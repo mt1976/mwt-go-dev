@@ -50,7 +50,7 @@ type calenderItem struct {
 
 func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -74,7 +74,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 		PageTitle:     PageTitle("Calendar", core.Action_List),
 		CalenderCount: noItems,
 		CalenderList:  returnList,
-		UserRole:      core.GetUserRole(r),
+		UserRole:      Session_GetUserRole(r),
 		UserNavi:      "NOT USED",
 	}
 

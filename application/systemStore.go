@@ -84,7 +84,7 @@ type SystemStoreItem struct {
 
 func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -100,7 +100,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	pageSystemStoreList := appSystemStoreListPage{
 		UserMenu:         UserMenu_Get(r),
-		UserRole:         core.GetUserRole(r),
+		UserRole:         Session_GetUserRole(r),
 		UserNavi:         "NOT USED",
 		Title:            core.ApplicationProperties["appname"],
 		PageTitle:        PageTitle("Connected System", core.Action_View),
@@ -108,14 +108,14 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SystemStoreList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, Session_GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
 
 func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -136,7 +136,7 @@ func ViewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -149,7 +149,7 @@ func EditSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	pageSystemStoreList := editViewSytemStore(w, r)
 	pageSystemStoreList.PageTitle = PageTitle("Connected System", core.Action_Edit)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, Session_GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
@@ -164,7 +164,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 		PageTitle: PageTitle("Conected System", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		// Above are mandatory
 		// Below are variable
@@ -187,7 +187,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 
 func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -223,7 +223,7 @@ func SaveSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -239,7 +239,7 @@ func DeleteSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -257,7 +257,7 @@ func BanSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -276,7 +276,7 @@ func ActivateSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	if !(core.SessionValidate(w, r)) {
+	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
@@ -292,7 +292,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		Title:     core.ApplicationProperties["appname"],
 		PageTitle: PageTitle("Connected System", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
-		UserRole:  core.GetUserRole(r),
+		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
 		Action:    "",
 		// Above are mandatory
@@ -300,7 +300,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.GetUserRole(r)))
+	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, Session_GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
 
 }
@@ -339,7 +339,7 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 
 	if len(r.SYSCreated) == 0 {
 		r.SYSCreated = createDate
-		r.SYSWho = core.GetUserName(req)
+		r.SYSWho = Session_GetUserName(req)
 		r.SYSHost = host
 		// Default in info for a new RECORD
 	}
