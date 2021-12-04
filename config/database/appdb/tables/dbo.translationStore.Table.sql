@@ -1,6 +1,6 @@
 USE [SRS]
 GO
-/****** Object:  Table [dbo].[translationStore]    Script Date: 24/11/2021 19:43:00 ******/
+/****** Object:  Table [dbo].[translationStore]    Script Date: 04/12/2021 18:06:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

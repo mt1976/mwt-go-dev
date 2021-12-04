@@ -1,14 +1,14 @@
-USE [bnk6rgsys4]
+USE [ReportingDb_sal_prd_demo_sys-3]
 GO
-/****** Object:  View [{{!SQL.SCHEMA}}].[sienaBusinessDateDetail]    Script Date: 24/11/2021 19:10:28 ******/
+/****** Object:  View [{{!SQL.SCHEMA}}].[sienaBusinessDateDetail]    Script Date: 04/12/2021 18:16:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [{{!SQL.SCHEMA}}].[sienaBusinessDateDetail]
 AS
-SELECT        {{!SQL.SCHEMA}}.sienaBusinessDate.Today, {{!SQL.SOURCE}}.BusinessDate.CurrentDate, {{!SQL.SOURCE}}.BusinessDate.PreviousBusinessDate, {{!SQL.SOURCE}}.BusinessDate.CurrentBusinessDate, {{!SQL.SOURCE}}.BusinessDate.NextBusinessDate, {{!SQL.SOURCE}}.BusinessDate.DealingStatus, 
+SELECT        SRS.sienaBusinessDate.Today, {{!SQL.SOURCE}}.BusinessDate.CurrentDate, {{!SQL.SOURCE}}.BusinessDate.PreviousBusinessDate, {{!SQL.SOURCE}}.BusinessDate.CurrentBusinessDate, {{!SQL.SOURCE}}.BusinessDate.NextBusinessDate, {{!SQL.SOURCE}}.BusinessDate.DealingStatus, 
                          {{!SQL.SOURCE}}.BusinessDate.RolloverType
 FROM            {{!SQL.SOURCE}}.BusinessDate INNER JOIN
-                         {{!SQL.SCHEMA}}.sienaBusinessDate ON {{!SQL.SOURCE}}.BusinessDate.CurrentDate = {{!SQL.SCHEMA}}.sienaBusinessDate.Today
+                         SRS.sienaBusinessDate ON {{!SQL.SOURCE}}.BusinessDate.CurrentDate = SRS.sienaBusinessDate.Today
 GO
