@@ -38,3 +38,16 @@
     <title>{{.PageTitle}}</title>
     <!-- DO NOT CHANGE -->
 </head>{{end}}
+
+{{define "footer"}}
+
+<footer>
+  <div class="fixed-bottom">
+    <div style="background-color: var(--custom-light-grey);padding:.2rem;padding-left:.3rem;">
+      <div class="font-weight-light text-muted" style="font-size:70%;">
+        {{.PageTitle}} - Static Footer
+      </div>
+    </div>
+  </div>
+</footer>
+{{end}}

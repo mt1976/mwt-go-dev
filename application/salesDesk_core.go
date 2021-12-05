@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : SalesDesk (Desk)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:49
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:05
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type SalesDesk_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		Name string
 		ReportDealsOver string
 		ReportDealsOverCCY string
@@ -53,7 +53,7 @@ type SalesDesk_Page struct {
 	
 	
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -123,19 +123,19 @@ func SalesDesk_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.ReportDealsOver = rD.ReportDealsOver
 pageDetail.ReportDealsOverCCY = rD.ReportDealsOverCCY
 pageDetail.AccountTransferCutOffTime = rD.AccountTransferCutOffTime
 pageDetail.AccountTransferCutOffTimeTimeZone = rD.AccountTransferCutOffTimeTimeZone
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.SalesDesk_TemplateView, w, r, pageDetail)
@@ -166,18 +166,18 @@ func SalesDesk_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.ReportDealsOver = rD.ReportDealsOver
 pageDetail.ReportDealsOverCCY = rD.ReportDealsOverCCY
 pageDetail.AccountTransferCutOffTime = rD.AccountTransferCutOffTime
 pageDetail.AccountTransferCutOffTimeTimeZone = rD.AccountTransferCutOffTimeTimeZone
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.SalesDesk_TemplateEdit, w, r, pageDetail)
 
@@ -197,7 +197,7 @@ func SalesDesk_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.SalesDesk
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.SalesDesk_Name)
 		item.ReportDealsOver = r.FormValue(dm.SalesDesk_ReportDealsOver)
 		item.ReportDealsOverCCY = r.FormValue(dm.SalesDesk_ReportDealsOverCCY)
@@ -205,9 +205,9 @@ func SalesDesk_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.AccountTransferCutOffTimeTimeZone = r.FormValue(dm.SalesDesk_AccountTransferCutOffTimeTimeZone)
 		item.AccountTransferCutOffTimeCutOffPeriod = r.FormValue(dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod)
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 	dao.SalesDesk_Store(item)	
 
@@ -235,15 +235,15 @@ func SalesDesk_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.ReportDealsOver = ""
 pageDetail.ReportDealsOverCCY = ""
 pageDetail.AccountTransferCutOffTime = ""
 pageDetail.AccountTransferCutOffTimeTimeZone = ""
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = ""
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.SalesDesk_TemplateNew, w, r, pageDetail)

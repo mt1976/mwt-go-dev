@@ -31,6 +31,7 @@ var SienaProperties map[string]string
 var SienaPropertiesDB map[string]string
 var SienaDB *sql.DB
 var SienaSystemDate DateItem
+var SystemHostname string
 
 var SessionManager *scs.SessionManager
 
@@ -142,6 +143,8 @@ func Initialise() {
 	SessionToken = ""
 	UUID = "authorAdjust"
 	SecurityViolation = ""
+
+	SystemHostname, _ = os.Hostname()
 
 	PreInitialise()
 

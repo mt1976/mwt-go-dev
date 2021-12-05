@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Message (Message)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:47
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -122,7 +122,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Message_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Message_Id, "")
    recItem.Message  = get_String(rec, dm.Message_Message, "")
@@ -134,7 +134,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
    recItem.SYSCreatedHost  = get_String(rec, dm.Message_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Message_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Message_SYSUpdatedHost, "")
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

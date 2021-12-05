@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : Mandate (Mandate)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:47
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type Mandate_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		MandatedUserKeyCounterpartyFirm string
 		MandatedUserKeyCounterpartyCentre string
 		MandatedUserKeyUserName string
@@ -85,7 +85,7 @@ type Mandate_Page struct {
 	Firm_Impl_List	[]dm.Firm
 	Centre_Impl_List	[]dm.Centre
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -162,7 +162,7 @@ func Mandate_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
 pageDetail.MandatedUserKeyUserName = rD.MandatedUserKeyUserName
@@ -182,14 +182,14 @@ pageDetail.CentreName = rD.CentreName
 pageDetail.Notify = rD.Notify
 pageDetail.SystemUser = rD.SystemUser
 pageDetail.CompID = rD.CompID
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup_Name.Name
 _,MandatedUserKeyCounterpartyFirm_Lookup_FullName,_:= dao.Firm_GetByID(rD.MandatedUserKeyCounterpartyFirm)
 pageDetail.Firm_Impl = MandatedUserKeyCounterpartyFirm_Lookup_FullName.FullName
 _,MandatedUserKeyCounterpartyCentre_Lookup_Name,_:= dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
 pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup_Name.Name
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -199,7 +199,7 @@ pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup_Name.Name
 	// func mandate_HandlerViewImpl(pageDetail Mandate_Page) Mandate_Page {return pageDetail}
 	pageDetail = mandate_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.Mandate_TemplateView, w, r, pageDetail)
@@ -230,7 +230,7 @@ func Mandate_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
 pageDetail.MandatedUserKeyUserName = rD.MandatedUserKeyUserName
@@ -250,7 +250,7 @@ pageDetail.CentreName = rD.CentreName
 pageDetail.Notify = rD.Notify
 pageDetail.SystemUser = rD.SystemUser
 pageDetail.CompID = rD.CompID
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup_Name.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
@@ -260,7 +260,7 @@ _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
 _,MandatedUserKeyCounterpartyCentre_Lookup_Name,_:= dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
 pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup_Name.Name
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 	// mandate_HandlerEditImpl should be specified in application/mandate_Impl.go
@@ -269,7 +269,7 @@ _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
 	// func mandate_HandlerEditImpl(pageDetail Mandate_Page) Mandate_Page {return pageDetail}
 	pageDetail = mandate_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.Mandate_TemplateEdit, w, r, pageDetail)
 
@@ -289,7 +289,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.Mandate
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm)
 		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre)
 		item.MandatedUserKeyUserName = r.FormValue(dm.Mandate_MandatedUserKeyUserName)
@@ -313,7 +313,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Firm_Impl = r.FormValue(dm.Mandate_Firm_Impl)
 		item.Centre_Impl = r.FormValue(dm.Mandate_Centre_Impl)
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 	// mandate_HandlerSaveImpl should be specified in application/mandate_Impl.go
 	// to provide the implementation for the special case.
@@ -321,7 +321,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func mandate_HandlerSaveImpl(item dm.Mandate) dm.Mandate {return item}
 	item = mandate_HandlerSaveImpl(item)
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 	dao.Mandate_Store(item)	
 
@@ -349,7 +349,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = ""
 pageDetail.MandatedUserKeyCounterpartyCentre = ""
 pageDetail.MandatedUserKeyUserName = ""
@@ -369,14 +369,14 @@ pageDetail.CentreName = ""
 pageDetail.Notify = ""
 pageDetail.SystemUser = ""
 pageDetail.CompID = ""
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 pageDetail.Firm_Impl = ""
 _,pageDetail.Firm_Impl_List,_ = dao.Firm_GetList()
 pageDetail.Centre_Impl = ""
 _,pageDetail.Centre_Impl_List,_ = dao.Centre_GetList()
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.Mandate_TemplateNew, w, r, pageDetail)

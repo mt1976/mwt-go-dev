@@ -8,7 +8,6 @@ import (
 
 	"github.com/TwiN/go-color"
 	colour "github.com/TwiN/go-color"
-	"github.com/davecgh/go-spew/spew"
 	viper "github.com/spf13/viper"
 	"golang.org/x/term"
 )
@@ -74,7 +73,7 @@ var CFG Config
 
 func init() {
 	CFG, _ = getConfig()
-	spew.Dump(CFG)
+	//spew.Dump(CFG)
 }
 
 func Poke(w string, v string) {
@@ -262,7 +261,7 @@ func getConfig() (config Config, err error) {
 	// get current os directory path
 	pwd, _ := os.Getwd()
 
-	fmt.Println(pwd)
+	//fmt.Println(pwd)
 	viper.AddConfigPath(pwd + "/config/")
 	viper.SetConfigName("logs")
 	viper.SetConfigType("env")
@@ -275,7 +274,7 @@ func getConfig() (config Config, err error) {
 	}
 
 	err = viper.Unmarshal(&config)
-	spew.Dump(config)
+	//spew.Dump(config)
 	if config.Verbose == "true" {
 		config.VerboseMode = true
 	} else {

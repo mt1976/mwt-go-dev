@@ -7,8 +7,8 @@ package adaptor
 // Endpoint 	        : Portfolio (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:48
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:04
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Counterparty (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:43
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:15:59
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
    recItem.NameCentre  = get_String(rec, dm.Counterparty_NameCentre, "")
    recItem.NameFirm  = get_String(rec, dm.Counterparty_NameFirm, "")
    recItem.FullName  = get_String(rec, dm.Counterparty_FullName, "")
@@ -111,7 +111,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
    recItem.CountryCodeName  = get_String(rec, dm.Counterparty_CountryCodeName, "")
    recItem.SectorCodeName  = get_String(rec, dm.Counterparty_SectorCodeName, "")
    recItem.CompID  = get_String(rec, dm.Counterparty_CompID, "")
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

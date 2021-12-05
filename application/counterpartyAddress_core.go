@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : CounterpartyAddress (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:43
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:15:59
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type CounterpartyAddress_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		NameFirm string
 		NameCentre string
 		Address1 string
@@ -57,7 +57,7 @@ type CounterpartyAddress_Page struct {
 	
 	
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -127,7 +127,7 @@ func CounterpartyAddress_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.Address1 = rD.Address1
@@ -136,12 +136,12 @@ pageDetail.CityTown = rD.CityTown
 pageDetail.County = rD.County
 pageDetail.Postcode = rD.Postcode
 pageDetail.CompID = rD.CompID
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.CounterpartyAddress_TemplateView, w, r, pageDetail)
@@ -172,7 +172,7 @@ func CounterpartyAddress_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.Address1 = rD.Address1
@@ -181,11 +181,11 @@ pageDetail.CityTown = rD.CityTown
 pageDetail.County = rD.County
 pageDetail.Postcode = rD.Postcode
 pageDetail.CompID = rD.CompID
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.CounterpartyAddress_TemplateEdit, w, r, pageDetail)
 
@@ -205,7 +205,7 @@ func CounterpartyAddress_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.CounterpartyAddress
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		item.NameFirm = r.FormValue(dm.CounterpartyAddress_NameFirm)
 		item.NameCentre = r.FormValue(dm.CounterpartyAddress_NameCentre)
 		item.Address1 = r.FormValue(dm.CounterpartyAddress_Address1)
@@ -215,9 +215,9 @@ func CounterpartyAddress_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Postcode = r.FormValue(dm.CounterpartyAddress_Postcode)
 		item.CompID = r.FormValue(dm.CounterpartyAddress_CompID)
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 	dao.CounterpartyAddress_Store(item)	
 
@@ -245,7 +245,7 @@ func CounterpartyAddress_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameFirm = ""
 pageDetail.NameCentre = ""
 pageDetail.Address1 = ""
@@ -254,8 +254,8 @@ pageDetail.CityTown = ""
 pageDetail.County = ""
 pageDetail.Postcode = ""
 pageDetail.CompID = ""
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.CounterpartyAddress_TemplateNew, w, r, pageDetail)

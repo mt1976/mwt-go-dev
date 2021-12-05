@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : CounterpartyCreditRating (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:43
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:15:59
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type CounterpartyCreditRating_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		NameFirm string
 		NameCentre string
 		CreditRatingUsage string
@@ -53,7 +53,7 @@ type CounterpartyCreditRating_Page struct {
 	
 	
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -123,19 +123,19 @@ func CounterpartyCreditRating_HandlerView(w http.ResponseWriter, r *http.Request
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.CreditRatingUsage = rD.CreditRatingUsage
 pageDetail.CreditRatingAgency = rD.CreditRatingAgency
 pageDetail.CreditRatingName = rD.CreditRatingName
 pageDetail.CompID = rD.CompID
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateView, w, r, pageDetail)
@@ -166,18 +166,18 @@ func CounterpartyCreditRating_HandlerEdit(w http.ResponseWriter, r *http.Request
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.CreditRatingUsage = rD.CreditRatingUsage
 pageDetail.CreditRatingAgency = rD.CreditRatingAgency
 pageDetail.CreditRatingName = rD.CreditRatingName
 pageDetail.CompID = rD.CompID
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateEdit, w, r, pageDetail)
 
@@ -197,7 +197,7 @@ func CounterpartyCreditRating_HandlerSave(w http.ResponseWriter, r *http.Request
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.CounterpartyCreditRating
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		item.NameFirm = r.FormValue(dm.CounterpartyCreditRating_NameFirm)
 		item.NameCentre = r.FormValue(dm.CounterpartyCreditRating_NameCentre)
 		item.CreditRatingUsage = r.FormValue(dm.CounterpartyCreditRating_CreditRatingUsage)
@@ -205,9 +205,9 @@ func CounterpartyCreditRating_HandlerSave(w http.ResponseWriter, r *http.Request
 		item.CreditRatingName = r.FormValue(dm.CounterpartyCreditRating_CreditRatingName)
 		item.CompID = r.FormValue(dm.CounterpartyCreditRating_CompID)
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 	dao.CounterpartyCreditRating_Store(item)	
 
@@ -235,15 +235,15 @@ func CounterpartyCreditRating_HandlerNew(w http.ResponseWriter, r *http.Request)
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameFirm = ""
 pageDetail.NameCentre = ""
 pageDetail.CreditRatingUsage = ""
 pageDetail.CreditRatingAgency = ""
 pageDetail.CreditRatingName = ""
 pageDetail.CompID = ""
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.CounterpartyCreditRating_TemplateNew, w, r, pageDetail)

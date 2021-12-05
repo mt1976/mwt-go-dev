@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : Transaction (Ref)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:46
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:03
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -38,7 +38,7 @@ type Transaction_Page struct {
 	UserRole    string
 	Title       string
 	PageTitle   string
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		ValueDate string
@@ -265,7 +265,7 @@ type Transaction_Page struct {
 	
 	
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -335,7 +335,7 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.ValueDate = rD.ValueDate
@@ -448,12 +448,12 @@ pageDetail.RejectReason = rD.RejectReason
 pageDetail.PaymentError = rD.PaymentError
 pageDetail.RepoPrincipal = rD.RepoPrincipal
 pageDetail.FixingFrequency = rD.FixingFrequency
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 
 		ExecuteTemplate(dm.Transaction_TemplateView, w, r, pageDetail)
@@ -484,7 +484,7 @@ func Transaction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.ValueDate = rD.ValueDate
@@ -597,11 +597,11 @@ pageDetail.RejectReason = rD.RejectReason
 pageDetail.PaymentError = rD.PaymentError
 pageDetail.RepoPrincipal = rD.RepoPrincipal
 pageDetail.FixingFrequency = rD.FixingFrequency
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 		ExecuteTemplate(dm.Transaction_TemplateEdit, w, r, pageDetail)
 
@@ -621,7 +621,7 @@ func Transaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.Transaction
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.Transaction_SienaReference)
 		item.Status = r.FormValue(dm.Transaction_Status)
 		item.ValueDate = r.FormValue(dm.Transaction_ValueDate)
@@ -735,9 +735,9 @@ func Transaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.RepoPrincipal = r.FormValue(dm.Transaction_RepoPrincipal)
 		item.FixingFrequency = r.FormValue(dm.Transaction_FixingFrequency)
 	
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 
 	dao.Transaction_Store(item)	
 
@@ -765,7 +765,7 @@ func Transaction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.Status = ""
 pageDetail.ValueDate = ""
@@ -878,8 +878,8 @@ pageDetail.RejectReason = ""
 pageDetail.PaymentError = ""
 pageDetail.RepoPrincipal = ""
 pageDetail.FixingFrequency = ""
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//
 
 		ExecuteTemplate(dm.Transaction_TemplateNew, w, r, pageDetail)

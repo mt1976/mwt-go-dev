@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : DealConversation (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:45
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:02
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference, "")
    recItem.Status  = get_String(rec, dm.DealConversation_Status, "")
    recItem.MessageType  = get_String(rec, dm.DealConversation_MessageType, "")
@@ -94,7 +94,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
    recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo, "0")
    recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem, "")
    recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference, "")
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

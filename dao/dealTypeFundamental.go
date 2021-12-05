@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : DealTypeFundamental (DealTypeKey)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : cryptoidCalcium [r3-21.12.04]
-// Date & Time		    : 04/12/2021 at 17:36:46
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 05/12/2021 at 17:16:03
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 04/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
    recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey, "")
    recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment, "True")
    recItem.DefaultFrequency  = get_Int(rec, dm.DealTypeFundamental_DefaultFrequency, "0")
@@ -183,7 +183,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
    recItem.DeletedTransactionId  = get_String(rec, dm.DealTypeFundamental_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealTypeFundamental_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealTypeFundamental_ChangeType, "")
-// Automatically generated 04/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

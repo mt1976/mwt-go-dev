@@ -10,6 +10,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/denisenkom/go-mssqldb v0.11.0
 	github.com/google/uuid v1.2.0
+	github.com/gregdel/pushover v1.1.0 // indirect
 	github.com/jimlawless/cfg v0.0.0-20160326141742-136e0c264d31
 	github.com/kisielk/sqlstruct v0.0.0-20210630145711-dae28ed37023
 	github.com/leekchan/accounting v1.0.0

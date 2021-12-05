@@ -47,5 +47,6 @@ func Rollover_Run() {
 
 	/// CONTENT ENDS
 	application.Schedule_Update(Rollover_Job(), message)
+	core.Notification_Normal(Rollover_Job().Name, message)
 	logs.EndJob(Rollover_Job().Name)
 }

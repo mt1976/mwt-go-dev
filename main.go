@@ -134,6 +134,8 @@ func main() {
 	//jobs.RatesFXSpot_Run()
 	//spew.Dump(mux)
 
+	//core.Notification_Test()
+
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()
