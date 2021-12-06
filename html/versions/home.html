@@ -4,45 +4,43 @@
 
   <div class="container-fluid">
 
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-      </ol>
-    </nav>
 
-
-
-
-
-    <div class="well">
-
-      <h4 class="text-left text-primary">System Details</h4>
-      <pre class="text-muted" style="font-size: 9.5pt">
-
-<b style="color:var(--custom-primary-colour)">User</b>
+      <h5 class="text-left">System Details</h5>
+      <div class="text-muted"></div>
+<h6>User</h6>
+<pre class="text-muted">
 Name                    : {{.UserName}}
 Known As                : {{.UserKnowAs}}
-Role                    : {{.UserRole}}<br>
-<b style="color:var(--custom-primary-colour)">Application</b>
+Role                    : {{.UserRole}}
+</pre>
+<h6>Application</h6>
+<pre class="text-muted">
 Server Name             : {{.AppServerName}}
 Server Release          : {{.AppReleaseID}}&nbsp;[r{{.AppReleaseLevel}}-{{.AppReleaseNo}}]
 Server Date             : {{.AppServerDate}}
-Server Mode             : {{.InstanceState}}<br>
-<b style="color:var(--custom-primary-colour)">Application Database (MSSQL)</b>
+Server Mode             : {{.InstanceState}}
+</pre>
+<h6>Application Database (MSSQL)</h6>
+<pre class="text-muted">
 Server                  : {{.AppSQLServer}}
 Database                : {{.AppSQLDatabase}}
 Schema                  : {{.AppSQLSchema}}
 Parent Schema           : {{.AppSQLParentSchema}}
-
-<b style="color:var(--custom-primary-colour)">Siena</b>
+</pre>
+<h6>Siena</h6>
+<pre class="text-muted">
 System                  : {{.SienaName}}
-System Date             : {{.SienaDate}} {{.DateSyncIssue}}<br>
-<b style="color:var(--custom-primary-colour)">Siena Database (MSSQL)</b>
+System Date             : {{.SienaDate}} {{.DateSyncIssue}}
+</pre>
+<h6>Siena Database (MSSQL)</h6>
+<pre class="text-muted">
 Server                  : {{.SQLServer}}
 Database                : {{.SQLDB}}
 Schema                  : {{.SQLSchema}}
-Parent Schema           : {{.SQLParentSchema}}<br>
-<b style="color:var(--custom-primary-colour)">Siena Connectivity</b>
+Parent Schema           : {{.SQLParentSchema}}
+</pre>
+<h6>Siena Connectivity</h6>
+<pre class="text-muted">
 Txns Delivery           : {{.DealImportInPath}}
 Txns Response           : {{.DealImportOutPath}}
 Static Delivery         : {{.StaticDataInPath}}
@@ -50,50 +48,13 @@ Static Response         : {{.StaticDataOutPath}}
 FundsCheck Requests     : {{.FundsCheckOutPath}}
 FundsCheck Response     : {{.FundsCheckInPath}}
 Rates & Prices Delivery : {{.RatesDataInPath}}
-
-
 </pre>
-
     </div>
 
-
-  </div>
-
-  <script>
-    $(document).ready(function() {
-      $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
-    });
-  </script>
 
 
 
   {{template "footer" .}}
-  <footer>
-  <div class="fixed-bottom">
-    <div style="background-color: var(--custom-light-grey);padding:.2rem;padding-left:.3rem;">
-      <div class="font-weight-light text-muted" style="font-size:70%;">
-{{if .DateSyncIssue}}&nbsp{{.DateSyncIssue}}&nbsp&nbsp{{end}}
-{{.AppServerName}}
-
-&nbsp|&nbsp
-{{.AppServerDate}}
-&nbsp|&nbsp
-{{.SienaName}}
-&nbsp|&nbsp
-{{if .DateSyncIssue}}<strong>{{end}}
-{{.SienaDate}}
-{{if .DateSyncIssue}}</strong>{{end}}
-&nbsp|&nbsp
-{{.UserName}}
-      </div>
-    </div>
-  </div>
-</footer>
 </body>
 
 

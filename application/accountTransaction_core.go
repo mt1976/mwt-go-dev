@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:57
+// Date & Time		    : 06/12/2021 at 17:42:30
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //accounttransaction_PageList provides the information for the template for a list of AccountTransactions
 type AccountTransaction_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type AccountTransaction_PageList struct {
 
 //accounttransaction_Page provides the information for the template for an individual AccountTransaction
 type AccountTransaction_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		LegNo string
 		MMLegNo string
@@ -71,7 +73,7 @@ type AccountTransaction_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -106,15 +108,17 @@ func AccountTransaction_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.AccountTransaction_GetList()
 
 	pageDetail := AccountTransaction_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.AccountTransaction_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.AccountTransaction_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.AccountTransaction_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.AccountTransaction_TemplateList, w, r, pageDetail)
 
 }
 
@@ -134,14 +138,14 @@ func AccountTransaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.AccountTransaction_GetByID(searchID)
 
 	pageDetail := AccountTransaction_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.AccountTransaction_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.AccountTransaction_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.LegNo = rD.LegNo
 pageDetail.MMLegNo = rD.MMLegNo
@@ -157,16 +161,16 @@ pageDetail.InterestCalculationDate = rD.InterestCalculationDate
 pageDetail.AmendmentAmount = rD.AmendmentAmount
 pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.AccountTransaction_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.AccountTransaction_TemplateView, w, r, pageDetail)
 
 }
 
@@ -186,14 +190,14 @@ func AccountTransaction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.AccountTransaction_GetByID(searchID)
 	
 	pageDetail := AccountTransaction_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.AccountTransaction_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.AccountTransaction_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.LegNo = rD.LegNo
 pageDetail.MMLegNo = rD.MMLegNo
@@ -209,13 +213,15 @@ pageDetail.InterestCalculationDate = rD.InterestCalculationDate
 pageDetail.AmendmentAmount = rD.AmendmentAmount
 pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.AccountTransaction_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.AccountTransaction_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -233,7 +239,7 @@ func AccountTransaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.AccountTransaction
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.AccountTransaction_SienaReference)
 		item.LegNo = r.FormValue(dm.AccountTransaction_LegNo)
 		item.MMLegNo = r.FormValue(dm.AccountTransaction_MMLegNo)
@@ -250,9 +256,9 @@ func AccountTransaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DealtCcy = r.FormValue(dm.AccountTransaction_DealtCcy)
 		item.AmountDp = r.FormValue(dm.AccountTransaction_AmountDp)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.AccountTransaction_Store(item)	
 
@@ -273,14 +279,14 @@ func AccountTransaction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := AccountTransaction_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.AccountTransaction_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.AccountTransaction_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.LegNo = ""
 pageDetail.MMLegNo = ""
@@ -296,11 +302,13 @@ pageDetail.InterestCalculationDate = ""
 pageDetail.AmendmentAmount = ""
 pageDetail.DealtCcy = ""
 pageDetail.AmountDp = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.AccountTransaction_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.AccountTransaction_TemplateNew, w, r, pageDetail)
 
 }
 

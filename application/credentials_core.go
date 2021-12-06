@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:01
+// Date & Time		    : 06/12/2021 at 17:42:33
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //credentials_PageList provides the information for the template for a list of Credentialss
 type Credentials_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Credentials_PageList struct {
 
 //credentials_Page provides the information for the template for an individual Credentials
 type Credentials_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Username string
@@ -81,7 +83,7 @@ type Credentials_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -123,15 +125,17 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Credentials_GetList()
 
 	pageDetail := Credentials_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Credentials_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Credentials_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Credentials_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Credentials_TemplateList, w, r, pageDetail)
 
 }
 
@@ -151,14 +155,14 @@ func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Credentials_GetByID(searchID)
 
 	pageDetail := Credentials_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Credentials_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Credentials_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Username = rD.Username
@@ -179,8 +183,8 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -190,11 +194,11 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 	// func credentials_HandlerViewImpl(pageDetail Credentials_Page) Credentials_Page {return pageDetail}
 	pageDetail = credentials_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Credentials_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Credentials_TemplateView, w, r, pageDetail)
 
 }
 
@@ -214,14 +218,14 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Credentials_GetByID(searchID)
 	
 	pageDetail := Credentials_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Credentials_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Credentials_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Username = rD.Username
@@ -242,8 +246,8 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 	// credentials_HandlerEditImpl should be specified in application/credentials_Impl.go
@@ -252,9 +256,11 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 	// func credentials_HandlerEditImpl(pageDetail Credentials_Page) Credentials_Page {return pageDetail}
 	pageDetail = credentials_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Credentials_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Credentials_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -272,7 +278,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Credentials
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Credentials_SYSId)
 		item.Id = r.FormValue(dm.Credentials_Id)
 		item.Username = r.FormValue(dm.Credentials_Username)
@@ -294,7 +300,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	// credentials_HandlerSaveImpl should be specified in application/credentials_Impl.go
 	// to provide the implementation for the special case.
@@ -302,7 +308,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func credentials_HandlerSaveImpl(item dm.Credentials) dm.Credentials {return item}
 	item = credentials_HandlerSaveImpl(item)
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Credentials_Store(item)	
 
@@ -323,14 +329,14 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Credentials_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Credentials_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Credentials_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Username = ""
@@ -351,11 +357,13 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Credentials_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Credentials_TemplateNew, w, r, pageDetail)
 
 }
 

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:05
+// Date & Time		    : 06/12/2021 at 17:42:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Schedule_Id, "")
    recItem.Name  = get_String(rec, dm.Schedule_Name, "")
@@ -100,7 +100,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
    recItem.SYSUpdatedBy  = get_String(rec, dm.Schedule_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Schedule_SYSUpdatedHost, "")
    recItem.Human  = get_String(rec, dm.Schedule_Human, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

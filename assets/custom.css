@@ -24,6 +24,7 @@
     --custom-background: #FFFFFF;
     --custom-light-grey: #d3d3d3;
     --custom-dark-grey: #404040;
+    --custom-audit-text: #b4b4b4;
 }
 
 body>div.container-fluid>div>form>div.card-header.font-weight-bold.border-primary>div>div.col-sm.text-right>div {
@@ -120,6 +121,7 @@ body>div.container-fluid>div>form>div.card-header>div>div.col.text-right>div {
 
 .dataTables_wrapper .no-footer {
     background-color: transparent !important;
+    padding: 0;
 }
 
 .dataTables_wrapper .dataTables_filter input {
@@ -162,7 +164,7 @@ body>div.container-fluid>div>form>div.card-header>div>div.col.text-right>div {
     box-sizing: border-box;
     display: inline-block;
     min-width: 1.5em;
-    padding: 0.5em 1em;
+    padding: 0.5em 1em!important;
     margin-left: 2px;
     text-align: center;
     text-decoration: bold !important;
@@ -179,7 +181,8 @@ body>div.container-fluid>div>form>div.card-header>div>div.col.text-right>div {
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
-    color: white !important;
+    color: rgb(117, 117, 117) !important;
+    padding: .25rem !important;
 }
 
 select {
@@ -231,9 +234,28 @@ table.dataTable thead .sorting_desc {
     color: var(--custom-primary-colour);
     background-color: var(--custom-primary-colour) !important;
     border-color: var(--custom-primary-colour) !important;
-    border-radius: 7px;
+    // border-radius: 7px;
     border-style: dotted;
     background: 0 !important;
+}
+
+.dataTables_wrapper .paging_simple_numbers {
+    //background-color: var(--custom-primary-colour) !important;
+    //color: var(--custom-primary-light) !important;
+    padding: 0!important;
+    padding-top: 0.5rem!important;
+    margin: 0!important;
+}
+
+.paginate_button {
+    //background-color: red!important;
+    padding: 0.1rem!important;
+    margin: 0!important;
+}
+
+.dataTables_info {
+    color: var(--custom-primary-colour) !important;
+    margin: 4!important;
 }
 
 body {
@@ -335,6 +357,12 @@ body {
     max-height: 95%;
 }
 
+.table.dataTable.no-footer {
+    // background-color: red!important;
+    border-bottom: 0 !important;
+    ;
+}
+
 .alert {
     margin-top: 15px;
 }
@@ -347,14 +375,20 @@ body {
 }
 
 .card {
-    //border-radius: 7px;
-    //margin-top: 15px;
+    //
+    border-radius: 7px;
+    //
+    margin-top: 15px;
     width: 100%;
-    //display: flex;
-    //overflow-x: hidden;
+    //
+    display: flex;
+    //
+    ;
+    overflow-x: 0;
     background-color: var(--custom-background)!important;
     margin-bottom: 0;
     border: 0;
+    padding: 0;
 }
 
 //  color: var(--custom-grey);
@@ -364,10 +398,19 @@ body {
 .card-body {
     //overflow-x: hidden;
     margin-top: 0;
-    //padding-top: 1rem;
-    padding: 0;
+    padding: 0 !important;
     background-color: var(--custom-background);
+    background-color: red !important;
     border-style: none;
+    padding-bottom: 1rem!important;
+}
+
+div.card-body {
+    padding: .5rem !important;
+    padding-top: 0 !important;
+    background-color: rgb(247, 244, 244);
+    border-radius: 0px 0px 7px 7px !important;
+    padding-bottom: .75rem !important;
 }
 
 .card-footer {
@@ -375,20 +418,22 @@ body {
     padding: 5;
     padding-top: 2;
     background-color: var(--custom-background);
+    border-radius: 7px;
 }
 
-.card-header {
-    border-radius: 7px;
+div.card-header {
+    // border-radius: 7px;
     font-weight: normal !important;
     font-size: 1.3rem !important;
     justify-content: center;
     margin: 0;
     padding: 5px !important;
     //padding-top: 10px;
-    color: var(--custom-primary)!important;
+    color: var(--custom-primary-colour)!important;
     background-color: var(--custom-grey);
     vertical-align: middle;
     border-bottom: 0!important;
+    border-radius: 10px 15px 0 0;
 }
 
 .card-header .row .col {
@@ -403,11 +448,14 @@ body {
 
 .card-header:first-child {
     border-radius: 7px!important;
+    border-radius: 7px 7px 0 0 !important;
+    padding-left: 1rem!important;
 }
 
 .table-responsive {
     padding: 0;
     margin-top: 0!important;
+    margin-bottom: 0!important;
 }
 
 .dataTables_wrapper {
@@ -989,4 +1037,37 @@ table.table-fit tfoot td {
 a:hover {
     color: var(--custom-tertiary);
     text-decoration: none;
+}
+
+.auditheader {
+    //background-color: var(--custom-primary-colour);
+    color: var(--custom-audit-text)!important;
+    font-size: 20px;
+    //font-weight: bold;
+    padding: 0px;
+    padding-bottom: 10px;
+    // margin-left: 1rem;
+    // margin-right: 1rem;
+}
+
+.auditbody {
+    //
+    background-color: var(--custom-primary-light);
+    // background-color: red;
+    color: var(--custom-audit-text)!important;
+    padding: 0px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: smaller;
+}
+
+.audittitle {
+    background-color: var(--custom-light-grey);
+    color: var(--custom-primary-colour);
+    //font-size: 20px;
+    font-weight: normal;
+    padding: 0px;
+    // margin-left: 1rem;
+    // margin-right: 1rem;
 }

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:06
+// Date & Time		    : 06/12/2021 at 17:42:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //template_PageList provides the information for the template for a list of Templates
 type Template_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Template_PageList struct {
 
 //template_Page provides the information for the template for an individual Template
 type Template_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		FIELD1 string
 		FIELD2 string
@@ -61,7 +63,7 @@ type Template_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -96,15 +98,17 @@ func Template_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Template_GetList()
 
 	pageDetail := Template_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Template_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Template_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Template_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Template_TemplateList, w, r, pageDetail)
 
 }
 
@@ -124,14 +128,14 @@ func Template_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Template_GetByID(searchID)
 
 	pageDetail := Template_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Template_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Template_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.FIELD1 = rD.FIELD1
 pageDetail.FIELD2 = rD.FIELD2
@@ -142,16 +146,16 @@ pageDetail.SYSUpdated = rD.SYSUpdated
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.ID = rD.ID
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Template_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Template_TemplateView, w, r, pageDetail)
 
 }
 
@@ -171,14 +175,14 @@ func Template_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Template_GetByID(searchID)
 	
 	pageDetail := Template_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Template_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Template_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.FIELD1 = rD.FIELD1
 pageDetail.FIELD2 = rD.FIELD2
@@ -189,13 +193,15 @@ pageDetail.SYSUpdated = rD.SYSUpdated
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.ID = rD.ID
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Template_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Template_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -213,7 +219,7 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("ID"))
 
 	var item dm.Template
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Template_SYSId)
 		item.FIELD1 = r.FormValue(dm.Template_FIELD1)
 		item.FIELD2 = r.FormValue(dm.Template_FIELD2)
@@ -225,9 +231,9 @@ func Template_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Template_SYSUpdatedBy)
 		item.ID = r.FormValue(dm.Template_ID)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Template_Store(item)	
 
@@ -248,14 +254,14 @@ func Template_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Template_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Template_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Template_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.FIELD1 = ""
 pageDetail.FIELD2 = ""
@@ -266,11 +272,13 @@ pageDetail.SYSUpdated = ""
 pageDetail.SYSUpdatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.ID = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Template_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Template_TemplateNew, w, r, pageDetail)
 
 }
 

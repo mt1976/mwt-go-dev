@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:05
+// Date & Time		    : 06/12/2021 at 17:42:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //schedule_PageList provides the information for the template for a list of Schedules
 type Schedule_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Schedule_PageList struct {
 
 //schedule_Page provides the information for the template for an individual Schedule
 type Schedule_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -77,7 +79,7 @@ type Schedule_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -119,15 +121,17 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Schedule_GetList()
 
 	pageDetail := Schedule_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Schedule_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Schedule_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Schedule_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Schedule_TemplateList, w, r, pageDetail)
 
 }
 
@@ -147,14 +151,14 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Schedule_GetByID(searchID)
 
 	pageDetail := Schedule_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Schedule_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -173,8 +177,8 @@ pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
@@ -184,11 +188,11 @@ pageDetail.Human = rD.Human
 	// func schedule_HandlerViewImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
 	pageDetail = schedule_HandlerViewImpl(pageDetail)
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Schedule_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Schedule_TemplateView, w, r, pageDetail)
 
 }
 
@@ -208,14 +212,14 @@ func Schedule_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Schedule_GetByID(searchID)
 	
 	pageDetail := Schedule_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Schedule_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -234,8 +238,8 @@ pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 	// schedule_HandlerEditImpl should be specified in application/schedule_Impl.go
@@ -244,9 +248,11 @@ pageDetail.Human = rD.Human
 	// func schedule_HandlerEditImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
 	pageDetail = schedule_HandlerEditImpl(pageDetail)
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Schedule_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Schedule_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -264,7 +270,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Schedule
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Schedule_SYSId)
 		item.Id = r.FormValue(dm.Schedule_Id)
 		item.Name = r.FormValue(dm.Schedule_Name)
@@ -284,7 +290,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Schedule_SYSUpdatedHost)
 		item.Human = r.FormValue(dm.Schedule_Human)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	// schedule_HandlerSaveImpl should be specified in application/schedule_Impl.go
 	// to provide the implementation for the special case.
@@ -292,7 +298,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// func schedule_HandlerSaveImpl(item dm.Schedule) dm.Schedule {return item}
 	item = schedule_HandlerSaveImpl(item)
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Schedule_Store(item)	
 
@@ -313,14 +319,14 @@ func Schedule_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Schedule_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Schedule_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -339,11 +345,13 @@ pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
 pageDetail.Human = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Schedule_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Schedule_TemplateNew, w, r, pageDetail)
 
 }
 

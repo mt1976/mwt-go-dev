@@ -10,21 +10,21 @@
 
           <div class="row">
             <div class="col">
-              &nbsp;&nbsp;Systems&nbsp;&nbsp;<span class="text-muted">[{{.ItemsOnPage}}]</span>
+              {{.Title}}&nbsp;&nbsp;<span class="text-muted">[{{.ItemsOnPage}}]</span>
               
             </div>
 
             <div class="col text-right">
               <div class="btn-group">
               
-              <button type="submit" value="" class="btn btn-outline-primary" formaction="/SystemsNew" method="POST" title="Create a new Connected System">
+              <button type="submit" value="" class="btn btn-primary" formaction="/SystemsNew" method="POST" title="Create a new Connected System">
                 <i class="fas fa-plus"></i>&nbsp;&nbsp;New
               </button>
               
               
-              <button id="export" type="button" class="btn btn-outline-info"><i class="fas fa-file-csv" title="Export Connected System as CSV"></i>&nbsp;&nbsp;Export</button>
+              <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Connected System as CSV"></i>&nbsp;&nbsp;Export</button>
               
-              <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()" title="Print Connected System"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+              <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Connected System"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
               <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="">
               <table class="table table-striped table-bordered table-hover" id="Table_Systems">
                 <thead class="thead-light">
                   <tr>
@@ -149,14 +149,17 @@
     });
   </script>
 
+
   <script>
 $(document).ready(function(){
     $('#Table_Systems').dataTable({
-      "lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
-      stateSave: true
+      "lengthMenu": [[10,14, 25, 50, 100, 200, -1], [10,14, 25, 50, 100, 200, "All"]],
+      "drawCallback": function( settings ) {$("#Table_Systems").wrap( "<div class='table-responsive'></div>" );},
+      stateSave: true,
     } );
 });
 </script>
+
 
 
 

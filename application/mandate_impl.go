@@ -95,9 +95,8 @@ func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	pageDetail = mandate_HandlerViewImpl(pageDetail)
 
 	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	ExecuteTemplate(dm.Mandate_TemplateView, w, r, pageDetail)
-
 }
 
 //Mandate_HandlerEdit is the handler used generate the Edit page
@@ -168,7 +167,7 @@ func Mandate_HandlerEditItem(w http.ResponseWriter, r *http.Request) {
 	pageDetail = mandate_HandlerEditImpl(pageDetail)
 
 	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
-
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	ExecuteTemplate(dm.Mandate_TemplateEdit, w, r, pageDetail)
 
 }

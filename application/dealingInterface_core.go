@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:36
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //dealinginterface_PageList provides the information for the template for a list of DealingInterfaces
 type DealingInterface_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type DealingInterface_PageList struct {
 
 //dealinginterface_Page provides the information for the template for an individual DealingInterface
 type DealingInterface_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		Name string
 		AcceptReducedAmount string
 		QuoteAsIndicative string
@@ -89,7 +91,7 @@ type DealingInterface_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -124,15 +126,17 @@ func DealingInterface_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DealingInterface_GetList()
 
 	pageDetail := DealingInterface_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.DealingInterface_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealingInterface_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.DealingInterface_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.DealingInterface_TemplateList, w, r, pageDetail)
 
 }
 
@@ -152,14 +156,14 @@ func DealingInterface_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.DealingInterface_GetByID(searchID)
 
 	pageDetail := DealingInterface_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DealingInterface_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
 pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
@@ -184,16 +188,16 @@ pageDetail.UseRerouteDefinitionOnly = rD.UseRerouteDefinitionOnly
 pageDetail.BypassConfirmation = rD.BypassConfirmation
 pageDetail.DIOnAcceptance = rD.DIOnAcceptance
 pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.DealingInterface_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.DealingInterface_TemplateView, w, r, pageDetail)
 
 }
 
@@ -213,14 +217,14 @@ func DealingInterface_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.DealingInterface_GetByID(searchID)
 	
 	pageDetail := DealingInterface_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DealingInterface_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
 pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
@@ -245,13 +249,15 @@ pageDetail.UseRerouteDefinitionOnly = rD.UseRerouteDefinitionOnly
 pageDetail.BypassConfirmation = rD.BypassConfirmation
 pageDetail.DIOnAcceptance = rD.DIOnAcceptance
 pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.DealingInterface_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.DealingInterface_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -269,7 +275,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.DealingInterface
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.DealingInterface_Name)
 		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount)
 		item.QuoteAsIndicative = r.FormValue(dm.DealingInterface_QuoteAsIndicative)
@@ -295,9 +301,9 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DIOnAcceptance = r.FormValue(dm.DealingInterface_DIOnAcceptance)
 		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.DealingInterface_Store(item)	
 
@@ -318,14 +324,14 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := DealingInterface_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DealingInterface_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.AcceptReducedAmount = ""
 pageDetail.QuoteAsIndicative = ""
@@ -350,11 +356,13 @@ pageDetail.UseRerouteDefinitionOnly = ""
 pageDetail.BypassConfirmation = ""
 pageDetail.DIOnAcceptance = ""
 pageDetail.IgnoreESPAmountRules = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.DealingInterface_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.DealingInterface_TemplateNew, w, r, pageDetail)
 
 }
 

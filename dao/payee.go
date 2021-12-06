@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:04
+// Date & Time		    : 06/12/2021 at 17:42:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable, "")
    recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm, "")
    recItem.KeyCounterpartyCentre  = get_String(rec, dm.Payee_KeyCounterpartyCentre, "")
@@ -109,7 +109,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 
 
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

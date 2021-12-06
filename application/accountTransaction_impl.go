@@ -40,6 +40,7 @@ func AccountTransaction_HandlerViewTransaction(w http.ResponseWriter, r *http.Re
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(dm.AccountTransaction_TemplateList, w, r, pageDetail)
 

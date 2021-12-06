@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:59
+// Date & Time		    : 06/12/2021 at 17:42:32
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,14 +92,14 @@ func counterpartycreditrating_Fetch(tsql string) (int, []dm.CounterpartyCreditRa
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.NameFirm  = get_String(rec, dm.CounterpartyCreditRating_NameFirm, "")
    recItem.NameCentre  = get_String(rec, dm.CounterpartyCreditRating_NameCentre, "")
    recItem.CreditRatingUsage  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingUsage, "")
    recItem.CreditRatingAgency  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingAgency, "")
    recItem.CreditRatingName  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingName, "")
    recItem.CompID  = get_String(rec, dm.CounterpartyCreditRating_CompID, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

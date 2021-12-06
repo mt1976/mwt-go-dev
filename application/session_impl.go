@@ -1,6 +1,7 @@
 package application
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -298,4 +299,26 @@ func Session_CreateToken(req *http.Request) string {
 	dao.Session_Store(r)
 
 	return id
+}
+
+func Session_GetSessionInfo(r *http.Request) (dm.SessionInfo, error) {
+	var s dm.SessionInfo
+	s.UserName = Session_GetUserName(r)
+	s.AppDB = core.ApplicationPropertiesDB["database"]
+	s.SienaDB = core.SienaPropertiesDB["database"]
+	s.AppServerDate = time.Now().Format(core.DATEFORMATSIENA)
+	s.SienaServerDate = core.SienaSystemDate.Siena
+	s.HostName = core.SystemHostname
+	s.DateSyncIssue = ""
+	if s.AppServerDate != s.SienaServerDate {
+		s.DateSyncIssue = core.WarningLabel
+	}
+	s.Type = "Primary"
+	if core.IsChildInstance {
+		s.Type = "Secondary"
+	}
+	s.AppName = core.ApplicationProperties["appname"]
+	s.AppID = fmt.Sprintf("%s [r%s-%s]", core.ApplicationProperties["releaseid"], core.ApplicationProperties["releaselevel"], core.ApplicationProperties["releasenumber"])
+	//fmt.Printf("s: %v\n", s)
+	return s, nil
 }

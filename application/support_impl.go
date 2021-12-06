@@ -188,6 +188,17 @@ func PageTitle(
 	return pageTitle
 }
 
+func CardTitle(
+	cardTitle string,
+	pageSubTitle string) string {
+
+	pt := Translation_Lookup("CardTitle", cardTitle+" - "+pageSubTitle)
+
+	cardTitle = pt
+
+	return cardTitle
+}
+
 func ExecuteTemplate(tname string, w http.ResponseWriter, r *http.Request, data interface{}) {
 	//fmt.Printf("tname: %v\n", tname)
 

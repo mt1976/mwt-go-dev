@@ -12,6 +12,7 @@ import (
 
 //AppConfigurationPage is cheese
 type AppConfigurationPage struct {
+	SessionInfo            dm.SessionInfo
 	UserMenu               []dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
@@ -74,7 +75,7 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               UserMenu_Get(r),
 		UserRole:               Session_GetUserRole(r),
 		UserNavi:               "NOT USED",
-		Title:                  core.ApplicationProperties["appname"],
+		Title:                  CardTitle("Application", core.Action_Configure),
 		PageTitle:              PageTitle("Application", core.Action_Configure),
 		RequestPath:            core.ApplicationProperties["deliverpath"],
 		ResponsePath:           core.ApplicationProperties["receivepath"],
@@ -95,7 +96,7 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 		GoVersion:              runtime.Version(),
 		OS:                     runtime.GOOS,
 	}
-	pageAppConfigView.SienaSystemDate = core.SienaSystemDate.Today
+	pageAppConfigView.SienaSystemDate = core.SienaSystemDate.Siena
 	pageAppConfigView.AppDBServer = core.ApplicationPropertiesDB["server"]
 	pageAppConfigView.AppDBPort = core.ApplicationPropertiesDB["port"]
 	pageAppConfigView.AppDBUser = core.ApplicationPropertiesDB["user"]
@@ -123,6 +124,8 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Printf("pageAppConfigView: %v\n", pageAppConfigView)
 	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
+
+	pageAppConfigView.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(tmpl, w, r, pageAppConfigView)
 

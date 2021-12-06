@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:56
+// Date & Time		    : 06/12/2021 at 17:42:29
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -89,7 +89,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
    recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
    recItem.SienaCommonRef  = get_String(rec, dm.Account_SienaCommonRef, "")
@@ -161,7 +161,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 
 
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

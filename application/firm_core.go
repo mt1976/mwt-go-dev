@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:47
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //firm_PageList provides the information for the template for a list of Firms
 type Firm_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Firm_PageList struct {
 
 //firm_Page provides the information for the template for an individual Firm
 type Firm_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		FirmName string
 		FullName string
 		Country string
@@ -53,7 +55,7 @@ type Firm_Page struct {
 	Sector_Impl_List	[]dm.Sector
 	Country_Impl_List	[]dm.Country
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -88,15 +90,17 @@ func Firm_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Firm_GetList()
 
 	pageDetail := Firm_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Firm_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Firm_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Firm_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Firm_TemplateList, w, r, pageDetail)
 
 }
 
@@ -116,32 +120,32 @@ func Firm_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Firm_GetByID(searchID)
 
 	pageDetail := Firm_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Firm_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.FirmName = rD.FirmName
 pageDetail.FullName = rD.FullName
 pageDetail.Country = rD.Country
 pageDetail.Sector = rD.Sector
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Sector_Lookup_Name,_:= dao.Sector_GetByID(rD.Sector)
 pageDetail.Sector_Impl = Sector_Lookup_Name.Name
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup_Name.Name
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Firm_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Firm_TemplateView, w, r, pageDetail)
 
 }
 
@@ -161,31 +165,33 @@ func Firm_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Firm_GetByID(searchID)
 	
 	pageDetail := Firm_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Firm_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.FirmName = rD.FirmName
 pageDetail.FullName = rD.FullName
 pageDetail.Country = rD.Country
 pageDetail.Sector = rD.Sector
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Sector_Lookup_Name,_:= dao.Sector_GetByID(rD.Sector)
 pageDetail.Sector_Impl = Sector_Lookup_Name.Name
 _,pageDetail.Sector_Impl_List,_ = dao.Sector_GetList()
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup_Name.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Firm_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Firm_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -203,7 +209,7 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("FirmName"))
 
 	var item dm.Firm
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.FirmName = r.FormValue(dm.Firm_FirmName)
 		item.FullName = r.FormValue(dm.Firm_FullName)
 		item.Country = r.FormValue(dm.Firm_Country)
@@ -211,9 +217,9 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Sector_Impl = r.FormValue(dm.Firm_Sector_Impl)
 		item.Country_Impl = r.FormValue(dm.Firm_Country_Impl)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Firm_Store(item)	
 
@@ -234,27 +240,29 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Firm_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Firm_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.FirmName = ""
 pageDetail.FullName = ""
 pageDetail.Country = ""
 pageDetail.Sector = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Sector_Impl = ""
 _,pageDetail.Sector_Impl_List,_ = dao.Sector_GetList()
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Firm_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Firm_TemplateNew, w, r, pageDetail)
 
 }
 

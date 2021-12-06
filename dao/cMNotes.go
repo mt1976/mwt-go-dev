@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:58
+// Date & Time		    : 06/12/2021 at 17:42:32
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.NoteId  = get_Int(rec, dm.CMNotes_NoteId, "0")
    recItem.StreamId  = get_Int(rec, dm.CMNotes_StreamId, "0")
    recItem.Summary  = get_String(rec, dm.CMNotes_Summary, "")
@@ -89,7 +89,7 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
    recItem.RecordState  = get_Int(rec, dm.CMNotes_RecordState, "0")
    recItem.CreatedBy  = get_String(rec, dm.CMNotes_CreatedBy, "")
    recItem.CreatedDateTime  = get_Time(rec, dm.CMNotes_CreatedDateTime, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

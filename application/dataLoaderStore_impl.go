@@ -97,7 +97,7 @@ func ListLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 		UserNavi:         "NOT USED",
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle("Data Loader", core.Action_List),
 		PageTitle:        PageTitle("Data Loader", core.Action_List),
 		LoaderStoreCount: noItems,
 		LoaderStoreList:  returnList,
@@ -125,8 +125,8 @@ func ViewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLoaderStoreByID(searchID)
 
 	pageLoaderStoreList := appLoaderStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: PageTitle("Data Payload", core.Action_View),
+		Title:     CardTitle("Data Loader", core.Action_View),
+		PageTitle: PageTitle("Data Loader", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
@@ -172,8 +172,8 @@ func EditLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, instanceList, _ := GetSystemStoreList()
 
 	pageLoaderStoreList := appLoaderStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: PageTitle("Data Payload", core.Action_Edit),
+		Title:     CardTitle("Data Loader", core.Action_Edit),
+		PageTitle: PageTitle("Data Loader", core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -307,7 +307,7 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageLoaderStoreList := appLoaderStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     CardTitle("Data Loader", core.Action_New),
 		PageTitle: PageTitle("Data Loader", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),

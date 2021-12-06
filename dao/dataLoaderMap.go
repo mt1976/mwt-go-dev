@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:02
+// Date & Time		    : 06/12/2021 at 17:42:35
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -128,7 +128,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.DataLoaderMap_SYSId, "0")
    recItem.Id  = get_String(rec, dm.DataLoaderMap_Id, "")
    recItem.Name  = get_String(rec, dm.DataLoaderMap_Name, "")
@@ -146,7 +146,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 
 
 
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:36
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
    recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
    recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative, "True")
@@ -117,7 +117,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
    recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation, "True")
    recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance, "True")
    recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules, "True")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

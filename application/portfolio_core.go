@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:04
+// Date & Time		    : 06/12/2021 at 17:42:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //portfolio_PageList provides the information for the template for a list of Portfolios
 type Portfolio_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Portfolio_PageList struct {
 
 //portfolio_Page provides the information for the template for an individual Portfolio
 type Portfolio_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Description1 string
 		Description2 string
@@ -65,7 +67,7 @@ type Portfolio_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -100,15 +102,17 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Portfolio_GetList()
 
 	pageDetail := Portfolio_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Portfolio_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Portfolio_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Portfolio_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Portfolio_TemplateList, w, r, pageDetail)
 
 }
 
@@ -128,14 +132,14 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Portfolio_GetByID(searchID)
 
 	pageDetail := Portfolio_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Portfolio_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Portfolio_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Description1 = rD.Description1
 pageDetail.Description2 = rD.Description2
@@ -148,16 +152,16 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Portfolio_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Portfolio_TemplateView, w, r, pageDetail)
 
 }
 
@@ -177,14 +181,14 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Portfolio_GetByID(searchID)
 	
 	pageDetail := Portfolio_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Portfolio_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Portfolio_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Description1 = rD.Description1
 pageDetail.Description2 = rD.Description2
@@ -197,13 +201,15 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Portfolio_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Portfolio_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -221,7 +227,7 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Portfolio
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Portfolio_Code)
 		item.Description1 = r.FormValue(dm.Portfolio_Description1)
 		item.Description2 = r.FormValue(dm.Portfolio_Description2)
@@ -235,9 +241,9 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.Portfolio_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.Portfolio_ChangeType)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Portfolio_Store(item)	
 
@@ -258,14 +264,14 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Portfolio_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Portfolio_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Portfolio_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Description1 = ""
 pageDetail.Description2 = ""
@@ -278,11 +284,13 @@ pageDetail.UpdatedDateTime = ""
 pageDetail.DeletedTransactionId = ""
 pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Portfolio_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Portfolio_TemplateNew, w, r, pageDetail)
 
 }
 

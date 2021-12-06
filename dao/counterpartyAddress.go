@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:59
+// Date & Time		    : 06/12/2021 at 17:42:32
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm, "")
    recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre, "")
    recItem.Address1  = get_String(rec, dm.CounterpartyAddress_Address1, "")
@@ -101,7 +101,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
    recItem.County  = get_String(rec, dm.CounterpartyAddress_County, "")
    recItem.Postcode  = get_String(rec, dm.CounterpartyAddress_Postcode, "")
    recItem.CompID  = get_String(rec, dm.CounterpartyAddress_CompID, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

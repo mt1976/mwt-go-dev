@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:58
+// Date & Time		    : 06/12/2021 at 17:42:31
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //centre_PageList provides the information for the template for a list of Centres
 type Centre_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Centre_PageList struct {
 
 //centre_Page provides the information for the template for an individual Centre
 type Centre_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		Country string
@@ -49,7 +51,7 @@ type Centre_Page struct {
 	
 	Country_Impl_List	[]dm.Country
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -84,15 +86,17 @@ func Centre_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Centre_GetList()
 
 	pageDetail := Centre_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Centre_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Centre_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Centre_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Centre_TemplateList, w, r, pageDetail)
 
 }
 
@@ -112,29 +116,29 @@ func Centre_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Centre_GetByID(searchID)
 
 	pageDetail := Centre_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Centre_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Centre_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Country = rD.Country
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup_Name.Name
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Centre_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Centre_TemplateView, w, r, pageDetail)
 
 }
 
@@ -154,27 +158,29 @@ func Centre_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Centre_GetByID(searchID)
 	
 	pageDetail := Centre_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Centre_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Centre_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Country = rD.Country
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Impl = Country_Lookup_Name.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Centre_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Centre_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -192,15 +198,15 @@ func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Centre
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Centre_Code)
 		item.Name = r.FormValue(dm.Centre_Name)
 		item.Country = r.FormValue(dm.Centre_Country)
 		item.Country_Impl = r.FormValue(dm.Centre_Country_Impl)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Centre_Store(item)	
 
@@ -221,24 +227,26 @@ func Centre_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Centre_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Centre_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Centre_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.Country = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Centre_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Centre_TemplateNew, w, r, pageDetail)
 
 }
 

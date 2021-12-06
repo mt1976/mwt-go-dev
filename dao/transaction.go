@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:37
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Transaction_SienaReference, "")
    recItem.Status  = get_String(rec, dm.Transaction_Status, "")
    recItem.ValueDate  = get_Time(rec, dm.Transaction_ValueDate, "")
@@ -194,7 +194,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
    recItem.PaymentError  = get_String(rec, dm.Transaction_PaymentError, "")
    recItem.RepoPrincipal  = get_Float(rec, dm.Transaction_RepoPrincipal, "0.00")
    recItem.FixingFrequency  = get_String(rec, dm.Transaction_FixingFrequency, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

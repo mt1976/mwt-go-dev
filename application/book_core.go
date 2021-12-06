@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:57
+// Date & Time		    : 06/12/2021 at 17:42:30
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //book_PageList provides the information for the template for a list of Books
 type Book_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Book_PageList struct {
 
 //book_Page provides the information for the template for an individual Book
 type Book_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		BookName string
 		FullName string
 		PLManage string
@@ -59,7 +61,7 @@ type Book_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -94,15 +96,17 @@ func Book_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Book_GetList()
 
 	pageDetail := Book_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Book_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Book_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Book_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Book_TemplateList, w, r, pageDetail)
 
 }
 
@@ -122,14 +126,14 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Book_GetByID(searchID)
 
 	pageDetail := Book_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Book_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -139,16 +143,16 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Book_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Book_TemplateView, w, r, pageDetail)
 
 }
 
@@ -168,14 +172,14 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Book_GetByID(searchID)
 	
 	pageDetail := Book_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Book_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -185,13 +189,15 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Book_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Book_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -209,7 +215,7 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("BookName"))
 
 	var item dm.Book
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.BookName = r.FormValue(dm.Book_BookName)
 		item.FullName = r.FormValue(dm.Book_FullName)
 		item.PLManage = r.FormValue(dm.Book_PLManage)
@@ -220,9 +226,9 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod)
 		item.InternalId = r.FormValue(dm.Book_InternalId)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Book_Store(item)	
 
@@ -243,14 +249,14 @@ func Book_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Book_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Book_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = ""
 pageDetail.FullName = ""
 pageDetail.PLManage = ""
@@ -260,11 +266,13 @@ pageDetail.CostOfCarry = ""
 pageDetail.CostOfFunding = ""
 pageDetail.LotAllocationMethod = ""
 pageDetail.InternalId = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Book_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Book_TemplateNew, w, r, pageDetail)
 
 }
 

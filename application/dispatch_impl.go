@@ -26,6 +26,7 @@ var appDispatchStoreSQLGETTYPE = "SELECT %s FROM %s.dispatchStore WHERE type='%s
 
 //appDispatchStorePage is cheese
 type appDispatchStoreListPage struct {
+	SessionInfo        dm.SessionInfo
 	UserMenu           []dm.AppMenuItem
 	UserRole           string
 	UserNavi           string
@@ -37,13 +38,14 @@ type appDispatchStoreListPage struct {
 
 //appDispatchStorePage is cheese
 type appDispatchStorePage struct {
-	UserMenu  []dm.AppMenuItem
-	UserRole  string
-	UserNavi  string
-	Title     string
-	PageTitle string
-	ID        string
-	Action    string
+	SessionInfo dm.SessionInfo
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	UserNavi    string
+	Title       string
+	PageTitle   string
+	ID          string
+	Action      string
 	// Variable Bits Below
 	Id         string
 	System     string
@@ -92,6 +94,7 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		DispatchStoreCount: noItems,
 		DispatchStoreList:  returnList,
 	}
+	pageDispatchStoreList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
@@ -134,6 +137,7 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//fmt.Println(pageDispatchStoreList)
+	pageDispatchStoreList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
@@ -175,6 +179,7 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SYSUpdated: returnRecord.SYSUpdated,
 	}
 	//fmt.Println(pageDispatchStoreList)
+	pageDispatchStoreList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 
@@ -290,6 +295,7 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		// Below are variable
 
 	}
+	pageDispatchStoreList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(tmpl, w, r, pageDispatchStoreList)
 

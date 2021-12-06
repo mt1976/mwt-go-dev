@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:37
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //transaction_PageList provides the information for the template for a list of Transactions
 type Transaction_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Transaction_PageList struct {
 
 //transaction_Page provides the information for the template for an individual Transaction
 type Transaction_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		ValueDate string
@@ -265,7 +267,7 @@ type Transaction_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -300,15 +302,17 @@ func Transaction_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Transaction_GetList()
 
 	pageDetail := Transaction_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Transaction_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Transaction_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Transaction_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Transaction_TemplateList, w, r, pageDetail)
 
 }
 
@@ -328,14 +332,14 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Transaction_GetByID(searchID)
 
 	pageDetail := Transaction_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Transaction_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Transaction_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.ValueDate = rD.ValueDate
@@ -448,16 +452,16 @@ pageDetail.RejectReason = rD.RejectReason
 pageDetail.PaymentError = rD.PaymentError
 pageDetail.RepoPrincipal = rD.RepoPrincipal
 pageDetail.FixingFrequency = rD.FixingFrequency
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Transaction_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Transaction_TemplateView, w, r, pageDetail)
 
 }
 
@@ -477,14 +481,14 @@ func Transaction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Transaction_GetByID(searchID)
 	
 	pageDetail := Transaction_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Transaction_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Transaction_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.ValueDate = rD.ValueDate
@@ -597,13 +601,15 @@ pageDetail.RejectReason = rD.RejectReason
 pageDetail.PaymentError = rD.PaymentError
 pageDetail.RepoPrincipal = rD.RepoPrincipal
 pageDetail.FixingFrequency = rD.FixingFrequency
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Transaction_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Transaction_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -621,7 +627,7 @@ func Transaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.Transaction
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.Transaction_SienaReference)
 		item.Status = r.FormValue(dm.Transaction_Status)
 		item.ValueDate = r.FormValue(dm.Transaction_ValueDate)
@@ -735,9 +741,9 @@ func Transaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.RepoPrincipal = r.FormValue(dm.Transaction_RepoPrincipal)
 		item.FixingFrequency = r.FormValue(dm.Transaction_FixingFrequency)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Transaction_Store(item)	
 
@@ -758,14 +764,14 @@ func Transaction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Transaction_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Transaction_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Transaction_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.Status = ""
 pageDetail.ValueDate = ""
@@ -878,11 +884,13 @@ pageDetail.RejectReason = ""
 pageDetail.PaymentError = ""
 pageDetail.RepoPrincipal = ""
 pageDetail.FixingFrequency = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Transaction_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Transaction_TemplateNew, w, r, pageDetail)
 
 }
 

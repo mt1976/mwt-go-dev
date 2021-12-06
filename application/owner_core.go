@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:04
+// Date & Time		    : 06/12/2021 at 17:42:55
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //owner_PageList provides the information for the template for a list of Owners
 type Owner_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Owner_PageList struct {
 
 //owner_Page provides the information for the template for an individual Owner
 type Owner_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		UserName string
 		FullName string
 		Type string
@@ -71,7 +73,7 @@ type Owner_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -106,15 +108,17 @@ func Owner_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Owner_GetList()
 
 	pageDetail := Owner_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Owner_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Owner_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Owner_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Owner_TemplateList, w, r, pageDetail)
 
 }
 
@@ -134,14 +138,14 @@ func Owner_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Owner_GetByID(searchID)
 
 	pageDetail := Owner_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Owner_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Owner_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.UserName = rD.UserName
 pageDetail.FullName = rD.FullName
 pageDetail.Type = rD.Type
@@ -157,16 +161,16 @@ pageDetail.TelephoneNumber = rD.TelephoneNumber
 pageDetail.TokenId = rD.TokenId
 pageDetail.Entity = rD.Entity
 pageDetail.UserCode = rD.UserCode
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Owner_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Owner_TemplateView, w, r, pageDetail)
 
 }
 
@@ -186,14 +190,14 @@ func Owner_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Owner_GetByID(searchID)
 	
 	pageDetail := Owner_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Owner_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Owner_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.UserName = rD.UserName
 pageDetail.FullName = rD.FullName
 pageDetail.Type = rD.Type
@@ -209,13 +213,15 @@ pageDetail.TelephoneNumber = rD.TelephoneNumber
 pageDetail.TokenId = rD.TokenId
 pageDetail.Entity = rD.Entity
 pageDetail.UserCode = rD.UserCode
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Owner_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Owner_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -233,7 +239,7 @@ func Owner_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("UserName"))
 
 	var item dm.Owner
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.UserName = r.FormValue(dm.Owner_UserName)
 		item.FullName = r.FormValue(dm.Owner_FullName)
 		item.Type = r.FormValue(dm.Owner_Type)
@@ -250,9 +256,9 @@ func Owner_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Entity = r.FormValue(dm.Owner_Entity)
 		item.UserCode = r.FormValue(dm.Owner_UserCode)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Owner_Store(item)	
 
@@ -273,14 +279,14 @@ func Owner_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Owner_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Owner_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Owner_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.UserName = ""
 pageDetail.FullName = ""
 pageDetail.Type = ""
@@ -296,11 +302,13 @@ pageDetail.TelephoneNumber = ""
 pageDetail.TokenId = ""
 pageDetail.Entity = ""
 pageDetail.UserCode = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Owner_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Owner_TemplateNew, w, r, pageDetail)
 
 }
 

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:02
+// Date & Time		    : 06/12/2021 at 17:42:34
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //dataloaderdata_PageList provides the information for the template for a list of DataLoaderDatas
 type DataLoaderData_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type DataLoaderData_PageList struct {
 
 //dataloaderdata_Page provides the information for the template for an individual DataLoaderData
 type DataLoaderData_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Row string
@@ -77,7 +79,7 @@ type DataLoaderData_Page struct {
 	LoaderDescription_Impl_List	[]dm.DataLoader
 	LoaderType_Impl_List	[]dm.DataLoader
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -112,15 +114,17 @@ func DataLoaderData_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DataLoaderData_GetList()
 
 	pageDetail := DataLoaderData_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.DataLoaderData_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DataLoaderData_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.DataLoaderData_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.DataLoaderData_TemplateList, w, r, pageDetail)
 
 }
 
@@ -140,14 +144,14 @@ func DataLoaderData_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
 
 	pageDetail := DataLoaderData_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Row = rD.Row
@@ -163,22 +167,22 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Loader_Lookup_Name,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.Loader_Impl = Loader_Lookup_Name.Name
 _,Loader_Lookup_Description,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.LoaderDescription_Impl = Loader_Lookup_Description.Description
 _,Loader_Lookup_Type,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.LoaderType_Impl = Loader_Lookup_Type.Type
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.DataLoaderData_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.DataLoaderData_TemplateView, w, r, pageDetail)
 
 }
 
@@ -198,14 +202,14 @@ func DataLoaderData_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
 	
 	pageDetail := DataLoaderData_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Row = rD.Row
@@ -221,7 +225,7 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Loader_Lookup_Name,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.Loader_Impl = Loader_Lookup_Name.Name
 _,pageDetail.Loader_Impl_List,_ = dao.DataLoader_GetList()
@@ -231,12 +235,14 @@ _,pageDetail.LoaderDescription_Impl_List,_ = dao.DataLoader_GetList()
 _,Loader_Lookup_Type,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.LoaderType_Impl = Loader_Lookup_Type.Type
 _,pageDetail.LoaderType_Impl_List,_ = dao.DataLoader_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.DataLoaderData_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.DataLoaderData_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -254,7 +260,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.DataLoaderData
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.DataLoaderData_SYSId)
 		item.Id = r.FormValue(dm.DataLoaderData_Id)
 		item.Row = r.FormValue(dm.DataLoaderData_Row)
@@ -274,9 +280,9 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LoaderDescription_Impl = r.FormValue(dm.DataLoaderData_LoaderDescription_Impl)
 		item.LoaderType_Impl = r.FormValue(dm.DataLoaderData_LoaderType_Impl)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.DataLoaderData_Store(item)	
 
@@ -297,14 +303,14 @@ func DataLoaderData_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := DataLoaderData_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Row = ""
@@ -320,17 +326,19 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Loader_Impl = ""
 _,pageDetail.Loader_Impl_List,_ = dao.DataLoader_GetList()
 pageDetail.LoaderDescription_Impl = ""
 _,pageDetail.LoaderDescription_Impl_List,_ = dao.DataLoader_GetList()
 pageDetail.LoaderType_Impl = ""
 _,pageDetail.LoaderType_Impl_List,_ = dao.DataLoader_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.DataLoaderData_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.DataLoaderData_TemplateNew, w, r, pageDetail)
 
 }
 

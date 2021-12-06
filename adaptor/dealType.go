@@ -8,7 +8,7 @@ package adaptor
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:42
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

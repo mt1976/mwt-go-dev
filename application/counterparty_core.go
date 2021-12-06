@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:59
+// Date & Time		    : 06/12/2021 at 17:42:32
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //counterparty_PageList provides the information for the template for a list of Counterpartys
 type Counterparty_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Counterparty_PageList struct {
 
 //counterparty_Page provides the information for the template for an individual Counterparty
 type Counterparty_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		NameCentre string
 		NameFirm string
 		FullName string
@@ -77,7 +79,7 @@ type Counterparty_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -112,15 +114,17 @@ func Counterparty_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Counterparty_GetList()
 
 	pageDetail := Counterparty_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Counterparty_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Counterparty_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Counterparty_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Counterparty_TemplateList, w, r, pageDetail)
 
 }
 
@@ -140,14 +144,14 @@ func Counterparty_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Counterparty_GetByID(searchID)
 
 	pageDetail := Counterparty_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Counterparty_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Counterparty_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.FullName = rD.FullName
@@ -166,16 +170,16 @@ pageDetail.NameCentreName = rD.NameCentreName
 pageDetail.CountryCodeName = rD.CountryCodeName
 pageDetail.SectorCodeName = rD.SectorCodeName
 pageDetail.CompID = rD.CompID
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Counterparty_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Counterparty_TemplateView, w, r, pageDetail)
 
 }
 
@@ -195,14 +199,14 @@ func Counterparty_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Counterparty_GetByID(searchID)
 	
 	pageDetail := Counterparty_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Counterparty_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Counterparty_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.FullName = rD.FullName
@@ -221,13 +225,15 @@ pageDetail.NameCentreName = rD.NameCentreName
 pageDetail.CountryCodeName = rD.CountryCodeName
 pageDetail.SectorCodeName = rD.SectorCodeName
 pageDetail.CompID = rD.CompID
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Counterparty_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Counterparty_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -245,7 +251,7 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.Counterparty
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre)
 		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm)
 		item.FullName = r.FormValue(dm.Counterparty_FullName)
@@ -265,9 +271,9 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SectorCodeName = r.FormValue(dm.Counterparty_SectorCodeName)
 		item.CompID = r.FormValue(dm.Counterparty_CompID)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Counterparty_Store(item)	
 
@@ -288,14 +294,14 @@ func Counterparty_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Counterparty_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Counterparty_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Counterparty_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameCentre = ""
 pageDetail.NameFirm = ""
 pageDetail.FullName = ""
@@ -314,11 +320,13 @@ pageDetail.NameCentreName = ""
 pageDetail.CountryCodeName = ""
 pageDetail.SectorCodeName = ""
 pageDetail.CompID = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Counterparty_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Counterparty_TemplateNew, w, r, pageDetail)
 
 }
 

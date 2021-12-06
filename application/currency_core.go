@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:01
+// Date & Time		    : 06/12/2021 at 17:42:34
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //currency_PageList provides the information for the template for a list of Currencys
 type Currency_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Currency_PageList struct {
 
 //currency_Page provides the information for the template for an individual Currency
 type Currency_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		AmountDp string
@@ -89,7 +91,7 @@ type Currency_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -124,15 +126,17 @@ func Currency_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Currency_GetList()
 
 	pageDetail := Currency_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Currency_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Currency_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Currency_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Currency_TemplateList, w, r, pageDetail)
 
 }
 
@@ -152,14 +156,14 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Currency_GetByID(searchID)
 
 	pageDetail := Currency_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Currency_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Currency_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.AmountDp = rD.AmountDp
@@ -184,16 +188,16 @@ pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = rD.StripRateFutureCu
 pageDetail.StripRateFutureCurrencyContractFutureContractCode = rD.StripRateFutureCurrencyContractFutureContractCode
 pageDetail.OvernightFundingSpreadBid = rD.OvernightFundingSpreadBid
 pageDetail.OvernightFundingSpreadOffer = rD.OvernightFundingSpreadOffer
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Currency_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Currency_TemplateView, w, r, pageDetail)
 
 }
 
@@ -213,14 +217,14 @@ func Currency_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Currency_GetByID(searchID)
 	
 	pageDetail := Currency_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Currency_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Currency_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.AmountDp = rD.AmountDp
@@ -245,13 +249,15 @@ pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = rD.StripRateFutureCu
 pageDetail.StripRateFutureCurrencyContractFutureContractCode = rD.StripRateFutureCurrencyContractFutureContractCode
 pageDetail.OvernightFundingSpreadBid = rD.OvernightFundingSpreadBid
 pageDetail.OvernightFundingSpreadOffer = rD.OvernightFundingSpreadOffer
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Currency_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Currency_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -269,7 +275,7 @@ func Currency_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Currency
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Currency_Code)
 		item.Name = r.FormValue(dm.Currency_Name)
 		item.AmountDp = r.FormValue(dm.Currency_AmountDp)
@@ -295,9 +301,9 @@ func Currency_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.OvernightFundingSpreadBid = r.FormValue(dm.Currency_OvernightFundingSpreadBid)
 		item.OvernightFundingSpreadOffer = r.FormValue(dm.Currency_OvernightFundingSpreadOffer)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Currency_Store(item)	
 
@@ -318,14 +324,14 @@ func Currency_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Currency_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Currency_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Currency_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.AmountDp = ""
@@ -350,11 +356,13 @@ pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode = ""
 pageDetail.StripRateFutureCurrencyContractFutureContractCode = ""
 pageDetail.OvernightFundingSpreadBid = ""
 pageDetail.OvernightFundingSpreadOffer = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Currency_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Currency_TemplateNew, w, r, pageDetail)
 
 }
 

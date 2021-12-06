@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:48
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //negotiableinstrument_PageList provides the information for the template for a list of NegotiableInstruments
 type NegotiableInstrument_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type NegotiableInstrument_PageList struct {
 
 //negotiableinstrument_Page provides the information for the template for an individual NegotiableInstrument
 type NegotiableInstrument_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		LongName string
@@ -113,7 +115,7 @@ type NegotiableInstrument_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -148,15 +150,17 @@ func NegotiableInstrument_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.NegotiableInstrument_GetList()
 
 	pageDetail := NegotiableInstrument_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.NegotiableInstrument_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.NegotiableInstrument_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.NegotiableInstrument_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.NegotiableInstrument_TemplateList, w, r, pageDetail)
 
 }
 
@@ -176,14 +180,14 @@ func NegotiableInstrument_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.NegotiableInstrument_GetByID(searchID)
 
 	pageDetail := NegotiableInstrument_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.NegotiableInstrument_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.NegotiableInstrument_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.LongName = rD.LongName
@@ -220,16 +224,16 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.NegotiableInstrument_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.NegotiableInstrument_TemplateView, w, r, pageDetail)
 
 }
 
@@ -249,14 +253,14 @@ func NegotiableInstrument_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.NegotiableInstrument_GetByID(searchID)
 	
 	pageDetail := NegotiableInstrument_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.NegotiableInstrument_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.NegotiableInstrument_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.LongName = rD.LongName
@@ -293,13 +297,15 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.NegotiableInstrument_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.NegotiableInstrument_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -317,7 +323,7 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.NegotiableInstrument
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.NegotiableInstrument_SYSId)
 		item.Id = r.FormValue(dm.NegotiableInstrument_Id)
 		item.LongName = r.FormValue(dm.NegotiableInstrument_LongName)
@@ -355,9 +361,9 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSCreatedHost = r.FormValue(dm.NegotiableInstrument_SYSCreatedHost)
 		item.SYSUpdatedBy = r.FormValue(dm.NegotiableInstrument_SYSUpdatedBy)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.NegotiableInstrument_Store(item)	
 
@@ -378,14 +384,14 @@ func NegotiableInstrument_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := NegotiableInstrument_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.NegotiableInstrument_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.NegotiableInstrument_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.LongName = ""
@@ -422,11 +428,13 @@ pageDetail.SYSUpdatedHost = ""
 pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.NegotiableInstrument_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.NegotiableInstrument_TemplateNew, w, r, pageDetail)
 
 }
 

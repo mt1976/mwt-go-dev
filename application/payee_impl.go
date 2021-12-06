@@ -90,6 +90,7 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	_, KeyCurrency_Lookup, _ := dao.Currency_GetByID(returnRecord.KeyCurrency)
 	pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	ExecuteTemplate(dm.Payee_TemplateView, w, r, pageDetail)
 
 }

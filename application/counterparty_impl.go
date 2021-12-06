@@ -17,6 +17,7 @@ func Counterparty_Publish_Impl(mux http.ServeMux) {
 
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyPage struct {
+	SessionInfo     dm.SessionInfo
 	UserMenu        []dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
@@ -69,6 +70,7 @@ type sienaCounterpartyPage struct {
 
 //sienaCounterpartyItem is cheese
 type sienaCounterpartyItem struct {
+	SessionInfo     dm.SessionInfo
 	ID              string
 	NameCentre      string
 	NameFirm        string
@@ -170,6 +172,8 @@ func Counterparty_Handler360(w http.ResponseWriter, r *http.Request) {
 		TxnList:         txnList,
 		CompID:          returnRecord.CompID,
 	}
+
+	pageSienaCounterpartyList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	ExecuteTemplate(dm.Counterparty_Template360, w, r, pageSienaCounterpartyList)
 

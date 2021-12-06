@@ -42,6 +42,6 @@ func AccountLadder_HandlerViewLadder(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	ExecuteTemplate(dm.AccountLadder_TemplateList, w, r, pageDetail)
 }

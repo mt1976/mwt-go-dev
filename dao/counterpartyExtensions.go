@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:00
+// Date & Time		    : 06/12/2021 at 17:42:32
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.NameFirm  = get_String(rec, dm.CounterpartyExtensions_NameFirm, "")
    recItem.NameCentre  = get_String(rec, dm.CounterpartyExtensions_NameCentre, "")
    recItem.BICCode  = get_String(rec, dm.CounterpartyExtensions_BICCode, "")
@@ -136,7 +136,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
    recItem.ReconciliationLetterFrequency  = get_String(rec, dm.CounterpartyExtensions_ReconciliationLetterFrequency, "")
    recItem.DirectDealing  = get_Bool(rec, dm.CounterpartyExtensions_DirectDealing, "True")
    recItem.CompID  = get_String(rec, dm.CounterpartyExtensions_CompID, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

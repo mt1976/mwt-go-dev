@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:01
+// Date & Time		    : 06/12/2021 at 17:42:34
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //currencypair_PageList provides the information for the template for a list of CurrencyPairs
 type CurrencyPair_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type CurrencyPair_PageList struct {
 
 //currencypair_Page provides the information for the template for an individual CurrencyPair
 type CurrencyPair_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		CodeMajorCurrencyIsoCode string
 		CodeMinorCurrencyIsoCode string
 		ReciprocalActive string
@@ -57,7 +59,7 @@ type CurrencyPair_Page struct {
 	Major_Impl_List	[]dm.Currency
 	Minor_Impl_List	[]dm.Currency
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -92,15 +94,17 @@ func CurrencyPair_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.CurrencyPair_GetList()
 
 	pageDetail := CurrencyPair_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.CurrencyPair_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CurrencyPair_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.CurrencyPair_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.CurrencyPair_TemplateList, w, r, pageDetail)
 
 }
 
@@ -120,34 +124,34 @@ func CurrencyPair_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.CurrencyPair_GetByID(searchID)
 
 	pageDetail := CurrencyPair_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.CurrencyPair_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CurrencyPair_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
 pageDetail.ReciprocalActive = rD.ReciprocalActive
 pageDetail.Code = rD.Code
 pageDetail.MajorName = rD.MajorName
 pageDetail.MinorName = rD.MinorName
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CodeMajorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMajorCurrencyIsoCode)
 pageDetail.Major_Impl = CodeMajorCurrencyIsoCode_Lookup_Name.Name
 _,CodeMinorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMinorCurrencyIsoCode)
 pageDetail.Minor_Impl = CodeMinorCurrencyIsoCode_Lookup_Name.Name
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.CurrencyPair_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.CurrencyPair_TemplateView, w, r, pageDetail)
 
 }
 
@@ -167,33 +171,35 @@ func CurrencyPair_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.CurrencyPair_GetByID(searchID)
 	
 	pageDetail := CurrencyPair_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.CurrencyPair_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CurrencyPair_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
 pageDetail.ReciprocalActive = rD.ReciprocalActive
 pageDetail.Code = rD.Code
 pageDetail.MajorName = rD.MajorName
 pageDetail.MinorName = rD.MinorName
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CodeMajorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMajorCurrencyIsoCode)
 pageDetail.Major_Impl = CodeMajorCurrencyIsoCode_Lookup_Name.Name
 _,pageDetail.Major_Impl_List,_ = dao.Currency_GetList()
 _,CodeMinorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMinorCurrencyIsoCode)
 pageDetail.Minor_Impl = CodeMinorCurrencyIsoCode_Lookup_Name.Name
 _,pageDetail.Minor_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.CurrencyPair_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.CurrencyPair_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -211,7 +217,7 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.CurrencyPair
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.CodeMajorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMajorCurrencyIsoCode)
 		item.CodeMinorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMinorCurrencyIsoCode)
 		item.ReciprocalActive = r.FormValue(dm.CurrencyPair_ReciprocalActive)
@@ -221,9 +227,9 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Major_Impl = r.FormValue(dm.CurrencyPair_Major_Impl)
 		item.Minor_Impl = r.FormValue(dm.CurrencyPair_Minor_Impl)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.CurrencyPair_Store(item)	
 
@@ -244,29 +250,31 @@ func CurrencyPair_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := CurrencyPair_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.CurrencyPair_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CurrencyPair_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = ""
 pageDetail.CodeMinorCurrencyIsoCode = ""
 pageDetail.ReciprocalActive = ""
 pageDetail.Code = ""
 pageDetail.MajorName = ""
 pageDetail.MinorName = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Major_Impl = ""
 _,pageDetail.Major_Impl_List,_ = dao.Currency_GetList()
 pageDetail.Minor_Impl = ""
 _,pageDetail.Minor_Impl_List,_ = dao.Currency_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.CurrencyPair_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.CurrencyPair_TemplateNew, w, r, pageDetail)
 
 }
 

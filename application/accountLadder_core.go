@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:15:57
+// Date & Time		    : 06/12/2021 at 17:42:30
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //accountladder_PageList provides the information for the template for a list of AccountLadders
 type AccountLadder_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type AccountLadder_PageList struct {
 
 //accountladder_Page provides the information for the template for an individual AccountLadder
 type AccountLadder_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		BusinessDate string
 		ContractNumber string
@@ -53,7 +55,7 @@ type AccountLadder_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -88,15 +90,17 @@ func AccountLadder_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.AccountLadder_GetList()
 
 	pageDetail := AccountLadder_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.AccountLadder_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.AccountLadder_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.AccountLadder_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.AccountLadder_TemplateList, w, r, pageDetail)
 
 }
 
@@ -116,30 +120,30 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.AccountLadder_GetByID(searchID)
 
 	pageDetail := AccountLadder_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.AccountLadder_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.AccountLadder_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.ContractNumber = rD.ContractNumber
 pageDetail.Balance = rD.Balance
 pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.AccountLadder_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.AccountLadder_TemplateView, w, r, pageDetail)
 
 }
 
@@ -159,27 +163,29 @@ func AccountLadder_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.AccountLadder_GetByID(searchID)
 	
 	pageDetail := AccountLadder_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.AccountLadder_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.AccountLadder_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.ContractNumber = rD.ContractNumber
 pageDetail.Balance = rD.Balance
 pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.AccountLadder_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.AccountLadder_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -197,7 +203,7 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.AccountLadder
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.AccountLadder_SienaReference)
 		item.BusinessDate = r.FormValue(dm.AccountLadder_BusinessDate)
 		item.ContractNumber = r.FormValue(dm.AccountLadder_ContractNumber)
@@ -205,9 +211,9 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DealtCcy = r.FormValue(dm.AccountLadder_DealtCcy)
 		item.AmountDp = r.FormValue(dm.AccountLadder_AmountDp)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.AccountLadder_Store(item)	
 
@@ -228,25 +234,27 @@ func AccountLadder_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := AccountLadder_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.AccountLadder_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.AccountLadder_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.BusinessDate = ""
 pageDetail.ContractNumber = ""
 pageDetail.Balance = ""
 pageDetail.DealtCcy = ""
 pageDetail.AmountDp = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.AccountLadder_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.AccountLadder_TemplateNew, w, r, pageDetail)
 
 }
 

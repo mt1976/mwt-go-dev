@@ -6,7 +6,7 @@
         <div class="card-header font-weight-bold">
           <div class="row">
             <div class="col">
-              Account&nbsp;:&nbsp;<code>{{.SienaReference}}</code>
+              {{.Title}}&nbsp;:&nbsp;<code>{{.SienaReference}}</code>
             </div>
             <div class="col">
               <div class="btn-group float-right">
@@ -15,7 +15,7 @@
                 <button id="txns" type="submit" class="btn btn-info" formaction="/AccountTransactionViewTransaction/?AccountNo={{.SienaReference}}" method="POST"><i class="far fa-list-alt"></i>&nbsp;&nbsp;Statement</button>
 
                
-                <button id="print" type="button" class="btn btn-outline-info" onclick="window.print()"><i class="fas fa-print"></i>&nbsp;&nbsp;Print</button>
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()"><i class="fas fa-print"></i>&nbsp;&nbsp;Print</button>
                 <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>

@@ -44,6 +44,7 @@ type sienaHomePage struct {
 	AppSQLSchema       string
 	AppSQLParentSchema string
 	DateSyncIssue      string
+	SessionInfo        dm.SessionInfo
 }
 
 func Home_Publish_Impl(mux http.ServeMux) {
@@ -103,7 +104,7 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	homePage.InstanceState = "Primary System"
 	homePage.AppSQLDatabase = core.ApplicationPropertiesDB["database"]
-
+	homePage.SessionInfo, _ = Session_GetSessionInfo(r)
 	if core.IsChildInstance {
 		homePage.InstanceState = "Child System"
 		//	homePage.AppSQLDatabase = ApplicationPropertiesDB["database"] + "-" + ApplicationPropertiesDB["instance"]

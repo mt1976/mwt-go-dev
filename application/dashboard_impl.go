@@ -12,6 +12,7 @@ import (
 
 //dashboardPage is cheese
 type dashboardPage struct {
+	SessionInfo       dm.SessionInfo
 	UserMenu          []dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
@@ -85,6 +86,7 @@ func Dashboard_HandlerView(w http.ResponseWriter, r *http.Request) {
 		SECTDataLabels:    SLlist,
 	}
 
+	p.SessionInfo, _ = Session_GetSessionInfo(r)
 	//fmt.Println(p)
 
 	ExecuteTemplate(tmpl, w, r, p)

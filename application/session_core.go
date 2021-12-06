@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:05
+// Date & Time		    : 06/12/2021 at 17:42:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //session_PageList provides the information for the template for a list of Sessions
 type Session_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type Session_PageList struct {
 
 //session_Page provides the information for the template for an individual Session
 type Session_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Apptoken string
 		Createdate string
@@ -95,7 +97,7 @@ type Session_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -130,15 +132,17 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Session_GetList()
 
 	pageDetail := Session_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.Session_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Session_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.Session_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.Session_TemplateList, w, r, pageDetail)
 
 }
 
@@ -158,14 +162,14 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Session_GetByID(searchID)
 
 	pageDetail := Session_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Session_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Session_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Apptoken = rD.Apptoken
 pageDetail.Createdate = rD.Createdate
@@ -193,16 +197,16 @@ pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SessionRole = rD.SessionRole
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.Session_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.Session_TemplateView, w, r, pageDetail)
 
 }
 
@@ -222,14 +226,14 @@ func Session_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Session_GetByID(searchID)
 	
 	pageDetail := Session_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Session_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Session_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Apptoken = rD.Apptoken
 pageDetail.Createdate = rD.Createdate
@@ -257,13 +261,15 @@ pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SessionRole = rD.SessionRole
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.Session_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Session_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -281,7 +287,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Session
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Session_SYSId)
 		item.Apptoken = r.FormValue(dm.Session_Apptoken)
 		item.Createdate = r.FormValue(dm.Session_Createdate)
@@ -310,9 +316,9 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Session_SYSUpdatedHost)
 		item.SessionRole = r.FormValue(dm.Session_SessionRole)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.Session_Store(item)	
 
@@ -333,14 +339,14 @@ func Session_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := Session_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.Session_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Session_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Apptoken = ""
 pageDetail.Createdate = ""
@@ -368,11 +374,13 @@ pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
 pageDetail.SessionRole = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.Session_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Session_TemplateNew, w, r, pageDetail)
 
 }
 

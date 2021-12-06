@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:05
+// Date & Time		    : 06/12/2021 at 17:42:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //salesdesk_PageList provides the information for the template for a list of SalesDesks
 type SalesDesk_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type SalesDesk_PageList struct {
 
 //salesdesk_Page provides the information for the template for an individual SalesDesk
 type SalesDesk_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		Name string
 		ReportDealsOver string
 		ReportDealsOverCCY string
@@ -53,7 +55,7 @@ type SalesDesk_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -88,15 +90,17 @@ func SalesDesk_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.SalesDesk_GetList()
 
 	pageDetail := SalesDesk_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.SalesDesk_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.SalesDesk_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.SalesDesk_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.SalesDesk_TemplateList, w, r, pageDetail)
 
 }
 
@@ -116,30 +120,30 @@ func SalesDesk_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.SalesDesk_GetByID(searchID)
 
 	pageDetail := SalesDesk_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.SalesDesk_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.SalesDesk_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.ReportDealsOver = rD.ReportDealsOver
 pageDetail.ReportDealsOverCCY = rD.ReportDealsOverCCY
 pageDetail.AccountTransferCutOffTime = rD.AccountTransferCutOffTime
 pageDetail.AccountTransferCutOffTimeTimeZone = rD.AccountTransferCutOffTimeTimeZone
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.SalesDesk_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.SalesDesk_TemplateView, w, r, pageDetail)
 
 }
 
@@ -159,27 +163,29 @@ func SalesDesk_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.SalesDesk_GetByID(searchID)
 	
 	pageDetail := SalesDesk_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.SalesDesk_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.SalesDesk_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.ReportDealsOver = rD.ReportDealsOver
 pageDetail.ReportDealsOverCCY = rD.ReportDealsOverCCY
 pageDetail.AccountTransferCutOffTime = rD.AccountTransferCutOffTime
 pageDetail.AccountTransferCutOffTimeTimeZone = rD.AccountTransferCutOffTimeTimeZone
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.SalesDesk_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.SalesDesk_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -197,7 +203,7 @@ func SalesDesk_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.SalesDesk
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.SalesDesk_Name)
 		item.ReportDealsOver = r.FormValue(dm.SalesDesk_ReportDealsOver)
 		item.ReportDealsOverCCY = r.FormValue(dm.SalesDesk_ReportDealsOverCCY)
@@ -205,9 +211,9 @@ func SalesDesk_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.AccountTransferCutOffTimeTimeZone = r.FormValue(dm.SalesDesk_AccountTransferCutOffTimeTimeZone)
 		item.AccountTransferCutOffTimeCutOffPeriod = r.FormValue(dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.SalesDesk_Store(item)	
 
@@ -228,25 +234,27 @@ func SalesDesk_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := SalesDesk_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.SalesDesk_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.SalesDesk_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.ReportDealsOver = ""
 pageDetail.ReportDealsOverCCY = ""
 pageDetail.AccountTransferCutOffTime = ""
 pageDetail.AccountTransferCutOffTimeTimeZone = ""
 pageDetail.AccountTransferCutOffTimeCutOffPeriod = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.SalesDesk_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.SalesDesk_TemplateNew, w, r, pageDetail)
 
 }
 

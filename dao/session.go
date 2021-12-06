@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:05
+// Date & Time		    : 06/12/2021 at 17:42:57
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -138,7 +138,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Session_SYSId, "0")
    recItem.Apptoken  = get_String(rec, dm.Session_Apptoken, "")
    recItem.Createdate  = get_String(rec, dm.Session_Createdate, "")
@@ -166,7 +166,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
    recItem.SYSUpdatedBy  = get_String(rec, dm.Session_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Session_SYSUpdatedHost, "")
    recItem.SessionRole  = get_String(rec, dm.Session_SessionRole, "")
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

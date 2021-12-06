@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:03
+// Date & Time		    : 06/12/2021 at 17:42:43
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //dealtypefundamental_PageList provides the information for the template for a list of DealTypeFundamentals
 type DealTypeFundamental_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type DealTypeFundamental_PageList struct {
 
 //dealtypefundamental_Page provides the information for the template for an individual DealTypeFundamental
 type DealTypeFundamental_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		DealTypeKey string
 		Amendment string
 		DefaultFrequency string
@@ -221,7 +223,7 @@ type DealTypeFundamental_Page struct {
 	
 	
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -256,15 +258,17 @@ func DealTypeFundamental_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.DealTypeFundamental_GetList()
 
 	pageDetail := DealTypeFundamental_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.DealTypeFundamental_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealTypeFundamental_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.DealTypeFundamental_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.DealTypeFundamental_TemplateList, w, r, pageDetail)
 
 }
 
@@ -284,14 +288,14 @@ func DealTypeFundamental_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.DealTypeFundamental_GetByID(searchID)
 
 	pageDetail := DealTypeFundamental_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DealTypeFundamental_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.Amendment = rD.Amendment
 pageDetail.DefaultFrequency = rD.DefaultFrequency
@@ -382,16 +386,16 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.DealTypeFundamental_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.DealTypeFundamental_TemplateView, w, r, pageDetail)
 
 }
 
@@ -411,14 +415,14 @@ func DealTypeFundamental_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.DealTypeFundamental_GetByID(searchID)
 	
 	pageDetail := DealTypeFundamental_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DealTypeFundamental_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.Amendment = rD.Amendment
 pageDetail.DefaultFrequency = rD.DefaultFrequency
@@ -509,13 +513,15 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.DealTypeFundamental_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.DealTypeFundamental_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -533,7 +539,7 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("DealTypeKey"))
 
 	var item dm.DealTypeFundamental
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.DealTypeKey = r.FormValue(dm.DealTypeFundamental_DealTypeKey)
 		item.Amendment = r.FormValue(dm.DealTypeFundamental_Amendment)
 		item.DefaultFrequency = r.FormValue(dm.DealTypeFundamental_DefaultFrequency)
@@ -625,9 +631,9 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealTypeFundamental_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealTypeFundamental_ChangeType)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.DealTypeFundamental_Store(item)	
 
@@ -648,14 +654,14 @@ func DealTypeFundamental_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := DealTypeFundamental_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.DealTypeFundamental_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = ""
 pageDetail.Amendment = ""
 pageDetail.DefaultFrequency = ""
@@ -746,11 +752,13 @@ pageDetail.UpdatedDateTime = ""
 pageDetail.DeletedTransactionId = ""
 pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.DealTypeFundamental_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.DealTypeFundamental_TemplateNew, w, r, pageDetail)
 
 }
 

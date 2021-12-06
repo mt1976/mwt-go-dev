@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2021 at 17:16:00
+// Date & Time		    : 06/12/2021 at 17:42:33
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,6 +24,7 @@ import (
 
 //counterpartygroup_PageList provides the information for the template for a list of CounterpartyGroups
 type CounterpartyGroup_PageList struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	Title            string
@@ -34,11 +35,12 @@ type CounterpartyGroup_PageList struct {
 
 //counterpartygroup_Page provides the information for the template for an individual CounterpartyGroup
 type CounterpartyGroup_Page struct {
-	UserMenu    []dm.AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		Name string
 		CountryCode string
 		SuperGroup string
@@ -51,7 +53,7 @@ type CounterpartyGroup_Page struct {
 	Country_Impl_List	[]dm.Country
 	Parent_Impl_List	[]dm.CounterpartyGroup
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -86,15 +88,17 @@ func CounterpartyGroup_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.CounterpartyGroup_GetList()
 
 	pageDetail := CounterpartyGroup_PageList{
-		Title:            core.ApplicationProperties["appname"],
+		Title:            CardTitle(dm.CounterpartyGroup_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CounterpartyGroup_Title, core.Action_List),
-		ItemsOnPage: noItems,
-		ItemList:  returnList,
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-
-		ExecuteTemplate(dm.CounterpartyGroup_TemplateList, w, r, pageDetail)
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.CounterpartyGroup_TemplateList, w, r, pageDetail)
 
 }
 
@@ -114,31 +118,31 @@ func CounterpartyGroup_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.CounterpartyGroup_GetByID(searchID)
 
 	pageDetail := CounterpartyGroup_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.CounterpartyGroup_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CounterpartyGroup_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.CountryCode = rD.CountryCode
 pageDetail.SuperGroup = rD.SuperGroup
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CountryCode_Lookup_Name,_:= dao.Country_GetByID(rD.CountryCode)
 pageDetail.Country_Impl = CountryCode_Lookup_Name.Name
 _,SuperGroup_Lookup_Name,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
 pageDetail.Parent_Impl = SuperGroup_Lookup_Name.Name
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-		ExecuteTemplate(dm.CounterpartyGroup_TemplateView, w, r, pageDetail)
-
+	ExecuteTemplate(dm.CounterpartyGroup_TemplateView, w, r, pageDetail)
 
 }
 
@@ -158,30 +162,32 @@ func CounterpartyGroup_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.CounterpartyGroup_GetByID(searchID)
 	
 	pageDetail := CounterpartyGroup_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.CounterpartyGroup_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CounterpartyGroup_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.CountryCode = rD.CountryCode
 pageDetail.SuperGroup = rD.SuperGroup
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CountryCode_Lookup_Name,_:= dao.Country_GetByID(rD.CountryCode)
 pageDetail.Country_Impl = CountryCode_Lookup_Name.Name
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 _,SuperGroup_Lookup_Name,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
 pageDetail.Parent_Impl = SuperGroup_Lookup_Name.Name
 _,pageDetail.Parent_Impl_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-		ExecuteTemplate(dm.CounterpartyGroup_TemplateEdit, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.CounterpartyGroup_TemplateEdit, w, r, pageDetail)
 
 
 }
@@ -199,16 +205,16 @@ func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.CounterpartyGroup
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.CounterpartyGroup_Name)
 		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode)
 		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup)
 		item.Country_Impl = r.FormValue(dm.CounterpartyGroup_Country_Impl)
 		item.Parent_Impl = r.FormValue(dm.CounterpartyGroup_Parent_Impl)
 	
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 
 	dao.CounterpartyGroup_Store(item)	
 
@@ -229,26 +235,28 @@ func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := CounterpartyGroup_Page{
-		Title:       core.ApplicationProperties["appname"],
+		Title:       CardTitle(dm.CounterpartyGroup_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CounterpartyGroup_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
 
 		// 
-		// Automatically generated 05/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.CountryCode = ""
 pageDetail.SuperGroup = ""
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Impl = ""
 _,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
 pageDetail.Parent_Impl = ""
 _,pageDetail.Parent_Impl_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 05/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
 		//
 
-		ExecuteTemplate(dm.CounterpartyGroup_TemplateNew, w, r, pageDetail)
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.CounterpartyGroup_TemplateNew, w, r, pageDetail)
 
 }
 

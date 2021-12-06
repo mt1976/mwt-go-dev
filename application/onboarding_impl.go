@@ -24,6 +24,7 @@ import (
 
 //template_PageList provides the information for the template for a list of CounterpartyOnboardings
 type CounterpartyOnboarding_PageList struct {
+	SessionInfo dm.SessionInfo
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
 	Title       string
@@ -34,10 +35,11 @@ type CounterpartyOnboarding_PageList struct {
 
 //template_Page provides the information for the template for an individual CounterpartyOnboarding
 type CounterpartyOnboarding_Page struct {
-	UserMenu  []dm.AppMenuItem
-	UserRole  string
-	Title     string
-	PageTitle string
+	SessionInfo dm.SessionInfo
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	Title       string
+	PageTitle   string
 	// Automatically generated 28/11/2021 by matttownsend on silicon.local - START
 	Item dm.CounterpartyOnboarding
 
@@ -234,7 +236,7 @@ func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageDetail.Item = dao.CounterpartyOnboarding_Build()
-
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	ExecuteTemplate(dm.CounterpartyOnboarding_CounterpartyOnboardingNew, w, r, pageDetail)
 
 }

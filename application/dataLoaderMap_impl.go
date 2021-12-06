@@ -91,8 +91,8 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:            UserMenu_Get(r),
 		UserRole:            Session_GetUserRole(r),
 		UserNavi:            "NOT USED",
-		Title:               core.ApplicationProperties["appname"],
-		PageTitle:           PageTitle("Data Map", core.Action_View),
+		Title:               CardTitle("Data Map", core.Action_Edit),
+		PageTitle:           PageTitle("Data Map", core.Action_Edit),
 		LoaderMapStoreCount: noItems,
 		LoaderMapStoreList:  returnList,
 		LoaderID:            searchID,
@@ -120,7 +120,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLoaderMapStoreByID(searchID)
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     CardTitle("Data Map", core.Action_View),
 		PageTitle: PageTitle("Data Map", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
@@ -164,7 +164,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLoaderMapStoreByIDLoader(searchID, loaderID)
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     CardTitle("Data Map", core.Action_Edit),
 		PageTitle: PageTitle("Data Map", core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
@@ -294,7 +294,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	nextPosition = nextPosition + 1
 
 	pageLoaderMapStoreList := appLoaderMapStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     CardTitle("Data Map", core.Action_New),
 		PageTitle: PageTitle("Data Map", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),

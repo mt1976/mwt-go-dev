@@ -1,7 +1,6 @@
 package application
 
 import (
-	"html/template"
 	"net/http"
 
 	core "github.com/mt1976/mwt-go-dev/core"
@@ -25,6 +24,7 @@ var simFundsCheckSQLGET = "SELECT %s FROM %s.fundsCheck WHERE id='%s';"
 */
 //simFundsCheckPage is cheese
 type Simulator_FundsChecker_PageList struct {
+	SessionInfo     dm.SessionInfo
 	UserMenu        []dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
@@ -36,13 +36,14 @@ type Simulator_FundsChecker_PageList struct {
 
 //Simulator_FundsChecker_Page is cheese
 type Simulator_FundsChecker_Page struct {
-	UserMenu  []dm.AppMenuItem
-	UserRole  string
-	UserNavi  string
-	Title     string
-	PageTitle string
-	ID        string
-	Action    string
+	SessionInfo dm.SessionInfo
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	UserNavi    string
+	Title       string
+	PageTitle   string
+	ID          string
+	Action      string
 	// Variable Bits Below
 	Id      string
 	Name    string
@@ -88,8 +89,9 @@ func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) 
 		FundsCheckList:  returnList,
 	}
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateList, Session_GetUserRole(r)))
-	t.Execute(w, fundsCheckPage)
+	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Simulator_FundsChecker_TemplateList, w, r, fundsCheckPage)
 
 }
 
@@ -110,8 +112,9 @@ func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) 
 	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_FundsChecker_Title, core.Action_View)
 
 	//log.Println(fundsCheckPage)
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateView, Session_GetUserRole(r)))
-	t.Execute(w, fundsCheckPage)
+	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.Simulator_FundsChecker_TemplateView, w, r, fundsCheckPage)
 
 }
 
@@ -130,9 +133,10 @@ func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request
 
 	fundsCheckPage.Title = core.ApplicationProperties["appname"]
 	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Process)
+	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	t, _ := template.ParseFiles(core.GetTemplateID(dm.Simulator_FundsChecker_TemplateAction, Session_GetUserRole(r)))
-	t.Execute(w, fundsCheckPage)
+	ExecuteTemplate(dm.Simulator_FundsChecker_TemplateAction, w, r, fundsCheckPage)
+
 }
 
 func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request) {
@@ -191,6 +195,6 @@ func simulator_FundsCheck_BuildPage(w http.ResponseWriter, r *http.Request) Simu
 		Content: returnRecord.Content,
 		Request: returnRecord.Request,
 	}
-
+	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
 	return fundsCheckPage //fmt.Println(fundsCheckPage)
 }

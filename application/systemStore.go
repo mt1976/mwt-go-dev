@@ -29,6 +29,7 @@ var appSystemStoreSQLGET = "SELECT %s FROM %s.systemStore WHERE id='%s';"
 
 //appSystemStorePage is cheese
 type appSystemStoreListPage struct {
+	SessionInfo      dm.SessionInfo
 	UserMenu         []dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
@@ -40,13 +41,14 @@ type appSystemStoreListPage struct {
 
 //appSystemStorePage is cheese
 type appSystemStorePage struct {
-	UserMenu  []dm.AppMenuItem
-	UserRole  string
-	UserNavi  string
-	Title     string
-	PageTitle string
-	ID        string
-	Action    string
+	SessionInfo dm.SessionInfo
+	UserMenu    []dm.AppMenuItem
+	UserRole    string
+	UserNavi    string
+	Title       string
+	PageTitle   string
+	ID          string
+	Action      string
 	// Variable Bits Below
 	Id            string
 	Name          string
@@ -66,6 +68,7 @@ type appSystemStorePage struct {
 
 //SystemStoreItem is cheese
 type SystemStoreItem struct {
+	SessionInfo   dm.SessionInfo
 	Id            string
 	Name          string
 	Staticin      string
@@ -107,6 +110,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		SystemStoreCount: noItems,
 		SystemStoreList:  returnList,
 	}
+	pageSystemStoreList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	t, _ := template.ParseFiles(core.GetTemplateID(tmpl, Session_GetUserRole(r)))
 	t.Execute(w, pageSystemStoreList)
@@ -181,6 +185,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 		SYSHost:       returnRecord.SYSHost,
 		SYSUpdated:    returnRecord.SYSUpdated,
 	}
+	pageSystemStoreList.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	return pageSystemStoreList //fmt.Println(pageSystemStoreList)
 }
