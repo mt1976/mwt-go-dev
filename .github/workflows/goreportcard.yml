@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout Source
+      uses: actions/checkout@v2
     - name: Get Go report card
     - uses: creekorful/goreportcard-action@v1.0
+      with:
+        args: ./...
 
-    - name: Gen Report Card
-   
+ 
+
