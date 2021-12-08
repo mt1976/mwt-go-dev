@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:42
+// Date & Time		    : 08/12/2021 at 16:43:52
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type DealType_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		DealTypeKey string
 		DealTypeShortName string
 		HostKey string
@@ -95,7 +95,7 @@ type DealType_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -167,7 +167,7 @@ func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.DealTypeShortName = rD.DealTypeShortName
 pageDetail.HostKey = rD.HostKey
@@ -194,12 +194,14 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -230,7 +232,7 @@ func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = rD.DealTypeKey
 pageDetail.DealTypeShortName = rD.DealTypeShortName
 pageDetail.HostKey = rD.HostKey
@@ -257,11 +259,13 @@ pageDetail.UpdatedDateTime = rD.UpdatedDateTime
 pageDetail.DeletedTransactionId = rD.DeletedTransactionId
 pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -283,7 +287,7 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("DealTypeKey"))
 
 	var item dm.DealType
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey)
 		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName)
 		item.HostKey = r.FormValue(dm.DealType_HostKey)
@@ -311,11 +315,11 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealType_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealType_ChangeType)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.DealType_Store(item)	
+	dao.DealType_Store(item,r)	
 
 	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
 }
@@ -341,7 +345,7 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.DealTypeKey = ""
 pageDetail.DealTypeShortName = ""
 pageDetail.HostKey = ""
@@ -368,8 +372,10 @@ pageDetail.UpdatedDateTime = ""
 pageDetail.DeletedTransactionId = ""
 pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

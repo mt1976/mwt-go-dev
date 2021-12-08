@@ -296,7 +296,7 @@ func Session_CreateToken(req *http.Request) string {
 	r.SYSHost = host
 	r.Expires = expiry.Format(core.DATETIMEFORMATSQLSERVER)
 
-	dao.Session_Store(r)
+	dao.Session_Store(r, req)
 
 	return id
 }

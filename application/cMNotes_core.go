@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:32
+// Date & Time		    : 08/12/2021 at 16:43:48
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type CMNotes_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		NoteId string
 		StreamId string
 		Summary string
@@ -57,7 +57,7 @@ type CMNotes_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -129,7 +129,7 @@ func CMNotes_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = rD.NoteId
 pageDetail.StreamId = rD.StreamId
 pageDetail.Summary = rD.Summary
@@ -137,12 +137,14 @@ pageDetail.Details = rD.Details
 pageDetail.RecordState = rD.RecordState
 pageDetail.CreatedBy = rD.CreatedBy
 pageDetail.CreatedDateTime = rD.CreatedDateTime
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -173,7 +175,7 @@ func CMNotes_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = rD.NoteId
 pageDetail.StreamId = rD.StreamId
 pageDetail.Summary = rD.Summary
@@ -181,11 +183,13 @@ pageDetail.Details = rD.Details
 pageDetail.RecordState = rD.RecordState
 pageDetail.CreatedBy = rD.CreatedBy
 pageDetail.CreatedDateTime = rD.CreatedDateTime
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -207,7 +211,7 @@ func CMNotes_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("NoteId"))
 
 	var item dm.CMNotes
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.NoteId = r.FormValue(dm.CMNotes_NoteId)
 		item.StreamId = r.FormValue(dm.CMNotes_StreamId)
 		item.Summary = r.FormValue(dm.CMNotes_Summary)
@@ -216,11 +220,11 @@ func CMNotes_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CreatedBy = r.FormValue(dm.CMNotes_CreatedBy)
 		item.CreatedDateTime = r.FormValue(dm.CMNotes_CreatedDateTime)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.CMNotes_Store(item)	
+	dao.CMNotes_Store(item,r)	
 
 	http.Redirect(w, r, CMNotes_Redirect, http.StatusFound)
 }
@@ -246,7 +250,7 @@ func CMNotes_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.NoteId = ""
 pageDetail.StreamId = ""
 pageDetail.Summary = ""
@@ -254,8 +258,10 @@ pageDetail.Details = ""
 pageDetail.RecordState = ""
 pageDetail.CreatedBy = ""
 pageDetail.CreatedDateTime = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

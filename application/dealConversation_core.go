@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:35
+// Date & Time		    : 08/12/2021 at 16:43:51
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type DealConversation_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		MessageType string
@@ -67,7 +67,7 @@ type DealConversation_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -139,7 +139,7 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.MessageType = rD.MessageType
@@ -152,12 +152,14 @@ pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.TXNo = rD.TXNo
 pageDetail.ExternalSystem = rD.ExternalSystem
 pageDetail.MessageLogReference = rD.MessageLogReference
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -188,7 +190,7 @@ func DealConversation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.MessageType = rD.MessageType
@@ -201,11 +203,13 @@ pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.TXNo = rD.TXNo
 pageDetail.ExternalSystem = rD.ExternalSystem
 pageDetail.MessageLogReference = rD.MessageLogReference
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -227,7 +231,7 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("MessageLogReference"))
 
 	var item dm.DealConversation
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.DealConversation_SienaReference)
 		item.Status = r.FormValue(dm.DealConversation_Status)
 		item.MessageType = r.FormValue(dm.DealConversation_MessageType)
@@ -241,11 +245,11 @@ func DealConversation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ExternalSystem = r.FormValue(dm.DealConversation_ExternalSystem)
 		item.MessageLogReference = r.FormValue(dm.DealConversation_MessageLogReference)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.DealConversation_Store(item)	
+	dao.DealConversation_Store(item,r)	
 
 	http.Redirect(w, r, DealConversation_Redirect, http.StatusFound)
 }
@@ -271,7 +275,7 @@ func DealConversation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.Status = ""
 pageDetail.MessageType = ""
@@ -284,8 +288,10 @@ pageDetail.BusinessDate = ""
 pageDetail.TXNo = ""
 pageDetail.ExternalSystem = ""
 pageDetail.MessageLogReference = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

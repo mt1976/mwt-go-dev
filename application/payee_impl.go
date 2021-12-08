@@ -48,7 +48,7 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	idDirection := core.GetURLparam(r, "cdir")
 	idType := core.GetURLparam(r, "ctyp")
 
-	_, returnRecord, _ := dao.Payee_GetByFullKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
+	_, rD, _ := dao.Payee_GetByFullKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 
 	pageDetail := Payee_Page{
 		Title:     core.ApplicationProperties["appname"],
@@ -56,39 +56,39 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 
-		SourceTable:           returnRecord.SourceTable,
-		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
-		KeyCounterpartyCentre: returnRecord.KeyCounterpartyCentre,
-		KeyCurrency:           returnRecord.KeyCurrency,
-		KeyName:               returnRecord.KeyName,
-		KeyNumber:             returnRecord.KeyNumber,
-		KeyDirection:          returnRecord.KeyDirection,
-		KeyType:               returnRecord.KeyType,
-		FullName:              returnRecord.FullName,
-		Address:               returnRecord.Address,
-		PhoneNo:               returnRecord.PhoneNo,
-		Country:               returnRecord.Country,
-		Bic:                   returnRecord.Bic,
-		Iban:                  returnRecord.Iban,
-		AccountNo:             returnRecord.AccountNo,
-		FedWireNo:             returnRecord.FedWireNo,
-		SortCode:              returnRecord.SortCode,
-		BankName:              returnRecord.BankName,
-		BankPinCode:           returnRecord.BankPinCode,
-		BankAddress:           returnRecord.BankAddress,
-		Reason:                returnRecord.Reason,
-		BankSettlementAcct:    returnRecord.BankSettlementAcct,
-		UpdatedUserId:         returnRecord.UpdatedUserId,
+		SourceTable:           rD.SourceTable,
+		KeyCounterpartyFirm:   rD.KeyCounterpartyFirm,
+		KeyCounterpartyCentre: rD.KeyCounterpartyCentre,
+		KeyCurrency:           rD.KeyCurrency,
+		KeyName:               rD.KeyName,
+		KeyNumber:             rD.KeyNumber,
+		KeyDirection:          rD.KeyDirection,
+		KeyType:               rD.KeyType,
+		FullName:              rD.FullName,
+		Address:               rD.Address,
+		PhoneNo:               rD.PhoneNo,
+		Country:               rD.Country,
+		Bic:                   rD.Bic,
+		Iban:                  rD.Iban,
+		AccountNo:             rD.AccountNo,
+		FedWireNo:             rD.FedWireNo,
+		SortCode:              rD.SortCode,
+		BankName:              rD.BankName,
+		BankPinCode:           rD.BankPinCode,
+		BankAddress:           rD.BankAddress,
+		Reason:                rD.Reason,
+		BankSettlementAcct:    rD.BankSettlementAcct,
+		UpdatedUserId:         rD.UpdatedUserId,
 	}
 
-	_, Country_Lookup, _ := dao.Country_GetByID(returnRecord.Country)
-	pageDetail.Country_Impl = Country_Lookup.Name
-	_, KeyCounterpartyFirm_Lookup, _ := dao.Firm_GetByID(returnRecord.KeyCounterpartyFirm)
-	pageDetail.Firm_Impl = KeyCounterpartyFirm_Lookup.FullName
-	_, KeyCounterpartyCentre_Lookup, _ := dao.Centre_GetByID(returnRecord.KeyCounterpartyCentre)
-	pageDetail.Centre_Impl = KeyCounterpartyCentre_Lookup.Name
-	_, KeyCurrency_Lookup, _ := dao.Currency_GetByID(returnRecord.KeyCurrency)
-	pageDetail.Currency_Impl = KeyCurrency_Lookup.Name
+	_, Country_Lookup_Name, _ := dao.Country_GetByID(rD.Country)
+	pageDetail.Country_Lookup = Country_Lookup_Name.Name
+	_, KeyCounterpartyFirm_Lookup_FullName, _ := dao.Firm_GetByID(rD.KeyCounterpartyFirm)
+	pageDetail.Firm_Lookup = KeyCounterpartyFirm_Lookup_FullName.FullName
+	_, KeyCounterpartyCentre_Lookup_Name, _ := dao.Centre_GetByID(rD.KeyCounterpartyCentre)
+	pageDetail.Centre_Lookup = KeyCounterpartyCentre_Lookup_Name.Name
+	_, KeyCurrency_Lookup_Name, _ := dao.Currency_GetByID(rD.KeyCurrency)
+	pageDetail.Currency_Lookup = KeyCurrency_Lookup_Name.Name
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	ExecuteTemplate(dm.Payee_TemplateView, w, r, pageDetail)

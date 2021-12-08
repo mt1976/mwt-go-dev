@@ -80,11 +80,11 @@ func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	pageDetail.CompID = rD.CompID
 	// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 	_, Country_Lookup, _ := dao.Country_GetByID(rD.Country)
-	pageDetail.Country_Impl = Country_Lookup.Name
+	pageDetail.Country_Lookup = Country_Lookup.Name
 	_, MandatedUserKeyCounterpartyFirm_Lookup, _ := dao.Firm_GetByID(rD.MandatedUserKeyCounterpartyFirm)
-	pageDetail.Firm_Impl = MandatedUserKeyCounterpartyFirm_Lookup.FullName
+	pageDetail.Firm_Lookup = MandatedUserKeyCounterpartyFirm_Lookup.FullName
 	_, MandatedUserKeyCounterpartyCentre_Lookup, _ := dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
-	pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup.Name
+	pageDetail.Centre_Lookup = MandatedUserKeyCounterpartyCentre_Lookup.Name
 	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 	//
 
@@ -149,14 +149,14 @@ func Mandate_HandlerEditItem(w http.ResponseWriter, r *http.Request) {
 	pageDetail.CompID = rD.CompID
 	// Automatically generated 02/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 	_, Country_Lookup, _ := dao.Country_GetByID(rD.Country)
-	pageDetail.Country_Impl = Country_Lookup.Name
-	_, pageDetail.Country_Impl_List, _ = dao.Country_GetList()
+	pageDetail.Country_Lookup = Country_Lookup.Name
+	_, pageDetail.Country_Lookup_List, _ = dao.Country_GetList()
 	_, MandatedUserKeyCounterpartyFirm_Lookup, _ := dao.Firm_GetByID(rD.MandatedUserKeyCounterpartyFirm)
-	pageDetail.Firm_Impl = MandatedUserKeyCounterpartyFirm_Lookup.FullName
-	_, pageDetail.Firm_Impl_List, _ = dao.Firm_GetList()
+	pageDetail.Firm_Lookup = MandatedUserKeyCounterpartyFirm_Lookup.FullName
+	_, pageDetail.Firm_Lookup_List, _ = dao.Firm_GetList()
 	_, MandatedUserKeyCounterpartyCentre_Lookup, _ := dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
-	pageDetail.Centre_Impl = MandatedUserKeyCounterpartyCentre_Lookup.Name
-	_, pageDetail.Centre_Impl_List, _ = dao.Centre_GetList()
+	pageDetail.Centre_Lookup = MandatedUserKeyCounterpartyCentre_Lookup.Name
+	_, pageDetail.Centre_Lookup_List, _ = dao.Centre_GetList()
 	// Automatically generated 02/12/2021 by matttownsend on silicon.local - END
 	//
 

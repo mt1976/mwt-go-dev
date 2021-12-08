@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:34
+// Date & Time		    : 08/12/2021 at 16:43:51
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type DataLoader_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -77,7 +77,7 @@ type DataLoader_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -149,7 +149,7 @@ func DataLoader_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -167,12 +167,14 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -203,7 +205,7 @@ func DataLoader_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -221,11 +223,13 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -247,7 +251,7 @@ func DataLoader_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.DataLoader
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.DataLoader_SYSId)
 		item.Id = r.FormValue(dm.DataLoader_Id)
 		item.Name = r.FormValue(dm.DataLoader_Name)
@@ -266,11 +270,11 @@ func DataLoader_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.DataLoader_SYSUpdatedBy)
 		item.SYSCreatedHost = r.FormValue(dm.DataLoader_SYSCreatedHost)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.DataLoader_Store(item)	
+	dao.DataLoader_Store(item,r)	
 
 	http.Redirect(w, r, DataLoader_Redirect, http.StatusFound)
 }
@@ -296,7 +300,7 @@ func DataLoader_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -314,8 +318,10 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSUpdatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSCreatedHost = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

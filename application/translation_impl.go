@@ -23,7 +23,7 @@ func Translation_Lookup(class string, message string) string {
 		t.Class = class
 		t.Message = message
 		t.Translation = message
-		dao.Translation_Store(t)
+		dao.Translation_StoreSystem(t)
 	}
 	//fmt.Printf("message: %v\n", message)
 	return t.Translation

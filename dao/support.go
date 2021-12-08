@@ -3,8 +3,8 @@ package dao
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
-	"os/user"
 	"strconv"
 	"strings"
 	"time"
@@ -122,15 +122,18 @@ func get_Bool(t map[string]interface{}, v string, d string) string {
 }
 
 func Audit_Update(val string, replace string) string {
+	//	fmt.Printf("val: %v\n", val)
+	//	fmt.Printf("replace: %v\n", replace)
 	if val == "" {
 		return replace
 	}
 	return val
 }
 
-func Audit_User() string {
-	thisUser, _ := user.Current()
-	return thisUser.Name
+func Audit_User(r *http.Request) string {
+	//thisUser, _ := user.Current()
+	thisUser := Session_GetUserName(r)
+	return thisUser
 }
 
 func Audit_TimeStamp() string {

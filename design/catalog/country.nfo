@@ -7,7 +7,7 @@ Endpoint 	         : Country (Code)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:33
+Date & Time		     : 08/12/2021 at 16:43:50
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,22 +17,26 @@ SQL Table Search Col : Code
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Code                                | String     |            | true  | true   | false |                 |            |            | 
-| Name                                | String     |            | false | true   | false |                 |            |            | 
-| ShortCode                           | String     |            | false | true   | false |                 |            |            | 
-| EU_EEA                              | Bool       | True       | false | true   | false |                 |            |            | 
-| HolidaysWeekend                     | String     |            | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Code                                | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| Name                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ShortCode                           | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EU_EEA                              | Bool       | True       |    | Y  |    |    |    |                 |                          |                          |
+| HolidaysWeekend                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/country_core.go)
-* adaptor (/adaptor/country.go)
-* dao (/dao/country.go)
-* datamodel (/datamodel/country.go)
+* dao (/dao/country_core.go)
+* datamodel (/datamodel/country_core.go)
 * menu (/design/menu/country.json)
 * html -> List (/html/Country_List.html)
 * html -> View (/html/Country_View.html)

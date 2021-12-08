@@ -7,7 +7,7 @@ Endpoint 	         : Cache (ID)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:31
+Date & Time		     : 08/12/2021 at 16:43:48
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,31 +17,36 @@ SQL Table Search Col : Id
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
-| Id                                  | String     |            | true  | true   | false |                 |            |            | 
-| Object                              | String     |            | false | true   | false |                 |            |            | 
-| Field                               | String     |            | false | true   | false |                 |            |            | 
-| Value                               | String     |            | false | true   | false |                 |            |            | 
-| Expiry                              | String     |            | false | true   | false |                 |            |            | 
-| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
-| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
-| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
-| Source                              | String     |            | false | true   | false |                 |            |            | 
-| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
-| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| SYSId                               | Int        | 0          | Y  | Y  |    |    |    |                 |                          |                          |
+| Id                                  | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| Object                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Field                               | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Value                               | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Expiry                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreated                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSWho                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSHost                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdated                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Source                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreatedBy                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreatedHost                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdatedBy                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdatedHost                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/cache_core.go)
-* dao (/dao/cache.go)
-* datamodel (/datamodel/cache.go)
+* dao (/dao/cache_core.go)
+* datamodel (/datamodel/cache_core.go)
 * menu (/design/menu/cache.json)
 * html -> List (/html/Cache_List.html)
 * html -> View (/html/Cache_View.html)

@@ -7,7 +7,7 @@ Endpoint 	         : DataLoaderData (Id)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:34
+Date & Time		     : 08/12/2021 at 16:43:51
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,34 +17,39 @@ SQL Table Search Col : Id
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
-| Id                                  | String     |            | true  | true   | false |                 |            |            | 
-| Row                                 | String     |            | false | true   | false |                 |            |            | 
-| Position                            | String     |            | false | true   | false |                 |            |            | 
-| Value                               | String     |            | false | true   | false |                 |            |            | 
-| Loader                              | String     |            | false | true   | false |                 |            |            | 
-| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
-| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
-| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
-| Map                                 | String     |            | false | true   | false |                 |            |            | 
-| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
-| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
-| Loader_Impl                         | String     |            | false | false  | true  | DataLoader      | Loader     | Name       | 
-| LoaderDescription_Impl              | String     |            | false | false  | true  | DataLoader      | Loader     | Description | 
-| LoaderType_Impl                     | String     |            | false | false  | true  | DataLoader      | Loader     | Type       | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| SYSId                               | Int        | 0          | Y  | Y  |    |    |    |                 |                          |                          |
+| Id                                  | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| Row                                 | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Position                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Value                               | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Loader                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreated                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSWho                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSHost                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdated                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Map                                 | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreatedBy                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreatedHost                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdatedBy                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdatedHost                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Loader_Lookup                       | String     |            |    |    |    |    | Y  | DataLoader      | Loader                   | Name                     |
+| LoaderDescription_Lookup            | String     |            |    |    |    |    | Y  | DataLoader      | Loader                   | Description              |
+| LoaderType_Lookup                   | String     |            |    |    |    |    | Y  | DataLoader      | Loader                   | Type                     |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/dataLoaderData_core.go)
-* dao (/dao/dataLoaderData.go)
-* datamodel (/datamodel/dataLoaderData.go)
+* dao (/dao/dataLoaderData_core.go)
+* datamodel (/datamodel/dataLoaderData_core.go)
 * menu (/design/menu/dataLoaderData.json)
 * html -> List (/html/DataLoaderData_List.html)
 * html -> View (/html/DataLoaderData_View.html)

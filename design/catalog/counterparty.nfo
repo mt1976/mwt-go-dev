@@ -7,7 +7,7 @@ Endpoint 	         : Counterparty (ID)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:32
+Date & Time		     : 08/12/2021 at 16:43:48
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,35 +17,39 @@ SQL Table Search Col : CompID
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| NameCentre                          | String     |            | true  | true   | false |                 |            |            | 
-| NameFirm                            | String     |            | true  | true   | false |                 |            |            | 
-| FullName                            | String     |            | false | true   | false |                 |            |            | 
-| TelephoneNumber                     | String     |            | false | true   | false |                 |            |            | 
-| EmailAddress                        | String     |            | false | true   | false |                 |            |            | 
-| CustomerType                        | String     |            | false | true   | false |                 |            |            | 
-| AccountOfficer                      | String     |            | false | true   | false |                 |            |            | 
-| CountryCode                         | String     |            | false | true   | false |                 |            |            | 
-| SectorCode                          | String     |            | false | true   | false |                 |            |            | 
-| CpartyGroupName                     | String     |            | false | true   | false |                 |            |            | 
-| Notes                               | String     |            | false | true   | false |                 |            |            | 
-| Owner                               | String     |            | false | true   | false |                 |            |            | 
-| Authorised                          | Bool       | True       | false | true   | false |                 |            |            | 
-| NameFirmName                        | String     |            | false | true   | false |                 |            |            | 
-| NameCentreName                      | String     |            | false | true   | false |                 |            |            | 
-| CountryCodeName                     | String     |            | false | true   | false |                 |            |            | 
-| SectorCodeName                      | String     |            | false | true   | false |                 |            |            | 
-| CompID                              | String     |            | true  | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| NameCentre                          | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| NameFirm                            | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| FullName                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| TelephoneNumber                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EmailAddress                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CustomerType                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| AccountOfficer                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CountryCode                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SectorCode                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CpartyGroupName                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Notes                               | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Owner                               | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Authorised                          | Bool       | True       |    | Y  |    |    |    |                 |                          |                          |
+| NameFirmName                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| NameCentreName                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CountryCodeName                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SectorCodeName                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CompID                              | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/counterparty_core.go)
-* adaptor (/adaptor/counterparty.go)
-* dao (/dao/counterparty.go)
-* datamodel (/datamodel/counterparty.go)
+* dao (/dao/counterparty_core.go)
+* datamodel (/datamodel/counterparty_core.go)
 * menu (/design/menu/counterparty.json)
 * html -> List (/html/Counterparty_List.html)
 * html -> View (/html/Counterparty_View.html)

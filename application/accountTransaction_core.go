@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:30
+// Date & Time		    : 08/12/2021 at 16:43:47
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type AccountTransaction_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		LegNo string
 		MMLegNo string
@@ -73,7 +73,7 @@ type AccountTransaction_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -145,7 +145,7 @@ func AccountTransaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.LegNo = rD.LegNo
 pageDetail.MMLegNo = rD.MMLegNo
@@ -161,12 +161,14 @@ pageDetail.InterestCalculationDate = rD.InterestCalculationDate
 pageDetail.AmendmentAmount = rD.AmendmentAmount
 pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -197,7 +199,7 @@ func AccountTransaction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.LegNo = rD.LegNo
 pageDetail.MMLegNo = rD.MMLegNo
@@ -213,11 +215,13 @@ pageDetail.InterestCalculationDate = rD.InterestCalculationDate
 pageDetail.AmendmentAmount = rD.AmendmentAmount
 pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -239,7 +243,7 @@ func AccountTransaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.AccountTransaction
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.AccountTransaction_SienaReference)
 		item.LegNo = r.FormValue(dm.AccountTransaction_LegNo)
 		item.MMLegNo = r.FormValue(dm.AccountTransaction_MMLegNo)
@@ -256,11 +260,11 @@ func AccountTransaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DealtCcy = r.FormValue(dm.AccountTransaction_DealtCcy)
 		item.AmountDp = r.FormValue(dm.AccountTransaction_AmountDp)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.AccountTransaction_Store(item)	
+	dao.AccountTransaction_Store(item,r)	
 
 	http.Redirect(w, r, AccountTransaction_Redirect, http.StatusFound)
 }
@@ -286,7 +290,7 @@ func AccountTransaction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.LegNo = ""
 pageDetail.MMLegNo = ""
@@ -302,8 +306,10 @@ pageDetail.InterestCalculationDate = ""
 pageDetail.AmendmentAmount = ""
 pageDetail.DealtCcy = ""
 pageDetail.AmountDp = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:35
+// Date & Time		    : 08/12/2021 at 16:43:51
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type DataLoaderMap_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -55,9 +55,9 @@ type DataLoaderMap_Page struct {
 		SYSCreatedHost string
 		SYSUpdatedBy string
 		SYSUpdatedHost string
-		Loader_Impl string
-		LoaderDescription_Impl string
-		LoaderType_Impl string
+		Loader_Lookup string
+		LoaderDescription_Lookup string
+		LoaderType_Lookup string
 	
 	
 	
@@ -73,11 +73,11 @@ type DataLoaderMap_Page struct {
 	
 	
 	
-	Loader_Impl_List	[]dm.DataLoader
-	LoaderDescription_Impl_List	[]dm.DataLoader
-	LoaderType_Impl_List	[]dm.DataLoader
+	Loader_Lookup_List	[]dm.DataLoader
+	LoaderDescription_Lookup_List	[]dm.DataLoader
+	LoaderType_Lookup_List	[]dm.DataLoader
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -149,7 +149,7 @@ func DataLoaderMap_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -164,18 +164,20 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Loader_Lookup_Name,_:= dao.DataLoader_GetByID(rD.Loader)
-pageDetail.Loader_Impl = Loader_Lookup_Name.Name
+pageDetail.Loader_Lookup = Loader_Lookup_Name.Name
 _,Loader_Lookup_Description,_:= dao.DataLoader_GetByID(rD.Loader)
-pageDetail.LoaderDescription_Impl = Loader_Lookup_Description.Description
+pageDetail.LoaderDescription_Lookup = Loader_Lookup_Description.Description
 _,Loader_Lookup_Type,_:= dao.DataLoader_GetByID(rD.Loader)
-pageDetail.LoaderType_Impl = Loader_Lookup_Type.Type
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+pageDetail.LoaderType_Lookup = Loader_Lookup_Type.Type
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -206,7 +208,7 @@ func DataLoaderMap_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -221,20 +223,22 @@ pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Loader_Lookup_Name,_:= dao.DataLoader_GetByID(rD.Loader)
-pageDetail.Loader_Impl = Loader_Lookup_Name.Name
-_,pageDetail.Loader_Impl_List,_ = dao.DataLoader_GetList()
+pageDetail.Loader_Lookup = Loader_Lookup_Name.Name
+_,pageDetail.Loader_Lookup_List,_ = dao.DataLoader_GetList()
 _,Loader_Lookup_Description,_:= dao.DataLoader_GetByID(rD.Loader)
-pageDetail.LoaderDescription_Impl = Loader_Lookup_Description.Description
-_,pageDetail.LoaderDescription_Impl_List,_ = dao.DataLoader_GetList()
+pageDetail.LoaderDescription_Lookup = Loader_Lookup_Description.Description
+_,pageDetail.LoaderDescription_Lookup_List,_ = dao.DataLoader_GetList()
 _,Loader_Lookup_Type,_:= dao.DataLoader_GetByID(rD.Loader)
-pageDetail.LoaderType_Impl = Loader_Lookup_Type.Type
-_,pageDetail.LoaderType_Impl_List,_ = dao.DataLoader_GetList()
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+pageDetail.LoaderType_Lookup = Loader_Lookup_Type.Type
+_,pageDetail.LoaderType_Lookup_List,_ = dao.DataLoader_GetList()
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -256,7 +260,7 @@ func DataLoaderMap_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.DataLoaderMap
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.DataLoaderMap_SYSId)
 		item.Id = r.FormValue(dm.DataLoaderMap_Id)
 		item.Name = r.FormValue(dm.DataLoaderMap_Name)
@@ -271,15 +275,15 @@ func DataLoaderMap_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSCreatedHost = r.FormValue(dm.DataLoaderMap_SYSCreatedHost)
 		item.SYSUpdatedBy = r.FormValue(dm.DataLoaderMap_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.DataLoaderMap_SYSUpdatedHost)
-		item.Loader_Impl = r.FormValue(dm.DataLoaderMap_Loader_Impl)
-		item.LoaderDescription_Impl = r.FormValue(dm.DataLoaderMap_LoaderDescription_Impl)
-		item.LoaderType_Impl = r.FormValue(dm.DataLoaderMap_LoaderType_Impl)
+		item.Loader_Lookup = r.FormValue(dm.DataLoaderMap_Loader_Lookup)
+		item.LoaderDescription_Lookup = r.FormValue(dm.DataLoaderMap_LoaderDescription_Lookup)
+		item.LoaderType_Lookup = r.FormValue(dm.DataLoaderMap_LoaderType_Lookup)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.DataLoaderMap_Store(item)	
+	dao.DataLoaderMap_Store(item,r)	
 
 	http.Redirect(w, r, DataLoaderMap_Redirect, http.StatusFound)
 }
@@ -305,7 +309,7 @@ func DataLoaderMap_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -320,14 +324,16 @@ pageDetail.SYSCreatedBy = ""
 pageDetail.SYSCreatedHost = ""
 pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-pageDetail.Loader_Impl = ""
-_,pageDetail.Loader_Impl_List,_ = dao.DataLoader_GetList()
-pageDetail.LoaderDescription_Impl = ""
-_,pageDetail.LoaderDescription_Impl_List,_ = dao.DataLoader_GetList()
-pageDetail.LoaderType_Impl = ""
-_,pageDetail.LoaderType_Impl_List,_ = dao.DataLoader_GetList()
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+pageDetail.Loader_Lookup = ""
+_,pageDetail.Loader_Lookup_List,_ = dao.DataLoader_GetList()
+pageDetail.LoaderDescription_Lookup = ""
+_,pageDetail.LoaderDescription_Lookup_List,_ = dao.DataLoader_GetList()
+pageDetail.LoaderType_Lookup = ""
+_,pageDetail.LoaderType_Lookup_List,_ = dao.DataLoader_GetList()
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

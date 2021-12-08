@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:30
+// Date & Time		    : 08/12/2021 at 16:43:47
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Book_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		BookName string
 		FullName string
 		PLManage string
@@ -61,7 +61,7 @@ type Book_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -133,7 +133,7 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -143,12 +143,14 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -179,7 +181,7 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = rD.BookName
 pageDetail.FullName = rD.FullName
 pageDetail.PLManage = rD.PLManage
@@ -189,11 +191,13 @@ pageDetail.CostOfCarry = rD.CostOfCarry
 pageDetail.CostOfFunding = rD.CostOfFunding
 pageDetail.LotAllocationMethod = rD.LotAllocationMethod
 pageDetail.InternalId = rD.InternalId
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -215,7 +219,7 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("BookName"))
 
 	var item dm.Book
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.BookName = r.FormValue(dm.Book_BookName)
 		item.FullName = r.FormValue(dm.Book_FullName)
 		item.PLManage = r.FormValue(dm.Book_PLManage)
@@ -226,11 +230,11 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod)
 		item.InternalId = r.FormValue(dm.Book_InternalId)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.Book_Store(item)	
+	dao.Book_Store(item,r)	
 
 	http.Redirect(w, r, Book_Redirect, http.StatusFound)
 }
@@ -256,7 +260,7 @@ func Book_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.BookName = ""
 pageDetail.FullName = ""
 pageDetail.PLManage = ""
@@ -266,8 +270,10 @@ pageDetail.CostOfCarry = ""
 pageDetail.CostOfFunding = ""
 pageDetail.LotAllocationMethod = ""
 pageDetail.InternalId = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

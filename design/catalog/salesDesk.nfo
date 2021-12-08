@@ -7,7 +7,7 @@ Endpoint 	         : SalesDesk (Desk)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:56
+Date & Time		     : 08/12/2021 at 16:43:55
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,22 +17,27 @@ SQL Table Search Col : Name
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Name                                | String     |            | true  | true   | false |                 |            |            | 
-| ReportDealsOver                     | String     |            | false | true   | false |                 |            |            | 
-| ReportDealsOverCCY                  | String     |            | false | true   | false |                 |            |            | 
-| AccountTransferCutOffTime           | Time       |            | false | true   | false |                 |            |            | 
-| AccountTransferCutOffTimeTimeZone   | String     |            | false | true   | false |                 |            |            | 
-| AccountTransferCutOffTimeCutOffPeriod | String     |            | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Name                                | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| ReportDealsOver                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ReportDealsOverCCY                  | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| AccountTransferCutOffTime           | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| AccountTransferCutOffTimeTimeZone   | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| AccountTransferCutOffTimeCutOffPeriod | String     |            |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/salesDesk_core.go)
-* dao (/dao/salesDesk.go)
-* datamodel (/datamodel/salesDesk.go)
+* dao (/dao/salesDesk_core.go)
+* datamodel (/datamodel/salesDesk_core.go)
 * catalog (/design/catalog/salesDesk.nfo)
 ----------------------------------------------------------------
 End of File

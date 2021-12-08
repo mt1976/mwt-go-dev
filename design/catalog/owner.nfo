@@ -7,7 +7,7 @@ Endpoint 	         : Owner (Owner)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:55
+Date & Time		     : 08/12/2021 at 16:43:54
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,31 +17,36 @@ SQL Table Search Col : UserName
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| UserName                            | String     |            | true  | true   | false |                 |            |            | 
-| FullName                            | String     |            | false | true   | false |                 |            |            | 
-| Type                                | String     |            | false | true   | false |                 |            |            | 
-| TradingEntity                       | String     |            | false | true   | false |                 |            |            | 
-| DefaultEnterBook                    | String     |            | false | true   | false |                 |            |            | 
-| EmailAddress                        | String     |            | false | true   | false |                 |            |            | 
-| Enabled                             | String     |            | false | true   | false |                 |            |            | 
-| ExternalUserIds                     | String     |            | false | true   | false |                 |            |            | 
-| Language                            | String     |            | false | true   | false |                 |            |            | 
-| LocalCurrency                       | String     |            | false | true   | false |                 |            |            | 
-| Role                                | String     |            | false | true   | false |                 |            |            | 
-| TelephoneNumber                     | String     |            | false | true   | false |                 |            |            | 
-| TokenId                             | String     |            | false | true   | false |                 |            |            | 
-| Entity                              | String     |            | false | true   | false |                 |            |            | 
-| UserCode                            | String     |            | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| UserName                            | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| FullName                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Type                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| TradingEntity                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DefaultEnterBook                    | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EmailAddress                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Enabled                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ExternalUserIds                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Language                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| LocalCurrency                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Role                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| TelephoneNumber                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| TokenId                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Entity                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UserCode                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/owner_core.go)
-* dao (/dao/owner.go)
-* datamodel (/datamodel/owner.go)
+* dao (/dao/owner_core.go)
+* datamodel (/datamodel/owner_core.go)
 * catalog (/design/catalog/owner.nfo)
 ----------------------------------------------------------------
 End of File

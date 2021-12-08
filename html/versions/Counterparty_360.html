@@ -27,7 +27,7 @@
               </div>
               </form>
              </div>
-   
+    
         </div>
 
    
@@ -170,7 +170,7 @@
                       <th class="text-center">Currency</th>
                       <th class="text-center">Payee ID</th>
                       <th class="text-center">Status</th>
-                      <th class="text-center">Action</th>
+                      <th class="text-center" style="width:5%;">Action</th>
                     </tr>
                   </thead>
                   <tbody id=filterTable>
@@ -180,9 +180,9 @@
                       <td class="align-middle">{{.FullName}}</td>
                       <td class="align-middle text-center">{{.KeyCurrency}}</td>
                       <td class="align-middle">{{.KeyName}}</td>
-                      <td class="align-middle text-center">{{.SourceTable}}</td>
+                      <td class="align-middle text-center"><span class="badge badge-pill {{if eq .Status_Impl "Pending"}}badge-warning{{else}}badge-success{{end}}">{{.Status_Impl}}</span></td>
 
-                      <td class="alight-right" style="width:1px;">
+                      <td class="" style="width:5%;">
 
                         <div class="btn-group float-right">
                           <button type="submit" value="" class="btn btn-info"
@@ -438,7 +438,7 @@
                       <th class="text-center">Cash Balance</th>
                       <th class="text-center">Ledger Balance</th>
                       <th class="text-center">Status</th>
-                      <th class="text-center">Actions</th>
+                      <th class="text-center" style="width:5%;">Actions</th>
                     </tr>
                   </thead>
                   <tbody id=filterTable>
@@ -450,12 +450,12 @@
                       <td class="align-middle">{{.AccountName}}</td>
 
                       <td class="align-middle text-center">{{.CCY}}</td>
-                      <td class="align-middle text-center plusmin">{{.CashBalance}}</td>
-                      <td class="align-middle text-center plusmin">{{.LedgerBalance}}</td>
+                      <td class="align-middle text-center">{{.CashBalance}}</td>
+                      <td class="align-middle text-center">{{.LedgerBalance}}</td>
                       <td class="align-middle text-center">{{.Status}}</td>
 
 
-                      <td class="alight-right" style="width:1px;">
+                      <td class="alight-right" style="width:5%;">
 
                         <div class="btn-group float-right">
                           <button type="submit" value="" class="btn btn-info float-right" formaction="/AccountView?AccountNo={{.SienaReference}}" method="POST">
@@ -495,7 +495,7 @@
                       <th class="text-center">Phone</th>
                       <th class="text-center">Active</th>
 
-                      <th class="text-center">Action</th>
+                      <th class="text-center" style="width:5%;">Action</th>
                     </tr>
                   </thead>
                   <tbody id=filterTable>
@@ -505,9 +505,9 @@
                       <td class="align-middle">{{.MandatedUserKeyUserName}}</td>
                       <td class="align-middle">{{.EmailAddress}}</td>
                       <td class="align-middle">{{.TelephoneNumber}}</td>
-                      <td class="align-middle">{{.Active}}</td>
+                      <td class="align-middle text-center">{{if eq .Active "true"}}<span class="badge badge-pill badge-success">ACTIVE</span>{{else}}<span class="badge badge-pill badge-warning">INACTIVE</span>{{end}}</td>
 
-                      <td class="alight-right" style="width:1px;">
+                      <td class="alight-right" style="width:5%;">
 
                         <div class="btn-group float-right">
                           <button type="submit" value="" class="btn btn-info"
@@ -545,7 +545,7 @@
                       <th class="text-center">#</th>
                       <th class="text-center">Origin</th>
                       <th class="text-center">ID</th>
-                      <th class="text-center">Action</th>
+                      <th class="text-center" style="width:5%;">Action</th>
                     </tr>
                   </thead>
                   <tbody id=filterTable>
@@ -555,7 +555,7 @@
                       <td class="align-middle">{{.KeyOriginID}}</td>
                       <td class="align-middle">{{.KeyImportID}}</td>
 
-                      <td class="alight-right" style="width:1px;">
+                      <td class="alight-right" style="width:5%;">
 
                         <div class="btn-group float-right">
                           <button type="submit" value="" class="btn btn-info" formaction="/CounterpartyImportView?ID={{.CompID}}" method="POST">
@@ -602,12 +602,12 @@
                       <th class="text-center">Dealt</th>
                       <th class="text-center">Against</th>
 
-                      <th class="text-center">Action</th>
+                      <th class="text-center" style="width:5%;">Action</th>
                     </tr>
                   </thead>
                   <tbody id=filterTable>
                     {{range .TxnList}}
-                    <tr>
+                    <tr {{if eq .Status "Confirmed"}}class="table-success"{{else}}{{if eq .Status "Complete"}}class="table-warning"{{else}}class="table-secondary"{{end}}{{end}}>
                       <td class="text-center align-middle"></td>
                       <td class="align-middle">{{.ContractNumber}}</td>
                       <td class="align-middle">{{.Status}}</td>
@@ -621,7 +621,7 @@
 
 
 
-                      <td class="alight-right" style="width:1px;">
+                      <td class="alight-middle" style="width:5%;">
 
                         <div class="btn-group float-right">
                           <button type="submit" value="" class="btn btn-info" formaction="/TransactionView/?Ref={{.SienaReference}}" method="POST">

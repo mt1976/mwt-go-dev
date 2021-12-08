@@ -7,7 +7,7 @@ Endpoint 	         : Firm (FirmName)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:47
+Date & Time		     : 08/12/2021 at 16:43:53
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,23 +17,27 @@ SQL Table Search Col : FirmName
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| FirmName                            | String     |            | true  | true   | false |                 |            |            | 
-| FullName                            | String     |            | false | true   | false |                 |            |            | 
-| Country                             | String     |            | false | true   | false |                 |            |            | 
-| Sector                              | String     |            | false | true   | false |                 |            |            | 
-| Sector_Impl                         | String     |            | false | false  | true  | Sector          | Sector     | Name       | 
-| Country_Impl                        | String     |            | false | false  | true  | Country         | Country    | Name       | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| FirmName                            | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| FullName                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Country                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Sector                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Sector_Lookup                       | String     |            |    |    |    |    | Y  | Sector          | Sector                   | Name                     |
+| Country_Lookup                      | String     |            |    |    |    |    | Y  | Country         | Country                  | Name                     |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/firm_core.go)
-* adaptor (/adaptor/firm.go)
-* dao (/dao/firm.go)
-* datamodel (/datamodel/firm.go)
+* dao (/dao/firm_core.go)
+* datamodel (/datamodel/firm_core.go)
 * menu (/design/menu/firm.json)
 * html -> List (/html/Firm_List.html)
 * html -> View (/html/Firm_View.html)

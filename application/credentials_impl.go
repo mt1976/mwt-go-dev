@@ -63,14 +63,14 @@ func banCredentialsStore(id string, req *http.Request) {
 	_, r, _ := dao.Credentials_GetByID(id)
 	r.Expiry = ""
 	r.Password = ""
-	dao.Credentials_Store(r)
+	dao.Credentials_Store(r, req)
 }
 
 func activateCredentialsStore(id string, req *http.Request) {
 
 	_, r, _ := dao.Credentials_GetByID(id)
 	r.Expiry = getExpiryDate()
-	dao.Credentials_Store(r)
+	dao.Credentials_Store(r, req)
 }
 
 func credentials_HandlerViewImpl(pageDetail Credentials_Page) Credentials_Page {

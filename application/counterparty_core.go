@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:32
+// Date & Time		    : 08/12/2021 at 16:43:48
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Counterparty_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		NameCentre string
 		NameFirm string
 		FullName string
@@ -79,7 +79,7 @@ type Counterparty_Page struct {
 	
 	
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -151,7 +151,7 @@ func Counterparty_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.FullName = rD.FullName
@@ -170,12 +170,14 @@ pageDetail.NameCentreName = rD.NameCentreName
 pageDetail.CountryCodeName = rD.CountryCodeName
 pageDetail.SectorCodeName = rD.SectorCodeName
 pageDetail.CompID = rD.CompID
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -206,7 +208,7 @@ func Counterparty_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameCentre = rD.NameCentre
 pageDetail.NameFirm = rD.NameFirm
 pageDetail.FullName = rD.FullName
@@ -225,11 +227,13 @@ pageDetail.NameCentreName = rD.NameCentreName
 pageDetail.CountryCodeName = rD.CountryCodeName
 pageDetail.SectorCodeName = rD.SectorCodeName
 pageDetail.CompID = rD.CompID
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -251,7 +255,7 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.Counterparty
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre)
 		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm)
 		item.FullName = r.FormValue(dm.Counterparty_FullName)
@@ -271,11 +275,11 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SectorCodeName = r.FormValue(dm.Counterparty_SectorCodeName)
 		item.CompID = r.FormValue(dm.Counterparty_CompID)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.Counterparty_Store(item)	
+	dao.Counterparty_Store(item,r)	
 
 	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
 }
@@ -301,7 +305,7 @@ func Counterparty_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.NameCentre = ""
 pageDetail.NameFirm = ""
 pageDetail.FullName = ""
@@ -320,8 +324,10 @@ pageDetail.NameCentreName = ""
 pageDetail.CountryCodeName = ""
 pageDetail.SectorCodeName = ""
 pageDetail.CompID = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

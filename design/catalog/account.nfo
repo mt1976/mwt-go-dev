@@ -7,7 +7,7 @@ Endpoint 	         : Account (AccountNo)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:29
+Date & Time		     : 08/12/2021 at 16:43:46
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,88 +17,92 @@ SQL Table Search Col : SienaReference
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| SienaReference                      | String     |            | true  | true   | false |                 |            |            | 
-| CustomerSienaView                   | String     |            | false | true   | false |                 |            |            | 
-| SienaCommonRef                      | String     |            | true  | true   | false |                 |            |            | 
-| Status                              | String     |            | false | true   | false |                 |            |            | 
-| StartDate                           | Time       |            | false | true   | false |                 |            |            | 
-| MaturityDate                        | Time       |            | false | true   | false |                 |            |            | 
-| ContractNumber                      | String     |            | false | true   | false |                 |            |            | 
-| ExternalReference                   | String     |            | false | true   | false |                 |            |            | 
-| CCY                                 | String     |            | false | true   | false |                 |            |            | 
-| Book                                | String     |            | false | true   | false |                 |            |            | 
-| MandatedUser                        | String     |            | false | true   | false |                 |            |            | 
-| BackOfficeNotes                     | String     |            | false | true   | false |                 |            |            | 
-| CashBalance                         | Float      | 0.00       | false | true   | false |                 |            |            | 
-| AccountNumber                       | String     |            | false | true   | false |                 |            |            | 
-| AccountName                         | String     |            | false | true   | false |                 |            |            | 
-| LedgerBalance                       | Float      | 0.00       | false | true   | false |                 |            |            | 
-| Portfolio                           | String     |            | false | true   | false |                 |            |            | 
-| AgreementId                         | Int        | 0          | false | true   | false |                 |            |            | 
-| BackOfficeRefNo                     | String     |            | false | true   | false |                 |            |            | 
-| ISIN                                | String     |            | false | true   | false |                 |            |            | 
-| UTI                                 | String     |            | false | true   | false |                 |            |            | 
-| CCYName                             | String     |            | false | true   | false |                 |            |            | 
-| BookName                            | String     |            | false | true   | false |                 |            |            | 
-| PortfolioName                       | String     |            | false | true   | false |                 |            |            | 
-| Centre                              | String     |            | false | true   | false |                 |            |            | 
-| DealTypeKey                         | String     |            | false | true   | false |                 |            |            | 
-| DealTypeShortName                   | String     |            | false | true   | false |                 |            |            | 
-| InternalId                          | Int        | 0          | false | true   | false |                 |            |            | 
-| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
-| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
-| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
-| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
-| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
-| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
-| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
-| CCYDp                               | Int        | 0          | false | true   | false |                 |            |            | 
-| CompID                              | String     |            | false | true   | false |                 |            |            | 
-| Firm                                | String     |            | false | true   | false |                 |            |            | 
-| DealType                            | String     |            | false | true   | false |                 |            |            | 
-| FullDealType                        | String     |            | false | true   | false |                 |            |            | 
-| DealingInterface                    | String     |            | false | true   | false |                 |            |            | 
-| DealtAmount                         | Float      | 0.00       | false | true   | false |                 |            |            | 
-| ParentContractNumber                | String     |            | false | true   | false |                 |            |            | 
-| InterestFrequency                   | String     |            | false | true   | false |                 |            |            | 
-| InterestAction                      | String     |            | false | true   | false |                 |            |            | 
-| InterestStrategy                    | String     |            | false | true   | false |                 |            |            | 
-| InterestBasis                       | String     |            | false | true   | false |                 |            |            | 
-| SienaDealer                         | String     |            | false | true   | false |                 |            |            | 
-| DealOwner                           | String     |            | false | true   | false |                 |            |            | 
-| OriginUser                          | String     |            | false | true   | false |                 |            |            | 
-| EditedByUser                        | String     |            | false | true   | false |                 |            |            | 
-| DealOwnerMnemonic                   | String     |            | false | true   | false |                 |            |            | 
-| UTCOriginTime                       | String     |            | false | true   | false |                 |            |            | 
-| UTCUpdateTime                       | String     |            | false | true   | false |                 |            |            | 
-| CustomerStatementNotes              | String     |            | false | true   | false |                 |            |            | 
-| NotesMargin                         | Float      | 0.00       | false | true   | false |                 |            |            | 
-| RequestedBy                         | String     |            | false | true   | false |                 |            |            | 
-| EditReason                          | String     |            | false | true   | false |                 |            |            | 
-| EditOtherReason                     | String     |            | false | true   | false |                 |            |            | 
-| NoticeDays                          | Int        | 0          | false | true   | false |                 |            |            | 
-| DebitFrequency                      | String     |            | false | true   | false |                 |            |            | 
-| CreditFrequency                     | String     |            | false | true   | false |                 |            |            | 
-| EURAmount                           | Float      | 0.00       | false | true   | false |                 |            |            | 
-| EUROtherAmount                      | Float      | 0.00       | false | true   | false |                 |            |            | 
-| PaymentSystemSienaView              | String     |            | false | true   | false |                 |            |            | 
-| PaymentSystemExternalView           | String     |            | false | true   | false |                 |            |            | 
-| CCY_Impl                            | String     |            | false | false  | true  | Currency        | CCY        | Name       | 
-| Book_Impl                           | String     |            | false | false  | true  | Book            | Book       | FullName   | 
-| Portfolio_Impl                      | String     |            | false | false  | true  | Portfolio       | Portfolio  | Description1 | 
-| Centre_Impl                         | String     |            | false | false  | true  | Centre          | Centre     | Name       | 
-| Firm_Impl                           | String     |            | false | false  | true  | Firm            | Firm       | FullName   | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| SienaReference                      | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| CustomerSienaView                   | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SienaCommonRef                      | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| Status                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| StartDate                           | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| MaturityDate                        | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| ContractNumber                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ExternalReference                   | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CCY                                 | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Book                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| MandatedUser                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| BackOfficeNotes                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CashBalance                         | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| AccountNumber                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| AccountName                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| LedgerBalance                       | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| Portfolio                           | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| AgreementId                         | Int        | 0          |    | Y  |    |    |    |                 |                          |                          |
+| BackOfficeRefNo                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ISIN                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UTI                                 | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CCYName                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| BookName                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| PortfolioName                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Centre                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealTypeKey                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealTypeShortName                   | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| InternalId                          | Int        | 0          |    | Y  |    |    |    |                 |                          |                          |
+| InternalDeleted                     | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| UpdatedTransactionId                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UpdatedUserId                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UpdatedDateTime                     | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| DeletedTransactionId                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DeletedUserId                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ChangeType                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CCYDp                               | Int        | 0          |    | Y  |    |    |    |                 |                          |                          |
+| CompID                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Firm                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealType                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| FullDealType                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealingInterface                    | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealtAmount                         | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| ParentContractNumber                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| InterestFrequency                   | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| InterestAction                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| InterestStrategy                    | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| InterestBasis                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SienaDealer                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealOwner                           | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| OriginUser                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EditedByUser                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DealOwnerMnemonic                   | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UTCOriginTime                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UTCUpdateTime                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CustomerStatementNotes              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| NotesMargin                         | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| RequestedBy                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EditReason                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EditOtherReason                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| NoticeDays                          | Int        | 0          |    | Y  |    |    |    |                 |                          |                          |
+| DebitFrequency                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CreditFrequency                     | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| EURAmount                           | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| EUROtherAmount                      | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| PaymentSystemSienaView              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| PaymentSystemExternalView           | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| CCY_Lookup                          | String     |            |    |    |    |    | Y  | Currency        | CCY                      | Name                     |
+| Book_Lookup                         | String     |            |    |    |    |    | Y  | Book            | Book                     | FullName                 |
+| Portfolio_Lookup                    | String     |            |    |    |    |    | Y  | Portfolio       | Portfolio                | Description1             |
+| Centre_Lookup                       | String     |            |    |    |    |    | Y  | Centre          | Centre                   | Name                     |
+| Firm_Lookup                         | String     |            |    |    |    |    | Y  | Firm            | Firm                     | FullName                 |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/account_core.go)
-* adaptor (/adaptor/account.go)
-* dao (/dao/account.go)
-* datamodel (/datamodel/account.go)
+* dao (/dao/account_core.go)
+* datamodel (/datamodel/account_core.go)
 * menu (/design/menu/account.json)
 * html -> List (/html/Account_List.html)
 * html -> View (/html/Account_View.html)

@@ -142,7 +142,7 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 	cd.Destination = ratesData.destination
 	cd.Class = ratesData.class
 
-	dao.MarketRates_Store(cd)
+	dao.MarketRates_StoreSystem(cd)
 
 }
 

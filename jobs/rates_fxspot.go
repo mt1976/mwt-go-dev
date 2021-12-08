@@ -58,7 +58,7 @@ func RatesFXSpot_Run() {
 	var message string
 	/// CONTENT STARTS
 
-	noItems, cacheList, err := dao.DataCache_GetListByObject("CurrencyPair")
+	noItems, cacheList, err := dao.Cache_GetListByObject("CurrencyPair")
 	if err != nil {
 		log.Println(err.Error())
 	}

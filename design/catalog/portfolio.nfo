@@ -7,7 +7,7 @@ Endpoint 	         : Portfolio (Code)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:55
+Date & Time		     : 08/12/2021 at 16:43:54
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,29 +17,33 @@ SQL Table Search Col : Code
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Code                                | String     |            | true  | true   | false |                 |            |            | 
-| Description1                        | String     |            | false | true   | false |                 |            |            | 
-| Description2                        | String     |            | false | true   | false |                 |            |            | 
-| IsDefault                           | Bool       | True       | false | true   | false |                 |            |            | 
-| InternalId                          | Int        | 0          | true  | true   | false |                 |            |            | 
-| InternalDeleted                     | Time       |            | false | true   | false |                 |            |            | 
-| UpdatedTransactionId                | String     |            | false | true   | false |                 |            |            | 
-| UpdatedUserId                       | String     |            | false | true   | false |                 |            |            | 
-| UpdatedDateTime                     | Time       |            | false | true   | false |                 |            |            | 
-| DeletedTransactionId                | String     |            | false | true   | false |                 |            |            | 
-| DeletedUserId                       | String     |            | false | true   | false |                 |            |            | 
-| ChangeType                          | String     |            | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Code                                | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| Description1                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Description2                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| IsDefault                           | Bool       | True       |    | Y  |    |    |    |                 |                          |                          |
+| InternalId                          | Int        | 0          | Y  | Y  |    |    |    |                 |                          |                          |
+| InternalDeleted                     | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| UpdatedTransactionId                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UpdatedUserId                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| UpdatedDateTime                     | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| DeletedTransactionId                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| DeletedUserId                       | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| ChangeType                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/portfolio_core.go)
-* adaptor (/adaptor/portfolio.go)
-* dao (/dao/portfolio.go)
-* datamodel (/datamodel/portfolio.go)
+* dao (/dao/portfolio_core.go)
+* datamodel (/datamodel/portfolio_core.go)
 * menu (/design/menu/portfolio.json)
 * html -> List (/html/Portfolio_List.html)
 * html -> View (/html/Portfolio_View.html)

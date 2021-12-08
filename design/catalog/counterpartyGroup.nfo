@@ -7,7 +7,7 @@ Endpoint 	         : CounterpartyGroup (Group)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:33
+Date & Time		     : 08/12/2021 at 16:43:49
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,22 +17,26 @@ SQL Table Search Col : Name
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Name                                | String     |            | true  | true   | false |                 |            |            | 
-| CountryCode                         | String     |            | false | true   | false |                 |            |            | 
-| SuperGroup                          | String     |            | false | true   | false |                 |            |            | 
-| Country_Impl                        | String     |            | true  | false  | true  | Country         | CountryCode | Name       | 
-| Parent_Impl                         | String     |            | true  | false  | true  | CounterpartyGroup | SuperGroup | Name       | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Name                                | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| CountryCode                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SuperGroup                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Country_Lookup                      | String     |            | Y  |    |    |    | Y  | Country         | CountryCode              | Name                     |
+| Parent_Lookup                       | String     |            | Y  |    |    |    | Y  | CounterpartyGroup | SuperGroup               | Name                     |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/counterpartyGroup_core.go)
-* adaptor (/adaptor/counterpartyGroup.go)
-* dao (/dao/counterpartyGroup.go)
-* datamodel (/datamodel/counterpartyGroup.go)
+* dao (/dao/counterpartyGroup_core.go)
+* datamodel (/datamodel/counterpartyGroup_core.go)
 * menu (/design/menu/counterpartyGroup.json)
 * html -> List (/html/CounterpartyGroup_List.html)
 * html -> View (/html/CounterpartyGroup_View.html)

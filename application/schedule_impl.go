@@ -62,7 +62,7 @@ func Schedule_Register(thisJob dm.JobDefinition) {
 		}
 	}
 	if registerIt {
-		dao.Schedule_Store(s)
+		dao.Schedule_StoreSystem(s)
 		//desc := GetCronScheduleHuman(s.Schedule)
 
 		icon := core.Character_Gears
@@ -88,7 +88,7 @@ func Schedule_Update(thisJob dm.JobDefinition, message string) {
 			s.Message = message
 			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
 			logs.Schedule(thisMess)
-			dao.Schedule_Store(s)
+			dao.Schedule_StoreSystem(s)
 		} else {
 			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", thisJob.ID, thisJob.ID, message, scheduleID)
 			logs.Schedule(thisMess)

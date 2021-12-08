@@ -7,7 +7,7 @@ Endpoint 	         : AccountTransaction (AccountNo)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:30
+Date & Time		     : 08/12/2021 at 16:43:47
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,32 +17,36 @@ SQL Table Search Col : SienaReference
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| SienaReference                      | String     |            | true  | true   | false |                 |            |            | 
-| LegNo                               | Int        | 0          | true  | true   | false |                 |            |            | 
-| MMLegNo                             | Int        | 0          | true  | true   | false |                 |            |            | 
-| Narrative                           | String     |            | false | true   | false |                 |            |            | 
-| Amount                              | Float      | 0.00       | false | true   | false |                 |            |            | 
-| StartInterestDate                   | Time       |            | false | true   | false |                 |            |            | 
-| EndInterestDate                     | Time       |            | false | true   | false |                 |            |            | 
-| Amortisation                        | Float      | 0.00       | false | true   | false |                 |            |            | 
-| InterestAmount                      | Float      | 0.00       | false | true   | false |                 |            |            | 
-| InterestAction                      | String     |            | false | true   | false |                 |            |            | 
-| FixingDate                          | Time       |            | false | true   | false |                 |            |            | 
-| InterestCalculationDate             | Time       |            | false | true   | false |                 |            |            | 
-| AmendmentAmount                     | Float      | 0.00       | false | true   | false |                 |            |            | 
-| DealtCcy                            | String     |            | false | true   | false |                 |            |            | 
-| AmountDp                            | Int        | 0          | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| SienaReference                      | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| LegNo                               | Int        | 0          | Y  | Y  |    |    |    |                 |                          |                          |
+| MMLegNo                             | Int        | 0          | Y  | Y  |    |    |    |                 |                          |                          |
+| Narrative                           | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Amount                              | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| StartInterestDate                   | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| EndInterestDate                     | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| Amortisation                        | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| InterestAmount                      | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| InterestAction                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| FixingDate                          | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| InterestCalculationDate             | Time       |            |    | Y  |    |    |    |                 |                          |                          |
+| AmendmentAmount                     | Float      | 0.00       |    | Y  |    |    |    |                 |                          |                          |
+| DealtCcy                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| AmountDp                            | Int        | 0          |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/accountTransaction_core.go)
-* adaptor (/adaptor/accountTransaction.go)
-* dao (/dao/accountTransaction.go)
-* datamodel (/datamodel/accountTransaction.go)
+* dao (/dao/accountTransaction_core.go)
+* datamodel (/datamodel/accountTransaction_core.go)
 * menu (/design/menu/accountTransaction.json)
 * html -> List (/html/AccountTransaction_List.html)
 * html -> View (/html/AccountTransaction_View.html)

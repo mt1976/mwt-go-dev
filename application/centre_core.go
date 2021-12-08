@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 06/12/2021 at 17:42:31
+// Date & Time		    : 08/12/2021 at 16:43:48
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,18 +40,18 @@ type Centre_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		Country string
-		Country_Impl string
+		Country_Lookup string
 	
 	
 	
 	
-	Country_Impl_List	[]dm.Country
+	Country_Lookup_List	[]dm.Country
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -123,18 +123,20 @@ func Centre_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Country = rD.Country
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
-pageDetail.Country_Impl = Country_Lookup_Name.Name
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+pageDetail.Country_Lookup = Country_Lookup_Name.Name
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -165,18 +167,20 @@ func Centre_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Country = rD.Country
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
-pageDetail.Country_Impl = Country_Lookup_Name.Name
-_,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+pageDetail.Country_Lookup = Country_Lookup_Name.Name
+_,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -198,17 +202,17 @@ func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Centre
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Centre_Code)
 		item.Name = r.FormValue(dm.Centre_Name)
 		item.Country = r.FormValue(dm.Centre_Country)
-		item.Country_Impl = r.FormValue(dm.Centre_Country_Impl)
+		item.Country_Lookup = r.FormValue(dm.Centre_Country_Lookup)
 	
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	dao.Centre_Store(item)	
+	dao.Centre_Store(item,r)	
 
 	http.Redirect(w, r, Centre_Redirect, http.StatusFound)
 }
@@ -234,14 +238,16 @@ func Centre_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 06/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.Country = ""
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-pageDetail.Country_Impl = ""
-_,pageDetail.Country_Impl_List,_ = dao.Country_GetList()
-// Automatically generated 06/12/2021 by matttownsend on silicon.local - END
+
+
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+pageDetail.Country_Lookup = ""
+_,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
+// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

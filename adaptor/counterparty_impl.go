@@ -2,9 +2,10 @@ package adaptor
 
 import (
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Counterparty_Update_Impl(item dm.Counterparty) error {
+func Counterparty_Update_Impl(item dm.Counterparty, usr string) error {
 
 	//fmt.Println("ITEM", item)
 	// DEFINE THE XML FIELDS/KEYFIELDS HERE
@@ -105,4 +106,19 @@ func Counterparty_Update_Impl(item dm.Counterparty) error {
 	var StaticImport_XMLContent StaticImport_XML
 	StaticImport_XMLContent.TRANSACTIONS = sienaTransaction
 	return nil
+}
+
+func Counterparty_Delete_Impl(id string, usr string) error {
+	var er error
+
+	message := "Implement Counterparty_Delete: " + id
+
+	// Implement Counterparty_Delete_Impl in counterparty_Impl.go
+	// Uncomment the line below to use the implementation
+	//
+	// er := Counterparty_Delete_Impl(item)
+	//
+
+	logs.Success(message)
+	return er
 }

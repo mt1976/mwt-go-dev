@@ -364,7 +364,7 @@ func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	// TODO: isinlookup  (might need to go into the Dispatcher Job)
 	//spew.Dump(bondRec)
 	fmt.Printf("bondRec: %v\n", bondRec)
-	dao.NegotiableInstrument_Store(bondRec)
+	dao.NegotiableInstrument_StoreSystem(bondRec)
 }
 
 func getFIIEnrichment(inURI string, bondRec dm.NegotiableInstrument) dm.NegotiableInstrument {

@@ -7,7 +7,7 @@ Endpoint 	         : DataLoader (Id)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 06/12/2021 at 17:42:34
+Date & Time		     : 08/12/2021 at 16:43:51
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -17,33 +17,38 @@ SQL Table Search Col : Id
 ----------------------------------------------------------------
 Fields Generated
 ----------------------------------------------------------------
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| Field Name                          | Type       | Default    | Mand  |  Base  | LookP | Object          | Key        | Value      |  
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
-| SYSId                               | Int        | 0          | true  | true   | false |                 |            |            | 
-| Id                                  | String     |            | true  | true   | false |                 |            |            | 
-| Name                                | String     |            | false | true   | false |                 |            |            | 
-| Description                         | String     |            | false | true   | false |                 |            |            | 
-| Filename                            | String     |            | false | true   | false |                 |            |            | 
-| Lastrun                             | String     |            | false | true   | false |                 |            |            | 
-| SYSCreated                          | String     |            | false | true   | false |                 |            |            | 
-| SYSWho                              | String     |            | false | true   | false |                 |            |            | 
-| SYSHost                             | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdated                          | String     |            | false | true   | false |                 |            |            | 
-| Type                                | String     |            | false | true   | false |                 |            |            | 
-| Instance                            | String     |            | false | true   | false |                 |            |            | 
-| Extension                           | String     |            | false | true   | false |                 |            |            | 
-| SYSCreatedBy                        | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdatedHost                      | String     |            | false | true   | false |                 |            |            | 
-| SYSUpdatedBy                        | String     |            | false | true   | false |                 |            |            | 
-| SYSCreatedHost                      | String     |            | false | true   | false |                 |            |            | 
-*-------------------------------------+------------+------------+-------+--------+-------+-----------------+------------+------------*
+* Md  = Mandatory
+* Cr  = Core Fields
+* Ex  = Extra Fields
+* Ov  = Override of a Core Field
+* Lkp = Lookup Field
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| Field Name                          | Type       | Default    | Md | Cr | Ex | Ov | Lkp| Lkp Object      | Lkp Field Source         | Lkp Value                |  
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
+| SYSId                               | Int        | 0          | Y  | Y  |    |    |    |                 |                          |                          |
+| Id                                  | String     |            | Y  | Y  |    |    |    |                 |                          |                          |
+| Name                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Description                         | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Filename                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Lastrun                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreated                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSWho                              | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSHost                             | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdated                          | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Type                                | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Instance                            | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| Extension                           | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreatedBy                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdatedHost                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSUpdatedBy                        | String     |            |    | Y  |    |    |    |                 |                          |                          |
+| SYSCreatedHost                      | String     |            |    | Y  |    |    |    |                 |                          |                          |
+*-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/dataLoader_core.go)
-* dao (/dao/dataLoader.go)
-* datamodel (/datamodel/dataLoader.go)
+* dao (/dao/dataLoader_core.go)
+* datamodel (/datamodel/dataLoader_core.go)
 * menu (/design/menu/dataLoader.json)
 * html -> List (/html/DataLoader_List.html)
 * html -> View (/html/DataLoader_View.html)
