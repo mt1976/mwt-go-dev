@@ -70,26 +70,6 @@ func DeleteFundsCheck(id string) {
 	}
 }
 
-// fetchFundsCheckData read all employees
-func fetchFundsCheckData(tsql string) (int, []dm.Simulator_FundsChecker_Item, dm.Simulator_FundsChecker_Item, error) {
-	//log.Println(tsql)
-	var simFundsCheck dm.Simulator_FundsChecker_Item
-	var simFundsCheckList []dm.Simulator_FundsChecker_Item
-
-	count := 0
-
-	// Populate Arrays etc.
-	simFundsCheck.Id = "id"
-	simFundsCheck.Name = "name"
-	simFundsCheck.Source = "source"
-	// no change below
-	simFundsCheckList = append(simFundsCheckList, simFundsCheck)
-	//log.Printf("Code: %s, Name: %s, Shortcode: %s, eu_eea: %t\n", code, name, shortcode, eu_eea)
-	count++
-	//log.Println(count, simFundsCheckList, simFundsCheck)
-	return count, simFundsCheckList, simFundsCheck, nil
-}
-
 // getFundsCheckList read all employees
 func Simulator_FundsChecker_DeleteByID(id string) error {
 	val := adaptor.Simulator_FundsChecker_DeleteByID(id)

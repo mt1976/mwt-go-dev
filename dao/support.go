@@ -2,10 +2,8 @@ package dao
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -31,34 +29,6 @@ func fields(ts SQLData) string {
 
 func values(ts SQLData) string {
 	return strings.Join(ts.values[:], ",")
-}
-
-func sienaYN(inValue string) string {
-	log.Println("inValue", inValue)
-	var outValue string
-	outValue = ""
-	if inValue == "true" {
-		outValue = "Yes"
-	}
-	if inValue == "false" {
-		outValue = "No"
-	}
-	return outValue
-}
-
-func sienaDBBoolYN(inBool bool) string {
-
-	inValue := strconv.FormatBool(inBool)
-
-	var outValue string
-	outValue = ""
-	if inValue == "true" {
-		outValue = "Yes"
-	}
-	if inValue == "false" {
-		outValue = "No"
-	}
-	return outValue
 }
 
 func sq(in string) string {

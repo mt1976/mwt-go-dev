@@ -1,11 +1,11 @@
 package dao
 
 import (
-	"fmt"
 	"strings"
 
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
 func payee_NewIDImpl(r dm.Payee) string { return "" }
@@ -46,8 +46,10 @@ func Payee_GetListByCounterpartyID(id string) (int, []dm.Payee, error) {
 	// tokenise the id to get firm and centre
 	parts := strings.Split(id, "|")
 	if len(parts) != 2 {
-		return 0, nil, fmt.Errorf("Invalid counterparty id: %s", id)
+		logs.Warning("Invalid counterparty id:" + id)
+		return 0, nil, nil
 	}
+
 	count, sienaPayeeList, er := Payee_GetByCounterparty(parts[0], parts[1])
 	return count, sienaPayeeList, er
 }
@@ -56,7 +58,7 @@ func payee_Status_Extra(r dm.Payee) string {
 
 	val := ""
 	if r.SourceTable == "" {
-		fmt.Errorf("SourceTable is empty")
+		logs.Warning("SourceTable is empty for " + r.FullName)
 		return ""
 	}
 
