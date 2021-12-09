@@ -38,7 +38,6 @@ func Broker_Delete_Impl(id string, usr string) error {
 }
 
 func Broker_Update_Impl(item dm.Broker, usr string) error {
-	var er error
 
 	message := "Implement Broker_Update: " + item.Code
 
@@ -48,6 +47,25 @@ func Broker_Update_Impl(item dm.Broker, usr string) error {
 	// er := Broker_Update_Impl(item)
 	//
 
-	logs.Success(message)
-	return er
+	var sienaKeys []StaticImport_KeyField
+	var sienaFlds []StaticImport_Field
+
+	// POPULATE THE XML FIELDS
+
+	sienaKeys = StaticImport_AddKeyField(sienaKeys, "Code", item.Code)
+	sienaFlds = StaticImport_AddField(sienaFlds, "Name", item.Name)
+	sienaFlds = StaticImport_AddField(sienaFlds, "Fullname", item.FullName)
+	sienaFlds = StaticImport_AddField(sienaFlds, "Contact", item.Contact)
+	sienaFlds = StaticImport_AddField(sienaFlds, "Address", item.Address)
+	sienaFlds = StaticImport_AddField(sienaFlds, "LEI", item.LEI)
+
+	XMLmessage := StaticImport_Create(StaticImport_UpdateAction, "Broker", "com.eurobase.siena.data.Brokers.Broker", sienaKeys, sienaFlds)
+
+	err := StaticImport_Dispatch(XMLmessage)
+	if err != nil {
+		logs.Error("Error in StaticImport_Dispatch: ", err)
+	} else {
+		logs.Success(message)
+	}
+	return nil
 }

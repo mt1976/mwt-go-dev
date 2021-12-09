@@ -12,8 +12,10 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 
+	"github.com/mt1976/mwt-go-dev/adaptor"
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
@@ -135,6 +137,14 @@ func main() {
 	//spew.Dump(mux)
 
 	//core.Notification_Test()
+	var r dm.Broker
+	r.Name = "Test"
+	r.Code = "Test"
+	r.Address = "Test"
+	r.LEI = "Test"
+	r.FullName = "Test"
+	r.Contact = "Test"
+	adaptor.Broker_Update_Impl(r, "fred")
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
