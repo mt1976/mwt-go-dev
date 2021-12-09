@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<TRANSACTIONS>
+    <TRANSACTION type="IMPORT">
+        <TABLE name="Broker" classname="com.eurobase.siena.data.Brokers.Broker">
+            <RECORD>
+                <KEYFIELD name="Code">Test</KEYFIELD>
+                <FIELD name="Name">Test</FIELD>
+                <FIELD name="Fullname">Test</FIELD>
+                <FIELD name="Contact">Test</FIELD>
+                <FIELD name="Address">Test</FIELD>
+                <FIELD name="LEI">Test</FIELD>
+            </RECORD>
+        </TABLE>
+    </TRANSACTION>
+</TRANSACTIONS>
