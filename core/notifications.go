@@ -38,14 +38,7 @@ func notification_GetConfig() (config Notification_Config, err error) {
 	return config, err
 }
 
-func Notification_Test() {
-	Notification_Normal("normal message", "normal title")
-	Notification_High("high message", "high title")
-	Notification_Emergency("emergancy message", "emergancy title")
-	Notification_Low("low message", "low title")
-}
-
-func Notification_Emergency(messageContent string, title string) {
+func Notification_Emergency(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
 	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
@@ -55,10 +48,13 @@ func Notification_Emergency(messageContent string, title string) {
 	port := ApplicationProperties["port"]
 	// Create the message to send
 	//message := pushover.NewMessageWithTitle(messageContent, title)
+
+	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
+
 	fmt.Printf("SystemHostname: %v\n", SystemHostname)
 	message := &pushover.Message{
-		Message:     messageContent,
-		Title:       title,
+		Message:     messageTitle,
+		Title:       messageBody,
 		Priority:    pushover.PriorityEmergency,
 		URL:         "http://" + SystemHostname + ":" + port + "/",
 		URLTitle:    SystemHostname,
@@ -80,7 +76,7 @@ func Notification_Emergency(messageContent string, title string) {
 	//log.Println(response)
 }
 
-func Notification_Normal(messageContent string, title string) {
+func Notification_Normal(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
 	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
@@ -88,12 +84,11 @@ func Notification_Normal(messageContent string, title string) {
 	// Create a new recipient
 	recipient := pushover.NewRecipient(cfg.PushoverToken)
 	port := ApplicationProperties["port"]
-	// Create the message to send
-	//message := pushover.NewMessageWithTitle(messageContent, title)
-	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
+
+	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
 	message := &pushover.Message{
-		Message:     messageContent,
-		Title:       title,
+		Message:     messageTitle,
+		Title:       messageBody,
 		Priority:    pushover.PriorityNormal,
 		URL:         "http://" + SystemHostname + ":" + port + "/",
 		URLTitle:    SystemHostname,
@@ -115,7 +110,7 @@ func Notification_Normal(messageContent string, title string) {
 	//log.Println(response)
 }
 
-func Notification_High(messageContent string, title string) {
+func Notification_High(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
 	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
@@ -126,9 +121,12 @@ func Notification_High(messageContent string, title string) {
 	// Create the message to send
 	//message := pushover.NewMessageWithTitle(messageContent, title)
 	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
+
+	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
+
 	message := &pushover.Message{
-		Message:     messageContent,
-		Title:       title,
+		Message:     messageTitle,
+		Title:       messageBody,
 		Priority:    pushover.PriorityHigh,
 		URL:         "http://" + SystemHostname + ":" + port + "/",
 		URLTitle:    SystemHostname,
@@ -150,7 +148,7 @@ func Notification_High(messageContent string, title string) {
 	//log.Println(response)
 }
 
-func Notification_Low(messageContent string, title string) {
+func Notification_Low(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
 	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
@@ -161,9 +159,12 @@ func Notification_Low(messageContent string, title string) {
 	// Create the message to send
 	//message := pushover.NewMessageWithTitle(messageContent, title)
 	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
+
+	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
+
 	message := &pushover.Message{
-		Message:     messageContent,
-		Title:       title,
+		Message:     messageTitle,
+		Title:       messageBody,
 		Priority:    pushover.PriorityLow,
 		URL:         "http://" + SystemHostname + ":" + port + "/",
 		URLTitle:    SystemHostname,
