@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -47,6 +47,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Credentials_Template     = "Credentials"
 	Credentials_TemplateList = "Credentials_List"
 	Credentials_TemplateView = "Credentials_View"
 	Credentials_TemplateEdit = "Credentials_Edit"
@@ -54,6 +55,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Credentials_Path       = "/API/Credentials/"
 	Credentials_PathList   = "/CredentialsList/"
 	Credentials_PathView   = "/CredentialsView/"
 	Credentials_PathEdit   = "/CredentialsEdit/"

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -54,6 +54,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Session_Template     = "Session"
 	Session_TemplateList = "Session_List"
 	Session_TemplateView = "Session_View"
 	Session_TemplateEdit = "Session_Edit"
@@ -61,6 +62,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Session_Path       = "/API/Session/"
 	Session_PathList   = "/SessionList/"
 	Session_PathView   = "/SessionView/"
 	Session_PathEdit   = "/SessionEdit/"

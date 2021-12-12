@@ -360,6 +360,15 @@
             "Break": "<hr class=\"hr-list\">"
         },
 
+        {
+            "ID": "c1fecf7a-96ad-4ba8-8950-cb9ac4d44daa",
+            "Text": "ExternalMessage",
+            "Glyph": "fas fa-mail-bulk",
+            "HREF": "/ExternalMessageList",
+            "OnClick": "",
+            "TextClass": "text-info"
+        },
+
 
         {
             "ID": "27",

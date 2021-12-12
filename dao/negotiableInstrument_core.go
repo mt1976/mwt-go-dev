@@ -4,32 +4,36 @@ package dao
 // ----------------------------------------------------------------
 // Package            : dao
 // Object 			    : NegotiableInstrument (negotiableinstrument)
-// Endpoint 	        : NegotiableInstrument (ID)
+// Endpoint 	        : NegotiableInstrument (Id)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:53
+// Date & Time		    : 12/12/2021 at 16:13:16
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // NegotiableInstrument_GetList() returns a list of all NegotiableInstrument records
 func NegotiableInstrument_GetList() (int, []dm.NegotiableInstrument, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.NegotiableInstrument_SQLTable)
 	count, negotiableinstrumentList, _, _ := negotiableinstrument_Fetch(tsql)
+	
 	return count, negotiableinstrumentList, nil
 }
 
@@ -37,6 +41,7 @@ func NegotiableInstrument_GetList() (int, []dm.NegotiableInstrument, error) {
 
 // NegotiableInstrument_GetByID() returns a single NegotiableInstrument record
 func NegotiableInstrument_GetByID(id string) (int, dm.NegotiableInstrument, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.NegotiableInstrument_SQLTable)
 	tsql = tsql + " WHERE " + dm.NegotiableInstrument_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func NegotiableInstrument_GetByID(id string) (int, dm.NegotiableInstrument, erro
 // NegotiableInstrument_DeleteByID() deletes a single NegotiableInstrument record
 func NegotiableInstrument_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.NegotiableInstrument_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.NegotiableInstrument_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.NegotiableInstrument_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -164,7 +170,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.NegotiableInstrument_SYSId, "0")
    recItem.Id  = get_String(rec, dm.NegotiableInstrument_Id, "")
    recItem.LongName  = get_String(rec, dm.NegotiableInstrument_LongName, "")
@@ -275,7 +281,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -284,9 +290,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 
 func NegotiableInstrument_NewID(r dm.NegotiableInstrument) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

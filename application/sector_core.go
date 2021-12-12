@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,14 +40,14 @@ type Sector_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 	
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -56,6 +56,7 @@ const (
 
 //Sector_Publish annouces the endpoints available for this object
 func Sector_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.Sector_Path, Sector_Handler)
 	mux.HandleFunc(dm.Sector_PathList, Sector_HandlerList)
 	mux.HandleFunc(dm.Sector_PathView, Sector_HandlerView)
 	mux.HandleFunc(dm.Sector_PathEdit, Sector_HandlerEdit)
@@ -63,7 +64,7 @@ func Sector_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Sector_PathSave, Sector_HandlerSave)
 	mux.HandleFunc(dm.Sector_PathDelete, Sector_HandlerDelete)
 	logs.Publish("Siena", dm.Sector_Title)
-	
+    core.Catalog_Add(dm.Sector_Title, dm.Sector_Path, "", dm.Sector_QueryString, "APP")
 }
 
 //Sector_HandlerList is the handler for the list page
@@ -119,17 +120,17 @@ func Sector_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -160,16 +161,15 @@ func Sector_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -191,13 +191,12 @@ func Sector_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Sector
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Sector_Code)
 		item.Name = r.FormValue(dm.Sector_Name)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Sector_Store(item,r)	
 
@@ -225,13 +224,13 @@ func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

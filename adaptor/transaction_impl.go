@@ -22,7 +22,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Transaction_Delete_Impl(id string, usr string) error {
+func Transaction_Delete_Impl(id string) error {
 	var er error
 
 	message := "Implement Transaction_Delete: " + id

@@ -23,13 +23,13 @@ func getNewFileID() string {
 
 func SienaDispatchStaticDataXML(StaticImport_XMLContent StaticImport_XML) error {
 
-	preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
-	fmt.Println("PreparedXML", string(preparedXML))
+	//preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
+	//fmt.Println("PreparedXML", string(preparedXML))
 
 	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
 	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
-	fmt.Println(fileName)
+	//fmt.Println(fileName)
 
 	xmlFile, err := os.Create(fileName)
 	if err != nil {
@@ -44,5 +44,6 @@ func SienaDispatchStaticDataXML(StaticImport_XMLContent StaticImport_XML) error 
 		fmt.Println("Error encoding XML to file: ", err)
 		return err
 	}
+
 	return err
 }

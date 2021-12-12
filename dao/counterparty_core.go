@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:48
+// Date & Time		    : 12/12/2021 at 16:13:09
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Counterparty_GetList() returns a list of all Counterparty records
 func Counterparty_GetList() (int, []dm.Counterparty, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Counterparty_SQLTable)
 	count, counterpartyList, _, _ := counterparty_Fetch(tsql)
+	
 	return count, counterpartyList, nil
 }
 
@@ -37,6 +41,7 @@ func Counterparty_GetList() (int, []dm.Counterparty, error) {
 
 // Counterparty_GetByID() returns a single Counterparty record
 func Counterparty_GetByID(id string) (int, dm.Counterparty, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Counterparty_SQLTable)
 	tsql = tsql + " WHERE " + dm.Counterparty_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Counterparty_GetByID(id string) (int, dm.Counterparty, error) {
 // Counterparty_DeleteByID() deletes a single Counterparty record
 func Counterparty_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Counterparty_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Counterparty_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Counterparty_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func counterparty_Save(r dm.Counterparty,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Counterparty_impl.go file
-	err1 := adaptor.Counterparty_Delete_Impl(r.CompID,usr)
+	err1 := adaptor.Counterparty_Delete_Impl(r.CompID)
 	err2 := adaptor.Counterparty_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.NameCentre  = get_String(rec, dm.Counterparty_NameCentre, "")
    recItem.NameFirm  = get_String(rec, dm.Counterparty_NameFirm, "")
    recItem.FullName  = get_String(rec, dm.Counterparty_FullName, "")
@@ -174,7 +180,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -183,9 +189,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 
 func Counterparty_NewID(r dm.Counterparty) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

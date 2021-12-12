@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:47
+// Date & Time		    : 12/12/2021 at 16:13:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -36,6 +36,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Book_Template     = "Book"
 	Book_TemplateList = "Book_List"
 	Book_TemplateView = "Book_View"
 	Book_TemplateEdit = "Book_Edit"
@@ -43,6 +44,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Book_Path       = "/API/Book/"
 	Book_PathList   = "/BookList/"
 	Book_PathView   = "/BookView/"
 	Book_PathEdit   = "/BookEdit/"

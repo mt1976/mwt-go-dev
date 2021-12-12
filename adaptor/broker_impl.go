@@ -22,7 +22,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Broker_Delete_Impl(id string, usr string) error {
+func Broker_Delete_Impl(id string) error {
 	var er error
 
 	message := "Implement Broker_Delete: " + id
@@ -61,7 +61,7 @@ func Broker_Update_Impl(item dm.Broker, usr string) error {
 
 	XMLmessage := StaticImport_Create(StaticImport_UpdateAction, "Broker", "com.eurobase.siena.data.Brokers.Broker", sienaKeys, sienaFlds)
 
-	err := StaticImport_Dispatch(XMLmessage)
+	err := StaticImport_DispatchXML(XMLmessage, StaticImport_UpdateAction)
 	if err != nil {
 		logs.Error("Error in StaticImport_Dispatch: ", err)
 	} else {

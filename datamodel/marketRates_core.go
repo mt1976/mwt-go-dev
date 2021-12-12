@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:55
+// Date & Time		    : 12/12/2021 at 16:13:18
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -48,6 +48,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	MarketRates_Template     = "MarketRates"
 	MarketRates_TemplateList = "MarketRates_List"
 	MarketRates_TemplateView = "MarketRates_View"
 	MarketRates_TemplateEdit = "MarketRates_Edit"
@@ -55,6 +56,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	MarketRates_Path       = "/API/MarketRates/"
 	MarketRates_PathList   = "/MarketRatesList/"
 	MarketRates_PathView   = "/MarketRatesView/"
 	MarketRates_PathEdit   = "/MarketRatesEdit/"

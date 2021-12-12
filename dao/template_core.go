@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:57
+// Date & Time		    : 12/12/2021 at 16:13:20
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // Template_GetList() returns a list of all Template records
 func Template_GetList() (int, []dm.Template, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Template_SQLTable)
 	count, templateList, _, _ := template_Fetch(tsql)
+	
 	return count, templateList, nil
 }
 
@@ -37,6 +41,7 @@ func Template_GetList() (int, []dm.Template, error) {
 
 // Template_GetByID() returns a single Template record
 func Template_GetByID(id string) (int, dm.Template, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Template_SQLTable)
 	tsql = tsql + " WHERE " + dm.Template_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Template_GetByID(id string) (int, dm.Template, error) {
 // Template_DeleteByID() deletes a single Template record
 func Template_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Template_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Template_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Template_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -141,7 +147,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Template_SYSId, "0")
    recItem.FIELD1  = get_String(rec, dm.Template_FIELD1, "")
    recItem.FIELD2  = get_String(rec, dm.Template_FIELD2, "")
@@ -183,7 +189,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 
   recItem.FIELD2  = template_FIELD2_Override (recItem)
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -192,9 +198,7 @@ func template_Fetch(tsql string) (int, []dm.Template, dm.Template, error) {
 
 func Template_NewID(r dm.Template) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

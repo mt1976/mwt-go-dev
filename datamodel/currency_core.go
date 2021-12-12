@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -51,6 +51,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Currency_Template     = "Currency"
 	Currency_TemplateList = "Currency_List"
 	Currency_TemplateView = "Currency_View"
 	Currency_TemplateEdit = "Currency_Edit"
@@ -58,6 +59,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Currency_Path       = "/API/Currency/"
 	Currency_PathList   = "/CurrencyList/"
 	Currency_PathView   = "/CurrencyView/"
 	Currency_PathEdit   = "/CurrencyEdit/"

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:51
+// Date & Time		    : 12/12/2021 at 16:13:12
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,6 +44,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	DataLoaderMap_Template     = "DataLoaderMap"
 	DataLoaderMap_TemplateList = "DataLoaderMap_List"
 	DataLoaderMap_TemplateView = "DataLoaderMap_View"
 	DataLoaderMap_TemplateEdit = "DataLoaderMap_Edit"
@@ -51,6 +52,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	DataLoaderMap_Path       = "/API/DataLoaderMap/"
 	DataLoaderMap_PathList   = "/DataLoaderMapList/"
 	DataLoaderMap_PathView   = "/DataLoaderMapView/"
 	DataLoaderMap_PathEdit   = "/DataLoaderMapEdit/"

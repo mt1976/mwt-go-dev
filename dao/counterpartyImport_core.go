@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:10
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // CounterpartyImport_GetList() returns a list of all CounterpartyImport records
 func CounterpartyImport_GetList() (int, []dm.CounterpartyImport, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CounterpartyImport_SQLTable)
 	count, counterpartyimportList, _, _ := counterpartyimport_Fetch(tsql)
+	
 	return count, counterpartyimportList, nil
 }
 
@@ -37,6 +41,7 @@ func CounterpartyImport_GetList() (int, []dm.CounterpartyImport, error) {
 
 // CounterpartyImport_GetByID() returns a single CounterpartyImport record
 func CounterpartyImport_GetByID(id string) (int, dm.CounterpartyImport, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CounterpartyImport_SQLTable)
 	tsql = tsql + " WHERE " + dm.CounterpartyImport_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func CounterpartyImport_GetByID(id string) (int, dm.CounterpartyImport, error) {
 // CounterpartyImport_DeleteByID() deletes a single CounterpartyImport record
 func CounterpartyImport_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyImport_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyImport_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.CounterpartyImport_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func counterpartyimport_Save(r dm.CounterpartyImport,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/CounterpartyImport_impl.go file
-	err1 := adaptor.CounterpartyImport_Delete_Impl(r.CompID,usr)
+	err1 := adaptor.CounterpartyImport_Delete_Impl(r.CompID)
 	err2 := adaptor.CounterpartyImport_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func counterpartyimport_Fetch(tsql string) (int, []dm.CounterpartyImport, dm.Cou
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.KeyImportID  = get_String(rec, dm.CounterpartyImport_KeyImportID, "")
    recItem.Firm  = get_String(rec, dm.CounterpartyImport_Firm, "")
    recItem.Centre  = get_String(rec, dm.CounterpartyImport_Centre, "")
@@ -144,7 +150,7 @@ func counterpartyimport_Fetch(tsql string) (int, []dm.CounterpartyImport, dm.Cou
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -153,9 +159,7 @@ func counterpartyimport_Fetch(tsql string) (int, []dm.CounterpartyImport, dm.Cou
 
 func CounterpartyImport_NewID(r dm.CounterpartyImport) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

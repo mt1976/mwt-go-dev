@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Systems_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -81,7 +81,7 @@ type Systems_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -90,6 +90,7 @@ const (
 
 //Systems_Publish annouces the endpoints available for this object
 func Systems_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.Systems_PathList, Systems_HandlerList)
 	mux.HandleFunc(dm.Systems_PathView, Systems_HandlerView)
 	mux.HandleFunc(dm.Systems_PathEdit, Systems_HandlerEdit)
@@ -97,7 +98,7 @@ func Systems_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Systems_PathSave, Systems_HandlerSave)
 	mux.HandleFunc(dm.Systems_PathDelete, Systems_HandlerDelete)
 	logs.Publish("Application", dm.Systems_Title)
-	
+    //No API
 }
 
 //Systems_HandlerList is the handler for the list page
@@ -153,7 +154,7 @@ func Systems_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -175,12 +176,12 @@ pageDetail.SWIFTin = rD.SWIFTin
 pageDetail.SWIFTout = rD.SWIFTout
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -211,7 +212,7 @@ func Systems_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -233,11 +234,10 @@ pageDetail.SWIFTin = rD.SWIFTin
 pageDetail.SWIFTout = rD.SWIFTout
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -259,7 +259,7 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Systems
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Systems_SYSId)
 		item.Id = r.FormValue(dm.Systems_Id)
 		item.Name = r.FormValue(dm.Systems_Name)
@@ -280,9 +280,8 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SWIFTin = r.FormValue(dm.Systems_SWIFTin)
 		item.SWIFTout = r.FormValue(dm.Systems_SWIFTout)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Systems_Store(item,r)	
 
@@ -310,7 +309,7 @@ func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -332,8 +331,8 @@ pageDetail.SWIFTin = ""
 pageDetail.SWIFTout = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

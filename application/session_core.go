@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Session_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Apptoken string
 		Createdate string
@@ -97,7 +97,7 @@ type Session_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -106,14 +106,15 @@ const (
 
 //Session_Publish annouces the endpoints available for this object
 func Session_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.Session_PathList, Session_HandlerList)
 	mux.HandleFunc(dm.Session_PathView, Session_HandlerView)
-	
-	
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
 	mux.HandleFunc(dm.Session_PathSave, Session_HandlerSave)
-	
+	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Session_Title)
-	
+    //No API
 }
 
 //Session_HandlerList is the handler for the list page
@@ -169,7 +170,7 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Apptoken = rD.Apptoken
 pageDetail.Createdate = rD.Createdate
@@ -199,12 +200,12 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SessionRole = rD.SessionRole
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -235,7 +236,7 @@ func Session_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Apptoken = rD.Apptoken
 pageDetail.Createdate = rD.Createdate
@@ -265,11 +266,10 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.SessionRole = rD.SessionRole
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -291,7 +291,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Session
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Session_SYSId)
 		item.Apptoken = r.FormValue(dm.Session_Apptoken)
 		item.Createdate = r.FormValue(dm.Session_Createdate)
@@ -320,9 +320,8 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Session_SYSUpdatedHost)
 		item.SessionRole = r.FormValue(dm.Session_SessionRole)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Session_Store(item,r)	
 
@@ -350,7 +349,7 @@ func Session_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Apptoken = ""
 pageDetail.Createdate = ""
@@ -380,8 +379,8 @@ pageDetail.SYSUpdatedHost = ""
 pageDetail.SessionRole = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

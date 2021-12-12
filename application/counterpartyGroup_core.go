@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:49
+// Date & Time		    : 12/12/2021 at 16:13:09
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type CounterpartyGroup_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		Name string
 		CountryCode string
 		SuperGroup string
@@ -53,7 +53,7 @@ type CounterpartyGroup_Page struct {
 	Country_Lookup_List	[]dm.Country
 	Parent_Lookup_List	[]dm.CounterpartyGroup
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -62,6 +62,7 @@ const (
 
 //CounterpartyGroup_Publish annouces the endpoints available for this object
 func CounterpartyGroup_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.CounterpartyGroup_PathList, CounterpartyGroup_HandlerList)
 	mux.HandleFunc(dm.CounterpartyGroup_PathView, CounterpartyGroup_HandlerView)
 	mux.HandleFunc(dm.CounterpartyGroup_PathEdit, CounterpartyGroup_HandlerEdit)
@@ -69,7 +70,7 @@ func CounterpartyGroup_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.CounterpartyGroup_PathSave, CounterpartyGroup_HandlerSave)
 	mux.HandleFunc(dm.CounterpartyGroup_PathDelete, CounterpartyGroup_HandlerDelete)
 	logs.Publish("Siena", dm.CounterpartyGroup_Title)
-	
+    //No API
 }
 
 //CounterpartyGroup_HandlerList is the handler for the list page
@@ -125,22 +126,22 @@ func CounterpartyGroup_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.CountryCode = rD.CountryCode
 pageDetail.SuperGroup = rD.SuperGroup
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CountryCode_Lookup_Name,_:= dao.Country_GetByID(rD.CountryCode)
 pageDetail.Country_Lookup = CountryCode_Lookup_Name.Name
 _,SuperGroup_Lookup_Name,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
 pageDetail.Parent_Lookup = SuperGroup_Lookup_Name.Name
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -171,23 +172,22 @@ func CounterpartyGroup_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.CountryCode = rD.CountryCode
 pageDetail.SuperGroup = rD.SuperGroup
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CountryCode_Lookup_Name,_:= dao.Country_GetByID(rD.CountryCode)
 pageDetail.Country_Lookup = CountryCode_Lookup_Name.Name
 _,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
 _,SuperGroup_Lookup_Name,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
 pageDetail.Parent_Lookup = SuperGroup_Lookup_Name.Name
 _,pageDetail.Parent_Lookup_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -209,16 +209,15 @@ func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.CounterpartyGroup
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.CounterpartyGroup_Name)
 		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode)
 		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup)
 		item.Country_Lookup = r.FormValue(dm.CounterpartyGroup_Country_Lookup)
 		item.Parent_Lookup = r.FormValue(dm.CounterpartyGroup_Parent_Lookup)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.CounterpartyGroup_Store(item,r)	
 
@@ -246,18 +245,18 @@ func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.CountryCode = ""
 pageDetail.SuperGroup = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Lookup = ""
 _,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
 pageDetail.Parent_Lookup = ""
 _,pageDetail.Parent_Lookup_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

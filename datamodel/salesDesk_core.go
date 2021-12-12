@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:55
+// Date & Time		    : 12/12/2021 at 16:13:18
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -33,6 +33,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	SalesDesk_Template     = "SalesDesk"
 	SalesDesk_TemplateList = "SalesDesk_List"
 	SalesDesk_TemplateView = "SalesDesk_View"
 	SalesDesk_TemplateEdit = "SalesDesk_Edit"
@@ -40,6 +41,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	SalesDesk_Path       = "/API/SalesDesk/"
 	SalesDesk_PathList   = "/SalesDeskList/"
 	SalesDesk_PathView   = "/SalesDeskView/"
 	SalesDesk_PathEdit   = "/SalesDeskEdit/"

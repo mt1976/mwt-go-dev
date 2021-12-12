@@ -1,0 +1,235 @@
+{{template "header" .}}
+
+<body>
+<div class="container-fluid">
+      <div class="card border-primary">
+        <form action="/home" method="POST">
+
+        <div class="card-header font-weight-bold border-primary">
+
+
+          <div class="row">
+            <div class="col">
+              {{.Title}}&nbsp;&nbsp;<span class="text-muted">[{{.ItemsOnPage}}]</span>
+              
+            </div>
+
+            <div class="col text-right">
+              <div class="btn-group">
+              
+              
+              <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export ExternalMessage as CSV"></i>&nbsp;&nbsp;Export</button>
+              
+              <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ExternalMessage"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+              <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="">
+              <table class="table table-striped table-bordered table-hover" id="Table_ExternalMessage">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="text-center">#</th>
+                    
+                    <th class="text-center">MessageID</th>
+                    <th class="text-center">MessageFormat</th>
+                    <th class="text-center">MessageDeliveredTo</th>
+                    <th class="text-center">MessageBody</th>
+                    <th class="text-center">MessageFilename</th>
+                    <th class="text-center">MessageLife</th>
+                    <th class="text-center">MessageDate</th>
+                    <th class="text-center">MessageTime</th>
+                    <th class="text-center">MessageTimeoutAction</th>
+                    <th class="text-center">MessageACKNAK</th>
+                    <th class="text-center">ResponseID</th>
+                    <th class="text-center">ResponseFilename</th>
+                    <th class="text-center">ResponseBody</th>
+                    <th class="text-center">ResponseDate</th>
+                    <th class="text-center">ResponseTime</th>
+                    <th class="text-center">ResponseAdditionalInfo</th>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <th class="text-center">MessageTimeout</th>
+                    <th class="text-center">MessageEmitted</th>
+                    <th class="text-center">ResponseRecieved</th>
+                    <th class="text-center">MessageClass</th>
+                    <th class="text-center">AppID</th>
+                    
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id=filterTable>
+                  {{range .ItemList}}
+                  <tr>
+                    <td class="text-center align-middle"></td>
+                    
+        
+                    <td class="align-middle">{{.MessageID}}</td>
+        
+                    <td class="align-middle">{{.MessageFormat}}</td>
+        
+                    <td class="align-middle">{{.MessageDeliveredTo}}</td>
+        
+                    <td class="align-middle">{{.MessageBody}}</td>
+        
+                    <td class="align-middle">{{.MessageFilename}}</td>
+        
+                    <td class="align-middle">{{.MessageLife}}</td>
+        
+                    <td class="align-middle">{{.MessageDate}}</td>
+        
+                    <td class="align-middle">{{.MessageTime}}</td>
+        
+                    <td class="align-middle">{{.MessageTimeoutAction}}</td>
+        
+                    <td class="align-middle">{{.MessageACKNAK}}</td>
+        
+                    <td class="align-middle">{{.ResponseID}}</td>
+        
+                    <td class="align-middle">{{.ResponseFilename}}</td>
+        
+                    <td class="align-middle">{{.ResponseBody}}</td>
+        
+                    <td class="align-middle">{{.ResponseDate}}</td>
+        
+                    <td class="align-middle">{{.ResponseTime}}</td>
+        
+                    <td class="align-middle">{{.ResponseAdditionalInfo}}</td>
+        
+                    
+        
+                    
+        
+                    
+        
+                    
+        
+                    
+        
+                    
+        
+                    <td class="align-middle">{{.MessageTimeout}}</td>
+        
+                    <td class="align-middle">{{.MessageEmitted}}</td>
+        
+                    <td class="align-middle">{{.ResponseRecieved}}</td>
+        
+                    <td class="align-middle">{{.MessageClass}}</td>
+        
+                    <td class="align-middle">{{.AppID}}</td>
+        
+                    
+                    <td class="text-center" style="width:1px;">
+                      <div class="btn-group">
+                      
+                        <button type="submit" value="" class="btn btn-info btn-sm" formaction="/ExternalMessageView?MessageID={{.MessageID}}" method="POST" title="View ExternalMessage">
+                          <i class="far fa-eye" style="font-size: 22px"></i>
+                        </button>
+                      
+                      
+                        <button type="submit" value="" class="btn btn-warning btn-sm" formaction="/ExternalMessageEdit?MessageID={{.MessageID}}" method="POST" title="Edit ExternalMessage">
+                          <i class="fas fa-pen" style="font-size: 22px"></i>
+                        </button>
+                        
+                        
+                        <button type="submit" value="" class="btn btn-danger btn-sm" formaction="/ExternalMessageDelete?MessageID={{.MessageID}}" method="POST" title="Delete ExternalMessage">
+                          <i class="fas fa-trash-alt" style="font-size: 22px"></i>
+                        </button>
+                        
+                      </div>
+
+                    </td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+
+            </div>
+
+        </div>
+          </form>
+      </div>
+</div>
+
+  <!-- SCRIPTS DO NOT CHANGE -->
+
+  <script>
+    $(document).ready(function() {
+      $("#myFilter").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#filterTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+
+  <script>
+$(document).ready(function(){
+    $('#Table_ExternalMessage').dataTable({
+      "lengthMenu": [[10,14, 25, 50, 100, 200, -1], [10,14, 25, 50, 100, 200, "All"]],
+      "drawCallback": function( settings ) {$("#Table_ExternalMessage").wrap( "<div class='table-responsive'></div>" );},
+      stateSave: true,
+    } );
+});
+</script>
+
+
+
+
+  <script>
+    const toCsv = function(table) {
+      // Query all rows
+      const rows = table.querySelectorAll('tr');
+
+      return [].slice.call(rows)
+        .map(function(row) {
+          // Query all cells
+          const cells = row.querySelectorAll('th,td');
+          return [].slice.call(cells)
+            .map(function(cell) {
+              return '"' + cell.textContent + '"';
+            })
+            .join(',');
+        })
+        .join('\n');
+    };
+
+    const download = function(text, fileName) {
+      const link = document.createElement('a');
+      link.setAttribute('href', `data:text/csv;charset=utf-8,${encodeURIComponent(text)}`);
+      link.setAttribute('download', fileName);
+
+      link.style.display = 'none';
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+    };
+
+    const table = document.getElementById('Table_ExternalMessage');
+    const exportBtn = document.getElementById('export');
+
+    exportBtn.addEventListener('click', function() {
+      // Export to csv
+      const csv = toCsv(table);
+
+      // Download it
+      download(csv, 'ExternalMessage.csv');
+    });
+    </script>
+
+
+  <!-- SCRIPTS DO NOT CHANGE -->
+{{template "footer" .}}
+</body>

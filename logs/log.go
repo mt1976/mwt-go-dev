@@ -39,6 +39,8 @@ const (
 	log_Result        = "Result"
 	log_Storing       = "Storing"
 	log_Generating    = "Generating"
+	log_Post          = "http POST"
+	log_Save          = "Writing"
 
 	ColorReset        = "\033[0m"
 	ColorRed          = "\033[31m"
@@ -160,6 +162,12 @@ func Accessing(w string) {
 
 }
 
+func Post(w string) {
+	//msg_info(w, v)
+	msg_raw(log_Post, w, "", colour.Green)
+
+}
+
 func Query(w string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
@@ -173,6 +181,13 @@ func Storing(t string, w string) {
 
 		msg_raw(log_Storing, t+" "+w, Character_Storing, colour.Yellow)
 	}
+}
+
+func Saving(t string, w string) {
+	//msg_info(w, v)
+
+	msg_raw(log_Save, t+" "+w, Character_Storing, colour.Yellow)
+
 }
 
 func Result(w string, r string) {

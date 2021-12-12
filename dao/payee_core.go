@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
-	
+	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Payee_GetList() returns a list of all Payee records
 func Payee_GetList() (int, []dm.Payee, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Payee_SQLTable)
 	count, payeeList, _, _ := payee_Fetch(tsql)
+	
 	return count, payeeList, nil
 }
 
@@ -37,6 +41,7 @@ func Payee_GetList() (int, []dm.Payee, error) {
 
 // Payee_GetByID() returns a single Payee record
 func Payee_GetByID(id string) (int, dm.Payee, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Payee_SQLTable)
 	tsql = tsql + " WHERE " + dm.Payee_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Payee_GetByID(id string) (int, dm.Payee, error) {
 // Payee_DeleteByID() deletes a single Payee record
 func Payee_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Payee_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Payee_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Payee_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func payee_Save(r dm.Payee,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Payee_impl.go file
-	err1 := adaptor.Payee_Delete_Impl(r.KeyCounterpartyFirm,usr)
+	err1 := adaptor.Payee_Delete_Impl(r.KeyCounterpartyFirm)
 	err2 := adaptor.Payee_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable, "")
    recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm, "")
    recItem.KeyCounterpartyCentre  = get_String(rec, dm.Payee_KeyCounterpartyCentre, "")
@@ -207,7 +213,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
   recItem.Reason  = payee_Reason_Override (recItem)
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -216,15 +222,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 func Payee_NewID(r dm.Payee) string {
 	
-	
-
-		// payee_NewIDImpl should be specified in dao/Payee_Impl.go
-		// to provide the implementation for the special case.
-		// override should return id - override function should be defined as
-		// payee_NewIDImpl(r dm.Payee) string {...}
-		//
-		id := payee_NewIDImpl(r)
-	
+			id := uuid.New().String()
 	
 	return id
 }

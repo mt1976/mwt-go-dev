@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:51
+// Date & Time		    : 12/12/2021 at 16:13:12
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // DataLoaderMap_GetList() returns a list of all DataLoaderMap records
 func DataLoaderMap_GetList() (int, []dm.DataLoaderMap, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderMap_SQLTable)
 	count, dataloadermapList, _, _ := dataloadermap_Fetch(tsql)
+	
 	return count, dataloadermapList, nil
 }
 
@@ -37,6 +41,7 @@ func DataLoaderMap_GetList() (int, []dm.DataLoaderMap, error) {
 
 // DataLoaderMap_GetByID() returns a single DataLoaderMap record
 func DataLoaderMap_GetByID(id string) (int, dm.DataLoaderMap, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderMap_SQLTable)
 	tsql = tsql + " WHERE " + dm.DataLoaderMap_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func DataLoaderMap_GetByID(id string) (int, dm.DataLoaderMap, error) {
 // DataLoaderMap_DeleteByID() deletes a single DataLoaderMap record
 func DataLoaderMap_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DataLoaderMap_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DataLoaderMap_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.DataLoaderMap_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -145,7 +151,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.DataLoaderMap_SYSId, "0")
    recItem.Id  = get_String(rec, dm.DataLoaderMap_Id, "")
    recItem.Name  = get_String(rec, dm.DataLoaderMap_Name, "")
@@ -199,7 +205,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -208,9 +214,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 
 func DataLoaderMap_NewID(r dm.DataLoaderMap) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

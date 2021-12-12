@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:48
+// Date & Time		    : 12/12/2021 at 16:13:08
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Centre_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Name string
 		Country string
@@ -51,7 +51,7 @@ type Centre_Page struct {
 	
 	Country_Lookup_List	[]dm.Country
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -60,6 +60,7 @@ const (
 
 //Centre_Publish annouces the endpoints available for this object
 func Centre_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.Centre_Path, Centre_Handler)
 	mux.HandleFunc(dm.Centre_PathList, Centre_HandlerList)
 	mux.HandleFunc(dm.Centre_PathView, Centre_HandlerView)
 	mux.HandleFunc(dm.Centre_PathEdit, Centre_HandlerEdit)
@@ -67,7 +68,7 @@ func Centre_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Centre_PathSave, Centre_HandlerSave)
 	mux.HandleFunc(dm.Centre_PathDelete, Centre_HandlerDelete)
 	logs.Publish("Siena", dm.Centre_Title)
-	
+    core.Catalog_Add(dm.Centre_Title, dm.Centre_Path, "", dm.Centre_QueryString, "APP")
 }
 
 //Centre_HandlerList is the handler for the list page
@@ -123,20 +124,20 @@ func Centre_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Country = rD.Country
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Lookup = Country_Lookup_Name.Name
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -167,20 +168,19 @@ func Centre_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 pageDetail.Country = rD.Country
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Lookup = Country_Lookup_Name.Name
 _,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -202,15 +202,14 @@ func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Centre
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Centre_Code)
 		item.Name = r.FormValue(dm.Centre_Name)
 		item.Country = r.FormValue(dm.Centre_Country)
 		item.Country_Lookup = r.FormValue(dm.Centre_Country_Lookup)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Centre_Store(item,r)	
 
@@ -238,16 +237,16 @@ func Centre_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 pageDetail.Country = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Lookup = ""
 _,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

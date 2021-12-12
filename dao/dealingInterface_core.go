@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:51
+// Date & Time		    : 12/12/2021 at 16:13:14
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // DealingInterface_GetList() returns a list of all DealingInterface records
 func DealingInterface_GetList() (int, []dm.DealingInterface, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.DealingInterface_SQLTable)
 	count, dealinginterfaceList, _, _ := dealinginterface_Fetch(tsql)
+	
 	return count, dealinginterfaceList, nil
 }
 
@@ -37,6 +41,7 @@ func DealingInterface_GetList() (int, []dm.DealingInterface, error) {
 
 // DealingInterface_GetByID() returns a single DealingInterface record
 func DealingInterface_GetByID(id string) (int, dm.DealingInterface, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.DealingInterface_SQLTable)
 	tsql = tsql + " WHERE " + dm.DealingInterface_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func DealingInterface_GetByID(id string) (int, dm.DealingInterface, error) {
 // DealingInterface_DeleteByID() deletes a single DealingInterface record
 func DealingInterface_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealingInterface_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealingInterface_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.DealingInterface_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func dealinginterface_Save(r dm.DealingInterface,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/DealingInterface_impl.go file
-	err1 := adaptor.DealingInterface_Delete_Impl(r.Name,usr)
+	err1 := adaptor.DealingInterface_Delete_Impl(r.Name)
 	err2 := adaptor.DealingInterface_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
    recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
    recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative, "True")
@@ -192,7 +198,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -201,9 +207,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 
 func DealingInterface_NewID(r dm.DealingInterface) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

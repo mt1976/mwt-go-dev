@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -42,6 +42,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Owner_Template     = "Owner"
 	Owner_TemplateList = "Owner_List"
 	Owner_TemplateView = "Owner_View"
 	Owner_TemplateEdit = "Owner_Edit"
@@ -49,6 +50,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Owner_Path       = "/API/Owner/"
 	Owner_PathList   = "/OwnerList/"
 	Owner_PathView   = "/OwnerView/"
 	Owner_PathEdit   = "/OwnerEdit/"

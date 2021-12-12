@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // Systems_GetList() returns a list of all Systems records
 func Systems_GetList() (int, []dm.Systems, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Systems_SQLTable)
 	count, systemsList, _, _ := systems_Fetch(tsql)
+	
 	return count, systemsList, nil
 }
 
@@ -37,6 +41,7 @@ func Systems_GetList() (int, []dm.Systems, error) {
 
 // Systems_GetByID() returns a single Systems record
 func Systems_GetByID(id string) (int, dm.Systems, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Systems_SQLTable)
 	tsql = tsql + " WHERE " + dm.Systems_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Systems_GetByID(id string) (int, dm.Systems, error) {
 // Systems_DeleteByID() deletes a single Systems record
 func Systems_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Systems_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Systems_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Systems_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -147,7 +153,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Systems_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Systems_Id, "")
    recItem.Name  = get_String(rec, dm.Systems_Name, "")
@@ -207,7 +213,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -216,9 +222,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 
 func Systems_NewID(r dm.Systems) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

@@ -143,17 +143,24 @@ func StaticImport_Create(action string, table string, objName string, sienaKeyFi
 	StaticImport_XMLContent := StaticImport_AddTransaction(sienaTransaction)
 
 	XMLmessage := StaticImport_GenXML(StaticImport_XMLContent)
-	fmt.Printf("XMLmessage: %v\n", XMLmessage)
+	//fmt.Printf("XMLmessage: %v\n", XMLmessage)
 	return XMLmessage
 }
 
-func StaticImport_Dispatch(XMLmessage []byte) error {
+func StaticImport_DispatchXML(XMLmessage []byte, msgClass string) error {
+	//	logs.Success("StaticImport_Dispatch")
 	var err error
-	fileName := uuid.New().String() + ".xml"
+	fileID := uuid.New()
+	fileName := fileID.String() + ".xml"
 	delivertopath := core.SienaProperties["static_out"]
 	ok := core.WriteDataFileAbsolute(fileName, delivertopath, string(XMLmessage))
 	if ok == -1 {
 		err = fmt.Errorf("Error writing file %s", fileName)
 	}
+	//logs.Information("Send Message", fileName)
+	_ = Message_Sent(fileID.String(), Message_FormatXML, msgClass, delivertopath, XMLmessage, fileName, 10, Message_TimeoutAction_Notify)
+	//logs.Information("Return from Send Message", fileName)
+
+	//logs.Information("StaticImport_DispatchXML:", err.Error())
 	return err
 }

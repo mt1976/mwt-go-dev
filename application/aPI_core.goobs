@@ -1,0 +1,275 @@
+package application
+// ----------------------------------------------------------------
+// Automatically generated  "/application/api.go"
+// ----------------------------------------------------------------
+// Package              : application
+// Object 			    : API (api)
+// Endpoint 	        : API (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 12/12/2021 at 16:13:07
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+import (
+	
+	"net/http"
+
+	core    "github.com/mt1976/mwt-go-dev/core"
+	dao     "github.com/mt1976/mwt-go-dev/dao"
+	dm      "github.com/mt1976/mwt-go-dev/datamodel"
+	logs    "github.com/mt1976/mwt-go-dev/logs"
+)
+
+//api_PageList provides the information for the template for a list of APIs
+type API_PageList struct {
+	SessionInfo      dm.SessionInfo
+	UserMenu         []dm.AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []dm.API
+}
+
+//api_Page provides the information for the template for an individual API
+type API_Page struct {
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 []dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		ID string
+		Endpoint string
+		Descr string
+		Query string
+		Source string
+	
+	
+	
+	
+	
+	
+	
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+}
+
+const (
+	API_Redirect = dm.API_PathList
+)
+
+//API_Publish annouces the endpoints available for this object
+func API_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.API_Path, API_Handler)
+	mux.HandleFunc(dm.API_PathList, API_HandlerList)
+	mux.HandleFunc(dm.API_PathView, API_HandlerView)
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
+	//Cannot Save via GUI
+	//Cannot Delete via GUI
+	logs.Publish("Application", dm.API_Title)
+    core.Catalog_Add(dm.API_Title, dm.API_Path, "", dm.API_QueryString, "STATE")
+}
+
+//API_HandlerList is the handler for the list page
+func API_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	var returnList []dm.API
+	noItems, returnList, _ := dao.API_GetList()
+
+	pageDetail := API_PageList{
+		Title:            CardTitle(dm.API_Title, core.Action_List),
+		PageTitle:        PageTitle(dm.API_Title, core.Action_List),
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
+		UserMenu:         UserMenu_Get(r),
+		UserRole:         Session_GetUserRole(r),
+	}
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.API_TemplateList, w, r, pageDetail)
+
+}
+
+//API_HandlerView is the handler used to View a page
+func API_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+
+	searchID := core.GetURLparam(r, dm.API_QueryString)
+	_, rD, _ := dao.API_GetByID(searchID)
+
+	pageDetail := API_Page{
+		Title:       CardTitle(dm.API_Title, core.Action_View),
+		PageTitle:   PageTitle(dm.API_Title, core.Action_View),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    Session_GetUserRole(r),
+	}
+
+		// 
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+pageDetail.ID = rD.ID
+pageDetail.Endpoint = rD.Endpoint
+pageDetail.Descr = rD.Descr
+pageDetail.Query = rD.Query
+pageDetail.Source = rD.Source
+
+
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+		//
+
+
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.API_TemplateView, w, r, pageDetail)
+
+}
+
+//API_HandlerEdit is the handler used generate the Edit page
+func API_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+
+	searchID := core.GetURLparam(r, dm.API_QueryString)
+	_, rD, _ := dao.API_GetByID(searchID)
+	
+	pageDetail := API_Page{
+		Title:       CardTitle(dm.API_Title, core.Action_Edit),
+		PageTitle:   PageTitle(dm.API_Title, core.Action_Edit),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    Session_GetUserRole(r),
+	}
+
+		// 
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+pageDetail.ID = rD.ID
+pageDetail.Endpoint = rD.Endpoint
+pageDetail.Descr = rD.Descr
+pageDetail.Query = rD.Query
+pageDetail.Source = rD.Source
+
+
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.API_TemplateEdit, w, r, pageDetail)
+
+
+}
+
+//API_HandlerSave is the handler used process the saving of an API
+func API_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path+r.FormValue("ID"))
+
+	var item dm.API
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		item.ID = r.FormValue(dm.API_ID)
+		item.Endpoint = r.FormValue(dm.API_Endpoint)
+		item.Descr = r.FormValue(dm.API_Descr)
+		item.Query = r.FormValue(dm.API_Query)
+		item.Source = r.FormValue(dm.API_Source)
+	
+
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+
+	dao.API_Store(item,r)	
+
+	http.Redirect(w, r, API_Redirect, http.StatusFound)
+}
+
+//API_HandlerNew is the handler used process the creation of an API
+func API_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	pageDetail := API_Page{
+		Title:       CardTitle(dm.API_Title, core.Action_New),
+		PageTitle:   PageTitle(dm.API_Title, core.Action_New),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    Session_GetUserRole(r),
+	}
+
+		// 
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+pageDetail.ID = ""
+pageDetail.Endpoint = ""
+pageDetail.Descr = ""
+pageDetail.Query = ""
+pageDetail.Source = ""
+
+
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+		//
+
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	ExecuteTemplate(dm.API_TemplateNew, w, r, pageDetail)
+
+}
+
+//API_HandlerDelete is the handler used process the deletion of an API
+func API_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	logs.Servicing(r.URL.Path)
+	searchID := core.GetURLparam(r, dm.API_QueryString)
+
+	dao.API_Delete(searchID)	
+
+	http.Redirect(w, r, API_Redirect, http.StatusFound)
+}

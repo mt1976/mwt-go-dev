@@ -85,6 +85,8 @@ func Notification_Normal(messageTitle string, messageBody string) {
 	recipient := pushover.NewRecipient(cfg.PushoverToken)
 	port := ApplicationProperties["port"]
 
+	messageBody = messageBody + " - " + SystemHostname
+
 	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
 	message := &pushover.Message{
 		Message:     messageTitle,
@@ -121,6 +123,7 @@ func Notification_High(messageTitle string, messageBody string) {
 	// Create the message to send
 	//message := pushover.NewMessageWithTitle(messageContent, title)
 	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
+	messageBody = messageBody + " - " + SystemHostname
 
 	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
 
@@ -159,6 +162,7 @@ func Notification_Low(messageTitle string, messageBody string) {
 	// Create the message to send
 	//message := pushover.NewMessageWithTitle(messageContent, title)
 	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
+	messageBody = messageBody + " - " + SystemHostname
 
 	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
 

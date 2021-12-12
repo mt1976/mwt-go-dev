@@ -83,6 +83,7 @@ func DataLoader_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc("/newLoaderMapStore/", NewLoaderMapStoreHandler)
 	mux.HandleFunc("/runLoader/", DataLoader_HandlerRun_Impl)
 	logs.Publish("Application", dm.DataLoader_Title+" Impl")
+	core.Catalog_Add(dm.DataLoaderData_Loader, dm.DataLoaderData_PathList, "", dm.DataLoader_QueryString, core.DataSource_Siena)
 }
 
 func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {

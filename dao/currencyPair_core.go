@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // CurrencyPair_GetList() returns a list of all CurrencyPair records
 func CurrencyPair_GetList() (int, []dm.CurrencyPair, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CurrencyPair_SQLTable)
 	count, currencypairList, _, _ := currencypair_Fetch(tsql)
+	
 	return count, currencypairList, nil
 }
 
@@ -37,6 +41,7 @@ func CurrencyPair_GetList() (int, []dm.CurrencyPair, error) {
 
 // CurrencyPair_GetByID() returns a single CurrencyPair record
 func CurrencyPair_GetByID(id string) (int, dm.CurrencyPair, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CurrencyPair_SQLTable)
 	tsql = tsql + " WHERE " + dm.CurrencyPair_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func CurrencyPair_GetByID(id string) (int, dm.CurrencyPair, error) {
 // CurrencyPair_DeleteByID() deletes a single CurrencyPair record
 func CurrencyPair_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CurrencyPair_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CurrencyPair_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.CurrencyPair_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func currencypair_Save(r dm.CurrencyPair,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/CurrencyPair_impl.go file
-	err1 := adaptor.CurrencyPair_Delete_Impl(r.Code,usr)
+	err1 := adaptor.CurrencyPair_Delete_Impl(r.Code)
 	err2 := adaptor.CurrencyPair_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
    recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
    recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive, "True")
@@ -144,7 +150,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -153,9 +159,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 
 func CurrencyPair_NewID(r dm.CurrencyPair) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

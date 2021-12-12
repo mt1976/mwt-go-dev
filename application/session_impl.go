@@ -152,7 +152,7 @@ func Session_Validate(w http.ResponseWriter, r *http.Request) bool {
 	// fmt.Printf("cookie_UserName: %v\n", cookie_UserName)
 	// fmt.Printf("cookie_UserUUID: %v\n", cookie_UserUUID)
 	// fmt.Printf("session_uuid: %v\n", session_uuid)
-
+	//fmt.Printf("cred: %v\n", cred)
 	if cookie_UserName != cred.Username {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"

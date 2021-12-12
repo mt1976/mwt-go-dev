@@ -1,0 +1,197 @@
+{{template "header" .}}
+<body>
+  <div class="container-fluid">
+    <form action="/ExternalMessageEdit?MessageID={{.MessageID}}" method="POST" class="form">
+      <div class="card">
+        <div class="card-header font-weight-bold">
+          <div class="row">
+            <div class="col">
+              {{.Title}}&nbsp;:&nbsp;<code>{{.MessageID}}</code>
+            </div>
+            <div class="col">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/ExternalMessageEdit/?MessageID={{.MessageID}}" onclick="/ExternalMessageEdit/?MessageID={{.MessageID}}" title="Edit ExternalMessage"></i>&nbsp;&nbsp;Edit</button>
+                
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ExternalMessage"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSId">SYSId</label>
+                <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled="disabled" value="{{.SYSId}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageID">MessageID</label>
+                <input type="text" class="form-control" id="MessageID" aria-describedby="MessageIDHelp" placeholder="" disabled="disabled" value="{{.MessageID}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageFormat">MessageFormat</label>
+                <input type="text" class="form-control" id="MessageFormat" aria-describedby="MessageFormatHelp" placeholder="" disabled="disabled" value="{{.MessageFormat}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageDeliveredTo">MessageDeliveredTo</label>
+                <input type="text" class="form-control" id="MessageDeliveredTo" aria-describedby="MessageDeliveredToHelp" placeholder="" disabled="disabled" value="{{.MessageDeliveredTo}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageBody">MessageBody</label>
+                <input type="text" class="form-control" id="MessageBody" aria-describedby="MessageBodyHelp" placeholder="" disabled="disabled" value="{{.MessageBody}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageFilename">MessageFilename</label>
+                <input type="text" class="form-control" id="MessageFilename" aria-describedby="MessageFilenameHelp" placeholder="" disabled="disabled" value="{{.MessageFilename}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageLife">MessageLife</label>
+                <input type="text" class="form-control" id="MessageLife" aria-describedby="MessageLifeHelp" placeholder="" disabled="disabled" value="{{.MessageLife}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageDate">MessageDate</label>
+                <input type="text" class="form-control" id="MessageDate" aria-describedby="MessageDateHelp" placeholder="" disabled="disabled" value="{{.MessageDate}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageTime">MessageTime</label>
+                <input type="text" class="form-control" id="MessageTime" aria-describedby="MessageTimeHelp" placeholder="" disabled="disabled" value="{{.MessageTime}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageTimeoutAction">MessageTimeoutAction</label>
+                <input type="text" class="form-control" id="MessageTimeoutAction" aria-describedby="MessageTimeoutActionHelp" placeholder="" disabled="disabled" value="{{.MessageTimeoutAction}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageACKNAK">MessageACKNAK</label>
+                <input type="text" class="form-control" id="MessageACKNAK" aria-describedby="MessageACKNAKHelp" placeholder="" disabled="disabled" value="{{.MessageACKNAK}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseID">ResponseID</label>
+                <input type="text" class="form-control" id="ResponseID" aria-describedby="ResponseIDHelp" placeholder="" disabled="disabled" value="{{.ResponseID}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseFilename">ResponseFilename</label>
+                <input type="text" class="form-control" id="ResponseFilename" aria-describedby="ResponseFilenameHelp" placeholder="" disabled="disabled" value="{{.ResponseFilename}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseBody">ResponseBody</label>
+                <input type="text" class="form-control" id="ResponseBody" aria-describedby="ResponseBodyHelp" placeholder="" disabled="disabled" value="{{.ResponseBody}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseDate">ResponseDate</label>
+                <input type="text" class="form-control" id="ResponseDate" aria-describedby="ResponseDateHelp" placeholder="" disabled="disabled" value="{{.ResponseDate}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseTime">ResponseTime</label>
+                <input type="text" class="form-control" id="ResponseTime" aria-describedby="ResponseTimeHelp" placeholder="" disabled="disabled" value="{{.ResponseTime}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseAdditionalInfo">ResponseAdditionalInfo</label>
+                <input type="text" class="form-control" id="ResponseAdditionalInfo" aria-describedby="ResponseAdditionalInfoHelp" placeholder="" disabled="disabled" value="{{.ResponseAdditionalInfo}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSCreated">SYSCreated</label>
+                <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled="disabled" value="{{.SYSCreated}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSCreatedBy">SYSCreatedBy</label>
+                <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled="disabled" value="{{.SYSCreatedBy}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSCreatedHost">SYSCreatedHost</label>
+                <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled="disabled" value="{{.SYSCreatedHost}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSUpdated">SYSUpdated</label>
+                <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled="disabled" value="{{.SYSUpdated}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSUpdatedBy">SYSUpdatedBy</label>
+                <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled="disabled" value="{{.SYSUpdatedBy}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="SYSUpdatedHost">SYSUpdatedHost</label>
+                <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled="disabled" value="{{.SYSUpdatedHost}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageTimeout">MessageTimeout</label>
+                <input type="text" class="form-control" id="MessageTimeout" aria-describedby="MessageTimeoutHelp" placeholder="" disabled="disabled" value="{{.MessageTimeout}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageEmitted">MessageEmitted</label>
+                <input type="text" class="form-control" id="MessageEmitted" aria-describedby="MessageEmittedHelp" placeholder="" disabled="disabled" value="{{.MessageEmitted}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="ResponseRecieved">ResponseRecieved</label>
+                <input type="text" class="form-control" id="ResponseRecieved" aria-describedby="ResponseRecievedHelp" placeholder="" disabled="disabled" value="{{.ResponseRecieved}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="MessageClass">MessageClass</label>
+                <input type="text" class="form-control" id="MessageClass" aria-describedby="MessageClassHelp" placeholder="" disabled="disabled" value="{{.MessageClass}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <label for="AppID">AppID</label>
+                <input type="text" class="form-control" id="AppID" aria-describedby="AppIDHelp" placeholder="" disabled="disabled" value="{{.AppID}}">
+              </div>
+            </div>
+        </div>
+{{template "audit" .}}
+      </div>
+    </form>
+  </div>
+{{template "footer" .}}
+</body>

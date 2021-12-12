@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type CurrencyPair_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		CodeMajorCurrencyIsoCode string
 		CodeMinorCurrencyIsoCode string
 		ReciprocalActive string
@@ -59,7 +59,7 @@ type CurrencyPair_Page struct {
 	Major_Lookup_List	[]dm.Currency
 	Minor_Lookup_List	[]dm.Currency
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -68,6 +68,7 @@ const (
 
 //CurrencyPair_Publish annouces the endpoints available for this object
 func CurrencyPair_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.CurrencyPair_Path, CurrencyPair_Handler)
 	mux.HandleFunc(dm.CurrencyPair_PathList, CurrencyPair_HandlerList)
 	mux.HandleFunc(dm.CurrencyPair_PathView, CurrencyPair_HandlerView)
 	mux.HandleFunc(dm.CurrencyPair_PathEdit, CurrencyPair_HandlerEdit)
@@ -75,7 +76,7 @@ func CurrencyPair_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.CurrencyPair_PathSave, CurrencyPair_HandlerSave)
 	mux.HandleFunc(dm.CurrencyPair_PathDelete, CurrencyPair_HandlerDelete)
 	logs.Publish("Siena", dm.CurrencyPair_Title)
-	
+    core.Catalog_Add(dm.CurrencyPair_Title, dm.CurrencyPair_Path, "", dm.CurrencyPair_QueryString, "APP")
 }
 
 //CurrencyPair_HandlerList is the handler for the list page
@@ -131,7 +132,7 @@ func CurrencyPair_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
 pageDetail.ReciprocalActive = rD.ReciprocalActive
@@ -140,16 +141,16 @@ pageDetail.MajorName = rD.MajorName
 pageDetail.MinorName = rD.MinorName
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CodeMajorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMajorCurrencyIsoCode)
 pageDetail.Major_Lookup = CodeMajorCurrencyIsoCode_Lookup_Name.Name
 _,CodeMinorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMinorCurrencyIsoCode)
 pageDetail.Minor_Lookup = CodeMinorCurrencyIsoCode_Lookup_Name.Name
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -180,7 +181,7 @@ func CurrencyPair_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
 pageDetail.ReciprocalActive = rD.ReciprocalActive
@@ -189,17 +190,16 @@ pageDetail.MajorName = rD.MajorName
 pageDetail.MinorName = rD.MinorName
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CodeMajorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMajorCurrencyIsoCode)
 pageDetail.Major_Lookup = CodeMajorCurrencyIsoCode_Lookup_Name.Name
 _,pageDetail.Major_Lookup_List,_ = dao.Currency_GetList()
 _,CodeMinorCurrencyIsoCode_Lookup_Name,_:= dao.Currency_GetByID(rD.CodeMinorCurrencyIsoCode)
 pageDetail.Minor_Lookup = CodeMinorCurrencyIsoCode_Lookup_Name.Name
 _,pageDetail.Minor_Lookup_List,_ = dao.Currency_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -221,7 +221,7 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.CurrencyPair
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.CodeMajorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMajorCurrencyIsoCode)
 		item.CodeMinorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMinorCurrencyIsoCode)
 		item.ReciprocalActive = r.FormValue(dm.CurrencyPair_ReciprocalActive)
@@ -231,9 +231,8 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Major_Lookup = r.FormValue(dm.CurrencyPair_Major_Lookup)
 		item.Minor_Lookup = r.FormValue(dm.CurrencyPair_Minor_Lookup)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.CurrencyPair_Store(item,r)	
 
@@ -261,7 +260,7 @@ func CurrencyPair_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.CodeMajorCurrencyIsoCode = ""
 pageDetail.CodeMinorCurrencyIsoCode = ""
 pageDetail.ReciprocalActive = ""
@@ -270,12 +269,12 @@ pageDetail.MajorName = ""
 pageDetail.MinorName = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Major_Lookup = ""
 _,pageDetail.Major_Lookup_List,_ = dao.Currency_GetList()
 pageDetail.Minor_Lookup = ""
 _,pageDetail.Minor_Lookup_List,_ = dao.Currency_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

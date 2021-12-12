@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:47
+// Date & Time		    : 12/12/2021 at 16:13:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type AccountLadder_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		BusinessDate string
 		ContractNumber string
@@ -55,7 +55,7 @@ type AccountLadder_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -64,14 +64,15 @@ const (
 
 //AccountLadder_Publish annouces the endpoints available for this object
 func AccountLadder_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.AccountLadder_PathList, AccountLadder_HandlerList)
 	mux.HandleFunc(dm.AccountLadder_PathView, AccountLadder_HandlerView)
-	
-	
-	
-	
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
+	//Cannot Save via GUI
+	//Cannot Delete via GUI
 	logs.Publish("Siena", dm.AccountLadder_Title)
-	
+    //No API
 }
 
 //AccountLadder_HandlerList is the handler for the list page
@@ -127,7 +128,7 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.ContractNumber = rD.ContractNumber
@@ -136,12 +137,12 @@ pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -172,7 +173,7 @@ func AccountLadder_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.BusinessDate = rD.BusinessDate
 pageDetail.ContractNumber = rD.ContractNumber
@@ -181,11 +182,10 @@ pageDetail.DealtCcy = rD.DealtCcy
 pageDetail.AmountDp = rD.AmountDp
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -207,7 +207,7 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.AccountLadder
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.AccountLadder_SienaReference)
 		item.BusinessDate = r.FormValue(dm.AccountLadder_BusinessDate)
 		item.ContractNumber = r.FormValue(dm.AccountLadder_ContractNumber)
@@ -215,9 +215,8 @@ func AccountLadder_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DealtCcy = r.FormValue(dm.AccountLadder_DealtCcy)
 		item.AmountDp = r.FormValue(dm.AccountLadder_AmountDp)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.AccountLadder_Store(item,r)	
 
@@ -245,7 +244,7 @@ func AccountLadder_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.BusinessDate = ""
 pageDetail.ContractNumber = ""
@@ -254,8 +253,8 @@ pageDetail.DealtCcy = ""
 pageDetail.AmountDp = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

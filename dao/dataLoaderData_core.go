@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:51
+// Date & Time		    : 12/12/2021 at 16:13:12
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // DataLoaderData_GetList() returns a list of all DataLoaderData records
 func DataLoaderData_GetList() (int, []dm.DataLoaderData, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderData_SQLTable)
 	count, dataloaderdataList, _, _ := dataloaderdata_Fetch(tsql)
+	
 	return count, dataloaderdataList, nil
 }
 
@@ -37,6 +41,7 @@ func DataLoaderData_GetList() (int, []dm.DataLoaderData, error) {
 
 // DataLoaderData_GetByID() returns a single DataLoaderData record
 func DataLoaderData_GetByID(id string) (int, dm.DataLoaderData, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderData_SQLTable)
 	tsql = tsql + " WHERE " + dm.DataLoaderData_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func DataLoaderData_GetByID(id string) (int, dm.DataLoaderData, error) {
 // DataLoaderData_DeleteByID() deletes a single DataLoaderData record
 func DataLoaderData_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DataLoaderData_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DataLoaderData_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.DataLoaderData_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -146,7 +152,7 @@ func dataloaderdata_Fetch(tsql string) (int, []dm.DataLoaderData, dm.DataLoaderD
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.DataLoaderData_SYSId, "0")
    recItem.Id  = get_String(rec, dm.DataLoaderData_Id, "")
    recItem.Row  = get_String(rec, dm.DataLoaderData_Row, "")
@@ -203,7 +209,7 @@ func dataloaderdata_Fetch(tsql string) (int, []dm.DataLoaderData, dm.DataLoaderD
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -212,9 +218,7 @@ func dataloaderdata_Fetch(tsql string) (int, []dm.DataLoaderData, dm.DataLoaderD
 
 func DataLoaderData_NewID(r dm.DataLoaderData) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

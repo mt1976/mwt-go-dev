@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:48
+// Date & Time		    : 12/12/2021 at 16:13:08
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // Cache_GetList() returns a list of all Cache records
 func Cache_GetList() (int, []dm.Cache, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Cache_SQLTable)
 	count, cacheList, _, _ := cache_Fetch(tsql)
+	
 	return count, cacheList, nil
 }
 
@@ -37,6 +41,7 @@ func Cache_GetList() (int, []dm.Cache, error) {
 
 // Cache_GetByID() returns a single Cache record
 func Cache_GetByID(id string) (int, dm.Cache, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Cache_SQLTable)
 	tsql = tsql + " WHERE " + dm.Cache_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Cache_GetByID(id string) (int, dm.Cache, error) {
 // Cache_DeleteByID() deletes a single Cache record
 func Cache_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Cache_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Cache_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Cache_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -143,7 +149,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Cache_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Cache_Id, "")
    recItem.Object  = get_String(rec, dm.Cache_Object, "")
@@ -191,7 +197,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -200,9 +206,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 
 func Cache_NewID(r dm.Cache) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

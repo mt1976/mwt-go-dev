@@ -22,7 +22,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Centre_Delete_Impl(id string, usr string) error {
+func Centre_Delete_Impl(id string) error {
 	var er error
 
 	message := "Implement Centre_Delete: " + id

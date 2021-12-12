@@ -425,8 +425,8 @@ func WriteDataFile(fileName string, path string, content string) int {
 		return -1
 	}
 
-	log.Println("File Write : " + fileName + " in " + path + "[" + filePath + "]")
-
+	//	log.Println("File Write : " + fileName + " in " + path + "[" + filePath + "]")
+	logs.Saving(fileName, filePath)
 	return 1
 }
 
@@ -441,7 +441,8 @@ func WriteDataFileAbsolute(fileName string, path string, content string) int {
 		return -1
 	}
 
-	log.Println("File Write : " + fileName + " in " + path + "[" + absFileName + "]")
+	//log.Println("File Write : " + fileName + " in " + path + "[" + absFileName + "]")
+	logs.Saving(fileName, absFileName)
 	return 1
 }
 

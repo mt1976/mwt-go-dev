@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // Message_GetList() returns a list of all Message records
 func Message_GetList() (int, []dm.Message, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Message_SQLTable)
 	count, messageList, _, _ := message_Fetch(tsql)
+	
 	return count, messageList, nil
 }
 
@@ -37,6 +41,7 @@ func Message_GetList() (int, []dm.Message, error) {
 
 // Message_GetByID() returns a single Message record
 func Message_GetByID(id string) (int, dm.Message, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Message_SQLTable)
 	tsql = tsql + " WHERE " + dm.Message_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Message_GetByID(id string) (int, dm.Message, error) {
 // Message_DeleteByID() deletes a single Message record
 func Message_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Message_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Message_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Message_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -139,7 +145,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Message_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Message_Id, "")
    recItem.Message  = get_String(rec, dm.Message_Message, "")
@@ -175,7 +181,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -184,9 +190,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 
 func Message_NewID(r dm.Message) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

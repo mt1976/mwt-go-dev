@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:52
+// Date & Time		    : 12/12/2021 at 16:13:14
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Transaction_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		Status string
 		ValueDate string
@@ -267,7 +267,7 @@ type Transaction_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -276,14 +276,15 @@ const (
 
 //Transaction_Publish annouces the endpoints available for this object
 func Transaction_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.Transaction_PathList, Transaction_HandlerList)
 	mux.HandleFunc(dm.Transaction_PathView, Transaction_HandlerView)
-	
-	
-	
-	
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
+	//Cannot Save via GUI
+	//Cannot Delete via GUI
 	logs.Publish("Siena", dm.Transaction_Title)
-	
+    //No API
 }
 
 //Transaction_HandlerList is the handler for the list page
@@ -339,7 +340,7 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.ValueDate = rD.ValueDate
@@ -454,12 +455,12 @@ pageDetail.RepoPrincipal = rD.RepoPrincipal
 pageDetail.FixingFrequency = rD.FixingFrequency
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -490,7 +491,7 @@ func Transaction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.Status = rD.Status
 pageDetail.ValueDate = rD.ValueDate
@@ -605,11 +606,10 @@ pageDetail.RepoPrincipal = rD.RepoPrincipal
 pageDetail.FixingFrequency = rD.FixingFrequency
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -631,7 +631,7 @@ func Transaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.Transaction
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.Transaction_SienaReference)
 		item.Status = r.FormValue(dm.Transaction_Status)
 		item.ValueDate = r.FormValue(dm.Transaction_ValueDate)
@@ -745,9 +745,8 @@ func Transaction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.RepoPrincipal = r.FormValue(dm.Transaction_RepoPrincipal)
 		item.FixingFrequency = r.FormValue(dm.Transaction_FixingFrequency)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Transaction_Store(item,r)	
 
@@ -775,7 +774,7 @@ func Transaction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.Status = ""
 pageDetail.ValueDate = ""
@@ -890,8 +889,8 @@ pageDetail.RepoPrincipal = ""
 pageDetail.FixingFrequency = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

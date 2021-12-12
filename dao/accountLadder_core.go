@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:47
+// Date & Time		    : 12/12/2021 at 16:13:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // AccountLadder_GetList() returns a list of all AccountLadder records
 func AccountLadder_GetList() (int, []dm.AccountLadder, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.AccountLadder_SQLTable)
 	count, accountladderList, _, _ := accountladder_Fetch(tsql)
+	
 	return count, accountladderList, nil
 }
 
@@ -37,6 +41,7 @@ func AccountLadder_GetList() (int, []dm.AccountLadder, error) {
 
 // AccountLadder_GetByID() returns a single AccountLadder record
 func AccountLadder_GetByID(id string) (int, dm.AccountLadder, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.AccountLadder_SQLTable)
 	tsql = tsql + " WHERE " + dm.AccountLadder_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func AccountLadder_GetByID(id string) (int, dm.AccountLadder, error) {
 // AccountLadder_DeleteByID() deletes a single AccountLadder record
 func AccountLadder_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.AccountLadder_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.AccountLadder_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.AccountLadder_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func accountladder_Save(r dm.AccountLadder,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/AccountLadder_impl.go file
-	err1 := adaptor.AccountLadder_Delete_Impl(r.SienaReference,usr)
+	err1 := adaptor.AccountLadder_Delete_Impl(r.SienaReference)
 	err2 := adaptor.AccountLadder_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.AccountLadder_SienaReference, "")
    recItem.BusinessDate  = get_Time(rec, dm.AccountLadder_BusinessDate, "")
    recItem.ContractNumber  = get_String(rec, dm.AccountLadder_ContractNumber, "")
@@ -138,7 +144,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -147,9 +153,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 
 func AccountLadder_NewID(r dm.AccountLadder) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

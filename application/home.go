@@ -115,6 +115,18 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 		homePage.DateSyncIssue = core.WarningLabel
 	}
 
+	// var brk dm.Broker
+	// brk.Code = "0"
+	// brk.Name = "N/A"
+	// brk.FullName = "N/A"
+	// brk.Contact = "N/A"
+	// brk.Address = "N/A"
+	// brk.LEI = "N/A"
+	// err := dao.Broker_StoreSystem(brk)
+	// if err != nil {
+	// 	logs.Error("Broker_StoreSystem", err)
+	// }
+
 	ExecuteTemplate("home", w, r, homePage)
 
 }

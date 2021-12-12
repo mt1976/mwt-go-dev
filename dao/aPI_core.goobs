@@ -1,0 +1,114 @@
+package dao
+// ----------------------------------------------------------------
+// Automatically generated  "/dao/api.go"
+// ----------------------------------------------------------------
+// Package            : dao
+// Object 			    : API (api)
+// Endpoint 	        : API (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 12/12/2021 at 16:13:07
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+import (
+	
+	"fmt"
+	"net/http"
+
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
+)
+
+// API_GetList() returns a list of all API records
+func API_GetList() (int, []dm.API, error) {
+	
+	count, apiList, _ := adaptor.API_GetList_Impl()
+	
+	return count, apiList, nil
+}
+
+
+
+// API_GetByID() returns a single API record
+func API_GetByID(id string) (int, dm.API, error) {
+
+
+	 _, apiItem, _ := adaptor.API_GetByID_Impl(id)
+	
+	return 1, apiItem, nil
+}
+
+
+
+// API_DeleteByID() deletes a single API record
+func API_Delete(id string) {
+
+
+	adaptor.API_Delete_Impl(id)
+	
+}
+
+
+// API_Store() saves/stores a API record to the database
+func API_Store(r dm.API,req *http.Request) error {
+
+	err := api_Save(r,Audit_User(req))
+
+	return err
+}
+
+// API_StoreSystem() saves/stores a API record to the database
+func API_StoreSystem(r dm.API) error {
+	
+	err := api_Save(r,Audit_Host())
+
+	return err
+}
+
+// api_Save() saves/stores a API record to the database
+func api_Save(r dm.API,usr string) error {
+
+    var err error
+
+	logs.Storing("API",fmt.Sprintf("%s", r))
+
+	if len(r.ID) == 0 {
+		r.ID = API_NewID(r)
+	}
+
+
+// Please Create Functions Below in the adaptor/API_impl.go file
+	err1 := adaptor.API_Delete_Impl(r.ID)
+	err2 := adaptor.API_Update_Impl(r,usr)
+	if err1 != nil {
+		err = err1
+	}
+	if err2 != nil {
+		err = err2
+	}
+
+
+	return err
+
+}
+
+
+func API_NewID(r dm.API) string {
+	
+		// api_NewIDImpl should be specified in dao/API_Impl.go
+		// to provide the implementation for the special case.
+		// override should return id - override function should be defined as
+		// api_NewID_Impl(r dm.API) string {...}
+		//
+		id := adaptor.API_NewID_Impl(r)
+	
+	return id
+}
+// ----------------------------------------------------------------
+// ADD Aditional Functions below this line
+// ----------------------------------------------------------------
+

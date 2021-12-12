@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Sector_GetList() returns a list of all Sector records
 func Sector_GetList() (int, []dm.Sector, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Sector_SQLTable)
 	count, sectorList, _, _ := sector_Fetch(tsql)
+	
 	return count, sectorList, nil
 }
 
@@ -38,7 +42,11 @@ func Sector_GetList() (int, []dm.Sector, error) {
 func Sector_GetLookup() []dm.Lookup_Item {
 
 	var returnList []dm.Lookup_Item
-	count, sectorList, _ := Sector_GetList()
+
+	
+	    count, sectorList, _ := Sector_GetList()
+	
+	
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: sectorList[i].Code, Name: sectorList[i].Name})
 	}
@@ -48,6 +56,7 @@ func Sector_GetLookup() []dm.Lookup_Item {
 
 // Sector_GetByID() returns a single Sector record
 func Sector_GetByID(id string) (int, dm.Sector, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Sector_SQLTable)
 	tsql = tsql + " WHERE " + dm.Sector_SQLSearchID + "='" + id + "'"
@@ -63,18 +72,20 @@ func Sector_GetByReverseLookup(id string) (int, dm.Sector, error) {
 	tsql = tsql + " WHERE Name = '" + id + "'"
 
 	_, _, sectorItem, _ := sector_Fetch(tsql)
+	
 	return 1, sectorItem, nil
 }
 
 // Sector_DeleteByID() deletes a single Sector record
 func Sector_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Sector_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Sector_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Sector_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -107,7 +118,7 @@ func sector_Save(r dm.Sector,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Sector_impl.go file
-	err1 := adaptor.Sector_Delete_Impl(r.Code,usr)
+	err1 := adaptor.Sector_Delete_Impl(r.Code)
 	err2 := adaptor.Sector_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -136,7 +147,7 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Sector_Code, "")
    recItem.Name  = get_String(rec, dm.Sector_Name, "")
 // If there are fields below, create the methods in dao\Sector_Impl.go
@@ -145,7 +156,7 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -154,9 +165,7 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 
 func Sector_NewID(r dm.Sector) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

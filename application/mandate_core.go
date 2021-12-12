@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:53
+// Date & Time		    : 12/12/2021 at 16:13:16
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Mandate_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		MandatedUserKeyCounterpartyFirm string
 		MandatedUserKeyCounterpartyCentre string
 		MandatedUserKeyUserName string
@@ -87,7 +87,7 @@ type Mandate_Page struct {
 	Firm_Lookup_List	[]dm.Firm
 	Centre_Lookup_List	[]dm.Centre
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -96,21 +96,15 @@ const (
 
 //Mandate_Publish annouces the endpoints available for this object
 func Mandate_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.Mandate_Path, Mandate_Handler)
 	mux.HandleFunc(dm.Mandate_PathList, Mandate_HandlerList)
 	mux.HandleFunc(dm.Mandate_PathView, Mandate_HandlerView)
 	mux.HandleFunc(dm.Mandate_PathEdit, Mandate_HandlerEdit)
 	mux.HandleFunc(dm.Mandate_PathNew, Mandate_HandlerNew)
 	mux.HandleFunc(dm.Mandate_PathSave, Mandate_HandlerSave)
-	
+	//Cannot Delete via GUI
 	logs.Publish("Siena", dm.Mandate_Title)
-	
-	// mandate_PublishImpl should be specified in application/mandate_Impl.go
-	// to provide the implementation for the special case.
-	// override function should be defined as
-	// mandate_PublishImpl(mux http.ServeMux) {...}
-	// TODO - this is a temporary hack to get the special case working
-	// Add to main.go >>> mandate_PublishImpl(mux)
-	
+    core.Catalog_Add(dm.Mandate_Title, dm.Mandate_Path, "", dm.Mandate_QueryString, "APP")
 }
 
 //Mandate_HandlerList is the handler for the list page
@@ -166,7 +160,7 @@ func Mandate_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
 pageDetail.MandatedUserKeyUserName = rD.MandatedUserKeyUserName
@@ -188,24 +182,18 @@ pageDetail.SystemUser = rD.SystemUser
 pageDetail.CompID = rD.CompID
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Lookup = Country_Lookup_Name.Name
 _,MandatedUserKeyCounterpartyFirm_Lookup_FullName,_:= dao.Firm_GetByID(rD.MandatedUserKeyCounterpartyFirm)
 pageDetail.Firm_Lookup = MandatedUserKeyCounterpartyFirm_Lookup_FullName.FullName
 _,MandatedUserKeyCounterpartyCentre_Lookup_Name,_:= dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
 pageDetail.Centre_Lookup = MandatedUserKeyCounterpartyCentre_Lookup_Name.Name
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// mandate_HandlerViewImpl should be specified in application/mandate_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func mandate_HandlerViewImpl(pageDetail Mandate_Page) Mandate_Page {return pageDetail}
-	pageDetail = mandate_HandlerViewImpl(pageDetail)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -236,7 +224,7 @@ func Mandate_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
 pageDetail.MandatedUserKeyUserName = rD.MandatedUserKeyUserName
@@ -258,7 +246,7 @@ pageDetail.SystemUser = rD.SystemUser
 pageDetail.CompID = rD.CompID
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
 pageDetail.Country_Lookup = Country_Lookup_Name.Name
 _,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
@@ -268,16 +256,9 @@ _,pageDetail.Firm_Lookup_List,_ = dao.Firm_GetList()
 _,MandatedUserKeyCounterpartyCentre_Lookup_Name,_:= dao.Centre_GetByID(rD.MandatedUserKeyCounterpartyCentre)
 pageDetail.Centre_Lookup = MandatedUserKeyCounterpartyCentre_Lookup_Name.Name
 _,pageDetail.Centre_Lookup_List,_ = dao.Centre_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// mandate_HandlerEditImpl should be specified in application/mandate_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func mandate_HandlerEditImpl(pageDetail Mandate_Page) Mandate_Page {return pageDetail}
-	pageDetail = mandate_HandlerEditImpl(pageDetail)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -299,7 +280,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.Mandate
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm)
 		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre)
 		item.MandatedUserKeyUserName = r.FormValue(dm.Mandate_MandatedUserKeyUserName)
@@ -323,15 +304,8 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Firm_Lookup = r.FormValue(dm.Mandate_Firm_Lookup)
 		item.Centre_Lookup = r.FormValue(dm.Mandate_Centre_Lookup)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// mandate_HandlerSaveImpl should be specified in application/mandate_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func mandate_HandlerSaveImpl(item dm.Mandate) dm.Mandate {return item}
-	item = mandate_HandlerSaveImpl(item)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Mandate_Store(item,r)	
 
@@ -359,7 +333,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.MandatedUserKeyCounterpartyFirm = ""
 pageDetail.MandatedUserKeyCounterpartyCentre = ""
 pageDetail.MandatedUserKeyUserName = ""
@@ -381,14 +355,14 @@ pageDetail.SystemUser = ""
 pageDetail.CompID = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Country_Lookup = ""
 _,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
 pageDetail.Firm_Lookup = ""
 _,pageDetail.Firm_Lookup_List,_ = dao.Firm_GetList()
 pageDetail.Centre_Lookup = ""
 _,pageDetail.Centre_Lookup_List,_ = dao.Centre_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

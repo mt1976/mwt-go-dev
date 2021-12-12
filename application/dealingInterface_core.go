@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:51
+// Date & Time		    : 12/12/2021 at 16:13:14
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type DealingInterface_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		Name string
 		AcceptReducedAmount string
 		QuoteAsIndicative string
@@ -91,7 +91,7 @@ type DealingInterface_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -100,6 +100,7 @@ const (
 
 //DealingInterface_Publish annouces the endpoints available for this object
 func DealingInterface_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.DealingInterface_PathList, DealingInterface_HandlerList)
 	mux.HandleFunc(dm.DealingInterface_PathView, DealingInterface_HandlerView)
 	mux.HandleFunc(dm.DealingInterface_PathEdit, DealingInterface_HandlerEdit)
@@ -107,7 +108,7 @@ func DealingInterface_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.DealingInterface_PathSave, DealingInterface_HandlerSave)
 	mux.HandleFunc(dm.DealingInterface_PathDelete, DealingInterface_HandlerDelete)
 	logs.Publish("Siena", dm.DealingInterface_Title)
-	
+    //No API
 }
 
 //DealingInterface_HandlerList is the handler for the list page
@@ -163,7 +164,7 @@ func DealingInterface_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
 pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
@@ -190,12 +191,12 @@ pageDetail.DIOnAcceptance = rD.DIOnAcceptance
 pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -226,7 +227,7 @@ func DealingInterface_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = rD.Name
 pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
 pageDetail.QuoteAsIndicative = rD.QuoteAsIndicative
@@ -253,11 +254,10 @@ pageDetail.DIOnAcceptance = rD.DIOnAcceptance
 pageDetail.IgnoreESPAmountRules = rD.IgnoreESPAmountRules
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -279,7 +279,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.DealingInterface
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.Name = r.FormValue(dm.DealingInterface_Name)
 		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount)
 		item.QuoteAsIndicative = r.FormValue(dm.DealingInterface_QuoteAsIndicative)
@@ -305,9 +305,8 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DIOnAcceptance = r.FormValue(dm.DealingInterface_DIOnAcceptance)
 		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.DealingInterface_Store(item,r)	
 
@@ -335,7 +334,7 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Name = ""
 pageDetail.AcceptReducedAmount = ""
 pageDetail.QuoteAsIndicative = ""
@@ -362,8 +361,8 @@ pageDetail.DIOnAcceptance = ""
 pageDetail.IgnoreESPAmountRules = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

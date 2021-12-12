@@ -108,7 +108,7 @@ func Counterparty_Update_Impl(item dm.Counterparty, usr string) error {
 	return nil
 }
 
-func Counterparty_Delete_Impl(id string, usr string) error {
+func Counterparty_Delete_Impl(id string) error {
 	var er error
 
 	message := "Implement Counterparty_Delete: " + id

@@ -7,7 +7,7 @@ Endpoint 	         : Counterparty (ID)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 08/12/2021 at 16:43:48
+Date & Time		     : 12/12/2021 at 16:13:09
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -48,6 +48,7 @@ Fields Generated
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/counterparty_core.go)
+* api (/application/counterparty_api.go)
 * dao (/dao/counterparty_core.go)
 * datamodel (/datamodel/counterparty_core.go)
 * menu (/design/menu/counterparty.json)

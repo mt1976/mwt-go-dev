@@ -5,11 +5,11 @@ package datamodel
 // ----------------------------------------------------------------
 // Package              : application
 // Object 			    : NegotiableInstrument (negotiableinstrument)
-// Endpoint 	        : NegotiableInstrument (ID)
+// Endpoint 	        : NegotiableInstrument (Id)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:53
+// Date & Time		    : 12/12/2021 at 16:13:16
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,11 +58,12 @@ SYSUpdatedBy        string
 const (
 	NegotiableInstrument_Title       = "Negotiable Instrument"
 	NegotiableInstrument_SQLTable    = "lseGiltsDataStore"
-	NegotiableInstrument_SQLSearchID = "id"
-	NegotiableInstrument_QueryString = "ID"
+	NegotiableInstrument_SQLSearchID = "Id"
+	NegotiableInstrument_QueryString = "Id"
 	///
 	/// Handler Defintions
 	///
+	NegotiableInstrument_Template     = "NegotiableInstrument"
 	NegotiableInstrument_TemplateList = "NegotiableInstrument_List"
 	NegotiableInstrument_TemplateView = "NegotiableInstrument_View"
 	NegotiableInstrument_TemplateEdit = "NegotiableInstrument_Edit"
@@ -70,6 +71,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	NegotiableInstrument_Path       = "/API/NegotiableInstrument/"
 	NegotiableInstrument_PathList   = "/NegotiableInstrumentList/"
 	NegotiableInstrument_PathView   = "/NegotiableInstrumentView/"
 	NegotiableInstrument_PathEdit   = "/NegotiableInstrumentEdit/"

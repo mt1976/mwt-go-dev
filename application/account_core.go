@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:46
+// Date & Time		    : 12/12/2021 at 16:13:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Account_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SienaReference string
 		CustomerSienaView string
 		SienaCommonRef string
@@ -185,7 +185,7 @@ type Account_Page struct {
 	Centre_Lookup_List	[]dm.Centre
 	Firm_Lookup_List	[]dm.Firm
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -194,14 +194,15 @@ const (
 
 //Account_Publish annouces the endpoints available for this object
 func Account_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.Account_Path, Account_Handler)
 	mux.HandleFunc(dm.Account_PathList, Account_HandlerList)
 	mux.HandleFunc(dm.Account_PathView, Account_HandlerView)
-	
-	
-	
-	
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
+	//Cannot Save via GUI
+	//Cannot Delete via GUI
 	logs.Publish("Siena", dm.Account_Title)
-	
+    core.Catalog_Add(dm.Account_Title, dm.Account_Path, "", dm.Account_QueryString, "APP")
 }
 
 //Account_HandlerList is the handler for the list page
@@ -257,7 +258,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.CustomerSienaView = rD.CustomerSienaView
 pageDetail.SienaCommonRef = rD.SienaCommonRef
@@ -326,7 +327,7 @@ pageDetail.PaymentSystemSienaView = rD.PaymentSystemSienaView
 pageDetail.PaymentSystemExternalView = rD.PaymentSystemExternalView
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CCY_Lookup_Name,_:= dao.Currency_GetByID(rD.CCY)
 pageDetail.CCY_Lookup = CCY_Lookup_Name.Name
 _,Book_Lookup_FullName,_:= dao.Book_GetByID(rD.Book)
@@ -337,11 +338,11 @@ _,Centre_Lookup_Name,_:= dao.Centre_GetByID(rD.Centre)
 pageDetail.Centre_Lookup = Centre_Lookup_Name.Name
 _,Firm_Lookup_FullName,_:= dao.Firm_GetByID(rD.Firm)
 pageDetail.Firm_Lookup = Firm_Lookup_FullName.FullName
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -372,7 +373,7 @@ func Account_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = rD.SienaReference
 pageDetail.CustomerSienaView = rD.CustomerSienaView
 pageDetail.SienaCommonRef = rD.SienaCommonRef
@@ -441,7 +442,7 @@ pageDetail.PaymentSystemSienaView = rD.PaymentSystemSienaView
 pageDetail.PaymentSystemExternalView = rD.PaymentSystemExternalView
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,CCY_Lookup_Name,_:= dao.Currency_GetByID(rD.CCY)
 pageDetail.CCY_Lookup = CCY_Lookup_Name.Name
 _,pageDetail.CCY_Lookup_List,_ = dao.Currency_GetList()
@@ -457,10 +458,9 @@ _,pageDetail.Centre_Lookup_List,_ = dao.Centre_GetList()
 _,Firm_Lookup_FullName,_:= dao.Firm_GetByID(rD.Firm)
 pageDetail.Firm_Lookup = Firm_Lookup_FullName.FullName
 _,pageDetail.Firm_Lookup_List,_ = dao.Firm_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -482,7 +482,7 @@ func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("SienaReference"))
 
 	var item dm.Account
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SienaReference = r.FormValue(dm.Account_SienaReference)
 		item.CustomerSienaView = r.FormValue(dm.Account_CustomerSienaView)
 		item.SienaCommonRef = r.FormValue(dm.Account_SienaCommonRef)
@@ -555,9 +555,8 @@ func Account_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Centre_Lookup = r.FormValue(dm.Account_Centre_Lookup)
 		item.Firm_Lookup = r.FormValue(dm.Account_Firm_Lookup)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Account_Store(item,r)	
 
@@ -585,7 +584,7 @@ func Account_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SienaReference = ""
 pageDetail.CustomerSienaView = ""
 pageDetail.SienaCommonRef = ""
@@ -654,7 +653,7 @@ pageDetail.PaymentSystemSienaView = ""
 pageDetail.PaymentSystemExternalView = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.CCY_Lookup = ""
 _,pageDetail.CCY_Lookup_List,_ = dao.Currency_GetList()
 pageDetail.Book_Lookup = ""
@@ -665,7 +664,7 @@ pageDetail.Centre_Lookup = ""
 _,pageDetail.Centre_Lookup_List,_ = dao.Centre_GetList()
 pageDetail.Firm_Lookup = ""
 _,pageDetail.Firm_Lookup_List,_ = dao.Firm_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

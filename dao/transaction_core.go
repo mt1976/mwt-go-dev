@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:52
+// Date & Time		    : 12/12/2021 at 16:13:14
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Transaction_GetList() returns a list of all Transaction records
 func Transaction_GetList() (int, []dm.Transaction, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Transaction_SQLTable)
 	count, transactionList, _, _ := transaction_Fetch(tsql)
+	
 	return count, transactionList, nil
 }
 
@@ -37,6 +41,7 @@ func Transaction_GetList() (int, []dm.Transaction, error) {
 
 // Transaction_GetByID() returns a single Transaction record
 func Transaction_GetByID(id string) (int, dm.Transaction, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Transaction_SQLTable)
 	tsql = tsql + " WHERE " + dm.Transaction_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Transaction_GetByID(id string) (int, dm.Transaction, error) {
 // Transaction_DeleteByID() deletes a single Transaction record
 func Transaction_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Transaction_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Transaction_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Transaction_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func transaction_Save(r dm.Transaction,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Transaction_impl.go file
-	err1 := adaptor.Transaction_Delete_Impl(r.SienaReference,usr)
+	err1 := adaptor.Transaction_Delete_Impl(r.SienaReference)
 	err2 := adaptor.Transaction_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Transaction_SienaReference, "")
    recItem.Status  = get_String(rec, dm.Transaction_Status, "")
    recItem.ValueDate  = get_Time(rec, dm.Transaction_ValueDate, "")
@@ -456,7 +462,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -465,9 +471,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 
 func Transaction_NewID(r dm.Transaction) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

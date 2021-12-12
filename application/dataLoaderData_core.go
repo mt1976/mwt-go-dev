@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:51
+// Date & Time		    : 12/12/2021 at 16:13:12
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type DataLoaderData_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Row string
@@ -79,7 +79,7 @@ type DataLoaderData_Page struct {
 	LoaderDescription_Lookup_List	[]dm.DataLoader
 	LoaderType_Lookup_List	[]dm.DataLoader
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -88,14 +88,15 @@ const (
 
 //DataLoaderData_Publish annouces the endpoints available for this object
 func DataLoaderData_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.DataLoaderData_PathList, DataLoaderData_HandlerList)
 	mux.HandleFunc(dm.DataLoaderData_PathView, DataLoaderData_HandlerView)
 	mux.HandleFunc(dm.DataLoaderData_PathEdit, DataLoaderData_HandlerEdit)
-	
+	//Cannot Create via GUI
 	mux.HandleFunc(dm.DataLoaderData_PathSave, DataLoaderData_HandlerSave)
-	
+	//Cannot Delete via GUI
 	logs.Publish("Application", dm.DataLoaderData_Title)
-	
+    //No API
 }
 
 //DataLoaderData_HandlerList is the handler for the list page
@@ -151,7 +152,7 @@ func DataLoaderData_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Row = rD.Row
@@ -169,18 +170,18 @@ pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Loader_Lookup_Name,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.Loader_Lookup = Loader_Lookup_Name.Name
 _,Loader_Lookup_Description,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.LoaderDescription_Lookup = Loader_Lookup_Description.Description
 _,Loader_Lookup_Type,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.LoaderType_Lookup = Loader_Lookup_Type.Type
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -211,7 +212,7 @@ func DataLoaderData_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Row = rD.Row
@@ -229,7 +230,7 @@ pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 _,Loader_Lookup_Name,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.Loader_Lookup = Loader_Lookup_Name.Name
 _,pageDetail.Loader_Lookup_List,_ = dao.DataLoader_GetList()
@@ -239,10 +240,9 @@ _,pageDetail.LoaderDescription_Lookup_List,_ = dao.DataLoader_GetList()
 _,Loader_Lookup_Type,_:= dao.DataLoader_GetByID(rD.Loader)
 pageDetail.LoaderType_Lookup = Loader_Lookup_Type.Type
 _,pageDetail.LoaderType_Lookup_List,_ = dao.DataLoader_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -264,7 +264,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.DataLoaderData
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.DataLoaderData_SYSId)
 		item.Id = r.FormValue(dm.DataLoaderData_Id)
 		item.Row = r.FormValue(dm.DataLoaderData_Row)
@@ -284,9 +284,8 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LoaderDescription_Lookup = r.FormValue(dm.DataLoaderData_LoaderDescription_Lookup)
 		item.LoaderType_Lookup = r.FormValue(dm.DataLoaderData_LoaderType_Lookup)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.DataLoaderData_Store(item,r)	
 
@@ -314,7 +313,7 @@ func DataLoaderData_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Row = ""
@@ -332,14 +331,14 @@ pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
 pageDetail.Loader_Lookup = ""
 _,pageDetail.Loader_Lookup_List,_ = dao.DataLoader_GetList()
 pageDetail.LoaderDescription_Lookup = ""
 _,pageDetail.LoaderDescription_Lookup_List,_ = dao.DataLoader_GetList()
 pageDetail.LoaderType_Lookup = ""
 _,pageDetail.LoaderType_Lookup_List,_ = dao.DataLoader_GetList()
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

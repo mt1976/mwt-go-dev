@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Schedule_Template     = "Schedule"
 	Schedule_TemplateList = "Schedule_List"
 	Schedule_TemplateView = "Schedule_View"
 	Schedule_TemplateEdit = "Schedule_Edit"
@@ -52,6 +53,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Schedule_Path       = "/API/Schedule/"
 	Schedule_PathList   = "/ScheduleList/"
 	Schedule_PathView   = "/ScheduleView/"
 	Schedule_PathEdit   = "/ScheduleEdit/"

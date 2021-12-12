@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:47
+// Date & Time		    : 12/12/2021 at 16:13:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -33,6 +33,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	AccountLadder_Template     = "AccountLadder"
 	AccountLadder_TemplateList = "AccountLadder_List"
 	AccountLadder_TemplateView = "AccountLadder_View"
 	AccountLadder_TemplateEdit = "AccountLadder_Edit"
@@ -40,6 +41,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	AccountLadder_Path       = "/API/AccountLadder/"
 	AccountLadder_PathList   = "/AccountLadderList/"
 	AccountLadder_PathView   = "/AccountLadderView/"
 	AccountLadder_PathEdit   = "/AccountLadderEdit/"

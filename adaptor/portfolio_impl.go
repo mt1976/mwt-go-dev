@@ -22,7 +22,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Portfolio_Delete_Impl(id string, usr string) error {
+func Portfolio_Delete_Impl(id string) error {
 	var er error
 
 	message := "Implement Portfolio_Delete: " + id

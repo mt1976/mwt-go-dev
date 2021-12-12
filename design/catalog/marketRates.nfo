@@ -7,7 +7,7 @@ Endpoint 	         : MarketRates (ID)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 08/12/2021 at 16:43:55
+Date & Time		     : 12/12/2021 at 16:13:18
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -51,6 +51,7 @@ Fields Generated
 Artifacts Generated
 ----------------------------------------------------------------
 * application (/application/marketRates_core.go)
+* api (/application/marketRates_api.go)
 * dao (/dao/marketRates_core.go)
 * datamodel (/datamodel/marketRates_core.go)
 * menu (/design/menu/marketRates.json)

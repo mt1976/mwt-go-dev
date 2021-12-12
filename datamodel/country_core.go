@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:10
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,6 +32,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Country_Template     = "Country"
 	Country_TemplateList = "Country_List"
 	Country_TemplateView = "Country_View"
 	Country_TemplateEdit = "Country_Edit"
@@ -39,6 +40,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Country_Path       = "/API/Country/"
 	Country_PathList   = "/CountryList/"
 	Country_PathView   = "/CountryView/"
 	Country_PathEdit   = "/CountryEdit/"

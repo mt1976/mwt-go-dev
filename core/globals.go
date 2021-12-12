@@ -40,9 +40,10 @@ var IsChildInstance bool
 const (
 	DATEFORMATPICK           = "20060102T150405"
 	DATEFORMATSIENA          = "2006-01-02"
+	TIMEFORMATSIENA          = "15:04:05"
 	DATEFORMATYMD            = "20060102"
 	DATEFORMATUSER           = "02/01/2006"
-	DFNANO                   = "2006-01-02T15:04:05.999999"
+	DATETIME                 = "2006-01-02T15:04:05.999999"
 	DFDD                     = "02"
 	DFMM                     = "01"
 	DFYY                     = "06"
@@ -111,6 +112,35 @@ type ConnectionItem struct {
 	Database         *sql.DB
 	ConnectionString sienaDBItem
 }
+
+type CatalogItem struct {
+	ID     string `json:"id"`
+	Path   string `json:"path"`
+	Descr  string `json:"descr"`
+	Query  string `json:"query"`
+	Source string `json:"source"`
+}
+
+type ContentList struct {
+	Count int               `json:"count"`
+	Key   string            `json:"key"`
+	Items []ContentListItem `json:"items"`
+}
+
+type ContentListItem struct {
+	ID    string `json:"id"`
+	Query string `json:"query"`
+}
+
+const (
+	CatalogType_API  = "API"
+	CatalogType_GUI  = "USER"
+	DataSource_Siena = "SIENA"
+	DataSource_App   = "APP"
+)
+
+var API_VERSION = "1.0.0"
+var Catalog []CatalogItem
 
 type sienaDBItem struct {
 	ID         string
@@ -371,4 +401,15 @@ func PadRight(s string, p string, l int) string {
 }
 func PadLeft(s string, p string, l int) string {
 	return leftPad2Len(s, p, l)
+}
+
+func Catalog_Add(id string, path string, descr string, query string, src string) {
+	var catalogItem = CatalogItem{ID: id, Path: path, Descr: descr, Query: query, Source: src}
+	Catalog = append(Catalog, catalogItem)
+}
+
+func Catalog_List() {
+	for _, k := range Catalog {
+		logs.Information("Catalog Item", k.ID+" - "+k.Path+" - "+k.Descr+" - "+k.Query+" - "+k.Source)
+	}
 }

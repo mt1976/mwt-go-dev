@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Currency_GetList() returns a list of all Currency records
 func Currency_GetList() (int, []dm.Currency, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Currency_SQLTable)
 	count, currencyList, _, _ := currency_Fetch(tsql)
+	
 	return count, currencyList, nil
 }
 
@@ -38,7 +42,11 @@ func Currency_GetList() (int, []dm.Currency, error) {
 func Currency_GetLookup() []dm.Lookup_Item {
 
 	var returnList []dm.Lookup_Item
-	count, currencyList, _ := Currency_GetList()
+
+	
+	    count, currencyList, _ := Currency_GetList()
+	
+	
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: currencyList[i].Code, Name: currencyList[i].Name})
 	}
@@ -48,6 +56,7 @@ func Currency_GetLookup() []dm.Lookup_Item {
 
 // Currency_GetByID() returns a single Currency record
 func Currency_GetByID(id string) (int, dm.Currency, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Currency_SQLTable)
 	tsql = tsql + " WHERE " + dm.Currency_SQLSearchID + "='" + id + "'"
@@ -63,18 +72,20 @@ func Currency_GetByReverseLookup(id string) (int, dm.Currency, error) {
 	tsql = tsql + " WHERE Name = '" + id + "'"
 
 	_, _, currencyItem, _ := currency_Fetch(tsql)
+	
 	return 1, currencyItem, nil
 }
 
 // Currency_DeleteByID() deletes a single Currency record
 func Currency_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Currency_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Currency_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Currency_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -107,7 +118,7 @@ func currency_Save(r dm.Currency,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Currency_impl.go file
-	err1 := adaptor.Currency_Delete_Impl(r.Code,usr)
+	err1 := adaptor.Currency_Delete_Impl(r.Code)
 	err2 := adaptor.Currency_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -136,7 +147,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Currency_Code, "")
    recItem.Name  = get_String(rec, dm.Currency_Name, "")
    recItem.AmountDp  = get_Int(rec, dm.Currency_AmountDp, "0")
@@ -211,7 +222,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -220,9 +231,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 
 func Currency_NewID(r dm.Currency) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

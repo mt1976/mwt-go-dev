@@ -22,10 +22,10 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Account_Delete_Impl(id string, usr string) error {
+func Account_Delete_Impl(id string) error {
 	var er error
 
-	message := "Implement Account_Delete: " + id + " " + usr
+	message := "Implement Account_Delete: " + id
 
 	// Implement Account_Delete_Impl in account_Impl.go
 	// Uncomment the line below to use the implementation

@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:46
+// Date & Time		    : 12/12/2021 at 16:13:06
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Account_GetList() returns a list of all Account records
 func Account_GetList() (int, []dm.Account, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
 	count, accountList, _, _ := account_Fetch(tsql)
+	
 	return count, accountList, nil
 }
 
@@ -37,6 +41,7 @@ func Account_GetList() (int, []dm.Account, error) {
 
 // Account_GetByID() returns a single Account record
 func Account_GetByID(id string) (int, dm.Account, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
 	tsql = tsql + " WHERE " + dm.Account_SQLSearchID + "='" + id + "'"
@@ -52,18 +57,20 @@ func Account_GetByReverseLookup(id string) (int, dm.Account, error) {
 	tsql = tsql + " WHERE CashBalance = '" + id + "'"
 
 	_, _, accountItem, _ := account_Fetch(tsql)
+	
 	return 1, accountItem, nil
 }
 
 // Account_DeleteByID() deletes a single Account record
 func Account_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Account_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Account_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Account_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -96,7 +103,7 @@ func account_Save(r dm.Account,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Account_impl.go file
-	err1 := adaptor.Account_Delete_Impl(r.SienaReference,usr)
+	err1 := adaptor.Account_Delete_Impl(r.SienaReference)
 	err2 := adaptor.Account_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -125,7 +132,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
    recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
    recItem.SienaCommonRef  = get_String(rec, dm.Account_SienaCommonRef, "")
@@ -341,7 +348,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -350,9 +357,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 func Account_NewID(r dm.Account) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

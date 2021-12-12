@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:57
+// Date & Time		    : 12/12/2021 at 16:13:20
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // Translation_GetList() returns a list of all Translation records
 func Translation_GetList() (int, []dm.Translation, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Translation_SQLTable)
 	count, translationList, _, _ := translation_Fetch(tsql)
+	
 	return count, translationList, nil
 }
 
@@ -37,6 +41,7 @@ func Translation_GetList() (int, []dm.Translation, error) {
 
 // Translation_GetByID() returns a single Translation record
 func Translation_GetByID(id string) (int, dm.Translation, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Translation_SQLTable)
 	tsql = tsql + " WHERE " + dm.Translation_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Translation_GetByID(id string) (int, dm.Translation, error) {
 // Translation_DeleteByID() deletes a single Translation record
 func Translation_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Translation_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Translation_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Translation_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -141,7 +147,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Translation_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Translation_Id, "")
    recItem.Class  = get_String(rec, dm.Translation_Class, "")
@@ -183,7 +189,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -192,9 +198,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 func Translation_NewID(r dm.Translation) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

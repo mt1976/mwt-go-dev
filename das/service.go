@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mt1976/mwt-go-dev/core"
-	"github.com/mt1976/mwt-go-dev/logs"
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
 func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {

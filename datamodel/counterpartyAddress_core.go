@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:49
+// Date & Time		    : 12/12/2021 at 16:13:09
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -35,6 +35,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	CounterpartyAddress_Template     = "CounterpartyAddress"
 	CounterpartyAddress_TemplateList = "CounterpartyAddress_List"
 	CounterpartyAddress_TemplateView = "CounterpartyAddress_View"
 	CounterpartyAddress_TemplateEdit = "CounterpartyAddress_Edit"
@@ -42,6 +43,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	CounterpartyAddress_Path       = "/API/CounterpartyAddress/"
 	CounterpartyAddress_PathList   = "/CounterpartyAddressList/"
 	CounterpartyAddress_PathView   = "/CounterpartyAddressView/"
 	CounterpartyAddress_PathEdit   = "/CounterpartyAddressEdit/"

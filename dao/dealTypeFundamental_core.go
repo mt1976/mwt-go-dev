@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:53
+// Date & Time		    : 12/12/2021 at 16:13:15
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // DealTypeFundamental_GetList() returns a list of all DealTypeFundamental records
 func DealTypeFundamental_GetList() (int, []dm.DealTypeFundamental, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.DealTypeFundamental_SQLTable)
 	count, dealtypefundamentalList, _, _ := dealtypefundamental_Fetch(tsql)
+	
 	return count, dealtypefundamentalList, nil
 }
 
@@ -37,6 +41,7 @@ func DealTypeFundamental_GetList() (int, []dm.DealTypeFundamental, error) {
 
 // DealTypeFundamental_GetByID() returns a single DealTypeFundamental record
 func DealTypeFundamental_GetByID(id string) (int, dm.DealTypeFundamental, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.DealTypeFundamental_SQLTable)
 	tsql = tsql + " WHERE " + dm.DealTypeFundamental_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func DealTypeFundamental_GetByID(id string) (int, dm.DealTypeFundamental, error)
 // DealTypeFundamental_DeleteByID() deletes a single DealTypeFundamental record
 func DealTypeFundamental_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealTypeFundamental_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealTypeFundamental_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.DealTypeFundamental_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func dealtypefundamental_Save(r dm.DealTypeFundamental,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/DealTypeFundamental_impl.go file
-	err1 := adaptor.DealTypeFundamental_Delete_Impl(r.DealTypeKey,usr)
+	err1 := adaptor.DealTypeFundamental_Delete_Impl(r.DealTypeKey)
 	err2 := adaptor.DealTypeFundamental_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey, "")
    recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment, "True")
    recItem.DefaultFrequency  = get_Int(rec, dm.DealTypeFundamental_DefaultFrequency, "0")
@@ -390,7 +396,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -399,9 +405,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 
 func DealTypeFundamental_NewID(r dm.DealTypeFundamental) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

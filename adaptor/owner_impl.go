@@ -13,7 +13,7 @@ func Owner_Update_Impl(item dm.Owner, usr string) error {
 	return nil
 }
 
-func Owner_Delete_Impl(id string, usr string) error {
+func Owner_Delete_Impl(id string) error {
 	var er error
 
 	message := "Implement Owner_Delete: " + id

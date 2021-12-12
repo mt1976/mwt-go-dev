@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:48
+// Date & Time		    : 12/12/2021 at 16:13:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Broker_GetList() returns a list of all Broker records
 func Broker_GetList() (int, []dm.Broker, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Broker_SQLTable)
 	count, brokerList, _, _ := broker_Fetch(tsql)
+	
 	return count, brokerList, nil
 }
 
@@ -37,6 +41,7 @@ func Broker_GetList() (int, []dm.Broker, error) {
 
 // Broker_GetByID() returns a single Broker record
 func Broker_GetByID(id string) (int, dm.Broker, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Broker_SQLTable)
 	tsql = tsql + " WHERE " + dm.Broker_SQLSearchID + "='" + id + "'"
@@ -52,18 +57,20 @@ func Broker_GetByReverseLookup(id string) (int, dm.Broker, error) {
 	tsql = tsql + " WHERE Name = '" + id + "'"
 
 	_, _, brokerItem, _ := broker_Fetch(tsql)
+	
 	return 1, brokerItem, nil
 }
 
 // Broker_DeleteByID() deletes a single Broker record
 func Broker_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Broker_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Broker_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Broker_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -96,7 +103,7 @@ func broker_Save(r dm.Broker,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Broker_impl.go file
-	err1 := adaptor.Broker_Delete_Impl(r.Code,usr)
+	err1 := adaptor.Broker_Delete_Impl(r.Code)
 	err2 := adaptor.Broker_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -125,7 +132,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Broker_Code, "")
    recItem.Name  = get_String(rec, dm.Broker_Name, "")
    recItem.FullName  = get_String(rec, dm.Broker_FullName, "")
@@ -146,7 +153,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -155,9 +162,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 
 func Broker_NewID(r dm.Broker) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

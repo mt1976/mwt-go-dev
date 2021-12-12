@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Owner_GetList() returns a list of all Owner records
 func Owner_GetList() (int, []dm.Owner, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Owner_SQLTable)
 	count, ownerList, _, _ := owner_Fetch(tsql)
+	
 	return count, ownerList, nil
 }
 
@@ -38,7 +42,11 @@ func Owner_GetList() (int, []dm.Owner, error) {
 func Owner_GetLookup() []dm.Lookup_Item {
 
 	var returnList []dm.Lookup_Item
-	count, ownerList, _ := Owner_GetList()
+
+	
+	    count, ownerList, _ := Owner_GetList()
+	
+	
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: ownerList[i].UserName, Name: ownerList[i].FullName})
 	}
@@ -48,6 +56,7 @@ func Owner_GetLookup() []dm.Lookup_Item {
 
 // Owner_GetByID() returns a single Owner record
 func Owner_GetByID(id string) (int, dm.Owner, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Owner_SQLTable)
 	tsql = tsql + " WHERE " + dm.Owner_SQLSearchID + "='" + id + "'"
@@ -63,18 +72,20 @@ func Owner_GetByReverseLookup(id string) (int, dm.Owner, error) {
 	tsql = tsql + " WHERE FullName = '" + id + "'"
 
 	_, _, ownerItem, _ := owner_Fetch(tsql)
+	
 	return 1, ownerItem, nil
 }
 
 // Owner_DeleteByID() deletes a single Owner record
 func Owner_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Owner_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Owner_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Owner_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -107,7 +118,7 @@ func owner_Save(r dm.Owner,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Owner_impl.go file
-	err1 := adaptor.Owner_Delete_Impl(r.UserName,usr)
+	err1 := adaptor.Owner_Delete_Impl(r.UserName)
 	err2 := adaptor.Owner_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -136,7 +147,7 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.UserName  = get_String(rec, dm.Owner_UserName, "")
    recItem.FullName  = get_String(rec, dm.Owner_FullName, "")
    recItem.Type  = get_String(rec, dm.Owner_Type, "")
@@ -184,7 +195,7 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -193,9 +204,7 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 
 func Owner_NewID(r dm.Owner) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:48
+// Date & Time		    : 12/12/2021 at 16:13:08
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -42,6 +42,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Cache_Template     = "Cache"
 	Cache_TemplateList = "Cache_List"
 	Cache_TemplateView = "Cache_View"
 	Cache_TemplateEdit = "Cache_Edit"
@@ -49,6 +50,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Cache_Path       = "/API/Cache/"
 	Cache_PathList   = "/CacheList/"
 	Cache_PathView   = "/CacheView/"
 	Cache_PathEdit   = "/CacheEdit/"

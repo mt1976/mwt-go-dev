@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Portfolio_GetList() returns a list of all Portfolio records
 func Portfolio_GetList() (int, []dm.Portfolio, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Portfolio_SQLTable)
 	count, portfolioList, _, _ := portfolio_Fetch(tsql)
+	
 	return count, portfolioList, nil
 }
 
@@ -37,6 +41,7 @@ func Portfolio_GetList() (int, []dm.Portfolio, error) {
 
 // Portfolio_GetByID() returns a single Portfolio record
 func Portfolio_GetByID(id string) (int, dm.Portfolio, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Portfolio_SQLTable)
 	tsql = tsql + " WHERE " + dm.Portfolio_SQLSearchID + "='" + id + "'"
@@ -52,18 +57,20 @@ func Portfolio_GetByReverseLookup(id string) (int, dm.Portfolio, error) {
 	tsql = tsql + " WHERE Description1 = '" + id + "'"
 
 	_, _, portfolioItem, _ := portfolio_Fetch(tsql)
+	
 	return 1, portfolioItem, nil
 }
 
 // Portfolio_DeleteByID() deletes a single Portfolio record
 func Portfolio_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Portfolio_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Portfolio_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Portfolio_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -96,7 +103,7 @@ func portfolio_Save(r dm.Portfolio,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Portfolio_impl.go file
-	err1 := adaptor.Portfolio_Delete_Impl(r.Code,usr)
+	err1 := adaptor.Portfolio_Delete_Impl(r.Code)
 	err2 := adaptor.Portfolio_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -125,7 +132,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.Code  = get_String(rec, dm.Portfolio_Code, "")
    recItem.Description1  = get_String(rec, dm.Portfolio_Description1, "")
    recItem.Description2  = get_String(rec, dm.Portfolio_Description2, "")
@@ -164,7 +171,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -173,9 +180,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 
 func Portfolio_NewID(r dm.Portfolio) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

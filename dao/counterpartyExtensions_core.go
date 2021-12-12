@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:49
+// Date & Time		    : 12/12/2021 at 16:13:09
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // CounterpartyExtensions_GetList() returns a list of all CounterpartyExtensions records
 func CounterpartyExtensions_GetList() (int, []dm.CounterpartyExtensions, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CounterpartyExtensions_SQLTable)
 	count, counterpartyextensionsList, _, _ := counterpartyextensions_Fetch(tsql)
+	
 	return count, counterpartyextensionsList, nil
 }
 
@@ -37,6 +41,7 @@ func CounterpartyExtensions_GetList() (int, []dm.CounterpartyExtensions, error) 
 
 // CounterpartyExtensions_GetByID() returns a single CounterpartyExtensions record
 func CounterpartyExtensions_GetByID(id string) (int, dm.CounterpartyExtensions, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CounterpartyExtensions_SQLTable)
 	tsql = tsql + " WHERE " + dm.CounterpartyExtensions_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func CounterpartyExtensions_GetByID(id string) (int, dm.CounterpartyExtensions, 
 // CounterpartyExtensions_DeleteByID() deletes a single CounterpartyExtensions record
 func CounterpartyExtensions_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyExtensions_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyExtensions_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.CounterpartyExtensions_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func counterpartyextensions_Save(r dm.CounterpartyExtensions,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/CounterpartyExtensions_impl.go file
-	err1 := adaptor.CounterpartyExtensions_Delete_Impl(r.CompID,usr)
+	err1 := adaptor.CounterpartyExtensions_Delete_Impl(r.CompID)
 	err2 := adaptor.CounterpartyExtensions_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.NameFirm  = get_String(rec, dm.CounterpartyExtensions_NameFirm, "")
    recItem.NameCentre  = get_String(rec, dm.CounterpartyExtensions_NameCentre, "")
    recItem.BICCode  = get_String(rec, dm.CounterpartyExtensions_BICCode, "")
@@ -249,7 +255,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -258,9 +264,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 
 func CounterpartyExtensions_NewID(r dm.CounterpartyExtensions) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Credentials_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Username string
@@ -83,7 +83,7 @@ type Credentials_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -92,6 +92,7 @@ const (
 
 //Credentials_Publish annouces the endpoints available for this object
 func Credentials_Publish(mux http.ServeMux) {
+	//No API
 	mux.HandleFunc(dm.Credentials_PathList, Credentials_HandlerList)
 	mux.HandleFunc(dm.Credentials_PathView, Credentials_HandlerView)
 	mux.HandleFunc(dm.Credentials_PathEdit, Credentials_HandlerEdit)
@@ -99,14 +100,7 @@ func Credentials_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Credentials_PathSave, Credentials_HandlerSave)
 	mux.HandleFunc(dm.Credentials_PathDelete, Credentials_HandlerDelete)
 	logs.Publish("Application", dm.Credentials_Title)
-	
-	// credentials_PublishImpl should be specified in application/credentials_Impl.go
-	// to provide the implementation for the special case.
-	// override function should be defined as
-	// credentials_PublishImpl(mux http.ServeMux) {...}
-	// TODO - this is a temporary hack to get the special case working
-	// Add to main.go >>> credentials_PublishImpl(mux)
-	
+    //No API
 }
 
 //Credentials_HandlerList is the handler for the list page
@@ -162,7 +156,7 @@ func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Username = rD.Username
@@ -185,18 +179,12 @@ pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// credentials_HandlerViewImpl should be specified in application/credentials_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func credentials_HandlerViewImpl(pageDetail Credentials_Page) Credentials_Page {return pageDetail}
-	pageDetail = credentials_HandlerViewImpl(pageDetail)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -227,7 +215,7 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Username = rD.Username
@@ -250,17 +238,10 @@ pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// credentials_HandlerEditImpl should be specified in application/credentials_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func credentials_HandlerEditImpl(pageDetail Credentials_Page) Credentials_Page {return pageDetail}
-	pageDetail = credentials_HandlerEditImpl(pageDetail)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -282,7 +263,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Credentials
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Credentials_SYSId)
 		item.Id = r.FormValue(dm.Credentials_Id)
 		item.Username = r.FormValue(dm.Credentials_Username)
@@ -304,15 +285,8 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// credentials_HandlerSaveImpl should be specified in application/credentials_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func credentials_HandlerSaveImpl(item dm.Credentials) dm.Credentials {return item}
-	item = credentials_HandlerSaveImpl(item)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Credentials_Store(item,r)	
 
@@ -340,7 +314,7 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Username = ""
@@ -363,8 +337,8 @@ pageDetail.SYSUpdatedBy = ""
 pageDetail.SYSUpdatedHost = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

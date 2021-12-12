@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:49
+// Date & Time		    : 12/12/2021 at 16:13:09
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // CounterpartyAddress_GetList() returns a list of all CounterpartyAddress records
 func CounterpartyAddress_GetList() (int, []dm.CounterpartyAddress, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CounterpartyAddress_SQLTable)
 	count, counterpartyaddressList, _, _ := counterpartyaddress_Fetch(tsql)
+	
 	return count, counterpartyaddressList, nil
 }
 
@@ -37,6 +41,7 @@ func CounterpartyAddress_GetList() (int, []dm.CounterpartyAddress, error) {
 
 // CounterpartyAddress_GetByID() returns a single CounterpartyAddress record
 func CounterpartyAddress_GetByID(id string) (int, dm.CounterpartyAddress, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.CounterpartyAddress_SQLTable)
 	tsql = tsql + " WHERE " + dm.CounterpartyAddress_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func CounterpartyAddress_GetByID(id string) (int, dm.CounterpartyAddress, error)
 // CounterpartyAddress_DeleteByID() deletes a single CounterpartyAddress record
 func CounterpartyAddress_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyAddress_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyAddress_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.CounterpartyAddress_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -88,7 +94,7 @@ func counterpartyaddress_Save(r dm.CounterpartyAddress,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/CounterpartyAddress_impl.go file
-	err1 := adaptor.CounterpartyAddress_Delete_Impl(r.CompID,usr)
+	err1 := adaptor.CounterpartyAddress_Delete_Impl(r.CompID)
 	err2 := adaptor.CounterpartyAddress_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -117,7 +123,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm, "")
    recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre, "")
    recItem.Address1  = get_String(rec, dm.CounterpartyAddress_Address1, "")
@@ -144,7 +150,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -153,9 +159,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 
 func CounterpartyAddress_NewID(r dm.CounterpartyAddress) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

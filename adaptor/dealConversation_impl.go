@@ -9,7 +9,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func DealConversation_Delete_Impl(id string, usr string) error {
+func DealConversation_Delete_Impl(id string) error {
 
 	message := "Implement DealConversation_Update_Impl: " + id
 

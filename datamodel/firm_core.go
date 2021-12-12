@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:53
+// Date & Time		    : 12/12/2021 at 16:13:15
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -33,6 +33,7 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Firm_Template     = "Firm"
 	Firm_TemplateList = "Firm_List"
 	Firm_TemplateView = "Firm_View"
 	Firm_TemplateEdit = "Firm_Edit"
@@ -40,6 +41,7 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
+	Firm_Path       = "/API/Firm/"
 	Firm_PathList   = "/FirmList/"
 	Firm_PathView   = "/FirmView/"
 	Firm_PathEdit   = "/FirmEdit/"

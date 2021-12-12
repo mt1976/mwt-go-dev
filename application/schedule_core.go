@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:56
+// Date & Time		    : 12/12/2021 at 16:13:19
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Schedule_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -79,7 +79,7 @@ type Schedule_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -88,21 +88,15 @@ const (
 
 //Schedule_Publish annouces the endpoints available for this object
 func Schedule_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.Schedule_Path, Schedule_Handler)
 	mux.HandleFunc(dm.Schedule_PathList, Schedule_HandlerList)
 	mux.HandleFunc(dm.Schedule_PathView, Schedule_HandlerView)
-	
-	
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
 	mux.HandleFunc(dm.Schedule_PathSave, Schedule_HandlerSave)
-	
+	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Schedule_Title)
-	
-	// schedule_PublishImpl should be specified in application/schedule_Impl.go
-	// to provide the implementation for the special case.
-	// override function should be defined as
-	// schedule_PublishImpl(mux http.ServeMux) {...}
-	// TODO - this is a temporary hack to get the special case working
-	// Add to main.go >>> schedule_PublishImpl(mux)
-	
+    core.Catalog_Add(dm.Schedule_Title, dm.Schedule_Path, "", dm.Schedule_QueryString, "APP")
 }
 
 //Schedule_HandlerList is the handler for the list page
@@ -158,7 +152,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -179,18 +173,12 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// schedule_HandlerViewImpl should be specified in application/schedule_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func schedule_HandlerViewImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
-	pageDetail = schedule_HandlerViewImpl(pageDetail)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -221,7 +209,7 @@ func Schedule_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -242,17 +230,10 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// schedule_HandlerEditImpl should be specified in application/schedule_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func schedule_HandlerEditImpl(pageDetail Schedule_Page) Schedule_Page {return pageDetail}
-	pageDetail = schedule_HandlerEditImpl(pageDetail)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -274,7 +255,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Schedule
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Schedule_SYSId)
 		item.Id = r.FormValue(dm.Schedule_Id)
 		item.Name = r.FormValue(dm.Schedule_Name)
@@ -294,15 +275,8 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Schedule_SYSUpdatedHost)
 		item.Human = r.FormValue(dm.Schedule_Human)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// schedule_HandlerSaveImpl should be specified in application/schedule_Impl.go
-	// to provide the implementation for the special case.
-	// override should return mux - override function should be defined as
-	// func schedule_HandlerSaveImpl(item dm.Schedule) dm.Schedule {return item}
-	item = schedule_HandlerSaveImpl(item)
-
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Schedule_Store(item,r)	
 
@@ -330,7 +304,7 @@ func Schedule_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -351,8 +325,8 @@ pageDetail.SYSUpdatedHost = ""
 pageDetail.Human = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

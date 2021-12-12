@@ -29,7 +29,7 @@ func Simulator_FundsChecker_Store(thisID string, balance string, resultCode stri
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.ACC = simFundsCheckItem.BODY.FundsCheck.ACC
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.CCY = simFundsCheckItem.BODY.FundsCheck.CCY
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.AMOUNT = balance
-	createDate := time.Now().Format(core.DFNANO)
+	createDate := time.Now().Format(core.DATETIME)
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.QUERYTIMESTAMP = createDate
 	simFundsCheckResponse.MBTBODY.FundsCheckResponse.RESULTCODE = resultCode
 

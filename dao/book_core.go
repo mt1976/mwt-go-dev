@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:47
+// Date & Time		    : 12/12/2021 at 16:13:07
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 )
 
 // Book_GetList() returns a list of all Book records
 func Book_GetList() (int, []dm.Book, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Book_SQLTable)
 	count, bookList, _, _ := book_Fetch(tsql)
+	
 	return count, bookList, nil
 }
 
@@ -37,6 +41,7 @@ func Book_GetList() (int, []dm.Book, error) {
 
 // Book_GetByID() returns a single Book record
 func Book_GetByID(id string) (int, dm.Book, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Book_SQLTable)
 	tsql = tsql + " WHERE " + dm.Book_SQLSearchID + "='" + id + "'"
@@ -52,18 +57,20 @@ func Book_GetByReverseLookup(id string) (int, dm.Book, error) {
 	tsql = tsql + " WHERE FullName = '" + id + "'"
 
 	_, _, bookItem, _ := book_Fetch(tsql)
+	
 	return 1, bookItem, nil
 }
 
 // Book_DeleteByID() deletes a single Book record
 func Book_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Book_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Book_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Book_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -96,7 +103,7 @@ func book_Save(r dm.Book,usr string) error {
 
 
 // Please Create Functions Below in the adaptor/Book_impl.go file
-	err1 := adaptor.Book_Delete_Impl(r.BookName,usr)
+	err1 := adaptor.Book_Delete_Impl(r.BookName)
 	err2 := adaptor.Book_Update_Impl(r,usr)
 	if err1 != nil {
 		err = err1
@@ -125,7 +132,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.BookName  = get_String(rec, dm.Book_BookName, "")
    recItem.FullName  = get_String(rec, dm.Book_FullName, "")
    recItem.PLManage  = get_String(rec, dm.Book_PLManage, "")
@@ -155,7 +162,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -164,9 +171,7 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 
 func Book_NewID(r dm.Book) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

@@ -12,10 +12,8 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 
-	"github.com/mt1976/mwt-go-dev/adaptor"
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
@@ -126,7 +124,14 @@ func main() {
 	application.DataLoaderData_Publish(*mux)
 	application.DataLoaderMap_Publish(*mux)
 	application.DataLoader_Publish_Impl(*mux)
+
+	application.ExternalMessage_Publish(*mux)
+	application.Catalog_Publish(*mux)
 	// End of Endpoints
+
+	logs.Header("Publish API")
+
+	core.Catalog_List()
 
 	logs.Success("Endpoints Published")
 
@@ -137,27 +142,41 @@ func main() {
 	//spew.Dump(mux)
 
 	//core.Notification_Test()
-	var r dm.Broker
-	r.Name = "Test"
-	r.Code = "Test"
-	r.Address = "Test"
-	r.LEI = "Test"
-	r.FullName = "Test"
-	r.Contact = "Test"
-	adaptor.Broker_Update_Impl(r, "fred")
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()
-	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
+
+	httpProtocol := core.ApplicationProperties["protocol"]
+	logs.URI(httpProtocol + "://localhost:" + core.ApplicationProperties["port"])
 	logs.Break()
 
 	httpPort := ":" + core.ApplicationProperties["port"]
 
-	// Wrap your handlers with the LoadAndSave() middleware.
-	//spew.Dump(mux)
-	http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
+	if core.ApplicationProperties["environment"] == "development" {
+
+		http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
+
+	} else {
+
+		certPath := core.ApplicationProperties["certpath"]
+		certName := core.ApplicationProperties["certname"]
+
+		pwd, _ := os.Getwd()
+		certLocation := pwd + certPath + certName
+		certKey := certLocation + ".key"
+		certCrt := certLocation + ".crt"
+
+		logs.Information("Certificate Path", certPath)
+		logs.Information("Certificate Name", certName)
+		logs.Information("Certificate Location", certLocation)
+		logs.Information("Certificate Key", certKey)
+		logs.Information("Certificate Crt", certCrt)
+
+		log.Fatal(http.ListenAndServeTLS(httpPort, certCrt, certKey, core.SessionManager.LoadAndSave(mux)))
+	}
 	logs.Break()
+	core.Log_uptime()
 	core.Log_uptime()
 
 }

@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:55
+// Date & Time		    : 12/12/2021 at 16:13:18
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // MarketRates_GetList() returns a list of all MarketRates records
 func MarketRates_GetList() (int, []dm.MarketRates, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
 	count, marketratesList, _, _ := marketrates_Fetch(tsql)
+	
 	return count, marketratesList, nil
 }
 
@@ -37,6 +41,7 @@ func MarketRates_GetList() (int, []dm.MarketRates, error) {
 
 // MarketRates_GetByID() returns a single MarketRates record
 func MarketRates_GetByID(id string) (int, dm.MarketRates, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
 	tsql = tsql + " WHERE " + dm.MarketRates_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func MarketRates_GetByID(id string) (int, dm.MarketRates, error) {
 // MarketRates_DeleteByID() deletes a single MarketRates record
 func MarketRates_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.MarketRates_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.MarketRates_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.MarketRates_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -149,7 +155,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId, "0")
    recItem.Id  = get_String(rec, dm.MarketRates_Id, "")
    recItem.Bid  = get_String(rec, dm.MarketRates_Bid, "")
@@ -215,7 +221,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -224,9 +230,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 
 func MarketRates_NewID(r dm.MarketRates) string {
 	
-	
 			id := uuid.New().String()
-
 	
 	return id
 }

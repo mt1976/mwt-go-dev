@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Portfolio_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		Code string
 		Description1 string
 		Description2 string
@@ -67,7 +67,7 @@ type Portfolio_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -76,6 +76,7 @@ const (
 
 //Portfolio_Publish annouces the endpoints available for this object
 func Portfolio_Publish(mux http.ServeMux) {
+	mux.HandleFunc(dm.Portfolio_Path, Portfolio_Handler)
 	mux.HandleFunc(dm.Portfolio_PathList, Portfolio_HandlerList)
 	mux.HandleFunc(dm.Portfolio_PathView, Portfolio_HandlerView)
 	mux.HandleFunc(dm.Portfolio_PathEdit, Portfolio_HandlerEdit)
@@ -83,7 +84,7 @@ func Portfolio_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Portfolio_PathSave, Portfolio_HandlerSave)
 	mux.HandleFunc(dm.Portfolio_PathDelete, Portfolio_HandlerDelete)
 	logs.Publish("Siena", dm.Portfolio_Title)
-	
+    core.Catalog_Add(dm.Portfolio_Title, dm.Portfolio_Path, "", dm.Portfolio_QueryString, "APP")
 }
 
 //Portfolio_HandlerList is the handler for the list page
@@ -139,7 +140,7 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Description1 = rD.Description1
 pageDetail.Description2 = rD.Description2
@@ -154,12 +155,12 @@ pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -190,7 +191,7 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Description1 = rD.Description1
 pageDetail.Description2 = rD.Description2
@@ -205,11 +206,10 @@ pageDetail.DeletedUserId = rD.DeletedUserId
 pageDetail.ChangeType = rD.ChangeType
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -231,7 +231,7 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Portfolio
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Portfolio_Code)
 		item.Description1 = r.FormValue(dm.Portfolio_Description1)
 		item.Description2 = r.FormValue(dm.Portfolio_Description2)
@@ -245,9 +245,8 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.Portfolio_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.Portfolio_ChangeType)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Portfolio_Store(item,r)	
 
@@ -275,7 +274,7 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Description1 = ""
 pageDetail.Description2 = ""
@@ -290,8 +289,8 @@ pageDetail.DeletedUserId = ""
 pageDetail.ChangeType = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

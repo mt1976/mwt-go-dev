@@ -8,28 +8,32 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:50
+// Date & Time		    : 12/12/2021 at 16:13:11
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
 import (
+	
 	"log"
+	
 	"fmt"
 	"net/http"
 
-	
+	"github.com/google/uuid"
 	core "github.com/mt1976/mwt-go-dev/core"
 	das  "github.com/mt1976/mwt-go-dev/das"
+	
+	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
-	
 )
 
 // Credentials_GetList() returns a list of all Credentials records
 func Credentials_GetList() (int, []dm.Credentials, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
 	count, credentialsList, _, _ := credentials_Fetch(tsql)
+	
 	return count, credentialsList, nil
 }
 
@@ -37,6 +41,7 @@ func Credentials_GetList() (int, []dm.Credentials, error) {
 
 // Credentials_GetByID() returns a single Credentials record
 func Credentials_GetByID(id string) (int, dm.Credentials, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
 	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + "='" + id + "'"
@@ -50,12 +55,13 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 // Credentials_DeleteByID() deletes a single Credentials record
 func Credentials_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
 
+	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Credentials_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
+
 }
 
 
@@ -148,7 +154,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Credentials_Id, "")
    recItem.Username  = get_String(rec, dm.Credentials_Username, "")
@@ -211,7 +217,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
@@ -220,15 +226,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 func Credentials_NewID(r dm.Credentials) string {
 	
-	
-
-		// credentials_NewIDImpl should be specified in dao/Credentials_Impl.go
-		// to provide the implementation for the special case.
-		// override should return id - override function should be defined as
-		// credentials_NewIDImpl(r dm.Credentials) string {...}
-		//
-		id := credentials_NewIDImpl(r)
-	
+			id := uuid.New().String()
 	
 	return id
 }

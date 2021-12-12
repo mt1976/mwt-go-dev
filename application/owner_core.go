@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2021 at 16:43:54
+// Date & Time		    : 12/12/2021 at 16:13:17
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Owner_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		UserName string
 		FullName string
 		Type string
@@ -73,7 +73,7 @@ type Owner_Page struct {
 	
 	
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -82,14 +82,15 @@ const (
 
 //Owner_Publish annouces the endpoints available for this object
 func Owner_Publish(mux http.ServeMux) {
-	
-	
-	
-	
-	
-	
+	//No API
+	//Cannot List via GUI
+	//Cannot View via GUI
+	//Cannot Edit via GUI
+	//Cannot Create via GUI
+	//Cannot Save via GUI
+	//Cannot Delete via GUI
 	logs.Publish("Siena", dm.Owner_Title)
-	
+    //No API
 }
 
 //Owner_HandlerList is the handler for the list page
@@ -145,7 +146,7 @@ func Owner_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.UserName = rD.UserName
 pageDetail.FullName = rD.FullName
 pageDetail.Type = rD.Type
@@ -163,12 +164,12 @@ pageDetail.Entity = rD.Entity
 pageDetail.UserCode = rD.UserCode
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -199,7 +200,7 @@ func Owner_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.UserName = rD.UserName
 pageDetail.FullName = rD.FullName
 pageDetail.Type = rD.Type
@@ -217,11 +218,10 @@ pageDetail.Entity = rD.Entity
 pageDetail.UserCode = rD.UserCode
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
-		//
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -243,7 +243,7 @@ func Owner_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("UserName"))
 
 	var item dm.Owner
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 		item.UserName = r.FormValue(dm.Owner_UserName)
 		item.FullName = r.FormValue(dm.Owner_FullName)
 		item.Type = r.FormValue(dm.Owner_Type)
@@ -260,9 +260,8 @@ func Owner_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Entity = r.FormValue(dm.Owner_Entity)
 		item.UserCode = r.FormValue(dm.Owner_UserCode)
 	
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 
 	dao.Owner_Store(item,r)	
 
@@ -290,7 +289,7 @@ func Owner_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 08/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
 pageDetail.UserName = ""
 pageDetail.FullName = ""
 pageDetail.Type = ""
@@ -308,8 +307,8 @@ pageDetail.Entity = ""
 pageDetail.UserCode = ""
 
 
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 08/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
