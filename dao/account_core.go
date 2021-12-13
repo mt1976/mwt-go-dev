@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:06
+// Date & Time		    : 13/12/2021 at 17:02:22
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -132,7 +132,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 13/12/2021 by matttownsend on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.Account_SienaReference, "")
    recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView, "")
    recItem.SienaCommonRef  = get_String(rec, dm.Account_SienaCommonRef, "")
@@ -199,6 +199,10 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
    recItem.EUROtherAmount  = get_Float(rec, dm.Account_EUROtherAmount, "0.00")
    recItem.PaymentSystemSienaView  = get_String(rec, dm.Account_PaymentSystemSienaView, "")
    recItem.PaymentSystemExternalView  = get_String(rec, dm.Account_PaymentSystemExternalView, "")
+
+
+
+
 
 
 
@@ -276,6 +280,10 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 
 
+   recItem.DealtCA_Extra  = account_DealtCA_Extra (recItem)
+   recItem.AgainstCA_Extra  = account_AgainstCA_Extra (recItem)
+   recItem.LedgerCA_Extra  = account_LedgerCA_Extra (recItem)
+   recItem.CashBalanceCA_Extra  = account_CashBalanceCA_Extra (recItem)
 
 
 
@@ -348,7 +356,11 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+
+
+
+
+	// Automatically generated 13/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

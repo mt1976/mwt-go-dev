@@ -7,7 +7,7 @@ Endpoint 	         : Account (AccountNo)
 For Project          : github.com/mt1976/mwt-go-dev/
 ----------------------------------------------------------------
 Template Generator   : delinquentDysprosium [r4-21.12.31]
-Date & Time		     : 12/12/2021 at 16:13:06
+Date & Time		     : 13/12/2021 at 17:02:22
 Who & Where		     : matttownsend on silicon.local
 ----------------------------------------------------------------
 Database Information
@@ -96,6 +96,10 @@ Fields Generated
 | Portfolio_Lookup                    | String     |            |    |    |    |    | Y  | Portfolio       | Portfolio                | Description1             |
 | Centre_Lookup                       | String     |            |    |    |    |    | Y  | Centre          | Centre                   | Name                     |
 | Firm_Lookup                         | String     |            |    |    |    |    | Y  | Firm            | Firm                     | FullName                 |
+| DealtCA_Extra                       | String     |            |    |    | Y  |    |    |                 |                          |                          |
+| AgainstCA_Extra                     | String     |            |    |    | Y  |    |    |                 |                          |                          |
+| LedgerCA_Extra                      | String     |            |    |    | Y  |    |    |                 |                          |                          |
+| CashBalanceCA_Extra                 | String     |            |    |    | Y  |    |    |                 |                          |                          |
 *-------------------------------------+------------+------------+----+----+----+----+----+-----------------+--------------------------+--------------------------*
 ----------------------------------------------------------------
 Artifacts Generated

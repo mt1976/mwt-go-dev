@@ -57,7 +57,7 @@
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-file-import"></i><br>Import<br><span class="badge badge-primary">{{.NoImports}}</span></a>
+            <a class="nav-link" id="imports-tab" data-toggle="tab" href="#imports" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-file-import"></i><br>Import<br><span class="badge badge-primary">{{.NoImports}}</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="txn-tab" data-toggle="tab" href="#txn" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-shopping-basket"></i>
@@ -180,7 +180,7 @@
                       <td class="align-middle">{{.FullName}}</td>
                       <td class="align-middle text-center">{{.KeyCurrency}}</td>
                       <td class="align-middle">{{.KeyName}}</td>
-                      <td class="align-middle text-center"><span class="badge badge-pill {{if eq .Status_Impl "Pending"}}badge-warning{{else}}badge-success{{end}}">{{.Status_Impl}}</span></td>
+                      <td class="align-middle text-center"><span class="badge badge-pill {{if eq .Status_Extra "Pending"}}badge-warning{{else}}badge-success{{end}}">{{.Status_Extra}}</span></td>
 
                       <td class="" style="width:5%;">
 
@@ -450,8 +450,8 @@
                       <td class="align-middle">{{.AccountName}}</td>
 
                       <td class="align-middle text-center">{{.CCY}}</td>
-                      <td class="align-middle text-center">{{.CashBalance}}</td>
-                      <td class="align-middle text-center">{{.LedgerBalance}}</td>
+                      <td class="align-middle text-center">{{.CashBalanceCA_Extra}}</td>
+                      <td class="align-middle text-center">{{.LedgerCA_Extra}}</td>
                       <td class="align-middle text-center">{{.Status}}</td>
 
 
@@ -533,7 +533,7 @@
 
           </div>
 
-          <div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
+          <div class="tab-pane fade" id="imports" role="tabpanel" aria-labelledby="imports-tab">
 
             <form action="/home" method="POST">
 

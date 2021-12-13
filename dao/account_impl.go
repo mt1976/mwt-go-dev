@@ -24,3 +24,20 @@ func Account_GetListByCounterpartyID(id string) (int, []dm.Account, error) {
 	count, sienaAccountList, _, _ := account_Fetch(tsql)
 	return count, sienaAccountList, nil
 }
+
+func account_DealtCA_Extra(recItem dm.Account) string {
+
+	return core.FormatCurrencyDps(recItem.DealtAmount, recItem.CCY, recItem.CCYDp)
+}
+
+func account_AgainstCA_Extra(recItem dm.Account) string {
+	return account_DealtCA_Extra(recItem)
+}
+
+func account_LedgerCA_Extra(recItem dm.Account) string {
+	return core.FormatCurrencyDps(recItem.LedgerBalance, recItem.CCY, recItem.CCYDp)
+}
+
+func account_CashBalanceCA_Extra(recItem dm.Account) string {
+	return core.FormatCurrencyDps(recItem.CashBalance, recItem.CCY, recItem.CCYDp)
+}

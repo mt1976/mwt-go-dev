@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:06
+// Date & Time		    : 13/12/2021 at 17:02:22
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -87,6 +87,10 @@ Book_Lookup        string
 Portfolio_Lookup        string
 Centre_Lookup        string
 Firm_Lookup        string
+DealtCA_Extra        string
+AgainstCA_Extra        string
+LedgerCA_Extra        string
+CashBalanceCA_Extra        string
 
 }
 
@@ -187,6 +191,10 @@ const (
 	Account_Portfolio_Lookup   = "Portfolio_Lookup" // Portfolio_Lookup is a String
 	Account_Centre_Lookup   = "Centre_Lookup" // Centre_Lookup is a String
 	Account_Firm_Lookup   = "Firm_Lookup" // Firm_Lookup is a String
+	Account_DealtCA_Extra   = "DealtCA_Extra" // DealtCA_Extra is a String
+	Account_AgainstCA_Extra   = "AgainstCA_Extra" // AgainstCA_Extra is a String
+	Account_LedgerCA_Extra   = "LedgerCA_Extra" // LedgerCA_Extra is a String
+	Account_CashBalanceCA_Extra   = "CashBalanceCA_Extra" // CashBalanceCA_Extra is a String
 
 	/// Definitions End
 )
