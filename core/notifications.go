@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -45,17 +44,28 @@ func Notification_Emergency(messageTitle string, messageBody string) {
 
 	// Create a new recipient
 	recipient := pushover.NewRecipient(cfg.PushoverToken)
-	port := ApplicationProperties["port"]
+
 	// Create the message to send
-	//message := pushover.NewMessageWithTitle(messageContent, title)
+	messageBody = messageBody + " - " + SystemHostname
+	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
 
-	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
+	// NOTE Notification Message & Title
+	message := Notification_New(messageTitle, messageBody, pushover.PriorityEmergency)
 
-	fmt.Printf("SystemHostname: %v\n", SystemHostname)
-	message := &pushover.Message{
-		Message:     messageTitle,
-		Title:       messageBody,
-		Priority:    pushover.PriorityEmergency,
+	// Send the message to the recipient
+	_, err := app.SendMessage(message, recipient)
+	if err != nil {
+		log.Panic(err)
+	}
+}
+
+func Notification_New(title string, body string, priority int) *pushover.Message {
+	port := ApplicationProperties["port"]
+
+	return &pushover.Message{
+		Message:     body,
+		Title:       title,
+		Priority:    priority,
 		URL:         "http://" + SystemHostname + ":" + port + "/",
 		URLTitle:    SystemHostname,
 		Timestamp:   time.Now().Unix(),
@@ -65,127 +75,67 @@ func Notification_Emergency(messageTitle string, messageBody string) {
 		CallbackURL: "http://" + SystemHostname + ":" + port + "/ACKNotification",
 		Sound:       pushover.SoundCosmic,
 	}
-
-	// Send the message to the recipient
-	_, err := app.SendMessage(message, recipient)
-	if err != nil {
-		log.Panic(err)
-	}
-
-	// Print the response if you want
-	//log.Println(response)
 }
 
 func Notification_Normal(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
-	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
 
 	// Create a new recipient
 	recipient := pushover.NewRecipient(cfg.PushoverToken)
-	port := ApplicationProperties["port"]
 
+	// Create the message to send
 	messageBody = messageBody + " - " + SystemHostname
+	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
 
-	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
-	message := &pushover.Message{
-		Message:     messageTitle,
-		Title:       messageBody,
-		Priority:    pushover.PriorityNormal,
-		URL:         "http://" + SystemHostname + ":" + port + "/",
-		URLTitle:    SystemHostname,
-		Timestamp:   time.Now().Unix(),
-		Retry:       60 * time.Second,
-		Expire:      time.Hour,
-		DeviceName:  strings.ReplaceAll(SystemHostname, ".", "_"),
-		CallbackURL: "http://" + SystemHostname + ":" + port + "/ACKNotification",
-		Sound:       pushover.SoundCosmic,
-	}
+	// NOTE Notification Message & Title
+	message := Notification_New(messageTitle, messageBody, pushover.PriorityNormal)
 
 	// Send the message to the recipient
 	_, err := app.SendMessage(message, recipient)
 	if err != nil {
 		log.Panic(err)
 	}
-
-	// Print the response if you want
-	//log.Println(response)
 }
 
 func Notification_High(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
-	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
 
 	// Create a new recipient
 	recipient := pushover.NewRecipient(cfg.PushoverToken)
-	port := ApplicationProperties["port"]
+
 	// Create the message to send
-	//message := pushover.NewMessageWithTitle(messageContent, title)
-	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
 	messageBody = messageBody + " - " + SystemHostname
+	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
 
-	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
-
-	message := &pushover.Message{
-		Message:     messageTitle,
-		Title:       messageBody,
-		Priority:    pushover.PriorityHigh,
-		URL:         "http://" + SystemHostname + ":" + port + "/",
-		URLTitle:    SystemHostname,
-		Timestamp:   time.Now().Unix(),
-		Retry:       60 * time.Second,
-		Expire:      time.Hour,
-		DeviceName:  strings.ReplaceAll(SystemHostname, ".", "_"),
-		CallbackURL: "http://" + SystemHostname + ":" + port + "/ACKNotification",
-		Sound:       pushover.SoundCosmic,
-	}
+	// NOTE Notification Message
+	message := Notification_New(messageTitle, messageBody, pushover.PriorityHigh)
 
 	// Send the message to the recipient
 	_, err := app.SendMessage(message, recipient)
 	if err != nil {
 		log.Panic(err)
 	}
-
-	// Print the response if you want
-	//log.Println(response)
 }
 
 func Notification_Low(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
-	//fmt.Printf("cfg: %v\n", cfg)
 	app := pushover.New(cfg.PushoverKey)
 
 	// Create a new recipient
 	recipient := pushover.NewRecipient(cfg.PushoverToken)
-	port := ApplicationProperties["port"]
+
 	// Create the message to send
-	//message := pushover.NewMessageWithTitle(messageContent, title)
-	//fmt.Printf("SystemHostname: %v\n", SystemHostname)
 	messageBody = messageBody + " - " + SystemHostname
+	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
 
-	// NOTE Notification Message & Title fields are reversed (known bug in Pushover)
-
-	message := &pushover.Message{
-		Message:     messageTitle,
-		Title:       messageBody,
-		Priority:    pushover.PriorityLow,
-		URL:         "http://" + SystemHostname + ":" + port + "/",
-		URLTitle:    SystemHostname,
-		Timestamp:   time.Now().Unix(),
-		Retry:       60 * time.Second,
-		Expire:      time.Hour,
-		DeviceName:  strings.ReplaceAll(SystemHostname, ".", "_"),
-		CallbackURL: "http://" + SystemHostname + ":" + port + "/ACKNotification",
-		Sound:       pushover.SoundCosmic,
-	}
+	// NOTE Notification Message
+	message := Notification_New(messageTitle, messageBody, pushover.PriorityLow)
 
 	// Send the message to the recipient
 	_, err := app.SendMessage(message, recipient)
 	if err != nil {
 		log.Panic(err)
 	}
-
-	// Print the response if you want
-	//log.Println(response)
 }

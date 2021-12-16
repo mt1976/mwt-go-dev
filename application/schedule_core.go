@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
+// Date & Time		    : 14/12/2021 at 09:54:35
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type Schedule_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		Id string
 		Name string
@@ -79,7 +79,7 @@ type Schedule_Page struct {
 	
 	
 	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -152,7 +152,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -173,12 +173,12 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -209,7 +209,7 @@ func Schedule_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.Id = rD.Id
 pageDetail.Name = rD.Name
@@ -230,10 +230,10 @@ pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 pageDetail.Human = rD.Human
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -255,7 +255,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Schedule
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.Schedule_SYSId)
 		item.Id = r.FormValue(dm.Schedule_Id)
 		item.Name = r.FormValue(dm.Schedule_Name)
@@ -276,7 +276,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Human = r.FormValue(dm.Schedule_Human)
 	
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
 	dao.Schedule_Store(item,r)	
 
@@ -304,7 +304,7 @@ func Schedule_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.Id = ""
 pageDetail.Name = ""
@@ -325,8 +325,8 @@ pageDetail.SYSUpdatedHost = ""
 pageDetail.Human = ""
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

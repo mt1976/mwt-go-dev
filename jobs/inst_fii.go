@@ -1,7 +1,6 @@
 package jobs
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -363,7 +362,7 @@ func processDefinition(row []string, noCols int, inURI string, nitype string) {
 	// TODO: if countarparty is not found create Firm, add to center, create counterparty (as issuer), create counterpartyimportID
 	// TODO: isinlookup  (might need to go into the Dispatcher Job)
 	//spew.Dump(bondRec)
-	fmt.Printf("bondRec: %v\n", bondRec)
+	//fmt.Printf("bondRec: %v\n", bondRec)
 	dao.NegotiableInstrument_StoreSystem(bondRec)
 }
 

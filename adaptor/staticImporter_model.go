@@ -158,7 +158,7 @@ func StaticImport_DispatchXML(XMLmessage []byte, msgClass string) error {
 		err = fmt.Errorf("Error writing file %s", fileName)
 	}
 	//logs.Information("Send Message", fileName)
-	_ = Message_Sent(fileID.String(), Message_FormatXML, msgClass, delivertopath, XMLmessage, fileName, 10, Message_TimeoutAction_Notify)
+	_ = ExternalMessage_Sent(fileID.String(), Message_FormatXML, msgClass, delivertopath, XMLmessage, fileName, 10, Message_TimeoutAction_Notify)
 	//logs.Information("Return from Send Message", fileName)
 
 	//logs.Information("StaticImport_DispatchXML:", err.Error())

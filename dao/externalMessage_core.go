@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:15
+// Date & Time		    : 14/12/2021 at 09:31:50
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -162,7 +162,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.ExternalMessage_SYSId, "0")
    recItem.MessageID  = get_String(rec, dm.ExternalMessage_MessageID, "")
    recItem.MessageFormat  = get_String(rec, dm.ExternalMessage_MessageFormat, "")
@@ -249,7 +249,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 
 
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}

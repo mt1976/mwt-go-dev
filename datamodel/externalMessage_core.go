@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:15
+// Date & Time		    : 14/12/2021 at 09:31:50
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 

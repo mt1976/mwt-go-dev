@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:15
+// Date & Time		    : 14/12/2021 at 09:31:50
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,7 +40,7 @@ type ExternalMessage_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 		SYSId string
 		MessageID string
 		MessageFormat string
@@ -99,7 +99,7 @@ type ExternalMessage_Page struct {
 	
 	
 	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 }
 
 const (
@@ -172,7 +172,7 @@ func ExternalMessage_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.MessageID = rD.MessageID
 pageDetail.MessageFormat = rD.MessageFormat
@@ -203,12 +203,12 @@ pageDetail.MessageClass = rD.MessageClass
 pageDetail.AppID = rD.AppID
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -239,7 +239,7 @@ func ExternalMessage_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = rD.SYSId
 pageDetail.MessageID = rD.MessageID
 pageDetail.MessageFormat = rD.MessageFormat
@@ -270,10 +270,10 @@ pageDetail.MessageClass = rD.MessageClass
 pageDetail.AppID = rD.AppID
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -295,7 +295,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("MessageID"))
 
 	var item dm.ExternalMessage
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId)
 		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID)
 		item.MessageFormat = r.FormValue(dm.ExternalMessage_MessageFormat)
@@ -326,7 +326,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.AppID = r.FormValue(dm.ExternalMessage_AppID)
 	
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 
 	dao.ExternalMessage_Store(item,r)	
 
@@ -354,7 +354,7 @@ func ExternalMessage_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
 pageDetail.SYSId = ""
 pageDetail.MessageID = ""
 pageDetail.MessageFormat = ""
@@ -385,8 +385,8 @@ pageDetail.MessageClass = ""
 pageDetail.AppID = ""
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

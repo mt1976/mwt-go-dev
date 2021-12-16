@@ -18,7 +18,7 @@ const (
 	Message_TimeoutAction_Notify = "Notify"
 )
 
-func Message_Sent(id string, format string, msgClass string, destination string, body []byte, filename string, lifeSpan int, timeoutAction string) error {
+func ExternalMessage_Sent(id string, format string, msgClass string, destination string, body []byte, filename string, lifeSpan int, timeoutAction string) error {
 	//logs.Success("Message Sent:" + id)
 	var msItem dm.ExternalMessage
 	msItem.MessageID = id

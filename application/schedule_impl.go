@@ -37,7 +37,7 @@ func schedule_PublishImpl(mux http.ServeMux) http.ServeMux {
 
 func Schedule_Register(thisJob dm.JobDefinition) {
 	var s dm.Schedule
-	//s.Id = thisJob.ID + core.IDSep + thisJob.Type
+	s.Id = schedule_GenerateID(thisJob)
 	s.Name = thisJob.Name
 	s.Description = thisJob.Description
 	s.Schedule = thisJob.Period
@@ -52,7 +52,7 @@ func Schedule_Register(thisJob dm.JobDefinition) {
 	s.SYSUpdated = time.Now().Format(core.DATETIMEFORMATUSER)
 	s.Type = thisJob.Type
 	//log.Println("STORE", s)
-	s.Id = dao.Schedule_NewID(s)
+	//s.Id = dao.Schedule_NewID(s)
 	registerIt := true
 	s.Human = Schedule_GetCronHuman(s.Schedule)
 
@@ -80,20 +80,19 @@ func Schedule_Register(thisJob dm.JobDefinition) {
 }
 
 func Schedule_Update(thisJob dm.JobDefinition, message string) {
-	scheduleID := dao.Schedule_NewID(dm.Schedule{Name: thisJob.Name, Type: thisJob.Type})
+	//fmt.Printf("thisJob: %v\n", thisJob)
+	//fmt.Printf("message: %v\n", message)
+	scheduleID := schedule_GenerateID(thisJob)
+	//fmt.Printf("scheduleID: %v\n", scheduleID)
 	if len(scheduleID) > 1 {
 		_, s, _ := dao.Schedule_GetByID(scheduleID)
-		if len(s.Name) > 0 {
-			s.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
-			s.Message = message
-			thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
-			logs.Schedule(thisMess)
-			dao.Schedule_StoreSystem(s)
-		} else {
-			thisMess := fmt.Sprintf("Update Schedule Schedule with '%s','%s','%s' ScheduleID = '%s'", thisJob.ID, thisJob.ID, message, scheduleID)
-			logs.Schedule(thisMess)
-			//spew.Dump(s)
-		}
+		//fmt.Printf("s: %v\n", s)
+		s.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
+		s.Message = message
+		thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
+		logs.Schedule(thisMess)
+		dao.Schedule_StoreSystem(s)
+
 	} else {
 		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", thisJob.ID, thisJob.Type, message)
 		logs.Schedule(thisMess)
@@ -122,8 +121,10 @@ func Schedule_GetCronHuman(in string) string {
 	return desc
 }
 
-func schedule_HandlerViewImpl(pageDetail Schedule_Page) Schedule_Page { return pageDetail }
-func schedule_HandlerEditImpl(pageDetail Schedule_Page) Schedule_Page { return pageDetail }
-func schedule_HandlerSaveImpl(item dm.Schedule) dm.Schedule {
-	return item
+func schedule_GenerateID(thisJob dm.JobDefinition) string {
+	//newID := thisJob.ID + core.IDSep + thisJob.Type
+	//logs.Information("Generated ID1:", newID)
+	//newID: = core.EncodeString(thisJob.ID + core.IDSep + thisJob.Type)
+	//logs.Information("Generated ID2:", newID)
+	return core.EncodeString(thisJob.ID + core.IDSep + thisJob.Type)
 }
