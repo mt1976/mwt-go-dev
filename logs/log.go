@@ -259,7 +259,11 @@ func msg_raw(pref string, what string, value string, clr string) {
 }
 
 func Break() {
+
 	width, _, _ := term.GetSize(0)
+	if isRunningInDockerContainer() {
+		width = 80
+	}
 	log.Println(colour.Bold + strings.Repeat("-", width-20) + colour.Reset)
 	//log.Println("width: ", width)
 }
@@ -296,4 +300,17 @@ func getConfig() (config Config, err error) {
 		config.VerboseMode = false
 	}
 	return
+}
+
+func isRunningInDockerContainer() bool {
+	// docker creates a .dockerenv file at the root
+	// of the directory tree inside the container.
+	// if this file exists then the viewer is running
+	// from inside a container so return true
+
+	if _, err := os.Stat("/.dockerenv"); err == nil {
+		return true
+	}
+
+	return false
 }
