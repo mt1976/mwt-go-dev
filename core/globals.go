@@ -16,6 +16,7 @@ import (
 var startTime = time.Now()
 var SessionToken = ""
 var UUID = "authorAdjust"
+var PWD = ""
 var SecurityViolation = ""
 var DB *sql.DB
 
@@ -175,6 +176,8 @@ func Initialise() {
 	SecurityViolation = ""
 
 	SystemHostname, _ = os.Hostname()
+
+	PWD, _ = os.Getwd()
 
 	PreInitialise()
 
