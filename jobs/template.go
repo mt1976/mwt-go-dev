@@ -29,7 +29,7 @@ func Template_Job() dm.JobDefinition {
 	j.Name = "Template"
 	j.Period = "10 1 * * *"
 	j.Description = "Template processing"
-	j.Type = core.Monitor
+	j.Type = core.HouseKeeping
 	return j
 }
 

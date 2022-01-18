@@ -59,7 +59,7 @@ func Broker_Update_Impl(item dm.Broker, usr string) error {
 	sienaFlds = StaticImport_AddField(sienaFlds, "Address", item.Address)
 	sienaFlds = StaticImport_AddField(sienaFlds, "LEI", item.LEI)
 
-	XMLmessage := StaticImport_Create(StaticImport_UpdateAction, "Broker", "com.eurobase.siena.data.Brokers.Broker", sienaKeys, sienaFlds)
+	XMLmessage := StaticImport_Create(StaticImport_UpdateAction, "Broker", sienaKeys, sienaFlds)
 
 	err := StaticImport_DispatchXML(XMLmessage, StaticImport_UpdateAction)
 	if err != nil {

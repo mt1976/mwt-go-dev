@@ -3,82 +3,33 @@ package adaptor
 import (
 	"encoding/xml"
 	"fmt"
+	"strings"
 
 	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/logs"
 )
 
-const (
-	//	StaticImport_CreateAction = "create"
-	StaticImport_UpdateAction = "IMPORT"
-	StaticImport_DeleteAction = "DELETE"
-	StaticImport_XMLHeader    = "<?xml version=\"1.0\" encoding=\"iso-8859-15\"?>"
-)
-
-//StaticImport defines objects that are cheese
-type StaticImport struct {
-	XMLName     xml.Name `xml:"TRANSACTIONS"`
-	Text        string   `xml:",chardata"`
-	TRANSACTION struct {
-		Text  string `xml:",chardata"`
-		Type  string `xml:"type,attr"`
-		TABLE struct {
-			Text      string `xml:",chardata"`
-			Name      string `xml:"name,attr"`
-			Classname string `xml:"classname,attr"`
-			RECORD    []struct {
-				Text     string `xml:",chardata"`
-				KEYFIELD []struct {
-					Text string `xml:",chardata"`
-					Name string `xml:"name,attr"`
-				} `xml:"KEYFIELD"`
-				FIELD []struct {
-					Text string `xml:",chardata"`
-					Name string `xml:"name,attr"`
-				} `xml:"FIELD"`
-			} `xml:"RECORD"`
-		} `xml:"TABLE"`
-	} `xml:"TRANSACTION"`
+func StaticImportProcessResponse(filename string) error {
+	//	logs.Success("StaticImport_Dispatch")
+	logs.Success("StaticImport_ProcessResponse:" + filename)
+	var err error
+	return err
 }
 
-//StaticImport_Field defined a Siena XML Static Importer Field Tag
-type StaticImport_Field struct {
-	Text string `xml:",chardata"`
-	Name string `xml:"name,attr"`
-}
+func Simulator_SienaStaticDataImporter_ProcessResponse(filename string) error {
+	//	logs.Success("StaticImport_Dispatch")
+	logs.Success("SienaDealImporter_ProcessResponse:" + filename)
 
-//StaticImport_KeyField defined a Siena XML Static Importer KeyField Tag
-type StaticImport_KeyField struct {
-	Text string `xml:",chardata"`
-	Name string `xml:"name,attr"`
-}
+	// tokenise the filename, get last element
+	tokens := strings.Split(filename, "/")
+	last := tokens[len(tokens)-1]
 
-//StaticImport_Record defined a Siena XML Static Importer Record
-type StaticImport_Record struct {
-	Text     string `xml:",chardata"`
-	KEYFIELD []StaticImport_KeyField
-	FIELD    []StaticImport_Field
-}
+	//	uri := dm.Simulator_SienaFundsChecker_PathAction + "/?" + dm.Simulator_SienaFundsChecker_QueryString + "=" + last
 
-//StaticImport_Table defined a Siena XML Static Importer Table Container
-type StaticImport_Table struct {
-	Text      string `xml:",chardata"`
-	Name      string `xml:"name,attr"`
-	Classname string `xml:"classname,attr"`
-	RECORD    []StaticImport_Record
-}
-
-//StaticImport_Transaction defined a Siena XML Static Importer Transaction Container
-type StaticImport_Transaction struct {
-	Text  string             `xml:",chardata"`
-	Type  string             `xml:"type,attr"`
-	TABLE StaticImport_Table `xml:"TABLE"`
-}
-
-//StaticImport_XML defined a Siena XML Static Importer Content
-type StaticImport_XML struct {
-	XMLName      xml.Name                 `xml:"TRANSACTIONS"`
-	TRANSACTIONS StaticImport_Transaction `xml:"TRANSACTION"`
+	core.Notification_Normal("New Siena Deal Importer Response", last)
+	var err error
+	return err
 }
 
 func StaticImport_AddKeyField(skf []StaticImport_KeyField, fieldName string, fieldValue string) []StaticImport_KeyField {
@@ -135,10 +86,10 @@ func StaticImport_GenXML(record StaticImport_XML) []byte {
 	return preparedXML
 }
 
-func StaticImport_Create(action string, table string, objName string, sienaKeyFields []StaticImport_KeyField, sienaFields []StaticImport_Field) []byte {
+func StaticImport_Create(action string, table string, sienaKeyFields []StaticImport_KeyField, sienaFields []StaticImport_Field) []byte {
 
 	sienaRecords := StaticImport_AddRecord(sienaKeyFields, sienaFields)
-	sienaTable := StaticImport_NewTable(table, objName, sienaRecords)
+	sienaTable := StaticImport_NewTable(table, core.GetSienaClassName(table), sienaRecords)
 	sienaTransaction := StaticImport_NewTransaction(action, sienaTable)
 	StaticImport_XMLContent := StaticImport_AddTransaction(sienaTransaction)
 
@@ -155,7 +106,7 @@ func StaticImport_DispatchXML(XMLmessage []byte, msgClass string) error {
 	delivertopath := core.SienaProperties["static_out"]
 	ok := core.WriteDataFileAbsolute(fileName, delivertopath, string(XMLmessage))
 	if ok == -1 {
-		err = fmt.Errorf("Error writing file %s", fileName)
+		err = fmt.Errorf("error writing file %s", fileName)
 	}
 	//logs.Information("Send Message", fileName)
 	_ = ExternalMessage_Sent(fileID.String(), Message_FormatXML, msgClass, delivertopath, XMLmessage, fileName, 10, Message_TimeoutAction_Notify)

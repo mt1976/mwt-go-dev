@@ -41,6 +41,7 @@ const (
 	log_Generating    = "Generating"
 	log_Post          = "http POST"
 	log_Save          = "Writing"
+	log_Event         = "Event"
 
 	ColorReset        = "\033[0m"
 	ColorRed          = "\033[31m"
@@ -64,6 +65,7 @@ const (
 	Character_Query   = "🔎"
 	Character_Result  = "?"
 	Character_Storing = "📀"
+	Character_Event   = "🗂"
 )
 
 type Config struct {
@@ -85,6 +87,11 @@ func Poke(w string, v string) {
 func Success(s string) {
 	//msg_done(s)
 	msg_raw(log_Success, s, Character_Tick, colour.Green)
+}
+
+func Event(s string) {
+	//msg_done(s)
+	msg_raw(log_Event, s, Character_Event, colour.Green)
 }
 
 func Skipping(s string) {

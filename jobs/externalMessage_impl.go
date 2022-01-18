@@ -33,8 +33,7 @@ func ExternalMessage_JobImpl() dm.JobDefinition {
 	j.Name = "ExternalMessage"
 	j.Period = "*/2 * * * *"
 	j.Description = "ExternalMessage processing"
-	j.Type = core.Monitor
-
+	j.Type = core.HouseKeeping
 	return j
 }
 

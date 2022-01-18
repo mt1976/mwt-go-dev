@@ -14,7 +14,7 @@ func SessionHouseKeeping_Job() dm.JobDefinition {
 	j.Name = "SESSION"
 	j.Period = "*/15 * * * *"
 	j.Description = "Session Management"
-	j.Type = core.Monitor
+	j.Type = core.HouseKeeping
 	return j
 }
 

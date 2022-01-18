@@ -16,7 +16,7 @@ func HeartBeat_Job() dm.JobDefinition {
 	j.Name = "HEARTBEAT"
 	j.Period = "*/5 * * * *"
 	j.Description = "System Heartbeat"
-	j.Type = core.Monitor
+	j.Type = core.HouseKeeping
 	return j
 }
 

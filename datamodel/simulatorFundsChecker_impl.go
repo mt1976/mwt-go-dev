@@ -3,11 +3,11 @@ package datamodel
 import "encoding/xml"
 
 // ----------------------------------------------------------------
-// Manually generated  "/datamodel/Simulator_FundsChecker.go"
+// Manually generated  "/datamodel/Simulator_SienaFundsChecker.go"
 // ----------------------------------------------------------------
 // Package              : application
-// Object 			    : Simulator_FundsChecker (Simulator_FundsChecker)
-// Endpoint 	        : Simulator_FundsChecker (Code)
+// Object 			    : Simulator_SienaFundsChecker (Simulator_SienaFundsChecker)
+// Endpoint 	        : Simulator_SienaFundsChecker (Code)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : cryptoidCalcium [r0-21.11.01]
@@ -16,28 +16,28 @@ import "encoding/xml"
 // ----------------------------------------------------------------
 
 const (
-	Simulator_FundsChecker_Title       = "Funds Checker"
-	Simulator_FundsChecker_SQLTable    = "sienaSimulator_FundsChecker"
-	Simulator_FundsChecker_SQLSearchID = "Code"
-	Simulator_FundsChecker_QueryString = "Code"
+	Simulator_SienaFundsChecker_Title       = "Funds Checker"
+	Simulator_SienaFundsChecker_SQLTable    = "sienaSimulator_SienaFundsChecker"
+	Simulator_SienaFundsChecker_SQLSearchID = "Code"
+	Simulator_SienaFundsChecker_QueryString = "FundsCheck"
 	///
 	/// Handler Defintions
 	///
-	Simulator_FundsChecker_TemplateList   = "Simulator_FundsChecker_List"
-	Simulator_FundsChecker_TemplateView   = "Simulator_FundsChecker_View"
-	Simulator_FundsChecker_TemplateAction = "Simulator_FundsChecker_Action"
-	Simulator_FundsChecker_TemplateSubmit = "Simulator_FundsChecker_Submit"
-	Simulator_FundsChecker_TemplateDelete = "Simulator_FundsChecker_Delete"
+	Simulator_SienaFundsChecker_TemplateList   = "Simulator_SienaFundsChecker_List"
+	Simulator_SienaFundsChecker_TemplateView   = "Simulator_SienaFundsChecker_View"
+	Simulator_SienaFundsChecker_TemplateAction = "Simulator_SienaFundsChecker_Action"
+	Simulator_SienaFundsChecker_TemplateSubmit = "Simulator_SienaFundsChecker_Submit"
+	Simulator_SienaFundsChecker_TemplateDelete = "Simulator_SienaFundsChecker_Delete"
 
 	///
 	/// Handler Monitor Paths
 	///
-	Simulator_FundsChecker_PathList   = "/Simulator_FundsCheckerList/"
-	Simulator_FundsChecker_PathView   = "/Simulator_FundsCheckerView/"
-	Simulator_FundsChecker_PathAction = "/Simulator_FundsCheckerAction/"
-	Simulator_FundsChecker_PathSubmit = "/Simulator_FundsCheckerSubmit/"
-	//Simulator_FundsChecker_PathSave   = "/Simulator_FundsCheckerSave/"
-	Simulator_FundsChecker_PathDelete = "/Simulator_FundsCheckerDelete/"
+	Simulator_SienaFundsChecker_PathList   = "/Simulator_SienaFundsCheckerList/"
+	Simulator_SienaFundsChecker_PathView   = "/Simulator_SienaFundsCheckerView/"
+	Simulator_SienaFundsChecker_PathAction = "/Simulator_SienaFundsCheckerAction/"
+	Simulator_SienaFundsChecker_PathSubmit = "/Simulator_SienaFundsCheckerSubmit/"
+	//Simulator_SienaFundsChecker_PathSave   = "/Simulator_SienaFundsCheckerSave/"
+	Simulator_SienaFundsChecker_PathDelete = "/Simulator_SienaFundsCheckerDelete/"
 	///
 	/// SQL Field Definitions
 	///
@@ -45,16 +45,16 @@ const (
 	/// Definitions End
 )
 
-//Simulator_FundsChecker_Item is cheese
-type Simulator_FundsChecker_Item struct {
+//Simulator_SienaFundsChecker_Item is cheese
+type Simulator_SienaFundsChecker_Item struct {
 	Id      string
 	Name    string
 	Source  string
 	Content string
-	Request Simulator_FundsChecker_Request
+	Request Simulator_SienaFundsChecker_Request
 }
 
-type Simulator_FundsChecker_Request struct {
+type Simulator_SienaFundsChecker_Request struct {
 	XMLName        xml.Name `xml:"REQ"`
 	Text           string   `xml:",chardata"`
 	NS1            string   `xml:"NS1,attr"`
@@ -80,7 +80,7 @@ type Simulator_FundsChecker_Request struct {
 	} `xml:"BODY"`
 }
 
-type Simulator_FundsChecker_Response struct {
+type Simulator_SienaFundsChecker_Response struct {
 	XMLName   xml.Name `xml:"NS1:MBT_RES"`
 	Text      string   `xml:",chardata"`
 	NS1       string   `xml:"xmlns:NS1,attr"`

@@ -5,14 +5,30 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/mt1976/mwt-go-dev/adaptor"
+	"github.com/mt1976/mwt-go-dev/application"
 	"github.com/mt1976/mwt-go-dev/core"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	"github.com/mt1976/mwt-go-dev/logs"
 )
 
-func StaticDataImporter_Watch() {
-	logs.Success("StaticDataImporter_Start")
+// Simulator_SienaFundsChecker_Job defines the job properties, name, period etc..
+func Simulator_SienaFundsChecker_Job() dm.JobDefinition {
+	// ----------------------------------------------------------------
+	// Job Definition
+	// ----------------------------------------------------------------
+	var j dm.JobDefinition
+	j.ID = "Simulator_SienaFundsChecker"
+	j.Name = "Simulator_SienaFundsChecker"
+	j.Period = ""
+	j.Description = "FundsChecker processing"
+	j.Type = core.Monitor
+	return j
+}
 
-	loc := core.SienaProperties["static_in"]
+func Simulator_SienaFundsChecker_Watch() {
+	logs.Success("Simulator_SienaFundsChecker_Start")
+
+	loc := core.SienaProperties["funds_in"]
 	// if first char of loc is . then remove it
 	if loc[0] == '.' {
 		loc = loc[1:]
@@ -27,6 +43,8 @@ func StaticDataImporter_Watch() {
 	}
 	defer watcher.Close()
 
+	application.Schedule_Register(Simulator_SienaFundsChecker_Job())
+
 	done := make(chan bool)
 	go func() {
 		for {
@@ -35,15 +53,14 @@ func StaticDataImporter_Watch() {
 				if !ok {
 					return
 				}
-				log.Println("event:", event)
+				//log.Println("event:", event)
 				// if event.Op&fsnotify.Write == fsnotify.Write {
 				// 	fart(event.Name)
 				// 	log.Println("modified file:", event.Name)
 				// }
 				if event.Op&fsnotify.Create == fsnotify.Create {
-
-					log.Println("created file:", event.Name)
-					err := adaptor.StaticImportProcessResponse(event.Name)
+					logs.Event(event.Name)
+					err := adaptor.Simulator_SienaFundsChecker_ProcessResponse(event.Name)
 					if err != nil {
 						logs.Error("SDI", err)
 					}

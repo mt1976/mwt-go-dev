@@ -98,6 +98,28 @@ func Notification_Normal(messageTitle string, messageBody string) {
 	}
 }
 
+func Notification_URL(messageTitle string, messageBody string, url string) {
+	cfg, _ := notification_GetConfig()
+	app := pushover.New(cfg.PushoverKey)
+
+	// Create a new recipient
+	recipient := pushover.NewRecipient(cfg.PushoverToken)
+
+	// Create the message to send
+	messageBody = messageBody + " - " + SystemHostname
+	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
+
+	// NOTE Notification Message & Title
+	message := Notification_New(messageTitle, messageBody, pushover.PriorityNormal)
+	message.URL = message.URL + url
+
+	// Send the message to the recipient
+	_, err := app.SendMessage(message, recipient)
+	if err != nil {
+		log.Panic(err)
+	}
+}
+
 func Notification_High(messageTitle string, messageBody string) {
 	cfg, _ := notification_GetConfig()
 	app := pushover.New(cfg.PushoverKey)

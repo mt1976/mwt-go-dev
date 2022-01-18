@@ -45,13 +45,13 @@
                   <td class="align-middle">{{.Name}}</td>
                   <td class="align-middle text-center" style="width:1px; white-space:nowrap;padding:0.25rem">
                     <div class="btn-group">
-                      <button type="submit" value="" class="btn  btn-info" formaction="/Simulator_FundsCheckerView?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="View '{{.Name}}' data mapping">
+                      <button type="submit" value="" class="btn  btn-info" formaction="/Simulator_SienaFundsCheckerView?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="View '{{.Name}}' data mapping">
                         <i class="far fa-eye"></i>
                       </button>
-                      <button type="submit" value="" class="btn  btn-danger" style="border:none" formaction="/Simulator_FundsCheckerDelete?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete '{{.Name}}'">
+                      <button type="submit" value="" class="btn  btn-danger" style="border:none" formaction="/Simulator_SienaFundsCheckerDelete?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete '{{.Name}}'">
                         <i class="fas fa-trash-alt"></i>
                       </button>
-                      <button type="submit" value="" class="btn  btn-primary" style="border:none" formaction="/Simulator_FundsCheckerAction?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.Name}}'">
+                      <button type="submit" value="" class="btn  btn-primary" style="border:none" formaction="/Simulator_SienaFundsCheckerAction?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.Name}}'">
                         <i class="fas fa-paper-plane"></i>
                       </button>
 

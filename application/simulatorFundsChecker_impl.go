@@ -23,7 +23,7 @@ var simFundsCheckSQLSELECT = "SELECT %s FROM %s.fundsCheck;"
 var simFundsCheckSQLGET = "SELECT %s FROM %s.fundsCheck WHERE id='%s';"
 */
 //simFundsCheckPage is cheese
-type Simulator_FundsChecker_PageList struct {
+type Simulator_SienaFundsChecker_PageList struct {
 	SessionInfo     dm.SessionInfo
 	UserMenu        []dm.AppMenuItem
 	UserRole        string
@@ -31,11 +31,11 @@ type Simulator_FundsChecker_PageList struct {
 	Title           string
 	PageTitle       string
 	FundsCheckCount int
-	FundsCheckList  []dm.Simulator_FundsChecker_Item
+	FundsCheckList  []dm.Simulator_SienaFundsChecker_Item
 }
 
-//Simulator_FundsChecker_Page is cheese
-type Simulator_FundsChecker_Page struct {
+//Simulator_SienaFundsChecker_Page is cheese
+type Simulator_SienaFundsChecker_Page struct {
 	SessionInfo dm.SessionInfo
 	UserMenu    []dm.AppMenuItem
 	UserRole    string
@@ -49,24 +49,24 @@ type Simulator_FundsChecker_Page struct {
 	Name    string
 	Source  string
 	Content string
-	Request dm.Simulator_FundsChecker_Request
+	Request dm.Simulator_SienaFundsChecker_Request
 }
 
 //NegotiableInstrument_Publish annouces the endpoints available for this object
-func Simulator_FundsChecker_Publish_Impl(mux http.ServeMux) {
+func Simulator_SienaFundsChecker_Publish_Impl(mux http.ServeMux) {
 	//mux.HandleFunc("/listGiltsDataStore/", application.ListLSEGiltsDataStoreHandler)
 	//mux.HandleFunc("/viewLSEGiltsDataStore/", application.ViewLSEGiltsDataStoreHandler)
-	mux.HandleFunc(dm.Simulator_FundsChecker_PathList, Simulator_FundsChecker_HandlerList)
-	mux.HandleFunc(dm.Simulator_FundsChecker_PathView, Simulator_FundsChecker_HandlerView)
-	mux.HandleFunc(dm.Simulator_FundsChecker_PathAction, Simulator_FundsChecker_HandlerAction)
-	mux.HandleFunc(dm.Simulator_FundsChecker_PathSubmit, Simulator_FundsChecker_HandlerSubmit)
-	mux.HandleFunc(dm.Simulator_FundsChecker_PathDelete, Simulator_FundsChecker_HandlerDelete)
+	mux.HandleFunc(dm.Simulator_SienaFundsChecker_PathList, Simulator_SienaFundsChecker_HandlerList)
+	mux.HandleFunc(dm.Simulator_SienaFundsChecker_PathView, Simulator_SienaFundsChecker_HandlerView)
+	mux.HandleFunc(dm.Simulator_SienaFundsChecker_PathAction, Simulator_SienaFundsChecker_HandlerAction)
+	mux.HandleFunc(dm.Simulator_SienaFundsChecker_PathSubmit, Simulator_SienaFundsChecker_HandlerSubmit)
+	mux.HandleFunc(dm.Simulator_SienaFundsChecker_PathDelete, Simulator_SienaFundsChecker_HandlerDelete)
 
-	logs.Publish("Application", dm.Simulator_FundsChecker_Title)
+	logs.Publish("Application", dm.Simulator_SienaFundsChecker_Title)
 
 }
 
-func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) {
+func Simulator_SienaFundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
@@ -78,24 +78,24 @@ func Simulator_FundsChecker_HandlerList(w http.ResponseWriter, r *http.Request) 
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	noItems, returnList, _ := dao.Simulator_FundsChecker_GetList()
+	noItems, returnList, _ := dao.Simulator_SienaFundsChecker_GetList()
 
-	fundsCheckPage := Simulator_FundsChecker_PageList{
+	fundsCheckPage := Simulator_SienaFundsChecker_PageList{
 		UserMenu:        UserMenu_Get(r),
 		UserRole:        Session_GetUserRole(r),
 		Title:           core.ApplicationProperties["appname"],
-		PageTitle:       PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Requests),
+		PageTitle:       PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_Requests),
 		FundsCheckCount: noItems,
 		FundsCheckList:  returnList,
 	}
 
 	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	ExecuteTemplate(dm.Simulator_FundsChecker_TemplateList, w, r, fundsCheckPage)
+	ExecuteTemplate(dm.Simulator_SienaFundsChecker_TemplateList, w, r, fundsCheckPage)
 
 }
 
-func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) {
+func Simulator_SienaFundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
@@ -109,16 +109,16 @@ func Simulator_FundsChecker_HandlerView(w http.ResponseWriter, r *http.Request) 
 
 	fundsCheckPage := simulator_FundsCheck_BuildPage(w, r)
 	fundsCheckPage.Title = core.ApplicationProperties["appname"]
-	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_FundsChecker_Title, core.Action_View)
+	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_View)
 
 	//log.Println(fundsCheckPage)
 	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	ExecuteTemplate(dm.Simulator_FundsChecker_TemplateView, w, r, fundsCheckPage)
+	ExecuteTemplate(dm.Simulator_SienaFundsChecker_TemplateView, w, r, fundsCheckPage)
 
 }
 
-func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request) {
+func Simulator_SienaFundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
@@ -132,14 +132,14 @@ func Simulator_FundsChecker_HandlerAction(w http.ResponseWriter, r *http.Request
 	fundsCheckPage := simulator_FundsCheck_BuildPage(w, r)
 
 	fundsCheckPage.Title = core.ApplicationProperties["appname"]
-	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Process)
+	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_Process)
 	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	ExecuteTemplate(dm.Simulator_FundsChecker_TemplateAction, w, r, fundsCheckPage)
+	ExecuteTemplate(dm.Simulator_SienaFundsChecker_TemplateAction, w, r, fundsCheckPage)
 
 }
 
-func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request) {
+func Simulator_SienaFundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
@@ -156,12 +156,12 @@ func Simulator_FundsChecker_HandlerSubmit(w http.ResponseWriter, r *http.Request
 	balance := r.FormValue("Balance")
 	resultCode := r.FormValue("ResultCode")
 
-	dao.Simulator_FundsChecker_Store(thisID, balance, resultCode)
+	dao.Simulator_SienaFundsChecker_Store(thisID, balance, resultCode)
 
-	http.Redirect(w, r, dm.Simulator_FundsChecker_PathList, http.StatusFound)
+	http.Redirect(w, r, dm.Simulator_SienaFundsChecker_PathList, http.StatusFound)
 }
 
-func Simulator_FundsChecker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+func Simulator_SienaFundsChecker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
@@ -172,19 +172,19 @@ func Simulator_FundsChecker_HandlerDelete(w http.ResponseWriter, r *http.Request
 	inUTL := r.URL.Path
 	searchID := core.GetURLparam(r, "FundsCheck")
 	core.ServiceMessageAction(inUTL, "Delete", searchID)
-	dao.Simulator_FundsChecker_DeleteByID(searchID)
+	dao.Simulator_SienaFundsChecker_DeleteByID(searchID)
 
-	http.Redirect(w, r, dm.Simulator_FundsChecker_PathList, http.StatusFound)
+	http.Redirect(w, r, dm.Simulator_SienaFundsChecker_PathList, http.StatusFound)
 }
 
-func simulator_FundsCheck_BuildPage(w http.ResponseWriter, r *http.Request) Simulator_FundsChecker_Page {
+func simulator_FundsCheck_BuildPage(w http.ResponseWriter, r *http.Request) Simulator_SienaFundsChecker_Page {
 
 	searchID := core.GetURLparam(r, "FundsCheck")
-	_, returnRecord, _ := dao.Simulator_FundsChecker_GetByID(searchID)
+	_, returnRecord, _ := dao.Simulator_SienaFundsChecker_GetByID(searchID)
 
-	fundsCheckPage := Simulator_FundsChecker_Page{
+	fundsCheckPage := Simulator_SienaFundsChecker_Page{
 		Title:     core.ApplicationProperties["appname"],
-		PageTitle: PageTitle(dm.Simulator_FundsChecker_Title, core.Action_Request),
+		PageTitle: PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_Request),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 		// Above are mandatory

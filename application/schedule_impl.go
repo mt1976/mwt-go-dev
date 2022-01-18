@@ -116,6 +116,8 @@ func Schedule_GetCronHuman(in string) string {
 		if err != nil {
 			logs.Error("failed to convert CRON expression to human readable description:", err)
 		}
+	} else {
+		desc = "Event Driven"
 	}
 
 	return desc

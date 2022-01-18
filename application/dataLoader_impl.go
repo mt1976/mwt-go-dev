@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/mt1976/mwt-go-dev/adaptor"
 	core "github.com/mt1976/mwt-go-dev/core"
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	logs "github.com/mt1976/mwt-go-dev/logs"
@@ -578,11 +579,17 @@ func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 
 		filename := newID + extensionID
 
-		val := core.WriteDataFile(filename, path, importtemplate)
+		val := core.WriteDataFileAbsolute(filename, path, importtemplate)
 		if val != 0 {
 			//do nothing
 		}
 		//log.Println(importtemplate)
+
+		//logs.Information("Send Message", fileName)
+		_ = adaptor.ExternalMessage_Sent(newID, adaptor.Message_FormatXML, "", path, []byte(importtemplate), filename, 10, adaptor.Message_TimeoutAction_Notify)
+		//logs.Information("Return from Send Message", fileName)
+
+		//logs.Information("StaticImport_DispatchXML:", err.Error())
 
 	}
 

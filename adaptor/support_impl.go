@@ -21,14 +21,13 @@ func getNewFileID() string {
 	return nID
 }
 
-func SienaDispatchStaticDataXML(StaticImport_XMLContent StaticImport_XML) error {
+func Simulator_SienaStaticImporter_DispatchXML(StaticImport_XMLContent StaticImport_XML) error {
 
 	//preparedXML, _ := xml.Marshal(StaticImport_XMLContent)
 	//fmt.Println("PreparedXML", string(preparedXML))
 
-	staticImporterPath := core.SienaProperties["static_in"]
 	fileID := uuid.New()
-	fileName := staticImporterPath + "/" + fileID.String() + ".xml"
+	fileName := staticImportPath() + "/" + fileID.String() + ".xml"
 	//fmt.Println(fileName)
 
 	xmlFile, err := os.Create(fileName)

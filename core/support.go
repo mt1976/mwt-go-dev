@@ -392,8 +392,13 @@ func GetDirectoryContentAbsolute(path string) ([]fs.FileInfo, error) {
 
 func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) {
 
-	absFileName := path + "/" + fileName
+	pwd, _ := os.Getwd()
+	//first char is a . replace with path
+	path = strings.Replace(path, "..", pwd, 1)
+	path = strings.Replace(path, ".", pwd, 1)
 
+	absFileName := path + "/" + fileName
+	logs.Information("AbsPath       :", absFileName)
 	// Check it exists - If not create it
 	if !(FileExists(absFileName)) {
 		WriteDataFileAbsolute(fileName, path, "")

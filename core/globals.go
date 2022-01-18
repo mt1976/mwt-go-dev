@@ -30,6 +30,7 @@ var MasterDB *sql.DB
 
 var SienaProperties map[string]string
 var SienaPropertiesDB map[string]string
+var SienaTablesLookup map[string]string
 var SienaDB *sql.DB
 var SienaSystemDate DateItem
 var SystemHostname string
@@ -86,6 +87,7 @@ const (
 	Monitor                  = "Monitor"
 	Dispatcher               = "Dispatcher"
 	Aquirer                  = "Aquirer"
+	HouseKeeping             = "HouseKeeping"
 	Character_MapTo          = "⇄"
 	Character_Job            = "⚙️"
 	Character_Heart          = "🫀"
@@ -96,6 +98,7 @@ const (
 	Character_Aquirer        = "🛒"
 	Character_Dispatcher     = "📡"
 	Character_Gears          = "⚙️"
+	Character_HouseKeeping   = "🧼"
 )
 
 type Connection struct {
@@ -187,6 +190,7 @@ func Initialise() {
 	SienaPropertiesDB = getProperties(SQLCONFIG)
 	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
 	InstanceProperties = getProperties(INSTANCECONFIG)
+	SienaTablesLookup = getProperties("sienaTables.cfg")
 	//MasterPropertiesDB = getProperties(DATASTORECONFIG)
 	//MasterPropertiesDB["database"] = "master"
 
@@ -259,6 +263,10 @@ func fileExists(filename string) bool {
 		return false
 	}
 	return !info.IsDir()
+}
+
+func GetSienaClassName(inTableName string) string {
+	return SienaTablesLookup[strings.ToLower(inTableName)]
 }
 
 func PreInitialise() {

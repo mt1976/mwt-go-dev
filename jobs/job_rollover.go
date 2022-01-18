@@ -17,7 +17,7 @@ func Rollover_Job() dm.JobDefinition {
 	j.Name = "ROLLOVER"
 	j.Period = "10 1 * * *"
 	j.Description = "Siena System Rollover Refresh"
-	j.Type = core.Monitor
+	j.Type = core.HouseKeeping
 	return j
 }
 
@@ -43,7 +43,7 @@ func Rollover_Run() {
 
 	message := fmt.Sprintf("Rolled from %v to %v", oldSysDate.Internal, core.SienaSystemDate.Internal)
 
-	//application.UpdateSchedule("SRO", core.Monitor, message)
+	//application.UpdateSchedule("SRO", core.HouseKeeping, message)
 
 	/// CONTENT ENDS
 	application.Schedule_Update(Rollover_Job(), message)

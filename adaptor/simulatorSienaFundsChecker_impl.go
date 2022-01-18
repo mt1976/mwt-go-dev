@@ -12,13 +12,13 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Simulator_FundsChecker_Store(thisID string, balance string, resultCode string) {
+func Simulator_SienaFundsChecker_Store(thisID string, balance string, resultCode string) {
 
-	_, returnRecord, _ := Simulator_FundsChecker_GetByID(thisID)
+	_, returnRecord, _ := Simulator_SienaFundsChecker_GetByID(thisID)
 
 	simFundsCheckItem := returnRecord.Request
 
-	var simFundsCheckResponse dm.Simulator_FundsChecker_Response
+	var simFundsCheckResponse dm.Simulator_SienaFundsChecker_Response
 	simFundsCheckResponse.NS1 = "http://dnb.lt/dnb-xst/MBT"
 	simFundsCheckResponse.MBTHEADER.XREF = simFundsCheckItem.HEADER.XREF
 	simFundsCheckResponse.MBTHEADER.SOURCE = "MB_TODO"
@@ -56,7 +56,7 @@ func Simulator_FundsChecker_Store(thisID string, balance string, resultCode stri
 }
 
 // getFundsCheckList read all employees
-func Simulator_FundsChecker_DeleteByID(id string) error {
+func Simulator_SienaFundsChecker_DeleteByID(id string) error {
 	requestPath := core.SienaProperties["funds_in"]
 	//pwd, _ := os.Getwd()
 	rtn := core.DeleteDataFileAbsolute(id, requestPath)
@@ -66,8 +66,8 @@ func Simulator_FundsChecker_DeleteByID(id string) error {
 	return nil
 }
 
-func Simulator_FundsChecker_GetByID(id string) (int, dm.Simulator_FundsChecker_Item, error) {
-	var simFundsCheckItem dm.Simulator_FundsChecker_Item
+func Simulator_SienaFundsChecker_GetByID(id string) (int, dm.Simulator_SienaFundsChecker_Item, error) {
+	var simFundsCheckItem dm.Simulator_SienaFundsChecker_Item
 	requestPath := core.SienaProperties["funds_in"]
 
 	dat, _, _ := core.ReadDataFileAbsolute(id, requestPath)
@@ -76,7 +76,10 @@ func Simulator_FundsChecker_GetByID(id string) (int, dm.Simulator_FundsChecker_I
 	simFundsCheckItem.Source = requestPath
 	simFundsCheckItem.Content = string(dat)
 
-	var test dm.Simulator_FundsChecker_Request
+	logs.Information("Simulator_SienaFundsChecker_GetByID:", id)
+	logs.Information("Data", simFundsCheckItem.Content)
+
+	var test dm.Simulator_SienaFundsChecker_Request
 	xml.Unmarshal(dat, &test)
 
 	//log.Println(test)
@@ -89,16 +92,16 @@ func Simulator_FundsChecker_GetByID(id string) (int, dm.Simulator_FundsChecker_I
 }
 
 // getFundsCheckList read all employees
-func Simulator_FundsChecker_GetList() (int, []dm.Simulator_FundsChecker_Item, error) {
+func Simulator_SienaFundsChecker_GetList() (int, []dm.Simulator_SienaFundsChecker_Item, error) {
 	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, core.ApplicationPropertiesDB["schema"])
-	var simFundsCheckList []dm.Simulator_FundsChecker_Item
+	var simFundsCheckList []dm.Simulator_SienaFundsChecker_Item
 	requestPath := core.SienaProperties["funds_in"]
 
 	files, _ := core.GetDirectoryContentAbsolute(requestPath)
 
 	for _, k := range files {
 		//fmt.Println("key:", k)
-		var fci dm.Simulator_FundsChecker_Item
+		var fci dm.Simulator_SienaFundsChecker_Item
 		fci.Id = k.Name()
 		fci.Name = strings.ReplaceAll(k.Name(), ".xml", "")
 		fci.Source = requestPath
@@ -107,4 +110,19 @@ func Simulator_FundsChecker_GetList() (int, []dm.Simulator_FundsChecker_Item, er
 
 	//count, simFundsCheckList, _, _ := fetchFundsCheckData("")
 	return len(files), simFundsCheckList, nil
+}
+
+func Simulator_SienaFundsChecker_ProcessResponse(filename string) error {
+	//	logs.Success("StaticImport_Dispatch")
+	logs.Success("StaticImport_ProcessResponse:" + filename)
+
+	// tokenise the filename, get last element
+	tokens := strings.Split(filename, "/")
+	last := tokens[len(tokens)-1]
+
+	uri := dm.Simulator_SienaFundsChecker_PathAction + "/?" + dm.Simulator_SienaFundsChecker_QueryString + "=" + last
+
+	core.Notification_URL("New Funds Checker Request", last, uri)
+	var err error
+	return err
 }

@@ -7,16 +7,16 @@ import (
 )
 
 // getFundsCheckList read all employees
-func Simulator_FundsChecker_GetList() (int, []dm.Simulator_FundsChecker_Item, error) {
+func Simulator_SienaFundsChecker_GetList() (int, []dm.Simulator_SienaFundsChecker_Item, error) {
 
-	res, simFundsCheckList, err := adaptor.Simulator_FundsChecker_GetList()
+	res, simFundsCheckList, err := adaptor.Simulator_SienaFundsChecker_GetList()
 	return res, simFundsCheckList, err
 }
 
 // getFundsCheckList read all employees
-func Simulator_FundsChecker_GetByID(id string) (int, dm.Simulator_FundsChecker_Item, error) {
+func Simulator_SienaFundsChecker_GetByID(id string) (int, dm.Simulator_SienaFundsChecker_Item, error) {
 
-	res, simFundsCheckItem, err := adaptor.Simulator_FundsChecker_GetByID(id)
+	res, simFundsCheckItem, err := adaptor.Simulator_SienaFundsChecker_GetByID(id)
 	return res, simFundsCheckItem, err
 }
 
@@ -30,15 +30,15 @@ func NewFundsCheck(r FundsCheckItem) {
 }
 */
 
-func Simulator_FundsChecker_Store(thisID string, balance string, resultCode string) {
-	adaptor.Simulator_FundsChecker_Store(thisID, balance, resultCode)
+func Simulator_SienaFundsChecker_Store(thisID string, balance string, resultCode string) {
+	adaptor.Simulator_SienaFundsChecker_Store(thisID, balance, resultCode)
 }
 
-func PutFundsCheck(r dm.Simulator_FundsChecker_Item) {
+func PutFundsCheck(r dm.Simulator_SienaFundsChecker_Item) {
 	putFundsCheck(r)
 }
 
-func putFundsCheck(r dm.Simulator_FundsChecker_Item) {
+func putFundsCheck(r dm.Simulator_SienaFundsChecker_Item) {
 	//fmt.Println(credentialStore)
 
 	//	fmt.Println("RECORD", r)
@@ -64,14 +64,14 @@ func putFundsCheck(r dm.Simulator_FundsChecker_Item) {
 }
 
 func DeleteFundsCheck(id string) {
-	err := adaptor.Simulator_FundsChecker_DeleteByID(id)
+	err := adaptor.Simulator_SienaFundsChecker_DeleteByID(id)
 	if err != nil {
 		logs.Error("Cannot Delete "+id, err)
 	}
 }
 
 // getFundsCheckList read all employees
-func Simulator_FundsChecker_DeleteByID(id string) error {
-	val := adaptor.Simulator_FundsChecker_DeleteByID(id)
+func Simulator_SienaFundsChecker_DeleteByID(id string) error {
+	val := adaptor.Simulator_SienaFundsChecker_DeleteByID(id)
 	return val
 }

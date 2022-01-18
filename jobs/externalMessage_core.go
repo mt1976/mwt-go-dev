@@ -1,4 +1,5 @@
 package jobs
+
 // ----------------------------------------------------------------
 // Automatically generated  "/jobs/externalmessage.go"
 // ----------------------------------------------------------------
@@ -14,9 +15,9 @@ package jobs
 
 import (
 	application "github.com/mt1976/mwt-go-dev/application"
-	dm          "github.com/mt1976/mwt-go-dev/datamodel"
-	logs        "github.com/mt1976/mwt-go-dev/logs"
-	cron        "github.com/robfig/cron/v3"
+	dm "github.com/mt1976/mwt-go-dev/datamodel"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+	cron "github.com/robfig/cron/v3"
 )
 
 // ExternalMessageJob defines the job properties, name, period etc..
@@ -29,8 +30,8 @@ func ExternalMessage_Job() dm.JobDefinition {
 	// j.Name = "ExternalMessage"
 	// j.Period = "10 1 * * *"
 	// j.Description = "ExternalMessage processing"
-	// j.Type = core.Monitor
-	j:= ExternalMessage_JobImpl()
+	// j.Type = core.HouseKeeping
+	j := ExternalMessage_JobImpl()
 	return j
 }
 
@@ -44,8 +45,8 @@ func ExternalMessage_Run() {
 	logs.StartJob(ExternalMessage_Job().Name)
 	message := ""
 	/// CONTENT STARTS
-	// Create a func in the ExternalMessage_Impl.go file called ExternalMessage_RunImpl() that returns string,error	
-	message,err := ExternalMessage_RunImpl()
+	// Create a func in the ExternalMessage_Impl.go file called ExternalMessage_RunImpl() that returns string,error
+	message, err := ExternalMessage_RunImpl()
 	if err != nil {
 		logs.Warning(err.Error())
 	}

@@ -98,7 +98,7 @@ func main() {
 
 	application.Systems_Publish(*mux)
 
-	application.Simulator_FundsChecker_Publish_Impl(*mux)
+	application.Simulator_SienaFundsChecker_Publish_Impl(*mux)
 
 	application.Template_Publish(*mux)
 	application.MarketRates_Publish(*mux)
@@ -135,9 +135,13 @@ func main() {
 	core.Catalog_List()
 
 	logs.Success("Endpoints Published")
-
+	logs.Break()
 	logs.Header("Start Watchers")
-	monitors.StaticDataImporter_Watch()
+	logs.Break()
+	//go monitors.StaticDataImporter_Watch()
+	go monitors.Simulator_SienaFundsChecker_Watch()
+	go monitors.Simulator_SienaDealImporter_Watch()
+	go monitors.Simulator_SienaStaticDataImporter_Watch()
 	logs.Success("Watchers Started")
 	Application_Info()
 	//scheduler.RunJobLSE("")
