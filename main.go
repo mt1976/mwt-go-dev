@@ -148,8 +148,12 @@ func main() {
 	//scheduler.RunJobFII("")
 	//jobs.RatesFXSpot_Run()
 	//spew.Dump(mux)
-
+	logs.Header("Rebuild Cache")
+	scheduler.RefreshCache_Run()
+	logs.Success("Cache Rebuilt")
 	//core.Notification_Test()
+	scheduler.RatesCrypto_Run()
+	logs.Success("Rates Rebuilt")
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)

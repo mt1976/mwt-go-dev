@@ -33,20 +33,12 @@ func Start() {
 
 	if !core.IsChildInstance {
 		RatesFXSpot_Register(c)
-	}
-
-	if !core.IsChildInstance {
+		RatesCrypto_Register(c)
 		RatesFXECB_Register(c)
-	}
-	if !core.IsChildInstance {
 		IndexSONIABOE_Register(c)
-	}
-	if !core.IsChildInstance {
 		InstFRED_Register(c)
-	}
-
-	if !core.IsChildInstance {
 		InstFII_Register(c)
+		RefreshCache_Register(c)
 	}
 
 	ExternalMessage_Register(c)

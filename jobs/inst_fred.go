@@ -103,7 +103,7 @@ func InstFRED_Run() {
 		ratesData.tenor = ""
 		ratesData.series = s
 		ratesData.class = "USD"
-		ratesData.source = "Fred"
+		ratesData.source = requestURI
 		ratesData.destination = "RVNI"
 		ratesData.name = getFredSeriesData(seriesRequestURI)
 

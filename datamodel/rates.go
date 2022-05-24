@@ -19,8 +19,9 @@ const (
 	RateCategory_Market = "MARKET"
 	RateCategory_ECB    = "ECB"
 
-	Market_FX    = "FX"
-	Market_MM    = "MM"
-	Market_NI    = "NI"
-	Market_Index = "INDEX"
+	Market_FX     = "FX"
+	Market_MM     = "MM"
+	Market_NI     = "NI"
+	Market_Index  = "INDEX"
+	Market_Crypto = "CRYPTO"
 )

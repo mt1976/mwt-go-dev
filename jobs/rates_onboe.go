@@ -135,7 +135,7 @@ func IndexSONIABOE_Run() {
 	ratesData.tenor = "ON"
 	ratesData.series = BOEdataSeries
 	ratesData.class = "Market"
-	ratesData.source = "BankOfEnglang"
+	ratesData.source = url
 	ratesData.destination = "RVMARKET"
 	RatesDataStorePut(ratesData)
 

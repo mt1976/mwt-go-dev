@@ -37,6 +37,7 @@ func RatesFXECB_Run() {
 		// any collection of providers which implement rates.Provider interface
 		providers.NewECBProvider(new(rates.Options)),
 	)
+
 	rates, err := service.FetchLast()
 	if len(err) != 0 {
 		fmt.Println(err)
@@ -52,6 +53,7 @@ func RatesFXECB_Run() {
 		ratesData.market = "FX"
 		ratesData.tenor = "SP"
 		ratesData.series = fmt.Sprintf("%s", rate.Currency)
+		ratesData.name = application.Translation_Lookup("CurrencyPair", rate.Currency)
 		ratesData.class = "ECB"
 		ratesData.source = "ECB"
 		ratesData.destination = "RVMARKET"

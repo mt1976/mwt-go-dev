@@ -1,5 +1,7 @@
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the header section, include styles and menu                                                             -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
 {{define "header"}}
-
 <head>
     <!-- START OF INSERTS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,8 +45,11 @@
     <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
     <title>{{.PageTitle}}</title>
     <!-- DO NOT CHANGE -->
-</head>{{end}} {{define "footer"}}
-
+</head>{{end}} 
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Footer Section                                                                                      -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "footer"}}
 <footer>
     <div class="fixed-bottom">
         <div style="background-color: var(--custom-light-grey);padding:.2rem;padding-left:.3rem;">
@@ -56,7 +61,11 @@
         </div>
     </div>
 </footer>
-{{end}} {{define "audit"}}
+{{end}} 
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Audit Section                                                                                       -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "audit"}}
 <span style="width:100px; height:5px;"></span>
 <p>
     <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
