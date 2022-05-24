@@ -141,6 +141,11 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 	cd.Source = ratesData.source
 	cd.Destination = ratesData.destination
 	cd.Class = ratesData.class
+	cd.Date = core.SienaSystemDate.Today
+
+	if ratesData.date != "" {
+		cd.Date = ratesData.date
+	}
 
 	dao.MarketRates_StoreSystem(cd)
 
@@ -148,5 +153,5 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 
 func getRatesDataStoreKey(ratesData RatesDataStore) string {
 	key := strings.ToUpper(ratesData.market) + core.IDSep + strings.ToUpper(ratesData.tenor) + core.IDSep + strings.ToUpper(ratesData.class) + core.IDSep + strings.ToUpper(ratesData.series)
-	return key
+	return core.EncodeString(key)
 }

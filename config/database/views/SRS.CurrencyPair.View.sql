@@ -14,6 +14,6 @@ SELECT        {{!SQL.SOURCE}}.CurrencyPair.CodeMajorCurrencyIsoCode, {{!SQL.SOUR
 FROM            {{!SQL.SOURCE}}.CurrencyPair INNER JOIN
                          {{!SQL.SOURCE}}.CurrencyPairRateRICCode ON {{!SQL.SOURCE}}.CurrencyPair.CodeMajorCurrencyIsoCode = {{!SQL.SOURCE}}.CurrencyPairRateRICCode.CodeMajorCurrencyIsoCode AND
                          {{!SQL.SOURCE}}.CurrencyPair.CodeMinorCurrencyIsoCode = {{!SQL.SOURCE}}.CurrencyPairRateRICCode.CodeMinorCurrencyIsoCode
-WHERE        ({{!SQL.SOURCE}}.CurrencyPairRateRICCode.RICCode <> '') AND ({{!SQL.SOURCE}}.CurrencyPair.SpotRerouteDataRerouteCurrency = '') AND ({{!SQL.SOURCE}}.CurrencyPairRateRICCode.Period = 'Spot') AND ({{!SQL.SOURCE}}.CurrencyPair.Active = 1)
+WHERE        ({{!SQL.SOURCE}}.CurrencyPairRateRICCode.RICCode = 'SRS=FX') AND ({{!SQL.SOURCE}}.CurrencyPair.SpotRerouteDataRerouteCurrency = '') AND ({{!SQL.SOURCE}}.CurrencyPairRateRICCode.Period = 'Spot') AND ({{!SQL.SOURCE}}.CurrencyPair.Active = 1)
 
 GO

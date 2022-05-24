@@ -133,7 +133,7 @@ func getFXrate(inCCYpair string) fxRate {
 	ratesData.series = inCCYpair
 	ratesData.class = dm.RateCategory_Market
 	ratesData.name = application.Translation_Lookup("CurrencyPair", inCCYpair)
-	ratesData.source = "Barchart.com"
+	ratesData.source = url
 	ratesData.destination = "RV" + dm.RateCategory_Market
 
 	RatesDataStorePut(ratesData)
