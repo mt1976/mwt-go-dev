@@ -4,35 +4,59 @@
 {{define "header"}}
 <head>
     <!-- START OF INSERTS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=n">
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
     <!-- FAVICON BUMPF -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#322a77">
+    <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#322a77">
     <meta name="msapplication-TileColor" content="#322a77">
     <meta name="theme-color" content="#ffffff">
+    
     <!-- BOOTSTRAP CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+   
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <!-- MDB -->
+    <!--<link rel="stylesheet" href="../assets/css/style.css" />-->
+   <!-- <link rel="stylesheet" href="../assets/css/mdb.min.css" /> -->
+    <!-- Custom styles -->
+    <!--<link rel="stylesheet" href="../assets/MDB5/css/style.css" />-->
+ <!--<link rel="stylesheet" href="../assets/custom.css">-->
+
+
+    <link rel="stylesheet" href="/assets/css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+
+    <!--<script src="../assets/custom.js"></script>-->
+
     <!-- Add CUSTOM ICONS, FONTS & STYLES -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+    <!--
     <link rel="stylesheet" href="../assets/custom.css">
     <script src="../assets/custom.js"></script>
-    <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></link>
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script defer="defer" src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script> -->
+   <!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></link> -->
+   <!-- <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script> -->
     <!-- END OF INSERTS -->
-    <div class="row nav-row">
+
+
+    <!-- <div class="row nav-row">
         <span onclick="openNav()"><i class="fas fa-atom fa-2x hamburger" style="padding:0;margin-left:.5rem;margin-right:.5rem"></i></span>
         <div class="nav-title"><a href="" onclick="/home/" class="nav-title">{{.PageTitle}}</a></div>
-    </div>
-    <div id="mySidenav" class="sidenav">
+    </div> -->
+    <!--
+    <div id="mySidenav" class="sidenav" >
         <div class="nav-tile">{{ (index .UserMenu 0).MenuHeaderText}}</div>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> {{range .UserMenu}}
         <a class="" href="{{.MenuHREF}}" onclick="{{.MenuOnClick}}">
@@ -41,59 +65,179 @@
                 <div class="dd-text {{.MenuTextClass}}">{{.MenuText}}</div>
             </div>
         </a>{{end}}
+    </div> -->
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+     <a class="navbar-brand mt-0 mt-lg-0 text-primary" href="#">
+      <img
+          src="/assets/android-chrome-48x48.png"
+          height="32"
+          alt="{{ (index .UserMenu 0).MenuHeaderText}} Logo"
+          loading="lazy"/> 
+      </a>
+      <!-- Left links -->
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+            <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false">
+            Menu</a>
+
+          <ul class="dropdown-menu scrollabe-menu" aria-labelledby="navbarDropdown" 
+          role="menu"
+          style="height: fit-content;max-height: 70rem; overflow-x: auto;">
+            {{range .UserMenu}}
+            <li><a class="sidenav-link" href="..{{.MenuHREF}}" onclick="{{.MenuHREF}}"> <i class="{{.MenuGlyph}} {{.MenuTextClass}} fa-fw me-3"></i><span>{{.MenuText}}</span></a></li>{{end}}
+          </ul>
+      </ul>
+      <!-- Left links -->
     </div>
+    <!-- Collapsible wrapper -->
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Avatar -->
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+            class="rounded-circle"
+            height="25"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"/>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end scrollabe-menu" 
+          role="menu"
+          style="height: auto;max-height: 200px; overflow-x: hidden;"
+          aria-labelledby="navbarDropdownMenuAvatar">
+          <li>
+            <a class="dropdown-item" href="#"><i class="fas fa-user fa-fw me-3"></i><span>My Profile</span></a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw me-3"></i><span>Settings</span></a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+<!-- Content -->
     <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
     <title>{{.PageTitle}}</title>
     <!-- DO NOT CHANGE -->
 </head>{{end}} 
+
+
+{{define "navmodel"}}
+
+<<!-- Not Currenty Required -->
+
+{{end}} 
+
+
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 <!-- Definition of the Footer Section                                                                                      -->
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 {{define "footer"}}
-<footer>
-    <div class="fixed-bottom">
-        <div style="background-color: var(--custom-light-grey);padding:.2rem;padding-left:.3rem;">
-            <div class="font-weight-light text-muted" style="font-size:70%;">
-                {{.SessionInfo.HostName}} | {{.SessionInfo.UserName}} | {{.SessionInfo.AppDB}} | {{.SessionInfo.SienaDB}} | {{.SessionInfo.AppServerDate}} | {{.SessionInfo.SienaServerDate}} {{.SessionInfo.DateSyncIssue}}
-
-
-            </div>
-        </div>
+<!-- Footer -->
+<footer class="bg-link text-left text-lg-start fixed-bottom">
+    <!--  <div style="text-left background-color: var(--custom-light-grey);padding:.2rem;padding-left:.3rem;">-->
+    <div class="text-left p-1" style="background-color: rgba(0, 0, 0, 0.5)">
+      <div class="font-weight-light text-white" style="font-size:70%;">
+        {{.SessionInfo.HostName}} | {{.SessionInfo.UserName}} | {{.SessionInfo.AppDB}} | {{.SessionInfo.SienaDB}} | {{.SessionInfo.AppServerDate}} | {{.SessionInfo.SienaServerDate}} {{.SessionInfo.DateSyncIssue}}
+      </div>
     </div>
 </footer>
+<!-- Footer -->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+  
+
 {{end}} 
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 <!-- Definition of the Audit Section                                                                                       -->
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 {{define "audit"}}
-<span style="width:100px; height:5px;"></span>
-<p>
-    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        <i class="fas fa-eye"></i>&nbsp;Audit Information
-        </button>
-</p>
-<div class="collapse" id="collapseExample">
-    <div class="auditheader">Audit Information</div>
-    <div class="auditbody">
-        <div class="row audittitle">
-            <div class="col">Action</div>
-            <div class="col">When</div>
-            <div class="col">Who</div>
-            <div class="col">Where</div>
-        </div>
-        <div class="row">
-            <div class="col">Created</div>
-            <div class="col">{{.SYSCreated}}</div>
-            <div class="col">{{.SYSCreatedBy}}</div>
-            <div class="col">{{.SYSCreatedHost}}</div>
-        </div>
-        <div class="row">
-            <div class="col">Updated</div>
-            <div class="col">{{.SYSUpdated}}</div>
-            <div class="col">{{.SYSUpdatedBy}}</div>
-            <div class="col">{{.SYSUpdatedHost}}</div>
+
+<div class="accordion-flush" id="auditInformation">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button btn-sm"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+        style="padding-bottom: .75rem; padding-right: 2rem; padding-left: 2rem;">
+        <i class="fas fa-eye fa-fw me-2 text-muted"></i><span class="text-muted">Audit Information</span>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#auditInformation">
+      <div class="accordion-body" style="padding-left: 2rem;padding-right: 2rem;padding-top: .5rem;">
+        
+        <div class="text-muted">Audit Information</div>
+          <div class="auditbody">
+              <div class="row audittitle">
+                  <div class="col">Action</div>
+                  <div class="col">When</div>
+                  <div class="col">Who</div>
+                  <div class="col">Where</div>
+              </div>
+              <div class="row">
+                  <div class="col">Created</div>
+                  <div class="col">{{.SYSCreated}}</div>
+                  <div class="col">{{.SYSCreatedBy}}</div>
+                  <div class="col">{{.SYSCreatedHost}}</div>
+              </div>
+              <div class="row">
+                  <div class="col">Updated</div>
+                  <div class="col">{{.SYSUpdated}}</div>
+                  <div class="col">{{.SYSUpdatedBy}}</div>
+                  <div class="col">{{.SYSUpdatedHost}}</div>
+              </div>
+          </div>
         </div>
     </div>
-    <br><br>
+  </div>
 </div>
 {{end}}

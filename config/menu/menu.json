@@ -367,16 +367,6 @@
             "HREF": "/ExternalMessageList",
             "OnClick": "",
             "TextClass": "text-info"
-        },
-
-
-        {
-            "ID": "27",
-            "Text": "Logout",
-            "Glyph": "fas fa-sign-out-alt",
-            "HREF": "/logout",
-            "OnClick": "",
-            "TextClass": "text-muted"
         }
 
     ]

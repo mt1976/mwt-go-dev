@@ -2,6 +2,7 @@ package core
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io/fs"
 	"io/ioutil"
@@ -89,9 +90,9 @@ func GetTemplateID(tmpl string, userRole string) string {
 	roleTemplate := "html/versions/roles/" + userRole + "/" + tmpl + ".html"
 	versionTemplate := "html/versions/" + tmpl + ".html"
 
-	//logs.Information("Template Checks:", tmpl+" "+templateName+" "+roleTemplate+" "+versionTemplate)
-	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
-	//log.Println("Testing", templateName, FileExists(templateName))
+	logs.Information("Template Checks:", tmpl+" "+templateName+" "+roleTemplate+" "+versionTemplate)
+	log.Println("Testing", roleTemplate, FileExists(roleTemplate))
+	log.Println("Testing", templateName, FileExists(templateName))
 	if FileExists(templateName) {
 		returnTemplate = templateName
 	}
@@ -103,6 +104,12 @@ func GetTemplateID(tmpl string, userRole string) string {
 		if FileExists(roleTemplate) {
 			returnTemplate = roleTemplate
 		}
+	}
+	if returnTemplate == "" {
+		log.Println("Template not found:", tmpl)
+		pErr := errors.New("Template not found" + tmpl + " " + templateName + " " + roleTemplate + " " + versionTemplate)
+		//panic(pErr)
+		log.Fatal(pErr)
 	}
 	//log.Printf("Using Template: Source %q", templateName)
 	logs.Template(returnTemplate)
@@ -398,7 +405,7 @@ func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) 
 	path = strings.Replace(path, ".", pwd, 1)
 
 	absFileName := path + "/" + fileName
-	logs.Information("AbsPath       :", absFileName)
+	logs.Accessing(absFileName)
 	// Check it exists - If not create it
 	if !(FileExists(absFileName)) {
 		WriteDataFileAbsolute(fileName, path, "")

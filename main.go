@@ -149,10 +149,10 @@ func main() {
 	//jobs.RatesFXSpot_Run()
 	//spew.Dump(mux)
 	logs.Header("Rebuild Cache")
-	scheduler.RefreshCache_Run()
+	//scheduler.RefreshCache_Run()
 	logs.Success("Cache Rebuilt")
 	//core.Notification_Test()
-	scheduler.RatesCrypto_Run()
+	//scheduler.RatesCrypto_Run()
 	logs.Success("Rates Rebuilt")
 
 	logs.Header("READY STEADY GO!!!")
