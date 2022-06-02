@@ -1,162 +1,159 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
-    <form action="/MandateSave?Mandate={{.CompID}}" method="GET" class="form">
+{{template "bodydefinition" .}}
+    <form action="/MandateSave/" method="GET" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.CompID}}</code>
-            </div>
-            <div class="col">
+            <div class="col h3">{{.Title}}</div>
+            <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
               
-                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MandateSave&Mandate={{.CompID}}" onclick="/MandateSave/?Mandate={{.CompID}}" title="Save Mandate"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MandateSave/" onclick="/MandateSave/" title="Save Mandate"></i>&nbsp;&nbsp;Save</button>
               
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Mandate"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
             <div class="row">
-              <div class="col-sm">
-                <label for="MandatedUserKeyCounterpartyFirm" >MandatedUserKeyCounterpartyFirm</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="MandatedUserKeyCounterpartyFirm" name="MandatedUserKeyCounterpartyFirm" aria-describedby="MandatedUserKeyCounterpartyFirmHelp" placeholder=""  value="{{.MandatedUserKeyCounterpartyFirm}}" required>
+                <label class="form-label" for="MandatedUserKeyCounterpartyFirm" >MandatedUserKeyCounterpartyFirm</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="MandatedUserKeyCounterpartyCentre" >MandatedUserKeyCounterpartyCentre</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="MandatedUserKeyCounterpartyCentre" name="MandatedUserKeyCounterpartyCentre" aria-describedby="MandatedUserKeyCounterpartyCentreHelp" placeholder=""  value="{{.MandatedUserKeyCounterpartyCentre}}" required>
+                <label class="form-label" for="MandatedUserKeyCounterpartyCentre" >MandatedUserKeyCounterpartyCentre</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="MandatedUserKeyUserName" >MandatedUserKeyUserName</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="MandatedUserKeyUserName" name="MandatedUserKeyUserName" aria-describedby="MandatedUserKeyUserNameHelp" placeholder=""  value="{{.MandatedUserKeyUserName}}" required>
+                <label class="form-label" for="MandatedUserKeyUserName" >MandatedUserKeyUserName</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="TelephoneNumber" >TelephoneNumber</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="TelephoneNumber" name="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder=""  value="{{.TelephoneNumber}}" >
+                <label class="form-label" for="TelephoneNumber" >TelephoneNumber</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="EmailAddress" >EmailAddress</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="EmailAddress" name="EmailAddress" aria-describedby="EmailAddressHelp" placeholder=""  value="{{.EmailAddress}}" >
+                <label class="form-label" for="EmailAddress" >EmailAddress</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="Active" >Active</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Active" name="Active" aria-describedby="ActiveHelp" placeholder="True"  value="{{.Active}}" >
+                <label class="form-label" for="Active" >Active</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="FirstName" >FirstName</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="FirstName" name="FirstName" aria-describedby="FirstNameHelp" placeholder=""  value="{{.FirstName}}" >
+                <label class="form-label" for="FirstName" >FirstName</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="Surname" >Surname</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Surname" name="Surname" aria-describedby="SurnameHelp" placeholder=""  value="{{.Surname}}" >
+                <label class="form-label" for="Surname" >Surname</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="DateOfBirth" >DateOfBirth</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="DateOfBirth" name="DateOfBirth" aria-describedby="DateOfBirthHelp" placeholder=""  value="{{.DateOfBirth}}" required>
+                <label class="form-label" for="DateOfBirth" >DateOfBirth</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="Postcode" >Postcode</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Postcode" name="Postcode" aria-describedby="PostcodeHelp" placeholder=""  value="{{.Postcode}}" >
+                <label class="form-label" for="Postcode" >Postcode</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="NationalIDNo" >NationalIDNo</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="NationalIDNo" name="NationalIDNo" aria-describedby="NationalIDNoHelp" placeholder=""  value="{{.NationalIDNo}}" >
+                <label class="form-label" for="NationalIDNo" >NationalIDNo</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="PassportNo" >PassportNo</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="PassportNo" name="PassportNo" aria-describedby="PassportNoHelp" placeholder=""  value="{{.PassportNo}}" >
+                <label class="form-label" for="PassportNo" >PassportNo</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="Country" >Country</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value="{{.Country}}" >
+                <label class="form-label" for="Country" >Country</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="CountryName" >CountryName</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="CountryName" name="CountryName" aria-describedby="CountryNameHelp" placeholder=""  value="{{.CountryName}}" >
+                <label class="form-label" for="CountryName" >CountryName</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="FirmName" >FirmName</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}" >
+                <label class="form-label" for="FirmName" >FirmName</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="CentreName" >CentreName</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="CentreName" name="CentreName" aria-describedby="CentreNameHelp" placeholder=""  value="{{.CentreName}}" >
+                <label class="form-label" for="CentreName" >CentreName</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="Notify" >Notify</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Notify" name="Notify" aria-describedby="NotifyHelp" placeholder="True"  value="{{.Notify}}" >
+                <label class="form-label" for="Notify" >Notify</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="SystemUser" >SystemUser</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="SystemUser" name="SystemUser" aria-describedby="SystemUserHelp" placeholder=""  value="{{.SystemUser}}" >
+                <label class="form-label" for="SystemUser" >SystemUser</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="CompID" >CompID</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required>
+                <label class="form-label" for="CompID" >CompID</label>
               </div>
             </div>
 
              <div class="row">
-              <div class="col-sm">
-                <label for="Country_Lookup" disabled>Country_Lookup</label>
-                <select id="Country_Lookup" name="Country_Lookup" class="form-control" disabled><option name="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
-              </div>
+              
+                <select id="Country_Lookup" name="Country_Lookup" class="select" disabled><option value="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                <label class="form-label select-label" for="Country_Lookup"}>Country_Lookup</label>
+      
             </div>
              <div class="row">
-              <div class="col-sm">
-                <label for="Firm_Lookup" disabled>Firm_Lookup</label>
-                <select id="Firm_Lookup" name="Firm_Lookup" class="form-control" disabled><option name="{{.Firm_Lookup}}" selected>{{.Firm_Lookup}}</option>{{range .Firm_Lookup_List}}<option name="{{.FirmName}}">{{.FullName}}</option>{{end}}</select>
-              </div>
+              
+                <select id="Firm_Lookup" name="Firm_Lookup" class="select" disabled><option value="{{.Firm_Lookup}}" selected>{{.Firm_Lookup}}</option>{{range .Firm_Lookup_List}}<option value="{{.FirmName}}">{{.FullName}}</option>{{end}}</select>
+                <label class="form-label select-label" for="Firm_Lookup"}>Firm_Lookup</label>
+      
             </div>
              <div class="row">
-              <div class="col-sm">
-                <label for="Centre_Lookup" disabled>Centre_Lookup</label>
-                <select id="Centre_Lookup" name="Centre_Lookup" class="form-control" disabled><option name="{{.Centre_Lookup}}" selected>{{.Centre_Lookup}}</option>{{range .Centre_Lookup_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
-              </div>
+              
+                <select id="Centre_Lookup" name="Centre_Lookup" class="select" disabled><option value="{{.Centre_Lookup}}" selected>{{.Centre_Lookup}}</option>{{range .Centre_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                <label class="form-label select-label" for="Centre_Lookup"}>Centre_Lookup</label>
+      
             </div>
      
         </div>
       </div>
     </form>
-  </div>
-  {{template "footer" .}}
-</body>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

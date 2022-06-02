@@ -1,137 +1,136 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
+{{template "bodydefinition" .}}
     <form action="/CounterpartyEdit?ID={{.CompID}}" method="POST" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
+            <div class="col h3">
               {{.Title}}&nbsp;:&nbsp;<code>{{.CompID}}</code>
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
               
                 <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CounterpartyEdit/?ID={{.CompID}}" onclick="/CounterpartyEdit/?ID={{.CompID}}" title="Edit Counterparty"></i>&nbsp;&nbsp;Edit</button>
                 
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="col-sm">
-                <label for="NameCentre">NameCentre</label>
-                <input type="text" class="form-control" id="NameCentre" aria-describedby="NameCentreHelp" placeholder="" disabled="disabled" value="{{.NameCentre}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="NameCentre" aria-describedby="NameCentreHelp" placeholder="" disabled value="{{.NameCentre}}">
+                <label class="form-label" for="NameCentre">NameCentre</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="NameFirm">NameFirm</label>
-                <input type="text" class="form-control" id="NameFirm" aria-describedby="NameFirmHelp" placeholder="" disabled="disabled" value="{{.NameFirm}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="NameFirm" aria-describedby="NameFirmHelp" placeholder="" disabled value="{{.NameFirm}}">
+                <label class="form-label" for="NameFirm">NameFirm</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="FullName">FullName</label>
-                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled="disabled" value="{{.FullName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}">
+                <label class="form-label" for="FullName">FullName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="TelephoneNumber">TelephoneNumber</label>
-                <input type="text" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder="" disabled="disabled" value="{{.TelephoneNumber}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder="" disabled value="{{.TelephoneNumber}}">
+                <label class="form-label" for="TelephoneNumber">TelephoneNumber</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="EmailAddress">EmailAddress</label>
-                <input type="text" class="form-control" id="EmailAddress" aria-describedby="EmailAddressHelp" placeholder="" disabled="disabled" value="{{.EmailAddress}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="EmailAddress" aria-describedby="EmailAddressHelp" placeholder="" disabled value="{{.EmailAddress}}">
+                <label class="form-label" for="EmailAddress">EmailAddress</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="CustomerType">CustomerType</label>
-                <input type="text" class="form-control" id="CustomerType" aria-describedby="CustomerTypeHelp" placeholder="" disabled="disabled" value="{{.CustomerType}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="CustomerType" aria-describedby="CustomerTypeHelp" placeholder="" disabled value="{{.CustomerType}}">
+                <label class="form-label" for="CustomerType">CustomerType</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="AccountOfficer">AccountOfficer</label>
-                <input type="text" class="form-control" id="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder="" disabled="disabled" value="{{.AccountOfficer}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder="" disabled value="{{.AccountOfficer}}">
+                <label class="form-label" for="AccountOfficer">AccountOfficer</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="CountryCode">CountryCode</label>
-                <input type="text" class="form-control" id="CountryCode" aria-describedby="CountryCodeHelp" placeholder="" disabled="disabled" value="{{.CountryCode}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="CountryCode" aria-describedby="CountryCodeHelp" placeholder="" disabled value="{{.CountryCode}}">
+                <label class="form-label" for="CountryCode">CountryCode</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SectorCode">SectorCode</label>
-                <input type="text" class="form-control" id="SectorCode" aria-describedby="SectorCodeHelp" placeholder="" disabled="disabled" value="{{.SectorCode}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="SectorCode" aria-describedby="SectorCodeHelp" placeholder="" disabled value="{{.SectorCode}}">
+                <label class="form-label" for="SectorCode">SectorCode</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="CpartyGroupName">CpartyGroupName</label>
-                <input type="text" class="form-control" id="CpartyGroupName" aria-describedby="CpartyGroupNameHelp" placeholder="" disabled="disabled" value="{{.CpartyGroupName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="CpartyGroupName" aria-describedby="CpartyGroupNameHelp" placeholder="" disabled value="{{.CpartyGroupName}}">
+                <label class="form-label" for="CpartyGroupName">CpartyGroupName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Notes">Notes</label>
-                <input type="text" class="form-control" id="Notes" aria-describedby="NotesHelp" placeholder="" disabled="disabled" value="{{.Notes}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Notes" aria-describedby="NotesHelp" placeholder="" disabled value="{{.Notes}}">
+                <label class="form-label" for="Notes">Notes</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Owner">Owner</label>
-                <input type="text" class="form-control" id="Owner" aria-describedby="OwnerHelp" placeholder="" disabled="disabled" value="{{.Owner}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Owner" aria-describedby="OwnerHelp" placeholder="" disabled value="{{.Owner}}">
+                <label class="form-label" for="Owner">Owner</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Authorised">Authorised</label>
-                <input type="text" class="form-control" id="Authorised" aria-describedby="AuthorisedHelp" placeholder="True" disabled="disabled" value="{{.Authorised}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Authorised" aria-describedby="AuthorisedHelp" placeholder="True" disabled value="{{.Authorised}}">
+                <label class="form-label" for="Authorised">Authorised</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="NameFirmName">NameFirmName</label>
-                <input type="text" class="form-control" id="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder="" disabled="disabled" value="{{.NameFirmName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder="" disabled value="{{.NameFirmName}}">
+                <label class="form-label" for="NameFirmName">NameFirmName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="NameCentreName">NameCentreName</label>
-                <input type="text" class="form-control" id="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder="" disabled="disabled" value="{{.NameCentreName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder="" disabled value="{{.NameCentreName}}">
+                <label class="form-label" for="NameCentreName">NameCentreName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="CountryCodeName">CountryCodeName</label>
-                <input type="text" class="form-control" id="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder="" disabled="disabled" value="{{.CountryCodeName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder="" disabled value="{{.CountryCodeName}}">
+                <label class="form-label" for="CountryCodeName">CountryCodeName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SectorCodeName">SectorCodeName</label>
-                <input type="text" class="form-control" id="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder="" disabled="disabled" value="{{.SectorCodeName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder="" disabled value="{{.SectorCodeName}}">
+                <label class="form-label" for="SectorCodeName">SectorCodeName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="CompID">CompID</label>
-                <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled="disabled" value="{{.CompID}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}">
+                <label class="form-label" for="CompID">CompID</label>
               </div>
             </div>
         </div>
 
       </div>
     </form>
-  </div>
-{{template "footer" .}}
-</body>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

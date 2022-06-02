@@ -1,117 +1,116 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
+{{template "bodydefinition" .}}
     <form action="/AccountTransactionEdit?AccountNo={{.SienaReference}}" method="POST" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
+            <div class="col h3">
               {{.Title}}&nbsp;:&nbsp;<code>{{.SienaReference}}</code>
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
                 
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Account Transaction"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="col-sm">
-                <label for="SienaReference">SienaReference</label>
-                <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled="disabled" value="{{.SienaReference}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled value="{{.SienaReference}}">
+                <label class="form-label" for="SienaReference">SienaReference</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="LegNo">LegNo</label>
-                <input type="text" class="form-control" id="LegNo" aria-describedby="LegNoHelp" placeholder="0" disabled="disabled" value="{{.LegNo}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="LegNo" aria-describedby="LegNoHelp" placeholder="0" disabled value="{{.LegNo}}">
+                <label class="form-label" for="LegNo">LegNo</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MMLegNo">MMLegNo</label>
-                <input type="text" class="form-control" id="MMLegNo" aria-describedby="MMLegNoHelp" placeholder="0" disabled="disabled" value="{{.MMLegNo}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="MMLegNo" aria-describedby="MMLegNoHelp" placeholder="0" disabled value="{{.MMLegNo}}">
+                <label class="form-label" for="MMLegNo">MMLegNo</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Narrative">Narrative</label>
-                <input type="text" class="form-control" id="Narrative" aria-describedby="NarrativeHelp" placeholder="" disabled="disabled" value="{{.Narrative}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Narrative" aria-describedby="NarrativeHelp" placeholder="" disabled value="{{.Narrative}}">
+                <label class="form-label" for="Narrative">Narrative</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Amount">Amount</label>
-                <input type="text" class="form-control" id="Amount" aria-describedby="AmountHelp" placeholder="0.00" disabled="disabled" value="{{.Amount}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Amount" aria-describedby="AmountHelp" placeholder="0.00" disabled value="{{.Amount}}">
+                <label class="form-label" for="Amount">Amount</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="StartInterestDate">StartInterestDate</label>
-                <input type="text" class="form-control" id="StartInterestDate" aria-describedby="StartInterestDateHelp" placeholder="" disabled="disabled" value="{{.StartInterestDate}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="StartInterestDate" aria-describedby="StartInterestDateHelp" placeholder="" disabled value="{{.StartInterestDate}}">
+                <label class="form-label" for="StartInterestDate">StartInterestDate</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="EndInterestDate">EndInterestDate</label>
-                <input type="text" class="form-control" id="EndInterestDate" aria-describedby="EndInterestDateHelp" placeholder="" disabled="disabled" value="{{.EndInterestDate}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="EndInterestDate" aria-describedby="EndInterestDateHelp" placeholder="" disabled value="{{.EndInterestDate}}">
+                <label class="form-label" for="EndInterestDate">EndInterestDate</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Amortisation">Amortisation</label>
-                <input type="text" class="form-control" id="Amortisation" aria-describedby="AmortisationHelp" placeholder="0.00" disabled="disabled" value="{{.Amortisation}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Amortisation" aria-describedby="AmortisationHelp" placeholder="0.00" disabled value="{{.Amortisation}}">
+                <label class="form-label" for="Amortisation">Amortisation</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="InterestAmount">InterestAmount</label>
-                <input type="text" class="form-control" id="InterestAmount" aria-describedby="InterestAmountHelp" placeholder="0.00" disabled="disabled" value="{{.InterestAmount}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="InterestAmount" aria-describedby="InterestAmountHelp" placeholder="0.00" disabled value="{{.InterestAmount}}">
+                <label class="form-label" for="InterestAmount">InterestAmount</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="InterestAction">InterestAction</label>
-                <input type="text" class="form-control" id="InterestAction" aria-describedby="InterestActionHelp" placeholder="" disabled="disabled" value="{{.InterestAction}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="InterestAction" aria-describedby="InterestActionHelp" placeholder="" disabled value="{{.InterestAction}}">
+                <label class="form-label" for="InterestAction">InterestAction</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="FixingDate">FixingDate</label>
-                <input type="text" class="form-control" id="FixingDate" aria-describedby="FixingDateHelp" placeholder="" disabled="disabled" value="{{.FixingDate}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="FixingDate" aria-describedby="FixingDateHelp" placeholder="" disabled value="{{.FixingDate}}">
+                <label class="form-label" for="FixingDate">FixingDate</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="InterestCalculationDate">InterestCalculationDate</label>
-                <input type="text" class="form-control" id="InterestCalculationDate" aria-describedby="InterestCalculationDateHelp" placeholder="" disabled="disabled" value="{{.InterestCalculationDate}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="InterestCalculationDate" aria-describedby="InterestCalculationDateHelp" placeholder="" disabled value="{{.InterestCalculationDate}}">
+                <label class="form-label" for="InterestCalculationDate">InterestCalculationDate</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="AmendmentAmount">AmendmentAmount</label>
-                <input type="text" class="form-control" id="AmendmentAmount" aria-describedby="AmendmentAmountHelp" placeholder="0.00" disabled="disabled" value="{{.AmendmentAmount}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="AmendmentAmount" aria-describedby="AmendmentAmountHelp" placeholder="0.00" disabled value="{{.AmendmentAmount}}">
+                <label class="form-label" for="AmendmentAmount">AmendmentAmount</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="DealtCcy">DealtCcy</label>
-                <input type="text" class="form-control" id="DealtCcy" aria-describedby="DealtCcyHelp" placeholder="" disabled="disabled" value="{{.DealtCcy}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="DealtCcy" aria-describedby="DealtCcyHelp" placeholder="" disabled value="{{.DealtCcy}}">
+                <label class="form-label" for="DealtCcy">DealtCcy</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="AmountDp">AmountDp</label>
-                <input type="text" class="form-control" id="AmountDp" aria-describedby="AmountDpHelp" placeholder="0" disabled="disabled" value="{{.AmountDp}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="AmountDp" aria-describedby="AmountDpHelp" placeholder="0" disabled value="{{.AmountDp}}">
+                <label class="form-label" for="AmountDp">AmountDp</label>
               </div>
             </div>
         </div>
 
       </div>
     </form>
-  </div>
-{{template "footer" .}}
-</body>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

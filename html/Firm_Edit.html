@@ -1,66 +1,70 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
+{{template "bodydefinition" .}}
+
     <form action="/FirmSave?FirmName={{.FirmName}}" method="GET" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
+            <div class="col h3">
               {{.Title}}&nbsp;:&nbsp;<code>{{.FirmName}}</code>
             </div>
-            <div class="col">
-              <div class="btn-group float-right">
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
               
                 <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/FirmSave/FirmName={{.FirmName}}" onclick="/FirmSave/FirmName={{.FirmName}}" title="Save Firm"></i>&nbsp;&nbsp;Save</button>
               
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Firm"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="col-sm">
-                <label for="FirmName" >FirmName</label>
-                <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}" required>
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}" required />
+                  <label class="form-label" for="FirmName" >FirmName</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="FullName" >FullName</label>
-                <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}"  />
+                  <label class="form-label" for="FullName" >FullName</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Country" >Country</label>
-                <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value="{{.Country}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value="{{.Country}}"  />
+                  <label class="form-label" for="Country" >Country</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Sector" >Sector</label>
-                <input type="text" class="form-control" id="Sector" name="Sector" aria-describedby="SectorHelp" placeholder=""  value="{{.Sector}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="Sector" name="Sector" aria-describedby="SectorHelp" placeholder=""  value="{{.Sector}}"  />
+                  <label class="form-label" for="Sector" >Sector</label>
+                </div>
               </div>
-            </div>
-
-             <div class="row">
-              <div class="col-sm">
-                <label for="Sector_Lookup" >Sector_Lookup</label>
-                <select id="Sector_Lookup" name="Sector_Lookup" class="form-control" ><option name="{{.Sector_Lookup}}" selected>{{.Sector_Lookup}}</option>{{range .Sector_Lookup_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
+              
+                           
+              <div class="row mb-3">
+            
+                  <select id="Sector_Lookup" name="Sector_Lookup" class="select" data-mdb-filter="true" ><option value="{{.Sector_Lookup}}" selected>{{.Sector_Lookup}}</option>{{range .Sector_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                  <label class="form-label select-label" for="Sector_Lookup" >Sector_Lookup</label>
               </div>
-            </div>
-             <div class="row">
-              <div class="col-sm">
-                <label for="Country_Lookup" disabled>Country_Lookup</label>
-                <select id="Country_Lookup" name="Country_Lookup" class="form-control" disabled><option name="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option name="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                           
+              <div class="row mb-3">
+            
+                  <select id="Country_Lookup" name="Country_Lookup" class="select" data-mdb-filter="true" disabled><option value="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
+                  <label class="form-label select-label" for="Country_Lookup" disabled>Country_Lookup</label>
               </div>
-            </div>
-
-</div>
+              
+        </div>
       </div>
     </form>
-  </div>
-  {{template "footer" .}}
-</body>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

@@ -26,7 +26,7 @@ func LoginLogout_Publish_Impl(mux http.ServeMux) {
 }
 func LoginLogout_HandlerLogin(w http.ResponseWriter, r *http.Request) {
 
-	tmpl := "login"
+	tmpl := "Impl_Login"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	ServiceMessage(inUTL)

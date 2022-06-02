@@ -1,201 +1,200 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
+{{template "bodydefinition" .}}
     <form action="/PayeeEdit?ID={{.KeyCounterpartyFirm}}" method="POST" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
+            <div class="col h3">
               {{.Title}}&nbsp;:&nbsp;<code>{{.KeyCounterpartyFirm}}</code>
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
                 
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Payee"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="col-sm">
-                <label for="SourceTable">SourceTable</label>
-                <input type="text" class="form-control" id="SourceTable" aria-describedby="SourceTableHelp" placeholder="" disabled="disabled" value="{{.SourceTable}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="SourceTable" aria-describedby="SourceTableHelp" placeholder="" disabled value="{{.SourceTable}}">
+                <label class="form-label" for="SourceTable">SourceTable</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyCounterpartyFirm">KeyCounterpartyFirm</label>
-                <input type="text" class="form-control" id="KeyCounterpartyFirm" aria-describedby="KeyCounterpartyFirmHelp" placeholder="" disabled="disabled" value="{{.KeyCounterpartyFirm}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyCounterpartyFirm" aria-describedby="KeyCounterpartyFirmHelp" placeholder="" disabled value="{{.KeyCounterpartyFirm}}">
+                <label class="form-label" for="KeyCounterpartyFirm">KeyCounterpartyFirm</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyCounterpartyCentre">KeyCounterpartyCentre</label>
-                <input type="text" class="form-control" id="KeyCounterpartyCentre" aria-describedby="KeyCounterpartyCentreHelp" placeholder="" disabled="disabled" value="{{.KeyCounterpartyCentre}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyCounterpartyCentre" aria-describedby="KeyCounterpartyCentreHelp" placeholder="" disabled value="{{.KeyCounterpartyCentre}}">
+                <label class="form-label" for="KeyCounterpartyCentre">KeyCounterpartyCentre</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyCurrency">KeyCurrency</label>
-                <input type="text" class="form-control" id="KeyCurrency" aria-describedby="KeyCurrencyHelp" placeholder="" disabled="disabled" value="{{.KeyCurrency}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyCurrency" aria-describedby="KeyCurrencyHelp" placeholder="" disabled value="{{.KeyCurrency}}">
+                <label class="form-label" for="KeyCurrency">KeyCurrency</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyName">KeyName</label>
-                <input type="text" class="form-control" id="KeyName" aria-describedby="KeyNameHelp" placeholder="" disabled="disabled" value="{{.KeyName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyName" aria-describedby="KeyNameHelp" placeholder="" disabled value="{{.KeyName}}">
+                <label class="form-label" for="KeyName">KeyName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyNumber">KeyNumber</label>
-                <input type="text" class="form-control" id="KeyNumber" aria-describedby="KeyNumberHelp" placeholder="" disabled="disabled" value="{{.KeyNumber}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyNumber" aria-describedby="KeyNumberHelp" placeholder="" disabled value="{{.KeyNumber}}">
+                <label class="form-label" for="KeyNumber">KeyNumber</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyDirection">KeyDirection</label>
-                <input type="text" class="form-control" id="KeyDirection" aria-describedby="KeyDirectionHelp" placeholder="" disabled="disabled" value="{{.KeyDirection}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyDirection" aria-describedby="KeyDirectionHelp" placeholder="" disabled value="{{.KeyDirection}}">
+                <label class="form-label" for="KeyDirection">KeyDirection</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="KeyType">KeyType</label>
-                <input type="text" class="form-control" id="KeyType" aria-describedby="KeyTypeHelp" placeholder="" disabled="disabled" value="{{.KeyType}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="KeyType" aria-describedby="KeyTypeHelp" placeholder="" disabled value="{{.KeyType}}">
+                <label class="form-label" for="KeyType">KeyType</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="FullName">FullName</label>
-                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled="disabled" value="{{.FullName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}">
+                <label class="form-label" for="FullName">FullName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Address">Address</label>
-                <input type="text" class="form-control" id="Address" aria-describedby="AddressHelp" placeholder="" disabled="disabled" value="{{.Address}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Address" aria-describedby="AddressHelp" placeholder="" disabled value="{{.Address}}">
+                <label class="form-label" for="Address">Address</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="PhoneNo">PhoneNo</label>
-                <input type="text" class="form-control" id="PhoneNo" aria-describedby="PhoneNoHelp" placeholder="" disabled="disabled" value="{{.PhoneNo}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="PhoneNo" aria-describedby="PhoneNoHelp" placeholder="" disabled value="{{.PhoneNo}}">
+                <label class="form-label" for="PhoneNo">PhoneNo</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Country">Country</label>
-                <input type="text" class="form-control" id="Country" aria-describedby="CountryHelp" placeholder="" disabled="disabled" value="{{.Country}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Country" aria-describedby="CountryHelp" placeholder="" disabled value="{{.Country}}">
+                <label class="form-label" for="Country">Country</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Bic">Bic</label>
-                <input type="text" class="form-control" id="Bic" aria-describedby="BicHelp" placeholder="" disabled="disabled" value="{{.Bic}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Bic" aria-describedby="BicHelp" placeholder="" disabled value="{{.Bic}}">
+                <label class="form-label" for="Bic">Bic</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Iban">Iban</label>
-                <input type="text" class="form-control" id="Iban" aria-describedby="IbanHelp" placeholder="" disabled="disabled" value="{{.Iban}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Iban" aria-describedby="IbanHelp" placeholder="" disabled value="{{.Iban}}">
+                <label class="form-label" for="Iban">Iban</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="AccountNo">AccountNo</label>
-                <input type="text" class="form-control" id="AccountNo" aria-describedby="AccountNoHelp" placeholder="" disabled="disabled" value="{{.AccountNo}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="AccountNo" aria-describedby="AccountNoHelp" placeholder="" disabled value="{{.AccountNo}}">
+                <label class="form-label" for="AccountNo">AccountNo</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="FedWireNo">FedWireNo</label>
-                <input type="text" class="form-control" id="FedWireNo" aria-describedby="FedWireNoHelp" placeholder="" disabled="disabled" value="{{.FedWireNo}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="FedWireNo" aria-describedby="FedWireNoHelp" placeholder="" disabled value="{{.FedWireNo}}">
+                <label class="form-label" for="FedWireNo">FedWireNo</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SortCode">SortCode</label>
-                <input type="text" class="form-control" id="SortCode" aria-describedby="SortCodeHelp" placeholder="" disabled="disabled" value="{{.SortCode}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="SortCode" aria-describedby="SortCodeHelp" placeholder="" disabled value="{{.SortCode}}">
+                <label class="form-label" for="SortCode">SortCode</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="BankName">BankName</label>
-                <input type="text" class="form-control" id="BankName" aria-describedby="BankNameHelp" placeholder="" disabled="disabled" value="{{.BankName}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="BankName" aria-describedby="BankNameHelp" placeholder="" disabled value="{{.BankName}}">
+                <label class="form-label" for="BankName">BankName</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="BankPinCode">BankPinCode</label>
-                <input type="text" class="form-control" id="BankPinCode" aria-describedby="BankPinCodeHelp" placeholder="" disabled="disabled" value="{{.BankPinCode}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="BankPinCode" aria-describedby="BankPinCodeHelp" placeholder="" disabled value="{{.BankPinCode}}">
+                <label class="form-label" for="BankPinCode">BankPinCode</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="BankAddress">BankAddress</label>
-                <input type="text" class="form-control" id="BankAddress" aria-describedby="BankAddressHelp" placeholder="" disabled="disabled" value="{{.BankAddress}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="BankAddress" aria-describedby="BankAddressHelp" placeholder="" disabled value="{{.BankAddress}}">
+                <label class="form-label" for="BankAddress">BankAddress</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Reason">Reason</label>
-                <input type="text" class="form-control" id="Reason" aria-describedby="ReasonHelp" placeholder="" disabled="disabled" value="{{.Reason}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Reason" aria-describedby="ReasonHelp" placeholder="" disabled value="{{.Reason}}">
+                <label class="form-label" for="Reason">Reason</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="BankSettlementAcct">BankSettlementAcct</label>
-                <input type="text" class="form-control" id="BankSettlementAcct" aria-describedby="BankSettlementAcctHelp" placeholder="True" disabled="disabled" value="{{.BankSettlementAcct}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="BankSettlementAcct" aria-describedby="BankSettlementAcctHelp" placeholder="True" disabled value="{{.BankSettlementAcct}}">
+                <label class="form-label" for="BankSettlementAcct">BankSettlementAcct</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="UpdatedUserId">UpdatedUserId</label>
-                <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled="disabled" value="{{.UpdatedUserId}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled value="{{.UpdatedUserId}}">
+                <label class="form-label" for="UpdatedUserId">UpdatedUserId</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Country_Lookup">Country_Lookup</label>
-                <input type="text" class="form-control" id="Country_Lookup" aria-describedby="Country_LookupHelp" placeholder="" disabled="disabled" value="{{.Country_Lookup}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Country_Lookup" aria-describedby="Country_LookupHelp" placeholder="" disabled value="{{.Country_Lookup}}">
+                <label class="form-label" for="Country_Lookup">Country_Lookup</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Firm_Lookup">Firm_Lookup</label>
-                <input type="text" class="form-control" id="Firm_Lookup" aria-describedby="Firm_LookupHelp" placeholder="" disabled="disabled" value="{{.Firm_Lookup}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Firm_Lookup" aria-describedby="Firm_LookupHelp" placeholder="" disabled value="{{.Firm_Lookup}}">
+                <label class="form-label" for="Firm_Lookup">Firm_Lookup</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Centre_Lookup">Centre_Lookup</label>
-                <input type="text" class="form-control" id="Centre_Lookup" aria-describedby="Centre_LookupHelp" placeholder="" disabled="disabled" value="{{.Centre_Lookup}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Centre_Lookup" aria-describedby="Centre_LookupHelp" placeholder="" disabled value="{{.Centre_Lookup}}">
+                <label class="form-label" for="Centre_Lookup">Centre_Lookup</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Currency_Lookup">Currency_Lookup</label>
-                <input type="text" class="form-control" id="Currency_Lookup" aria-describedby="Currency_LookupHelp" placeholder="" disabled="disabled" value="{{.Currency_Lookup}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Currency_Lookup" aria-describedby="Currency_LookupHelp" placeholder="" disabled value="{{.Currency_Lookup}}">
+                <label class="form-label" for="Currency_Lookup">Currency_Lookup</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Status_Extra">Status_Extra</label>
-                <input type="text" class="form-control" id="Status_Extra" aria-describedby="Status_ExtraHelp" placeholder="" disabled="disabled" value="{{.Status_Extra}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Status_Extra" aria-describedby="Status_ExtraHelp" placeholder="" disabled value="{{.Status_Extra}}">
+                <label class="form-label" for="Status_Extra">Status_Extra</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="Reason">Reason</label>
-                <input type="text" class="form-control" id="Reason" aria-describedby="ReasonHelp" placeholder="" disabled="disabled" value="{{.Reason}}">
+<div class="row">
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control" id="Reason" aria-describedby="ReasonHelp" placeholder="" disabled value="{{.Reason}}">
+                <label class="form-label" for="Reason">Reason</label>
               </div>
             </div>
         </div>
 
       </div>
     </form>
-  </div>
-{{template "footer" .}}
-</body>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

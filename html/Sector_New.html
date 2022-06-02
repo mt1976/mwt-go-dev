@@ -1,35 +1,32 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
-    <form action="/SectorSave?Sector={{.Code}}" method="GET" class="form">
+{{template "bodydefinition" .}}
+    <form action="/SectorSave/" method="GET" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
-            </div>
-            <div class="col">
+            <div class="col h3">{{.Title}}</div>
+            <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
               
-                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/SectorSave&Sector={{.Code}}" onclick="/SectorSave/?Sector={{.Code}}" title="Save Sector"></i>&nbsp;&nbsp;Save</button>
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/SectorSave/" onclick="/SectorSave/" title="Save Sector"></i>&nbsp;&nbsp;Save</button>
               
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Sector"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
             <div class="row">
-              <div class="col-sm">
-                <label for="Code" >Code</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required>
+                <label class="form-label" for="Code" >Code</label>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm">
-                <label for="Name" >Name</label>
+              <div class="form-outline mb-3">
                 <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" >
+                <label class="form-label" for="Name" >Name</label>
               </div>
             </div>
 
@@ -37,6 +34,6 @@
         </div>
       </div>
     </form>
-  </div>
-  {{template "footer" .}}
-</body>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

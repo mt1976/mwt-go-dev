@@ -1,155 +1,142 @@
-/* bootstrap.min.css */
-:root {
-  --custom-primary-colour: #322a77;
-  --custom-secondary-colour: #666666;
-  --custom-primary-light: #FFFFFF;
-  --custom-primary-dark: #221D53;
-  --custom-font-family: 'Raleway', sans-serif;
-  --custom-code-colour: #dd4814;
-  --custom-grey: #dedede;
-  --custom-placeholder: #aeaeae;
-  --custom-tertiary: #34e1eb;
-  --custom-primary-hover: #aaa;
-  --custom-primary-border: #d9d7f1;
-}
-
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
 body {
-
-  background: linear-gradient(to right top, #322a77, #6cdbeb);
-  font-family: var(--custom-font-family);
-  align-items: center;
-  align-content: center;
+    margin: 0;
 }
 
-.hdrimage{
-  margin-top: 20px;
-  margin-bottom: 20px;
+.hdrimage {
+    color: #322a77;
 }
 
-.btn-primary {
-  color: white;
-  background-color: var(--custom-primary-colour);
-  border-color: var(--custom-primary-colour);
+.btn {
+    color: #fff;
+    background-color: #322a77;
 }
 
-.text-primary {
-  color: var(--custom-primary-colour) !important;
-  font-weight: lighter !important;
+h1 {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 48px;
 }
 
-.text-primary-list {
-  color: var(--custom-primary-colour) !important;
+p {
+    font-family: "Lato", sans-serif;
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: #333333;
 }
-
-.border-primary {
-  color: var(--custom-primary-colour) !important;
-  border-color: var(--custom-primary-border) !important;
-}
-
-
-.text-note {
-  font-size: 12px;
-}
-
-.btn-outline-primary {
-  color: var(--custom-primary-colour);
-  border-color: var(--custom-primary-colour);
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--custom-primary-colour);
-  border-color: var(--custom-primary-colour);
-}
-
-.btn-primary:hover {
-  background-color: var(--custom-primary-dark);
-  border-color: var(--custom-primary-dark);
-}
-
-.btn-primary:focus, .btn-primary.focus {
-  box-shadow: 0 0 0 .2rem rgba(50, 42, 119, 0.5);
-  background-color: var(--custom-primary-dark);
-}
-
-.btn-primary:active, .btn-primary.active {
-  box-shadow: 0 0 0 .2rem rgba(50, 42, 119, 0.5);
-  background-color: var(--custom-primary-dark);
-}
-
-
-.card-header .row .form-control {
-  color: var(--custom-primary-colour);
-  font-weight: bold !important;
-  font-variant: small-caps;
-}
-
-.card-header {
-  color: var(--custom-primary-colour);
-  font-weight: bold !important;
-  font-size: 1.5rem !important;
-}
-
 
 .card {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
-  background: white;
-  border-radius: 7px;
-  margin-top: 6rem;
-  background: white;
-  background: linear-gradient(to right bottom,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.3));
-  z-index: 2;
-  backdrop-filter: blur(2rem);
+    margin-top: 100rem;
+    color: #121212;
+    background-color: rgba(255, 255, 255, .90);
 }
 
-
-.form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--custom-placeholder);
-  opacity: 1;
-  font-weight: light;
-}
-
-.form-control:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: var(--custom-placeholder);
-}
-
-.form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: var(--custom-placeholder);
-}
-
-.form-control {
-  background: linear-gradient(to right bottom,
-      rgba(255, 255, 255, .6),
-      rgba(255, 255, 255, .6));
-  border: none;
-  padding: 0.5rem;
-  border-radius: 5px;
+.header {
+    position: fixed-bottom;
+    text-align: center;
+    background: linear-gradient( 60deg, rgba(50, 42, 119, 1) 25%, rgba(140, 43, 220, 1) 100%);
+    color: white;
 }
 
 .input-group-text {
-  color: #322a77;
-  background: linear-gradient(to right bottom,
-      rgba(255, 255, 255, .6),
-      rgba(255, 255, 255, .6));
-  border: none;
-  padding: 0.5rem;
-  border-radius: 5px;
-  margin-right: 1px;
-  margin-left:1px;
+    color: rgba(84, 58, 183, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border: 0;
 }
 
-.apptitle {
-  background: #322A77;
-  background: -webkit-radial-gradient(ellipse farthest-corner at bottom left, #322A77 20%, #34E1EB 80%);
-  background: -moz-radial-gradient(ellipse farthest-corner at bottom left, #322A77 20%, #34E1EB 80%);
-  background: radial-gradient(ellipse farthest-corner at bottom left, #322A77 20%, #34E1EB 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  border: 0;
-  margin: 0;
-  margin-top: 0.2rem;
+.form-control {
+    border: 0;
+}
+
+.logo {
+    width: 50px;
+    fill: white;
+    padding-right: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.inner-header {
+    height: 65vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+    /*Flexbox for containers*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -7px;
+    /*Fix for safari gap*/
+    min-height: 100px;
+    max-height: 150px;
+}
+
+.content {
+    position: relative;
+    height: 20vh;
+    text-align: center;
+    background-color: white;
+}
+
+
+/* Animation */
+
+.parallax>use {
+    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+
+/*Shrinking for mobile*/
+
+@media (max-width: 768px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+    .content {
+        height: 30vh;
+    }
+    h1 {
+        font-size: 24px;
+    }
 }

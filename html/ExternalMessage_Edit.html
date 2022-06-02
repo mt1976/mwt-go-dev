@@ -1,198 +1,226 @@
 {{template "header" .}}
-<body>
-  <div class="container-fluid">
+{{template "bodydefinition" .}}
+
     <form action="/ExternalMessageSave?MessageID={{.MessageID}}" method="GET" class="form">
       <div class="card">
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">
+            <div class="col h3">
               {{.Title}}&nbsp;:&nbsp;<code>{{.MessageID}}</code>
             </div>
-            <div class="col">
-              <div class="btn-group float-right">
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
               
                 <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/ExternalMessageSave/MessageID={{.MessageID}}" onclick="/ExternalMessageSave/MessageID={{.MessageID}}" title="Save ExternalMessage"></i>&nbsp;&nbsp;Save</button>
               
                 <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ExternalMessage"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-outline-secondary" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSId" hidden>SYSId</label>
-                <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="{{.SYSId}}" required>
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="{{.SYSId}}" required />
+                  <label class="form-label" for="SYSId" hidden>SYSId</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageID" >MessageID</label>
-                <input type="text" class="form-control" id="MessageID" name="MessageID" aria-describedby="MessageIDHelp" placeholder=""  value="{{.MessageID}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageID" name="MessageID" aria-describedby="MessageIDHelp" placeholder=""  value="{{.MessageID}}"  />
+                  <label class="form-label" for="MessageID" >MessageID</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageFormat" >MessageFormat</label>
-                <input type="text" class="form-control" id="MessageFormat" name="MessageFormat" aria-describedby="MessageFormatHelp" placeholder=""  value="{{.MessageFormat}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageFormat" name="MessageFormat" aria-describedby="MessageFormatHelp" placeholder=""  value="{{.MessageFormat}}"  />
+                  <label class="form-label" for="MessageFormat" >MessageFormat</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageDeliveredTo" >MessageDeliveredTo</label>
-                <input type="text" class="form-control" id="MessageDeliveredTo" name="MessageDeliveredTo" aria-describedby="MessageDeliveredToHelp" placeholder=""  value="{{.MessageDeliveredTo}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageDeliveredTo" name="MessageDeliveredTo" aria-describedby="MessageDeliveredToHelp" placeholder=""  value="{{.MessageDeliveredTo}}"  />
+                  <label class="form-label" for="MessageDeliveredTo" >MessageDeliveredTo</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageBody" >MessageBody</label>
-                <input type="text" class="form-control" id="MessageBody" name="MessageBody" aria-describedby="MessageBodyHelp" placeholder=""  value="{{.MessageBody}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageBody" name="MessageBody" aria-describedby="MessageBodyHelp" placeholder=""  value="{{.MessageBody}}"  />
+                  <label class="form-label" for="MessageBody" >MessageBody</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageFilename" >MessageFilename</label>
-                <input type="text" class="form-control" id="MessageFilename" name="MessageFilename" aria-describedby="MessageFilenameHelp" placeholder=""  value="{{.MessageFilename}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageFilename" name="MessageFilename" aria-describedby="MessageFilenameHelp" placeholder=""  value="{{.MessageFilename}}"  />
+                  <label class="form-label" for="MessageFilename" >MessageFilename</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageLife" >MessageLife</label>
-                <input type="text" class="form-control" id="MessageLife" name="MessageLife" aria-describedby="MessageLifeHelp" placeholder=""  value="{{.MessageLife}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageLife" name="MessageLife" aria-describedby="MessageLifeHelp" placeholder=""  value="{{.MessageLife}}"  />
+                  <label class="form-label" for="MessageLife" >MessageLife</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageDate" >MessageDate</label>
-                <input type="text" class="form-control" id="MessageDate" name="MessageDate" aria-describedby="MessageDateHelp" placeholder=""  value="{{.MessageDate}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageDate" name="MessageDate" aria-describedby="MessageDateHelp" placeholder=""  value="{{.MessageDate}}"  />
+                  <label class="form-label" for="MessageDate" >MessageDate</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageTime" >MessageTime</label>
-                <input type="text" class="form-control" id="MessageTime" name="MessageTime" aria-describedby="MessageTimeHelp" placeholder=""  value="{{.MessageTime}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageTime" name="MessageTime" aria-describedby="MessageTimeHelp" placeholder=""  value="{{.MessageTime}}"  />
+                  <label class="form-label" for="MessageTime" >MessageTime</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageTimeoutAction" >MessageTimeoutAction</label>
-                <input type="text" class="form-control" id="MessageTimeoutAction" name="MessageTimeoutAction" aria-describedby="MessageTimeoutActionHelp" placeholder=""  value="{{.MessageTimeoutAction}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageTimeoutAction" name="MessageTimeoutAction" aria-describedby="MessageTimeoutActionHelp" placeholder=""  value="{{.MessageTimeoutAction}}"  />
+                  <label class="form-label" for="MessageTimeoutAction" >MessageTimeoutAction</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageACKNAK" >MessageACKNAK</label>
-                <input type="text" class="form-control" id="MessageACKNAK" name="MessageACKNAK" aria-describedby="MessageACKNAKHelp" placeholder=""  value="{{.MessageACKNAK}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageACKNAK" name="MessageACKNAK" aria-describedby="MessageACKNAKHelp" placeholder=""  value="{{.MessageACKNAK}}"  />
+                  <label class="form-label" for="MessageACKNAK" >MessageACKNAK</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseID" >ResponseID</label>
-                <input type="text" class="form-control" id="ResponseID" name="ResponseID" aria-describedby="ResponseIDHelp" placeholder=""  value="{{.ResponseID}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseID" name="ResponseID" aria-describedby="ResponseIDHelp" placeholder=""  value="{{.ResponseID}}"  />
+                  <label class="form-label" for="ResponseID" >ResponseID</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseFilename" >ResponseFilename</label>
-                <input type="text" class="form-control" id="ResponseFilename" name="ResponseFilename" aria-describedby="ResponseFilenameHelp" placeholder=""  value="{{.ResponseFilename}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseFilename" name="ResponseFilename" aria-describedby="ResponseFilenameHelp" placeholder=""  value="{{.ResponseFilename}}"  />
+                  <label class="form-label" for="ResponseFilename" >ResponseFilename</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseBody" >ResponseBody</label>
-                <input type="text" class="form-control" id="ResponseBody" name="ResponseBody" aria-describedby="ResponseBodyHelp" placeholder=""  value="{{.ResponseBody}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseBody" name="ResponseBody" aria-describedby="ResponseBodyHelp" placeholder=""  value="{{.ResponseBody}}"  />
+                  <label class="form-label" for="ResponseBody" >ResponseBody</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseDate" >ResponseDate</label>
-                <input type="text" class="form-control" id="ResponseDate" name="ResponseDate" aria-describedby="ResponseDateHelp" placeholder=""  value="{{.ResponseDate}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseDate" name="ResponseDate" aria-describedby="ResponseDateHelp" placeholder=""  value="{{.ResponseDate}}"  />
+                  <label class="form-label" for="ResponseDate" >ResponseDate</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseTime" >ResponseTime</label>
-                <input type="text" class="form-control" id="ResponseTime" name="ResponseTime" aria-describedby="ResponseTimeHelp" placeholder=""  value="{{.ResponseTime}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseTime" name="ResponseTime" aria-describedby="ResponseTimeHelp" placeholder=""  value="{{.ResponseTime}}"  />
+                  <label class="form-label" for="ResponseTime" >ResponseTime</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseAdditionalInfo" >ResponseAdditionalInfo</label>
-                <input type="text" class="form-control" id="ResponseAdditionalInfo" name="ResponseAdditionalInfo" aria-describedby="ResponseAdditionalInfoHelp" placeholder=""  value="{{.ResponseAdditionalInfo}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseAdditionalInfo" name="ResponseAdditionalInfo" aria-describedby="ResponseAdditionalInfoHelp" placeholder=""  value="{{.ResponseAdditionalInfo}}"  />
+                  <label class="form-label" for="ResponseAdditionalInfo" >ResponseAdditionalInfo</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSCreated" hidden>SYSCreated</label>
-                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  />
+                  <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  />
+                  <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  />
+                  <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSUpdated" hidden>SYSUpdated</label>
-                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  />
+                  <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  />
+                  <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  />
+                  <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageTimeout" >MessageTimeout</label>
-                <input type="text" class="form-control" id="MessageTimeout" name="MessageTimeout" aria-describedby="MessageTimeoutHelp" placeholder=""  value="{{.MessageTimeout}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageTimeout" name="MessageTimeout" aria-describedby="MessageTimeoutHelp" placeholder=""  value="{{.MessageTimeout}}"  />
+                  <label class="form-label" for="MessageTimeout" >MessageTimeout</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageEmitted" >MessageEmitted</label>
-                <input type="text" class="form-control" id="MessageEmitted" name="MessageEmitted" aria-describedby="MessageEmittedHelp" placeholder=""  value="{{.MessageEmitted}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageEmitted" name="MessageEmitted" aria-describedby="MessageEmittedHelp" placeholder=""  value="{{.MessageEmitted}}"  />
+                  <label class="form-label" for="MessageEmitted" >MessageEmitted</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="ResponseRecieved" >ResponseRecieved</label>
-                <input type="text" class="form-control" id="ResponseRecieved" name="ResponseRecieved" aria-describedby="ResponseRecievedHelp" placeholder=""  value="{{.ResponseRecieved}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="ResponseRecieved" name="ResponseRecieved" aria-describedby="ResponseRecievedHelp" placeholder=""  value="{{.ResponseRecieved}}"  />
+                  <label class="form-label" for="ResponseRecieved" >ResponseRecieved</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="MessageClass" >MessageClass</label>
-                <input type="text" class="form-control" id="MessageClass" name="MessageClass" aria-describedby="MessageClassHelp" placeholder=""  value="{{.MessageClass}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="MessageClass" name="MessageClass" aria-describedby="MessageClassHelp" placeholder=""  value="{{.MessageClass}}"  />
+                  <label class="form-label" for="MessageClass" >MessageClass</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm">
-                <label for="AppID" >AppID</label>
-                <input type="text" class="form-control" id="AppID" name="AppID" aria-describedby="AppIDHelp" placeholder=""  value="{{.AppID}}" >
+              
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="AppID" name="AppID" aria-describedby="AppIDHelp" placeholder=""  value="{{.AppID}}"  />
+                  <label class="form-label" for="AppID" >AppID</label>
+                </div>
               </div>
-            </div>
-
-
-</div>
+              
+              
+        </div>
       </div>
     </form>
-  </div>
-  {{template "footer" .}}
-</body>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

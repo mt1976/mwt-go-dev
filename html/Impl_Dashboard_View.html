@@ -1,4 +1,5 @@
 {{template "header" .}}
+
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.esm.js" integrity="sha512-4PEc6QLA4NvPsok3JsQ2Ia+m2oSjz1nvbHIGkD1ArGYvt5g2FNhMD0jYMYj9CIGDZDobXUWLkIN6xwfZa6I5Bg==" crossorigin="anonymous"></script>
@@ -6,20 +7,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/helpers.esm.js" integrity="sha512-8iS3Rz6547/u8CMvP6Crp1j0qvq4dHg/TzFMmkdnFs8m3UJtkGG6L6EDFrlsnSSrsoBO7/PViFOGGiZIhGK5og==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/helpers.esm.min.js" integrity="sha512-JC8H/YEABKWyV0Q/pgk3GfyrUCEiESg3ZM8DMdI8XD4zlwgtFyezG2dSenJ9pxAtJU2Bds6YNKYThXaLQrf9bw==" crossorigin="anonymous"></script>
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
-<body>
+{{template "bodydefinition" .}}
   <main>
     <form action="/home" method="POST">
       <div class="container-fluid">
 
-        <h1 class="h2">{{.Title}}</h1>
+        <h2>Dashboard Example</h2>
 
 
         <div class="row my-4">
           <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <div class="card">
-              <h5 class="card-header">Counterparties</h5>
+              <h4 class="card-header">Counterparties</h4>
               <div class="card-body">
-                <h5 class="card-title">{{.TotCounterparties}}</h5>
+                <h1 class="display-2">{{.TotCounterparties}}</h1>
                 <p class="card-text"></p>
                 <p class="card-text text-success"></p>
               </div>
@@ -27,9 +28,9 @@
           </div>
           <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="card">
-              <h5 class="card-header">GDPR Expirys</h5>
+              <h4 class="card-header">GDPR Expirys</h4>
               <div class="card-body">
-                <h5 class="card-title">{{.NoGDPRExp}}</h5>
+                <h1 class="display-2">{{.NoGDPRExp}}</h1>
                 <p class="card-text"></p>
                 <p class="card-text text-success"></p>
               </div>
@@ -37,9 +38,9 @@
           </div>
           <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="card">
-              <h5 class="card-header">LEI Expirys</h5>
+              <h4 class="card-header">LEI Expirys</h4>
               <div class="card-body">
-                <h5 class="card-title">{{.NoLEIExp}}</h5>
+                <h1 class="display-2">{{.NoLEIExp}}</h1>
                 <p class="card-text"></p>
                 <p class="card-text text-danger"></p>
               </div>
@@ -47,9 +48,9 @@
           </div>
           <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
             <div class="card">
-              <h5 class="card-header">MiFID Reviews</h5>
+              <h4 class="card-header">MiFID Reviews</h4>
               <div class="card-body">
-                <h5 class="card-title">{{.NoMiFIDRev}}</h5>
+                <h1 class="display-2">{{.NoMiFIDRev}}</h1>
                 <p class="card-text"></p>
                 <p class="card-text text-success"></p>
               </div>
@@ -60,7 +61,7 @@
         <div class="row">
           <div class="col-6">
             <div class="card">
-              <h5 class="card-header">Traffic last 6 months</h5>
+              <h3 class="card-header">Traffic last 6 months</h3>
               <div class="card-body">
                 <canvas id="myChart" width="400" height="400"></canvas>
                 <script>
@@ -88,7 +89,7 @@
           <div class="col-6">
 
             <div class="card">
-              <h5 class="card-header">Counteparty/Sectors</h5>
+              <h4 class="card-header">Counteparty/Sectors</h4>
               <div class="card-body">
                 <canvas id="cptySectorChart" width="300" height="300"></canvas>
                 <script>
@@ -132,6 +133,5 @@
     </form>
   </main>
 
-  {{template "footer" .}}
-
-</body>
+  {{template "userfooter" .}}
+{{template "pagefooter" .}}

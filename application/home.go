@@ -127,6 +127,6 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// 	logs.Error("Broker_StoreSystem", err)
 	// }
 
-	ExecuteTemplate("home", w, r, homePage)
+	ExecuteTemplate("Impl_Home", w, r, homePage)
 
 }

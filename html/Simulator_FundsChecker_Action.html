@@ -1,11 +1,6 @@
-  {{template "header" .}}
+{{template "header" .}}
+{{template "bodydefinition" .}}
 
-
-<body>
-
- 
-
-  <div class="container-fluid">
     <form action="/Simulator_SienaFundsCheckerSubmit/?FundsCheck={{.Id}}" method="GET">
     <div hidden="hidden">
       <input type="text" id="ID" name="ID" value="{{.Id}}">
@@ -13,26 +8,30 @@
     <div class="card">
       <div class="card-header font-weight-bold">
         <div class="row">
-          <div class="col">{{.Title}}<code></code></div>
-            <div class="col">
-              <div class="btn-group float-right">
-                <button type="submit" value="" class="btn btn-outline-primary"><i class="far fa-paper-plane" method="GET" onclick="/Simulator_SienaFundsCheckerSubmit/?FundsCheck={{.Id}}" formaction="/Simulator_SienaFundsCheckerSubmit/?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
-                <button type="button"  class="btn  btn-outline-secondary" method="POST" onclick="history.back()">
-                  <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-              </div>
+          <div class="col h3">Back Office - Balance Check Response</div>
+               <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    <button type="submit" value="" class="btn btn-primary"><i class="far fa-paper-plane" method="GET" onclick="/Simulator_SienaFundsCheckerSubmit/?FundsCheck={{.Id}}" formaction="/Simulator_SienaFundsCheckerSubmit/?FundsCheck={{.Id}}"></i>&nbsp;&nbsp;Submit</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+
             </div>
+           
         </div>
       </div>
 
       <div class="card-body">
-      <br><h4>Identity</h4>
+      <h4>Identity</h4>
           <div class="row">
             <div class="col-sm">
               <label for="Name">Name</label>
               <input type="text" class="form-control" id="Name" name="Name" aria-describedby="Name" placeholder="Enter Name" disabled="disabled" value="{{.Name}}" maxlength="10">
             </div>
             <div class="col-sm">
-              <label for="Id">Id</label>
+              <label for="Id">File Name</label>
               <input type="text" class="form-control" id="Id" name="Id" aria-describedby="Id" placeholder="Enter Id" disabled="disabled" value="{{.Id}}" maxlength="10">
             </div>
             <div class="col-sm">
@@ -101,19 +100,19 @@
           </div>
           <hr>
           <h4>Response</h4>
-          <div style="height: 10px"></div>
+         
           <div class="row highlight" style="padding-top:15;padding-bottom: 15">
             <div class="col input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">AMOUNT</span>
               </div>
-              <input type="text" class="form-control" placeholder="Balance" aria-label="Balance" id="Balance" name="Balance" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.AMOUNT}}">
+              <input type="number" class="form-control" placeholder="Balance" aria-label="Balance" id="Balance" name="Balance" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.AMOUNT}}">
             </div>
             <div class="col input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">ACTION</span>
               </div>
-              <select class="form-control" name="ResultCode" id="ResultCode">
+              <select class="select" name="ResultCode" id="ResultCode">
                 <option value="1">Approve</option>
                 <option value="0">Reject</option>
               </select>
@@ -121,5 +120,5 @@
           </div>
         </div>
       </form>
-    </div>
-  </body>
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

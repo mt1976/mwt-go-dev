@@ -9,7 +9,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 13/12/2021 at 17:02:22
+// Date & Time		    : 31/05/2022 at 13:06:03
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -112,8 +112,8 @@ func account_MethodPost(w http.ResponseWriter, r *http.Request) {
 	var t dm.Account
 	err := decoder.Decode(&t)
 	if err != nil {
+		w.WriteHeader(int(http.StatusNotFound))
 		panic(err)
-			w.WriteHeader(int(http.StatusNotFound))
 	} else {
 		w.WriteHeader(int(http.StatusOK))
 	}
