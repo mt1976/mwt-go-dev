@@ -1,15 +1,15 @@
 package application
 
 // ----------------------------------------------------------------
-// Automatically generated  "/application/sector_api.go"
+// Automatically generated  "/application/simulatorswift_api.go"
 // ----------------------------------------------------------------
 // Package              : application
-// Object 			    : Sector (sector)
-// Endpoint 	        : Sector (Sector)
+// Object 			    : SimulatorSWIFT (simulatorswift)
+// Endpoint 	        : SimulatorSWIFT (ID)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 13:00:16
+// Date & Time		    : 05/06/2022 at 12:56:56
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,8 +24,8 @@ import (
 	dm      "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
-//Sector_Handler is the handler for the api calls
-func Sector_Handler(w http.ResponseWriter, r *http.Request) {
+//SimulatorSWIFT_Handler is the handler for the api calls
+func SimulatorSWIFT_Handler(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	//TODO: Add your security validation here
 	//        new => POST
@@ -43,37 +43,37 @@ func Sector_Handler(w http.ResponseWriter, r *http.Request) {
 
 	switch httpMethod {
 	case http.MethodGet:
-		sector_MethodGet(w, r)
+		simulatorswift_MethodGet(w, r)
 
 	case http.MethodPost:
-		sector_MethodPost(w, r)
+		simulatorswift_MethodPost(w, r)
 
 	case http.MethodPut:
-		sector_MethodPost(w, r)
+		simulatorswift_MethodPost(w, r)
 	case http.MethodDelete:
 
-		sector_MethodDelete(w, r)
+		simulatorswift_MethodDelete(w, r)
 	default:
 		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 	}
 }
 
-// Handles GET requests for Sector
-func sector_MethodGet(w http.ResponseWriter, r *http.Request) {
+// Handles GET requests for SimulatorSWIFT
+func simulatorswift_MethodGet(w http.ResponseWriter, r *http.Request) {
 	//logs.Information("PATH", r.URL.Path)
-	searchID := core.GetURLparam(r, dm.Sector_QueryString)
+	searchID := core.GetURLparam(r, dm.SimulatorSWIFT_QueryString)
 	//logs.Information("GET", searchID)
 	w.Header().Set("Content-Type", "application/json")
 
 	if searchID == "" {
 		//Get All Entities
 		//logs.Information("GET", "All")
-		noRecs, records, _ := dao.Sector_GetList()
+		noRecs, records, _ := dao.SimulatorSWIFT_GetList()
 		var ci core.ContentList
 		ci.Count = noRecs
-		ci.Key = dm.Sector_QueryString
+		ci.Key = dm.SimulatorSWIFT_QueryString
 		for _, v := range records {
-			ciContent := core.ContentListItem{ID:v.Code,Query:"?" + ci.Key +"="+ v.Code}
+			ciContent := core.ContentListItem{ID:v.ID,Query:"?" + ci.Key +"="+ v.ID}
 			ci.Items= append(ci.Items, ciContent)
 		}
 		json_data, _ := json.Marshal(ci)
@@ -88,12 +88,12 @@ func sector_MethodGet(w http.ResponseWriter, r *http.Request) {
 
 	} else {
 		//Get a specific entity
-		_, record, _ := dao.Sector_GetByID(searchID)
+		_, record, _ := dao.SimulatorSWIFT_GetByID(searchID)
 		//spew.Dump(record)
 		json_data, _ := json.Marshal(record)
 		w.Write(json_data)
 
-		if record.Code == "" {
+		if record.ID == "" {
 		    w.WriteHeader(int(http.StatusNotFound))
 		} else {
 			w.WriteHeader(int(http.StatusOK))
@@ -103,13 +103,13 @@ func sector_MethodGet(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//Handles POST & PUT requests for Sector
-func sector_MethodPost(w http.ResponseWriter, r *http.Request) {
+//Handles POST & PUT requests for SimulatorSWIFT
+func simulatorswift_MethodPost(w http.ResponseWriter, r *http.Request) {
 	//logs.Processing("POST")
 	//fmt.Printf("r.Body: %v\n", r.Body)
 
 	decoder := json.NewDecoder(r.Body)
-	var t dm.Sector
+	var t dm.SimulatorSWIFT
 	err := decoder.Decode(&t)
 	if err != nil {
 		w.WriteHeader(int(http.StatusNotFound))
@@ -118,7 +118,7 @@ func sector_MethodPost(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(int(http.StatusOK))
 	}
 	//spew.Dump(t)
-	err = dao.Sector_StoreSystem(t)
+	err = dao.SimulatorSWIFT_StoreSystem(t)
 	//logs.Processing("POST BACK")
 	//logs.Information("POST", err.Error())
 	if err != nil {
@@ -129,13 +129,13 @@ func sector_MethodPost(w http.ResponseWriter, r *http.Request) {
 	}
 	//logs.Success("POST")
 }
-//Handles DELETE requests for Sector
-func sector_MethodDelete(w http.ResponseWriter, r *http.Request) {
+//Handles DELETE requests for SimulatorSWIFT
+func simulatorswift_MethodDelete(w http.ResponseWriter, r *http.Request) {
 	//logs.Processing("DELETE")
-	deleteID := core.GetURLparam(r, dm.Sector_QueryString)
+	deleteID := core.GetURLparam(r, dm.SimulatorSWIFT_QueryString)
 	//logs.Information("DELETE", deleteID)
 
-	dao.Sector_Delete(deleteID)
+	dao.SimulatorSWIFT_Delete(deleteID)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(int(http.StatusOK))

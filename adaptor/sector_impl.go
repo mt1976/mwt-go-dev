@@ -22,7 +22,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Sector_Delete_Impl(id string) error {
+func Sector_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Sector_Delete: " + id
@@ -37,10 +37,10 @@ func Sector_Delete_Impl(id string) error {
 	return er
 }
 
-func Sector_Update_Impl(item dm.Sector, usr string) error {
+func Sector_Update_impl(id string, item dm.Sector, usr string) error {
 	var er error
 
-	message := "Implement Sector_Update: " + item.Code
+	message := "Implement Sector_Update: " + item.Code + id
 
 	// Implement Sector_Update_Impl in sector_Impl.go
 	// Uncomment the line below to use the implementation
@@ -51,3 +51,5 @@ func Sector_Update_Impl(item dm.Sector, usr string) error {
 	logs.Success(message)
 	return er
 }
+
+func Sector_NewID_impl(dm.Sector) string { return "" }

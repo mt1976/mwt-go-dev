@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
+// Date & Time		    : 05/06/2022 at 13:00:16
 // Who & Where		    : matttownsend on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,14 +40,14 @@ type Sector_Page struct {
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
 		Code string
 		Name string
 	
 	
 	
 	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 }
 
 const (
@@ -120,17 +120,17 @@ func Sector_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 		//
 
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -161,15 +161,15 @@ func Sector_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
 pageDetail.Code = rD.Code
 pageDetail.Name = rD.Name
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -191,12 +191,12 @@ func Sector_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Sector
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
 		item.Code = r.FormValue(dm.Sector_Code)
 		item.Name = r.FormValue(dm.Sector_Name)
 	
 
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 
 	dao.Sector_Store(item,r)	
 
@@ -224,13 +224,13 @@ func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 
 		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
 pageDetail.Code = ""
 pageDetail.Name = ""
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
+// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
 		//
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)

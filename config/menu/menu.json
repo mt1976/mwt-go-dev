@@ -367,7 +367,18 @@
             "HREF": "/ExternalMessageList",
             "OnClick": "",
             "TextClass": "text-info"
+        },
+
+        {
+            "ID": "d72ad60b-59d2-4bcf-91a8-76f21437f99f",
+            "Text": "SWIFT Simulator",
+            "Glyph": "fas fa-globe",
+            "HREF": "/SimulatorSWIFTList",
+            "OnClick": "",
+            "TextClass": "text-primary"
         }
+
+
 
     ]
 }

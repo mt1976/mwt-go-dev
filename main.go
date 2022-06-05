@@ -128,6 +128,7 @@ func main() {
 
 	application.ExternalMessage_Publish(*mux)
 	application.Catalog_Publish(*mux)
+	application.SimulatorSWIFT_Publish(*mux)
 	// End of Endpoints
 
 	logs.Header("Publish API")

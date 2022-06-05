@@ -88,6 +88,7 @@ const (
 	Dispatcher               = "Dispatcher"
 	Aquirer                  = "Aquirer"
 	HouseKeeping             = "HouseKeeping"
+	General                  = "General"
 	Character_MapTo          = "⇄"
 	Character_Job            = "⚙️"
 	Character_Heart          = "🫀"
