@@ -1,0 +1,89 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="far fa-clock me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Scheduler as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Scheduler"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          
+         
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Schedule</th>
+                          <th class="text-center">Type</th>
+                          <th class="text-center">Started</th>
+                          <th class="text-center">Lastrun</th>
+                          <th class="text-center">Message</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                      
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+            
+                          <td class="align-middle">{{.Description}}</td>
+                          <td class="align-middle">{{.Human}}</td>
+                           <td class="align-middle">{{.Type}}</td>
+                          <td class="align-middle">{{.Started}}</td>
+                          <td class="align-middle">{{.Lastrun}}</td>
+                          <td class="align-middle">{{.Message}}</td>
+                          
+                          
+                          
+                          
+                         
+                          
+                          
+                          
+                          
+                  
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <div class="btn-group">
+                            <button type="submit" value="" class="btn btn-info" formaction="/ScheduleView?Schedule={{.Id}}" method="POST" title="View Scheduler"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </div>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

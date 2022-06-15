@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:11
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:00
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,70 +25,54 @@ import (
 //credentials_PageList provides the information for the template for a list of Credentialss
 type Credentials_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Credentials
 }
+//Credentials_Redirect provides a page to return to aftern an action
+const (
+	Credentials_Redirect = dm.Credentials_PathList
+)
 
 //credentials_Page provides the information for the template for an individual Credentials
 type Credentials_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		SYSId string
-		Id string
-		Username string
-		Password string
-		Firstname string
-		Lastname string
-		Knownas string
-		Email string
-		Issued string
-		Expiry string
-		RoleType string
-		Brand string
-		SYSCreated string
-		SYSWho string
-		SYSHost string
-		SYSUpdated string
-		SYSCreatedBy string
-		SYSCreatedHost string
-		SYSUpdatedBy string
-		SYSUpdatedHost string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	Id         string
+	Username         string
+	Password         string
+	Firstname         string
+	Lastname         string
+	Knownas         string
+	Email         string
+	Issued         string
+	Expiry         string
+	RoleType         string
+	Brand         string
+	SYSCreated         string
+	SYSWho         string
+	SYSHost         string
+	SYSUpdated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Credentials_Redirect = dm.Credentials_PathList
-)
+
 
 //Credentials_Publish annouces the endpoints available for this object
 func Credentials_Publish(mux http.ServeMux) {
@@ -102,6 +86,7 @@ func Credentials_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Credentials_Title)
     //No API
 }
+
 
 //Credentials_HandlerList is the handler for the list page
 func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -133,6 +118,7 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Credentials_HandlerView is the handler used to View a page
 func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -155,42 +141,14 @@ func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.Username = rD.Username
-pageDetail.Password = rD.Password
-pageDetail.Firstname = rD.Firstname
-pageDetail.Lastname = rD.Lastname
-pageDetail.Knownas = rD.Knownas
-pageDetail.Email = rD.Email
-pageDetail.Issued = rD.Issued
-pageDetail.Expiry = rD.Expiry
-pageDetail.RoleType = rD.RoleType
-pageDetail.Brand = rD.Brand
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = credentials_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Credentials_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Credentials_HandlerEdit is the handler used generate the Edit page
 func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -214,41 +172,13 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.Username = rD.Username
-pageDetail.Password = rD.Password
-pageDetail.Firstname = rD.Firstname
-pageDetail.Lastname = rD.Lastname
-pageDetail.Knownas = rD.Knownas
-pageDetail.Email = rD.Email
-pageDetail.Issued = rD.Issued
-pageDetail.Expiry = rD.Expiry
-pageDetail.RoleType = rD.RoleType
-pageDetail.Brand = rD.Brand
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = credentials_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Credentials_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Credentials_HandlerSave is the handler used process the saving of an Credentials
 func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -263,7 +193,9 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Credentials
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.SYSId = r.FormValue(dm.Credentials_SYSId)
 		item.Id = r.FormValue(dm.Credentials_Id)
 		item.Username = r.FormValue(dm.Credentials_Username)
@@ -285,13 +217,13 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Credentials_Store(item,r)	
-
 	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
 }
+
 
 //Credentials_HandlerNew is the handler used process the creation of an Credentials
 func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -313,39 +245,14 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = ""
-pageDetail.Id = ""
-pageDetail.Username = ""
-pageDetail.Password = ""
-pageDetail.Firstname = ""
-pageDetail.Lastname = ""
-pageDetail.Knownas = ""
-pageDetail.Email = ""
-pageDetail.Issued = ""
-pageDetail.Expiry = ""
-pageDetail.RoleType = ""
-pageDetail.Brand = ""
-pageDetail.SYSCreated = ""
-pageDetail.SYSWho = ""
-pageDetail.SYSHost = ""
-pageDetail.SYSUpdated = ""
-pageDetail.SYSCreatedBy = ""
-pageDetail.SYSCreatedHost = ""
-pageDetail.SYSUpdatedBy = ""
-pageDetail.SYSUpdatedHost = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = credentials_PopulatePage(dm.Credentials{} , pageDetail) 
 
 	ExecuteTemplate(dm.Credentials_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Credentials_HandlerDelete is the handler used process the deletion of an Credentials
 func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -363,3 +270,81 @@ func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Credentials Page 
+func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Credentials_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.Username = rD.Username
+	pageDetail.Password = rD.Password
+	pageDetail.Firstname = rD.Firstname
+	pageDetail.Lastname = rD.Lastname
+	pageDetail.Knownas = rD.Knownas
+	pageDetail.Email = rD.Email
+	pageDetail.Issued = rD.Issued
+	pageDetail.Expiry = rD.Expiry
+	pageDetail.RoleType = rD.RoleType
+	pageDetail.Brand = rD.Brand
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-object-group me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -56,11 +56,9 @@
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/ProductView?Code={{.Code}}" method="POST" title="View Product Group"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/ProductEdit?Code={{.Code}}" method="POST" title="Edit Product Group"><i class="fas fa-edit"></i></button>
-                            <button type="submit" value="" class="btn btn-danger" formaction="/ProductDelete?Code={{.Code}}" method="POST" title="Delete Product Group"><i class="fas fa-trash"></i></button>
-                            </div>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/ProductView?Code={{.Code}}" method="POST" title="View Product Group"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/ProductEdit?Code={{.Code}}" method="POST" title="Edit Product Group"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/ProductDelete?Code={{.Code}}" method="POST" title="Delete Product Group"><i class="fas fa-trash"></i></button>
                             </form>
                           </td>
                         </tr>

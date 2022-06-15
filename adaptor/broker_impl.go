@@ -22,29 +22,29 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Broker_Delete_Impl(id string) error {
+func Broker_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Broker_Delete: " + id
 
-	// Implement Broker_Delete_Impl in broker_Impl.go
+	// Implement Broker_Delete_impl in broker_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Broker_Delete_Impl(item)
+	// er := Broker_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Broker_Update_Impl(item dm.Broker, usr string) error {
+func Broker_Update_impl(id string, item dm.Broker, usr string) error {
 
-	message := "Implement Broker_Update: " + item.Code
+	message := "Implement Broker_Update: " + item.Code + id
 
-	// Implement Broker_Update_Impl in broker_Impl.go
+	// Implement Broker_Update_impl in broker_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Broker_Update_Impl(item)
+	// er := Broker_Update_impl(item)
 	//
 
 	var sienaKeys []StaticImport_KeyField
@@ -69,3 +69,5 @@ func Broker_Update_Impl(item dm.Broker, usr string) error {
 	}
 	return nil
 }
+
+func Broker_NewID_impl(rec dm.Broker) string { return rec.Code }

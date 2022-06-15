@@ -53,26 +53,3 @@ func Payee_GetListByCounterpartyID(id string) (int, []dm.Payee, error) {
 	count, sienaPayeeList, er := Payee_GetByCounterparty(parts[0], parts[1])
 	return count, sienaPayeeList, er
 }
-
-func payee_Status_Extra(r dm.Payee) string {
-
-	val := ""
-	if r.SourceTable == "" {
-		logs.Warning("SourceTable is empty for " + r.FullName)
-		return ""
-	}
-
-	splitSource := strings.Split(r.SourceTable, ".")
-
-	if splitSource[1] == "Payee" {
-		val = "Authorised"
-	} else {
-		val = "Pending"
-	}
-
-	return val
-}
-
-func payee_Reason_Override(r dm.Payee) string {
-	return r.Reason
-}

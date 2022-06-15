@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:07
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:49
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,48 +25,43 @@ import (
 //book_PageList provides the information for the template for a list of Books
 type Book_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Book
 }
+//Book_Redirect provides a page to return to aftern an action
+const (
+	Book_Redirect = dm.Book_PathList
+)
 
 //book_Page provides the information for the template for an individual Book
 type Book_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		BookName string
-		FullName string
-		PLManage string
-		PLTransfer string
-		DerivePL string
-		CostOfCarry string
-		CostOfFunding string
-		LotAllocationMethod string
-		InternalId string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	BookName         string
+	FullName         string
+	PLManage         string
+	PLTransfer         string
+	DerivePL         string
+	CostOfCarry         string
+	CostOfFunding         string
+	LotAllocationMethod         string
+	InternalId         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Book_Redirect = dm.Book_PathList
-)
+
 
 //Book_Publish annouces the endpoints available for this object
 func Book_Publish(mux http.ServeMux) {
@@ -77,9 +72,10 @@ func Book_Publish(mux http.ServeMux) {
 	//Cannot Create via GUI
 	mux.HandleFunc(dm.Book_PathSave, Book_HandlerSave)
 	mux.HandleFunc(dm.Book_PathDelete, Book_HandlerDelete)
-	logs.Publish("Siena", dm.Book_Title)
-    core.Catalog_Add(dm.Book_Title, dm.Book_Path, "", dm.Book_QueryString, "APP")
+	logs.Publish("Application", dm.Book_Title)
+    core.Catalog_Add(dm.Book_Title, dm.Book_Path, "", dm.Book_QueryString, "Application")
 }
+
 
 //Book_HandlerList is the handler for the list page
 func Book_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -111,6 +107,7 @@ func Book_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Book_HandlerView is the handler used to View a page
 func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -133,31 +130,14 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.BookName = rD.BookName
-pageDetail.FullName = rD.FullName
-pageDetail.PLManage = rD.PLManage
-pageDetail.PLTransfer = rD.PLTransfer
-pageDetail.DerivePL = rD.DerivePL
-pageDetail.CostOfCarry = rD.CostOfCarry
-pageDetail.CostOfFunding = rD.CostOfFunding
-pageDetail.LotAllocationMethod = rD.LotAllocationMethod
-pageDetail.InternalId = rD.InternalId
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = book_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Book_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Book_HandlerEdit is the handler used generate the Edit page
 func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -181,30 +161,13 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.BookName = rD.BookName
-pageDetail.FullName = rD.FullName
-pageDetail.PLManage = rD.PLManage
-pageDetail.PLTransfer = rD.PLTransfer
-pageDetail.DerivePL = rD.DerivePL
-pageDetail.CostOfCarry = rD.CostOfCarry
-pageDetail.CostOfFunding = rD.CostOfFunding
-pageDetail.LotAllocationMethod = rD.LotAllocationMethod
-pageDetail.InternalId = rD.InternalId
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = book_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Book_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Book_HandlerSave is the handler used process the saving of an Book
 func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -219,7 +182,9 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("BookName"))
 
 	var item dm.Book
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.BookName = r.FormValue(dm.Book_BookName)
 		item.FullName = r.FormValue(dm.Book_FullName)
 		item.PLManage = r.FormValue(dm.Book_PLManage)
@@ -230,56 +195,14 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod)
 		item.InternalId = r.FormValue(dm.Book_InternalId)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Book_Store(item,r)	
-
 	http.Redirect(w, r, Book_Redirect, http.StatusFound)
 }
 
-//Book_HandlerNew is the handler used process the creation of an Book
-func Book_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
 
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
-
-	pageDetail := Book_Page{
-		Title:       CardTitle(dm.Book_Title, core.Action_New),
-		PageTitle:   PageTitle(dm.Book_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.BookName = ""
-pageDetail.FullName = ""
-pageDetail.PLManage = ""
-pageDetail.PLTransfer = ""
-pageDetail.DerivePL = ""
-pageDetail.CostOfCarry = ""
-pageDetail.CostOfFunding = ""
-pageDetail.LotAllocationMethod = ""
-pageDetail.InternalId = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.Book_TemplateNew, w, r, pageDetail)
-
-}
 
 //Book_HandlerDelete is the handler used process the deletion of an Book
 func Book_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -297,3 +220,48 @@ func Book_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Book_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Book Page 
+func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.BookName = rD.BookName
+	pageDetail.FullName = rD.FullName
+	pageDetail.PLManage = rD.PLManage
+	pageDetail.PLTransfer = rD.PLTransfer
+	pageDetail.DerivePL = rD.DerivePL
+	pageDetail.CostOfCarry = rD.CostOfCarry
+	pageDetail.CostOfFunding = rD.CostOfFunding
+	pageDetail.LotAllocationMethod = rD.LotAllocationMethod
+	pageDetail.InternalId = rD.InternalId
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

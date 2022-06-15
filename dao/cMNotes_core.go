@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:08
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:52
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func CMNotes_GetByID(id string) (int, dm.CMNotes, error) {
 func CMNotes_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CMNotes_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.CMNotes_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.CMNotes_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,30 @@ func cmnotes_Save(r dm.CMNotes,usr string) error {
 
     var err error
 
-	logs.Storing("CMNotes",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.NoteId) == 0 {
 		r.NoteId = CMNotes_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\cmnotes_impl.go
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("CMNotes",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/CMNotes_impl.go file
-	err1 := adaptor.CMNotes_Delete_Impl(r.NoteId)
-	err2 := adaptor.CMNotes_Update_Impl(r,usr)
+	err1 := adaptor.CMNotes_Delete_impl(r.NoteId)
+	err2 := adaptor.CMNotes_Update_impl(r.NoteId,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +115,8 @@ func cmnotes_Save(r dm.CMNotes,usr string) error {
 }
 
 
-// cmnotes_Fetch read all employees
+
+// cmnotes_Fetch read all CMNotes's
 func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 
 	var recItem dm.CMNotes
@@ -117,13 +124,13 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.NoteId  = get_Int(rec, dm.CMNotes_NoteId, "0")
    recItem.StreamId  = get_Int(rec, dm.CMNotes_StreamId, "0")
    recItem.Summary  = get_String(rec, dm.CMNotes_Summary, "")
@@ -131,7 +138,7 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
    recItem.RecordState  = get_Int(rec, dm.CMNotes_RecordState, "0")
    recItem.CreatedBy  = get_String(rec, dm.CMNotes_CreatedBy, "")
    recItem.CreatedDateTime  = get_Time(rec, dm.CMNotes_CreatedDateTime, "")
-// If there are fields below, create the methods in dao\CMNotes_Impl.go
+// If there are fields below, create the methods in adaptor\CMNotes_impl.go
 
 
 
@@ -140,19 +147,15 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 
 
 
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func CMNotes_NewID(r dm.CMNotes) string {
 	
@@ -160,6 +163,7 @@ func CMNotes_NewID(r dm.CMNotes) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

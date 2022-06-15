@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:13
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:03
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func DealConversation_GetByID(id string) (int, dm.DealConversation, error) {
 func DealConversation_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealConversation_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.DealConversation_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.DealConversation_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,35 @@ func dealconversation_Save(r dm.DealConversation,usr string) error {
 
     var err error
 
-	logs.Storing("DealConversation",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.MessageLogReference) == 0 {
 		r.MessageLogReference = DealConversation_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\dealconversation_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("DealConversation",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/DealConversation_impl.go file
-	err1 := adaptor.DealConversation_Delete_Impl(r.MessageLogReference)
-	err2 := adaptor.DealConversation_Update_Impl(r,usr)
+	err1 := adaptor.DealConversation_Delete_impl(r.MessageLogReference)
+	err2 := adaptor.DealConversation_Update_impl(r.MessageLogReference,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +120,8 @@ func dealconversation_Save(r dm.DealConversation,usr string) error {
 }
 
 
-// dealconversation_Fetch read all employees
+
+// dealconversation_Fetch read all DealConversation's
 func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealConversation, error) {
 
 	var recItem dm.DealConversation
@@ -117,13 +129,13 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference, "")
    recItem.Status  = get_String(rec, dm.DealConversation_Status, "")
    recItem.MessageType  = get_String(rec, dm.DealConversation_MessageType, "")
@@ -136,7 +148,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
    recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo, "0")
    recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem, "")
    recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference, "")
-// If there are fields below, create the methods in dao\DealConversation_Impl.go
+// If there are fields below, create the methods in adaptor\DealConversation_impl.go
 
 
 
@@ -150,24 +162,15 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func DealConversation_NewID(r dm.DealConversation) string {
 	
@@ -175,6 +178,7 @@ func DealConversation_NewID(r dm.DealConversation) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

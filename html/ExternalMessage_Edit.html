@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.MessageID}}</code>
+              <i class="fas fa-mail-bulk me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.MessageID}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,205 +20,234 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="{{.SYSId}}" required />
-                  <label class="form-label" for="SYSId" hidden>SYSId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageID" name="MessageID" aria-describedby="MessageIDHelp" placeholder=""  value="{{.MessageID}}"  />
-                  <label class="form-label" for="MessageID" >MessageID</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageFormat" name="MessageFormat" aria-describedby="MessageFormatHelp" placeholder=""  value="{{.MessageFormat}}"  />
-                  <label class="form-label" for="MessageFormat" >MessageFormat</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageDeliveredTo" name="MessageDeliveredTo" aria-describedby="MessageDeliveredToHelp" placeholder=""  value="{{.MessageDeliveredTo}}"  />
-                  <label class="form-label" for="MessageDeliveredTo" >MessageDeliveredTo</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageBody" name="MessageBody" aria-describedby="MessageBodyHelp" placeholder=""  value="{{.MessageBody}}"  />
-                  <label class="form-label" for="MessageBody" >MessageBody</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageFilename" name="MessageFilename" aria-describedby="MessageFilenameHelp" placeholder=""  value="{{.MessageFilename}}"  />
-                  <label class="form-label" for="MessageFilename" >MessageFilename</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageLife" name="MessageLife" aria-describedby="MessageLifeHelp" placeholder=""  value="{{.MessageLife}}"  />
-                  <label class="form-label" for="MessageLife" >MessageLife</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageDate" name="MessageDate" aria-describedby="MessageDateHelp" placeholder=""  value="{{.MessageDate}}"  />
-                  <label class="form-label" for="MessageDate" >MessageDate</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageTime" name="MessageTime" aria-describedby="MessageTimeHelp" placeholder=""  value="{{.MessageTime}}"  />
-                  <label class="form-label" for="MessageTime" >MessageTime</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageTimeoutAction" name="MessageTimeoutAction" aria-describedby="MessageTimeoutActionHelp" placeholder=""  value="{{.MessageTimeoutAction}}"  />
-                  <label class="form-label" for="MessageTimeoutAction" >MessageTimeoutAction</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageACKNAK" name="MessageACKNAK" aria-describedby="MessageACKNAKHelp" placeholder=""  value="{{.MessageACKNAK}}"  />
-                  <label class="form-label" for="MessageACKNAK" >MessageACKNAK</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseID" name="ResponseID" aria-describedby="ResponseIDHelp" placeholder=""  value="{{.ResponseID}}"  />
-                  <label class="form-label" for="ResponseID" >ResponseID</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseFilename" name="ResponseFilename" aria-describedby="ResponseFilenameHelp" placeholder=""  value="{{.ResponseFilename}}"  />
-                  <label class="form-label" for="ResponseFilename" >ResponseFilename</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseBody" name="ResponseBody" aria-describedby="ResponseBodyHelp" placeholder=""  value="{{.ResponseBody}}"  />
-                  <label class="form-label" for="ResponseBody" >ResponseBody</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseDate" name="ResponseDate" aria-describedby="ResponseDateHelp" placeholder=""  value="{{.ResponseDate}}"  />
-                  <label class="form-label" for="ResponseDate" >ResponseDate</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseTime" name="ResponseTime" aria-describedby="ResponseTimeHelp" placeholder=""  value="{{.ResponseTime}}"  />
-                  <label class="form-label" for="ResponseTime" >ResponseTime</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseAdditionalInfo" name="ResponseAdditionalInfo" aria-describedby="ResponseAdditionalInfoHelp" placeholder=""  value="{{.ResponseAdditionalInfo}}"  />
-                  <label class="form-label" for="ResponseAdditionalInfo" >ResponseAdditionalInfo</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  />
-                  <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  />
-                  <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  />
-                  <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  />
-                  <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  />
-                  <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  />
-                  <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageTimeout" name="MessageTimeout" aria-describedby="MessageTimeoutHelp" placeholder=""  value="{{.MessageTimeout}}"  />
-                  <label class="form-label" for="MessageTimeout" >MessageTimeout</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageEmitted" name="MessageEmitted" aria-describedby="MessageEmittedHelp" placeholder=""  value="{{.MessageEmitted}}"  />
-                  <label class="form-label" for="MessageEmitted" >MessageEmitted</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ResponseRecieved" name="ResponseRecieved" aria-describedby="ResponseRecievedHelp" placeholder=""  value="{{.ResponseRecieved}}"  />
-                  <label class="form-label" for="ResponseRecieved" >ResponseRecieved</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageClass" name="MessageClass" aria-describedby="MessageClassHelp" placeholder=""  value="{{.MessageClass}}"  />
-                  <label class="form-label" for="MessageClass" >MessageClass</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="AppID" name="AppID" aria-describedby="AppIDHelp" placeholder=""  value="{{.AppID}}"  />
-                  <label class="form-label" for="AppID" >AppID</label>
-                </div>
-              </div>
-              
-              
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="new" required>
+                      <label class="form-label" for="SYSId" hidden>SYSId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageID" name="MessageID" aria-describedby="MessageIDHelp" placeholder=""   value="{{.MessageID}}" >
+                      <label class="form-label" for="MessageID" >MessageID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageFormat" name="MessageFormat" aria-describedby="MessageFormatHelp" placeholder=""   value="{{.MessageFormat}}" >
+                      <label class="form-label" for="MessageFormat" >MessageFormat</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageDeliveredTo" name="MessageDeliveredTo" aria-describedby="MessageDeliveredToHelp" placeholder=""   value="{{.MessageDeliveredTo}}" >
+                      <label class="form-label" for="MessageDeliveredTo" >MessageDeliveredTo</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageBody" name="MessageBody" aria-describedby="MessageBodyHelp" placeholder=""   value="{{.MessageBody}}" >
+                      <label class="form-label" for="MessageBody" >MessageBody</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageFilename" name="MessageFilename" aria-describedby="MessageFilenameHelp" placeholder=""   value="{{.MessageFilename}}" >
+                      <label class="form-label" for="MessageFilename" >MessageFilename</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageLife" name="MessageLife" aria-describedby="MessageLifeHelp" placeholder=""   value="{{.MessageLife}}" >
+                      <label class="form-label" for="MessageLife" >MessageLife</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageDate" name="MessageDate" aria-describedby="MessageDateHelp" placeholder=""   value="{{.MessageDate}}" >
+                      <label class="form-label" for="MessageDate" >MessageDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageTime" name="MessageTime" aria-describedby="MessageTimeHelp" placeholder=""   value="{{.MessageTime}}" >
+                      <label class="form-label" for="MessageTime" >MessageTime</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageTimeoutAction" name="MessageTimeoutAction" aria-describedby="MessageTimeoutActionHelp" placeholder=""   value="{{.MessageTimeoutAction}}" >
+                      <label class="form-label" for="MessageTimeoutAction" >MessageTimeoutAction</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageACKNAK" name="MessageACKNAK" aria-describedby="MessageACKNAKHelp" placeholder=""   value="{{.MessageACKNAK}}" >
+                      <label class="form-label" for="MessageACKNAK" >MessageACKNAK</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseID" name="ResponseID" aria-describedby="ResponseIDHelp" placeholder=""   value="{{.ResponseID}}" >
+                      <label class="form-label" for="ResponseID" >ResponseID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseFilename" name="ResponseFilename" aria-describedby="ResponseFilenameHelp" placeholder=""   value="{{.ResponseFilename}}" >
+                      <label class="form-label" for="ResponseFilename" >ResponseFilename</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseBody" name="ResponseBody" aria-describedby="ResponseBodyHelp" placeholder=""   value="{{.ResponseBody}}" >
+                      <label class="form-label" for="ResponseBody" >ResponseBody</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseDate" name="ResponseDate" aria-describedby="ResponseDateHelp" placeholder=""   value="{{.ResponseDate}}" >
+                      <label class="form-label" for="ResponseDate" >ResponseDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseTime" name="ResponseTime" aria-describedby="ResponseTimeHelp" placeholder=""   value="{{.ResponseTime}}" >
+                      <label class="form-label" for="ResponseTime" >ResponseTime</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseAdditionalInfo" name="ResponseAdditionalInfo" aria-describedby="ResponseAdditionalInfoHelp" placeholder=""   value="{{.ResponseAdditionalInfo}}" >
+                      <label class="form-label" for="ResponseAdditionalInfo" >ResponseAdditionalInfo</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}" >
+                      <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}" >
+                      <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}" >
+                      <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}" >
+                      <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}" >
+                      <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}" >
+                      <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageTimeout" name="MessageTimeout" aria-describedby="MessageTimeoutHelp" placeholder=""   value="{{.MessageTimeout}}" >
+                      <label class="form-label" for="MessageTimeout" >MessageTimeout</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageEmitted" name="MessageEmitted" aria-describedby="MessageEmittedHelp" placeholder=""   value="{{.MessageEmitted}}" >
+                      <label class="form-label" for="MessageEmitted" >MessageEmitted</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseRecieved" name="ResponseRecieved" aria-describedby="ResponseRecievedHelp" placeholder=""   value="{{.ResponseRecieved}}" >
+                      <label class="form-label" for="ResponseRecieved" >ResponseRecieved</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageClass" name="MessageClass" aria-describedby="MessageClassHelp" placeholder=""   value="{{.MessageClass}}" >
+                      <label class="form-label" for="MessageClass" >MessageClass</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="AppID" name="AppID" aria-describedby="AppIDHelp" placeholder=""   value="{{.AppID}}" >
+                      <label class="form-label" for="AppID" >AppID</label>
+                    </div>
+          
+            </div></div>
+
+     
         </div>
+        {{template "audit" .}}
       </div>
     </form>
 

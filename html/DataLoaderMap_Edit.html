@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
+              <i class="fas fa-city me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,125 +20,124 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="{{.SYSId}}" required />
-                  <label class="form-label" for="SYSId" hidden>SYSId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""  value="{{.Id}}" required />
-                  <label class="form-label" for="Id" >Id</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}"  />
-                  <label class="form-label" for="Name" >Name</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Position" name="Position" aria-describedby="PositionHelp" placeholder=""  value="{{.Position}}"  />
-                  <label class="form-label" for="Position" >Position</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Loader" name="Loader" aria-describedby="LoaderHelp" placeholder=""  value="{{.Loader}}"  />
-                  <label class="form-label" for="Loader" >Loader</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  />
-                  <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden value="{{.SYSWho}}"  />
-                  <label class="form-label" for="SYSWho" hidden>SYSWho</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden value="{{.SYSHost}}"  />
-                  <label class="form-label" for="SYSHost" hidden>SYSHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  />
-                  <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Int_position" name="Int_position" aria-describedby="Int_positionHelp" placeholder="0"  value="{{.Int_position}}"  />
-                  <label class="form-label" for="Int_position" >Int_position</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  />
-                  <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  />
-                  <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  />
-                  <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  />
-                  <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                </div>
-              </div>
-              
-                           
-              <div class="row mb-3">
-            
-                  <select id="Loader_Lookup" name="Loader_Lookup" class="select" data-mdb-filter="true" disabled><option value="{{.Loader_Lookup}}" selected>{{.Loader_Lookup}}</option>{{range .Loader_Lookup_List}}<option value="{{.Loader}}">{{.Name}}</option>{{end}}</select>
-                  <label class="form-label select-label" for="Loader_Lookup" disabled>Loader_Lookup</label>
-              </div>
-                           
-              <div class="row mb-3">
-            
-                  <select id="LoaderDescription_Lookup" name="LoaderDescription_Lookup" class="select" data-mdb-filter="true" disabled><option value="{{.LoaderDescription_Lookup}}" selected>{{.LoaderDescription_Lookup}}</option>{{range .LoaderDescription_Lookup_List}}<option value="{{.Loader}}">{{.Description}}</option>{{end}}</select>
-                  <label class="form-label select-label" for="LoaderDescription_Lookup" disabled>LoaderDescription_Lookup</label>
-              </div>
-                           
-              <div class="row mb-3">
-            
-                  <select id="LoaderType_Lookup" name="LoaderType_Lookup" class="select" data-mdb-filter="true" disabled><option value="{{.LoaderType_Lookup}}" selected>{{.LoaderType_Lookup}}</option>{{range .LoaderType_Lookup_List}}<option value="{{.Loader}}">{{.Type}}</option>{{end}}</select>
-                  <label class="form-label select-label" for="LoaderType_Lookup" disabled>LoaderType_Lookup</label>
-              </div>
-              
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="new" required>
+                      <label class="form-label" for="SYSId" hidden>SYSId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""   value="{{.Id}}" required>
+                      <label class="form-label" for="Id" >Id</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" >
+                      <label class="form-label" for="Name" >Name</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Position" name="Position" aria-describedby="PositionHelp" placeholder=""   value="{{.Position}}" >
+                      <label class="form-label" for="Position" >Position</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+         
+                  <select id="Loader" name="Loader" class="select" data-mdb-filter="true" readonly="true" >
+                  {{range .Loader_lookup}}<option value="{{.ID}}" {{if eq .ID $.Loader}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Loader" readonly="true">Loader</label>
+                  
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}" >
+                      <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden  value="{{.SYSWho}}" >
+                      <label class="form-label" for="SYSWho" hidden>SYSWho</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden  value="{{.SYSHost}}" >
+                      <label class="form-label" for="SYSHost" hidden>SYSHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}" >
+                      <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Int_position" name="Int_position" aria-describedby="Int_positionHelp" placeholder="0"   value="{{.Int_position}}" >
+                      <label class="form-label" for="Int_position" >Int_position</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}" >
+                      <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}" >
+                      <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}" >
+                      <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}" >
+                      <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                    </div>
+          
+            </div></div>
+
+     
         </div>
+        
       </div>
     </form>
 

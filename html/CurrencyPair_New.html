@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col h3">{{.Title}}</div>
+            <div class="col h3"><i class="fas fa-coins me-2"></i>{{.Title}}</div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
               
@@ -17,55 +17,51 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CodeMajorCurrencyIsoCode" name="CodeMajorCurrencyIsoCode" aria-describedby="CodeMajorCurrencyIsoCodeHelp" placeholder=""  value="{{.CodeMajorCurrencyIsoCode}}" required>
-                <label class="form-label" for="CodeMajorCurrencyIsoCode" >CodeMajorCurrencyIsoCode</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CodeMinorCurrencyIsoCode" name="CodeMinorCurrencyIsoCode" aria-describedby="CodeMinorCurrencyIsoCodeHelp" placeholder=""  value="{{.CodeMinorCurrencyIsoCode}}" required>
-                <label class="form-label" for="CodeMinorCurrencyIsoCode" >CodeMinorCurrencyIsoCode</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ReciprocalActive" name="ReciprocalActive" aria-describedby="ReciprocalActiveHelp" placeholder="True"  value="{{.ReciprocalActive}}" >
-                <label class="form-label" for="ReciprocalActive" >ReciprocalActive</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required>
-                <label class="form-label" for="Code" >Code</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="MajorName" name="MajorName" aria-describedby="MajorNameHelp" placeholder=""  value="{{.MajorName}}" >
-                <label class="form-label" for="MajorName" >MajorName</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="MinorName" name="MinorName" aria-describedby="MinorNameHelp" placeholder=""  value="{{.MinorName}}" >
-                <label class="form-label" for="MinorName" >MinorName</label>
-              </div>
-            </div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                  <select id="CodeMajorCurrencyIsoCode" name="CodeMajorCurrencyIsoCode" class="select" data-mdb-filter="true"  required>
+                  {{range .CodeMajorCurrencyIsoCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CodeMajorCurrencyIsoCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CodeMajorCurrencyIsoCode" >CodeMajorCurrencyIsoCode</label>
+                
+        
 
-             <div class="row">
-              
-                <select id="Major_Lookup" name="Major_Lookup" class="select" ><option value="{{.Major_Lookup}}" selected>{{.Major_Lookup}}</option>{{range .Major_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
-                <label class="form-label select-label" for="Major_Lookup"}>Major_Lookup</label>
-      
-            </div>
-             <div class="row">
-              
-                <select id="Minor_Lookup" name="Minor_Lookup" class="select" ><option value="{{.Minor_Lookup}}" selected>{{.Minor_Lookup}}</option>{{range .Minor_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
-                <label class="form-label select-label" for="Minor_Lookup"}>Minor_Lookup</label>
-      
-            </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                  <select id="CodeMinorCurrencyIsoCode" name="CodeMinorCurrencyIsoCode" class="select" data-mdb-filter="true"  required>
+                  {{range .CodeMinorCurrencyIsoCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CodeMinorCurrencyIsoCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CodeMinorCurrencyIsoCode" >CodeMinorCurrencyIsoCode</label>
+                
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                  <select id="ReciprocalActive" name="ReciprocalActive" class="select" data-mdb-filter="true"  >
+                  {{range .ReciprocalActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.ReciprocalActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ReciprocalActive" >ReciprocalActive</label>
+                
+        
+
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder="" readonly="true" value="{{.Code}}" required>
+                <label class="form-label" for="Code" readonly="true">Code</label>
+                    </div>
+                    
+        
+
+            </div></div>
+
      
         </div>
       </div>

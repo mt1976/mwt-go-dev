@@ -9,19 +9,19 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:06
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:47
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//AccountLadder defines the datamolde for the AccountLadder object
 type AccountLadder struct {
 
-SienaReference        string
-BusinessDate        string
-ContractNumber        string
-Balance        string
-DealtCcy        string
-AmountDp        string
+SienaReference       string
+BusinessDate       string
+ContractNumber       string
+Balance       string
+DealtCcy       string
+AmountDp       string
 
 }
 
@@ -51,12 +51,12 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	AccountLadder_SienaReference   = "SienaReference" // SienaReference is a String
-	AccountLadder_BusinessDate   = "BusinessDate" // BusinessDate is a Time
-	AccountLadder_ContractNumber   = "ContractNumber" // ContractNumber is a String
-	AccountLadder_Balance   = "Balance" // Balance is a Float
-	AccountLadder_DealtCcy   = "DealtCcy" // DealtCcy is a String
-	AccountLadder_AmountDp   = "AmountDp" // AmountDp is a Int
+AccountLadder_SienaReference   = "SienaReference" // SienaReference is a String
+AccountLadder_BusinessDate   = "BusinessDate" // BusinessDate is a Time
+AccountLadder_ContractNumber   = "ContractNumber" // ContractNumber is a String
+AccountLadder_Balance   = "Balance" // Balance is a Float
+AccountLadder_DealtCcy   = "DealtCcy" // DealtCcy is a String
+AccountLadder_AmountDp   = "AmountDp" // AmountDp is a Int
 
 	/// Definitions End
 )

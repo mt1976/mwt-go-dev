@@ -1,0 +1,59 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/firm.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Firm (firm)
+// Endpoint 	        : Firm (FirmName)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 06/06/2022 at 12:21:27
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in firm_impl.go
+
+
+
+func Firm_NewID_impl(rec dm.Firm) (string) { return rec.FirmName }
+func Firm_Delete_impl(id string) (error) {return nil}
+
+
+func Firm_Update_impl(id string,rec dm.Firm, usr string) (error) {return nil}
+
+// If there are fields below, create the methods in adaptor\firm_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

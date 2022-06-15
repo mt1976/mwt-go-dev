@@ -9,21 +9,20 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:11
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:01
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//CurrencyPair defines the datamolde for the CurrencyPair object
 type CurrencyPair struct {
 
-CodeMajorCurrencyIsoCode        string
-CodeMinorCurrencyIsoCode        string
-ReciprocalActive        string
-Code        string
-MajorName        string
-MinorName        string
-Major_Lookup        string
-Minor_Lookup        string
+CodeMajorCurrencyIsoCode       string
+CodeMajorCurrencyIsoCode_lookup []Lookup_Item
+CodeMinorCurrencyIsoCode       string
+CodeMinorCurrencyIsoCode_lookup []Lookup_Item
+ReciprocalActive       string
+ReciprocalActive_lookup []Lookup_Item
+Code       string
 
 }
 
@@ -53,14 +52,10 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	CurrencyPair_CodeMajorCurrencyIsoCode   = "CodeMajorCurrencyIsoCode" // CodeMajorCurrencyIsoCode is a String
-	CurrencyPair_CodeMinorCurrencyIsoCode   = "CodeMinorCurrencyIsoCode" // CodeMinorCurrencyIsoCode is a String
-	CurrencyPair_ReciprocalActive   = "ReciprocalActive" // ReciprocalActive is a Bool
-	CurrencyPair_Code   = "Code" // Code is a String
-	CurrencyPair_MajorName   = "MajorName" // MajorName is a String
-	CurrencyPair_MinorName   = "MinorName" // MinorName is a String
-	CurrencyPair_Major_Lookup   = "Major_Lookup" // Major_Lookup is a String
-	CurrencyPair_Minor_Lookup   = "Minor_Lookup" // Minor_Lookup is a String
+CurrencyPair_CodeMajorCurrencyIsoCode   = "CodeMajorCurrencyIsoCode" // CodeMajorCurrencyIsoCode is a String
+CurrencyPair_CodeMinorCurrencyIsoCode   = "CodeMinorCurrencyIsoCode" // CodeMinorCurrencyIsoCode is a String
+CurrencyPair_ReciprocalActive   = "ReciprocalActive" // ReciprocalActive is a Bool
+CurrencyPair_Code   = "Code" // Code is a String
 
 	/// Definitions End
 )

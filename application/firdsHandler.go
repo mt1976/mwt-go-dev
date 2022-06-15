@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/davecgh/go-spew/spew"
 	"golang.org/x/net/html"
 )
 
@@ -41,7 +40,7 @@ func GetFIRDSdata(isin string) FIRDSDataItem {
 	}
 	//spew.Dump(response.Body)
 	thisItem = tokenizeFIRDSresponse(response)
-	spew.Dump(thisItem)
+	//spew.Dump(thisItem)
 	return thisItem
 }
 

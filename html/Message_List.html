@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-info-circle me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -54,11 +54,9 @@
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/MessageView?Message={{.Id}}" method="POST" title="View System Message"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/MessageEdit?Message={{.Id}}" method="POST" title="Edit System Message"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/MessageView?Message={{.Id}}" method="POST" title="View System Message"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/MessageEdit?Message={{.Id}}" method="POST" title="Edit System Message"><i class="fas fa-edit"></i></button>
                             
-                            </div>
                             </form>
                           </td>
                         </tr>

@@ -9,17 +9,17 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:10
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:58
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//CounterpartyName defines the datamolde for the CounterpartyName object
 type CounterpartyName struct {
 
-NameFirm        string
-NameCentre        string
-FullName        string
-CompID        string
+NameFirm       string
+NameCentre       string
+FullName       string
+CompID       string
 
 }
 
@@ -49,10 +49,10 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	CounterpartyName_NameFirm   = "NameFirm" // NameFirm is a String
-	CounterpartyName_NameCentre   = "NameCentre" // NameCentre is a String
-	CounterpartyName_FullName   = "FullName" // FullName is a String
-	CounterpartyName_CompID   = "CompID" // CompID is a String
+CounterpartyName_NameFirm   = "NameFirm" // NameFirm is a String
+CounterpartyName_NameCentre   = "NameCentre" // NameCentre is a String
+CounterpartyName_FullName   = "FullName" // FullName is a String
+CounterpartyName_CompID   = "CompID" // CompID is a String
 
 	/// Definitions End
 )

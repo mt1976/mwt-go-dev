@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:56
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,40 +25,37 @@ import (
 //counterpartygroup_PageList provides the information for the template for a list of CounterpartyGroups
 type CounterpartyGroup_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.CounterpartyGroup
 }
+//CounterpartyGroup_Redirect provides a page to return to aftern an action
+const (
+	CounterpartyGroup_Redirect = dm.CounterpartyGroup_PathList
+)
 
 //counterpartygroup_Page provides the information for the template for an individual CounterpartyGroup
 type CounterpartyGroup_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		Name string
-		CountryCode string
-		SuperGroup string
-		Country_Lookup string
-		Parent_Lookup string
-	
-	
-	
-	
-	Country_Lookup_List	[]dm.Country
-	Parent_Lookup_List	[]dm.CounterpartyGroup
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Name         string
+	CountryCode         string
+	SuperGroup         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	CounterpartyGroup_Redirect = dm.CounterpartyGroup_PathList
-)
+
 
 //CounterpartyGroup_Publish annouces the endpoints available for this object
 func CounterpartyGroup_Publish(mux http.ServeMux) {
@@ -69,9 +66,10 @@ func CounterpartyGroup_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.CounterpartyGroup_PathNew, CounterpartyGroup_HandlerNew)
 	mux.HandleFunc(dm.CounterpartyGroup_PathSave, CounterpartyGroup_HandlerSave)
 	mux.HandleFunc(dm.CounterpartyGroup_PathDelete, CounterpartyGroup_HandlerDelete)
-	logs.Publish("Siena", dm.CounterpartyGroup_Title)
+	logs.Publish("Application", dm.CounterpartyGroup_Title)
     //No API
 }
+
 
 //CounterpartyGroup_HandlerList is the handler for the list page
 func CounterpartyGroup_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -103,6 +101,7 @@ func CounterpartyGroup_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //CounterpartyGroup_HandlerView is the handler used to View a page
 func CounterpartyGroup_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -125,29 +124,14 @@ func CounterpartyGroup_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Name = rD.Name
-pageDetail.CountryCode = rD.CountryCode
-pageDetail.SuperGroup = rD.SuperGroup
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-_,CountryCode_Lookup_Name,_:= dao.Country_GetByID(rD.CountryCode)
-pageDetail.Country_Lookup = CountryCode_Lookup_Name.Name
-_,SuperGroup_Lookup_Name,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
-pageDetail.Parent_Lookup = SuperGroup_Lookup_Name.Name
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = counterpartygroup_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyGroup_TemplateView, w, r, pageDetail)
 
 }
+
 
 //CounterpartyGroup_HandlerEdit is the handler used generate the Edit page
 func CounterpartyGroup_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -171,30 +155,13 @@ func CounterpartyGroup_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Name = rD.Name
-pageDetail.CountryCode = rD.CountryCode
-pageDetail.SuperGroup = rD.SuperGroup
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-_,CountryCode_Lookup_Name,_:= dao.Country_GetByID(rD.CountryCode)
-pageDetail.Country_Lookup = CountryCode_Lookup_Name.Name
-_,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
-_,SuperGroup_Lookup_Name,_:= dao.CounterpartyGroup_GetByID(rD.SuperGroup)
-pageDetail.Parent_Lookup = SuperGroup_Lookup_Name.Name
-_,pageDetail.Parent_Lookup_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = counterpartygroup_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.CounterpartyGroup_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //CounterpartyGroup_HandlerSave is the handler used process the saving of an CounterpartyGroup
 func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -209,20 +176,20 @@ func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Name"))
 
 	var item dm.CounterpartyGroup
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.Name = r.FormValue(dm.CounterpartyGroup_Name)
 		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode)
 		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup)
-		item.Country_Lookup = r.FormValue(dm.CounterpartyGroup_Country_Lookup)
-		item.Parent_Lookup = r.FormValue(dm.CounterpartyGroup_Parent_Lookup)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.CounterpartyGroup_Store(item,r)	
-
 	http.Redirect(w, r, CounterpartyGroup_Redirect, http.StatusFound)
 }
+
 
 //CounterpartyGroup_HandlerNew is the handler used process the creation of an CounterpartyGroup
 func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -244,26 +211,14 @@ func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Name = ""
-pageDetail.CountryCode = ""
-pageDetail.SuperGroup = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-pageDetail.Country_Lookup = ""
-_,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
-pageDetail.Parent_Lookup = ""
-_,pageDetail.Parent_Lookup_List,_ = dao.CounterpartyGroup_GetList()
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = counterpartygroup_PopulatePage(dm.CounterpartyGroup{} , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyGroup_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //CounterpartyGroup_HandlerDelete is the handler used process the deletion of an CounterpartyGroup
 func CounterpartyGroup_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -281,3 +236,30 @@ func CounterpartyGroup_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, CounterpartyGroup_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the CounterpartyGroup Page 
+func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail CounterpartyGroup_Page) CounterpartyGroup_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Name = rD.Name
+	pageDetail.CountryCode = rD.CountryCode
+	pageDetail.SuperGroup = rD.SuperGroup
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

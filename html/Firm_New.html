@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col h3">{{.Title}}</div>
+            <div class="col h3"><i class="fas fa-city me-2"></i>{{.Title}}</div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
               
@@ -17,43 +17,51 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}" required>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}" >
                 <label class="form-label" for="FirmName" >FirmName</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}" >
-                <label class="form-label" for="FullName" >FullName</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value="{{.Country}}" >
-                <label class="form-label" for="Country" >Country</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Sector" name="Sector" aria-describedby="SectorHelp" placeholder=""  value="{{.Sector}}" >
-                <label class="form-label" for="Sector" >Sector</label>
-              </div>
-            </div>
+                    </div>
+                    
+        
 
-             <div class="row">
-              
-                <select id="Sector_Lookup" name="Sector_Lookup" class="select" ><option value="{{.Sector_Lookup}}" selected>{{.Sector_Lookup}}</option>{{range .Sector_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
-                <label class="form-label select-label" for="Sector_Lookup"}>Sector_Lookup</label>
-      
-            </div>
-             <div class="row">
-              
-                <select id="Country_Lookup" name="Country_Lookup" class="select" disabled><option value="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
-                <label class="form-label select-label" for="Country_Lookup"}>Country_Lookup</label>
-      
-            </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}" >
+                <label class="form-label" for="FullName" >FullName</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+        
+         
+                  <select id="Country" name="Country" class="select" data-mdb-filter="true" readonly="true" >
+                  {{range .Country_lookup}}<option value="{{.ID}}" {{if eq .ID $.Country}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Country" readonly="true">Country</label>
+                
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                  <select id="Sector" name="Sector" class="select" data-mdb-filter="true"  >
+                  {{range .Sector_lookup}}<option value="{{.ID}}" {{if eq .ID $.Sector}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Sector" >Sector</label>
+                
+        
+
+            </div></div>
+
      
         </div>
       </div>

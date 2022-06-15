@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:10
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:59
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -40,13 +36,8 @@ func Country_GetList() (int, []dm.Country, error) {
 
 // Country_GetLookup() returns a lookup list of all Country items in lookup format
 func Country_GetLookup() []dm.Lookup_Item {
-
 	var returnList []dm.Lookup_Item
-
-	
-	    count, countryList, _ := Country_GetList()
-	
-	
+	count, countryList, _ := Country_GetList()
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: countryList[i].Code, Name: countryList[i].Name})
 	}
@@ -65,7 +56,7 @@ func Country_GetByID(id string) (int, dm.Country, error) {
 	return 1, countryItem, nil
 }
 
-// Country_GetByReverseLookup(id string) returns a single Country record
+// Country_GetByReverseLookup(id string) returns a single Country record using the Name field as key.
 func Country_GetByReverseLookup(id string) (int, dm.Country, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Country_SQLTable)
@@ -80,12 +71,8 @@ func Country_GetByReverseLookup(id string) (int, dm.Country, error) {
 func Country_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Country_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Country_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Country_Delete_impl(id)
+	
 }
 
 
@@ -110,16 +97,28 @@ func country_Save(r dm.Country,usr string) error {
 
     var err error
 
-	logs.Storing("Country",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = Country_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\country_impl.go
+
+
+
+
+
+
+
+	
+logs.Storing("Country",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Country_impl.go file
-	err1 := adaptor.Country_Delete_Impl(r.Code)
-	err2 := adaptor.Country_Update_Impl(r,usr)
+	err1 := adaptor.Country_Delete_impl(r.Code)
+	err2 := adaptor.Country_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -133,7 +132,8 @@ func country_Save(r dm.Country,usr string) error {
 }
 
 
-// country_Fetch read all employees
+
+// country_Fetch read all Country's
 func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 
 	var recItem dm.Country
@@ -141,36 +141,34 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.Code  = get_String(rec, dm.Country_Code, "")
    recItem.Name  = get_String(rec, dm.Country_Name, "")
    recItem.ShortCode  = get_String(rec, dm.Country_ShortCode, "")
    recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA, "True")
    recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend, "")
-// If there are fields below, create the methods in dao\Country_Impl.go
+// If there are fields below, create the methods in adaptor\Country_impl.go
 
 
 
 
 
 
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Country_NewID(r dm.Country) string {
 	
@@ -178,6 +176,7 @@ func Country_NewID(r dm.Country) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

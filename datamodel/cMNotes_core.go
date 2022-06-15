@@ -9,20 +9,20 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:08
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:52
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//CMNotes defines the datamolde for the CMNotes object
 type CMNotes struct {
 
-NoteId        string
-StreamId        string
-Summary        string
-Details        string
-RecordState        string
-CreatedBy        string
-CreatedDateTime        string
+NoteId       string
+StreamId       string
+Summary       string
+Details       string
+RecordState       string
+CreatedBy       string
+CreatedDateTime       string
 
 }
 
@@ -52,13 +52,13 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	CMNotes_NoteId   = "noteId" // NoteId is a Int
-	CMNotes_StreamId   = "streamId" // StreamId is a Int
-	CMNotes_Summary   = "summary" // Summary is a String
-	CMNotes_Details   = "details" // Details is a String
-	CMNotes_RecordState   = "recordState" // RecordState is a Int
-	CMNotes_CreatedBy   = "createdBy" // CreatedBy is a String
-	CMNotes_CreatedDateTime   = "createdDateTime" // CreatedDateTime is a Time
+CMNotes_NoteId   = "noteId" // NoteId is a Int
+CMNotes_StreamId   = "streamId" // StreamId is a Int
+CMNotes_Summary   = "summary" // Summary is a String
+CMNotes_Details   = "details" // Details is a String
+CMNotes_RecordState   = "recordState" // RecordState is a Int
+CMNotes_CreatedBy   = "createdBy" // CreatedBy is a String
+CMNotes_CreatedDateTime   = "createdDateTime" // CreatedDateTime is a Time
 
 	/// Definitions End
 )

@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-plug me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -70,11 +70,9 @@
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/SystemsView?ID={{.Id}}" method="POST" title="View Connected System"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/SystemsEdit?ID={{.Id}}" method="POST" title="Edit Connected System"><i class="fas fa-edit"></i></button>
-                            <button type="submit" value="" class="btn btn-danger" formaction="/SystemsDelete?ID={{.Id}}" method="POST" title="Delete Connected System"><i class="fas fa-trash"></i></button>
-                            </div>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/SystemsView?ID={{.Id}}" method="POST" title="View Connected System"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/SystemsEdit?ID={{.Id}}" method="POST" title="Edit Connected System"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/SystemsDelete?ID={{.Id}}" method="POST" title="Delete Connected System"><i class="fas fa-trash"></i></button>
                             </form>
                           </td>
                         </tr>

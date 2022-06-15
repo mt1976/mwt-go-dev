@@ -9,37 +9,37 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:14
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:03
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//DealingInterface defines the datamolde for the DealingInterface object
 type DealingInterface struct {
 
-Name        string
-AcceptReducedAmount        string
-QuoteAsIndicative        string
-RateTimeOut        string
-PropagationDelay        string
-CheckLiquidity        string
-ChangeQuoteDirection        string
-GenerateRejectedDeals        string
-SpotUpdatesForForwardQuotes        string
-SettlementInstructionStyle        string
-CanRetractQuotes        string
-CancelESPifNotPriced        string
-CancelRFQSifNotPriced        string
-CancelonDealingSuspended        string
-CreditCheckedatDI        string
-DuplicateCheckonExternalRef        string
-LimitCheckQuote        string
-LimitCheckonRFQDealSubmission        string
-ListenonLimits        string
-MarginStyle        string
-UseRerouteDefinitionOnly        string
-BypassConfirmation        string
-DIOnAcceptance        string
-IgnoreESPAmountRules        string
+Name       string
+AcceptReducedAmount       string
+QuoteAsIndicative       string
+RateTimeOut       string
+PropagationDelay       string
+CheckLiquidity       string
+ChangeQuoteDirection       string
+GenerateRejectedDeals       string
+SpotUpdatesForForwardQuotes       string
+SettlementInstructionStyle       string
+CanRetractQuotes       string
+CancelESPifNotPriced       string
+CancelRFQSifNotPriced       string
+CancelonDealingSuspended       string
+CreditCheckedatDI       string
+DuplicateCheckonExternalRef       string
+LimitCheckQuote       string
+LimitCheckonRFQDealSubmission       string
+ListenonLimits       string
+MarginStyle       string
+UseRerouteDefinitionOnly       string
+BypassConfirmation       string
+DIOnAcceptance       string
+IgnoreESPAmountRules       string
 
 }
 
@@ -69,30 +69,30 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	DealingInterface_Name   = "Name" // Name is a String
-	DealingInterface_AcceptReducedAmount   = "AcceptReducedAmount" // AcceptReducedAmount is a Bool
-	DealingInterface_QuoteAsIndicative   = "QuoteAsIndicative" // QuoteAsIndicative is a Bool
-	DealingInterface_RateTimeOut   = "RateTimeOut" // RateTimeOut is a Int
-	DealingInterface_PropagationDelay   = "PropagationDelay" // PropagationDelay is a Int
-	DealingInterface_CheckLiquidity   = "CheckLiquidity" // CheckLiquidity is a Bool
-	DealingInterface_ChangeQuoteDirection   = "ChangeQuoteDirection" // ChangeQuoteDirection is a Bool
-	DealingInterface_GenerateRejectedDeals   = "GenerateRejectedDeals" // GenerateRejectedDeals is a Bool
-	DealingInterface_SpotUpdatesForForwardQuotes   = "SpotUpdatesForForwardQuotes" // SpotUpdatesForForwardQuotes is a Bool
-	DealingInterface_SettlementInstructionStyle   = "SettlementInstructionStyle" // SettlementInstructionStyle is a String
-	DealingInterface_CanRetractQuotes   = "CanRetractQuotes" // CanRetractQuotes is a Bool
-	DealingInterface_CancelESPifNotPriced   = "CancelESPifNotPriced" // CancelESPifNotPriced is a Bool
-	DealingInterface_CancelRFQSifNotPriced   = "CancelRFQSifNotPriced" // CancelRFQSifNotPriced is a Bool
-	DealingInterface_CancelonDealingSuspended   = "CancelonDealingSuspended" // CancelonDealingSuspended is a Bool
-	DealingInterface_CreditCheckedatDI   = "CreditCheckedatDI" // CreditCheckedatDI is a Bool
-	DealingInterface_DuplicateCheckonExternalRef   = "DuplicateCheckonExternalRef" // DuplicateCheckonExternalRef is a Bool
-	DealingInterface_LimitCheckQuote   = "LimitCheckQuote" // LimitCheckQuote is a Bool
-	DealingInterface_LimitCheckonRFQDealSubmission   = "LimitCheckonRFQDealSubmission" // LimitCheckonRFQDealSubmission is a Bool
-	DealingInterface_ListenonLimits   = "ListenonLimits" // ListenonLimits is a Bool
-	DealingInterface_MarginStyle   = "MarginStyle" // MarginStyle is a String
-	DealingInterface_UseRerouteDefinitionOnly   = "UseRerouteDefinitionOnly" // UseRerouteDefinitionOnly is a Bool
-	DealingInterface_BypassConfirmation   = "BypassConfirmation" // BypassConfirmation is a Bool
-	DealingInterface_DIOnAcceptance   = "DIOnAcceptance" // DIOnAcceptance is a Bool
-	DealingInterface_IgnoreESPAmountRules   = "IgnoreESPAmountRules" // IgnoreESPAmountRules is a Bool
+DealingInterface_Name   = "Name" // Name is a String
+DealingInterface_AcceptReducedAmount   = "AcceptReducedAmount" // AcceptReducedAmount is a Bool
+DealingInterface_QuoteAsIndicative   = "QuoteAsIndicative" // QuoteAsIndicative is a Bool
+DealingInterface_RateTimeOut   = "RateTimeOut" // RateTimeOut is a Int
+DealingInterface_PropagationDelay   = "PropagationDelay" // PropagationDelay is a Int
+DealingInterface_CheckLiquidity   = "CheckLiquidity" // CheckLiquidity is a Bool
+DealingInterface_ChangeQuoteDirection   = "ChangeQuoteDirection" // ChangeQuoteDirection is a Bool
+DealingInterface_GenerateRejectedDeals   = "GenerateRejectedDeals" // GenerateRejectedDeals is a Bool
+DealingInterface_SpotUpdatesForForwardQuotes   = "SpotUpdatesForForwardQuotes" // SpotUpdatesForForwardQuotes is a Bool
+DealingInterface_SettlementInstructionStyle   = "SettlementInstructionStyle" // SettlementInstructionStyle is a String
+DealingInterface_CanRetractQuotes   = "CanRetractQuotes" // CanRetractQuotes is a Bool
+DealingInterface_CancelESPifNotPriced   = "CancelESPifNotPriced" // CancelESPifNotPriced is a Bool
+DealingInterface_CancelRFQSifNotPriced   = "CancelRFQSifNotPriced" // CancelRFQSifNotPriced is a Bool
+DealingInterface_CancelonDealingSuspended   = "CancelonDealingSuspended" // CancelonDealingSuspended is a Bool
+DealingInterface_CreditCheckedatDI   = "CreditCheckedatDI" // CreditCheckedatDI is a Bool
+DealingInterface_DuplicateCheckonExternalRef   = "DuplicateCheckonExternalRef" // DuplicateCheckonExternalRef is a Bool
+DealingInterface_LimitCheckQuote   = "LimitCheckQuote" // LimitCheckQuote is a Bool
+DealingInterface_LimitCheckonRFQDealSubmission   = "LimitCheckonRFQDealSubmission" // LimitCheckonRFQDealSubmission is a Bool
+DealingInterface_ListenonLimits   = "ListenonLimits" // ListenonLimits is a Bool
+DealingInterface_MarginStyle   = "MarginStyle" // MarginStyle is a String
+DealingInterface_UseRerouteDefinitionOnly   = "UseRerouteDefinitionOnly" // UseRerouteDefinitionOnly is a Bool
+DealingInterface_BypassConfirmation   = "BypassConfirmation" // BypassConfirmation is a Bool
+DealingInterface_DIOnAcceptance   = "DIOnAcceptance" // DIOnAcceptance is a Bool
+DealingInterface_IgnoreESPAmountRules   = "IgnoreESPAmountRules" // IgnoreESPAmountRules is a Bool
 
 	/// Definitions End
 )

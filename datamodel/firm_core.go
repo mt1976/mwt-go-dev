@@ -9,19 +9,19 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:15
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:52:05
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Firm defines the datamolde for the Firm object
 type Firm struct {
 
-FirmName        string
-FullName        string
-Country        string
-Sector        string
-Sector_Lookup        string
-Country_Lookup        string
+FirmName       string
+FullName       string
+Country       string
+Country_lookup []Lookup_Item
+Sector       string
+Sector_lookup []Lookup_Item
 
 }
 
@@ -51,12 +51,10 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	Firm_FirmName   = "FirmName" // FirmName is a String
-	Firm_FullName   = "FullName" // FullName is a String
-	Firm_Country   = "Country" // Country is a String
-	Firm_Sector   = "Sector" // Sector is a String
-	Firm_Sector_Lookup   = "Sector_Lookup" // Sector_Lookup is a String
-	Firm_Country_Lookup   = "Country_Lookup" // Country_Lookup is a String
+Firm_FirmName   = "FirmName" // FirmName is a String
+Firm_FullName   = "FullName" // FullName is a String
+Firm_Country   = "Country" // Country is a String
+Firm_Sector   = "Sector" // Sector is a String
 
 	/// Definitions End
 )

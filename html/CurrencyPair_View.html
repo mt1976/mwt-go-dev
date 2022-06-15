@@ -1,76 +1,70 @@
-{{template "header" .}}
-{{template "bodydefinition" .}}
-    <form action="/CurrencyPairEdit?Code={{.Code}}" method="POST" class="form">
-      <div class="card">
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CurrencyPairEdit?Code={{.Code}}" method="POST" class="form">
+    <div class="card">
         <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-coins me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CurrencyPairEdit/?Code={{.Code}}" onclick="/CurrencyPairEdit/?Code={{.Code}}" title="Edit Currency Pair"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Currency Pair"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
             </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-              
-                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CurrencyPairEdit/?Code={{.Code}}" onclick="/CurrencyPairEdit/?Code={{.Code}}" title="Edit Currency Pair"></i>&nbsp;&nbsp;Edit</button>
-                
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Currency Pair"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CodeMajorCurrencyIsoCode" aria-describedby="CodeMajorCurrencyIsoCodeHelp" placeholder="" disabled value="{{.CodeMajorCurrencyIsoCode}}">
-                <label class="form-label" for="CodeMajorCurrencyIsoCode">CodeMajorCurrencyIsoCode</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="CodeMajorCurrencyIsoCode" name="CodeMajorCurrencyIsoCode" class="select" data-mdb-filter="true" disabled>
+                  {{range .CodeMajorCurrencyIsoCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CodeMajorCurrencyIsoCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CodeMajorCurrencyIsoCode" disabled>CodeMajorCurrencyIsoCode</label>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CodeMinorCurrencyIsoCode" aria-describedby="CodeMinorCurrencyIsoCodeHelp" placeholder="" disabled value="{{.CodeMinorCurrencyIsoCode}}">
-                <label class="form-label" for="CodeMinorCurrencyIsoCode">CodeMinorCurrencyIsoCode</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="CodeMinorCurrencyIsoCode" name="CodeMinorCurrencyIsoCode" class="select" data-mdb-filter="true" disabled>
+                  {{range .CodeMinorCurrencyIsoCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CodeMinorCurrencyIsoCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CodeMinorCurrencyIsoCode" disabled>CodeMinorCurrencyIsoCode</label>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ReciprocalActive" aria-describedby="ReciprocalActiveHelp" placeholder="True" disabled value="{{.ReciprocalActive}}">
-                <label class="form-label" for="ReciprocalActive">ReciprocalActive</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="ReciprocalActive" name="ReciprocalActive" class="select" data-mdb-filter="true" disabled>
+                  {{range .ReciprocalActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.ReciprocalActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ReciprocalActive" disabled>ReciprocalActive</label>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}">
-                <label class="form-label" for="Code">Code</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}">
+                        <label class="form-label" for="Code">Code</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="MajorName" aria-describedby="MajorNameHelp" placeholder="" disabled value="{{.MajorName}}">
-                <label class="form-label" for="MajorName">MajorName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="MinorName" aria-describedby="MinorNameHelp" placeholder="" disabled value="{{.MinorName}}">
-                <label class="form-label" for="MinorName">MinorName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Major_Lookup" aria-describedby="Major_LookupHelp" placeholder="" disabled value="{{.Major_Lookup}}">
-                <label class="form-label" for="Major_Lookup">Major_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Minor_Lookup" aria-describedby="Minor_LookupHelp" placeholder="" disabled value="{{.Minor_Lookup}}">
-                <label class="form-label" for="Minor_Lookup">Minor_Lookup</label>
-              </div>
-            </div>
+            
         </div>
+        
+    </div>
+</form>
 
-      </div>
-    </form>
-  
-{{template "userfooter" .}}
-{{template "pagefooter" .}}
+{{template "userfooter" .}} {{template "pagefooter" .}}

@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func AccountLadder_Delete_Impl(id string) error {
+func AccountLadder_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement AccountLadder_Delete: " + id
 
-	// Implement AccountLadder_Delete_Impl in accountladder_Impl.go
+	// Implement AccountLadder_Delete_impl in accountladder_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := AccountLadder_Delete_Impl(item)
+	// er := AccountLadder_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func AccountLadder_Update_Impl(item dm.AccountLadder, usr string) error {
+func AccountLadder_Update_impl(id string, item dm.AccountLadder, usr string) error {
 	var er error
 
 	message := "Implement AccountLadder_Update: " + item.SienaReference
 
-	// Implement AccountLadder_Update_Impl in accountladder_Impl.go
+	// Implement AccountLadder_Update_impl in accountladder_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := AccountLadder_Update_Impl(item)
+	// er := AccountLadder_Update_impl(item)
 	//
 
 	logs.Success(message)

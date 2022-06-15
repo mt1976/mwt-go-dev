@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:15
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:04
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func DealTypeFundamental_GetByID(id string) (int, dm.DealTypeFundamental, error)
 func DealTypeFundamental_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealTypeFundamental_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.DealTypeFundamental_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.DealTypeFundamental_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,113 @@ func dealtypefundamental_Save(r dm.DealTypeFundamental,usr string) error {
 
     var err error
 
-	logs.Storing("DealTypeFundamental",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.DealTypeKey) == 0 {
 		r.DealTypeKey = DealTypeFundamental_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\dealtypefundamental_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("DealTypeFundamental",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/DealTypeFundamental_impl.go file
-	err1 := adaptor.DealTypeFundamental_Delete_Impl(r.DealTypeKey)
-	err2 := adaptor.DealTypeFundamental_Update_Impl(r,usr)
+	err1 := adaptor.DealTypeFundamental_Delete_impl(r.DealTypeKey)
+	err2 := adaptor.DealTypeFundamental_Update_impl(r.DealTypeKey,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +198,8 @@ func dealtypefundamental_Save(r dm.DealTypeFundamental,usr string) error {
 }
 
 
-// dealtypefundamental_Fetch read all employees
+
+// dealtypefundamental_Fetch read all DealTypeFundamental's
 func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.DealTypeFundamental, error) {
 
 	var recItem dm.DealTypeFundamental
@@ -117,13 +207,13 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey, "")
    recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment, "True")
    recItem.DefaultFrequency  = get_Int(rec, dm.DealTypeFundamental_DefaultFrequency, "0")
@@ -214,7 +304,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
    recItem.DeletedTransactionId  = get_String(rec, dm.DealTypeFundamental_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealTypeFundamental_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealTypeFundamental_ChangeType, "")
-// If there are fields below, create the methods in dao\DealTypeFundamental_Impl.go
+// If there are fields below, create the methods in adaptor\DealTypeFundamental_impl.go
 
 
 
@@ -306,102 +396,15 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func DealTypeFundamental_NewID(r dm.DealTypeFundamental) string {
 	
@@ -409,6 +412,7 @@ func DealTypeFundamental_NewID(r dm.DealTypeFundamental) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

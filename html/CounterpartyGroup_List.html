@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fa fa-users me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -26,8 +26,6 @@
                           <th class="text-center">Name</th>
                           <th class="text-center">CountryCode</th>
                           <th class="text-center">SuperGroup</th>
-                          
-                          
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -38,15 +36,11 @@
                           <td class="align-middle">{{.CountryCode}}</td>
                           <td class="align-middle">{{.SuperGroup}}</td>
                           
-                          
-                          
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/CounterpartyGroupView?Group={{.Name}}" method="POST" title="View Counterparty Group"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/CounterpartyGroupEdit?Group={{.Name}}" method="POST" title="Edit Counterparty Group"><i class="fas fa-edit"></i></button>
-                            <button type="submit" value="" class="btn btn-danger" formaction="/CounterpartyGroupDelete?Group={{.Name}}" method="POST" title="Delete Counterparty Group"><i class="fas fa-trash"></i></button>
-                            </div>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/CounterpartyGroupView?Group={{.Name}}" method="POST" title="View Counterparty Group"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/CounterpartyGroupEdit?Group={{.Name}}" method="POST" title="Edit Counterparty Group"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/CounterpartyGroupDelete?Group={{.Name}}" method="POST" title="Delete Counterparty Group"><i class="fas fa-trash"></i></button>
                             </form>
                           </td>
                         </tr>

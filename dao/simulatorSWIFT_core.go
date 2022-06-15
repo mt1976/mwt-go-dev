@@ -8,8 +8,8 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 12:56:56
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -17,7 +17,8 @@ import (
 	"fmt"
 	"net/http"
 
-	
+"github.com/google/uuid"
+
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -76,7 +77,7 @@ func simulatorswift_Save(r dm.SimulatorSWIFT,usr string) error {
 
 
 
-	logs.Storing("SimulatorSWIFT",fmt.Sprintf("%s", r))
+	
 
 	if len(r.ID) == 0 {
 		r.ID = SimulatorSWIFT_NewID(r)
@@ -90,15 +91,8 @@ func simulatorswift_Save(r dm.SimulatorSWIFT,usr string) error {
 
 
 
-
-
-
-
-  err = adaptor.SimulatorSWIFT_MessageFmt_Override_Store_impl (r)
-
-
 	
-
+logs.Storing("SimulatorSWIFT",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/SimulatorSWIFT_impl.go file
 	err1 := adaptor.SimulatorSWIFT_Delete_impl(r.ID)
@@ -116,20 +110,18 @@ func simulatorswift_Save(r dm.SimulatorSWIFT,usr string) error {
 }
 
 
+
 // simulatorswift_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
 	
 
+
 func SimulatorSWIFT_NewID(r dm.SimulatorSWIFT) string {
 	
-		// SimulatorSWIFT_NewID_impl should be specified in dao/SimulatorSWIFT_impl.go
-		// to provide the implementation for the special case.
-		// override should return id - override function should be defined as
-		// SimulatorSWIFT_NewID_impl(r dm.SimulatorSWIFT) string {...}
-		//
-		id := adaptor.SimulatorSWIFT_NewID_impl(r)
+			id := uuid.New().String()
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

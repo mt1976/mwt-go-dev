@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,68 +25,53 @@ import (
 //systems_PageList provides the information for the template for a list of Systemss
 type Systems_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Systems
 }
+//Systems_Redirect provides a page to return to aftern an action
+const (
+	Systems_Redirect = dm.Systems_PathList
+)
 
 //systems_Page provides the information for the template for an individual Systems
 type Systems_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		SYSId string
-		Id string
-		Name string
-		Staticin string
-		Staticout string
-		Txnin string
-		Txnout string
-		Fundscheckin string
-		Fundscheckout string
-		SYSCreated string
-		SYSWho string
-		SYSHost string
-		SYSUpdated string
-		SYSCreatedBy string
-		SYSCreatedHost string
-		SYSUpdatedBy string
-		SYSUpdatedHost string
-		SWIFTin string
-		SWIFTout string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	Id         string
+	Name         string
+	Staticin         string
+	Staticout         string
+	Txnin         string
+	Txnout         string
+	Fundscheckin         string
+	Fundscheckout         string
+	SYSCreated         string
+	SYSWho         string
+	SYSHost         string
+	SYSUpdated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SWIFTin         string
+	SWIFTout         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Systems_Redirect = dm.Systems_PathList
-)
+
 
 //Systems_Publish annouces the endpoints available for this object
 func Systems_Publish(mux http.ServeMux) {
@@ -100,6 +85,7 @@ func Systems_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Systems_Title)
     //No API
 }
+
 
 //Systems_HandlerList is the handler for the list page
 func Systems_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -131,6 +117,7 @@ func Systems_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Systems_HandlerView is the handler used to View a page
 func Systems_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -153,41 +140,14 @@ func Systems_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.Name = rD.Name
-pageDetail.Staticin = rD.Staticin
-pageDetail.Staticout = rD.Staticout
-pageDetail.Txnin = rD.Txnin
-pageDetail.Txnout = rD.Txnout
-pageDetail.Fundscheckin = rD.Fundscheckin
-pageDetail.Fundscheckout = rD.Fundscheckout
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-pageDetail.SWIFTin = rD.SWIFTin
-pageDetail.SWIFTout = rD.SWIFTout
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = systems_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Systems_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Systems_HandlerEdit is the handler used generate the Edit page
 func Systems_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -211,40 +171,13 @@ func Systems_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.Name = rD.Name
-pageDetail.Staticin = rD.Staticin
-pageDetail.Staticout = rD.Staticout
-pageDetail.Txnin = rD.Txnin
-pageDetail.Txnout = rD.Txnout
-pageDetail.Fundscheckin = rD.Fundscheckin
-pageDetail.Fundscheckout = rD.Fundscheckout
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-pageDetail.SWIFTin = rD.SWIFTin
-pageDetail.SWIFTout = rD.SWIFTout
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = systems_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Systems_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Systems_HandlerSave is the handler used process the saving of an Systems
 func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -259,7 +192,9 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Systems
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.SYSId = r.FormValue(dm.Systems_SYSId)
 		item.Id = r.FormValue(dm.Systems_Id)
 		item.Name = r.FormValue(dm.Systems_Name)
@@ -280,13 +215,13 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SWIFTin = r.FormValue(dm.Systems_SWIFTin)
 		item.SWIFTout = r.FormValue(dm.Systems_SWIFTout)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Systems_Store(item,r)	
-
 	http.Redirect(w, r, Systems_Redirect, http.StatusFound)
 }
+
 
 //Systems_HandlerNew is the handler used process the creation of an Systems
 func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -308,38 +243,14 @@ func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = ""
-pageDetail.Id = ""
-pageDetail.Name = ""
-pageDetail.Staticin = ""
-pageDetail.Staticout = ""
-pageDetail.Txnin = ""
-pageDetail.Txnout = ""
-pageDetail.Fundscheckin = ""
-pageDetail.Fundscheckout = ""
-pageDetail.SYSCreated = ""
-pageDetail.SYSWho = ""
-pageDetail.SYSHost = ""
-pageDetail.SYSUpdated = ""
-pageDetail.SYSCreatedBy = ""
-pageDetail.SYSCreatedHost = ""
-pageDetail.SYSUpdatedBy = ""
-pageDetail.SYSUpdatedHost = ""
-pageDetail.SWIFTin = ""
-pageDetail.SWIFTout = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = systems_PopulatePage(dm.Systems{} , pageDetail) 
 
 	ExecuteTemplate(dm.Systems_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Systems_HandlerDelete is the handler used process the deletion of an Systems
 func Systems_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -357,3 +268,78 @@ func Systems_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Systems_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Systems Page 
+func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.Name = rD.Name
+	pageDetail.Staticin = rD.Staticin
+	pageDetail.Staticout = rD.Staticout
+	pageDetail.Txnin = rD.Txnin
+	pageDetail.Txnout = rD.Txnout
+	pageDetail.Fundscheckin = rD.Fundscheckin
+	pageDetail.Fundscheckout = rD.Fundscheckout
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	pageDetail.SWIFTin = rD.SWIFTin
+	pageDetail.SWIFTout = rD.SWIFTout
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

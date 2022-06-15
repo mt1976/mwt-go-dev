@@ -27,10 +27,10 @@ func Sector_Delete_impl(id string) error {
 
 	message := "Implement Sector_Delete: " + id
 
-	// Implement Sector_Delete_Impl in sector_Impl.go
+	// Implement Sector_Delete_impl in sector_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Sector_Delete_Impl(item)
+	// er := Sector_Delete_impl(item)
 	//
 
 	logs.Success(message)
@@ -42,10 +42,10 @@ func Sector_Update_impl(id string, item dm.Sector, usr string) error {
 
 	message := "Implement Sector_Update: " + item.Code + id
 
-	// Implement Sector_Update_Impl in sector_Impl.go
+	// Implement Sector_Update_impl in sector_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Sector_Update_Impl(item)
+	// er := Sector_Update_impl(item)
 	//
 
 	logs.Success(message)

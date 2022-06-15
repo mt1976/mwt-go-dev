@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:08
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:51
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -40,13 +36,8 @@ func Centre_GetList() (int, []dm.Centre, error) {
 
 // Centre_GetLookup() returns a lookup list of all Centre items in lookup format
 func Centre_GetLookup() []dm.Lookup_Item {
-
 	var returnList []dm.Lookup_Item
-
-	
-	    count, centreList, _ := Centre_GetList()
-	
-	
+	count, centreList, _ := Centre_GetList()
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: centreList[i].Code, Name: centreList[i].Name})
 	}
@@ -65,7 +56,7 @@ func Centre_GetByID(id string) (int, dm.Centre, error) {
 	return 1, centreItem, nil
 }
 
-// Centre_GetByReverseLookup(id string) returns a single Centre record
+// Centre_GetByReverseLookup(id string) returns a single Centre record using the Name field as key.
 func Centre_GetByReverseLookup(id string) (int, dm.Centre, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Centre_SQLTable)
@@ -80,12 +71,8 @@ func Centre_GetByReverseLookup(id string) (int, dm.Centre, error) {
 func Centre_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Centre_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Centre_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Centre_Delete_impl(id)
+	
 }
 
 
@@ -110,16 +97,26 @@ func centre_Save(r dm.Centre,usr string) error {
 
     var err error
 
-	logs.Storing("Centre",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = Centre_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\centre_impl.go
+
+
+
+
+
+	
+logs.Storing("Centre",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Centre_impl.go file
-	err1 := adaptor.Centre_Delete_Impl(r.Code)
-	err2 := adaptor.Centre_Update_Impl(r,usr)
+	err1 := adaptor.Centre_Delete_impl(r.Code)
+	err2 := adaptor.Centre_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -133,7 +130,8 @@ func centre_Save(r dm.Centre,usr string) error {
 }
 
 
-// centre_Fetch read all employees
+
+// centre_Fetch read all Centre's
 func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 
 	var recItem dm.Centre
@@ -141,33 +139,30 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.Code  = get_String(rec, dm.Centre_Code, "")
    recItem.Name  = get_String(rec, dm.Centre_Name, "")
    recItem.Country  = get_String(rec, dm.Centre_Country, "")
-
-// If there are fields below, create the methods in dao\Centre_Impl.go
-
+// If there are fields below, create the methods in adaptor\Centre_impl.go
 
 
 
 
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Centre_NewID(r dm.Centre) string {
 	
@@ -175,6 +170,7 @@ func Centre_NewID(r dm.Centre) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

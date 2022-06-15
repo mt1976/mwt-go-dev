@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:07
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func Payee_GetByID(id string) (int, dm.Payee, error) {
 func Payee_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Payee_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Payee_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Payee_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,47 @@ func payee_Save(r dm.Payee,usr string) error {
 
     var err error
 
-	logs.Storing("Payee",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.KeyCounterpartyFirm) == 0 {
 		r.KeyCounterpartyFirm = Payee_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\payee_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  r.Status,err = adaptor.Payee_Status_OnStore_impl (r.Status,r,usr)
+
+
+	
+logs.Storing("Payee",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Payee_impl.go file
-	err1 := adaptor.Payee_Delete_Impl(r.KeyCounterpartyFirm)
-	err2 := adaptor.Payee_Update_Impl(r,usr)
+	err1 := adaptor.Payee_Delete_impl(r.KeyCounterpartyFirm)
+	err2 := adaptor.Payee_Update_impl(r.KeyCounterpartyFirm,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +132,8 @@ func payee_Save(r dm.Payee,usr string) error {
 }
 
 
-// payee_Fetch read all employees
+
+// payee_Fetch read all Payee's
 func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 	var recItem dm.Payee
@@ -117,13 +141,13 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable, "")
    recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm, "")
    recItem.KeyCounterpartyCentre  = get_String(rec, dm.Payee_KeyCounterpartyCentre, "")
@@ -148,13 +172,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
    recItem.BankSettlementAcct  = get_Bool(rec, dm.Payee_BankSettlementAcct, "True")
    recItem.UpdatedUserId  = get_String(rec, dm.Payee_UpdatedUserId, "")
 
-
-
-
-
-
-// If there are fields below, create the methods in dao\Payee_Impl.go
-
+// If there are fields below, create the methods in adaptor\Payee_impl.go
 
 
 
@@ -178,47 +196,17 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 
 
+   recItem.Status  = adaptor.Payee_Status_OnFetch_impl (recItem)
 
-
-
-   recItem.Status_Extra  = payee_Status_Extra (recItem)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  recItem.Reason  = payee_Reason_Override (recItem)
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Payee_NewID(r dm.Payee) string {
 	
@@ -226,6 +214,7 @@ func Payee_NewID(r dm.Payee) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

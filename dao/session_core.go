@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:09
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,14 +84,44 @@ func session_Save(r dm.Session,usr string) error {
 
     var err error
 
-	logs.Storing("Session",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = Session_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\session_impl.go
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -101,37 +129,46 @@ func session_Save(r dm.Session,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	
+logs.Storing("Session",fmt.Sprintf("%s", r))
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.Session_SYSId, r.SYSId)
-ts = addData(ts, dm.Session_Apptoken, r.Apptoken)
-ts = addData(ts, dm.Session_Createdate, r.Createdate)
-ts = addData(ts, dm.Session_Createtime, r.Createtime)
-ts = addData(ts, dm.Session_Uniqueid, r.Uniqueid)
-ts = addData(ts, dm.Session_Sessiontoken, r.Sessiontoken)
-ts = addData(ts, dm.Session_Username, r.Username)
-ts = addData(ts, dm.Session_Password, r.Password)
-ts = addData(ts, dm.Session_Userip, r.Userip)
-ts = addData(ts, dm.Session_Userhost, r.Userhost)
-ts = addData(ts, dm.Session_Appip, r.Appip)
-ts = addData(ts, dm.Session_Apphost, r.Apphost)
-ts = addData(ts, dm.Session_Issued, r.Issued)
-ts = addData(ts, dm.Session_Expiry, r.Expiry)
-ts = addData(ts, dm.Session_Expiryraw, r.Expiryraw)
-ts = addData(ts, dm.Session_Brand, r.Brand)
-ts = addData(ts, dm.Session_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.Session_SYSWho, r.SYSWho)
-ts = addData(ts, dm.Session_SYSHost, r.SYSHost)
-ts = addData(ts, dm.Session_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.Session_Id, r.Id)
-ts = addData(ts, dm.Session_Expires, r.Expires)
-ts = addData(ts, dm.Session_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.Session_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.Session_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.Session_SYSUpdatedHost, r.SYSUpdatedHost)
-ts = addData(ts, dm.Session_SessionRole, r.SessionRole)
-	
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.Session_SYSId, r.SYSId)
+	ts = addData(ts, dm.Session_Apptoken, r.Apptoken)
+	ts = addData(ts, dm.Session_Createdate, r.Createdate)
+	ts = addData(ts, dm.Session_Createtime, r.Createtime)
+	ts = addData(ts, dm.Session_Uniqueid, r.Uniqueid)
+	ts = addData(ts, dm.Session_Sessiontoken, r.Sessiontoken)
+	ts = addData(ts, dm.Session_Username, r.Username)
+	ts = addData(ts, dm.Session_Password, r.Password)
+	ts = addData(ts, dm.Session_Userip, r.Userip)
+	ts = addData(ts, dm.Session_Userhost, r.Userhost)
+	ts = addData(ts, dm.Session_Appip, r.Appip)
+	ts = addData(ts, dm.Session_Apphost, r.Apphost)
+	ts = addData(ts, dm.Session_Issued, r.Issued)
+	ts = addData(ts, dm.Session_Expiry, r.Expiry)
+	ts = addData(ts, dm.Session_Expiryraw, r.Expiryraw)
+	ts = addData(ts, dm.Session_Brand, r.Brand)
+	ts = addData(ts, dm.Session_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.Session_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.Session_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.Session_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.Session_Id, r.Id)
+	ts = addData(ts, dm.Session_Expires, r.Expires)
+	ts = addData(ts, dm.Session_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.Session_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.Session_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Session_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Session_SessionRole, r.SessionRole)
+		
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -147,7 +184,8 @@ ts = addData(ts, dm.Session_SessionRole, r.SessionRole)
 }
 
 
-// session_Fetch read all employees
+
+// session_Fetch read all Session's
 func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 	var recItem dm.Session
@@ -155,13 +193,13 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Session_SYSId, "0")
    recItem.Apptoken  = get_String(rec, dm.Session_Apptoken, "")
    recItem.Createdate  = get_String(rec, dm.Session_Createdate, "")
@@ -189,7 +227,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
    recItem.SYSUpdatedBy  = get_String(rec, dm.Session_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Session_SYSUpdatedHost, "")
    recItem.SessionRole  = get_String(rec, dm.Session_SessionRole, "")
-// If there are fields below, create the methods in dao\Session_Impl.go
+// If there are fields below, create the methods in adaptor\Session_impl.go
 
 
 
@@ -218,39 +256,15 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Session_NewID(r dm.Session) string {
 	
@@ -258,6 +272,7 @@ func Session_NewID(r dm.Session) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

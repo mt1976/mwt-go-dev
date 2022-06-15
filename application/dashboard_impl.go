@@ -13,7 +13,7 @@ import (
 //dashboardPage is cheese
 type dashboardPage struct {
 	SessionInfo       dm.SessionInfo
-	UserMenu          []dm.AppMenuItem
+	UserMenu          dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string

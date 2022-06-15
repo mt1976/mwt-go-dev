@@ -1,6 +1,5 @@
-  {{template "header" .}}
-
-<body>
+{{template "header" .}}
+{{template "bodydefinition" .}}
 
 
   <div class="container-fluid">
@@ -9,18 +8,27 @@
     <div id="dataMapDetail">
       <div class="card">
         <div class="card-header">
-          <strong>{{.Title}}&nbsp;:&nbsp;</strong>
-          <code>{{.DataMapPageID}}</code>
-          <div class="btn-group float-right">
+        <div class="row">
+          <div class="col d-flex"><h3><i class="fas fa-city me-2"></i>{{.Title}}&nbsp;:&nbsp;  <code>{{.DataMapPageID}}</code></h3></div>
+          <div class="col d-flex justify-content-end">
+          <form action="/home" method="POST">
+            <div class="btn-group">
+              <button type="submit" value="" class="btn  btn-warning" style="border:none" formaction="/editSvcDataMapXML?loaderID={{.DataMapPageID}}" method="POST" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit
+                      </button>
+              <button id="export" type="button" class="btn btn-info" onclick="saveFile()">
 
-            <button id="export" type="button" class="btn btn-outline-primary" onclick="saveFile()">
-              <i class="fas fa-file-code" ></i>&nbsp;&nbsp;Export</button>
+                <i class="fas fa-file-code" ></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
 
-            <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
-              <i class="far fa-window-close" ></i>&nbsp;&nbsp;Cancel</button>
-
+              <button id="close" type="button" class="btn btn-light" onclick="history.back()">
+                <i class="far fa-window-close" ></i>&nbsp;&nbsp;Cancel</button>
+            </div>
+          </form>
           </div>
+      
         </div>
+      </div>
 
         <div class="card-body d-flex h-100 flex-column">
 
@@ -37,7 +45,10 @@
     </div>
   </div>
 
-</body>
+{{template "userfooter" .}}
+
+{{template "pagefooter" .}}
+
 <script>
   let saveFile = () => {
 

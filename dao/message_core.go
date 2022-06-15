@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:07
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,36 +84,52 @@ func message_Save(r dm.Message,usr string) error {
 
     var err error
 
-	logs.Storing("Message",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = Message_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\message_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("Message",fmt.Sprintf("%s", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
-	
-	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
-	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
-	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",usr)
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.Message_SYSId, r.SYSId)
-ts = addData(ts, dm.Message_Id, r.Id)
-ts = addData(ts, dm.Message_Message, r.Message)
-ts = addData(ts, dm.Message_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.Message_SYSWho, r.SYSWho)
-ts = addData(ts, dm.Message_SYSHost, r.SYSHost)
-ts = addData(ts, dm.Message_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.Message_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.Message_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.Message_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.Message_SYSUpdatedHost, r.SYSUpdatedHost)
-	
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.Message_SYSId, r.SYSId)
+	ts = addData(ts, dm.Message_Id, r.Id)
+	ts = addData(ts, dm.Message_Message, r.Message)
+	ts = addData(ts, dm.Message_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.Message_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.Message_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.Message_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.Message_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.Message_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.Message_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Message_SYSUpdatedHost, r.SYSUpdatedHost)
+		
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Message_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -131,7 +145,8 @@ ts = addData(ts, dm.Message_SYSUpdatedHost, r.SYSUpdatedHost)
 }
 
 
-// message_Fetch read all employees
+
+// message_Fetch read all Message's
 func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 
 	var recItem dm.Message
@@ -139,13 +154,13 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Message_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Message_Id, "")
    recItem.Message  = get_String(rec, dm.Message_Message, "")
@@ -157,7 +172,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
    recItem.SYSCreatedHost  = get_String(rec, dm.Message_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.Message_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Message_SYSUpdatedHost, "")
-// If there are fields below, create the methods in dao\Message_Impl.go
+// If there are fields below, create the methods in adaptor\Message_impl.go
 
 
 
@@ -170,23 +185,15 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Message_NewID(r dm.Message) string {
 	
@@ -194,6 +201,7 @@ func Message_NewID(r dm.Message) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

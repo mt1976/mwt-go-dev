@@ -18,7 +18,8 @@ import (
 
 //SvcDataMapPage is cheese
 type SvcDataMapPage struct {
-	UserMenu        []dm.AppMenuItem
+	SessionInfo     dm.SessionInfo
+	UserMenu        dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -75,16 +76,17 @@ func DataLoader_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc("/viewSvcDataMapXML/", DataLoader_HandlerViewXML_Impl)
 	mux.HandleFunc("/editSvcDataMapXML/", DataLoader_HandlerEditXML_Impl)
 	mux.HandleFunc("/saveSvcDataMapXML/", DataLoader_HandlerSaveXML_Impl)
-	mux.HandleFunc("/newSvcDataMap/", DataLoader_HandlerNew_Impl)
-	mux.HandleFunc("/genSvcDataMap/", DataLoader_HandlerGenerate_Impl)
+	mux.HandleFunc("/NewDataLoader/", DataLoader_HandlerNew_Impl)
+	mux.HandleFunc("/SaveDataLoader/", DataLoader_HandlerGenerate_Impl)
 	mux.HandleFunc("/deleteSvcDataMap/", DataLoader_HandlerDelete_Impl)
 	mux.HandleFunc("/editDataMapColumns/", ListLoaderMapStoreHandler)
 	mux.HandleFunc("/editLoaderMapStore/", EditLoaderMapStoreHandler)
 	mux.HandleFunc("/saveLoaderMapStore/", SaveLoaderMapStoreHandler)
 	mux.HandleFunc("/newLoaderMapStore/", NewLoaderMapStoreHandler)
 	mux.HandleFunc("/runLoader/", DataLoader_HandlerRun_Impl)
+	mux.HandleFunc("/DataLoaderUploadData/", DataLoader_UploadFile_Impl)
 	logs.Publish("Application", dm.DataLoader_Title+" Impl")
-	core.Catalog_Add(dm.DataLoaderData_Loader, dm.DataLoaderData_PathList, "", dm.DataLoader_QueryString, core.DataSource_Siena)
+
 }
 
 func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
@@ -95,7 +97,7 @@ func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderList"
+	tmpl := "Impl_LoaderList"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	//	requestID := uuid.New()
@@ -229,7 +231,7 @@ func DataLoader_HandlerEdit_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	buildGridPage("LoaderEdit", w, r)
+	buildGridPage("Impl_LoaderEdit", w, r)
 
 }
 
@@ -241,7 +243,7 @@ func DataLoader_HandlerViewXML_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderTemplateView"
+	tmpl := "Impl_LoaderTemplateView"
 
 	inUTL := r.URL.Path
 
@@ -283,7 +285,7 @@ func putXMLtemplateBody(thisID string, content string) int {
 	path := core.ApplicationProperties["datamaptemplatepath"]
 	_, loaderItem, _ := GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
-	status := core.WriteDataFile(fileName, path, content)
+	status := core.FileSystem_WriteData(fileName, path, content)
 	return status
 }
 
@@ -295,7 +297,7 @@ func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderTemplateEdit"
+	tmpl := "Impl_LoaderTemplateEdit"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
@@ -366,7 +368,7 @@ func DataLoader_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 
 	//fmt.Println("table", tableRows, "x", tableColumns, "loader", loaderID)
 
-	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+	http.Redirect(w, r, "/DataLoaderList", http.StatusFound)
 }
 
 func DataLoader_HandlerSaveXML_Impl(w http.ResponseWriter, r *http.Request) {
@@ -390,7 +392,7 @@ func DataLoader_HandlerSaveXML_Impl(w http.ResponseWriter, r *http.Request) {
 		// do nothing
 	}
 
-	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+	http.Redirect(w, r, "/DataLoaderList", http.StatusFound)
 
 }
 
@@ -402,7 +404,7 @@ func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderNew"
+	tmpl := "Impl_DataLoader_New"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
@@ -455,7 +457,7 @@ func DataLoader_HandlerGenerate_Impl(w http.ResponseWriter, r *http.Request) {
 
 	NewLoaderStore(s, r)
 
-	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+	http.Redirect(w, r, "/DataLoaderList", http.StatusFound)
 
 }
 
@@ -481,7 +483,7 @@ func DataLoader_HandlerDelete_Impl(w http.ResponseWriter, r *http.Request) {
 	DeleteLoaderDataStoreByLoader(id)
 	DeleteLoaderMapStoreByLoader(id)
 
-	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+	http.Redirect(w, r, "/DataLoaderList", http.StatusFound)
 }
 
 func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
@@ -551,27 +553,27 @@ func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 		importtemplate = replaceWildcard(importtemplate, "!hh", today.Format(core.DFhh))
 		importtemplate = replaceWildcard(importtemplate, "!mm", today.Format(core.DFmm))
 		importtemplate = replaceWildcard(importtemplate, "!ss", today.Format(core.DFss))
-		spot := core.CalculateSpotDate(today)
+		spot := core.Financial_GetSpotDate(today)
 
 		importtemplate = replaceWildcard(importtemplate, "!SPOT", spot.Format(core.DATEFORMATSIENA))
 
-		importtemplate = replaceWildcard(importtemplate, "!1M", core.CalculateTenorDate(today, "1").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!2M", core.CalculateTenorDate(today, "2").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!3M", core.CalculateTenorDate(today, "3").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!4M", core.CalculateTenorDate(today, "4").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!5M", core.CalculateTenorDate(today, "5").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!6M", core.CalculateTenorDate(today, "6").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!7M", core.CalculateTenorDate(today, "7").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!8M", core.CalculateTenorDate(today, "8").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!9M", core.CalculateTenorDate(today, "9").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!10M", core.CalculateTenorDate(today, "10").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!11M", core.CalculateTenorDate(today, "11").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!12M", core.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!1Y", core.CalculateTenorDate(today, "12").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!2Y", core.CalculateTenorDate(today, "23").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!3Y", core.CalculateTenorDate(today, "36").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!5Y", core.CalculateTenorDate(today, "60").Format(core.DATEFORMATSIENA))
-		importtemplate = replaceWildcard(importtemplate, "!FDY", core.CalculateFirstDateOfYear(today).Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!1M", core.Financial_GetTenorDate(today, "1").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!2M", core.Financial_GetTenorDate(today, "2").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!3M", core.Financial_GetTenorDate(today, "3").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!4M", core.Financial_GetTenorDate(today, "4").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!5M", core.Financial_GetTenorDate(today, "5").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!6M", core.Financial_GetTenorDate(today, "6").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!7M", core.Financial_GetTenorDate(today, "7").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!8M", core.Financial_GetTenorDate(today, "8").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!9M", core.Financial_GetTenorDate(today, "9").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!10M", core.Financial_GetTenorDate(today, "10").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!11M", core.Financial_GetTenorDate(today, "11").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!12M", core.Financial_GetTenorDate(today, "12").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!1Y", core.Financial_GetTenorDate(today, "12").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!2Y", core.Financial_GetTenorDate(today, "23").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!3Y", core.Financial_GetTenorDate(today, "36").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!5Y", core.Financial_GetTenorDate(today, "60").Format(core.DATEFORMATSIENA))
+		importtemplate = replaceWildcard(importtemplate, "!FDY", core.Financial_GetFirstDayOfYear(today).Format(core.DATEFORMATSIENA))
 		importtemplate = replaceWildcard(importtemplate, "!SEQ", strconv.Itoa(thisRow))
 		importtemplate = replaceWildcard(importtemplate, "!LEI", "213800APCD7UDNQHOI68")
 
@@ -579,7 +581,7 @@ func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 
 		filename := newID + extensionID
 
-		val := core.WriteDataFileAbsolute(filename, path, importtemplate)
+		val := core.FileSystem_WriteData_Absolute(filename, path, importtemplate)
 		if val != 0 {
 			//do nothing
 		}
@@ -596,10 +598,35 @@ func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 	loader.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 	PutLoaderStore(loader, r)
 
-	http.Redirect(w, r, "/listSvcDataMap", http.StatusFound)
+	http.Redirect(w, r, "/DataLoaderList", http.StatusFound)
 
 }
 
 func replaceWildcard(orig string, replaceThis string, withThis string) string {
 	return core.ReplaceWildcard(orig, replaceThis, withThis)
+}
+
+func DataLoader_UploadFile_Impl(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+	id := core.GetURLparam(r, "loaderID")
+	path := core.ApplicationProperties["datamaptemplatepath"]
+	status := core.DeleteDataFile(id+".template", path)
+	if status != 1 {
+		//do nothing
+	}
+
+	DeleteLoaderStore(id)
+	DeleteLoaderDataStoreByLoader(id)
+	DeleteLoaderMapStoreByLoader(id)
+
+	http.Redirect(w, r, "/DataLoaderList", http.StatusFound)
 }

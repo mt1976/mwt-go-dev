@@ -13,7 +13,7 @@ import (
 //AppConfigurationPage is cheese
 type AppConfigurationPage struct {
 	SessionInfo            dm.SessionInfo
-	UserMenu               []dm.AppMenuItem
+	UserMenu               dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string

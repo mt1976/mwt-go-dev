@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 13:00:16
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:09
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,34 +25,36 @@ import (
 //sector_PageList provides the information for the template for a list of Sectors
 type Sector_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Sector
 }
+//Sector_Redirect provides a page to return to aftern an action
+const (
+	Sector_Redirect = dm.Sector_PathList
+)
 
 //sector_Page provides the information for the template for an individual Sector
 type Sector_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-		Code string
-		Name string
-	
-	
-	
-	
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Code         string
+	Name         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Sector_Redirect = dm.Sector_PathList
-)
+
 
 //Sector_Publish annouces the endpoints available for this object
 func Sector_Publish(mux http.ServeMux) {
@@ -63,9 +65,10 @@ func Sector_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Sector_PathNew, Sector_HandlerNew)
 	mux.HandleFunc(dm.Sector_PathSave, Sector_HandlerSave)
 	mux.HandleFunc(dm.Sector_PathDelete, Sector_HandlerDelete)
-	logs.Publish("Siena", dm.Sector_Title)
-    core.Catalog_Add(dm.Sector_Title, dm.Sector_Path, "", dm.Sector_QueryString, "APP")
+	logs.Publish("Application", dm.Sector_Title)
+    core.Catalog_Add(dm.Sector_Title, dm.Sector_Path, "", dm.Sector_QueryString, "Application")
 }
+
 
 //Sector_HandlerList is the handler for the list page
 func Sector_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -97,6 +100,7 @@ func Sector_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Sector_HandlerView is the handler used to View a page
 func Sector_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -119,24 +123,14 @@ func Sector_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-
-
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = sector_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Sector_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Sector_HandlerEdit is the handler used generate the Edit page
 func Sector_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -160,23 +154,13 @@ func Sector_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-
-
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = sector_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Sector_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Sector_HandlerSave is the handler used process the saving of an Sector
 func Sector_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -191,17 +175,19 @@ func Sector_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Sector
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.Code = r.FormValue(dm.Sector_Code)
 		item.Name = r.FormValue(dm.Sector_Name)
 	
-
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Sector_Store(item,r)	
-
 	http.Redirect(w, r, Sector_Redirect, http.StatusFound)
 }
+
 
 //Sector_HandlerNew is the handler used process the creation of an Sector
 func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -223,21 +209,14 @@ func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Name = ""
-
-
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = sector_PopulatePage(dm.Sector{} , pageDetail) 
 
 	ExecuteTemplate(dm.Sector_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Sector_HandlerDelete is the handler used process the deletion of an Sector
 func Sector_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -255,3 +234,27 @@ func Sector_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Sector_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Sector Page 
+func sector_PopulatePage(rD dm.Sector, pageDetail Sector_Page) Sector_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

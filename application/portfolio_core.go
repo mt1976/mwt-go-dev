@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,54 +25,46 @@ import (
 //portfolio_PageList provides the information for the template for a list of Portfolios
 type Portfolio_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Portfolio
 }
+//Portfolio_Redirect provides a page to return to aftern an action
+const (
+	Portfolio_Redirect = dm.Portfolio_PathList
+)
 
 //portfolio_Page provides the information for the template for an individual Portfolio
 type Portfolio_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		Code string
-		Description1 string
-		Description2 string
-		IsDefault string
-		InternalId string
-		InternalDeleted string
-		UpdatedTransactionId string
-		UpdatedUserId string
-		UpdatedDateTime string
-		DeletedTransactionId string
-		DeletedUserId string
-		ChangeType string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Code         string
+	Description1         string
+	Description2         string
+	IsDefault         string
+	InternalId         string
+	InternalDeleted         string
+	UpdatedTransactionId         string
+	UpdatedUserId         string
+	UpdatedDateTime         string
+	DeletedTransactionId         string
+	DeletedUserId         string
+	ChangeType         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Portfolio_Redirect = dm.Portfolio_PathList
-)
+
 
 //Portfolio_Publish annouces the endpoints available for this object
 func Portfolio_Publish(mux http.ServeMux) {
@@ -83,9 +75,10 @@ func Portfolio_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Portfolio_PathNew, Portfolio_HandlerNew)
 	mux.HandleFunc(dm.Portfolio_PathSave, Portfolio_HandlerSave)
 	mux.HandleFunc(dm.Portfolio_PathDelete, Portfolio_HandlerDelete)
-	logs.Publish("Siena", dm.Portfolio_Title)
-    core.Catalog_Add(dm.Portfolio_Title, dm.Portfolio_Path, "", dm.Portfolio_QueryString, "APP")
+	logs.Publish("Application", dm.Portfolio_Title)
+    core.Catalog_Add(dm.Portfolio_Title, dm.Portfolio_Path, "", dm.Portfolio_QueryString, "Application")
 }
+
 
 //Portfolio_HandlerList is the handler for the list page
 func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -117,6 +110,7 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Portfolio_HandlerView is the handler used to View a page
 func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -139,34 +133,14 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Description1 = rD.Description1
-pageDetail.Description2 = rD.Description2
-pageDetail.IsDefault = rD.IsDefault
-pageDetail.InternalId = rD.InternalId
-pageDetail.InternalDeleted = rD.InternalDeleted
-pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
-pageDetail.UpdatedUserId = rD.UpdatedUserId
-pageDetail.UpdatedDateTime = rD.UpdatedDateTime
-pageDetail.DeletedTransactionId = rD.DeletedTransactionId
-pageDetail.DeletedUserId = rD.DeletedUserId
-pageDetail.ChangeType = rD.ChangeType
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = portfolio_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Portfolio_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Portfolio_HandlerEdit is the handler used generate the Edit page
 func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -190,33 +164,13 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Description1 = rD.Description1
-pageDetail.Description2 = rD.Description2
-pageDetail.IsDefault = rD.IsDefault
-pageDetail.InternalId = rD.InternalId
-pageDetail.InternalDeleted = rD.InternalDeleted
-pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
-pageDetail.UpdatedUserId = rD.UpdatedUserId
-pageDetail.UpdatedDateTime = rD.UpdatedDateTime
-pageDetail.DeletedTransactionId = rD.DeletedTransactionId
-pageDetail.DeletedUserId = rD.DeletedUserId
-pageDetail.ChangeType = rD.ChangeType
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = portfolio_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Portfolio_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Portfolio_HandlerSave is the handler used process the saving of an Portfolio
 func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -231,7 +185,9 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Portfolio
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.Code = r.FormValue(dm.Portfolio_Code)
 		item.Description1 = r.FormValue(dm.Portfolio_Description1)
 		item.Description2 = r.FormValue(dm.Portfolio_Description2)
@@ -245,13 +201,13 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.Portfolio_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.Portfolio_ChangeType)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Portfolio_Store(item,r)	
-
 	http.Redirect(w, r, Portfolio_Redirect, http.StatusFound)
 }
+
 
 //Portfolio_HandlerNew is the handler used process the creation of an Portfolio
 func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -273,31 +229,14 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Description1 = ""
-pageDetail.Description2 = ""
-pageDetail.IsDefault = ""
-pageDetail.InternalId = ""
-pageDetail.InternalDeleted = ""
-pageDetail.UpdatedTransactionId = ""
-pageDetail.UpdatedUserId = ""
-pageDetail.UpdatedDateTime = ""
-pageDetail.DeletedTransactionId = ""
-pageDetail.DeletedUserId = ""
-pageDetail.ChangeType = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = portfolio_PopulatePage(dm.Portfolio{} , pageDetail) 
 
 	ExecuteTemplate(dm.Portfolio_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Portfolio_HandlerDelete is the handler used process the deletion of an Portfolio
 func Portfolio_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -315,3 +254,57 @@ func Portfolio_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Portfolio_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Portfolio Page 
+func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfolio_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Code = rD.Code
+	pageDetail.Description1 = rD.Description1
+	pageDetail.Description2 = rD.Description2
+	pageDetail.IsDefault = rD.IsDefault
+	pageDetail.InternalId = rD.InternalId
+	pageDetail.InternalDeleted = rD.InternalDeleted
+	pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+	pageDetail.UpdatedUserId = rD.UpdatedUserId
+	pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+	pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+	pageDetail.DeletedUserId = rD.DeletedUserId
+	pageDetail.ChangeType = rD.ChangeType
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

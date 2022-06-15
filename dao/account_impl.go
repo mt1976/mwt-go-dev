@@ -27,7 +27,7 @@ func Account_GetListByCounterpartyID(id string) (int, []dm.Account, error) {
 
 func account_DealtCA_Extra(recItem dm.Account) string {
 
-	return core.FormatCurrencyDps(recItem.DealtAmount, recItem.CCY, recItem.CCYDp)
+	return core.Financial_FormatAmountToDPS(recItem.DealtAmount, recItem.CCY, recItem.CCYDp)
 }
 
 func account_AgainstCA_Extra(recItem dm.Account) string {
@@ -35,11 +35,11 @@ func account_AgainstCA_Extra(recItem dm.Account) string {
 }
 
 func account_LedgerCA_Extra(recItem dm.Account) string {
-	return core.FormatCurrencyDps(recItem.LedgerBalance, recItem.CCY, recItem.CCYDp)
+	return core.Financial_FormatAmountToDPS(recItem.LedgerBalance, recItem.CCY, recItem.CCYDp)
 }
 
 func account_CashBalanceCA_Extra(recItem dm.Account) string {
-	return core.FormatCurrencyDps(recItem.CashBalance, recItem.CCY, recItem.CCYDp)
+	return core.Financial_FormatAmountToDPS(recItem.CashBalance, recItem.CCY, recItem.CCYDp)
 }
 
 func account_DealtCA_Extra_Store(interface{}, interface{}) error {

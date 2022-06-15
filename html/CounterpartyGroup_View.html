@@ -1,58 +1,59 @@
-{{template "header" .}}
-{{template "bodydefinition" .}}
-    <form action="/CounterpartyGroupEdit?Group={{.Name}}" method="POST" class="form">
-      <div class="card">
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CounterpartyGroupEdit?Group={{.Name}}" method="POST" class="form">
+    <div class="card">
         <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Name}}</code>
+            <div class="row">
+                <div class="col h3">
+                    <i class="fa fa-users me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Name}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CounterpartyGroupEdit/?Group={{.Name}}" onclick="/CounterpartyGroupEdit/?Group={{.Name}}" title="Edit Counterparty Group"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Group"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
             </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-              
-                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CounterpartyGroupEdit/?Group={{.Name}}" onclick="/CounterpartyGroupEdit/?Group={{.Name}}" title="Edit Counterparty Group"></i>&nbsp;&nbsp;Edit</button>
-                
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Group"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
-                <label class="form-label" for="Name">Name</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
+                        <label class="form-label" for="Name">Name</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CountryCode" aria-describedby="CountryCodeHelp" placeholder="" disabled value="{{.CountryCode}}">
-                <label class="form-label" for="CountryCode">CountryCode</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CountryCode" aria-describedby="CountryCodeHelp" placeholder="" disabled value="{{.CountryCode}}">
+                        <label class="form-label" for="CountryCode">CountryCode</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SuperGroup" aria-describedby="SuperGroupHelp" placeholder="" disabled value="{{.SuperGroup}}">
-                <label class="form-label" for="SuperGroup">SuperGroup</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SuperGroup" aria-describedby="SuperGroupHelp" placeholder="" disabled value="{{.SuperGroup}}">
+                        <label class="form-label" for="SuperGroup">SuperGroup</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Country_Lookup" aria-describedby="Country_LookupHelp" placeholder="" disabled value="{{.Country_Lookup}}">
-                <label class="form-label" for="Country_Lookup">Country_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Parent_Lookup" aria-describedby="Parent_LookupHelp" placeholder="" disabled value="{{.Parent_Lookup}}">
-                <label class="form-label" for="Parent_Lookup">Parent_Lookup</label>
-              </div>
-            </div>
+            
         </div>
+        
+    </div>
+</form>
 
-      </div>
-    </form>
-  
-{{template "userfooter" .}}
-{{template "pagefooter" .}}
+{{template "userfooter" .}} {{template "pagefooter" .}}

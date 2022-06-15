@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-city me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -66,11 +66,9 @@
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/DataLoaderView?Id={{.Id}}" method="POST" title="View Data Loader"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/DataLoaderEdit?Id={{.Id}}" method="POST" title="Edit Data Loader"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/DataLoaderView?Id={{.Id}}" method="POST" title="View Data Loader"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/DataLoaderEdit?Id={{.Id}}" method="POST" title="Edit Data Loader"><i class="fas fa-edit"></i></button>
                             
-                            </div>
                             </form>
                           </td>
                         </tr>

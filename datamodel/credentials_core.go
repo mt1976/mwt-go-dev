@@ -9,33 +9,33 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:11
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:00
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Credentials defines the datamolde for the Credentials object
 type Credentials struct {
 
-SYSId        string
-Id        string
-Username        string
-Password        string
-Firstname        string
-Lastname        string
-Knownas        string
-Email        string
-Issued        string
-Expiry        string
-RoleType        string
-Brand        string
-SYSCreated        string
-SYSWho        string
-SYSHost        string
-SYSUpdated        string
-SYSCreatedBy        string
-SYSCreatedHost        string
-SYSUpdatedBy        string
-SYSUpdatedHost        string
+SYSId       string
+Id       string
+Username       string
+Password       string
+Firstname       string
+Lastname       string
+Knownas       string
+Email       string
+Issued       string
+Expiry       string
+RoleType       string
+Brand       string
+SYSCreated       string
+SYSWho       string
+SYSHost       string
+SYSUpdated       string
+SYSCreatedBy       string
+SYSCreatedHost       string
+SYSUpdatedBy       string
+SYSUpdatedHost       string
 
 }
 
@@ -65,26 +65,26 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	Credentials_SYSId   = "_id" // SYSId is a Int
-	Credentials_Id   = "Id" // Id is a String
-	Credentials_Username   = "Username" // Username is a String
-	Credentials_Password   = "Password" // Password is a String
-	Credentials_Firstname   = "Firstname" // Firstname is a String
-	Credentials_Lastname   = "Lastname" // Lastname is a String
-	Credentials_Knownas   = "Knownas" // Knownas is a String
-	Credentials_Email   = "Email" // Email is a String
-	Credentials_Issued   = "Issued" // Issued is a String
-	Credentials_Expiry   = "Expiry" // Expiry is a String
-	Credentials_RoleType   = "RoleType" // RoleType is a String
-	Credentials_Brand   = "Brand" // Brand is a String
-	Credentials_SYSCreated   = "_created" // SYSCreated is a String
-	Credentials_SYSWho   = "_who" // SYSWho is a String
-	Credentials_SYSHost   = "_host" // SYSHost is a String
-	Credentials_SYSUpdated   = "_updated" // SYSUpdated is a String
-	Credentials_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
-	Credentials_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
-	Credentials_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
-	Credentials_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
+Credentials_SYSId   = "_id" // SYSId is a Int
+Credentials_Id   = "Id" // Id is a String
+Credentials_Username   = "Username" // Username is a String
+Credentials_Password   = "Password" // Password is a String
+Credentials_Firstname   = "Firstname" // Firstname is a String
+Credentials_Lastname   = "Lastname" // Lastname is a String
+Credentials_Knownas   = "Knownas" // Knownas is a String
+Credentials_Email   = "Email" // Email is a String
+Credentials_Issued   = "Issued" // Issued is a String
+Credentials_Expiry   = "Expiry" // Expiry is a String
+Credentials_RoleType   = "RoleType" // RoleType is a String
+Credentials_Brand   = "Brand" // Brand is a String
+Credentials_SYSCreated   = "_created" // SYSCreated is a String
+Credentials_SYSWho   = "_who" // SYSWho is a String
+Credentials_SYSHost   = "_host" // SYSHost is a String
+Credentials_SYSUpdated   = "_updated" // SYSUpdated is a String
+Credentials_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
+Credentials_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
+Credentials_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
+Credentials_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
 )

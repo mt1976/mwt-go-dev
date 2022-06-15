@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,44 +84,68 @@ func systems_Save(r dm.Systems,usr string) error {
 
     var err error
 
-	logs.Storing("Systems",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = Systems_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\systems_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("Systems",fmt.Sprintf("%s", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
-	
-	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
-	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
-	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",usr)
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.Systems_SYSId, r.SYSId)
-ts = addData(ts, dm.Systems_Id, r.Id)
-ts = addData(ts, dm.Systems_Name, r.Name)
-ts = addData(ts, dm.Systems_Staticin, r.Staticin)
-ts = addData(ts, dm.Systems_Staticout, r.Staticout)
-ts = addData(ts, dm.Systems_Txnin, r.Txnin)
-ts = addData(ts, dm.Systems_Txnout, r.Txnout)
-ts = addData(ts, dm.Systems_Fundscheckin, r.Fundscheckin)
-ts = addData(ts, dm.Systems_Fundscheckout, r.Fundscheckout)
-ts = addData(ts, dm.Systems_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.Systems_SYSWho, r.SYSWho)
-ts = addData(ts, dm.Systems_SYSHost, r.SYSHost)
-ts = addData(ts, dm.Systems_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.Systems_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.Systems_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.Systems_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.Systems_SYSUpdatedHost, r.SYSUpdatedHost)
-ts = addData(ts, dm.Systems_SWIFTin, r.SWIFTin)
-ts = addData(ts, dm.Systems_SWIFTout, r.SWIFTout)
-	
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.Systems_SYSId, r.SYSId)
+	ts = addData(ts, dm.Systems_Id, r.Id)
+	ts = addData(ts, dm.Systems_Name, r.Name)
+	ts = addData(ts, dm.Systems_Staticin, r.Staticin)
+	ts = addData(ts, dm.Systems_Staticout, r.Staticout)
+	ts = addData(ts, dm.Systems_Txnin, r.Txnin)
+	ts = addData(ts, dm.Systems_Txnout, r.Txnout)
+	ts = addData(ts, dm.Systems_Fundscheckin, r.Fundscheckin)
+	ts = addData(ts, dm.Systems_Fundscheckout, r.Fundscheckout)
+	ts = addData(ts, dm.Systems_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.Systems_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.Systems_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.Systems_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.Systems_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.Systems_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.Systems_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Systems_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Systems_SWIFTin, r.SWIFTin)
+	ts = addData(ts, dm.Systems_SWIFTout, r.SWIFTout)
+		
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Systems_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -139,7 +161,8 @@ ts = addData(ts, dm.Systems_SWIFTout, r.SWIFTout)
 }
 
 
-// systems_Fetch read all employees
+
+// systems_Fetch read all Systems's
 func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 
 	var recItem dm.Systems
@@ -147,13 +170,13 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Systems_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Systems_Id, "")
    recItem.Name  = get_String(rec, dm.Systems_Name, "")
@@ -173,7 +196,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
    recItem.SYSUpdatedHost  = get_String(rec, dm.Systems_SYSUpdatedHost, "")
    recItem.SWIFTin  = get_String(rec, dm.Systems_SWIFTin, "")
    recItem.SWIFTout  = get_String(rec, dm.Systems_SWIFTout, "")
-// If there are fields below, create the methods in dao\Systems_Impl.go
+// If there are fields below, create the methods in adaptor\Systems_impl.go
 
 
 
@@ -194,31 +217,15 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Systems_NewID(r dm.Systems) string {
 	
@@ -226,6 +233,7 @@ func Systems_NewID(r dm.Systems) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

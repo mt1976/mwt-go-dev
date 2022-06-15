@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:55
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,116 +25,77 @@ import (
 //counterpartyextensions_PageList provides the information for the template for a list of CounterpartyExtensionss
 type CounterpartyExtensions_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.CounterpartyExtensions
 }
+//CounterpartyExtensions_Redirect provides a page to return to aftern an action
+const (
+	CounterpartyExtensions_Redirect = dm.CounterpartyExtensions_PathList
+)
 
 //counterpartyextensions_Page provides the information for the template for an individual CounterpartyExtensions
 type CounterpartyExtensions_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		NameFirm string
-		NameCentre string
-		BICCode string
-		ContactIndicator string
-		CoverTrade string
-		CustomerCategory string
-		FSCSInclusive string
-		FeeFactor string
-		InactiveStatus string
-		Indemnity string
-		KnowYourCustomerStatus string
-		LERLimitCarveOut string
-		LastAmended string
-		LastLogin string
-		LossGivenDefault string
-		MIC string
-		ProtectedDepositor string
-		RPTCurrency string
-		RateTimeout string
-		RateValidation string
-		Registered string
-		RegulatoryCategory string
-		SecuredSettlement string
-		SettlementLimitCarveOut string
-		SortCode string
-		Training string
-		TrainingCode string
-		TrainingReceived string
-		Unencumbered string
-		LEIExpiryDate string
-		MIFIDReviewDate string
-		GDPRReviewDate string
-		DelegatedReporting string
-		BOReconcile string
-		MIFIDReportableDealsAllowed string
-		SignedInvestmentAgreement string
-		AppropriatenessAssessment string
-		FinancialCounterparty string
-		Collateralisation string
-		PortfolioCode string
-		ReconciliationLetterFrequency string
-		DirectDealing string
-		CompID string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	NameFirm         string
+	NameCentre         string
+	BICCode         string
+	ContactIndicator         string
+	CoverTrade         string
+	CustomerCategory         string
+	FSCSInclusive         string
+	FeeFactor         string
+	InactiveStatus         string
+	Indemnity         string
+	KnowYourCustomerStatus         string
+	LERLimitCarveOut         string
+	LastAmended         string
+	LastLogin         string
+	LossGivenDefault         string
+	MIC         string
+	ProtectedDepositor         string
+	RPTCurrency         string
+	RateTimeout         string
+	RateValidation         string
+	Registered         string
+	RegulatoryCategory         string
+	SecuredSettlement         string
+	SettlementLimitCarveOut         string
+	SortCode         string
+	Training         string
+	TrainingCode         string
+	TrainingReceived         string
+	Unencumbered         string
+	LEIExpiryDate         string
+	MIFIDReviewDate         string
+	GDPRReviewDate         string
+	DelegatedReporting         string
+	BOReconcile         string
+	MIFIDReportableDealsAllowed         string
+	SignedInvestmentAgreement         string
+	AppropriatenessAssessment         string
+	FinancialCounterparty         string
+	Collateralisation         string
+	PortfolioCode         string
+	ReconciliationLetterFrequency         string
+	DirectDealing         string
+	CompID         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	CounterpartyExtensions_Redirect = dm.CounterpartyExtensions_PathList
-)
+
 
 //CounterpartyExtensions_Publish annouces the endpoints available for this object
 func CounterpartyExtensions_Publish(mux http.ServeMux) {
@@ -145,9 +106,10 @@ func CounterpartyExtensions_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.CounterpartyExtensions_PathNew, CounterpartyExtensions_HandlerNew)
 	mux.HandleFunc(dm.CounterpartyExtensions_PathSave, CounterpartyExtensions_HandlerSave)
 	mux.HandleFunc(dm.CounterpartyExtensions_PathDelete, CounterpartyExtensions_HandlerDelete)
-	logs.Publish("Siena", dm.CounterpartyExtensions_Title)
+	logs.Publish("Application", dm.CounterpartyExtensions_Title)
     //No API
 }
+
 
 //CounterpartyExtensions_HandlerList is the handler for the list page
 func CounterpartyExtensions_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -179,6 +141,7 @@ func CounterpartyExtensions_HandlerList(w http.ResponseWriter, r *http.Request) 
 
 }
 
+
 //CounterpartyExtensions_HandlerView is the handler used to View a page
 func CounterpartyExtensions_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -201,65 +164,14 @@ func CounterpartyExtensions_HandlerView(w http.ResponseWriter, r *http.Request) 
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameFirm = rD.NameFirm
-pageDetail.NameCentre = rD.NameCentre
-pageDetail.BICCode = rD.BICCode
-pageDetail.ContactIndicator = rD.ContactIndicator
-pageDetail.CoverTrade = rD.CoverTrade
-pageDetail.CustomerCategory = rD.CustomerCategory
-pageDetail.FSCSInclusive = rD.FSCSInclusive
-pageDetail.FeeFactor = rD.FeeFactor
-pageDetail.InactiveStatus = rD.InactiveStatus
-pageDetail.Indemnity = rD.Indemnity
-pageDetail.KnowYourCustomerStatus = rD.KnowYourCustomerStatus
-pageDetail.LERLimitCarveOut = rD.LERLimitCarveOut
-pageDetail.LastAmended = rD.LastAmended
-pageDetail.LastLogin = rD.LastLogin
-pageDetail.LossGivenDefault = rD.LossGivenDefault
-pageDetail.MIC = rD.MIC
-pageDetail.ProtectedDepositor = rD.ProtectedDepositor
-pageDetail.RPTCurrency = rD.RPTCurrency
-pageDetail.RateTimeout = rD.RateTimeout
-pageDetail.RateValidation = rD.RateValidation
-pageDetail.Registered = rD.Registered
-pageDetail.RegulatoryCategory = rD.RegulatoryCategory
-pageDetail.SecuredSettlement = rD.SecuredSettlement
-pageDetail.SettlementLimitCarveOut = rD.SettlementLimitCarveOut
-pageDetail.SortCode = rD.SortCode
-pageDetail.Training = rD.Training
-pageDetail.TrainingCode = rD.TrainingCode
-pageDetail.TrainingReceived = rD.TrainingReceived
-pageDetail.Unencumbered = rD.Unencumbered
-pageDetail.LEIExpiryDate = rD.LEIExpiryDate
-pageDetail.MIFIDReviewDate = rD.MIFIDReviewDate
-pageDetail.GDPRReviewDate = rD.GDPRReviewDate
-pageDetail.DelegatedReporting = rD.DelegatedReporting
-pageDetail.BOReconcile = rD.BOReconcile
-pageDetail.MIFIDReportableDealsAllowed = rD.MIFIDReportableDealsAllowed
-pageDetail.SignedInvestmentAgreement = rD.SignedInvestmentAgreement
-pageDetail.AppropriatenessAssessment = rD.AppropriatenessAssessment
-pageDetail.FinancialCounterparty = rD.FinancialCounterparty
-pageDetail.Collateralisation = rD.Collateralisation
-pageDetail.PortfolioCode = rD.PortfolioCode
-pageDetail.ReconciliationLetterFrequency = rD.ReconciliationLetterFrequency
-pageDetail.DirectDealing = rD.DirectDealing
-pageDetail.CompID = rD.CompID
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = counterpartyextensions_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyExtensions_TemplateView, w, r, pageDetail)
 
 }
+
 
 //CounterpartyExtensions_HandlerEdit is the handler used generate the Edit page
 func CounterpartyExtensions_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -283,64 +195,13 @@ func CounterpartyExtensions_HandlerEdit(w http.ResponseWriter, r *http.Request) 
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameFirm = rD.NameFirm
-pageDetail.NameCentre = rD.NameCentre
-pageDetail.BICCode = rD.BICCode
-pageDetail.ContactIndicator = rD.ContactIndicator
-pageDetail.CoverTrade = rD.CoverTrade
-pageDetail.CustomerCategory = rD.CustomerCategory
-pageDetail.FSCSInclusive = rD.FSCSInclusive
-pageDetail.FeeFactor = rD.FeeFactor
-pageDetail.InactiveStatus = rD.InactiveStatus
-pageDetail.Indemnity = rD.Indemnity
-pageDetail.KnowYourCustomerStatus = rD.KnowYourCustomerStatus
-pageDetail.LERLimitCarveOut = rD.LERLimitCarveOut
-pageDetail.LastAmended = rD.LastAmended
-pageDetail.LastLogin = rD.LastLogin
-pageDetail.LossGivenDefault = rD.LossGivenDefault
-pageDetail.MIC = rD.MIC
-pageDetail.ProtectedDepositor = rD.ProtectedDepositor
-pageDetail.RPTCurrency = rD.RPTCurrency
-pageDetail.RateTimeout = rD.RateTimeout
-pageDetail.RateValidation = rD.RateValidation
-pageDetail.Registered = rD.Registered
-pageDetail.RegulatoryCategory = rD.RegulatoryCategory
-pageDetail.SecuredSettlement = rD.SecuredSettlement
-pageDetail.SettlementLimitCarveOut = rD.SettlementLimitCarveOut
-pageDetail.SortCode = rD.SortCode
-pageDetail.Training = rD.Training
-pageDetail.TrainingCode = rD.TrainingCode
-pageDetail.TrainingReceived = rD.TrainingReceived
-pageDetail.Unencumbered = rD.Unencumbered
-pageDetail.LEIExpiryDate = rD.LEIExpiryDate
-pageDetail.MIFIDReviewDate = rD.MIFIDReviewDate
-pageDetail.GDPRReviewDate = rD.GDPRReviewDate
-pageDetail.DelegatedReporting = rD.DelegatedReporting
-pageDetail.BOReconcile = rD.BOReconcile
-pageDetail.MIFIDReportableDealsAllowed = rD.MIFIDReportableDealsAllowed
-pageDetail.SignedInvestmentAgreement = rD.SignedInvestmentAgreement
-pageDetail.AppropriatenessAssessment = rD.AppropriatenessAssessment
-pageDetail.FinancialCounterparty = rD.FinancialCounterparty
-pageDetail.Collateralisation = rD.Collateralisation
-pageDetail.PortfolioCode = rD.PortfolioCode
-pageDetail.ReconciliationLetterFrequency = rD.ReconciliationLetterFrequency
-pageDetail.DirectDealing = rD.DirectDealing
-pageDetail.CompID = rD.CompID
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = counterpartyextensions_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.CounterpartyExtensions_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //CounterpartyExtensions_HandlerSave is the handler used process the saving of an CounterpartyExtensions
 func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -355,7 +216,9 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.CounterpartyExtensions
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.NameFirm = r.FormValue(dm.CounterpartyExtensions_NameFirm)
 		item.NameCentre = r.FormValue(dm.CounterpartyExtensions_NameCentre)
 		item.BICCode = r.FormValue(dm.CounterpartyExtensions_BICCode)
@@ -400,13 +263,13 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 		item.DirectDealing = r.FormValue(dm.CounterpartyExtensions_DirectDealing)
 		item.CompID = r.FormValue(dm.CounterpartyExtensions_CompID)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.CounterpartyExtensions_Store(item,r)	
-
 	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
 }
+
 
 //CounterpartyExtensions_HandlerNew is the handler used process the creation of an CounterpartyExtensions
 func CounterpartyExtensions_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -428,62 +291,14 @@ func CounterpartyExtensions_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameFirm = ""
-pageDetail.NameCentre = ""
-pageDetail.BICCode = ""
-pageDetail.ContactIndicator = ""
-pageDetail.CoverTrade = ""
-pageDetail.CustomerCategory = ""
-pageDetail.FSCSInclusive = ""
-pageDetail.FeeFactor = ""
-pageDetail.InactiveStatus = ""
-pageDetail.Indemnity = ""
-pageDetail.KnowYourCustomerStatus = ""
-pageDetail.LERLimitCarveOut = ""
-pageDetail.LastAmended = ""
-pageDetail.LastLogin = ""
-pageDetail.LossGivenDefault = ""
-pageDetail.MIC = ""
-pageDetail.ProtectedDepositor = ""
-pageDetail.RPTCurrency = ""
-pageDetail.RateTimeout = ""
-pageDetail.RateValidation = ""
-pageDetail.Registered = ""
-pageDetail.RegulatoryCategory = ""
-pageDetail.SecuredSettlement = ""
-pageDetail.SettlementLimitCarveOut = ""
-pageDetail.SortCode = ""
-pageDetail.Training = ""
-pageDetail.TrainingCode = ""
-pageDetail.TrainingReceived = ""
-pageDetail.Unencumbered = ""
-pageDetail.LEIExpiryDate = ""
-pageDetail.MIFIDReviewDate = ""
-pageDetail.GDPRReviewDate = ""
-pageDetail.DelegatedReporting = ""
-pageDetail.BOReconcile = ""
-pageDetail.MIFIDReportableDealsAllowed = ""
-pageDetail.SignedInvestmentAgreement = ""
-pageDetail.AppropriatenessAssessment = ""
-pageDetail.FinancialCounterparty = ""
-pageDetail.Collateralisation = ""
-pageDetail.PortfolioCode = ""
-pageDetail.ReconciliationLetterFrequency = ""
-pageDetail.DirectDealing = ""
-pageDetail.CompID = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = counterpartyextensions_PopulatePage(dm.CounterpartyExtensions{} , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyExtensions_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //CounterpartyExtensions_HandlerDelete is the handler used process the deletion of an CounterpartyExtensions
 func CounterpartyExtensions_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -501,3 +316,150 @@ func CounterpartyExtensions_HandlerDelete(w http.ResponseWriter, r *http.Request
 
 	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the CounterpartyExtensions Page 
+func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetail CounterpartyExtensions_Page) CounterpartyExtensions_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.NameFirm = rD.NameFirm
+	pageDetail.NameCentre = rD.NameCentre
+	pageDetail.BICCode = rD.BICCode
+	pageDetail.ContactIndicator = rD.ContactIndicator
+	pageDetail.CoverTrade = rD.CoverTrade
+	pageDetail.CustomerCategory = rD.CustomerCategory
+	pageDetail.FSCSInclusive = rD.FSCSInclusive
+	pageDetail.FeeFactor = rD.FeeFactor
+	pageDetail.InactiveStatus = rD.InactiveStatus
+	pageDetail.Indemnity = rD.Indemnity
+	pageDetail.KnowYourCustomerStatus = rD.KnowYourCustomerStatus
+	pageDetail.LERLimitCarveOut = rD.LERLimitCarveOut
+	pageDetail.LastAmended = rD.LastAmended
+	pageDetail.LastLogin = rD.LastLogin
+	pageDetail.LossGivenDefault = rD.LossGivenDefault
+	pageDetail.MIC = rD.MIC
+	pageDetail.ProtectedDepositor = rD.ProtectedDepositor
+	pageDetail.RPTCurrency = rD.RPTCurrency
+	pageDetail.RateTimeout = rD.RateTimeout
+	pageDetail.RateValidation = rD.RateValidation
+	pageDetail.Registered = rD.Registered
+	pageDetail.RegulatoryCategory = rD.RegulatoryCategory
+	pageDetail.SecuredSettlement = rD.SecuredSettlement
+	pageDetail.SettlementLimitCarveOut = rD.SettlementLimitCarveOut
+	pageDetail.SortCode = rD.SortCode
+	pageDetail.Training = rD.Training
+	pageDetail.TrainingCode = rD.TrainingCode
+	pageDetail.TrainingReceived = rD.TrainingReceived
+	pageDetail.Unencumbered = rD.Unencumbered
+	pageDetail.LEIExpiryDate = rD.LEIExpiryDate
+	pageDetail.MIFIDReviewDate = rD.MIFIDReviewDate
+	pageDetail.GDPRReviewDate = rD.GDPRReviewDate
+	pageDetail.DelegatedReporting = rD.DelegatedReporting
+	pageDetail.BOReconcile = rD.BOReconcile
+	pageDetail.MIFIDReportableDealsAllowed = rD.MIFIDReportableDealsAllowed
+	pageDetail.SignedInvestmentAgreement = rD.SignedInvestmentAgreement
+	pageDetail.AppropriatenessAssessment = rD.AppropriatenessAssessment
+	pageDetail.FinancialCounterparty = rD.FinancialCounterparty
+	pageDetail.Collateralisation = rD.Collateralisation
+	pageDetail.PortfolioCode = rD.PortfolioCode
+	pageDetail.ReconciliationLetterFrequency = rD.ReconciliationLetterFrequency
+	pageDetail.DirectDealing = rD.DirectDealing
+	pageDetail.CompID = rD.CompID
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

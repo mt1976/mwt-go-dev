@@ -30,7 +30,7 @@ var appLoaderDataStoreSQLGETITEM = "SELECT %s FROM %s.loaderDataStore WHERE load
 
 //appLoaderDataStorePage is cheese
 type appLoaderDataStoreListPage struct {
-	UserMenu             []dm.AppMenuItem
+	UserMenu             dm.AppMenuItem
 	UserRole             string
 	UserNavi             string
 	Title                string
@@ -41,7 +41,7 @@ type appLoaderDataStoreListPage struct {
 
 //appLoaderDataStorePage is cheese
 type appLoaderDataStorePage struct {
-	UserMenu  []dm.AppMenuItem
+	UserMenu  dm.AppMenuItem
 	UserRole  string
 	UserNavi  string
 	Title     string
@@ -83,7 +83,7 @@ func ListLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderDataStoreList"
+	tmpl := "Impl_LoaderDataStoreList"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -113,7 +113,7 @@ func ViewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderDataStoreView"
+	tmpl := "Impl_LoaderDataStoreView"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -157,7 +157,7 @@ func EditLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderDataStoreEdit"
+	tmpl := "Impl_LoaderDataStoreEdit"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -287,7 +287,7 @@ func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "LoaderDataStoreNew"
+	tmpl := "Impl_LoaderDataStoreNew"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

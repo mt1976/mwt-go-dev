@@ -9,21 +9,21 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:53
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//CounterpartyAddress defines the datamolde for the CounterpartyAddress object
 type CounterpartyAddress struct {
 
-NameFirm        string
-NameCentre        string
-Address1        string
-Address2        string
-CityTown        string
-County        string
-Postcode        string
-CompID        string
+NameFirm       string
+NameCentre       string
+Address1       string
+Address2       string
+CityTown       string
+County       string
+Postcode       string
+CompID       string
 
 }
 
@@ -53,14 +53,14 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	CounterpartyAddress_NameFirm   = "NameFirm" // NameFirm is a String
-	CounterpartyAddress_NameCentre   = "NameCentre" // NameCentre is a String
-	CounterpartyAddress_Address1   = "Address1" // Address1 is a String
-	CounterpartyAddress_Address2   = "Address2" // Address2 is a String
-	CounterpartyAddress_CityTown   = "CityTown" // CityTown is a String
-	CounterpartyAddress_County   = "County" // County is a String
-	CounterpartyAddress_Postcode   = "Postcode" // Postcode is a String
-	CounterpartyAddress_CompID   = "CompID" // CompID is a String
+CounterpartyAddress_NameFirm   = "NameFirm" // NameFirm is a String
+CounterpartyAddress_NameCentre   = "NameCentre" // NameCentre is a String
+CounterpartyAddress_Address1   = "Address1" // Address1 is a String
+CounterpartyAddress_Address2   = "Address2" // Address2 is a String
+CounterpartyAddress_CityTown   = "CityTown" // CityTown is a String
+CounterpartyAddress_County   = "County" // County is a String
+CounterpartyAddress_Postcode   = "Postcode" // Postcode is a String
+CounterpartyAddress_CompID   = "CompID" // CompID is a String
 
 	/// Definitions End
 )

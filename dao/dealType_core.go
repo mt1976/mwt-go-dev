@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:14
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:04
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func DealType_GetByID(id string) (int, dm.DealType, error) {
 func DealType_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealType_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.DealType_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.DealType_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,49 @@ func dealtype_Save(r dm.DealType,usr string) error {
 
     var err error
 
-	logs.Storing("DealType",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.DealTypeKey) == 0 {
 		r.DealTypeKey = DealType_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\dealtype_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("DealType",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/DealType_impl.go file
-	err1 := adaptor.DealType_Delete_Impl(r.DealTypeKey)
-	err2 := adaptor.DealType_Update_Impl(r,usr)
+	err1 := adaptor.DealType_Delete_impl(r.DealTypeKey)
+	err2 := adaptor.DealType_Update_impl(r.DealTypeKey,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +134,8 @@ func dealtype_Save(r dm.DealType,usr string) error {
 }
 
 
-// dealtype_Fetch read all employees
+
+// dealtype_Fetch read all DealType's
 func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 
 	var recItem dm.DealType
@@ -117,13 +143,13 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.DealTypeKey  = get_String(rec, dm.DealType_DealTypeKey, "")
    recItem.DealTypeShortName  = get_String(rec, dm.DealType_DealTypeShortName, "")
    recItem.HostKey  = get_String(rec, dm.DealType_HostKey, "")
@@ -150,7 +176,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.DealType_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.DealType_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.DealType_ChangeType, "")
-// If there are fields below, create the methods in dao\DealType_Impl.go
+// If there are fields below, create the methods in adaptor\DealType_impl.go
 
 
 
@@ -178,38 +204,15 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func DealType_NewID(r dm.DealType) string {
 	
@@ -217,6 +220,7 @@ func DealType_NewID(r dm.DealType) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

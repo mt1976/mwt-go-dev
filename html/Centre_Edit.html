@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
+              <i class="fas fa-map-marker-alt me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,36 +20,36 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required />
-                  <label class="form-label" for="Code" >Code</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}"  />
-                  <label class="form-label" for="Name" >Name</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Country" name="Country" aria-describedby="CountryHelp" placeholder=""  value="{{.Country}}"  />
-                  <label class="form-label" for="Country" >Country</label>
-                </div>
-              </div>
-              
-                           
-              <div class="row mb-3">
-            
-                  <select id="Country_Lookup" name="Country_Lookup" class="select" data-mdb-filter="true" disabled><option value="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option value="{{.Code}}">{{.Name}}</option>{{end}}</select>
-                  <label class="form-label select-label" for="Country_Lookup" disabled>Country_Lookup</label>
-              </div>
-              
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""   value="{{.Code}}" required>
+                      <label class="form-label" for="Code" >Code</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" >
+                      <label class="form-label" for="Name" >Name</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+         
+                  <select id="Country" name="Country" class="select" data-mdb-filter="true" readonly="true" >
+                  {{range .Country_lookup}}<option value="{{.ID}}" {{if eq .ID $.Country}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Country" readonly="true">Country</label>
+                  
+          
+            </div></div>
+
+     
         </div>
+        
       </div>
     </form>
 

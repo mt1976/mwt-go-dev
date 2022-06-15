@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.ID}}</code>
+              <i class="fas fa-poo me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.ID}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,103 +20,100 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="{{.SYSId}}" required />
-                  <label class="form-label" for="SYSId" hidden>SYSId</label>
-                </div>
+                      <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="new" required>
+                <label class="form-label" for="SYSId" hidden>SYSId</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="FIELD1" name="FIELD1" aria-describedby="FIELD1Help" placeholder=""  value="{{.FIELD1}}"  />
-                  <label class="form-label" for="FIELD1" >FIELD1</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="FIELD1" name="FIELD1" aria-describedby="FIELD1Help" placeholder="N"  value="{{.FIELD1}}" >
+                <label class="form-label" for="FIELD1" >FIELD1</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="FIELD2" name="FIELD2" aria-describedby="FIELD2Help" placeholder=""  value="{{.FIELD2}}"  />
-                  <label class="form-label" for="FIELD2" >FIELD2</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="FIELD2" name="FIELD2" aria-describedby="FIELD2Help" placeholder=""  value="{{.FIELD2}}" >
+                <label class="form-label" for="FIELD2" >FIELD2</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  />
-                  <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}" >
+                <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  />
-                  <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}" >
+                <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  />
-                  <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}" >
+                <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  />
-                  <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}" >
+                <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  />
-                  <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}" >
+                <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  />
-                  <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}" >
+                <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
               </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required />
-                  <label class="form-label" for="ID" >ID</label>
-                </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required>
+                <label class="form-label" for="ID" >ID</label>
               </div>
-              
-                           
-              <div class="row mb-3">
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ExtraField" name="ExtraField" aria-describedby="ExtraFieldHelp" placeholder=""  value="{{.ExtraField}}" >
+                <label class="form-label" for="ExtraField" >ExtraField</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" disabled><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ExtraField2" name="ExtraField2" aria-describedby="ExtraField2Help" placeholder="Hummous" disabled value="{{.ExtraField2}}" >
+                <label class="form-label" for="ExtraField2" disabled>ExtraField2</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ExtraField3" name="ExtraField3" aria-describedby="ExtraField3Help" placeholder=""  value="{{.ExtraField3}}" >
+                <label class="form-label" for="ExtraField3" >ExtraField3</label>
+              </div>
+            </div></div>
+
             
-                  
-                  <input type="text" class="form-control" id="ExtraField_Extra" name="ExtraField_Extra" aria-describedby="ExtraField_ExtraHelp" placeholder="" disabled value="{{.ExtraField_Extra}}"  />
-                  
-                  <label class="form-label select-label" for="ExtraField_Extra" disabled>ExtraField_Extra</label>
-              </div>
-                           
-              <div class="row mb-3">
-            
-                  
-                  <input type="text" class="form-control" id="ExtraField2_Extra" name="ExtraField2_Extra" aria-describedby="ExtraField2_ExtraHelp" placeholder="" disabled value="{{.ExtraField2_Extra}}"  />
-                  
-                  <label class="form-label select-label" for="ExtraField2_Extra" disabled>ExtraField2_Extra</label>
-              </div>
-                           
-              <div class="row mb-3">
-            
-                  
-                  <input type="text" class="form-control" id="FIELD2" name="FIELD2" aria-describedby="FIELD2Help" placeholder="" disabled value="{{.FIELD2}}"  />
-                  
-                  <label class="form-label select-label" for="FIELD2" disabled>FIELD2</label>
-              </div>
               
+                
+
+            
+              
+                
+
+            
+              
+                
+
+     
         </div>
+        {{template "audit" .}}
       </div>
     </form>
 

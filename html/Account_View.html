@@ -1,476 +1,795 @@
-{{template "header" .}}
-{{template "bodydefinition" .}}
-    <form action="/AccountEdit?AccountNo={{.SienaReference}}" method="POST" class="form">
-      <div class="card">
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/AccountEdit?AccountNo={{.SienaReference}}" method="POST" class="form">
+    <div class="card">
         <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.SienaReference}}</code>
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-landmark me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.SienaReference}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Account"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
             </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-                
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Account"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled value="{{.SienaReference}}">
-                <label class="form-label" for="SienaReference">SienaReference</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CustomerSienaView" aria-describedby="CustomerSienaViewHelp" placeholder="" disabled value="{{.CustomerSienaView}}">
-                <label class="form-label" for="CustomerSienaView">CustomerSienaView</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SienaCommonRef" aria-describedby="SienaCommonRefHelp" placeholder="" disabled value="{{.SienaCommonRef}}">
-                <label class="form-label" for="SienaCommonRef">SienaCommonRef</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Status" aria-describedby="StatusHelp" placeholder="" disabled value="{{.Status}}">
-                <label class="form-label" for="Status">Status</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="StartDate" aria-describedby="StartDateHelp" placeholder="" disabled value="{{.StartDate}}">
-                <label class="form-label" for="StartDate">StartDate</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="MaturityDate" aria-describedby="MaturityDateHelp" placeholder="" disabled value="{{.MaturityDate}}">
-                <label class="form-label" for="MaturityDate">MaturityDate</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ContractNumber" aria-describedby="ContractNumberHelp" placeholder="" disabled value="{{.ContractNumber}}">
-                <label class="form-label" for="ContractNumber">ContractNumber</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ExternalReference" aria-describedby="ExternalReferenceHelp" placeholder="" disabled value="{{.ExternalReference}}">
-                <label class="form-label" for="ExternalReference">ExternalReference</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CCY" aria-describedby="CCYHelp" placeholder="" disabled value="{{.CCY}}">
-                <label class="form-label" for="CCY">CCY</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Book" aria-describedby="BookHelp" placeholder="" disabled value="{{.Book}}">
-                <label class="form-label" for="Book">Book</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="MandatedUser" aria-describedby="MandatedUserHelp" placeholder="" disabled value="{{.MandatedUser}}">
-                <label class="form-label" for="MandatedUser">MandatedUser</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="BackOfficeNotes" aria-describedby="BackOfficeNotesHelp" placeholder="" disabled value="{{.BackOfficeNotes}}">
-                <label class="form-label" for="BackOfficeNotes">BackOfficeNotes</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CashBalance" aria-describedby="CashBalanceHelp" placeholder="0.00" disabled value="{{.CashBalance}}">
-                <label class="form-label" for="CashBalance">CashBalance</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="AccountNumber" aria-describedby="AccountNumberHelp" placeholder="" disabled value="{{.AccountNumber}}">
-                <label class="form-label" for="AccountNumber">AccountNumber</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="AccountName" aria-describedby="AccountNameHelp" placeholder="" disabled value="{{.AccountName}}">
-                <label class="form-label" for="AccountName">AccountName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="LedgerBalance" aria-describedby="LedgerBalanceHelp" placeholder="0.00" disabled value="{{.LedgerBalance}}">
-                <label class="form-label" for="LedgerBalance">LedgerBalance</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Portfolio" aria-describedby="PortfolioHelp" placeholder="" disabled value="{{.Portfolio}}">
-                <label class="form-label" for="Portfolio">Portfolio</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="AgreementId" aria-describedby="AgreementIdHelp" placeholder="0" disabled value="{{.AgreementId}}">
-                <label class="form-label" for="AgreementId">AgreementId</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="BackOfficeRefNo" aria-describedby="BackOfficeRefNoHelp" placeholder="" disabled value="{{.BackOfficeRefNo}}">
-                <label class="form-label" for="BackOfficeRefNo">BackOfficeRefNo</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ISIN" aria-describedby="ISINHelp" placeholder="" disabled value="{{.ISIN}}">
-                <label class="form-label" for="ISIN">ISIN</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="UTI" aria-describedby="UTIHelp" placeholder="" disabled value="{{.UTI}}">
-                <label class="form-label" for="UTI">UTI</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CCYName" aria-describedby="CCYNameHelp" placeholder="" disabled value="{{.CCYName}}">
-                <label class="form-label" for="CCYName">CCYName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="BookName" aria-describedby="BookNameHelp" placeholder="" disabled value="{{.BookName}}">
-                <label class="form-label" for="BookName">BookName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="PortfolioName" aria-describedby="PortfolioNameHelp" placeholder="" disabled value="{{.PortfolioName}}">
-                <label class="form-label" for="PortfolioName">PortfolioName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Centre" aria-describedby="CentreHelp" placeholder="" disabled value="{{.Centre}}">
-                <label class="form-label" for="Centre">Centre</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealTypeKey" aria-describedby="DealTypeKeyHelp" placeholder="" disabled value="{{.DealTypeKey}}">
-                <label class="form-label" for="DealTypeKey">DealTypeKey</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealTypeShortName" aria-describedby="DealTypeShortNameHelp" placeholder="" disabled value="{{.DealTypeShortName}}">
-                <label class="form-label" for="DealTypeShortName">DealTypeShortName</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="InternalId" aria-describedby="InternalIdHelp" placeholder="0" disabled value="{{.InternalId}}">
-                <label class="form-label" for="InternalId">InternalId</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder="" disabled value="{{.InternalDeleted}}">
-                <label class="form-label" for="InternalDeleted">InternalDeleted</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder="" disabled value="{{.UpdatedTransactionId}}">
-                <label class="form-label" for="UpdatedTransactionId">UpdatedTransactionId</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled value="{{.UpdatedUserId}}">
-                <label class="form-label" for="UpdatedUserId">UpdatedUserId</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder="" disabled value="{{.UpdatedDateTime}}">
-                <label class="form-label" for="UpdatedDateTime">UpdatedDateTime</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder="" disabled value="{{.DeletedTransactionId}}">
-                <label class="form-label" for="DeletedTransactionId">DeletedTransactionId</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder="" disabled value="{{.DeletedUserId}}">
-                <label class="form-label" for="DeletedUserId">DeletedUserId</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ChangeType" aria-describedby="ChangeTypeHelp" placeholder="" disabled value="{{.ChangeType}}">
-                <label class="form-label" for="ChangeType">ChangeType</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CCYDp" aria-describedby="CCYDpHelp" placeholder="0" disabled value="{{.CCYDp}}">
-                <label class="form-label" for="CCYDp">CCYDp</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}">
-                <label class="form-label" for="CompID">CompID</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Firm" aria-describedby="FirmHelp" placeholder="" disabled value="{{.Firm}}">
-                <label class="form-label" for="Firm">Firm</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealType" aria-describedby="DealTypeHelp" placeholder="" disabled value="{{.DealType}}">
-                <label class="form-label" for="DealType">DealType</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="FullDealType" aria-describedby="FullDealTypeHelp" placeholder="" disabled value="{{.FullDealType}}">
-                <label class="form-label" for="FullDealType">FullDealType</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealingInterface" aria-describedby="DealingInterfaceHelp" placeholder="" disabled value="{{.DealingInterface}}">
-                <label class="form-label" for="DealingInterface">DealingInterface</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealtAmount" aria-describedby="DealtAmountHelp" placeholder="0.00" disabled value="{{.DealtAmount}}">
-                <label class="form-label" for="DealtAmount">DealtAmount</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="ParentContractNumber" aria-describedby="ParentContractNumberHelp" placeholder="" disabled value="{{.ParentContractNumber}}">
-                <label class="form-label" for="ParentContractNumber">ParentContractNumber</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="InterestFrequency" aria-describedby="InterestFrequencyHelp" placeholder="" disabled value="{{.InterestFrequency}}">
-                <label class="form-label" for="InterestFrequency">InterestFrequency</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="InterestAction" aria-describedby="InterestActionHelp" placeholder="" disabled value="{{.InterestAction}}">
-                <label class="form-label" for="InterestAction">InterestAction</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="InterestStrategy" aria-describedby="InterestStrategyHelp" placeholder="" disabled value="{{.InterestStrategy}}">
-                <label class="form-label" for="InterestStrategy">InterestStrategy</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="InterestBasis" aria-describedby="InterestBasisHelp" placeholder="" disabled value="{{.InterestBasis}}">
-                <label class="form-label" for="InterestBasis">InterestBasis</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SienaDealer" aria-describedby="SienaDealerHelp" placeholder="" disabled value="{{.SienaDealer}}">
-                <label class="form-label" for="SienaDealer">SienaDealer</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealOwner" aria-describedby="DealOwnerHelp" placeholder="" disabled value="{{.DealOwner}}">
-                <label class="form-label" for="DealOwner">DealOwner</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="OriginUser" aria-describedby="OriginUserHelp" placeholder="" disabled value="{{.OriginUser}}">
-                <label class="form-label" for="OriginUser">OriginUser</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="EditedByUser" aria-describedby="EditedByUserHelp" placeholder="" disabled value="{{.EditedByUser}}">
-                <label class="form-label" for="EditedByUser">EditedByUser</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealOwnerMnemonic" aria-describedby="DealOwnerMnemonicHelp" placeholder="" disabled value="{{.DealOwnerMnemonic}}">
-                <label class="form-label" for="DealOwnerMnemonic">DealOwnerMnemonic</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="UTCOriginTime" aria-describedby="UTCOriginTimeHelp" placeholder="" disabled value="{{.UTCOriginTime}}">
-                <label class="form-label" for="UTCOriginTime">UTCOriginTime</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="UTCUpdateTime" aria-describedby="UTCUpdateTimeHelp" placeholder="" disabled value="{{.UTCUpdateTime}}">
-                <label class="form-label" for="UTCUpdateTime">UTCUpdateTime</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CustomerStatementNotes" aria-describedby="CustomerStatementNotesHelp" placeholder="" disabled value="{{.CustomerStatementNotes}}">
-                <label class="form-label" for="CustomerStatementNotes">CustomerStatementNotes</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="NotesMargin" aria-describedby="NotesMarginHelp" placeholder="0.00" disabled value="{{.NotesMargin}}">
-                <label class="form-label" for="NotesMargin">NotesMargin</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="RequestedBy" aria-describedby="RequestedByHelp" placeholder="" disabled value="{{.RequestedBy}}">
-                <label class="form-label" for="RequestedBy">RequestedBy</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="EditReason" aria-describedby="EditReasonHelp" placeholder="" disabled value="{{.EditReason}}">
-                <label class="form-label" for="EditReason">EditReason</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="EditOtherReason" aria-describedby="EditOtherReasonHelp" placeholder="" disabled value="{{.EditOtherReason}}">
-                <label class="form-label" for="EditOtherReason">EditOtherReason</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="NoticeDays" aria-describedby="NoticeDaysHelp" placeholder="0" disabled value="{{.NoticeDays}}">
-                <label class="form-label" for="NoticeDays">NoticeDays</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DebitFrequency" aria-describedby="DebitFrequencyHelp" placeholder="" disabled value="{{.DebitFrequency}}">
-                <label class="form-label" for="DebitFrequency">DebitFrequency</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CreditFrequency" aria-describedby="CreditFrequencyHelp" placeholder="" disabled value="{{.CreditFrequency}}">
-                <label class="form-label" for="CreditFrequency">CreditFrequency</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="EURAmount" aria-describedby="EURAmountHelp" placeholder="0.00" disabled value="{{.EURAmount}}">
-                <label class="form-label" for="EURAmount">EURAmount</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="EUROtherAmount" aria-describedby="EUROtherAmountHelp" placeholder="0.00" disabled value="{{.EUROtherAmount}}">
-                <label class="form-label" for="EUROtherAmount">EUROtherAmount</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="PaymentSystemSienaView" aria-describedby="PaymentSystemSienaViewHelp" placeholder="" disabled value="{{.PaymentSystemSienaView}}">
-                <label class="form-label" for="PaymentSystemSienaView">PaymentSystemSienaView</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="PaymentSystemExternalView" aria-describedby="PaymentSystemExternalViewHelp" placeholder="" disabled value="{{.PaymentSystemExternalView}}">
-                <label class="form-label" for="PaymentSystemExternalView">PaymentSystemExternalView</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CCY_Lookup" aria-describedby="CCY_LookupHelp" placeholder="" disabled value="{{.CCY_Lookup}}">
-                <label class="form-label" for="CCY_Lookup">CCY_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Book_Lookup" aria-describedby="Book_LookupHelp" placeholder="" disabled value="{{.Book_Lookup}}">
-                <label class="form-label" for="Book_Lookup">Book_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Portfolio_Lookup" aria-describedby="Portfolio_LookupHelp" placeholder="" disabled value="{{.Portfolio_Lookup}}">
-                <label class="form-label" for="Portfolio_Lookup">Portfolio_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Centre_Lookup" aria-describedby="Centre_LookupHelp" placeholder="" disabled value="{{.Centre_Lookup}}">
-                <label class="form-label" for="Centre_Lookup">Centre_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Firm_Lookup" aria-describedby="Firm_LookupHelp" placeholder="" disabled value="{{.Firm_Lookup}}">
-                <label class="form-label" for="Firm_Lookup">Firm_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="DealtCA_Extra" aria-describedby="DealtCA_ExtraHelp" placeholder="" disabled value="{{.DealtCA_Extra}}">
-                <label class="form-label" for="DealtCA_Extra">DealtCA_Extra</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="AgainstCA_Extra" aria-describedby="AgainstCA_ExtraHelp" placeholder="" disabled value="{{.AgainstCA_Extra}}">
-                <label class="form-label" for="AgainstCA_Extra">AgainstCA_Extra</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="LedgerCA_Extra" aria-describedby="LedgerCA_ExtraHelp" placeholder="" disabled value="{{.LedgerCA_Extra}}">
-                <label class="form-label" for="LedgerCA_Extra">LedgerCA_Extra</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CashBalanceCA_Extra" aria-describedby="CashBalanceCA_ExtraHelp" placeholder="" disabled value="{{.CashBalanceCA_Extra}}">
-                <label class="form-label" for="CashBalanceCA_Extra">CashBalanceCA_Extra</label>
-              </div>
-            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled value="{{.SienaReference}}">
+                        <label class="form-label" for="SienaReference">SienaReference</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerSienaView" aria-describedby="CustomerSienaViewHelp" placeholder="" disabled value="{{.CustomerSienaView}}">
+                        <label class="form-label" for="CustomerSienaView">CustomerSienaView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SienaCommonRef" aria-describedby="SienaCommonRefHelp" placeholder="" disabled value="{{.SienaCommonRef}}">
+                        <label class="form-label" for="SienaCommonRef">SienaCommonRef</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Status" aria-describedby="StatusHelp" placeholder="" disabled value="{{.Status}}">
+                        <label class="form-label" for="Status">Status</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="StartDate" aria-describedby="StartDateHelp" placeholder="" disabled value="{{.StartDate}}">
+                        <label class="form-label" for="StartDate">StartDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MaturityDate" aria-describedby="MaturityDateHelp" placeholder="" disabled value="{{.MaturityDate}}">
+                        <label class="form-label" for="MaturityDate">MaturityDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ContractNumber" aria-describedby="ContractNumberHelp" placeholder="" disabled value="{{.ContractNumber}}">
+                        <label class="form-label" for="ContractNumber">ContractNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ExternalReference" aria-describedby="ExternalReferenceHelp" placeholder="" disabled value="{{.ExternalReference}}">
+                        <label class="form-label" for="ExternalReference">ExternalReference</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="CCY" name="CCY" class="select" data-mdb-filter="true" disabled>
+                  {{range .CCY_lookup}}<option value="{{.ID}}" {{if eq .ID $.CCY}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CCY" disabled>CCY</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Book" name="Book" class="select" data-mdb-filter="true" disabled>
+                  {{range .Book_lookup}}<option value="{{.ID}}" {{if eq .ID $.Book}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Book" disabled>Book</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MandatedUser" aria-describedby="MandatedUserHelp" placeholder="" disabled value="{{.MandatedUser}}">
+                        <label class="form-label" for="MandatedUser">MandatedUser</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BackOfficeNotes" aria-describedby="BackOfficeNotesHelp" placeholder="" disabled value="{{.BackOfficeNotes}}">
+                        <label class="form-label" for="BackOfficeNotes">BackOfficeNotes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CashBalance" aria-describedby="CashBalanceHelp" placeholder="0.00" disabled value="{{.CashBalance}}">
+                        <label class="form-label" for="CashBalance">CashBalance</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AccountNumber" aria-describedby="AccountNumberHelp" placeholder="" disabled value="{{.AccountNumber}}">
+                        <label class="form-label" for="AccountNumber">AccountNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AccountName" aria-describedby="AccountNameHelp" placeholder="" disabled value="{{.AccountName}}">
+                        <label class="form-label" for="AccountName">AccountName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LedgerBalance" aria-describedby="LedgerBalanceHelp" placeholder="0.00" disabled value="{{.LedgerBalance}}">
+                        <label class="form-label" for="LedgerBalance">LedgerBalance</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Portfolio" name="Portfolio" class="select" data-mdb-filter="true" disabled>
+                  {{range .Portfolio_lookup}}<option value="{{.ID}}" {{if eq .ID $.Portfolio}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Portfolio" disabled>Portfolio</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AgreementId" aria-describedby="AgreementIdHelp" placeholder="0" disabled value="{{.AgreementId}}">
+                        <label class="form-label" for="AgreementId">AgreementId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BackOfficeRefNo" aria-describedby="BackOfficeRefNoHelp" placeholder="" disabled value="{{.BackOfficeRefNo}}">
+                        <label class="form-label" for="BackOfficeRefNo">BackOfficeRefNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ISIN" aria-describedby="ISINHelp" placeholder="" disabled value="{{.ISIN}}">
+                        <label class="form-label" for="ISIN">ISIN</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTI" aria-describedby="UTIHelp" placeholder="" disabled value="{{.UTI}}">
+                        <label class="form-label" for="UTI">UTI</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CCYName" aria-describedby="CCYNameHelp" placeholder="" disabled value="{{.CCYName}}">
+                        <label class="form-label" for="CCYName">CCYName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BookName" aria-describedby="BookNameHelp" placeholder="" disabled value="{{.BookName}}">
+                        <label class="form-label" for="BookName">BookName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PortfolioName" aria-describedby="PortfolioNameHelp" placeholder="" disabled value="{{.PortfolioName}}">
+                        <label class="form-label" for="PortfolioName">PortfolioName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Centre" name="Centre" class="select" data-mdb-filter="true" disabled>
+                  {{range .Centre_lookup}}<option value="{{.ID}}" {{if eq .ID $.Centre}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Centre" disabled>Centre</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealTypeKey" aria-describedby="DealTypeKeyHelp" placeholder="" disabled value="{{.DealTypeKey}}">
+                        <label class="form-label" for="DealTypeKey">DealTypeKey</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealTypeShortName" aria-describedby="DealTypeShortNameHelp" placeholder="" disabled value="{{.DealTypeShortName}}">
+                        <label class="form-label" for="DealTypeShortName">DealTypeShortName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InternalId" aria-describedby="InternalIdHelp" placeholder="0" disabled value="{{.InternalId}}">
+                        <label class="form-label" for="InternalId">InternalId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder="" disabled value="{{.InternalDeleted}}">
+                        <label class="form-label" for="InternalDeleted">InternalDeleted</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder="" disabled value="{{.UpdatedTransactionId}}">
+                        <label class="form-label" for="UpdatedTransactionId">UpdatedTransactionId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled value="{{.UpdatedUserId}}">
+                        <label class="form-label" for="UpdatedUserId">UpdatedUserId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder="" disabled value="{{.UpdatedDateTime}}">
+                        <label class="form-label" for="UpdatedDateTime">UpdatedDateTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder="" disabled value="{{.DeletedTransactionId}}">
+                        <label class="form-label" for="DeletedTransactionId">DeletedTransactionId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder="" disabled value="{{.DeletedUserId}}">
+                        <label class="form-label" for="DeletedUserId">DeletedUserId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ChangeType" aria-describedby="ChangeTypeHelp" placeholder="" disabled value="{{.ChangeType}}">
+                        <label class="form-label" for="ChangeType">ChangeType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CCYDp" aria-describedby="CCYDpHelp" placeholder="0" disabled value="{{.CCYDp}}">
+                        <label class="form-label" for="CCYDp">CCYDp</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}">
+                        <label class="form-label" for="CompID">CompID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Firm" name="Firm" class="select" data-mdb-filter="true" disabled>
+                  {{range .Firm_lookup}}<option value="{{.ID}}" {{if eq .ID $.Firm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Firm" disabled>Firm</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealType" aria-describedby="DealTypeHelp" placeholder="" disabled value="{{.DealType}}">
+                        <label class="form-label" for="DealType">DealType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FullDealType" aria-describedby="FullDealTypeHelp" placeholder="" disabled value="{{.FullDealType}}">
+                        <label class="form-label" for="FullDealType">FullDealType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealingInterface" aria-describedby="DealingInterfaceHelp" placeholder="" disabled value="{{.DealingInterface}}">
+                        <label class="form-label" for="DealingInterface">DealingInterface</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealtAmount" aria-describedby="DealtAmountHelp" placeholder="0.00" disabled value="{{.DealtAmount}}">
+                        <label class="form-label" for="DealtAmount">DealtAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ParentContractNumber" aria-describedby="ParentContractNumberHelp" placeholder="" disabled value="{{.ParentContractNumber}}">
+                        <label class="form-label" for="ParentContractNumber">ParentContractNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InterestFrequency" aria-describedby="InterestFrequencyHelp" placeholder="" disabled value="{{.InterestFrequency}}">
+                        <label class="form-label" for="InterestFrequency">InterestFrequency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InterestAction" aria-describedby="InterestActionHelp" placeholder="" disabled value="{{.InterestAction}}">
+                        <label class="form-label" for="InterestAction">InterestAction</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InterestStrategy" aria-describedby="InterestStrategyHelp" placeholder="" disabled value="{{.InterestStrategy}}">
+                        <label class="form-label" for="InterestStrategy">InterestStrategy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InterestBasis" aria-describedby="InterestBasisHelp" placeholder="" disabled value="{{.InterestBasis}}">
+                        <label class="form-label" for="InterestBasis">InterestBasis</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SienaDealer" aria-describedby="SienaDealerHelp" placeholder="" disabled value="{{.SienaDealer}}">
+                        <label class="form-label" for="SienaDealer">SienaDealer</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealOwner" aria-describedby="DealOwnerHelp" placeholder="" disabled value="{{.DealOwner}}">
+                        <label class="form-label" for="DealOwner">DealOwner</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="OriginUser" aria-describedby="OriginUserHelp" placeholder="" disabled value="{{.OriginUser}}">
+                        <label class="form-label" for="OriginUser">OriginUser</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditedByUser" aria-describedby="EditedByUserHelp" placeholder="" disabled value="{{.EditedByUser}}">
+                        <label class="form-label" for="EditedByUser">EditedByUser</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealOwnerMnemonic" aria-describedby="DealOwnerMnemonicHelp" placeholder="" disabled value="{{.DealOwnerMnemonic}}">
+                        <label class="form-label" for="DealOwnerMnemonic">DealOwnerMnemonic</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTCOriginTime" aria-describedby="UTCOriginTimeHelp" placeholder="" disabled value="{{.UTCOriginTime}}">
+                        <label class="form-label" for="UTCOriginTime">UTCOriginTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTCUpdateTime" aria-describedby="UTCUpdateTimeHelp" placeholder="" disabled value="{{.UTCUpdateTime}}">
+                        <label class="form-label" for="UTCUpdateTime">UTCUpdateTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerStatementNotes" aria-describedby="CustomerStatementNotesHelp" placeholder="" disabled value="{{.CustomerStatementNotes}}">
+                        <label class="form-label" for="CustomerStatementNotes">CustomerStatementNotes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NotesMargin" aria-describedby="NotesMarginHelp" placeholder="0.00" disabled value="{{.NotesMargin}}">
+                        <label class="form-label" for="NotesMargin">NotesMargin</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RequestedBy" aria-describedby="RequestedByHelp" placeholder="" disabled value="{{.RequestedBy}}">
+                        <label class="form-label" for="RequestedBy">RequestedBy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditReason" aria-describedby="EditReasonHelp" placeholder="" disabled value="{{.EditReason}}">
+                        <label class="form-label" for="EditReason">EditReason</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditOtherReason" aria-describedby="EditOtherReasonHelp" placeholder="" disabled value="{{.EditOtherReason}}">
+                        <label class="form-label" for="EditOtherReason">EditOtherReason</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NoticeDays" aria-describedby="NoticeDaysHelp" placeholder="0" disabled value="{{.NoticeDays}}">
+                        <label class="form-label" for="NoticeDays">NoticeDays</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DebitFrequency" aria-describedby="DebitFrequencyHelp" placeholder="" disabled value="{{.DebitFrequency}}">
+                        <label class="form-label" for="DebitFrequency">DebitFrequency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CreditFrequency" aria-describedby="CreditFrequencyHelp" placeholder="" disabled value="{{.CreditFrequency}}">
+                        <label class="form-label" for="CreditFrequency">CreditFrequency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EURAmount" aria-describedby="EURAmountHelp" placeholder="0.00" disabled value="{{.EURAmount}}">
+                        <label class="form-label" for="EURAmount">EURAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EUROtherAmount" aria-describedby="EUROtherAmountHelp" placeholder="0.00" disabled value="{{.EUROtherAmount}}">
+                        <label class="form-label" for="EUROtherAmount">EUROtherAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentSystemSienaView" aria-describedby="PaymentSystemSienaViewHelp" placeholder="" disabled value="{{.PaymentSystemSienaView}}">
+                        <label class="form-label" for="PaymentSystemSienaView">PaymentSystemSienaView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentSystemExternalView" aria-describedby="PaymentSystemExternalViewHelp" placeholder="" disabled value="{{.PaymentSystemExternalView}}">
+                        <label class="form-label" for="PaymentSystemExternalView">PaymentSystemExternalView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealtCA" aria-describedby="DealtCAHelp" placeholder="" disabled value="{{.DealtCA}}">
+                        <label class="form-label" for="DealtCA">DealtCA</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AgainstCA" aria-describedby="AgainstCAHelp" placeholder="" disabled value="{{.AgainstCA}}">
+                        <label class="form-label" for="AgainstCA">AgainstCA</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LedgerCA" aria-describedby="LedgerCAHelp" placeholder="" disabled value="{{.LedgerCA}}">
+                        <label class="form-label" for="LedgerCA">LedgerCA</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CashBalanceCA" aria-describedby="CashBalanceCAHelp" placeholder="" disabled value="{{.CashBalanceCA}}">
+                        <label class="form-label" for="CashBalanceCA">CashBalanceCA</label>
+                    </div>
+                
+                </div>
+            </div>
+            
         </div>
+        
+    </div>
+</form>
 
-      </div>
-    </form>
-  
-{{template "userfooter" .}}
-{{template "pagefooter" .}}
+{{template "userfooter" .}} {{template "pagefooter" .}}

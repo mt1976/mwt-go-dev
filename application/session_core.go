@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:09
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,84 +25,61 @@ import (
 //session_PageList provides the information for the template for a list of Sessions
 type Session_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Session
 }
+//Session_Redirect provides a page to return to aftern an action
+const (
+	Session_Redirect = dm.Session_PathList
+)
 
 //session_Page provides the information for the template for an individual Session
 type Session_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		SYSId string
-		Apptoken string
-		Createdate string
-		Createtime string
-		Uniqueid string
-		Sessiontoken string
-		Username string
-		Password string
-		Userip string
-		Userhost string
-		Appip string
-		Apphost string
-		Issued string
-		Expiry string
-		Expiryraw string
-		Brand string
-		SYSCreated string
-		SYSWho string
-		SYSHost string
-		SYSUpdated string
-		Id string
-		Expires string
-		SYSCreatedBy string
-		SYSCreatedHost string
-		SYSUpdatedBy string
-		SYSUpdatedHost string
-		SessionRole string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	Apptoken         string
+	Createdate         string
+	Createtime         string
+	Uniqueid         string
+	Sessiontoken         string
+	Username         string
+	Password         string
+	Userip         string
+	Userhost         string
+	Appip         string
+	Apphost         string
+	Issued         string
+	Expiry         string
+	Expiryraw         string
+	Brand         string
+	SYSCreated         string
+	SYSWho         string
+	SYSHost         string
+	SYSUpdated         string
+	Id         string
+	Expires         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SessionRole         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Session_Redirect = dm.Session_PathList
-)
+
 
 //Session_Publish annouces the endpoints available for this object
 func Session_Publish(mux http.ServeMux) {
@@ -116,6 +93,7 @@ func Session_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Session_Title)
     //No API
 }
+
 
 //Session_HandlerList is the handler for the list page
 func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -147,6 +125,7 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Session_HandlerView is the handler used to View a page
 func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -169,114 +148,15 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Apptoken = rD.Apptoken
-pageDetail.Createdate = rD.Createdate
-pageDetail.Createtime = rD.Createtime
-pageDetail.Uniqueid = rD.Uniqueid
-pageDetail.Sessiontoken = rD.Sessiontoken
-pageDetail.Username = rD.Username
-pageDetail.Password = rD.Password
-pageDetail.Userip = rD.Userip
-pageDetail.Userhost = rD.Userhost
-pageDetail.Appip = rD.Appip
-pageDetail.Apphost = rD.Apphost
-pageDetail.Issued = rD.Issued
-pageDetail.Expiry = rD.Expiry
-pageDetail.Expiryraw = rD.Expiryraw
-pageDetail.Brand = rD.Brand
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.Id = rD.Id
-pageDetail.Expires = rD.Expires
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-pageDetail.SessionRole = rD.SessionRole
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = session_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Session_TemplateView, w, r, pageDetail)
 
 }
 
-//Session_HandlerEdit is the handler used generate the Edit page
-func Session_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
 
-	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path)
-
-	searchID := core.GetURLparam(r, dm.Session_QueryString)
-	_, rD, _ := dao.Session_GetByID(searchID)
-	
-	pageDetail := Session_Page{
-		Title:       CardTitle(dm.Session_Title, core.Action_Edit),
-		PageTitle:   PageTitle(dm.Session_Title, core.Action_Edit),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Apptoken = rD.Apptoken
-pageDetail.Createdate = rD.Createdate
-pageDetail.Createtime = rD.Createtime
-pageDetail.Uniqueid = rD.Uniqueid
-pageDetail.Sessiontoken = rD.Sessiontoken
-pageDetail.Username = rD.Username
-pageDetail.Password = rD.Password
-pageDetail.Userip = rD.Userip
-pageDetail.Userhost = rD.Userhost
-pageDetail.Appip = rD.Appip
-pageDetail.Apphost = rD.Apphost
-pageDetail.Issued = rD.Issued
-pageDetail.Expiry = rD.Expiry
-pageDetail.Expiryraw = rD.Expiryraw
-pageDetail.Brand = rD.Brand
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.Id = rD.Id
-pageDetail.Expires = rD.Expires
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-pageDetail.SessionRole = rD.SessionRole
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.Session_TemplateEdit, w, r, pageDetail)
-
-
-}
 
 //Session_HandlerSave is the handler used process the saving of an Session
 func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -291,7 +171,9 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Session
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.SYSId = r.FormValue(dm.Session_SYSId)
 		item.Apptoken = r.FormValue(dm.Session_Apptoken)
 		item.Createdate = r.FormValue(dm.Session_Createdate)
@@ -320,88 +202,110 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Session_SYSUpdatedHost)
 		item.SessionRole = r.FormValue(dm.Session_SessionRole)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Session_Store(item,r)	
-
 	http.Redirect(w, r, Session_Redirect, http.StatusFound)
 }
 
-//Session_HandlerNew is the handler used process the creation of an Session
-func Session_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
-
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
-
-	pageDetail := Session_Page{
-		Title:       CardTitle(dm.Session_Title, core.Action_New),
-		PageTitle:   PageTitle(dm.Session_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = ""
-pageDetail.Apptoken = ""
-pageDetail.Createdate = ""
-pageDetail.Createtime = ""
-pageDetail.Uniqueid = ""
-pageDetail.Sessiontoken = ""
-pageDetail.Username = ""
-pageDetail.Password = ""
-pageDetail.Userip = ""
-pageDetail.Userhost = ""
-pageDetail.Appip = ""
-pageDetail.Apphost = ""
-pageDetail.Issued = ""
-pageDetail.Expiry = ""
-pageDetail.Expiryraw = ""
-pageDetail.Brand = ""
-pageDetail.SYSCreated = ""
-pageDetail.SYSWho = ""
-pageDetail.SYSHost = ""
-pageDetail.SYSUpdated = ""
-pageDetail.Id = ""
-pageDetail.Expires = ""
-pageDetail.SYSCreatedBy = ""
-pageDetail.SYSCreatedHost = ""
-pageDetail.SYSUpdatedBy = ""
-pageDetail.SYSUpdatedHost = ""
-pageDetail.SessionRole = ""
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
 
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.Session_TemplateNew, w, r, pageDetail)
-
-}
-
-//Session_HandlerDelete is the handler used process the deletion of an Session
-func Session_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
-
-	logs.Servicing(r.URL.Path)
-	searchID := core.GetURLparam(r, dm.Session_QueryString)
-
-	dao.Session_Delete(searchID)	
-
-	http.Redirect(w, r, Session_Redirect, http.StatusFound)
-}
+// Builds/Popuplates the Session Page 
+func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Apptoken = rD.Apptoken
+	pageDetail.Createdate = rD.Createdate
+	pageDetail.Createtime = rD.Createtime
+	pageDetail.Uniqueid = rD.Uniqueid
+	pageDetail.Sessiontoken = rD.Sessiontoken
+	pageDetail.Username = rD.Username
+	pageDetail.Password = rD.Password
+	pageDetail.Userip = rD.Userip
+	pageDetail.Userhost = rD.Userhost
+	pageDetail.Appip = rD.Appip
+	pageDetail.Apphost = rD.Apphost
+	pageDetail.Issued = rD.Issued
+	pageDetail.Expiry = rD.Expiry
+	pageDetail.Expiryraw = rD.Expiryraw
+	pageDetail.Brand = rD.Brand
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.Id = rD.Id
+	pageDetail.Expires = rD.Expires
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	pageDetail.SessionRole = rD.SessionRole
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

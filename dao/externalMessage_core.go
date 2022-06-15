@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/12/2021 at 09:31:50
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:04
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,14 +84,45 @@ func externalmessage_Save(r dm.ExternalMessage,usr string) error {
 
     var err error
 
-	logs.Storing("ExternalMessage",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.MessageID) == 0 {
 		r.MessageID = ExternalMessage_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\externalmessage_impl.go
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -101,38 +130,47 @@ func externalmessage_Save(r dm.ExternalMessage,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	
+logs.Storing("ExternalMessage",fmt.Sprintf("%s", r))
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.ExternalMessage_SYSId, r.SYSId)
-ts = addData(ts, dm.ExternalMessage_MessageID, r.MessageID)
-ts = addData(ts, dm.ExternalMessage_MessageFormat, r.MessageFormat)
-ts = addData(ts, dm.ExternalMessage_MessageDeliveredTo, r.MessageDeliveredTo)
-ts = addData(ts, dm.ExternalMessage_MessageBody, r.MessageBody)
-ts = addData(ts, dm.ExternalMessage_MessageFilename, r.MessageFilename)
-ts = addData(ts, dm.ExternalMessage_MessageLife, r.MessageLife)
-ts = addData(ts, dm.ExternalMessage_MessageDate, r.MessageDate)
-ts = addData(ts, dm.ExternalMessage_MessageTime, r.MessageTime)
-ts = addData(ts, dm.ExternalMessage_MessageTimeoutAction, r.MessageTimeoutAction)
-ts = addData(ts, dm.ExternalMessage_MessageACKNAK, r.MessageACKNAK)
-ts = addData(ts, dm.ExternalMessage_ResponseID, r.ResponseID)
-ts = addData(ts, dm.ExternalMessage_ResponseFilename, r.ResponseFilename)
-ts = addData(ts, dm.ExternalMessage_ResponseBody, r.ResponseBody)
-ts = addData(ts, dm.ExternalMessage_ResponseDate, r.ResponseDate)
-ts = addData(ts, dm.ExternalMessage_ResponseTime, r.ResponseTime)
-ts = addData(ts, dm.ExternalMessage_ResponseAdditionalInfo, r.ResponseAdditionalInfo)
-ts = addData(ts, dm.ExternalMessage_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.ExternalMessage_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.ExternalMessage_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.ExternalMessage_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.ExternalMessage_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.ExternalMessage_SYSUpdatedHost, r.SYSUpdatedHost)
-ts = addData(ts, dm.ExternalMessage_MessageTimeout, r.MessageTimeout)
-ts = addData(ts, dm.ExternalMessage_MessageEmitted, r.MessageEmitted)
-ts = addData(ts, dm.ExternalMessage_ResponseRecieved, r.ResponseRecieved)
-ts = addData(ts, dm.ExternalMessage_MessageClass, r.MessageClass)
-ts = addData(ts, dm.ExternalMessage_AppID, r.AppID)
-	
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.ExternalMessage_SYSId, r.SYSId)
+	ts = addData(ts, dm.ExternalMessage_MessageID, r.MessageID)
+	ts = addData(ts, dm.ExternalMessage_MessageFormat, r.MessageFormat)
+	ts = addData(ts, dm.ExternalMessage_MessageDeliveredTo, r.MessageDeliveredTo)
+	ts = addData(ts, dm.ExternalMessage_MessageBody, r.MessageBody)
+	ts = addData(ts, dm.ExternalMessage_MessageFilename, r.MessageFilename)
+	ts = addData(ts, dm.ExternalMessage_MessageLife, r.MessageLife)
+	ts = addData(ts, dm.ExternalMessage_MessageDate, r.MessageDate)
+	ts = addData(ts, dm.ExternalMessage_MessageTime, r.MessageTime)
+	ts = addData(ts, dm.ExternalMessage_MessageTimeoutAction, r.MessageTimeoutAction)
+	ts = addData(ts, dm.ExternalMessage_MessageACKNAK, r.MessageACKNAK)
+	ts = addData(ts, dm.ExternalMessage_ResponseID, r.ResponseID)
+	ts = addData(ts, dm.ExternalMessage_ResponseFilename, r.ResponseFilename)
+	ts = addData(ts, dm.ExternalMessage_ResponseBody, r.ResponseBody)
+	ts = addData(ts, dm.ExternalMessage_ResponseDate, r.ResponseDate)
+	ts = addData(ts, dm.ExternalMessage_ResponseTime, r.ResponseTime)
+	ts = addData(ts, dm.ExternalMessage_ResponseAdditionalInfo, r.ResponseAdditionalInfo)
+	ts = addData(ts, dm.ExternalMessage_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.ExternalMessage_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.ExternalMessage_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.ExternalMessage_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.ExternalMessage_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.ExternalMessage_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.ExternalMessage_MessageTimeout, r.MessageTimeout)
+	ts = addData(ts, dm.ExternalMessage_MessageEmitted, r.MessageEmitted)
+	ts = addData(ts, dm.ExternalMessage_ResponseRecieved, r.ResponseRecieved)
+	ts = addData(ts, dm.ExternalMessage_MessageClass, r.MessageClass)
+	ts = addData(ts, dm.ExternalMessage_AppID, r.AppID)
+		
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.ExternalMessage_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -148,7 +186,8 @@ ts = addData(ts, dm.ExternalMessage_AppID, r.AppID)
 }
 
 
-// externalmessage_Fetch read all employees
+
+// externalmessage_Fetch read all ExternalMessage's
 func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalMessage, error) {
 
 	var recItem dm.ExternalMessage
@@ -156,13 +195,13 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.ExternalMessage_SYSId, "0")
    recItem.MessageID  = get_String(rec, dm.ExternalMessage_MessageID, "")
    recItem.MessageFormat  = get_String(rec, dm.ExternalMessage_MessageFormat, "")
@@ -191,7 +230,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
    recItem.ResponseRecieved  = get_String(rec, dm.ExternalMessage_ResponseRecieved, "")
    recItem.MessageClass  = get_String(rec, dm.ExternalMessage_MessageClass, "")
    recItem.AppID  = get_String(rec, dm.ExternalMessage_AppID, "")
-// If there are fields below, create the methods in dao\ExternalMessage_Impl.go
+// If there are fields below, create the methods in adaptor\ExternalMessage_impl.go
 
 
 
@@ -221,40 +260,15 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func ExternalMessage_NewID(r dm.ExternalMessage) string {
 	
@@ -262,6 +276,7 @@ func ExternalMessage_NewID(r dm.ExternalMessage) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

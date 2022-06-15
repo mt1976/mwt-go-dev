@@ -1,68 +1,102 @@
-{{template "header" .}}
-{{template "bodydefinition" .}}
-    <form action="/CMNotesEdit?ID={{.NoteId}}" method="POST" class="form">
-      <div class="card">
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CMNotesEdit?ID={{.NoteId}}" method="POST" class="form">
+    <div class="card">
         <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.NoteId}}</code>
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-poo me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.NoteId}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Customer Note"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
             </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-                
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Customer Note"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="NoteId" aria-describedby="NoteIdHelp" placeholder="0" disabled value="{{.NoteId}}">
-                <label class="form-label" for="NoteId">NoteId</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NoteId" aria-describedby="NoteIdHelp" placeholder="0" disabled value="{{.NoteId}}">
+                        <label class="form-label" for="NoteId">NoteId</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="StreamId" aria-describedby="StreamIdHelp" placeholder="0" disabled value="{{.StreamId}}">
-                <label class="form-label" for="StreamId">StreamId</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="StreamId" aria-describedby="StreamIdHelp" placeholder="0" disabled value="{{.StreamId}}">
+                        <label class="form-label" for="StreamId">StreamId</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Summary" aria-describedby="SummaryHelp" placeholder="" disabled value="{{.Summary}}">
-                <label class="form-label" for="Summary">Summary</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Summary" aria-describedby="SummaryHelp" placeholder="" disabled value="{{.Summary}}">
+                        <label class="form-label" for="Summary">Summary</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Details" aria-describedby="DetailsHelp" placeholder="" disabled value="{{.Details}}">
-                <label class="form-label" for="Details">Details</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Details" aria-describedby="DetailsHelp" placeholder="" disabled value="{{.Details}}">
+                        <label class="form-label" for="Details">Details</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="RecordState" aria-describedby="RecordStateHelp" placeholder="0" disabled value="{{.RecordState}}">
-                <label class="form-label" for="RecordState">RecordState</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RecordState" aria-describedby="RecordStateHelp" placeholder="0" disabled value="{{.RecordState}}">
+                        <label class="form-label" for="RecordState">RecordState</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CreatedBy" aria-describedby="CreatedByHelp" placeholder="" disabled value="{{.CreatedBy}}">
-                <label class="form-label" for="CreatedBy">CreatedBy</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CreatedBy" aria-describedby="CreatedByHelp" placeholder="" disabled value="{{.CreatedBy}}">
+                        <label class="form-label" for="CreatedBy">CreatedBy</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CreatedDateTime" aria-describedby="CreatedDateTimeHelp" placeholder="" disabled value="{{.CreatedDateTime}}">
-                <label class="form-label" for="CreatedDateTime">CreatedDateTime</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CreatedDateTime" aria-describedby="CreatedDateTimeHelp" placeholder="" disabled value="{{.CreatedDateTime}}">
+                        <label class="form-label" for="CreatedDateTime">CreatedDateTime</label>
+                    </div>
+                
+                </div>
             </div>
+            
         </div>
+        
+    </div>
+</form>
 
-      </div>
-    </form>
-  
-{{template "userfooter" .}}
-{{template "pagefooter" .}}
+{{template "userfooter" .}} {{template "pagefooter" .}}

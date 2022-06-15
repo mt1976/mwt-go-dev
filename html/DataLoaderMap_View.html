@@ -1,130 +1,180 @@
-{{template "header" .}}
-{{template "bodydefinition" .}}
-    <form action="/DataLoaderMapEdit?Id={{.Id}}" method="POST" class="form">
-      <div class="card">
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/DataLoaderMapEdit?Id={{.Id}}" method="POST" class="form">
+    <div class="card">
         <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-city me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/DataLoaderMapEdit/?Id={{.Id}}" onclick="/DataLoaderMapEdit/?Id={{.Id}}" title="Edit Data Loader Data Map"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader Data Map"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
             </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-              
-                <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/DataLoaderMapEdit/?Id={{.Id}}" onclick="/DataLoaderMapEdit/?Id={{.Id}}" title="Edit Data Loader Data Map"></i>&nbsp;&nbsp;Edit</button>
-                
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader Data Map"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled value="{{.SYSId}}">
-                <label class="form-label" for="SYSId">SYSId</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled value="{{.SYSId}}">
+                        <label class="form-label" for="SYSId">SYSId</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Id" aria-describedby="IdHelp" placeholder="" disabled value="{{.Id}}">
-                <label class="form-label" for="Id">Id</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Id" aria-describedby="IdHelp" placeholder="" disabled value="{{.Id}}">
+                        <label class="form-label" for="Id">Id</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
-                <label class="form-label" for="Name">Name</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
+                        <label class="form-label" for="Name">Name</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Position" aria-describedby="PositionHelp" placeholder="" disabled value="{{.Position}}">
-                <label class="form-label" for="Position">Position</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Position" aria-describedby="PositionHelp" placeholder="" disabled value="{{.Position}}">
+                        <label class="form-label" for="Position">Position</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Loader" aria-describedby="LoaderHelp" placeholder="" disabled value="{{.Loader}}">
-                <label class="form-label" for="Loader">Loader</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Loader" name="Loader" class="select" data-mdb-filter="true" disabled>
+                  {{range .Loader_lookup}}<option value="{{.ID}}" {{if eq .ID $.Loader}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Loader" disabled>Loader</label>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled value="{{.SYSCreated}}">
-                <label class="form-label" for="SYSCreated">SYSCreated</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled value="{{.SYSCreated}}">
+                        <label class="form-label" for="SYSCreated">SYSCreated</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled value="{{.SYSWho}}">
-                <label class="form-label" for="SYSWho">SYSWho</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled value="{{.SYSWho}}">
+                        <label class="form-label" for="SYSWho">SYSWho</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled value="{{.SYSHost}}">
-                <label class="form-label" for="SYSHost">SYSHost</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled value="{{.SYSHost}}">
+                        <label class="form-label" for="SYSHost">SYSHost</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled value="{{.SYSUpdated}}">
-                <label class="form-label" for="SYSUpdated">SYSUpdated</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled value="{{.SYSUpdated}}">
+                        <label class="form-label" for="SYSUpdated">SYSUpdated</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Int_position" aria-describedby="Int_positionHelp" placeholder="0" disabled value="{{.Int_position}}">
-                <label class="form-label" for="Int_position">Int_position</label>
-              </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Int_position" aria-describedby="Int_positionHelp" placeholder="0" disabled value="{{.Int_position}}">
+                        <label class="form-label" for="Int_position">Int_position</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled value="{{.SYSCreatedBy}}">
-                <label class="form-label" for="SYSCreatedBy">SYSCreatedBy</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled value="{{.SYSCreatedBy}}">
+                        <label class="form-label" for="SYSCreatedBy">SYSCreatedBy</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled value="{{.SYSCreatedHost}}">
-                <label class="form-label" for="SYSCreatedHost">SYSCreatedHost</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled value="{{.SYSCreatedHost}}">
+                        <label class="form-label" for="SYSCreatedHost">SYSCreatedHost</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled value="{{.SYSUpdatedBy}}">
-                <label class="form-label" for="SYSUpdatedBy">SYSUpdatedBy</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled value="{{.SYSUpdatedBy}}">
+                        <label class="form-label" for="SYSUpdatedBy">SYSUpdatedBy</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled value="{{.SYSUpdatedHost}}">
-                <label class="form-label" for="SYSUpdatedHost">SYSUpdatedHost</label>
-              </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled value="{{.SYSUpdatedHost}}">
+                        <label class="form-label" for="SYSUpdatedHost">SYSUpdatedHost</label>
+                    </div>
+                
+                </div>
             </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Loader_Lookup" aria-describedby="Loader_LookupHelp" placeholder="" disabled value="{{.Loader_Lookup}}">
-                <label class="form-label" for="Loader_Lookup">Loader_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="LoaderDescription_Lookup" aria-describedby="LoaderDescription_LookupHelp" placeholder="" disabled value="{{.LoaderDescription_Lookup}}">
-                <label class="form-label" for="LoaderDescription_Lookup">LoaderDescription_Lookup</label>
-              </div>
-            </div>
-<div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="LoaderType_Lookup" aria-describedby="LoaderType_LookupHelp" placeholder="" disabled value="{{.LoaderType_Lookup}}">
-                <label class="form-label" for="LoaderType_Lookup">LoaderType_Lookup</label>
-              </div>
-            </div>
+            
         </div>
-{{template "audit" .}}
-      </div>
-    </form>
-  
-{{template "userfooter" .}}
-{{template "pagefooter" .}}
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

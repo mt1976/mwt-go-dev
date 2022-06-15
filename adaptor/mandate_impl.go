@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Mandate_Delete_Impl(id string) error {
+func Mandate_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Mandate_Delete: " + id
 
-	// Implement Mandate_Delete_Impl in mandate_Impl.go
+	// Implement Mandate_Delete_impl in mandate_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Mandate_Delete_Impl(item)
+	// er := Mandate_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Mandate_Update_Impl(item dm.Mandate, usr string) error {
+func Mandate_Update_impl(id string, item dm.Mandate, usr string) error {
 	var er error
 
 	message := "Implement Mandate_Update: " + item.CompID
 
-	// Implement Mandate_Update_Impl in mandate_Impl.go
+	// Implement Mandate_Update_impl in mandate_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Mandate_Update_Impl(item)
+	// er := Mandate_Update_impl(item)
 	//
 
 	logs.Success(message)

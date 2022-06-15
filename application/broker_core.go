@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:07
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:49
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,42 +25,40 @@ import (
 //broker_PageList provides the information for the template for a list of Brokers
 type Broker_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Broker
 }
+//Broker_Redirect provides a page to return to aftern an action
+const (
+	Broker_Redirect = dm.Broker_PathList
+)
 
 //broker_Page provides the information for the template for an individual Broker
 type Broker_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		Code string
-		Name string
-		FullName string
-		Contact string
-		Address string
-		LEI string
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Code         string
+	Name         string
+	FullName         string
+	Contact         string
+	Address         string
+	LEI         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Broker_Redirect = dm.Broker_PathList
-)
+
 
 //Broker_Publish annouces the endpoints available for this object
 func Broker_Publish(mux http.ServeMux) {
@@ -71,9 +69,10 @@ func Broker_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Broker_PathNew, Broker_HandlerNew)
 	mux.HandleFunc(dm.Broker_PathSave, Broker_HandlerSave)
 	mux.HandleFunc(dm.Broker_PathDelete, Broker_HandlerDelete)
-	logs.Publish("Siena", dm.Broker_Title)
-    core.Catalog_Add(dm.Broker_Title, dm.Broker_Path, "", dm.Broker_QueryString, "APP")
+	logs.Publish("Application", dm.Broker_Title)
+    core.Catalog_Add(dm.Broker_Title, dm.Broker_Path, "", dm.Broker_QueryString, "Application")
 }
+
 
 //Broker_HandlerList is the handler for the list page
 func Broker_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -105,6 +104,7 @@ func Broker_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Broker_HandlerView is the handler used to View a page
 func Broker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -127,28 +127,14 @@ func Broker_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.FullName = rD.FullName
-pageDetail.Contact = rD.Contact
-pageDetail.Address = rD.Address
-pageDetail.LEI = rD.LEI
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = broker_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Broker_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Broker_HandlerEdit is the handler used generate the Edit page
 func Broker_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -172,27 +158,13 @@ func Broker_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.FullName = rD.FullName
-pageDetail.Contact = rD.Contact
-pageDetail.Address = rD.Address
-pageDetail.LEI = rD.LEI
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = broker_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Broker_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Broker_HandlerSave is the handler used process the saving of an Broker
 func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -207,7 +179,9 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Broker
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.Code = r.FormValue(dm.Broker_Code)
 		item.Name = r.FormValue(dm.Broker_Name)
 		item.FullName = r.FormValue(dm.Broker_FullName)
@@ -215,13 +189,13 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Address = r.FormValue(dm.Broker_Address)
 		item.LEI = r.FormValue(dm.Broker_LEI)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Broker_Store(item,r)	
-
 	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
 }
+
 
 //Broker_HandlerNew is the handler used process the creation of an Broker
 func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -243,25 +217,14 @@ func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Name = ""
-pageDetail.FullName = ""
-pageDetail.Contact = ""
-pageDetail.Address = ""
-pageDetail.LEI = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = broker_PopulatePage(dm.Broker{} , pageDetail) 
 
 	ExecuteTemplate(dm.Broker_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Broker_HandlerDelete is the handler used process the deletion of an Broker
 func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -279,3 +242,39 @@ func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Broker Page 
+func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	pageDetail.FullName = rD.FullName
+	pageDetail.Contact = rD.Contact
+	pageDetail.Address = rD.Address
+	pageDetail.LEI = rD.LEI
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

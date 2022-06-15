@@ -1,5 +1,4 @@
 package dao
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/sector.go"
 // ----------------------------------------------------------------
@@ -9,30 +8,31 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 13:00:16
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:09
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
-	"log"
-	"net/http"
 
-	adaptor "github.com/mt1976/mwt-go-dev/adaptor"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das "github.com/mt1976/mwt-go-dev/das"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
-	logs "github.com/mt1976/mwt-go-dev/logs"
+	"fmt"
+	"net/http"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
+	dm   "github.com/mt1976/mwt-go-dev/datamodel"
+	logs   "github.com/mt1976/mwt-go-dev/logs"
 )
 
 // Sector_GetList() returns a list of all Sector records
 func Sector_GetList() (int, []dm.Sector, error) {
-
+	
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Sector_SQLTable)
 	count, sectorList, _, _ := sector_Fetch(tsql)
-
+	
 	return count, sectorList, nil
 }
+
 
 // Sector_GetLookup() returns a lookup list of all Sector items in lookup format
 func Sector_GetLookup() []dm.Lookup_Item {
@@ -44,8 +44,10 @@ func Sector_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+
 // Sector_GetByID() returns a single Sector record
 func Sector_GetByID(id string) (int, dm.Sector, error) {
+
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Sector_SQLTable)
 	tsql = tsql + " WHERE " + dm.Sector_SQLSearchID + "='" + id + "'"
@@ -61,49 +63,59 @@ func Sector_GetByReverseLookup(id string) (int, dm.Sector, error) {
 	tsql = tsql + " WHERE Name = '" + id + "'"
 
 	_, _, sectorItem, _ := sector_Fetch(tsql)
-
+	
 	return 1, sectorItem, nil
 }
 
 // Sector_DeleteByID() deletes a single Sector record
 func Sector_Delete(id string) {
 
-	adaptor.Sector_Delete_impl(id)
 
+	adaptor.Sector_Delete_impl(id)
+	
 }
 
-// Sector_Store() saves/stores a Sector record to the database
-func Sector_Store(r dm.Sector, req *http.Request) error {
 
-	err := sector_Save(r, Audit_User(req))
+// Sector_Store() saves/stores a Sector record to the database
+func Sector_Store(r dm.Sector,req *http.Request) error {
+
+	err := sector_Save(r,Audit_User(req))
 
 	return err
 }
 
 // Sector_StoreSystem() saves/stores a Sector record to the database
 func Sector_StoreSystem(r dm.Sector) error {
-
-	err := sector_Save(r, Audit_Host())
+	
+	err := sector_Save(r,Audit_Host())
 
 	return err
 }
 
 // sector_Save() saves/stores a Sector record to the database
-func sector_Save(r dm.Sector, usr string) error {
+func sector_Save(r dm.Sector,usr string) error {
 
-	var err error
+    var err error
 
-	logs.Storing("Sector", fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = Sector_NewID(r)
 	}
 
-	// If there are fields below, create the methods in dao\sector_impl.go
+// If there are fields below, create the methods in dao\sector_impl.go
 
-	// Please Create Functions Below in the adaptor/Sector_impl.go file
+
+
+
+	
+logs.Storing("Sector",fmt.Sprintf("%s", r))
+
+// Please Create Functions Below in the adaptor/Sector_impl.go file
 	err1 := adaptor.Sector_Delete_impl(r.Code)
-	err2 := adaptor.Sector_Update_impl(r.Code, r, usr)
+	err2 := adaptor.Sector_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -111,9 +123,12 @@ func sector_Save(r dm.Sector, usr string) error {
 		err = err2
 	}
 
+
 	return err
 
 }
+
+
 
 // sector_Fetch read all Sector's
 func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
@@ -123,37 +138,37 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-		recItem.Code = get_String(rec, dm.Sector_Code, "")
-		recItem.Name = get_String(rec, dm.Sector_Name, "")
-		// If there are fields below, create the methods in dao\Sector_impl.go
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
+   recItem.Code  = get_String(rec, dm.Sector_Code, "")
+   recItem.Name  = get_String(rec, dm.Sector_Name, "")
+// If there are fields below, create the methods in adaptor\Sector_impl.go
 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
+
+
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
 
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Sector_NewID(r dm.Sector) string {
-
-	// Sector_NewID_impl should be specified in dao/Sector_impl.go
-	// to provide the implementation for the special case.
-	// override should return id - override function should be defined as
-	// Sector_NewID_impl(r dm.Sector) string {...}
-	//
-	id := adaptor.Sector_NewID_impl(r)
-
+	
+			id := uuid.New().String()
+	
 	return id
 }
 
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------
+

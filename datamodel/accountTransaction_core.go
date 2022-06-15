@@ -9,28 +9,28 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:06
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:48
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//AccountTransaction defines the datamolde for the AccountTransaction object
 type AccountTransaction struct {
 
-SienaReference        string
-LegNo        string
-MMLegNo        string
-Narrative        string
-Amount        string
-StartInterestDate        string
-EndInterestDate        string
-Amortisation        string
-InterestAmount        string
-InterestAction        string
-FixingDate        string
-InterestCalculationDate        string
-AmendmentAmount        string
-DealtCcy        string
-AmountDp        string
+SienaReference       string
+LegNo       string
+MMLegNo       string
+Narrative       string
+Amount       string
+StartInterestDate       string
+EndInterestDate       string
+Amortisation       string
+InterestAmount       string
+InterestAction       string
+FixingDate       string
+InterestCalculationDate       string
+AmendmentAmount       string
+DealtCcy       string
+AmountDp       string
 
 }
 
@@ -60,21 +60,21 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	AccountTransaction_SienaReference   = "SienaReference" // SienaReference is a String
-	AccountTransaction_LegNo   = "LegNo" // LegNo is a Int
-	AccountTransaction_MMLegNo   = "MMLegNo" // MMLegNo is a Int
-	AccountTransaction_Narrative   = "Narrative" // Narrative is a String
-	AccountTransaction_Amount   = "Amount" // Amount is a Float
-	AccountTransaction_StartInterestDate   = "StartInterestDate" // StartInterestDate is a Time
-	AccountTransaction_EndInterestDate   = "EndInterestDate" // EndInterestDate is a Time
-	AccountTransaction_Amortisation   = "Amortisation" // Amortisation is a Float
-	AccountTransaction_InterestAmount   = "InterestAmount" // InterestAmount is a Float
-	AccountTransaction_InterestAction   = "InterestAction" // InterestAction is a String
-	AccountTransaction_FixingDate   = "FixingDate" // FixingDate is a Time
-	AccountTransaction_InterestCalculationDate   = "InterestCalculationDate" // InterestCalculationDate is a Time
-	AccountTransaction_AmendmentAmount   = "AmendmentAmount" // AmendmentAmount is a Float
-	AccountTransaction_DealtCcy   = "DealtCcy" // DealtCcy is a String
-	AccountTransaction_AmountDp   = "AmountDp" // AmountDp is a Int
+AccountTransaction_SienaReference   = "SienaReference" // SienaReference is a String
+AccountTransaction_LegNo   = "LegNo" // LegNo is a Int
+AccountTransaction_MMLegNo   = "MMLegNo" // MMLegNo is a Int
+AccountTransaction_Narrative   = "Narrative" // Narrative is a String
+AccountTransaction_Amount   = "Amount" // Amount is a Float
+AccountTransaction_StartInterestDate   = "StartInterestDate" // StartInterestDate is a Time
+AccountTransaction_EndInterestDate   = "EndInterestDate" // EndInterestDate is a Time
+AccountTransaction_Amortisation   = "Amortisation" // Amortisation is a Float
+AccountTransaction_InterestAmount   = "InterestAmount" // InterestAmount is a Float
+AccountTransaction_InterestAction   = "InterestAction" // InterestAction is a String
+AccountTransaction_FixingDate   = "FixingDate" // FixingDate is a Time
+AccountTransaction_InterestCalculationDate   = "InterestCalculationDate" // InterestCalculationDate is a Time
+AccountTransaction_AmendmentAmount   = "AmendmentAmount" // AmendmentAmount is a Float
+AccountTransaction_DealtCcy   = "DealtCcy" // DealtCcy is a String
+AccountTransaction_AmountDp   = "AmountDp" // AmountDp is a Int
 
 	/// Definitions End
 )

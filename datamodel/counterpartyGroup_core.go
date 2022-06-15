@@ -9,18 +9,16 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:56
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//CounterpartyGroup defines the datamolde for the CounterpartyGroup object
 type CounterpartyGroup struct {
 
-Name        string
-CountryCode        string
-SuperGroup        string
-Country_Lookup        string
-Parent_Lookup        string
+Name       string
+CountryCode       string
+SuperGroup       string
 
 }
 
@@ -50,11 +48,9 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	CounterpartyGroup_Name   = "Name" // Name is a String
-	CounterpartyGroup_CountryCode   = "CountryCode" // CountryCode is a String
-	CounterpartyGroup_SuperGroup   = "SuperGroup" // SuperGroup is a String
-	CounterpartyGroup_Country_Lookup   = "Country_Lookup" // Country_Lookup is a String
-	CounterpartyGroup_Parent_Lookup   = "Parent_Lookup" // Parent_Lookup is a String
+CounterpartyGroup_Name   = "Name" // Name is a String
+CounterpartyGroup_CountryCode   = "CountryCode" // CountryCode is a String
+CounterpartyGroup_SuperGroup   = "SuperGroup" // SuperGroup is a String
 
 	/// Definitions End
 )

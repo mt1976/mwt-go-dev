@@ -1,0 +1,138 @@
+  {{template "header" .}}
+
+<body>
+
+
+  <div class="container-fluid">
+    <div id="dataMapDetail">
+      <div class="card">
+        <form action="/editSvcDataMap?dataMapFileID={{.DataMapPageID}}" method="GET">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">{{.Title}}&nbsp;:&nbsp;<code>{{.DataMapPageID}}</code></div>
+              <div class="col text-right">
+                <button type="button" value="" class="btn btn-outline-primary" onclick="testFunction()"><i class="fas fa-plus" ></i>&nbsp;&nbsp;Add Row</button>
+                <div class="btn-group">
+                  <button type="submit" value="" class="btn btn-danger" formaction="/saveSvcDataMap?loaderID={{.DataMapPageID}}" method="GET">
+                    <i class="far fa-save" ></i>&nbsp;&nbsp;Save</button>
+                  <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-code" ></i>&nbsp;&nbsp;Export</button>
+                  <button id="close" type="button" class="btn btn-outline-secondary" onclick="history.back()">
+                    <i class="fa fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="data" style="visibility: hidden">
+              <input name="tableColumns" id="tableColumns" value="{{.JSCols}}"></input>
+              <input name="tableRows" id="tableRows" value="{{.JSRows}}"></input>
+              <input name="loaderID" value="{{.DataMapPageID}}"></input>
+            </div>
+            <div class="table-responsive">
+              <table id="sienaDataMapTable" class="table table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" class="text-center">#</th>
+                    {{range .SvcDataMapCols}}<th scope="col">{{.DataHdrItem}}</th>{{end}}
+                  </tr>
+                </thead>
+                <tbody class="">
+                  {{range .DataRows}}
+                  <tr>
+                    <td class="text-center align-middle" style="padding:0"></td>
+                    {{range .DataRowItem}}
+                    <td style="padding:0"><input type="text" class="form-control form-control-sm"  style="padding:0" id="R{{.DIrow}}C{{.DIcol}}" name="R{{.DIrow}}C{{.DIcol}}" aria-describedby="Username" placeholder="-" value="{{.DataItem}}" ></td>{{end}}
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const toCsv = function(table) {
+    // Query all rows
+    const rows = table.querySelectorAll('tr');
+
+    return [].slice.call(rows)
+      .map(function(row) {
+        // Query all cells
+        const cells = row.querySelectorAll('th,td');
+        return [].slice.call(cells)
+          .map(function(cell) {
+            return cell.textContent;
+          })
+          .join(',');
+      })
+      .join('\n');
+  };
+
+  const download = function(text, fileName) {
+    const link = document.createElement('a');
+    link.setAttribute('href', `data:text/csv;charset=utf-8,${encodeURIComponent(text)}`);
+    link.setAttribute('download', fileName);
+
+    link.style.display = 'none';
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+  };
+
+  const table = document.getElementById('sienaDataMapTable');
+  const exportBtn = document.getElementById('export');
+
+  exportBtn.addEventListener('click', function() {
+    // Export to csv
+    const csv = toCsv(table);
+
+    // Download it
+    download(csv, 'DataMap_{{.DataMapPageID}}.csv');
+  });
+</script>
+<script>
+//  $(document).ready(function() {
+//    $('#sienaDataMapTable').dataTable();
+//  });
+function testFunction(){
+  var columnsElem = document.getElementById('tableColumns');
+  var rowsElem = document.getElementById('tableRows');
+  var table = document.getElementById('sienaDataMapTable')
+  var columns = parseInt(columnsElem.value)
+  var rows = parseInt(rowsElem.value)
+  //alert("I am the walrus! Rows="+ rows +" Columns="+columns);
+  var newRow = rows+1
+  //alert("I am the walrus! New Row="+newRow);
+  var addRow = table.insertRow(newRow);
+  var cell = addRow.insertCell(0);
+  cell.style="padding:0";
+  cell.classList.add("text-center");
+  cell.classList.add("align-middle");
+  for (i = 0; i < columns; i++) {
+  //  alert("poo"+i);
+    var cell = addRow.insertCell(i+1);
+    var field = document.createElement('input')
+
+    field.type = "text";
+    field.classList.add("form-control");
+    field.classList.add("form-control-sm");
+    field.name = "R"+(newRow-1)+"C"+i;
+    field.id = field.name
+    field.placeholder = "<< Empty >> '"+field.name+"'";
+  //  alert(field.name+"-"+field.id);
+    cell.style="padding:0";
+    cell.classList.add("text-center");
+    cell.classList.add("align-middle");
+    cell.appendChild(field);
+  }
+  rowsElem.value = newRow;
+}
+
+</script>

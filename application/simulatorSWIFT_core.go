@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 12:56:56
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,42 +25,39 @@ import (
 //simulatorswift_PageList provides the information for the template for a list of SimulatorSWIFTs
 type SimulatorSWIFT_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.SimulatorSWIFT
 }
+//SimulatorSWIFT_Redirect provides a page to return to aftern an action
+const (
+	SimulatorSWIFT_Redirect = dm.SimulatorSWIFT_PathList
+)
 
 //simulatorswift_Page provides the information for the template for an individual SimulatorSWIFT
 type SimulatorSWIFT_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-		ID string
-		FileName string
-		MessageRaw string
-		MessageFmt string
-		Action string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	ID         string
+	FileName         string
+	MessageRaw         string
+	MessageFmt         string
+	Action         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	SimulatorSWIFT_Redirect = dm.SimulatorSWIFT_PathList
-)
+
 
 //SimulatorSWIFT_Publish annouces the endpoints available for this object
 func SimulatorSWIFT_Publish(mux http.ServeMux) {
@@ -71,9 +68,10 @@ func SimulatorSWIFT_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.SimulatorSWIFT_PathNew, SimulatorSWIFT_HandlerNew)
 	mux.HandleFunc(dm.SimulatorSWIFT_PathSave, SimulatorSWIFT_HandlerSave)
 	mux.HandleFunc(dm.SimulatorSWIFT_PathDelete, SimulatorSWIFT_HandlerDelete)
-	logs.Publish("Siena", dm.SimulatorSWIFT_Title)
-    core.Catalog_Add(dm.SimulatorSWIFT_Title, dm.SimulatorSWIFT_Path, "", dm.SimulatorSWIFT_QueryString, "SIENA")
+	logs.Publish("Application", dm.SimulatorSWIFT_Title)
+    core.Catalog_Add(dm.SimulatorSWIFT_Title, dm.SimulatorSWIFT_Path, "", dm.SimulatorSWIFT_QueryString, "Application")
 }
+
 
 //SimulatorSWIFT_HandlerList is the handler for the list page
 func SimulatorSWIFT_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -105,6 +103,7 @@ func SimulatorSWIFT_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //SimulatorSWIFT_HandlerView is the handler used to View a page
 func SimulatorSWIFT_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -127,27 +126,14 @@ func SimulatorSWIFT_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-pageDetail.ID = rD.ID
-pageDetail.FileName = rD.FileName
-pageDetail.MessageRaw = rD.MessageRaw
-pageDetail.MessageFmt = rD.MessageFmt
-pageDetail.Action = rD.Action
-
-
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = simulatorswift_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.SimulatorSWIFT_TemplateView, w, r, pageDetail)
 
 }
+
 
 //SimulatorSWIFT_HandlerEdit is the handler used generate the Edit page
 func SimulatorSWIFT_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -171,26 +157,13 @@ func SimulatorSWIFT_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-pageDetail.ID = rD.ID
-pageDetail.FileName = rD.FileName
-pageDetail.MessageRaw = rD.MessageRaw
-pageDetail.MessageFmt = rD.MessageFmt
-pageDetail.Action = rD.Action
-
-
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = simulatorswift_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.SimulatorSWIFT_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //SimulatorSWIFT_HandlerSave is the handler used process the saving of an SimulatorSWIFT
 func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -205,21 +178,22 @@ func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("ID"))
 
 	var item dm.SimulatorSWIFT
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.ID = r.FormValue(dm.SimulatorSWIFT_ID)
 		item.FileName = r.FormValue(dm.SimulatorSWIFT_FileName)
 		item.MessageRaw = r.FormValue(dm.SimulatorSWIFT_MessageRaw)
 		item.MessageFmt = r.FormValue(dm.SimulatorSWIFT_MessageFmt)
 		item.Action = r.FormValue(dm.SimulatorSWIFT_Action)
-		
 	
-
-	// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.SimulatorSWIFT_Store(item,r)	
-
 	http.Redirect(w, r, SimulatorSWIFT_Redirect, http.StatusFound)
 }
+
 
 //SimulatorSWIFT_HandlerNew is the handler used process the creation of an SimulatorSWIFT
 func SimulatorSWIFT_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -241,24 +215,14 @@ func SimulatorSWIFT_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 05/06/2022 by matttownsend on silicon.local - START
-pageDetail.ID = ""
-pageDetail.FileName = ""
-pageDetail.MessageRaw = ""
-pageDetail.MessageFmt = ""
-pageDetail.Action = ""
-
-
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 05/06/2022 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = simulatorswift_PopulatePage(dm.SimulatorSWIFT{} , pageDetail) 
 
 	ExecuteTemplate(dm.SimulatorSWIFT_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //SimulatorSWIFT_HandlerDelete is the handler used process the deletion of an SimulatorSWIFT
 func SimulatorSWIFT_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -276,3 +240,36 @@ func SimulatorSWIFT_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, SimulatorSWIFT_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the SimulatorSWIFT Page 
+func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT_Page) SimulatorSWIFT_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.ID = rD.ID
+	pageDetail.FileName = rD.FileName
+	pageDetail.MessageRaw = rD.MessageRaw
+	pageDetail.MessageFmt = rD.MessageFmt
+	pageDetail.Action = rD.Action
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

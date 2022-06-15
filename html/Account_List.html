@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-landmark me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -89,15 +89,10 @@
                           <th class="text-center">EUROtherAmount</th>
                           <th class="text-center">PaymentSystemSienaView</th>
                           <th class="text-center">PaymentSystemExternalView</th>
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
+                          <th class="text-center">DealtCA</th>
+                          <th class="text-center">AgainstCA</th>
+                          <th class="text-center">LedgerCA</th>
+                          <th class="text-center">CashBalanceCA</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -170,23 +165,16 @@
                           <td class="align-middle">{{.EUROtherAmount}}</td>
                           <td class="align-middle">{{.PaymentSystemSienaView}}</td>
                           <td class="align-middle">{{.PaymentSystemExternalView}}</td>
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
+                          <td class="align-middle">{{.DealtCA}}</td>
+                          <td class="align-middle">{{.AgainstCA}}</td>
+                          <td class="align-middle">{{.LedgerCA}}</td>
+                          <td class="align-middle">{{.CashBalanceCA}}</td>
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/AccountView?AccountNo={{.SienaReference}}" method="POST" title="View Account"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/AccountView?AccountNo={{.SienaReference}}" method="POST" title="View Account"><i class="far fa-eye"></i></button>
                             
                             
-                            </div>
                             </form>
                           </td>
                         </tr>

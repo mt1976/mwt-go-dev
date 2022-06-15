@@ -1,0 +1,65 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+
+
+  <form method="GET" action="/genSvcDataMap">
+
+
+    <div class="container-fluid">
+
+
+      <div id="SrvConfig">
+        <div class="card">
+          <div class="card-header">
+            <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-city me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    
+                  <button type="submit" value="" class="btn btn-danger" formaction="/SaveDataLoader"><i class="fas fa-save" ></i>&nbsp;&nbsp;Save</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+              <button type="button" value="" class="btn btn-light" method="POST" onclick="history.back()"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+          </div>
+          <div class="card-body">
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="name" value="" size="20" width="20" class="form-control" placeholder="Enter the name of the DataMap">
+
+            <label for="descr">Description :</label>
+            <input type="text" id="descr" name="descr" size="60" class="form-control" placeholder="Enter a description/reason for the DataMap">
+            <div class="row">
+              <div class="col">
+            <label for="type" class="d-flex flex-column">Type :</label>
+            <select class="selectpicker form-select" id="Type" name="Type" mandatory="mandatory">
+              <option>transactional</option>
+              <option>static</option>
+            </select>
+            <small id="emailHelp" class="form-text text-muted">Select static for Static Data Import, or Transaction for Deal Import</small>
+            </div>
+            <div class="col">
+          <label for="type" class="d-flex flex-column">Instance :</label>
+          <select class="selectpicker form-select" id="Instance" name="Instance">
+            <option></option>
+            {{range .InstanceList}}<option>{{.Id}}</option>{{end}}
+          </select>
+          <small id="emailHelp" class="form-text text-muted">Select which instance to deliver data to</small>
+          </div>
+          <div class="col">
+            <label for="Extension">File Extension :</label>
+            <input type="text" id="Extension" name="Extension" value="" size="6" width="6" maxlength="5" class="form-control" placeholder=".xml">
+              <small id="emailHelp" class="form-text text-muted">Examples: .xml, .json etc. Leave blank for no file extension.</small>
+          </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+{{template "userfooter" .}}
+
+{{template "pagefooter" .}}

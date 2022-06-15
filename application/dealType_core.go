@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:14
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:04
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,82 +25,60 @@ import (
 //dealtype_PageList provides the information for the template for a list of DealTypes
 type DealType_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.DealType
 }
+//DealType_Redirect provides a page to return to aftern an action
+const (
+	DealType_Redirect = dm.DealType_PathList
+)
 
 //dealtype_Page provides the information for the template for an individual DealType
 type DealType_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		DealTypeKey string
-		DealTypeShortName string
-		HostKey string
-		IsActive string
-		Interbook string
-		BackOfficeLink string
-		HasTicket string
-		CurrencyOverride string
-		CurrencyHolderCurrency string
-		AllBooks string
-		FundamentalDealTypeKey string
-		RelatedDealType string
-		BookName string
-		ExportMethod string
-		DefaultUserLayoffBooks string
-		RFQ string
-		OBS string
-		KID string
-		InternalId string
-		InternalDeleted string
-		UpdatedTransactionId string
-		UpdatedUserId string
-		UpdatedDateTime string
-		DeletedTransactionId string
-		DeletedUserId string
-		ChangeType string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	DealTypeKey         string
+	DealTypeShortName         string
+	HostKey         string
+	IsActive         string
+	Interbook         string
+	BackOfficeLink         string
+	HasTicket         string
+	CurrencyOverride         string
+	CurrencyHolderCurrency         string
+	AllBooks         string
+	FundamentalDealTypeKey         string
+	RelatedDealType         string
+	BookName         string
+	ExportMethod         string
+	DefaultUserLayoffBooks         string
+	RFQ         string
+	OBS         string
+	KID         string
+	InternalId         string
+	InternalDeleted         string
+	UpdatedTransactionId         string
+	UpdatedUserId         string
+	UpdatedDateTime         string
+	DeletedTransactionId         string
+	DeletedUserId         string
+	ChangeType         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	DealType_Redirect = dm.DealType_PathList
-)
+
 
 //DealType_Publish annouces the endpoints available for this object
 func DealType_Publish(mux http.ServeMux) {
@@ -111,9 +89,10 @@ func DealType_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.DealType_PathNew, DealType_HandlerNew)
 	mux.HandleFunc(dm.DealType_PathSave, DealType_HandlerSave)
 	mux.HandleFunc(dm.DealType_PathDelete, DealType_HandlerDelete)
-	logs.Publish("Siena", dm.DealType_Title)
+	logs.Publish("Application", dm.DealType_Title)
     //No API
 }
+
 
 //DealType_HandlerList is the handler for the list page
 func DealType_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -145,6 +124,7 @@ func DealType_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //DealType_HandlerView is the handler used to View a page
 func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -167,48 +147,14 @@ func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.DealTypeKey = rD.DealTypeKey
-pageDetail.DealTypeShortName = rD.DealTypeShortName
-pageDetail.HostKey = rD.HostKey
-pageDetail.IsActive = rD.IsActive
-pageDetail.Interbook = rD.Interbook
-pageDetail.BackOfficeLink = rD.BackOfficeLink
-pageDetail.HasTicket = rD.HasTicket
-pageDetail.CurrencyOverride = rD.CurrencyOverride
-pageDetail.CurrencyHolderCurrency = rD.CurrencyHolderCurrency
-pageDetail.AllBooks = rD.AllBooks
-pageDetail.FundamentalDealTypeKey = rD.FundamentalDealTypeKey
-pageDetail.RelatedDealType = rD.RelatedDealType
-pageDetail.BookName = rD.BookName
-pageDetail.ExportMethod = rD.ExportMethod
-pageDetail.DefaultUserLayoffBooks = rD.DefaultUserLayoffBooks
-pageDetail.RFQ = rD.RFQ
-pageDetail.OBS = rD.OBS
-pageDetail.KID = rD.KID
-pageDetail.InternalId = rD.InternalId
-pageDetail.InternalDeleted = rD.InternalDeleted
-pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
-pageDetail.UpdatedUserId = rD.UpdatedUserId
-pageDetail.UpdatedDateTime = rD.UpdatedDateTime
-pageDetail.DeletedTransactionId = rD.DeletedTransactionId
-pageDetail.DeletedUserId = rD.DeletedUserId
-pageDetail.ChangeType = rD.ChangeType
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = dealtype_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DealType_TemplateView, w, r, pageDetail)
 
 }
+
 
 //DealType_HandlerEdit is the handler used generate the Edit page
 func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -232,47 +178,13 @@ func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.DealTypeKey = rD.DealTypeKey
-pageDetail.DealTypeShortName = rD.DealTypeShortName
-pageDetail.HostKey = rD.HostKey
-pageDetail.IsActive = rD.IsActive
-pageDetail.Interbook = rD.Interbook
-pageDetail.BackOfficeLink = rD.BackOfficeLink
-pageDetail.HasTicket = rD.HasTicket
-pageDetail.CurrencyOverride = rD.CurrencyOverride
-pageDetail.CurrencyHolderCurrency = rD.CurrencyHolderCurrency
-pageDetail.AllBooks = rD.AllBooks
-pageDetail.FundamentalDealTypeKey = rD.FundamentalDealTypeKey
-pageDetail.RelatedDealType = rD.RelatedDealType
-pageDetail.BookName = rD.BookName
-pageDetail.ExportMethod = rD.ExportMethod
-pageDetail.DefaultUserLayoffBooks = rD.DefaultUserLayoffBooks
-pageDetail.RFQ = rD.RFQ
-pageDetail.OBS = rD.OBS
-pageDetail.KID = rD.KID
-pageDetail.InternalId = rD.InternalId
-pageDetail.InternalDeleted = rD.InternalDeleted
-pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
-pageDetail.UpdatedUserId = rD.UpdatedUserId
-pageDetail.UpdatedDateTime = rD.UpdatedDateTime
-pageDetail.DeletedTransactionId = rD.DeletedTransactionId
-pageDetail.DeletedUserId = rD.DeletedUserId
-pageDetail.ChangeType = rD.ChangeType
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = dealtype_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.DealType_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //DealType_HandlerSave is the handler used process the saving of an DealType
 func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -287,7 +199,9 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("DealTypeKey"))
 
 	var item dm.DealType
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey)
 		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName)
 		item.HostKey = r.FormValue(dm.DealType_HostKey)
@@ -315,13 +229,13 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.DeletedUserId = r.FormValue(dm.DealType_DeletedUserId)
 		item.ChangeType = r.FormValue(dm.DealType_ChangeType)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.DealType_Store(item,r)	
-
 	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
 }
+
 
 //DealType_HandlerNew is the handler used process the creation of an DealType
 func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -343,45 +257,14 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.DealTypeKey = ""
-pageDetail.DealTypeShortName = ""
-pageDetail.HostKey = ""
-pageDetail.IsActive = ""
-pageDetail.Interbook = ""
-pageDetail.BackOfficeLink = ""
-pageDetail.HasTicket = ""
-pageDetail.CurrencyOverride = ""
-pageDetail.CurrencyHolderCurrency = ""
-pageDetail.AllBooks = ""
-pageDetail.FundamentalDealTypeKey = ""
-pageDetail.RelatedDealType = ""
-pageDetail.BookName = ""
-pageDetail.ExportMethod = ""
-pageDetail.DefaultUserLayoffBooks = ""
-pageDetail.RFQ = ""
-pageDetail.OBS = ""
-pageDetail.KID = ""
-pageDetail.InternalId = ""
-pageDetail.InternalDeleted = ""
-pageDetail.UpdatedTransactionId = ""
-pageDetail.UpdatedUserId = ""
-pageDetail.UpdatedDateTime = ""
-pageDetail.DeletedTransactionId = ""
-pageDetail.DeletedUserId = ""
-pageDetail.ChangeType = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = dealtype_PopulatePage(dm.DealType{} , pageDetail) 
 
 	ExecuteTemplate(dm.DealType_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //DealType_HandlerDelete is the handler used process the deletion of an DealType
 func DealType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -399,3 +282,99 @@ func DealType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the DealType Page 
+func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.DealTypeKey = rD.DealTypeKey
+	pageDetail.DealTypeShortName = rD.DealTypeShortName
+	pageDetail.HostKey = rD.HostKey
+	pageDetail.IsActive = rD.IsActive
+	pageDetail.Interbook = rD.Interbook
+	pageDetail.BackOfficeLink = rD.BackOfficeLink
+	pageDetail.HasTicket = rD.HasTicket
+	pageDetail.CurrencyOverride = rD.CurrencyOverride
+	pageDetail.CurrencyHolderCurrency = rD.CurrencyHolderCurrency
+	pageDetail.AllBooks = rD.AllBooks
+	pageDetail.FundamentalDealTypeKey = rD.FundamentalDealTypeKey
+	pageDetail.RelatedDealType = rD.RelatedDealType
+	pageDetail.BookName = rD.BookName
+	pageDetail.ExportMethod = rD.ExportMethod
+	pageDetail.DefaultUserLayoffBooks = rD.DefaultUserLayoffBooks
+	pageDetail.RFQ = rD.RFQ
+	pageDetail.OBS = rD.OBS
+	pageDetail.KID = rD.KID
+	pageDetail.InternalId = rD.InternalId
+	pageDetail.InternalDeleted = rD.InternalDeleted
+	pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+	pageDetail.UpdatedUserId = rD.UpdatedUserId
+	pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+	pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+	pageDetail.DeletedUserId = rD.DeletedUserId
+	pageDetail.ChangeType = rD.ChangeType
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

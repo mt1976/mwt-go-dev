@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-city me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -42,9 +42,6 @@
                           <th class="text-center">Notify</th>
                           <th class="text-center">SystemUser</th>
                           <th class="text-center">CompID</th>
-                          
-                          
-                          
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -71,16 +68,11 @@
                           <td class="align-middle">{{.SystemUser}}</td>
                           <td class="align-middle">{{.CompID}}</td>
                           
-                          
-                          
-                          
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/MandateView?Mandate={{.CompID}}" method="POST" title="View Mandate"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/MandateEdit?Mandate={{.CompID}}" method="POST" title="Edit Mandate"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/MandateView?Mandate={{.CompID}}" method="POST" title="View Mandate"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/MandateEdit?Mandate={{.CompID}}" method="POST" title="Edit Mandate"><i class="fas fa-edit"></i></button>
                             
-                            </div>
                             </form>
                           </td>
                         </tr>

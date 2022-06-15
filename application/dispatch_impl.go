@@ -27,7 +27,7 @@ var appDispatchStoreSQLGETTYPE = "SELECT %s FROM %s.dispatchStore WHERE type='%s
 //appDispatchStorePage is cheese
 type appDispatchStoreListPage struct {
 	SessionInfo        dm.SessionInfo
-	UserMenu           []dm.AppMenuItem
+	UserMenu           dm.AppMenuItem
 	UserRole           string
 	UserNavi           string
 	Title              string
@@ -39,7 +39,7 @@ type appDispatchStoreListPage struct {
 //appDispatchStorePage is cheese
 type appDispatchStorePage struct {
 	SessionInfo dm.SessionInfo
-	UserMenu    []dm.AppMenuItem
+	UserMenu    dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

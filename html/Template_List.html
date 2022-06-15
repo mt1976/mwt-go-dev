@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-poo me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -33,9 +33,9 @@
                           
                           
                           <th class="text-center">ID</th>
-                          
-                          
-                          
+                          <th class="text-center">ExtraField</th>
+                          <th class="text-center">ExtraField2</th>
+                          <th class="text-center">ExtraField3</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -52,9 +52,9 @@
                           
                           
                           <td class="align-middle">{{.ID}}</td>
-                          
-                          
-                          
+                          <td class="align-middle">{{.ExtraField}}</td>
+                          <td class="align-middle">{{.ExtraField2}}</td>
+                          <td class="align-middle">{{.ExtraField3}}</td>
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">

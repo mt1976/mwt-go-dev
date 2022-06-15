@@ -1,6 +1,5 @@
-  {{template "header" .}}
-
-<body>
+{{template "header" .}}
+{{template "bodydefinition" .}}
 
 
 
@@ -18,16 +17,16 @@
             <input type="text" value="{{.Id}}" name="position">
         </div>
 
-        <div class="card-header font-weight-bold">
+        <div class="card-header">
           <div class="row">
-            <div class="col">{{.Title}}&nbsp;:&nbsp;<code>{{.Position}}</code></div>
-            <div class="col">
+            <div class="col h3">{{.Title}}&nbsp;:&nbsp;<code>{{.Position}}</code></div>
+            <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
 
-                <button type="submit" value="" class="btn btn-outline-danger">
+                <button type="submit" value="" class="btn btn-danger">
                   <i class="fas fa-save"  method="GET" onclick="/saveLoaderMapStore?loaderID={{.Loader}}" formaction="/saveLoaderMapStore?loaderID={{.Loader}}"></i>&nbsp;&nbsp;Save</button>
 
-                <button type="button" value="" class="btn btn-outline-secondary" method="POST" onclick="history.back()">
+                <button type="button" value="" class="btn btn-light" method="POST" onclick="history.back()">
                   <i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
 
               </div>
@@ -78,5 +77,6 @@
 
       </form>
     </div>
+{{template "userfooter" .}}
 
-  </body>
+{{template "pagefooter" .}}

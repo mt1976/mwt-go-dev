@@ -9,8 +9,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 31/05/2022 at 13:06:03
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:47
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -118,27 +118,23 @@ func account_MethodPost(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(int(http.StatusOK))
 	}
 	//spew.Dump(t)
-	err = dao.Account_StoreSystem(t)
+	
+			w.WriteHeader(int(http.StatusMethodNotAllowed))
+	
 	//logs.Processing("POST BACK")
 	//logs.Information("POST", err.Error())
-	if err != nil {
-		//	panic(err)
-		w.WriteHeader(int(http.StatusNotFound))
-	} else {
-		w.WriteHeader(int(http.StatusOK))
-	}
+	
 	//logs.Success("POST")
 }
 //Handles DELETE requests for Account
 func account_MethodDelete(w http.ResponseWriter, r *http.Request) {
 	//logs.Processing("DELETE")
-	deleteID := core.GetURLparam(r, dm.Account_QueryString)
 	//logs.Information("DELETE", deleteID)
+		w.Header().Set("Content-Type", "application/json")
 
-	dao.Account_Delete(deleteID)
+		w.WriteHeader(int(http.StatusMethodNotAllowed))
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(int(http.StatusOK))
+
 	//fmt.Printf("json_data: %v\n", json_data)
 
 	//logs.Success("DELETE")

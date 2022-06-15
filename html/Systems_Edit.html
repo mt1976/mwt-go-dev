@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
+              <i class="fas fa-plug me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,142 +20,162 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="{{.SYSId}}" required />
-                  <label class="form-label" for="SYSId" hidden>SYSId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""  value="{{.Id}}" required />
-                  <label class="form-label" for="Id" >Id</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}"  />
-                  <label class="form-label" for="Name" >Name</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Staticin" name="Staticin" aria-describedby="StaticinHelp" placeholder=""  value="{{.Staticin}}"  />
-                  <label class="form-label" for="Staticin" >Staticin</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Staticout" name="Staticout" aria-describedby="StaticoutHelp" placeholder=""  value="{{.Staticout}}"  />
-                  <label class="form-label" for="Staticout" >Staticout</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Txnin" name="Txnin" aria-describedby="TxninHelp" placeholder=""  value="{{.Txnin}}"  />
-                  <label class="form-label" for="Txnin" >Txnin</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Txnout" name="Txnout" aria-describedby="TxnoutHelp" placeholder=""  value="{{.Txnout}}"  />
-                  <label class="form-label" for="Txnout" >Txnout</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Fundscheckin" name="Fundscheckin" aria-describedby="FundscheckinHelp" placeholder=""  value="{{.Fundscheckin}}"  />
-                  <label class="form-label" for="Fundscheckin" >Fundscheckin</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Fundscheckout" name="Fundscheckout" aria-describedby="FundscheckoutHelp" placeholder=""  value="{{.Fundscheckout}}"  />
-                  <label class="form-label" for="Fundscheckout" >Fundscheckout</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  />
-                  <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden value="{{.SYSWho}}"  />
-                  <label class="form-label" for="SYSWho" hidden>SYSWho</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden value="{{.SYSHost}}"  />
-                  <label class="form-label" for="SYSHost" hidden>SYSHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  />
-                  <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  />
-                  <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  />
-                  <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  />
-                  <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  />
-                  <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SWIFTin" name="SWIFTin" aria-describedby="SWIFTinHelp" placeholder=""  value="{{.SWIFTin}}"  />
-                  <label class="form-label" for="SWIFTin" >SWIFTin</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SWIFTout" name="SWIFTout" aria-describedby="SWIFToutHelp" placeholder=""  value="{{.SWIFTout}}"  />
-                  <label class="form-label" for="SWIFTout" >SWIFTout</label>
-                </div>
-              </div>
-              
-              
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="new" required>
+                      <label class="form-label" for="SYSId" hidden>SYSId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""   value="{{.Id}}" required>
+                      <label class="form-label" for="Id" >Id</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" >
+                      <label class="form-label" for="Name" >Name</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Staticin" name="Staticin" aria-describedby="StaticinHelp" placeholder=""   value="{{.Staticin}}" >
+                      <label class="form-label" for="Staticin" >Staticin</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Staticout" name="Staticout" aria-describedby="StaticoutHelp" placeholder=""   value="{{.Staticout}}" >
+                      <label class="form-label" for="Staticout" >Staticout</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Txnin" name="Txnin" aria-describedby="TxninHelp" placeholder=""   value="{{.Txnin}}" >
+                      <label class="form-label" for="Txnin" >Txnin</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Txnout" name="Txnout" aria-describedby="TxnoutHelp" placeholder=""   value="{{.Txnout}}" >
+                      <label class="form-label" for="Txnout" >Txnout</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Fundscheckin" name="Fundscheckin" aria-describedby="FundscheckinHelp" placeholder=""   value="{{.Fundscheckin}}" >
+                      <label class="form-label" for="Fundscheckin" >Fundscheckin</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Fundscheckout" name="Fundscheckout" aria-describedby="FundscheckoutHelp" placeholder=""   value="{{.Fundscheckout}}" >
+                      <label class="form-label" for="Fundscheckout" >Fundscheckout</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}" >
+                      <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden  value="{{.SYSWho}}" >
+                      <label class="form-label" for="SYSWho" hidden>SYSWho</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden  value="{{.SYSHost}}" >
+                      <label class="form-label" for="SYSHost" hidden>SYSHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}" >
+                      <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}" >
+                      <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}" >
+                      <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}" >
+                      <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}" >
+                      <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SWIFTin" name="SWIFTin" aria-describedby="SWIFTinHelp" placeholder=""   value="{{.SWIFTin}}" >
+                      <label class="form-label" for="SWIFTin" >SWIFTin</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SWIFTout" name="SWIFTout" aria-describedby="SWIFToutHelp" placeholder=""   value="{{.SWIFTout}}" >
+                      <label class="form-label" for="SWIFTout" >SWIFTout</label>
+                    </div>
+          
+            </div></div>
+
+     
         </div>
+        
       </div>
     </form>
 

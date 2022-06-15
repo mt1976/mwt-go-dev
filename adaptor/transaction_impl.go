@@ -22,32 +22,42 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Transaction_Delete_Impl(id string) error {
+func Transaction_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Transaction_Delete: " + id
 
-	// Implement Transaction_Delete_Impl in transaction_Impl.go
+	// Implement Transaction_Delete_impl in transaction_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Transaction_Delete_Impl(item)
+	// er := Transaction_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Transaction_Update_Impl(item dm.Transaction, usr string) error {
+func Transaction_Update_impl(id string, item dm.Transaction, usr string) error {
 	var er error
 
 	message := "Implement Transaction_Update: " + item.SienaReference
 
-	// Implement Transaction_Update_Impl in transaction_Impl.go
+	// Implement Transaction_Update_impl in transaction_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Transaction_Update_Impl(item)
+	// er := Transaction_Update_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
+
+func Transaction_Dealt_OnStore_impl(fieldval string, rec dm.Transaction, usr string) (string, error) {
+	return fieldval, nil
+}
+func Transaction_Against_OnStore_impl(fieldval string, rec dm.Transaction, usr string) (string, error) {
+	return fieldval, nil
+}
+
+func Transaction_Dealt_OnFetch_impl(rec dm.Transaction) string   { return "" }
+func Transaction_Against_OnFetch_impl(rec dm.Transaction) string { return "" }

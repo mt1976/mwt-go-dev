@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
+              <i class="fas fa-object-group me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,93 +20,106 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required />
-                  <label class="form-label" for="Code" >Code</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}"  />
-                  <label class="form-label" for="Name" >Name</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Factor" name="Factor" aria-describedby="FactorHelp" placeholder="0.00"  value="{{.Factor}}"  />
-                  <label class="form-label" for="Factor" >Factor</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MaxTermPrecedence" name="MaxTermPrecedence" aria-describedby="MaxTermPrecedenceHelp" placeholder="True"  value="{{.MaxTermPrecedence}}"  />
-                  <label class="form-label" for="MaxTermPrecedence" >MaxTermPrecedence</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="InternalId" name="InternalId" aria-describedby="InternalIdHelp" placeholder="0"  value="{{.InternalId}}" required />
-                  <label class="form-label" for="InternalId" >InternalId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="InternalDeleted" name="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder=""  value="{{.InternalDeleted}}"  />
-                  <label class="form-label" for="InternalDeleted" >InternalDeleted</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="UpdatedTransactionId" name="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder=""  value="{{.UpdatedTransactionId}}"  />
-                  <label class="form-label" for="UpdatedTransactionId" >UpdatedTransactionId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="UpdatedUserId" name="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder=""  value="{{.UpdatedUserId}}"  />
-                  <label class="form-label" for="UpdatedUserId" >UpdatedUserId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="UpdatedDateTime" name="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder=""  value="{{.UpdatedDateTime}}"  />
-                  <label class="form-label" for="UpdatedDateTime" >UpdatedDateTime</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="DeletedTransactionId" name="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder=""  value="{{.DeletedTransactionId}}"  />
-                  <label class="form-label" for="DeletedTransactionId" >DeletedTransactionId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="DeletedUserId" name="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder=""  value="{{.DeletedUserId}}"  />
-                  <label class="form-label" for="DeletedUserId" >DeletedUserId</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ChangeType" name="ChangeType" aria-describedby="ChangeTypeHelp" placeholder=""  value="{{.ChangeType}}"  />
-                  <label class="form-label" for="ChangeType" >ChangeType</label>
-                </div>
-              </div>
-              
-              
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""   value="{{.Code}}" required>
+                      <label class="form-label" for="Code" >Code</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" >
+                      <label class="form-label" for="Name" >Name</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Factor" name="Factor" aria-describedby="FactorHelp" placeholder="0.00"   value="{{.Factor}}" >
+                      <label class="form-label" for="Factor" >Factor</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MaxTermPrecedence" name="MaxTermPrecedence" aria-describedby="MaxTermPrecedenceHelp" placeholder="True"   value="{{.MaxTermPrecedence}}" >
+                      <label class="form-label" for="MaxTermPrecedence" >MaxTermPrecedence</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="InternalId" name="InternalId" aria-describedby="InternalIdHelp" placeholder="0"   value="{{.InternalId}}" required>
+                      <label class="form-label" for="InternalId" >InternalId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="InternalDeleted" name="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder=""   value="{{.InternalDeleted}}" >
+                      <label class="form-label" for="InternalDeleted" >InternalDeleted</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="UpdatedTransactionId" name="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder=""   value="{{.UpdatedTransactionId}}" >
+                      <label class="form-label" for="UpdatedTransactionId" >UpdatedTransactionId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="UpdatedUserId" name="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder=""   value="{{.UpdatedUserId}}" >
+                      <label class="form-label" for="UpdatedUserId" >UpdatedUserId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="UpdatedDateTime" name="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder=""   value="{{.UpdatedDateTime}}" >
+                      <label class="form-label" for="UpdatedDateTime" >UpdatedDateTime</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DeletedTransactionId" name="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder=""   value="{{.DeletedTransactionId}}" >
+                      <label class="form-label" for="DeletedTransactionId" >DeletedTransactionId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DeletedUserId" name="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder=""   value="{{.DeletedUserId}}" >
+                      <label class="form-label" for="DeletedUserId" >DeletedUserId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ChangeType" name="ChangeType" aria-describedby="ChangeTypeHelp" placeholder=""   value="{{.ChangeType}}" >
+                      <label class="form-label" for="ChangeType" >ChangeType</label>
+                    </div>
+          
+            </div></div>
+
+     
         </div>
+        
       </div>
     </form>
 

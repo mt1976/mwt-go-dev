@@ -9,28 +9,28 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:07
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Owner defines the datamolde for the Owner object
 type Owner struct {
 
-UserName        string
-FullName        string
-Type        string
-TradingEntity        string
-DefaultEnterBook        string
-EmailAddress        string
-Enabled        string
-ExternalUserIds        string
-Language        string
-LocalCurrency        string
-Role        string
-TelephoneNumber        string
-TokenId        string
-Entity        string
-UserCode        string
+UserName       string
+FullName       string
+Type       string
+TradingEntity       string
+DefaultEnterBook       string
+EmailAddress       string
+Enabled       string
+ExternalUserIds       string
+Language       string
+LocalCurrency       string
+Role       string
+TelephoneNumber       string
+TokenId       string
+Entity       string
+UserCode       string
 
 }
 
@@ -60,21 +60,21 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	Owner_UserName   = "UserName" // UserName is a String
-	Owner_FullName   = "FullName" // FullName is a String
-	Owner_Type   = "Type" // Type is a String
-	Owner_TradingEntity   = "TradingEntity" // TradingEntity is a String
-	Owner_DefaultEnterBook   = "DefaultEnterBook" // DefaultEnterBook is a String
-	Owner_EmailAddress   = "EmailAddress" // EmailAddress is a String
-	Owner_Enabled   = "Enabled" // Enabled is a String
-	Owner_ExternalUserIds   = "ExternalUserIds" // ExternalUserIds is a String
-	Owner_Language   = "Language" // Language is a String
-	Owner_LocalCurrency   = "LocalCurrency" // LocalCurrency is a String
-	Owner_Role   = "Role" // Role is a String
-	Owner_TelephoneNumber   = "TelephoneNumber" // TelephoneNumber is a String
-	Owner_TokenId   = "TokenId" // TokenId is a String
-	Owner_Entity   = "Entity" // Entity is a String
-	Owner_UserCode   = "UserCode" // UserCode is a String
+Owner_UserName   = "UserName" // UserName is a String
+Owner_FullName   = "FullName" // FullName is a String
+Owner_Type   = "Type" // Type is a String
+Owner_TradingEntity   = "TradingEntity" // TradingEntity is a String
+Owner_DefaultEnterBook   = "DefaultEnterBook" // DefaultEnterBook is a String
+Owner_EmailAddress   = "EmailAddress" // EmailAddress is a String
+Owner_Enabled   = "Enabled" // Enabled is a String
+Owner_ExternalUserIds   = "ExternalUserIds" // ExternalUserIds is a String
+Owner_Language   = "Language" // Language is a String
+Owner_LocalCurrency   = "LocalCurrency" // LocalCurrency is a String
+Owner_Role   = "Role" // Role is a String
+Owner_TelephoneNumber   = "TelephoneNumber" // TelephoneNumber is a String
+Owner_TokenId   = "TokenId" // TokenId is a String
+Owner_Entity   = "Entity" // Entity is a String
+Owner_UserCode   = "UserCode" // UserCode is a String
 
 	/// Definitions End
 )

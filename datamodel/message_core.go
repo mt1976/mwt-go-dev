@@ -9,24 +9,24 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:07
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Message defines the datamolde for the Message object
 type Message struct {
 
-SYSId        string
-Id        string
-Message        string
-SYSCreated        string
-SYSWho        string
-SYSHost        string
-SYSUpdated        string
-SYSCreatedBy        string
-SYSCreatedHost        string
-SYSUpdatedBy        string
-SYSUpdatedHost        string
+SYSId       string
+Id       string
+Message       string
+SYSCreated       string
+SYSWho       string
+SYSHost       string
+SYSUpdated       string
+SYSCreatedBy       string
+SYSCreatedHost       string
+SYSUpdatedBy       string
+SYSUpdatedHost       string
 
 }
 
@@ -56,17 +56,17 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	Message_SYSId   = "_id" // SYSId is a Int
-	Message_Id   = "Id" // Id is a String
-	Message_Message   = "Message" // Message is a String
-	Message_SYSCreated   = "_created" // SYSCreated is a String
-	Message_SYSWho   = "_who" // SYSWho is a String
-	Message_SYSHost   = "_host" // SYSHost is a String
-	Message_SYSUpdated   = "_updated" // SYSUpdated is a String
-	Message_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
-	Message_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
-	Message_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
-	Message_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
+Message_SYSId   = "_id" // SYSId is a Int
+Message_Id   = "Id" // Id is a String
+Message_Message   = "Message" // Message is a String
+Message_SYSCreated   = "_created" // SYSCreated is a String
+Message_SYSWho   = "_who" // SYSWho is a String
+Message_SYSHost   = "_host" // SYSHost is a String
+Message_SYSUpdated   = "_updated" // SYSUpdated is a String
+Message_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
+Message_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
+Message_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
+Message_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
 )

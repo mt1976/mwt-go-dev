@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:49:58
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,66 +25,59 @@ import (
 //counterparty_PageList provides the information for the template for a list of Counterpartys
 type Counterparty_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Counterparty
 }
+//Counterparty_Redirect provides a page to return to aftern an action
+const (
+	Counterparty_Redirect = dm.Counterparty_PathList
+)
 
 //counterparty_Page provides the information for the template for an individual Counterparty
 type Counterparty_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		NameCentre string
-		NameFirm string
-		FullName string
-		TelephoneNumber string
-		EmailAddress string
-		CustomerType string
-		AccountOfficer string
-		CountryCode string
-		SectorCode string
-		CpartyGroupName string
-		Notes string
-		Owner string
-		Authorised string
-		NameFirmName string
-		NameCentreName string
-		CountryCodeName string
-		SectorCodeName string
-		CompID string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	NameCentre         string
+	NameCentre_lookup    []dm.Lookup_Item
+	NameFirm         string
+	NameFirm_lookup    []dm.Lookup_Item
+	FullName         string
+	TelephoneNumber         string
+	EmailAddress         string
+	CustomerType         string
+	CustomerType_lookup    []dm.Lookup_Item
+	AccountOfficer         string
+	CountryCode         string
+	CountryCode_lookup    []dm.Lookup_Item
+	SectorCode         string
+	SectorCode_lookup    []dm.Lookup_Item
+	CpartyGroupName         string
+	CpartyGroupName_lookup    []dm.Lookup_Item
+	Notes         string
+	Owner         string
+	Authorised         string
+	Authorised_lookup    []dm.Lookup_Item
+	NameFirmName         string
+	NameCentreName         string
+	CountryCodeName         string
+	SectorCodeName         string
+	CompID         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Counterparty_Redirect = dm.Counterparty_PathList
-)
+
 
 //Counterparty_Publish annouces the endpoints available for this object
 func Counterparty_Publish(mux http.ServeMux) {
@@ -95,9 +88,10 @@ func Counterparty_Publish(mux http.ServeMux) {
 	//Cannot Create via GUI
 	mux.HandleFunc(dm.Counterparty_PathSave, Counterparty_HandlerSave)
 	mux.HandleFunc(dm.Counterparty_PathDelete, Counterparty_HandlerDelete)
-	logs.Publish("Siena", dm.Counterparty_Title)
-    core.Catalog_Add(dm.Counterparty_Title, dm.Counterparty_Path, "", dm.Counterparty_QueryString, "APP")
+	logs.Publish("Application", dm.Counterparty_Title)
+    core.Catalog_Add(dm.Counterparty_Title, dm.Counterparty_Path, "", dm.Counterparty_QueryString, "Application")
 }
+
 
 //Counterparty_HandlerList is the handler for the list page
 func Counterparty_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -129,6 +123,7 @@ func Counterparty_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Counterparty_HandlerView is the handler used to View a page
 func Counterparty_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -151,40 +146,14 @@ func Counterparty_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameCentre = rD.NameCentre
-pageDetail.NameFirm = rD.NameFirm
-pageDetail.FullName = rD.FullName
-pageDetail.TelephoneNumber = rD.TelephoneNumber
-pageDetail.EmailAddress = rD.EmailAddress
-pageDetail.CustomerType = rD.CustomerType
-pageDetail.AccountOfficer = rD.AccountOfficer
-pageDetail.CountryCode = rD.CountryCode
-pageDetail.SectorCode = rD.SectorCode
-pageDetail.CpartyGroupName = rD.CpartyGroupName
-pageDetail.Notes = rD.Notes
-pageDetail.Owner = rD.Owner
-pageDetail.Authorised = rD.Authorised
-pageDetail.NameFirmName = rD.NameFirmName
-pageDetail.NameCentreName = rD.NameCentreName
-pageDetail.CountryCodeName = rD.CountryCodeName
-pageDetail.SectorCodeName = rD.SectorCodeName
-pageDetail.CompID = rD.CompID
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = counterparty_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Counterparty_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Counterparty_HandlerEdit is the handler used generate the Edit page
 func Counterparty_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -208,39 +177,13 @@ func Counterparty_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameCentre = rD.NameCentre
-pageDetail.NameFirm = rD.NameFirm
-pageDetail.FullName = rD.FullName
-pageDetail.TelephoneNumber = rD.TelephoneNumber
-pageDetail.EmailAddress = rD.EmailAddress
-pageDetail.CustomerType = rD.CustomerType
-pageDetail.AccountOfficer = rD.AccountOfficer
-pageDetail.CountryCode = rD.CountryCode
-pageDetail.SectorCode = rD.SectorCode
-pageDetail.CpartyGroupName = rD.CpartyGroupName
-pageDetail.Notes = rD.Notes
-pageDetail.Owner = rD.Owner
-pageDetail.Authorised = rD.Authorised
-pageDetail.NameFirmName = rD.NameFirmName
-pageDetail.NameCentreName = rD.NameCentreName
-pageDetail.CountryCodeName = rD.CountryCodeName
-pageDetail.SectorCodeName = rD.SectorCodeName
-pageDetail.CompID = rD.CompID
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = counterparty_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Counterparty_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Counterparty_HandlerSave is the handler used process the saving of an Counterparty
 func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -255,7 +198,9 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("CompID"))
 
 	var item dm.Counterparty
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre)
 		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm)
 		item.FullName = r.FormValue(dm.Counterparty_FullName)
@@ -275,65 +220,14 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SectorCodeName = r.FormValue(dm.Counterparty_SectorCodeName)
 		item.CompID = r.FormValue(dm.Counterparty_CompID)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Counterparty_Store(item,r)	
-
 	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
 }
 
-//Counterparty_HandlerNew is the handler used process the creation of an Counterparty
-func Counterparty_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
 
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
-
-	pageDetail := Counterparty_Page{
-		Title:       CardTitle(dm.Counterparty_Title, core.Action_New),
-		PageTitle:   PageTitle(dm.Counterparty_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.NameCentre = ""
-pageDetail.NameFirm = ""
-pageDetail.FullName = ""
-pageDetail.TelephoneNumber = ""
-pageDetail.EmailAddress = ""
-pageDetail.CustomerType = ""
-pageDetail.AccountOfficer = ""
-pageDetail.CountryCode = ""
-pageDetail.SectorCode = ""
-pageDetail.CpartyGroupName = ""
-pageDetail.Notes = ""
-pageDetail.Owner = ""
-pageDetail.Authorised = ""
-pageDetail.NameFirmName = ""
-pageDetail.NameCentreName = ""
-pageDetail.CountryCodeName = ""
-pageDetail.SectorCodeName = ""
-pageDetail.CompID = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.Counterparty_TemplateNew, w, r, pageDetail)
-
-}
 
 //Counterparty_HandlerDelete is the handler used process the deletion of an Counterparty
 func Counterparty_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -351,3 +245,89 @@ func Counterparty_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Counterparty Page 
+func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page) Counterparty_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.NameCentre = rD.NameCentre
+	pageDetail.NameFirm = rD.NameFirm
+	pageDetail.FullName = rD.FullName
+	pageDetail.TelephoneNumber = rD.TelephoneNumber
+	pageDetail.EmailAddress = rD.EmailAddress
+	pageDetail.CustomerType = rD.CustomerType
+	pageDetail.AccountOfficer = rD.AccountOfficer
+	pageDetail.CountryCode = rD.CountryCode
+	pageDetail.SectorCode = rD.SectorCode
+	pageDetail.CpartyGroupName = rD.CpartyGroupName
+	pageDetail.Notes = rD.Notes
+	pageDetail.Owner = rD.Owner
+	pageDetail.Authorised = rD.Authorised
+	pageDetail.NameFirmName = rD.NameFirmName
+	pageDetail.NameCentreName = rD.NameCentreName
+	pageDetail.CountryCodeName = rD.CountryCodeName
+	pageDetail.SectorCodeName = rD.SectorCodeName
+	pageDetail.CompID = rD.CompID
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	pageDetail.NameCentre_lookup = dao.Centre_GetLookup()
+	
+	
+	
+	pageDetail.NameFirm_lookup = dao.Firm_GetLookup()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	pageDetail.CustomerType_lookup = dao.StubLists_Get("counterpartytypes")
+	
+	
+	
+	
+	pageDetail.CountryCode_lookup = dao.Country_GetLookup()
+	
+	
+	
+	pageDetail.SectorCode_lookup = dao.Sector_GetLookup()
+	
+	
+	
+	pageDetail.CpartyGroupName_lookup = dao.CounterpartyGroup_GetLookup()
+	
+	
+	
+	
+	
+	
+	
+	
+	pageDetail.Authorised_lookup = dao.StubLists_Get("tf")
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:55
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func CounterpartyExtensions_GetByID(id string) (int, dm.CounterpartyExtensions, 
 func CounterpartyExtensions_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyExtensions_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.CounterpartyExtensions_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.CounterpartyExtensions_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,66 @@ func counterpartyextensions_Save(r dm.CounterpartyExtensions,usr string) error {
 
     var err error
 
-	logs.Storing("CounterpartyExtensions",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.CompID) == 0 {
 		r.CompID = CounterpartyExtensions_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\counterpartyextensions_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("CounterpartyExtensions",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/CounterpartyExtensions_impl.go file
-	err1 := adaptor.CounterpartyExtensions_Delete_Impl(r.CompID)
-	err2 := adaptor.CounterpartyExtensions_Update_Impl(r,usr)
+	err1 := adaptor.CounterpartyExtensions_Delete_impl(r.CompID)
+	err2 := adaptor.CounterpartyExtensions_Update_impl(r.CompID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +151,8 @@ func counterpartyextensions_Save(r dm.CounterpartyExtensions,usr string) error {
 }
 
 
-// counterpartyextensions_Fetch read all employees
+
+// counterpartyextensions_Fetch read all CounterpartyExtensions's
 func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions, dm.CounterpartyExtensions, error) {
 
 	var recItem dm.CounterpartyExtensions
@@ -117,13 +160,13 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.NameFirm  = get_String(rec, dm.CounterpartyExtensions_NameFirm, "")
    recItem.NameCentre  = get_String(rec, dm.CounterpartyExtensions_NameCentre, "")
    recItem.BICCode  = get_String(rec, dm.CounterpartyExtensions_BICCode, "")
@@ -167,7 +210,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
    recItem.ReconciliationLetterFrequency  = get_String(rec, dm.CounterpartyExtensions_ReconciliationLetterFrequency, "")
    recItem.DirectDealing  = get_Bool(rec, dm.CounterpartyExtensions_DirectDealing, "True")
    recItem.CompID  = get_String(rec, dm.CounterpartyExtensions_CompID, "")
-// If there are fields below, create the methods in dao\CounterpartyExtensions_Impl.go
+// If there are fields below, create the methods in adaptor\CounterpartyExtensions_impl.go
 
 
 
@@ -212,55 +255,15 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func CounterpartyExtensions_NewID(r dm.CounterpartyExtensions) string {
 	
@@ -268,6 +271,7 @@ func CounterpartyExtensions_NewID(r dm.CounterpartyExtensions) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

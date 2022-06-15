@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-city me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -27,8 +27,6 @@
                           <th class="text-center">FullName</th>
                           <th class="text-center">Country</th>
                           <th class="text-center">Sector</th>
-                          
-                          
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -40,15 +38,11 @@
                           <td class="align-middle">{{.Country}}</td>
                           <td class="align-middle">{{.Sector}}</td>
                           
-                          
-                          
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/FirmView?FirmName={{.FirmName}}" method="POST" title="View Firm"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning" formaction="/FirmEdit?FirmName={{.FirmName}}" method="POST" title="Edit Firm"><i class="fas fa-edit"></i></button>
-                            <button type="submit" value="" class="btn btn-danger" formaction="/FirmDelete?FirmName={{.FirmName}}" method="POST" title="Delete Firm"><i class="fas fa-trash"></i></button>
-                            </div>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/FirmView?FirmName={{.FirmName}}" method="POST" title="View Firm"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/FirmEdit?FirmName={{.FirmName}}" method="POST" title="Edit Firm"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/FirmDelete?FirmName={{.FirmName}}" method="POST" title="Delete Firm"><i class="fas fa-trash"></i></button>
                             </form>
                           </td>
                         </tr>

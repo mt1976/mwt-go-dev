@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col h3">
-              {{.Title}}&nbsp;:&nbsp;<code>{{.CompID}}</code>
+              <i class="fas fa-passport me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.CompID}}</code>
             </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group">
@@ -20,310 +20,354 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  value="{{.NameFirm}}" required />
-                  <label class="form-label" for="NameFirm" >NameFirm</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  value="{{.NameCentre}}" required />
-                  <label class="form-label" for="NameCentre" >NameCentre</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCodeHelp" placeholder=""  value="{{.BICCode}}"  />
-                  <label class="form-label" for="BICCode" >BICCode</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ContactIndicator" name="ContactIndicator" aria-describedby="ContactIndicatorHelp" placeholder="True"  value="{{.ContactIndicator}}"  />
-                  <label class="form-label" for="ContactIndicator" >ContactIndicator</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="CoverTrade" name="CoverTrade" aria-describedby="CoverTradeHelp" placeholder="True"  value="{{.CoverTrade}}"  />
-                  <label class="form-label" for="CoverTrade" >CoverTrade</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""  value="{{.CustomerCategory}}"  />
-                  <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="FSCSInclusive" name="FSCSInclusive" aria-describedby="FSCSInclusiveHelp" placeholder="True"  value="{{.FSCSInclusive}}"  />
-                  <label class="form-label" for="FSCSInclusive" >FSCSInclusive</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="FeeFactor" name="FeeFactor" aria-describedby="FeeFactorHelp" placeholder="0.00"  value="{{.FeeFactor}}"  />
-                  <label class="form-label" for="FeeFactor" >FeeFactor</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="InactiveStatus" name="InactiveStatus" aria-describedby="InactiveStatusHelp" placeholder="True"  value="{{.InactiveStatus}}"  />
-                  <label class="form-label" for="InactiveStatus" >InactiveStatus</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Indemnity" name="Indemnity" aria-describedby="IndemnityHelp" placeholder="True"  value="{{.Indemnity}}"  />
-                  <label class="form-label" for="Indemnity" >Indemnity</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatusHelp" placeholder="True"  value="{{.KnowYourCustomerStatus}}"  />
-                  <label class="form-label" for="KnowYourCustomerStatus" >KnowYourCustomerStatus</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="LERLimitCarveOut" name="LERLimitCarveOut" aria-describedby="LERLimitCarveOutHelp" placeholder="True"  value="{{.LERLimitCarveOut}}"  />
-                  <label class="form-label" for="LERLimitCarveOut" >LERLimitCarveOut</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="LastAmended" name="LastAmended" aria-describedby="LastAmendedHelp" placeholder=""  value="{{.LastAmended}}"  />
-                  <label class="form-label" for="LastAmended" >LastAmended</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="LastLogin" name="LastLogin" aria-describedby="LastLoginHelp" placeholder=""  value="{{.LastLogin}}"  />
-                  <label class="form-label" for="LastLogin" >LastLogin</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="LossGivenDefault" name="LossGivenDefault" aria-describedby="LossGivenDefaultHelp" placeholder="0.00"  value="{{.LossGivenDefault}}"  />
-                  <label class="form-label" for="LossGivenDefault" >LossGivenDefault</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MICHelp" placeholder=""  value="{{.MIC}}"  />
-                  <label class="form-label" for="MIC" >MIC</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ProtectedDepositor" name="ProtectedDepositor" aria-describedby="ProtectedDepositorHelp" placeholder="True"  value="{{.ProtectedDepositor}}"  />
-                  <label class="form-label" for="ProtectedDepositor" >ProtectedDepositor</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="RPTCurrency" name="RPTCurrency" aria-describedby="RPTCurrencyHelp" placeholder=""  value="{{.RPTCurrency}}"  />
-                  <label class="form-label" for="RPTCurrency" >RPTCurrency</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="RateTimeout" name="RateTimeout" aria-describedby="RateTimeoutHelp" placeholder="0"  value="{{.RateTimeout}}"  />
-                  <label class="form-label" for="RateTimeout" >RateTimeout</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="RateValidation" name="RateValidation" aria-describedby="RateValidationHelp" placeholder=""  value="{{.RateValidation}}"  />
-                  <label class="form-label" for="RateValidation" >RateValidation</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Registered" name="Registered" aria-describedby="RegisteredHelp" placeholder="True"  value="{{.Registered}}"  />
-                  <label class="form-label" for="Registered" >Registered</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="RegulatoryCategory" name="RegulatoryCategory" aria-describedby="RegulatoryCategoryHelp" placeholder=""  value="{{.RegulatoryCategory}}"  />
-                  <label class="form-label" for="RegulatoryCategory" >RegulatoryCategory</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SecuredSettlement" name="SecuredSettlement" aria-describedby="SecuredSettlementHelp" placeholder="True"  value="{{.SecuredSettlement}}"  />
-                  <label class="form-label" for="SecuredSettlement" >SecuredSettlement</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SettlementLimitCarveOut" name="SettlementLimitCarveOut" aria-describedby="SettlementLimitCarveOutHelp" placeholder="True"  value="{{.SettlementLimitCarveOut}}"  />
-                  <label class="form-label" for="SettlementLimitCarveOut" >SettlementLimitCarveOut</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCodeHelp" placeholder=""  value="{{.SortCode}}"  />
-                  <label class="form-label" for="SortCode" >SortCode</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder="True"  value="{{.Training}}"  />
-                  <label class="form-label" for="Training" >Training</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCodeHelp" placeholder=""  value="{{.TrainingCode}}"  />
-                  <label class="form-label" for="TrainingCode" >TrainingCode</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceivedHelp" placeholder="True"  value="{{.TrainingReceived}}"  />
-                  <label class="form-label" for="TrainingReceived" >TrainingReceived</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Unencumbered" name="Unencumbered" aria-describedby="UnencumberedHelp" placeholder="True"  value="{{.Unencumbered}}"  />
-                  <label class="form-label" for="Unencumbered" >Unencumbered</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDateHelp" placeholder=""  value="{{.LEIExpiryDate}}"  />
-                  <label class="form-label" for="LEIExpiryDate" >LEIExpiryDate</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDateHelp" placeholder=""  value="{{.MIFIDReviewDate}}"  />
-                  <label class="form-label" for="MIFIDReviewDate" >MIFIDReviewDate</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDateHelp" placeholder=""  value="{{.GDPRReviewDate}}"  />
-                  <label class="form-label" for="GDPRReviewDate" >GDPRReviewDate</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReportingHelp" placeholder=""  value="{{.DelegatedReporting}}"  />
-                  <label class="form-label" for="DelegatedReporting" >DelegatedReporting</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="BOReconcile" name="BOReconcile" aria-describedby="BOReconcileHelp" placeholder="True"  value="{{.BOReconcile}}"  />
-                  <label class="form-label" for="BOReconcile" >BOReconcile</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowedHelp" placeholder="True"  value="{{.MIFIDReportableDealsAllowed}}"  />
-                  <label class="form-label" for="MIFIDReportableDealsAllowed" >MIFIDReportableDealsAllowed</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreementHelp" placeholder="True"  value="{{.SignedInvestmentAgreement}}"  />
-                  <label class="form-label" for="SignedInvestmentAgreement" >SignedInvestmentAgreement</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessmentHelp" placeholder="True"  value="{{.AppropriatenessAssessment}}"  />
-                  <label class="form-label" for="AppropriatenessAssessment" >AppropriatenessAssessment</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="FinancialCounterparty" name="FinancialCounterparty" aria-describedby="FinancialCounterpartyHelp" placeholder="True"  value="{{.FinancialCounterparty}}"  />
-                  <label class="form-label" for="FinancialCounterparty" >FinancialCounterparty</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Collateralisation" name="Collateralisation" aria-describedby="CollateralisationHelp" placeholder=""  value="{{.Collateralisation}}"  />
-                  <label class="form-label" for="Collateralisation" >Collateralisation</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCodeHelp" placeholder=""  value="{{.PortfolioCode}}"  />
-                  <label class="form-label" for="PortfolioCode" >PortfolioCode</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ReconciliationLetterFrequency" name="ReconciliationLetterFrequency" aria-describedby="ReconciliationLetterFrequencyHelp" placeholder=""  value="{{.ReconciliationLetterFrequency}}"  />
-                  <label class="form-label" for="ReconciliationLetterFrequency" >ReconciliationLetterFrequency</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="DirectDealing" name="DirectDealing" aria-describedby="DirectDealingHelp" placeholder="True"  value="{{.DirectDealing}}"  />
-                  <label class="form-label" for="DirectDealing" >DirectDealing</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required />
-                  <label class="form-label" for="CompID" >CompID</label>
-                </div>
-              </div>
-              
-              
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""   value="{{.NameFirm}}" required>
+                      <label class="form-label" for="NameFirm" >NameFirm</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""   value="{{.NameCentre}}" required>
+                      <label class="form-label" for="NameCentre" >NameCentre</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCodeHelp" placeholder=""   value="{{.BICCode}}" >
+                      <label class="form-label" for="BICCode" >BICCode</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ContactIndicator" name="ContactIndicator" aria-describedby="ContactIndicatorHelp" placeholder="True"   value="{{.ContactIndicator}}" >
+                      <label class="form-label" for="ContactIndicator" >ContactIndicator</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CoverTrade" name="CoverTrade" aria-describedby="CoverTradeHelp" placeholder="True"   value="{{.CoverTrade}}" >
+                      <label class="form-label" for="CoverTrade" >CoverTrade</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""   value="{{.CustomerCategory}}" >
+                      <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FSCSInclusive" name="FSCSInclusive" aria-describedby="FSCSInclusiveHelp" placeholder="True"   value="{{.FSCSInclusive}}" >
+                      <label class="form-label" for="FSCSInclusive" >FSCSInclusive</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FeeFactor" name="FeeFactor" aria-describedby="FeeFactorHelp" placeholder="0.00"   value="{{.FeeFactor}}" >
+                      <label class="form-label" for="FeeFactor" >FeeFactor</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="InactiveStatus" name="InactiveStatus" aria-describedby="InactiveStatusHelp" placeholder="True"   value="{{.InactiveStatus}}" >
+                      <label class="form-label" for="InactiveStatus" >InactiveStatus</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Indemnity" name="Indemnity" aria-describedby="IndemnityHelp" placeholder="True"   value="{{.Indemnity}}" >
+                      <label class="form-label" for="Indemnity" >Indemnity</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatusHelp" placeholder="True"   value="{{.KnowYourCustomerStatus}}" >
+                      <label class="form-label" for="KnowYourCustomerStatus" >KnowYourCustomerStatus</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LERLimitCarveOut" name="LERLimitCarveOut" aria-describedby="LERLimitCarveOutHelp" placeholder="True"   value="{{.LERLimitCarveOut}}" >
+                      <label class="form-label" for="LERLimitCarveOut" >LERLimitCarveOut</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LastAmended" name="LastAmended" aria-describedby="LastAmendedHelp" placeholder=""   value="{{.LastAmended}}" >
+                      <label class="form-label" for="LastAmended" >LastAmended</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LastLogin" name="LastLogin" aria-describedby="LastLoginHelp" placeholder=""   value="{{.LastLogin}}" >
+                      <label class="form-label" for="LastLogin" >LastLogin</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LossGivenDefault" name="LossGivenDefault" aria-describedby="LossGivenDefaultHelp" placeholder="0.00"   value="{{.LossGivenDefault}}" >
+                      <label class="form-label" for="LossGivenDefault" >LossGivenDefault</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MICHelp" placeholder=""   value="{{.MIC}}" >
+                      <label class="form-label" for="MIC" >MIC</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ProtectedDepositor" name="ProtectedDepositor" aria-describedby="ProtectedDepositorHelp" placeholder="True"   value="{{.ProtectedDepositor}}" >
+                      <label class="form-label" for="ProtectedDepositor" >ProtectedDepositor</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="RPTCurrency" name="RPTCurrency" aria-describedby="RPTCurrencyHelp" placeholder=""   value="{{.RPTCurrency}}" >
+                      <label class="form-label" for="RPTCurrency" >RPTCurrency</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="RateTimeout" name="RateTimeout" aria-describedby="RateTimeoutHelp" placeholder="0"   value="{{.RateTimeout}}" >
+                      <label class="form-label" for="RateTimeout" >RateTimeout</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="RateValidation" name="RateValidation" aria-describedby="RateValidationHelp" placeholder=""   value="{{.RateValidation}}" >
+                      <label class="form-label" for="RateValidation" >RateValidation</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Registered" name="Registered" aria-describedby="RegisteredHelp" placeholder="True"   value="{{.Registered}}" >
+                      <label class="form-label" for="Registered" >Registered</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="RegulatoryCategory" name="RegulatoryCategory" aria-describedby="RegulatoryCategoryHelp" placeholder=""   value="{{.RegulatoryCategory}}" >
+                      <label class="form-label" for="RegulatoryCategory" >RegulatoryCategory</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SecuredSettlement" name="SecuredSettlement" aria-describedby="SecuredSettlementHelp" placeholder="True"   value="{{.SecuredSettlement}}" >
+                      <label class="form-label" for="SecuredSettlement" >SecuredSettlement</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SettlementLimitCarveOut" name="SettlementLimitCarveOut" aria-describedby="SettlementLimitCarveOutHelp" placeholder="True"   value="{{.SettlementLimitCarveOut}}" >
+                      <label class="form-label" for="SettlementLimitCarveOut" >SettlementLimitCarveOut</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCodeHelp" placeholder=""   value="{{.SortCode}}" >
+                      <label class="form-label" for="SortCode" >SortCode</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder="True"   value="{{.Training}}" >
+                      <label class="form-label" for="Training" >Training</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCodeHelp" placeholder=""   value="{{.TrainingCode}}" >
+                      <label class="form-label" for="TrainingCode" >TrainingCode</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceivedHelp" placeholder="True"   value="{{.TrainingReceived}}" >
+                      <label class="form-label" for="TrainingReceived" >TrainingReceived</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Unencumbered" name="Unencumbered" aria-describedby="UnencumberedHelp" placeholder="True"   value="{{.Unencumbered}}" >
+                      <label class="form-label" for="Unencumbered" >Unencumbered</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDateHelp" placeholder=""   value="{{.LEIExpiryDate}}" >
+                      <label class="form-label" for="LEIExpiryDate" >LEIExpiryDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDateHelp" placeholder=""   value="{{.MIFIDReviewDate}}" >
+                      <label class="form-label" for="MIFIDReviewDate" >MIFIDReviewDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDateHelp" placeholder=""   value="{{.GDPRReviewDate}}" >
+                      <label class="form-label" for="GDPRReviewDate" >GDPRReviewDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReportingHelp" placeholder=""   value="{{.DelegatedReporting}}" >
+                      <label class="form-label" for="DelegatedReporting" >DelegatedReporting</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="BOReconcile" name="BOReconcile" aria-describedby="BOReconcileHelp" placeholder="True"   value="{{.BOReconcile}}" >
+                      <label class="form-label" for="BOReconcile" >BOReconcile</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowedHelp" placeholder="True"   value="{{.MIFIDReportableDealsAllowed}}" >
+                      <label class="form-label" for="MIFIDReportableDealsAllowed" >MIFIDReportableDealsAllowed</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreementHelp" placeholder="True"   value="{{.SignedInvestmentAgreement}}" >
+                      <label class="form-label" for="SignedInvestmentAgreement" >SignedInvestmentAgreement</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessmentHelp" placeholder="True"   value="{{.AppropriatenessAssessment}}" >
+                      <label class="form-label" for="AppropriatenessAssessment" >AppropriatenessAssessment</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FinancialCounterparty" name="FinancialCounterparty" aria-describedby="FinancialCounterpartyHelp" placeholder="True"   value="{{.FinancialCounterparty}}" >
+                      <label class="form-label" for="FinancialCounterparty" >FinancialCounterparty</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Collateralisation" name="Collateralisation" aria-describedby="CollateralisationHelp" placeholder=""   value="{{.Collateralisation}}" >
+                      <label class="form-label" for="Collateralisation" >Collateralisation</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCodeHelp" placeholder=""   value="{{.PortfolioCode}}" >
+                      <label class="form-label" for="PortfolioCode" >PortfolioCode</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ReconciliationLetterFrequency" name="ReconciliationLetterFrequency" aria-describedby="ReconciliationLetterFrequencyHelp" placeholder=""   value="{{.ReconciliationLetterFrequency}}" >
+                      <label class="form-label" for="ReconciliationLetterFrequency" >ReconciliationLetterFrequency</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DirectDealing" name="DirectDealing" aria-describedby="DirectDealingHelp" placeholder="True"   value="{{.DirectDealing}}" >
+                      <label class="form-label" for="DirectDealing" >DirectDealing</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""   value="{{.CompID}}" required>
+                      <label class="form-label" for="CompID" >CompID</label>
+                    </div>
+          
+            </div></div>
+
+     
         </div>
+        
       </div>
     </form>
 

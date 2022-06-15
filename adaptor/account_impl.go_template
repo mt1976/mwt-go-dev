@@ -1,0 +1,175 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/account.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Account (account)
+// Endpoint 	        : Account (AccountNo)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 14/06/2022 at 21:31:47
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in account_impl.go
+
+
+
+func Account_NewID_impl(rec dm.Account) (string) { return rec.SienaReference }
+func Account_Delete_impl(id string) (error) {return nil}
+
+
+func Account_Update_impl(id string,rec dm.Account, usr string) (error) {return nil}
+
+// If there are fields below, create the methods in adaptor\account_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func Account_DealtCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
+func Account_AgainstCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
+func Account_LedgerCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
+func Account_CashBalanceCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func Account_DealtCA_OnFetch_impl (rec dm.Account)(string) {return ""}
+func Account_AgainstCA_OnFetch_impl (rec dm.Account)(string) {return ""}
+func Account_LedgerCA_OnFetch_impl (rec dm.Account)(string) {return ""}
+func Account_CashBalanceCA_OnFetch_impl (rec dm.Account)(string) {return ""}
+

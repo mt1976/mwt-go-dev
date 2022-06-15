@@ -18,7 +18,7 @@ func Counterparty_Publish_Impl(mux http.ServeMux) {
 //sienaCounterpartyPage is cheese
 type sienaCounterpartyPage struct {
 	SessionInfo     dm.SessionInfo
-	UserMenu        []dm.AppMenuItem
+	UserMenu        dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string

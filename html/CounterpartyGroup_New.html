@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col h3">{{.Title}}</div>
+            <div class="col h3"><i class="fa fa-users me-2"></i>{{.Title}}</div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
               
@@ -17,37 +17,40 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required>
                 <label class="form-label" for="Name" >Name</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="CountryCode" name="CountryCode" aria-describedby="CountryCodeHelp" placeholder=""  value="{{.CountryCode}}" >
-                <label class="form-label" for="CountryCode" >CountryCode</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-outline mb-3">
-                <input type="text" class="form-control" id="SuperGroup" name="SuperGroup" aria-describedby="SuperGroupHelp" placeholder=""  value="{{.SuperGroup}}" >
-                <label class="form-label" for="SuperGroup" >SuperGroup</label>
-              </div>
-            </div>
+                    </div>
+                    
+        
 
-             <div class="row">
-              
-                <select id="Country_Lookup" name="Country_Lookup" class="select" ><option value="{{.Country_Lookup}}" selected>{{.Country_Lookup}}</option>{{range .Country_Lookup_List}}<option value="{{.Name}}">{{.Name}}</option>{{end}}</select>
-                <label class="form-label select-label" for="Country_Lookup"}>Country_Lookup</label>
-      
-            </div>
-             <div class="row">
-              
-                <select id="Parent_Lookup" name="Parent_Lookup" class="select" ><option value="{{.Parent_Lookup}}" selected>{{.Parent_Lookup}}</option>{{range .Parent_Lookup_List}}<option value="{{.Name}}">{{.Name}}</option>{{end}}</select>
-                <label class="form-label select-label" for="Parent_Lookup"}>Parent_Lookup</label>
-      
-            </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="CountryCode" name="CountryCode" aria-describedby="CountryCodeHelp" placeholder=""  value="{{.CountryCode}}" >
+                <label class="form-label" for="CountryCode" >CountryCode</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SuperGroup" name="SuperGroup" aria-describedby="SuperGroupHelp" placeholder=""  value="{{.SuperGroup}}" >
+                <label class="form-label" for="SuperGroup" >SuperGroup</label>
+                    </div>
+                    
+        
+
+            </div></div>
+
      
         </div>
       </div>

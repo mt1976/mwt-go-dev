@@ -61,8 +61,8 @@ func Simulator_SimulatorSWIFT_Watch() {
 				// }
 				if event.Op&fsnotify.Create == fsnotify.Create {
 					logs.Event(event.Name)
-					// Create a Simulator_SimulatorSWIFT_ProcessResponse_impl job in  adaptor/monitor/Simulator_SimulatorSWIFT_Impl.go
-					err := adaptor.Simulator_SimulatorSWIFT_ProcessResponse_impl(event.Name)
+					// Create a SimulatorSWIFT_Simulator_ProcessResponse_impl job in  adaptor/monitor/Simulator_SimulatorSWIFT_Impl.go
+					err := adaptor.SimulatorSWIFT_Simulator_ProcessResponse_impl(event.Name)
 					if err != nil {
 						logs.Error("SimulatorSWIFT", err)
 					}

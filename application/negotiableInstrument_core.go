@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:16
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:05
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,102 +25,70 @@ import (
 //negotiableinstrument_PageList provides the information for the template for a list of NegotiableInstruments
 type NegotiableInstrument_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.NegotiableInstrument
 }
+//NegotiableInstrument_Redirect provides a page to return to aftern an action
+const (
+	NegotiableInstrument_Redirect = dm.NegotiableInstrument_PathList
+)
 
 //negotiableinstrument_Page provides the information for the template for an individual NegotiableInstrument
 type NegotiableInstrument_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		SYSId string
-		Id string
-		LongName string
-		Isin string
-		Tidm string
-		Sedol string
-		IssueDate string
-		MaturityDate string
-		CouponValue string
-		CouponType string
-		Segment string
-		Sector string
-		CodeConventionCalculateAccrual string
-		MinimumDenomination string
-		DenominationCurrency string
-		TradingCurrency string
-		Type string
-		FlatYield string
-		PaymentCouponDate string
-		PeriodOfCoupon string
-		ExCouponDate string
-		DateOfIndexInflation string
-		UnitOfQuotation string
-		SYSCreated string
-		SYSWho string
-		SYSHost string
-		SYSUpdated string
-		Issuer string
-		IssueAmount string
-		RunningYield string
-		LEI string
-		CUSIP string
-		SYSUpdatedHost string
-		SYSCreatedBy string
-		SYSCreatedHost string
-		SYSUpdatedBy string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	Id         string
+	LongName         string
+	Isin         string
+	Tidm         string
+	Sedol         string
+	IssueDate         string
+	MaturityDate         string
+	CouponValue         string
+	CouponType         string
+	Segment         string
+	Sector         string
+	CodeConventionCalculateAccrual         string
+	MinimumDenomination         string
+	DenominationCurrency         string
+	TradingCurrency         string
+	Type         string
+	FlatYield         string
+	PaymentCouponDate         string
+	PeriodOfCoupon         string
+	ExCouponDate         string
+	DateOfIndexInflation         string
+	UnitOfQuotation         string
+	SYSCreated         string
+	SYSWho         string
+	SYSHost         string
+	SYSUpdated         string
+	Issuer         string
+	IssueAmount         string
+	RunningYield         string
+	LEI         string
+	CUSIP         string
+	SYSUpdatedHost         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	NegotiableInstrument_Redirect = dm.NegotiableInstrument_PathList
-)
+
 
 //NegotiableInstrument_Publish annouces the endpoints available for this object
 func NegotiableInstrument_Publish(mux http.ServeMux) {
@@ -129,11 +97,12 @@ func NegotiableInstrument_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.NegotiableInstrument_PathView, NegotiableInstrument_HandlerView)
 	//Cannot Edit via GUI
 	//Cannot Create via GUI
-	//Cannot Save via GUI
+	mux.HandleFunc(dm.NegotiableInstrument_PathSave, NegotiableInstrument_HandlerSave)
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.NegotiableInstrument_Title)
-    core.Catalog_Add(dm.NegotiableInstrument_Title, dm.NegotiableInstrument_Path, "", dm.NegotiableInstrument_QueryString, "APP")
+    core.Catalog_Add(dm.NegotiableInstrument_Title, dm.NegotiableInstrument_Path, "", dm.NegotiableInstrument_QueryString, "Application")
 }
+
 
 //NegotiableInstrument_HandlerList is the handler for the list page
 func NegotiableInstrument_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -165,6 +134,7 @@ func NegotiableInstrument_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //NegotiableInstrument_HandlerView is the handler used to View a page
 func NegotiableInstrument_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -187,132 +157,15 @@ func NegotiableInstrument_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.LongName = rD.LongName
-pageDetail.Isin = rD.Isin
-pageDetail.Tidm = rD.Tidm
-pageDetail.Sedol = rD.Sedol
-pageDetail.IssueDate = rD.IssueDate
-pageDetail.MaturityDate = rD.MaturityDate
-pageDetail.CouponValue = rD.CouponValue
-pageDetail.CouponType = rD.CouponType
-pageDetail.Segment = rD.Segment
-pageDetail.Sector = rD.Sector
-pageDetail.CodeConventionCalculateAccrual = rD.CodeConventionCalculateAccrual
-pageDetail.MinimumDenomination = rD.MinimumDenomination
-pageDetail.DenominationCurrency = rD.DenominationCurrency
-pageDetail.TradingCurrency = rD.TradingCurrency
-pageDetail.Type = rD.Type
-pageDetail.FlatYield = rD.FlatYield
-pageDetail.PaymentCouponDate = rD.PaymentCouponDate
-pageDetail.PeriodOfCoupon = rD.PeriodOfCoupon
-pageDetail.ExCouponDate = rD.ExCouponDate
-pageDetail.DateOfIndexInflation = rD.DateOfIndexInflation
-pageDetail.UnitOfQuotation = rD.UnitOfQuotation
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.Issuer = rD.Issuer
-pageDetail.IssueAmount = rD.IssueAmount
-pageDetail.RunningYield = rD.RunningYield
-pageDetail.LEI = rD.LEI
-pageDetail.CUSIP = rD.CUSIP
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = negotiableinstrument_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.NegotiableInstrument_TemplateView, w, r, pageDetail)
 
 }
 
-//NegotiableInstrument_HandlerEdit is the handler used generate the Edit page
-func NegotiableInstrument_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
 
-	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path)
-
-	searchID := core.GetURLparam(r, dm.NegotiableInstrument_QueryString)
-	_, rD, _ := dao.NegotiableInstrument_GetByID(searchID)
-	
-	pageDetail := NegotiableInstrument_Page{
-		Title:       CardTitle(dm.NegotiableInstrument_Title, core.Action_Edit),
-		PageTitle:   PageTitle(dm.NegotiableInstrument_Title, core.Action_Edit),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.LongName = rD.LongName
-pageDetail.Isin = rD.Isin
-pageDetail.Tidm = rD.Tidm
-pageDetail.Sedol = rD.Sedol
-pageDetail.IssueDate = rD.IssueDate
-pageDetail.MaturityDate = rD.MaturityDate
-pageDetail.CouponValue = rD.CouponValue
-pageDetail.CouponType = rD.CouponType
-pageDetail.Segment = rD.Segment
-pageDetail.Sector = rD.Sector
-pageDetail.CodeConventionCalculateAccrual = rD.CodeConventionCalculateAccrual
-pageDetail.MinimumDenomination = rD.MinimumDenomination
-pageDetail.DenominationCurrency = rD.DenominationCurrency
-pageDetail.TradingCurrency = rD.TradingCurrency
-pageDetail.Type = rD.Type
-pageDetail.FlatYield = rD.FlatYield
-pageDetail.PaymentCouponDate = rD.PaymentCouponDate
-pageDetail.PeriodOfCoupon = rD.PeriodOfCoupon
-pageDetail.ExCouponDate = rD.ExCouponDate
-pageDetail.DateOfIndexInflation = rD.DateOfIndexInflation
-pageDetail.UnitOfQuotation = rD.UnitOfQuotation
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.Issuer = rD.Issuer
-pageDetail.IssueAmount = rD.IssueAmount
-pageDetail.RunningYield = rD.RunningYield
-pageDetail.LEI = rD.LEI
-pageDetail.CUSIP = rD.CUSIP
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.NegotiableInstrument_TemplateEdit, w, r, pageDetail)
-
-
-}
 
 //NegotiableInstrument_HandlerSave is the handler used process the saving of an NegotiableInstrument
 func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -327,7 +180,9 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.NegotiableInstrument
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.SYSId = r.FormValue(dm.NegotiableInstrument_SYSId)
 		item.Id = r.FormValue(dm.NegotiableInstrument_Id)
 		item.LongName = r.FormValue(dm.NegotiableInstrument_LongName)
@@ -365,97 +220,137 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSCreatedHost = r.FormValue(dm.NegotiableInstrument_SYSCreatedHost)
 		item.SYSUpdatedBy = r.FormValue(dm.NegotiableInstrument_SYSUpdatedBy)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.NegotiableInstrument_Store(item,r)	
-
 	http.Redirect(w, r, NegotiableInstrument_Redirect, http.StatusFound)
 }
 
-//NegotiableInstrument_HandlerNew is the handler used process the creation of an NegotiableInstrument
-func NegotiableInstrument_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
-
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
-
-	pageDetail := NegotiableInstrument_Page{
-		Title:       CardTitle(dm.NegotiableInstrument_Title, core.Action_New),
-		PageTitle:   PageTitle(dm.NegotiableInstrument_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = ""
-pageDetail.Id = ""
-pageDetail.LongName = ""
-pageDetail.Isin = ""
-pageDetail.Tidm = ""
-pageDetail.Sedol = ""
-pageDetail.IssueDate = ""
-pageDetail.MaturityDate = ""
-pageDetail.CouponValue = ""
-pageDetail.CouponType = ""
-pageDetail.Segment = ""
-pageDetail.Sector = ""
-pageDetail.CodeConventionCalculateAccrual = ""
-pageDetail.MinimumDenomination = ""
-pageDetail.DenominationCurrency = ""
-pageDetail.TradingCurrency = ""
-pageDetail.Type = ""
-pageDetail.FlatYield = ""
-pageDetail.PaymentCouponDate = ""
-pageDetail.PeriodOfCoupon = ""
-pageDetail.ExCouponDate = ""
-pageDetail.DateOfIndexInflation = ""
-pageDetail.UnitOfQuotation = ""
-pageDetail.SYSCreated = ""
-pageDetail.SYSWho = ""
-pageDetail.SYSHost = ""
-pageDetail.SYSUpdated = ""
-pageDetail.Issuer = ""
-pageDetail.IssueAmount = ""
-pageDetail.RunningYield = ""
-pageDetail.LEI = ""
-pageDetail.CUSIP = ""
-pageDetail.SYSUpdatedHost = ""
-pageDetail.SYSCreatedBy = ""
-pageDetail.SYSCreatedHost = ""
-pageDetail.SYSUpdatedBy = ""
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
 
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.NegotiableInstrument_TemplateNew, w, r, pageDetail)
-
-}
-
-//NegotiableInstrument_HandlerDelete is the handler used process the deletion of an NegotiableInstrument
-func NegotiableInstrument_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
-
-	logs.Servicing(r.URL.Path)
-	searchID := core.GetURLparam(r, dm.NegotiableInstrument_QueryString)
-
-	dao.NegotiableInstrument_Delete(searchID)	
-
-	http.Redirect(w, r, NegotiableInstrument_Redirect, http.StatusFound)
-}
+// Builds/Popuplates the NegotiableInstrument Page 
+func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail NegotiableInstrument_Page) NegotiableInstrument_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.LongName = rD.LongName
+	pageDetail.Isin = rD.Isin
+	pageDetail.Tidm = rD.Tidm
+	pageDetail.Sedol = rD.Sedol
+	pageDetail.IssueDate = rD.IssueDate
+	pageDetail.MaturityDate = rD.MaturityDate
+	pageDetail.CouponValue = rD.CouponValue
+	pageDetail.CouponType = rD.CouponType
+	pageDetail.Segment = rD.Segment
+	pageDetail.Sector = rD.Sector
+	pageDetail.CodeConventionCalculateAccrual = rD.CodeConventionCalculateAccrual
+	pageDetail.MinimumDenomination = rD.MinimumDenomination
+	pageDetail.DenominationCurrency = rD.DenominationCurrency
+	pageDetail.TradingCurrency = rD.TradingCurrency
+	pageDetail.Type = rD.Type
+	pageDetail.FlatYield = rD.FlatYield
+	pageDetail.PaymentCouponDate = rD.PaymentCouponDate
+	pageDetail.PeriodOfCoupon = rD.PeriodOfCoupon
+	pageDetail.ExCouponDate = rD.ExCouponDate
+	pageDetail.DateOfIndexInflation = rD.DateOfIndexInflation
+	pageDetail.UnitOfQuotation = rD.UnitOfQuotation
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.Issuer = rD.Issuer
+	pageDetail.IssueAmount = rD.IssueAmount
+	pageDetail.RunningYield = rD.RunningYield
+	pageDetail.LEI = rD.LEI
+	pageDetail.CUSIP = rD.CUSIP
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

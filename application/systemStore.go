@@ -30,7 +30,7 @@ var appSystemStoreSQLGET = "SELECT %s FROM %s.systemStore WHERE id='%s';"
 //appSystemStorePage is cheese
 type appSystemStoreListPage struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	UserNavi         string
 	Title            string
@@ -42,7 +42,7 @@ type appSystemStoreListPage struct {
 //appSystemStorePage is cheese
 type appSystemStorePage struct {
 	SessionInfo dm.SessionInfo
-	UserMenu    []dm.AppMenuItem
+	UserMenu    dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

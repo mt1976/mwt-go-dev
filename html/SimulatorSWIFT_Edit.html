@@ -20,52 +20,50 @@
           </div>
         </div>
         <div class="card-body">
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required />
-                  <label class="form-label" for="ID" >ID</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="FileName" name="FileName" aria-describedby="FileNameHelp" placeholder=""  value="{{.FileName}}" required />
-                  <label class="form-label" for="FileName" >FileName</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageRaw" name="MessageRaw" aria-describedby="MessageRawHelp" placeholder=""  value="{{.MessageRaw}}"  />
-                  <label class="form-label" for="MessageRaw" >MessageRaw</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="MessageFmt" name="MessageFmt" aria-describedby="MessageFmtHelp" placeholder=""  value="{{.MessageFmt}}"  />
-                  <label class="form-label" for="MessageFmt" >MessageFmt</label>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="form-outline mb-3">
-                  <input type="text" class="form-control" id="Action" name="Action" aria-describedby="ActionHelp" placeholder=""  value="{{.Action}}"  />
-                  <label class="form-label" for="Action" >Action</label>
-                </div>
-              </div>
-              
-                           
-              <div class="row mb-3">
-            
-                  
-                  <input type="text" class="form-control" id="MessageFmt" name="MessageFmt" aria-describedby="MessageFmtHelp" placeholder="" disabled value="{{.MessageFmt}}"  />
-                  
-                  <label class="form-label select-label" for="MessageFmt" disabled>MessageFmt</label>
-              </div>
-              
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""   value="{{.ID}}" required>
+                      <label class="form-label" for="ID" >ID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FileName" name="FileName" aria-describedby="FileNameHelp" placeholder=""   value="{{.FileName}}" required>
+                      <label class="form-label" for="FileName" >FileName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageRaw" name="MessageRaw" aria-describedby="MessageRawHelp" placeholder=""   value="{{.MessageRaw}}" >
+                      <label class="form-label" for="MessageRaw" >MessageRaw</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageFmt" name="MessageFmt" aria-describedby="MessageFmtHelp" placeholder="" readonly="true"  value="{{.MessageFmt}}" >
+                      <label class="form-label" for="MessageFmt" readonly="true">MessageFmt</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Action" name="Action" aria-describedby="ActionHelp" placeholder=""   value="{{.Action}}" >
+                      <label class="form-label" for="Action" >Action</label>
+                    </div>
+          
+            </div></div>
+
+     
         </div>
+        
       </div>
     </form>
 

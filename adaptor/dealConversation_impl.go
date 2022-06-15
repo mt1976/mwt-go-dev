@@ -9,28 +9,28 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func DealConversation_Delete_Impl(id string) error {
+func DealConversation_Delete_impl(id string) error {
 
-	message := "Implement DealConversation_Update_Impl: " + id
+	message := "Implement DealConversation_Update_impl: " + id
 
-	// Implement CurrencyPair_Delete_Impl in currencypair_Impl.go
+	// Implement CurrencyPair_Delete_impl in currencypair_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CurrencyPair_Delete_Impl(item)
+	// er := CurrencyPair_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return nil
 }
 
-func DealConversation_Update_Impl(item dm.DealConversation, usr string) error {
+func DealConversation_Update_impl(id string, item dm.DealConversation, usr string) error {
 
-	message := "Implement DealConversation_Update_Impl: " + item.SienaReference
+	message := "Implement DealConversation_Update_impl: " + item.SienaReference
 
-	// Implement CurrencyPair_Delete_Impl in currencypair_Impl.go
+	// Implement CurrencyPair_Delete_impl in currencypair_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CurrencyPair_Delete_Impl(item)
+	// er := CurrencyPair_Delete_impl(item)
 	//
 
 	logs.Success(message)

@@ -1,0 +1,55 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/country.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Country (country)
+// Endpoint 	        : Country (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 06/06/2022 at 12:21:19
+// Who & Where		    : matttownsend on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in country_impl.go
+
+
+
+func Country_NewID_impl(rec dm.Country) (string) { return rec.Code }
+func Country_Delete_impl(id string) (error) {return nil}
+
+
+func Country_Update_impl(id string,rec dm.Country, usr string) (error) {return nil}
+
+// If there are fields below, create the methods in adaptor\country_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

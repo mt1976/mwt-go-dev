@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:14
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:03
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func DealingInterface_GetByID(id string) (int, dm.DealingInterface, error) {
 func DealingInterface_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealingInterface_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.DealingInterface_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.DealingInterface_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,47 @@ func dealinginterface_Save(r dm.DealingInterface,usr string) error {
 
     var err error
 
-	logs.Storing("DealingInterface",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Name) == 0 {
 		r.Name = DealingInterface_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\dealinginterface_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("DealingInterface",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/DealingInterface_impl.go file
-	err1 := adaptor.DealingInterface_Delete_Impl(r.Name)
-	err2 := adaptor.DealingInterface_Update_Impl(r,usr)
+	err1 := adaptor.DealingInterface_Delete_impl(r.Name)
+	err2 := adaptor.DealingInterface_Update_impl(r.Name,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +132,8 @@ func dealinginterface_Save(r dm.DealingInterface,usr string) error {
 }
 
 
-// dealinginterface_Fetch read all employees
+
+// dealinginterface_Fetch read all DealingInterface's
 func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.DealingInterface, error) {
 
 	var recItem dm.DealingInterface
@@ -117,13 +141,13 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
    recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
    recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative, "True")
@@ -148,7 +172,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
    recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation, "True")
    recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance, "True")
    recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules, "True")
-// If there are fields below, create the methods in dao\DealingInterface_Impl.go
+// If there are fields below, create the methods in adaptor\DealingInterface_impl.go
 
 
 
@@ -174,36 +198,15 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func DealingInterface_NewID(r dm.DealingInterface) string {
 	
@@ -211,6 +214,7 @@ func DealingInterface_NewID(r dm.DealingInterface) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

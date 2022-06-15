@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/12/2021 at 09:54:35
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,14 +84,35 @@ func schedule_Save(r dm.Schedule,usr string) error {
 
     var err error
 
-	logs.Storing("Schedule",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = Schedule_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\schedule_impl.go
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -101,28 +120,37 @@ func schedule_Save(r dm.Schedule,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	
+logs.Storing("Schedule",fmt.Sprintf("%s", r))
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.Schedule_SYSId, r.SYSId)
-ts = addData(ts, dm.Schedule_Id, r.Id)
-ts = addData(ts, dm.Schedule_Name, r.Name)
-ts = addData(ts, dm.Schedule_Description, r.Description)
-ts = addData(ts, dm.Schedule_Schedule, r.Schedule)
-ts = addData(ts, dm.Schedule_Started, r.Started)
-ts = addData(ts, dm.Schedule_Lastrun, r.Lastrun)
-ts = addData(ts, dm.Schedule_Message, r.Message)
-ts = addData(ts, dm.Schedule_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.Schedule_SYSWho, r.SYSWho)
-ts = addData(ts, dm.Schedule_SYSHost, r.SYSHost)
-ts = addData(ts, dm.Schedule_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.Schedule_Type, r.Type)
-ts = addData(ts, dm.Schedule_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.Schedule_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.Schedule_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.Schedule_SYSUpdatedHost, r.SYSUpdatedHost)
-ts = addData(ts, dm.Schedule_Human, r.Human)
-	
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.Schedule_SYSId, r.SYSId)
+	ts = addData(ts, dm.Schedule_Id, r.Id)
+	ts = addData(ts, dm.Schedule_Name, r.Name)
+	ts = addData(ts, dm.Schedule_Description, r.Description)
+	ts = addData(ts, dm.Schedule_Schedule, r.Schedule)
+	ts = addData(ts, dm.Schedule_Started, r.Started)
+	ts = addData(ts, dm.Schedule_Lastrun, r.Lastrun)
+	ts = addData(ts, dm.Schedule_Message, r.Message)
+	ts = addData(ts, dm.Schedule_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.Schedule_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.Schedule_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.Schedule_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.Schedule_Type, r.Type)
+	ts = addData(ts, dm.Schedule_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.Schedule_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.Schedule_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Schedule_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Schedule_Human, r.Human)
+		
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Schedule_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -138,7 +166,8 @@ ts = addData(ts, dm.Schedule_Human, r.Human)
 }
 
 
-// schedule_Fetch read all employees
+
+// schedule_Fetch read all Schedule's
 func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 	var recItem dm.Schedule
@@ -146,13 +175,13 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId, "0")
    recItem.Id  = get_String(rec, dm.Schedule_Id, "")
    recItem.Name  = get_String(rec, dm.Schedule_Name, "")
@@ -171,7 +200,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
    recItem.SYSUpdatedBy  = get_String(rec, dm.Schedule_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.Schedule_SYSUpdatedHost, "")
    recItem.Human  = get_String(rec, dm.Schedule_Human, "")
-// If there are fields below, create the methods in dao\Schedule_Impl.go
+// If there are fields below, create the methods in adaptor\Schedule_impl.go
 
 
 
@@ -191,30 +220,15 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Schedule_NewID(r dm.Schedule) string {
 	
@@ -222,6 +236,7 @@ func Schedule_NewID(r dm.Schedule) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

@@ -15,7 +15,6 @@ import (
 	monitors "github.com/mt1976/mwt-go-dev/adaptor/monitors"
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
-	scheduler "github.com/mt1976/mwt-go-dev/jobs"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
@@ -34,7 +33,7 @@ func main() {
 	logs.Header("Scheduling Jobs")
 	logs.Break()
 
-	scheduler.Start()
+	//scheduler.Start()
 
 	logs.Success("Jobs Scheduled")
 	logs.Break()
@@ -74,13 +73,13 @@ func main() {
 	application.AccountTransaction_Publish_Impl(*mux)
 	application.AccountLadder_Publish_Impl(*mux)
 	application.Payee_Publish(*mux)
-	application.Payee_PublishImpl(*mux)
+	//	application.Payee_PublishImpl(*mux)
 
 	application.Currency_Publish(*mux)
 	application.CurrencyPair_Publish(*mux)
 
 	application.Mandate_Publish(*mux)
-	application.Mandate_PublishImpl(*mux)
+	//	application.Mandate_PublishImpl(*mux)
 
 	application.CounterpartyGroup_Publish(*mux)
 	application.Dashboard_Publish_Impl(*mux)
@@ -100,7 +99,7 @@ func main() {
 
 	application.Simulator_SienaFundsChecker_Publish_Impl(*mux)
 
-	application.Template_Publish(*mux)
+	application.Tmpl_Publish(*mux)
 	application.MarketRates_Publish(*mux)
 	application.Cache_Publish(*mux)
 	application.DealConversation_Publish(*mux)
@@ -140,21 +139,20 @@ func main() {
 	logs.Header("Start Watchers")
 	logs.Break()
 	//go monitors.StaticDataImporter_Watch()
-	go monitors.Simulator_SienaFundsChecker_Watch()
-	go monitors.Simulator_SienaDealImporter_Watch()
-	go monitors.Simulator_SienaStaticDataImporter_Watch()
+
+	monitors.Start()
 	logs.Success("Watchers Started")
 	Application_Info()
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 	//jobs.RatesFXSpot_Run()
 	//spew.Dump(mux)
-	logs.Header("Rebuild Cache")
+	//logs.Header("Rebuild Cache")
 	//scheduler.RefreshCache_Run()
-	logs.Success("Cache Rebuilt")
+	//logs.Success("Cache Rebuilt")
 	//core.Notification_Test()
 	//scheduler.RatesCrypto_Run()
-	logs.Success("Rates Rebuilt")
+	//logs.Success("Rates Rebuilt")
 
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
@@ -250,17 +248,6 @@ func application_HandlerClearQueues(w http.ResponseWriter, r *http.Request) {
 	}
 	application.Home_HandlerView(w, r)
 }
-
-// func clearResponsesHandler(w http.ResponseWriter, r *http.Request) {
-// 	//var propertiesFileName = "config/properties.cfg"
-// 	//	wctProperties := application.GetProperties(core.APPCONFIG)
-// 	//	tmpl := "viewResponse"
-// 	inUTL := r.URL.Path
-// 	//requestID := uuid.New()
-// 	log.Println("Servicing :", inUTL)
-// 	application.RemoveContents(core.ApplicationProperties["receivepath"])
-// 	application.HomePageHandler(w, r)
-// }
 
 func application_HandlerPUT(w http.ResponseWriter, r *http.Request) {
 	// Store a new key and value in the session data.

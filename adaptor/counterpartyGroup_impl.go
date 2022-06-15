@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func CounterpartyGroup_Delete_Impl(id string) error {
+func CounterpartyGroup_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement CounterpartyGroup_Delete: " + id
 
-	// Implement CounterpartyGroup_Delete_Impl in counterpartygroup_Impl.go
+	// Implement CounterpartyGroup_Delete_impl in counterpartygroup_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CounterpartyGroup_Delete_Impl(item)
+	// er := CounterpartyGroup_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func CounterpartyGroup_Update_Impl(item dm.CounterpartyGroup, usr string) error {
+func CounterpartyGroup_Update_impl(id string, item dm.CounterpartyGroup, usr string) error {
 	var er error
 
 	message := "Implement CounterpartyGroup_Update: " + item.Name
 
-	// Implement CounterpartyGroup_Update_Impl in counterpartygroup_Impl.go
+	// Implement CounterpartyGroup_Update_impl in counterpartygroup_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CounterpartyGroup_Update_Impl(item)
+	// er := CounterpartyGroup_Update_impl(item)
 	//
 
 	logs.Success(message)

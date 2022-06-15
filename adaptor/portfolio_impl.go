@@ -22,32 +22,34 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Portfolio_Delete_Impl(id string) error {
+func Portfolio_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Portfolio_Delete: " + id
 
-	// Implement Portfolio_Delete_Impl in portfolio_Impl.go
+	// Implement Portfolio_Delete_impl in portfolio_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Portfolio_Delete_Impl(item)
+	// er := Portfolio_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Portfolio_Update_Impl(item dm.Portfolio, usr string) error {
+func Portfolio_Update_impl(id string, item dm.Portfolio, usr string) error {
 	var er error
 
-	message := "Implement Portfolio_Update: " + item.Code
+	message := "Implement Portfolio_Update: " + item.Code + " " + id
 
-	// Implement Portfolio_Update_Impl in portfolio_Impl.go
+	// Implement Portfolio_Update_impl in portfolio_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Portfolio_Update_Impl(item)
+	// er := Portfolio_Update_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
+
+func Portfolio_NewID_impl(rec dm.Portfolio) string { return rec.Code }

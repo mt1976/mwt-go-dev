@@ -9,19 +9,19 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:18
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//SalesDesk defines the datamolde for the SalesDesk object
 type SalesDesk struct {
 
-Name        string
-ReportDealsOver        string
-ReportDealsOverCCY        string
-AccountTransferCutOffTime        string
-AccountTransferCutOffTimeTimeZone        string
-AccountTransferCutOffTimeCutOffPeriod        string
+Name       string
+ReportDealsOver       string
+ReportDealsOverCCY       string
+AccountTransferCutOffTime       string
+AccountTransferCutOffTimeTimeZone       string
+AccountTransferCutOffTimeCutOffPeriod       string
 
 }
 
@@ -51,12 +51,12 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	SalesDesk_Name   = "Name" // Name is a String
-	SalesDesk_ReportDealsOver   = "ReportDealsOver" // ReportDealsOver is a String
-	SalesDesk_ReportDealsOverCCY   = "ReportDealsOverCCY" // ReportDealsOverCCY is a String
-	SalesDesk_AccountTransferCutOffTime   = "AccountTransferCutOffTime" // AccountTransferCutOffTime is a Time
-	SalesDesk_AccountTransferCutOffTimeTimeZone   = "AccountTransferCutOffTimeTimeZone" // AccountTransferCutOffTimeTimeZone is a String
-	SalesDesk_AccountTransferCutOffTimeCutOffPeriod   = "AccountTransferCutOffTimeCutOffPeriod" // AccountTransferCutOffTimeCutOffPeriod is a String
+SalesDesk_Name   = "Name" // Name is a String
+SalesDesk_ReportDealsOver   = "ReportDealsOver" // ReportDealsOver is a String
+SalesDesk_ReportDealsOverCCY   = "ReportDealsOverCCY" // ReportDealsOverCCY is a String
+SalesDesk_AccountTransferCutOffTime   = "AccountTransferCutOffTime" // AccountTransferCutOffTime is a Time
+SalesDesk_AccountTransferCutOffTimeTimeZone   = "AccountTransferCutOffTimeTimeZone" // AccountTransferCutOffTimeTimeZone is a String
+SalesDesk_AccountTransferCutOffTimeCutOffPeriod   = "AccountTransferCutOffTimeCutOffPeriod" // AccountTransferCutOffTimeCutOffPeriod is a String
 
 	/// Definitions End
 )

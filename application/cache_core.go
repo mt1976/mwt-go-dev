@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:08
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:50
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,60 +25,49 @@ import (
 //cache_PageList provides the information for the template for a list of Caches
 type Cache_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Cache
 }
+//Cache_Redirect provides a page to return to aftern an action
+const (
+	Cache_Redirect = dm.Cache_PathList
+)
 
 //cache_Page provides the information for the template for an individual Cache
 type Cache_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		SYSId string
-		Id string
-		Object string
-		Field string
-		Value string
-		Expiry string
-		SYSCreated string
-		SYSWho string
-		SYSHost string
-		SYSUpdated string
-		Source string
-		SYSCreatedBy string
-		SYSCreatedHost string
-		SYSUpdatedBy string
-		SYSUpdatedHost string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	Id         string
+	Object         string
+	Field         string
+	Value         string
+	Expiry         string
+	SYSCreated         string
+	SYSWho         string
+	SYSHost         string
+	SYSUpdated         string
+	Source         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Cache_Redirect = dm.Cache_PathList
-)
+
 
 //Cache_Publish annouces the endpoints available for this object
 func Cache_Publish(mux http.ServeMux) {
@@ -92,6 +81,7 @@ func Cache_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Cache_Title)
     //No API
 }
+
 
 //Cache_HandlerList is the handler for the list page
 func Cache_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -123,6 +113,7 @@ func Cache_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Cache_HandlerView is the handler used to View a page
 func Cache_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -145,37 +136,14 @@ func Cache_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.Object = rD.Object
-pageDetail.Field = rD.Field
-pageDetail.Value = rD.Value
-pageDetail.Expiry = rD.Expiry
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.Source = rD.Source
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = cache_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Cache_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Cache_HandlerEdit is the handler used generate the Edit page
 func Cache_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -199,36 +167,13 @@ func Cache_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = rD.SYSId
-pageDetail.Id = rD.Id
-pageDetail.Object = rD.Object
-pageDetail.Field = rD.Field
-pageDetail.Value = rD.Value
-pageDetail.Expiry = rD.Expiry
-pageDetail.SYSCreated = rD.SYSCreated
-pageDetail.SYSWho = rD.SYSWho
-pageDetail.SYSHost = rD.SYSHost
-pageDetail.SYSUpdated = rD.SYSUpdated
-pageDetail.Source = rD.Source
-pageDetail.SYSCreatedBy = rD.SYSCreatedBy
-pageDetail.SYSCreatedHost = rD.SYSCreatedHost
-pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
-pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = cache_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Cache_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Cache_HandlerSave is the handler used process the saving of an Cache
 func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -243,7 +188,9 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
 	var item dm.Cache
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 		item.SYSId = r.FormValue(dm.Cache_SYSId)
 		item.Id = r.FormValue(dm.Cache_Id)
 		item.Object = r.FormValue(dm.Cache_Object)
@@ -260,76 +207,74 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.Cache_SYSUpdatedBy)
 		item.SYSUpdatedHost = r.FormValue(dm.Cache_SYSUpdatedHost)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Cache_Store(item,r)	
-
 	http.Redirect(w, r, Cache_Redirect, http.StatusFound)
 }
 
-//Cache_HandlerNew is the handler used process the creation of an Cache
-func Cache_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
-
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
-
-	pageDetail := Cache_Page{
-		Title:       CardTitle(dm.Cache_Title, core.Action_New),
-		PageTitle:   PageTitle(dm.Cache_Title, core.Action_New),
-		UserMenu:    UserMenu_Get(r),
-		UserRole:    Session_GetUserRole(r),
-	}
-
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.SYSId = ""
-pageDetail.Id = ""
-pageDetail.Object = ""
-pageDetail.Field = ""
-pageDetail.Value = ""
-pageDetail.Expiry = ""
-pageDetail.SYSCreated = ""
-pageDetail.SYSWho = ""
-pageDetail.SYSHost = ""
-pageDetail.SYSUpdated = ""
-pageDetail.Source = ""
-pageDetail.SYSCreatedBy = ""
-pageDetail.SYSCreatedHost = ""
-pageDetail.SYSUpdatedBy = ""
-pageDetail.SYSUpdatedHost = ""
 
 
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
 
-	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
-	ExecuteTemplate(dm.Cache_TemplateNew, w, r, pageDetail)
-
-}
-
-//Cache_HandlerDelete is the handler used process the deletion of an Cache
-func Cache_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
-
-	logs.Servicing(r.URL.Path)
-	searchID := core.GetURLparam(r, dm.Cache_QueryString)
-
-	dao.Cache_Delete(searchID)	
-
-	http.Redirect(w, r, Cache_Redirect, http.StatusFound)
-}
+// Builds/Popuplates the Cache Page 
+func cache_PopulatePage(rD dm.Cache, pageDetail Cache_Page) Cache_Page {
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.Object = rD.Object
+	pageDetail.Field = rD.Field
+	pageDetail.Value = rD.Value
+	pageDetail.Expiry = rD.Expiry
+	pageDetail.SYSCreated = rD.SYSCreated
+	pageDetail.SYSWho = rD.SYSWho
+	pageDetail.SYSHost = rD.SYSHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.Source = rD.Source
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	
+	
+	//
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

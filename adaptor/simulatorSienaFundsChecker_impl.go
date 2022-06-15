@@ -47,7 +47,7 @@ func Simulator_SienaFundsChecker_Store(thisID string, balance string, resultCode
 	deletefrompath := core.SienaProperties["funds_in"]
 
 	log.Printf("Delivery      : %s -> %s", deletefrompath, delivertopath)
-	core.WriteDataFileAbsolute(fileName, delivertopath, string(newMsg))
+	core.FileSystem_WriteData_Absolute(fileName, delivertopath, string(newMsg))
 
 	resp := core.DeleteDataFileAbsolute(thisID, deletefrompath)
 	if resp != 1 {

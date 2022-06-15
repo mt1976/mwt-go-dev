@@ -9,15 +9,15 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 13:00:16
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:09
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Sector defines the datamolde for the Sector object
 type Sector struct {
 
-Code        string
-Name        string
+Code       string
+Name       string
 
 }
 
@@ -47,8 +47,8 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	Sector_Code   = "Code" // Code is a String
-	Sector_Name   = "Name" // Name is a String
+Sector_Code   = "Code" // Code is a String
+Sector_Name   = "Name" // Name is a String
 
 	/// Definitions End
 )

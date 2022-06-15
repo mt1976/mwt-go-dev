@@ -5,7 +5,7 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Counterparty_Update_Impl(item dm.Counterparty, usr string) error {
+func Counterparty_Update_impl(id string, item dm.Counterparty, usr string) error {
 
 	message := "Implement Counterparty_Update: " + item.CompID
 
@@ -44,15 +44,15 @@ func Counterparty_Update_Impl(item dm.Counterparty, usr string) error {
 	return err
 }
 
-func Counterparty_Delete_Impl(id string) error {
+func Counterparty_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Counterparty_Delete: " + id
 
-	// Implement Counterparty_Delete_Impl in counterparty_Impl.go
+	// Implement Counterparty_Delete_impl in counterparty_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Counterparty_Delete_Impl(item)
+	// er := Counterparty_Delete_impl(item)
 	//
 
 	logs.Success(message)

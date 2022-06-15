@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="fas fa-wallet me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -46,12 +46,7 @@
                           <th class="text-center">Reason</th>
                           <th class="text-center">BankSettlementAcct</th>
                           <th class="text-center">UpdatedUserId</th>
-                          
-                          
-                          
-                          
-                          
-                          
+                          <th class="text-center">Status</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -81,20 +76,13 @@
                           <td class="align-middle">{{.Reason}}</td>
                           <td class="align-middle">{{.BankSettlementAcct}}</td>
                           <td class="align-middle">{{.UpdatedUserId}}</td>
-                          
-                          
-                          
-                          
-                          
-                          
+                          <td class="align-middle">{{.Status}}</td>
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/PayeeView?ID={{.KeyCounterpartyFirm}}" method="POST" title="View Payee"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/PayeeView?ID={{.KeyCounterpartyFirm}}" method="POST" title="View Payee"><i class="far fa-eye"></i></button>
                             
                             
-                            </div>
                             </form>
                           </td>
                         </tr>

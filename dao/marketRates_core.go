@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:18
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:06
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,14 +84,38 @@ func marketrates_Save(r dm.MarketRates,usr string) error {
 
     var err error
 
-	logs.Storing("MarketRates",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = MarketRates_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\marketrates_impl.go
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -101,31 +123,40 @@ func marketrates_Save(r dm.MarketRates,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	
+logs.Storing("MarketRates",fmt.Sprintf("%s", r))
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.MarketRates_SYSId, r.SYSId)
-ts = addData(ts, dm.MarketRates_Id, r.Id)
-ts = addData(ts, dm.MarketRates_Bid, r.Bid)
-ts = addData(ts, dm.MarketRates_Mid, r.Mid)
-ts = addData(ts, dm.MarketRates_Offer, r.Offer)
-ts = addData(ts, dm.MarketRates_Market, r.Market)
-ts = addData(ts, dm.MarketRates_Tenor, r.Tenor)
-ts = addData(ts, dm.MarketRates_Series, r.Series)
-ts = addData(ts, dm.MarketRates_Name, r.Name)
-ts = addData(ts, dm.MarketRates_Source, r.Source)
-ts = addData(ts, dm.MarketRates_Destination, r.Destination)
-ts = addData(ts, dm.MarketRates_Class, r.Class)
-ts = addData(ts, dm.MarketRates_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.MarketRates_SYSWho, r.SYSWho)
-ts = addData(ts, dm.MarketRates_SYSHost, r.SYSHost)
-ts = addData(ts, dm.MarketRates_Date, r.Date)
-ts = addData(ts, dm.MarketRates_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.MarketRates_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.MarketRates_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.MarketRates_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.MarketRates_SYSUpdatedHost, r.SYSUpdatedHost)
-	
+	// START
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.MarketRates_SYSId, r.SYSId)
+	ts = addData(ts, dm.MarketRates_Id, r.Id)
+	ts = addData(ts, dm.MarketRates_Bid, r.Bid)
+	ts = addData(ts, dm.MarketRates_Mid, r.Mid)
+	ts = addData(ts, dm.MarketRates_Offer, r.Offer)
+	ts = addData(ts, dm.MarketRates_Market, r.Market)
+	ts = addData(ts, dm.MarketRates_Tenor, r.Tenor)
+	ts = addData(ts, dm.MarketRates_Series, r.Series)
+	ts = addData(ts, dm.MarketRates_Name, r.Name)
+	ts = addData(ts, dm.MarketRates_Source, r.Source)
+	ts = addData(ts, dm.MarketRates_Destination, r.Destination)
+	ts = addData(ts, dm.MarketRates_Class, r.Class)
+	ts = addData(ts, dm.MarketRates_SYSCreated, r.SYSCreated)
+	ts = addData(ts, dm.MarketRates_SYSWho, r.SYSWho)
+	ts = addData(ts, dm.MarketRates_SYSHost, r.SYSHost)
+	ts = addData(ts, dm.MarketRates_Date, r.Date)
+	ts = addData(ts, dm.MarketRates_SYSUpdated, r.SYSUpdated)
+	ts = addData(ts, dm.MarketRates_SYSCreatedBy, r.SYSCreatedBy)
+	ts = addData(ts, dm.MarketRates_SYSCreatedHost, r.SYSCreatedHost)
+	ts = addData(ts, dm.MarketRates_SYSUpdatedBy, r.SYSUpdatedBy)
+	ts = addData(ts, dm.MarketRates_SYSUpdatedHost, r.SYSUpdatedHost)
+		
+	// 
+	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -141,7 +172,8 @@ ts = addData(ts, dm.MarketRates_SYSUpdatedHost, r.SYSUpdatedHost)
 }
 
 
-// marketrates_Fetch read all employees
+
+// marketrates_Fetch read all MarketRates's
 func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, error) {
 
 	var recItem dm.MarketRates
@@ -149,13 +181,13 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId, "0")
    recItem.Id  = get_String(rec, dm.MarketRates_Id, "")
    recItem.Bid  = get_String(rec, dm.MarketRates_Bid, "")
@@ -177,7 +209,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
    recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost, "")
    recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy, "")
    recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost, "")
-// If there are fields below, create the methods in dao\MarketRates_Impl.go
+// If there are fields below, create the methods in adaptor\MarketRates_impl.go
 
 
 
@@ -200,33 +232,15 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func MarketRates_NewID(r dm.MarketRates) string {
 	
@@ -234,6 +248,7 @@ func MarketRates_NewID(r dm.MarketRates) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

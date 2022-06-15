@@ -1,0 +1,59 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/portfolio.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Portfolio (portfolio)
+// Endpoint 	        : Portfolio (Code)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 14/06/2022 at 21:32:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in portfolio_impl.go
+
+
+
+func Portfolio_NewID_impl(rec dm.Portfolio) (string) { return rec.Code }
+func Portfolio_Delete_impl(id string) (error) {return nil}
+
+
+func Portfolio_Update_impl(id string,rec dm.Portfolio, usr string) (error) {return nil}
+
+// If there are fields below, create the methods in adaptor\portfolio_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

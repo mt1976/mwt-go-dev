@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:18
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -50,7 +46,7 @@ func Product_GetByID(id string) (int, dm.Product, error) {
 	return 1, productItem, nil
 }
 
-// Product_GetByReverseLookup(id string) returns a single Product record
+// Product_GetByReverseLookup(id string) returns a single Product record using the Name field as key.
 func Product_GetByReverseLookup(id string) (int, dm.Product, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Product_SQLTable)
@@ -65,12 +61,8 @@ func Product_GetByReverseLookup(id string) (int, dm.Product, error) {
 func Product_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Product_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Product_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Product_Delete_impl(id)
+	
 }
 
 
@@ -95,16 +87,35 @@ func product_Save(r dm.Product,usr string) error {
 
     var err error
 
-	logs.Storing("Product",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = Product_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\product_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("Product",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Product_impl.go file
-	err1 := adaptor.Product_Delete_Impl(r.Code)
-	err2 := adaptor.Product_Update_Impl(r,usr)
+	err1 := adaptor.Product_Delete_impl(r.Code)
+	err2 := adaptor.Product_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -118,7 +129,8 @@ func product_Save(r dm.Product,usr string) error {
 }
 
 
-// product_Fetch read all employees
+
+// product_Fetch read all Product's
 func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 
 	var recItem dm.Product
@@ -126,13 +138,13 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
    recItem.Code  = get_String(rec, dm.Product_Code, "")
    recItem.Name  = get_String(rec, dm.Product_Name, "")
    recItem.Factor  = get_Float(rec, dm.Product_Factor, "0.00")
@@ -145,7 +157,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
    recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId, "")
    recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId, "")
    recItem.ChangeType  = get_String(rec, dm.Product_ChangeType, "")
-// If there are fields below, create the methods in dao\Product_Impl.go
+// If there are fields below, create the methods in adaptor\Product_impl.go
 
 
 
@@ -159,24 +171,15 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
 		//Add to the list
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Product_NewID(r dm.Product) string {
 	
@@ -184,6 +187,7 @@ func Product_NewID(r dm.Product) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

@@ -104,7 +104,7 @@ func StaticImport_DispatchXML(XMLmessage []byte, msgClass string) error {
 	fileID := uuid.New()
 	fileName := fileID.String() + ".xml"
 	delivertopath := core.SienaProperties["static_out"]
-	ok := core.WriteDataFileAbsolute(fileName, delivertopath, string(XMLmessage))
+	ok := core.FileSystem_WriteData_Absolute(fileName, delivertopath, string(XMLmessage))
 	if ok == -1 {
 		err = fmt.Errorf("error writing file %s", fileName)
 	}

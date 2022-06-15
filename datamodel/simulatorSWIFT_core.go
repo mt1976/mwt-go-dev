@@ -9,19 +9,18 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 05/06/2022 at 12:56:56
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:32:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//SimulatorSWIFT defines the datamolde for the SimulatorSWIFT object
 type SimulatorSWIFT struct {
 
-ID        string
-FileName        string
-MessageRaw        string
-MessageFmt        string
-Action        string
-
+ID       string
+FileName       string
+MessageRaw       string
+MessageFmt       string
+Action       string
 
 }
 
@@ -51,12 +50,11 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	SimulatorSWIFT_ID   = "ID" // ID is a String
-	SimulatorSWIFT_FileName   = "FileName" // FileName is a String
-	SimulatorSWIFT_MessageRaw   = "MessageRaw" // MessageRaw is a String
-	SimulatorSWIFT_MessageFmt   = "MessageFmt" // MessageFmt is a String
-	SimulatorSWIFT_Action   = "Action" // Action is a String
-
+SimulatorSWIFT_ID   = "ID" // ID is a String
+SimulatorSWIFT_FileName   = "FileName" // FileName is a String
+SimulatorSWIFT_MessageRaw   = "MessageRaw" // MessageRaw is a String
+SimulatorSWIFT_MessageFmt   = "MessageFmt" // MessageFmt is a String
+SimulatorSWIFT_Action   = "Action" // Action is a String
 
 	/// Definitions End
 )

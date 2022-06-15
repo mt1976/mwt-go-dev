@@ -9,21 +9,21 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:10
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 14/06/2022 at 21:31:57
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//CounterpartyImport defines the datamolde for the CounterpartyImport object
 type CounterpartyImport struct {
 
-KeyImportID        string
-Firm        string
-Centre        string
-FirmName        string
-CentreName        string
-KeyOriginID        string
-FullName        string
-CompID        string
+KeyImportID       string
+Firm       string
+Centre       string
+FirmName       string
+CentreName       string
+KeyOriginID       string
+FullName       string
+CompID       string
 
 }
 
@@ -53,14 +53,14 @@ const (
 	///
 	/// SQL Field Definitions
 	///
-	CounterpartyImport_KeyImportID   = "KeyImportID" // KeyImportID is a String
-	CounterpartyImport_Firm   = "Firm" // Firm is a String
-	CounterpartyImport_Centre   = "Centre" // Centre is a String
-	CounterpartyImport_FirmName   = "FirmName" // FirmName is a String
-	CounterpartyImport_CentreName   = "CentreName" // CentreName is a String
-	CounterpartyImport_KeyOriginID   = "KeyOriginID" // KeyOriginID is a String
-	CounterpartyImport_FullName   = "FullName" // FullName is a String
-	CounterpartyImport_CompID   = "CompID" // CompID is a String
+CounterpartyImport_KeyImportID   = "KeyImportID" // KeyImportID is a String
+CounterpartyImport_Firm   = "Firm" // Firm is a String
+CounterpartyImport_Centre   = "Centre" // Centre is a String
+CounterpartyImport_FirmName   = "FirmName" // FirmName is a String
+CounterpartyImport_CentreName   = "CentreName" // CentreName is a String
+CounterpartyImport_KeyOriginID   = "KeyOriginID" // KeyOriginID is a String
+CounterpartyImport_FullName   = "FullName" // FullName is a String
+CounterpartyImport_CompID   = "CompID" // CompID is a String
 
 	/// Definitions End
 )

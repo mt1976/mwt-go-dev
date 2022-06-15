@@ -5,7 +5,7 @@
        
             <div class="card-header font-weight-bold">
               <div class="row d-flex">
-                <div class="col d-flex"><h3>{{.Title}}</h3></div>
+                <div class="col d-flex"><h3><i class="far fa-handshake me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="POST">
                     <div class="btn-group">
@@ -135,8 +135,8 @@
                           <th class="text-center">PaymentError</th>
                           <th class="text-center">RepoPrincipal</th>
                           <th class="text-center">FixingFrequency</th>
-                          
-                          
+                          <th class="text-center">Dealt</th>
+                          <th class="text-center">Against</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -255,16 +255,14 @@
                           <td class="align-middle">{{.PaymentError}}</td>
                           <td class="align-middle">{{.RepoPrincipal}}</td>
                           <td class="align-middle">{{.FixingFrequency}}</td>
-                          
-                          
+                          <td class="align-middle">{{.Dealt}}</td>
+                          <td class="align-middle">{{.Against}}</td>
                           
                           <td class="text-center" style="width:1px;">
                            <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <div class="btn-group">
-                            <button type="submit" value="" class="btn btn-info" formaction="/TransactionView?Ref={{.SienaReference}}" method="POST" title="View Transaction"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/TransactionView?Ref={{.SienaReference}}" method="POST" title="View Transaction"><i class="far fa-eye"></i></button>
                             
                             
-                            </div>
                             </form>
                           </td>
                         </tr>
