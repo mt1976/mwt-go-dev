@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:18
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:13
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,54 +25,46 @@ import (
 //product_PageList provides the information for the template for a list of Products
 type Product_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Product
 }
+//Product_Redirect provides a page to return to aftern an action
+const (
+	Product_Redirect = dm.Product_PathList
+)
 
 //product_Page provides the information for the template for an individual Product
 type Product_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		Code string
-		Name string
-		Factor string
-		MaxTermPrecedence string
-		InternalId string
-		InternalDeleted string
-		UpdatedTransactionId string
-		UpdatedUserId string
-		UpdatedDateTime string
-		DeletedTransactionId string
-		DeletedUserId string
-		ChangeType string
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Code         string
+	Name         string
+	Factor         string
+	MaxTermPrecedence         string
+	InternalId         string
+	InternalDeleted         string
+	UpdatedTransactionId         string
+	UpdatedUserId         string
+	UpdatedDateTime         string
+	DeletedTransactionId         string
+	DeletedUserId         string
+	ChangeType         string
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Product_Redirect = dm.Product_PathList
-)
+
 
 //Product_Publish annouces the endpoints available for this object
 func Product_Publish(mux http.ServeMux) {
@@ -83,9 +75,10 @@ func Product_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Product_PathNew, Product_HandlerNew)
 	mux.HandleFunc(dm.Product_PathSave, Product_HandlerSave)
 	mux.HandleFunc(dm.Product_PathDelete, Product_HandlerDelete)
-	logs.Publish("Siena", dm.Product_Title)
-    core.Catalog_Add(dm.Product_Title, dm.Product_Path, "", dm.Product_QueryString, "APP")
+	logs.Publish("Application", dm.Product_Title)
+    core.Catalog_Add(dm.Product_Title, dm.Product_Path, "", dm.Product_QueryString, "Application")
 }
+
 
 //Product_HandlerList is the handler for the list page
 func Product_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -117,6 +110,7 @@ func Product_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Product_HandlerView is the handler used to View a page
 func Product_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -139,34 +133,14 @@ func Product_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.Factor = rD.Factor
-pageDetail.MaxTermPrecedence = rD.MaxTermPrecedence
-pageDetail.InternalId = rD.InternalId
-pageDetail.InternalDeleted = rD.InternalDeleted
-pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
-pageDetail.UpdatedUserId = rD.UpdatedUserId
-pageDetail.UpdatedDateTime = rD.UpdatedDateTime
-pageDetail.DeletedTransactionId = rD.DeletedTransactionId
-pageDetail.DeletedUserId = rD.DeletedUserId
-pageDetail.ChangeType = rD.ChangeType
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = product_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Product_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Product_HandlerEdit is the handler used generate the Edit page
 func Product_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -190,33 +164,13 @@ func Product_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.Factor = rD.Factor
-pageDetail.MaxTermPrecedence = rD.MaxTermPrecedence
-pageDetail.InternalId = rD.InternalId
-pageDetail.InternalDeleted = rD.InternalDeleted
-pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
-pageDetail.UpdatedUserId = rD.UpdatedUserId
-pageDetail.UpdatedDateTime = rD.UpdatedDateTime
-pageDetail.DeletedTransactionId = rD.DeletedTransactionId
-pageDetail.DeletedUserId = rD.DeletedUserId
-pageDetail.ChangeType = rD.ChangeType
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = product_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Product_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Product_HandlerSave is the handler used process the saving of an Product
 func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -231,27 +185,29 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Product
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		item.Code = r.FormValue(dm.Product_Code)
-		item.Name = r.FormValue(dm.Product_Name)
-		item.Factor = r.FormValue(dm.Product_Factor)
-		item.MaxTermPrecedence = r.FormValue(dm.Product_MaxTermPrecedence)
-		item.InternalId = r.FormValue(dm.Product_InternalId)
-		item.InternalDeleted = r.FormValue(dm.Product_InternalDeleted)
-		item.UpdatedTransactionId = r.FormValue(dm.Product_UpdatedTransactionId)
-		item.UpdatedUserId = r.FormValue(dm.Product_UpdatedUserId)
-		item.UpdatedDateTime = r.FormValue(dm.Product_UpdatedDateTime)
-		item.DeletedTransactionId = r.FormValue(dm.Product_DeletedTransactionId)
-		item.DeletedUserId = r.FormValue(dm.Product_DeletedUserId)
-		item.ChangeType = r.FormValue(dm.Product_ChangeType)
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.Code = r.FormValue(dm.Product_Code_scrn)
+		item.Name = r.FormValue(dm.Product_Name_scrn)
+		item.Factor = r.FormValue(dm.Product_Factor_scrn)
+		item.MaxTermPrecedence = r.FormValue(dm.Product_MaxTermPrecedence_scrn)
+		item.InternalId = r.FormValue(dm.Product_InternalId_scrn)
+		item.InternalDeleted = r.FormValue(dm.Product_InternalDeleted_scrn)
+		item.UpdatedTransactionId = r.FormValue(dm.Product_UpdatedTransactionId_scrn)
+		item.UpdatedUserId = r.FormValue(dm.Product_UpdatedUserId_scrn)
+		item.UpdatedDateTime = r.FormValue(dm.Product_UpdatedDateTime_scrn)
+		item.DeletedTransactionId = r.FormValue(dm.Product_DeletedTransactionId_scrn)
+		item.DeletedUserId = r.FormValue(dm.Product_DeletedUserId_scrn)
+		item.ChangeType = r.FormValue(dm.Product_ChangeType_scrn)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Product_Store(item,r)	
-
 	http.Redirect(w, r, Product_Redirect, http.StatusFound)
 }
+
 
 //Product_HandlerNew is the handler used process the creation of an Product
 func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -273,31 +229,14 @@ func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Name = ""
-pageDetail.Factor = ""
-pageDetail.MaxTermPrecedence = ""
-pageDetail.InternalId = ""
-pageDetail.InternalDeleted = ""
-pageDetail.UpdatedTransactionId = ""
-pageDetail.UpdatedUserId = ""
-pageDetail.UpdatedDateTime = ""
-pageDetail.DeletedTransactionId = ""
-pageDetail.DeletedUserId = ""
-pageDetail.ChangeType = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = product_PopulatePage(dm.Product{} , pageDetail) 
 
 	ExecuteTemplate(dm.Product_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Product_HandlerDelete is the handler used process the deletion of an Product
 func Product_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -315,3 +254,57 @@ func Product_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Product_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Product Page 
+func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	pageDetail.Factor = rD.Factor
+	pageDetail.MaxTermPrecedence = rD.MaxTermPrecedence
+	pageDetail.InternalId = rD.InternalId
+	pageDetail.InternalDeleted = rD.InternalDeleted
+	pageDetail.UpdatedTransactionId = rD.UpdatedTransactionId
+	pageDetail.UpdatedUserId = rD.UpdatedUserId
+	pageDetail.UpdatedDateTime = rD.UpdatedDateTime
+	pageDetail.DeletedTransactionId = rD.DeletedTransactionId
+	pageDetail.DeletedUserId = rD.DeletedUserId
+	pageDetail.ChangeType = rD.ChangeType
+	
+	
+	//
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

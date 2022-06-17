@@ -25,7 +25,7 @@ var simFundsCheckSQLGET = "SELECT %s FROM %s.fundsCheck WHERE id='%s';"
 //simFundsCheckPage is cheese
 type Simulator_SienaFundsChecker_PageList struct {
 	SessionInfo     dm.SessionInfo
-	UserMenu        []dm.AppMenuItem
+	UserMenu        dm.AppMenuItem
 	UserRole        string
 	UserNavi        string
 	Title           string
@@ -37,7 +37,7 @@ type Simulator_SienaFundsChecker_PageList struct {
 //Simulator_SienaFundsChecker_Page is cheese
 type Simulator_SienaFundsChecker_Page struct {
 	SessionInfo dm.SessionInfo
-	UserMenu    []dm.AppMenuItem
+	UserMenu    dm.AppMenuItem
 	UserRole    string
 	UserNavi    string
 	Title       string

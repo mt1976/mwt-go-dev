@@ -204,9 +204,14 @@ func ExecuteTemplate(tname string, w http.ResponseWriter, r *http.Request, data 
 
 	t := make(map[string]*template.Template)
 	baseTemplateID := core.GetTemplateID(tname, Session_GetUserRole(r))
-	headerTemplateID := core.GetTemplateID("core/head", Session_GetUserRole(r))
-	//	fmt.Printf("baseTemplateID: %v\n", baseTemplateID)
-	//	fmt.Printf("headerTemplateID: %v\n", headerTemplateID)
+	headerTemplateID := core.GetTemplateID("core/imports", Session_GetUserRole(r))
+
+	//fmt.Printf("baseTemplateID: %v\n", baseTemplateID)
+	//fmt.Printf("headerTemplateID: %v\n", headerTemplateID)
+
 	t[tname] = template.Must(template.ParseFiles(baseTemplateID, headerTemplateID))
-	t[tname].Execute(w, data)
+	err := t[tname].Execute(w, data)
+	if err != nil {
+		log.Println("Error executing template: " + err.Error())
+	}
 }

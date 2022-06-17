@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:10
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,40 +25,39 @@ import (
 //country_PageList provides the information for the template for a list of Countrys
 type Country_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Country
 }
+//Country_Redirect provides a page to return to aftern an action
+const (
+	Country_Redirect = dm.Country_PathList
+)
 
 //country_Page provides the information for the template for an individual Country
 type Country_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		Code string
-		Name string
-		ShortCode string
-		EU_EEA string
-		HolidaysWeekend string
-	
-	
-	
-	
-	
-	
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Code         string
+	Name         string
+	ShortCode         string
+	EU_EEA         string
+	HolidaysWeekend         string
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Country_Redirect = dm.Country_PathList
-)
+
 
 //Country_Publish annouces the endpoints available for this object
 func Country_Publish(mux http.ServeMux) {
@@ -69,9 +68,10 @@ func Country_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Country_PathNew, Country_HandlerNew)
 	mux.HandleFunc(dm.Country_PathSave, Country_HandlerSave)
 	//Cannot Delete via GUI
-	logs.Publish("Siena", dm.Country_Title)
-    core.Catalog_Add(dm.Country_Title, dm.Country_Path, "", dm.Country_QueryString, "APP")
+	logs.Publish("Application", dm.Country_Title)
+    core.Catalog_Add(dm.Country_Title, dm.Country_Path, "", dm.Country_QueryString, "Application")
 }
+
 
 //Country_HandlerList is the handler for the list page
 func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -103,6 +103,7 @@ func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Country_HandlerView is the handler used to View a page
 func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -125,27 +126,14 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.ShortCode = rD.ShortCode
-pageDetail.EU_EEA = rD.EU_EEA
-pageDetail.HolidaysWeekend = rD.HolidaysWeekend
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = country_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Country_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Country_HandlerEdit is the handler used generate the Edit page
 func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -169,26 +157,13 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.ShortCode = rD.ShortCode
-pageDetail.EU_EEA = rD.EU_EEA
-pageDetail.HolidaysWeekend = rD.HolidaysWeekend
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = country_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Country_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Country_HandlerSave is the handler used process the saving of an Country
 func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -203,20 +178,22 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Country
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		item.Code = r.FormValue(dm.Country_Code)
-		item.Name = r.FormValue(dm.Country_Name)
-		item.ShortCode = r.FormValue(dm.Country_ShortCode)
-		item.EU_EEA = r.FormValue(dm.Country_EU_EEA)
-		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend)
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.Code = r.FormValue(dm.Country_Code_scrn)
+		item.Name = r.FormValue(dm.Country_Name_scrn)
+		item.ShortCode = r.FormValue(dm.Country_ShortCode_scrn)
+		item.EU_EEA = r.FormValue(dm.Country_EU_EEA_scrn)
+		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend_scrn)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Country_Store(item,r)	
-
 	http.Redirect(w, r, Country_Redirect, http.StatusFound)
 }
+
 
 //Country_HandlerNew is the handler used process the creation of an Country
 func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -238,38 +215,44 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Name = ""
-pageDetail.ShortCode = ""
-pageDetail.EU_EEA = ""
-pageDetail.HolidaysWeekend = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = country_PopulatePage(dm.Country{} , pageDetail) 
 
 	ExecuteTemplate(dm.Country_TemplateNew, w, r, pageDetail)
 
-}
+}	
 
-//Country_HandlerDelete is the handler used process the deletion of an Country
-func Country_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// Mandatory Security Validation
-	if !(Session_Validate(w, r)) {
-		core.Logout(w, r)
-		return
-	}
-	// Code Continues Below
 
-	logs.Servicing(r.URL.Path)
-	searchID := core.GetURLparam(r, dm.Country_QueryString)
 
-	dao.Country_Delete(searchID)	
-
-	http.Redirect(w, r, Country_Redirect, http.StatusFound)
-}
+// Builds/Popuplates the Country Page 
+func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	pageDetail.ShortCode = rD.ShortCode
+	pageDetail.EU_EEA = rD.EU_EEA
+	pageDetail.HolidaysWeekend = rD.HolidaysWeekend
+	
+	
+	//
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

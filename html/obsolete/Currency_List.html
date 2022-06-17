@@ -1,0 +1,99 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-dollar-sign me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Currency as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Currency"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">AmountDp</th>
+                          <th class="text-center">Country</th>
+                          <th class="text-center">CountryName</th>
+                          <th class="text-center">IntBase</th>
+                          <th class="text-center">KeydateBase</th>
+                          <th class="text-center">InterestRateTolerance</th>
+                          <th class="text-center">CheckPayTo</th>
+                          <th class="text-center">LatinAmericanSettlement</th>
+                          <th class="text-center">DefaultLayOffBookKey</th>
+                          <th class="text-center">CutOffTimeCutOffTime</th>
+                          <th class="text-center">CutOffTimeTimeZone</th>
+                          <th class="text-center">CutOffTimeDerivedDataUTCOffset</th>
+                          <th class="text-center">CutOffTimeDerivedDataHasDaylightSaving</th>
+                          <th class="text-center">CutOffTimeDerivedDataDaylightStart</th>
+                          <th class="text-center">CutOffTimeDerivedDataDaylightEnd</th>
+                          <th class="text-center">DealerInterventionQuoteTimeout</th>
+                          <th class="text-center">CutOffTimeCutOffPeriod</th>
+                          <th class="text-center">StripRateFutureExchangeCode</th>
+                          <th class="text-center">StripRateFutureCurrencyContractCurrencyIsoCode</th>
+                          <th class="text-center">StripRateFutureCurrencyContractFutureContractCode</th>
+                          <th class="text-center">OvernightFundingSpreadBid</th>
+                          <th class="text-center">OvernightFundingSpreadOffer</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle">{{.Code}}</td>
+                          <td class="align-middle">{{.Name}}</td>
+                          <td class="align-middle">{{.AmountDp}}</td>
+                          <td class="align-middle">{{.Country}}</td>
+                          <td class="align-middle">{{.CountryName}}</td>
+                          <td class="align-middle">{{.IntBase}}</td>
+                          <td class="align-middle">{{.KeydateBase}}</td>
+                          <td class="align-middle">{{.InterestRateTolerance}}</td>
+                          <td class="align-middle">{{.CheckPayTo}}</td>
+                          <td class="align-middle">{{.LatinAmericanSettlement}}</td>
+                          <td class="align-middle">{{.DefaultLayOffBookKey}}</td>
+                          <td class="align-middle">{{.CutOffTimeCutOffTime}}</td>
+                          <td class="align-middle">{{.CutOffTimeTimeZone}}</td>
+                          <td class="align-middle">{{.CutOffTimeDerivedDataUTCOffset}}</td>
+                          <td class="align-middle">{{.CutOffTimeDerivedDataHasDaylightSaving}}</td>
+                          <td class="align-middle">{{.CutOffTimeDerivedDataDaylightStart}}</td>
+                          <td class="align-middle">{{.CutOffTimeDerivedDataDaylightEnd}}</td>
+                          <td class="align-middle">{{.DealerInterventionQuoteTimeout}}</td>
+                          <td class="align-middle">{{.CutOffTimeCutOffPeriod}}</td>
+                          <td class="align-middle">{{.StripRateFutureExchangeCode}}</td>
+                          <td class="align-middle">{{.StripRateFutureCurrencyContractCurrencyIsoCode}}</td>
+                          <td class="align-middle">{{.StripRateFutureCurrencyContractFutureContractCode}}</td>
+                          <td class="align-middle">{{.OvernightFundingSpreadBid}}</td>
+                          <td class="align-middle">{{.OvernightFundingSpreadOffer}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/CurrencyView?Code={{.Code}}" method="POST" title="View Currency"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

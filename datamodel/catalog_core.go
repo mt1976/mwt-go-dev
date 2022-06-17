@@ -9,18 +9,18 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:16:04
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:06
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Catalog defines the datamolde for the Catalog object
 type Catalog struct {
 
-ID        string
-Endpoint        string
-Descr        string
-Query        string
-Source        string
+ID       string
+Endpoint       string
+Descr       string
+Query       string
+Source       string
 
 }
 
@@ -33,10 +33,10 @@ const (
 	/// Handler Defintions
 	///
 	Catalog_Template     = "Catalog"
-	Catalog_TemplateList = "Catalog_List"
-	Catalog_TemplateView = "Catalog_View"
-	Catalog_TemplateEdit = "Catalog_Edit"
-	Catalog_TemplateNew  = "Catalog_New"
+	Catalog_TemplateList = "/Catalog/Catalog_List"
+	Catalog_TemplateView = "/Catalog/Catalog_View"
+	Catalog_TemplateEdit = "/Catalog/Catalog_Edit"
+	Catalog_TemplateNew  = "/Catalog/Catalog_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -48,13 +48,24 @@ const (
 	Catalog_PathSave   = "/CatalogSave/"
 	Catalog_PathDelete = "/CatalogDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-	Catalog_ID   = "ID" // ID is a String
-	Catalog_Endpoint   = "Endpoint" // Endpoint is a String
-	Catalog_Descr   = "Descr" // Descr is a String
-	Catalog_Query   = "Query" // Query is a String
-	Catalog_Source   = "Source" // Source is a String
+Catalog_ID_sql   = "ID" // ID is a String
+Catalog_Endpoint_sql   = "Endpoint" // Endpoint is a String
+Catalog_Descr_sql   = "Descr" // Descr is a String
+Catalog_Query_sql   = "Query" // Query is a String
+Catalog_Source_sql   = "Source" // Source is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Catalog_ID_scrn   = "ID" // ID is a String
+Catalog_Endpoint_scrn   = "Endpoint" // Endpoint is a String
+Catalog_Descr_scrn   = "Descr" // Descr is a String
+Catalog_Query_scrn   = "Query" // Query is a String
+Catalog_Source_scrn   = "Source" // Source is a String
 
 	/// Definitions End
 )

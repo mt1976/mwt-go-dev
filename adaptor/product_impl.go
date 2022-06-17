@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Product_Delete_Impl(id string) error {
+func Product_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Product_Delete: " + id
 
-	// Implement Product_Delete_Impl in product_Impl.go
+	// Implement Product_Delete_impl in product_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Product_Delete_Impl(item)
+	// er := Product_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Product_Update_Impl(item dm.Product, usr string) error {
+func Product_Update_impl(id string, item dm.Product, usr string) error {
 	var er error
 
 	message := "Implement Product_Update: " + item.Code
 
-	// Implement Product_Update_Impl in product_Impl.go
+	// Implement Product_Update_impl in product_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Product_Update_Impl(item)
+	// er := Product_Update_impl(item)
 	//
 
 	logs.Success(message)

@@ -1,0 +1,51 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/SectorSave" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+             <div class="col h3">
+                    <i class="fas fa-industry me-2" title="Sector = NEW"></i><span class="me-3">{{.Title}}</span>
+                </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/SectorSave" onclick="/SectorSave" title="Save Sector"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Sector"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required data-mdb-input-mask="">
+                <label class="form-label" for="Code" ><i class="fas fa-key me-2"></i>Code</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Name" >Name</label>
+                    </div>
+                    
+        
+
+            </div></div>
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

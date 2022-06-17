@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func CounterpartyCreditRating_Delete_Impl(id string) error {
+func CounterpartyCreditRating_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement CounterpartyCreditRating_Delete: " + id
 
-	// Implement CounterpartyCreditRating_Delete_Impl in counterpartycreditrating_Impl.go
+	// Implement CounterpartyCreditRating_Delete_impl in counterpartycreditrating_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CounterpartyCreditRating_Delete_Impl(item)
+	// er := CounterpartyCreditRating_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func CounterpartyCreditRating_Update_Impl(item dm.CounterpartyCreditRating, usr string) error {
+func CounterpartyCreditRating_Update_impl(id string, item dm.CounterpartyCreditRating, usr string) error {
 	var er error
 
 	message := "Implement CounterpartyCreditRating_Update: " + item.CompID
 
-	// Implement CounterpartyCreditRating_Update_Impl in counterpartycreditrating_Impl.go
+	// Implement CounterpartyCreditRating_Update_impl in counterpartycreditrating_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CounterpartyCreditRating_Update_Impl(item)
+	// er := CounterpartyCreditRating_Update_impl(item)
 	//
 
 	logs.Success(message)

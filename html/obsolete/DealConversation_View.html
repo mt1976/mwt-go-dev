@@ -1,0 +1,157 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/DealConversationEdit?ID={{.MessageLogReference}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-exchange-alt me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.MessageLogReference}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Deal Conversation"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled value="{{.SienaReference}}">
+                        <label class="form-label" for="SienaReference">SienaReference</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Status" aria-describedby="StatusHelp" placeholder="" disabled value="{{.Status}}">
+                        <label class="form-label" for="Status">Status</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MessageType" aria-describedby="MessageTypeHelp" placeholder="" disabled value="{{.MessageType}}">
+                        <label class="form-label" for="MessageType">MessageType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ContractNumber" aria-describedby="ContractNumberHelp" placeholder="" disabled value="{{.ContractNumber}}">
+                        <label class="form-label" for="ContractNumber">ContractNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AckReference" aria-describedby="AckReferenceHelp" placeholder="" disabled value="{{.AckReference}}">
+                        <label class="form-label" for="AckReference">AckReference</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NewTX" aria-describedby="NewTXHelp" placeholder="True" disabled value="{{.NewTX}}">
+                        <label class="form-label" for="NewTX">NewTX</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LegNo" aria-describedby="LegNoHelp" placeholder="0" disabled value="{{.LegNo}}">
+                        <label class="form-label" for="LegNo">LegNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Summary" aria-describedby="SummaryHelp" placeholder="" disabled value="{{.Summary}}">
+                        <label class="form-label" for="Summary">Summary</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BusinessDate" aria-describedby="BusinessDateHelp" placeholder="" disabled value="{{.BusinessDate}}">
+                        <label class="form-label" for="BusinessDate">BusinessDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="TXNo" aria-describedby="TXNoHelp" placeholder="0" disabled value="{{.TXNo}}">
+                        <label class="form-label" for="TXNo">TXNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ExternalSystem" aria-describedby="ExternalSystemHelp" placeholder="" disabled value="{{.ExternalSystem}}">
+                        <label class="form-label" for="ExternalSystem">ExternalSystem</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MessageLogReference" aria-describedby="MessageLogReferenceHelp" placeholder="" disabled value="{{.MessageLogReference}}">
+                        <label class="form-label" for="MessageLogReference">MessageLogReference</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

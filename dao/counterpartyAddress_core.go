@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:07
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func CounterpartyAddress_GetByID(id string) (int, dm.CounterpartyAddress, error)
 func CounterpartyAddress_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyAddress_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.CounterpartyAddress_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.CounterpartyAddress_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,31 @@ func counterpartyaddress_Save(r dm.CounterpartyAddress,usr string) error {
 
     var err error
 
-	logs.Storing("CounterpartyAddress",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.CompID) == 0 {
 		r.CompID = CounterpartyAddress_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\counterpartyaddress_impl.go
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("CounterpartyAddress",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/CounterpartyAddress_impl.go file
-	err1 := adaptor.CounterpartyAddress_Delete_Impl(r.CompID)
-	err2 := adaptor.CounterpartyAddress_Update_Impl(r,usr)
+	err1 := adaptor.CounterpartyAddress_Delete_impl(r.CompID)
+	err2 := adaptor.CounterpartyAddress_Update_impl(r.CompID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +116,8 @@ func counterpartyaddress_Save(r dm.CounterpartyAddress,usr string) error {
 }
 
 
-// counterpartyaddress_Fetch read all employees
+
+// counterpartyaddress_Fetch read all CounterpartyAddress's
 func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.CounterpartyAddress, error) {
 
 	var recItem dm.CounterpartyAddress
@@ -117,45 +125,47 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm, "")
-   recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre, "")
-   recItem.Address1  = get_String(rec, dm.CounterpartyAddress_Address1, "")
-   recItem.Address2  = get_String(rec, dm.CounterpartyAddress_Address2, "")
-   recItem.CityTown  = get_String(rec, dm.CounterpartyAddress_CityTown, "")
-   recItem.County  = get_String(rec, dm.CounterpartyAddress_County, "")
-   recItem.Postcode  = get_String(rec, dm.CounterpartyAddress_Postcode, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyAddress_CompID, "")
-// If there are fields below, create the methods in dao\CounterpartyAddress_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre_sql, "")
+	   recItem.Address1  = get_String(rec, dm.CounterpartyAddress_Address1_sql, "")
+	   recItem.Address2  = get_String(rec, dm.CounterpartyAddress_Address2_sql, "")
+	   recItem.CityTown  = get_String(rec, dm.CounterpartyAddress_CityTown_sql, "")
+	   recItem.County  = get_String(rec, dm.CounterpartyAddress_County_sql, "")
+	   recItem.Postcode  = get_String(rec, dm.CounterpartyAddress_Postcode_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyAddress_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyAddress_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func CounterpartyAddress_NewID(r dm.CounterpartyAddress) string {
 	
@@ -163,6 +173,7 @@ func CounterpartyAddress_NewID(r dm.CounterpartyAddress) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

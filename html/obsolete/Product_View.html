@@ -1,0 +1,158 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/ProductEdit?Code={{.Code}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-object-group me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/ProductEdit/?Code={{.Code}}" onclick="/ProductEdit/?Code={{.Code}}" title="Edit Product Group"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Product Group"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}">
+                        <label class="form-label" for="Code">Code</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
+                        <label class="form-label" for="Name">Name</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Factor" aria-describedby="FactorHelp" placeholder="0.00" disabled value="{{.Factor}}">
+                        <label class="form-label" for="Factor">Factor</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MaxTermPrecedence" aria-describedby="MaxTermPrecedenceHelp" placeholder="True" disabled value="{{.MaxTermPrecedence}}">
+                        <label class="form-label" for="MaxTermPrecedence">MaxTermPrecedence</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InternalId" aria-describedby="InternalIdHelp" placeholder="0" disabled value="{{.InternalId}}">
+                        <label class="form-label" for="InternalId">InternalId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder="" disabled value="{{.InternalDeleted}}">
+                        <label class="form-label" for="InternalDeleted">InternalDeleted</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder="" disabled value="{{.UpdatedTransactionId}}">
+                        <label class="form-label" for="UpdatedTransactionId">UpdatedTransactionId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled value="{{.UpdatedUserId}}">
+                        <label class="form-label" for="UpdatedUserId">UpdatedUserId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder="" disabled value="{{.UpdatedDateTime}}">
+                        <label class="form-label" for="UpdatedDateTime">UpdatedDateTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder="" disabled value="{{.DeletedTransactionId}}">
+                        <label class="form-label" for="DeletedTransactionId">DeletedTransactionId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder="" disabled value="{{.DeletedUserId}}">
+                        <label class="form-label" for="DeletedUserId">DeletedUserId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ChangeType" aria-describedby="ChangeTypeHelp" placeholder="" disabled value="{{.ChangeType}}">
+                        <label class="form-label" for="ChangeType">ChangeType</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

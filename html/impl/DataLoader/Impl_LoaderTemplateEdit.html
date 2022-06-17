@@ -1,0 +1,117 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+
+
+
+  <form method="GET" action="/saveSvcDataMapXML?id={{.DataMapPageID}}&poo=bum">
+
+
+    <div class="container-fluid">
+
+
+      <div id="SrvConfig">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col h3"><i class="fas fa-city me-2"></i>{{.Title}} : <code>{{.DataMapPageID}}.template</code>
+              </div>
+              <div class="col d-flex justify-content-end">
+                <div class="btn-group">
+
+                  <button type="submit" value="" class="btn btn-danger" formaction="/saveSvcDataMapXML"><i class="fas fa-save"></i>&nbsp;&nbsp;Save</button>
+
+                  <button type="button" value="" class="btn btn-info" formaction="/" onclick="saveFile('pgContent','Template_{{.DataMapPageID}}.xml')"><i class="fas fa-file-code"></i>&nbsp;&nbsp;Export</button>
+
+                  <button type="button" value="" class="btn btn-light" method="POST" onclick="history.back()"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+
+          <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#collapseOne"
+        aria-expanded="false"
+        aria-controls="collapseOne"
+      >
+       How To / Information
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+    
+      <div class="accordion-body">
+         <h5 class="alert-heading">Information!</h5>
+              Where an attribute value is surrounded by &lcub;&lcub; &rcub;&rcub;, it will be replaced by the data in the associated column in the Data Map.
+  <br>
+              <font size="-1">e.g. &lcub;&lcub;DESCRIPTION&rcub;&rcub; would be replaced by the content of the "DESCRIPTION" column in the Data Map.</font>
+              <br>
+              <br>
+              <pre class="text-muted">
+              A selection of "system" values are available for use in the Data Map.
+              ---------------------------------------------------------------------
+              !MSG.ID = Current UUID of the Message being generated.                          !SEQ    = A Sequence Number of the transaction
+              !TODAY  = Todays Date (as YYYY-MM-DD)       !DDD    = The Day of the year       !YYYY   = The Year (4 digits)
+              !DD     = Date of the Month (as DD)         !MM     = The Month (as 2 digits)   !YY     = The Year (2 digits)
+              !hh     = The Hour (as 2 digits)            !mm     = Minutes (as 2 digits)     !ss     = Seconds (as 2 digits)
+              !SPOT   = The Spot Date (T+2)               !1M     = Spot Date + 1 Month    -> !12M    = Spot Date + 12 Months
+              !1Y     = Spot Date + 1 Year             -> !%Y    = Spot Date + 2 Years        !FDY    = First Day of Current Year        </pre>            
+
+
+
+      </div>
+    </div>
+
+  </div>
+<br>
+  </div>
+            <input name="pgid" id="pgid" type="text" value="{{.DataMapPageID}}" hidden />
+         
+            <textarea class="form-control" name="pgContent" id="pgContent" rows="{{.JSRows}}" cols="80">{{.FullRecord}}</textarea>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+{{template "userfooter" .}}
+
+{{template "pagefooter" .}}
+<script>
+  let saveFile = (saveElement, fileName) => {
+
+    // Get the data from each element on the form.
+    const name = document.getElementById(saveElement);
+
+    // This variable stores all the data.
+    let data = '\r ' + name.value + ' \r\n '
+
+    // Convert the text to BLOB.
+    const textToBLOB = new Blob([data], {
+      type: 'text/plain'
+    });
+    const sFileName = fileName; // The file to save the data.
+
+    let newLink = document.createElement("a");
+    newLink.download = sFileName;
+
+    if (window.webkitURL != null) {
+      newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+    } else {
+      newLink.href = window.URL.createObjectURL(textToBLOB);
+      newLink.style.display = "none";
+      document.body.appendChild(newLink);
+    }
+
+    newLink.click();
+  }
+</script>

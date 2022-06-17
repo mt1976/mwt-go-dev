@@ -1,0 +1,59 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-passport me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Counterparty Name as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Name"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center">NameFirm</th>
+                          <th class="text-center">NameCentre</th>
+                          <th class="text-center">FullName</th>
+                          <th class="text-center">CompID</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle">{{.NameFirm}}</td>
+                          <td class="align-middle">{{.NameCentre}}</td>
+                          <td class="align-middle">{{.FullName}}</td>
+                          <td class="align-middle">{{.CompID}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/CounterpartyNameView?ID={{.CompID}}" method="POST" title="View Counterparty Name"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

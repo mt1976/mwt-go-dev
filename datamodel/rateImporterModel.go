@@ -3,8 +3,6 @@ package datamodel
 import (
 	"encoding/xml"
 	"log"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
 type RateImporterMsg struct {
@@ -70,7 +68,7 @@ func RateImporterTest() {
 	list = append(list, item)
 
 	knickers.Coll.Rt = list
-	spew.Dump(knickers)
+	//spew.Dump(knickers)
 
 	newMsg, err := xml.Marshal(knickers)
 	newMsg = []byte(xml.Header + string(newMsg))

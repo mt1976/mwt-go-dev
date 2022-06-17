@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:16
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:12
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,14 +84,53 @@ func negotiableinstrument_Save(r dm.NegotiableInstrument,usr string) error {
 
     var err error
 
-	logs.Storing("NegotiableInstrument",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = NegotiableInstrument_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\negotiableinstrument_impl.go
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -101,46 +138,55 @@ func negotiableinstrument_Save(r dm.NegotiableInstrument,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	
+logs.Storing("NegotiableInstrument",fmt.Sprintf("%s", r))
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.NegotiableInstrument_SYSId, r.SYSId)
-ts = addData(ts, dm.NegotiableInstrument_Id, r.Id)
-ts = addData(ts, dm.NegotiableInstrument_LongName, r.LongName)
-ts = addData(ts, dm.NegotiableInstrument_Isin, r.Isin)
-ts = addData(ts, dm.NegotiableInstrument_Tidm, r.Tidm)
-ts = addData(ts, dm.NegotiableInstrument_Sedol, r.Sedol)
-ts = addData(ts, dm.NegotiableInstrument_IssueDate, r.IssueDate)
-ts = addData(ts, dm.NegotiableInstrument_MaturityDate, r.MaturityDate)
-ts = addData(ts, dm.NegotiableInstrument_CouponValue, r.CouponValue)
-ts = addData(ts, dm.NegotiableInstrument_CouponType, r.CouponType)
-ts = addData(ts, dm.NegotiableInstrument_Segment, r.Segment)
-ts = addData(ts, dm.NegotiableInstrument_Sector, r.Sector)
-ts = addData(ts, dm.NegotiableInstrument_CodeConventionCalculateAccrual, r.CodeConventionCalculateAccrual)
-ts = addData(ts, dm.NegotiableInstrument_MinimumDenomination, r.MinimumDenomination)
-ts = addData(ts, dm.NegotiableInstrument_DenominationCurrency, r.DenominationCurrency)
-ts = addData(ts, dm.NegotiableInstrument_TradingCurrency, r.TradingCurrency)
-ts = addData(ts, dm.NegotiableInstrument_Type, r.Type)
-ts = addData(ts, dm.NegotiableInstrument_FlatYield, r.FlatYield)
-ts = addData(ts, dm.NegotiableInstrument_PaymentCouponDate, r.PaymentCouponDate)
-ts = addData(ts, dm.NegotiableInstrument_PeriodOfCoupon, r.PeriodOfCoupon)
-ts = addData(ts, dm.NegotiableInstrument_ExCouponDate, r.ExCouponDate)
-ts = addData(ts, dm.NegotiableInstrument_DateOfIndexInflation, r.DateOfIndexInflation)
-ts = addData(ts, dm.NegotiableInstrument_UnitOfQuotation, r.UnitOfQuotation)
-ts = addData(ts, dm.NegotiableInstrument_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.NegotiableInstrument_SYSWho, r.SYSWho)
-ts = addData(ts, dm.NegotiableInstrument_SYSHost, r.SYSHost)
-ts = addData(ts, dm.NegotiableInstrument_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.NegotiableInstrument_Issuer, r.Issuer)
-ts = addData(ts, dm.NegotiableInstrument_IssueAmount, r.IssueAmount)
-ts = addData(ts, dm.NegotiableInstrument_RunningYield, r.RunningYield)
-ts = addData(ts, dm.NegotiableInstrument_LEI, r.LEI)
-ts = addData(ts, dm.NegotiableInstrument_CUSIP, r.CUSIP)
-ts = addData(ts, dm.NegotiableInstrument_SYSUpdatedHost, r.SYSUpdatedHost)
-ts = addData(ts, dm.NegotiableInstrument_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.NegotiableInstrument_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.NegotiableInstrument_SYSUpdatedBy, r.SYSUpdatedBy)
-	
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.NegotiableInstrument_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.NegotiableInstrument_Id_sql, r.Id)
+	ts = addData(ts, dm.NegotiableInstrument_LongName_sql, r.LongName)
+	ts = addData(ts, dm.NegotiableInstrument_Isin_sql, r.Isin)
+	ts = addData(ts, dm.NegotiableInstrument_Tidm_sql, r.Tidm)
+	ts = addData(ts, dm.NegotiableInstrument_Sedol_sql, r.Sedol)
+	ts = addData(ts, dm.NegotiableInstrument_IssueDate_sql, r.IssueDate)
+	ts = addData(ts, dm.NegotiableInstrument_MaturityDate_sql, r.MaturityDate)
+	ts = addData(ts, dm.NegotiableInstrument_CouponValue_sql, r.CouponValue)
+	ts = addData(ts, dm.NegotiableInstrument_CouponType_sql, r.CouponType)
+	ts = addData(ts, dm.NegotiableInstrument_Segment_sql, r.Segment)
+	ts = addData(ts, dm.NegotiableInstrument_Sector_sql, r.Sector)
+	ts = addData(ts, dm.NegotiableInstrument_CodeConventionCalculateAccrual_sql, r.CodeConventionCalculateAccrual)
+	ts = addData(ts, dm.NegotiableInstrument_MinimumDenomination_sql, r.MinimumDenomination)
+	ts = addData(ts, dm.NegotiableInstrument_DenominationCurrency_sql, r.DenominationCurrency)
+	ts = addData(ts, dm.NegotiableInstrument_TradingCurrency_sql, r.TradingCurrency)
+	ts = addData(ts, dm.NegotiableInstrument_Type_sql, r.Type)
+	ts = addData(ts, dm.NegotiableInstrument_FlatYield_sql, r.FlatYield)
+	ts = addData(ts, dm.NegotiableInstrument_PaymentCouponDate_sql, r.PaymentCouponDate)
+	ts = addData(ts, dm.NegotiableInstrument_PeriodOfCoupon_sql, r.PeriodOfCoupon)
+	ts = addData(ts, dm.NegotiableInstrument_ExCouponDate_sql, r.ExCouponDate)
+	ts = addData(ts, dm.NegotiableInstrument_DateOfIndexInflation_sql, r.DateOfIndexInflation)
+	ts = addData(ts, dm.NegotiableInstrument_UnitOfQuotation_sql, r.UnitOfQuotation)
+	ts = addData(ts, dm.NegotiableInstrument_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.NegotiableInstrument_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.NegotiableInstrument_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.NegotiableInstrument_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.NegotiableInstrument_Issuer_sql, r.Issuer)
+	ts = addData(ts, dm.NegotiableInstrument_IssueAmount_sql, r.IssueAmount)
+	ts = addData(ts, dm.NegotiableInstrument_RunningYield_sql, r.RunningYield)
+	ts = addData(ts, dm.NegotiableInstrument_LEI_sql, r.LEI)
+	ts = addData(ts, dm.NegotiableInstrument_CUSIP_sql, r.CUSIP)
+	ts = addData(ts, dm.NegotiableInstrument_SYSUpdatedHost_sql, r.SYSUpdatedHost)
+	ts = addData(ts, dm.NegotiableInstrument_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.NegotiableInstrument_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.NegotiableInstrument_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+		
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.NegotiableInstrument_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -156,7 +202,8 @@ ts = addData(ts, dm.NegotiableInstrument_SYSUpdatedBy, r.SYSUpdatedBy)
 }
 
 
-// negotiableinstrument_Fetch read all employees
+
+// negotiableinstrument_Fetch read all NegotiableInstrument's
 func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm.NegotiableInstrument, error) {
 
 	var recItem dm.NegotiableInstrument
@@ -164,129 +211,103 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.NegotiableInstrument_SYSId, "0")
-   recItem.Id  = get_String(rec, dm.NegotiableInstrument_Id, "")
-   recItem.LongName  = get_String(rec, dm.NegotiableInstrument_LongName, "")
-   recItem.Isin  = get_String(rec, dm.NegotiableInstrument_Isin, "")
-   recItem.Tidm  = get_String(rec, dm.NegotiableInstrument_Tidm, "")
-   recItem.Sedol  = get_String(rec, dm.NegotiableInstrument_Sedol, "")
-   recItem.IssueDate  = get_String(rec, dm.NegotiableInstrument_IssueDate, "")
-   recItem.MaturityDate  = get_String(rec, dm.NegotiableInstrument_MaturityDate, "")
-   recItem.CouponValue  = get_String(rec, dm.NegotiableInstrument_CouponValue, "")
-   recItem.CouponType  = get_String(rec, dm.NegotiableInstrument_CouponType, "")
-   recItem.Segment  = get_String(rec, dm.NegotiableInstrument_Segment, "")
-   recItem.Sector  = get_String(rec, dm.NegotiableInstrument_Sector, "")
-   recItem.CodeConventionCalculateAccrual  = get_String(rec, dm.NegotiableInstrument_CodeConventionCalculateAccrual, "")
-   recItem.MinimumDenomination  = get_String(rec, dm.NegotiableInstrument_MinimumDenomination, "")
-   recItem.DenominationCurrency  = get_String(rec, dm.NegotiableInstrument_DenominationCurrency, "")
-   recItem.TradingCurrency  = get_String(rec, dm.NegotiableInstrument_TradingCurrency, "")
-   recItem.Type  = get_String(rec, dm.NegotiableInstrument_Type, "")
-   recItem.FlatYield  = get_String(rec, dm.NegotiableInstrument_FlatYield, "")
-   recItem.PaymentCouponDate  = get_String(rec, dm.NegotiableInstrument_PaymentCouponDate, "")
-   recItem.PeriodOfCoupon  = get_String(rec, dm.NegotiableInstrument_PeriodOfCoupon, "")
-   recItem.ExCouponDate  = get_String(rec, dm.NegotiableInstrument_ExCouponDate, "")
-   recItem.DateOfIndexInflation  = get_String(rec, dm.NegotiableInstrument_DateOfIndexInflation, "")
-   recItem.UnitOfQuotation  = get_String(rec, dm.NegotiableInstrument_UnitOfQuotation, "")
-   recItem.SYSCreated  = get_String(rec, dm.NegotiableInstrument_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.NegotiableInstrument_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.NegotiableInstrument_SYSHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.NegotiableInstrument_SYSUpdated, "")
-   recItem.Issuer  = get_String(rec, dm.NegotiableInstrument_Issuer, "")
-   recItem.IssueAmount  = get_String(rec, dm.NegotiableInstrument_IssueAmount, "")
-   recItem.RunningYield  = get_String(rec, dm.NegotiableInstrument_RunningYield, "")
-   recItem.LEI  = get_String(rec, dm.NegotiableInstrument_LEI, "")
-   recItem.CUSIP  = get_String(rec, dm.NegotiableInstrument_CUSIP, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.NegotiableInstrument_SYSUpdatedHost, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.NegotiableInstrument_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.NegotiableInstrument_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.NegotiableInstrument_SYSUpdatedBy, "")
-// If there are fields below, create the methods in dao\NegotiableInstrument_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.NegotiableInstrument_SYSId_sql, "0")
+	   recItem.Id  = get_String(rec, dm.NegotiableInstrument_Id_sql, "")
+	   recItem.LongName  = get_String(rec, dm.NegotiableInstrument_LongName_sql, "")
+	   recItem.Isin  = get_String(rec, dm.NegotiableInstrument_Isin_sql, "")
+	   recItem.Tidm  = get_String(rec, dm.NegotiableInstrument_Tidm_sql, "")
+	   recItem.Sedol  = get_String(rec, dm.NegotiableInstrument_Sedol_sql, "")
+	   recItem.IssueDate  = get_String(rec, dm.NegotiableInstrument_IssueDate_sql, "")
+	   recItem.MaturityDate  = get_String(rec, dm.NegotiableInstrument_MaturityDate_sql, "")
+	   recItem.CouponValue  = get_String(rec, dm.NegotiableInstrument_CouponValue_sql, "")
+	   recItem.CouponType  = get_String(rec, dm.NegotiableInstrument_CouponType_sql, "")
+	   recItem.Segment  = get_String(rec, dm.NegotiableInstrument_Segment_sql, "")
+	   recItem.Sector  = get_String(rec, dm.NegotiableInstrument_Sector_sql, "")
+	   recItem.CodeConventionCalculateAccrual  = get_String(rec, dm.NegotiableInstrument_CodeConventionCalculateAccrual_sql, "")
+	   recItem.MinimumDenomination  = get_String(rec, dm.NegotiableInstrument_MinimumDenomination_sql, "")
+	   recItem.DenominationCurrency  = get_String(rec, dm.NegotiableInstrument_DenominationCurrency_sql, "")
+	   recItem.TradingCurrency  = get_String(rec, dm.NegotiableInstrument_TradingCurrency_sql, "")
+	   recItem.Type  = get_String(rec, dm.NegotiableInstrument_Type_sql, "")
+	   recItem.FlatYield  = get_String(rec, dm.NegotiableInstrument_FlatYield_sql, "")
+	   recItem.PaymentCouponDate  = get_String(rec, dm.NegotiableInstrument_PaymentCouponDate_sql, "")
+	   recItem.PeriodOfCoupon  = get_String(rec, dm.NegotiableInstrument_PeriodOfCoupon_sql, "")
+	   recItem.ExCouponDate  = get_String(rec, dm.NegotiableInstrument_ExCouponDate_sql, "")
+	   recItem.DateOfIndexInflation  = get_String(rec, dm.NegotiableInstrument_DateOfIndexInflation_sql, "")
+	   recItem.UnitOfQuotation  = get_String(rec, dm.NegotiableInstrument_UnitOfQuotation_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.NegotiableInstrument_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.NegotiableInstrument_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.NegotiableInstrument_SYSHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.NegotiableInstrument_SYSUpdated_sql, "")
+	   recItem.Issuer  = get_String(rec, dm.NegotiableInstrument_Issuer_sql, "")
+	   recItem.IssueAmount  = get_String(rec, dm.NegotiableInstrument_IssueAmount_sql, "")
+	   recItem.RunningYield  = get_String(rec, dm.NegotiableInstrument_RunningYield_sql, "")
+	   recItem.LEI  = get_String(rec, dm.NegotiableInstrument_LEI_sql, "")
+	   recItem.CUSIP  = get_String(rec, dm.NegotiableInstrument_CUSIP_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.NegotiableInstrument_SYSUpdatedHost_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.NegotiableInstrument_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.NegotiableInstrument_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.NegotiableInstrument_SYSUpdatedBy_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\NegotiableInstrument_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func NegotiableInstrument_NewID(r dm.NegotiableInstrument) string {
 	
@@ -294,6 +315,7 @@ func NegotiableInstrument_NewID(r dm.NegotiableInstrument) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

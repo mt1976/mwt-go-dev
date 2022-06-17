@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func DealType_Delete_Impl(id string) error {
+func DealType_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement DealType_Delete: " + id
 
-	// Implement DealType_Delete_Impl in dealtype_Impl.go
+	// Implement DealType_Delete_impl in dealtype_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := DealType_Delete_Impl(item)
+	// er := DealType_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func DealType_Update_Impl(item dm.DealType, usr string) error {
+func DealType_Update_impl(id string, item dm.DealType, usr string) error {
 	var er error
 
 	message := "Implement DealType_Update: " + item.DealTypeKey
 
-	// Implement DealType_Update_Impl in dealtype_Impl.go
+	// Implement DealType_Update_impl in dealtype_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := DealType_Update_Impl(item)
+	// er := DealType_Update_impl(item)
 	//
 
 	logs.Success(message)

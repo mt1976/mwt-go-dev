@@ -1,0 +1,82 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/template.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Template (template)
+// Endpoint 	        : Template (TemplateID)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 12/06/2022 at 17:04:23
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in template_impl.go
+
+
+
+
+// If there are fields below, create the methods in adaptor\template_impl.go
+
+
+
+
+
+
+
+
+
+
+func Template_ExtraField_Store_impl (rec dm.Template,usr string) (error)  {return nil}
+func Template_ExtraField2_Store_impl (rec dm.Template,usr string) (error)  {return nil}
+func Template_ExtraField3_Store_impl (rec dm.Template,usr string) (error)  {return nil}
+
+
+
+func Template_SYSCreated_Override_Store_impl (rec dm.Template) (error)  {return nil} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func Template_ExtraField_Fetch_impl (rec dm.Template)(string) {return ""}
+func Template_ExtraField2_Fetch_impl (rec dm.Template)(string) {return ""}
+func Template_ExtraField3_Fetch_impl (rec dm.Template)(string) {return ""}
+
+
+
+func Template_SYSCreated_Override_Fetch_impl (rec dm.Template) (string) {return ""} 
+
+
+
+
+
+
+
+
+
+

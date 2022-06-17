@@ -1,0 +1,231 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-toolbox me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/DealTypeFundamentalNew" method="GET" title="Create a new Deal Type Fundamental"><i class="fas fa-plus me-2"></i>New</button>
+                    <button id="export" type="button" class="btn btn-info" title="Export Deal Type Fundamental as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Deal Type Fundamental"><i class="fas fa-print me-2"></i></i>Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center"><i class="fas fa-key me-2"></i>DealTypeKey</th>
+                          <th class="text-center">Amendment</th>
+                          <th class="text-center">DefaultFrequency</th>
+                          <th class="text-center">Directions</th>
+                          <th class="text-center">SettledTermDealType</th>
+                          <th class="text-center">Optn</th>
+                          <th class="text-center">AllowPledge</th>
+                          <th class="text-center">Takeup</th>
+                          <th class="text-center">MismatchDealType</th>
+                          <th class="text-center">SettledHedgeTermDealType</th>
+                          <th class="text-center">SettlementCode</th>
+                          <th class="text-center">TermSubType</th>
+                          <th class="text-center">FundingDealType</th>
+                          <th class="text-center">TransferType</th>
+                          <th class="text-center">TermDealType</th>
+                          <th class="text-center">NegotiableInstrumentType</th>
+                          <th class="text-center">Mismatch</th>
+                          <th class="text-center">ComplexTransferSubType</th>
+                          <th class="text-center">LayOffDealType</th>
+                          <th class="text-center">NIAccount</th>
+                          <th class="text-center">SimpleMMsubtype</th>
+                          <th class="text-center">SwapDealType</th>
+                          <th class="text-center">Positions</th>
+                          <th class="text-center">OptionOutright</th>
+                          <th class="text-center">SettledHedgeSpotDealType</th>
+                          <th class="text-center">StraightThroughInterestMethod</th>
+                          <th class="text-center">SubType</th>
+                          <th class="text-center">Rollover</th>
+                          <th class="text-center">DefaultIssuer</th>
+                          <th class="text-center">DefaultStartDate</th>
+                          <th class="text-center">Fee</th>
+                          <th class="text-center">NDF</th>
+                          <th class="text-center">FXFX</th>
+                          <th class="text-center">ONIA</th>
+                          <th class="text-center">MarginSubType</th>
+                          <th class="text-center">TransferDealType</th>
+                          <th class="text-center">IsFX</th>
+                          <th class="text-center">Ordr</th>
+                          <th class="text-center">OptionStyle</th>
+                          <th class="text-center">SpotDealType</th>
+                          <th class="text-center">CanIssue</th>
+                          <th class="text-center">CanShort</th>
+                          <th class="text-center">FXMarginTradingType</th>
+                          <th class="text-center">Internal</th>
+                          <th class="text-center">TicketBasename</th>
+                          <th class="text-center">InterestRateFutureType</th>
+                          <th class="text-center">TradingLimitProductCode</th>
+                          <th class="text-center">Forward</th>
+                          <th class="text-center">MaturityNotificationPeriod</th>
+                          <th class="text-center">NotificationEvents</th>
+                          <th class="text-center">SwapSubType</th>
+                          <th class="text-center">ProductCode</th>
+                          <th class="text-center">Funding</th>
+                          <th class="text-center">AllocationPricing</th>
+                          <th class="text-center">CancelPeriod</th>
+                          <th class="text-center">MMMarginTradingType</th>
+                          <th class="text-center">OptionSpot</th>
+                          <th class="text-center">Transfer</th>
+                          <th class="text-center">NotificationPeriod</th>
+                          <th class="text-center">Paymentdateshift</th>
+                          <th class="text-center">CloseOut</th>
+                          <th class="text-center">FXOptionPricing</th>
+                          <th class="text-center">SettledHedgeOutrightDealType</th>
+                          <th class="text-center">RepoBond</th>
+                          <th class="text-center">RepoTerm</th>
+                          <th class="text-center">RepoType</th>
+                          <th class="text-center">DateRule</th>
+                          <th class="text-center">CorpTransferDealType</th>
+                          <th class="text-center">GenerateFXImage</th>
+                          <th class="text-center">Variant</th>
+                          <th class="text-center">HedgeTermDealType</th>
+                          <th class="text-center">PricingModel</th>
+                          <th class="text-center">HedgeOutrightDealType</th>
+                          <th class="text-center">Fixing</th>
+                          <th class="text-center">Payment</th>
+                          <th class="text-center">MT</th>
+                          <th class="text-center">SettlementInstructionStyle</th>
+                          <th class="text-center">QuoteHistoryRequired</th>
+                          <th class="text-center">Brokerage</th>
+                          <th class="text-center">ExposureDisabled</th>
+                          <th class="text-center">CreditLine</th>
+                          <th class="text-center">Encumbered</th>
+                          <th class="text-center">InternalId</th>
+                          <th class="text-center">InternalDeleted</th>
+                          <th class="text-center">UpdatedTransactionId</th>
+                          <th class="text-center">UpdatedUserId</th>
+                          <th class="text-center">UpdatedDateTime</th>
+                          <th class="text-center">DeletedTransactionId</th>
+                          <th class="text-center">DeletedUserId</th>
+                          <th class="text-center">ChangeType</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle" >{{.DealTypeKey}}</td>
+                          <td class="align-middle" >{{.Amendment}}</td>
+                          <td class="align-middle" >{{.DefaultFrequency}}</td>
+                          <td class="align-middle" >{{.Directions}}</td>
+                          <td class="align-middle" >{{.SettledTermDealType}}</td>
+                          <td class="align-middle" >{{.Optn}}</td>
+                          <td class="align-middle" >{{.AllowPledge}}</td>
+                          <td class="align-middle" >{{.Takeup}}</td>
+                          <td class="align-middle" >{{.MismatchDealType}}</td>
+                          <td class="align-middle" >{{.SettledHedgeTermDealType}}</td>
+                          <td class="align-middle" >{{.SettlementCode}}</td>
+                          <td class="align-middle" >{{.TermSubType}}</td>
+                          <td class="align-middle" >{{.FundingDealType}}</td>
+                          <td class="align-middle" >{{.TransferType}}</td>
+                          <td class="align-middle" >{{.TermDealType}}</td>
+                          <td class="align-middle" >{{.NegotiableInstrumentType}}</td>
+                          <td class="align-middle" >{{.Mismatch}}</td>
+                          <td class="align-middle" >{{.ComplexTransferSubType}}</td>
+                          <td class="align-middle" >{{.LayOffDealType}}</td>
+                          <td class="align-middle" >{{.NIAccount}}</td>
+                          <td class="align-middle" >{{.SimpleMMsubtype}}</td>
+                          <td class="align-middle" >{{.SwapDealType}}</td>
+                          <td class="align-middle" >{{.Positions}}</td>
+                          <td class="align-middle" >{{.OptionOutright}}</td>
+                          <td class="align-middle" >{{.SettledHedgeSpotDealType}}</td>
+                          <td class="align-middle" >{{.StraightThroughInterestMethod}}</td>
+                          <td class="align-middle" >{{.SubType}}</td>
+                          <td class="align-middle" >{{.Rollover}}</td>
+                          <td class="align-middle" >{{.DefaultIssuer}}</td>
+                          <td class="align-middle" >{{.DefaultStartDate}}</td>
+                          <td class="align-middle" >{{.Fee}}</td>
+                          <td class="align-middle" >{{.NDF}}</td>
+                          <td class="align-middle" >{{.FXFX}}</td>
+                          <td class="align-middle" >{{.ONIA}}</td>
+                          <td class="align-middle" >{{.MarginSubType}}</td>
+                          <td class="align-middle" >{{.TransferDealType}}</td>
+                          <td class="align-middle" >{{.IsFX}}</td>
+                          <td class="align-middle" >{{.Ordr}}</td>
+                          <td class="align-middle" >{{.OptionStyle}}</td>
+                          <td class="align-middle" >{{.SpotDealType}}</td>
+                          <td class="align-middle" >{{.CanIssue}}</td>
+                          <td class="align-middle" >{{.CanShort}}</td>
+                          <td class="align-middle" >{{.FXMarginTradingType}}</td>
+                          <td class="align-middle" >{{.Internal}}</td>
+                          <td class="align-middle" >{{.TicketBasename}}</td>
+                          <td class="align-middle" >{{.InterestRateFutureType}}</td>
+                          <td class="align-middle" >{{.TradingLimitProductCode}}</td>
+                          <td class="align-middle" >{{.Forward}}</td>
+                          <td class="align-middle" >{{.MaturityNotificationPeriod}}</td>
+                          <td class="align-middle" >{{.NotificationEvents}}</td>
+                          <td class="align-middle" >{{.SwapSubType}}</td>
+                          <td class="align-middle" >{{.ProductCode}}</td>
+                          <td class="align-middle" >{{.Funding}}</td>
+                          <td class="align-middle" >{{.AllocationPricing}}</td>
+                          <td class="align-middle" >{{.CancelPeriod}}</td>
+                          <td class="align-middle" >{{.MMMarginTradingType}}</td>
+                          <td class="align-middle" >{{.OptionSpot}}</td>
+                          <td class="align-middle" >{{.Transfer}}</td>
+                          <td class="align-middle" >{{.NotificationPeriod}}</td>
+                          <td class="align-middle" >{{.Paymentdateshift}}</td>
+                          <td class="align-middle" >{{.CloseOut}}</td>
+                          <td class="align-middle" >{{.FXOptionPricing}}</td>
+                          <td class="align-middle" >{{.SettledHedgeOutrightDealType}}</td>
+                          <td class="align-middle" >{{.RepoBond}}</td>
+                          <td class="align-middle" >{{.RepoTerm}}</td>
+                          <td class="align-middle" >{{.RepoType}}</td>
+                          <td class="align-middle" >{{.DateRule}}</td>
+                          <td class="align-middle" >{{.CorpTransferDealType}}</td>
+                          <td class="align-middle" >{{.GenerateFXImage}}</td>
+                          <td class="align-middle" >{{.Variant}}</td>
+                          <td class="align-middle" >{{.HedgeTermDealType}}</td>
+                          <td class="align-middle" >{{.PricingModel}}</td>
+                          <td class="align-middle" >{{.HedgeOutrightDealType}}</td>
+                          <td class="align-middle" >{{.Fixing}}</td>
+                          <td class="align-middle" >{{.Payment}}</td>
+                          <td class="align-middle" >{{.MT}}</td>
+                          <td class="align-middle" >{{.SettlementInstructionStyle}}</td>
+                          <td class="align-middle" >{{.QuoteHistoryRequired}}</td>
+                          <td class="align-middle" >{{.Brokerage}}</td>
+                          <td class="align-middle" >{{.ExposureDisabled}}</td>
+                          <td class="align-middle" >{{.CreditLine}}</td>
+                          <td class="align-middle" >{{.Encumbered}}</td>
+                          <td class="align-middle" >{{.InternalId}}</td>
+                          <td class="align-middle" >{{.InternalDeleted}}</td>
+                          <td class="align-middle" >{{.UpdatedTransactionId}}</td>
+                          <td class="align-middle" >{{.UpdatedUserId}}</td>
+                          <td class="align-middle" >{{.UpdatedDateTime}}</td>
+                          <td class="align-middle" >{{.DeletedTransactionId}}</td>
+                          <td class="align-middle" >{{.DeletedUserId}}</td>
+                          <td class="align-middle" >{{.ChangeType}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/DealTypeFundamentalView?DealTypeKey={{.DealTypeKey}}" method="POST" title="View Deal Type Fundamental"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/DealTypeFundamentalEdit?DealTypeKey={{.DealTypeKey}}" method="POST" title="Edit Deal Type Fundamental"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/DealTypeFundamentalDelete?DealTypeKey={{.DealTypeKey}}" method="POST" title="Delete Deal Type Fundamental"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

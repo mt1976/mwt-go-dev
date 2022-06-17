@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func CounterpartyAddress_Delete_Impl(id string) error {
+func CounterpartyAddress_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement CounterpartyAddress_Delete: " + id
 
-	// Implement CounterpartyAddress_Delete_Impl in counterpartyaddress_Impl.go
+	// Implement CounterpartyAddress_Delete_impl in counterpartyaddress_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CounterpartyAddress_Delete_Impl(item)
+	// er := CounterpartyAddress_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func CounterpartyAddress_Update_Impl(item dm.CounterpartyAddress, usr string) error {
+func CounterpartyAddress_Update_impl(id string, item dm.CounterpartyAddress, usr string) error {
 	var er error
 
 	message := "Implement CounterpartyAddress_Update: " + item.CompID
 
-	// Implement CounterpartyAddress_Update_Impl in counterpartyaddress_Impl.go
+	// Implement CounterpartyAddress_Update_impl in counterpartyaddress_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CounterpartyAddress_Update_Impl(item)
+	// er := CounterpartyAddress_Update_impl(item)
 	//
 
 	logs.Success(message)

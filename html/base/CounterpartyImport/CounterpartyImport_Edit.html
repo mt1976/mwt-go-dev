@@ -1,0 +1,95 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/CounterpartyImportSave/?ID={{.CompID}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fas fa-passport me-2" title="ID={{.CompID}}"></i><span class="me-3">{{.Title}}</span>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartyImportSave/?ID={{.CompID}}" onclick="/CounterpartyImportSave/?ID={{.CompID}}" title="Save Counterparty Import"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Import"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="KeyImportID" name="KeyImportID" aria-describedby="KeyImportIDHelp" placeholder=""   value="{{.KeyImportID}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="KeyImportID" >KeyImportID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Firm" name="Firm" aria-describedby="FirmHelp" placeholder=""   value="{{.Firm}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="Firm" >Firm</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Centre" name="Centre" aria-describedby="CentreHelp" placeholder=""   value="{{.Centre}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="Centre" >Centre</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""   value="{{.FirmName}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="FirmName" >FirmName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CentreName" name="CentreName" aria-describedby="CentreNameHelp" placeholder=""   value="{{.CentreName}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CentreName" >CentreName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="KeyOriginID" name="KeyOriginID" aria-describedby="KeyOriginIDHelp" placeholder=""   value="{{.KeyOriginID}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="KeyOriginID" >KeyOriginID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""   value="{{.FullName}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="FullName" >FullName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""   value="{{.CompID}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

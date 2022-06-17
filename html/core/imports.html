@@ -1,0 +1,286 @@
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the header section, include styles and menu                                                             -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "header"}}
+<head>
+    <!-- START OF INSERTS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <!-- FAVICON BUMPF -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#322a77">
+    <meta name="msapplication-TileColor" content="#322a77">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- BOOTSTRAP CSS -->
+   
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <!-- MDB -->
+    <!--<link rel="stylesheet" href="../assets/css/style.css" />-->
+   <!-- <link rel="stylesheet" href="../assets/css/mdb.min.css" /> -->
+    <!-- Custom styles -->
+    <!--<link rel="stylesheet" href="../assets/MDB5/css/style.css" />-->
+ <!--<link rel="stylesheet" href="../assets/custom.css">-->
+
+
+    <link rel="stylesheet" href="/assets/css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/custom_table.css" />
+
+    <!--<script src="../assets/custom.js"></script>-->
+
+    <!-- Add CUSTOM ICONS, FONTS & STYLES -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- END OF INSERTS -->
+
+
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+     <a class="navbar-brand mt-0 mt-lg-0 text-primary" href="/home">
+      <img
+          src="/assets/android-chrome-48x48.png"
+          height="32"
+          alt="{{.UserMenu.MenuHeaderText}} Logo"
+          loading="lazy"/> 
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      {{range .UserMenu.SectionTrees}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{.SectionName}}" role="button" data-mdb-toggle="dropdown" aria-expanded="false">{{.SectionName}}</a>           
+          <ul class="dropdown-menu scrollabe-menu" aria-labelledby="navbarDropdown{{.SectionName}}" 
+          role="menu"
+          style="height: auto;max-height: 2000px; overflow-x: auto; overflow-y: auto">
+          {{range .SectionNodes}}
+          {{if eq .MenuBreak "true"}}<li><hr class="dropdown-divider" /></li>{{else}}<li><a class="dropdown-item" href="..{{.MenuHREF}}" onclick="{{.MenuHREF}}"> <i class="{{.MenuGlyph}} {{.MenuTextClass}} fa-fw me-3"></i><span>{{.MenuText}}</span></a></li>{{end}}{{end}}
+          </ul>
+          </li>
+      {{end}}     
+    </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Avatar -->
+      <div class="dropdown">
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="32" alt="Black and White Portrait of a Man" loading="lazy"/>  </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end scrollabe-menu" 
+          role="menu"
+          style="height: auto;max-height: 200px; overflow-x: auto;"
+          aria-labelledby="navbarDropdownMenuAvatar">
+          <li><a class="dropdown-item" href="#"><i class="fas fa-user fa-fw me-3"></i><span>My Profile</span></a></li>
+          <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw me-3"></i><span>Settings</span></a></li>
+          <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+<!-- Content -->
+    <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+    <title>{{.PageTitle}}</title>
+    <!-- DO NOT CHANGE -->
+    {{template "tablecontrols" .}}
+</head>{{end}} 
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Body Tag                                                                                 -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "bodydefinition"}}
+<body class="bg-light">
+<div class="container-fluid" style="margin-top: 4.5rem;">
+{{end}} 
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the User Footer Section                                                                                      -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "userfooter"}}
+<!-- Footer -->
+<footer class="bg-link text-left text-lg-start fixed-bottom">
+    <!--  <div style="text-left background-color: var(--custom-light-grey);padding:.2rem;padding-left:.3rem;">-->
+    <div class="text-left p-1" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="font-weight-light text-dark" style="font-size:70%;">
+        {{.SessionInfo.HostName}} | {{.SessionInfo.UserName}} | {{.SessionInfo.AppDB}} | {{.SessionInfo.SienaDB}} | {{.SessionInfo.AppServerDate}} | {{.SessionInfo.SienaServerDate}} {{.SessionInfo.DateSyncIssue}} 
+      </div>
+    </div>
+</footer>
+{{end}}
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Page Footer Section                                                                                      -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "pagefooter"}}
+<!-- Footer -->
+</div>
+    <!-- MDB -->
+    <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+</body>
+{{end}} 
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Audit Section                                                                                       -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "audit"}}
+
+<div class="accordion-flush" id="auditInformation">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button btn-sm"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+        style="padding-bottom: .75rem; padding-right: 2rem; padding-left: 2rem;">
+        <i class="fas fa-eye fa-fw me-2 text-muted"></i><span class="text-muted">Audit Information</span>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#auditInformation">
+      <div class="accordion-body" style="padding-left: 2rem;padding-right: 2rem;padding-top: .5rem;">
+        
+          <div class="h4">Audit Information</div>
+          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true">
+            <table class="table table-sm  mb-0 align-middle">
+              <thead class="bg-light">
+                <tr>
+                  <th scope="col">Action</th>
+                  <th scope="col">When</th>
+                  <th scope="col">Who</th>
+                  <th scope="col">Where</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th class="bg-light">Created</th>
+                  <td>{{.SYSCreated}}</td>
+                  <td>{{.SYSCreatedBy}}</td>
+                  <td>{{.SYSCreatedHost}}</td>
+                </tr>
+                <tr>
+                  <th class="bg-light">Updated</th>
+                  <td>{{.SYSUpdated}}</td>
+                  <td>{{.SYSUpdatedBy}}</td>
+                  <td>{{.SYSUpdatedHost}}</td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+{{end}}
+
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Table Controls                                                                                      -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "tablecontrols"}}
+
+
+{{end}}
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Table Controls                                                                                      -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "exportcontrols"}}
+
+<script>
+    const toCsv = function(table) {
+      // Query all rows
+      const rows = table.querySelectorAll('tr');
+
+      return [].slice.call(rows)
+        .map(function(row) {
+          // Query all cells
+          const cells = row.querySelectorAll('th,td');
+          return [].slice.call(cells)
+            .map(function(cell) {
+              return '"' + cell.textContent + '"';
+            })
+            .join(',');
+        })
+        .join('\n');
+    };
+
+    const download = function(text, fileName) {
+      const link = document.createElement('a');
+      link.setAttribute('href', `data:text/csv;charset=utf-8,${encodeURIComponent(text)}`);
+      link.setAttribute('download', fileName);
+
+      link.style.display = 'none';
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+    };
+
+    const table = document.getElementById('ListTable');
+    const exportBtn = document.getElementById('export');
+
+    exportBtn.addEventListener('click', function() {
+      // Export to csv
+      const csv = toCsv(table);
+
+      // Download it
+      download(csv, 'export.csv');
+    });
+    </script>
+
+{{end}}
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- Definition of the Financial Datepicker Modal                                                                          -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+{{define "finDatePickerModalInserts"}}
+
+
+{{end}}
+{{define "finDatePickerModal"}}
+
+
+{{end}}
+{{define "finDatePickerModalScripts"}}
+
+
+{{end}}

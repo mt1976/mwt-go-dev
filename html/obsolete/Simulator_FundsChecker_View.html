@@ -1,0 +1,130 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/editFundsCheckStore?FundsCheckStore={{.Id}}" method="POST">
+      <div hidden="hidden">
+        <input type="text" id="ID" name="ID" value="{{.Id}}">
+      </div>
+      <div class="card">
+
+        <div class="card-header">
+
+
+          <div class="row">
+            <div class="col h3">
+              Back Office - Balance Check Message Detail<code></code>
+            </div>
+
+
+            <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+          <div class="">
+            <h4>Identity</h4>
+            <div class="row">
+
+              <div class="col form-outline mb-3">
+                <input type="text" class="form-control" id="Name" name="Name" aria-describedby="Name" placeholder="Enter Name" disabled="disabled" value="{{.Name}}" maxlength="10">
+                <label class="form-label" for="Name">Name</label>
+              </div>
+              <div class="col form-outline mb-3">
+                <input type="text" class="form-control" id="Id" name="Id" aria-describedby="Id" placeholder="Enter Id" disabled="disabled" value="{{.Id}}" maxlength="10">
+                <label class="form-label" for="Id">File Name</label>
+              </div>
+             
+
+              <div class="col form-outline mb-3">
+              
+                <input type="text" class="form-control" id="Source" name="Source" aria-describedby="Source" placeholder="Enter an email address" value="{{.Source}}" disabled="disabled">
+                <label class="form-label" for="Source">Source</label>
+              </div>
+            </div>
+
+
+
+<h4>Message Header</h4>
+<div style="height: 10px"></div>
+<div class="input-group mb-2">
+  <div class="input-group-prepend">
+    <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">XREF</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.XREF}}" disabled>
+</div>
+<div class="input-group mb-2">
+  <div class="input-group-prepend">
+    <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">SOURCE</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.SOURCE}}" disabled>
+</div>
+<div class="input-group mb-2">
+  <div class="input-group-prepend">
+    <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">OPERATION</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.OPERATION}}" disabled>
+</div>
+<div class="input-group mb-2">
+  <div class="input-group-prepend">
+    <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">DESTINATION</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.HEADER.DESTINATION}}" disabled>
+</div>
+<h4>Message Body</h4>
+<div style="height: 8px"></div>
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">BIC</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{.Request.BODY.FundsCheck.BIC}}" disabled>
+  </div>
+  <div class="row">
+  <div class="col input-group mb-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">ACC</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.ACC}}"disabled>
+  </div>
+  <div class="col input-group mb-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">CCY</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.CCY}}" disabled>
+  </div>
+  <div class="col input-group mb-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">AMOUNT</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.AMOUNT}}"disabled>
+  </div>
+  </div>
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text form-control" id="basic-addon1" style="width: 10rem">VALDATE</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"  value="{{.Request.BODY.FundsCheck.VALDATE}}" disabled>
+  </div>
+  <h4>Message Content</h4>
+  <div style="height: 10px"></div>
+  <div class="row">
+    <div class="col">
+      <!--<label for="Content">Content</label>-->
+      <textarea type="text" class="form-control" id="Content" name="Content" aria-describedby="Content" placeholder="Enter a description" value="" disabled="disabled" rows="5">{{.Content}}</textarea>
+    </div>
+  </div>
+
+          </div>
+
+        </div>
+
+      </form>
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

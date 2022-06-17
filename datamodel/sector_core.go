@@ -9,15 +9,15 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:14
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Sector defines the datamolde for the Sector object
 type Sector struct {
 
-Code        string
-Name        string
+Code       string
+Name       string
 
 }
 
@@ -30,10 +30,10 @@ const (
 	/// Handler Defintions
 	///
 	Sector_Template     = "Sector"
-	Sector_TemplateList = "Sector_List"
-	Sector_TemplateView = "Sector_View"
-	Sector_TemplateEdit = "Sector_Edit"
-	Sector_TemplateNew  = "Sector_New"
+	Sector_TemplateList = "/Sector/Sector_List"
+	Sector_TemplateView = "/Sector/Sector_View"
+	Sector_TemplateEdit = "/Sector/Sector_Edit"
+	Sector_TemplateNew  = "/Sector/Sector_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -45,10 +45,18 @@ const (
 	Sector_PathSave   = "/SectorSave/"
 	Sector_PathDelete = "/SectorDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-	Sector_Code   = "Code" // Code is a String
-	Sector_Name   = "Name" // Name is a String
+Sector_Code_sql   = "Code" // Code is a String
+Sector_Name_sql   = "Name" // Name is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Sector_Code_scrn   = "Code" // Code is a String
+Sector_Name_scrn   = "Name" // Name is a String
 
 	/// Definitions End
 )

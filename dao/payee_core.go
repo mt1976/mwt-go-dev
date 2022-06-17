@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:13
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func Payee_GetByID(id string) (int, dm.Payee, error) {
 func Payee_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Payee_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Payee_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Payee_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,47 @@ func payee_Save(r dm.Payee,usr string) error {
 
     var err error
 
-	logs.Storing("Payee",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.KeyCounterpartyFirm) == 0 {
 		r.KeyCounterpartyFirm = Payee_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\payee_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  r.Status,err = adaptor.Payee_Status_OnStore_impl (r.Status,r,usr)
+
+
+	
+logs.Storing("Payee",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Payee_impl.go file
-	err1 := adaptor.Payee_Delete_Impl(r.KeyCounterpartyFirm)
-	err2 := adaptor.Payee_Update_Impl(r,usr)
+	err1 := adaptor.Payee_Delete_impl(r.KeyCounterpartyFirm)
+	err2 := adaptor.Payee_Update_impl(r.KeyCounterpartyFirm,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +132,8 @@ func payee_Save(r dm.Payee,usr string) error {
 }
 
 
-// payee_Fetch read all employees
+
+// payee_Fetch read all Payee's
 func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 	var recItem dm.Payee
@@ -117,108 +141,79 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable, "")
-   recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm, "")
-   recItem.KeyCounterpartyCentre  = get_String(rec, dm.Payee_KeyCounterpartyCentre, "")
-   recItem.KeyCurrency  = get_String(rec, dm.Payee_KeyCurrency, "")
-   recItem.KeyName  = get_String(rec, dm.Payee_KeyName, "")
-   recItem.KeyNumber  = get_String(rec, dm.Payee_KeyNumber, "")
-   recItem.KeyDirection  = get_String(rec, dm.Payee_KeyDirection, "")
-   recItem.KeyType  = get_String(rec, dm.Payee_KeyType, "")
-   recItem.FullName  = get_String(rec, dm.Payee_FullName, "")
-   recItem.Address  = get_String(rec, dm.Payee_Address, "")
-   recItem.PhoneNo  = get_String(rec, dm.Payee_PhoneNo, "")
-   recItem.Country  = get_String(rec, dm.Payee_Country, "")
-   recItem.Bic  = get_String(rec, dm.Payee_Bic, "")
-   recItem.Iban  = get_String(rec, dm.Payee_Iban, "")
-   recItem.AccountNo  = get_String(rec, dm.Payee_AccountNo, "")
-   recItem.FedWireNo  = get_String(rec, dm.Payee_FedWireNo, "")
-   recItem.SortCode  = get_String(rec, dm.Payee_SortCode, "")
-   recItem.BankName  = get_String(rec, dm.Payee_BankName, "")
-   recItem.BankPinCode  = get_String(rec, dm.Payee_BankPinCode, "")
-   recItem.BankAddress  = get_String(rec, dm.Payee_BankAddress, "")
-   recItem.Reason  = get_String(rec, dm.Payee_Reason, "")
-   recItem.BankSettlementAcct  = get_Bool(rec, dm.Payee_BankSettlementAcct, "True")
-   recItem.UpdatedUserId  = get_String(rec, dm.Payee_UpdatedUserId, "")
-
-
-
-
-
-
-// If there are fields below, create the methods in dao\Payee_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   recItem.Status_Extra  = payee_Status_Extra (recItem)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  recItem.Reason  = payee_Reason_Override (recItem)
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable_sql, "")
+	   recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm_sql, "")
+	   recItem.KeyCounterpartyCentre  = get_String(rec, dm.Payee_KeyCounterpartyCentre_sql, "")
+	   recItem.KeyCurrency  = get_String(rec, dm.Payee_KeyCurrency_sql, "")
+	   recItem.KeyName  = get_String(rec, dm.Payee_KeyName_sql, "")
+	   recItem.KeyNumber  = get_String(rec, dm.Payee_KeyNumber_sql, "")
+	   recItem.KeyDirection  = get_String(rec, dm.Payee_KeyDirection_sql, "")
+	   recItem.KeyType  = get_String(rec, dm.Payee_KeyType_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Payee_FullName_sql, "")
+	   recItem.Address  = get_String(rec, dm.Payee_Address_sql, "")
+	   recItem.PhoneNo  = get_String(rec, dm.Payee_PhoneNo_sql, "")
+	   recItem.Country  = get_String(rec, dm.Payee_Country_sql, "")
+	   recItem.Bic  = get_String(rec, dm.Payee_Bic_sql, "")
+	   recItem.Iban  = get_String(rec, dm.Payee_Iban_sql, "")
+	   recItem.AccountNo  = get_String(rec, dm.Payee_AccountNo_sql, "")
+	   recItem.FedWireNo  = get_String(rec, dm.Payee_FedWireNo_sql, "")
+	   recItem.SortCode  = get_String(rec, dm.Payee_SortCode_sql, "")
+	   recItem.BankName  = get_String(rec, dm.Payee_BankName_sql, "")
+	   recItem.BankPinCode  = get_String(rec, dm.Payee_BankPinCode_sql, "")
+	   recItem.BankAddress  = get_String(rec, dm.Payee_BankAddress_sql, "")
+	   recItem.Reason  = get_String(rec, dm.Payee_Reason_sql, "")
+	   recItem.BankSettlementAcct  = get_Bool(rec, dm.Payee_BankSettlementAcct_sql, "True")
+	   recItem.UpdatedUserId  = get_String(rec, dm.Payee_UpdatedUserId_sql, "")
+	
+	
+	// If there are fields below, create the methods in adaptor\Payee_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	   recItem.Status  = adaptor.Payee_Status_OnFetch_impl (recItem)
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Payee_NewID(r dm.Payee) string {
 	
@@ -226,6 +221,7 @@ func Payee_NewID(r dm.Payee) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

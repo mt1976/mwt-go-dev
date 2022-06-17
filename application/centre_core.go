@@ -8,8 +8,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:08
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:06
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -25,38 +25,38 @@ import (
 //centre_PageList provides the information for the template for a list of Centres
 type Centre_PageList struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu         []dm.AppMenuItem
+	UserMenu         dm.AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
 	ItemsOnPage 	 int
 	ItemList  		 []dm.Centre
 }
+//Centre_Redirect provides a page to return to aftern an action
+const (
+	Centre_Redirect = dm.Centre_PathList
+)
 
 //centre_Page provides the information for the template for an individual Centre
 type Centre_Page struct {
 	SessionInfo      dm.SessionInfo
-	UserMenu    	 []dm.AppMenuItem
+	UserMenu    	 dm.AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		Code string
-		Name string
-		Country string
-		Country_Lookup string
-	
-	
-	
-	
-	Country_Lookup_List	[]dm.Country
-	
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	Code         string
+	Name         string
+	Country         string
+	Country_lookup    []dm.Lookup_Item
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 }
 
-const (
-	Centre_Redirect = dm.Centre_PathList
-)
+
 
 //Centre_Publish annouces the endpoints available for this object
 func Centre_Publish(mux http.ServeMux) {
@@ -67,9 +67,10 @@ func Centre_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Centre_PathNew, Centre_HandlerNew)
 	mux.HandleFunc(dm.Centre_PathSave, Centre_HandlerSave)
 	mux.HandleFunc(dm.Centre_PathDelete, Centre_HandlerDelete)
-	logs.Publish("Siena", dm.Centre_Title)
-    core.Catalog_Add(dm.Centre_Title, dm.Centre_Path, "", dm.Centre_QueryString, "APP")
+	logs.Publish("Application", dm.Centre_Title)
+    core.Catalog_Add(dm.Centre_Title, dm.Centre_Path, "", dm.Centre_QueryString, "Application")
 }
+
 
 //Centre_HandlerList is the handler for the list page
 func Centre_HandlerList(w http.ResponseWriter, r *http.Request) {
@@ -101,6 +102,7 @@ func Centre_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 //Centre_HandlerView is the handler used to View a page
 func Centre_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
@@ -123,27 +125,14 @@ func Centre_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.Country = rD.Country
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-_,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
-pageDetail.Country_Lookup = Country_Lookup_Name.Name
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = centre_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Centre_TemplateView, w, r, pageDetail)
 
 }
+
 
 //Centre_HandlerEdit is the handler used generate the Edit page
 func Centre_HandlerEdit(w http.ResponseWriter, r *http.Request) {
@@ -167,27 +156,13 @@ func Centre_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = rD.Code
-pageDetail.Name = rD.Name
-pageDetail.Country = rD.Country
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-_,Country_Lookup_Name,_:= dao.Country_GetByID(rD.Country)
-pageDetail.Country_Lookup = Country_Lookup_Name.Name
-_,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
+	pageDetail = centre_PopulatePage(rD , pageDetail) 
+
 	ExecuteTemplate(dm.Centre_TemplateEdit, w, r, pageDetail)
-
-
 }
+
 
 //Centre_HandlerSave is the handler used process the saving of an Centre
 func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
@@ -202,19 +177,20 @@ func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path+r.FormValue("Code"))
 
 	var item dm.Centre
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-		item.Code = r.FormValue(dm.Centre_Code)
-		item.Name = r.FormValue(dm.Centre_Name)
-		item.Country = r.FormValue(dm.Centre_Country)
-		item.Country_Lookup = r.FormValue(dm.Centre_Country_Lookup)
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.Code = r.FormValue(dm.Centre_Code_scrn)
+		item.Name = r.FormValue(dm.Centre_Name_scrn)
+		item.Country = r.FormValue(dm.Centre_Country_scrn)
 	
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	dao.Centre_Store(item,r)	
-
 	http.Redirect(w, r, Centre_Redirect, http.StatusFound)
 }
+
 
 //Centre_HandlerNew is the handler used process the creation of an Centre
 func Centre_HandlerNew(w http.ResponseWriter, r *http.Request) {
@@ -236,24 +212,14 @@ func Centre_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserRole:    Session_GetUserRole(r),
 	}
 
-		// 
-		// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-pageDetail.Code = ""
-pageDetail.Name = ""
-pageDetail.Country = ""
-
-
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - Enrichment Fields Below
-pageDetail.Country_Lookup = ""
-_,pageDetail.Country_Lookup_List,_ = dao.Country_GetList()
-// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = centre_PopulatePage(dm.Centre{} , pageDetail) 
 
 	ExecuteTemplate(dm.Centre_TemplateNew, w, r, pageDetail)
 
-}
+}	
+
 
 //Centre_HandlerDelete is the handler used process the deletion of an Centre
 func Centre_HandlerDelete(w http.ResponseWriter, r *http.Request) {
@@ -271,3 +237,32 @@ func Centre_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, Centre_Redirect, http.StatusFound)
 }
+
+
+// Builds/Popuplates the Centre Page 
+func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.Code = rD.Code
+	pageDetail.Name = rD.Name
+	pageDetail.Country = rD.Country
+	
+	
+	//
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	pageDetail.Country_lookup = dao.Country_GetLookup()
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+return pageDetail
+}	

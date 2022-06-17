@@ -9,39 +9,39 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:14
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//DealType defines the datamolde for the DealType object
 type DealType struct {
 
-DealTypeKey        string
-DealTypeShortName        string
-HostKey        string
-IsActive        string
-Interbook        string
-BackOfficeLink        string
-HasTicket        string
-CurrencyOverride        string
-CurrencyHolderCurrency        string
-AllBooks        string
-FundamentalDealTypeKey        string
-RelatedDealType        string
-BookName        string
-ExportMethod        string
-DefaultUserLayoffBooks        string
-RFQ        string
-OBS        string
-KID        string
-InternalId        string
-InternalDeleted        string
-UpdatedTransactionId        string
-UpdatedUserId        string
-UpdatedDateTime        string
-DeletedTransactionId        string
-DeletedUserId        string
-ChangeType        string
+DealTypeKey       string
+DealTypeShortName       string
+HostKey       string
+IsActive       string
+Interbook       string
+BackOfficeLink       string
+HasTicket       string
+CurrencyOverride       string
+CurrencyHolderCurrency       string
+AllBooks       string
+FundamentalDealTypeKey       string
+RelatedDealType       string
+BookName       string
+ExportMethod       string
+DefaultUserLayoffBooks       string
+RFQ       string
+OBS       string
+KID       string
+InternalId       string
+InternalDeleted       string
+UpdatedTransactionId       string
+UpdatedUserId       string
+UpdatedDateTime       string
+DeletedTransactionId       string
+DeletedUserId       string
+ChangeType       string
 
 }
 
@@ -54,10 +54,10 @@ const (
 	/// Handler Defintions
 	///
 	DealType_Template     = "DealType"
-	DealType_TemplateList = "DealType_List"
-	DealType_TemplateView = "DealType_View"
-	DealType_TemplateEdit = "DealType_Edit"
-	DealType_TemplateNew  = "DealType_New"
+	DealType_TemplateList = "/DealType/DealType_List"
+	DealType_TemplateView = "/DealType/DealType_View"
+	DealType_TemplateEdit = "/DealType/DealType_Edit"
+	DealType_TemplateNew  = "/DealType/DealType_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -69,34 +69,66 @@ const (
 	DealType_PathSave   = "/DealTypeSave/"
 	DealType_PathDelete = "/DealTypeDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-	DealType_DealTypeKey   = "DealTypeKey" // DealTypeKey is a String
-	DealType_DealTypeShortName   = "DealTypeShortName" // DealTypeShortName is a String
-	DealType_HostKey   = "HostKey" // HostKey is a String
-	DealType_IsActive   = "IsActive" // IsActive is a Bool
-	DealType_Interbook   = "Interbook" // Interbook is a Bool
-	DealType_BackOfficeLink   = "BackOfficeLink" // BackOfficeLink is a Bool
-	DealType_HasTicket   = "HasTicket" // HasTicket is a Bool
-	DealType_CurrencyOverride   = "CurrencyOverride" // CurrencyOverride is a Bool
-	DealType_CurrencyHolderCurrency   = "CurrencyHolderCurrency" // CurrencyHolderCurrency is a String
-	DealType_AllBooks   = "AllBooks" // AllBooks is a Bool
-	DealType_FundamentalDealTypeKey   = "FundamentalDealTypeKey" // FundamentalDealTypeKey is a String
-	DealType_RelatedDealType   = "RelatedDealType" // RelatedDealType is a String
-	DealType_BookName   = "BookName" // BookName is a String
-	DealType_ExportMethod   = "ExportMethod" // ExportMethod is a String
-	DealType_DefaultUserLayoffBooks   = "DefaultUserLayoffBooks" // DefaultUserLayoffBooks is a Bool
-	DealType_RFQ   = "RFQ" // RFQ is a Bool
-	DealType_OBS   = "OBS" // OBS is a Bool
-	DealType_KID   = "KID" // KID is a Bool
-	DealType_InternalId   = "InternalId" // InternalId is a Int
-	DealType_InternalDeleted   = "InternalDeleted" // InternalDeleted is a Time
-	DealType_UpdatedTransactionId   = "UpdatedTransactionId" // UpdatedTransactionId is a String
-	DealType_UpdatedUserId   = "UpdatedUserId" // UpdatedUserId is a String
-	DealType_UpdatedDateTime   = "UpdatedDateTime" // UpdatedDateTime is a Time
-	DealType_DeletedTransactionId   = "DeletedTransactionId" // DeletedTransactionId is a String
-	DealType_DeletedUserId   = "DeletedUserId" // DeletedUserId is a String
-	DealType_ChangeType   = "ChangeType" // ChangeType is a String
+DealType_DealTypeKey_sql   = "DealTypeKey" // DealTypeKey is a String
+DealType_DealTypeShortName_sql   = "DealTypeShortName" // DealTypeShortName is a String
+DealType_HostKey_sql   = "HostKey" // HostKey is a String
+DealType_IsActive_sql   = "IsActive" // IsActive is a Bool
+DealType_Interbook_sql   = "Interbook" // Interbook is a Bool
+DealType_BackOfficeLink_sql   = "BackOfficeLink" // BackOfficeLink is a Bool
+DealType_HasTicket_sql   = "HasTicket" // HasTicket is a Bool
+DealType_CurrencyOverride_sql   = "CurrencyOverride" // CurrencyOverride is a Bool
+DealType_CurrencyHolderCurrency_sql   = "CurrencyHolderCurrency" // CurrencyHolderCurrency is a String
+DealType_AllBooks_sql   = "AllBooks" // AllBooks is a Bool
+DealType_FundamentalDealTypeKey_sql   = "FundamentalDealTypeKey" // FundamentalDealTypeKey is a String
+DealType_RelatedDealType_sql   = "RelatedDealType" // RelatedDealType is a String
+DealType_BookName_sql   = "BookName" // BookName is a String
+DealType_ExportMethod_sql   = "ExportMethod" // ExportMethod is a String
+DealType_DefaultUserLayoffBooks_sql   = "DefaultUserLayoffBooks" // DefaultUserLayoffBooks is a Bool
+DealType_RFQ_sql   = "RFQ" // RFQ is a Bool
+DealType_OBS_sql   = "OBS" // OBS is a Bool
+DealType_KID_sql   = "KID" // KID is a Bool
+DealType_InternalId_sql   = "InternalId" // InternalId is a Int
+DealType_InternalDeleted_sql   = "InternalDeleted" // InternalDeleted is a Time
+DealType_UpdatedTransactionId_sql   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+DealType_UpdatedUserId_sql   = "UpdatedUserId" // UpdatedUserId is a String
+DealType_UpdatedDateTime_sql   = "UpdatedDateTime" // UpdatedDateTime is a Time
+DealType_DeletedTransactionId_sql   = "DeletedTransactionId" // DeletedTransactionId is a String
+DealType_DeletedUserId_sql   = "DeletedUserId" // DeletedUserId is a String
+DealType_ChangeType_sql   = "ChangeType" // ChangeType is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+DealType_DealTypeKey_scrn   = "DealTypeKey" // DealTypeKey is a String
+DealType_DealTypeShortName_scrn   = "DealTypeShortName" // DealTypeShortName is a String
+DealType_HostKey_scrn   = "HostKey" // HostKey is a String
+DealType_IsActive_scrn   = "IsActive" // IsActive is a Bool
+DealType_Interbook_scrn   = "Interbook" // Interbook is a Bool
+DealType_BackOfficeLink_scrn   = "BackOfficeLink" // BackOfficeLink is a Bool
+DealType_HasTicket_scrn   = "HasTicket" // HasTicket is a Bool
+DealType_CurrencyOverride_scrn   = "CurrencyOverride" // CurrencyOverride is a Bool
+DealType_CurrencyHolderCurrency_scrn   = "CurrencyHolderCurrency" // CurrencyHolderCurrency is a String
+DealType_AllBooks_scrn   = "AllBooks" // AllBooks is a Bool
+DealType_FundamentalDealTypeKey_scrn   = "FundamentalDealTypeKey" // FundamentalDealTypeKey is a String
+DealType_RelatedDealType_scrn   = "RelatedDealType" // RelatedDealType is a String
+DealType_BookName_scrn   = "BookName" // BookName is a String
+DealType_ExportMethod_scrn   = "ExportMethod" // ExportMethod is a String
+DealType_DefaultUserLayoffBooks_scrn   = "DefaultUserLayoffBooks" // DefaultUserLayoffBooks is a Bool
+DealType_RFQ_scrn   = "RFQ" // RFQ is a Bool
+DealType_OBS_scrn   = "OBS" // OBS is a Bool
+DealType_KID_scrn   = "KID" // KID is a Bool
+DealType_InternalId_scrn   = "InternalId" // InternalId is a Int
+DealType_InternalDeleted_scrn   = "InternalDeleted" // InternalDeleted is a Time
+DealType_UpdatedTransactionId_scrn   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+DealType_UpdatedUserId_scrn   = "UpdatedUserId" // UpdatedUserId is a String
+DealType_UpdatedDateTime_scrn   = "UpdatedDateTime" // UpdatedDateTime is a Time
+DealType_DeletedTransactionId_scrn   = "DeletedTransactionId" // DeletedTransactionId is a String
+DealType_DeletedUserId_scrn   = "DeletedUserId" // DeletedUserId is a String
+DealType_ChangeType_scrn   = "ChangeType" // ChangeType is a String
 
 	/// Definitions End
 )

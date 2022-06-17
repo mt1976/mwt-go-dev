@@ -9,30 +9,28 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:12
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:09
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//DataLoaderMap defines the datamolde for the DataLoaderMap object
 type DataLoaderMap struct {
 
-SYSId        string
-Id        string
-Name        string
-Position        string
-Loader        string
-SYSCreated        string
-SYSWho        string
-SYSHost        string
-SYSUpdated        string
-Int_position        string
-SYSCreatedBy        string
-SYSCreatedHost        string
-SYSUpdatedBy        string
-SYSUpdatedHost        string
-Loader_Lookup        string
-LoaderDescription_Lookup        string
-LoaderType_Lookup        string
+SYSId       string
+Id       string
+Name       string
+Position       string
+Loader       string
+Loader_lookup []Lookup_Item
+SYSCreated       string
+SYSWho       string
+SYSHost       string
+SYSUpdated       string
+Int_position       string
+SYSCreatedBy       string
+SYSCreatedHost       string
+SYSUpdatedBy       string
+SYSUpdatedHost       string
 
 }
 
@@ -45,10 +43,10 @@ const (
 	/// Handler Defintions
 	///
 	DataLoaderMap_Template     = "DataLoaderMap"
-	DataLoaderMap_TemplateList = "DataLoaderMap_List"
-	DataLoaderMap_TemplateView = "DataLoaderMap_View"
-	DataLoaderMap_TemplateEdit = "DataLoaderMap_Edit"
-	DataLoaderMap_TemplateNew  = "DataLoaderMap_New"
+	DataLoaderMap_TemplateList = "/DataLoaderMap/DataLoaderMap_List"
+	DataLoaderMap_TemplateView = "/DataLoaderMap/DataLoaderMap_View"
+	DataLoaderMap_TemplateEdit = "/DataLoaderMap/DataLoaderMap_Edit"
+	DataLoaderMap_TemplateNew  = "/DataLoaderMap/DataLoaderMap_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -60,25 +58,42 @@ const (
 	DataLoaderMap_PathSave   = "/DataLoaderMapSave/"
 	DataLoaderMap_PathDelete = "/DataLoaderMapDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-	DataLoaderMap_SYSId   = "_id" // SYSId is a Int
-	DataLoaderMap_Id   = "id" // Id is a String
-	DataLoaderMap_Name   = "name" // Name is a String
-	DataLoaderMap_Position   = "position" // Position is a String
-	DataLoaderMap_Loader   = "loader" // Loader is a String
-	DataLoaderMap_SYSCreated   = "_created" // SYSCreated is a String
-	DataLoaderMap_SYSWho   = "_who" // SYSWho is a String
-	DataLoaderMap_SYSHost   = "_host" // SYSHost is a String
-	DataLoaderMap_SYSUpdated   = "_updated" // SYSUpdated is a String
-	DataLoaderMap_Int_position   = "int_position" // Int_position is a Int
-	DataLoaderMap_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
-	DataLoaderMap_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
-	DataLoaderMap_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
-	DataLoaderMap_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
-	DataLoaderMap_Loader_Lookup   = "Loader_Lookup" // Loader_Lookup is a String
-	DataLoaderMap_LoaderDescription_Lookup   = "LoaderDescription_Lookup" // LoaderDescription_Lookup is a String
-	DataLoaderMap_LoaderType_Lookup   = "LoaderType_Lookup" // LoaderType_Lookup is a String
+DataLoaderMap_SYSId_sql   = "_id" // SYSId is a Int
+DataLoaderMap_Id_sql   = "id" // Id is a String
+DataLoaderMap_Name_sql   = "name" // Name is a String
+DataLoaderMap_Position_sql   = "position" // Position is a String
+DataLoaderMap_Loader_sql   = "loader" // Loader is a String
+DataLoaderMap_SYSCreated_sql   = "_created" // SYSCreated is a String
+DataLoaderMap_SYSWho_sql   = "_who" // SYSWho is a String
+DataLoaderMap_SYSHost_sql   = "_host" // SYSHost is a String
+DataLoaderMap_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
+DataLoaderMap_Int_position_sql   = "int_position" // Int_position is a Int
+DataLoaderMap_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
+DataLoaderMap_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
+DataLoaderMap_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
+DataLoaderMap_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+DataLoaderMap_SYSId_scrn   = "SYSId" // SYSId is a Int
+DataLoaderMap_Id_scrn   = "Id" // Id is a String
+DataLoaderMap_Name_scrn   = "Name" // Name is a String
+DataLoaderMap_Position_scrn   = "Position" // Position is a String
+DataLoaderMap_Loader_scrn   = "Loader" // Loader is a String
+DataLoaderMap_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
+DataLoaderMap_SYSWho_scrn   = "SYSWho" // SYSWho is a String
+DataLoaderMap_SYSHost_scrn   = "SYSHost" // SYSHost is a String
+DataLoaderMap_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
+DataLoaderMap_Int_position_scrn   = "Int_position" // Int_position is a Int
+DataLoaderMap_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
+DataLoaderMap_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
+DataLoaderMap_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
+DataLoaderMap_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
 )

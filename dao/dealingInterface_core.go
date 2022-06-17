@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:14
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:10
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func DealingInterface_GetByID(id string) (int, dm.DealingInterface, error) {
 func DealingInterface_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DealingInterface_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.DealingInterface_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.DealingInterface_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,47 @@ func dealinginterface_Save(r dm.DealingInterface,usr string) error {
 
     var err error
 
-	logs.Storing("DealingInterface",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Name) == 0 {
 		r.Name = DealingInterface_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\dealinginterface_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("DealingInterface",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/DealingInterface_impl.go file
-	err1 := adaptor.DealingInterface_Delete_Impl(r.Name)
-	err2 := adaptor.DealingInterface_Update_Impl(r,usr)
+	err1 := adaptor.DealingInterface_Delete_impl(r.Name)
+	err2 := adaptor.DealingInterface_Update_impl(r.Name,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +132,8 @@ func dealinginterface_Save(r dm.DealingInterface,usr string) error {
 }
 
 
-// dealinginterface_Fetch read all employees
+
+// dealinginterface_Fetch read all DealingInterface's
 func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.DealingInterface, error) {
 
 	var recItem dm.DealingInterface
@@ -117,93 +141,79 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
-   recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
-   recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative, "True")
-   recItem.RateTimeOut  = get_Int(rec, dm.DealingInterface_RateTimeOut, "0")
-   recItem.PropagationDelay  = get_Int(rec, dm.DealingInterface_PropagationDelay, "0")
-   recItem.CheckLiquidity  = get_Bool(rec, dm.DealingInterface_CheckLiquidity, "True")
-   recItem.ChangeQuoteDirection  = get_Bool(rec, dm.DealingInterface_ChangeQuoteDirection, "True")
-   recItem.GenerateRejectedDeals  = get_Bool(rec, dm.DealingInterface_GenerateRejectedDeals, "True")
-   recItem.SpotUpdatesForForwardQuotes  = get_Bool(rec, dm.DealingInterface_SpotUpdatesForForwardQuotes, "True")
-   recItem.SettlementInstructionStyle  = get_String(rec, dm.DealingInterface_SettlementInstructionStyle, "")
-   recItem.CanRetractQuotes  = get_Bool(rec, dm.DealingInterface_CanRetractQuotes, "True")
-   recItem.CancelESPifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelESPifNotPriced, "True")
-   recItem.CancelRFQSifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelRFQSifNotPriced, "True")
-   recItem.CancelonDealingSuspended  = get_Bool(rec, dm.DealingInterface_CancelonDealingSuspended, "True")
-   recItem.CreditCheckedatDI  = get_Bool(rec, dm.DealingInterface_CreditCheckedatDI, "True")
-   recItem.DuplicateCheckonExternalRef  = get_Bool(rec, dm.DealingInterface_DuplicateCheckonExternalRef, "True")
-   recItem.LimitCheckQuote  = get_Bool(rec, dm.DealingInterface_LimitCheckQuote, "True")
-   recItem.LimitCheckonRFQDealSubmission  = get_Bool(rec, dm.DealingInterface_LimitCheckonRFQDealSubmission, "True")
-   recItem.ListenonLimits  = get_Bool(rec, dm.DealingInterface_ListenonLimits, "True")
-   recItem.MarginStyle  = get_String(rec, dm.DealingInterface_MarginStyle, "")
-   recItem.UseRerouteDefinitionOnly  = get_Bool(rec, dm.DealingInterface_UseRerouteDefinitionOnly, "True")
-   recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation, "True")
-   recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance, "True")
-   recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules, "True")
-// If there are fields below, create the methods in dao\DealingInterface_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Name  = get_String(rec, dm.DealingInterface_Name_sql, "")
+	   recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount_sql, "True")
+	   recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative_sql, "True")
+	   recItem.RateTimeOut  = get_Int(rec, dm.DealingInterface_RateTimeOut_sql, "0")
+	   recItem.PropagationDelay  = get_Int(rec, dm.DealingInterface_PropagationDelay_sql, "0")
+	   recItem.CheckLiquidity  = get_Bool(rec, dm.DealingInterface_CheckLiquidity_sql, "True")
+	   recItem.ChangeQuoteDirection  = get_Bool(rec, dm.DealingInterface_ChangeQuoteDirection_sql, "True")
+	   recItem.GenerateRejectedDeals  = get_Bool(rec, dm.DealingInterface_GenerateRejectedDeals_sql, "True")
+	   recItem.SpotUpdatesForForwardQuotes  = get_Bool(rec, dm.DealingInterface_SpotUpdatesForForwardQuotes_sql, "True")
+	   recItem.SettlementInstructionStyle  = get_String(rec, dm.DealingInterface_SettlementInstructionStyle_sql, "")
+	   recItem.CanRetractQuotes  = get_Bool(rec, dm.DealingInterface_CanRetractQuotes_sql, "True")
+	   recItem.CancelESPifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelESPifNotPriced_sql, "True")
+	   recItem.CancelRFQSifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelRFQSifNotPriced_sql, "True")
+	   recItem.CancelonDealingSuspended  = get_Bool(rec, dm.DealingInterface_CancelonDealingSuspended_sql, "True")
+	   recItem.CreditCheckedatDI  = get_Bool(rec, dm.DealingInterface_CreditCheckedatDI_sql, "True")
+	   recItem.DuplicateCheckonExternalRef  = get_Bool(rec, dm.DealingInterface_DuplicateCheckonExternalRef_sql, "True")
+	   recItem.LimitCheckQuote  = get_Bool(rec, dm.DealingInterface_LimitCheckQuote_sql, "True")
+	   recItem.LimitCheckonRFQDealSubmission  = get_Bool(rec, dm.DealingInterface_LimitCheckonRFQDealSubmission_sql, "True")
+	   recItem.ListenonLimits  = get_Bool(rec, dm.DealingInterface_ListenonLimits_sql, "True")
+	   recItem.MarginStyle  = get_String(rec, dm.DealingInterface_MarginStyle_sql, "")
+	   recItem.UseRerouteDefinitionOnly  = get_Bool(rec, dm.DealingInterface_UseRerouteDefinitionOnly_sql, "True")
+	   recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation_sql, "True")
+	   recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance_sql, "True")
+	   recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules_sql, "True")
+	
+	// If there are fields below, create the methods in adaptor\DealingInterface_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func DealingInterface_NewID(r dm.DealingInterface) string {
 	
@@ -211,6 +221,7 @@ func DealingInterface_NewID(r dm.DealingInterface) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

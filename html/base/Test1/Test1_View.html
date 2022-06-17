@@ -1,0 +1,136 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/Test1Edit/?ID={{.ID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-cubes me-2" title="ID = {{.ID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/Test1Edit/?ID={{.ID}}"  title="Edit Test1Template {{.ID}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Test1Template {{.ID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled value="{{.ID}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ID"><i class="fas fa-key me-2"></i>ID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Endpoint" aria-describedby="EndpointHelp" placeholder="" disabled value="{{.Endpoint}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Endpoint">Endpoint</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Descr" aria-describedby="DescrHelp" placeholder="" disabled value="{{.Descr}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Descr">Descr</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Query" aria-describedby="QueryHelp" placeholder="" disabled value="{{.Query}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Query">Query</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Source" aria-describedby="SourceHelp" placeholder="" disabled value="{{.Source}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Source">Source</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Firm" name="Firm" class="select" data-mdb-filter="true" disabled>
+                  {{range .Firm_lookup}}<option value="{{.ID}}" {{if eq .ID $.Firm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Firm" disabled>Firm</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="YN" name="YN" class="select" data-mdb-filter="true" disabled>
+                  {{range .YN_lookup}}<option value="{{.ID}}" {{if eq .ID $.YN}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="YN" disabled>YN</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="User" name="User" class="select" data-mdb-filter="true" disabled>
+                  {{range .User_lookup}}<option value="{{.ID}}" {{if eq .ID $.User}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="User" disabled>User</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Cheese" aria-describedby="CheeseHelp" placeholder="" disabled value="{{.Cheese}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Cheese">Cheese</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Onion" aria-describedby="OnionHelp" placeholder="" disabled value="{{.Onion}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Onion">Onion</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

@@ -1,0 +1,87 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-user me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Counterparty as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center">NameCentre</th>
+                          <th class="text-center">NameFirm</th>
+                          <th class="text-center">FullName</th>
+                          <th class="text-center">TelephoneNumber</th>
+                          <th class="text-center">EmailAddress</th>
+                          <th class="text-center">CustomerType</th>
+                          <th class="text-center">AccountOfficer</th>
+                          <th class="text-center">CountryCode</th>
+                          <th class="text-center">SectorCode</th>
+                          <th class="text-center">CpartyGroupName</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">Owner</th>
+                          <th class="text-center">Authorised</th>
+                          <th class="text-center">NameFirmName</th>
+                          <th class="text-center">NameCentreName</th>
+                          <th class="text-center">CountryCodeName</th>
+                          <th class="text-center">SectorCodeName</th>
+                          <th class="text-center">CompID</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle">{{.NameCentre}}</td>
+                          <td class="align-middle">{{.NameFirm}}</td>
+                          <td class="align-middle">{{.FullName}}</td>
+                          <td class="align-middle">{{.TelephoneNumber}}</td>
+                          <td class="align-middle">{{.EmailAddress}}</td>
+                          <td class="align-middle">{{.CustomerType}}</td>
+                          <td class="align-middle">{{.AccountOfficer}}</td>
+                          <td class="align-middle">{{.CountryCode}}</td>
+                          <td class="align-middle">{{.SectorCode}}</td>
+                          <td class="align-middle">{{.CpartyGroupName}}</td>
+                          <td class="align-middle">{{.Notes}}</td>
+                          <td class="align-middle">{{.Owner}}</td>
+                          <td class="align-middle">{{.Authorised}}</td>
+                          <td class="align-middle">{{.NameFirmName}}</td>
+                          <td class="align-middle">{{.NameCentreName}}</td>
+                          <td class="align-middle">{{.CountryCodeName}}</td>
+                          <td class="align-middle">{{.SectorCodeName}}</td>
+                          <td class="align-middle">{{.CompID}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/CounterpartyView?ID={{.CompID}}" method="POST" title="View Counterparty"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/CounterpartyEdit?ID={{.CompID}}" method="POST" title="Edit Counterparty"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/CounterpartyDelete?ID={{.CompID}}" method="POST" title="Delete Counterparty"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

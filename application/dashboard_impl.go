@@ -13,7 +13,7 @@ import (
 //dashboardPage is cheese
 type dashboardPage struct {
 	SessionInfo       dm.SessionInfo
-	UserMenu          []dm.AppMenuItem
+	UserMenu          dm.AppMenuItem
 	UserRole          string
 	UserNavi          string
 	Title             string
@@ -45,8 +45,8 @@ func Dashboard_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "dashboard"
-
+	tmpl := "Impl_Dashboard_View"
+	// Impl - defines this is hand crafted html page
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)

@@ -1,0 +1,39 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/sector.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Sector (sector)
+// Endpoint 	        : Sector (Sector)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 17/06/2022 at 18:38:14
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in sector_impl.go
+
+
+
+func Sector_NewID_impl(rec dm.Sector) (string) { return rec.Code }
+func Sector_Delete_impl(id string) (error) {return nil}
+
+
+func Sector_Update_impl(id string,rec dm.Sector, usr string) (error) {return nil}
+
+// If there are fields below, create the methods in adaptor\sector_impl.go
+
+
+
+
+
+

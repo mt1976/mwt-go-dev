@@ -17,16 +17,8 @@ import (
 )
 
 type sessionToken struct {
-	//	session           string
-	//	uuid              string
-	//	appToken          string
-	//	role              string
-	//	navigation        string
-	//	knownas           string
-	//	username          string
 	SecurityViolation string
 	ResponseCode      string
-	//	host              string
 }
 
 //Session_Publish annouces the endpoints available for this object
@@ -81,25 +73,12 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 		s.SecurityViolation = "SECURITY VIOLATION"
 		return s
 	}
-	// insert password check here - start
-	// insert password check here - end
 
-	//s.session = uuid.New().String()
-	//s.uuid = cred.Id
-	//s.appToken = appToken
-	//	s.role = cred.Role
-	//s.navigation = GetNavigationID(cred.Role)
-	//	s.knownas = cred.Knownas
-	//s.username = cred.Username
+	//TODO: insert password check here - start
+	//TODO: insert password check here - end
+
 	s.SecurityViolation = ""
 	s.ResponseCode = "200"
-	//s.host = host
-
-	//var cred dm.Credentials
-	//cred.RoleType = ""
-	//cred.Knownas = "mock"
-	//cred.Username = "mock"
-	//cred.Id = "mock"
 
 	core.SessionManager.Put(r.Context(), core.SessionRole, cred.RoleType)
 	core.SessionManager.Put(r.Context(), core.SessionNavi, core.GetNavigationID(cred.RoleType))
@@ -116,43 +95,19 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 // Session_Validate is cheese
 func Session_Validate(w http.ResponseWriter, r *http.Request) bool {
 	var s sessionToken
-	//s.session = ""
-	//s.appToken = ""
-	//s.role = ""
-	//s.navigation = ""
-	//s.knownas = ""
-	//s.username = ""
+
 	s.SecurityViolation = ""
 	s.ResponseCode = ""
-	//s.host = ""
-
-	//session_username := GetUserName(r)
-	//session_session := GetUserSessionToken(r)
 	session_uuid := Session_GetUserUUID(r)
 
 	cookie_UserName := core.SessionManager.GetString(r.Context(), core.SessionUserName)
-	//cookie_UserRole := core.SessionManager.GetString(r.Context(), core.SessionRole)
-	//cookie_UserKnownAs := core.SessionManager.GetString(r.Context(), core.SessionKnowAs)
 	cookie_UserUUID := core.SessionManager.GetString(r.Context(), core.SessionUUID)
-	//cookie_UserToken := core.SessionManager.GetString(r.Context(), core.SessionTokenID)
 
-	//ok := true
-
-	//log.Println("VALIDATE SESSION", session_username, session_session, session_uuid)
-
-	// were only going to check that uid and the username mactc
-
-	//cred.Id = session_uuid
 	_, cred, err := dao.Credentials_GetByUUID(session_uuid)
 	if err != nil {
 		log.Panicf("ERROR %e", err)
 	}
-	// fmt.Printf("cred: %v\n", cred)
-	// fmt.Printf("cred.Username: %v\n", cred.Username)
-	// fmt.Printf("cookie_UserName: %v\n", cookie_UserName)
-	// fmt.Printf("cookie_UserUUID: %v\n", cookie_UserUUID)
-	// fmt.Printf("session_uuid: %v\n", session_uuid)
-	//fmt.Printf("cred: %v\n", cred)
+
 	if cookie_UserName != cred.Username {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
@@ -166,12 +121,14 @@ func Session_Validate(w http.ResponseWriter, r *http.Request) bool {
 		logs.Warning("cookie_UserUUID != session_uuid")
 		return false
 	}
+
 	if cookie_UserUUID != cred.Id {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
 		logs.Warning("cookie_UserUUID != cred.Id")
 		return false
 	}
+
 	if len(cred.Expiry) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
@@ -200,40 +157,12 @@ func Session_Validate(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 
-	//	_, sess, err := GetSessionStoreByTokenID(GetUserSessionToken(r))
-	//	if err != nil {
-	//		log.Panicf("ERROR %e", err)
-	//	}
-
-	//log.Println("session=", sess)
-	// if len(cred.Id) == 0 {
-	// 	//no credentials found
-	// 	s.ResponseCode = "512"
-	// 	s.SecurityViolation = "SECURITY VIOLATION"
-	// 	//	log.Println(s.ResponseCode, s.SecurityViolation)
-	// 	return false
-	// }
-	// if cred.Username != GetUserName(r) {
-	// 	s.ResponseCode = "512"
-	// 	s.SecurityViolation = "SECURITY VIOLATION"
-	// 	//log.Println(s.ResponseCode, s.SecurityViolation)
-
-	// 	return false
-	// }
-	// if len(cred.Expiry) == 0 {
-	// 	s.ResponseCode = "512"
-	// 	s.SecurityViolation = "SECURITY VIOLATION"
-	// 	//	log.Println(s.ResponseCode, s.SecurityViolation)
-
-	// 	return false
-	// }
 	// TODO: insert password check
 	// TODO: insert server cred check
-	// insert password check here
-	//fmt.Println("SHOULD NOT GET HERE FOR THIS TEST!")
+
 	s.SecurityViolation = ""
 	s.ResponseCode = "200"
-	//	log.Println("ACCESS APPROVED")
+
 	return true
 }
 

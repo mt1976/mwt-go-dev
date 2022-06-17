@@ -1,0 +1,117 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/TemplateSave/" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3"><i class="fas fa-poo me-2"></i>{{.Title}}</div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/TemplateSave/" onclick="/TemplateSave/" title="Save Template Contents"></i>&nbsp;&nbsp;Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Template Contents"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="new" required>
+                <label class="form-label" for="SYSId" hidden>SYSId</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="FIELD1" name="FIELD1" aria-describedby="FIELD1Help" placeholder="N"  value="{{.FIELD1}}" >
+                <label class="form-label" for="FIELD1" >FIELD1</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="FIELD2" name="FIELD2" aria-describedby="FIELD2Help" placeholder=""  value="{{.FIELD2}}" >
+                <label class="form-label" for="FIELD2" >FIELD2</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}" >
+                <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}" >
+                <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}" >
+                <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}" >
+                <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}" >
+                <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}" >
+                <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required>
+                <label class="form-label" for="ID" >ID</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ExtraField" name="ExtraField" aria-describedby="ExtraFieldHelp" placeholder=""  value="{{.ExtraField}}" >
+                <label class="form-label" for="ExtraField" >ExtraField</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" disabled><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ExtraField2" name="ExtraField2" aria-describedby="ExtraField2Help" placeholder="Hummous" disabled value="{{.ExtraField2}}" >
+                <label class="form-label" for="ExtraField2" disabled>ExtraField2</label>
+              </div>
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+              <div class="form-outline">
+                <input type="text" class="form-control" id="ExtraField3" name="ExtraField3" aria-describedby="ExtraField3Help" placeholder=""  value="{{.ExtraField3}}" >
+                <label class="form-label" for="ExtraField3" >ExtraField3</label>
+              </div>
+            </div></div>
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

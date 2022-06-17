@@ -1,0 +1,238 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/SystemsSave" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+             <div class="col h3">
+                    <i class="fas fa-plug me-2" title="ID = NEW"></i><span class="me-3">{{.Title}}</span>
+                </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/SystemsSave" onclick="/SystemsSave" title="Save Connected System"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Connected System"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="new" required data-mdb-input-mask="">
+                <label class="form-label" for="SYSId" hidden>SYSId</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""  value="{{.Id}}" required data-mdb-input-mask="">
+                <label class="form-label" for="Id" ><i class="fas fa-key me-2"></i>Id</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Name" >Name</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Staticin" name="Staticin" aria-describedby="StaticinHelp" placeholder=""  value="{{.Staticin}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Staticin" >Staticin</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Staticout" name="Staticout" aria-describedby="StaticoutHelp" placeholder=""  value="{{.Staticout}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Staticout" >Staticout</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Txnin" name="Txnin" aria-describedby="TxninHelp" placeholder=""  value="{{.Txnin}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Txnin" >Txnin</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Txnout" name="Txnout" aria-describedby="TxnoutHelp" placeholder=""  value="{{.Txnout}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Txnout" >Txnout</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Fundscheckin" name="Fundscheckin" aria-describedby="FundscheckinHelp" placeholder=""  value="{{.Fundscheckin}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Fundscheckin" >Fundscheckin</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Fundscheckout" name="Fundscheckout" aria-describedby="FundscheckoutHelp" placeholder=""  value="{{.Fundscheckout}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Fundscheckout" >Fundscheckout</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden value="{{.SYSWho}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSWho" hidden>SYSWho</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden value="{{.SYSHost}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSHost" hidden>SYSHost</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SWIFTin" name="SWIFTin" aria-describedby="SWIFTinHelp" placeholder=""  value="{{.SWIFTin}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SWIFTin" >SWIFTin</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="SWIFTout" name="SWIFTout" aria-describedby="SWIFToutHelp" placeholder=""  value="{{.SWIFTout}}"  data-mdb-input-mask="">
+                <label class="form-label" for="SWIFTout" >SWIFTout</label>
+                    </div>
+                    
+        
+
+            </div></div>
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

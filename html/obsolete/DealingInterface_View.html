@@ -1,0 +1,290 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/DealingInterfaceEdit?Name={{.Name}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-share-alt me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Name}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/DealingInterfaceEdit/?Name={{.Name}}" onclick="/DealingInterfaceEdit/?Name={{.Name}}" title="Edit Dealing Interface"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Dealing Interface"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
+                        <label class="form-label" for="Name">Name</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AcceptReducedAmount" aria-describedby="AcceptReducedAmountHelp" placeholder="True" disabled value="{{.AcceptReducedAmount}}">
+                        <label class="form-label" for="AcceptReducedAmount">AcceptReducedAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="QuoteAsIndicative" aria-describedby="QuoteAsIndicativeHelp" placeholder="True" disabled value="{{.QuoteAsIndicative}}">
+                        <label class="form-label" for="QuoteAsIndicative">QuoteAsIndicative</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RateTimeOut" aria-describedby="RateTimeOutHelp" placeholder="0" disabled value="{{.RateTimeOut}}">
+                        <label class="form-label" for="RateTimeOut">RateTimeOut</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PropagationDelay" aria-describedby="PropagationDelayHelp" placeholder="0" disabled value="{{.PropagationDelay}}">
+                        <label class="form-label" for="PropagationDelay">PropagationDelay</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CheckLiquidity" aria-describedby="CheckLiquidityHelp" placeholder="True" disabled value="{{.CheckLiquidity}}">
+                        <label class="form-label" for="CheckLiquidity">CheckLiquidity</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ChangeQuoteDirection" aria-describedby="ChangeQuoteDirectionHelp" placeholder="True" disabled value="{{.ChangeQuoteDirection}}">
+                        <label class="form-label" for="ChangeQuoteDirection">ChangeQuoteDirection</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="GenerateRejectedDeals" aria-describedby="GenerateRejectedDealsHelp" placeholder="True" disabled value="{{.GenerateRejectedDeals}}">
+                        <label class="form-label" for="GenerateRejectedDeals">GenerateRejectedDeals</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SpotUpdatesForForwardQuotes" aria-describedby="SpotUpdatesForForwardQuotesHelp" placeholder="True" disabled value="{{.SpotUpdatesForForwardQuotes}}">
+                        <label class="form-label" for="SpotUpdatesForForwardQuotes">SpotUpdatesForForwardQuotes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SettlementInstructionStyle" aria-describedby="SettlementInstructionStyleHelp" placeholder="" disabled value="{{.SettlementInstructionStyle}}">
+                        <label class="form-label" for="SettlementInstructionStyle">SettlementInstructionStyle</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CanRetractQuotes" aria-describedby="CanRetractQuotesHelp" placeholder="True" disabled value="{{.CanRetractQuotes}}">
+                        <label class="form-label" for="CanRetractQuotes">CanRetractQuotes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CancelESPifNotPriced" aria-describedby="CancelESPifNotPricedHelp" placeholder="True" disabled value="{{.CancelESPifNotPriced}}">
+                        <label class="form-label" for="CancelESPifNotPriced">CancelESPifNotPriced</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CancelRFQSifNotPriced" aria-describedby="CancelRFQSifNotPricedHelp" placeholder="True" disabled value="{{.CancelRFQSifNotPriced}}">
+                        <label class="form-label" for="CancelRFQSifNotPriced">CancelRFQSifNotPriced</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CancelonDealingSuspended" aria-describedby="CancelonDealingSuspendedHelp" placeholder="True" disabled value="{{.CancelonDealingSuspended}}">
+                        <label class="form-label" for="CancelonDealingSuspended">CancelonDealingSuspended</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CreditCheckedatDI" aria-describedby="CreditCheckedatDIHelp" placeholder="True" disabled value="{{.CreditCheckedatDI}}">
+                        <label class="form-label" for="CreditCheckedatDI">CreditCheckedatDI</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DuplicateCheckonExternalRef" aria-describedby="DuplicateCheckonExternalRefHelp" placeholder="True" disabled value="{{.DuplicateCheckonExternalRef}}">
+                        <label class="form-label" for="DuplicateCheckonExternalRef">DuplicateCheckonExternalRef</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LimitCheckQuote" aria-describedby="LimitCheckQuoteHelp" placeholder="True" disabled value="{{.LimitCheckQuote}}">
+                        <label class="form-label" for="LimitCheckQuote">LimitCheckQuote</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LimitCheckonRFQDealSubmission" aria-describedby="LimitCheckonRFQDealSubmissionHelp" placeholder="True" disabled value="{{.LimitCheckonRFQDealSubmission}}">
+                        <label class="form-label" for="LimitCheckonRFQDealSubmission">LimitCheckonRFQDealSubmission</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ListenonLimits" aria-describedby="ListenonLimitsHelp" placeholder="True" disabled value="{{.ListenonLimits}}">
+                        <label class="form-label" for="ListenonLimits">ListenonLimits</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MarginStyle" aria-describedby="MarginStyleHelp" placeholder="" disabled value="{{.MarginStyle}}">
+                        <label class="form-label" for="MarginStyle">MarginStyle</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UseRerouteDefinitionOnly" aria-describedby="UseRerouteDefinitionOnlyHelp" placeholder="True" disabled value="{{.UseRerouteDefinitionOnly}}">
+                        <label class="form-label" for="UseRerouteDefinitionOnly">UseRerouteDefinitionOnly</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BypassConfirmation" aria-describedby="BypassConfirmationHelp" placeholder="True" disabled value="{{.BypassConfirmation}}">
+                        <label class="form-label" for="BypassConfirmation">BypassConfirmation</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DIOnAcceptance" aria-describedby="DIOnAcceptanceHelp" placeholder="True" disabled value="{{.DIOnAcceptance}}">
+                        <label class="form-label" for="DIOnAcceptance">DIOnAcceptance</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="IgnoreESPAmountRules" aria-describedby="IgnoreESPAmountRulesHelp" placeholder="True" disabled value="{{.IgnoreESPAmountRules}}">
+                        <label class="form-label" for="IgnoreESPAmountRules">IgnoreESPAmountRules</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

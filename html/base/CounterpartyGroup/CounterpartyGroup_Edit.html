@@ -1,0 +1,55 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/CounterpartyGroupSave/?Group={{.Name}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fa fa-users me-2" title="Group={{.Name}}"></i><span class="me-3">{{.Title}}</span>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartyGroupSave/?Group={{.Name}}" onclick="/CounterpartyGroupSave/?Group={{.Name}}" title="Save Counterparty Group"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Group"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="Name" ><i class="fas fa-key me-2"></i>Name</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CountryCode" name="CountryCode" aria-describedby="CountryCodeHelp" placeholder=""   value="{{.CountryCode}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CountryCode" >CountryCode</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SuperGroup" name="SuperGroup" aria-describedby="SuperGroupHelp" placeholder=""   value="{{.SuperGroup}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SuperGroup" >SuperGroup</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

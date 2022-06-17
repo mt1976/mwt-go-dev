@@ -23,8 +23,8 @@ import (
 func ExternalMessage_GetActive() (int, []dm.ExternalMessage, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.ExternalMessage_SQLTable)
-	tsql = tsql + " WHERE " + dm.ExternalMessage_ResponseDate + "= ''"
-	tsql = tsql + " AND " + dm.ExternalMessage_MessageACKNAK + "= ''"
+	tsql = tsql + " WHERE " + dm.ExternalMessage_ResponseDate_sql + "= ''"
+	tsql = tsql + " AND " + dm.ExternalMessage_MessageACKNAK_sql + "= ''"
 	noItems, externalmessageList, _, _ := externalmessage_Fetch(tsql)
 
 	return noItems, externalmessageList, nil

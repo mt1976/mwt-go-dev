@@ -1,0 +1,145 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/Test1Save/" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3"><i class="fas fa-cubes me-2"></i>{{.Title}}</div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/Test1Save/" onclick="/Test1Save/" title="Save Test1Template"></i>&nbsp;&nbsp;Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Test1Template"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required>
+                <label class="form-label" for="ID" >ID</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Endpoint" name="Endpoint" aria-describedby="EndpointHelp" placeholder=""  value="{{.Endpoint}}" required>
+                <label class="form-label" for="Endpoint" >Endpoint</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Descr" name="Descr" aria-describedby="DescrHelp" placeholder="" readonly="true" value="{{.Descr}}" >
+                <label class="form-label" for="Descr" readonly="true">Descr</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Query" name="Query" aria-describedby="QueryHelp" placeholder=""  value="{{.Query}}" required>
+                <label class="form-label" for="Query" >Query</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Source" name="Source" aria-describedby="SourceHelp" placeholder=""  value="{{.Source}}" required>
+                <label class="form-label" for="Source" >Source</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+        
+         
+                  <select id="Firm" name="Firm" class="select" data-mdb-filter="true" readonly="true" >
+                  {{range .Firm_lookup}}<option value="{{.ID}}" {{if eq .ID $.Firm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Firm" readonly="true">Firm</label>
+                
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                  <select id="YN" name="YN" class="select" data-mdb-filter="true"  >
+                  {{range .YN_lookup}}<option value="{{.ID}}" {{if eq .ID $.YN}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="YN" >YN</label>
+                
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                  <select id="User" name="User" class="select" data-mdb-filter="true"  >
+                  {{range .User_lookup}}<option value="{{.ID}}" {{if eq .ID $.User}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="User" >User</label>
+                
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Cheese" name="Cheese" aria-describedby="CheeseHelp" placeholder=""  value="{{.Cheese}}" >
+                <label class="form-label" for="Cheese" >Cheese</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Onion" name="Onion" aria-describedby="OnionHelp" placeholder=""  value="{{.Onion}}" required>
+                <label class="form-label" for="Onion" >Onion</label>
+                    </div>
+                    
+        
+
+            </div></div>
+
+            
+              
+                
+
+            
+              
+                
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

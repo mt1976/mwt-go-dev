@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func AccountTransaction_Delete_Impl(id string) error {
+func AccountTransaction_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement AccountTransaction_Delete: " + id
 
-	// Implement AccountTransaction_Delete_Impl in accounttransaction_Impl.go
+	// Implement AccountTransaction_Delete_impl in accounttransaction_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := AccountTransaction_Delete_Impl(item)
+	// er := AccountTransaction_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func AccountTransaction_Update_Impl(item dm.AccountTransaction, usr string) error {
+func AccountTransaction_Update_impl(id string, item dm.AccountTransaction, usr string) error {
 	var er error
 
 	message := "Implement AccountTransaction_Update: " + item.SienaReference
 
-	// Implement AccountTransaction_Update_Impl in accounttransaction_Impl.go
+	// Implement AccountTransaction_Update_impl in accounttransaction_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := AccountTransaction_Update_Impl(item)
+	// er := AccountTransaction_Update_impl(item)
 	//
 
 	logs.Success(message)

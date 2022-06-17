@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func SalesDesk_Delete_Impl(id string) error {
+func SalesDesk_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement SalesDesk_Delete: " + id
 
-	// Implement SalesDesk_Delete_Impl in firm_Impl.go
+	// Implement SalesDesk_Delete_impl in firm_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := SalesDesk_Delete_Impl(item)
+	// er := SalesDesk_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func SalesDesk_Update_Impl(item dm.SalesDesk, usr string) error {
+func SalesDesk_Update_impl(id string, item dm.SalesDesk, usr string) error {
 	var er error
 
 	message := "Implement SalesDesk_Update: " + item.Name
 
-	// Implement SalesDesk_Update_Impl in firm_Impl.go
+	// Implement SalesDesk_Update_impl in firm_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := SalesDesk_Update_Impl(item)
+	// er := SalesDesk_Update_impl(item)
 	//
 
 	logs.Success(message)

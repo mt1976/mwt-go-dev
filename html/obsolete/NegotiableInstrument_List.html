@@ -1,0 +1,123 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-file-signature me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Negotiable Instrument as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Negotiable Instrument"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          
+                          <th class="text-center">Id</th>
+                          <th class="text-center">LongName</th>
+                          <th class="text-center">Isin</th>
+                          <th class="text-center">Tidm</th>
+                          <th class="text-center">Sedol</th>
+                          <th class="text-center">IssueDate</th>
+                          <th class="text-center">MaturityDate</th>
+                          <th class="text-center">CouponValue</th>
+                          <th class="text-center">CouponType</th>
+                          <th class="text-center">Segment</th>
+                          <th class="text-center">Sector</th>
+                          <th class="text-center">CodeConventionCalculateAccrual</th>
+                          <th class="text-center">MinimumDenomination</th>
+                          <th class="text-center">DenominationCurrency</th>
+                          <th class="text-center">TradingCurrency</th>
+                          <th class="text-center">Type</th>
+                          <th class="text-center">FlatYield</th>
+                          <th class="text-center">PaymentCouponDate</th>
+                          <th class="text-center">PeriodOfCoupon</th>
+                          <th class="text-center">ExCouponDate</th>
+                          <th class="text-center">DateOfIndexInflation</th>
+                          <th class="text-center">UnitOfQuotation</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Issuer</th>
+                          <th class="text-center">IssueAmount</th>
+                          <th class="text-center">RunningYield</th>
+                          <th class="text-center">LEI</th>
+                          <th class="text-center">CUSIP</th>
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          <td class="align-middle">{{.Id}}</td>
+                          <td class="align-middle">{{.LongName}}</td>
+                          <td class="align-middle">{{.Isin}}</td>
+                          <td class="align-middle">{{.Tidm}}</td>
+                          <td class="align-middle">{{.Sedol}}</td>
+                          <td class="align-middle">{{.IssueDate}}</td>
+                          <td class="align-middle">{{.MaturityDate}}</td>
+                          <td class="align-middle">{{.CouponValue}}</td>
+                          <td class="align-middle">{{.CouponType}}</td>
+                          <td class="align-middle">{{.Segment}}</td>
+                          <td class="align-middle">{{.Sector}}</td>
+                          <td class="align-middle">{{.CodeConventionCalculateAccrual}}</td>
+                          <td class="align-middle">{{.MinimumDenomination}}</td>
+                          <td class="align-middle">{{.DenominationCurrency}}</td>
+                          <td class="align-middle">{{.TradingCurrency}}</td>
+                          <td class="align-middle">{{.Type}}</td>
+                          <td class="align-middle">{{.FlatYield}}</td>
+                          <td class="align-middle">{{.PaymentCouponDate}}</td>
+                          <td class="align-middle">{{.PeriodOfCoupon}}</td>
+                          <td class="align-middle">{{.ExCouponDate}}</td>
+                          <td class="align-middle">{{.DateOfIndexInflation}}</td>
+                          <td class="align-middle">{{.UnitOfQuotation}}</td>
+                          
+                          
+                          
+                          
+                          <td class="align-middle">{{.Issuer}}</td>
+                          <td class="align-middle">{{.IssueAmount}}</td>
+                          <td class="align-middle">{{.RunningYield}}</td>
+                          <td class="align-middle">{{.LEI}}</td>
+                          <td class="align-middle">{{.CUSIP}}</td>
+                          
+                          
+                          
+                          
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/NegotiableInstrumentView?Id={{.Id}}" method="POST" title="View Negotiable Instrument"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:09
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:07
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func CounterpartyCreditRating_GetByID(id string) (int, dm.CounterpartyCreditRati
 func CounterpartyCreditRating_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyCreditRating_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.CounterpartyCreditRating_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.CounterpartyCreditRating_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,29 @@ func counterpartycreditrating_Save(r dm.CounterpartyCreditRating,usr string) err
 
     var err error
 
-	logs.Storing("CounterpartyCreditRating",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.CompID) == 0 {
 		r.CompID = CounterpartyCreditRating_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\counterpartycreditrating_impl.go
+
+
+
+
+
+
+
+
+	
+logs.Storing("CounterpartyCreditRating",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/CounterpartyCreditRating_impl.go file
-	err1 := adaptor.CounterpartyCreditRating_Delete_Impl(r.CompID)
-	err2 := adaptor.CounterpartyCreditRating_Update_Impl(r,usr)
+	err1 := adaptor.CounterpartyCreditRating_Delete_impl(r.CompID)
+	err2 := adaptor.CounterpartyCreditRating_Update_impl(r.CompID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +114,8 @@ func counterpartycreditrating_Save(r dm.CounterpartyCreditRating,usr string) err
 }
 
 
-// counterpartycreditrating_Fetch read all employees
+
+// counterpartycreditrating_Fetch read all CounterpartyCreditRating's
 func counterpartycreditrating_Fetch(tsql string) (int, []dm.CounterpartyCreditRating, dm.CounterpartyCreditRating, error) {
 
 	var recItem dm.CounterpartyCreditRating
@@ -117,39 +123,43 @@ func counterpartycreditrating_Fetch(tsql string) (int, []dm.CounterpartyCreditRa
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.NameFirm  = get_String(rec, dm.CounterpartyCreditRating_NameFirm, "")
-   recItem.NameCentre  = get_String(rec, dm.CounterpartyCreditRating_NameCentre, "")
-   recItem.CreditRatingUsage  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingUsage, "")
-   recItem.CreditRatingAgency  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingAgency, "")
-   recItem.CreditRatingName  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingName, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyCreditRating_CompID, "")
-// If there are fields below, create the methods in dao\CounterpartyCreditRating_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameFirm  = get_String(rec, dm.CounterpartyCreditRating_NameFirm_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.CounterpartyCreditRating_NameCentre_sql, "")
+	   recItem.CreditRatingUsage  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingUsage_sql, "")
+	   recItem.CreditRatingAgency  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingAgency_sql, "")
+	   recItem.CreditRatingName  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingName_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyCreditRating_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyCreditRating_impl.go
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func CounterpartyCreditRating_NewID(r dm.CounterpartyCreditRating) string {
 	
@@ -157,6 +167,7 @@ func CounterpartyCreditRating_NewID(r dm.CounterpartyCreditRating) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

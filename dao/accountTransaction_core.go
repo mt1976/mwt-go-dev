@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:06
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:05
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func AccountTransaction_GetByID(id string) (int, dm.AccountTransaction, error) {
 func AccountTransaction_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.AccountTransaction_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.AccountTransaction_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.AccountTransaction_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,38 @@ func accounttransaction_Save(r dm.AccountTransaction,usr string) error {
 
     var err error
 
-	logs.Storing("AccountTransaction",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.SienaReference) == 0 {
 		r.SienaReference = AccountTransaction_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\accounttransaction_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("AccountTransaction",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/AccountTransaction_impl.go file
-	err1 := adaptor.AccountTransaction_Delete_Impl(r.SienaReference)
-	err2 := adaptor.AccountTransaction_Update_Impl(r,usr)
+	err1 := adaptor.AccountTransaction_Delete_impl(r.SienaReference)
+	err2 := adaptor.AccountTransaction_Update_impl(r.SienaReference,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +123,8 @@ func accounttransaction_Save(r dm.AccountTransaction,usr string) error {
 }
 
 
-// accounttransaction_Fetch read all employees
+
+// accounttransaction_Fetch read all AccountTransaction's
 func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.AccountTransaction, error) {
 
 	var recItem dm.AccountTransaction
@@ -117,66 +132,61 @@ func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.Acc
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.SienaReference  = get_String(rec, dm.AccountTransaction_SienaReference, "")
-   recItem.LegNo  = get_Int(rec, dm.AccountTransaction_LegNo, "0")
-   recItem.MMLegNo  = get_Int(rec, dm.AccountTransaction_MMLegNo, "0")
-   recItem.Narrative  = get_String(rec, dm.AccountTransaction_Narrative, "")
-   recItem.Amount  = get_Float(rec, dm.AccountTransaction_Amount, "0.00")
-   recItem.StartInterestDate  = get_Time(rec, dm.AccountTransaction_StartInterestDate, "")
-   recItem.EndInterestDate  = get_Time(rec, dm.AccountTransaction_EndInterestDate, "")
-   recItem.Amortisation  = get_Float(rec, dm.AccountTransaction_Amortisation, "0.00")
-   recItem.InterestAmount  = get_Float(rec, dm.AccountTransaction_InterestAmount, "0.00")
-   recItem.InterestAction  = get_String(rec, dm.AccountTransaction_InterestAction, "")
-   recItem.FixingDate  = get_Time(rec, dm.AccountTransaction_FixingDate, "")
-   recItem.InterestCalculationDate  = get_Time(rec, dm.AccountTransaction_InterestCalculationDate, "")
-   recItem.AmendmentAmount  = get_Float(rec, dm.AccountTransaction_AmendmentAmount, "0.00")
-   recItem.DealtCcy  = get_String(rec, dm.AccountTransaction_DealtCcy, "")
-   recItem.AmountDp  = get_Int(rec, dm.AccountTransaction_AmountDp, "0")
-// If there are fields below, create the methods in dao\AccountTransaction_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SienaReference  = get_String(rec, dm.AccountTransaction_SienaReference_sql, "")
+	   recItem.LegNo  = get_Int(rec, dm.AccountTransaction_LegNo_sql, "0")
+	   recItem.MMLegNo  = get_Int(rec, dm.AccountTransaction_MMLegNo_sql, "0")
+	   recItem.Narrative  = get_String(rec, dm.AccountTransaction_Narrative_sql, "")
+	   recItem.Amount  = get_Float(rec, dm.AccountTransaction_Amount_sql, "0.00")
+	   recItem.StartInterestDate  = get_Time(rec, dm.AccountTransaction_StartInterestDate_sql, "")
+	   recItem.EndInterestDate  = get_Time(rec, dm.AccountTransaction_EndInterestDate_sql, "")
+	   recItem.Amortisation  = get_Float(rec, dm.AccountTransaction_Amortisation_sql, "0.00")
+	   recItem.InterestAmount  = get_Float(rec, dm.AccountTransaction_InterestAmount_sql, "0.00")
+	   recItem.InterestAction  = get_String(rec, dm.AccountTransaction_InterestAction_sql, "")
+	   recItem.FixingDate  = get_Time(rec, dm.AccountTransaction_FixingDate_sql, "")
+	   recItem.InterestCalculationDate  = get_Time(rec, dm.AccountTransaction_InterestCalculationDate_sql, "")
+	   recItem.AmendmentAmount  = get_Float(rec, dm.AccountTransaction_AmendmentAmount_sql, "0.00")
+	   recItem.DealtCcy  = get_String(rec, dm.AccountTransaction_DealtCcy_sql, "")
+	   recItem.AmountDp  = get_Int(rec, dm.AccountTransaction_AmountDp_sql, "0")
+	
+	// If there are fields below, create the methods in adaptor\AccountTransaction_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func AccountTransaction_NewID(r dm.AccountTransaction) string {
 	
@@ -184,6 +194,7 @@ func AccountTransaction_NewID(r dm.AccountTransaction) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

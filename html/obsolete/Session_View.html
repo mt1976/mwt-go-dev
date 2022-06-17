@@ -1,0 +1,322 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/SessionEdit?SessionID={{.Id}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-history me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Session"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled value="{{.SYSId}}">
+                        <label class="form-label" for="SYSId">SYSId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Apptoken" aria-describedby="ApptokenHelp" placeholder="" disabled value="{{.Apptoken}}">
+                        <label class="form-label" for="Apptoken">Apptoken</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Createdate" aria-describedby="CreatedateHelp" placeholder="" disabled value="{{.Createdate}}">
+                        <label class="form-label" for="Createdate">Createdate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Createtime" aria-describedby="CreatetimeHelp" placeholder="" disabled value="{{.Createtime}}">
+                        <label class="form-label" for="Createtime">Createtime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Uniqueid" aria-describedby="UniqueidHelp" placeholder="" disabled value="{{.Uniqueid}}">
+                        <label class="form-label" for="Uniqueid">Uniqueid</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Sessiontoken" aria-describedby="SessiontokenHelp" placeholder="" disabled value="{{.Sessiontoken}}">
+                        <label class="form-label" for="Sessiontoken">Sessiontoken</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Username" aria-describedby="UsernameHelp" placeholder="" disabled value="{{.Username}}">
+                        <label class="form-label" for="Username">Username</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Password" aria-describedby="PasswordHelp" placeholder="" disabled value="{{.Password}}">
+                        <label class="form-label" for="Password">Password</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Userip" aria-describedby="UseripHelp" placeholder="" disabled value="{{.Userip}}">
+                        <label class="form-label" for="Userip">Userip</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Userhost" aria-describedby="UserhostHelp" placeholder="" disabled value="{{.Userhost}}">
+                        <label class="form-label" for="Userhost">Userhost</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Appip" aria-describedby="AppipHelp" placeholder="" disabled value="{{.Appip}}">
+                        <label class="form-label" for="Appip">Appip</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Apphost" aria-describedby="ApphostHelp" placeholder="" disabled value="{{.Apphost}}">
+                        <label class="form-label" for="Apphost">Apphost</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Issued" aria-describedby="IssuedHelp" placeholder="" disabled value="{{.Issued}}">
+                        <label class="form-label" for="Issued">Issued</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Expiry" aria-describedby="ExpiryHelp" placeholder="" disabled value="{{.Expiry}}">
+                        <label class="form-label" for="Expiry">Expiry</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Expiryraw" aria-describedby="ExpiryrawHelp" placeholder="" disabled value="{{.Expiryraw}}">
+                        <label class="form-label" for="Expiryraw">Expiryraw</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Brand" aria-describedby="BrandHelp" placeholder="" disabled value="{{.Brand}}">
+                        <label class="form-label" for="Brand">Brand</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled value="{{.SYSCreated}}">
+                        <label class="form-label" for="SYSCreated">SYSCreated</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" disabled value="{{.SYSWho}}">
+                        <label class="form-label" for="SYSWho">SYSWho</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSHost" aria-describedby="SYSHostHelp" placeholder="" disabled value="{{.SYSHost}}">
+                        <label class="form-label" for="SYSHost">SYSHost</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled value="{{.SYSUpdated}}">
+                        <label class="form-label" for="SYSUpdated">SYSUpdated</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Id" aria-describedby="IdHelp" placeholder="" disabled value="{{.Id}}">
+                        <label class="form-label" for="Id">Id</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Expires" aria-describedby="ExpiresHelp" placeholder="" disabled value="{{.Expires}}">
+                        <label class="form-label" for="Expires">Expires</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled value="{{.SYSCreatedBy}}">
+                        <label class="form-label" for="SYSCreatedBy">SYSCreatedBy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled value="{{.SYSCreatedHost}}">
+                        <label class="form-label" for="SYSCreatedHost">SYSCreatedHost</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled value="{{.SYSUpdatedBy}}">
+                        <label class="form-label" for="SYSUpdatedBy">SYSUpdatedBy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled value="{{.SYSUpdatedHost}}">
+                        <label class="form-label" for="SYSUpdatedHost">SYSUpdatedHost</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SessionRole" aria-describedby="SessionRoleHelp" placeholder="" disabled value="{{.SessionRole}}">
+                        <label class="form-label" for="SessionRole">SessionRole</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        {{template "audit" .}}
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

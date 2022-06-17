@@ -1,0 +1,63 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-passport me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/CounterpartyCreditRatingNew" method="POST" title="Create a new Counterparty Credit Rating"><i class="fas fa-plus"></i>&nbsp;&nbsp;New</button>
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Counterparty Credit Rating as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Credit Rating"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center">NameFirm</th>
+                          <th class="text-center">NameCentre</th>
+                          <th class="text-center">CreditRatingUsage</th>
+                          <th class="text-center">CreditRatingAgency</th>
+                          <th class="text-center">CreditRatingName</th>
+                          <th class="text-center">CompID</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle">{{.NameFirm}}</td>
+                          <td class="align-middle">{{.NameCentre}}</td>
+                          <td class="align-middle">{{.CreditRatingUsage}}</td>
+                          <td class="align-middle">{{.CreditRatingAgency}}</td>
+                          <td class="align-middle">{{.CreditRatingName}}</td>
+                          <td class="align-middle">{{.CompID}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/CounterpartyCreditRatingView?ID={{.CompID}}" method="POST" title="View Counterparty Credit Rating"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/CounterpartyCreditRatingEdit?ID={{.CompID}}" method="POST" title="Edit Counterparty Credit Rating"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/CounterpartyCreditRatingDelete?ID={{.CompID}}" method="POST" title="Delete Counterparty Credit Rating"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

@@ -8,20 +8,18 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:11
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
+	
 	
 	
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
@@ -86,14 +84,37 @@ func credentials_Save(r dm.Credentials,usr string) error {
 
     var err error
 
-	logs.Storing("Credentials",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Id) == 0 {
 		r.Id = Credentials_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\credentials_impl.go
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -101,30 +122,39 @@ func credentials_Save(r dm.Credentials,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	
+logs.Storing("Credentials",fmt.Sprintf("%s", r))
+
+//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
-
-ts = addData(ts, dm.Credentials_SYSId, r.SYSId)
-ts = addData(ts, dm.Credentials_Id, r.Id)
-ts = addData(ts, dm.Credentials_Username, r.Username)
-ts = addData(ts, dm.Credentials_Password, r.Password)
-ts = addData(ts, dm.Credentials_Firstname, r.Firstname)
-ts = addData(ts, dm.Credentials_Lastname, r.Lastname)
-ts = addData(ts, dm.Credentials_Knownas, r.Knownas)
-ts = addData(ts, dm.Credentials_Email, r.Email)
-ts = addData(ts, dm.Credentials_Issued, r.Issued)
-ts = addData(ts, dm.Credentials_Expiry, r.Expiry)
-ts = addData(ts, dm.Credentials_RoleType, r.RoleType)
-ts = addData(ts, dm.Credentials_Brand, r.Brand)
-ts = addData(ts, dm.Credentials_SYSCreated, r.SYSCreated)
-ts = addData(ts, dm.Credentials_SYSWho, r.SYSWho)
-ts = addData(ts, dm.Credentials_SYSHost, r.SYSHost)
-ts = addData(ts, dm.Credentials_SYSUpdated, r.SYSUpdated)
-ts = addData(ts, dm.Credentials_SYSCreatedBy, r.SYSCreatedBy)
-ts = addData(ts, dm.Credentials_SYSCreatedHost, r.SYSCreatedHost)
-ts = addData(ts, dm.Credentials_SYSUpdatedBy, r.SYSUpdatedBy)
-ts = addData(ts, dm.Credentials_SYSUpdatedHost, r.SYSUpdatedHost)
-	
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
+	ts = addData(ts, dm.Credentials_Username_sql, r.Username)
+	ts = addData(ts, dm.Credentials_Password_sql, r.Password)
+	ts = addData(ts, dm.Credentials_Firstname_sql, r.Firstname)
+	ts = addData(ts, dm.Credentials_Lastname_sql, r.Lastname)
+	ts = addData(ts, dm.Credentials_Knownas_sql, r.Knownas)
+	ts = addData(ts, dm.Credentials_Email_sql, r.Email)
+	ts = addData(ts, dm.Credentials_Issued_sql, r.Issued)
+	ts = addData(ts, dm.Credentials_Expiry_sql, r.Expiry)
+	ts = addData(ts, dm.Credentials_RoleType_sql, r.RoleType)
+	ts = addData(ts, dm.Credentials_Brand_sql, r.Brand)
+	ts = addData(ts, dm.Credentials_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.Credentials_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.Credentials_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.Credentials_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.Credentials_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.Credentials_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Credentials_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Credentials_SYSUpdatedHost_sql, r.SYSUpdatedHost)
+		
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
@@ -140,7 +170,8 @@ ts = addData(ts, dm.Credentials_SYSUpdatedHost, r.SYSUpdatedHost)
 }
 
 
-// credentials_Fetch read all employees
+
+// credentials_Fetch read all Credentials's
 func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, error) {
 
 	var recItem dm.Credentials
@@ -148,81 +179,71 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId, "0")
-   recItem.Id  = get_String(rec, dm.Credentials_Id, "")
-   recItem.Username  = get_String(rec, dm.Credentials_Username, "")
-   recItem.Password  = get_String(rec, dm.Credentials_Password, "")
-   recItem.Firstname  = get_String(rec, dm.Credentials_Firstname, "")
-   recItem.Lastname  = get_String(rec, dm.Credentials_Lastname, "")
-   recItem.Knownas  = get_String(rec, dm.Credentials_Knownas, "")
-   recItem.Email  = get_String(rec, dm.Credentials_Email, "")
-   recItem.Issued  = get_String(rec, dm.Credentials_Issued, "")
-   recItem.Expiry  = get_String(rec, dm.Credentials_Expiry, "")
-   recItem.RoleType  = get_String(rec, dm.Credentials_RoleType, "")
-   recItem.Brand  = get_String(rec, dm.Credentials_Brand, "")
-   recItem.SYSCreated  = get_String(rec, dm.Credentials_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.Credentials_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.Credentials_SYSHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.Credentials_SYSUpdated, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.Credentials_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost, "")
-// If there are fields below, create the methods in dao\Credentials_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
+	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
+	   recItem.Username  = get_String(rec, dm.Credentials_Username_sql, "")
+	   recItem.Password  = get_String(rec, dm.Credentials_Password_sql, "")
+	   recItem.Firstname  = get_String(rec, dm.Credentials_Firstname_sql, "")
+	   recItem.Lastname  = get_String(rec, dm.Credentials_Lastname_sql, "")
+	   recItem.Knownas  = get_String(rec, dm.Credentials_Knownas_sql, "")
+	   recItem.Email  = get_String(rec, dm.Credentials_Email_sql, "")
+	   recItem.Issued  = get_String(rec, dm.Credentials_Issued_sql, "")
+	   recItem.Expiry  = get_String(rec, dm.Credentials_Expiry_sql, "")
+	   recItem.RoleType  = get_String(rec, dm.Credentials_RoleType_sql, "")
+	   recItem.Brand  = get_String(rec, dm.Credentials_Brand_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Credentials_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.Credentials_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.Credentials_SYSHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Credentials_SYSUpdated_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.Credentials_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Credentials_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Credentials_NewID(r dm.Credentials) string {
 	
@@ -230,6 +251,7 @@ func Credentials_NewID(r dm.Credentials) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

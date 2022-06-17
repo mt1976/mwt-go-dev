@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:16
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:12
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func Mandate_GetByID(id string) (int, dm.Mandate, error) {
 func Mandate_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Mandate_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Mandate_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Mandate_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,42 @@ func mandate_Save(r dm.Mandate,usr string) error {
 
     var err error
 
-	logs.Storing("Mandate",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.CompID) == 0 {
 		r.CompID = Mandate_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\mandate_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("Mandate",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Mandate_impl.go file
-	err1 := adaptor.Mandate_Delete_Impl(r.CompID)
-	err2 := adaptor.Mandate_Update_Impl(r,usr)
+	err1 := adaptor.Mandate_Delete_impl(r.CompID)
+	err2 := adaptor.Mandate_Update_impl(r.CompID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +127,8 @@ func mandate_Save(r dm.Mandate,usr string) error {
 }
 
 
-// mandate_Fetch read all employees
+
+// mandate_Fetch read all Mandate's
 func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 
 	var recItem dm.Mandate
@@ -117,87 +136,69 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.MandatedUserKeyCounterpartyFirm  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyFirm, "")
-   recItem.MandatedUserKeyCounterpartyCentre  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyCentre, "")
-   recItem.MandatedUserKeyUserName  = get_String(rec, dm.Mandate_MandatedUserKeyUserName, "")
-   recItem.TelephoneNumber  = get_String(rec, dm.Mandate_TelephoneNumber, "")
-   recItem.EmailAddress  = get_String(rec, dm.Mandate_EmailAddress, "")
-   recItem.Active  = get_Bool(rec, dm.Mandate_Active, "True")
-   recItem.FirstName  = get_String(rec, dm.Mandate_FirstName, "")
-   recItem.Surname  = get_String(rec, dm.Mandate_Surname, "")
-   recItem.DateOfBirth  = get_Time(rec, dm.Mandate_DateOfBirth, "")
-   recItem.Postcode  = get_String(rec, dm.Mandate_Postcode, "")
-   recItem.NationalIDNo  = get_String(rec, dm.Mandate_NationalIDNo, "")
-   recItem.PassportNo  = get_String(rec, dm.Mandate_PassportNo, "")
-   recItem.Country  = get_String(rec, dm.Mandate_Country, "")
-   recItem.CountryName  = get_String(rec, dm.Mandate_CountryName, "")
-   recItem.FirmName  = get_String(rec, dm.Mandate_FirmName, "")
-   recItem.CentreName  = get_String(rec, dm.Mandate_CentreName, "")
-   recItem.Notify  = get_Bool(rec, dm.Mandate_Notify, "True")
-   recItem.SystemUser  = get_String(rec, dm.Mandate_SystemUser, "")
-   recItem.CompID  = get_String(rec, dm.Mandate_CompID, "")
-
-
-
-// If there are fields below, create the methods in dao\Mandate_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.MandatedUserKeyCounterpartyFirm  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyFirm_sql, "")
+	   recItem.MandatedUserKeyCounterpartyCentre  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyCentre_sql, "")
+	   recItem.MandatedUserKeyUserName  = get_String(rec, dm.Mandate_MandatedUserKeyUserName_sql, "")
+	   recItem.TelephoneNumber  = get_String(rec, dm.Mandate_TelephoneNumber_sql, "")
+	   recItem.EmailAddress  = get_String(rec, dm.Mandate_EmailAddress_sql, "")
+	   recItem.Active  = get_Bool(rec, dm.Mandate_Active_sql, "True")
+	   recItem.FirstName  = get_String(rec, dm.Mandate_FirstName_sql, "")
+	   recItem.Surname  = get_String(rec, dm.Mandate_Surname_sql, "")
+	   recItem.DateOfBirth  = get_Time(rec, dm.Mandate_DateOfBirth_sql, "")
+	   recItem.Postcode  = get_String(rec, dm.Mandate_Postcode_sql, "")
+	   recItem.NationalIDNo  = get_String(rec, dm.Mandate_NationalIDNo_sql, "")
+	   recItem.PassportNo  = get_String(rec, dm.Mandate_PassportNo_sql, "")
+	   recItem.Country  = get_String(rec, dm.Mandate_Country_sql, "")
+	   recItem.CountryName  = get_String(rec, dm.Mandate_CountryName_sql, "")
+	   recItem.FirmName  = get_String(rec, dm.Mandate_FirmName_sql, "")
+	   recItem.CentreName  = get_String(rec, dm.Mandate_CentreName_sql, "")
+	   recItem.Notify  = get_Bool(rec, dm.Mandate_Notify_sql, "True")
+	   recItem.SystemUser  = get_String(rec, dm.Mandate_SystemUser_sql, "")
+	   recItem.CompID  = get_String(rec, dm.Mandate_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Mandate_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Mandate_NewID(r dm.Mandate) string {
 	
@@ -205,6 +206,7 @@ func Mandate_NewID(r dm.Mandate) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

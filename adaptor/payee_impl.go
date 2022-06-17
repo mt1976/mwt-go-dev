@@ -18,36 +18,72 @@ import (
 	//"io/ioutil"
 	//"os"
 
+	"strings"
+
 	dm "github.com/mt1976/mwt-go-dev/datamodel"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Payee_Delete_Impl(id string) error {
+func Payee_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Payee_Delete: " + id
 
-	// Implement Payee_Delete_Impl in payee_Impl.go
+	// Implement Payee_Delete_impl in payee_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Payee_Delete_Impl(item)
+	// er := Payee_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Payee_Update_Impl(item dm.Payee, usr string) error {
+func Payee_Update_impl(id string, item dm.Payee, usr string) error {
 	var er error
 
 	message := "Implement Payee_Update: " + item.KeyCounterpartyFirm
 
-	// Implement Payee_Update_Impl in payee_Impl.go
+	// Implement Payee_Update_impl in payee_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Payee_Update_Impl(item)
+	// er := Payee_Update_impl(item)
 	//
 
 	logs.Success(message)
 	return er
+}
+
+func Payee_NewID_impl(rec dm.Payee) string { return rec.KeyCounterpartyFirm }
+
+// If there are fields below, create the methods in adaptor\payee_impl.go
+
+func Payee_Status_OnStore_impl(fieldval string, rec dm.Payee, usr string) (string, error) {
+	return fieldval, nil
+}
+
+func Payee_Status_OnFetch_impl(rec dm.Payee) string {
+	val := ""
+
+	if rec.SourceTable == "" {
+
+		logs.Warning("SourceTable is empty for " + rec.FullName)
+
+		return ""
+
+	}
+
+	splitSource := strings.Split(rec.SourceTable, ".")
+
+	if splitSource[1] == "Payee" {
+
+		val = "Authorised"
+
+	} else {
+
+		val = "Pending"
+
+	}
+
+	return val
 }

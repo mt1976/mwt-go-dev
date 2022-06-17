@@ -1,0 +1,114 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CounterpartyImportEdit?ID={{.CompID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-passport me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.CompID}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CounterpartyImportEdit/?ID={{.CompID}}" onclick="/CounterpartyImportEdit/?ID={{.CompID}}" title="Edit Counterparty Import"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Import"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="KeyImportID" aria-describedby="KeyImportIDHelp" placeholder="" disabled value="{{.KeyImportID}}">
+                        <label class="form-label" for="KeyImportID">KeyImportID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Firm" aria-describedby="FirmHelp" placeholder="" disabled value="{{.Firm}}">
+                        <label class="form-label" for="Firm">Firm</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Centre" aria-describedby="CentreHelp" placeholder="" disabled value="{{.Centre}}">
+                        <label class="form-label" for="Centre">Centre</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FirmName" aria-describedby="FirmNameHelp" placeholder="" disabled value="{{.FirmName}}">
+                        <label class="form-label" for="FirmName">FirmName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CentreName" aria-describedby="CentreNameHelp" placeholder="" disabled value="{{.CentreName}}">
+                        <label class="form-label" for="CentreName">CentreName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="KeyOriginID" aria-describedby="KeyOriginIDHelp" placeholder="" disabled value="{{.KeyOriginID}}">
+                        <label class="form-label" for="KeyOriginID">KeyOriginID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}">
+                        <label class="form-label" for="FullName">FullName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}">
+                        <label class="form-label" for="CompID">CompID</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

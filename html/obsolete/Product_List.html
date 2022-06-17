@@ -1,0 +1,75 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-object-group me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/ProductNew" method="POST" title="Create a new Product Group"><i class="fas fa-plus"></i>&nbsp;&nbsp;New</button>
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Product Group as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Product Group"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Factor</th>
+                          <th class="text-center">MaxTermPrecedence</th>
+                          <th class="text-center">InternalId</th>
+                          <th class="text-center">InternalDeleted</th>
+                          <th class="text-center">UpdatedTransactionId</th>
+                          <th class="text-center">UpdatedUserId</th>
+                          <th class="text-center">UpdatedDateTime</th>
+                          <th class="text-center">DeletedTransactionId</th>
+                          <th class="text-center">DeletedUserId</th>
+                          <th class="text-center">ChangeType</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle">{{.Code}}</td>
+                          <td class="align-middle">{{.Name}}</td>
+                          <td class="align-middle">{{.Factor}}</td>
+                          <td class="align-middle">{{.MaxTermPrecedence}}</td>
+                          <td class="align-middle">{{.InternalId}}</td>
+                          <td class="align-middle">{{.InternalDeleted}}</td>
+                          <td class="align-middle">{{.UpdatedTransactionId}}</td>
+                          <td class="align-middle">{{.UpdatedUserId}}</td>
+                          <td class="align-middle">{{.UpdatedDateTime}}</td>
+                          <td class="align-middle">{{.DeletedTransactionId}}</td>
+                          <td class="align-middle">{{.DeletedUserId}}</td>
+                          <td class="align-middle">{{.ChangeType}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/ProductView?Code={{.Code}}" method="POST" title="View Product Group"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/ProductEdit?Code={{.Code}}" method="POST" title="Edit Product Group"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/ProductDelete?Code={{.Code}}" method="POST" title="Delete Product Group"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

@@ -9,8 +9,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:16:04
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:06
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -18,9 +18,10 @@ import (
 
 	"net/http"
 
-	core "github.com/mt1976/mwt-go-dev/core"
-	dao "github.com/mt1976/mwt-go-dev/dao"
-	dm "github.com/mt1976/mwt-go-dev/datamodel"
+
+	core    "github.com/mt1976/mwt-go-dev/core"
+	dao     "github.com/mt1976/mwt-go-dev/dao"
+	dm      "github.com/mt1976/mwt-go-dev/datamodel"
 )
 
 //Catalog_Handler is the handler for the api calls
@@ -33,7 +34,7 @@ func Catalog_Handler(w http.ResponseWriter, r *http.Request) {
 	//     delete => DELETE
 
 	httpMethod := r.Method
-
+	
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -72,8 +73,8 @@ func catalog_MethodGet(w http.ResponseWriter, r *http.Request) {
 		ci.Count = noRecs
 		ci.Key = dm.Catalog_QueryString
 		for _, v := range records {
-			ciContent := core.ContentListItem{ID: v.ID, Query: "?" + ci.Key + "=" + v.ID}
-			ci.Items = append(ci.Items, ciContent)
+			ciContent := core.ContentListItem{ID:v.ID,Query:"?" + ci.Key +"="+ v.ID}
+			ci.Items= append(ci.Items, ciContent)
 		}
 		json_data, _ := json.Marshal(ci)
 		w.Write(json_data)
@@ -84,6 +85,7 @@ func catalog_MethodGet(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(int(http.StatusOK))
 		}
 
+
 	} else {
 		//Get a specific entity
 		_, record, _ := dao.Catalog_GetByID(searchID)
@@ -92,11 +94,12 @@ func catalog_MethodGet(w http.ResponseWriter, r *http.Request) {
 		w.Write(json_data)
 
 		if record.ID == "" {
-			w.WriteHeader(int(http.StatusNotFound))
+		    w.WriteHeader(int(http.StatusNotFound))
 		} else {
 			w.WriteHeader(int(http.StatusOK))
 		}
 	}
+
 
 }
 
@@ -115,28 +118,23 @@ func catalog_MethodPost(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(int(http.StatusOK))
 	}
 	//spew.Dump(t)
-	err = dao.Catalog_StoreSystem(t)
+	
+			w.WriteHeader(int(http.StatusMethodNotAllowed))
+	
 	//logs.Processing("POST BACK")
 	//logs.Information("POST", err.Error())
-	if err != nil {
-		//	panic(err)
-		w.WriteHeader(int(http.StatusNotFound))
-	} else {
-		w.WriteHeader(int(http.StatusOK))
-	}
+	
 	//logs.Success("POST")
 }
-
 //Handles DELETE requests for Catalog
 func catalog_MethodDelete(w http.ResponseWriter, r *http.Request) {
 	//logs.Processing("DELETE")
-	deleteID := core.GetURLparam(r, dm.Catalog_QueryString)
 	//logs.Information("DELETE", deleteID)
+		w.Header().Set("Content-Type", "application/json")
 
-	dao.Catalog_Delete(deleteID)
+		w.WriteHeader(int(http.StatusMethodNotAllowed))
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(int(http.StatusOK))
+
 	//fmt.Printf("json_data: %v\n", json_data)
 
 	//logs.Success("DELETE")

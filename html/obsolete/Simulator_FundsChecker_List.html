@@ -1,0 +1,74 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+<body>
+
+
+  <div class="container-fluid">
+
+    <form method="POST" action="/">
+
+      <div class="card">
+
+<div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3>Back Office - Balance Check Requests</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Country as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+       
+
+
+        <div class="card-body">
+   <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                <tr>
+                 
+                  <th scope="col">Request</th>
+                  <th scope="col"><div class="d-flex justify-content-center">Action</div></th>
+                </tr>
+              </thead>
+              <tbody id="filterTable">
+                {{range .FundsCheckList}}
+                <tr>
+                  
+                  <td class="align-middle">{{.Name}}</td>
+                  <td class="align-middle text-center" style="width:1px; white-space:nowrap;padding:0.25rem">
+                 <div class="d-flex justify-content-center">
+                    <div class="btn-group">
+                      <button type="submit" value="" class="btn  btn-info" formaction="/Simulator_SienaFundsCheckerView?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="View '{{.Name}}' data mapping">
+                        <i class="far fa-eye"></i>
+                      </button>
+                                    <button type="submit" value="" class="btn  btn-primary" style="border:none" formaction="/Simulator_SienaFundsCheckerAction?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Process '{{.Name}}'">
+                        <i class="fas fa-paper-plane"></i>
+                      </button>
+                      <button type="submit" value="" class="btn  btn-danger" style="border:none" formaction="/Simulator_SienaFundsCheckerDelete?FundsCheck={{.Id}}" method="POST" data-toggle="tooltip" data-placement="top" title="Delete '{{.Name}}'">
+                        <i class="fas fa-trash"></i>
+                      </button>
+        
+
+                    </div>
+                    </div>
+                  </td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

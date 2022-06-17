@@ -1,0 +1,136 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/Test1Edit?ID={{.ID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-cubes me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.ID}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/Test1Edit/?ID={{.ID}}" onclick="/Test1Edit/?ID={{.ID}}" title="Edit Test1Template"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Test1Template"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled value="{{.ID}}">
+                        <label class="form-label" for="ID">ID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Endpoint" aria-describedby="EndpointHelp" placeholder="" disabled value="{{.Endpoint}}">
+                        <label class="form-label" for="Endpoint">Endpoint</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Descr" aria-describedby="DescrHelp" placeholder="" disabled value="{{.Descr}}">
+                        <label class="form-label" for="Descr">Descr</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Query" aria-describedby="QueryHelp" placeholder="" disabled value="{{.Query}}">
+                        <label class="form-label" for="Query">Query</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Source" aria-describedby="SourceHelp" placeholder="" disabled value="{{.Source}}">
+                        <label class="form-label" for="Source">Source</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Firm" name="Firm" class="select" data-mdb-filter="true" disabled>
+                  {{range .Firm_lookup}}<option value="{{.ID}}" {{if eq .ID $.Firm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Firm" disabled>Firm</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="YN" name="YN" class="select" data-mdb-filter="true" disabled>
+                  {{range .YN_lookup}}<option value="{{.ID}}" {{if eq .ID $.YN}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="YN" disabled>YN</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="User" name="User" class="select" data-mdb-filter="true" disabled>
+                  {{range .User_lookup}}<option value="{{.ID}}" {{if eq .ID $.User}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="User" disabled>User</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Cheese" aria-describedby="CheeseHelp" placeholder="" disabled value="{{.Cheese}}">
+                        <label class="form-label" for="Cheese">Cheese</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Onion" aria-describedby="OnionHelp" placeholder="" disabled value="{{.Onion}}">
+                        <label class="form-label" for="Onion">Onion</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

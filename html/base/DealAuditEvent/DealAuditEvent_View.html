@@ -1,0 +1,256 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/DealAuditEventEdit/?ID={{.InternalId}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-toolbox me-2" title="ID = {{.InternalId}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Deal Audit History {{.InternalId}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealRefNo" aria-describedby="DealRefNoHelp" placeholder="" disabled value="{{.DealRefNo}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealRefNo">DealRefNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EventIndex" aria-describedby="EventIndexHelp" placeholder="0" disabled value="{{.EventIndex}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EventIndex">EventIndex</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CommonRefNo" aria-describedby="CommonRefNoHelp" placeholder="" disabled value="{{.CommonRefNo}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CommonRefNo">CommonRefNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Timestamp" aria-describedby="TimestampHelp" placeholder="" disabled value="{{.Timestamp}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Timestamp">Timestamp</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTCTimestamp" aria-describedby="UTCTimestampHelp" placeholder="" disabled value="{{.UTCTimestamp}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UTCTimestamp">UTCTimestamp</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EventType" aria-describedby="EventTypeHelp" placeholder="" disabled value="{{.EventType}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EventType">EventType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Status" aria-describedby="StatusHelp" placeholder="" disabled value="{{.Status}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Status">Status</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LimitOrderStatus" aria-describedby="LimitOrderStatusHelp" placeholder="" disabled value="{{.LimitOrderStatus}}" data-mdb-input-mask="">
+                        <label class="form-label" for="LimitOrderStatus">LimitOrderStatus</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Usr" aria-describedby="UsrHelp" placeholder="" disabled value="{{.Usr}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Usr">Usr</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealingInterface" aria-describedby="DealingInterfaceHelp" placeholder="" disabled value="{{.DealingInterface}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealingInterface">DealingInterface</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SourceIP" aria-describedby="SourceIPHelp" placeholder="" disabled value="{{.SourceIP}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SourceIP">SourceIP</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MessageID" aria-describedby="MessageIDHelp" placeholder="" disabled value="{{.MessageID}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MessageID">MessageID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Details" aria-describedby="DetailsHelp" placeholder="" disabled value="{{.Details}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Details">Details</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InternalId" aria-describedby="InternalIdHelp" placeholder="0" disabled value="{{.InternalId}}" data-mdb-input-mask="">
+                        <label class="form-label" for="InternalId"><i class="fas fa-key me-2"></i>InternalId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder="" disabled value="{{.InternalDeleted}}" data-mdb-input-mask="">
+                        <label class="form-label" for="InternalDeleted">InternalDeleted</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder="" disabled value="{{.UpdatedTransactionId}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UpdatedTransactionId">UpdatedTransactionId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder="" disabled value="{{.UpdatedUserId}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UpdatedUserId">UpdatedUserId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder="" disabled value="{{.UpdatedDateTime}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UpdatedDateTime">UpdatedDateTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder="" disabled value="{{.DeletedTransactionId}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DeletedTransactionId">DeletedTransactionId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder="" disabled value="{{.DeletedUserId}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DeletedUserId">DeletedUserId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ChangeType" aria-describedby="ChangeTypeHelp" placeholder="" disabled value="{{.ChangeType}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ChangeType">ChangeType</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

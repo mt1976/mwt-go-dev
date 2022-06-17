@@ -1,0 +1,135 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/CustomerOnboardingSave?ID={{.ID}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fas fa-tasks me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.ID}}</code>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/CustomerOnboardingSave/ID={{.ID}}" onclick="/CustomerOnboardingSave/ID={{.ID}}" title="Save Customer Onboarding Tool"></i>&nbsp;&nbsp;Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Customer Onboarding Tool"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""   value="{{.ID}}" required>
+                      <label class="form-label" for="ID" >ID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerName" name="CustomerName" aria-describedby="CustomerNameHelp" placeholder=""   value="{{.CustomerName}}" required>
+                      <label class="form-label" for="CustomerName" >CustomerName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" aria-describedby="CustomerAddressHelp" placeholder=""   value="{{.CustomerAddress}}" >
+                      <label class="form-label" for="CustomerAddress" >CustomerAddress</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerBOLID" name="CustomerBOLID" aria-describedby="CustomerBOLIDHelp" placeholder=""   value="{{.CustomerBOLID}}" >
+                      <label class="form-label" for="CustomerBOLID" >CustomerBOLID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerFirmName" name="CustomerFirmName" aria-describedby="CustomerFirmNameHelp" placeholder=""   value="{{.CustomerFirmName}}" >
+                      <label class="form-label" for="CustomerFirmName" >CustomerFirmName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerType" name="CustomerType" aria-describedby="CustomerTypeHelp" placeholder=""   value="{{.CustomerType}}" >
+                      <label class="form-label" for="CustomerType" >CustomerType</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerRDC" name="CustomerRDC" aria-describedby="CustomerRDCHelp" placeholder=""   value="{{.CustomerRDC}}" >
+                      <label class="form-label" for="CustomerRDC" >CustomerRDC</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerSortCode" name="CustomerSortCode" aria-describedby="CustomerSortCodeHelp" placeholder=""   value="{{.CustomerSortCode}}" >
+                      <label class="form-label" for="CustomerSortCode" >CustomerSortCode</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerGMClientNo" name="CustomerGMClientNo" aria-describedby="CustomerGMClientNoHelp" placeholder=""   value="{{.CustomerGMClientNo}}" >
+                      <label class="form-label" for="CustomerGMClientNo" >CustomerGMClientNo</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerDefaultBook" name="CustomerDefaultBook" aria-describedby="CustomerDefaultBookHelp" placeholder=""   value="{{.CustomerDefaultBook}}" >
+                      <label class="form-label" for="CustomerDefaultBook" >CustomerDefaultBook</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerRegion" name="CustomerRegion" aria-describedby="CustomerRegionHelp" placeholder=""   value="{{.CustomerRegion}}" >
+                      <label class="form-label" for="CustomerRegion" >CustomerRegion</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""   value="{{.CustomerCategory}}" >
+                      <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CustomerTelephoneNo" name="CustomerTelephoneNo" aria-describedby="CustomerTelephoneNoHelp" placeholder=""   value="{{.CustomerTelephoneNo}}" >
+                      <label class="form-label" for="CustomerTelephoneNo" >CustomerTelephoneNo</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

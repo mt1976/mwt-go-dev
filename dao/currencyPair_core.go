@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:11
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -37,6 +33,16 @@ func CurrencyPair_GetList() (int, []dm.CurrencyPair, error) {
 	return count, currencypairList, nil
 }
 
+
+// CurrencyPair_GetLookup() returns a lookup list of all CurrencyPair items in lookup format
+func CurrencyPair_GetLookup() []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	count, currencypairList, _ := CurrencyPair_GetList()
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: currencypairList[i].Code, Name: currencypairList[i].Code})
+	}
+	return returnList
+}
 
 
 // CurrencyPair_GetByID() returns a single CurrencyPair record
@@ -56,12 +62,8 @@ func CurrencyPair_GetByID(id string) (int, dm.CurrencyPair, error) {
 func CurrencyPair_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CurrencyPair_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.CurrencyPair_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.CurrencyPair_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +88,27 @@ func currencypair_Save(r dm.CurrencyPair,usr string) error {
 
     var err error
 
-	logs.Storing("CurrencyPair",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = CurrencyPair_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\currencypair_impl.go
+
+
+
+  r.Code,err = adaptor.CurrencyPair_Code_OnStore_impl (r.Code,r,usr)
+
+
+	
+logs.Storing("CurrencyPair",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/CurrencyPair_impl.go file
-	err1 := adaptor.CurrencyPair_Delete_Impl(r.Code)
-	err2 := adaptor.CurrencyPair_Update_Impl(r,usr)
+	err1 := adaptor.CurrencyPair_Delete_impl(r.Code)
+	err2 := adaptor.CurrencyPair_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +122,8 @@ func currencypair_Save(r dm.CurrencyPair,usr string) error {
 }
 
 
-// currencypair_Fetch read all employees
+
+// currencypair_Fetch read all CurrencyPair's
 func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, error) {
 
 	var recItem dm.CurrencyPair
@@ -117,45 +131,39 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
-   recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
-   recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive, "True")
-   recItem.Code  = get_String(rec, dm.CurrencyPair_Code, "")
-   recItem.MajorName  = get_String(rec, dm.CurrencyPair_MajorName, "")
-   recItem.MinorName  = get_String(rec, dm.CurrencyPair_MinorName, "")
-
-
-// If there are fields below, create the methods in dao\CurrencyPair_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode_sql, "")
+	   recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode_sql, "")
+	   recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive_sql, "True")
+	   recItem.Code  = get_String(rec, dm.CurrencyPair_Code_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CurrencyPair_impl.go
+	
+	
+	
+	   recItem.Code  = adaptor.CurrencyPair_Code_OnFetch_impl (recItem)
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func CurrencyPair_NewID(r dm.CurrencyPair) string {
 	
@@ -163,6 +171,7 @@ func CurrencyPair_NewID(r dm.CurrencyPair) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:17
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:13
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -38,6 +34,16 @@ func Portfolio_GetList() (int, []dm.Portfolio, error) {
 }
 
 
+// Portfolio_GetLookup() returns a lookup list of all Portfolio items in lookup format
+func Portfolio_GetLookup() []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	count, portfolioList, _ := Portfolio_GetList()
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: portfolioList[i].Code, Name: portfolioList[i].Description1})
+	}
+	return returnList
+}
+
 
 // Portfolio_GetByID() returns a single Portfolio record
 func Portfolio_GetByID(id string) (int, dm.Portfolio, error) {
@@ -50,7 +56,7 @@ func Portfolio_GetByID(id string) (int, dm.Portfolio, error) {
 	return 1, portfolioItem, nil
 }
 
-// Portfolio_GetByReverseLookup(id string) returns a single Portfolio record
+// Portfolio_GetByReverseLookup(id string) returns a single Portfolio record using the Description1 field as key.
 func Portfolio_GetByReverseLookup(id string) (int, dm.Portfolio, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Portfolio_SQLTable)
@@ -65,12 +71,8 @@ func Portfolio_GetByReverseLookup(id string) (int, dm.Portfolio, error) {
 func Portfolio_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Portfolio_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Portfolio_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Portfolio_Delete_impl(id)
+	
 }
 
 
@@ -95,16 +97,35 @@ func portfolio_Save(r dm.Portfolio,usr string) error {
 
     var err error
 
-	logs.Storing("Portfolio",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = Portfolio_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\portfolio_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+logs.Storing("Portfolio",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Portfolio_impl.go file
-	err1 := adaptor.Portfolio_Delete_Impl(r.Code)
-	err2 := adaptor.Portfolio_Update_Impl(r,usr)
+	err1 := adaptor.Portfolio_Delete_impl(r.Code)
+	err2 := adaptor.Portfolio_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -118,7 +139,8 @@ func portfolio_Save(r dm.Portfolio,usr string) error {
 }
 
 
-// portfolio_Fetch read all employees
+
+// portfolio_Fetch read all Portfolio's
 func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 
 	var recItem dm.Portfolio
@@ -126,57 +148,55 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Portfolio_Code, "")
-   recItem.Description1  = get_String(rec, dm.Portfolio_Description1, "")
-   recItem.Description2  = get_String(rec, dm.Portfolio_Description2, "")
-   recItem.IsDefault  = get_Bool(rec, dm.Portfolio_IsDefault, "True")
-   recItem.InternalId  = get_Int(rec, dm.Portfolio_InternalId, "0")
-   recItem.InternalDeleted  = get_Time(rec, dm.Portfolio_InternalDeleted, "")
-   recItem.UpdatedTransactionId  = get_String(rec, dm.Portfolio_UpdatedTransactionId, "")
-   recItem.UpdatedUserId  = get_String(rec, dm.Portfolio_UpdatedUserId, "")
-   recItem.UpdatedDateTime  = get_Time(rec, dm.Portfolio_UpdatedDateTime, "")
-   recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId, "")
-   recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId, "")
-   recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType, "")
-// If there are fields below, create the methods in dao\Portfolio_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Portfolio_Code_sql, "")
+	   recItem.Description1  = get_String(rec, dm.Portfolio_Description1_sql, "")
+	   recItem.Description2  = get_String(rec, dm.Portfolio_Description2_sql, "")
+	   recItem.IsDefault  = get_Bool(rec, dm.Portfolio_IsDefault_sql, "True")
+	   recItem.InternalId  = get_Int(rec, dm.Portfolio_InternalId_sql, "0")
+	   recItem.InternalDeleted  = get_Time(rec, dm.Portfolio_InternalDeleted_sql, "")
+	   recItem.UpdatedTransactionId  = get_String(rec, dm.Portfolio_UpdatedTransactionId_sql, "")
+	   recItem.UpdatedUserId  = get_String(rec, dm.Portfolio_UpdatedUserId_sql, "")
+	   recItem.UpdatedDateTime  = get_Time(rec, dm.Portfolio_UpdatedDateTime_sql, "")
+	   recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId_sql, "")
+	   recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId_sql, "")
+	   recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Portfolio_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Portfolio_NewID(r dm.Portfolio) string {
 	
@@ -184,6 +204,7 @@ func Portfolio_NewID(r dm.Portfolio) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

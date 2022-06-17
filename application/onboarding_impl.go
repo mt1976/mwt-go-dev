@@ -36,7 +36,7 @@ type CounterpartyOnboarding_PageList struct {
 //template_Page provides the information for the template for an individual CounterpartyOnboarding
 type CounterpartyOnboarding_Page struct {
 	SessionInfo dm.SessionInfo
-	UserMenu    []dm.AppMenuItem
+	UserMenu    dm.AppMenuItem
 	UserRole    string
 	Title       string
 	PageTitle   string

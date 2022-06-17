@@ -1,1 +1,0 @@
-<TRANSACTIONS><TRANSACTION type="IMPORT"><TABLE name="Centre" classname="com.eurobase.siena.data.centres.Centre"><RECORD><KEYFIELD name="shortName">BEL</KEYFIELD><FIELD name="fullName">BELGIUM</FIELD><FIELD name="country">HKG</FIELD></RECORD></TABLE></TRANSACTION></TRANSACTIONS>

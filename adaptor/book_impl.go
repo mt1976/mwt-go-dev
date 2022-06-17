@@ -22,32 +22,34 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Book_Delete_Impl(id string) error {
+func Book_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Book_Delete: " + id
 
-	// Implement Book_Delete_Impl in book_Impl.go
+	// Implement Book_Delete_impl in book_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Book_Delete_Impl(item)
+	// er := Book_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Book_Update_Impl(item dm.Book, use string) error {
+func Book_Update_impl(id string, item dm.Book, use string) error {
 	var er error
 
-	message := "Implement Book_Update: " + item.BookName
+	message := "Implement Book_Update: " + item.BookName + id
 
-	// Implement Book_Update_Impl in book_Impl.go
+	// Implement Book_Update_impl in book_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Book_Update_Impl(item)
+	// er := Book_Update_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
+
+func Book_NewID_impl(rec dm.Book) string { return rec.BookName }

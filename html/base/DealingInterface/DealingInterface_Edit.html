@@ -1,0 +1,223 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/DealingInterfaceSave/?Name={{.Name}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fas fa-share-alt me-2" title="Name={{.Name}}"></i><span class="me-3">{{.Title}}</span>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/DealingInterfaceSave/?Name={{.Name}}" onclick="/DealingInterfaceSave/?Name={{.Name}}" title="Save Dealing Interface"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Dealing Interface"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="Name" ><i class="fas fa-key me-2"></i>Name</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="AcceptReducedAmount" name="AcceptReducedAmount" aria-describedby="AcceptReducedAmountHelp" placeholder="True"   value="{{.AcceptReducedAmount}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="AcceptReducedAmount" >AcceptReducedAmount</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="QuoteAsIndicative" name="QuoteAsIndicative" aria-describedby="QuoteAsIndicativeHelp" placeholder="True"   value="{{.QuoteAsIndicative}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="QuoteAsIndicative" >QuoteAsIndicative</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="RateTimeOut" name="RateTimeOut" aria-describedby="RateTimeOutHelp" placeholder="0"   value="{{.RateTimeOut}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="RateTimeOut" >RateTimeOut</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="PropagationDelay" name="PropagationDelay" aria-describedby="PropagationDelayHelp" placeholder="0"   value="{{.PropagationDelay}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="PropagationDelay" >PropagationDelay</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CheckLiquidity" name="CheckLiquidity" aria-describedby="CheckLiquidityHelp" placeholder="True"   value="{{.CheckLiquidity}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CheckLiquidity" >CheckLiquidity</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ChangeQuoteDirection" name="ChangeQuoteDirection" aria-describedby="ChangeQuoteDirectionHelp" placeholder="True"   value="{{.ChangeQuoteDirection}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ChangeQuoteDirection" >ChangeQuoteDirection</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="GenerateRejectedDeals" name="GenerateRejectedDeals" aria-describedby="GenerateRejectedDealsHelp" placeholder="True"   value="{{.GenerateRejectedDeals}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="GenerateRejectedDeals" >GenerateRejectedDeals</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SpotUpdatesForForwardQuotes" name="SpotUpdatesForForwardQuotes" aria-describedby="SpotUpdatesForForwardQuotesHelp" placeholder="True"   value="{{.SpotUpdatesForForwardQuotes}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SpotUpdatesForForwardQuotes" >SpotUpdatesForForwardQuotes</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SettlementInstructionStyle" name="SettlementInstructionStyle" aria-describedby="SettlementInstructionStyleHelp" placeholder=""   value="{{.SettlementInstructionStyle}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SettlementInstructionStyle" >SettlementInstructionStyle</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CanRetractQuotes" name="CanRetractQuotes" aria-describedby="CanRetractQuotesHelp" placeholder="True"   value="{{.CanRetractQuotes}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CanRetractQuotes" >CanRetractQuotes</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CancelESPifNotPriced" name="CancelESPifNotPriced" aria-describedby="CancelESPifNotPricedHelp" placeholder="True"   value="{{.CancelESPifNotPriced}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CancelESPifNotPriced" >CancelESPifNotPriced</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CancelRFQSifNotPriced" name="CancelRFQSifNotPriced" aria-describedby="CancelRFQSifNotPricedHelp" placeholder="True"   value="{{.CancelRFQSifNotPriced}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CancelRFQSifNotPriced" >CancelRFQSifNotPriced</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CancelonDealingSuspended" name="CancelonDealingSuspended" aria-describedby="CancelonDealingSuspendedHelp" placeholder="True"   value="{{.CancelonDealingSuspended}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CancelonDealingSuspended" >CancelonDealingSuspended</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CreditCheckedatDI" name="CreditCheckedatDI" aria-describedby="CreditCheckedatDIHelp" placeholder="True"   value="{{.CreditCheckedatDI}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CreditCheckedatDI" >CreditCheckedatDI</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DuplicateCheckonExternalRef" name="DuplicateCheckonExternalRef" aria-describedby="DuplicateCheckonExternalRefHelp" placeholder="True"   value="{{.DuplicateCheckonExternalRef}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="DuplicateCheckonExternalRef" >DuplicateCheckonExternalRef</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LimitCheckQuote" name="LimitCheckQuote" aria-describedby="LimitCheckQuoteHelp" placeholder="True"   value="{{.LimitCheckQuote}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="LimitCheckQuote" >LimitCheckQuote</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LimitCheckonRFQDealSubmission" name="LimitCheckonRFQDealSubmission" aria-describedby="LimitCheckonRFQDealSubmissionHelp" placeholder="True"   value="{{.LimitCheckonRFQDealSubmission}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="LimitCheckonRFQDealSubmission" >LimitCheckonRFQDealSubmission</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ListenonLimits" name="ListenonLimits" aria-describedby="ListenonLimitsHelp" placeholder="True"   value="{{.ListenonLimits}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ListenonLimits" >ListenonLimits</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MarginStyle" name="MarginStyle" aria-describedby="MarginStyleHelp" placeholder=""   value="{{.MarginStyle}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MarginStyle" >MarginStyle</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="UseRerouteDefinitionOnly" name="UseRerouteDefinitionOnly" aria-describedby="UseRerouteDefinitionOnlyHelp" placeholder="True"   value="{{.UseRerouteDefinitionOnly}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="UseRerouteDefinitionOnly" >UseRerouteDefinitionOnly</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="BypassConfirmation" name="BypassConfirmation" aria-describedby="BypassConfirmationHelp" placeholder="True"   value="{{.BypassConfirmation}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="BypassConfirmation" >BypassConfirmation</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DIOnAcceptance" name="DIOnAcceptance" aria-describedby="DIOnAcceptanceHelp" placeholder="True"   value="{{.DIOnAcceptance}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="DIOnAcceptance" >DIOnAcceptance</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="IgnoreESPAmountRules" name="IgnoreESPAmountRules" aria-describedby="IgnoreESPAmountRulesHelp" placeholder="True"   value="{{.IgnoreESPAmountRules}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="IgnoreESPAmountRules" >IgnoreESPAmountRules</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

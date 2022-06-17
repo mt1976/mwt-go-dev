@@ -1,0 +1,77 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-poo me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="POST">
+                    <div class="btn-group">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/TmplNew" method="POST" title="Create a new Template Contents"><i class="fas fa-plus"></i>&nbsp;&nbsp;New</button>
+                    <button id="export" type="button" class="btn btn-info"><i class="fas fa-file-csv" title="Export Template Contents as CSV"></i>&nbsp;&nbsp;Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Template Contents"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          
+                          <th class="text-center">FIELD1</th>
+                          <th class="text-center">FIELD2</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">ID</th>
+                          <th class="text-center">ExtraField</th>
+                          <th class="text-center">ExtraField2</th>
+                          <th class="text-center">ExtraField3</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          <td class="align-middle">{{.FIELD1}}</td>
+                          <td class="align-middle">{{.FIELD2}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle">{{.ID}}</td>
+                          <td class="align-middle">{{.ExtraField}}</td>
+                          <td class="align-middle">{{.ExtraField2}}</td>
+                          <td class="align-middle">{{.ExtraField3}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/TmplView?TemplateID={{.ID}}" method="POST" title="View Template Contents"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/TmplEdit?TemplateID={{.ID}}" method="POST" title="Edit Template Contents"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/TmplDelete?TemplateID={{.ID}}" method="POST" title="Delete Template Contents"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

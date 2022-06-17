@@ -23,11 +23,11 @@ const (
 	///
 	/// Handler Defintions
 	///
-	Simulator_SienaFundsChecker_TemplateList   = "Simulator_SienaFundsChecker_List"
-	Simulator_SienaFundsChecker_TemplateView   = "Simulator_SienaFundsChecker_View"
-	Simulator_SienaFundsChecker_TemplateAction = "Simulator_SienaFundsChecker_Action"
-	Simulator_SienaFundsChecker_TemplateSubmit = "Simulator_SienaFundsChecker_Submit"
-	Simulator_SienaFundsChecker_TemplateDelete = "Simulator_SienaFundsChecker_Delete"
+	Simulator_SienaFundsChecker_TemplateList   = "Simulator_FundsChecker_List"
+	Simulator_SienaFundsChecker_TemplateView   = "Simulator_FundsChecker_View"
+	Simulator_SienaFundsChecker_TemplateAction = "Simulator_FundsChecker_Action"
+	Simulator_SienaFundsChecker_TemplateSubmit = "Simulator_FundsChecker_Submit"
+	Simulator_SienaFundsChecker_TemplateDelete = "Simulator_FundsChecker_Delete"
 
 	///
 	/// Handler Monitor Paths

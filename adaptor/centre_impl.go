@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func Centre_Delete_Impl(id string) error {
+func Centre_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement Centre_Delete: " + id
 
-	// Implement Centre_Delete_Impl in centre_Impl.go
+	// Implement Centre_Delete_impl in centre_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Centre_Delete_Impl(item)
+	// er := Centre_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func Centre_Update_Impl(item dm.Centre, usr string) error {
+func Centre_Update_impl(id string, item dm.Centre, usr string) error {
 	var er error
 
 	message := "Implement Centre_Update: " + item.Code
 
-	// Implement Centre_Update_Impl in centre_Impl.go
+	// Implement Centre_Update_impl in centre_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := Centre_Update_Impl(item)
+	// er := Centre_Update_impl(item)
 	//
 
 	logs.Success(message)

@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:10
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:08
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -56,12 +52,8 @@ func CounterpartyName_GetByID(id string) (int, dm.CounterpartyName, error) {
 func CounterpartyName_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.CounterpartyName_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.CounterpartyName_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.CounterpartyName_Delete_impl(id)
+	
 }
 
 
@@ -86,16 +78,27 @@ func counterpartyname_Save(r dm.CounterpartyName,usr string) error {
 
     var err error
 
-	logs.Storing("CounterpartyName",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.CompID) == 0 {
 		r.CompID = CounterpartyName_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\counterpartyname_impl.go
+
+
+
+
+
+
+	
+logs.Storing("CounterpartyName",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/CounterpartyName_impl.go file
-	err1 := adaptor.CounterpartyName_Delete_Impl(r.CompID)
-	err2 := adaptor.CounterpartyName_Update_Impl(r,usr)
+	err1 := adaptor.CounterpartyName_Delete_impl(r.CompID)
+	err2 := adaptor.CounterpartyName_Update_impl(r.CompID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -109,7 +112,8 @@ func counterpartyname_Save(r dm.CounterpartyName,usr string) error {
 }
 
 
-// counterpartyname_Fetch read all employees
+
+// counterpartyname_Fetch read all CounterpartyName's
 func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.CounterpartyName, error) {
 
 	var recItem dm.CounterpartyName
@@ -117,33 +121,39 @@ func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.Counter
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.NameFirm  = get_String(rec, dm.CounterpartyName_NameFirm, "")
-   recItem.NameCentre  = get_String(rec, dm.CounterpartyName_NameCentre, "")
-   recItem.FullName  = get_String(rec, dm.CounterpartyName_FullName, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyName_CompID, "")
-// If there are fields below, create the methods in dao\CounterpartyName_Impl.go
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameFirm  = get_String(rec, dm.CounterpartyName_NameFirm_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.CounterpartyName_NameCentre_sql, "")
+	   recItem.FullName  = get_String(rec, dm.CounterpartyName_FullName_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyName_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyName_impl.go
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func CounterpartyName_NewID(r dm.CounterpartyName) string {
 	
@@ -151,6 +161,7 @@ func CounterpartyName_NewID(r dm.CounterpartyName) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

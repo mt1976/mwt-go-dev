@@ -8,16 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:16:04
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:06
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
+
 	"fmt"
 	"net/http"
 
-	
+"github.com/google/uuid"
+
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -26,7 +27,7 @@ import (
 // Catalog_GetList() returns a list of all Catalog records
 func Catalog_GetList() (int, []dm.Catalog, error) {
 	
-	count, catalogList, _ := adaptor.Catalog_GetList_Impl()
+	count, catalogList, _ := adaptor.Catalog_GetList_impl()
 	
 	return count, catalogList, nil
 }
@@ -37,7 +38,7 @@ func Catalog_GetList() (int, []dm.Catalog, error) {
 func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 
 
-	 _, catalogItem, _ := adaptor.Catalog_GetByID_Impl(id)
+	 _, catalogItem, _ := adaptor.Catalog_GetByID_impl(id)
 	
 	return 1, catalogItem, nil
 }
@@ -48,7 +49,7 @@ func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 func Catalog_Delete(id string) {
 
 
-	adaptor.Catalog_Delete_Impl(id)
+	adaptor.Catalog_Delete_impl(id)
 	
 }
 
@@ -74,16 +75,28 @@ func catalog_Save(r dm.Catalog,usr string) error {
 
     var err error
 
-	logs.Storing("Catalog",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.ID) == 0 {
 		r.ID = Catalog_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\catalog_impl.go
+
+
+
+
+
+
+
+	
+logs.Storing("Catalog",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Catalog_impl.go file
-	err1 := adaptor.Catalog_Delete_Impl(r.ID)
-	err2 := adaptor.Catalog_Update_Impl(r,usr)
+	err1 := adaptor.Catalog_Delete_impl(r.ID)
+	err2 := adaptor.Catalog_Update_impl(r.ID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -97,17 +110,18 @@ func catalog_Save(r dm.Catalog,usr string) error {
 }
 
 
+
+// catalog_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
+	
+
+
 func Catalog_NewID(r dm.Catalog) string {
 	
-		// catalog_NewIDImpl should be specified in dao/Catalog_Impl.go
-		// to provide the implementation for the special case.
-		// override should return id - override function should be defined as
-		// catalog_NewID_Impl(r dm.Catalog) string {...}
-		//
-		id := adaptor.Catalog_NewID_Impl(r)
+			id := uuid.New().String()
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

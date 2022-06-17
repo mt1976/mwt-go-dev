@@ -9,8 +9,8 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:19
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:14
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
@@ -112,33 +112,43 @@ func sector_MethodPost(w http.ResponseWriter, r *http.Request) {
 	var t dm.Sector
 	err := decoder.Decode(&t)
 	if err != nil {
+		w.WriteHeader(int(http.StatusNotFound))
 		panic(err)
-			w.WriteHeader(int(http.StatusNotFound))
 	} else {
 		w.WriteHeader(int(http.StatusOK))
 	}
 	//spew.Dump(t)
+	
 	err = dao.Sector_StoreSystem(t)
+	if err != nil {
+
+		//	panic(err)
+
+		w.WriteHeader(int(http.StatusNotFound))
+
+	} else {
+
+		w.WriteHeader(int(http.StatusOK))
+
+	}
+	
 	//logs.Processing("POST BACK")
 	//logs.Information("POST", err.Error())
-	if err != nil {
-		//	panic(err)
-		w.WriteHeader(int(http.StatusNotFound))
-	} else {
-		w.WriteHeader(int(http.StatusOK))
-	}
+	
 	//logs.Success("POST")
 }
 //Handles DELETE requests for Sector
 func sector_MethodDelete(w http.ResponseWriter, r *http.Request) {
 	//logs.Processing("DELETE")
-	deleteID := core.GetURLparam(r, dm.Sector_QueryString)
 	//logs.Information("DELETE", deleteID)
+		w.Header().Set("Content-Type", "application/json")
+
+	deleteID := core.GetURLparam(r, dm.Sector_QueryString)
 
 	dao.Sector_Delete(deleteID)
+		w.WriteHeader(int(http.StatusOK))
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(int(http.StatusOK))
+
 	//fmt.Printf("json_data: %v\n", json_data)
 
 	//logs.Success("DELETE")

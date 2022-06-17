@@ -22,30 +22,30 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
-func CMNotes_Delete_Impl(id string) error {
+func CMNotes_Delete_impl(id string) error {
 	var er error
 
 	message := "Implement CMNotes_Delete: " + id
 
-	// Implement CMNotes_Delete_Impl in cmnotes_Impl.go
+	// Implement CMNotes_Delete_impl in cmnotes_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CMNotes_Delete_Impl(item)
+	// er := CMNotes_Delete_impl(item)
 	//
 
 	logs.Success(message)
 	return er
 }
 
-func CMNotes_Update_Impl(item dm.CMNotes, usr string) error {
+func CMNotes_Update_impl(id string, item dm.CMNotes, usr string) error {
 	var er error
 
 	message := "Implement CMNotes_Update: " + item.NoteId
 
-	// Implement CMNotes_Update_Impl in cmnotes_Impl.go
+	// Implement CMNotes_Update_impl in cmnotes_impl.go
 	// Uncomment the line below to use the implementation
 	//
-	// er := CMNotes_Update_Impl(item)
+	// er := CMNotes_Update_impl(item)
 	//
 
 	logs.Success(message)

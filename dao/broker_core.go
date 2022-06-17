@@ -8,21 +8,17 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:07
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:06
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	
-	"log"
-	
+
 	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
-	core "github.com/mt1976/mwt-go-dev/core"
-	das  "github.com/mt1976/mwt-go-dev/das"
-	
+core "github.com/mt1976/mwt-go-dev/core"
+"github.com/google/uuid"
+das  "github.com/mt1976/mwt-go-dev/das"
 	 adaptor   "github.com/mt1976/mwt-go-dev/adaptor"
 	dm   "github.com/mt1976/mwt-go-dev/datamodel"
 	logs   "github.com/mt1976/mwt-go-dev/logs"
@@ -50,7 +46,7 @@ func Broker_GetByID(id string) (int, dm.Broker, error) {
 	return 1, brokerItem, nil
 }
 
-// Broker_GetByReverseLookup(id string) returns a single Broker record
+// Broker_GetByReverseLookup(id string) returns a single Broker record using the Name field as key.
 func Broker_GetByReverseLookup(id string) (int, dm.Broker, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Broker_SQLTable)
@@ -65,12 +61,8 @@ func Broker_GetByReverseLookup(id string) (int, dm.Broker, error) {
 func Broker_Delete(id string) {
 
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Broker_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Broker_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-
+	adaptor.Broker_Delete_impl(id)
+	
 }
 
 
@@ -95,16 +87,29 @@ func broker_Save(r dm.Broker,usr string) error {
 
     var err error
 
-	logs.Storing("Broker",fmt.Sprintf("%s", r))
+
+
+	
 
 	if len(r.Code) == 0 {
 		r.Code = Broker_NewID(r)
 	}
 
+// If there are fields below, create the methods in dao\broker_impl.go
+
+
+
+
+
+
+
+
+	
+logs.Storing("Broker",fmt.Sprintf("%s", r))
 
 // Please Create Functions Below in the adaptor/Broker_impl.go file
-	err1 := adaptor.Broker_Delete_Impl(r.Code)
-	err2 := adaptor.Broker_Update_Impl(r,usr)
+	err1 := adaptor.Broker_Delete_impl(r.Code)
+	err2 := adaptor.Broker_Update_impl(r.Code,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -118,7 +123,8 @@ func broker_Save(r dm.Broker,usr string) error {
 }
 
 
-// broker_Fetch read all employees
+
+// broker_Fetch read all Broker's
 func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 
 	var recItem dm.Broker
@@ -126,39 +132,43 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 
 	returnList, noitems, err := das.Query(core.SienaDB, tsql)
 	if err != nil {
-		log.Fatal(err.Error())
+		logs.Fatal(err.Error(),err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Broker_Code, "")
-   recItem.Name  = get_String(rec, dm.Broker_Name, "")
-   recItem.FullName  = get_String(rec, dm.Broker_FullName, "")
-   recItem.Contact  = get_String(rec, dm.Broker_Contact, "")
-   recItem.Address  = get_String(rec, dm.Broker_Address, "")
-   recItem.LEI  = get_String(rec, dm.Broker_LEI, "")
-// If there are fields below, create the methods in dao\Broker_Impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 12/12/2021 by matttownsend on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Broker_Code_sql, "")
+	   recItem.Name  = get_String(rec, dm.Broker_Name_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Broker_FullName_sql, "")
+	   recItem.Contact  = get_String(rec, dm.Broker_Contact_sql, "")
+	   recItem.Address  = get_String(rec, dm.Broker_Address_sql, "")
+	   recItem.LEI  = get_String(rec, dm.Broker_LEI_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Broker_impl.go
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
+
 	return noitems, recList, recItem, nil
 }
+	
+
 
 func Broker_NewID(r dm.Broker) string {
 	
@@ -166,6 +176,7 @@ func Broker_NewID(r dm.Broker) string {
 	
 	return id
 }
+
 // ----------------------------------------------------------------
 // ADD Aditional Functions below this line
 // ----------------------------------------------------------------

@@ -13,7 +13,7 @@ import (
 //AppConfigurationPage is cheese
 type AppConfigurationPage struct {
 	SessionInfo            dm.SessionInfo
-	UserMenu               []dm.AppMenuItem
+	UserMenu               dm.AppMenuItem
 	UserRole               string
 	UserNavi               string
 	Title                  string
@@ -62,7 +62,8 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "ConfigurationView"
+	tmpl := "Configuration/Impl_Configuration_View"
+	// Impl - defines this is hand crafted html page
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)

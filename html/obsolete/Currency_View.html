@@ -1,0 +1,289 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CurrencyEdit?Code={{.Code}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-dollar-sign me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Code}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Currency"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}">
+                        <label class="form-label" for="Code">Code</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}">
+                        <label class="form-label" for="Name">Name</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AmountDp" aria-describedby="AmountDpHelp" placeholder="0" disabled value="{{.AmountDp}}">
+                        <label class="form-label" for="AmountDp">AmountDp</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Country" aria-describedby="CountryHelp" placeholder="" disabled value="{{.Country}}">
+                        <label class="form-label" for="Country">Country</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CountryName" aria-describedby="CountryNameHelp" placeholder="" disabled value="{{.CountryName}}">
+                        <label class="form-label" for="CountryName">CountryName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="IntBase" aria-describedby="IntBaseHelp" placeholder="" disabled value="{{.IntBase}}">
+                        <label class="form-label" for="IntBase">IntBase</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="KeydateBase" aria-describedby="KeydateBaseHelp" placeholder="" disabled value="{{.KeydateBase}}">
+                        <label class="form-label" for="KeydateBase">KeydateBase</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="InterestRateTolerance" aria-describedby="InterestRateToleranceHelp" placeholder="0.00" disabled value="{{.InterestRateTolerance}}">
+                        <label class="form-label" for="InterestRateTolerance">InterestRateTolerance</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CheckPayTo" aria-describedby="CheckPayToHelp" placeholder="True" disabled value="{{.CheckPayTo}}">
+                        <label class="form-label" for="CheckPayTo">CheckPayTo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LatinAmericanSettlement" aria-describedby="LatinAmericanSettlementHelp" placeholder="True" disabled value="{{.LatinAmericanSettlement}}">
+                        <label class="form-label" for="LatinAmericanSettlement">LatinAmericanSettlement</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DefaultLayOffBookKey" aria-describedby="DefaultLayOffBookKeyHelp" placeholder="" disabled value="{{.DefaultLayOffBookKey}}">
+                        <label class="form-label" for="DefaultLayOffBookKey">DefaultLayOffBookKey</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeCutOffTime" aria-describedby="CutOffTimeCutOffTimeHelp" placeholder="" disabled value="{{.CutOffTimeCutOffTime}}">
+                        <label class="form-label" for="CutOffTimeCutOffTime">CutOffTimeCutOffTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeTimeZone" aria-describedby="CutOffTimeTimeZoneHelp" placeholder="" disabled value="{{.CutOffTimeTimeZone}}">
+                        <label class="form-label" for="CutOffTimeTimeZone">CutOffTimeTimeZone</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeDerivedDataUTCOffset" aria-describedby="CutOffTimeDerivedDataUTCOffsetHelp" placeholder="" disabled value="{{.CutOffTimeDerivedDataUTCOffset}}">
+                        <label class="form-label" for="CutOffTimeDerivedDataUTCOffset">CutOffTimeDerivedDataUTCOffset</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeDerivedDataHasDaylightSaving" aria-describedby="CutOffTimeDerivedDataHasDaylightSavingHelp" placeholder="True" disabled value="{{.CutOffTimeDerivedDataHasDaylightSaving}}">
+                        <label class="form-label" for="CutOffTimeDerivedDataHasDaylightSaving">CutOffTimeDerivedDataHasDaylightSaving</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeDerivedDataDaylightStart" aria-describedby="CutOffTimeDerivedDataDaylightStartHelp" placeholder="" disabled value="{{.CutOffTimeDerivedDataDaylightStart}}">
+                        <label class="form-label" for="CutOffTimeDerivedDataDaylightStart">CutOffTimeDerivedDataDaylightStart</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeDerivedDataDaylightEnd" aria-describedby="CutOffTimeDerivedDataDaylightEndHelp" placeholder="" disabled value="{{.CutOffTimeDerivedDataDaylightEnd}}">
+                        <label class="form-label" for="CutOffTimeDerivedDataDaylightEnd">CutOffTimeDerivedDataDaylightEnd</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealerInterventionQuoteTimeout" aria-describedby="DealerInterventionQuoteTimeoutHelp" placeholder="0" disabled value="{{.DealerInterventionQuoteTimeout}}">
+                        <label class="form-label" for="DealerInterventionQuoteTimeout">DealerInterventionQuoteTimeout</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CutOffTimeCutOffPeriod" aria-describedby="CutOffTimeCutOffPeriodHelp" placeholder="" disabled value="{{.CutOffTimeCutOffPeriod}}">
+                        <label class="form-label" for="CutOffTimeCutOffPeriod">CutOffTimeCutOffPeriod</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="StripRateFutureExchangeCode" aria-describedby="StripRateFutureExchangeCodeHelp" placeholder="" disabled value="{{.StripRateFutureExchangeCode}}">
+                        <label class="form-label" for="StripRateFutureExchangeCode">StripRateFutureExchangeCode</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="StripRateFutureCurrencyContractCurrencyIsoCode" aria-describedby="StripRateFutureCurrencyContractCurrencyIsoCodeHelp" placeholder="" disabled value="{{.StripRateFutureCurrencyContractCurrencyIsoCode}}">
+                        <label class="form-label" for="StripRateFutureCurrencyContractCurrencyIsoCode">StripRateFutureCurrencyContractCurrencyIsoCode</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="StripRateFutureCurrencyContractFutureContractCode" aria-describedby="StripRateFutureCurrencyContractFutureContractCodeHelp" placeholder="" disabled value="{{.StripRateFutureCurrencyContractFutureContractCode}}">
+                        <label class="form-label" for="StripRateFutureCurrencyContractFutureContractCode">StripRateFutureCurrencyContractFutureContractCode</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="OvernightFundingSpreadBid" aria-describedby="OvernightFundingSpreadBidHelp" placeholder="0.00" disabled value="{{.OvernightFundingSpreadBid}}">
+                        <label class="form-label" for="OvernightFundingSpreadBid">OvernightFundingSpreadBid</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="OvernightFundingSpreadOffer" aria-describedby="OvernightFundingSpreadOfferHelp" placeholder="0.00" disabled value="{{.OvernightFundingSpreadOffer}}">
+                        <label class="form-label" for="OvernightFundingSpreadOffer">OvernightFundingSpreadOffer</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

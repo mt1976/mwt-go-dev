@@ -14,7 +14,7 @@ func payee_NewIDImpl(r dm.Payee) string { return "" }
 func Payee_GetByCounterparty(firm string, centre string) (int, []dm.Payee, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Payee_SQLTable)
-	tsql = tsql + " WHERE " + dm.Payee_KeyCounterpartyFirm + "='" + firm + "' AND " + dm.Payee_KeyCounterpartyCentre + "='" + centre + "'"
+	tsql = tsql + " WHERE " + dm.Payee_KeyCounterpartyFirm_sql + "='" + firm + "' AND " + dm.Payee_KeyCounterpartyCentre_sql + "='" + centre + "'"
 
 	noItems, payeeList, _, _ := payee_Fetch(tsql)
 	return noItems, payeeList, nil
@@ -28,12 +28,12 @@ func Payee_GetByFullKey(ID_source string, ID_firm string, ID_centre string, ID_c
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Payee_SQLTable)
 	tsql = tsql + " WHERE SourceTable=" + sq(ID_source)
 
-	tsql = tsql_AND(tsql, dm.Payee_KeyCounterpartyFirm, ID_firm)
-	tsql = tsql_AND(tsql, dm.Payee_KeyCounterpartyCentre, ID_centre)
-	tsql = tsql_AND(tsql, dm.Payee_KeyCurrency, ID_currency)
-	tsql = tsql_AND(tsql, dm.Payee_KeyName, UD_name)
-	tsql = tsql_AND(tsql, dm.Payee_KeyNumber, ID_number)
-	tsql = tsql_AND(tsql, dm.Payee_KeyDirection, ID_direction)
+	tsql = tsql_AND(tsql, dm.Payee_KeyCounterpartyFirm_sql, ID_firm)
+	tsql = tsql_AND(tsql, dm.Payee_KeyCounterpartyCentre_sql, ID_centre)
+	tsql = tsql_AND(tsql, dm.Payee_KeyCurrency_sql, ID_currency)
+	tsql = tsql_AND(tsql, dm.Payee_KeyName_sql, UD_name)
+	tsql = tsql_AND(tsql, dm.Payee_KeyNumber_sql, ID_number)
+	tsql = tsql_AND(tsql, dm.Payee_KeyDirection_sql, ID_direction)
 	//tsql = tsql_AND(tsql, dm.Payee_KeyType, ID_type)
 
 	_, _, payeeItem, _ := payee_Fetch(tsql)
@@ -52,27 +52,4 @@ func Payee_GetListByCounterpartyID(id string) (int, []dm.Payee, error) {
 
 	count, sienaPayeeList, er := Payee_GetByCounterparty(parts[0], parts[1])
 	return count, sienaPayeeList, er
-}
-
-func payee_Status_Extra(r dm.Payee) string {
-
-	val := ""
-	if r.SourceTable == "" {
-		logs.Warning("SourceTable is empty for " + r.FullName)
-		return ""
-	}
-
-	splitSource := strings.Split(r.SourceTable, ".")
-
-	if splitSource[1] == "Payee" {
-		val = "Authorised"
-	} else {
-		val = "Pending"
-	}
-
-	return val
-}
-
-func payee_Reason_Override(r dm.Payee) string {
-	return r.Reason
 }

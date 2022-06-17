@@ -1,0 +1,169 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CustomerOnboardingEdit?ID={{.ID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-tasks me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.ID}}</code>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" value="" class="btn btn-warning"><i class="fas fa-pen"  method="POST" formaction="/CustomerOnboardingEdit/?ID={{.ID}}" onclick="/CustomerOnboardingEdit/?ID={{.ID}}" title="Edit Customer Onboarding Tool"></i>&nbsp;&nbsp;Edit</button>                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Customer Onboarding Tool"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                        <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled value="{{.ID}}">
+                        <label class="form-label" for="ID">ID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerName" aria-describedby="CustomerNameHelp" placeholder="" disabled value="{{.CustomerName}}">
+                        <label class="form-label" for="CustomerName">CustomerName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerAddress" aria-describedby="CustomerAddressHelp" placeholder="" disabled value="{{.CustomerAddress}}">
+                        <label class="form-label" for="CustomerAddress">CustomerAddress</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerBOLID" aria-describedby="CustomerBOLIDHelp" placeholder="" disabled value="{{.CustomerBOLID}}">
+                        <label class="form-label" for="CustomerBOLID">CustomerBOLID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerFirmName" aria-describedby="CustomerFirmNameHelp" placeholder="" disabled value="{{.CustomerFirmName}}">
+                        <label class="form-label" for="CustomerFirmName">CustomerFirmName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerType" aria-describedby="CustomerTypeHelp" placeholder="" disabled value="{{.CustomerType}}">
+                        <label class="form-label" for="CustomerType">CustomerType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerRDC" aria-describedby="CustomerRDCHelp" placeholder="" disabled value="{{.CustomerRDC}}">
+                        <label class="form-label" for="CustomerRDC">CustomerRDC</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerSortCode" aria-describedby="CustomerSortCodeHelp" placeholder="" disabled value="{{.CustomerSortCode}}">
+                        <label class="form-label" for="CustomerSortCode">CustomerSortCode</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerGMClientNo" aria-describedby="CustomerGMClientNoHelp" placeholder="" disabled value="{{.CustomerGMClientNo}}">
+                        <label class="form-label" for="CustomerGMClientNo">CustomerGMClientNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerDefaultBook" aria-describedby="CustomerDefaultBookHelp" placeholder="" disabled value="{{.CustomerDefaultBook}}">
+                        <label class="form-label" for="CustomerDefaultBook">CustomerDefaultBook</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerRegion" aria-describedby="CustomerRegionHelp" placeholder="" disabled value="{{.CustomerRegion}}">
+                        <label class="form-label" for="CustomerRegion">CustomerRegion</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder="" disabled value="{{.CustomerCategory}}">
+                        <label class="form-label" for="CustomerCategory">CustomerCategory</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerTelephoneNo" aria-describedby="CustomerTelephoneNoHelp" placeholder="" disabled value="{{.CustomerTelephoneNo}}">
+                        <label class="form-label" for="CustomerTelephoneNo">CustomerTelephoneNo</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

@@ -9,25 +9,25 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 12/12/2021 at 16:13:18
-// Who & Where		    : matttownsend on silicon.local
+// Date & Time		    : 17/06/2022 at 18:38:13
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Centre is cheese
+//Product defines the datamolde for the Product object
 type Product struct {
 
-Code        string
-Name        string
-Factor        string
-MaxTermPrecedence        string
-InternalId        string
-InternalDeleted        string
-UpdatedTransactionId        string
-UpdatedUserId        string
-UpdatedDateTime        string
-DeletedTransactionId        string
-DeletedUserId        string
-ChangeType        string
+Code       string
+Name       string
+Factor       string
+MaxTermPrecedence       string
+InternalId       string
+InternalDeleted       string
+UpdatedTransactionId       string
+UpdatedUserId       string
+UpdatedDateTime       string
+DeletedTransactionId       string
+DeletedUserId       string
+ChangeType       string
 
 }
 
@@ -40,10 +40,10 @@ const (
 	/// Handler Defintions
 	///
 	Product_Template     = "Product"
-	Product_TemplateList = "Product_List"
-	Product_TemplateView = "Product_View"
-	Product_TemplateEdit = "Product_Edit"
-	Product_TemplateNew  = "Product_New"
+	Product_TemplateList = "/Product/Product_List"
+	Product_TemplateView = "/Product/Product_View"
+	Product_TemplateEdit = "/Product/Product_Edit"
+	Product_TemplateNew  = "/Product/Product_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -55,20 +55,38 @@ const (
 	Product_PathSave   = "/ProductSave/"
 	Product_PathDelete = "/ProductDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-	Product_Code   = "Code" // Code is a String
-	Product_Name   = "Name" // Name is a String
-	Product_Factor   = "Factor" // Factor is a Float
-	Product_MaxTermPrecedence   = "MaxTermPrecedence" // MaxTermPrecedence is a Bool
-	Product_InternalId   = "InternalId" // InternalId is a Int
-	Product_InternalDeleted   = "InternalDeleted" // InternalDeleted is a Time
-	Product_UpdatedTransactionId   = "UpdatedTransactionId" // UpdatedTransactionId is a String
-	Product_UpdatedUserId   = "UpdatedUserId" // UpdatedUserId is a String
-	Product_UpdatedDateTime   = "UpdatedDateTime" // UpdatedDateTime is a Time
-	Product_DeletedTransactionId   = "DeletedTransactionId" // DeletedTransactionId is a String
-	Product_DeletedUserId   = "DeletedUserId" // DeletedUserId is a String
-	Product_ChangeType   = "ChangeType" // ChangeType is a String
+Product_Code_sql   = "Code" // Code is a String
+Product_Name_sql   = "Name" // Name is a String
+Product_Factor_sql   = "Factor" // Factor is a Float
+Product_MaxTermPrecedence_sql   = "MaxTermPrecedence" // MaxTermPrecedence is a Bool
+Product_InternalId_sql   = "InternalId" // InternalId is a Int
+Product_InternalDeleted_sql   = "InternalDeleted" // InternalDeleted is a Time
+Product_UpdatedTransactionId_sql   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+Product_UpdatedUserId_sql   = "UpdatedUserId" // UpdatedUserId is a String
+Product_UpdatedDateTime_sql   = "UpdatedDateTime" // UpdatedDateTime is a Time
+Product_DeletedTransactionId_sql   = "DeletedTransactionId" // DeletedTransactionId is a String
+Product_DeletedUserId_sql   = "DeletedUserId" // DeletedUserId is a String
+Product_ChangeType_sql   = "ChangeType" // ChangeType is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Product_Code_scrn   = "Code" // Code is a String
+Product_Name_scrn   = "Name" // Name is a String
+Product_Factor_scrn   = "Factor" // Factor is a Float
+Product_MaxTermPrecedence_scrn   = "MaxTermPrecedence" // MaxTermPrecedence is a Bool
+Product_InternalId_scrn   = "InternalId" // InternalId is a Int
+Product_InternalDeleted_scrn   = "InternalDeleted" // InternalDeleted is a Time
+Product_UpdatedTransactionId_scrn   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+Product_UpdatedUserId_scrn   = "UpdatedUserId" // UpdatedUserId is a String
+Product_UpdatedDateTime_scrn   = "UpdatedDateTime" // UpdatedDateTime is a Time
+Product_DeletedTransactionId_scrn   = "DeletedTransactionId" // DeletedTransactionId is a String
+Product_DeletedUserId_scrn   = "DeletedUserId" // DeletedUserId is a String
+Product_ChangeType_scrn   = "ChangeType" // ChangeType is a String
 
 	/// Definitions End
 )

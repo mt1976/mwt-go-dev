@@ -1,0 +1,119 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/MessageSave?Message={{.Id}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fas fa-info-circle me-2"></i>{{.Title}}&nbsp;:&nbsp;<code>{{.Id}}</code>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger"><i class="fas fa-save"  method="GET" formaction="/MessageSave/Message={{.Id}}" onclick="/MessageSave/Message={{.Id}}" title="Save System Message"></i>&nbsp;&nbsp;Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print System Message"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times" ></i>&nbsp;&nbsp;Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="new" required>
+                      <label class="form-label" for="SYSId" hidden>SYSId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""   value="{{.Id}}" >
+                      <label class="form-label" for="Id" >Id</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="Message" name="Message" aria-describedby="MessageHelp" placeholder=""   value="{{.Message}}" >
+                      <label class="form-label" for="Message" >Message</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}" >
+                      <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden  value="{{.SYSWho}}" >
+                      <label class="form-label" for="SYSWho" hidden>SYSWho</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden  value="{{.SYSHost}}" >
+                      <label class="form-label" for="SYSHost" hidden>SYSHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}" >
+                      <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}" >
+                      <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}" >
+                      <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}" >
+                      <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}" >
+                      <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

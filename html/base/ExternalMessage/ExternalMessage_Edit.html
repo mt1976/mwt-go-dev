@@ -1,0 +1,257 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/ExternalMessageSave/?Message={{.MessageID}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fas fa-mail-bulk me-2" title="Message={{.MessageID}}"></i><span class="me-3">{{.Title}}</span>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/ExternalMessageSave/?Message={{.MessageID}}" onclick="/ExternalMessageSave/?Message={{.MessageID}}" title="Save ExternalMessage"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ExternalMessage"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="{{.SYSId}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="SYSId" hidden>SYSId</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageID" name="MessageID" aria-describedby="MessageIDHelp" placeholder="" readonly="true"  value="{{.MessageID}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageID" readonly="true"><i class="fas fa-key me-2"></i>MessageID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageFormat" name="MessageFormat" aria-describedby="MessageFormatHelp" placeholder="" readonly="true"  value="{{.MessageFormat}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageFormat" readonly="true">MessageFormat</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageDeliveredTo" name="MessageDeliveredTo" aria-describedby="MessageDeliveredToHelp" placeholder="" readonly="true"  value="{{.MessageDeliveredTo}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageDeliveredTo" readonly="true">MessageDeliveredTo</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageBody" name="MessageBody" aria-describedby="MessageBodyHelp" placeholder="" readonly="true"  value="{{.MessageBody}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageBody" readonly="true">MessageBody</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageFilename" name="MessageFilename" aria-describedby="MessageFilenameHelp" placeholder="" readonly="true"  value="{{.MessageFilename}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageFilename" readonly="true">MessageFilename</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="number" class="form-control" id="MessageLife" name="MessageLife" aria-describedby="MessageLifeHelp" placeholder=""   value="{{.MessageLife}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageLife" >MessageLife</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageDate" name="MessageDate" aria-describedby="MessageDateHelp" placeholder="" readonly="true"  value="{{.MessageDate}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageDate" readonly="true">MessageDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageTime" name="MessageTime" aria-describedby="MessageTimeHelp" placeholder="" readonly="true"  value="{{.MessageTime}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageTime" readonly="true">MessageTime</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageTimeoutAction" name="MessageTimeoutAction" aria-describedby="MessageTimeoutActionHelp" placeholder="" readonly="true"  value="{{.MessageTimeoutAction}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageTimeoutAction" readonly="true">MessageTimeoutAction</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+         
+                  <select id="MessageACKNAK" name="MessageACKNAK" class="select" data-mdb-filter="true"  >
+                  {{range .MessageACKNAK_lookup}}<option value="{{.ID}}" {{if eq .ID $.MessageACKNAK}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="MessageACKNAK" >MessageACKNAK</label>
+                  
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseID" name="ResponseID" aria-describedby="ResponseIDHelp" placeholder=""   value="{{.ResponseID}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseID" >ResponseID</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseFilename" name="ResponseFilename" aria-describedby="ResponseFilenameHelp" placeholder=""   value="{{.ResponseFilename}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseFilename" >ResponseFilename</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseBody" name="ResponseBody" aria-describedby="ResponseBodyHelp" placeholder=""   value="{{.ResponseBody}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseBody" >ResponseBody</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseDate" name="ResponseDate" aria-describedby="ResponseDateHelp" placeholder=""   value="{{.ResponseDate}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseDate" >ResponseDate</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseTime" name="ResponseTime" aria-describedby="ResponseTimeHelp" placeholder=""   value="{{.ResponseTime}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseTime" >ResponseTime</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseAdditionalInfo" name="ResponseAdditionalInfo" aria-describedby="ResponseAdditionalInfoHelp" placeholder=""   value="{{.ResponseAdditionalInfo}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseAdditionalInfo" >ResponseAdditionalInfo</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" hidden><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="datetime" class="form-control" id="MessageTimeout" name="MessageTimeout" aria-describedby="MessageTimeoutHelp" placeholder=""   value="{{.MessageTimeout}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageTimeout" >MessageTimeout</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageEmitted" name="MessageEmitted" aria-describedby="MessageEmittedHelp" placeholder="" readonly="true"  value="{{.MessageEmitted}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageEmitted" readonly="true">MessageEmitted</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="ResponseRecieved" name="ResponseRecieved" aria-describedby="ResponseRecievedHelp" placeholder=""   value="{{.ResponseRecieved}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="ResponseRecieved" >ResponseRecieved</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="MessageClass" name="MessageClass" aria-describedby="MessageClassHelp" placeholder="" readonly="true"  value="{{.MessageClass}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="MessageClass" readonly="true">MessageClass</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" readonly="true"><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="AppID" name="AppID" aria-describedby="AppIDHelp" placeholder="" readonly="true"  value="{{.AppID}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="AppID" readonly="true">AppID</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        {{template "audit" .}}
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}
