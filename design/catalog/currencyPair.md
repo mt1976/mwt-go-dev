@@ -42,12 +42,12 @@ SQL Table Key | **Code**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**CodeMajorCurrencyIsoCode**|String|true|true|false|true|OL|Currency|CodeMajorCurrencyIsoCode|Name|Y|CodeMajorCurrencyIsoCode||true|false|false|
-|**CodeMinorCurrencyIsoCode**|String|true|true|false|true|OL|Currency|CodeMinorCurrencyIsoCode|Name|Y|CodeMinorCurrencyIsoCode||true|false|false|
-|**ReciprocalActive**|Bool|false|true|false|false|LL|tf|||Y|ReciprocalActive|True|false|false|false|
-|**Code**|String|true|true|false|true|||||N|Code||true|true|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**CodeMajorCurrencyIsoCode**|String|true|true|false|true|OL|Currency|CodeMajorCurrencyIsoCode|Name|Y|CodeMajorCurrencyIsoCode||true|false|false|||
+|**CodeMinorCurrencyIsoCode**|String|true|true|false|true|OL|Currency|CodeMinorCurrencyIsoCode|Name|Y|CodeMinorCurrencyIsoCode||true|false|false|||
+|**ReciprocalActive**|Bool|false|true|false|false|LL|tf|||Y|ReciprocalActive|True|false|false|false|text||
+|**Code**|String|true|true|false|true|||||N|Code||true|true|false|text||
 
 
 ##  Artifacts Generated
@@ -59,17 +59,17 @@ SQL Table Key | **Code**
 | code | **dao** | /dao/currencyPair_core.go |
 | code | **datamodel** | /datamodel/currencyPair_core.go |
 | code | **menu** | /design/menu/currencyPair.json |
-| html | **list** | /html/CurrencyPair_List.html |
-| html | **view** | /html/CurrencyPair_View.html |
-| html | **edit** | /html/CurrencyPair_Edit.html |
-| html | **new** | /html/CurrencyPair_New.html |
+| html | **list** | /CurrencyPair_List.html |
+| html | **view** | /CurrencyPair_View.html |
+| html | **edit** | /CurrencyPair_Edit.html |
+| html | **new** | /CurrencyPair_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:01**
+Date & Time		     | **17/06/2022** at **18:38:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

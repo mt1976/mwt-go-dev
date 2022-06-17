@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:03
+// Date & Time		    : 17/06/2022 at 18:38:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -135,35 +135,42 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference, "")
-   recItem.Status  = get_String(rec, dm.DealConversation_Status, "")
-   recItem.MessageType  = get_String(rec, dm.DealConversation_MessageType, "")
-   recItem.ContractNumber  = get_String(rec, dm.DealConversation_ContractNumber, "")
-   recItem.AckReference  = get_String(rec, dm.DealConversation_AckReference, "")
-   recItem.NewTX  = get_Bool(rec, dm.DealConversation_NewTX, "True")
-   recItem.LegNo  = get_Int(rec, dm.DealConversation_LegNo, "0")
-   recItem.Summary  = get_String(rec, dm.DealConversation_Summary, "")
-   recItem.BusinessDate  = get_Time(rec, dm.DealConversation_BusinessDate, "")
-   recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo, "0")
-   recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem, "")
-   recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference, "")
-// If there are fields below, create the methods in adaptor\DealConversation_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference_sql, "")
+	   recItem.Status  = get_String(rec, dm.DealConversation_Status_sql, "")
+	   recItem.MessageType  = get_String(rec, dm.DealConversation_MessageType_sql, "")
+	   recItem.ContractNumber  = get_String(rec, dm.DealConversation_ContractNumber_sql, "")
+	   recItem.AckReference  = get_String(rec, dm.DealConversation_AckReference_sql, "")
+	   recItem.NewTX  = get_Bool(rec, dm.DealConversation_NewTX_sql, "True")
+	   recItem.LegNo  = get_Int(rec, dm.DealConversation_LegNo_sql, "0")
+	   recItem.Summary  = get_String(rec, dm.DealConversation_Summary_sql, "")
+	   recItem.BusinessDate  = get_Time(rec, dm.DealConversation_BusinessDate_sql, "")
+	   recItem.TXNo  = get_Int(rec, dm.DealConversation_TXNo_sql, "0")
+	   recItem.ExternalSystem  = get_String(rec, dm.DealConversation_ExternalSystem_sql, "")
+	   recItem.MessageLogReference  = get_String(rec, dm.DealConversation_MessageLogReference_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\DealConversation_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

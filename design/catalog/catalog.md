@@ -41,13 +41,13 @@ Fetch|<ul><li>**Implement in Adaptor**</li><li> func Catalog_GetList_impl() (int
 Store|<ul><li>**Implement in Adaptor**</li><li>func Catalog_NewID_impl(rec dm.Catalog) (string) { return rec.ID } </li><li>func Catalog_Delete_impl(id string) (error) {return nil}</li><li>func Catalog_Update_impl(id string,rec dm.Catalog, usr string) (error) {return nil}</li></ul>
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|
-|**Endpoint**|String|true|true|false|false|||||Y|Endpoint||false|false|false|
-|**Descr**|String|true|true|false|false|||||Y|Descr||false|false|false|
-|**Query**|String|true|true|false|false|||||Y|Query||false|false|false|
-|**Source**|String|true|true|false|false|||||Y|Source||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|text||
+|**Endpoint**|String|true|true|false|false|||||Y|Endpoint||false|false|false|text||
+|**Descr**|String|true|true|false|false|||||Y|Descr||false|false|false|text||
+|**Query**|String|true|true|false|false|||||Y|Query||false|false|false|text||
+|**Source**|String|true|true|false|false|||||Y|Source||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -59,15 +59,15 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func Catalog_NewID_impl(rec dm.Ca
 | code | **dao** | /dao/catalog_core.go |
 | code | **datamodel** | /datamodel/catalog_core.go |
 | code | **menu** | /design/menu/catalog.json |
-| html | **list** | /html/Catalog_List.html |
-| html | **view** | /html/Catalog_View.html |
+| html | **list** | /Catalog_List.html |
+| html | **view** | /Catalog_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:51**
+Date & Time		     | **17/06/2022** at **18:38:06**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

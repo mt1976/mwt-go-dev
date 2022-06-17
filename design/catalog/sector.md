@@ -42,10 +42,10 @@ SQL Table Key | **Code**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -57,17 +57,17 @@ SQL Table Key | **Code**
 | code | **dao** | /dao/sector_core.go |
 | code | **datamodel** | /datamodel/sector_core.go |
 | code | **menu** | /design/menu/sector.json |
-| html | **list** | /html/Sector_List.html |
-| html | **view** | /html/Sector_View.html |
-| html | **edit** | /html/Sector_Edit.html |
-| html | **new** | /html/Sector_New.html |
+| html | **list** | /Sector_List.html |
+| html | **view** | /Sector_View.html |
+| html | **edit** | /Sector_Edit.html |
+| html | **new** | /Sector_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:09**
+Date & Time		     | **17/06/2022** at **18:38:14**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -42,11 +42,11 @@ SQL Table Key | **Code**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|
-|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
+|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|||
 
 
 ##  Artifacts Generated
@@ -58,17 +58,17 @@ SQL Table Key | **Code**
 | code | **dao** | /dao/centre_core.go |
 | code | **datamodel** | /datamodel/centre_core.go |
 | code | **menu** | /design/menu/centre.json |
-| html | **list** | /html/Centre_List.html |
-| html | **view** | /html/Centre_View.html |
-| html | **edit** | /html/Centre_Edit.html |
-| html | **new** | /html/Centre_New.html |
+| html | **list** | /Centre_List.html |
+| html | **view** | /Centre_View.html |
+| html | **edit** | /Centre_Edit.html |
+| html | **new** | /Centre_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:51**
+Date & Time		     | **17/06/2022** at **18:38:06**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

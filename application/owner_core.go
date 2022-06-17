@@ -9,7 +9,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:07
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,7 +44,7 @@ type Owner_Page struct {
 	Title       string
 	PageTitle   string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	UserName         string
 	FullName         string
@@ -62,7 +62,7 @@ type Owner_Page struct {
 	Entity           string
 	UserCode         string
 	//
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -82,7 +82,7 @@ func Owner_Publish(mux http.ServeMux) {
 // Builds/Popuplates the Owner Page
 func owner_PopulatePage(rD dm.Owner, pageDetail Owner_Page) Owner_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	pageDetail.UserName = rD.UserName
 	pageDetail.FullName = rD.FullName
@@ -101,11 +101,11 @@ func owner_PopulatePage(rD dm.Owner, pageDetail Owner_Page) Owner_Page {
 	pageDetail.UserCode = rD.UserCode
 
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 
 	//
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return pageDetail
 }

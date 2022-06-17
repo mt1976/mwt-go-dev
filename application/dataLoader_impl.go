@@ -97,7 +97,7 @@ func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_LoaderList"
+	tmpl := "DataLoader/Impl_LoaderList"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	//	requestID := uuid.New()
@@ -231,7 +231,7 @@ func DataLoader_HandlerEdit_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	buildGridPage("Impl_LoaderEdit", w, r)
+	buildGridPage("DataLoader/Impl_LoaderEdit", w, r)
 
 }
 
@@ -243,7 +243,7 @@ func DataLoader_HandlerViewXML_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_LoaderTemplateView"
+	tmpl := "DataLoader/Impl_LoaderTemplateView"
 
 	inUTL := r.URL.Path
 
@@ -297,7 +297,7 @@ func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_LoaderTemplateEdit"
+	tmpl := "DataLoader/Impl_LoaderTemplateEdit"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 
@@ -404,7 +404,7 @@ func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_DataLoader_New"
+	tmpl := "DataLoader/Impl_DataLoader_New"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 

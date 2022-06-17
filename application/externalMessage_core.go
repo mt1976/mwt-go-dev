@@ -4,11 +4,11 @@ package application
 // ----------------------------------------------------------------
 // Package              : application
 // Object 			    : ExternalMessage (externalmessage)
-// Endpoint 	        : ExternalMessage (MessageID)
+// Endpoint 	        : ExternalMessage (Message)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:04
+// Date & Time		    : 17/06/2022 at 18:38:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type ExternalMessage_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	MessageID         string
@@ -58,6 +58,7 @@ type ExternalMessage_Page struct {
 	MessageTime         string
 	MessageTimeoutAction         string
 	MessageACKNAK         string
+	MessageACKNAK_lookup    []dm.Lookup_Item
 	ResponseID         string
 	ResponseFilename         string
 	ResponseBody         string
@@ -76,7 +77,7 @@ type ExternalMessage_Page struct {
 	MessageClass         string
 	AppID         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -202,39 +203,39 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.ExternalMessage
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId)
-		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID)
-		item.MessageFormat = r.FormValue(dm.ExternalMessage_MessageFormat)
-		item.MessageDeliveredTo = r.FormValue(dm.ExternalMessage_MessageDeliveredTo)
-		item.MessageBody = r.FormValue(dm.ExternalMessage_MessageBody)
-		item.MessageFilename = r.FormValue(dm.ExternalMessage_MessageFilename)
-		item.MessageLife = r.FormValue(dm.ExternalMessage_MessageLife)
-		item.MessageDate = r.FormValue(dm.ExternalMessage_MessageDate)
-		item.MessageTime = r.FormValue(dm.ExternalMessage_MessageTime)
-		item.MessageTimeoutAction = r.FormValue(dm.ExternalMessage_MessageTimeoutAction)
-		item.MessageACKNAK = r.FormValue(dm.ExternalMessage_MessageACKNAK)
-		item.ResponseID = r.FormValue(dm.ExternalMessage_ResponseID)
-		item.ResponseFilename = r.FormValue(dm.ExternalMessage_ResponseFilename)
-		item.ResponseBody = r.FormValue(dm.ExternalMessage_ResponseBody)
-		item.ResponseDate = r.FormValue(dm.ExternalMessage_ResponseDate)
-		item.ResponseTime = r.FormValue(dm.ExternalMessage_ResponseTime)
-		item.ResponseAdditionalInfo = r.FormValue(dm.ExternalMessage_ResponseAdditionalInfo)
-		item.SYSCreated = r.FormValue(dm.ExternalMessage_SYSCreated)
-		item.SYSCreatedBy = r.FormValue(dm.ExternalMessage_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.ExternalMessage_SYSCreatedHost)
-		item.SYSUpdated = r.FormValue(dm.ExternalMessage_SYSUpdated)
-		item.SYSUpdatedBy = r.FormValue(dm.ExternalMessage_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.ExternalMessage_SYSUpdatedHost)
-		item.MessageTimeout = r.FormValue(dm.ExternalMessage_MessageTimeout)
-		item.MessageEmitted = r.FormValue(dm.ExternalMessage_MessageEmitted)
-		item.ResponseRecieved = r.FormValue(dm.ExternalMessage_ResponseRecieved)
-		item.MessageClass = r.FormValue(dm.ExternalMessage_MessageClass)
-		item.AppID = r.FormValue(dm.ExternalMessage_AppID)
+		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId_scrn)
+		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID_scrn)
+		item.MessageFormat = r.FormValue(dm.ExternalMessage_MessageFormat_scrn)
+		item.MessageDeliveredTo = r.FormValue(dm.ExternalMessage_MessageDeliveredTo_scrn)
+		item.MessageBody = r.FormValue(dm.ExternalMessage_MessageBody_scrn)
+		item.MessageFilename = r.FormValue(dm.ExternalMessage_MessageFilename_scrn)
+		item.MessageLife = r.FormValue(dm.ExternalMessage_MessageLife_scrn)
+		item.MessageDate = r.FormValue(dm.ExternalMessage_MessageDate_scrn)
+		item.MessageTime = r.FormValue(dm.ExternalMessage_MessageTime_scrn)
+		item.MessageTimeoutAction = r.FormValue(dm.ExternalMessage_MessageTimeoutAction_scrn)
+		item.MessageACKNAK = r.FormValue(dm.ExternalMessage_MessageACKNAK_scrn)
+		item.ResponseID = r.FormValue(dm.ExternalMessage_ResponseID_scrn)
+		item.ResponseFilename = r.FormValue(dm.ExternalMessage_ResponseFilename_scrn)
+		item.ResponseBody = r.FormValue(dm.ExternalMessage_ResponseBody_scrn)
+		item.ResponseDate = r.FormValue(dm.ExternalMessage_ResponseDate_scrn)
+		item.ResponseTime = r.FormValue(dm.ExternalMessage_ResponseTime_scrn)
+		item.ResponseAdditionalInfo = r.FormValue(dm.ExternalMessage_ResponseAdditionalInfo_scrn)
+		item.SYSCreated = r.FormValue(dm.ExternalMessage_SYSCreated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.ExternalMessage_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.ExternalMessage_SYSCreatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.ExternalMessage_SYSUpdated_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.ExternalMessage_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.ExternalMessage_SYSUpdatedHost_scrn)
+		item.MessageTimeout = r.FormValue(dm.ExternalMessage_MessageTimeout_scrn)
+		item.MessageEmitted = r.FormValue(dm.ExternalMessage_MessageEmitted_scrn)
+		item.ResponseRecieved = r.FormValue(dm.ExternalMessage_ResponseRecieved_scrn)
+		item.MessageClass = r.FormValue(dm.ExternalMessage_MessageClass_scrn)
+		item.AppID = r.FormValue(dm.ExternalMessage_AppID_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.ExternalMessage_Store(item,r)	
 	http.Redirect(w, r, ExternalMessage_Redirect, http.StatusFound)
@@ -263,7 +264,7 @@ func ExternalMessage_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the ExternalMessage Page 
 func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMessage_Page) ExternalMessage_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.MessageID = rD.MessageID
@@ -296,7 +297,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -319,6 +320,8 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	
 	
 	
+	
+	pageDetail.MessageACKNAK_lookup = dao.StubLists_Get("messageACKNAK")
 	
 	
 	
@@ -356,7 +359,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

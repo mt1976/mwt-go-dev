@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:11
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Tmpl_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	FIELD1         string
@@ -63,7 +63,7 @@ type Tmpl_Page struct {
 	ExtraField2         string
 	ExtraField3         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -189,24 +189,24 @@ func Tmpl_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Tmpl
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Tmpl_SYSId)
-		item.FIELD1 = r.FormValue(dm.Tmpl_FIELD1)
-		item.FIELD2 = r.FormValue(dm.Tmpl_FIELD2)
-		item.SYSCreated = r.FormValue(dm.Tmpl_SYSCreated)
-		item.SYSCreatedBy = r.FormValue(dm.Tmpl_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Tmpl_SYSCreatedHost)
-		item.SYSUpdated = r.FormValue(dm.Tmpl_SYSUpdated)
-		item.SYSUpdatedHost = r.FormValue(dm.Tmpl_SYSUpdatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Tmpl_SYSUpdatedBy)
-		item.ID = r.FormValue(dm.Tmpl_ID)
-		item.ExtraField = r.FormValue(dm.Tmpl_ExtraField)
-		item.ExtraField2 = r.FormValue(dm.Tmpl_ExtraField2)
-		item.ExtraField3 = r.FormValue(dm.Tmpl_ExtraField3)
+		item.SYSId = r.FormValue(dm.Tmpl_SYSId_scrn)
+		item.FIELD1 = r.FormValue(dm.Tmpl_FIELD1_scrn)
+		item.FIELD2 = r.FormValue(dm.Tmpl_FIELD2_scrn)
+		item.SYSCreated = r.FormValue(dm.Tmpl_SYSCreated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Tmpl_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Tmpl_SYSCreatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Tmpl_SYSUpdated_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Tmpl_SYSUpdatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Tmpl_SYSUpdatedBy_scrn)
+		item.ID = r.FormValue(dm.Tmpl_ID_scrn)
+		item.ExtraField = r.FormValue(dm.Tmpl_ExtraField_scrn)
+		item.ExtraField2 = r.FormValue(dm.Tmpl_ExtraField2_scrn)
+		item.ExtraField3 = r.FormValue(dm.Tmpl_ExtraField3_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Tmpl_Store(item,r)	
 	http.Redirect(w, r, Tmpl_Redirect, http.StatusFound)
@@ -263,7 +263,7 @@ func Tmpl_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Tmpl Page 
 func tmpl_PopulatePage(rD dm.Tmpl, pageDetail Tmpl_Page) Tmpl_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.FIELD1 = rD.FIELD1
@@ -281,7 +281,7 @@ func tmpl_PopulatePage(rD dm.Tmpl, pageDetail Tmpl_Page) Tmpl_Page {
 	pageDetail.ExtraField3 = rD.ExtraField3
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -315,7 +315,7 @@ func tmpl_PopulatePage(rD dm.Tmpl, pageDetail Tmpl_Page) Tmpl_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

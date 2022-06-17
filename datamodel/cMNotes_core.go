@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:52
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -35,10 +35,10 @@ const (
 	/// Handler Defintions
 	///
 	CMNotes_Template     = "CMNotes"
-	CMNotes_TemplateList = "CMNotes_List"
-	CMNotes_TemplateView = "CMNotes_View"
-	CMNotes_TemplateEdit = "CMNotes_Edit"
-	CMNotes_TemplateNew  = "CMNotes_New"
+	CMNotes_TemplateList = "/CMNotes/CMNotes_List"
+	CMNotes_TemplateView = "/CMNotes/CMNotes_View"
+	CMNotes_TemplateEdit = "/CMNotes/CMNotes_Edit"
+	CMNotes_TemplateNew  = "/CMNotes/CMNotes_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -50,15 +50,28 @@ const (
 	CMNotes_PathSave   = "/CMNotesSave/"
 	CMNotes_PathDelete = "/CMNotesDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-CMNotes_NoteId   = "noteId" // NoteId is a Int
-CMNotes_StreamId   = "streamId" // StreamId is a Int
-CMNotes_Summary   = "summary" // Summary is a String
-CMNotes_Details   = "details" // Details is a String
-CMNotes_RecordState   = "recordState" // RecordState is a Int
-CMNotes_CreatedBy   = "createdBy" // CreatedBy is a String
-CMNotes_CreatedDateTime   = "createdDateTime" // CreatedDateTime is a Time
+CMNotes_NoteId_sql   = "noteId" // NoteId is a Int
+CMNotes_StreamId_sql   = "streamId" // StreamId is a Int
+CMNotes_Summary_sql   = "summary" // Summary is a String
+CMNotes_Details_sql   = "details" // Details is a String
+CMNotes_RecordState_sql   = "recordState" // RecordState is a Int
+CMNotes_CreatedBy_sql   = "createdBy" // CreatedBy is a String
+CMNotes_CreatedDateTime_sql   = "createdDateTime" // CreatedDateTime is a Time
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+CMNotes_NoteId_scrn   = "NoteId" // NoteId is a Int
+CMNotes_StreamId_scrn   = "StreamId" // StreamId is a Int
+CMNotes_Summary_scrn   = "Summary" // Summary is a String
+CMNotes_Details_scrn   = "Details" // Details is a String
+CMNotes_RecordState_scrn   = "RecordState" // RecordState is a Int
+CMNotes_CreatedBy_scrn   = "CreatedBy" // CreatedBy is a String
+CMNotes_CreatedDateTime_scrn   = "CreatedDateTime" // CreatedDateTime is a Time
 
 	/// Definitions End
 )

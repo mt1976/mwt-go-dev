@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:00
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Credentials_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -68,7 +68,7 @@ type Credentials_Page struct {
 	SYSUpdatedBy         string
 	SYSUpdatedHost         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -194,31 +194,31 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Credentials
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Credentials_SYSId)
-		item.Id = r.FormValue(dm.Credentials_Id)
-		item.Username = r.FormValue(dm.Credentials_Username)
-		item.Password = r.FormValue(dm.Credentials_Password)
-		item.Firstname = r.FormValue(dm.Credentials_Firstname)
-		item.Lastname = r.FormValue(dm.Credentials_Lastname)
-		item.Knownas = r.FormValue(dm.Credentials_Knownas)
-		item.Email = r.FormValue(dm.Credentials_Email)
-		item.Issued = r.FormValue(dm.Credentials_Issued)
-		item.Expiry = r.FormValue(dm.Credentials_Expiry)
-		item.RoleType = r.FormValue(dm.Credentials_RoleType)
-		item.Brand = r.FormValue(dm.Credentials_Brand)
-		item.SYSCreated = r.FormValue(dm.Credentials_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Credentials_SYSWho)
-		item.SYSHost = r.FormValue(dm.Credentials_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Credentials_SYSUpdated)
-		item.SYSCreatedBy = r.FormValue(dm.Credentials_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Credentials_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost)
+		item.SYSId = r.FormValue(dm.Credentials_SYSId_scrn)
+		item.Id = r.FormValue(dm.Credentials_Id_scrn)
+		item.Username = r.FormValue(dm.Credentials_Username_scrn)
+		item.Password = r.FormValue(dm.Credentials_Password_scrn)
+		item.Firstname = r.FormValue(dm.Credentials_Firstname_scrn)
+		item.Lastname = r.FormValue(dm.Credentials_Lastname_scrn)
+		item.Knownas = r.FormValue(dm.Credentials_Knownas_scrn)
+		item.Email = r.FormValue(dm.Credentials_Email_scrn)
+		item.Issued = r.FormValue(dm.Credentials_Issued_scrn)
+		item.Expiry = r.FormValue(dm.Credentials_Expiry_scrn)
+		item.RoleType = r.FormValue(dm.Credentials_RoleType_scrn)
+		item.Brand = r.FormValue(dm.Credentials_Brand_scrn)
+		item.SYSCreated = r.FormValue(dm.Credentials_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Credentials_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Credentials_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Credentials_SYSUpdated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Credentials_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Credentials_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Credentials_Store(item,r)	
 	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
@@ -275,7 +275,7 @@ func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Credentials Page 
 func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Credentials_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -300,7 +300,7 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Cr
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -344,7 +344,7 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Cr
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

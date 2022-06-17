@@ -41,32 +41,32 @@ SQL Table Key | **Name**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Name**|String|true|true|false|false|||||Y|Name||false|false|false|
-|**AcceptReducedAmount**|Bool|false|true|false|false|||||Y|AcceptReducedAmount|True|false|false|false|
-|**QuoteAsIndicative**|Bool|false|true|false|false|||||Y|QuoteAsIndicative|True|false|false|false|
-|**RateTimeOut**|Int|false|true|false|false|||||Y|RateTimeOut|0|false|false|false|
-|**PropagationDelay**|Int|false|true|false|false|||||Y|PropagationDelay|0|false|false|false|
-|**CheckLiquidity**|Bool|false|true|false|false|||||Y|CheckLiquidity|True|false|false|false|
-|**ChangeQuoteDirection**|Bool|false|true|false|false|||||Y|ChangeQuoteDirection|True|false|false|false|
-|**GenerateRejectedDeals**|Bool|false|true|false|false|||||Y|GenerateRejectedDeals|True|false|false|false|
-|**SpotUpdatesForForwardQuotes**|Bool|false|true|false|false|||||Y|SpotUpdatesForForwardQuotes|True|false|false|false|
-|**SettlementInstructionStyle**|String|false|true|false|false|||||Y|SettlementInstructionStyle||false|false|false|
-|**CanRetractQuotes**|Bool|false|true|false|false|||||Y|CanRetractQuotes|True|false|false|false|
-|**CancelESPifNotPriced**|Bool|false|true|false|false|||||Y|CancelESPifNotPriced|True|false|false|false|
-|**CancelRFQSifNotPriced**|Bool|false|true|false|false|||||Y|CancelRFQSifNotPriced|True|false|false|false|
-|**CancelonDealingSuspended**|Bool|false|true|false|false|||||Y|CancelonDealingSuspended|True|false|false|false|
-|**CreditCheckedatDI**|Bool|false|true|false|false|||||Y|CreditCheckedatDI|True|false|false|false|
-|**DuplicateCheckonExternalRef**|Bool|false|true|false|false|||||Y|DuplicateCheckonExternalRef|True|false|false|false|
-|**LimitCheckQuote**|Bool|false|true|false|false|||||Y|LimitCheckQuote|True|false|false|false|
-|**LimitCheckonRFQDealSubmission**|Bool|false|true|false|false|||||Y|LimitCheckonRFQDealSubmission|True|false|false|false|
-|**ListenonLimits**|Bool|false|true|false|false|||||Y|ListenonLimits|True|false|false|false|
-|**MarginStyle**|String|false|true|false|false|||||Y|MarginStyle||false|false|false|
-|**UseRerouteDefinitionOnly**|Bool|false|true|false|false|||||Y|UseRerouteDefinitionOnly|True|false|false|false|
-|**BypassConfirmation**|Bool|false|true|false|false|||||Y|BypassConfirmation|True|false|false|false|
-|**DIOnAcceptance**|Bool|false|true|false|false|||||Y|DIOnAcceptance|True|false|false|false|
-|**IgnoreESPAmountRules**|Bool|false|true|false|false|||||Y|IgnoreESPAmountRules|True|false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Name**|String|true|true|false|false|||||Y|Name||false|false|false|text||
+|**AcceptReducedAmount**|Bool|false|true|false|false|||||Y|AcceptReducedAmount|True|false|false|false|text||
+|**QuoteAsIndicative**|Bool|false|true|false|false|||||Y|QuoteAsIndicative|True|false|false|false|text||
+|**RateTimeOut**|Int|false|true|false|false|||||Y|RateTimeOut|0|false|false|false|text||
+|**PropagationDelay**|Int|false|true|false|false|||||Y|PropagationDelay|0|false|false|false|text||
+|**CheckLiquidity**|Bool|false|true|false|false|||||Y|CheckLiquidity|True|false|false|false|text||
+|**ChangeQuoteDirection**|Bool|false|true|false|false|||||Y|ChangeQuoteDirection|True|false|false|false|text||
+|**GenerateRejectedDeals**|Bool|false|true|false|false|||||Y|GenerateRejectedDeals|True|false|false|false|text||
+|**SpotUpdatesForForwardQuotes**|Bool|false|true|false|false|||||Y|SpotUpdatesForForwardQuotes|True|false|false|false|text||
+|**SettlementInstructionStyle**|String|false|true|false|false|||||Y|SettlementInstructionStyle||false|false|false|text||
+|**CanRetractQuotes**|Bool|false|true|false|false|||||Y|CanRetractQuotes|True|false|false|false|text||
+|**CancelESPifNotPriced**|Bool|false|true|false|false|||||Y|CancelESPifNotPriced|True|false|false|false|text||
+|**CancelRFQSifNotPriced**|Bool|false|true|false|false|||||Y|CancelRFQSifNotPriced|True|false|false|false|text||
+|**CancelonDealingSuspended**|Bool|false|true|false|false|||||Y|CancelonDealingSuspended|True|false|false|false|text||
+|**CreditCheckedatDI**|Bool|false|true|false|false|||||Y|CreditCheckedatDI|True|false|false|false|text||
+|**DuplicateCheckonExternalRef**|Bool|false|true|false|false|||||Y|DuplicateCheckonExternalRef|True|false|false|false|text||
+|**LimitCheckQuote**|Bool|false|true|false|false|||||Y|LimitCheckQuote|True|false|false|false|text||
+|**LimitCheckonRFQDealSubmission**|Bool|false|true|false|false|||||Y|LimitCheckonRFQDealSubmission|True|false|false|false|text||
+|**ListenonLimits**|Bool|false|true|false|false|||||Y|ListenonLimits|True|false|false|false|text||
+|**MarginStyle**|String|false|true|false|false|||||Y|MarginStyle||false|false|false|text||
+|**UseRerouteDefinitionOnly**|Bool|false|true|false|false|||||Y|UseRerouteDefinitionOnly|True|false|false|false|text||
+|**BypassConfirmation**|Bool|false|true|false|false|||||Y|BypassConfirmation|True|false|false|false|text||
+|**DIOnAcceptance**|Bool|false|true|false|false|||||Y|DIOnAcceptance|True|false|false|false|text||
+|**IgnoreESPAmountRules**|Bool|false|true|false|false|||||Y|IgnoreESPAmountRules|True|false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -77,17 +77,17 @@ SQL Table Key | **Name**
 | code | **dao** | /dao/dealingInterface_core.go |
 | code | **datamodel** | /datamodel/dealingInterface_core.go |
 | code | **menu** | /design/menu/dealingInterface.json |
-| html | **list** | /html/DealingInterface_List.html |
-| html | **view** | /html/DealingInterface_View.html |
-| html | **edit** | /html/DealingInterface_Edit.html |
-| html | **new** | /html/DealingInterface_New.html |
+| html | **list** | /DealingInterface_List.html |
+| html | **view** | /DealingInterface_View.html |
+| html | **edit** | /DealingInterface_Edit.html |
+| html | **new** | /DealingInterface_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:03**
+Date & Time		     | **17/06/2022** at **18:38:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

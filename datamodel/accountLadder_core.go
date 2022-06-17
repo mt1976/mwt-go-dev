@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:47
+// Date & Time		    : 17/06/2022 at 18:38:05
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,10 +34,10 @@ const (
 	/// Handler Defintions
 	///
 	AccountLadder_Template     = "AccountLadder"
-	AccountLadder_TemplateList = "AccountLadder_List"
-	AccountLadder_TemplateView = "AccountLadder_View"
-	AccountLadder_TemplateEdit = "AccountLadder_Edit"
-	AccountLadder_TemplateNew  = "AccountLadder_New"
+	AccountLadder_TemplateList = "/AccountLadder/AccountLadder_List"
+	AccountLadder_TemplateView = "/AccountLadder/AccountLadder_View"
+	AccountLadder_TemplateEdit = "/AccountLadder/AccountLadder_Edit"
+	AccountLadder_TemplateNew  = "/AccountLadder/AccountLadder_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -49,14 +49,26 @@ const (
 	AccountLadder_PathSave   = "/AccountLadderSave/"
 	AccountLadder_PathDelete = "/AccountLadderDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-AccountLadder_SienaReference   = "SienaReference" // SienaReference is a String
-AccountLadder_BusinessDate   = "BusinessDate" // BusinessDate is a Time
-AccountLadder_ContractNumber   = "ContractNumber" // ContractNumber is a String
-AccountLadder_Balance   = "Balance" // Balance is a Float
-AccountLadder_DealtCcy   = "DealtCcy" // DealtCcy is a String
-AccountLadder_AmountDp   = "AmountDp" // AmountDp is a Int
+AccountLadder_SienaReference_sql   = "SienaReference" // SienaReference is a String
+AccountLadder_BusinessDate_sql   = "BusinessDate" // BusinessDate is a Time
+AccountLadder_ContractNumber_sql   = "ContractNumber" // ContractNumber is a String
+AccountLadder_Balance_sql   = "Balance" // Balance is a Float
+AccountLadder_DealtCcy_sql   = "DealtCcy" // DealtCcy is a String
+AccountLadder_AmountDp_sql   = "AmountDp" // AmountDp is a Int
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+AccountLadder_SienaReference_scrn   = "SienaReference" // SienaReference is a String
+AccountLadder_BusinessDate_scrn   = "BusinessDate" // BusinessDate is a Time
+AccountLadder_ContractNumber_scrn   = "ContractNumber" // ContractNumber is a String
+AccountLadder_Balance_scrn   = "Balance" // Balance is a Float
+AccountLadder_DealtCcy_scrn   = "DealtCcy" // DealtCcy is a String
+AccountLadder_AmountDp_scrn   = "AmountDp" // AmountDp is a Int
 
 	/// Definitions End
 )

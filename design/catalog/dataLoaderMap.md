@@ -41,22 +41,22 @@ SQL Table Key | **Id**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**Id**|String|true|true|false|false|||||Y|id||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|name||false|false|false|
-|**Position**|String|false|true|false|false|||||Y|position||false|false|false|
-|**Loader**|String|false|true|false|false|OL|DataLoader|Loader|Name|N|loader||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**Int_position**|Int|false|true|false|false|||||Y|int_position|0|false|false|false|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**Id**|String|true|true|false|false|||||Y|id||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|name||false|false|false|text||
+|**Position**|String|false|true|false|false|||||Y|position||false|false|false|text||
+|**Loader**|String|false|true|false|false|OL|DataLoader|Loader|Name|N|loader||false|false|false|||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
+|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**Int_position**|Int|false|true|false|false|||||Y|int_position|0|false|false|false|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -66,16 +66,16 @@ SQL Table Key | **Id**
 | code | **dao** | /dao/dataLoaderMap_core.go |
 | code | **datamodel** | /datamodel/dataLoaderMap_core.go |
 | code | **menu** | /design/menu/dataLoaderMap.json |
-| html | **list** | /html/DataLoaderMap_List.html |
-| html | **view** | /html/DataLoaderMap_View.html |
-| html | **edit** | /html/DataLoaderMap_Edit.html |
+| html | **list** | /DataLoaderMap_List.html |
+| html | **view** | /DataLoaderMap_View.html |
+| html | **edit** | /DataLoaderMap_Edit.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:02**
+Date & Time		     | **17/06/2022** at **18:38:09**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

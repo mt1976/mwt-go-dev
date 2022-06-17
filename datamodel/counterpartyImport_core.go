@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:57
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -36,10 +36,10 @@ const (
 	/// Handler Defintions
 	///
 	CounterpartyImport_Template     = "CounterpartyImport"
-	CounterpartyImport_TemplateList = "CounterpartyImport_List"
-	CounterpartyImport_TemplateView = "CounterpartyImport_View"
-	CounterpartyImport_TemplateEdit = "CounterpartyImport_Edit"
-	CounterpartyImport_TemplateNew  = "CounterpartyImport_New"
+	CounterpartyImport_TemplateList = "/CounterpartyImport/CounterpartyImport_List"
+	CounterpartyImport_TemplateView = "/CounterpartyImport/CounterpartyImport_View"
+	CounterpartyImport_TemplateEdit = "/CounterpartyImport/CounterpartyImport_Edit"
+	CounterpartyImport_TemplateNew  = "/CounterpartyImport/CounterpartyImport_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -51,16 +51,30 @@ const (
 	CounterpartyImport_PathSave   = "/CounterpartyImportSave/"
 	CounterpartyImport_PathDelete = "/CounterpartyImportDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-CounterpartyImport_KeyImportID   = "KeyImportID" // KeyImportID is a String
-CounterpartyImport_Firm   = "Firm" // Firm is a String
-CounterpartyImport_Centre   = "Centre" // Centre is a String
-CounterpartyImport_FirmName   = "FirmName" // FirmName is a String
-CounterpartyImport_CentreName   = "CentreName" // CentreName is a String
-CounterpartyImport_KeyOriginID   = "KeyOriginID" // KeyOriginID is a String
-CounterpartyImport_FullName   = "FullName" // FullName is a String
-CounterpartyImport_CompID   = "CompID" // CompID is a String
+CounterpartyImport_KeyImportID_sql   = "KeyImportID" // KeyImportID is a String
+CounterpartyImport_Firm_sql   = "Firm" // Firm is a String
+CounterpartyImport_Centre_sql   = "Centre" // Centre is a String
+CounterpartyImport_FirmName_sql   = "FirmName" // FirmName is a String
+CounterpartyImport_CentreName_sql   = "CentreName" // CentreName is a String
+CounterpartyImport_KeyOriginID_sql   = "KeyOriginID" // KeyOriginID is a String
+CounterpartyImport_FullName_sql   = "FullName" // FullName is a String
+CounterpartyImport_CompID_sql   = "CompID" // CompID is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+CounterpartyImport_KeyImportID_scrn   = "KeyImportID" // KeyImportID is a String
+CounterpartyImport_Firm_scrn   = "Firm" // Firm is a String
+CounterpartyImport_Centre_scrn   = "Centre" // Centre is a String
+CounterpartyImport_FirmName_scrn   = "FirmName" // FirmName is a String
+CounterpartyImport_CentreName_scrn   = "CentreName" // CentreName is a String
+CounterpartyImport_KeyOriginID_scrn   = "KeyOriginID" // KeyOriginID is a String
+CounterpartyImport_FullName_scrn   = "FullName" // FullName is a String
+CounterpartyImport_CompID_scrn   = "CompID" // CompID is a String
 
 	/// Definitions End
 )

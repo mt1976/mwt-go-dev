@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:03
+// Date & Time		    : 17/06/2022 at 18:38:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -144,53 +144,60 @@ func dealauditevent_Fetch(tsql string) (int, []dm.DealAuditEvent, dm.DealAuditEv
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.DealRefNo  = get_String(rec, dm.DealAuditEvent_DealRefNo, "")
-   recItem.EventIndex  = get_Int(rec, dm.DealAuditEvent_EventIndex, "0")
-   recItem.CommonRefNo  = get_String(rec, dm.DealAuditEvent_CommonRefNo, "")
-   recItem.Timestamp  = get_Time(rec, dm.DealAuditEvent_Timestamp, "")
-   recItem.UTCTimestamp  = get_String(rec, dm.DealAuditEvent_UTCTimestamp, "")
-   recItem.EventType  = get_String(rec, dm.DealAuditEvent_EventType, "")
-   recItem.Status  = get_String(rec, dm.DealAuditEvent_Status, "")
-   recItem.LimitOrderStatus  = get_String(rec, dm.DealAuditEvent_LimitOrderStatus, "")
-   recItem.Usr  = get_String(rec, dm.DealAuditEvent_Usr, "")
-   recItem.DealingInterface  = get_String(rec, dm.DealAuditEvent_DealingInterface, "")
-   recItem.SourceIP  = get_String(rec, dm.DealAuditEvent_SourceIP, "")
-   recItem.MessageID  = get_String(rec, dm.DealAuditEvent_MessageID, "")
-   recItem.Details  = get_String(rec, dm.DealAuditEvent_Details, "")
-   recItem.InternalId  = get_Int(rec, dm.DealAuditEvent_InternalId, "0")
-   recItem.InternalDeleted  = get_Time(rec, dm.DealAuditEvent_InternalDeleted, "")
-   recItem.UpdatedTransactionId  = get_String(rec, dm.DealAuditEvent_UpdatedTransactionId, "")
-   recItem.UpdatedUserId  = get_String(rec, dm.DealAuditEvent_UpdatedUserId, "")
-   recItem.UpdatedDateTime  = get_Time(rec, dm.DealAuditEvent_UpdatedDateTime, "")
-   recItem.DeletedTransactionId  = get_String(rec, dm.DealAuditEvent_DeletedTransactionId, "")
-   recItem.DeletedUserId  = get_String(rec, dm.DealAuditEvent_DeletedUserId, "")
-   recItem.ChangeType  = get_String(rec, dm.DealAuditEvent_ChangeType, "")
-// If there are fields below, create the methods in adaptor\DealAuditEvent_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.DealRefNo  = get_String(rec, dm.DealAuditEvent_DealRefNo_sql, "")
+	   recItem.EventIndex  = get_Int(rec, dm.DealAuditEvent_EventIndex_sql, "0")
+	   recItem.CommonRefNo  = get_String(rec, dm.DealAuditEvent_CommonRefNo_sql, "")
+	   recItem.Timestamp  = get_Time(rec, dm.DealAuditEvent_Timestamp_sql, "")
+	   recItem.UTCTimestamp  = get_String(rec, dm.DealAuditEvent_UTCTimestamp_sql, "")
+	   recItem.EventType  = get_String(rec, dm.DealAuditEvent_EventType_sql, "")
+	   recItem.Status  = get_String(rec, dm.DealAuditEvent_Status_sql, "")
+	   recItem.LimitOrderStatus  = get_String(rec, dm.DealAuditEvent_LimitOrderStatus_sql, "")
+	   recItem.Usr  = get_String(rec, dm.DealAuditEvent_Usr_sql, "")
+	   recItem.DealingInterface  = get_String(rec, dm.DealAuditEvent_DealingInterface_sql, "")
+	   recItem.SourceIP  = get_String(rec, dm.DealAuditEvent_SourceIP_sql, "")
+	   recItem.MessageID  = get_String(rec, dm.DealAuditEvent_MessageID_sql, "")
+	   recItem.Details  = get_String(rec, dm.DealAuditEvent_Details_sql, "")
+	   recItem.InternalId  = get_Int(rec, dm.DealAuditEvent_InternalId_sql, "0")
+	   recItem.InternalDeleted  = get_Time(rec, dm.DealAuditEvent_InternalDeleted_sql, "")
+	   recItem.UpdatedTransactionId  = get_String(rec, dm.DealAuditEvent_UpdatedTransactionId_sql, "")
+	   recItem.UpdatedUserId  = get_String(rec, dm.DealAuditEvent_UpdatedUserId_sql, "")
+	   recItem.UpdatedDateTime  = get_Time(rec, dm.DealAuditEvent_UpdatedDateTime_sql, "")
+	   recItem.DeletedTransactionId  = get_String(rec, dm.DealAuditEvent_DeletedTransactionId_sql, "")
+	   recItem.DeletedUserId  = get_String(rec, dm.DealAuditEvent_DeletedUserId_sql, "")
+	   recItem.ChangeType  = get_String(rec, dm.DealAuditEvent_ChangeType_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\DealAuditEvent_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

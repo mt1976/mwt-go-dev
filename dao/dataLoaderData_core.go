@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:02
+// Date & Time		    : 17/06/2022 at 18:38:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -88,26 +88,26 @@ func dataloaderdata_Save(r dm.DataLoaderData, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	ts = addData(ts, dm.DataLoaderData_SYSId, r.SYSId)
-	ts = addData(ts, dm.DataLoaderData_Id, r.Id)
-	ts = addData(ts, dm.DataLoaderData_Row, r.Row)
-	ts = addData(ts, dm.DataLoaderData_Position, r.Position)
-	ts = addData(ts, dm.DataLoaderData_Value, r.Value)
-	ts = addData(ts, dm.DataLoaderData_Loader, r.Loader)
-	ts = addData(ts, dm.DataLoaderData_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.DataLoaderData_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.DataLoaderData_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.DataLoaderData_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.DataLoaderData_Map, r.Map)
-	ts = addData(ts, dm.DataLoaderData_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.DataLoaderData_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.DataLoaderData_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.DataLoaderData_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.DataLoaderData_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.DataLoaderData_Id_sql, r.Id)
+	ts = addData(ts, dm.DataLoaderData_Row_sql, r.Row)
+	ts = addData(ts, dm.DataLoaderData_Position_sql, r.Position)
+	ts = addData(ts, dm.DataLoaderData_Value_sql, r.Value)
+	ts = addData(ts, dm.DataLoaderData_Loader_sql, r.Loader)
+	ts = addData(ts, dm.DataLoaderData_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.DataLoaderData_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.DataLoaderData_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.DataLoaderData_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.DataLoaderData_Map_sql, r.Map)
+	ts = addData(ts, dm.DataLoaderData_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.DataLoaderData_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.DataLoaderData_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.DataLoaderData_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 
 	//
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderData_SQLTable)
@@ -135,26 +135,33 @@ func dataloaderdata_Fetch(tsql string) (int, []dm.DataLoaderData, dm.DataLoaderD
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-		// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-		recItem.SYSId = get_Int(rec, dm.DataLoaderData_SYSId, "0")
-		recItem.Id = get_String(rec, dm.DataLoaderData_Id, "")
-		recItem.Row = get_String(rec, dm.DataLoaderData_Row, "")
-		recItem.Position = get_String(rec, dm.DataLoaderData_Position, "")
-		recItem.Value = get_String(rec, dm.DataLoaderData_Value, "")
-		recItem.Loader = get_String(rec, dm.DataLoaderData_Loader, "")
-		recItem.SYSCreated = get_String(rec, dm.DataLoaderData_SYSCreated, "")
-		recItem.SYSWho = get_String(rec, dm.DataLoaderData_SYSWho, "")
-		recItem.SYSHost = get_String(rec, dm.DataLoaderData_SYSHost, "")
-		recItem.SYSUpdated = get_String(rec, dm.DataLoaderData_SYSUpdated, "")
-		recItem.Map = get_String(rec, dm.DataLoaderData_Map, "")
-		recItem.SYSCreatedBy = get_String(rec, dm.DataLoaderData_SYSCreatedBy, "")
-		recItem.SYSCreatedHost = get_String(rec, dm.DataLoaderData_SYSCreatedHost, "")
-		recItem.SYSUpdatedBy = get_String(rec, dm.DataLoaderData_SYSUpdatedBy, "")
-		recItem.SYSUpdatedHost = get_String(rec, dm.DataLoaderData_SYSUpdatedHost, "")
+		// START
+		// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		//
+		recItem.SYSId = get_Int(rec, dm.DataLoaderData_SYSId_sql, "0")
+		recItem.Id = get_String(rec, dm.DataLoaderData_Id_sql, "")
+		recItem.Row = get_String(rec, dm.DataLoaderData_Row_sql, "")
+		recItem.Position = get_String(rec, dm.DataLoaderData_Position_sql, "")
+		recItem.Value = get_String(rec, dm.DataLoaderData_Value_sql, "")
+		recItem.Loader = get_String(rec, dm.DataLoaderData_Loader_sql, "")
+		recItem.SYSCreated = get_String(rec, dm.DataLoaderData_SYSCreated_sql, "")
+		recItem.SYSWho = get_String(rec, dm.DataLoaderData_SYSWho_sql, "")
+		recItem.SYSHost = get_String(rec, dm.DataLoaderData_SYSHost_sql, "")
+		recItem.SYSUpdated = get_String(rec, dm.DataLoaderData_SYSUpdated_sql, "")
+		recItem.Map = get_String(rec, dm.DataLoaderData_Map_sql, "")
+		recItem.SYSCreatedBy = get_String(rec, dm.DataLoaderData_SYSCreatedBy_sql, "")
+		recItem.SYSCreatedHost = get_String(rec, dm.DataLoaderData_SYSCreatedHost_sql, "")
+		recItem.SYSUpdatedBy = get_String(rec, dm.DataLoaderData_SYSUpdatedBy_sql, "")
+		recItem.SYSUpdatedHost = get_String(rec, dm.DataLoaderData_SYSUpdatedHost_sql, "")
+
 		// If there are fields below, create the methods in adaptor\DataLoaderData_impl.go
 
-		// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
+		//
+		// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// END
+		///
 		//Add to the list
+		//
 		recList = append(recList, recItem)
 	}
 

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:52:05
+// Date & Time		    : 17/06/2022 at 18:38:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,19 +146,26 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.FirmName  = get_String(rec, dm.Firm_FirmName, "")
-   recItem.FullName  = get_String(rec, dm.Firm_FullName, "")
-   recItem.Country  = get_String(rec, dm.Firm_Country, "")
-   recItem.Sector  = get_String(rec, dm.Firm_Sector, "")
-// If there are fields below, create the methods in adaptor\Firm_impl.go
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.FirmName  = get_String(rec, dm.Firm_FirmName_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Firm_FullName_sql, "")
+	   recItem.Country  = get_String(rec, dm.Firm_Country_sql, "")
+	   recItem.Sector  = get_String(rec, dm.Firm_Sector_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Firm_impl.go
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

@@ -42,26 +42,26 @@ SQL Table Key | **id**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**Id**|String|true|true|false|false|||||Y|id||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|name||false|false|false|
-|**Description**|String|false|true|false|false|||||Y|description||false|false|false|
-|**Schedule**|String|false|true|false|false|||||Y|schedule||false|false|false|
-|**Started**|String|false|true|false|false|||||Y|started||false|false|false|
-|**Lastrun**|String|false|true|false|false|||||Y|lastrun||false|false|false|
-|**Message**|String|false|true|false|false|||||Y|message||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**Type**|String|false|true|false|false|||||Y|type||false|false|false|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
-|**Human**|String|false|true|false|false|||||Y|human||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**Id**|String|true|true|false|false|||||Y|id||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|name||false|false|false|text||
+|**Description**|String|false|true|false|false|||||Y|description||false|false|false|text||
+|**Schedule**|String|false|true|false|false|||||Y|schedule||false|false|false|text||
+|**Started**|String|false|true|false|false|||||Y|started||false|false|false|text||
+|**Lastrun**|String|false|true|false|false|||||Y|lastrun||false|false|false|text||
+|**Message**|String|false|true|false|false|||||Y|message||false|false|false|text||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
+|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**Type**|String|false|true|false|false|||||Y|type||false|false|false|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
+|**Human**|String|false|true|false|false|||||Y|human||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -72,15 +72,15 @@ SQL Table Key | **id**
 | code | **dao** | /dao/schedule_core.go |
 | code | **datamodel** | /datamodel/schedule_core.go |
 | code | **menu** | /design/menu/schedule.json |
-| html | **list** | /html/Schedule_List.html |
-| html | **view** | /html/Schedule_View.html |
+| html | **list** | /Schedule_List.html |
+| html | **view** | /Schedule_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:08**
+Date & Time		     | **17/06/2022** at **18:38:13**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

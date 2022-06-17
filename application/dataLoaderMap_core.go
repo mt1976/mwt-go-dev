@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:02
+// Date & Time		    : 17/06/2022 at 18:38:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type DataLoaderMap_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -63,7 +63,7 @@ type DataLoaderMap_Page struct {
 	SYSUpdatedBy         string
 	SYSUpdatedHost         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -189,25 +189,25 @@ func DataLoaderMap_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DataLoaderMap
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.DataLoaderMap_SYSId)
-		item.Id = r.FormValue(dm.DataLoaderMap_Id)
-		item.Name = r.FormValue(dm.DataLoaderMap_Name)
-		item.Position = r.FormValue(dm.DataLoaderMap_Position)
-		item.Loader = r.FormValue(dm.DataLoaderMap_Loader)
-		item.SYSCreated = r.FormValue(dm.DataLoaderMap_SYSCreated)
-		item.SYSWho = r.FormValue(dm.DataLoaderMap_SYSWho)
-		item.SYSHost = r.FormValue(dm.DataLoaderMap_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.DataLoaderMap_SYSUpdated)
-		item.Int_position = r.FormValue(dm.DataLoaderMap_Int_position)
-		item.SYSCreatedBy = r.FormValue(dm.DataLoaderMap_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.DataLoaderMap_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.DataLoaderMap_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.DataLoaderMap_SYSUpdatedHost)
+		item.SYSId = r.FormValue(dm.DataLoaderMap_SYSId_scrn)
+		item.Id = r.FormValue(dm.DataLoaderMap_Id_scrn)
+		item.Name = r.FormValue(dm.DataLoaderMap_Name_scrn)
+		item.Position = r.FormValue(dm.DataLoaderMap_Position_scrn)
+		item.Loader = r.FormValue(dm.DataLoaderMap_Loader_scrn)
+		item.SYSCreated = r.FormValue(dm.DataLoaderMap_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.DataLoaderMap_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.DataLoaderMap_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.DataLoaderMap_SYSUpdated_scrn)
+		item.Int_position = r.FormValue(dm.DataLoaderMap_Int_position_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.DataLoaderMap_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.DataLoaderMap_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.DataLoaderMap_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.DataLoaderMap_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DataLoaderMap_Store(item,r)	
 	http.Redirect(w, r, DataLoaderMap_Redirect, http.StatusFound)
@@ -219,7 +219,7 @@ func DataLoaderMap_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DataLoaderMap Page 
 func dataloadermap_PopulatePage(rD dm.DataLoaderMap, pageDetail DataLoaderMap_Page) DataLoaderMap_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -238,7 +238,7 @@ func dataloadermap_PopulatePage(rD dm.DataLoaderMap, pageDetail DataLoaderMap_Pa
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -272,7 +272,7 @@ func dataloadermap_PopulatePage(rD dm.DataLoaderMap, pageDetail DataLoaderMap_Pa
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

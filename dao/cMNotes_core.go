@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:52
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -130,25 +130,32 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.NoteId  = get_Int(rec, dm.CMNotes_NoteId, "0")
-   recItem.StreamId  = get_Int(rec, dm.CMNotes_StreamId, "0")
-   recItem.Summary  = get_String(rec, dm.CMNotes_Summary, "")
-   recItem.Details  = get_String(rec, dm.CMNotes_Details, "")
-   recItem.RecordState  = get_Int(rec, dm.CMNotes_RecordState, "0")
-   recItem.CreatedBy  = get_String(rec, dm.CMNotes_CreatedBy, "")
-   recItem.CreatedDateTime  = get_Time(rec, dm.CMNotes_CreatedDateTime, "")
-// If there are fields below, create the methods in adaptor\CMNotes_impl.go
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NoteId  = get_Int(rec, dm.CMNotes_NoteId_sql, "0")
+	   recItem.StreamId  = get_Int(rec, dm.CMNotes_StreamId_sql, "0")
+	   recItem.Summary  = get_String(rec, dm.CMNotes_Summary_sql, "")
+	   recItem.Details  = get_String(rec, dm.CMNotes_Details_sql, "")
+	   recItem.RecordState  = get_Int(rec, dm.CMNotes_RecordState_sql, "0")
+	   recItem.CreatedBy  = get_String(rec, dm.CMNotes_CreatedBy_sql, "")
+	   recItem.CreatedDateTime  = get_Time(rec, dm.CMNotes_CreatedDateTime_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CMNotes_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

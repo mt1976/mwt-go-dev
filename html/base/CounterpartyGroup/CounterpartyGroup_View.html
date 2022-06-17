@@ -1,0 +1,59 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CounterpartyGroupEdit/?Group={{.Name}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fa fa-users me-2" title="Group = {{.Name}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/CounterpartyGroupEdit/?Group={{.Name}}"  title="Edit Counterparty Group {{.Name}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Group {{.Name}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Name"><i class="fas fa-key me-2"></i>Name</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CountryCode" aria-describedby="CountryCodeHelp" placeholder="" disabled value="{{.CountryCode}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CountryCode">CountryCode</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SuperGroup" aria-describedby="SuperGroupHelp" placeholder="" disabled value="{{.SuperGroup}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SuperGroup">SuperGroup</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

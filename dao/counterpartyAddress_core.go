@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:53
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -131,27 +131,34 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm, "")
-   recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre, "")
-   recItem.Address1  = get_String(rec, dm.CounterpartyAddress_Address1, "")
-   recItem.Address2  = get_String(rec, dm.CounterpartyAddress_Address2, "")
-   recItem.CityTown  = get_String(rec, dm.CounterpartyAddress_CityTown, "")
-   recItem.County  = get_String(rec, dm.CounterpartyAddress_County, "")
-   recItem.Postcode  = get_String(rec, dm.CounterpartyAddress_Postcode, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyAddress_CompID, "")
-// If there are fields below, create the methods in adaptor\CounterpartyAddress_impl.go
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre_sql, "")
+	   recItem.Address1  = get_String(rec, dm.CounterpartyAddress_Address1_sql, "")
+	   recItem.Address2  = get_String(rec, dm.CounterpartyAddress_Address2_sql, "")
+	   recItem.CityTown  = get_String(rec, dm.CounterpartyAddress_CityTown_sql, "")
+	   recItem.County  = get_String(rec, dm.CounterpartyAddress_County_sql, "")
+	   recItem.Postcode  = get_String(rec, dm.CounterpartyAddress_Postcode_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyAddress_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyAddress_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:51
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,14 +45,14 @@ type Centre_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
 	Name         string
 	Country         string
 	Country_lookup    []dm.Lookup_Item
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -178,14 +178,14 @@ func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Centre
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Code = r.FormValue(dm.Centre_Code)
-		item.Name = r.FormValue(dm.Centre_Name)
-		item.Country = r.FormValue(dm.Centre_Country)
+		item.Code = r.FormValue(dm.Centre_Code_scrn)
+		item.Name = r.FormValue(dm.Centre_Name_scrn)
+		item.Country = r.FormValue(dm.Centre_Country_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Centre_Store(item,r)	
 	http.Redirect(w, r, Centre_Redirect, http.StatusFound)
@@ -242,7 +242,7 @@ func Centre_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Centre Page 
 func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -250,7 +250,7 @@ func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -262,7 +262,7 @@ func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

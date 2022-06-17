@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:56
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,13 +45,13 @@ type CounterpartyGroup_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Name         string
 	CountryCode         string
 	SuperGroup         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -177,14 +177,14 @@ func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CounterpartyGroup
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Name = r.FormValue(dm.CounterpartyGroup_Name)
-		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode)
-		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup)
+		item.Name = r.FormValue(dm.CounterpartyGroup_Name_scrn)
+		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode_scrn)
+		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyGroup_Store(item,r)	
 	http.Redirect(w, r, CounterpartyGroup_Redirect, http.StatusFound)
@@ -241,7 +241,7 @@ func CounterpartyGroup_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CounterpartyGroup Page 
 func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail CounterpartyGroup_Page) CounterpartyGroup_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Name = rD.Name
 	pageDetail.CountryCode = rD.CountryCode
@@ -249,7 +249,7 @@ func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail Counterp
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -259,7 +259,7 @@ func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail Counterp
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:52:05
+// Date & Time		    : 17/06/2022 at 18:38:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Firm_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	FirmName         string
 	FullName         string
@@ -54,7 +54,7 @@ type Firm_Page struct {
 	Sector         string
 	Sector_lookup    []dm.Lookup_Item
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -180,15 +180,15 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Firm
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.FirmName = r.FormValue(dm.Firm_FirmName)
-		item.FullName = r.FormValue(dm.Firm_FullName)
-		item.Country = r.FormValue(dm.Firm_Country)
-		item.Sector = r.FormValue(dm.Firm_Sector)
+		item.FirmName = r.FormValue(dm.Firm_FirmName_scrn)
+		item.FullName = r.FormValue(dm.Firm_FullName_scrn)
+		item.Country = r.FormValue(dm.Firm_Country_scrn)
+		item.Sector = r.FormValue(dm.Firm_Sector_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Firm_Store(item,r)	
 	http.Redirect(w, r, Firm_Redirect, http.StatusFound)
@@ -245,7 +245,7 @@ func Firm_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Firm Page 
 func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.FirmName = rD.FirmName
 	pageDetail.FullName = rD.FullName
@@ -254,7 +254,7 @@ func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -270,7 +270,7 @@ func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

@@ -41,23 +41,23 @@ SQL Table Key | **UserName**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**UserName**|String|true|true|false|false|||||Y|UserName||false|false|false|
-|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|
-|**Type**|String|false|true|false|false|||||Y|Type||false|false|false|
-|**TradingEntity**|String|false|true|false|false|||||Y|TradingEntity||false|false|false|
-|**DefaultEnterBook**|String|false|true|false|false|||||Y|DefaultEnterBook||false|false|false|
-|**EmailAddress**|String|false|true|false|false|||||Y|EmailAddress||false|false|false|
-|**Enabled**|String|false|true|false|false|||||Y|Enabled||false|false|false|
-|**ExternalUserIds**|String|false|true|false|false|||||Y|ExternalUserIds||false|false|false|
-|**Language**|String|false|true|false|false|||||Y|Language||false|false|false|
-|**LocalCurrency**|String|false|true|false|false|||||Y|LocalCurrency||false|false|false|
-|**Role**|String|false|true|false|false|||||Y|Role||false|false|false|
-|**TelephoneNumber**|String|false|true|false|false|||||Y|TelephoneNumber||false|false|false|
-|**TokenId**|String|false|true|false|false|||||Y|TokenId||false|false|false|
-|**Entity**|String|false|true|false|false|||||Y|Entity||false|false|false|
-|**UserCode**|String|false|true|false|false|||||Y|UserCode||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**UserName**|String|true|true|false|false|||||Y|UserName||false|false|false|text||
+|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
+|**Type**|String|false|true|false|false|||||Y|Type||false|false|false|text||
+|**TradingEntity**|String|false|true|false|false|||||Y|TradingEntity||false|false|false|text||
+|**DefaultEnterBook**|String|false|true|false|false|||||Y|DefaultEnterBook||false|false|false|text||
+|**EmailAddress**|String|false|true|false|false|||||Y|EmailAddress||false|false|false|text||
+|**Enabled**|String|false|true|false|false|||||Y|Enabled||false|false|false|text||
+|**ExternalUserIds**|String|false|true|false|false|||||Y|ExternalUserIds||false|false|false|text||
+|**Language**|String|false|true|false|false|||||Y|Language||false|false|false|text||
+|**LocalCurrency**|String|false|true|false|false|||||Y|LocalCurrency||false|false|false|text||
+|**Role**|String|false|true|false|false|||||Y|Role||false|false|false|text||
+|**TelephoneNumber**|String|false|true|false|false|||||Y|TelephoneNumber||false|false|false|text||
+|**TokenId**|String|false|true|false|false|||||Y|TokenId||false|false|false|text||
+|**Entity**|String|false|true|false|false|||||Y|Entity||false|false|false|text||
+|**UserCode**|String|false|true|false|false|||||Y|UserCode||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -72,7 +72,7 @@ SQL Table Key | **UserName**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:07**
+Date & Time		     | **17/06/2022** at **18:38:12**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

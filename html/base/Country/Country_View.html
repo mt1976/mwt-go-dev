@@ -1,0 +1,81 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CountryEdit/?Code={{.Code}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-globe-americas me-2" title="Code = {{.Code}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/CountryEdit/?Code={{.Code}}"  title="Edit Country {{.Code}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country {{.Code}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Code"><i class="fas fa-key me-2"></i>Code</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Name">Name</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ShortCode" aria-describedby="ShortCodeHelp" placeholder="" disabled value="{{.ShortCode}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ShortCode">ShortCode</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EU_EEA" aria-describedby="EU_EEAHelp" placeholder="True" disabled value="{{.EU_EEA}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EU_EEA">EU_EEA</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="HolidaysWeekend" aria-describedby="HolidaysWeekendHelp" placeholder="" disabled value="{{.HolidaysWeekend}}" data-mdb-input-mask="">
+                        <label class="form-label" for="HolidaysWeekend">HolidaysWeekend</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

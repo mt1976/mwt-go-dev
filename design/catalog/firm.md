@@ -42,12 +42,12 @@ SQL Table Key | **FirmName**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**FirmName**|String|false|true|false|true|||||Y|FirmName||true|false|false|
-|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|
-|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|
-|**Sector**|String|false|true|false|false|OL|Sector|Sector|Name|Y|Sector||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**FirmName**|String|false|true|false|true|||||Y|FirmName||true|false|false|text||
+|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
+|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|||
+|**Sector**|String|false|true|false|false|OL|Sector|Sector|Name|Y|Sector||false|false|false|||
 
 
 ##  Artifacts Generated
@@ -59,17 +59,17 @@ SQL Table Key | **FirmName**
 | code | **dao** | /dao/firm_core.go |
 | code | **datamodel** | /datamodel/firm_core.go |
 | code | **menu** | /design/menu/firm.json |
-| html | **list** | /html/Firm_List.html |
-| html | **view** | /html/Firm_View.html |
-| html | **edit** | /html/Firm_Edit.html |
-| html | **new** | /html/Firm_New.html |
+| html | **list** | /Firm_List.html |
+| html | **view** | /Firm_View.html |
+| html | **edit** | /Firm_Edit.html |
+| html | **new** | /Firm_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:52:05**
+Date & Time		     | **17/06/2022** at **18:38:11**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

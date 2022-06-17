@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:03
+// Date & Time		    : 17/06/2022 at 18:38:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,10 +40,10 @@ const (
 	/// Handler Defintions
 	///
 	DealConversation_Template     = "DealConversation"
-	DealConversation_TemplateList = "DealConversation_List"
-	DealConversation_TemplateView = "DealConversation_View"
-	DealConversation_TemplateEdit = "DealConversation_Edit"
-	DealConversation_TemplateNew  = "DealConversation_New"
+	DealConversation_TemplateList = "/DealConversation/DealConversation_List"
+	DealConversation_TemplateView = "/DealConversation/DealConversation_View"
+	DealConversation_TemplateEdit = "/DealConversation/DealConversation_Edit"
+	DealConversation_TemplateNew  = "/DealConversation/DealConversation_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -55,20 +55,38 @@ const (
 	DealConversation_PathSave   = "/DealConversationSave/"
 	DealConversation_PathDelete = "/DealConversationDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-DealConversation_SienaReference   = "SienaReference" // SienaReference is a String
-DealConversation_Status   = "Status" // Status is a String
-DealConversation_MessageType   = "MessageType" // MessageType is a String
-DealConversation_ContractNumber   = "ContractNumber" // ContractNumber is a String
-DealConversation_AckReference   = "AckReference" // AckReference is a String
-DealConversation_NewTX   = "NewTX" // NewTX is a Bool
-DealConversation_LegNo   = "LegNo" // LegNo is a Int
-DealConversation_Summary   = "Summary" // Summary is a String
-DealConversation_BusinessDate   = "BusinessDate" // BusinessDate is a Time
-DealConversation_TXNo   = "TXNo" // TXNo is a Int
-DealConversation_ExternalSystem   = "ExternalSystem" // ExternalSystem is a String
-DealConversation_MessageLogReference   = "MessageLogReference" // MessageLogReference is a String
+DealConversation_SienaReference_sql   = "SienaReference" // SienaReference is a String
+DealConversation_Status_sql   = "Status" // Status is a String
+DealConversation_MessageType_sql   = "MessageType" // MessageType is a String
+DealConversation_ContractNumber_sql   = "ContractNumber" // ContractNumber is a String
+DealConversation_AckReference_sql   = "AckReference" // AckReference is a String
+DealConversation_NewTX_sql   = "NewTX" // NewTX is a Bool
+DealConversation_LegNo_sql   = "LegNo" // LegNo is a Int
+DealConversation_Summary_sql   = "Summary" // Summary is a String
+DealConversation_BusinessDate_sql   = "BusinessDate" // BusinessDate is a Time
+DealConversation_TXNo_sql   = "TXNo" // TXNo is a Int
+DealConversation_ExternalSystem_sql   = "ExternalSystem" // ExternalSystem is a String
+DealConversation_MessageLogReference_sql   = "MessageLogReference" // MessageLogReference is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+DealConversation_SienaReference_scrn   = "SienaReference" // SienaReference is a String
+DealConversation_Status_scrn   = "Status" // Status is a String
+DealConversation_MessageType_scrn   = "MessageType" // MessageType is a String
+DealConversation_ContractNumber_scrn   = "ContractNumber" // ContractNumber is a String
+DealConversation_AckReference_scrn   = "AckReference" // AckReference is a String
+DealConversation_NewTX_scrn   = "NewTX" // NewTX is a Bool
+DealConversation_LegNo_scrn   = "LegNo" // LegNo is a Int
+DealConversation_Summary_scrn   = "Summary" // Summary is a String
+DealConversation_BusinessDate_scrn   = "BusinessDate" // BusinessDate is a Time
+DealConversation_TXNo_scrn   = "TXNo" // TXNo is a Int
+DealConversation_ExternalSystem_scrn   = "ExternalSystem" // ExternalSystem is a String
+DealConversation_MessageLogReference_scrn   = "MessageLogReference" // MessageLogReference is a String
 
 	/// Definitions End
 )

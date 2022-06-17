@@ -42,32 +42,32 @@ SQL Table Key | **Code**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|
-|**AmountDp**|Int|false|true|false|false|||||Y|AmountDp|0|false|false|false|
-|**Country**|String|false|true|false|false|||||Y|Country||false|false|false|
-|**CountryName**|String|false|true|false|false|||||Y|CountryName||false|false|false|
-|**IntBase**|String|false|true|false|false|||||Y|IntBase||false|false|false|
-|**KeydateBase**|String|false|true|false|false|||||Y|KeydateBase||false|false|false|
-|**InterestRateTolerance**|Float|false|true|false|false|||||Y|InterestRateTolerance|0.00|false|false|false|
-|**CheckPayTo**|Bool|false|true|false|false|||||Y|CheckPayTo|True|false|false|false|
-|**LatinAmericanSettlement**|Bool|false|true|false|false|||||Y|LatinAmericanSettlement|True|false|false|false|
-|**DefaultLayOffBookKey**|String|false|true|false|false|||||Y|DefaultLayOffBookKey||false|false|false|
-|**CutOffTimeCutOffTime**|Time|false|true|false|false|||||Y|CutOffTimeCutOffTime||false|false|false|
-|**CutOffTimeTimeZone**|String|false|true|false|false|||||Y|CutOffTimeTimeZone||false|false|false|
-|**CutOffTimeDerivedDataUTCOffset**|String|false|true|false|false|||||Y|CutOffTimeDerivedDataUTCOffset||false|false|false|
-|**CutOffTimeDerivedDataHasDaylightSaving**|Bool|false|true|false|false|||||Y|CutOffTimeDerivedDataHasDaylightSaving|True|false|false|false|
-|**CutOffTimeDerivedDataDaylightStart**|Time|false|true|false|false|||||Y|CutOffTimeDerivedDataDaylightStart||false|false|false|
-|**CutOffTimeDerivedDataDaylightEnd**|Time|false|true|false|false|||||Y|CutOffTimeDerivedDataDaylightEnd||false|false|false|
-|**DealerInterventionQuoteTimeout**|Int|false|true|false|false|||||Y|DealerInterventionQuoteTimeout|0|false|false|false|
-|**CutOffTimeCutOffPeriod**|String|false|true|false|false|||||Y|CutOffTimeCutOffPeriod||false|false|false|
-|**StripRateFutureExchangeCode**|String|false|true|false|false|||||Y|StripRateFutureExchangeCode||false|false|false|
-|**StripRateFutureCurrencyContractCurrencyIsoCode**|String|false|true|false|false|||||Y|StripRateFutureCurrencyContractCurrencyIsoCode||false|false|false|
-|**StripRateFutureCurrencyContractFutureContractCode**|String|false|true|false|false|||||Y|StripRateFutureCurrencyContractFutureContractCode||false|false|false|
-|**OvernightFundingSpreadBid**|Float|false|true|false|false|||||Y|OvernightFundingSpreadBid|0.00|false|false|false|
-|**OvernightFundingSpreadOffer**|Float|false|true|false|false|||||Y|OvernightFundingSpreadOffer|0.00|false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
+|**AmountDp**|Int|false|true|false|false|||||Y|AmountDp|0|false|false|false|text||
+|**Country**|String|false|true|false|false|||||Y|Country||false|false|false|text||
+|**CountryName**|String|false|true|false|false|||||Y|CountryName||false|false|false|text||
+|**IntBase**|String|false|true|false|false|||||Y|IntBase||false|false|false|text||
+|**KeydateBase**|String|false|true|false|false|||||Y|KeydateBase||false|false|false|text||
+|**InterestRateTolerance**|Float|false|true|false|false|||||Y|InterestRateTolerance|0.00|false|false|false|text||
+|**CheckPayTo**|Bool|false|true|false|false|||||Y|CheckPayTo|True|false|false|false|text||
+|**LatinAmericanSettlement**|Bool|false|true|false|false|||||Y|LatinAmericanSettlement|True|false|false|false|text||
+|**DefaultLayOffBookKey**|String|false|true|false|false|||||Y|DefaultLayOffBookKey||false|false|false|text||
+|**CutOffTimeCutOffTime**|Time|false|true|false|false|||||Y|CutOffTimeCutOffTime||false|false|false|text||
+|**CutOffTimeTimeZone**|String|false|true|false|false|||||Y|CutOffTimeTimeZone||false|false|false|text||
+|**CutOffTimeDerivedDataUTCOffset**|String|false|true|false|false|||||Y|CutOffTimeDerivedDataUTCOffset||false|false|false|text||
+|**CutOffTimeDerivedDataHasDaylightSaving**|Bool|false|true|false|false|||||Y|CutOffTimeDerivedDataHasDaylightSaving|True|false|false|false|text||
+|**CutOffTimeDerivedDataDaylightStart**|Time|false|true|false|false|||||Y|CutOffTimeDerivedDataDaylightStart||false|false|false|text||
+|**CutOffTimeDerivedDataDaylightEnd**|Time|false|true|false|false|||||Y|CutOffTimeDerivedDataDaylightEnd||false|false|false|text||
+|**DealerInterventionQuoteTimeout**|Int|false|true|false|false|||||Y|DealerInterventionQuoteTimeout|0|false|false|false|text||
+|**CutOffTimeCutOffPeriod**|String|false|true|false|false|||||Y|CutOffTimeCutOffPeriod||false|false|false|text||
+|**StripRateFutureExchangeCode**|String|false|true|false|false|||||Y|StripRateFutureExchangeCode||false|false|false|text||
+|**StripRateFutureCurrencyContractCurrencyIsoCode**|String|false|true|false|false|||||Y|StripRateFutureCurrencyContractCurrencyIsoCode||false|false|false|text||
+|**StripRateFutureCurrencyContractFutureContractCode**|String|false|true|false|false|||||Y|StripRateFutureCurrencyContractFutureContractCode||false|false|false|text||
+|**OvernightFundingSpreadBid**|Float|false|true|false|false|||||Y|OvernightFundingSpreadBid|0.00|false|false|false|text||
+|**OvernightFundingSpreadOffer**|Float|false|true|false|false|||||Y|OvernightFundingSpreadOffer|0.00|false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,15 +79,15 @@ SQL Table Key | **Code**
 | code | **dao** | /dao/currency_core.go |
 | code | **datamodel** | /datamodel/currency_core.go |
 | code | **menu** | /design/menu/currency.json |
-| html | **list** | /html/Currency_List.html |
-| html | **view** | /html/Currency_View.html |
+| html | **list** | /Currency_List.html |
+| html | **view** | /Currency_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:00**
+Date & Time		     | **17/06/2022** at **18:38:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:56
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -136,17 +136,24 @@ func counterpartygroup_Fetch(tsql string) (int, []dm.CounterpartyGroup, dm.Count
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Name  = get_String(rec, dm.CounterpartyGroup_Name, "")
-   recItem.CountryCode  = get_String(rec, dm.CounterpartyGroup_CountryCode, "")
-   recItem.SuperGroup  = get_String(rec, dm.CounterpartyGroup_SuperGroup, "")
-// If there are fields below, create the methods in adaptor\CounterpartyGroup_impl.go
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Name  = get_String(rec, dm.CounterpartyGroup_Name_sql, "")
+	   recItem.CountryCode  = get_String(rec, dm.CounterpartyGroup_CountryCode_sql, "")
+	   recItem.SuperGroup  = get_String(rec, dm.CounterpartyGroup_SuperGroup_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyGroup_impl.go
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

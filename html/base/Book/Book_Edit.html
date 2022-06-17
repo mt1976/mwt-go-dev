@@ -1,0 +1,103 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+    <form action="/BookSave/?Book={{.BookName}}" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col h3">
+              <i class="fas fa-book me-2" title="Book={{.BookName}}"></i><span class="me-3">{{.Title}}</span>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/BookSave/?Book={{.BookName}}" onclick="/BookSave/?Book={{.BookName}}" title="Save Book"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Book"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="BookName" name="BookName" aria-describedby="BookNameHelp" placeholder=""   value="{{.BookName}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="BookName" ><i class="fas fa-key me-2"></i>BookName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""   value="{{.FullName}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="FullName" >FullName</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="PLManage" name="PLManage" aria-describedby="PLManageHelp" placeholder=""   value="{{.PLManage}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="PLManage" >PLManage</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="PLTransfer" name="PLTransfer" aria-describedby="PLTransferHelp" placeholder=""   value="{{.PLTransfer}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="PLTransfer" >PLTransfer</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="DerivePL" name="DerivePL" aria-describedby="DerivePLHelp" placeholder="True"   value="{{.DerivePL}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="DerivePL" >DerivePL</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CostOfCarry" name="CostOfCarry" aria-describedby="CostOfCarryHelp" placeholder="True"   value="{{.CostOfCarry}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CostOfCarry" >CostOfCarry</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="CostOfFunding" name="CostOfFunding" aria-describedby="CostOfFundingHelp" placeholder="True"   value="{{.CostOfFunding}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="CostOfFunding" >CostOfFunding</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="LotAllocationMethod" name="LotAllocationMethod" aria-describedby="LotAllocationMethodHelp" placeholder=""   value="{{.LotAllocationMethod}}"  data-mdb-input-mask="">
+                      <label class="form-label" for="LotAllocationMethod" >LotAllocationMethod</label>
+                    </div>
+          
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+         
+                  <div class="form-outline">
+                      <input type="text" class="form-control" id="InternalId" name="InternalId" aria-describedby="InternalIdHelp" placeholder="0"   value="{{.InternalId}}" required data-mdb-input-mask="">
+                      <label class="form-label" for="InternalId" >InternalId</label>
+                    </div>
+          
+            </div></div>
+
+     
+        </div>
+        
+      </div>
+    </form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

@@ -41,18 +41,18 @@ Fetch|<ul><li>**Implement in Adaptor**</li><li> func Test1_GetList_impl() (int, 
 Store|<ul><li>**Implement in Adaptor**</li><li>func Test1_NewID_impl(rec dm.Test1) (string) { return rec.ID } </li><li>func Test1_Delete_impl(id string) (error) {return nil}</li><li>func Test1_Update_impl(id string,rec dm.Test1, usr string) (error) {return nil}</li></ul>
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|
-|**Endpoint**|String|true|true|false|false|||||Y|Endpoint||false|false|false|
-|**Descr**|String|false|true|false|true|||||N|Descr||false|false|false|
-|**Query**|String|true|true|false|false|||||Y|Query||false|false|false|
-|**Source**|String|true|true|false|false|||||Y|Source||false|false|false|
-|**Firm**|String|false|true|false|false|OL|Firm|Firmx|FullName|N|Firm||false|false|false|
-|**YN**|String|false|true|false|false|LL||yn||Y|YN||false|false|false|
-|**User**|String|false|true|false|false|LL||users||Y|User||false|false|false|
-|**Cheese**|String|false|false|true|false|||||Y|||false|true|false|
-|**Onion**|String|true|false|true|false|||||Y|||false|true|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|text||
+|**Endpoint**|String|true|true|false|false|||||Y|Endpoint||false|false|false|text||
+|**Descr**|String|false|true|false|true|||||N|Descr||false|false|false|text||
+|**Query**|String|true|true|false|false|||||Y|Query||false|false|false|text||
+|**Source**|String|true|true|false|false|||||Y|Source||false|false|false|text||
+|**Firm**|String|false|true|false|false|OL|Firm|Firmx|FullName|N|Firm||false|false|false|||
+|**YN**|String|false|true|false|false|LL||yn||Y|YN||false|false|false|text||
+|**User**|String|false|true|false|false|LL||users||Y|User||false|false|false|text||
+|**Cheese**|String|false|false|true|false|||||Y|||false|true|false|text||
+|**Onion**|String|true|false|true|false|||||Y|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -64,17 +64,17 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func Test1_NewID_impl(rec dm.Test
 | code | **dao** | /dao/test1_core.go |
 | code | **datamodel** | /datamodel/test1_core.go |
 | code | **menu** | /design/menu/test1.json |
-| html | **list** | /html/Test1_List.html |
-| html | **view** | /html/Test1_View.html |
-| html | **edit** | /html/Test1_Edit.html |
-| html | **new** | /html/Test1_New.html |
+| html | **list** | /Test1_List.html |
+| html | **view** | /Test1_View.html |
+| html | **edit** | /Test1_Edit.html |
+| html | **new** | /Test1_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:10**
+Date & Time		     | **17/06/2022** at **18:38:14**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

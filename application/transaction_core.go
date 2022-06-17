@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:46
+// Date & Time		    : 17/06/2022 at 18:38:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Transaction_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SienaReference         string
 	Status         string
@@ -162,7 +162,7 @@ type Transaction_Page struct {
 	Dealt         string
 	Against         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -251,7 +251,7 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Transaction Page 
 func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Transaction_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.Status = rD.Status
@@ -370,7 +370,7 @@ func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Tr
 	pageDetail.Against = rD.Against
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -602,7 +602,7 @@ func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Tr
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

@@ -41,11 +41,11 @@ SQL Table Key | **Name**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Name**|String|true|true|false|false|||||Y|Name||false|false|false|
-|**CountryCode**|String|false|true|false|false|||||Y|CountryCode||false|false|false|
-|**SuperGroup**|String|false|true|false|false|||||Y|SuperGroup||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Name**|String|true|true|false|false|||||Y|Name||false|false|false|text||
+|**CountryCode**|String|false|true|false|false|||||Y|CountryCode||false|false|false|text||
+|**SuperGroup**|String|false|true|false|false|||||Y|SuperGroup||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -56,17 +56,17 @@ SQL Table Key | **Name**
 | code | **dao** | /dao/counterpartyGroup_core.go |
 | code | **datamodel** | /datamodel/counterpartyGroup_core.go |
 | code | **menu** | /design/menu/counterpartyGroup.json |
-| html | **list** | /html/CounterpartyGroup_List.html |
-| html | **view** | /html/CounterpartyGroup_View.html |
-| html | **edit** | /html/CounterpartyGroup_Edit.html |
-| html | **new** | /html/CounterpartyGroup_New.html |
+| html | **list** | /CounterpartyGroup_List.html |
+| html | **view** | /CounterpartyGroup_View.html |
+| html | **edit** | /CounterpartyGroup_Edit.html |
+| html | **new** | /CounterpartyGroup_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:56**
+Date & Time		     | **17/06/2022** at **18:38:07**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

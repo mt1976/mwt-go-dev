@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:49
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -138,23 +138,30 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Broker_Code, "")
-   recItem.Name  = get_String(rec, dm.Broker_Name, "")
-   recItem.FullName  = get_String(rec, dm.Broker_FullName, "")
-   recItem.Contact  = get_String(rec, dm.Broker_Contact, "")
-   recItem.Address  = get_String(rec, dm.Broker_Address, "")
-   recItem.LEI  = get_String(rec, dm.Broker_LEI, "")
-// If there are fields below, create the methods in adaptor\Broker_impl.go
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Broker_Code_sql, "")
+	   recItem.Name  = get_String(rec, dm.Broker_Name_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Broker_FullName_sql, "")
+	   recItem.Contact  = get_String(rec, dm.Broker_Contact_sql, "")
+	   recItem.Address  = get_String(rec, dm.Broker_Address_sql, "")
+	   recItem.LEI  = get_String(rec, dm.Broker_LEI_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Broker_impl.go
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

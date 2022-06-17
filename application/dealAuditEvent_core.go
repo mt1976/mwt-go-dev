@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:03
+// Date & Time		    : 17/06/2022 at 18:38:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type DealAuditEvent_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	DealRefNo         string
 	EventIndex         string
@@ -69,7 +69,7 @@ type DealAuditEvent_Page struct {
 	DeletedUserId         string
 	ChangeType         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -158,7 +158,7 @@ func DealAuditEvent_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealAuditEvent Page 
 func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent_Page) DealAuditEvent_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealRefNo = rD.DealRefNo
 	pageDetail.EventIndex = rD.EventIndex
@@ -184,7 +184,7 @@ func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -230,7 +230,7 @@ func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

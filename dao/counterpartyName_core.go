@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:58
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -127,19 +127,26 @@ func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.Counter
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.NameFirm  = get_String(rec, dm.CounterpartyName_NameFirm, "")
-   recItem.NameCentre  = get_String(rec, dm.CounterpartyName_NameCentre, "")
-   recItem.FullName  = get_String(rec, dm.CounterpartyName_FullName, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyName_CompID, "")
-// If there are fields below, create the methods in adaptor\CounterpartyName_impl.go
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameFirm  = get_String(rec, dm.CounterpartyName_NameFirm_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.CounterpartyName_NameCentre_sql, "")
+	   recItem.FullName  = get_String(rec, dm.CounterpartyName_FullName_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyName_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyName_impl.go
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

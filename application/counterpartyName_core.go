@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:58
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,14 +45,14 @@ type CounterpartyName_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	NameFirm         string
 	NameCentre         string
 	FullName         string
 	CompID         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -141,7 +141,7 @@ func CounterpartyName_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CounterpartyName Page 
 func counterpartyname_PopulatePage(rD dm.CounterpartyName, pageDetail CounterpartyName_Page) CounterpartyName_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -150,7 +150,7 @@ func counterpartyname_PopulatePage(rD dm.CounterpartyName, pageDetail Counterpar
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -162,7 +162,7 @@ func counterpartyname_PopulatePage(rD dm.CounterpartyName, pageDetail Counterpar
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

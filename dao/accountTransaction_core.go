@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:48
+// Date & Time		    : 17/06/2022 at 18:38:05
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -138,41 +138,48 @@ func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.Acc
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SienaReference  = get_String(rec, dm.AccountTransaction_SienaReference, "")
-   recItem.LegNo  = get_Int(rec, dm.AccountTransaction_LegNo, "0")
-   recItem.MMLegNo  = get_Int(rec, dm.AccountTransaction_MMLegNo, "0")
-   recItem.Narrative  = get_String(rec, dm.AccountTransaction_Narrative, "")
-   recItem.Amount  = get_Float(rec, dm.AccountTransaction_Amount, "0.00")
-   recItem.StartInterestDate  = get_Time(rec, dm.AccountTransaction_StartInterestDate, "")
-   recItem.EndInterestDate  = get_Time(rec, dm.AccountTransaction_EndInterestDate, "")
-   recItem.Amortisation  = get_Float(rec, dm.AccountTransaction_Amortisation, "0.00")
-   recItem.InterestAmount  = get_Float(rec, dm.AccountTransaction_InterestAmount, "0.00")
-   recItem.InterestAction  = get_String(rec, dm.AccountTransaction_InterestAction, "")
-   recItem.FixingDate  = get_Time(rec, dm.AccountTransaction_FixingDate, "")
-   recItem.InterestCalculationDate  = get_Time(rec, dm.AccountTransaction_InterestCalculationDate, "")
-   recItem.AmendmentAmount  = get_Float(rec, dm.AccountTransaction_AmendmentAmount, "0.00")
-   recItem.DealtCcy  = get_String(rec, dm.AccountTransaction_DealtCcy, "")
-   recItem.AmountDp  = get_Int(rec, dm.AccountTransaction_AmountDp, "0")
-// If there are fields below, create the methods in adaptor\AccountTransaction_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SienaReference  = get_String(rec, dm.AccountTransaction_SienaReference_sql, "")
+	   recItem.LegNo  = get_Int(rec, dm.AccountTransaction_LegNo_sql, "0")
+	   recItem.MMLegNo  = get_Int(rec, dm.AccountTransaction_MMLegNo_sql, "0")
+	   recItem.Narrative  = get_String(rec, dm.AccountTransaction_Narrative_sql, "")
+	   recItem.Amount  = get_Float(rec, dm.AccountTransaction_Amount_sql, "0.00")
+	   recItem.StartInterestDate  = get_Time(rec, dm.AccountTransaction_StartInterestDate_sql, "")
+	   recItem.EndInterestDate  = get_Time(rec, dm.AccountTransaction_EndInterestDate_sql, "")
+	   recItem.Amortisation  = get_Float(rec, dm.AccountTransaction_Amortisation_sql, "0.00")
+	   recItem.InterestAmount  = get_Float(rec, dm.AccountTransaction_InterestAmount_sql, "0.00")
+	   recItem.InterestAction  = get_String(rec, dm.AccountTransaction_InterestAction_sql, "")
+	   recItem.FixingDate  = get_Time(rec, dm.AccountTransaction_FixingDate_sql, "")
+	   recItem.InterestCalculationDate  = get_Time(rec, dm.AccountTransaction_InterestCalculationDate_sql, "")
+	   recItem.AmendmentAmount  = get_Float(rec, dm.AccountTransaction_AmendmentAmount_sql, "0.00")
+	   recItem.DealtCcy  = get_String(rec, dm.AccountTransaction_DealtCcy_sql, "")
+	   recItem.AmountDp  = get_Int(rec, dm.AccountTransaction_AmountDp_sql, "0")
+	
+	// If there are fields below, create the methods in adaptor\AccountTransaction_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

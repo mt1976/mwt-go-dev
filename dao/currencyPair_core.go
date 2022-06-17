@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:01
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -137,19 +137,26 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode, "")
-   recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode, "")
-   recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive, "True")
-   recItem.Code  = get_String(rec, dm.CurrencyPair_Code, "")
-// If there are fields below, create the methods in adaptor\CurrencyPair_impl.go
-
-
-
-   recItem.Code  = adaptor.CurrencyPair_Code_OnFetch_impl (recItem)
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode_sql, "")
+	   recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode_sql, "")
+	   recItem.ReciprocalActive  = get_Bool(rec, dm.CurrencyPair_ReciprocalActive_sql, "True")
+	   recItem.Code  = get_String(rec, dm.CurrencyPair_Code_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CurrencyPair_impl.go
+	
+	
+	
+	   recItem.Code  = adaptor.CurrencyPair_Code_OnFetch_impl (recItem)
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

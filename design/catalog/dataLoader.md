@@ -41,25 +41,25 @@ SQL Table Key | **Id**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**Id**|String|true|true|false|false|||||Y|id||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|name||false|false|false|
-|**Description**|String|false|true|false|false|||||Y|description||false|false|false|
-|**Filename**|String|false|true|false|false|||||Y|filename||false|false|false|
-|**Lastrun**|String|false|true|false|false|||||Y|lastrun||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**Type**|String|false|true|false|false|||||Y|type||false|false|false|
-|**Instance**|String|false|true|false|false|||||Y|instance||false|false|false|
-|**Extension**|String|false|true|false|false|||||Y|extension||false|false|false|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**Id**|String|true|true|false|false|||||Y|id||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|name||false|false|false|text||
+|**Description**|String|false|true|false|false|||||Y|description||false|false|false|text||
+|**Filename**|String|false|true|false|false|||||Y|filename||false|false|false|text||
+|**Lastrun**|String|false|true|false|false|||||Y|lastrun||false|false|false|text||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
+|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**Type**|String|false|true|false|false|||||Y|type||false|false|false|text||
+|**Instance**|String|false|true|false|false|||||Y|instance||false|false|false|text||
+|**Extension**|String|false|true|false|false|||||Y|extension||false|false|false|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -69,16 +69,16 @@ SQL Table Key | **Id**
 | code | **dao** | /dao/dataLoader_core.go |
 | code | **datamodel** | /datamodel/dataLoader_core.go |
 | code | **menu** | /design/menu/dataLoader.json |
-| html | **list** | /html/DataLoader_List.html |
-| html | **view** | /html/DataLoader_View.html |
-| html | **edit** | /html/DataLoader_Edit.html |
+| html | **list** | /DataLoader_List.html |
+| html | **view** | /DataLoader_View.html |
+| html | **edit** | /DataLoader_Edit.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:01**
+Date & Time		     | **17/06/2022** at **18:38:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

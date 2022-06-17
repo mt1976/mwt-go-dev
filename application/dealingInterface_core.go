@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:03
+// Date & Time		    : 17/06/2022 at 18:38:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type DealingInterface_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Name         string
 	AcceptReducedAmount         string
@@ -72,7 +72,7 @@ type DealingInterface_Page struct {
 	DIOnAcceptance         string
 	IgnoreESPAmountRules         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -198,35 +198,35 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealingInterface
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Name = r.FormValue(dm.DealingInterface_Name)
-		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount)
-		item.QuoteAsIndicative = r.FormValue(dm.DealingInterface_QuoteAsIndicative)
-		item.RateTimeOut = r.FormValue(dm.DealingInterface_RateTimeOut)
-		item.PropagationDelay = r.FormValue(dm.DealingInterface_PropagationDelay)
-		item.CheckLiquidity = r.FormValue(dm.DealingInterface_CheckLiquidity)
-		item.ChangeQuoteDirection = r.FormValue(dm.DealingInterface_ChangeQuoteDirection)
-		item.GenerateRejectedDeals = r.FormValue(dm.DealingInterface_GenerateRejectedDeals)
-		item.SpotUpdatesForForwardQuotes = r.FormValue(dm.DealingInterface_SpotUpdatesForForwardQuotes)
-		item.SettlementInstructionStyle = r.FormValue(dm.DealingInterface_SettlementInstructionStyle)
-		item.CanRetractQuotes = r.FormValue(dm.DealingInterface_CanRetractQuotes)
-		item.CancelESPifNotPriced = r.FormValue(dm.DealingInterface_CancelESPifNotPriced)
-		item.CancelRFQSifNotPriced = r.FormValue(dm.DealingInterface_CancelRFQSifNotPriced)
-		item.CancelonDealingSuspended = r.FormValue(dm.DealingInterface_CancelonDealingSuspended)
-		item.CreditCheckedatDI = r.FormValue(dm.DealingInterface_CreditCheckedatDI)
-		item.DuplicateCheckonExternalRef = r.FormValue(dm.DealingInterface_DuplicateCheckonExternalRef)
-		item.LimitCheckQuote = r.FormValue(dm.DealingInterface_LimitCheckQuote)
-		item.LimitCheckonRFQDealSubmission = r.FormValue(dm.DealingInterface_LimitCheckonRFQDealSubmission)
-		item.ListenonLimits = r.FormValue(dm.DealingInterface_ListenonLimits)
-		item.MarginStyle = r.FormValue(dm.DealingInterface_MarginStyle)
-		item.UseRerouteDefinitionOnly = r.FormValue(dm.DealingInterface_UseRerouteDefinitionOnly)
-		item.BypassConfirmation = r.FormValue(dm.DealingInterface_BypassConfirmation)
-		item.DIOnAcceptance = r.FormValue(dm.DealingInterface_DIOnAcceptance)
-		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules)
+		item.Name = r.FormValue(dm.DealingInterface_Name_scrn)
+		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount_scrn)
+		item.QuoteAsIndicative = r.FormValue(dm.DealingInterface_QuoteAsIndicative_scrn)
+		item.RateTimeOut = r.FormValue(dm.DealingInterface_RateTimeOut_scrn)
+		item.PropagationDelay = r.FormValue(dm.DealingInterface_PropagationDelay_scrn)
+		item.CheckLiquidity = r.FormValue(dm.DealingInterface_CheckLiquidity_scrn)
+		item.ChangeQuoteDirection = r.FormValue(dm.DealingInterface_ChangeQuoteDirection_scrn)
+		item.GenerateRejectedDeals = r.FormValue(dm.DealingInterface_GenerateRejectedDeals_scrn)
+		item.SpotUpdatesForForwardQuotes = r.FormValue(dm.DealingInterface_SpotUpdatesForForwardQuotes_scrn)
+		item.SettlementInstructionStyle = r.FormValue(dm.DealingInterface_SettlementInstructionStyle_scrn)
+		item.CanRetractQuotes = r.FormValue(dm.DealingInterface_CanRetractQuotes_scrn)
+		item.CancelESPifNotPriced = r.FormValue(dm.DealingInterface_CancelESPifNotPriced_scrn)
+		item.CancelRFQSifNotPriced = r.FormValue(dm.DealingInterface_CancelRFQSifNotPriced_scrn)
+		item.CancelonDealingSuspended = r.FormValue(dm.DealingInterface_CancelonDealingSuspended_scrn)
+		item.CreditCheckedatDI = r.FormValue(dm.DealingInterface_CreditCheckedatDI_scrn)
+		item.DuplicateCheckonExternalRef = r.FormValue(dm.DealingInterface_DuplicateCheckonExternalRef_scrn)
+		item.LimitCheckQuote = r.FormValue(dm.DealingInterface_LimitCheckQuote_scrn)
+		item.LimitCheckonRFQDealSubmission = r.FormValue(dm.DealingInterface_LimitCheckonRFQDealSubmission_scrn)
+		item.ListenonLimits = r.FormValue(dm.DealingInterface_ListenonLimits_scrn)
+		item.MarginStyle = r.FormValue(dm.DealingInterface_MarginStyle_scrn)
+		item.UseRerouteDefinitionOnly = r.FormValue(dm.DealingInterface_UseRerouteDefinitionOnly_scrn)
+		item.BypassConfirmation = r.FormValue(dm.DealingInterface_BypassConfirmation_scrn)
+		item.DIOnAcceptance = r.FormValue(dm.DealingInterface_DIOnAcceptance_scrn)
+		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealingInterface_Store(item,r)	
 	http.Redirect(w, r, DealingInterface_Redirect, http.StatusFound)
@@ -283,7 +283,7 @@ func DealingInterface_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealingInterface Page 
 func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInterface_Page) DealingInterface_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Name = rD.Name
 	pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
@@ -312,7 +312,7 @@ func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInt
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -364,7 +364,7 @@ func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInt
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:47
+// Date & Time		    : 17/06/2022 at 18:38:05
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -129,23 +129,30 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SienaReference  = get_String(rec, dm.AccountLadder_SienaReference, "")
-   recItem.BusinessDate  = get_Time(rec, dm.AccountLadder_BusinessDate, "")
-   recItem.ContractNumber  = get_String(rec, dm.AccountLadder_ContractNumber, "")
-   recItem.Balance  = get_Float(rec, dm.AccountLadder_Balance, "0.00")
-   recItem.DealtCcy  = get_String(rec, dm.AccountLadder_DealtCcy, "")
-   recItem.AmountDp  = get_Int(rec, dm.AccountLadder_AmountDp, "0")
-// If there are fields below, create the methods in adaptor\AccountLadder_impl.go
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SienaReference  = get_String(rec, dm.AccountLadder_SienaReference_sql, "")
+	   recItem.BusinessDate  = get_Time(rec, dm.AccountLadder_BusinessDate_sql, "")
+	   recItem.ContractNumber  = get_String(rec, dm.AccountLadder_ContractNumber_sql, "")
+	   recItem.Balance  = get_Float(rec, dm.AccountLadder_Balance_sql, "0.00")
+	   recItem.DealtCcy  = get_String(rec, dm.AccountLadder_DealtCcy_sql, "")
+	   recItem.AmountDp  = get_Int(rec, dm.AccountLadder_AmountDp_sql, "0")
+	
+	// If there are fields below, create the methods in adaptor\AccountLadder_impl.go
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

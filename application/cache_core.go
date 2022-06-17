@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:50
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Cache_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -63,7 +63,7 @@ type Cache_Page struct {
 	SYSUpdatedBy         string
 	SYSUpdatedHost         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -189,26 +189,26 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Cache
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Cache_SYSId)
-		item.Id = r.FormValue(dm.Cache_Id)
-		item.Object = r.FormValue(dm.Cache_Object)
-		item.Field = r.FormValue(dm.Cache_Field)
-		item.Value = r.FormValue(dm.Cache_Value)
-		item.Expiry = r.FormValue(dm.Cache_Expiry)
-		item.SYSCreated = r.FormValue(dm.Cache_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Cache_SYSWho)
-		item.SYSHost = r.FormValue(dm.Cache_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Cache_SYSUpdated)
-		item.Source = r.FormValue(dm.Cache_Source)
-		item.SYSCreatedBy = r.FormValue(dm.Cache_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Cache_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Cache_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Cache_SYSUpdatedHost)
+		item.SYSId = r.FormValue(dm.Cache_SYSId_scrn)
+		item.Id = r.FormValue(dm.Cache_Id_scrn)
+		item.Object = r.FormValue(dm.Cache_Object_scrn)
+		item.Field = r.FormValue(dm.Cache_Field_scrn)
+		item.Value = r.FormValue(dm.Cache_Value_scrn)
+		item.Expiry = r.FormValue(dm.Cache_Expiry_scrn)
+		item.SYSCreated = r.FormValue(dm.Cache_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Cache_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Cache_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Cache_SYSUpdated_scrn)
+		item.Source = r.FormValue(dm.Cache_Source_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Cache_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Cache_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Cache_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Cache_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Cache_Store(item,r)	
 	http.Redirect(w, r, Cache_Redirect, http.StatusFound)
@@ -220,7 +220,7 @@ func Cache_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Cache Page 
 func cache_PopulatePage(rD dm.Cache, pageDetail Cache_Page) Cache_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -240,7 +240,7 @@ func cache_PopulatePage(rD dm.Cache, pageDetail Cache_Page) Cache_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -274,7 +274,7 @@ func cache_PopulatePage(rD dm.Cache, pageDetail Cache_Page) Cache_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

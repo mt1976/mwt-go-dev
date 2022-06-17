@@ -9,7 +9,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,7 +44,7 @@ type SalesDesk_Page struct {
 	Title       string
 	PageTitle   string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	Name                                  string
 	ReportDealsOver                       string
@@ -53,7 +53,7 @@ type SalesDesk_Page struct {
 	AccountTransferCutOffTimeTimeZone     string
 	AccountTransferCutOffTimeCutOffPeriod string
 	//
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -73,7 +73,7 @@ func SalesDesk_Publish(mux http.ServeMux) {
 // Builds/Popuplates the SalesDesk Page
 func salesdesk_PopulatePage(rD dm.SalesDesk, pageDetail SalesDesk_Page) SalesDesk_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	pageDetail.Name = rD.Name
 	pageDetail.ReportDealsOver = rD.ReportDealsOver
@@ -83,11 +83,11 @@ func salesdesk_PopulatePage(rD dm.SalesDesk, pageDetail SalesDesk_Page) SalesDes
 	pageDetail.AccountTransferCutOffTimeCutOffPeriod = rD.AccountTransferCutOffTimeCutOffPeriod
 
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 
 	//
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return pageDetail
 }

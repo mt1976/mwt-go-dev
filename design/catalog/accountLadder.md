@@ -41,14 +41,14 @@ SQL Table Key | **SienaReference**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SienaReference**|String|true|true|false|false|||||Y|SienaReference||false|false|false|
-|**BusinessDate**|Time|true|true|false|false|||||Y|BusinessDate||false|false|false|
-|**ContractNumber**|String|false|true|false|false|||||Y|ContractNumber||false|false|false|
-|**Balance**|Float|false|true|false|false|||||Y|Balance|0.00|false|false|false|
-|**DealtCcy**|String|false|true|false|false|||||Y|DealtCcy||false|false|false|
-|**AmountDp**|Int|false|true|false|false|||||Y|AmountDp|0|false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SienaReference**|String|true|true|false|false|||||Y|SienaReference||false|false|false|text||
+|**BusinessDate**|Time|true|true|false|false|||||Y|BusinessDate||false|false|false|text||
+|**ContractNumber**|String|false|true|false|false|||||Y|ContractNumber||false|false|false|text||
+|**Balance**|Float|false|true|false|false|||||Y|Balance|0.00|false|false|false|text||
+|**DealtCcy**|String|false|true|false|false|||||Y|DealtCcy||false|false|false|text||
+|**AmountDp**|Int|false|true|false|false|||||Y|AmountDp|0|false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -59,15 +59,15 @@ SQL Table Key | **SienaReference**
 | code | **dao** | /dao/accountLadder_core.go |
 | code | **datamodel** | /datamodel/accountLadder_core.go |
 | code | **menu** | /design/menu/accountLadder.json |
-| html | **list** | /html/AccountLadder_List.html |
-| html | **view** | /html/AccountLadder_View.html |
+| html | **list** | /AccountLadder_List.html |
+| html | **view** | /AccountLadder_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:47**
+Date & Time		     | **17/06/2022** at **18:38:05**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:07
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -113,22 +113,22 @@ logs.Storing("Message",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	ts = addData(ts, dm.Message_SYSId, r.SYSId)
-	ts = addData(ts, dm.Message_Id, r.Id)
-	ts = addData(ts, dm.Message_Message, r.Message)
-	ts = addData(ts, dm.Message_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Message_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Message_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.Message_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Message_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Message_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Message_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Message_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Message_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.Message_Id_sql, r.Id)
+	ts = addData(ts, dm.Message_Message_sql, r.Message)
+	ts = addData(ts, dm.Message_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.Message_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.Message_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.Message_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.Message_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.Message_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Message_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Message_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Message_SQLTable)
@@ -160,33 +160,40 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.Message_SYSId, "0")
-   recItem.Id  = get_String(rec, dm.Message_Id, "")
-   recItem.Message  = get_String(rec, dm.Message_Message, "")
-   recItem.SYSCreated  = get_String(rec, dm.Message_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.Message_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.Message_SYSHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.Message_SYSUpdated, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.Message_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.Message_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.Message_SYSUpdatedBy, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.Message_SYSUpdatedHost, "")
-// If there are fields below, create the methods in adaptor\Message_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.Message_SYSId_sql, "0")
+	   recItem.Id  = get_String(rec, dm.Message_Id_sql, "")
+	   recItem.Message  = get_String(rec, dm.Message_Message_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Message_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.Message_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.Message_SYSHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Message_SYSUpdated_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.Message_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.Message_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.Message_SYSUpdatedBy_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.Message_SYSUpdatedHost_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Message_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

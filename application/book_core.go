@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:49
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Book_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	BookName         string
 	FullName         string
@@ -57,7 +57,7 @@ type Book_Page struct {
 	LotAllocationMethod         string
 	InternalId         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -183,20 +183,20 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Book
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.BookName = r.FormValue(dm.Book_BookName)
-		item.FullName = r.FormValue(dm.Book_FullName)
-		item.PLManage = r.FormValue(dm.Book_PLManage)
-		item.PLTransfer = r.FormValue(dm.Book_PLTransfer)
-		item.DerivePL = r.FormValue(dm.Book_DerivePL)
-		item.CostOfCarry = r.FormValue(dm.Book_CostOfCarry)
-		item.CostOfFunding = r.FormValue(dm.Book_CostOfFunding)
-		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod)
-		item.InternalId = r.FormValue(dm.Book_InternalId)
+		item.BookName = r.FormValue(dm.Book_BookName_scrn)
+		item.FullName = r.FormValue(dm.Book_FullName_scrn)
+		item.PLManage = r.FormValue(dm.Book_PLManage_scrn)
+		item.PLTransfer = r.FormValue(dm.Book_PLTransfer_scrn)
+		item.DerivePL = r.FormValue(dm.Book_DerivePL_scrn)
+		item.CostOfCarry = r.FormValue(dm.Book_CostOfCarry_scrn)
+		item.CostOfFunding = r.FormValue(dm.Book_CostOfFunding_scrn)
+		item.LotAllocationMethod = r.FormValue(dm.Book_LotAllocationMethod_scrn)
+		item.InternalId = r.FormValue(dm.Book_InternalId_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Book_Store(item,r)	
 	http.Redirect(w, r, Book_Redirect, http.StatusFound)
@@ -225,7 +225,7 @@ func Book_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Book Page 
 func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.BookName = rD.BookName
 	pageDetail.FullName = rD.FullName
@@ -239,7 +239,7 @@ func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -261,7 +261,7 @@ func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

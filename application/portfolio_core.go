@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Portfolio_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
 	Description1         string
@@ -60,7 +60,7 @@ type Portfolio_Page struct {
 	DeletedUserId         string
 	ChangeType         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -186,23 +186,23 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Portfolio
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Code = r.FormValue(dm.Portfolio_Code)
-		item.Description1 = r.FormValue(dm.Portfolio_Description1)
-		item.Description2 = r.FormValue(dm.Portfolio_Description2)
-		item.IsDefault = r.FormValue(dm.Portfolio_IsDefault)
-		item.InternalId = r.FormValue(dm.Portfolio_InternalId)
-		item.InternalDeleted = r.FormValue(dm.Portfolio_InternalDeleted)
-		item.UpdatedTransactionId = r.FormValue(dm.Portfolio_UpdatedTransactionId)
-		item.UpdatedUserId = r.FormValue(dm.Portfolio_UpdatedUserId)
-		item.UpdatedDateTime = r.FormValue(dm.Portfolio_UpdatedDateTime)
-		item.DeletedTransactionId = r.FormValue(dm.Portfolio_DeletedTransactionId)
-		item.DeletedUserId = r.FormValue(dm.Portfolio_DeletedUserId)
-		item.ChangeType = r.FormValue(dm.Portfolio_ChangeType)
+		item.Code = r.FormValue(dm.Portfolio_Code_scrn)
+		item.Description1 = r.FormValue(dm.Portfolio_Description1_scrn)
+		item.Description2 = r.FormValue(dm.Portfolio_Description2_scrn)
+		item.IsDefault = r.FormValue(dm.Portfolio_IsDefault_scrn)
+		item.InternalId = r.FormValue(dm.Portfolio_InternalId_scrn)
+		item.InternalDeleted = r.FormValue(dm.Portfolio_InternalDeleted_scrn)
+		item.UpdatedTransactionId = r.FormValue(dm.Portfolio_UpdatedTransactionId_scrn)
+		item.UpdatedUserId = r.FormValue(dm.Portfolio_UpdatedUserId_scrn)
+		item.UpdatedDateTime = r.FormValue(dm.Portfolio_UpdatedDateTime_scrn)
+		item.DeletedTransactionId = r.FormValue(dm.Portfolio_DeletedTransactionId_scrn)
+		item.DeletedUserId = r.FormValue(dm.Portfolio_DeletedUserId_scrn)
+		item.ChangeType = r.FormValue(dm.Portfolio_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Portfolio_Store(item,r)	
 	http.Redirect(w, r, Portfolio_Redirect, http.StatusFound)
@@ -259,7 +259,7 @@ func Portfolio_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Portfolio Page 
 func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfolio_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Description1 = rD.Description1
@@ -276,7 +276,7 @@ func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfoli
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -304,7 +304,7 @@ func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfoli
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

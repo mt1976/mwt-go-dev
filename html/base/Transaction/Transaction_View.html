@@ -1,0 +1,1279 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/TransactionEdit/?Ref={{.SienaReference}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="far fa-handshake me-2" title="Ref = {{.SienaReference}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Transaction {{.SienaReference}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SienaReference" aria-describedby="SienaReferenceHelp" placeholder="" disabled value="{{.SienaReference}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SienaReference"><i class="fas fa-key me-2"></i>SienaReference</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Status" aria-describedby="StatusHelp" placeholder="" disabled value="{{.Status}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Status">Status</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ValueDate" aria-describedby="ValueDateHelp" placeholder="" disabled value="{{.ValueDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ValueDate">ValueDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MaturityDate" aria-describedby="MaturityDateHelp" placeholder="" disabled value="{{.MaturityDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MaturityDate">MaturityDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ContractNumber" aria-describedby="ContractNumberHelp" placeholder="" disabled value="{{.ContractNumber}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ContractNumber">ContractNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ExternalReference" aria-describedby="ExternalReferenceHelp" placeholder="" disabled value="{{.ExternalReference}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ExternalReference">ExternalReference</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Book" aria-describedby="BookHelp" placeholder="" disabled value="{{.Book}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Book">Book</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MandatedUser" aria-describedby="MandatedUserHelp" placeholder="" disabled value="{{.MandatedUser}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MandatedUser">MandatedUser</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Portfolio" aria-describedby="PortfolioHelp" placeholder="" disabled value="{{.Portfolio}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Portfolio">Portfolio</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AgreementId" aria-describedby="AgreementIdHelp" placeholder="0" disabled value="{{.AgreementId}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AgreementId">AgreementId</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BackOfficeRefNo" aria-describedby="BackOfficeRefNoHelp" placeholder="" disabled value="{{.BackOfficeRefNo}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BackOfficeRefNo">BackOfficeRefNo</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ISIN" aria-describedby="ISINHelp" placeholder="" disabled value="{{.ISIN}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ISIN">ISIN</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTI" aria-describedby="UTIHelp" placeholder="" disabled value="{{.UTI}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UTI">UTI</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BookName" aria-describedby="BookNameHelp" placeholder="" disabled value="{{.BookName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BookName">BookName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Centre" aria-describedby="CentreHelp" placeholder="" disabled value="{{.Centre}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Centre">Centre</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Firm" aria-describedby="FirmHelp" placeholder="" disabled value="{{.Firm}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Firm">Firm</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealTypeShortName" aria-describedby="DealTypeShortNameHelp" placeholder="" disabled value="{{.DealTypeShortName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealTypeShortName">DealTypeShortName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FullDealType" aria-describedby="FullDealTypeHelp" placeholder="" disabled value="{{.FullDealType}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FullDealType">FullDealType</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="TradeDate" aria-describedby="TradeDateHelp" placeholder="" disabled value="{{.TradeDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="TradeDate">TradeDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealtCcy" aria-describedby="DealtCcyHelp" placeholder="" disabled value="{{.DealtCcy}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealtCcy">DealtCcy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealtAmount" aria-describedby="DealtAmountHelp" placeholder="0.00" disabled value="{{.DealtAmount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealtAmount">DealtAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AgainstAmount" aria-describedby="AgainstAmountHelp" placeholder="0.00" disabled value="{{.AgainstAmount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AgainstAmount">AgainstAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AgainstCcy" aria-describedby="AgainstCcyHelp" placeholder="" disabled value="{{.AgainstCcy}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AgainstCcy">AgainstCcy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AllInRate" aria-describedby="AllInRateHelp" placeholder="0.00" disabled value="{{.AllInRate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AllInRate">AllInRate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MktRate" aria-describedby="MktRateHelp" placeholder="0.00" disabled value="{{.MktRate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MktRate">MktRate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SettleCcy" aria-describedby="SettleCcyHelp" placeholder="" disabled value="{{.SettleCcy}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SettleCcy">SettleCcy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Direction" aria-describedby="DirectionHelp" placeholder="" disabled value="{{.Direction}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Direction">Direction</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NpvRate" aria-describedby="NpvRateHelp" placeholder="0.00" disabled value="{{.NpvRate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NpvRate">NpvRate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="OriginUser" aria-describedby="OriginUserHelp" placeholder="" disabled value="{{.OriginUser}}" data-mdb-input-mask="">
+                        <label class="form-label" for="OriginUser">OriginUser</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PayInstruction" aria-describedby="PayInstructionHelp" placeholder="" disabled value="{{.PayInstruction}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PayInstruction">PayInstruction</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ReceiptInstruction" aria-describedby="ReceiptInstructionHelp" placeholder="" disabled value="{{.ReceiptInstruction}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ReceiptInstruction">ReceiptInstruction</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NIName" aria-describedby="NINameHelp" placeholder="" disabled value="{{.NIName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NIName">NIName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CCYPair" aria-describedby="CCYPairHelp" placeholder="" disabled value="{{.CCYPair}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CCYPair">CCYPair</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Instrument" aria-describedby="InstrumentHelp" placeholder="" disabled value="{{.Instrument}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Instrument">Instrument</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PortfolioName" aria-describedby="PortfolioNameHelp" placeholder="" disabled value="{{.PortfolioName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PortfolioName">PortfolioName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RVDate" aria-describedby="RVDateHelp" placeholder="" disabled value="{{.RVDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="RVDate">RVDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RVMTM" aria-describedby="RVMTMHelp" placeholder="0.00" disabled value="{{.RVMTM}}" data-mdb-input-mask="">
+                        <label class="form-label" for="RVMTM">RVMTM</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CounterBook" aria-describedby="CounterBookHelp" placeholder="" disabled value="{{.CounterBook}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CounterBook">CounterBook</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CounterBookName" aria-describedby="CounterBookNameHelp" placeholder="" disabled value="{{.CounterBookName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CounterBookName">CounterBookName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Party" aria-describedby="PartyHelp" placeholder="" disabled value="{{.Party}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Party">Party</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PartyName" aria-describedby="PartyNameHelp" placeholder="" disabled value="{{.PartyName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PartyName">PartyName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NameCentre" aria-describedby="NameCentreHelp" placeholder="" disabled value="{{.NameCentre}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NameCentre">NameCentre</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NameFirm" aria-describedby="NameFirmHelp" placeholder="" disabled value="{{.NameFirm}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NameFirm">NameFirm</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerExternalView" aria-describedby="CustomerExternalViewHelp" placeholder="" disabled value="{{.CustomerExternalView}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CustomerExternalView">CustomerExternalView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerSienaView" aria-describedby="CustomerSienaViewHelp" placeholder="" disabled value="{{.CustomerSienaView}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CustomerSienaView">CustomerSienaView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CompID">CompID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SienaDealer" aria-describedby="SienaDealerHelp" placeholder="" disabled value="{{.SienaDealer}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SienaDealer">SienaDealer</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealOwner" aria-describedby="DealOwnerHelp" placeholder="" disabled value="{{.DealOwner}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealOwner">DealOwner</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DealOwnerMnemonic" aria-describedby="DealOwnerMnemonicHelp" placeholder="" disabled value="{{.DealOwnerMnemonic}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DealOwnerMnemonic">DealOwnerMnemonic</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditedByUser" aria-describedby="EditedByUserHelp" placeholder="" disabled value="{{.EditedByUser}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EditedByUser">EditedByUser</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTCOriginTime" aria-describedby="UTCOriginTimeHelp" placeholder="" disabled value="{{.UTCOriginTime}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UTCOriginTime">UTCOriginTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="UTCUpdateTime" aria-describedby="UTCUpdateTimeHelp" placeholder="" disabled value="{{.UTCUpdateTime}}" data-mdb-input-mask="">
+                        <label class="form-label" for="UTCUpdateTime">UTCUpdateTime</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MarginTrading" aria-describedby="MarginTradingHelp" placeholder="True" disabled value="{{.MarginTrading}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MarginTrading">MarginTrading</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SwapPoints" aria-describedby="SwapPointsHelp" placeholder="0.00" disabled value="{{.SwapPoints}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SwapPoints">SwapPoints</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SpotDate" aria-describedby="SpotDateHelp" placeholder="" disabled value="{{.SpotDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SpotDate">SpotDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SpotRate" aria-describedby="SpotRateHelp" placeholder="0.00" disabled value="{{.SpotRate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SpotRate">SpotRate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MktSpotRate" aria-describedby="MktSpotRateHelp" placeholder="0.00" disabled value="{{.MktSpotRate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MktSpotRate">MktSpotRate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SpotSalesMargin" aria-describedby="SpotSalesMarginHelp" placeholder="0.00" disabled value="{{.SpotSalesMargin}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SpotSalesMargin">SpotSalesMargin</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SpotChlMargin" aria-describedby="SpotChlMarginHelp" placeholder="0.00" disabled value="{{.SpotChlMargin}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SpotChlMargin">SpotChlMargin</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RerouteCcy" aria-describedby="RerouteCcyHelp" placeholder="" disabled value="{{.RerouteCcy}}" data-mdb-input-mask="">
+                        <label class="form-label" for="RerouteCcy">RerouteCcy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerPayInstruction" aria-describedby="CustomerPayInstructionHelp" placeholder="" disabled value="{{.CustomerPayInstruction}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CustomerPayInstruction">CustomerPayInstruction</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerReceiptInstruction" aria-describedby="CustomerReceiptInstructionHelp" placeholder="" disabled value="{{.CustomerReceiptInstruction}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CustomerReceiptInstruction">CustomerReceiptInstruction</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BackOfficeNotes" aria-describedby="BackOfficeNotesHelp" placeholder="" disabled value="{{.BackOfficeNotes}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BackOfficeNotes">BackOfficeNotes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CustomerStatementNotes" aria-describedby="CustomerStatementNotesHelp" placeholder="" disabled value="{{.CustomerStatementNotes}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CustomerStatementNotes">CustomerStatementNotes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NotesMargin" aria-describedby="NotesMarginHelp" placeholder="0.00" disabled value="{{.NotesMargin}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NotesMargin">NotesMargin</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RequestedBy" aria-describedby="RequestedByHelp" placeholder="" disabled value="{{.RequestedBy}}" data-mdb-input-mask="">
+                        <label class="form-label" for="RequestedBy">RequestedBy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditReason" aria-describedby="EditReasonHelp" placeholder="" disabled value="{{.EditReason}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EditReason">EditReason</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditOtherReason" aria-describedby="EditOtherReasonHelp" placeholder="" disabled value="{{.EditOtherReason}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EditOtherReason">EditOtherReason</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NICleanPrice" aria-describedby="NICleanPriceHelp" placeholder="0.00" disabled value="{{.NICleanPrice}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NICleanPrice">NICleanPrice</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NIDirtyPrice" aria-describedby="NIDirtyPriceHelp" placeholder="0.00" disabled value="{{.NIDirtyPrice}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NIDirtyPrice">NIDirtyPrice</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NIYield" aria-describedby="NIYieldHelp" placeholder="0.00" disabled value="{{.NIYield}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NIYield">NIYield</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NIClearingSystem" aria-describedby="NIClearingSystemHelp" placeholder="" disabled value="{{.NIClearingSystem}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NIClearingSystem">NIClearingSystem</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Acceptor" aria-describedby="AcceptorHelp" placeholder="" disabled value="{{.Acceptor}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Acceptor">Acceptor</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NIDiscount" aria-describedby="NIDiscountHelp" placeholder="0.00" disabled value="{{.NIDiscount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NIDiscount">NIDiscount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FastPay" aria-describedby="FastPayHelp" placeholder="True" disabled value="{{.FastPay}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FastPay">FastPay</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentFee" aria-describedby="PaymentFeeHelp" placeholder="0.00" disabled value="{{.PaymentFee}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentFee">PaymentFee</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentFeePolicy" aria-describedby="PaymentFeePolicyHelp" placeholder="" disabled value="{{.PaymentFeePolicy}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentFeePolicy">PaymentFeePolicy</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentReason" aria-describedby="PaymentReasonHelp" placeholder="" disabled value="{{.PaymentReason}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentReason">PaymentReason</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentDate" aria-describedby="PaymentDateHelp" placeholder="" disabled value="{{.PaymentDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentDate">PaymentDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SettlementDate" aria-describedby="SettlementDateHelp" placeholder="" disabled value="{{.SettlementDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SettlementDate">SettlementDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FixingDate" aria-describedby="FixingDateHelp" placeholder="" disabled value="{{.FixingDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FixingDate">FixingDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="VenueUTI" aria-describedby="VenueUTIHelp" placeholder="" disabled value="{{.VenueUTI}}" data-mdb-input-mask="">
+                        <label class="form-label" for="VenueUTI">VenueUTI</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EditVersion" aria-describedby="EditVersionHelp" placeholder="0" disabled value="{{.EditVersion}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EditVersion">EditVersion</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BrokeragePercentage" aria-describedby="BrokeragePercentageHelp" placeholder="0.00" disabled value="{{.BrokeragePercentage}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BrokeragePercentage">BrokeragePercentage</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BrokerageAmount" aria-describedby="BrokerageAmountHelp" placeholder="0.00" disabled value="{{.BrokerageAmount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BrokerageAmount">BrokerageAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BrokerageCurrency" aria-describedby="BrokerageCurrencyHelp" placeholder="" disabled value="{{.BrokerageCurrency}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BrokerageCurrency">BrokerageCurrency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="BrokerageDate" aria-describedby="BrokerageDateHelp" placeholder="" disabled value="{{.BrokerageDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="BrokerageDate">BrokerageDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AccountName" aria-describedby="AccountNameHelp" placeholder="" disabled value="{{.AccountName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AccountName">AccountName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AccountNumber" aria-describedby="AccountNumberHelp" placeholder="" disabled value="{{.AccountNumber}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AccountNumber">AccountNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CashBalance" aria-describedby="CashBalanceHelp" placeholder="0.00" disabled value="{{.CashBalance}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CashBalance">CashBalance</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="DebitFrequency" aria-describedby="DebitFrequencyHelp" placeholder="" disabled value="{{.DebitFrequency}}" data-mdb-input-mask="">
+                        <label class="form-label" for="DebitFrequency">DebitFrequency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CreditFrequency" aria-describedby="CreditFrequencyHelp" placeholder="" disabled value="{{.CreditFrequency}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CreditFrequency">CreditFrequency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ManuallyQuoted" aria-describedby="ManuallyQuotedHelp" placeholder="" disabled value="{{.ManuallyQuoted}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ManuallyQuoted">ManuallyQuoted</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LedgerBalance" aria-describedby="LedgerBalanceHelp" placeholder="0.00" disabled value="{{.LedgerBalance}}" data-mdb-input-mask="">
+                        <label class="form-label" for="LedgerBalance">LedgerBalance</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SettAmtOutstanding" aria-describedby="SettAmtOutstandingHelp" placeholder="0.00" disabled value="{{.SettAmtOutstanding}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SettAmtOutstanding">SettAmtOutstanding</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FeePercentage" aria-describedby="FeePercentageHelp" placeholder="0.00" disabled value="{{.FeePercentage}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FeePercentage">FeePercentage</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FeeAmount" aria-describedby="FeeAmountHelp" placeholder="0.00" disabled value="{{.FeeAmount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FeeAmount">FeeAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Venue" aria-describedby="VenueHelp" placeholder="" disabled value="{{.Venue}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Venue">Venue</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EURAmount" aria-describedby="EURAmountHelp" placeholder="0.00" disabled value="{{.EURAmount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EURAmount">EURAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EUROtherAmount" aria-describedby="EUROtherAmountHelp" placeholder="0.00" disabled value="{{.EUROtherAmount}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EUROtherAmount">EUROtherAmount</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="LEI" aria-describedby="LEIHelp" placeholder="" disabled value="{{.LEI}}" data-mdb-input-mask="">
+                        <label class="form-label" for="LEI">LEI</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Equity" aria-describedby="EquityHelp" placeholder="" disabled value="{{.Equity}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Equity">Equity</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Shares" aria-describedby="SharesHelp" placeholder="0" disabled value="{{.Shares}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Shares">Shares</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="QuoteExpiryDate" aria-describedby="QuoteExpiryDateHelp" placeholder="" disabled value="{{.QuoteExpiryDate}}" data-mdb-input-mask="">
+                        <label class="form-label" for="QuoteExpiryDate">QuoteExpiryDate</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Commodity" aria-describedby="CommodityHelp" placeholder="" disabled value="{{.Commodity}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Commodity">Commodity</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentSystemSienaView" aria-describedby="PaymentSystemSienaViewHelp" placeholder="" disabled value="{{.PaymentSystemSienaView}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentSystemSienaView">PaymentSystemSienaView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentSystemExternalView" aria-describedby="PaymentSystemExternalViewHelp" placeholder="" disabled value="{{.PaymentSystemExternalView}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentSystemExternalView">PaymentSystemExternalView</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SalesProfit" aria-describedby="SalesProfitHelp" placeholder="0.00" disabled value="{{.SalesProfit}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SalesProfit">SalesProfit</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RejectReason" aria-describedby="RejectReasonHelp" placeholder="" disabled value="{{.RejectReason}}" data-mdb-input-mask="">
+                        <label class="form-label" for="RejectReason">RejectReason</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="PaymentError" aria-describedby="PaymentErrorHelp" placeholder="" disabled value="{{.PaymentError}}" data-mdb-input-mask="">
+                        <label class="form-label" for="PaymentError">PaymentError</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="RepoPrincipal" aria-describedby="RepoPrincipalHelp" placeholder="0.00" disabled value="{{.RepoPrincipal}}" data-mdb-input-mask="">
+                        <label class="form-label" for="RepoPrincipal">RepoPrincipal</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FixingFrequency" aria-describedby="FixingFrequencyHelp" placeholder="" disabled value="{{.FixingFrequency}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FixingFrequency">FixingFrequency</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Dealt" aria-describedby="DealtHelp" placeholder="" disabled value="{{.Dealt}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Dealt">Dealt</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Against" aria-describedby="AgainstHelp" placeholder="" disabled value="{{.Against}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Against">Against</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

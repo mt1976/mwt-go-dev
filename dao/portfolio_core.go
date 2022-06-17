@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -154,35 +154,42 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Portfolio_Code, "")
-   recItem.Description1  = get_String(rec, dm.Portfolio_Description1, "")
-   recItem.Description2  = get_String(rec, dm.Portfolio_Description2, "")
-   recItem.IsDefault  = get_Bool(rec, dm.Portfolio_IsDefault, "True")
-   recItem.InternalId  = get_Int(rec, dm.Portfolio_InternalId, "0")
-   recItem.InternalDeleted  = get_Time(rec, dm.Portfolio_InternalDeleted, "")
-   recItem.UpdatedTransactionId  = get_String(rec, dm.Portfolio_UpdatedTransactionId, "")
-   recItem.UpdatedUserId  = get_String(rec, dm.Portfolio_UpdatedUserId, "")
-   recItem.UpdatedDateTime  = get_Time(rec, dm.Portfolio_UpdatedDateTime, "")
-   recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId, "")
-   recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId, "")
-   recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType, "")
-// If there are fields below, create the methods in adaptor\Portfolio_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Portfolio_Code_sql, "")
+	   recItem.Description1  = get_String(rec, dm.Portfolio_Description1_sql, "")
+	   recItem.Description2  = get_String(rec, dm.Portfolio_Description2_sql, "")
+	   recItem.IsDefault  = get_Bool(rec, dm.Portfolio_IsDefault_sql, "True")
+	   recItem.InternalId  = get_Int(rec, dm.Portfolio_InternalId_sql, "0")
+	   recItem.InternalDeleted  = get_Time(rec, dm.Portfolio_InternalDeleted_sql, "")
+	   recItem.UpdatedTransactionId  = get_String(rec, dm.Portfolio_UpdatedTransactionId_sql, "")
+	   recItem.UpdatedUserId  = get_String(rec, dm.Portfolio_UpdatedUserId_sql, "")
+	   recItem.UpdatedDateTime  = get_Time(rec, dm.Portfolio_UpdatedDateTime_sql, "")
+	   recItem.DeletedTransactionId  = get_String(rec, dm.Portfolio_DeletedTransactionId_sql, "")
+	   recItem.DeletedUserId  = get_String(rec, dm.Portfolio_DeletedUserId_sql, "")
+	   recItem.ChangeType  = get_String(rec, dm.Portfolio_ChangeType_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Portfolio_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

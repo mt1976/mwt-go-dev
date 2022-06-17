@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:45
+// Date & Time		    : 17/06/2022 at 18:38:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type CustomerOnboarding_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
 	CustomerName         string
@@ -61,7 +61,7 @@ type CustomerOnboarding_Page struct {
 	CustomerCategory         string
 	CustomerTelephoneNo         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -187,24 +187,24 @@ func CustomerOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CustomerOnboarding
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.ID = r.FormValue(dm.CustomerOnboarding_ID)
-		item.CustomerName = r.FormValue(dm.CustomerOnboarding_CustomerName)
-		item.CustomerAddress = r.FormValue(dm.CustomerOnboarding_CustomerAddress)
-		item.CustomerBOLID = r.FormValue(dm.CustomerOnboarding_CustomerBOLID)
-		item.CustomerFirmName = r.FormValue(dm.CustomerOnboarding_CustomerFirmName)
-		item.CustomerType = r.FormValue(dm.CustomerOnboarding_CustomerType)
-		item.CustomerRDC = r.FormValue(dm.CustomerOnboarding_CustomerRDC)
-		item.CustomerSortCode = r.FormValue(dm.CustomerOnboarding_CustomerSortCode)
-		item.CustomerGMClientNo = r.FormValue(dm.CustomerOnboarding_CustomerGMClientNo)
-		item.CustomerDefaultBook = r.FormValue(dm.CustomerOnboarding_CustomerDefaultBook)
-		item.CustomerRegion = r.FormValue(dm.CustomerOnboarding_CustomerRegion)
-		item.CustomerCategory = r.FormValue(dm.CustomerOnboarding_CustomerCategory)
-		item.CustomerTelephoneNo = r.FormValue(dm.CustomerOnboarding_CustomerTelephoneNo)
+		item.ID = r.FormValue(dm.CustomerOnboarding_ID_scrn)
+		item.CustomerName = r.FormValue(dm.CustomerOnboarding_CustomerName_scrn)
+		item.CustomerAddress = r.FormValue(dm.CustomerOnboarding_CustomerAddress_scrn)
+		item.CustomerBOLID = r.FormValue(dm.CustomerOnboarding_CustomerBOLID_scrn)
+		item.CustomerFirmName = r.FormValue(dm.CustomerOnboarding_CustomerFirmName_scrn)
+		item.CustomerType = r.FormValue(dm.CustomerOnboarding_CustomerType_scrn)
+		item.CustomerRDC = r.FormValue(dm.CustomerOnboarding_CustomerRDC_scrn)
+		item.CustomerSortCode = r.FormValue(dm.CustomerOnboarding_CustomerSortCode_scrn)
+		item.CustomerGMClientNo = r.FormValue(dm.CustomerOnboarding_CustomerGMClientNo_scrn)
+		item.CustomerDefaultBook = r.FormValue(dm.CustomerOnboarding_CustomerDefaultBook_scrn)
+		item.CustomerRegion = r.FormValue(dm.CustomerOnboarding_CustomerRegion_scrn)
+		item.CustomerCategory = r.FormValue(dm.CustomerOnboarding_CustomerCategory_scrn)
+		item.CustomerTelephoneNo = r.FormValue(dm.CustomerOnboarding_CustomerTelephoneNo_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CustomerOnboarding_Store(item,r)	
 	http.Redirect(w, r, CustomerOnboarding_Redirect, http.StatusFound)
@@ -261,7 +261,7 @@ func CustomerOnboarding_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CustomerOnboarding Page 
 func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail CustomerOnboarding_Page) CustomerOnboarding_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.CustomerName = rD.CustomerName
@@ -279,7 +279,7 @@ func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail Custom
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -309,7 +309,7 @@ func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail Custom
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

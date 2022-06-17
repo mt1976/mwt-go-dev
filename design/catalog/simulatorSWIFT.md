@@ -41,13 +41,13 @@ Fetch|<ul><li>**Implement in Adaptor**</li><li> func SimulatorSWIFT_GetList_impl
 Store|<ul><li>**Implement in Adaptor**</li><li>func SimulatorSWIFT_NewID_impl(rec dm.SimulatorSWIFT) (string) { return rec.ID } </li><li>func SimulatorSWIFT_Delete_impl(id string) (error) {return nil}</li><li>func SimulatorSWIFT_Update_impl(id string,rec dm.SimulatorSWIFT, usr string) (error) {return nil}</li></ul>
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|
-|**FileName**|String|true|true|false|false|||||Y|FileName||false|false|false|
-|**MessageRaw**|String|false|true|false|false|||||Y|MessageRaw||false|false|false|
-|**MessageFmt**|String|false|true|false|true|||||N|MessageFmt||false|false|false|
-|**Action**|String|false|true|false|false|||||Y|Action||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|text||
+|**FileName**|String|true|true|false|false|||||Y|FileName||false|false|false|text||
+|**MessageRaw**|String|false|true|false|false|||||Y|MessageRaw||false|false|false|text||
+|**MessageFmt**|String|false|true|false|true|||||N|MessageFmt||false|false|false|text||
+|**Action**|String|false|true|false|false|||||Y|Action||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -59,17 +59,17 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func SimulatorSWIFT_NewID_impl(re
 | code | **dao** | /dao/simulatorSWIFT_core.go |
 | code | **datamodel** | /datamodel/simulatorSWIFT_core.go |
 | code | **menu** | /design/menu/simulatorSWIFT.json |
-| html | **list** | /html/SimulatorSWIFT_List.html |
-| html | **view** | /html/SimulatorSWIFT_View.html |
-| html | **edit** | /html/SimulatorSWIFT_Edit.html |
-| html | **new** | /html/SimulatorSWIFT_New.html |
+| html | **list** | /SimulatorSWIFT_List.html |
+| html | **view** | /SimulatorSWIFT_View.html |
+| html | **edit** | /SimulatorSWIFT_Edit.html |
+| html | **new** | /SimulatorSWIFT_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:10**
+Date & Time		     | **17/06/2022** at **18:38:14**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

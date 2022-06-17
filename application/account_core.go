@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:47
+// Date & Time		    : 17/06/2022 at 18:38:05
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Account_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SienaReference         string
 	CustomerSienaView         string
@@ -123,7 +123,7 @@ type Account_Page struct {
 	LedgerCA         string
 	CashBalanceCA         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -212,7 +212,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Account Page 
 func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.CustomerSienaView = rD.CustomerSienaView
@@ -287,7 +287,7 @@ func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	pageDetail.CashBalanceCA = rD.CashBalanceCA
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -441,7 +441,7 @@ func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

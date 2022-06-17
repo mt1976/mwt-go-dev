@@ -41,23 +41,23 @@ SQL Table Key | **Id**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**Id**|String|true|true|false|false|||||Y|id||false|false|false|
-|**Object**|String|false|true|false|false|||||Y|object||false|false|false|
-|**Field**|String|false|true|false|false|||||Y|field||false|false|false|
-|**Value**|String|false|true|false|false|||||Y|value||false|false|false|
-|**Expiry**|String|false|true|false|false|||||Y|expiry||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**Source**|String|false|true|false|false|||||Y|source||false|false|false|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**Id**|String|true|true|false|false|||||Y|id||false|false|false|text||
+|**Object**|String|false|true|false|false|||||Y|object||false|false|false|text||
+|**Field**|String|false|true|false|false|||||Y|field||false|false|false|text||
+|**Value**|String|false|true|false|false|||||Y|value||false|false|false|text||
+|**Expiry**|String|false|true|false|false|||||Y|expiry||false|false|false|text||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
+|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**Source**|String|false|true|false|false|||||Y|source||false|false|false|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -67,16 +67,16 @@ SQL Table Key | **Id**
 | code | **dao** | /dao/cache_core.go |
 | code | **datamodel** | /datamodel/cache_core.go |
 | code | **menu** | /design/menu/cache.json |
-| html | **list** | /html/Cache_List.html |
-| html | **view** | /html/Cache_View.html |
-| html | **edit** | /html/Cache_Edit.html |
+| html | **list** | /Cache_List.html |
+| html | **view** | /Cache_View.html |
+| html | **edit** | /Cache_Edit.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:50**
+Date & Time		     | **17/06/2022** at **18:38:06**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

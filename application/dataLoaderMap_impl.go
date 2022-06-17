@@ -80,7 +80,7 @@ func ListLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 	searchID := core.GetURLparam(r, "loaderID")
-	tmpl := "Impl_LoaderMapStoreList"
+	tmpl := "DataLoader/Impl_LoaderMapStoreList"
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -110,7 +110,7 @@ func ViewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_LoaderMapStoreView"
+	tmpl := "DataLoader/Impl_LoaderMapStoreView"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -152,7 +152,7 @@ func EditLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_LoaderMapStoreEdit"
+	tmpl := "DataLoader/Impl_LoaderMapStoreEdit"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -281,7 +281,7 @@ func NewLoaderMapStoreHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	tmpl := "Impl_LoaderMapStoreNew"
+	tmpl := "DataLoader/Impl_LoaderMapStoreNew"
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")

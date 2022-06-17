@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:54
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -129,23 +129,30 @@ func counterpartycreditrating_Fetch(tsql string) (int, []dm.CounterpartyCreditRa
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.NameFirm  = get_String(rec, dm.CounterpartyCreditRating_NameFirm, "")
-   recItem.NameCentre  = get_String(rec, dm.CounterpartyCreditRating_NameCentre, "")
-   recItem.CreditRatingUsage  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingUsage, "")
-   recItem.CreditRatingAgency  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingAgency, "")
-   recItem.CreditRatingName  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingName, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyCreditRating_CompID, "")
-// If there are fields below, create the methods in adaptor\CounterpartyCreditRating_impl.go
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameFirm  = get_String(rec, dm.CounterpartyCreditRating_NameFirm_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.CounterpartyCreditRating_NameCentre_sql, "")
+	   recItem.CreditRatingUsage  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingUsage_sql, "")
+	   recItem.CreditRatingAgency  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingAgency_sql, "")
+	   recItem.CreditRatingName  = get_String(rec, dm.CounterpartyCreditRating_CreditRatingName_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyCreditRating_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyCreditRating_impl.go
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

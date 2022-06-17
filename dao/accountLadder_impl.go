@@ -9,7 +9,7 @@ import (
 func AccountLadder_GetListByID(id string) (int, []dm.AccountLadder, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.AccountLadder_SQLTable)
-	tsql += " WHERE " + dm.AccountLadder_SienaReference + " = '" + id + "'"
+	tsql += " WHERE " + dm.AccountLadder_SienaReference_sql + " = '" + id + "'"
 	count, accountladderList, _, _ := accountladder_Fetch(tsql)
 	return count, accountladderList, nil
 }

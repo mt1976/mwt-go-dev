@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:49:58
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -141,47 +141,54 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.NameCentre  = get_String(rec, dm.Counterparty_NameCentre, "")
-   recItem.NameFirm  = get_String(rec, dm.Counterparty_NameFirm, "")
-   recItem.FullName  = get_String(rec, dm.Counterparty_FullName, "")
-   recItem.TelephoneNumber  = get_String(rec, dm.Counterparty_TelephoneNumber, "")
-   recItem.EmailAddress  = get_String(rec, dm.Counterparty_EmailAddress, "")
-   recItem.CustomerType  = get_String(rec, dm.Counterparty_CustomerType, "")
-   recItem.AccountOfficer  = get_String(rec, dm.Counterparty_AccountOfficer, "")
-   recItem.CountryCode  = get_String(rec, dm.Counterparty_CountryCode, "")
-   recItem.SectorCode  = get_String(rec, dm.Counterparty_SectorCode, "")
-   recItem.CpartyGroupName  = get_String(rec, dm.Counterparty_CpartyGroupName, "")
-   recItem.Notes  = get_String(rec, dm.Counterparty_Notes, "")
-   recItem.Owner  = get_String(rec, dm.Counterparty_Owner, "")
-   recItem.Authorised  = get_Bool(rec, dm.Counterparty_Authorised, "True")
-   recItem.NameFirmName  = get_String(rec, dm.Counterparty_NameFirmName, "")
-   recItem.NameCentreName  = get_String(rec, dm.Counterparty_NameCentreName, "")
-   recItem.CountryCodeName  = get_String(rec, dm.Counterparty_CountryCodeName, "")
-   recItem.SectorCodeName  = get_String(rec, dm.Counterparty_SectorCodeName, "")
-   recItem.CompID  = get_String(rec, dm.Counterparty_CompID, "")
-// If there are fields below, create the methods in adaptor\Counterparty_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.NameCentre  = get_String(rec, dm.Counterparty_NameCentre_sql, "")
+	   recItem.NameFirm  = get_String(rec, dm.Counterparty_NameFirm_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Counterparty_FullName_sql, "")
+	   recItem.TelephoneNumber  = get_String(rec, dm.Counterparty_TelephoneNumber_sql, "")
+	   recItem.EmailAddress  = get_String(rec, dm.Counterparty_EmailAddress_sql, "")
+	   recItem.CustomerType  = get_String(rec, dm.Counterparty_CustomerType_sql, "")
+	   recItem.AccountOfficer  = get_String(rec, dm.Counterparty_AccountOfficer_sql, "")
+	   recItem.CountryCode  = get_String(rec, dm.Counterparty_CountryCode_sql, "")
+	   recItem.SectorCode  = get_String(rec, dm.Counterparty_SectorCode_sql, "")
+	   recItem.CpartyGroupName  = get_String(rec, dm.Counterparty_CpartyGroupName_sql, "")
+	   recItem.Notes  = get_String(rec, dm.Counterparty_Notes_sql, "")
+	   recItem.Owner  = get_String(rec, dm.Counterparty_Owner_sql, "")
+	   recItem.Authorised  = get_Bool(rec, dm.Counterparty_Authorised_sql, "True")
+	   recItem.NameFirmName  = get_String(rec, dm.Counterparty_NameFirmName_sql, "")
+	   recItem.NameCentreName  = get_String(rec, dm.Counterparty_NameCentreName_sql, "")
+	   recItem.CountryCodeName  = get_String(rec, dm.Counterparty_CountryCodeName_sql, "")
+	   recItem.SectorCodeName  = get_String(rec, dm.Counterparty_SectorCodeName_sql, "")
+	   recItem.CompID  = get_String(rec, dm.Counterparty_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Counterparty_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

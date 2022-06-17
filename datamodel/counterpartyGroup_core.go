@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:56
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -31,10 +31,10 @@ const (
 	/// Handler Defintions
 	///
 	CounterpartyGroup_Template     = "CounterpartyGroup"
-	CounterpartyGroup_TemplateList = "CounterpartyGroup_List"
-	CounterpartyGroup_TemplateView = "CounterpartyGroup_View"
-	CounterpartyGroup_TemplateEdit = "CounterpartyGroup_Edit"
-	CounterpartyGroup_TemplateNew  = "CounterpartyGroup_New"
+	CounterpartyGroup_TemplateList = "/CounterpartyGroup/CounterpartyGroup_List"
+	CounterpartyGroup_TemplateView = "/CounterpartyGroup/CounterpartyGroup_View"
+	CounterpartyGroup_TemplateEdit = "/CounterpartyGroup/CounterpartyGroup_Edit"
+	CounterpartyGroup_TemplateNew  = "/CounterpartyGroup/CounterpartyGroup_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -46,11 +46,20 @@ const (
 	CounterpartyGroup_PathSave   = "/CounterpartyGroupSave/"
 	CounterpartyGroup_PathDelete = "/CounterpartyGroupDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-CounterpartyGroup_Name   = "Name" // Name is a String
-CounterpartyGroup_CountryCode   = "CountryCode" // CountryCode is a String
-CounterpartyGroup_SuperGroup   = "SuperGroup" // SuperGroup is a String
+CounterpartyGroup_Name_sql   = "Name" // Name is a String
+CounterpartyGroup_CountryCode_sql   = "CountryCode" // CountryCode is a String
+CounterpartyGroup_SuperGroup_sql   = "SuperGroup" // SuperGroup is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+CounterpartyGroup_Name_scrn   = "Name" // Name is a String
+CounterpartyGroup_CountryCode_scrn   = "CountryCode" // CountryCode is a String
+CounterpartyGroup_SuperGroup_scrn   = "SuperGroup" // SuperGroup is a String
 
 	/// Definitions End
 )

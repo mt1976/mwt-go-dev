@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:49
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -151,29 +151,36 @@ func book_Fetch(tsql string) (int, []dm.Book, dm.Book, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.BookName  = get_String(rec, dm.Book_BookName, "")
-   recItem.FullName  = get_String(rec, dm.Book_FullName, "")
-   recItem.PLManage  = get_String(rec, dm.Book_PLManage, "")
-   recItem.PLTransfer  = get_String(rec, dm.Book_PLTransfer, "")
-   recItem.DerivePL  = get_Bool(rec, dm.Book_DerivePL, "True")
-   recItem.CostOfCarry  = get_Bool(rec, dm.Book_CostOfCarry, "True")
-   recItem.CostOfFunding  = get_Bool(rec, dm.Book_CostOfFunding, "True")
-   recItem.LotAllocationMethod  = get_String(rec, dm.Book_LotAllocationMethod, "")
-   recItem.InternalId  = get_Int(rec, dm.Book_InternalId, "0")
-// If there are fields below, create the methods in adaptor\Book_impl.go
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.BookName  = get_String(rec, dm.Book_BookName_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Book_FullName_sql, "")
+	   recItem.PLManage  = get_String(rec, dm.Book_PLManage_sql, "")
+	   recItem.PLTransfer  = get_String(rec, dm.Book_PLTransfer_sql, "")
+	   recItem.DerivePL  = get_Bool(rec, dm.Book_DerivePL_sql, "True")
+	   recItem.CostOfCarry  = get_Bool(rec, dm.Book_CostOfCarry_sql, "True")
+	   recItem.CostOfFunding  = get_Bool(rec, dm.Book_CostOfFunding_sql, "True")
+	   recItem.LotAllocationMethod  = get_String(rec, dm.Book_LotAllocationMethod_sql, "")
+	   recItem.InternalId  = get_Int(rec, dm.Book_InternalId_sql, "0")
+	
+	// If there are fields below, create the methods in adaptor\Book_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:10
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Test1_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
 	Endpoint         string
@@ -61,7 +61,7 @@ type Test1_Page struct {
 	Cheese         string
 	Onion         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -187,21 +187,21 @@ func Test1_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Test1
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.ID = r.FormValue(dm.Test1_ID)
-		item.Endpoint = r.FormValue(dm.Test1_Endpoint)
-		item.Descr = r.FormValue(dm.Test1_Descr)
-		item.Query = r.FormValue(dm.Test1_Query)
-		item.Source = r.FormValue(dm.Test1_Source)
-		item.Firm = r.FormValue(dm.Test1_Firm)
-		item.YN = r.FormValue(dm.Test1_YN)
-		item.User = r.FormValue(dm.Test1_User)
-		item.Cheese = r.FormValue(dm.Test1_Cheese)
-		item.Onion = r.FormValue(dm.Test1_Onion)
+		item.ID = r.FormValue(dm.Test1_ID_scrn)
+		item.Endpoint = r.FormValue(dm.Test1_Endpoint_scrn)
+		item.Descr = r.FormValue(dm.Test1_Descr_scrn)
+		item.Query = r.FormValue(dm.Test1_Query_scrn)
+		item.Source = r.FormValue(dm.Test1_Source_scrn)
+		item.Firm = r.FormValue(dm.Test1_Firm_scrn)
+		item.YN = r.FormValue(dm.Test1_YN_scrn)
+		item.User = r.FormValue(dm.Test1_User_scrn)
+		item.Cheese = r.FormValue(dm.Test1_Cheese_scrn)
+		item.Onion = r.FormValue(dm.Test1_Onion_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Test1_Store(item,r)	
 	http.Redirect(w, r, Test1_Redirect, http.StatusFound)
@@ -258,7 +258,7 @@ func Test1_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Test1 Page 
 func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.Endpoint = rD.Endpoint
@@ -273,7 +273,7 @@ func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	pageDetail.Onion = rD.Onion
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -303,7 +303,7 @@ func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:10
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Systems_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -67,7 +67,7 @@ type Systems_Page struct {
 	SWIFTin         string
 	SWIFTout         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -193,30 +193,30 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Systems
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Systems_SYSId)
-		item.Id = r.FormValue(dm.Systems_Id)
-		item.Name = r.FormValue(dm.Systems_Name)
-		item.Staticin = r.FormValue(dm.Systems_Staticin)
-		item.Staticout = r.FormValue(dm.Systems_Staticout)
-		item.Txnin = r.FormValue(dm.Systems_Txnin)
-		item.Txnout = r.FormValue(dm.Systems_Txnout)
-		item.Fundscheckin = r.FormValue(dm.Systems_Fundscheckin)
-		item.Fundscheckout = r.FormValue(dm.Systems_Fundscheckout)
-		item.SYSCreated = r.FormValue(dm.Systems_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Systems_SYSWho)
-		item.SYSHost = r.FormValue(dm.Systems_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Systems_SYSUpdated)
-		item.SYSCreatedBy = r.FormValue(dm.Systems_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Systems_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Systems_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Systems_SYSUpdatedHost)
-		item.SWIFTin = r.FormValue(dm.Systems_SWIFTin)
-		item.SWIFTout = r.FormValue(dm.Systems_SWIFTout)
+		item.SYSId = r.FormValue(dm.Systems_SYSId_scrn)
+		item.Id = r.FormValue(dm.Systems_Id_scrn)
+		item.Name = r.FormValue(dm.Systems_Name_scrn)
+		item.Staticin = r.FormValue(dm.Systems_Staticin_scrn)
+		item.Staticout = r.FormValue(dm.Systems_Staticout_scrn)
+		item.Txnin = r.FormValue(dm.Systems_Txnin_scrn)
+		item.Txnout = r.FormValue(dm.Systems_Txnout_scrn)
+		item.Fundscheckin = r.FormValue(dm.Systems_Fundscheckin_scrn)
+		item.Fundscheckout = r.FormValue(dm.Systems_Fundscheckout_scrn)
+		item.SYSCreated = r.FormValue(dm.Systems_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Systems_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Systems_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Systems_SYSUpdated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Systems_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Systems_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Systems_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Systems_SYSUpdatedHost_scrn)
+		item.SWIFTin = r.FormValue(dm.Systems_SWIFTin_scrn)
+		item.SWIFTout = r.FormValue(dm.Systems_SWIFTout_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Systems_Store(item,r)	
 	http.Redirect(w, r, Systems_Redirect, http.StatusFound)
@@ -273,7 +273,7 @@ func Systems_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Systems Page 
 func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -297,7 +297,7 @@ func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -339,7 +339,7 @@ func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

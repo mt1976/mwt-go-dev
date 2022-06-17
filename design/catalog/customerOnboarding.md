@@ -41,21 +41,21 @@ Fetch|<ul><li>**Implement in Adaptor**</li><li> func CustomerOnboarding_GetList_
 Store|<ul><li>**Implement in Adaptor**</li><li>func CustomerOnboarding_NewID_impl(rec dm.CustomerOnboarding) (string) { return rec.ID } </li><li>func CustomerOnboarding_Delete_impl(id string) (error) {return nil}</li><li>func CustomerOnboarding_Update_impl(id string,rec dm.CustomerOnboarding, usr string) (error) {return nil}</li></ul>
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|
-|**CustomerName**|String|true|true|false|false|||||Y|CustomerName||false|false|false|
-|**CustomerAddress**|String|false|true|false|false|||||Y|CustomerAddress||false|false|false|
-|**CustomerBOLID**|String|false|true|false|false|||||Y|CustomerBOLID||false|false|false|
-|**CustomerFirmName**|String|false|true|false|false|||||Y|CustomerFirmName||false|false|false|
-|**CustomerType**|String|false|true|false|false|||||Y|CustomerType||false|false|false|
-|**CustomerRDC**|String|false|true|false|false|||||Y|CustomerRDC||false|false|false|
-|**CustomerSortCode**|String|false|true|false|false|||||Y|CustomerSortCode||false|false|false|
-|**CustomerGMClientNo**|String|false|true|false|false|||||Y|CustomerGMClientNo||false|false|false|
-|**CustomerDefaultBook**|String|false|true|false|false|||||Y|CustomerDefaultBook||false|false|false|
-|**CustomerRegion**|String|false|true|false|false|||||Y|CustomerRegion||false|false|false|
-|**CustomerCategory**|String|false|true|false|false|||||Y|CustomerCategory||false|false|false|
-|**CustomerTelephoneNo**|String|false|true|false|false|||||Y|CustomerTelephoneNo||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|text||
+|**CustomerName**|String|true|true|false|false|||||Y|CustomerName||false|false|false|text||
+|**CustomerAddress**|String|false|true|false|false|||||Y|CustomerAddress||false|false|false|text||
+|**CustomerBOLID**|String|false|true|false|false|||||Y|CustomerBOLID||false|false|false|text||
+|**CustomerFirmName**|String|false|true|false|false|||||Y|CustomerFirmName||false|false|false|text||
+|**CustomerType**|String|false|true|false|false|||||Y|CustomerType||false|false|false|text||
+|**CustomerRDC**|String|false|true|false|false|||||Y|CustomerRDC||false|false|false|text||
+|**CustomerSortCode**|String|false|true|false|false|||||Y|CustomerSortCode||false|false|false|text||
+|**CustomerGMClientNo**|String|false|true|false|false|||||Y|CustomerGMClientNo||false|false|false|text||
+|**CustomerDefaultBook**|String|false|true|false|false|||||Y|CustomerDefaultBook||false|false|false|text||
+|**CustomerRegion**|String|false|true|false|false|||||Y|CustomerRegion||false|false|false|text||
+|**CustomerCategory**|String|false|true|false|false|||||Y|CustomerCategory||false|false|false|text||
+|**CustomerTelephoneNo**|String|false|true|false|false|||||Y|CustomerTelephoneNo||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -67,17 +67,17 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func CustomerOnboarding_NewID_imp
 | code | **dao** | /dao/customerOnboarding_core.go |
 | code | **datamodel** | /datamodel/customerOnboarding_core.go |
 | code | **menu** | /design/menu/customerOnboarding.json |
-| html | **list** | /html/CustomerOnboarding_List.html |
-| html | **view** | /html/CustomerOnboarding_View.html |
-| html | **edit** | /html/CustomerOnboarding_Edit.html |
-| html | **new** | /html/CustomerOnboarding_New.html |
+| html | **list** | /CustomerOnboarding_List.html |
+| html | **view** | /CustomerOnboarding_View.html |
+| html | **edit** | /CustomerOnboarding_Edit.html |
+| html | **new** | /CustomerOnboarding_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:45**
+Date & Time		     | **17/06/2022** at **18:38:03**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

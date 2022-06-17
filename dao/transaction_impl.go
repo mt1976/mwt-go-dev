@@ -9,7 +9,7 @@ import (
 func Transaction_GetListByCounterpartyID(id string) (int, []dm.Transaction, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Transaction_SQLTable)
-	tsql = tsql + " WHERE " + dm.Transaction_CompID + "='" + id + "'"
+	tsql = tsql + " WHERE " + dm.Transaction_CompID_sql + "='" + id + "'"
 
 	count, sienaTransactionList, _, _ := transaction_Fetch(tsql)
 	return count, sienaTransactionList, nil

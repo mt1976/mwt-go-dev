@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:03
+// Date & Time		    : 17/06/2022 at 18:38:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -147,59 +147,66 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Name  = get_String(rec, dm.DealingInterface_Name, "")
-   recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount, "True")
-   recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative, "True")
-   recItem.RateTimeOut  = get_Int(rec, dm.DealingInterface_RateTimeOut, "0")
-   recItem.PropagationDelay  = get_Int(rec, dm.DealingInterface_PropagationDelay, "0")
-   recItem.CheckLiquidity  = get_Bool(rec, dm.DealingInterface_CheckLiquidity, "True")
-   recItem.ChangeQuoteDirection  = get_Bool(rec, dm.DealingInterface_ChangeQuoteDirection, "True")
-   recItem.GenerateRejectedDeals  = get_Bool(rec, dm.DealingInterface_GenerateRejectedDeals, "True")
-   recItem.SpotUpdatesForForwardQuotes  = get_Bool(rec, dm.DealingInterface_SpotUpdatesForForwardQuotes, "True")
-   recItem.SettlementInstructionStyle  = get_String(rec, dm.DealingInterface_SettlementInstructionStyle, "")
-   recItem.CanRetractQuotes  = get_Bool(rec, dm.DealingInterface_CanRetractQuotes, "True")
-   recItem.CancelESPifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelESPifNotPriced, "True")
-   recItem.CancelRFQSifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelRFQSifNotPriced, "True")
-   recItem.CancelonDealingSuspended  = get_Bool(rec, dm.DealingInterface_CancelonDealingSuspended, "True")
-   recItem.CreditCheckedatDI  = get_Bool(rec, dm.DealingInterface_CreditCheckedatDI, "True")
-   recItem.DuplicateCheckonExternalRef  = get_Bool(rec, dm.DealingInterface_DuplicateCheckonExternalRef, "True")
-   recItem.LimitCheckQuote  = get_Bool(rec, dm.DealingInterface_LimitCheckQuote, "True")
-   recItem.LimitCheckonRFQDealSubmission  = get_Bool(rec, dm.DealingInterface_LimitCheckonRFQDealSubmission, "True")
-   recItem.ListenonLimits  = get_Bool(rec, dm.DealingInterface_ListenonLimits, "True")
-   recItem.MarginStyle  = get_String(rec, dm.DealingInterface_MarginStyle, "")
-   recItem.UseRerouteDefinitionOnly  = get_Bool(rec, dm.DealingInterface_UseRerouteDefinitionOnly, "True")
-   recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation, "True")
-   recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance, "True")
-   recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules, "True")
-// If there are fields below, create the methods in adaptor\DealingInterface_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Name  = get_String(rec, dm.DealingInterface_Name_sql, "")
+	   recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount_sql, "True")
+	   recItem.QuoteAsIndicative  = get_Bool(rec, dm.DealingInterface_QuoteAsIndicative_sql, "True")
+	   recItem.RateTimeOut  = get_Int(rec, dm.DealingInterface_RateTimeOut_sql, "0")
+	   recItem.PropagationDelay  = get_Int(rec, dm.DealingInterface_PropagationDelay_sql, "0")
+	   recItem.CheckLiquidity  = get_Bool(rec, dm.DealingInterface_CheckLiquidity_sql, "True")
+	   recItem.ChangeQuoteDirection  = get_Bool(rec, dm.DealingInterface_ChangeQuoteDirection_sql, "True")
+	   recItem.GenerateRejectedDeals  = get_Bool(rec, dm.DealingInterface_GenerateRejectedDeals_sql, "True")
+	   recItem.SpotUpdatesForForwardQuotes  = get_Bool(rec, dm.DealingInterface_SpotUpdatesForForwardQuotes_sql, "True")
+	   recItem.SettlementInstructionStyle  = get_String(rec, dm.DealingInterface_SettlementInstructionStyle_sql, "")
+	   recItem.CanRetractQuotes  = get_Bool(rec, dm.DealingInterface_CanRetractQuotes_sql, "True")
+	   recItem.CancelESPifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelESPifNotPriced_sql, "True")
+	   recItem.CancelRFQSifNotPriced  = get_Bool(rec, dm.DealingInterface_CancelRFQSifNotPriced_sql, "True")
+	   recItem.CancelonDealingSuspended  = get_Bool(rec, dm.DealingInterface_CancelonDealingSuspended_sql, "True")
+	   recItem.CreditCheckedatDI  = get_Bool(rec, dm.DealingInterface_CreditCheckedatDI_sql, "True")
+	   recItem.DuplicateCheckonExternalRef  = get_Bool(rec, dm.DealingInterface_DuplicateCheckonExternalRef_sql, "True")
+	   recItem.LimitCheckQuote  = get_Bool(rec, dm.DealingInterface_LimitCheckQuote_sql, "True")
+	   recItem.LimitCheckonRFQDealSubmission  = get_Bool(rec, dm.DealingInterface_LimitCheckonRFQDealSubmission_sql, "True")
+	   recItem.ListenonLimits  = get_Bool(rec, dm.DealingInterface_ListenonLimits_sql, "True")
+	   recItem.MarginStyle  = get_String(rec, dm.DealingInterface_MarginStyle_sql, "")
+	   recItem.UseRerouteDefinitionOnly  = get_Bool(rec, dm.DealingInterface_UseRerouteDefinitionOnly_sql, "True")
+	   recItem.BypassConfirmation  = get_Bool(rec, dm.DealingInterface_BypassConfirmation_sql, "True")
+	   recItem.DIOnAcceptance  = get_Bool(rec, dm.DealingInterface_DIOnAcceptance_sql, "True")
+	   recItem.IgnoreESPAmountRules  = get_Bool(rec, dm.DealingInterface_IgnoreESPAmountRules_sql, "True")
+	
+	// If there are fields below, create the methods in adaptor\DealingInterface_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

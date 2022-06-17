@@ -41,34 +41,34 @@ SQL Table Key | **DealTypeKey**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**DealTypeKey**|String|true|true|false|false|||||Y|DealTypeKey||false|false|false|
-|**DealTypeShortName**|String|false|true|false|false|||||Y|DealTypeShortName||false|false|false|
-|**HostKey**|String|false|true|false|false|||||Y|HostKey||false|false|false|
-|**IsActive**|Bool|false|true|false|false|||||Y|IsActive|True|false|false|false|
-|**Interbook**|Bool|false|true|false|false|||||Y|Interbook|True|false|false|false|
-|**BackOfficeLink**|Bool|false|true|false|false|||||Y|BackOfficeLink|True|false|false|false|
-|**HasTicket**|Bool|false|true|false|false|||||Y|HasTicket|True|false|false|false|
-|**CurrencyOverride**|Bool|false|true|false|false|||||Y|CurrencyOverride|True|false|false|false|
-|**CurrencyHolderCurrency**|String|false|true|false|false|||||Y|CurrencyHolderCurrency||false|false|false|
-|**AllBooks**|Bool|false|true|false|false|||||Y|AllBooks|True|false|false|false|
-|**FundamentalDealTypeKey**|String|false|true|false|false|||||Y|FundamentalDealTypeKey||false|false|false|
-|**RelatedDealType**|String|false|true|false|false|||||Y|RelatedDealType||false|false|false|
-|**BookName**|String|false|true|false|false|||||Y|BookName||false|false|false|
-|**ExportMethod**|String|false|true|false|false|||||Y|ExportMethod||false|false|false|
-|**DefaultUserLayoffBooks**|Bool|false|true|false|false|||||Y|DefaultUserLayoffBooks|True|false|false|false|
-|**RFQ**|Bool|false|true|false|false|||||Y|RFQ|True|false|false|false|
-|**OBS**|Bool|false|true|false|false|||||Y|OBS|True|false|false|false|
-|**KID**|Bool|false|true|false|false|||||Y|KID|True|false|false|false|
-|**InternalId**|Int|true|true|false|false|||||Y|InternalId|0|false|false|false|
-|**InternalDeleted**|Time|false|true|false|false|||||Y|InternalDeleted||false|false|false|
-|**UpdatedTransactionId**|String|false|true|false|false|||||Y|UpdatedTransactionId||false|false|false|
-|**UpdatedUserId**|String|false|true|false|false|||||Y|UpdatedUserId||false|false|false|
-|**UpdatedDateTime**|Time|false|true|false|false|||||Y|UpdatedDateTime||false|false|false|
-|**DeletedTransactionId**|String|false|true|false|false|||||Y|DeletedTransactionId||false|false|false|
-|**DeletedUserId**|String|false|true|false|false|||||Y|DeletedUserId||false|false|false|
-|**ChangeType**|String|false|true|false|false|||||Y|ChangeType||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**DealTypeKey**|String|true|true|false|false|||||Y|DealTypeKey||false|false|false|text||
+|**DealTypeShortName**|String|false|true|false|false|||||Y|DealTypeShortName||false|false|false|text||
+|**HostKey**|String|false|true|false|false|||||Y|HostKey||false|false|false|text||
+|**IsActive**|Bool|false|true|false|false|||||Y|IsActive|True|false|false|false|text||
+|**Interbook**|Bool|false|true|false|false|||||Y|Interbook|True|false|false|false|text||
+|**BackOfficeLink**|Bool|false|true|false|false|||||Y|BackOfficeLink|True|false|false|false|text||
+|**HasTicket**|Bool|false|true|false|false|||||Y|HasTicket|True|false|false|false|text||
+|**CurrencyOverride**|Bool|false|true|false|false|||||Y|CurrencyOverride|True|false|false|false|text||
+|**CurrencyHolderCurrency**|String|false|true|false|false|||||Y|CurrencyHolderCurrency||false|false|false|text||
+|**AllBooks**|Bool|false|true|false|false|||||Y|AllBooks|True|false|false|false|text||
+|**FundamentalDealTypeKey**|String|false|true|false|false|||||Y|FundamentalDealTypeKey||false|false|false|text||
+|**RelatedDealType**|String|false|true|false|false|||||Y|RelatedDealType||false|false|false|text||
+|**BookName**|String|false|true|false|false|||||Y|BookName||false|false|false|text||
+|**ExportMethod**|String|false|true|false|false|||||Y|ExportMethod||false|false|false|text||
+|**DefaultUserLayoffBooks**|Bool|false|true|false|false|||||Y|DefaultUserLayoffBooks|True|false|false|false|text||
+|**RFQ**|Bool|false|true|false|false|||||Y|RFQ|True|false|false|false|text||
+|**OBS**|Bool|false|true|false|false|||||Y|OBS|True|false|false|false|text||
+|**KID**|Bool|false|true|false|false|||||Y|KID|True|false|false|false|text||
+|**InternalId**|Int|true|true|false|false|||||Y|InternalId|0|false|false|false|text||
+|**InternalDeleted**|Time|false|true|false|false|||||Y|InternalDeleted||false|false|false|text||
+|**UpdatedTransactionId**|String|false|true|false|false|||||Y|UpdatedTransactionId||false|false|false|text||
+|**UpdatedUserId**|String|false|true|false|false|||||Y|UpdatedUserId||false|false|false|text||
+|**UpdatedDateTime**|Time|false|true|false|false|||||Y|UpdatedDateTime||false|false|false|text||
+|**DeletedTransactionId**|String|false|true|false|false|||||Y|DeletedTransactionId||false|false|false|text||
+|**DeletedUserId**|String|false|true|false|false|||||Y|DeletedUserId||false|false|false|text||
+|**ChangeType**|String|false|true|false|false|||||Y|ChangeType||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,17 +79,17 @@ SQL Table Key | **DealTypeKey**
 | code | **dao** | /dao/dealType_core.go |
 | code | **datamodel** | /datamodel/dealType_core.go |
 | code | **menu** | /design/menu/dealType.json |
-| html | **list** | /html/DealType_List.html |
-| html | **view** | /html/DealType_View.html |
-| html | **edit** | /html/DealType_Edit.html |
-| html | **new** | /html/DealType_New.html |
+| html | **list** | /DealType_List.html |
+| html | **view** | /DealType_View.html |
+| html | **edit** | /DealType_Edit.html |
+| html | **new** | /DealType_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:04**
+Date & Time		     | **17/06/2022** at **18:38:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

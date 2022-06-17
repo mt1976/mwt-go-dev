@@ -1,0 +1,81 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/SimulatorSWIFTEdit/?ID={{.ID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-globe me-2" title="ID = {{.ID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/SimulatorSWIFTEdit/?ID={{.ID}}"  title="Edit SWIFT Simulator {{.ID}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print SWIFT Simulator {{.ID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled value="{{.ID}}" data-mdb-input-mask="">
+                        <label class="form-label" for="ID"><i class="fas fa-key me-2"></i>ID</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FileName" aria-describedby="FileNameHelp" placeholder="" disabled value="{{.FileName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FileName">FileName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MessageRaw" aria-describedby="MessageRawHelp" placeholder="" disabled value="{{.MessageRaw}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MessageRaw">MessageRaw</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="MessageFmt" aria-describedby="MessageFmtHelp" placeholder="" disabled value="{{.MessageFmt}}" data-mdb-input-mask="">
+                        <label class="form-label" for="MessageFmt">MessageFmt</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Action" aria-describedby="ActionHelp" placeholder="" disabled value="{{.Action}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Action">Action</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

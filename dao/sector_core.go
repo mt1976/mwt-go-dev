@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:09
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -144,15 +144,22 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Sector_Code, "")
-   recItem.Name  = get_String(rec, dm.Sector_Name, "")
-// If there are fields below, create the methods in adaptor\Sector_impl.go
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Sector_Code_sql, "")
+	   recItem.Name  = get_String(rec, dm.Sector_Name_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Sector_impl.go
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

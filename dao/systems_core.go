@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:10
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -121,30 +121,30 @@ logs.Storing("Systems",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	ts = addData(ts, dm.Systems_SYSId, r.SYSId)
-	ts = addData(ts, dm.Systems_Id, r.Id)
-	ts = addData(ts, dm.Systems_Name, r.Name)
-	ts = addData(ts, dm.Systems_Staticin, r.Staticin)
-	ts = addData(ts, dm.Systems_Staticout, r.Staticout)
-	ts = addData(ts, dm.Systems_Txnin, r.Txnin)
-	ts = addData(ts, dm.Systems_Txnout, r.Txnout)
-	ts = addData(ts, dm.Systems_Fundscheckin, r.Fundscheckin)
-	ts = addData(ts, dm.Systems_Fundscheckout, r.Fundscheckout)
-	ts = addData(ts, dm.Systems_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Systems_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Systems_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.Systems_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Systems_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Systems_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Systems_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Systems_SYSUpdatedHost, r.SYSUpdatedHost)
-	ts = addData(ts, dm.Systems_SWIFTin, r.SWIFTin)
-	ts = addData(ts, dm.Systems_SWIFTout, r.SWIFTout)
+	ts = addData(ts, dm.Systems_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.Systems_Id_sql, r.Id)
+	ts = addData(ts, dm.Systems_Name_sql, r.Name)
+	ts = addData(ts, dm.Systems_Staticin_sql, r.Staticin)
+	ts = addData(ts, dm.Systems_Staticout_sql, r.Staticout)
+	ts = addData(ts, dm.Systems_Txnin_sql, r.Txnin)
+	ts = addData(ts, dm.Systems_Txnout_sql, r.Txnout)
+	ts = addData(ts, dm.Systems_Fundscheckin_sql, r.Fundscheckin)
+	ts = addData(ts, dm.Systems_Fundscheckout_sql, r.Fundscheckout)
+	ts = addData(ts, dm.Systems_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.Systems_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.Systems_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.Systems_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.Systems_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.Systems_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Systems_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Systems_SYSUpdatedHost_sql, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Systems_SWIFTin_sql, r.SWIFTin)
+	ts = addData(ts, dm.Systems_SWIFTout_sql, r.SWIFTout)
 		
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Systems_SQLTable)
@@ -176,49 +176,56 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.Systems_SYSId, "0")
-   recItem.Id  = get_String(rec, dm.Systems_Id, "")
-   recItem.Name  = get_String(rec, dm.Systems_Name, "")
-   recItem.Staticin  = get_String(rec, dm.Systems_Staticin, "")
-   recItem.Staticout  = get_String(rec, dm.Systems_Staticout, "")
-   recItem.Txnin  = get_String(rec, dm.Systems_Txnin, "")
-   recItem.Txnout  = get_String(rec, dm.Systems_Txnout, "")
-   recItem.Fundscheckin  = get_String(rec, dm.Systems_Fundscheckin, "")
-   recItem.Fundscheckout  = get_String(rec, dm.Systems_Fundscheckout, "")
-   recItem.SYSCreated  = get_String(rec, dm.Systems_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.Systems_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.Systems_SYSHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.Systems_SYSUpdated, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.Systems_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.Systems_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.Systems_SYSUpdatedBy, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.Systems_SYSUpdatedHost, "")
-   recItem.SWIFTin  = get_String(rec, dm.Systems_SWIFTin, "")
-   recItem.SWIFTout  = get_String(rec, dm.Systems_SWIFTout, "")
-// If there are fields below, create the methods in adaptor\Systems_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.Systems_SYSId_sql, "0")
+	   recItem.Id  = get_String(rec, dm.Systems_Id_sql, "")
+	   recItem.Name  = get_String(rec, dm.Systems_Name_sql, "")
+	   recItem.Staticin  = get_String(rec, dm.Systems_Staticin_sql, "")
+	   recItem.Staticout  = get_String(rec, dm.Systems_Staticout_sql, "")
+	   recItem.Txnin  = get_String(rec, dm.Systems_Txnin_sql, "")
+	   recItem.Txnout  = get_String(rec, dm.Systems_Txnout_sql, "")
+	   recItem.Fundscheckin  = get_String(rec, dm.Systems_Fundscheckin_sql, "")
+	   recItem.Fundscheckout  = get_String(rec, dm.Systems_Fundscheckout_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Systems_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.Systems_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.Systems_SYSHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Systems_SYSUpdated_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.Systems_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.Systems_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.Systems_SYSUpdatedBy_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.Systems_SYSUpdatedHost_sql, "")
+	   recItem.SWIFTin  = get_String(rec, dm.Systems_SWIFTin_sql, "")
+	   recItem.SWIFTout  = get_String(rec, dm.Systems_SWIFTout_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Systems_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:58:56
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Mandate_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	MandatedUserKeyCounterpartyFirm         string
 	MandatedUserKeyCounterpartyFirm_lookup    []dm.Lookup_Item
@@ -72,7 +72,7 @@ type Mandate_Page struct {
 	SystemUser         string
 	CompID         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -198,30 +198,30 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Mandate
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm)
-		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre)
-		item.MandatedUserKeyUserName = r.FormValue(dm.Mandate_MandatedUserKeyUserName)
-		item.TelephoneNumber = r.FormValue(dm.Mandate_TelephoneNumber)
-		item.EmailAddress = r.FormValue(dm.Mandate_EmailAddress)
-		item.Active = r.FormValue(dm.Mandate_Active)
-		item.FirstName = r.FormValue(dm.Mandate_FirstName)
-		item.Surname = r.FormValue(dm.Mandate_Surname)
-		item.DateOfBirth = r.FormValue(dm.Mandate_DateOfBirth)
-		item.Postcode = r.FormValue(dm.Mandate_Postcode)
-		item.NationalIDNo = r.FormValue(dm.Mandate_NationalIDNo)
-		item.PassportNo = r.FormValue(dm.Mandate_PassportNo)
-		item.Country = r.FormValue(dm.Mandate_Country)
-		item.CountryName = r.FormValue(dm.Mandate_CountryName)
-		item.FirmName = r.FormValue(dm.Mandate_FirmName)
-		item.CentreName = r.FormValue(dm.Mandate_CentreName)
-		item.Notify = r.FormValue(dm.Mandate_Notify)
-		item.SystemUser = r.FormValue(dm.Mandate_SystemUser)
-		item.CompID = r.FormValue(dm.Mandate_CompID)
+		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm_scrn)
+		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre_scrn)
+		item.MandatedUserKeyUserName = r.FormValue(dm.Mandate_MandatedUserKeyUserName_scrn)
+		item.TelephoneNumber = r.FormValue(dm.Mandate_TelephoneNumber_scrn)
+		item.EmailAddress = r.FormValue(dm.Mandate_EmailAddress_scrn)
+		item.Active = r.FormValue(dm.Mandate_Active_scrn)
+		item.FirstName = r.FormValue(dm.Mandate_FirstName_scrn)
+		item.Surname = r.FormValue(dm.Mandate_Surname_scrn)
+		item.DateOfBirth = r.FormValue(dm.Mandate_DateOfBirth_scrn)
+		item.Postcode = r.FormValue(dm.Mandate_Postcode_scrn)
+		item.NationalIDNo = r.FormValue(dm.Mandate_NationalIDNo_scrn)
+		item.PassportNo = r.FormValue(dm.Mandate_PassportNo_scrn)
+		item.Country = r.FormValue(dm.Mandate_Country_scrn)
+		item.CountryName = r.FormValue(dm.Mandate_CountryName_scrn)
+		item.FirmName = r.FormValue(dm.Mandate_FirmName_scrn)
+		item.CentreName = r.FormValue(dm.Mandate_CentreName_scrn)
+		item.Notify = r.FormValue(dm.Mandate_Notify_scrn)
+		item.SystemUser = r.FormValue(dm.Mandate_SystemUser_scrn)
+		item.CompID = r.FormValue(dm.Mandate_CompID_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Mandate_Store(item,r)	
 	http.Redirect(w, r, Mandate_Redirect, http.StatusFound)
@@ -261,7 +261,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Mandate Page 
 func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 	pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
@@ -285,7 +285,7 @@ func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.MandatedUserKeyCounterpartyFirm_lookup = dao.Firm_GetLookup()
@@ -337,7 +337,7 @@ func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

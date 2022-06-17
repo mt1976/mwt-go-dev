@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:59
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -147,21 +147,28 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Country_Code, "")
-   recItem.Name  = get_String(rec, dm.Country_Name, "")
-   recItem.ShortCode  = get_String(rec, dm.Country_ShortCode, "")
-   recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA, "True")
-   recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend, "")
-// If there are fields below, create the methods in adaptor\Country_impl.go
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Country_Code_sql, "")
+	   recItem.Name  = get_String(rec, dm.Country_Name_sql, "")
+	   recItem.ShortCode  = get_String(rec, dm.Country_ShortCode_sql, "")
+	   recItem.EU_EEA  = get_Bool(rec, dm.Country_EU_EEA_sql, "True")
+	   recItem.HolidaysWeekend  = get_String(rec, dm.Country_HolidaysWeekend_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Country_impl.go
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

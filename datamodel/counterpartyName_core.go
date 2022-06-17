@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:58
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,10 +32,10 @@ const (
 	/// Handler Defintions
 	///
 	CounterpartyName_Template     = "CounterpartyName"
-	CounterpartyName_TemplateList = "CounterpartyName_List"
-	CounterpartyName_TemplateView = "CounterpartyName_View"
-	CounterpartyName_TemplateEdit = "CounterpartyName_Edit"
-	CounterpartyName_TemplateNew  = "CounterpartyName_New"
+	CounterpartyName_TemplateList = "/CounterpartyName/CounterpartyName_List"
+	CounterpartyName_TemplateView = "/CounterpartyName/CounterpartyName_View"
+	CounterpartyName_TemplateEdit = "/CounterpartyName/CounterpartyName_Edit"
+	CounterpartyName_TemplateNew  = "/CounterpartyName/CounterpartyName_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -47,12 +47,22 @@ const (
 	CounterpartyName_PathSave   = "/CounterpartyNameSave/"
 	CounterpartyName_PathDelete = "/CounterpartyNameDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-CounterpartyName_NameFirm   = "NameFirm" // NameFirm is a String
-CounterpartyName_NameCentre   = "NameCentre" // NameCentre is a String
-CounterpartyName_FullName   = "FullName" // FullName is a String
-CounterpartyName_CompID   = "CompID" // CompID is a String
+CounterpartyName_NameFirm_sql   = "NameFirm" // NameFirm is a String
+CounterpartyName_NameCentre_sql   = "NameCentre" // NameCentre is a String
+CounterpartyName_FullName_sql   = "FullName" // FullName is a String
+CounterpartyName_CompID_sql   = "CompID" // CompID is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+CounterpartyName_NameFirm_scrn   = "NameFirm" // NameFirm is a String
+CounterpartyName_NameCentre_scrn   = "NameCentre" // NameCentre is a String
+CounterpartyName_FullName_scrn   = "FullName" // FullName is a String
+CounterpartyName_CompID_scrn   = "CompID" // CompID is a String
 
 	/// Definitions End
 )

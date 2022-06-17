@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -144,35 +144,42 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Code  = get_String(rec, dm.Product_Code, "")
-   recItem.Name  = get_String(rec, dm.Product_Name, "")
-   recItem.Factor  = get_Float(rec, dm.Product_Factor, "0.00")
-   recItem.MaxTermPrecedence  = get_Bool(rec, dm.Product_MaxTermPrecedence, "True")
-   recItem.InternalId  = get_Int(rec, dm.Product_InternalId, "0")
-   recItem.InternalDeleted  = get_Time(rec, dm.Product_InternalDeleted, "")
-   recItem.UpdatedTransactionId  = get_String(rec, dm.Product_UpdatedTransactionId, "")
-   recItem.UpdatedUserId  = get_String(rec, dm.Product_UpdatedUserId, "")
-   recItem.UpdatedDateTime  = get_Time(rec, dm.Product_UpdatedDateTime, "")
-   recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId, "")
-   recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId, "")
-   recItem.ChangeType  = get_String(rec, dm.Product_ChangeType, "")
-// If there are fields below, create the methods in adaptor\Product_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Code  = get_String(rec, dm.Product_Code_sql, "")
+	   recItem.Name  = get_String(rec, dm.Product_Name_sql, "")
+	   recItem.Factor  = get_Float(rec, dm.Product_Factor_sql, "0.00")
+	   recItem.MaxTermPrecedence  = get_Bool(rec, dm.Product_MaxTermPrecedence_sql, "True")
+	   recItem.InternalId  = get_Int(rec, dm.Product_InternalId_sql, "0")
+	   recItem.InternalDeleted  = get_Time(rec, dm.Product_InternalDeleted_sql, "")
+	   recItem.UpdatedTransactionId  = get_String(rec, dm.Product_UpdatedTransactionId_sql, "")
+	   recItem.UpdatedUserId  = get_String(rec, dm.Product_UpdatedUserId_sql, "")
+	   recItem.UpdatedDateTime  = get_Time(rec, dm.Product_UpdatedDateTime_sql, "")
+	   recItem.DeletedTransactionId  = get_String(rec, dm.Product_DeletedTransactionId_sql, "")
+	   recItem.DeletedUserId  = get_String(rec, dm.Product_DeletedUserId_sql, "")
+	   recItem.ChangeType  = get_String(rec, dm.Product_ChangeType_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Product_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

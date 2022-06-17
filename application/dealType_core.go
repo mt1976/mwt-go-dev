@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:04
+// Date & Time		    : 17/06/2022 at 18:38:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type DealType_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	DealTypeKey         string
 	DealTypeShortName         string
@@ -74,7 +74,7 @@ type DealType_Page struct {
 	DeletedUserId         string
 	ChangeType         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -200,37 +200,37 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealType
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey)
-		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName)
-		item.HostKey = r.FormValue(dm.DealType_HostKey)
-		item.IsActive = r.FormValue(dm.DealType_IsActive)
-		item.Interbook = r.FormValue(dm.DealType_Interbook)
-		item.BackOfficeLink = r.FormValue(dm.DealType_BackOfficeLink)
-		item.HasTicket = r.FormValue(dm.DealType_HasTicket)
-		item.CurrencyOverride = r.FormValue(dm.DealType_CurrencyOverride)
-		item.CurrencyHolderCurrency = r.FormValue(dm.DealType_CurrencyHolderCurrency)
-		item.AllBooks = r.FormValue(dm.DealType_AllBooks)
-		item.FundamentalDealTypeKey = r.FormValue(dm.DealType_FundamentalDealTypeKey)
-		item.RelatedDealType = r.FormValue(dm.DealType_RelatedDealType)
-		item.BookName = r.FormValue(dm.DealType_BookName)
-		item.ExportMethod = r.FormValue(dm.DealType_ExportMethod)
-		item.DefaultUserLayoffBooks = r.FormValue(dm.DealType_DefaultUserLayoffBooks)
-		item.RFQ = r.FormValue(dm.DealType_RFQ)
-		item.OBS = r.FormValue(dm.DealType_OBS)
-		item.KID = r.FormValue(dm.DealType_KID)
-		item.InternalId = r.FormValue(dm.DealType_InternalId)
-		item.InternalDeleted = r.FormValue(dm.DealType_InternalDeleted)
-		item.UpdatedTransactionId = r.FormValue(dm.DealType_UpdatedTransactionId)
-		item.UpdatedUserId = r.FormValue(dm.DealType_UpdatedUserId)
-		item.UpdatedDateTime = r.FormValue(dm.DealType_UpdatedDateTime)
-		item.DeletedTransactionId = r.FormValue(dm.DealType_DeletedTransactionId)
-		item.DeletedUserId = r.FormValue(dm.DealType_DeletedUserId)
-		item.ChangeType = r.FormValue(dm.DealType_ChangeType)
+		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey_scrn)
+		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName_scrn)
+		item.HostKey = r.FormValue(dm.DealType_HostKey_scrn)
+		item.IsActive = r.FormValue(dm.DealType_IsActive_scrn)
+		item.Interbook = r.FormValue(dm.DealType_Interbook_scrn)
+		item.BackOfficeLink = r.FormValue(dm.DealType_BackOfficeLink_scrn)
+		item.HasTicket = r.FormValue(dm.DealType_HasTicket_scrn)
+		item.CurrencyOverride = r.FormValue(dm.DealType_CurrencyOverride_scrn)
+		item.CurrencyHolderCurrency = r.FormValue(dm.DealType_CurrencyHolderCurrency_scrn)
+		item.AllBooks = r.FormValue(dm.DealType_AllBooks_scrn)
+		item.FundamentalDealTypeKey = r.FormValue(dm.DealType_FundamentalDealTypeKey_scrn)
+		item.RelatedDealType = r.FormValue(dm.DealType_RelatedDealType_scrn)
+		item.BookName = r.FormValue(dm.DealType_BookName_scrn)
+		item.ExportMethod = r.FormValue(dm.DealType_ExportMethod_scrn)
+		item.DefaultUserLayoffBooks = r.FormValue(dm.DealType_DefaultUserLayoffBooks_scrn)
+		item.RFQ = r.FormValue(dm.DealType_RFQ_scrn)
+		item.OBS = r.FormValue(dm.DealType_OBS_scrn)
+		item.KID = r.FormValue(dm.DealType_KID_scrn)
+		item.InternalId = r.FormValue(dm.DealType_InternalId_scrn)
+		item.InternalDeleted = r.FormValue(dm.DealType_InternalDeleted_scrn)
+		item.UpdatedTransactionId = r.FormValue(dm.DealType_UpdatedTransactionId_scrn)
+		item.UpdatedUserId = r.FormValue(dm.DealType_UpdatedUserId_scrn)
+		item.UpdatedDateTime = r.FormValue(dm.DealType_UpdatedDateTime_scrn)
+		item.DeletedTransactionId = r.FormValue(dm.DealType_DeletedTransactionId_scrn)
+		item.DeletedUserId = r.FormValue(dm.DealType_DeletedUserId_scrn)
+		item.ChangeType = r.FormValue(dm.DealType_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealType_Store(item,r)	
 	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
@@ -287,7 +287,7 @@ func DealType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealType Page 
 func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealTypeKey = rD.DealTypeKey
 	pageDetail.DealTypeShortName = rD.DealTypeShortName
@@ -318,7 +318,7 @@ func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Pa
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -374,7 +374,7 @@ func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Pa
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

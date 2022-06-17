@@ -41,12 +41,12 @@ SQL Table Key | **CompID**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**NameFirm**|String|true|true|false|false|||||Y|NameFirm||false|false|false|
-|**NameCentre**|String|true|true|false|false|||||Y|NameCentre||false|false|false|
-|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|
-|**CompID**|String|true|true|false|false|||||Y|CompID||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**NameFirm**|String|true|true|false|false|||||Y|NameFirm||false|false|false|text||
+|**NameCentre**|String|true|true|false|false|||||Y|NameCentre||false|false|false|text||
+|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
+|**CompID**|String|true|true|false|false|||||Y|CompID||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -56,15 +56,15 @@ SQL Table Key | **CompID**
 | code | **dao** | /dao/counterpartyName_core.go |
 | code | **datamodel** | /datamodel/counterpartyName_core.go |
 | code | **menu** | /design/menu/counterpartyName.json |
-| html | **list** | /html/CounterpartyName_List.html |
-| html | **view** | /html/CounterpartyName_View.html |
+| html | **list** | /CounterpartyName_List.html |
+| html | **view** | /CounterpartyName_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:58**
+Date & Time		     | **17/06/2022** at **18:38:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

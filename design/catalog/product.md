@@ -42,20 +42,20 @@ SQL Table Key | **Code**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|
-|**Factor**|Float|false|true|false|false|||||Y|Factor|0.00|false|false|false|
-|**MaxTermPrecedence**|Bool|false|true|false|false|||||Y|MaxTermPrecedence|True|false|false|false|
-|**InternalId**|Int|true|true|false|false|||||Y|InternalId|0|false|false|false|
-|**InternalDeleted**|Time|false|true|false|false|||||Y|InternalDeleted||false|false|false|
-|**UpdatedTransactionId**|String|false|true|false|false|||||Y|UpdatedTransactionId||false|false|false|
-|**UpdatedUserId**|String|false|true|false|false|||||Y|UpdatedUserId||false|false|false|
-|**UpdatedDateTime**|Time|false|true|false|false|||||Y|UpdatedDateTime||false|false|false|
-|**DeletedTransactionId**|String|false|true|false|false|||||Y|DeletedTransactionId||false|false|false|
-|**DeletedUserId**|String|false|true|false|false|||||Y|DeletedUserId||false|false|false|
-|**ChangeType**|String|false|true|false|false|||||Y|ChangeType||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
+|**Factor**|Float|false|true|false|false|||||Y|Factor|0.00|false|false|false|text||
+|**MaxTermPrecedence**|Bool|false|true|false|false|||||Y|MaxTermPrecedence|True|false|false|false|text||
+|**InternalId**|Int|true|true|false|false|||||Y|InternalId|0|false|false|false|text||
+|**InternalDeleted**|Time|false|true|false|false|||||Y|InternalDeleted||false|false|false|text||
+|**UpdatedTransactionId**|String|false|true|false|false|||||Y|UpdatedTransactionId||false|false|false|text||
+|**UpdatedUserId**|String|false|true|false|false|||||Y|UpdatedUserId||false|false|false|text||
+|**UpdatedDateTime**|Time|false|true|false|false|||||Y|UpdatedDateTime||false|false|false|text||
+|**DeletedTransactionId**|String|false|true|false|false|||||Y|DeletedTransactionId||false|false|false|text||
+|**DeletedUserId**|String|false|true|false|false|||||Y|DeletedUserId||false|false|false|text||
+|**ChangeType**|String|false|true|false|false|||||Y|ChangeType||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -67,17 +67,17 @@ SQL Table Key | **Code**
 | code | **dao** | /dao/product_core.go |
 | code | **datamodel** | /datamodel/product_core.go |
 | code | **menu** | /design/menu/product.json |
-| html | **list** | /html/Product_List.html |
-| html | **view** | /html/Product_View.html |
-| html | **edit** | /html/Product_Edit.html |
-| html | **new** | /html/Product_New.html |
+| html | **list** | /Product_List.html |
+| html | **view** | /Product_View.html |
+| html | **edit** | /Product_Edit.html |
+| html | **new** | /Product_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:08**
+Date & Time		     | **17/06/2022** at **18:38:13**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

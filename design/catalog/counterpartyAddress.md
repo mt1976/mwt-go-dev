@@ -41,16 +41,16 @@ SQL Table Key | **CompID**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**NameFirm**|String|true|true|false|false|||||Y|NameFirm||false|false|false|
-|**NameCentre**|String|true|true|false|false|||||Y|NameCentre||false|false|false|
-|**Address1**|String|false|true|false|false|||||Y|Address1||false|false|false|
-|**Address2**|String|false|true|false|false|||||Y|Address2||false|false|false|
-|**CityTown**|String|false|true|false|false|||||Y|CityTown||false|false|false|
-|**County**|String|false|true|false|false|||||Y|County||false|false|false|
-|**Postcode**|String|false|true|false|false|||||Y|Postcode||false|false|false|
-|**CompID**|String|true|true|false|false|||||Y|CompID||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**NameFirm**|String|true|true|false|false|||||Y|NameFirm||false|false|false|text||
+|**NameCentre**|String|true|true|false|false|||||Y|NameCentre||false|false|false|text||
+|**Address1**|String|false|true|false|false|||||Y|Address1||false|false|false|text||
+|**Address2**|String|false|true|false|false|||||Y|Address2||false|false|false|text||
+|**CityTown**|String|false|true|false|false|||||Y|CityTown||false|false|false|text||
+|**County**|String|false|true|false|false|||||Y|County||false|false|false|text||
+|**Postcode**|String|false|true|false|false|||||Y|Postcode||false|false|false|text||
+|**CompID**|String|true|true|false|false|||||Y|CompID||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -61,17 +61,17 @@ SQL Table Key | **CompID**
 | code | **dao** | /dao/counterpartyAddress_core.go |
 | code | **datamodel** | /datamodel/counterpartyAddress_core.go |
 | code | **menu** | /design/menu/counterpartyAddress.json |
-| html | **list** | /html/CounterpartyAddress_List.html |
-| html | **view** | /html/CounterpartyAddress_View.html |
-| html | **edit** | /html/CounterpartyAddress_Edit.html |
-| html | **new** | /html/CounterpartyAddress_New.html |
+| html | **list** | /CounterpartyAddress_List.html |
+| html | **view** | /CounterpartyAddress_View.html |
+| html | **edit** | /CounterpartyAddress_Edit.html |
+| html | **new** | /CounterpartyAddress_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:53**
+Date & Time		     | **17/06/2022** at **18:38:07**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

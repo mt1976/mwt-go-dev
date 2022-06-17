@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:49
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Broker_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
 	Name         string
@@ -54,7 +54,7 @@ type Broker_Page struct {
 	Address         string
 	LEI         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -180,17 +180,17 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Broker
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Code = r.FormValue(dm.Broker_Code)
-		item.Name = r.FormValue(dm.Broker_Name)
-		item.FullName = r.FormValue(dm.Broker_FullName)
-		item.Contact = r.FormValue(dm.Broker_Contact)
-		item.Address = r.FormValue(dm.Broker_Address)
-		item.LEI = r.FormValue(dm.Broker_LEI)
+		item.Code = r.FormValue(dm.Broker_Code_scrn)
+		item.Name = r.FormValue(dm.Broker_Name_scrn)
+		item.FullName = r.FormValue(dm.Broker_FullName_scrn)
+		item.Contact = r.FormValue(dm.Broker_Contact_scrn)
+		item.Address = r.FormValue(dm.Broker_Address_scrn)
+		item.LEI = r.FormValue(dm.Broker_LEI_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Broker_Store(item,r)	
 	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
@@ -247,7 +247,7 @@ func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Broker Page 
 func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -258,7 +258,7 @@ func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -274,7 +274,7 @@ func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

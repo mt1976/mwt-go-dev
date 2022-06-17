@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:52:05
+// Date & Time		    : 17/06/2022 at 18:38:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,10 +34,10 @@ const (
 	/// Handler Defintions
 	///
 	Firm_Template     = "Firm"
-	Firm_TemplateList = "Firm_List"
-	Firm_TemplateView = "Firm_View"
-	Firm_TemplateEdit = "Firm_Edit"
-	Firm_TemplateNew  = "Firm_New"
+	Firm_TemplateList = "/Firm/Firm_List"
+	Firm_TemplateView = "/Firm/Firm_View"
+	Firm_TemplateEdit = "/Firm/Firm_Edit"
+	Firm_TemplateNew  = "/Firm/Firm_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -49,12 +49,22 @@ const (
 	Firm_PathSave   = "/FirmSave/"
 	Firm_PathDelete = "/FirmDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Firm_FirmName   = "FirmName" // FirmName is a String
-Firm_FullName   = "FullName" // FullName is a String
-Firm_Country   = "Country" // Country is a String
-Firm_Sector   = "Sector" // Sector is a String
+Firm_FirmName_sql   = "FirmName" // FirmName is a String
+Firm_FullName_sql   = "FullName" // FullName is a String
+Firm_Country_sql   = "Country" // Country is a String
+Firm_Sector_sql   = "Sector" // Sector is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Firm_FirmName_scrn   = "FirmName" // FirmName is a String
+Firm_FullName_scrn   = "FullName" // FullName is a String
+Firm_Country_scrn   = "Country" // Country is a String
+Firm_Sector_scrn   = "Sector" // Sector is a String
 
 	/// Definitions End
 )

@@ -84,13 +84,20 @@ func RemoveContents(dir string) error {
 // GetTemplateID returns the template to use when providing HTML page templates
 func GetTemplateID(tmpl string, userRole string) string {
 	returnTemplate := ""
-	templateName := "html/" + tmpl + ".html"
-	roleTemplate := "html/versions/roles/" + userRole + "/" + tmpl + ".html"
-	versionTemplate := "html/versions/" + tmpl + ".html"
+	templateName := "html/base/" + tmpl + ".html"
+	roleTemplate := "html/roles/" + userRole + "/" + tmpl + ".html"
+	versionTemplate := "html/impl/" + tmpl + ".html"
+	fallbackTemplate := "html/" + tmpl + ".html"
+	helpTemplate := "html/Impl_Oops.html"
 
 	//logs.Information("Template Checks:", tmpl+" "+templateName+" "+roleTemplate+" "+versionTemplate)
 	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	//log.Println("Testing", templateName, FileExists(templateName))
+
+	if FileExists(fallbackTemplate) {
+		returnTemplate = fallbackTemplate
+	}
+
 	if FileExists(templateName) {
 		returnTemplate = templateName
 	}
@@ -98,6 +105,7 @@ func GetTemplateID(tmpl string, userRole string) string {
 	if FileExists(versionTemplate) {
 		returnTemplate = versionTemplate
 	}
+
 	if userRole != "" {
 		if FileExists(roleTemplate) {
 			returnTemplate = roleTemplate
@@ -105,9 +113,10 @@ func GetTemplateID(tmpl string, userRole string) string {
 	}
 	if returnTemplate == "" {
 		log.Println("Template not found:", tmpl)
-		pErr := errors.New("Template not found" + tmpl + " " + templateName + " " + roleTemplate + " " + versionTemplate)
+		pErr := errors.New("Template not found : " + tmpl + " " + templateName + " " + roleTemplate + " " + versionTemplate + " " + fallbackTemplate + " " + helpTemplate)
 		//panic(pErr)
-		log.Fatal(pErr)
+		logs.Warning(pErr.Error())
+		returnTemplate = helpTemplate
 	}
 	//log.Printf("Using Template: Source %q", templateName)
 	logs.Template(returnTemplate)

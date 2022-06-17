@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:10
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -33,10 +33,10 @@ const (
 	/// Handler Defintions
 	///
 	SimulatorSWIFT_Template     = "SimulatorSWIFT"
-	SimulatorSWIFT_TemplateList = "SimulatorSWIFT_List"
-	SimulatorSWIFT_TemplateView = "SimulatorSWIFT_View"
-	SimulatorSWIFT_TemplateEdit = "SimulatorSWIFT_Edit"
-	SimulatorSWIFT_TemplateNew  = "SimulatorSWIFT_New"
+	SimulatorSWIFT_TemplateList = "/SimulatorSWIFT/SimulatorSWIFT_List"
+	SimulatorSWIFT_TemplateView = "/SimulatorSWIFT/SimulatorSWIFT_View"
+	SimulatorSWIFT_TemplateEdit = "/SimulatorSWIFT/SimulatorSWIFT_Edit"
+	SimulatorSWIFT_TemplateNew  = "/SimulatorSWIFT/SimulatorSWIFT_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -48,13 +48,24 @@ const (
 	SimulatorSWIFT_PathSave   = "/SimulatorSWIFTSave/"
 	SimulatorSWIFT_PathDelete = "/SimulatorSWIFTDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-SimulatorSWIFT_ID   = "ID" // ID is a String
-SimulatorSWIFT_FileName   = "FileName" // FileName is a String
-SimulatorSWIFT_MessageRaw   = "MessageRaw" // MessageRaw is a String
-SimulatorSWIFT_MessageFmt   = "MessageFmt" // MessageFmt is a String
-SimulatorSWIFT_Action   = "Action" // Action is a String
+SimulatorSWIFT_ID_sql   = "ID" // ID is a String
+SimulatorSWIFT_FileName_sql   = "FileName" // FileName is a String
+SimulatorSWIFT_MessageRaw_sql   = "MessageRaw" // MessageRaw is a String
+SimulatorSWIFT_MessageFmt_sql   = "MessageFmt" // MessageFmt is a String
+SimulatorSWIFT_Action_sql   = "Action" // Action is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+SimulatorSWIFT_ID_scrn   = "ID" // ID is a String
+SimulatorSWIFT_FileName_scrn   = "FileName" // FileName is a String
+SimulatorSWIFT_MessageRaw_scrn   = "MessageRaw" // MessageRaw is a String
+SimulatorSWIFT_MessageFmt_scrn   = "MessageFmt" // MessageFmt is a String
+SimulatorSWIFT_Action_scrn   = "Action" // Action is a String
 
 	/// Definitions End
 )

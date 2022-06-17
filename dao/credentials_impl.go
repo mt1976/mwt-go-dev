@@ -14,7 +14,7 @@ func credentials_NewIDImpl(r dm.Credentials) string {
 func Credentials_GetByUserName(id string) (int, dm.Credentials, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
-	tsql = tsql + " WHERE " + dm.Credentials_Username + "='" + id + "'"
+	tsql = tsql + " WHERE " + dm.Credentials_Username_sql + "='" + id + "'"
 
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 	return 1, credentialsItem, nil
@@ -24,7 +24,7 @@ func Credentials_GetByUserName(id string) (int, dm.Credentials, error) {
 func Credentials_GetByUUID(id string) (int, dm.Credentials, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
-	tsql = tsql + " WHERE " + dm.Credentials_Id + "='" + id + "'"
+	tsql = tsql + " WHERE " + dm.Credentials_Id_sql + "='" + id + "'"
 
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 	return 1, credentialsItem, nil

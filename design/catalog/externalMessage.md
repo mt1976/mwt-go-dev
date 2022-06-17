@@ -5,7 +5,7 @@
 |---|---|
 |Object         |**ExternalMessage** (externalmessage) |
 |Endpoint 	    |**/ExternalMessage...** [^1]|
-|Endpoint Query |**MessageID**|
+|Endpoint Query |**Message**|
 |REST API|**/API/ExternalMessage/**|
 Glyph|**fas fa-mail-bulk** (text-info)
 Friendly Name|**ExternalMessage**|
@@ -42,36 +42,36 @@ SQL Table Key | **MessageID**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**MessageID**|String|false|true|false|false|||||Y|messageID||false|false|false|
-|**MessageFormat**|String|false|true|false|false|||||Y|messageFormat||false|false|false|
-|**MessageDeliveredTo**|String|false|true|false|false|||||Y|messageDeliveredTo||false|false|false|
-|**MessageBody**|String|false|true|false|false|||||Y|messageBody||false|false|false|
-|**MessageFilename**|String|false|true|false|false|||||Y|messageFilename||false|false|false|
-|**MessageLife**|String|false|true|false|false|||||Y|messageLife||false|false|false|
-|**MessageDate**|String|false|true|false|false|||||Y|messageDate||false|false|false|
-|**MessageTime**|String|false|true|false|false|||||Y|messageTime||false|false|false|
-|**MessageTimeoutAction**|String|false|true|false|false|||||Y|messageTimeoutAction||false|false|false|
-|**MessageACKNAK**|String|false|true|false|false|||||Y|messageACKNAK||false|false|false|
-|**ResponseID**|String|false|true|false|false|||||Y|responseID||false|false|false|
-|**ResponseFilename**|String|false|true|false|false|||||Y|responseFilename||false|false|false|
-|**ResponseBody**|String|false|true|false|false|||||Y|responseBody||false|false|false|
-|**ResponseDate**|String|false|true|false|false|||||Y|responseDate||false|false|false|
-|**ResponseTime**|String|false|true|false|false|||||Y|responseTime||false|false|false|
-|**ResponseAdditionalInfo**|String|false|true|false|false|||||Y|responseAdditionalInfo||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
-|**MessageTimeout**|String|false|true|false|false|||||Y|messageTimeout||false|false|false|
-|**MessageEmitted**|String|false|true|false|false|||||Y|messageEmitted||false|false|false|
-|**ResponseRecieved**|String|false|true|false|false|||||Y|responseRecieved||false|false|false|
-|**MessageClass**|String|false|true|false|false|||||Y|messageClass||false|false|false|
-|**AppID**|String|false|true|false|false|||||Y|appID||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**MessageID**|String|false|true|false|true|||||N|messageID||false|false|false|text||
+|**MessageFormat**|String|false|true|false|true|||||N|messageFormat||false|false|false|text||
+|**MessageDeliveredTo**|String|false|true|false|true|||||N|messageDeliveredTo||false|false|false|text||
+|**MessageBody**|String|false|true|false|true|||||N|messageBody||false|false|false|text||
+|**MessageFilename**|String|false|true|false|true|||||N|messageFilename||false|false|false|text||
+|**MessageLife**|String|false|true|false|true|||||Y|messageLife||false|false|false|number||
+|**MessageDate**|String|false|true|false|true|||||N|messageDate||false|false|false|text||
+|**MessageTime**|String|false|true|false|true|||||N|messageTime||false|false|false|text||
+|**MessageTimeoutAction**|String|false|true|false|true|||||N|messageTimeoutAction||false|false|false|text||
+|**MessageACKNAK**|String|false|true|false|false|LL|messageACKNAK|||Y|messageACKNAK||false|false|false|text||
+|**ResponseID**|String|false|true|false|false|||||Y|responseID||false|false|false|text||
+|**ResponseFilename**|String|false|true|false|false|||||Y|responseFilename||false|false|false|text||
+|**ResponseBody**|String|false|true|false|false|||||Y|responseBody||false|false|false|text||
+|**ResponseDate**|String|false|true|false|false|||||Y|responseDate||false|false|false|text||
+|**ResponseTime**|String|false|true|false|false|||||Y|responseTime||false|false|false|text||
+|**ResponseAdditionalInfo**|String|false|true|false|false|||||Y|responseAdditionalInfo||false|false|false|text||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
+|**MessageTimeout**|String|false|true|false|true|||||Y|messageTimeout||false|false|false|datetime||
+|**MessageEmitted**|String|false|true|false|true|||||N|messageEmitted||false|false|false|text||
+|**ResponseRecieved**|String|false|true|false|false|||||Y|responseRecieved||false|false|false|text||
+|**MessageClass**|String|false|true|false|true|||||N|messageClass||false|false|false|text||
+|**AppID**|String|false|true|false|true|||||N|appID||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -82,16 +82,16 @@ SQL Table Key | **MessageID**
 | code | **dao** | /dao/externalMessage_core.go |
 | code | **datamodel** | /datamodel/externalMessage_core.go |
 | code | **menu** | /design/menu/externalMessage.json |
-| html | **list** | /html/ExternalMessage_List.html |
-| html | **view** | /html/ExternalMessage_View.html |
-| html | **edit** | /html/ExternalMessage_Edit.html |
+| html | **list** | /ExternalMessage_List.html |
+| html | **view** | /ExternalMessage_View.html |
+| html | **edit** | /ExternalMessage_Edit.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:04**
+Date & Time		     | **17/06/2022** at **18:38:11**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -9,7 +9,7 @@ import (
 func Account_GetListByCounterparty(idFirm string, idCentre string) (int, []dm.Account, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
-	tsql = tsql + " WHERE " + dm.Account_Firm + "='" + idFirm + "' AND " + dm.Account_Centre + "='" + idCentre + "'"
+	tsql = tsql + " WHERE " + dm.Account_Firm_sql + "='" + idFirm + "' AND " + dm.Account_Centre_sql + "='" + idCentre + "'"
 
 	count, sienaAccountList, _, _ := account_Fetch(tsql)
 	return count, sienaAccountList, nil
@@ -19,7 +19,7 @@ func Account_GetListByCounterparty(idFirm string, idCentre string) (int, []dm.Ac
 func Account_GetListByCounterpartyID(id string) (int, []dm.Account, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
-	tsql = tsql + " WHERE " + dm.Account_CompID + "='" + id + "'"
+	tsql = tsql + " WHERE " + dm.Account_CompID_sql + "='" + id + "'"
 
 	count, sienaAccountList, _, _ := account_Fetch(tsql)
 	return count, sienaAccountList, nil

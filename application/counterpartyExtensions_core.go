@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:55
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type CounterpartyExtensions_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	NameFirm         string
 	NameCentre         string
@@ -91,7 +91,7 @@ type CounterpartyExtensions_Page struct {
 	DirectDealing         string
 	CompID         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -217,54 +217,54 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 
 	var item dm.CounterpartyExtensions
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.NameFirm = r.FormValue(dm.CounterpartyExtensions_NameFirm)
-		item.NameCentre = r.FormValue(dm.CounterpartyExtensions_NameCentre)
-		item.BICCode = r.FormValue(dm.CounterpartyExtensions_BICCode)
-		item.ContactIndicator = r.FormValue(dm.CounterpartyExtensions_ContactIndicator)
-		item.CoverTrade = r.FormValue(dm.CounterpartyExtensions_CoverTrade)
-		item.CustomerCategory = r.FormValue(dm.CounterpartyExtensions_CustomerCategory)
-		item.FSCSInclusive = r.FormValue(dm.CounterpartyExtensions_FSCSInclusive)
-		item.FeeFactor = r.FormValue(dm.CounterpartyExtensions_FeeFactor)
-		item.InactiveStatus = r.FormValue(dm.CounterpartyExtensions_InactiveStatus)
-		item.Indemnity = r.FormValue(dm.CounterpartyExtensions_Indemnity)
-		item.KnowYourCustomerStatus = r.FormValue(dm.CounterpartyExtensions_KnowYourCustomerStatus)
-		item.LERLimitCarveOut = r.FormValue(dm.CounterpartyExtensions_LERLimitCarveOut)
-		item.LastAmended = r.FormValue(dm.CounterpartyExtensions_LastAmended)
-		item.LastLogin = r.FormValue(dm.CounterpartyExtensions_LastLogin)
-		item.LossGivenDefault = r.FormValue(dm.CounterpartyExtensions_LossGivenDefault)
-		item.MIC = r.FormValue(dm.CounterpartyExtensions_MIC)
-		item.ProtectedDepositor = r.FormValue(dm.CounterpartyExtensions_ProtectedDepositor)
-		item.RPTCurrency = r.FormValue(dm.CounterpartyExtensions_RPTCurrency)
-		item.RateTimeout = r.FormValue(dm.CounterpartyExtensions_RateTimeout)
-		item.RateValidation = r.FormValue(dm.CounterpartyExtensions_RateValidation)
-		item.Registered = r.FormValue(dm.CounterpartyExtensions_Registered)
-		item.RegulatoryCategory = r.FormValue(dm.CounterpartyExtensions_RegulatoryCategory)
-		item.SecuredSettlement = r.FormValue(dm.CounterpartyExtensions_SecuredSettlement)
-		item.SettlementLimitCarveOut = r.FormValue(dm.CounterpartyExtensions_SettlementLimitCarveOut)
-		item.SortCode = r.FormValue(dm.CounterpartyExtensions_SortCode)
-		item.Training = r.FormValue(dm.CounterpartyExtensions_Training)
-		item.TrainingCode = r.FormValue(dm.CounterpartyExtensions_TrainingCode)
-		item.TrainingReceived = r.FormValue(dm.CounterpartyExtensions_TrainingReceived)
-		item.Unencumbered = r.FormValue(dm.CounterpartyExtensions_Unencumbered)
-		item.LEIExpiryDate = r.FormValue(dm.CounterpartyExtensions_LEIExpiryDate)
-		item.MIFIDReviewDate = r.FormValue(dm.CounterpartyExtensions_MIFIDReviewDate)
-		item.GDPRReviewDate = r.FormValue(dm.CounterpartyExtensions_GDPRReviewDate)
-		item.DelegatedReporting = r.FormValue(dm.CounterpartyExtensions_DelegatedReporting)
-		item.BOReconcile = r.FormValue(dm.CounterpartyExtensions_BOReconcile)
-		item.MIFIDReportableDealsAllowed = r.FormValue(dm.CounterpartyExtensions_MIFIDReportableDealsAllowed)
-		item.SignedInvestmentAgreement = r.FormValue(dm.CounterpartyExtensions_SignedInvestmentAgreement)
-		item.AppropriatenessAssessment = r.FormValue(dm.CounterpartyExtensions_AppropriatenessAssessment)
-		item.FinancialCounterparty = r.FormValue(dm.CounterpartyExtensions_FinancialCounterparty)
-		item.Collateralisation = r.FormValue(dm.CounterpartyExtensions_Collateralisation)
-		item.PortfolioCode = r.FormValue(dm.CounterpartyExtensions_PortfolioCode)
-		item.ReconciliationLetterFrequency = r.FormValue(dm.CounterpartyExtensions_ReconciliationLetterFrequency)
-		item.DirectDealing = r.FormValue(dm.CounterpartyExtensions_DirectDealing)
-		item.CompID = r.FormValue(dm.CounterpartyExtensions_CompID)
+		item.NameFirm = r.FormValue(dm.CounterpartyExtensions_NameFirm_scrn)
+		item.NameCentre = r.FormValue(dm.CounterpartyExtensions_NameCentre_scrn)
+		item.BICCode = r.FormValue(dm.CounterpartyExtensions_BICCode_scrn)
+		item.ContactIndicator = r.FormValue(dm.CounterpartyExtensions_ContactIndicator_scrn)
+		item.CoverTrade = r.FormValue(dm.CounterpartyExtensions_CoverTrade_scrn)
+		item.CustomerCategory = r.FormValue(dm.CounterpartyExtensions_CustomerCategory_scrn)
+		item.FSCSInclusive = r.FormValue(dm.CounterpartyExtensions_FSCSInclusive_scrn)
+		item.FeeFactor = r.FormValue(dm.CounterpartyExtensions_FeeFactor_scrn)
+		item.InactiveStatus = r.FormValue(dm.CounterpartyExtensions_InactiveStatus_scrn)
+		item.Indemnity = r.FormValue(dm.CounterpartyExtensions_Indemnity_scrn)
+		item.KnowYourCustomerStatus = r.FormValue(dm.CounterpartyExtensions_KnowYourCustomerStatus_scrn)
+		item.LERLimitCarveOut = r.FormValue(dm.CounterpartyExtensions_LERLimitCarveOut_scrn)
+		item.LastAmended = r.FormValue(dm.CounterpartyExtensions_LastAmended_scrn)
+		item.LastLogin = r.FormValue(dm.CounterpartyExtensions_LastLogin_scrn)
+		item.LossGivenDefault = r.FormValue(dm.CounterpartyExtensions_LossGivenDefault_scrn)
+		item.MIC = r.FormValue(dm.CounterpartyExtensions_MIC_scrn)
+		item.ProtectedDepositor = r.FormValue(dm.CounterpartyExtensions_ProtectedDepositor_scrn)
+		item.RPTCurrency = r.FormValue(dm.CounterpartyExtensions_RPTCurrency_scrn)
+		item.RateTimeout = r.FormValue(dm.CounterpartyExtensions_RateTimeout_scrn)
+		item.RateValidation = r.FormValue(dm.CounterpartyExtensions_RateValidation_scrn)
+		item.Registered = r.FormValue(dm.CounterpartyExtensions_Registered_scrn)
+		item.RegulatoryCategory = r.FormValue(dm.CounterpartyExtensions_RegulatoryCategory_scrn)
+		item.SecuredSettlement = r.FormValue(dm.CounterpartyExtensions_SecuredSettlement_scrn)
+		item.SettlementLimitCarveOut = r.FormValue(dm.CounterpartyExtensions_SettlementLimitCarveOut_scrn)
+		item.SortCode = r.FormValue(dm.CounterpartyExtensions_SortCode_scrn)
+		item.Training = r.FormValue(dm.CounterpartyExtensions_Training_scrn)
+		item.TrainingCode = r.FormValue(dm.CounterpartyExtensions_TrainingCode_scrn)
+		item.TrainingReceived = r.FormValue(dm.CounterpartyExtensions_TrainingReceived_scrn)
+		item.Unencumbered = r.FormValue(dm.CounterpartyExtensions_Unencumbered_scrn)
+		item.LEIExpiryDate = r.FormValue(dm.CounterpartyExtensions_LEIExpiryDate_scrn)
+		item.MIFIDReviewDate = r.FormValue(dm.CounterpartyExtensions_MIFIDReviewDate_scrn)
+		item.GDPRReviewDate = r.FormValue(dm.CounterpartyExtensions_GDPRReviewDate_scrn)
+		item.DelegatedReporting = r.FormValue(dm.CounterpartyExtensions_DelegatedReporting_scrn)
+		item.BOReconcile = r.FormValue(dm.CounterpartyExtensions_BOReconcile_scrn)
+		item.MIFIDReportableDealsAllowed = r.FormValue(dm.CounterpartyExtensions_MIFIDReportableDealsAllowed_scrn)
+		item.SignedInvestmentAgreement = r.FormValue(dm.CounterpartyExtensions_SignedInvestmentAgreement_scrn)
+		item.AppropriatenessAssessment = r.FormValue(dm.CounterpartyExtensions_AppropriatenessAssessment_scrn)
+		item.FinancialCounterparty = r.FormValue(dm.CounterpartyExtensions_FinancialCounterparty_scrn)
+		item.Collateralisation = r.FormValue(dm.CounterpartyExtensions_Collateralisation_scrn)
+		item.PortfolioCode = r.FormValue(dm.CounterpartyExtensions_PortfolioCode_scrn)
+		item.ReconciliationLetterFrequency = r.FormValue(dm.CounterpartyExtensions_ReconciliationLetterFrequency_scrn)
+		item.DirectDealing = r.FormValue(dm.CounterpartyExtensions_DirectDealing_scrn)
+		item.CompID = r.FormValue(dm.CounterpartyExtensions_CompID_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyExtensions_Store(item,r)	
 	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
@@ -321,7 +321,7 @@ func CounterpartyExtensions_HandlerDelete(w http.ResponseWriter, r *http.Request
 // Builds/Popuplates the CounterpartyExtensions Page 
 func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetail CounterpartyExtensions_Page) CounterpartyExtensions_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -369,7 +369,7 @@ func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetai
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -459,7 +459,7 @@ func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetai
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

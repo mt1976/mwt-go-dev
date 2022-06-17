@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:10
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,10 +41,10 @@ const (
 	/// Handler Defintions
 	///
 	Test1_Template     = "Test1"
-	Test1_TemplateList = "Test1_List"
-	Test1_TemplateView = "Test1_View"
-	Test1_TemplateEdit = "Test1_Edit"
-	Test1_TemplateNew  = "Test1_New"
+	Test1_TemplateList = "/Test1/Test1_List"
+	Test1_TemplateView = "/Test1/Test1_View"
+	Test1_TemplateEdit = "/Test1/Test1_Edit"
+	Test1_TemplateNew  = "/Test1/Test1_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -56,18 +56,34 @@ const (
 	Test1_PathSave   = "/Test1Save/"
 	Test1_PathDelete = "/Test1Delete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Test1_ID   = "ID" // ID is a String
-Test1_Endpoint   = "Endpoint" // Endpoint is a String
-Test1_Descr   = "Descr" // Descr is a String
-Test1_Query   = "Query" // Query is a String
-Test1_Source   = "Source" // Source is a String
-Test1_Firm   = "Firm" // Firm is a String
-Test1_YN   = "YN" // YN is a String
-Test1_User   = "User" // User is a String
-Test1_Cheese   = "Cheese" // Cheese is a String
-Test1_Onion   = "Onion" // Onion is a String
+Test1_ID_sql   = "ID" // ID is a String
+Test1_Endpoint_sql   = "Endpoint" // Endpoint is a String
+Test1_Descr_sql   = "Descr" // Descr is a String
+Test1_Query_sql   = "Query" // Query is a String
+Test1_Source_sql   = "Source" // Source is a String
+Test1_Firm_sql   = "Firm" // Firm is a String
+Test1_YN_sql   = "YN" // YN is a String
+Test1_User_sql   = "User" // User is a String
+Test1_Cheese_sql   = "Cheese" // Cheese is a String
+Test1_Onion_sql   = "Onion" // Onion is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Test1_ID_scrn   = "ID" // ID is a String
+Test1_Endpoint_scrn   = "Endpoint" // Endpoint is a String
+Test1_Descr_scrn   = "Descr" // Descr is a String
+Test1_Query_scrn   = "Query" // Query is a String
+Test1_Source_scrn   = "Source" // Source is a String
+Test1_Firm_scrn   = "Firm" // Firm is a String
+Test1_YN_scrn   = "YN" // YN is a String
+Test1_User_scrn   = "User" // User is a String
+Test1_Cheese_scrn   = "Cheese" // Cheese is a String
+Test1_Onion_scrn   = "Onion" // Onion is a String
 
 	/// Definitions End
 )

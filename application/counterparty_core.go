@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:49:58
+// Date & Time		    : 17/06/2022 at 18:38:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Counterparty_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	NameCentre         string
 	NameCentre_lookup    []dm.Lookup_Item
@@ -73,7 +73,7 @@ type Counterparty_Page struct {
 	SectorCodeName         string
 	CompID         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -199,29 +199,29 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Counterparty
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre)
-		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm)
-		item.FullName = r.FormValue(dm.Counterparty_FullName)
-		item.TelephoneNumber = r.FormValue(dm.Counterparty_TelephoneNumber)
-		item.EmailAddress = r.FormValue(dm.Counterparty_EmailAddress)
-		item.CustomerType = r.FormValue(dm.Counterparty_CustomerType)
-		item.AccountOfficer = r.FormValue(dm.Counterparty_AccountOfficer)
-		item.CountryCode = r.FormValue(dm.Counterparty_CountryCode)
-		item.SectorCode = r.FormValue(dm.Counterparty_SectorCode)
-		item.CpartyGroupName = r.FormValue(dm.Counterparty_CpartyGroupName)
-		item.Notes = r.FormValue(dm.Counterparty_Notes)
-		item.Owner = r.FormValue(dm.Counterparty_Owner)
-		item.Authorised = r.FormValue(dm.Counterparty_Authorised)
-		item.NameFirmName = r.FormValue(dm.Counterparty_NameFirmName)
-		item.NameCentreName = r.FormValue(dm.Counterparty_NameCentreName)
-		item.CountryCodeName = r.FormValue(dm.Counterparty_CountryCodeName)
-		item.SectorCodeName = r.FormValue(dm.Counterparty_SectorCodeName)
-		item.CompID = r.FormValue(dm.Counterparty_CompID)
+		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre_scrn)
+		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm_scrn)
+		item.FullName = r.FormValue(dm.Counterparty_FullName_scrn)
+		item.TelephoneNumber = r.FormValue(dm.Counterparty_TelephoneNumber_scrn)
+		item.EmailAddress = r.FormValue(dm.Counterparty_EmailAddress_scrn)
+		item.CustomerType = r.FormValue(dm.Counterparty_CustomerType_scrn)
+		item.AccountOfficer = r.FormValue(dm.Counterparty_AccountOfficer_scrn)
+		item.CountryCode = r.FormValue(dm.Counterparty_CountryCode_scrn)
+		item.SectorCode = r.FormValue(dm.Counterparty_SectorCode_scrn)
+		item.CpartyGroupName = r.FormValue(dm.Counterparty_CpartyGroupName_scrn)
+		item.Notes = r.FormValue(dm.Counterparty_Notes_scrn)
+		item.Owner = r.FormValue(dm.Counterparty_Owner_scrn)
+		item.Authorised = r.FormValue(dm.Counterparty_Authorised_scrn)
+		item.NameFirmName = r.FormValue(dm.Counterparty_NameFirmName_scrn)
+		item.NameCentreName = r.FormValue(dm.Counterparty_NameCentreName_scrn)
+		item.CountryCodeName = r.FormValue(dm.Counterparty_CountryCodeName_scrn)
+		item.SectorCodeName = r.FormValue(dm.Counterparty_SectorCodeName_scrn)
+		item.CompID = r.FormValue(dm.Counterparty_CompID_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Counterparty_Store(item,r)	
 	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
@@ -250,7 +250,7 @@ func Counterparty_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Counterparty Page 
 func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page) Counterparty_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameCentre = rD.NameCentre
 	pageDetail.NameFirm = rD.NameFirm
@@ -273,7 +273,7 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.NameCentre_lookup = dao.Centre_GetLookup()
@@ -327,7 +327,7 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

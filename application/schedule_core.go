@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Schedule_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -66,7 +66,7 @@ type Schedule_Page struct {
 	SYSUpdatedHost         string
 	Human         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -163,29 +163,29 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Schedule
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Schedule_SYSId)
-		item.Id = r.FormValue(dm.Schedule_Id)
-		item.Name = r.FormValue(dm.Schedule_Name)
-		item.Description = r.FormValue(dm.Schedule_Description)
-		item.Schedule = r.FormValue(dm.Schedule_Schedule)
-		item.Started = r.FormValue(dm.Schedule_Started)
-		item.Lastrun = r.FormValue(dm.Schedule_Lastrun)
-		item.Message = r.FormValue(dm.Schedule_Message)
-		item.SYSCreated = r.FormValue(dm.Schedule_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Schedule_SYSWho)
-		item.SYSHost = r.FormValue(dm.Schedule_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Schedule_SYSUpdated)
-		item.Type = r.FormValue(dm.Schedule_Type)
-		item.SYSCreatedBy = r.FormValue(dm.Schedule_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Schedule_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Schedule_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Schedule_SYSUpdatedHost)
-		item.Human = r.FormValue(dm.Schedule_Human)
+		item.SYSId = r.FormValue(dm.Schedule_SYSId_scrn)
+		item.Id = r.FormValue(dm.Schedule_Id_scrn)
+		item.Name = r.FormValue(dm.Schedule_Name_scrn)
+		item.Description = r.FormValue(dm.Schedule_Description_scrn)
+		item.Schedule = r.FormValue(dm.Schedule_Schedule_scrn)
+		item.Started = r.FormValue(dm.Schedule_Started_scrn)
+		item.Lastrun = r.FormValue(dm.Schedule_Lastrun_scrn)
+		item.Message = r.FormValue(dm.Schedule_Message_scrn)
+		item.SYSCreated = r.FormValue(dm.Schedule_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Schedule_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Schedule_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Schedule_SYSUpdated_scrn)
+		item.Type = r.FormValue(dm.Schedule_Type_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Schedule_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Schedule_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Schedule_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Schedule_SYSUpdatedHost_scrn)
+		item.Human = r.FormValue(dm.Schedule_Human_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Schedule_Store(item,r)	
 	http.Redirect(w, r, Schedule_Redirect, http.StatusFound)
@@ -197,7 +197,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Schedule Page 
 func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -220,7 +220,7 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Pa
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -260,7 +260,7 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Pa
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

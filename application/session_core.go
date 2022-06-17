@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:09
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Session_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Apptoken         string
@@ -75,7 +75,7 @@ type Session_Page struct {
 	SYSUpdatedHost         string
 	SessionRole         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -172,38 +172,38 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Session
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Session_SYSId)
-		item.Apptoken = r.FormValue(dm.Session_Apptoken)
-		item.Createdate = r.FormValue(dm.Session_Createdate)
-		item.Createtime = r.FormValue(dm.Session_Createtime)
-		item.Uniqueid = r.FormValue(dm.Session_Uniqueid)
-		item.Sessiontoken = r.FormValue(dm.Session_Sessiontoken)
-		item.Username = r.FormValue(dm.Session_Username)
-		item.Password = r.FormValue(dm.Session_Password)
-		item.Userip = r.FormValue(dm.Session_Userip)
-		item.Userhost = r.FormValue(dm.Session_Userhost)
-		item.Appip = r.FormValue(dm.Session_Appip)
-		item.Apphost = r.FormValue(dm.Session_Apphost)
-		item.Issued = r.FormValue(dm.Session_Issued)
-		item.Expiry = r.FormValue(dm.Session_Expiry)
-		item.Expiryraw = r.FormValue(dm.Session_Expiryraw)
-		item.Brand = r.FormValue(dm.Session_Brand)
-		item.SYSCreated = r.FormValue(dm.Session_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Session_SYSWho)
-		item.SYSHost = r.FormValue(dm.Session_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Session_SYSUpdated)
-		item.Id = r.FormValue(dm.Session_Id)
-		item.Expires = r.FormValue(dm.Session_Expires)
-		item.SYSCreatedBy = r.FormValue(dm.Session_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Session_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Session_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Session_SYSUpdatedHost)
-		item.SessionRole = r.FormValue(dm.Session_SessionRole)
+		item.SYSId = r.FormValue(dm.Session_SYSId_scrn)
+		item.Apptoken = r.FormValue(dm.Session_Apptoken_scrn)
+		item.Createdate = r.FormValue(dm.Session_Createdate_scrn)
+		item.Createtime = r.FormValue(dm.Session_Createtime_scrn)
+		item.Uniqueid = r.FormValue(dm.Session_Uniqueid_scrn)
+		item.Sessiontoken = r.FormValue(dm.Session_Sessiontoken_scrn)
+		item.Username = r.FormValue(dm.Session_Username_scrn)
+		item.Password = r.FormValue(dm.Session_Password_scrn)
+		item.Userip = r.FormValue(dm.Session_Userip_scrn)
+		item.Userhost = r.FormValue(dm.Session_Userhost_scrn)
+		item.Appip = r.FormValue(dm.Session_Appip_scrn)
+		item.Apphost = r.FormValue(dm.Session_Apphost_scrn)
+		item.Issued = r.FormValue(dm.Session_Issued_scrn)
+		item.Expiry = r.FormValue(dm.Session_Expiry_scrn)
+		item.Expiryraw = r.FormValue(dm.Session_Expiryraw_scrn)
+		item.Brand = r.FormValue(dm.Session_Brand_scrn)
+		item.SYSCreated = r.FormValue(dm.Session_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Session_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Session_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Session_SYSUpdated_scrn)
+		item.Id = r.FormValue(dm.Session_Id_scrn)
+		item.Expires = r.FormValue(dm.Session_Expires_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Session_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Session_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Session_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Session_SYSUpdatedHost_scrn)
+		item.SessionRole = r.FormValue(dm.Session_SessionRole_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Session_Store(item,r)	
 	http.Redirect(w, r, Session_Redirect, http.StatusFound)
@@ -215,7 +215,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Session Page 
 func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Apptoken = rD.Apptoken
@@ -247,7 +247,7 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -305,7 +305,7 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

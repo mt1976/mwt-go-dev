@@ -41,14 +41,14 @@ SQL Table Key | **Name**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Name**|String|true|true|false|false|||||Y|Name||false|false|false|
-|**ReportDealsOver**|String|false|true|false|false|||||Y|ReportDealsOver||false|false|false|
-|**ReportDealsOverCCY**|String|false|true|false|false|||||Y|ReportDealsOverCCY||false|false|false|
-|**AccountTransferCutOffTime**|Time|false|true|false|false|||||Y|AccountTransferCutOffTime||false|false|false|
-|**AccountTransferCutOffTimeTimeZone**|String|false|true|false|false|||||Y|AccountTransferCutOffTimeTimeZone||false|false|false|
-|**AccountTransferCutOffTimeCutOffPeriod**|String|false|true|false|false|||||Y|AccountTransferCutOffTimeCutOffPeriod||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Name**|String|true|true|false|false|||||Y|Name||false|false|false|text||
+|**ReportDealsOver**|String|false|true|false|false|||||Y|ReportDealsOver||false|false|false|text||
+|**ReportDealsOverCCY**|String|false|true|false|false|||||Y|ReportDealsOverCCY||false|false|false|text||
+|**AccountTransferCutOffTime**|Time|false|true|false|false|||||Y|AccountTransferCutOffTime||false|false|false|text||
+|**AccountTransferCutOffTimeTimeZone**|String|false|true|false|false|||||Y|AccountTransferCutOffTimeTimeZone||false|false|false|text||
+|**AccountTransferCutOffTimeCutOffPeriod**|String|false|true|false|false|||||Y|AccountTransferCutOffTimeCutOffPeriod||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -63,7 +63,7 @@ SQL Table Key | **Name**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:08**
+Date & Time		     | **17/06/2022** at **18:38:13**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

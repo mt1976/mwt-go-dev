@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:09
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -136,38 +136,38 @@ logs.Storing("Session",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	ts = addData(ts, dm.Session_SYSId, r.SYSId)
-	ts = addData(ts, dm.Session_Apptoken, r.Apptoken)
-	ts = addData(ts, dm.Session_Createdate, r.Createdate)
-	ts = addData(ts, dm.Session_Createtime, r.Createtime)
-	ts = addData(ts, dm.Session_Uniqueid, r.Uniqueid)
-	ts = addData(ts, dm.Session_Sessiontoken, r.Sessiontoken)
-	ts = addData(ts, dm.Session_Username, r.Username)
-	ts = addData(ts, dm.Session_Password, r.Password)
-	ts = addData(ts, dm.Session_Userip, r.Userip)
-	ts = addData(ts, dm.Session_Userhost, r.Userhost)
-	ts = addData(ts, dm.Session_Appip, r.Appip)
-	ts = addData(ts, dm.Session_Apphost, r.Apphost)
-	ts = addData(ts, dm.Session_Issued, r.Issued)
-	ts = addData(ts, dm.Session_Expiry, r.Expiry)
-	ts = addData(ts, dm.Session_Expiryraw, r.Expiryraw)
-	ts = addData(ts, dm.Session_Brand, r.Brand)
-	ts = addData(ts, dm.Session_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Session_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Session_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.Session_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Session_Id, r.Id)
-	ts = addData(ts, dm.Session_Expires, r.Expires)
-	ts = addData(ts, dm.Session_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Session_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Session_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Session_SYSUpdatedHost, r.SYSUpdatedHost)
-	ts = addData(ts, dm.Session_SessionRole, r.SessionRole)
+	ts = addData(ts, dm.Session_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.Session_Apptoken_sql, r.Apptoken)
+	ts = addData(ts, dm.Session_Createdate_sql, r.Createdate)
+	ts = addData(ts, dm.Session_Createtime_sql, r.Createtime)
+	ts = addData(ts, dm.Session_Uniqueid_sql, r.Uniqueid)
+	ts = addData(ts, dm.Session_Sessiontoken_sql, r.Sessiontoken)
+	ts = addData(ts, dm.Session_Username_sql, r.Username)
+	ts = addData(ts, dm.Session_Password_sql, r.Password)
+	ts = addData(ts, dm.Session_Userip_sql, r.Userip)
+	ts = addData(ts, dm.Session_Userhost_sql, r.Userhost)
+	ts = addData(ts, dm.Session_Appip_sql, r.Appip)
+	ts = addData(ts, dm.Session_Apphost_sql, r.Apphost)
+	ts = addData(ts, dm.Session_Issued_sql, r.Issued)
+	ts = addData(ts, dm.Session_Expiry_sql, r.Expiry)
+	ts = addData(ts, dm.Session_Expiryraw_sql, r.Expiryraw)
+	ts = addData(ts, dm.Session_Brand_sql, r.Brand)
+	ts = addData(ts, dm.Session_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.Session_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.Session_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.Session_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.Session_Id_sql, r.Id)
+	ts = addData(ts, dm.Session_Expires_sql, r.Expires)
+	ts = addData(ts, dm.Session_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.Session_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Session_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Session_SYSUpdatedHost_sql, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Session_SessionRole_sql, r.SessionRole)
 		
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
@@ -199,65 +199,72 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.Session_SYSId, "0")
-   recItem.Apptoken  = get_String(rec, dm.Session_Apptoken, "")
-   recItem.Createdate  = get_String(rec, dm.Session_Createdate, "")
-   recItem.Createtime  = get_String(rec, dm.Session_Createtime, "")
-   recItem.Uniqueid  = get_String(rec, dm.Session_Uniqueid, "")
-   recItem.Sessiontoken  = get_String(rec, dm.Session_Sessiontoken, "")
-   recItem.Username  = get_String(rec, dm.Session_Username, "")
-   recItem.Password  = get_String(rec, dm.Session_Password, "")
-   recItem.Userip  = get_String(rec, dm.Session_Userip, "")
-   recItem.Userhost  = get_String(rec, dm.Session_Userhost, "")
-   recItem.Appip  = get_String(rec, dm.Session_Appip, "")
-   recItem.Apphost  = get_String(rec, dm.Session_Apphost, "")
-   recItem.Issued  = get_String(rec, dm.Session_Issued, "")
-   recItem.Expiry  = get_String(rec, dm.Session_Expiry, "")
-   recItem.Expiryraw  = get_String(rec, dm.Session_Expiryraw, "")
-   recItem.Brand  = get_String(rec, dm.Session_Brand, "")
-   recItem.SYSCreated  = get_String(rec, dm.Session_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.Session_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.Session_SYSHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.Session_SYSUpdated, "")
-   recItem.Id  = get_String(rec, dm.Session_Id, "")
-   recItem.Expires  = get_Time(rec, dm.Session_Expires, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.Session_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.Session_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.Session_SYSUpdatedBy, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.Session_SYSUpdatedHost, "")
-   recItem.SessionRole  = get_String(rec, dm.Session_SessionRole, "")
-// If there are fields below, create the methods in adaptor\Session_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.Session_SYSId_sql, "0")
+	   recItem.Apptoken  = get_String(rec, dm.Session_Apptoken_sql, "")
+	   recItem.Createdate  = get_String(rec, dm.Session_Createdate_sql, "")
+	   recItem.Createtime  = get_String(rec, dm.Session_Createtime_sql, "")
+	   recItem.Uniqueid  = get_String(rec, dm.Session_Uniqueid_sql, "")
+	   recItem.Sessiontoken  = get_String(rec, dm.Session_Sessiontoken_sql, "")
+	   recItem.Username  = get_String(rec, dm.Session_Username_sql, "")
+	   recItem.Password  = get_String(rec, dm.Session_Password_sql, "")
+	   recItem.Userip  = get_String(rec, dm.Session_Userip_sql, "")
+	   recItem.Userhost  = get_String(rec, dm.Session_Userhost_sql, "")
+	   recItem.Appip  = get_String(rec, dm.Session_Appip_sql, "")
+	   recItem.Apphost  = get_String(rec, dm.Session_Apphost_sql, "")
+	   recItem.Issued  = get_String(rec, dm.Session_Issued_sql, "")
+	   recItem.Expiry  = get_String(rec, dm.Session_Expiry_sql, "")
+	   recItem.Expiryraw  = get_String(rec, dm.Session_Expiryraw_sql, "")
+	   recItem.Brand  = get_String(rec, dm.Session_Brand_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Session_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.Session_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.Session_SYSHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Session_SYSUpdated_sql, "")
+	   recItem.Id  = get_String(rec, dm.Session_Id_sql, "")
+	   recItem.Expires  = get_Time(rec, dm.Session_Expires_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.Session_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.Session_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.Session_SYSUpdatedBy_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.Session_SYSUpdatedHost_sql, "")
+	   recItem.SessionRole  = get_String(rec, dm.Session_SessionRole_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Session_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

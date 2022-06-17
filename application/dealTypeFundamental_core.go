@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:04
+// Date & Time		    : 17/06/2022 at 18:38:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type DealTypeFundamental_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	DealTypeKey         string
 	Amendment         string
@@ -138,7 +138,7 @@ type DealTypeFundamental_Page struct {
 	DeletedUserId         string
 	ChangeType         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -264,101 +264,101 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealTypeFundamental
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.DealTypeKey = r.FormValue(dm.DealTypeFundamental_DealTypeKey)
-		item.Amendment = r.FormValue(dm.DealTypeFundamental_Amendment)
-		item.DefaultFrequency = r.FormValue(dm.DealTypeFundamental_DefaultFrequency)
-		item.Directions = r.FormValue(dm.DealTypeFundamental_Directions)
-		item.SettledTermDealType = r.FormValue(dm.DealTypeFundamental_SettledTermDealType)
-		item.Optn = r.FormValue(dm.DealTypeFundamental_Optn)
-		item.AllowPledge = r.FormValue(dm.DealTypeFundamental_AllowPledge)
-		item.Takeup = r.FormValue(dm.DealTypeFundamental_Takeup)
-		item.MismatchDealType = r.FormValue(dm.DealTypeFundamental_MismatchDealType)
-		item.SettledHedgeTermDealType = r.FormValue(dm.DealTypeFundamental_SettledHedgeTermDealType)
-		item.SettlementCode = r.FormValue(dm.DealTypeFundamental_SettlementCode)
-		item.TermSubType = r.FormValue(dm.DealTypeFundamental_TermSubType)
-		item.FundingDealType = r.FormValue(dm.DealTypeFundamental_FundingDealType)
-		item.TransferType = r.FormValue(dm.DealTypeFundamental_TransferType)
-		item.TermDealType = r.FormValue(dm.DealTypeFundamental_TermDealType)
-		item.NegotiableInstrumentType = r.FormValue(dm.DealTypeFundamental_NegotiableInstrumentType)
-		item.Mismatch = r.FormValue(dm.DealTypeFundamental_Mismatch)
-		item.ComplexTransferSubType = r.FormValue(dm.DealTypeFundamental_ComplexTransferSubType)
-		item.LayOffDealType = r.FormValue(dm.DealTypeFundamental_LayOffDealType)
-		item.NIAccount = r.FormValue(dm.DealTypeFundamental_NIAccount)
-		item.SimpleMMsubtype = r.FormValue(dm.DealTypeFundamental_SimpleMMsubtype)
-		item.SwapDealType = r.FormValue(dm.DealTypeFundamental_SwapDealType)
-		item.Positions = r.FormValue(dm.DealTypeFundamental_Positions)
-		item.OptionOutright = r.FormValue(dm.DealTypeFundamental_OptionOutright)
-		item.SettledHedgeSpotDealType = r.FormValue(dm.DealTypeFundamental_SettledHedgeSpotDealType)
-		item.StraightThroughInterestMethod = r.FormValue(dm.DealTypeFundamental_StraightThroughInterestMethod)
-		item.SubType = r.FormValue(dm.DealTypeFundamental_SubType)
-		item.Rollover = r.FormValue(dm.DealTypeFundamental_Rollover)
-		item.DefaultIssuer = r.FormValue(dm.DealTypeFundamental_DefaultIssuer)
-		item.DefaultStartDate = r.FormValue(dm.DealTypeFundamental_DefaultStartDate)
-		item.Fee = r.FormValue(dm.DealTypeFundamental_Fee)
-		item.NDF = r.FormValue(dm.DealTypeFundamental_NDF)
-		item.FXFX = r.FormValue(dm.DealTypeFundamental_FXFX)
-		item.ONIA = r.FormValue(dm.DealTypeFundamental_ONIA)
-		item.MarginSubType = r.FormValue(dm.DealTypeFundamental_MarginSubType)
-		item.TransferDealType = r.FormValue(dm.DealTypeFundamental_TransferDealType)
-		item.IsFX = r.FormValue(dm.DealTypeFundamental_IsFX)
-		item.Ordr = r.FormValue(dm.DealTypeFundamental_Ordr)
-		item.OptionStyle = r.FormValue(dm.DealTypeFundamental_OptionStyle)
-		item.SpotDealType = r.FormValue(dm.DealTypeFundamental_SpotDealType)
-		item.CanIssue = r.FormValue(dm.DealTypeFundamental_CanIssue)
-		item.CanShort = r.FormValue(dm.DealTypeFundamental_CanShort)
-		item.FXMarginTradingType = r.FormValue(dm.DealTypeFundamental_FXMarginTradingType)
-		item.Internal = r.FormValue(dm.DealTypeFundamental_Internal)
-		item.TicketBasename = r.FormValue(dm.DealTypeFundamental_TicketBasename)
-		item.InterestRateFutureType = r.FormValue(dm.DealTypeFundamental_InterestRateFutureType)
-		item.TradingLimitProductCode = r.FormValue(dm.DealTypeFundamental_TradingLimitProductCode)
-		item.Forward = r.FormValue(dm.DealTypeFundamental_Forward)
-		item.MaturityNotificationPeriod = r.FormValue(dm.DealTypeFundamental_MaturityNotificationPeriod)
-		item.NotificationEvents = r.FormValue(dm.DealTypeFundamental_NotificationEvents)
-		item.SwapSubType = r.FormValue(dm.DealTypeFundamental_SwapSubType)
-		item.ProductCode = r.FormValue(dm.DealTypeFundamental_ProductCode)
-		item.Funding = r.FormValue(dm.DealTypeFundamental_Funding)
-		item.AllocationPricing = r.FormValue(dm.DealTypeFundamental_AllocationPricing)
-		item.CancelPeriod = r.FormValue(dm.DealTypeFundamental_CancelPeriod)
-		item.MMMarginTradingType = r.FormValue(dm.DealTypeFundamental_MMMarginTradingType)
-		item.OptionSpot = r.FormValue(dm.DealTypeFundamental_OptionSpot)
-		item.Transfer = r.FormValue(dm.DealTypeFundamental_Transfer)
-		item.NotificationPeriod = r.FormValue(dm.DealTypeFundamental_NotificationPeriod)
-		item.Paymentdateshift = r.FormValue(dm.DealTypeFundamental_Paymentdateshift)
-		item.CloseOut = r.FormValue(dm.DealTypeFundamental_CloseOut)
-		item.FXOptionPricing = r.FormValue(dm.DealTypeFundamental_FXOptionPricing)
-		item.SettledHedgeOutrightDealType = r.FormValue(dm.DealTypeFundamental_SettledHedgeOutrightDealType)
-		item.RepoBond = r.FormValue(dm.DealTypeFundamental_RepoBond)
-		item.RepoTerm = r.FormValue(dm.DealTypeFundamental_RepoTerm)
-		item.RepoType = r.FormValue(dm.DealTypeFundamental_RepoType)
-		item.DateRule = r.FormValue(dm.DealTypeFundamental_DateRule)
-		item.CorpTransferDealType = r.FormValue(dm.DealTypeFundamental_CorpTransferDealType)
-		item.GenerateFXImage = r.FormValue(dm.DealTypeFundamental_GenerateFXImage)
-		item.Variant = r.FormValue(dm.DealTypeFundamental_Variant)
-		item.HedgeTermDealType = r.FormValue(dm.DealTypeFundamental_HedgeTermDealType)
-		item.PricingModel = r.FormValue(dm.DealTypeFundamental_PricingModel)
-		item.HedgeOutrightDealType = r.FormValue(dm.DealTypeFundamental_HedgeOutrightDealType)
-		item.Fixing = r.FormValue(dm.DealTypeFundamental_Fixing)
-		item.Payment = r.FormValue(dm.DealTypeFundamental_Payment)
-		item.MT = r.FormValue(dm.DealTypeFundamental_MT)
-		item.SettlementInstructionStyle = r.FormValue(dm.DealTypeFundamental_SettlementInstructionStyle)
-		item.QuoteHistoryRequired = r.FormValue(dm.DealTypeFundamental_QuoteHistoryRequired)
-		item.Brokerage = r.FormValue(dm.DealTypeFundamental_Brokerage)
-		item.ExposureDisabled = r.FormValue(dm.DealTypeFundamental_ExposureDisabled)
-		item.CreditLine = r.FormValue(dm.DealTypeFundamental_CreditLine)
-		item.Encumbered = r.FormValue(dm.DealTypeFundamental_Encumbered)
-		item.InternalId = r.FormValue(dm.DealTypeFundamental_InternalId)
-		item.InternalDeleted = r.FormValue(dm.DealTypeFundamental_InternalDeleted)
-		item.UpdatedTransactionId = r.FormValue(dm.DealTypeFundamental_UpdatedTransactionId)
-		item.UpdatedUserId = r.FormValue(dm.DealTypeFundamental_UpdatedUserId)
-		item.UpdatedDateTime = r.FormValue(dm.DealTypeFundamental_UpdatedDateTime)
-		item.DeletedTransactionId = r.FormValue(dm.DealTypeFundamental_DeletedTransactionId)
-		item.DeletedUserId = r.FormValue(dm.DealTypeFundamental_DeletedUserId)
-		item.ChangeType = r.FormValue(dm.DealTypeFundamental_ChangeType)
+		item.DealTypeKey = r.FormValue(dm.DealTypeFundamental_DealTypeKey_scrn)
+		item.Amendment = r.FormValue(dm.DealTypeFundamental_Amendment_scrn)
+		item.DefaultFrequency = r.FormValue(dm.DealTypeFundamental_DefaultFrequency_scrn)
+		item.Directions = r.FormValue(dm.DealTypeFundamental_Directions_scrn)
+		item.SettledTermDealType = r.FormValue(dm.DealTypeFundamental_SettledTermDealType_scrn)
+		item.Optn = r.FormValue(dm.DealTypeFundamental_Optn_scrn)
+		item.AllowPledge = r.FormValue(dm.DealTypeFundamental_AllowPledge_scrn)
+		item.Takeup = r.FormValue(dm.DealTypeFundamental_Takeup_scrn)
+		item.MismatchDealType = r.FormValue(dm.DealTypeFundamental_MismatchDealType_scrn)
+		item.SettledHedgeTermDealType = r.FormValue(dm.DealTypeFundamental_SettledHedgeTermDealType_scrn)
+		item.SettlementCode = r.FormValue(dm.DealTypeFundamental_SettlementCode_scrn)
+		item.TermSubType = r.FormValue(dm.DealTypeFundamental_TermSubType_scrn)
+		item.FundingDealType = r.FormValue(dm.DealTypeFundamental_FundingDealType_scrn)
+		item.TransferType = r.FormValue(dm.DealTypeFundamental_TransferType_scrn)
+		item.TermDealType = r.FormValue(dm.DealTypeFundamental_TermDealType_scrn)
+		item.NegotiableInstrumentType = r.FormValue(dm.DealTypeFundamental_NegotiableInstrumentType_scrn)
+		item.Mismatch = r.FormValue(dm.DealTypeFundamental_Mismatch_scrn)
+		item.ComplexTransferSubType = r.FormValue(dm.DealTypeFundamental_ComplexTransferSubType_scrn)
+		item.LayOffDealType = r.FormValue(dm.DealTypeFundamental_LayOffDealType_scrn)
+		item.NIAccount = r.FormValue(dm.DealTypeFundamental_NIAccount_scrn)
+		item.SimpleMMsubtype = r.FormValue(dm.DealTypeFundamental_SimpleMMsubtype_scrn)
+		item.SwapDealType = r.FormValue(dm.DealTypeFundamental_SwapDealType_scrn)
+		item.Positions = r.FormValue(dm.DealTypeFundamental_Positions_scrn)
+		item.OptionOutright = r.FormValue(dm.DealTypeFundamental_OptionOutright_scrn)
+		item.SettledHedgeSpotDealType = r.FormValue(dm.DealTypeFundamental_SettledHedgeSpotDealType_scrn)
+		item.StraightThroughInterestMethod = r.FormValue(dm.DealTypeFundamental_StraightThroughInterestMethod_scrn)
+		item.SubType = r.FormValue(dm.DealTypeFundamental_SubType_scrn)
+		item.Rollover = r.FormValue(dm.DealTypeFundamental_Rollover_scrn)
+		item.DefaultIssuer = r.FormValue(dm.DealTypeFundamental_DefaultIssuer_scrn)
+		item.DefaultStartDate = r.FormValue(dm.DealTypeFundamental_DefaultStartDate_scrn)
+		item.Fee = r.FormValue(dm.DealTypeFundamental_Fee_scrn)
+		item.NDF = r.FormValue(dm.DealTypeFundamental_NDF_scrn)
+		item.FXFX = r.FormValue(dm.DealTypeFundamental_FXFX_scrn)
+		item.ONIA = r.FormValue(dm.DealTypeFundamental_ONIA_scrn)
+		item.MarginSubType = r.FormValue(dm.DealTypeFundamental_MarginSubType_scrn)
+		item.TransferDealType = r.FormValue(dm.DealTypeFundamental_TransferDealType_scrn)
+		item.IsFX = r.FormValue(dm.DealTypeFundamental_IsFX_scrn)
+		item.Ordr = r.FormValue(dm.DealTypeFundamental_Ordr_scrn)
+		item.OptionStyle = r.FormValue(dm.DealTypeFundamental_OptionStyle_scrn)
+		item.SpotDealType = r.FormValue(dm.DealTypeFundamental_SpotDealType_scrn)
+		item.CanIssue = r.FormValue(dm.DealTypeFundamental_CanIssue_scrn)
+		item.CanShort = r.FormValue(dm.DealTypeFundamental_CanShort_scrn)
+		item.FXMarginTradingType = r.FormValue(dm.DealTypeFundamental_FXMarginTradingType_scrn)
+		item.Internal = r.FormValue(dm.DealTypeFundamental_Internal_scrn)
+		item.TicketBasename = r.FormValue(dm.DealTypeFundamental_TicketBasename_scrn)
+		item.InterestRateFutureType = r.FormValue(dm.DealTypeFundamental_InterestRateFutureType_scrn)
+		item.TradingLimitProductCode = r.FormValue(dm.DealTypeFundamental_TradingLimitProductCode_scrn)
+		item.Forward = r.FormValue(dm.DealTypeFundamental_Forward_scrn)
+		item.MaturityNotificationPeriod = r.FormValue(dm.DealTypeFundamental_MaturityNotificationPeriod_scrn)
+		item.NotificationEvents = r.FormValue(dm.DealTypeFundamental_NotificationEvents_scrn)
+		item.SwapSubType = r.FormValue(dm.DealTypeFundamental_SwapSubType_scrn)
+		item.ProductCode = r.FormValue(dm.DealTypeFundamental_ProductCode_scrn)
+		item.Funding = r.FormValue(dm.DealTypeFundamental_Funding_scrn)
+		item.AllocationPricing = r.FormValue(dm.DealTypeFundamental_AllocationPricing_scrn)
+		item.CancelPeriod = r.FormValue(dm.DealTypeFundamental_CancelPeriod_scrn)
+		item.MMMarginTradingType = r.FormValue(dm.DealTypeFundamental_MMMarginTradingType_scrn)
+		item.OptionSpot = r.FormValue(dm.DealTypeFundamental_OptionSpot_scrn)
+		item.Transfer = r.FormValue(dm.DealTypeFundamental_Transfer_scrn)
+		item.NotificationPeriod = r.FormValue(dm.DealTypeFundamental_NotificationPeriod_scrn)
+		item.Paymentdateshift = r.FormValue(dm.DealTypeFundamental_Paymentdateshift_scrn)
+		item.CloseOut = r.FormValue(dm.DealTypeFundamental_CloseOut_scrn)
+		item.FXOptionPricing = r.FormValue(dm.DealTypeFundamental_FXOptionPricing_scrn)
+		item.SettledHedgeOutrightDealType = r.FormValue(dm.DealTypeFundamental_SettledHedgeOutrightDealType_scrn)
+		item.RepoBond = r.FormValue(dm.DealTypeFundamental_RepoBond_scrn)
+		item.RepoTerm = r.FormValue(dm.DealTypeFundamental_RepoTerm_scrn)
+		item.RepoType = r.FormValue(dm.DealTypeFundamental_RepoType_scrn)
+		item.DateRule = r.FormValue(dm.DealTypeFundamental_DateRule_scrn)
+		item.CorpTransferDealType = r.FormValue(dm.DealTypeFundamental_CorpTransferDealType_scrn)
+		item.GenerateFXImage = r.FormValue(dm.DealTypeFundamental_GenerateFXImage_scrn)
+		item.Variant = r.FormValue(dm.DealTypeFundamental_Variant_scrn)
+		item.HedgeTermDealType = r.FormValue(dm.DealTypeFundamental_HedgeTermDealType_scrn)
+		item.PricingModel = r.FormValue(dm.DealTypeFundamental_PricingModel_scrn)
+		item.HedgeOutrightDealType = r.FormValue(dm.DealTypeFundamental_HedgeOutrightDealType_scrn)
+		item.Fixing = r.FormValue(dm.DealTypeFundamental_Fixing_scrn)
+		item.Payment = r.FormValue(dm.DealTypeFundamental_Payment_scrn)
+		item.MT = r.FormValue(dm.DealTypeFundamental_MT_scrn)
+		item.SettlementInstructionStyle = r.FormValue(dm.DealTypeFundamental_SettlementInstructionStyle_scrn)
+		item.QuoteHistoryRequired = r.FormValue(dm.DealTypeFundamental_QuoteHistoryRequired_scrn)
+		item.Brokerage = r.FormValue(dm.DealTypeFundamental_Brokerage_scrn)
+		item.ExposureDisabled = r.FormValue(dm.DealTypeFundamental_ExposureDisabled_scrn)
+		item.CreditLine = r.FormValue(dm.DealTypeFundamental_CreditLine_scrn)
+		item.Encumbered = r.FormValue(dm.DealTypeFundamental_Encumbered_scrn)
+		item.InternalId = r.FormValue(dm.DealTypeFundamental_InternalId_scrn)
+		item.InternalDeleted = r.FormValue(dm.DealTypeFundamental_InternalDeleted_scrn)
+		item.UpdatedTransactionId = r.FormValue(dm.DealTypeFundamental_UpdatedTransactionId_scrn)
+		item.UpdatedUserId = r.FormValue(dm.DealTypeFundamental_UpdatedUserId_scrn)
+		item.UpdatedDateTime = r.FormValue(dm.DealTypeFundamental_UpdatedDateTime_scrn)
+		item.DeletedTransactionId = r.FormValue(dm.DealTypeFundamental_DeletedTransactionId_scrn)
+		item.DeletedUserId = r.FormValue(dm.DealTypeFundamental_DeletedUserId_scrn)
+		item.ChangeType = r.FormValue(dm.DealTypeFundamental_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealTypeFundamental_Store(item,r)	
 	http.Redirect(w, r, DealTypeFundamental_Redirect, http.StatusFound)
@@ -415,7 +415,7 @@ func DealTypeFundamental_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealTypeFundamental Page 
 func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail DealTypeFundamental_Page) DealTypeFundamental_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealTypeKey = rD.DealTypeKey
 	pageDetail.Amendment = rD.Amendment
@@ -510,7 +510,7 @@ func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail Deal
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -694,7 +694,7 @@ func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail Deal
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

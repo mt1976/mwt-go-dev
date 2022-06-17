@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,10 +34,10 @@ const (
 	/// Handler Defintions
 	///
 	SalesDesk_Template     = "SalesDesk"
-	SalesDesk_TemplateList = "SalesDesk_List"
-	SalesDesk_TemplateView = "SalesDesk_View"
-	SalesDesk_TemplateEdit = "SalesDesk_Edit"
-	SalesDesk_TemplateNew  = "SalesDesk_New"
+	SalesDesk_TemplateList = "/SalesDesk/SalesDesk_List"
+	SalesDesk_TemplateView = "/SalesDesk/SalesDesk_View"
+	SalesDesk_TemplateEdit = "/SalesDesk/SalesDesk_Edit"
+	SalesDesk_TemplateNew  = "/SalesDesk/SalesDesk_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -49,14 +49,26 @@ const (
 	SalesDesk_PathSave   = "/SalesDeskSave/"
 	SalesDesk_PathDelete = "/SalesDeskDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-SalesDesk_Name   = "Name" // Name is a String
-SalesDesk_ReportDealsOver   = "ReportDealsOver" // ReportDealsOver is a String
-SalesDesk_ReportDealsOverCCY   = "ReportDealsOverCCY" // ReportDealsOverCCY is a String
-SalesDesk_AccountTransferCutOffTime   = "AccountTransferCutOffTime" // AccountTransferCutOffTime is a Time
-SalesDesk_AccountTransferCutOffTimeTimeZone   = "AccountTransferCutOffTimeTimeZone" // AccountTransferCutOffTimeTimeZone is a String
-SalesDesk_AccountTransferCutOffTimeCutOffPeriod   = "AccountTransferCutOffTimeCutOffPeriod" // AccountTransferCutOffTimeCutOffPeriod is a String
+SalesDesk_Name_sql   = "Name" // Name is a String
+SalesDesk_ReportDealsOver_sql   = "ReportDealsOver" // ReportDealsOver is a String
+SalesDesk_ReportDealsOverCCY_sql   = "ReportDealsOverCCY" // ReportDealsOverCCY is a String
+SalesDesk_AccountTransferCutOffTime_sql   = "AccountTransferCutOffTime" // AccountTransferCutOffTime is a Time
+SalesDesk_AccountTransferCutOffTimeTimeZone_sql   = "AccountTransferCutOffTimeTimeZone" // AccountTransferCutOffTimeTimeZone is a String
+SalesDesk_AccountTransferCutOffTimeCutOffPeriod_sql   = "AccountTransferCutOffTimeCutOffPeriod" // AccountTransferCutOffTimeCutOffPeriod is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+SalesDesk_Name_scrn   = "Name" // Name is a String
+SalesDesk_ReportDealsOver_scrn   = "ReportDealsOver" // ReportDealsOver is a String
+SalesDesk_ReportDealsOverCCY_scrn   = "ReportDealsOverCCY" // ReportDealsOverCCY is a String
+SalesDesk_AccountTransferCutOffTime_scrn   = "AccountTransferCutOffTime" // AccountTransferCutOffTime is a Time
+SalesDesk_AccountTransferCutOffTimeTimeZone_scrn   = "AccountTransferCutOffTimeTimeZone" // AccountTransferCutOffTimeTimeZone is a String
+SalesDesk_AccountTransferCutOffTimeCutOffPeriod_scrn   = "AccountTransferCutOffTimeCutOffPeriod" // AccountTransferCutOffTimeCutOffPeriod is a String
 
 	/// Definitions End
 )

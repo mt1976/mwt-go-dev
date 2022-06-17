@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:01
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type DataLoader_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -65,7 +65,7 @@ type DataLoader_Page struct {
 	SYSUpdatedBy         string
 	SYSCreatedHost         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -191,28 +191,28 @@ func DataLoader_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DataLoader
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.DataLoader_SYSId)
-		item.Id = r.FormValue(dm.DataLoader_Id)
-		item.Name = r.FormValue(dm.DataLoader_Name)
-		item.Description = r.FormValue(dm.DataLoader_Description)
-		item.Filename = r.FormValue(dm.DataLoader_Filename)
-		item.Lastrun = r.FormValue(dm.DataLoader_Lastrun)
-		item.SYSCreated = r.FormValue(dm.DataLoader_SYSCreated)
-		item.SYSWho = r.FormValue(dm.DataLoader_SYSWho)
-		item.SYSHost = r.FormValue(dm.DataLoader_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.DataLoader_SYSUpdated)
-		item.Type = r.FormValue(dm.DataLoader_Type)
-		item.Instance = r.FormValue(dm.DataLoader_Instance)
-		item.Extension = r.FormValue(dm.DataLoader_Extension)
-		item.SYSCreatedBy = r.FormValue(dm.DataLoader_SYSCreatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.DataLoader_SYSUpdatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.DataLoader_SYSUpdatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.DataLoader_SYSCreatedHost)
+		item.SYSId = r.FormValue(dm.DataLoader_SYSId_scrn)
+		item.Id = r.FormValue(dm.DataLoader_Id_scrn)
+		item.Name = r.FormValue(dm.DataLoader_Name_scrn)
+		item.Description = r.FormValue(dm.DataLoader_Description_scrn)
+		item.Filename = r.FormValue(dm.DataLoader_Filename_scrn)
+		item.Lastrun = r.FormValue(dm.DataLoader_Lastrun_scrn)
+		item.SYSCreated = r.FormValue(dm.DataLoader_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.DataLoader_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.DataLoader_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.DataLoader_SYSUpdated_scrn)
+		item.Type = r.FormValue(dm.DataLoader_Type_scrn)
+		item.Instance = r.FormValue(dm.DataLoader_Instance_scrn)
+		item.Extension = r.FormValue(dm.DataLoader_Extension_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.DataLoader_SYSCreatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.DataLoader_SYSUpdatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.DataLoader_SYSUpdatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.DataLoader_SYSCreatedHost_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DataLoader_Store(item,r)	
 	http.Redirect(w, r, DataLoader_Redirect, http.StatusFound)
@@ -224,7 +224,7 @@ func DataLoader_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DataLoader Page 
 func dataloader_PopulatePage(rD dm.DataLoader, pageDetail DataLoader_Page) DataLoader_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -246,7 +246,7 @@ func dataloader_PopulatePage(rD dm.DataLoader, pageDetail DataLoader_Page) DataL
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -284,7 +284,7 @@ func dataloader_PopulatePage(rD dm.DataLoader, pageDetail DataLoader_Page) DataL
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

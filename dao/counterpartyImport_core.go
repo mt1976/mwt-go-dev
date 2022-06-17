@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:57
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -131,27 +131,34 @@ func counterpartyimport_Fetch(tsql string) (int, []dm.CounterpartyImport, dm.Cou
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.KeyImportID  = get_String(rec, dm.CounterpartyImport_KeyImportID, "")
-   recItem.Firm  = get_String(rec, dm.CounterpartyImport_Firm, "")
-   recItem.Centre  = get_String(rec, dm.CounterpartyImport_Centre, "")
-   recItem.FirmName  = get_String(rec, dm.CounterpartyImport_FirmName, "")
-   recItem.CentreName  = get_String(rec, dm.CounterpartyImport_CentreName, "")
-   recItem.KeyOriginID  = get_String(rec, dm.CounterpartyImport_KeyOriginID, "")
-   recItem.FullName  = get_String(rec, dm.CounterpartyImport_FullName, "")
-   recItem.CompID  = get_String(rec, dm.CounterpartyImport_CompID, "")
-// If there are fields below, create the methods in adaptor\CounterpartyImport_impl.go
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.KeyImportID  = get_String(rec, dm.CounterpartyImport_KeyImportID_sql, "")
+	   recItem.Firm  = get_String(rec, dm.CounterpartyImport_Firm_sql, "")
+	   recItem.Centre  = get_String(rec, dm.CounterpartyImport_Centre_sql, "")
+	   recItem.FirmName  = get_String(rec, dm.CounterpartyImport_FirmName_sql, "")
+	   recItem.CentreName  = get_String(rec, dm.CounterpartyImport_CentreName_sql, "")
+	   recItem.KeyOriginID  = get_String(rec, dm.CounterpartyImport_KeyOriginID_sql, "")
+	   recItem.FullName  = get_String(rec, dm.CounterpartyImport_FullName_sql, "")
+	   recItem.CompID  = get_String(rec, dm.CounterpartyImport_CompID_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\CounterpartyImport_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

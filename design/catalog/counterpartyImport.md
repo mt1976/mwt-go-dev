@@ -41,16 +41,16 @@ SQL Table Key | **CompID**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**KeyImportID**|String|true|true|false|false|||||Y|KeyImportID||false|false|false|
-|**Firm**|String|false|true|false|false|||||Y|Firm||false|false|false|
-|**Centre**|String|false|true|false|false|||||Y|Centre||false|false|false|
-|**FirmName**|String|true|true|false|false|||||Y|FirmName||false|false|false|
-|**CentreName**|String|false|true|false|false|||||Y|CentreName||false|false|false|
-|**KeyOriginID**|String|true|true|false|false|||||Y|KeyOriginID||false|false|false|
-|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|
-|**CompID**|String|true|true|false|false|||||Y|CompID||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**KeyImportID**|String|true|true|false|false|||||Y|KeyImportID||false|false|false|text||
+|**Firm**|String|false|true|false|false|||||Y|Firm||false|false|false|text||
+|**Centre**|String|false|true|false|false|||||Y|Centre||false|false|false|text||
+|**FirmName**|String|true|true|false|false|||||Y|FirmName||false|false|false|text||
+|**CentreName**|String|false|true|false|false|||||Y|CentreName||false|false|false|text||
+|**KeyOriginID**|String|true|true|false|false|||||Y|KeyOriginID||false|false|false|text||
+|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
+|**CompID**|String|true|true|false|false|||||Y|CompID||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -61,17 +61,17 @@ SQL Table Key | **CompID**
 | code | **dao** | /dao/counterpartyImport_core.go |
 | code | **datamodel** | /datamodel/counterpartyImport_core.go |
 | code | **menu** | /design/menu/counterpartyImport.json |
-| html | **list** | /html/CounterpartyImport_List.html |
-| html | **view** | /html/CounterpartyImport_View.html |
-| html | **edit** | /html/CounterpartyImport_Edit.html |
-| html | **new** | /html/CounterpartyImport_New.html |
+| html | **list** | /CounterpartyImport_List.html |
+| html | **view** | /CounterpartyImport_View.html |
+| html | **edit** | /CounterpartyImport_Edit.html |
+| html | **new** | /CounterpartyImport_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:57**
+Date & Time		     | **17/06/2022** at **18:38:07**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

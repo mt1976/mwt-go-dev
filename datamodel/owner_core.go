@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:07
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,10 +43,10 @@ const (
 	/// Handler Defintions
 	///
 	Owner_Template     = "Owner"
-	Owner_TemplateList = "Owner_List"
-	Owner_TemplateView = "Owner_View"
-	Owner_TemplateEdit = "Owner_Edit"
-	Owner_TemplateNew  = "Owner_New"
+	Owner_TemplateList = "/Owner/Owner_List"
+	Owner_TemplateView = "/Owner/Owner_View"
+	Owner_TemplateEdit = "/Owner/Owner_Edit"
+	Owner_TemplateNew  = "/Owner/Owner_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -58,23 +58,44 @@ const (
 	Owner_PathSave   = "/OwnerSave/"
 	Owner_PathDelete = "/OwnerDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Owner_UserName   = "UserName" // UserName is a String
-Owner_FullName   = "FullName" // FullName is a String
-Owner_Type   = "Type" // Type is a String
-Owner_TradingEntity   = "TradingEntity" // TradingEntity is a String
-Owner_DefaultEnterBook   = "DefaultEnterBook" // DefaultEnterBook is a String
-Owner_EmailAddress   = "EmailAddress" // EmailAddress is a String
-Owner_Enabled   = "Enabled" // Enabled is a String
-Owner_ExternalUserIds   = "ExternalUserIds" // ExternalUserIds is a String
-Owner_Language   = "Language" // Language is a String
-Owner_LocalCurrency   = "LocalCurrency" // LocalCurrency is a String
-Owner_Role   = "Role" // Role is a String
-Owner_TelephoneNumber   = "TelephoneNumber" // TelephoneNumber is a String
-Owner_TokenId   = "TokenId" // TokenId is a String
-Owner_Entity   = "Entity" // Entity is a String
-Owner_UserCode   = "UserCode" // UserCode is a String
+Owner_UserName_sql   = "UserName" // UserName is a String
+Owner_FullName_sql   = "FullName" // FullName is a String
+Owner_Type_sql   = "Type" // Type is a String
+Owner_TradingEntity_sql   = "TradingEntity" // TradingEntity is a String
+Owner_DefaultEnterBook_sql   = "DefaultEnterBook" // DefaultEnterBook is a String
+Owner_EmailAddress_sql   = "EmailAddress" // EmailAddress is a String
+Owner_Enabled_sql   = "Enabled" // Enabled is a String
+Owner_ExternalUserIds_sql   = "ExternalUserIds" // ExternalUserIds is a String
+Owner_Language_sql   = "Language" // Language is a String
+Owner_LocalCurrency_sql   = "LocalCurrency" // LocalCurrency is a String
+Owner_Role_sql   = "Role" // Role is a String
+Owner_TelephoneNumber_sql   = "TelephoneNumber" // TelephoneNumber is a String
+Owner_TokenId_sql   = "TokenId" // TokenId is a String
+Owner_Entity_sql   = "Entity" // Entity is a String
+Owner_UserCode_sql   = "UserCode" // UserCode is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Owner_UserName_scrn   = "UserName" // UserName is a String
+Owner_FullName_scrn   = "FullName" // FullName is a String
+Owner_Type_scrn   = "Type" // Type is a String
+Owner_TradingEntity_scrn   = "TradingEntity" // TradingEntity is a String
+Owner_DefaultEnterBook_scrn   = "DefaultEnterBook" // DefaultEnterBook is a String
+Owner_EmailAddress_scrn   = "EmailAddress" // EmailAddress is a String
+Owner_Enabled_scrn   = "Enabled" // Enabled is a String
+Owner_ExternalUserIds_scrn   = "ExternalUserIds" // ExternalUserIds is a String
+Owner_Language_scrn   = "Language" // Language is a String
+Owner_LocalCurrency_scrn   = "LocalCurrency" // LocalCurrency is a String
+Owner_Role_scrn   = "Role" // Role is a String
+Owner_TelephoneNumber_scrn   = "TelephoneNumber" // TelephoneNumber is a String
+Owner_TokenId_scrn   = "TokenId" // TokenId is a String
+Owner_Entity_scrn   = "Entity" // Entity is a String
+Owner_UserCode_scrn   = "UserCode" // UserCode is a String
 
 	/// Definitions End
 )

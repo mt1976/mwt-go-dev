@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:11
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -122,24 +122,24 @@ logs.Storing("Translation",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	ts = addData(ts, dm.Translation_SYSId, r.SYSId)
-	ts = addData(ts, dm.Translation_Id, r.Id)
-	ts = addData(ts, dm.Translation_Class, r.Class)
-	ts = addData(ts, dm.Translation_Message, r.Message)
-	ts = addData(ts, dm.Translation_Translation, r.Translation)
-	ts = addData(ts, dm.Translation_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Translation_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.Translation_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.Translation_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Translation_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Translation_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Translation_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Translation_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Translation_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.Translation_Id_sql, r.Id)
+	ts = addData(ts, dm.Translation_Class_sql, r.Class)
+	ts = addData(ts, dm.Translation_Message_sql, r.Message)
+	ts = addData(ts, dm.Translation_Translation_sql, r.Translation)
+	ts = addData(ts, dm.Translation_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.Translation_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.Translation_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.Translation_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.Translation_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.Translation_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Translation_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Translation_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Translation_SQLTable)
@@ -171,37 +171,44 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.Translation_SYSId, "0")
-   recItem.Id  = get_String(rec, dm.Translation_Id, "")
-   recItem.Class  = get_String(rec, dm.Translation_Class, "")
-   recItem.Message  = get_String(rec, dm.Translation_Message, "")
-   recItem.Translation  = get_String(rec, dm.Translation_Translation, "")
-   recItem.SYSCreated  = get_String(rec, dm.Translation_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.Translation_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.Translation_SYSHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.Translation_SYSUpdated, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.Translation_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.Translation_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.Translation_SYSUpdatedBy, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.Translation_SYSUpdatedHost, "")
-// If there are fields below, create the methods in adaptor\Translation_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.Translation_SYSId_sql, "0")
+	   recItem.Id  = get_String(rec, dm.Translation_Id_sql, "")
+	   recItem.Class  = get_String(rec, dm.Translation_Class_sql, "")
+	   recItem.Message  = get_String(rec, dm.Translation_Message_sql, "")
+	   recItem.Translation  = get_String(rec, dm.Translation_Translation_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Translation_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.Translation_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.Translation_SYSHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Translation_SYSUpdated_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.Translation_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.Translation_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.Translation_SYSUpdatedBy_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.Translation_SYSUpdatedHost_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Translation_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

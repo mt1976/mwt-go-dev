@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:48
+// Date & Time		    : 17/06/2022 at 18:38:05
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type AccountTransaction_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SienaReference         string
 	LegNo         string
@@ -63,7 +63,7 @@ type AccountTransaction_Page struct {
 	DealtCcy         string
 	AmountDp         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -152,7 +152,7 @@ func AccountTransaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the AccountTransaction Page 
 func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail AccountTransaction_Page) AccountTransaction_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.LegNo = rD.LegNo
@@ -172,7 +172,7 @@ func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail Accoun
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -206,7 +206,7 @@ func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail Accoun
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

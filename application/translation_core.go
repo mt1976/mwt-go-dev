@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:11
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Translation_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -61,7 +61,7 @@ type Translation_Page struct {
 	SYSUpdatedBy         string
 	SYSUpdatedHost         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -187,24 +187,24 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Translation
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Translation_SYSId)
-		item.Id = r.FormValue(dm.Translation_Id)
-		item.Class = r.FormValue(dm.Translation_Class)
-		item.Message = r.FormValue(dm.Translation_Message)
-		item.Translation = r.FormValue(dm.Translation_Translation)
-		item.SYSCreated = r.FormValue(dm.Translation_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Translation_SYSWho)
-		item.SYSHost = r.FormValue(dm.Translation_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Translation_SYSUpdated)
-		item.SYSCreatedBy = r.FormValue(dm.Translation_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Translation_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost)
+		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
+		item.Id = r.FormValue(dm.Translation_Id_scrn)
+		item.Class = r.FormValue(dm.Translation_Class_scrn)
+		item.Message = r.FormValue(dm.Translation_Message_scrn)
+		item.Translation = r.FormValue(dm.Translation_Translation_scrn)
+		item.SYSCreated = r.FormValue(dm.Translation_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Translation_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Translation_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Translation_SYSUpdated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Translation_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Translation_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Translation_Store(item,r)	
 	http.Redirect(w, r, Translation_Redirect, http.StatusFound)
@@ -216,7 +216,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Translation Page 
 func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Translation_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -234,7 +234,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Tr
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -264,7 +264,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Tr
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

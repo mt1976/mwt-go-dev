@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:11
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,10 +43,10 @@ const (
 	/// Handler Defintions
 	///
 	Tmpl_Template     = "Tmpl"
-	Tmpl_TemplateList = "Tmpl_List"
-	Tmpl_TemplateView = "Tmpl_View"
-	Tmpl_TemplateEdit = "Tmpl_Edit"
-	Tmpl_TemplateNew  = "Tmpl_New"
+	Tmpl_TemplateList = "/Tmpl/Tmpl_List"
+	Tmpl_TemplateView = "/Tmpl/Tmpl_View"
+	Tmpl_TemplateEdit = "/Tmpl/Tmpl_Edit"
+	Tmpl_TemplateNew  = "/Tmpl/Tmpl_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -58,21 +58,40 @@ const (
 	Tmpl_PathSave   = "/TmplSave/"
 	Tmpl_PathDelete = "/TmplDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Tmpl_SYSId   = "_id" // SYSId is a Int
-Tmpl_FIELD1   = "FIELD1" // FIELD1 is a String
-Tmpl_FIELD2   = "FIELD2" // FIELD2 is a String
-Tmpl_SYSCreated   = "_created" // SYSCreated is a String
-Tmpl_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
-Tmpl_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
-Tmpl_SYSUpdated   = "_updated" // SYSUpdated is a String
-Tmpl_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
-Tmpl_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
-Tmpl_ID   = "ID" // ID is a String
-Tmpl_ExtraField   = "ExtraField" // ExtraField is a String
-Tmpl_ExtraField2   = "ExtraField2" // ExtraField2 is a String
-Tmpl_ExtraField3   = "ExtraField3" // ExtraField3 is a String
+Tmpl_SYSId_sql   = "_id" // SYSId is a Int
+Tmpl_FIELD1_sql   = "FIELD1" // FIELD1 is a String
+Tmpl_FIELD2_sql   = "FIELD2" // FIELD2 is a String
+Tmpl_SYSCreated_sql   = "_created" // SYSCreated is a String
+Tmpl_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
+Tmpl_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
+Tmpl_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
+Tmpl_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
+Tmpl_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
+Tmpl_ID_sql   = "ID" // ID is a String
+Tmpl_ExtraField_sql   = "ExtraField" // ExtraField is a String
+Tmpl_ExtraField2_sql   = "ExtraField2" // ExtraField2 is a String
+Tmpl_ExtraField3_sql   = "ExtraField3" // ExtraField3 is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Tmpl_SYSId_scrn   = "SYSId" // SYSId is a Int
+Tmpl_FIELD1_scrn   = "FIELD1" // FIELD1 is a String
+Tmpl_FIELD2_scrn   = "FIELD2" // FIELD2 is a String
+Tmpl_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
+Tmpl_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
+Tmpl_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
+Tmpl_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
+Tmpl_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
+Tmpl_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
+Tmpl_ID_scrn   = "ID" // ID is a String
+Tmpl_ExtraField_scrn   = "ExtraField" // ExtraField is a String
+Tmpl_ExtraField2_scrn   = "ExtraField2" // ExtraField2 is a String
+Tmpl_ExtraField3_scrn   = "ExtraField3" // ExtraField3 is a String
 
 	/// Definitions End
 )

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:01
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type CurrencyPair_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	CodeMajorCurrencyIsoCode         string
 	CodeMajorCurrencyIsoCode_lookup    []dm.Lookup_Item
@@ -55,7 +55,7 @@ type CurrencyPair_Page struct {
 	ReciprocalActive_lookup    []dm.Lookup_Item
 	Code         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -181,15 +181,15 @@ func CurrencyPair_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CurrencyPair
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.CodeMajorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMajorCurrencyIsoCode)
-		item.CodeMinorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMinorCurrencyIsoCode)
-		item.ReciprocalActive = r.FormValue(dm.CurrencyPair_ReciprocalActive)
-		item.Code = r.FormValue(dm.CurrencyPair_Code)
+		item.CodeMajorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMajorCurrencyIsoCode_scrn)
+		item.CodeMinorCurrencyIsoCode = r.FormValue(dm.CurrencyPair_CodeMinorCurrencyIsoCode_scrn)
+		item.ReciprocalActive = r.FormValue(dm.CurrencyPair_ReciprocalActive_scrn)
+		item.Code = r.FormValue(dm.CurrencyPair_Code_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CurrencyPair_Store(item,r)	
 	http.Redirect(w, r, CurrencyPair_Redirect, http.StatusFound)
@@ -246,7 +246,7 @@ func CurrencyPair_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CurrencyPair Page 
 func currencypair_PopulatePage(rD dm.CurrencyPair, pageDetail CurrencyPair_Page) CurrencyPair_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.CodeMajorCurrencyIsoCode = rD.CodeMajorCurrencyIsoCode
 	pageDetail.CodeMinorCurrencyIsoCode = rD.CodeMinorCurrencyIsoCode
@@ -255,7 +255,7 @@ func currencypair_PopulatePage(rD dm.CurrencyPair, pageDetail CurrencyPair_Page)
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.CodeMajorCurrencyIsoCode_lookup = dao.Currency_GetLookup()
@@ -273,7 +273,7 @@ func currencypair_PopulatePage(rD dm.CurrencyPair, pageDetail CurrencyPair_Page)
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

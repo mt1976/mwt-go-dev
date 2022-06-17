@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -148,23 +148,30 @@ func salesdesk_Fetch(tsql string) (int, []dm.SalesDesk, dm.SalesDesk, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.Name  = get_String(rec, dm.SalesDesk_Name, "")
-   recItem.ReportDealsOver  = get_String(rec, dm.SalesDesk_ReportDealsOver, "")
-   recItem.ReportDealsOverCCY  = get_String(rec, dm.SalesDesk_ReportDealsOverCCY, "")
-   recItem.AccountTransferCutOffTime  = get_Time(rec, dm.SalesDesk_AccountTransferCutOffTime, "")
-   recItem.AccountTransferCutOffTimeTimeZone  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeTimeZone, "")
-   recItem.AccountTransferCutOffTimeCutOffPeriod  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod, "")
-// If there are fields below, create the methods in adaptor\SalesDesk_impl.go
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.Name  = get_String(rec, dm.SalesDesk_Name_sql, "")
+	   recItem.ReportDealsOver  = get_String(rec, dm.SalesDesk_ReportDealsOver_sql, "")
+	   recItem.ReportDealsOverCCY  = get_String(rec, dm.SalesDesk_ReportDealsOverCCY_sql, "")
+	   recItem.AccountTransferCutOffTime  = get_Time(rec, dm.SalesDesk_AccountTransferCutOffTime_sql, "")
+	   recItem.AccountTransferCutOffTimeTimeZone  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeTimeZone_sql, "")
+	   recItem.AccountTransferCutOffTimeCutOffPeriod  = get_String(rec, dm.SalesDesk_AccountTransferCutOffTimeCutOffPeriod_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\SalesDesk_impl.go
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

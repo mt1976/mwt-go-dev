@@ -9,7 +9,7 @@ import (
 func AccountTransaction_GetListByID(id string) (int, []dm.AccountTransaction, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.AccountTransaction_SQLTable)
-	tsql += " WHERE " + dm.AccountTransaction_SienaReference + " = '" + id + "'"
+	tsql += " WHERE " + dm.AccountTransaction_SienaReference_sql + " = '" + id + "'"
 	count, accounttransactionList, _, _ := accounttransaction_Fetch(tsql)
 	return count, accounttransactionList, nil
 }

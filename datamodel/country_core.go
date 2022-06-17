@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:59
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -33,10 +33,10 @@ const (
 	/// Handler Defintions
 	///
 	Country_Template     = "Country"
-	Country_TemplateList = "Country_List"
-	Country_TemplateView = "Country_View"
-	Country_TemplateEdit = "Country_Edit"
-	Country_TemplateNew  = "Country_New"
+	Country_TemplateList = "/Country/Country_List"
+	Country_TemplateView = "/Country/Country_View"
+	Country_TemplateEdit = "/Country/Country_Edit"
+	Country_TemplateNew  = "/Country/Country_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -48,13 +48,24 @@ const (
 	Country_PathSave   = "/CountrySave/"
 	Country_PathDelete = "/CountryDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Country_Code   = "Code" // Code is a String
-Country_Name   = "Name" // Name is a String
-Country_ShortCode   = "ShortCode" // ShortCode is a String
-Country_EU_EEA   = "EU_EEA" // EU_EEA is a Bool
-Country_HolidaysWeekend   = "HolidaysWeekend" // HolidaysWeekend is a String
+Country_Code_sql   = "Code" // Code is a String
+Country_Name_sql   = "Name" // Name is a String
+Country_ShortCode_sql   = "ShortCode" // ShortCode is a String
+Country_EU_EEA_sql   = "EU_EEA" // EU_EEA is a Bool
+Country_HolidaysWeekend_sql   = "HolidaysWeekend" // HolidaysWeekend is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Country_Code_scrn   = "Code" // Code is a String
+Country_Name_scrn   = "Name" // Name is a String
+Country_ShortCode_scrn   = "ShortCode" // ShortCode is a String
+Country_EU_EEA_scrn   = "EU_EEA" // EU_EEA is a Bool
+Country_HolidaysWeekend_scrn   = "HolidaysWeekend" // HolidaysWeekend is a String
 
 	/// Definitions End
 )

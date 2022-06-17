@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:07
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Message_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -59,7 +59,7 @@ type Message_Page struct {
 	SYSUpdatedBy         string
 	SYSUpdatedHost         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -185,22 +185,22 @@ func Message_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Message
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.Message_SYSId)
-		item.Id = r.FormValue(dm.Message_Id)
-		item.Message = r.FormValue(dm.Message_Message)
-		item.SYSCreated = r.FormValue(dm.Message_SYSCreated)
-		item.SYSWho = r.FormValue(dm.Message_SYSWho)
-		item.SYSHost = r.FormValue(dm.Message_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.Message_SYSUpdated)
-		item.SYSCreatedBy = r.FormValue(dm.Message_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.Message_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.Message_SYSUpdatedBy)
-		item.SYSUpdatedHost = r.FormValue(dm.Message_SYSUpdatedHost)
+		item.SYSId = r.FormValue(dm.Message_SYSId_scrn)
+		item.Id = r.FormValue(dm.Message_Id_scrn)
+		item.Message = r.FormValue(dm.Message_Message_scrn)
+		item.SYSCreated = r.FormValue(dm.Message_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Message_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Message_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Message_SYSUpdated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Message_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Message_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Message_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Message_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Message_Store(item,r)	
 	http.Redirect(w, r, Message_Redirect, http.StatusFound)
@@ -212,7 +212,7 @@ func Message_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Message Page 
 func message_PopulatePage(rD dm.Message, pageDetail Message_Page) Message_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -228,7 +228,7 @@ func message_PopulatePage(rD dm.Message, pageDetail Message_Page) Message_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -254,7 +254,7 @@ func message_PopulatePage(rD dm.Message, pageDetail Message_Page) Message_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

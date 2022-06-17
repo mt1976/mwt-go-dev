@@ -41,35 +41,35 @@ SQL Table Key | **Id**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**Apptoken**|String|true|true|false|false|||||Y|Apptoken||false|false|false|
-|**Createdate**|String|false|true|false|false|||||Y|Createdate||false|false|false|
-|**Createtime**|String|false|true|false|false|||||Y|Createtime||false|false|false|
-|**Uniqueid**|String|false|true|false|false|||||Y|Uniqueid||false|false|false|
-|**Sessiontoken**|String|false|true|false|false|||||Y|Sessiontoken||false|false|false|
-|**Username**|String|false|true|false|false|||||Y|Username||false|false|false|
-|**Password**|String|false|true|false|false|||||Y|Password||false|false|false|
-|**Userip**|String|false|true|false|false|||||Y|Userip||false|false|false|
-|**Userhost**|String|false|true|false|false|||||Y|Userhost||false|false|false|
-|**Appip**|String|false|true|false|false|||||Y|Appip||false|false|false|
-|**Apphost**|String|false|true|false|false|||||Y|Apphost||false|false|false|
-|**Issued**|String|false|true|false|false|||||Y|Issued||false|false|false|
-|**Expiry**|String|false|true|false|false|||||Y|Expiry||false|false|false|
-|**Expiryraw**|String|false|true|false|false|||||Y|Expiryraw||false|false|false|
-|**Brand**|String|false|true|false|false|||||Y|Brand||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**Id**|String|false|true|false|false|||||Y|Id||false|false|false|
-|**Expires**|Time|false|true|false|false|||||Y|Expires||false|false|false|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
-|**SessionRole**|String|false|true|false|false|||||Y|SessionRole||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**Apptoken**|String|true|true|false|false|||||Y|Apptoken||false|false|false|text||
+|**Createdate**|String|false|true|false|false|||||Y|Createdate||false|false|false|text||
+|**Createtime**|String|false|true|false|false|||||Y|Createtime||false|false|false|text||
+|**Uniqueid**|String|false|true|false|false|||||Y|Uniqueid||false|false|false|text||
+|**Sessiontoken**|String|false|true|false|false|||||Y|Sessiontoken||false|false|false|text||
+|**Username**|String|false|true|false|false|||||Y|Username||false|false|false|text||
+|**Password**|String|false|true|false|false|||||Y|Password||false|false|false|text||
+|**Userip**|String|false|true|false|false|||||Y|Userip||false|false|false|text||
+|**Userhost**|String|false|true|false|false|||||Y|Userhost||false|false|false|text||
+|**Appip**|String|false|true|false|false|||||Y|Appip||false|false|false|text||
+|**Apphost**|String|false|true|false|false|||||Y|Apphost||false|false|false|text||
+|**Issued**|String|false|true|false|false|||||Y|Issued||false|false|false|text||
+|**Expiry**|String|false|true|false|false|||||Y|Expiry||false|false|false|text||
+|**Expiryraw**|String|false|true|false|false|||||Y|Expiryraw||false|false|false|text||
+|**Brand**|String|false|true|false|false|||||Y|Brand||false|false|false|text||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
+|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**Id**|String|false|true|false|false|||||Y|Id||false|false|false|text||
+|**Expires**|Time|false|true|false|false|||||Y|Expires||false|false|false|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
+|**SessionRole**|String|false|true|false|false|||||Y|SessionRole||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,15 +79,15 @@ SQL Table Key | **Id**
 | code | **dao** | /dao/session_core.go |
 | code | **datamodel** | /datamodel/session_core.go |
 | code | **menu** | /design/menu/session.json |
-| html | **list** | /html/Session_List.html |
-| html | **view** | /html/Session_View.html |
+| html | **list** | /Session_List.html |
+| html | **view** | /Session_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:09**
+Date & Time		     | **17/06/2022** at **18:38:14**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

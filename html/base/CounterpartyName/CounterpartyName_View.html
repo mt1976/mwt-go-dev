@@ -1,0 +1,69 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CounterpartyNameEdit/?ID={{.CompID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-passport me-2" title="ID = {{.CompID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Name {{.CompID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NameFirm" aria-describedby="NameFirmHelp" placeholder="" disabled value="{{.NameFirm}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NameFirm">NameFirm</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NameCentre" aria-describedby="NameCentreHelp" placeholder="" disabled value="{{.NameCentre}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NameCentre">NameCentre</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FullName">FullName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CompID"><i class="fas fa-key me-2"></i>CompID</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

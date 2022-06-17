@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:11
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,10 +41,10 @@ const (
 	/// Handler Defintions
 	///
 	Translation_Template     = "Translation"
-	Translation_TemplateList = "Translation_List"
-	Translation_TemplateView = "Translation_View"
-	Translation_TemplateEdit = "Translation_Edit"
-	Translation_TemplateNew  = "Translation_New"
+	Translation_TemplateList = "/Translation/Translation_List"
+	Translation_TemplateView = "/Translation/Translation_View"
+	Translation_TemplateEdit = "/Translation/Translation_Edit"
+	Translation_TemplateNew  = "/Translation/Translation_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -56,21 +56,40 @@ const (
 	Translation_PathSave   = "/TranslationSave/"
 	Translation_PathDelete = "/TranslationDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Translation_SYSId   = "_id" // SYSId is a Int
-Translation_Id   = "Id" // Id is a String
-Translation_Class   = "Class" // Class is a String
-Translation_Message   = "Message" // Message is a String
-Translation_Translation   = "Translation" // Translation is a String
-Translation_SYSCreated   = "_created" // SYSCreated is a String
-Translation_SYSWho   = "_who" // SYSWho is a String
-Translation_SYSHost   = "_host" // SYSHost is a String
-Translation_SYSUpdated   = "_updated" // SYSUpdated is a String
-Translation_SYSCreatedBy   = "_createdBy" // SYSCreatedBy is a String
-Translation_SYSCreatedHost   = "_createdHost" // SYSCreatedHost is a String
-Translation_SYSUpdatedBy   = "_updatedBy" // SYSUpdatedBy is a String
-Translation_SYSUpdatedHost   = "_updatedHost" // SYSUpdatedHost is a String
+Translation_SYSId_sql   = "_id" // SYSId is a Int
+Translation_Id_sql   = "Id" // Id is a String
+Translation_Class_sql   = "Class" // Class is a String
+Translation_Message_sql   = "Message" // Message is a String
+Translation_Translation_sql   = "Translation" // Translation is a String
+Translation_SYSCreated_sql   = "_created" // SYSCreated is a String
+Translation_SYSWho_sql   = "_who" // SYSWho is a String
+Translation_SYSHost_sql   = "_host" // SYSHost is a String
+Translation_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
+Translation_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
+Translation_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
+Translation_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
+Translation_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Translation_SYSId_scrn   = "SYSId" // SYSId is a Int
+Translation_Id_scrn   = "Id" // Id is a String
+Translation_Class_scrn   = "Class" // Class is a String
+Translation_Message_scrn   = "Message" // Message is a String
+Translation_Translation_scrn   = "Translation" // Translation is a String
+Translation_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
+Translation_SYSWho_scrn   = "SYSWho" // SYSWho is a String
+Translation_SYSHost_scrn   = "SYSHost" // SYSHost is a String
+Translation_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
+Translation_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
+Translation_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
+Translation_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
+Translation_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
 )

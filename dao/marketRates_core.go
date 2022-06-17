@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:06
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -130,32 +130,32 @@ logs.Storing("MarketRates",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	ts = addData(ts, dm.MarketRates_SYSId, r.SYSId)
-	ts = addData(ts, dm.MarketRates_Id, r.Id)
-	ts = addData(ts, dm.MarketRates_Bid, r.Bid)
-	ts = addData(ts, dm.MarketRates_Mid, r.Mid)
-	ts = addData(ts, dm.MarketRates_Offer, r.Offer)
-	ts = addData(ts, dm.MarketRates_Market, r.Market)
-	ts = addData(ts, dm.MarketRates_Tenor, r.Tenor)
-	ts = addData(ts, dm.MarketRates_Series, r.Series)
-	ts = addData(ts, dm.MarketRates_Name, r.Name)
-	ts = addData(ts, dm.MarketRates_Source, r.Source)
-	ts = addData(ts, dm.MarketRates_Destination, r.Destination)
-	ts = addData(ts, dm.MarketRates_Class, r.Class)
-	ts = addData(ts, dm.MarketRates_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.MarketRates_SYSWho, r.SYSWho)
-	ts = addData(ts, dm.MarketRates_SYSHost, r.SYSHost)
-	ts = addData(ts, dm.MarketRates_Date, r.Date)
-	ts = addData(ts, dm.MarketRates_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.MarketRates_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.MarketRates_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.MarketRates_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.MarketRates_SYSUpdatedHost, r.SYSUpdatedHost)
+	ts = addData(ts, dm.MarketRates_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.MarketRates_Id_sql, r.Id)
+	ts = addData(ts, dm.MarketRates_Bid_sql, r.Bid)
+	ts = addData(ts, dm.MarketRates_Mid_sql, r.Mid)
+	ts = addData(ts, dm.MarketRates_Offer_sql, r.Offer)
+	ts = addData(ts, dm.MarketRates_Market_sql, r.Market)
+	ts = addData(ts, dm.MarketRates_Tenor_sql, r.Tenor)
+	ts = addData(ts, dm.MarketRates_Series_sql, r.Series)
+	ts = addData(ts, dm.MarketRates_Name_sql, r.Name)
+	ts = addData(ts, dm.MarketRates_Source_sql, r.Source)
+	ts = addData(ts, dm.MarketRates_Destination_sql, r.Destination)
+	ts = addData(ts, dm.MarketRates_Class_sql, r.Class)
+	ts = addData(ts, dm.MarketRates_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.MarketRates_SYSWho_sql, r.SYSWho)
+	ts = addData(ts, dm.MarketRates_SYSHost_sql, r.SYSHost)
+	ts = addData(ts, dm.MarketRates_Date_sql, r.Date)
+	ts = addData(ts, dm.MarketRates_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.MarketRates_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.MarketRates_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.MarketRates_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.MarketRates_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
@@ -187,53 +187,60 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId, "0")
-   recItem.Id  = get_String(rec, dm.MarketRates_Id, "")
-   recItem.Bid  = get_String(rec, dm.MarketRates_Bid, "")
-   recItem.Mid  = get_String(rec, dm.MarketRates_Mid, "")
-   recItem.Offer  = get_String(rec, dm.MarketRates_Offer, "")
-   recItem.Market  = get_String(rec, dm.MarketRates_Market, "")
-   recItem.Tenor  = get_String(rec, dm.MarketRates_Tenor, "")
-   recItem.Series  = get_String(rec, dm.MarketRates_Series, "")
-   recItem.Name  = get_String(rec, dm.MarketRates_Name, "")
-   recItem.Source  = get_String(rec, dm.MarketRates_Source, "")
-   recItem.Destination  = get_String(rec, dm.MarketRates_Destination, "")
-   recItem.Class  = get_String(rec, dm.MarketRates_Class, "")
-   recItem.SYSCreated  = get_String(rec, dm.MarketRates_SYSCreated, "")
-   recItem.SYSWho  = get_String(rec, dm.MarketRates_SYSWho, "")
-   recItem.SYSHost  = get_String(rec, dm.MarketRates_SYSHost, "")
-   recItem.Date  = get_String(rec, dm.MarketRates_Date, "")
-   recItem.SYSUpdated  = get_String(rec, dm.MarketRates_SYSUpdated, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.MarketRates_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost, "")
-// If there are fields below, create the methods in adaptor\MarketRates_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId_sql, "0")
+	   recItem.Id  = get_String(rec, dm.MarketRates_Id_sql, "")
+	   recItem.Bid  = get_String(rec, dm.MarketRates_Bid_sql, "")
+	   recItem.Mid  = get_String(rec, dm.MarketRates_Mid_sql, "")
+	   recItem.Offer  = get_String(rec, dm.MarketRates_Offer_sql, "")
+	   recItem.Market  = get_String(rec, dm.MarketRates_Market_sql, "")
+	   recItem.Tenor  = get_String(rec, dm.MarketRates_Tenor_sql, "")
+	   recItem.Series  = get_String(rec, dm.MarketRates_Series_sql, "")
+	   recItem.Name  = get_String(rec, dm.MarketRates_Name_sql, "")
+	   recItem.Source  = get_String(rec, dm.MarketRates_Source_sql, "")
+	   recItem.Destination  = get_String(rec, dm.MarketRates_Destination_sql, "")
+	   recItem.Class  = get_String(rec, dm.MarketRates_Class_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.MarketRates_SYSCreated_sql, "")
+	   recItem.SYSWho  = get_String(rec, dm.MarketRates_SYSWho_sql, "")
+	   recItem.SYSHost  = get_String(rec, dm.MarketRates_SYSHost_sql, "")
+	   recItem.Date  = get_String(rec, dm.MarketRates_Date_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.MarketRates_SYSUpdated_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.MarketRates_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.MarketRates_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.MarketRates_SYSUpdatedBy_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.MarketRates_SYSUpdatedHost_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\MarketRates_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

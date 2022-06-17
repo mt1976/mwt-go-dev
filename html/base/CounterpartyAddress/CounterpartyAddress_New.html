@@ -1,0 +1,117 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/CounterpartyAddressSave" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+             <div class="col h3">
+                    <i class="fas fa-passport me-2" title="ID = NEW"></i><span class="me-3">{{.Title}}</span>
+                </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartyAddressSave" onclick="/CounterpartyAddressSave" title="Save Counterparty Address"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Address"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  value="{{.NameFirm}}" required data-mdb-input-mask="">
+                <label class="form-label" for="NameFirm" >NameFirm</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  value="{{.NameCentre}}" required data-mdb-input-mask="">
+                <label class="form-label" for="NameCentre" >NameCentre</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Address1" name="Address1" aria-describedby="Address1Help" placeholder=""  value="{{.Address1}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Address1" >Address1</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Address2" name="Address2" aria-describedby="Address2Help" placeholder=""  value="{{.Address2}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Address2" >Address2</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="CityTown" name="CityTown" aria-describedby="CityTownHelp" placeholder=""  value="{{.CityTown}}"  data-mdb-input-mask="">
+                <label class="form-label" for="CityTown" >CityTown</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="County" name="County" aria-describedby="CountyHelp" placeholder=""  value="{{.County}}"  data-mdb-input-mask="">
+                <label class="form-label" for="County" >County</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="Postcode" name="Postcode" aria-describedby="PostcodeHelp" placeholder=""  value="{{.Postcode}}"  data-mdb-input-mask="">
+                <label class="form-label" for="Postcode" >Postcode</label>
+                    </div>
+                    
+        
+
+            </div></div>
+            <div class="row mb-3" ><div class="col">
+        
+         
+                    <div class="form-outline">
+                           <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required data-mdb-input-mask="">
+                <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
+                    </div>
+                    
+        
+
+            </div></div>
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

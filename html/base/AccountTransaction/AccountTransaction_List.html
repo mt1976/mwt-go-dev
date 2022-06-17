@@ -1,0 +1,81 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-landmark me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info" title="Export Account Transaction as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Account Transaction"><i class="fas fa-print me-2"></i></i>Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-center"><i class="fas fa-key me-2"></i>SienaReference</th>
+                          <th class="text-center">LegNo</th>
+                          <th class="text-center">MMLegNo</th>
+                          <th class="text-center">Narrative</th>
+                          <th class="text-center">Amount</th>
+                          <th class="text-center">StartInterestDate</th>
+                          <th class="text-center">EndInterestDate</th>
+                          <th class="text-center">Amortisation</th>
+                          <th class="text-center">InterestAmount</th>
+                          <th class="text-center">InterestAction</th>
+                          <th class="text-center">FixingDate</th>
+                          <th class="text-center">InterestCalculationDate</th>
+                          <th class="text-center">AmendmentAmount</th>
+                          <th class="text-center">DealtCcy</th>
+                          <th class="text-center">AmountDp</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          <td class="align-middle" >{{.SienaReference}}</td>
+                          <td class="align-middle" >{{.LegNo}}</td>
+                          <td class="align-middle" >{{.MMLegNo}}</td>
+                          <td class="align-middle" >{{.Narrative}}</td>
+                          <td class="align-middle" >{{.Amount}}</td>
+                          <td class="align-middle" >{{.StartInterestDate}}</td>
+                          <td class="align-middle" >{{.EndInterestDate}}</td>
+                          <td class="align-middle" >{{.Amortisation}}</td>
+                          <td class="align-middle" >{{.InterestAmount}}</td>
+                          <td class="align-middle" >{{.InterestAction}}</td>
+                          <td class="align-middle" >{{.FixingDate}}</td>
+                          <td class="align-middle" >{{.InterestCalculationDate}}</td>
+                          <td class="align-middle" >{{.AmendmentAmount}}</td>
+                          <td class="align-middle" >{{.DealtCcy}}</td>
+                          <td class="align-middle" >{{.AmountDp}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/AccountTransactionView?AccountNo={{.SienaReference}}" method="POST" title="View Account Transaction"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

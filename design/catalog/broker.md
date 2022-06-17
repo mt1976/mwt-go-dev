@@ -42,14 +42,14 @@ SQL Table Key | **Code**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|
-|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|
-|**Contact**|String|false|true|false|false|||||Y|Contact||false|false|false|
-|**Address**|String|false|true|false|false|||||Y|Address||false|false|false|
-|**LEI**|String|false|true|false|false|||||Y|LEI||false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
+|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
+|**Contact**|String|false|true|false|false|||||Y|Contact||false|false|false|text||
+|**Address**|String|false|true|false|false|||||Y|Address||false|false|false|text||
+|**LEI**|String|false|true|false|false|||||Y|LEI||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -61,17 +61,17 @@ SQL Table Key | **Code**
 | code | **dao** | /dao/broker_core.go |
 | code | **datamodel** | /datamodel/broker_core.go |
 | code | **menu** | /design/menu/broker.json |
-| html | **list** | /html/Broker_List.html |
-| html | **view** | /html/Broker_View.html |
-| html | **edit** | /html/Broker_Edit.html |
-| html | **new** | /html/Broker_New.html |
+| html | **list** | /Broker_List.html |
+| html | **view** | /Broker_View.html |
+| html | **edit** | /Broker_Edit.html |
+| html | **new** | /Broker_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:49**
+Date & Time		     | **17/06/2022** at **18:38:06**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

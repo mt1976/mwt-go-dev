@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:07
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Payee_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SourceTable         string
 	KeyCounterpartyFirm         string
@@ -73,7 +73,7 @@ type Payee_Page struct {
 	UpdatedUserId         string
 	Status         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -162,7 +162,7 @@ func Payee_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Payee Page 
 func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SourceTable = rD.SourceTable
 	pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
@@ -191,7 +191,7 @@ func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	pageDetail.Status = rD.Status
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -245,7 +245,7 @@ func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

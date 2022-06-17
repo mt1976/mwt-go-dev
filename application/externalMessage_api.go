@@ -5,11 +5,11 @@ package application
 // ----------------------------------------------------------------
 // Package              : application
 // Object 			    : ExternalMessage (externalmessage)
-// Endpoint 	        : ExternalMessage (MessageID)
+// Endpoint 	        : ExternalMessage (Message)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:04
+// Date & Time		    : 17/06/2022 at 18:38:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 

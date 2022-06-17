@@ -1,0 +1,224 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CounterpartyEdit/?ID={{.CompID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-user me-2" title="ID = {{.CompID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/CounterpartyEdit/?ID={{.CompID}}"  title="Edit Counterparty {{.CompID}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty {{.CompID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="NameCentre" name="NameCentre" class="select" data-mdb-filter="true" disabled>
+                  {{range .NameCentre_lookup}}<option value="{{.ID}}" {{if eq .ID $.NameCentre}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="NameCentre" disabled>NameCentre</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="NameFirm" name="NameFirm" class="select" data-mdb-filter="true" disabled>
+                  {{range .NameFirm_lookup}}<option value="{{.ID}}" {{if eq .ID $.NameFirm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="NameFirm" disabled>NameFirm</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="FullName">FullName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder="" disabled value="{{.TelephoneNumber}}" data-mdb-input-mask="">
+                        <label class="form-label" for="TelephoneNumber">TelephoneNumber</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="EmailAddress" aria-describedby="EmailAddressHelp" placeholder="" disabled value="{{.EmailAddress}}" data-mdb-input-mask="">
+                        <label class="form-label" for="EmailAddress">EmailAddress</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="CustomerType" name="CustomerType" class="select" data-mdb-filter="true" disabled>
+                  {{range .CustomerType_lookup}}<option value="{{.ID}}" {{if eq .ID $.CustomerType}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CustomerType" disabled>CustomerType</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder="" disabled value="{{.AccountOfficer}}" data-mdb-input-mask="">
+                        <label class="form-label" for="AccountOfficer">AccountOfficer</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="CountryCode" name="CountryCode" class="select" data-mdb-filter="true" disabled>
+                  {{range .CountryCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CountryCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CountryCode" disabled>CountryCode</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="SectorCode" name="SectorCode" class="select" data-mdb-filter="true" disabled>
+                  {{range .SectorCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.SectorCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="SectorCode" disabled>SectorCode</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="CpartyGroupName" name="CpartyGroupName" class="select" data-mdb-filter="true" disabled>
+                  {{range .CpartyGroupName_lookup}}<option value="{{.ID}}" {{if eq .ID $.CpartyGroupName}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="CpartyGroupName" disabled>CpartyGroupName</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Notes" aria-describedby="NotesHelp" placeholder="" disabled value="{{.Notes}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Notes">Notes</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="Owner" aria-describedby="OwnerHelp" placeholder="" disabled value="{{.Owner}}" data-mdb-input-mask="">
+                        <label class="form-label" for="Owner">Owner</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                  <select id="Authorised" name="Authorised" class="select" data-mdb-filter="true" disabled>
+                  {{range .Authorised_lookup}}<option value="{{.ID}}" {{if eq .ID $.Authorised}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Authorised" disabled>Authorised</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder="" disabled value="{{.NameFirmName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NameFirmName">NameFirmName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder="" disabled value="{{.NameCentreName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="NameCentreName">NameCentreName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder="" disabled value="{{.CountryCodeName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CountryCodeName">CountryCodeName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder="" disabled value="{{.SectorCodeName}}" data-mdb-input-mask="">
+                        <label class="form-label" for="SectorCodeName">SectorCodeName</label>
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}" data-mdb-input-mask="">
+                        <label class="form-label" for="CompID"><i class="fas fa-key me-2"></i>CompID</label>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

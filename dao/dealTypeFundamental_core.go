@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:04
+// Date & Time		    : 17/06/2022 at 18:38:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -213,191 +213,198 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey, "")
-   recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment, "True")
-   recItem.DefaultFrequency  = get_Int(rec, dm.DealTypeFundamental_DefaultFrequency, "0")
-   recItem.Directions  = get_String(rec, dm.DealTypeFundamental_Directions, "")
-   recItem.SettledTermDealType  = get_String(rec, dm.DealTypeFundamental_SettledTermDealType, "")
-   recItem.Optn  = get_Bool(rec, dm.DealTypeFundamental_Optn, "True")
-   recItem.AllowPledge  = get_Bool(rec, dm.DealTypeFundamental_AllowPledge, "True")
-   recItem.Takeup  = get_Bool(rec, dm.DealTypeFundamental_Takeup, "True")
-   recItem.MismatchDealType  = get_String(rec, dm.DealTypeFundamental_MismatchDealType, "")
-   recItem.SettledHedgeTermDealType  = get_String(rec, dm.DealTypeFundamental_SettledHedgeTermDealType, "")
-   recItem.SettlementCode  = get_String(rec, dm.DealTypeFundamental_SettlementCode, "")
-   recItem.TermSubType  = get_String(rec, dm.DealTypeFundamental_TermSubType, "")
-   recItem.FundingDealType  = get_String(rec, dm.DealTypeFundamental_FundingDealType, "")
-   recItem.TransferType  = get_String(rec, dm.DealTypeFundamental_TransferType, "")
-   recItem.TermDealType  = get_String(rec, dm.DealTypeFundamental_TermDealType, "")
-   recItem.NegotiableInstrumentType  = get_String(rec, dm.DealTypeFundamental_NegotiableInstrumentType, "")
-   recItem.Mismatch  = get_Bool(rec, dm.DealTypeFundamental_Mismatch, "True")
-   recItem.ComplexTransferSubType  = get_String(rec, dm.DealTypeFundamental_ComplexTransferSubType, "")
-   recItem.LayOffDealType  = get_String(rec, dm.DealTypeFundamental_LayOffDealType, "")
-   recItem.NIAccount  = get_Int(rec, dm.DealTypeFundamental_NIAccount, "0")
-   recItem.SimpleMMsubtype  = get_Int(rec, dm.DealTypeFundamental_SimpleMMsubtype, "0")
-   recItem.SwapDealType  = get_String(rec, dm.DealTypeFundamental_SwapDealType, "")
-   recItem.Positions  = get_String(rec, dm.DealTypeFundamental_Positions, "")
-   recItem.OptionOutright  = get_String(rec, dm.DealTypeFundamental_OptionOutright, "")
-   recItem.SettledHedgeSpotDealType  = get_String(rec, dm.DealTypeFundamental_SettledHedgeSpotDealType, "")
-   recItem.StraightThroughInterestMethod  = get_Bool(rec, dm.DealTypeFundamental_StraightThroughInterestMethod, "True")
-   recItem.SubType  = get_String(rec, dm.DealTypeFundamental_SubType, "")
-   recItem.Rollover  = get_Bool(rec, dm.DealTypeFundamental_Rollover, "True")
-   recItem.DefaultIssuer  = get_String(rec, dm.DealTypeFundamental_DefaultIssuer, "")
-   recItem.DefaultStartDate  = get_Int(rec, dm.DealTypeFundamental_DefaultStartDate, "0")
-   recItem.Fee  = get_String(rec, dm.DealTypeFundamental_Fee, "")
-   recItem.NDF  = get_Bool(rec, dm.DealTypeFundamental_NDF, "True")
-   recItem.FXFX  = get_Bool(rec, dm.DealTypeFundamental_FXFX, "True")
-   recItem.ONIA  = get_Bool(rec, dm.DealTypeFundamental_ONIA, "True")
-   recItem.MarginSubType  = get_Int(rec, dm.DealTypeFundamental_MarginSubType, "0")
-   recItem.TransferDealType  = get_String(rec, dm.DealTypeFundamental_TransferDealType, "")
-   recItem.IsFX  = get_Bool(rec, dm.DealTypeFundamental_IsFX, "True")
-   recItem.Ordr  = get_String(rec, dm.DealTypeFundamental_Ordr, "")
-   recItem.OptionStyle  = get_String(rec, dm.DealTypeFundamental_OptionStyle, "")
-   recItem.SpotDealType  = get_String(rec, dm.DealTypeFundamental_SpotDealType, "")
-   recItem.CanIssue  = get_Bool(rec, dm.DealTypeFundamental_CanIssue, "True")
-   recItem.CanShort  = get_Bool(rec, dm.DealTypeFundamental_CanShort, "True")
-   recItem.FXMarginTradingType  = get_Int(rec, dm.DealTypeFundamental_FXMarginTradingType, "0")
-   recItem.Internal  = get_Bool(rec, dm.DealTypeFundamental_Internal, "True")
-   recItem.TicketBasename  = get_String(rec, dm.DealTypeFundamental_TicketBasename, "")
-   recItem.InterestRateFutureType  = get_String(rec, dm.DealTypeFundamental_InterestRateFutureType, "")
-   recItem.TradingLimitProductCode  = get_String(rec, dm.DealTypeFundamental_TradingLimitProductCode, "")
-   recItem.Forward  = get_Bool(rec, dm.DealTypeFundamental_Forward, "True")
-   recItem.MaturityNotificationPeriod  = get_String(rec, dm.DealTypeFundamental_MaturityNotificationPeriod, "")
-   recItem.NotificationEvents  = get_String(rec, dm.DealTypeFundamental_NotificationEvents, "")
-   recItem.SwapSubType  = get_String(rec, dm.DealTypeFundamental_SwapSubType, "")
-   recItem.ProductCode  = get_String(rec, dm.DealTypeFundamental_ProductCode, "")
-   recItem.Funding  = get_Bool(rec, dm.DealTypeFundamental_Funding, "True")
-   recItem.AllocationPricing  = get_String(rec, dm.DealTypeFundamental_AllocationPricing, "")
-   recItem.CancelPeriod  = get_String(rec, dm.DealTypeFundamental_CancelPeriod, "")
-   recItem.MMMarginTradingType  = get_Int(rec, dm.DealTypeFundamental_MMMarginTradingType, "0")
-   recItem.OptionSpot  = get_String(rec, dm.DealTypeFundamental_OptionSpot, "")
-   recItem.Transfer  = get_Bool(rec, dm.DealTypeFundamental_Transfer, "True")
-   recItem.NotificationPeriod  = get_String(rec, dm.DealTypeFundamental_NotificationPeriod, "")
-   recItem.Paymentdateshift  = get_Int(rec, dm.DealTypeFundamental_Paymentdateshift, "0")
-   recItem.CloseOut  = get_Bool(rec, dm.DealTypeFundamental_CloseOut, "True")
-   recItem.FXOptionPricing  = get_String(rec, dm.DealTypeFundamental_FXOptionPricing, "")
-   recItem.SettledHedgeOutrightDealType  = get_String(rec, dm.DealTypeFundamental_SettledHedgeOutrightDealType, "")
-   recItem.RepoBond  = get_String(rec, dm.DealTypeFundamental_RepoBond, "")
-   recItem.RepoTerm  = get_String(rec, dm.DealTypeFundamental_RepoTerm, "")
-   recItem.RepoType  = get_Int(rec, dm.DealTypeFundamental_RepoType, "0")
-   recItem.DateRule  = get_String(rec, dm.DealTypeFundamental_DateRule, "")
-   recItem.CorpTransferDealType  = get_String(rec, dm.DealTypeFundamental_CorpTransferDealType, "")
-   recItem.GenerateFXImage  = get_Bool(rec, dm.DealTypeFundamental_GenerateFXImage, "True")
-   recItem.Variant  = get_String(rec, dm.DealTypeFundamental_Variant, "")
-   recItem.HedgeTermDealType  = get_String(rec, dm.DealTypeFundamental_HedgeTermDealType, "")
-   recItem.PricingModel  = get_String(rec, dm.DealTypeFundamental_PricingModel, "")
-   recItem.HedgeOutrightDealType  = get_String(rec, dm.DealTypeFundamental_HedgeOutrightDealType, "")
-   recItem.Fixing  = get_Bool(rec, dm.DealTypeFundamental_Fixing, "True")
-   recItem.Payment  = get_Bool(rec, dm.DealTypeFundamental_Payment, "True")
-   recItem.MT  = get_Bool(rec, dm.DealTypeFundamental_MT, "True")
-   recItem.SettlementInstructionStyle  = get_String(rec, dm.DealTypeFundamental_SettlementInstructionStyle, "")
-   recItem.QuoteHistoryRequired  = get_Bool(rec, dm.DealTypeFundamental_QuoteHistoryRequired, "True")
-   recItem.Brokerage  = get_Bool(rec, dm.DealTypeFundamental_Brokerage, "True")
-   recItem.ExposureDisabled  = get_Bool(rec, dm.DealTypeFundamental_ExposureDisabled, "True")
-   recItem.CreditLine  = get_String(rec, dm.DealTypeFundamental_CreditLine, "")
-   recItem.Encumbered  = get_Bool(rec, dm.DealTypeFundamental_Encumbered, "True")
-   recItem.InternalId  = get_Int(rec, dm.DealTypeFundamental_InternalId, "0")
-   recItem.InternalDeleted  = get_Time(rec, dm.DealTypeFundamental_InternalDeleted, "")
-   recItem.UpdatedTransactionId  = get_String(rec, dm.DealTypeFundamental_UpdatedTransactionId, "")
-   recItem.UpdatedUserId  = get_String(rec, dm.DealTypeFundamental_UpdatedUserId, "")
-   recItem.UpdatedDateTime  = get_Time(rec, dm.DealTypeFundamental_UpdatedDateTime, "")
-   recItem.DeletedTransactionId  = get_String(rec, dm.DealTypeFundamental_DeletedTransactionId, "")
-   recItem.DeletedUserId  = get_String(rec, dm.DealTypeFundamental_DeletedUserId, "")
-   recItem.ChangeType  = get_String(rec, dm.DealTypeFundamental_ChangeType, "")
-// If there are fields below, create the methods in adaptor\DealTypeFundamental_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey_sql, "")
+	   recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment_sql, "True")
+	   recItem.DefaultFrequency  = get_Int(rec, dm.DealTypeFundamental_DefaultFrequency_sql, "0")
+	   recItem.Directions  = get_String(rec, dm.DealTypeFundamental_Directions_sql, "")
+	   recItem.SettledTermDealType  = get_String(rec, dm.DealTypeFundamental_SettledTermDealType_sql, "")
+	   recItem.Optn  = get_Bool(rec, dm.DealTypeFundamental_Optn_sql, "True")
+	   recItem.AllowPledge  = get_Bool(rec, dm.DealTypeFundamental_AllowPledge_sql, "True")
+	   recItem.Takeup  = get_Bool(rec, dm.DealTypeFundamental_Takeup_sql, "True")
+	   recItem.MismatchDealType  = get_String(rec, dm.DealTypeFundamental_MismatchDealType_sql, "")
+	   recItem.SettledHedgeTermDealType  = get_String(rec, dm.DealTypeFundamental_SettledHedgeTermDealType_sql, "")
+	   recItem.SettlementCode  = get_String(rec, dm.DealTypeFundamental_SettlementCode_sql, "")
+	   recItem.TermSubType  = get_String(rec, dm.DealTypeFundamental_TermSubType_sql, "")
+	   recItem.FundingDealType  = get_String(rec, dm.DealTypeFundamental_FundingDealType_sql, "")
+	   recItem.TransferType  = get_String(rec, dm.DealTypeFundamental_TransferType_sql, "")
+	   recItem.TermDealType  = get_String(rec, dm.DealTypeFundamental_TermDealType_sql, "")
+	   recItem.NegotiableInstrumentType  = get_String(rec, dm.DealTypeFundamental_NegotiableInstrumentType_sql, "")
+	   recItem.Mismatch  = get_Bool(rec, dm.DealTypeFundamental_Mismatch_sql, "True")
+	   recItem.ComplexTransferSubType  = get_String(rec, dm.DealTypeFundamental_ComplexTransferSubType_sql, "")
+	   recItem.LayOffDealType  = get_String(rec, dm.DealTypeFundamental_LayOffDealType_sql, "")
+	   recItem.NIAccount  = get_Int(rec, dm.DealTypeFundamental_NIAccount_sql, "0")
+	   recItem.SimpleMMsubtype  = get_Int(rec, dm.DealTypeFundamental_SimpleMMsubtype_sql, "0")
+	   recItem.SwapDealType  = get_String(rec, dm.DealTypeFundamental_SwapDealType_sql, "")
+	   recItem.Positions  = get_String(rec, dm.DealTypeFundamental_Positions_sql, "")
+	   recItem.OptionOutright  = get_String(rec, dm.DealTypeFundamental_OptionOutright_sql, "")
+	   recItem.SettledHedgeSpotDealType  = get_String(rec, dm.DealTypeFundamental_SettledHedgeSpotDealType_sql, "")
+	   recItem.StraightThroughInterestMethod  = get_Bool(rec, dm.DealTypeFundamental_StraightThroughInterestMethod_sql, "True")
+	   recItem.SubType  = get_String(rec, dm.DealTypeFundamental_SubType_sql, "")
+	   recItem.Rollover  = get_Bool(rec, dm.DealTypeFundamental_Rollover_sql, "True")
+	   recItem.DefaultIssuer  = get_String(rec, dm.DealTypeFundamental_DefaultIssuer_sql, "")
+	   recItem.DefaultStartDate  = get_Int(rec, dm.DealTypeFundamental_DefaultStartDate_sql, "0")
+	   recItem.Fee  = get_String(rec, dm.DealTypeFundamental_Fee_sql, "")
+	   recItem.NDF  = get_Bool(rec, dm.DealTypeFundamental_NDF_sql, "True")
+	   recItem.FXFX  = get_Bool(rec, dm.DealTypeFundamental_FXFX_sql, "True")
+	   recItem.ONIA  = get_Bool(rec, dm.DealTypeFundamental_ONIA_sql, "True")
+	   recItem.MarginSubType  = get_Int(rec, dm.DealTypeFundamental_MarginSubType_sql, "0")
+	   recItem.TransferDealType  = get_String(rec, dm.DealTypeFundamental_TransferDealType_sql, "")
+	   recItem.IsFX  = get_Bool(rec, dm.DealTypeFundamental_IsFX_sql, "True")
+	   recItem.Ordr  = get_String(rec, dm.DealTypeFundamental_Ordr_sql, "")
+	   recItem.OptionStyle  = get_String(rec, dm.DealTypeFundamental_OptionStyle_sql, "")
+	   recItem.SpotDealType  = get_String(rec, dm.DealTypeFundamental_SpotDealType_sql, "")
+	   recItem.CanIssue  = get_Bool(rec, dm.DealTypeFundamental_CanIssue_sql, "True")
+	   recItem.CanShort  = get_Bool(rec, dm.DealTypeFundamental_CanShort_sql, "True")
+	   recItem.FXMarginTradingType  = get_Int(rec, dm.DealTypeFundamental_FXMarginTradingType_sql, "0")
+	   recItem.Internal  = get_Bool(rec, dm.DealTypeFundamental_Internal_sql, "True")
+	   recItem.TicketBasename  = get_String(rec, dm.DealTypeFundamental_TicketBasename_sql, "")
+	   recItem.InterestRateFutureType  = get_String(rec, dm.DealTypeFundamental_InterestRateFutureType_sql, "")
+	   recItem.TradingLimitProductCode  = get_String(rec, dm.DealTypeFundamental_TradingLimitProductCode_sql, "")
+	   recItem.Forward  = get_Bool(rec, dm.DealTypeFundamental_Forward_sql, "True")
+	   recItem.MaturityNotificationPeriod  = get_String(rec, dm.DealTypeFundamental_MaturityNotificationPeriod_sql, "")
+	   recItem.NotificationEvents  = get_String(rec, dm.DealTypeFundamental_NotificationEvents_sql, "")
+	   recItem.SwapSubType  = get_String(rec, dm.DealTypeFundamental_SwapSubType_sql, "")
+	   recItem.ProductCode  = get_String(rec, dm.DealTypeFundamental_ProductCode_sql, "")
+	   recItem.Funding  = get_Bool(rec, dm.DealTypeFundamental_Funding_sql, "True")
+	   recItem.AllocationPricing  = get_String(rec, dm.DealTypeFundamental_AllocationPricing_sql, "")
+	   recItem.CancelPeriod  = get_String(rec, dm.DealTypeFundamental_CancelPeriod_sql, "")
+	   recItem.MMMarginTradingType  = get_Int(rec, dm.DealTypeFundamental_MMMarginTradingType_sql, "0")
+	   recItem.OptionSpot  = get_String(rec, dm.DealTypeFundamental_OptionSpot_sql, "")
+	   recItem.Transfer  = get_Bool(rec, dm.DealTypeFundamental_Transfer_sql, "True")
+	   recItem.NotificationPeriod  = get_String(rec, dm.DealTypeFundamental_NotificationPeriod_sql, "")
+	   recItem.Paymentdateshift  = get_Int(rec, dm.DealTypeFundamental_Paymentdateshift_sql, "0")
+	   recItem.CloseOut  = get_Bool(rec, dm.DealTypeFundamental_CloseOut_sql, "True")
+	   recItem.FXOptionPricing  = get_String(rec, dm.DealTypeFundamental_FXOptionPricing_sql, "")
+	   recItem.SettledHedgeOutrightDealType  = get_String(rec, dm.DealTypeFundamental_SettledHedgeOutrightDealType_sql, "")
+	   recItem.RepoBond  = get_String(rec, dm.DealTypeFundamental_RepoBond_sql, "")
+	   recItem.RepoTerm  = get_String(rec, dm.DealTypeFundamental_RepoTerm_sql, "")
+	   recItem.RepoType  = get_Int(rec, dm.DealTypeFundamental_RepoType_sql, "0")
+	   recItem.DateRule  = get_String(rec, dm.DealTypeFundamental_DateRule_sql, "")
+	   recItem.CorpTransferDealType  = get_String(rec, dm.DealTypeFundamental_CorpTransferDealType_sql, "")
+	   recItem.GenerateFXImage  = get_Bool(rec, dm.DealTypeFundamental_GenerateFXImage_sql, "True")
+	   recItem.Variant  = get_String(rec, dm.DealTypeFundamental_Variant_sql, "")
+	   recItem.HedgeTermDealType  = get_String(rec, dm.DealTypeFundamental_HedgeTermDealType_sql, "")
+	   recItem.PricingModel  = get_String(rec, dm.DealTypeFundamental_PricingModel_sql, "")
+	   recItem.HedgeOutrightDealType  = get_String(rec, dm.DealTypeFundamental_HedgeOutrightDealType_sql, "")
+	   recItem.Fixing  = get_Bool(rec, dm.DealTypeFundamental_Fixing_sql, "True")
+	   recItem.Payment  = get_Bool(rec, dm.DealTypeFundamental_Payment_sql, "True")
+	   recItem.MT  = get_Bool(rec, dm.DealTypeFundamental_MT_sql, "True")
+	   recItem.SettlementInstructionStyle  = get_String(rec, dm.DealTypeFundamental_SettlementInstructionStyle_sql, "")
+	   recItem.QuoteHistoryRequired  = get_Bool(rec, dm.DealTypeFundamental_QuoteHistoryRequired_sql, "True")
+	   recItem.Brokerage  = get_Bool(rec, dm.DealTypeFundamental_Brokerage_sql, "True")
+	   recItem.ExposureDisabled  = get_Bool(rec, dm.DealTypeFundamental_ExposureDisabled_sql, "True")
+	   recItem.CreditLine  = get_String(rec, dm.DealTypeFundamental_CreditLine_sql, "")
+	   recItem.Encumbered  = get_Bool(rec, dm.DealTypeFundamental_Encumbered_sql, "True")
+	   recItem.InternalId  = get_Int(rec, dm.DealTypeFundamental_InternalId_sql, "0")
+	   recItem.InternalDeleted  = get_Time(rec, dm.DealTypeFundamental_InternalDeleted_sql, "")
+	   recItem.UpdatedTransactionId  = get_String(rec, dm.DealTypeFundamental_UpdatedTransactionId_sql, "")
+	   recItem.UpdatedUserId  = get_String(rec, dm.DealTypeFundamental_UpdatedUserId_sql, "")
+	   recItem.UpdatedDateTime  = get_Time(rec, dm.DealTypeFundamental_UpdatedDateTime_sql, "")
+	   recItem.DeletedTransactionId  = get_String(rec, dm.DealTypeFundamental_DeletedTransactionId_sql, "")
+	   recItem.DeletedUserId  = get_String(rec, dm.DealTypeFundamental_DeletedUserId_sql, "")
+	   recItem.ChangeType  = get_String(rec, dm.DealTypeFundamental_ChangeType_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\DealTypeFundamental_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

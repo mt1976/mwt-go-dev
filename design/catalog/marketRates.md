@@ -42,29 +42,29 @@ SQL Table Key | **Id**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**Id**|String|true|true|false|false|||||Y|id||false|false|false|
-|**Bid**|String|false|true|false|false|||||Y|bid||false|false|false|
-|**Mid**|String|false|true|false|false|||||Y|mid||false|false|false|
-|**Offer**|String|false|true|false|false|||||Y|offer||false|false|false|
-|**Market**|String|false|true|false|false|||||Y|market||false|false|false|
-|**Tenor**|String|false|true|false|false|||||Y|tenor||false|false|false|
-|**Series**|String|false|true|false|false|||||Y|series||false|false|false|
-|**Name**|String|false|true|false|false|||||Y|name||false|false|false|
-|**Source**|String|false|true|false|false|||||Y|source||false|false|false|
-|**Destination**|String|false|true|false|false|||||Y|destination||false|false|false|
-|**Class**|String|false|true|false|false|||||Y|class||false|false|false|
-|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|
-|**Date**|String|false|true|false|false|||||Y|date||false|false|false|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**Id**|String|true|true|false|false|||||Y|id||false|false|false|text||
+|**Bid**|String|false|true|false|false|||||Y|bid||false|false|false|text||
+|**Mid**|String|false|true|false|false|||||Y|mid||false|false|false|text||
+|**Offer**|String|false|true|false|false|||||Y|offer||false|false|false|text||
+|**Market**|String|false|true|false|false|||||Y|market||false|false|false|text||
+|**Tenor**|String|false|true|false|false|||||Y|tenor||false|false|false|text||
+|**Series**|String|false|true|false|false|||||Y|series||false|false|false|text||
+|**Name**|String|false|true|false|false|||||Y|name||false|false|false|text||
+|**Source**|String|false|true|false|false|||||Y|source||false|false|false|text||
+|**Destination**|String|false|true|false|false|||||Y|destination||false|false|false|text||
+|**Class**|String|false|true|false|false|||||Y|class||false|false|false|text||
+|**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
+|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
+|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
+|**Date**|String|false|true|false|false|||||Y|date||false|false|false|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -75,15 +75,15 @@ SQL Table Key | **Id**
 | code | **dao** | /dao/marketRates_core.go |
 | code | **datamodel** | /datamodel/marketRates_core.go |
 | code | **menu** | /design/menu/marketRates.json |
-| html | **list** | /html/MarketRates_List.html |
-| html | **view** | /html/MarketRates_View.html |
+| html | **list** | /MarketRates_List.html |
+| html | **view** | /MarketRates_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:06**
+Date & Time		     | **17/06/2022** at **18:38:12**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

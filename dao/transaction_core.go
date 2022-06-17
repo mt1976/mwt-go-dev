@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:46
+// Date & Time		    : 17/06/2022 at 18:38:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -237,239 +237,246 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SienaReference  = get_String(rec, dm.Transaction_SienaReference, "")
-   recItem.Status  = get_String(rec, dm.Transaction_Status, "")
-   recItem.ValueDate  = get_Time(rec, dm.Transaction_ValueDate, "")
-   recItem.MaturityDate  = get_Time(rec, dm.Transaction_MaturityDate, "")
-   recItem.ContractNumber  = get_String(rec, dm.Transaction_ContractNumber, "")
-   recItem.ExternalReference  = get_String(rec, dm.Transaction_ExternalReference, "")
-   recItem.Book  = get_String(rec, dm.Transaction_Book, "")
-   recItem.MandatedUser  = get_String(rec, dm.Transaction_MandatedUser, "")
-   recItem.Portfolio  = get_String(rec, dm.Transaction_Portfolio, "")
-   recItem.AgreementId  = get_Int(rec, dm.Transaction_AgreementId, "0")
-   recItem.BackOfficeRefNo  = get_String(rec, dm.Transaction_BackOfficeRefNo, "")
-   recItem.ISIN  = get_String(rec, dm.Transaction_ISIN, "")
-   recItem.UTI  = get_String(rec, dm.Transaction_UTI, "")
-   recItem.BookName  = get_String(rec, dm.Transaction_BookName, "")
-   recItem.Centre  = get_String(rec, dm.Transaction_Centre, "")
-   recItem.Firm  = get_String(rec, dm.Transaction_Firm, "")
-   recItem.DealTypeShortName  = get_String(rec, dm.Transaction_DealTypeShortName, "")
-   recItem.FullDealType  = get_String(rec, dm.Transaction_FullDealType, "")
-   recItem.TradeDate  = get_Time(rec, dm.Transaction_TradeDate, "")
-   recItem.DealtCcy  = get_String(rec, dm.Transaction_DealtCcy, "")
-   recItem.DealtAmount  = get_Float(rec, dm.Transaction_DealtAmount, "0.00")
-   recItem.AgainstAmount  = get_Float(rec, dm.Transaction_AgainstAmount, "0.00")
-   recItem.AgainstCcy  = get_String(rec, dm.Transaction_AgainstCcy, "")
-   recItem.AllInRate  = get_Float(rec, dm.Transaction_AllInRate, "0.00")
-   recItem.MktRate  = get_Float(rec, dm.Transaction_MktRate, "0.00")
-   recItem.SettleCcy  = get_String(rec, dm.Transaction_SettleCcy, "")
-   recItem.Direction  = get_String(rec, dm.Transaction_Direction, "")
-   recItem.NpvRate  = get_Float(rec, dm.Transaction_NpvRate, "0.00")
-   recItem.OriginUser  = get_String(rec, dm.Transaction_OriginUser, "")
-   recItem.PayInstruction  = get_String(rec, dm.Transaction_PayInstruction, "")
-   recItem.ReceiptInstruction  = get_String(rec, dm.Transaction_ReceiptInstruction, "")
-   recItem.NIName  = get_String(rec, dm.Transaction_NIName, "")
-   recItem.CCYPair  = get_String(rec, dm.Transaction_CCYPair, "")
-   recItem.Instrument  = get_String(rec, dm.Transaction_Instrument, "")
-   recItem.PortfolioName  = get_String(rec, dm.Transaction_PortfolioName, "")
-   recItem.RVDate  = get_Time(rec, dm.Transaction_RVDate, "")
-   recItem.RVMTM  = get_Float(rec, dm.Transaction_RVMTM, "0.00")
-   recItem.CounterBook  = get_String(rec, dm.Transaction_CounterBook, "")
-   recItem.CounterBookName  = get_String(rec, dm.Transaction_CounterBookName, "")
-   recItem.Party  = get_String(rec, dm.Transaction_Party, "")
-   recItem.PartyName  = get_String(rec, dm.Transaction_PartyName, "")
-   recItem.NameCentre  = get_String(rec, dm.Transaction_NameCentre, "")
-   recItem.NameFirm  = get_String(rec, dm.Transaction_NameFirm, "")
-   recItem.CustomerExternalView  = get_String(rec, dm.Transaction_CustomerExternalView, "")
-   recItem.CustomerSienaView  = get_String(rec, dm.Transaction_CustomerSienaView, "")
-   recItem.CompID  = get_String(rec, dm.Transaction_CompID, "")
-   recItem.SienaDealer  = get_String(rec, dm.Transaction_SienaDealer, "")
-   recItem.DealOwner  = get_String(rec, dm.Transaction_DealOwner, "")
-   recItem.DealOwnerMnemonic  = get_String(rec, dm.Transaction_DealOwnerMnemonic, "")
-   recItem.EditedByUser  = get_String(rec, dm.Transaction_EditedByUser, "")
-   recItem.UTCOriginTime  = get_String(rec, dm.Transaction_UTCOriginTime, "")
-   recItem.UTCUpdateTime  = get_String(rec, dm.Transaction_UTCUpdateTime, "")
-   recItem.MarginTrading  = get_Bool(rec, dm.Transaction_MarginTrading, "True")
-   recItem.SwapPoints  = get_Float(rec, dm.Transaction_SwapPoints, "0.00")
-   recItem.SpotDate  = get_Time(rec, dm.Transaction_SpotDate, "")
-   recItem.SpotRate  = get_Float(rec, dm.Transaction_SpotRate, "0.00")
-   recItem.MktSpotRate  = get_Float(rec, dm.Transaction_MktSpotRate, "0.00")
-   recItem.SpotSalesMargin  = get_Float(rec, dm.Transaction_SpotSalesMargin, "0.00")
-   recItem.SpotChlMargin  = get_Float(rec, dm.Transaction_SpotChlMargin, "0.00")
-   recItem.RerouteCcy  = get_String(rec, dm.Transaction_RerouteCcy, "")
-   recItem.CustomerPayInstruction  = get_String(rec, dm.Transaction_CustomerPayInstruction, "")
-   recItem.CustomerReceiptInstruction  = get_String(rec, dm.Transaction_CustomerReceiptInstruction, "")
-   recItem.BackOfficeNotes  = get_String(rec, dm.Transaction_BackOfficeNotes, "")
-   recItem.CustomerStatementNotes  = get_String(rec, dm.Transaction_CustomerStatementNotes, "")
-   recItem.NotesMargin  = get_Float(rec, dm.Transaction_NotesMargin, "0.00")
-   recItem.RequestedBy  = get_String(rec, dm.Transaction_RequestedBy, "")
-   recItem.EditReason  = get_String(rec, dm.Transaction_EditReason, "")
-   recItem.EditOtherReason  = get_String(rec, dm.Transaction_EditOtherReason, "")
-   recItem.NICleanPrice  = get_Float(rec, dm.Transaction_NICleanPrice, "0.00")
-   recItem.NIDirtyPrice  = get_Float(rec, dm.Transaction_NIDirtyPrice, "0.00")
-   recItem.NIYield  = get_Float(rec, dm.Transaction_NIYield, "0.00")
-   recItem.NIClearingSystem  = get_String(rec, dm.Transaction_NIClearingSystem, "")
-   recItem.Acceptor  = get_String(rec, dm.Transaction_Acceptor, "")
-   recItem.NIDiscount  = get_Float(rec, dm.Transaction_NIDiscount, "0.00")
-   recItem.FastPay  = get_Bool(rec, dm.Transaction_FastPay, "True")
-   recItem.PaymentFee  = get_Float(rec, dm.Transaction_PaymentFee, "0.00")
-   recItem.PaymentFeePolicy  = get_String(rec, dm.Transaction_PaymentFeePolicy, "")
-   recItem.PaymentReason  = get_String(rec, dm.Transaction_PaymentReason, "")
-   recItem.PaymentDate  = get_Time(rec, dm.Transaction_PaymentDate, "")
-   recItem.SettlementDate  = get_Time(rec, dm.Transaction_SettlementDate, "")
-   recItem.FixingDate  = get_Time(rec, dm.Transaction_FixingDate, "")
-   recItem.VenueUTI  = get_String(rec, dm.Transaction_VenueUTI, "")
-   recItem.EditVersion  = get_Int(rec, dm.Transaction_EditVersion, "0")
-   recItem.BrokeragePercentage  = get_Float(rec, dm.Transaction_BrokeragePercentage, "0.00")
-   recItem.BrokerageAmount  = get_Float(rec, dm.Transaction_BrokerageAmount, "0.00")
-   recItem.BrokerageCurrency  = get_String(rec, dm.Transaction_BrokerageCurrency, "")
-   recItem.BrokerageDate  = get_Time(rec, dm.Transaction_BrokerageDate, "")
-   recItem.AccountName  = get_String(rec, dm.Transaction_AccountName, "")
-   recItem.AccountNumber  = get_String(rec, dm.Transaction_AccountNumber, "")
-   recItem.CashBalance  = get_Float(rec, dm.Transaction_CashBalance, "0.00")
-   recItem.DebitFrequency  = get_String(rec, dm.Transaction_DebitFrequency, "")
-   recItem.CreditFrequency  = get_String(rec, dm.Transaction_CreditFrequency, "")
-   recItem.ManuallyQuoted  = get_String(rec, dm.Transaction_ManuallyQuoted, "")
-   recItem.LedgerBalance  = get_Float(rec, dm.Transaction_LedgerBalance, "0.00")
-   recItem.SettAmtOutstanding  = get_Float(rec, dm.Transaction_SettAmtOutstanding, "0.00")
-   recItem.FeePercentage  = get_Float(rec, dm.Transaction_FeePercentage, "0.00")
-   recItem.FeeAmount  = get_Float(rec, dm.Transaction_FeeAmount, "0.00")
-   recItem.Venue  = get_String(rec, dm.Transaction_Venue, "")
-   recItem.EURAmount  = get_Float(rec, dm.Transaction_EURAmount, "0.00")
-   recItem.EUROtherAmount  = get_Float(rec, dm.Transaction_EUROtherAmount, "0.00")
-   recItem.LEI  = get_String(rec, dm.Transaction_LEI, "")
-   recItem.Equity  = get_String(rec, dm.Transaction_Equity, "")
-   recItem.Shares  = get_Int(rec, dm.Transaction_Shares, "0")
-   recItem.QuoteExpiryDate  = get_Time(rec, dm.Transaction_QuoteExpiryDate, "")
-   recItem.Commodity  = get_String(rec, dm.Transaction_Commodity, "")
-   recItem.PaymentSystemSienaView  = get_String(rec, dm.Transaction_PaymentSystemSienaView, "")
-   recItem.PaymentSystemExternalView  = get_String(rec, dm.Transaction_PaymentSystemExternalView, "")
-   recItem.SalesProfit  = get_Float(rec, dm.Transaction_SalesProfit, "0.00")
-   recItem.RejectReason  = get_String(rec, dm.Transaction_RejectReason, "")
-   recItem.PaymentError  = get_String(rec, dm.Transaction_PaymentError, "")
-   recItem.RepoPrincipal  = get_Float(rec, dm.Transaction_RepoPrincipal, "0.00")
-   recItem.FixingFrequency  = get_String(rec, dm.Transaction_FixingFrequency, "")
-
-
-// If there are fields below, create the methods in adaptor\Transaction_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   recItem.Dealt  = adaptor.Transaction_Dealt_OnFetch_impl (recItem)
-   recItem.Against  = adaptor.Transaction_Against_OnFetch_impl (recItem)
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SienaReference  = get_String(rec, dm.Transaction_SienaReference_sql, "")
+	   recItem.Status  = get_String(rec, dm.Transaction_Status_sql, "")
+	   recItem.ValueDate  = get_Time(rec, dm.Transaction_ValueDate_sql, "")
+	   recItem.MaturityDate  = get_Time(rec, dm.Transaction_MaturityDate_sql, "")
+	   recItem.ContractNumber  = get_String(rec, dm.Transaction_ContractNumber_sql, "")
+	   recItem.ExternalReference  = get_String(rec, dm.Transaction_ExternalReference_sql, "")
+	   recItem.Book  = get_String(rec, dm.Transaction_Book_sql, "")
+	   recItem.MandatedUser  = get_String(rec, dm.Transaction_MandatedUser_sql, "")
+	   recItem.Portfolio  = get_String(rec, dm.Transaction_Portfolio_sql, "")
+	   recItem.AgreementId  = get_Int(rec, dm.Transaction_AgreementId_sql, "0")
+	   recItem.BackOfficeRefNo  = get_String(rec, dm.Transaction_BackOfficeRefNo_sql, "")
+	   recItem.ISIN  = get_String(rec, dm.Transaction_ISIN_sql, "")
+	   recItem.UTI  = get_String(rec, dm.Transaction_UTI_sql, "")
+	   recItem.BookName  = get_String(rec, dm.Transaction_BookName_sql, "")
+	   recItem.Centre  = get_String(rec, dm.Transaction_Centre_sql, "")
+	   recItem.Firm  = get_String(rec, dm.Transaction_Firm_sql, "")
+	   recItem.DealTypeShortName  = get_String(rec, dm.Transaction_DealTypeShortName_sql, "")
+	   recItem.FullDealType  = get_String(rec, dm.Transaction_FullDealType_sql, "")
+	   recItem.TradeDate  = get_Time(rec, dm.Transaction_TradeDate_sql, "")
+	   recItem.DealtCcy  = get_String(rec, dm.Transaction_DealtCcy_sql, "")
+	   recItem.DealtAmount  = get_Float(rec, dm.Transaction_DealtAmount_sql, "0.00")
+	   recItem.AgainstAmount  = get_Float(rec, dm.Transaction_AgainstAmount_sql, "0.00")
+	   recItem.AgainstCcy  = get_String(rec, dm.Transaction_AgainstCcy_sql, "")
+	   recItem.AllInRate  = get_Float(rec, dm.Transaction_AllInRate_sql, "0.00")
+	   recItem.MktRate  = get_Float(rec, dm.Transaction_MktRate_sql, "0.00")
+	   recItem.SettleCcy  = get_String(rec, dm.Transaction_SettleCcy_sql, "")
+	   recItem.Direction  = get_String(rec, dm.Transaction_Direction_sql, "")
+	   recItem.NpvRate  = get_Float(rec, dm.Transaction_NpvRate_sql, "0.00")
+	   recItem.OriginUser  = get_String(rec, dm.Transaction_OriginUser_sql, "")
+	   recItem.PayInstruction  = get_String(rec, dm.Transaction_PayInstruction_sql, "")
+	   recItem.ReceiptInstruction  = get_String(rec, dm.Transaction_ReceiptInstruction_sql, "")
+	   recItem.NIName  = get_String(rec, dm.Transaction_NIName_sql, "")
+	   recItem.CCYPair  = get_String(rec, dm.Transaction_CCYPair_sql, "")
+	   recItem.Instrument  = get_String(rec, dm.Transaction_Instrument_sql, "")
+	   recItem.PortfolioName  = get_String(rec, dm.Transaction_PortfolioName_sql, "")
+	   recItem.RVDate  = get_Time(rec, dm.Transaction_RVDate_sql, "")
+	   recItem.RVMTM  = get_Float(rec, dm.Transaction_RVMTM_sql, "0.00")
+	   recItem.CounterBook  = get_String(rec, dm.Transaction_CounterBook_sql, "")
+	   recItem.CounterBookName  = get_String(rec, dm.Transaction_CounterBookName_sql, "")
+	   recItem.Party  = get_String(rec, dm.Transaction_Party_sql, "")
+	   recItem.PartyName  = get_String(rec, dm.Transaction_PartyName_sql, "")
+	   recItem.NameCentre  = get_String(rec, dm.Transaction_NameCentre_sql, "")
+	   recItem.NameFirm  = get_String(rec, dm.Transaction_NameFirm_sql, "")
+	   recItem.CustomerExternalView  = get_String(rec, dm.Transaction_CustomerExternalView_sql, "")
+	   recItem.CustomerSienaView  = get_String(rec, dm.Transaction_CustomerSienaView_sql, "")
+	   recItem.CompID  = get_String(rec, dm.Transaction_CompID_sql, "")
+	   recItem.SienaDealer  = get_String(rec, dm.Transaction_SienaDealer_sql, "")
+	   recItem.DealOwner  = get_String(rec, dm.Transaction_DealOwner_sql, "")
+	   recItem.DealOwnerMnemonic  = get_String(rec, dm.Transaction_DealOwnerMnemonic_sql, "")
+	   recItem.EditedByUser  = get_String(rec, dm.Transaction_EditedByUser_sql, "")
+	   recItem.UTCOriginTime  = get_String(rec, dm.Transaction_UTCOriginTime_sql, "")
+	   recItem.UTCUpdateTime  = get_String(rec, dm.Transaction_UTCUpdateTime_sql, "")
+	   recItem.MarginTrading  = get_Bool(rec, dm.Transaction_MarginTrading_sql, "True")
+	   recItem.SwapPoints  = get_Float(rec, dm.Transaction_SwapPoints_sql, "0.00")
+	   recItem.SpotDate  = get_Time(rec, dm.Transaction_SpotDate_sql, "")
+	   recItem.SpotRate  = get_Float(rec, dm.Transaction_SpotRate_sql, "0.00")
+	   recItem.MktSpotRate  = get_Float(rec, dm.Transaction_MktSpotRate_sql, "0.00")
+	   recItem.SpotSalesMargin  = get_Float(rec, dm.Transaction_SpotSalesMargin_sql, "0.00")
+	   recItem.SpotChlMargin  = get_Float(rec, dm.Transaction_SpotChlMargin_sql, "0.00")
+	   recItem.RerouteCcy  = get_String(rec, dm.Transaction_RerouteCcy_sql, "")
+	   recItem.CustomerPayInstruction  = get_String(rec, dm.Transaction_CustomerPayInstruction_sql, "")
+	   recItem.CustomerReceiptInstruction  = get_String(rec, dm.Transaction_CustomerReceiptInstruction_sql, "")
+	   recItem.BackOfficeNotes  = get_String(rec, dm.Transaction_BackOfficeNotes_sql, "")
+	   recItem.CustomerStatementNotes  = get_String(rec, dm.Transaction_CustomerStatementNotes_sql, "")
+	   recItem.NotesMargin  = get_Float(rec, dm.Transaction_NotesMargin_sql, "0.00")
+	   recItem.RequestedBy  = get_String(rec, dm.Transaction_RequestedBy_sql, "")
+	   recItem.EditReason  = get_String(rec, dm.Transaction_EditReason_sql, "")
+	   recItem.EditOtherReason  = get_String(rec, dm.Transaction_EditOtherReason_sql, "")
+	   recItem.NICleanPrice  = get_Float(rec, dm.Transaction_NICleanPrice_sql, "0.00")
+	   recItem.NIDirtyPrice  = get_Float(rec, dm.Transaction_NIDirtyPrice_sql, "0.00")
+	   recItem.NIYield  = get_Float(rec, dm.Transaction_NIYield_sql, "0.00")
+	   recItem.NIClearingSystem  = get_String(rec, dm.Transaction_NIClearingSystem_sql, "")
+	   recItem.Acceptor  = get_String(rec, dm.Transaction_Acceptor_sql, "")
+	   recItem.NIDiscount  = get_Float(rec, dm.Transaction_NIDiscount_sql, "0.00")
+	   recItem.FastPay  = get_Bool(rec, dm.Transaction_FastPay_sql, "True")
+	   recItem.PaymentFee  = get_Float(rec, dm.Transaction_PaymentFee_sql, "0.00")
+	   recItem.PaymentFeePolicy  = get_String(rec, dm.Transaction_PaymentFeePolicy_sql, "")
+	   recItem.PaymentReason  = get_String(rec, dm.Transaction_PaymentReason_sql, "")
+	   recItem.PaymentDate  = get_Time(rec, dm.Transaction_PaymentDate_sql, "")
+	   recItem.SettlementDate  = get_Time(rec, dm.Transaction_SettlementDate_sql, "")
+	   recItem.FixingDate  = get_Time(rec, dm.Transaction_FixingDate_sql, "")
+	   recItem.VenueUTI  = get_String(rec, dm.Transaction_VenueUTI_sql, "")
+	   recItem.EditVersion  = get_Int(rec, dm.Transaction_EditVersion_sql, "0")
+	   recItem.BrokeragePercentage  = get_Float(rec, dm.Transaction_BrokeragePercentage_sql, "0.00")
+	   recItem.BrokerageAmount  = get_Float(rec, dm.Transaction_BrokerageAmount_sql, "0.00")
+	   recItem.BrokerageCurrency  = get_String(rec, dm.Transaction_BrokerageCurrency_sql, "")
+	   recItem.BrokerageDate  = get_Time(rec, dm.Transaction_BrokerageDate_sql, "")
+	   recItem.AccountName  = get_String(rec, dm.Transaction_AccountName_sql, "")
+	   recItem.AccountNumber  = get_String(rec, dm.Transaction_AccountNumber_sql, "")
+	   recItem.CashBalance  = get_Float(rec, dm.Transaction_CashBalance_sql, "0.00")
+	   recItem.DebitFrequency  = get_String(rec, dm.Transaction_DebitFrequency_sql, "")
+	   recItem.CreditFrequency  = get_String(rec, dm.Transaction_CreditFrequency_sql, "")
+	   recItem.ManuallyQuoted  = get_String(rec, dm.Transaction_ManuallyQuoted_sql, "")
+	   recItem.LedgerBalance  = get_Float(rec, dm.Transaction_LedgerBalance_sql, "0.00")
+	   recItem.SettAmtOutstanding  = get_Float(rec, dm.Transaction_SettAmtOutstanding_sql, "0.00")
+	   recItem.FeePercentage  = get_Float(rec, dm.Transaction_FeePercentage_sql, "0.00")
+	   recItem.FeeAmount  = get_Float(rec, dm.Transaction_FeeAmount_sql, "0.00")
+	   recItem.Venue  = get_String(rec, dm.Transaction_Venue_sql, "")
+	   recItem.EURAmount  = get_Float(rec, dm.Transaction_EURAmount_sql, "0.00")
+	   recItem.EUROtherAmount  = get_Float(rec, dm.Transaction_EUROtherAmount_sql, "0.00")
+	   recItem.LEI  = get_String(rec, dm.Transaction_LEI_sql, "")
+	   recItem.Equity  = get_String(rec, dm.Transaction_Equity_sql, "")
+	   recItem.Shares  = get_Int(rec, dm.Transaction_Shares_sql, "0")
+	   recItem.QuoteExpiryDate  = get_Time(rec, dm.Transaction_QuoteExpiryDate_sql, "")
+	   recItem.Commodity  = get_String(rec, dm.Transaction_Commodity_sql, "")
+	   recItem.PaymentSystemSienaView  = get_String(rec, dm.Transaction_PaymentSystemSienaView_sql, "")
+	   recItem.PaymentSystemExternalView  = get_String(rec, dm.Transaction_PaymentSystemExternalView_sql, "")
+	   recItem.SalesProfit  = get_Float(rec, dm.Transaction_SalesProfit_sql, "0.00")
+	   recItem.RejectReason  = get_String(rec, dm.Transaction_RejectReason_sql, "")
+	   recItem.PaymentError  = get_String(rec, dm.Transaction_PaymentError_sql, "")
+	   recItem.RepoPrincipal  = get_Float(rec, dm.Transaction_RepoPrincipal_sql, "0.00")
+	   recItem.FixingFrequency  = get_String(rec, dm.Transaction_FixingFrequency_sql, "")
+	
+	
+	
+	// If there are fields below, create the methods in adaptor\Transaction_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	   recItem.Dealt  = adaptor.Transaction_Dealt_OnFetch_impl (recItem)
+	   recItem.Against  = adaptor.Transaction_Against_OnFetch_impl (recItem)
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

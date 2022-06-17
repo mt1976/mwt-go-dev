@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:01
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -35,10 +35,10 @@ const (
 	/// Handler Defintions
 	///
 	CurrencyPair_Template     = "CurrencyPair"
-	CurrencyPair_TemplateList = "CurrencyPair_List"
-	CurrencyPair_TemplateView = "CurrencyPair_View"
-	CurrencyPair_TemplateEdit = "CurrencyPair_Edit"
-	CurrencyPair_TemplateNew  = "CurrencyPair_New"
+	CurrencyPair_TemplateList = "/CurrencyPair/CurrencyPair_List"
+	CurrencyPair_TemplateView = "/CurrencyPair/CurrencyPair_View"
+	CurrencyPair_TemplateEdit = "/CurrencyPair/CurrencyPair_Edit"
+	CurrencyPair_TemplateNew  = "/CurrencyPair/CurrencyPair_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -50,12 +50,22 @@ const (
 	CurrencyPair_PathSave   = "/CurrencyPairSave/"
 	CurrencyPair_PathDelete = "/CurrencyPairDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-CurrencyPair_CodeMajorCurrencyIsoCode   = "CodeMajorCurrencyIsoCode" // CodeMajorCurrencyIsoCode is a String
-CurrencyPair_CodeMinorCurrencyIsoCode   = "CodeMinorCurrencyIsoCode" // CodeMinorCurrencyIsoCode is a String
-CurrencyPair_ReciprocalActive   = "ReciprocalActive" // ReciprocalActive is a Bool
-CurrencyPair_Code   = "Code" // Code is a String
+CurrencyPair_CodeMajorCurrencyIsoCode_sql   = "CodeMajorCurrencyIsoCode" // CodeMajorCurrencyIsoCode is a String
+CurrencyPair_CodeMinorCurrencyIsoCode_sql   = "CodeMinorCurrencyIsoCode" // CodeMinorCurrencyIsoCode is a String
+CurrencyPair_ReciprocalActive_sql   = "ReciprocalActive" // ReciprocalActive is a Bool
+CurrencyPair_Code_sql   = "Code" // Code is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+CurrencyPair_CodeMajorCurrencyIsoCode_scrn   = "CodeMajorCurrencyIsoCode" // CodeMajorCurrencyIsoCode is a String
+CurrencyPair_CodeMinorCurrencyIsoCode_scrn   = "CodeMinorCurrencyIsoCode" // CodeMinorCurrencyIsoCode is a String
+CurrencyPair_ReciprocalActive_scrn   = "ReciprocalActive" // ReciprocalActive is a Bool
+CurrencyPair_Code_scrn   = "Code" // Code is a String
 
 	/// Definitions End
 )

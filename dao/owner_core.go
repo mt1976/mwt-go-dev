@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:07
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -157,41 +157,48 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.UserName  = get_String(rec, dm.Owner_UserName, "")
-   recItem.FullName  = get_String(rec, dm.Owner_FullName, "")
-   recItem.Type  = get_String(rec, dm.Owner_Type, "")
-   recItem.TradingEntity  = get_String(rec, dm.Owner_TradingEntity, "")
-   recItem.DefaultEnterBook  = get_String(rec, dm.Owner_DefaultEnterBook, "")
-   recItem.EmailAddress  = get_String(rec, dm.Owner_EmailAddress, "")
-   recItem.Enabled  = get_String(rec, dm.Owner_Enabled, "")
-   recItem.ExternalUserIds  = get_String(rec, dm.Owner_ExternalUserIds, "")
-   recItem.Language  = get_String(rec, dm.Owner_Language, "")
-   recItem.LocalCurrency  = get_String(rec, dm.Owner_LocalCurrency, "")
-   recItem.Role  = get_String(rec, dm.Owner_Role, "")
-   recItem.TelephoneNumber  = get_String(rec, dm.Owner_TelephoneNumber, "")
-   recItem.TokenId  = get_String(rec, dm.Owner_TokenId, "")
-   recItem.Entity  = get_String(rec, dm.Owner_Entity, "")
-   recItem.UserCode  = get_String(rec, dm.Owner_UserCode, "")
-// If there are fields below, create the methods in adaptor\Owner_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.UserName  = get_String(rec, dm.Owner_UserName_sql, "")
+	   recItem.FullName  = get_String(rec, dm.Owner_FullName_sql, "")
+	   recItem.Type  = get_String(rec, dm.Owner_Type_sql, "")
+	   recItem.TradingEntity  = get_String(rec, dm.Owner_TradingEntity_sql, "")
+	   recItem.DefaultEnterBook  = get_String(rec, dm.Owner_DefaultEnterBook_sql, "")
+	   recItem.EmailAddress  = get_String(rec, dm.Owner_EmailAddress_sql, "")
+	   recItem.Enabled  = get_String(rec, dm.Owner_Enabled_sql, "")
+	   recItem.ExternalUserIds  = get_String(rec, dm.Owner_ExternalUserIds_sql, "")
+	   recItem.Language  = get_String(rec, dm.Owner_Language_sql, "")
+	   recItem.LocalCurrency  = get_String(rec, dm.Owner_LocalCurrency_sql, "")
+	   recItem.Role  = get_String(rec, dm.Owner_Role_sql, "")
+	   recItem.TelephoneNumber  = get_String(rec, dm.Owner_TelephoneNumber_sql, "")
+	   recItem.TokenId  = get_String(rec, dm.Owner_TokenId_sql, "")
+	   recItem.Entity  = get_String(rec, dm.Owner_Entity_sql, "")
+	   recItem.UserCode  = get_String(rec, dm.Owner_UserCode_sql, "")
+	
+	// If there are fields below, create the methods in adaptor\Owner_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

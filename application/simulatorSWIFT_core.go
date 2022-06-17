@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:10
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type SimulatorSWIFT_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
 	FileName         string
@@ -53,7 +53,7 @@ type SimulatorSWIFT_Page struct {
 	MessageFmt         string
 	Action         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -179,16 +179,16 @@ func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.SimulatorSWIFT
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.ID = r.FormValue(dm.SimulatorSWIFT_ID)
-		item.FileName = r.FormValue(dm.SimulatorSWIFT_FileName)
-		item.MessageRaw = r.FormValue(dm.SimulatorSWIFT_MessageRaw)
-		item.MessageFmt = r.FormValue(dm.SimulatorSWIFT_MessageFmt)
-		item.Action = r.FormValue(dm.SimulatorSWIFT_Action)
+		item.ID = r.FormValue(dm.SimulatorSWIFT_ID_scrn)
+		item.FileName = r.FormValue(dm.SimulatorSWIFT_FileName_scrn)
+		item.MessageRaw = r.FormValue(dm.SimulatorSWIFT_MessageRaw_scrn)
+		item.MessageFmt = r.FormValue(dm.SimulatorSWIFT_MessageFmt_scrn)
+		item.Action = r.FormValue(dm.SimulatorSWIFT_Action_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.SimulatorSWIFT_Store(item,r)	
 	http.Redirect(w, r, SimulatorSWIFT_Redirect, http.StatusFound)
@@ -245,7 +245,7 @@ func SimulatorSWIFT_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the SimulatorSWIFT Page 
 func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT_Page) SimulatorSWIFT_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.FileName = rD.FileName
@@ -255,7 +255,7 @@ func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -269,7 +269,7 @@ func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

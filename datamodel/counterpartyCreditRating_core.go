@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:54
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,10 +34,10 @@ const (
 	/// Handler Defintions
 	///
 	CounterpartyCreditRating_Template     = "CounterpartyCreditRating"
-	CounterpartyCreditRating_TemplateList = "CounterpartyCreditRating_List"
-	CounterpartyCreditRating_TemplateView = "CounterpartyCreditRating_View"
-	CounterpartyCreditRating_TemplateEdit = "CounterpartyCreditRating_Edit"
-	CounterpartyCreditRating_TemplateNew  = "CounterpartyCreditRating_New"
+	CounterpartyCreditRating_TemplateList = "/CounterpartyCreditRating/CounterpartyCreditRating_List"
+	CounterpartyCreditRating_TemplateView = "/CounterpartyCreditRating/CounterpartyCreditRating_View"
+	CounterpartyCreditRating_TemplateEdit = "/CounterpartyCreditRating/CounterpartyCreditRating_Edit"
+	CounterpartyCreditRating_TemplateNew  = "/CounterpartyCreditRating/CounterpartyCreditRating_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -49,14 +49,26 @@ const (
 	CounterpartyCreditRating_PathSave   = "/CounterpartyCreditRatingSave/"
 	CounterpartyCreditRating_PathDelete = "/CounterpartyCreditRatingDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-CounterpartyCreditRating_NameFirm   = "NameFirm" // NameFirm is a String
-CounterpartyCreditRating_NameCentre   = "NameCentre" // NameCentre is a String
-CounterpartyCreditRating_CreditRatingUsage   = "CreditRatingUsage" // CreditRatingUsage is a String
-CounterpartyCreditRating_CreditRatingAgency   = "CreditRatingAgency" // CreditRatingAgency is a String
-CounterpartyCreditRating_CreditRatingName   = "CreditRatingName" // CreditRatingName is a String
-CounterpartyCreditRating_CompID   = "CompID" // CompID is a String
+CounterpartyCreditRating_NameFirm_sql   = "NameFirm" // NameFirm is a String
+CounterpartyCreditRating_NameCentre_sql   = "NameCentre" // NameCentre is a String
+CounterpartyCreditRating_CreditRatingUsage_sql   = "CreditRatingUsage" // CreditRatingUsage is a String
+CounterpartyCreditRating_CreditRatingAgency_sql   = "CreditRatingAgency" // CreditRatingAgency is a String
+CounterpartyCreditRating_CreditRatingName_sql   = "CreditRatingName" // CreditRatingName is a String
+CounterpartyCreditRating_CompID_sql   = "CompID" // CompID is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+CounterpartyCreditRating_NameFirm_scrn   = "NameFirm" // NameFirm is a String
+CounterpartyCreditRating_NameCentre_scrn   = "NameCentre" // NameCentre is a String
+CounterpartyCreditRating_CreditRatingUsage_scrn   = "CreditRatingUsage" // CreditRatingUsage is a String
+CounterpartyCreditRating_CreditRatingAgency_scrn   = "CreditRatingAgency" // CreditRatingAgency is a String
+CounterpartyCreditRating_CreditRatingName_scrn   = "CreditRatingName" // CreditRatingName is a String
+CounterpartyCreditRating_CompID_scrn   = "CompID" // CompID is a String
 
 	/// Definitions End
 )

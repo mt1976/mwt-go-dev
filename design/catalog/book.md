@@ -42,17 +42,17 @@ SQL Table Key | **BookName**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**BookName**|String|true|true|false|false|||||Y|BookName||false|false|false|
-|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|
-|**PLManage**|String|false|true|false|false|||||Y|PLManage||false|false|false|
-|**PLTransfer**|String|false|true|false|false|||||Y|PLTransfer||false|false|false|
-|**DerivePL**|Bool|false|true|false|false|||||Y|DerivePL|True|false|false|false|
-|**CostOfCarry**|Bool|false|true|false|false|||||Y|CostOfCarry|True|false|false|false|
-|**CostOfFunding**|Bool|false|true|false|false|||||Y|CostOfFunding|True|false|false|false|
-|**LotAllocationMethod**|String|false|true|false|false|||||Y|LotAllocationMethod||false|false|false|
-|**InternalId**|Int|true|true|false|false|||||Y|InternalId|0|false|false|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**BookName**|String|true|true|false|false|||||Y|BookName||false|false|false|text||
+|**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
+|**PLManage**|String|false|true|false|false|||||Y|PLManage||false|false|false|text||
+|**PLTransfer**|String|false|true|false|false|||||Y|PLTransfer||false|false|false|text||
+|**DerivePL**|Bool|false|true|false|false|||||Y|DerivePL|True|false|false|false|text||
+|**CostOfCarry**|Bool|false|true|false|false|||||Y|CostOfCarry|True|false|false|false|text||
+|**CostOfFunding**|Bool|false|true|false|false|||||Y|CostOfFunding|True|false|false|false|text||
+|**LotAllocationMethod**|String|false|true|false|false|||||Y|LotAllocationMethod||false|false|false|text||
+|**InternalId**|Int|true|true|false|false|||||Y|InternalId|0|false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -64,16 +64,16 @@ SQL Table Key | **BookName**
 | code | **dao** | /dao/book_core.go |
 | code | **datamodel** | /datamodel/book_core.go |
 | code | **menu** | /design/menu/book.json |
-| html | **list** | /html/Book_List.html |
-| html | **view** | /html/Book_View.html |
-| html | **edit** | /html/Book_Edit.html |
+| html | **list** | /Book_List.html |
+| html | **view** | /Book_View.html |
+| html | **edit** | /Book_Edit.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:31:49**
+Date & Time		     | **17/06/2022** at **18:38:06**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

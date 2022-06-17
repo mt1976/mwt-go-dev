@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,10 +40,10 @@ const (
 	/// Handler Defintions
 	///
 	Portfolio_Template     = "Portfolio"
-	Portfolio_TemplateList = "Portfolio_List"
-	Portfolio_TemplateView = "Portfolio_View"
-	Portfolio_TemplateEdit = "Portfolio_Edit"
-	Portfolio_TemplateNew  = "Portfolio_New"
+	Portfolio_TemplateList = "/Portfolio/Portfolio_List"
+	Portfolio_TemplateView = "/Portfolio/Portfolio_View"
+	Portfolio_TemplateEdit = "/Portfolio/Portfolio_Edit"
+	Portfolio_TemplateNew  = "/Portfolio/Portfolio_New"
 	///
 	/// Handler Monitor Paths
 	///
@@ -55,20 +55,38 @@ const (
 	Portfolio_PathSave   = "/PortfolioSave/"
 	Portfolio_PathDelete = "/PortfolioDelete/"
 	///
+	///
 	/// SQL Field Definitions
 	///
-Portfolio_Code   = "Code" // Code is a String
-Portfolio_Description1   = "Description1" // Description1 is a String
-Portfolio_Description2   = "Description2" // Description2 is a String
-Portfolio_IsDefault   = "isDefault" // IsDefault is a Bool
-Portfolio_InternalId   = "InternalId" // InternalId is a Int
-Portfolio_InternalDeleted   = "InternalDeleted" // InternalDeleted is a Time
-Portfolio_UpdatedTransactionId   = "UpdatedTransactionId" // UpdatedTransactionId is a String
-Portfolio_UpdatedUserId   = "UpdatedUserId" // UpdatedUserId is a String
-Portfolio_UpdatedDateTime   = "UpdatedDateTime" // UpdatedDateTime is a Time
-Portfolio_DeletedTransactionId   = "DeletedTransactionId" // DeletedTransactionId is a String
-Portfolio_DeletedUserId   = "DeletedUserId" // DeletedUserId is a String
-Portfolio_ChangeType   = "ChangeType" // ChangeType is a String
+Portfolio_Code_sql   = "Code" // Code is a String
+Portfolio_Description1_sql   = "Description1" // Description1 is a String
+Portfolio_Description2_sql   = "Description2" // Description2 is a String
+Portfolio_IsDefault_sql   = "isDefault" // IsDefault is a Bool
+Portfolio_InternalId_sql   = "InternalId" // InternalId is a Int
+Portfolio_InternalDeleted_sql   = "InternalDeleted" // InternalDeleted is a Time
+Portfolio_UpdatedTransactionId_sql   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+Portfolio_UpdatedUserId_sql   = "UpdatedUserId" // UpdatedUserId is a String
+Portfolio_UpdatedDateTime_sql   = "UpdatedDateTime" // UpdatedDateTime is a Time
+Portfolio_DeletedTransactionId_sql   = "DeletedTransactionId" // DeletedTransactionId is a String
+Portfolio_DeletedUserId_sql   = "DeletedUserId" // DeletedUserId is a String
+Portfolio_ChangeType_sql   = "ChangeType" // ChangeType is a String
+
+	/// Definitions End
+
+	/// Application Field Definitions
+	///
+Portfolio_Code_scrn   = "Code" // Code is a String
+Portfolio_Description1_scrn   = "Description1" // Description1 is a String
+Portfolio_Description2_scrn   = "Description2" // Description2 is a String
+Portfolio_IsDefault_scrn   = "IsDefault" // IsDefault is a Bool
+Portfolio_InternalId_scrn   = "InternalId" // InternalId is a Int
+Portfolio_InternalDeleted_scrn   = "InternalDeleted" // InternalDeleted is a Time
+Portfolio_UpdatedTransactionId_scrn   = "UpdatedTransactionId" // UpdatedTransactionId is a String
+Portfolio_UpdatedUserId_scrn   = "UpdatedUserId" // UpdatedUserId is a String
+Portfolio_UpdatedDateTime_scrn   = "UpdatedDateTime" // UpdatedDateTime is a Time
+Portfolio_DeletedTransactionId_scrn   = "DeletedTransactionId" // DeletedTransactionId is a String
+Portfolio_DeletedUserId_scrn   = "DeletedUserId" // DeletedUserId is a String
+Portfolio_ChangeType_scrn   = "ChangeType" // ChangeType is a String
 
 	/// Definitions End
 )

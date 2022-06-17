@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:05
+// Date & Time		    : 17/06/2022 at 18:38:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type NegotiableInstrument_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	Id         string
@@ -84,7 +84,7 @@ type NegotiableInstrument_Page struct {
 	SYSCreatedHost         string
 	SYSUpdatedBy         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -181,47 +181,47 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.NegotiableInstrument
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.SYSId = r.FormValue(dm.NegotiableInstrument_SYSId)
-		item.Id = r.FormValue(dm.NegotiableInstrument_Id)
-		item.LongName = r.FormValue(dm.NegotiableInstrument_LongName)
-		item.Isin = r.FormValue(dm.NegotiableInstrument_Isin)
-		item.Tidm = r.FormValue(dm.NegotiableInstrument_Tidm)
-		item.Sedol = r.FormValue(dm.NegotiableInstrument_Sedol)
-		item.IssueDate = r.FormValue(dm.NegotiableInstrument_IssueDate)
-		item.MaturityDate = r.FormValue(dm.NegotiableInstrument_MaturityDate)
-		item.CouponValue = r.FormValue(dm.NegotiableInstrument_CouponValue)
-		item.CouponType = r.FormValue(dm.NegotiableInstrument_CouponType)
-		item.Segment = r.FormValue(dm.NegotiableInstrument_Segment)
-		item.Sector = r.FormValue(dm.NegotiableInstrument_Sector)
-		item.CodeConventionCalculateAccrual = r.FormValue(dm.NegotiableInstrument_CodeConventionCalculateAccrual)
-		item.MinimumDenomination = r.FormValue(dm.NegotiableInstrument_MinimumDenomination)
-		item.DenominationCurrency = r.FormValue(dm.NegotiableInstrument_DenominationCurrency)
-		item.TradingCurrency = r.FormValue(dm.NegotiableInstrument_TradingCurrency)
-		item.Type = r.FormValue(dm.NegotiableInstrument_Type)
-		item.FlatYield = r.FormValue(dm.NegotiableInstrument_FlatYield)
-		item.PaymentCouponDate = r.FormValue(dm.NegotiableInstrument_PaymentCouponDate)
-		item.PeriodOfCoupon = r.FormValue(dm.NegotiableInstrument_PeriodOfCoupon)
-		item.ExCouponDate = r.FormValue(dm.NegotiableInstrument_ExCouponDate)
-		item.DateOfIndexInflation = r.FormValue(dm.NegotiableInstrument_DateOfIndexInflation)
-		item.UnitOfQuotation = r.FormValue(dm.NegotiableInstrument_UnitOfQuotation)
-		item.SYSCreated = r.FormValue(dm.NegotiableInstrument_SYSCreated)
-		item.SYSWho = r.FormValue(dm.NegotiableInstrument_SYSWho)
-		item.SYSHost = r.FormValue(dm.NegotiableInstrument_SYSHost)
-		item.SYSUpdated = r.FormValue(dm.NegotiableInstrument_SYSUpdated)
-		item.Issuer = r.FormValue(dm.NegotiableInstrument_Issuer)
-		item.IssueAmount = r.FormValue(dm.NegotiableInstrument_IssueAmount)
-		item.RunningYield = r.FormValue(dm.NegotiableInstrument_RunningYield)
-		item.LEI = r.FormValue(dm.NegotiableInstrument_LEI)
-		item.CUSIP = r.FormValue(dm.NegotiableInstrument_CUSIP)
-		item.SYSUpdatedHost = r.FormValue(dm.NegotiableInstrument_SYSUpdatedHost)
-		item.SYSCreatedBy = r.FormValue(dm.NegotiableInstrument_SYSCreatedBy)
-		item.SYSCreatedHost = r.FormValue(dm.NegotiableInstrument_SYSCreatedHost)
-		item.SYSUpdatedBy = r.FormValue(dm.NegotiableInstrument_SYSUpdatedBy)
+		item.SYSId = r.FormValue(dm.NegotiableInstrument_SYSId_scrn)
+		item.Id = r.FormValue(dm.NegotiableInstrument_Id_scrn)
+		item.LongName = r.FormValue(dm.NegotiableInstrument_LongName_scrn)
+		item.Isin = r.FormValue(dm.NegotiableInstrument_Isin_scrn)
+		item.Tidm = r.FormValue(dm.NegotiableInstrument_Tidm_scrn)
+		item.Sedol = r.FormValue(dm.NegotiableInstrument_Sedol_scrn)
+		item.IssueDate = r.FormValue(dm.NegotiableInstrument_IssueDate_scrn)
+		item.MaturityDate = r.FormValue(dm.NegotiableInstrument_MaturityDate_scrn)
+		item.CouponValue = r.FormValue(dm.NegotiableInstrument_CouponValue_scrn)
+		item.CouponType = r.FormValue(dm.NegotiableInstrument_CouponType_scrn)
+		item.Segment = r.FormValue(dm.NegotiableInstrument_Segment_scrn)
+		item.Sector = r.FormValue(dm.NegotiableInstrument_Sector_scrn)
+		item.CodeConventionCalculateAccrual = r.FormValue(dm.NegotiableInstrument_CodeConventionCalculateAccrual_scrn)
+		item.MinimumDenomination = r.FormValue(dm.NegotiableInstrument_MinimumDenomination_scrn)
+		item.DenominationCurrency = r.FormValue(dm.NegotiableInstrument_DenominationCurrency_scrn)
+		item.TradingCurrency = r.FormValue(dm.NegotiableInstrument_TradingCurrency_scrn)
+		item.Type = r.FormValue(dm.NegotiableInstrument_Type_scrn)
+		item.FlatYield = r.FormValue(dm.NegotiableInstrument_FlatYield_scrn)
+		item.PaymentCouponDate = r.FormValue(dm.NegotiableInstrument_PaymentCouponDate_scrn)
+		item.PeriodOfCoupon = r.FormValue(dm.NegotiableInstrument_PeriodOfCoupon_scrn)
+		item.ExCouponDate = r.FormValue(dm.NegotiableInstrument_ExCouponDate_scrn)
+		item.DateOfIndexInflation = r.FormValue(dm.NegotiableInstrument_DateOfIndexInflation_scrn)
+		item.UnitOfQuotation = r.FormValue(dm.NegotiableInstrument_UnitOfQuotation_scrn)
+		item.SYSCreated = r.FormValue(dm.NegotiableInstrument_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.NegotiableInstrument_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.NegotiableInstrument_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.NegotiableInstrument_SYSUpdated_scrn)
+		item.Issuer = r.FormValue(dm.NegotiableInstrument_Issuer_scrn)
+		item.IssueAmount = r.FormValue(dm.NegotiableInstrument_IssueAmount_scrn)
+		item.RunningYield = r.FormValue(dm.NegotiableInstrument_RunningYield_scrn)
+		item.LEI = r.FormValue(dm.NegotiableInstrument_LEI_scrn)
+		item.CUSIP = r.FormValue(dm.NegotiableInstrument_CUSIP_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.NegotiableInstrument_SYSUpdatedHost_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.NegotiableInstrument_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.NegotiableInstrument_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.NegotiableInstrument_SYSUpdatedBy_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.NegotiableInstrument_Store(item,r)	
 	http.Redirect(w, r, NegotiableInstrument_Redirect, http.StatusFound)
@@ -233,7 +233,7 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the NegotiableInstrument Page 
 func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail NegotiableInstrument_Page) NegotiableInstrument_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -274,7 +274,7 @@ func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail Ne
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -350,7 +350,7 @@ func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail Ne
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

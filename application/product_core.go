@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:08
+// Date & Time		    : 17/06/2022 at 18:38:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Product_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
 	Name         string
@@ -60,7 +60,7 @@ type Product_Page struct {
 	DeletedUserId         string
 	ChangeType         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -186,23 +186,23 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Product
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Code = r.FormValue(dm.Product_Code)
-		item.Name = r.FormValue(dm.Product_Name)
-		item.Factor = r.FormValue(dm.Product_Factor)
-		item.MaxTermPrecedence = r.FormValue(dm.Product_MaxTermPrecedence)
-		item.InternalId = r.FormValue(dm.Product_InternalId)
-		item.InternalDeleted = r.FormValue(dm.Product_InternalDeleted)
-		item.UpdatedTransactionId = r.FormValue(dm.Product_UpdatedTransactionId)
-		item.UpdatedUserId = r.FormValue(dm.Product_UpdatedUserId)
-		item.UpdatedDateTime = r.FormValue(dm.Product_UpdatedDateTime)
-		item.DeletedTransactionId = r.FormValue(dm.Product_DeletedTransactionId)
-		item.DeletedUserId = r.FormValue(dm.Product_DeletedUserId)
-		item.ChangeType = r.FormValue(dm.Product_ChangeType)
+		item.Code = r.FormValue(dm.Product_Code_scrn)
+		item.Name = r.FormValue(dm.Product_Name_scrn)
+		item.Factor = r.FormValue(dm.Product_Factor_scrn)
+		item.MaxTermPrecedence = r.FormValue(dm.Product_MaxTermPrecedence_scrn)
+		item.InternalId = r.FormValue(dm.Product_InternalId_scrn)
+		item.InternalDeleted = r.FormValue(dm.Product_InternalDeleted_scrn)
+		item.UpdatedTransactionId = r.FormValue(dm.Product_UpdatedTransactionId_scrn)
+		item.UpdatedUserId = r.FormValue(dm.Product_UpdatedUserId_scrn)
+		item.UpdatedDateTime = r.FormValue(dm.Product_UpdatedDateTime_scrn)
+		item.DeletedTransactionId = r.FormValue(dm.Product_DeletedTransactionId_scrn)
+		item.DeletedUserId = r.FormValue(dm.Product_DeletedUserId_scrn)
+		item.ChangeType = r.FormValue(dm.Product_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Product_Store(item,r)	
 	http.Redirect(w, r, Product_Redirect, http.StatusFound)
@@ -259,7 +259,7 @@ func Product_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Product Page 
 func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -276,7 +276,7 @@ func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -304,7 +304,7 @@ func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

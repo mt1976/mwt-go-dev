@@ -42,21 +42,21 @@ SQL Table Key | **ID**
 
 
 ##  Properties / Fields
-| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal |
-| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: |
-|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|
-|**FIELD1**|String|false|true|false|false|LL|YN|||Y|FIELD1|N|false|false|false|
-|**FIELD2**|String|false|true|false|false|OL|Firm|FirmName|FullName|Y|FIELD2||false|false|false|
-|**SYSCreated**|String|false|true|false|true|||||H|_created||false|false|true|
-|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|
-|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|
-|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|
-|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|
-|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|
-|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|
-|**ExtraField**|String|false|false|true|false|||||Y|||false|true|false|
-|**ExtraField2**|String|false|false|true|false|||||Y||Hummous|false|false|false|
-|**ExtraField3**|String|false|false|true|false|FL|Firm|Firm|FullName|Y|||false|true|false|
+| Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
+| -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
+|**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
+|**FIELD1**|String|false|true|false|false|LL|YN|||Y|FIELD1|N|false|false|false|text||
+|**FIELD2**|String|false|true|false|false|OL|Firm|FirmName|FullName|Y|FIELD2||false|false|false|text||
+|**SYSCreated**|String|false|true|false|true|||||H|_created||false|false|true|text||
+|**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
+|**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
+|**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
+|**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
+|**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
+|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|text||
+|**ExtraField**|String|false|false|true|false|||||Y|||false|true|false|text||
+|**ExtraField2**|String|false|false|true|false|||||Y||Hummous|false|false|false|text||
+|**ExtraField3**|String|false|false|true|false|FL|Firm|Firm|FullName|Y|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -69,17 +69,17 @@ SQL Table Key | **ID**
 | code | **datamodel** | /datamodel/tmpl_core.go |
 | code | **job** | /jobs/tmpl_core.go |
 | code | **menu** | /design/menu/tmpl.json |
-| html | **list** | /html/Tmpl_List.html |
-| html | **view** | /html/Tmpl_View.html |
-| html | **edit** | /html/Tmpl_Edit.html |
-| html | **new** | /html/Tmpl_New.html |
+| html | **list** | /Tmpl_List.html |
+| html | **view** | /Tmpl_View.html |
+| html | **edit** | /Tmpl_Edit.html |
+| html | **new** | /Tmpl_New.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **14/06/2022** at **21:32:11**
+Date & Time		     | **17/06/2022** at **18:38:14**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

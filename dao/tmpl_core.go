@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:32:11
+// Date & Time		    : 17/06/2022 at 18:38:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -122,24 +122,24 @@ logs.Storing("Tmpl",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	ts = addData(ts, dm.Tmpl_SYSId, r.SYSId)
-	ts = addData(ts, dm.Tmpl_FIELD1, r.FIELD1)
-	ts = addData(ts, dm.Tmpl_FIELD2, r.FIELD2)
-	ts = addData(ts, dm.Tmpl_SYSCreated, r.SYSCreated)
-	ts = addData(ts, dm.Tmpl_SYSCreatedBy, r.SYSCreatedBy)
-	ts = addData(ts, dm.Tmpl_SYSCreatedHost, r.SYSCreatedHost)
-	ts = addData(ts, dm.Tmpl_SYSUpdated, r.SYSUpdated)
-	ts = addData(ts, dm.Tmpl_SYSUpdatedHost, r.SYSUpdatedHost)
-	ts = addData(ts, dm.Tmpl_SYSUpdatedBy, r.SYSUpdatedBy)
-	ts = addData(ts, dm.Tmpl_ID, r.ID)
+	ts = addData(ts, dm.Tmpl_SYSId_sql, r.SYSId)
+	ts = addData(ts, dm.Tmpl_FIELD1_sql, r.FIELD1)
+	ts = addData(ts, dm.Tmpl_FIELD2_sql, r.FIELD2)
+	ts = addData(ts, dm.Tmpl_SYSCreated_sql, r.SYSCreated)
+	ts = addData(ts, dm.Tmpl_SYSCreatedBy_sql, r.SYSCreatedBy)
+	ts = addData(ts, dm.Tmpl_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Tmpl_SYSUpdated_sql, r.SYSUpdated)
+	ts = addData(ts, dm.Tmpl_SYSUpdatedHost_sql, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Tmpl_SYSUpdatedBy_sql, r.SYSUpdatedBy)
+	ts = addData(ts, dm.Tmpl_ID_sql, r.ID)
 	
 	
 	
 		
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Tmpl_SQLTable)
@@ -171,37 +171,44 @@ func tmpl_Fetch(tsql string) (int, []dm.Tmpl, dm.Tmpl, error) {
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - START
-   recItem.SYSId  = get_Int(rec, dm.Tmpl_SYSId, "0")
-   recItem.FIELD1  = get_String(rec, dm.Tmpl_FIELD1, "N")
-   recItem.FIELD2  = get_String(rec, dm.Tmpl_FIELD2, "")
-   recItem.SYSCreated  = get_String(rec, dm.Tmpl_SYSCreated, "")
-   recItem.SYSCreatedBy  = get_String(rec, dm.Tmpl_SYSCreatedBy, "")
-   recItem.SYSCreatedHost  = get_String(rec, dm.Tmpl_SYSCreatedHost, "")
-   recItem.SYSUpdated  = get_String(rec, dm.Tmpl_SYSUpdated, "")
-   recItem.SYSUpdatedHost  = get_String(rec, dm.Tmpl_SYSUpdatedHost, "")
-   recItem.SYSUpdatedBy  = get_String(rec, dm.Tmpl_SYSUpdatedBy, "")
-   recItem.ID  = get_String(rec, dm.Tmpl_ID, "")
-
-
-
-// If there are fields below, create the methods in adaptor\Tmpl_impl.go
-
-
-
-
-
-
-
-
-
-
-   recItem.ExtraField  = adaptor.Tmpl_ExtraField_OnFetch_impl (recItem)
-
-   recItem.ExtraField3  = adaptor.Tmpl_ExtraField3_OnFetch_impl (recItem)
-
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - END
-		//Add to the list
+	// START
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	   recItem.SYSId  = get_Int(rec, dm.Tmpl_SYSId_sql, "0")
+	   recItem.FIELD1  = get_String(rec, dm.Tmpl_FIELD1_sql, "N")
+	   recItem.FIELD2  = get_String(rec, dm.Tmpl_FIELD2_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Tmpl_SYSCreated_sql, "")
+	   recItem.SYSCreatedBy  = get_String(rec, dm.Tmpl_SYSCreatedBy_sql, "")
+	   recItem.SYSCreatedHost  = get_String(rec, dm.Tmpl_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Tmpl_SYSUpdated_sql, "")
+	   recItem.SYSUpdatedHost  = get_String(rec, dm.Tmpl_SYSUpdatedHost_sql, "")
+	   recItem.SYSUpdatedBy  = get_String(rec, dm.Tmpl_SYSUpdatedBy_sql, "")
+	   recItem.ID  = get_String(rec, dm.Tmpl_ID_sql, "")
+	
+	
+	
+	
+	// If there are fields below, create the methods in adaptor\Tmpl_impl.go
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	   recItem.ExtraField  = adaptor.Tmpl_ExtraField_OnFetch_impl (recItem)
+	
+	   recItem.ExtraField3  = adaptor.Tmpl_ExtraField3_OnFetch_impl (recItem)
+	
+	// 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	///
+	//Add to the list
+	//
 		recList = append(recList, recItem)
 	}
 

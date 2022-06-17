@@ -1,0 +1,81 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-database me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group">
+                    
+                    <button id="export" type="button" class="btn btn-info" title="Export Cache Content as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Cache Content"><i class="fas fa-print me-2"></i></i>Print</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                  <div class="datatable table-hover table-responsive table-hover">
+                    <table class="table" id="ListTable">
+                      <thead class="thead-light">
+                        <tr>
+                          
+                          <th class="text-center"><i class="fas fa-key me-2"></i>Id</th>
+                          <th class="text-center">Object</th>
+                          <th class="text-center">Field</th>
+                          <th class="text-center">Value</th>
+                          <th class="text-center">Expiry</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Source</th>
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          <td class="align-middle" >{{.Id}}</td>
+                          <td class="align-middle" >{{.Object}}</td>
+                          <td class="align-middle" >{{.Field}}</td>
+                          <td class="align-middle" >{{.Value}}</td>
+                          <td class="align-middle" >{{.Expiry}}</td>
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.Source}}</td>
+                          
+                          
+                          
+                          
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/CacheView?ID={{.Id}}" method="POST" title="View Cache Content"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/CacheEdit?ID={{.Id}}" method="POST" title="Edit Cache Content"><i class="fas fa-edit"></i></button>
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+        </form>
+      </div>
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "pagefooter" .}}

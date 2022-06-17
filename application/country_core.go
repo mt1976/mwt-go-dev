@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:59
+// Date & Time		    : 17/06/2022 at 18:38:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type Country_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
 	Name         string
@@ -53,7 +53,7 @@ type Country_Page struct {
 	EU_EEA         string
 	HolidaysWeekend         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -179,16 +179,16 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Country
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.Code = r.FormValue(dm.Country_Code)
-		item.Name = r.FormValue(dm.Country_Name)
-		item.ShortCode = r.FormValue(dm.Country_ShortCode)
-		item.EU_EEA = r.FormValue(dm.Country_EU_EEA)
-		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend)
+		item.Code = r.FormValue(dm.Country_Code_scrn)
+		item.Name = r.FormValue(dm.Country_Name_scrn)
+		item.ShortCode = r.FormValue(dm.Country_ShortCode_scrn)
+		item.EU_EEA = r.FormValue(dm.Country_EU_EEA_scrn)
+		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Country_Store(item,r)	
 	http.Redirect(w, r, Country_Redirect, http.StatusFound)
@@ -228,7 +228,7 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Country Page 
 func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -238,7 +238,7 @@ func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -252,7 +252,7 @@ func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	

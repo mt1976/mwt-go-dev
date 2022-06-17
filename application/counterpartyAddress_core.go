@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 14/06/2022 at 21:31:53
+// Date & Time		    : 17/06/2022 at 18:38:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,7 @@ type CounterpartyAddress_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	NameFirm         string
 	NameCentre         string
@@ -56,7 +56,7 @@ type CounterpartyAddress_Page struct {
 	Postcode         string
 	CompID         string
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -182,19 +182,19 @@ func CounterpartyAddress_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CounterpartyAddress
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-		item.NameFirm = r.FormValue(dm.CounterpartyAddress_NameFirm)
-		item.NameCentre = r.FormValue(dm.CounterpartyAddress_NameCentre)
-		item.Address1 = r.FormValue(dm.CounterpartyAddress_Address1)
-		item.Address2 = r.FormValue(dm.CounterpartyAddress_Address2)
-		item.CityTown = r.FormValue(dm.CounterpartyAddress_CityTown)
-		item.County = r.FormValue(dm.CounterpartyAddress_County)
-		item.Postcode = r.FormValue(dm.CounterpartyAddress_Postcode)
-		item.CompID = r.FormValue(dm.CounterpartyAddress_CompID)
+		item.NameFirm = r.FormValue(dm.CounterpartyAddress_NameFirm_scrn)
+		item.NameCentre = r.FormValue(dm.CounterpartyAddress_NameCentre_scrn)
+		item.Address1 = r.FormValue(dm.CounterpartyAddress_Address1_scrn)
+		item.Address2 = r.FormValue(dm.CounterpartyAddress_Address2_scrn)
+		item.CityTown = r.FormValue(dm.CounterpartyAddress_CityTown_scrn)
+		item.County = r.FormValue(dm.CounterpartyAddress_County_scrn)
+		item.Postcode = r.FormValue(dm.CounterpartyAddress_Postcode_scrn)
+		item.CompID = r.FormValue(dm.CounterpartyAddress_CompID_scrn)
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyAddress_Store(item,r)	
 	http.Redirect(w, r, CounterpartyAddress_Redirect, http.StatusFound)
@@ -251,7 +251,7 @@ func CounterpartyAddress_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CounterpartyAddress Page 
 func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail CounterpartyAddress_Page) CounterpartyAddress_Page {
 	// START
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -264,7 +264,7 @@ func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail Coun
 	
 	
 	//
-	// Automatically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -284,7 +284,7 @@ func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail Coun
 	
 	
 	// 
-	// Dynamically generated 14/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
