@@ -9,34 +9,77 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //MarketRates defines the datamolde for the MarketRates object
 type MarketRates struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 Bid       string
+Bid_props FieldProperties
 Mid       string
+Mid_props FieldProperties
 Offer       string
+Offer_props FieldProperties
 Market       string
+Market_props FieldProperties
 Tenor       string
+Tenor_props FieldProperties
 Series       string
+Series_props FieldProperties
 Name       string
+Name_props FieldProperties
 Source       string
+Source_props FieldProperties
 Destination       string
+Destination_props FieldProperties
 Class       string
+Class_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 Date       string
+Date_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

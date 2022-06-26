@@ -9,32 +9,71 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Systems defines the datamolde for the Systems object
 type Systems struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 Name       string
+Name_props FieldProperties
 Staticin       string
+Staticin_props FieldProperties
 Staticout       string
+Staticout_props FieldProperties
 Txnin       string
+Txnin_props FieldProperties
 Txnout       string
+Txnout_props FieldProperties
 Fundscheckin       string
+Fundscheckin_props FieldProperties
 Fundscheckout       string
+Fundscheckout_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
 SWIFTin       string
+SWIFTin_props FieldProperties
 SWIFTout       string
+SWIFTout_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -9,19 +9,32 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //AccountLadder defines the datamolde for the AccountLadder object
 type AccountLadder struct {
 
+
 SienaReference       string
+SienaReference_props FieldProperties
 BusinessDate       string
+BusinessDate_props FieldProperties
 ContractNumber       string
+ContractNumber_props FieldProperties
 Balance       string
+Balance_props FieldProperties
 DealtCcy       string
+DealtCcy_props FieldProperties
 AmountDp       string
+AmountDp_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
 
 }
 

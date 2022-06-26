@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type DealAuditEvent_PageList struct {
 }
 //DealAuditEvent_Redirect provides a page to return to aftern an action
 const (
+	
 	DealAuditEvent_Redirect = dm.DealAuditEvent_PathList
+	
 )
 
 //dealauditevent_Page provides the information for the template for an individual DealAuditEvent
@@ -45,31 +47,52 @@ type DealAuditEvent_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	DealRefNo         string
+	DealRefNo_props     dm.FieldProperties
 	EventIndex         string
+	EventIndex_props     dm.FieldProperties
 	CommonRefNo         string
+	CommonRefNo_props     dm.FieldProperties
 	Timestamp         string
+	Timestamp_props     dm.FieldProperties
 	UTCTimestamp         string
+	UTCTimestamp_props     dm.FieldProperties
 	EventType         string
+	EventType_props     dm.FieldProperties
 	Status         string
+	Status_props     dm.FieldProperties
 	LimitOrderStatus         string
+	LimitOrderStatus_props     dm.FieldProperties
 	Usr         string
+	Usr_props     dm.FieldProperties
 	DealingInterface         string
+	DealingInterface_props     dm.FieldProperties
 	SourceIP         string
+	SourceIP_props     dm.FieldProperties
 	MessageID         string
+	MessageID_props     dm.FieldProperties
 	Details         string
+	Details_props     dm.FieldProperties
 	InternalId         string
+	InternalId_props     dm.FieldProperties
 	InternalDeleted         string
+	InternalDeleted_props     dm.FieldProperties
 	UpdatedTransactionId         string
+	UpdatedTransactionId_props     dm.FieldProperties
 	UpdatedUserId         string
+	UpdatedUserId_props     dm.FieldProperties
 	UpdatedDateTime         string
+	UpdatedDateTime_props     dm.FieldProperties
 	DeletedTransactionId         string
+	DeletedTransactionId_props     dm.FieldProperties
 	DeletedUserId         string
+	DeletedUserId_props     dm.FieldProperties
 	ChangeType         string
+	ChangeType_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -158,7 +181,7 @@ func DealAuditEvent_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealAuditEvent Page 
 func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent_Page) DealAuditEvent_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealRefNo = rD.DealRefNo
 	pageDetail.EventIndex = rD.EventIndex
@@ -184,7 +207,7 @@ func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -229,8 +252,31 @@ func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent
 	
 	
 	
+	pageDetail.DealRefNo_props = rD.DealRefNo_props
+	pageDetail.EventIndex_props = rD.EventIndex_props
+	pageDetail.CommonRefNo_props = rD.CommonRefNo_props
+	pageDetail.Timestamp_props = rD.Timestamp_props
+	pageDetail.UTCTimestamp_props = rD.UTCTimestamp_props
+	pageDetail.EventType_props = rD.EventType_props
+	pageDetail.Status_props = rD.Status_props
+	pageDetail.LimitOrderStatus_props = rD.LimitOrderStatus_props
+	pageDetail.Usr_props = rD.Usr_props
+	pageDetail.DealingInterface_props = rD.DealingInterface_props
+	pageDetail.SourceIP_props = rD.SourceIP_props
+	pageDetail.MessageID_props = rD.MessageID_props
+	pageDetail.Details_props = rD.Details_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

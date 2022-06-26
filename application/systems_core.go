@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Systems_PageList struct {
 }
 //Systems_Redirect provides a page to return to aftern an action
 const (
+	
 	Systems_Redirect = dm.Systems_PathList
+	
 )
 
 //systems_Page provides the information for the template for an individual Systems
@@ -45,29 +47,48 @@ type Systems_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	Id         string
+	Id_props     dm.FieldProperties
 	Name         string
+	Name_props     dm.FieldProperties
 	Staticin         string
+	Staticin_props     dm.FieldProperties
 	Staticout         string
+	Staticout_props     dm.FieldProperties
 	Txnin         string
+	Txnin_props     dm.FieldProperties
 	Txnout         string
+	Txnout_props     dm.FieldProperties
 	Fundscheckin         string
+	Fundscheckin_props     dm.FieldProperties
 	Fundscheckout         string
+	Fundscheckout_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSWho         string
+	SYSWho_props     dm.FieldProperties
 	SYSHost         string
+	SYSHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	SWIFTin         string
+	SWIFTin_props     dm.FieldProperties
 	SWIFTout         string
+	SWIFTout_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -193,7 +214,7 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Systems
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Systems_SYSId_scrn)
 		item.Id = r.FormValue(dm.Systems_Id_scrn)
@@ -216,7 +237,7 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SWIFTout = r.FormValue(dm.Systems_SWIFTout_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Systems_Store(item,r)	
 	http.Redirect(w, r, Systems_Redirect, http.StatusFound)
@@ -232,9 +253,9 @@ func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Systems_New()
 
 	pageDetail := Systems_Page{
 		Title:       CardTitle(dm.Systems_Title, core.Action_New),
@@ -245,7 +266,7 @@ func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = systems_PopulatePage(dm.Systems{} , pageDetail) 
+	pageDetail = systems_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Systems_TemplateNew, w, r, pageDetail)
 
@@ -273,7 +294,7 @@ func Systems_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Systems Page 
 func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -297,7 +318,7 @@ func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -338,8 +359,29 @@ func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Staticin_props = rD.Staticin_props
+	pageDetail.Staticout_props = rD.Staticout_props
+	pageDetail.Txnin_props = rD.Txnin_props
+	pageDetail.Txnout_props = rD.Txnout_props
+	pageDetail.Fundscheckin_props = rD.Fundscheckin_props
+	pageDetail.Fundscheckout_props = rD.Fundscheckout_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SWIFTin_props = rD.SWIFTin_props
+	pageDetail.SWIFTout_props = rD.SWIFTout_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

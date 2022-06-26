@@ -1,11 +1,10 @@
 
-    {
-      "ID": "a8ed226c-f99b-4aec-bf61-bbc6db139fa7",
-      "Text": "Payee",
-      "Glyph": "fas fa-wallet",
-      "HREF": "/PayeeList",
-      "OnClick": "",
-      "TextClass": """"
+   '{
+      "MenuID": "775f7c39-295c-4e66-b7c8-b8c0dd12d565",
+      "MenuText": "Payee",
+      "MenuGlyph": "fas fa-wallet",
+      "MenuHREF": "/PayeeList",
+      "MenuOnClick": "",
+      "MenuTextClass": """"
     }
-    ,
     

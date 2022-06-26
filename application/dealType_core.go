@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type DealType_PageList struct {
 }
 //DealType_Redirect provides a page to return to aftern an action
 const (
+	
 	DealType_Redirect = dm.DealType_PathList
+	
 )
 
 //dealtype_Page provides the information for the template for an individual DealType
@@ -45,36 +47,62 @@ type DealType_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	DealTypeKey         string
+	DealTypeKey_props     dm.FieldProperties
 	DealTypeShortName         string
+	DealTypeShortName_props     dm.FieldProperties
 	HostKey         string
+	HostKey_props     dm.FieldProperties
 	IsActive         string
+	IsActive_props     dm.FieldProperties
 	Interbook         string
+	Interbook_props     dm.FieldProperties
 	BackOfficeLink         string
+	BackOfficeLink_props     dm.FieldProperties
 	HasTicket         string
+	HasTicket_props     dm.FieldProperties
 	CurrencyOverride         string
+	CurrencyOverride_props     dm.FieldProperties
 	CurrencyHolderCurrency         string
+	CurrencyHolderCurrency_props     dm.FieldProperties
 	AllBooks         string
+	AllBooks_props     dm.FieldProperties
 	FundamentalDealTypeKey         string
+	FundamentalDealTypeKey_props     dm.FieldProperties
 	RelatedDealType         string
+	RelatedDealType_props     dm.FieldProperties
 	BookName         string
+	BookName_props     dm.FieldProperties
 	ExportMethod         string
+	ExportMethod_props     dm.FieldProperties
 	DefaultUserLayoffBooks         string
+	DefaultUserLayoffBooks_props     dm.FieldProperties
 	RFQ         string
+	RFQ_props     dm.FieldProperties
 	OBS         string
+	OBS_props     dm.FieldProperties
 	KID         string
+	KID_props     dm.FieldProperties
 	InternalId         string
+	InternalId_props     dm.FieldProperties
 	InternalDeleted         string
+	InternalDeleted_props     dm.FieldProperties
 	UpdatedTransactionId         string
+	UpdatedTransactionId_props     dm.FieldProperties
 	UpdatedUserId         string
+	UpdatedUserId_props     dm.FieldProperties
 	UpdatedDateTime         string
+	UpdatedDateTime_props     dm.FieldProperties
 	DeletedTransactionId         string
+	DeletedTransactionId_props     dm.FieldProperties
 	DeletedUserId         string
+	DeletedUserId_props     dm.FieldProperties
 	ChangeType         string
+	ChangeType_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -200,7 +228,7 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealType
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey_scrn)
 		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName_scrn)
@@ -230,7 +258,7 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ChangeType = r.FormValue(dm.DealType_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealType_Store(item,r)	
 	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
@@ -246,9 +274,9 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.DealType_New()
 
 	pageDetail := DealType_Page{
 		Title:       CardTitle(dm.DealType_Title, core.Action_New),
@@ -259,7 +287,7 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = dealtype_PopulatePage(dm.DealType{} , pageDetail) 
+	pageDetail = dealtype_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DealType_TemplateNew, w, r, pageDetail)
 
@@ -287,7 +315,7 @@ func DealType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealType Page 
 func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealTypeKey = rD.DealTypeKey
 	pageDetail.DealTypeShortName = rD.DealTypeShortName
@@ -318,7 +346,7 @@ func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Pa
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -373,8 +401,36 @@ func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Pa
 	
 	
 	
+	pageDetail.DealTypeKey_props = rD.DealTypeKey_props
+	pageDetail.DealTypeShortName_props = rD.DealTypeShortName_props
+	pageDetail.HostKey_props = rD.HostKey_props
+	pageDetail.IsActive_props = rD.IsActive_props
+	pageDetail.Interbook_props = rD.Interbook_props
+	pageDetail.BackOfficeLink_props = rD.BackOfficeLink_props
+	pageDetail.HasTicket_props = rD.HasTicket_props
+	pageDetail.CurrencyOverride_props = rD.CurrencyOverride_props
+	pageDetail.CurrencyHolderCurrency_props = rD.CurrencyHolderCurrency_props
+	pageDetail.AllBooks_props = rD.AllBooks_props
+	pageDetail.FundamentalDealTypeKey_props = rD.FundamentalDealTypeKey_props
+	pageDetail.RelatedDealType_props = rD.RelatedDealType_props
+	pageDetail.BookName_props = rD.BookName_props
+	pageDetail.ExportMethod_props = rD.ExportMethod_props
+	pageDetail.DefaultUserLayoffBooks_props = rD.DefaultUserLayoffBooks_props
+	pageDetail.RFQ_props = rD.RFQ_props
+	pageDetail.OBS_props = rD.OBS_props
+	pageDetail.KID_props = rD.KID_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

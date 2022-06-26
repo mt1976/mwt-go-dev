@@ -1,11 +1,10 @@
 
-    {
-      "ID": "74d593c4-9973-4c9c-b98b-edd59bb88e17",
-      "Text": "Account",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/AccountList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "965743b9-8641-4565-8714-dceea89c14ae",
+      "MenuText": "Account",
+      "MenuGlyph": "fas fa-landmark",
+      "MenuHREF": "/AccountList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

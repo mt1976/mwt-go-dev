@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:19
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,6 +40,12 @@ func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 
 	 _, catalogItem, _ := adaptor.Catalog_GetByID_impl(id)
 	
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, catalogItem, nil
 }
 
@@ -57,7 +63,12 @@ func Catalog_Delete(id string) {
 // Catalog_Store() saves/stores a Catalog record to the database
 func Catalog_Store(r dm.Catalog,req *http.Request) error {
 
-	err := catalog_Save(r,Audit_User(req))
+	err, r := Catalog_Validate(r)
+	if err == nil {
+		err = catalog_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Catalog_Store()", err.Error())
+	}
 
 	return err
 }
@@ -65,10 +76,27 @@ func Catalog_Store(r dm.Catalog,req *http.Request) error {
 // Catalog_StoreSystem() saves/stores a Catalog record to the database
 func Catalog_StoreSystem(r dm.Catalog) error {
 	
-	err := catalog_Save(r,Audit_Host())
+	err, r := Catalog_Validate(r)
+	if err == nil {
+		err = catalog_Save(r, Audit_Host())
+	} else {
+		logs.Information("Catalog_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Catalog_Validate() validates for saves/stores a Catalog record to the database
+func Catalog_Validate(r dm.Catalog) (error,dm.Catalog) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // catalog_Save() saves/stores a Catalog record to the database
 func catalog_Save(r dm.Catalog,usr string) error {
@@ -122,7 +150,24 @@ func Catalog_NewID(r dm.Catalog) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// catalog_Fetch read all Catalog's
+func Catalog_New() (int, []dm.Catalog, dm.Catalog, error) {
+
+	var r = dm.Catalog{}
+	var rList []dm.Catalog
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

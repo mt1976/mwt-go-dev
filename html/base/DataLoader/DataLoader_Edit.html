@@ -1,167 +1,237 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
 
-    <form action="/DataLoaderSave/?Id={{.Id}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-city me-2" title="Id={{.Id}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/DataLoaderSave/?Id={{.Id}}" onclick="/DataLoaderSave/?Id={{.Id}}" title="Save Data Loader"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+<form action="/DataLoaderSave/?Id={{.Id}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-city me-2"
+            title="Id={{.Id}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="{{.SYSId}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="SYSId" hidden>SYSId</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""   value="{{.Id}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Id" ><i class="fas fa-key me-2"></i>Id</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Name" >Name</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Description" >Description</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Filename" name="Filename" aria-describedby="FilenameHelp" placeholder=""   value="{{.Filename}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Filename" >Filename</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Lastrun" name="Lastrun" aria-describedby="LastrunHelp" placeholder=""   value="{{.Lastrun}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Lastrun" >Lastrun</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden  value="{{.SYSWho}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSWho" hidden>SYSWho</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden  value="{{.SYSHost}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSHost" hidden>SYSHost</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Type" name="Type" aria-describedby="TypeHelp" placeholder=""   value="{{.Type}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Type" >Type</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Instance" name="Instance" aria-describedby="InstanceHelp" placeholder=""   value="{{.Instance}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Instance" >Instance</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Extension" name="Extension" aria-describedby="ExtensionHelp" placeholder=""   value="{{.Extension}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Extension" >Extension</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" hidden><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
-                    </div>
-          
-            </div></div>
-
-     
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/DataLoaderSave/?Id={{.Id}}" onclick="/DataLoaderSave/?Id={{.Id}}" title="Save Data Loader"><i class="fas fa-save me-2"></i>Save</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSId_props.MsgType}}" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden  value="{{.SYSId}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSId" hidden>SYSId</label>
+              <div class="{{.SYSId_props.MsgFeedBackType}}">{{.SYSId_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Id_props.MsgType}}" id="Id" name="Id" aria-describedby="IdHelp" placeholder=""   value="{{.Id}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Id" ><i class="fas fa-key me-2"></i>Id</label>
+              <div class="{{.Id_props.MsgFeedBackType}}">{{.Id_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Name" >Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Description" >Description</label>
+              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Filename_props.MsgType}}" id="Filename" name="Filename" aria-describedby="FilenameHelp" placeholder=""   value="{{.Filename}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Filename" >Filename</label>
+              <div class="{{.Filename_props.MsgFeedBackType}}">{{.Filename_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Lastrun_props.MsgType}}" id="Lastrun" name="Lastrun" aria-describedby="LastrunHelp" placeholder=""   value="{{.Lastrun}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Lastrun" >Lastrun</label>
+              <div class="{{.Lastrun_props.MsgFeedBackType}}">{{.Lastrun_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSCreated_props.MsgType}}" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden  value="{{.SYSCreated}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+              <div class="{{.SYSCreated_props.MsgFeedBackType}}">{{.SYSCreated_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSWho_props.MsgType}}" id="SYSWho" name="SYSWho" aria-describedby="SYSWhoHelp" placeholder="" hidden  value="{{.SYSWho}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSWho" hidden>SYSWho</label>
+              <div class="{{.SYSWho_props.MsgFeedBackType}}">{{.SYSWho_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSHost_props.MsgType}}" id="SYSHost" name="SYSHost" aria-describedby="SYSHostHelp" placeholder="" hidden  value="{{.SYSHost}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSHost" hidden>SYSHost</label>
+              <div class="{{.SYSHost_props.MsgFeedBackType}}">{{.SYSHost_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSUpdated_props.MsgType}}" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden  value="{{.SYSUpdated}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+              <div class="{{.SYSUpdated_props.MsgFeedBackType}}">{{.SYSUpdated_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Type_props.MsgType}}" id="Type" name="Type" aria-describedby="TypeHelp" placeholder=""   value="{{.Type}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Type" >Type</label>
+              <div class="{{.Type_props.MsgFeedBackType}}">{{.Type_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Instance_props.MsgType}}" id="Instance" name="Instance" aria-describedby="InstanceHelp" placeholder=""   value="{{.Instance}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Instance" >Instance</label>
+              <div class="{{.Instance_props.MsgFeedBackType}}">{{.Instance_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Extension_props.MsgType}}" id="Extension" name="Extension" aria-describedby="ExtensionHelp" placeholder=""   value="{{.Extension}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Extension" >Extension</label>
+              <div class="{{.Extension_props.MsgFeedBackType}}">{{.Extension_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSCreatedBy_props.MsgType}}" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden  value="{{.SYSCreatedBy}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+              <div class="{{.SYSCreatedBy_props.MsgFeedBackType}}">{{.SYSCreatedBy_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSUpdatedHost_props.MsgType}}" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden  value="{{.SYSUpdatedHost}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+              <div class="{{.SYSUpdatedHost_props.MsgFeedBackType}}">{{.SYSUpdatedHost_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSUpdatedBy_props.MsgType}}" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden  value="{{.SYSUpdatedBy}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+              <div class="{{.SYSUpdatedBy_props.MsgFeedBackType}}">{{.SYSUpdatedBy_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" hidden hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SYSCreatedHost_props.MsgType}}" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden  value="{{.SYSCreatedHost}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+              <div class="{{.SYSCreatedHost_props.MsgFeedBackType}}">{{.SYSCreatedHost_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

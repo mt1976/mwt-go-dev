@@ -9,103 +9,284 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 26/06/2022 at 18:48:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DealTypeFundamental defines the datamolde for the DealTypeFundamental object
 type DealTypeFundamental struct {
 
+
 DealTypeKey       string
+DealTypeKey_props FieldProperties
 Amendment       string
+Amendment_props FieldProperties
 DefaultFrequency       string
+DefaultFrequency_props FieldProperties
 Directions       string
+Directions_props FieldProperties
 SettledTermDealType       string
+SettledTermDealType_props FieldProperties
 Optn       string
+Optn_props FieldProperties
 AllowPledge       string
+AllowPledge_props FieldProperties
 Takeup       string
+Takeup_props FieldProperties
 MismatchDealType       string
+MismatchDealType_props FieldProperties
 SettledHedgeTermDealType       string
+SettledHedgeTermDealType_props FieldProperties
 SettlementCode       string
+SettlementCode_props FieldProperties
 TermSubType       string
+TermSubType_props FieldProperties
 FundingDealType       string
+FundingDealType_props FieldProperties
 TransferType       string
+TransferType_props FieldProperties
 TermDealType       string
+TermDealType_props FieldProperties
 NegotiableInstrumentType       string
+NegotiableInstrumentType_props FieldProperties
 Mismatch       string
+Mismatch_props FieldProperties
 ComplexTransferSubType       string
+ComplexTransferSubType_props FieldProperties
 LayOffDealType       string
+LayOffDealType_props FieldProperties
 NIAccount       string
+NIAccount_props FieldProperties
 SimpleMMsubtype       string
+SimpleMMsubtype_props FieldProperties
 SwapDealType       string
+SwapDealType_props FieldProperties
 Positions       string
+Positions_props FieldProperties
 OptionOutright       string
+OptionOutright_props FieldProperties
 SettledHedgeSpotDealType       string
+SettledHedgeSpotDealType_props FieldProperties
 StraightThroughInterestMethod       string
+StraightThroughInterestMethod_props FieldProperties
 SubType       string
+SubType_props FieldProperties
 Rollover       string
+Rollover_props FieldProperties
 DefaultIssuer       string
+DefaultIssuer_props FieldProperties
 DefaultStartDate       string
+DefaultStartDate_props FieldProperties
 Fee       string
+Fee_props FieldProperties
 NDF       string
+NDF_props FieldProperties
 FXFX       string
+FXFX_props FieldProperties
 ONIA       string
+ONIA_props FieldProperties
 MarginSubType       string
+MarginSubType_props FieldProperties
 TransferDealType       string
+TransferDealType_props FieldProperties
 IsFX       string
+IsFX_props FieldProperties
 Ordr       string
+Ordr_props FieldProperties
 OptionStyle       string
+OptionStyle_props FieldProperties
 SpotDealType       string
+SpotDealType_props FieldProperties
 CanIssue       string
+CanIssue_props FieldProperties
 CanShort       string
+CanShort_props FieldProperties
 FXMarginTradingType       string
+FXMarginTradingType_props FieldProperties
 Internal       string
+Internal_props FieldProperties
 TicketBasename       string
+TicketBasename_props FieldProperties
 InterestRateFutureType       string
+InterestRateFutureType_props FieldProperties
 TradingLimitProductCode       string
+TradingLimitProductCode_props FieldProperties
 Forward       string
+Forward_props FieldProperties
 MaturityNotificationPeriod       string
+MaturityNotificationPeriod_props FieldProperties
 NotificationEvents       string
+NotificationEvents_props FieldProperties
 SwapSubType       string
+SwapSubType_props FieldProperties
 ProductCode       string
+ProductCode_props FieldProperties
 Funding       string
+Funding_props FieldProperties
 AllocationPricing       string
+AllocationPricing_props FieldProperties
 CancelPeriod       string
+CancelPeriod_props FieldProperties
 MMMarginTradingType       string
+MMMarginTradingType_props FieldProperties
 OptionSpot       string
+OptionSpot_props FieldProperties
 Transfer       string
+Transfer_props FieldProperties
 NotificationPeriod       string
+NotificationPeriod_props FieldProperties
 Paymentdateshift       string
+Paymentdateshift_props FieldProperties
 CloseOut       string
+CloseOut_props FieldProperties
 FXOptionPricing       string
+FXOptionPricing_props FieldProperties
 SettledHedgeOutrightDealType       string
+SettledHedgeOutrightDealType_props FieldProperties
 RepoBond       string
+RepoBond_props FieldProperties
 RepoTerm       string
+RepoTerm_props FieldProperties
 RepoType       string
+RepoType_props FieldProperties
 DateRule       string
+DateRule_props FieldProperties
 CorpTransferDealType       string
+CorpTransferDealType_props FieldProperties
 GenerateFXImage       string
+GenerateFXImage_props FieldProperties
 Variant       string
+Variant_props FieldProperties
 HedgeTermDealType       string
+HedgeTermDealType_props FieldProperties
 PricingModel       string
+PricingModel_props FieldProperties
 HedgeOutrightDealType       string
+HedgeOutrightDealType_props FieldProperties
 Fixing       string
+Fixing_props FieldProperties
 Payment       string
+Payment_props FieldProperties
 MT       string
+MT_props FieldProperties
 SettlementInstructionStyle       string
+SettlementInstructionStyle_props FieldProperties
 QuoteHistoryRequired       string
+QuoteHistoryRequired_props FieldProperties
 Brokerage       string
+Brokerage_props FieldProperties
 ExposureDisabled       string
+ExposureDisabled_props FieldProperties
 CreditLine       string
+CreditLine_props FieldProperties
 Encumbered       string
+Encumbered_props FieldProperties
 InternalId       string
+InternalId_props FieldProperties
 InternalDeleted       string
+InternalDeleted_props FieldProperties
 UpdatedTransactionId       string
+UpdatedTransactionId_props FieldProperties
 UpdatedUserId       string
+UpdatedUserId_props FieldProperties
 UpdatedDateTime       string
+UpdatedDateTime_props FieldProperties
 DeletedTransactionId       string
+DeletedTransactionId_props FieldProperties
 DeletedUserId       string
+DeletedUserId_props FieldProperties
 ChangeType       string
+ChangeType_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

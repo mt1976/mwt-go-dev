@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Portfolio_GetByID(id string) (int, dm.Portfolio, error) {
 	tsql = tsql + " WHERE " + dm.Portfolio_SQLSearchID + "='" + id + "'"
 	_, _, portfolioItem, _ := portfolio_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, portfolioItem, nil
 }
 
@@ -79,7 +85,12 @@ func Portfolio_Delete(id string) {
 // Portfolio_Store() saves/stores a Portfolio record to the database
 func Portfolio_Store(r dm.Portfolio,req *http.Request) error {
 
-	err := portfolio_Save(r,Audit_User(req))
+	err, r := Portfolio_Validate(r)
+	if err == nil {
+		err = portfolio_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Portfolio_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,27 @@ func Portfolio_Store(r dm.Portfolio,req *http.Request) error {
 // Portfolio_StoreSystem() saves/stores a Portfolio record to the database
 func Portfolio_StoreSystem(r dm.Portfolio) error {
 	
-	err := portfolio_Save(r,Audit_Host())
+	err, r := Portfolio_Validate(r)
+	if err == nil {
+		err = portfolio_Save(r, Audit_Host())
+	} else {
+		logs.Information("Portfolio_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Portfolio_Validate() validates for saves/stores a Portfolio record to the database
+func Portfolio_Validate(r dm.Portfolio) (error,dm.Portfolio) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // portfolio_Save() saves/stores a Portfolio record to the database
 func portfolio_Save(r dm.Portfolio,usr string) error {
@@ -155,7 +183,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Portfolio_Code_sql, "")
 	   recItem.Description1  = get_String(rec, dm.Portfolio_Description1_sql, "")
@@ -185,7 +213,7 @@ func portfolio_Fetch(tsql string) (int, []dm.Portfolio, dm.Portfolio, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -205,7 +233,24 @@ func Portfolio_NewID(r dm.Portfolio) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// portfolio_Fetch read all Portfolio's
+func Portfolio_New() (int, []dm.Portfolio, dm.Portfolio, error) {
+
+	var r = dm.Portfolio{}
+	var rList []dm.Portfolio
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

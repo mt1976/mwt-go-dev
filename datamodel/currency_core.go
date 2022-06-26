@@ -9,37 +9,86 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Currency defines the datamolde for the Currency object
 type Currency struct {
 
+
 Code       string
+Code_props FieldProperties
 Name       string
+Name_props FieldProperties
 AmountDp       string
+AmountDp_props FieldProperties
 Country       string
+Country_props FieldProperties
 CountryName       string
+CountryName_props FieldProperties
 IntBase       string
+IntBase_props FieldProperties
 KeydateBase       string
+KeydateBase_props FieldProperties
 InterestRateTolerance       string
+InterestRateTolerance_props FieldProperties
 CheckPayTo       string
+CheckPayTo_props FieldProperties
 LatinAmericanSettlement       string
+LatinAmericanSettlement_props FieldProperties
 DefaultLayOffBookKey       string
+DefaultLayOffBookKey_props FieldProperties
 CutOffTimeCutOffTime       string
+CutOffTimeCutOffTime_props FieldProperties
 CutOffTimeTimeZone       string
+CutOffTimeTimeZone_props FieldProperties
 CutOffTimeDerivedDataUTCOffset       string
+CutOffTimeDerivedDataUTCOffset_props FieldProperties
 CutOffTimeDerivedDataHasDaylightSaving       string
+CutOffTimeDerivedDataHasDaylightSaving_props FieldProperties
 CutOffTimeDerivedDataDaylightStart       string
+CutOffTimeDerivedDataDaylightStart_props FieldProperties
 CutOffTimeDerivedDataDaylightEnd       string
+CutOffTimeDerivedDataDaylightEnd_props FieldProperties
 DealerInterventionQuoteTimeout       string
+DealerInterventionQuoteTimeout_props FieldProperties
 CutOffTimeCutOffPeriod       string
+CutOffTimeCutOffPeriod_props FieldProperties
 StripRateFutureExchangeCode       string
+StripRateFutureExchangeCode_props FieldProperties
 StripRateFutureCurrencyContractCurrencyIsoCode       string
+StripRateFutureCurrencyContractCurrencyIsoCode_props FieldProperties
 StripRateFutureCurrencyContractFutureContractCode       string
+StripRateFutureCurrencyContractFutureContractCode_props FieldProperties
 OvernightFundingSpreadBid       string
+OvernightFundingSpreadBid_props FieldProperties
 OvernightFundingSpreadOffer       string
+OvernightFundingSpreadOffer_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

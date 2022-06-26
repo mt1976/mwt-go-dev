@@ -3,6 +3,7 @@ package adaptor
 import (
 	"encoding/xml"
 	"log"
+	"strconv"
 	"strings"
 	"time"
 
@@ -51,7 +52,7 @@ func Simulator_SienaFundsChecker_Store(thisID string, balance string, resultCode
 
 	resp := core.DeleteDataFileAbsolute(thisID, deletefrompath)
 	if resp != 1 {
-		//do nothing
+		logs.Warning("Unknown State Error from DeleteDataFileAbsolute" + strconv.Itoa(resp))
 	}
 }
 

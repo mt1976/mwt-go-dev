@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Book_PageList struct {
 }
 //Book_Redirect provides a page to return to aftern an action
 const (
+	
 	Book_Redirect = dm.Book_PathList
+	
 )
 
 //book_Page provides the information for the template for an individual Book
@@ -45,19 +47,28 @@ type Book_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	BookName         string
+	BookName_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	PLManage         string
+	PLManage_props     dm.FieldProperties
 	PLTransfer         string
+	PLTransfer_props     dm.FieldProperties
 	DerivePL         string
+	DerivePL_props     dm.FieldProperties
 	CostOfCarry         string
+	CostOfCarry_props     dm.FieldProperties
 	CostOfFunding         string
+	CostOfFunding_props     dm.FieldProperties
 	LotAllocationMethod         string
+	LotAllocationMethod_props     dm.FieldProperties
 	InternalId         string
+	InternalId_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -183,7 +194,7 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Book
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.BookName = r.FormValue(dm.Book_BookName_scrn)
 		item.FullName = r.FormValue(dm.Book_FullName_scrn)
@@ -196,7 +207,7 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.InternalId = r.FormValue(dm.Book_InternalId_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Book_Store(item,r)	
 	http.Redirect(w, r, Book_Redirect, http.StatusFound)
@@ -225,7 +236,7 @@ func Book_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Book Page 
 func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.BookName = rD.BookName
 	pageDetail.FullName = rD.FullName
@@ -239,7 +250,7 @@ func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -260,8 +271,19 @@ func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	
 	
 	
+	pageDetail.BookName_props = rD.BookName_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.PLManage_props = rD.PLManage_props
+	pageDetail.PLTransfer_props = rD.PLTransfer_props
+	pageDetail.DerivePL_props = rD.DerivePL_props
+	pageDetail.CostOfCarry_props = rD.CostOfCarry_props
+	pageDetail.CostOfFunding_props = rD.CostOfFunding_props
+	pageDetail.LotAllocationMethod_props = rD.LotAllocationMethod_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

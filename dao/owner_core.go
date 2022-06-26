@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Owner_GetByID(id string) (int, dm.Owner, error) {
 	tsql = tsql + " WHERE " + dm.Owner_SQLSearchID + "='" + id + "'"
 	_, _, ownerItem, _ := owner_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, ownerItem, nil
 }
 
@@ -79,7 +85,12 @@ func Owner_Delete(id string) {
 // Owner_Store() saves/stores a Owner record to the database
 func Owner_Store(r dm.Owner,req *http.Request) error {
 
-	err := owner_Save(r,Audit_User(req))
+	err, r := Owner_Validate(r)
+	if err == nil {
+		err = owner_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Owner_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,27 @@ func Owner_Store(r dm.Owner,req *http.Request) error {
 // Owner_StoreSystem() saves/stores a Owner record to the database
 func Owner_StoreSystem(r dm.Owner) error {
 	
-	err := owner_Save(r,Audit_Host())
+	err, r := Owner_Validate(r)
+	if err == nil {
+		err = owner_Save(r, Audit_Host())
+	} else {
+		logs.Information("Owner_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Owner_Validate() validates for saves/stores a Owner record to the database
+func Owner_Validate(r dm.Owner) (error,dm.Owner) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // owner_Save() saves/stores a Owner record to the database
 func owner_Save(r dm.Owner,usr string) error {
@@ -158,7 +186,7 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.UserName  = get_String(rec, dm.Owner_UserName_sql, "")
 	   recItem.FullName  = get_String(rec, dm.Owner_FullName_sql, "")
@@ -194,7 +222,7 @@ func owner_Fetch(tsql string) (int, []dm.Owner, dm.Owner, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -214,7 +242,24 @@ func Owner_NewID(r dm.Owner) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// owner_Fetch read all Owner's
+func Owner_New() (int, []dm.Owner, dm.Owner, error) {
+
+	var r = dm.Owner{}
+	var rList []dm.Owner
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

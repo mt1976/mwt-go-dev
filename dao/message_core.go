@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func Message_GetByID(id string) (int, dm.Message, error) {
 	tsql = tsql + " WHERE " + dm.Message_SQLSearchID + "='" + id + "'"
 	_, _, messageItem, _ := message_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, messageItem, nil
 }
 
@@ -66,7 +72,12 @@ func Message_Delete(id string) {
 // Message_Store() saves/stores a Message record to the database
 func Message_Store(r dm.Message,req *http.Request) error {
 
-	err := message_Save(r,Audit_User(req))
+	err, r := Message_Validate(r)
+	if err == nil {
+		err = message_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Message_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func Message_Store(r dm.Message,req *http.Request) error {
 // Message_StoreSystem() saves/stores a Message record to the database
 func Message_StoreSystem(r dm.Message) error {
 	
-	err := message_Save(r,Audit_Host())
+	err, r := Message_Validate(r)
+	if err == nil {
+		err = message_Save(r, Audit_Host())
+	} else {
+		logs.Information("Message_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Message_Validate() validates for saves/stores a Message record to the database
+func Message_Validate(r dm.Message) (error,dm.Message) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // message_Save() saves/stores a Message record to the database
 func message_Save(r dm.Message,usr string) error {
@@ -113,7 +141,7 @@ logs.Storing("Message",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Message_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Message_Id_sql, r.Id)
@@ -128,7 +156,7 @@ logs.Storing("Message",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Message_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Message_SQLTable)
@@ -161,7 +189,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Message_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Message_Id_sql, "")
@@ -189,7 +217,7 @@ func message_Fetch(tsql string) (int, []dm.Message, dm.Message, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -209,7 +237,24 @@ func Message_NewID(r dm.Message) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// message_Fetch read all Message's
+func Message_New() (int, []dm.Message, dm.Message, error) {
+
+	var r = dm.Message{}
+	var rList []dm.Message
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

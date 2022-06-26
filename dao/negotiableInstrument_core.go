@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func NegotiableInstrument_GetByID(id string) (int, dm.NegotiableInstrument, erro
 	tsql = tsql + " WHERE " + dm.NegotiableInstrument_SQLSearchID + "='" + id + "'"
 	_, _, negotiableinstrumentItem, _ := negotiableinstrument_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, negotiableinstrumentItem, nil
 }
 
@@ -66,7 +72,12 @@ func NegotiableInstrument_Delete(id string) {
 // NegotiableInstrument_Store() saves/stores a NegotiableInstrument record to the database
 func NegotiableInstrument_Store(r dm.NegotiableInstrument,req *http.Request) error {
 
-	err := negotiableinstrument_Save(r,Audit_User(req))
+	err, r := NegotiableInstrument_Validate(r)
+	if err == nil {
+		err = negotiableinstrument_Save(r, Audit_User(req))
+	} else {
+		logs.Information("NegotiableInstrument_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func NegotiableInstrument_Store(r dm.NegotiableInstrument,req *http.Request) err
 // NegotiableInstrument_StoreSystem() saves/stores a NegotiableInstrument record to the database
 func NegotiableInstrument_StoreSystem(r dm.NegotiableInstrument) error {
 	
-	err := negotiableinstrument_Save(r,Audit_Host())
+	err, r := NegotiableInstrument_Validate(r)
+	if err == nil {
+		err = negotiableinstrument_Save(r, Audit_Host())
+	} else {
+		logs.Information("NegotiableInstrument_Store()", err.Error())
+	}
 
 	return err
 }
+
+// NegotiableInstrument_Validate() validates for saves/stores a NegotiableInstrument record to the database
+func NegotiableInstrument_Validate(r dm.NegotiableInstrument) (error,dm.NegotiableInstrument) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // negotiableinstrument_Save() saves/stores a NegotiableInstrument record to the database
 func negotiableinstrument_Save(r dm.NegotiableInstrument,usr string) error {
@@ -145,7 +173,7 @@ logs.Storing("NegotiableInstrument",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.NegotiableInstrument_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.NegotiableInstrument_Id_sql, r.Id)
@@ -185,7 +213,7 @@ logs.Storing("NegotiableInstrument",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.NegotiableInstrument_SYSUpdatedBy_sql, r.SYSUpdatedBy)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.NegotiableInstrument_SQLTable)
@@ -218,7 +246,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.NegotiableInstrument_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.NegotiableInstrument_Id_sql, "")
@@ -296,7 +324,7 @@ func negotiableinstrument_Fetch(tsql string) (int, []dm.NegotiableInstrument, dm
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -316,7 +344,24 @@ func NegotiableInstrument_NewID(r dm.NegotiableInstrument) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// negotiableinstrument_Fetch read all NegotiableInstrument's
+func NegotiableInstrument_New() (int, []dm.NegotiableInstrument, dm.NegotiableInstrument, error) {
+
+	var r = dm.NegotiableInstrument{}
+	var rList []dm.NegotiableInstrument
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

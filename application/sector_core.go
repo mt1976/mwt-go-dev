@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Sector_PageList struct {
 }
 //Sector_Redirect provides a page to return to aftern an action
 const (
+	
 	Sector_Redirect = dm.Sector_PathList
+	
 )
 
 //sector_Page provides the information for the template for an individual Sector
@@ -45,12 +47,14 @@ type Sector_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
+	Code_props     dm.FieldProperties
 	Name         string
+	Name_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -176,13 +180,13 @@ func Sector_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Sector
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Sector_Code_scrn)
 		item.Name = r.FormValue(dm.Sector_Name_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Sector_Store(item,r)	
 	http.Redirect(w, r, Sector_Redirect, http.StatusFound)
@@ -198,9 +202,9 @@ func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Sector_New()
 
 	pageDetail := Sector_Page{
 		Title:       CardTitle(dm.Sector_Title, core.Action_New),
@@ -211,7 +215,7 @@ func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = sector_PopulatePage(dm.Sector{} , pageDetail) 
+	pageDetail = sector_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Sector_TemplateNew, w, r, pageDetail)
 
@@ -239,22 +243,26 @@ func Sector_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Sector Page 
 func sector_PopulatePage(rD dm.Sector, pageDetail Sector_Page) Sector_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
 	
 	
 	
+	pageDetail.Code_props = rD.Code_props
+	pageDetail.Name_props = rD.Name_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

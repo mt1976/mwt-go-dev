@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -36,6 +36,16 @@ func Credentials_GetList() (int, []dm.Credentials, error) {
 }
 
 
+// Credentials_GetLookup() returns a lookup list of all Credentials items in lookup format
+func Credentials_GetLookup() []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	count, credentialsList, _ := Credentials_GetList()
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: credentialsList[i].Id, Name: credentialsList[i].Username})
+	}
+	return returnList
+}
+
 
 // Credentials_GetByID() returns a single Credentials record
 func Credentials_GetByID(id string) (int, dm.Credentials, error) {
@@ -45,6 +55,12 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + "='" + id + "'"
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, credentialsItem, nil
 }
 
@@ -66,7 +82,12 @@ func Credentials_Delete(id string) {
 // Credentials_Store() saves/stores a Credentials record to the database
 func Credentials_Store(r dm.Credentials,req *http.Request) error {
 
-	err := credentials_Save(r,Audit_User(req))
+	err, r := Credentials_Validate(r)
+	if err == nil {
+		err = credentials_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Credentials_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +95,27 @@ func Credentials_Store(r dm.Credentials,req *http.Request) error {
 // Credentials_StoreSystem() saves/stores a Credentials record to the database
 func Credentials_StoreSystem(r dm.Credentials) error {
 	
-	err := credentials_Save(r,Audit_Host())
+	err, r := Credentials_Validate(r)
+	if err == nil {
+		err = credentials_Save(r, Audit_Host())
+	} else {
+		logs.Information("Credentials_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Credentials_Validate() validates for saves/stores a Credentials record to the database
+func Credentials_Validate(r dm.Credentials) (error,dm.Credentials) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // credentials_Save() saves/stores a Credentials record to the database
 func credentials_Save(r dm.Credentials,usr string) error {
@@ -115,6 +153,8 @@ func credentials_Save(r dm.Credentials,usr string) error {
 
 
 
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -129,7 +169,7 @@ logs.Storing("Credentials",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
@@ -151,9 +191,11 @@ logs.Storing("Credentials",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Credentials_SYSCreatedHost_sql, r.SYSCreatedHost)
 	ts = addData(ts, dm.Credentials_SYSUpdatedBy_sql, r.SYSUpdatedBy)
 	ts = addData(ts, dm.Credentials_SYSUpdatedHost_sql, r.SYSUpdatedHost)
+	ts = addData(ts, dm.Credentials_State_sql, r.State)
+	ts = addData(ts, dm.Credentials_Notes_sql, r.Notes)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
@@ -186,7 +228,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
@@ -208,6 +250,8 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	   recItem.SYSCreatedHost  = get_String(rec, dm.Credentials_SYSCreatedHost_sql, "")
 	   recItem.SYSUpdatedBy  = get_String(rec, dm.Credentials_SYSUpdatedBy_sql, "")
 	   recItem.SYSUpdatedHost  = get_String(rec, dm.Credentials_SYSUpdatedHost_sql, "")
+	   recItem.State  = get_String(rec, dm.Credentials_State_sql, "")
+	   recItem.Notes  = get_String(rec, dm.Credentials_Notes_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Credentials_impl.go
 	
@@ -231,8 +275,10 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	
 	
 	
+	
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -252,7 +298,24 @@ func Credentials_NewID(r dm.Credentials) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// credentials_Fetch read all Credentials's
+func Credentials_New() (int, []dm.Credentials, dm.Credentials, error) {
+
+	var r = dm.Credentials{}
+	var rList []dm.Credentials
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Test1_PageList struct {
 }
 //Test1_Redirect provides a page to return to aftern an action
 const (
+	
 	Test1_Redirect = dm.Test1_PathList
+	
 )
 
 //test1_Page provides the information for the template for an individual Test1
@@ -45,23 +47,33 @@ type Test1_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
+	ID_props     dm.FieldProperties
 	Endpoint         string
+	Endpoint_props     dm.FieldProperties
 	Descr         string
+	Descr_props     dm.FieldProperties
 	Query         string
+	Query_props     dm.FieldProperties
 	Source         string
+	Source_props     dm.FieldProperties
 	Firm         string
 	Firm_lookup    []dm.Lookup_Item
+	Firm_props     dm.FieldProperties
 	YN         string
 	YN_lookup    []dm.Lookup_Item
+	YN_props     dm.FieldProperties
 	User         string
 	User_lookup    []dm.Lookup_Item
+	User_props     dm.FieldProperties
 	Cheese         string
+	Cheese_props     dm.FieldProperties
 	Onion         string
+	Onion_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -187,7 +199,7 @@ func Test1_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Test1
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.Test1_ID_scrn)
 		item.Endpoint = r.FormValue(dm.Test1_Endpoint_scrn)
@@ -201,7 +213,7 @@ func Test1_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Onion = r.FormValue(dm.Test1_Onion_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Test1_Store(item,r)	
 	http.Redirect(w, r, Test1_Redirect, http.StatusFound)
@@ -217,9 +229,9 @@ func Test1_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Test1_New()
 
 	pageDetail := Test1_Page{
 		Title:       CardTitle(dm.Test1_Title, core.Action_New),
@@ -230,7 +242,7 @@ func Test1_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = test1_PopulatePage(dm.Test1{} , pageDetail) 
+	pageDetail = test1_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Test1_TemplateNew, w, r, pageDetail)
 
@@ -258,7 +270,7 @@ func Test1_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Test1 Page 
 func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.Endpoint = rD.Endpoint
@@ -273,7 +285,7 @@ func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	pageDetail.Onion = rD.Onion
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -302,8 +314,20 @@ func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.Endpoint_props = rD.Endpoint_props
+	pageDetail.Descr_props = rD.Descr_props
+	pageDetail.Query_props = rD.Query_props
+	pageDetail.Source_props = rD.Source_props
+	pageDetail.Firm_props = rD.Firm_props
+	pageDetail.YN_props = rD.YN_props
+	pageDetail.User_props = rD.User_props
+	pageDetail.Cheese_props = rD.Cheese_props
+	pageDetail.Onion_props = rD.Onion_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

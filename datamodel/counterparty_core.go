@@ -9,38 +9,68 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:21
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Counterparty defines the datamolde for the Counterparty object
 type Counterparty struct {
 
+
 NameCentre       string
-NameCentre_lookup []Lookup_Item
+NameCentre_props FieldProperties
 NameFirm       string
-NameFirm_lookup []Lookup_Item
+NameFirm_props FieldProperties
 FullName       string
+FullName_props FieldProperties
 TelephoneNumber       string
+TelephoneNumber_props FieldProperties
 EmailAddress       string
+EmailAddress_props FieldProperties
 CustomerType       string
-CustomerType_lookup []Lookup_Item
+CustomerType_props FieldProperties
 AccountOfficer       string
+AccountOfficer_props FieldProperties
 CountryCode       string
-CountryCode_lookup []Lookup_Item
+CountryCode_props FieldProperties
 SectorCode       string
-SectorCode_lookup []Lookup_Item
+SectorCode_props FieldProperties
 CpartyGroupName       string
-CpartyGroupName_lookup []Lookup_Item
+CpartyGroupName_props FieldProperties
 Notes       string
+Notes_props FieldProperties
 Owner       string
+Owner_props FieldProperties
 Authorised       string
-Authorised_lookup []Lookup_Item
+Authorised_props FieldProperties
 NameFirmName       string
+NameFirmName_props FieldProperties
 NameCentreName       string
+NameCentreName_props FieldProperties
 CountryCodeName       string
+CountryCodeName_props FieldProperties
 SectorCodeName       string
+SectorCodeName_props FieldProperties
 CompID       string
+CompID_props FieldProperties
+ // Any lookups will be added belowNameCentre_lookup []Lookup_Item
+NameFirm_lookup []Lookup_Item
+
+
+
+CustomerType_lookup []Lookup_Item
+
+CountryCode_lookup []Lookup_Item
+SectorCode_lookup []Lookup_Item
+CpartyGroupName_lookup []Lookup_Item
+
+Owner_lookup []Lookup_Item
+Authorised_lookup []Lookup_Item
+
+
+
+
+
 
 }
 

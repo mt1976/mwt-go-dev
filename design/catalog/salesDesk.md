@@ -6,13 +6,14 @@
 |Object         |**SalesDesk** (salesdesk) |
 |Endpoint 	    |**/SalesDesk...** [^1]|
 |Endpoint Query |**Desk**|
+|REST API|**/API/SalesDesk/**|
 Glyph|**fas fa-industry** ()
 Friendly Name|**Sales Desk**|
 |For Project    |github.com/mt1976/mwt-go-dev/|
 
 ##  Actions {#action-id}
-
-
+* **List** (/SalesDesk/SalesDeskList) [Exportable]
+* **View** (/SalesDesk/SalesDeskView)
 
 
 
@@ -55,15 +56,18 @@ SQL Table Key | **Name**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/salesDesk_core.go |
+| code | **api** | /application/salesDesk_api.go |
 | code | **dao** | /dao/salesDesk_core.go |
 | code | **datamodel** | /datamodel/salesDesk_core.go |
+| html | **list** | /SalesDesk_List.html |
+| html | **view** | /SalesDesk_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:13**
+Date & Time		     | **26/06/2022** at **18:48:32**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

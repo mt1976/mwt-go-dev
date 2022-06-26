@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type AccountLadder_PageList struct {
 }
 //AccountLadder_Redirect provides a page to return to aftern an action
 const (
+	
 	AccountLadder_Redirect = dm.AccountLadder_PathList
+	
 )
 
 //accountladder_Page provides the information for the template for an individual AccountLadder
@@ -45,16 +47,22 @@ type AccountLadder_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SienaReference         string
+	SienaReference_props     dm.FieldProperties
 	BusinessDate         string
+	BusinessDate_props     dm.FieldProperties
 	ContractNumber         string
+	ContractNumber_props     dm.FieldProperties
 	Balance         string
+	Balance_props     dm.FieldProperties
 	DealtCcy         string
+	DealtCcy_props     dm.FieldProperties
 	AmountDp         string
+	AmountDp_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -143,7 +151,7 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the AccountLadder Page 
 func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail AccountLadder_Page) AccountLadder_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.BusinessDate = rD.BusinessDate
@@ -154,7 +162,7 @@ func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail AccountLadder_Pa
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -169,8 +177,16 @@ func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail AccountLadder_Pa
 	
 	
 	
+	pageDetail.SienaReference_props = rD.SienaReference_props
+	pageDetail.BusinessDate_props = rD.BusinessDate_props
+	pageDetail.ContractNumber_props = rD.ContractNumber_props
+	pageDetail.Balance_props = rD.Balance_props
+	pageDetail.DealtCcy_props = rD.DealtCcy_props
+	pageDetail.AmountDp_props = rD.AmountDp_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

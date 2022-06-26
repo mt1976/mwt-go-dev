@@ -87,3 +87,19 @@ func Payee_Status_OnFetch_impl(rec dm.Payee) string {
 
 	return val
 }
+
+// Payee_Status_Impl provides validation/actions for Status
+
+func Payee_Status_Impl(iAction string, iId string, iValue string, iRec dm.Payee, fP dm.FieldProperties) (string, dm.FieldProperties) {
+
+	logs.Callout("Payee", "Status", VAL+"-"+iAction, iId)
+
+	return "", fP
+
+}
+
+//
+
+// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+
+// END - Validation API/Callout

@@ -1,11 +1,10 @@
 
-    {
-      "ID": "8043c36c-b20c-4fd0-99b1-1ce4e95940fb",
-      "Text": "Counterparty Credit Rating",
-      "Glyph": "fas fa-passport",
-      "HREF": "/CounterpartyCreditRatingList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "c42cbe82-8561-4d3d-890e-1a5ef2490046",
+      "MenuText": "Counterparty Credit Rating",
+      "MenuGlyph": "fas fa-passport",
+      "MenuHREF": "/CounterpartyCreditRatingList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

@@ -44,11 +44,11 @@ SQL Table Key | **Code**
 ##  Properties / Fields
 | Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
-|**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
-|**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
+|**Code**|String|true|true|false|true|||||Y|Code||true|false|false|text||
+|**Name**|String|true|true|false|true|||||Y|Name||false|false|false|text||
 |**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
-|**Contact**|String|false|true|false|false|||||Y|Contact||false|false|false|text||
-|**Address**|String|false|true|false|false|||||Y|Address||false|false|false|text||
+|**Contact**|String|false|true|false|true|||||Y|Contact||false|false|false|email||
+|**Address**|String|false|true|false|true|||||Y|Address||false|false|false|textarea||
 |**LEI**|String|false|true|false|false|||||Y|LEI||false|false|false|text||
 
 
@@ -71,7 +71,7 @@ SQL Table Key | **Code**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:06**
+Date & Time		     | **26/06/2022** at **18:48:18**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

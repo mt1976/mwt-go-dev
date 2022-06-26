@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func DealAuditEvent_GetByID(id string) (int, dm.DealAuditEvent, error) {
 	tsql = tsql + " WHERE " + dm.DealAuditEvent_SQLSearchID + "='" + id + "'"
 	_, _, dealauditeventItem, _ := dealauditevent_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, dealauditeventItem, nil
 }
 
@@ -60,7 +66,12 @@ func DealAuditEvent_Delete(id string) {
 // DealAuditEvent_Store() saves/stores a DealAuditEvent record to the database
 func DealAuditEvent_Store(r dm.DealAuditEvent,req *http.Request) error {
 
-	err := dealauditevent_Save(r,Audit_User(req))
+	err, r := DealAuditEvent_Validate(r)
+	if err == nil {
+		err = dealauditevent_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DealAuditEvent_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,27 @@ func DealAuditEvent_Store(r dm.DealAuditEvent,req *http.Request) error {
 // DealAuditEvent_StoreSystem() saves/stores a DealAuditEvent record to the database
 func DealAuditEvent_StoreSystem(r dm.DealAuditEvent) error {
 	
-	err := dealauditevent_Save(r,Audit_Host())
+	err, r := DealAuditEvent_Validate(r)
+	if err == nil {
+		err = dealauditevent_Save(r, Audit_Host())
+	} else {
+		logs.Information("DealAuditEvent_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DealAuditEvent_Validate() validates for saves/stores a DealAuditEvent record to the database
+func DealAuditEvent_Validate(r dm.DealAuditEvent) (error,dm.DealAuditEvent) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // dealauditevent_Save() saves/stores a DealAuditEvent record to the database
 func dealauditevent_Save(r dm.DealAuditEvent,usr string) error {
@@ -145,7 +173,7 @@ func dealauditevent_Fetch(tsql string) (int, []dm.DealAuditEvent, dm.DealAuditEv
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.DealRefNo  = get_String(rec, dm.DealAuditEvent_DealRefNo_sql, "")
 	   recItem.EventIndex  = get_Int(rec, dm.DealAuditEvent_EventIndex_sql, "0")
@@ -193,7 +221,7 @@ func dealauditevent_Fetch(tsql string) (int, []dm.DealAuditEvent, dm.DealAuditEv
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -213,7 +241,24 @@ func DealAuditEvent_NewID(r dm.DealAuditEvent) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// dealauditevent_Fetch read all DealAuditEvent's
+func DealAuditEvent_New() (int, []dm.DealAuditEvent, dm.DealAuditEvent, error) {
+
+	var r = dm.DealAuditEvent{}
+	var rList []dm.DealAuditEvent
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

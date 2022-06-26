@@ -1,11 +1,10 @@
 
-    {
-      "ID": "6794d562-df31-4c61-9cb3-5d1376be797d",
-      "Text": "Counterparty",
-      "Glyph": "fas fa-user",
-      "HREF": "/CounterpartyList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "e04ed09f-00e1-4595-8b96-be8402867b91",
+      "MenuText": "Counterparty",
+      "MenuGlyph": "fas fa-user",
+      "MenuHREF": "/CounterpartyList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

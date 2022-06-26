@@ -1,95 +1,129 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
 
-    <form action="/CounterpartyImportSave/?ID={{.CompID}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-passport me-2" title="ID={{.CompID}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartyImportSave/?ID={{.CompID}}" onclick="/CounterpartyImportSave/?ID={{.CompID}}" title="Save Counterparty Import"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Import"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+<form action="/CounterpartyImportSave/?ID={{.CompID}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-passport me-2"
+            title="ID={{.CompID}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="KeyImportID" name="KeyImportID" aria-describedby="KeyImportIDHelp" placeholder=""   value="{{.KeyImportID}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="KeyImportID" >KeyImportID</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Firm" name="Firm" aria-describedby="FirmHelp" placeholder=""   value="{{.Firm}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Firm" >Firm</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Centre" name="Centre" aria-describedby="CentreHelp" placeholder=""   value="{{.Centre}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Centre" >Centre</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""   value="{{.FirmName}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="FirmName" >FirmName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="CentreName" name="CentreName" aria-describedby="CentreNameHelp" placeholder=""   value="{{.CentreName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="CentreName" >CentreName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="KeyOriginID" name="KeyOriginID" aria-describedby="KeyOriginIDHelp" placeholder=""   value="{{.KeyOriginID}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="KeyOriginID" >KeyOriginID</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""   value="{{.FullName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="FullName" >FullName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""   value="{{.CompID}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
-                    </div>
-          
-            </div></div>
-
-     
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartyImportSave/?ID={{.CompID}}" onclick="/CounterpartyImportSave/?ID={{.CompID}}" title="Save Counterparty Import"><i class="fas fa-save me-2"></i>Save</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Import"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.KeyImportID_props.MsgType}}" id="KeyImportID" name="KeyImportID" aria-describedby="KeyImportIDHelp" placeholder=""   value="{{.KeyImportID}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="KeyImportID" >KeyImportID</label>
+              <div class="{{.KeyImportID_props.MsgFeedBackType}}">{{.KeyImportID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Firm_props.MsgType}}" id="Firm" name="Firm" aria-describedby="FirmHelp" placeholder=""   value="{{.Firm}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Firm" >Firm</label>
+              <div class="{{.Firm_props.MsgFeedBackType}}">{{.Firm_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Centre_props.MsgType}}" id="Centre" name="Centre" aria-describedby="CentreHelp" placeholder=""   value="{{.Centre}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Centre" >Centre</label>
+              <div class="{{.Centre_props.MsgFeedBackType}}">{{.Centre_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.FirmName_props.MsgType}}" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""   value="{{.FirmName}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="FirmName" >FirmName</label>
+              <div class="{{.FirmName_props.MsgFeedBackType}}">{{.FirmName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.CentreName_props.MsgType}}" id="CentreName" name="CentreName" aria-describedby="CentreNameHelp" placeholder=""   value="{{.CentreName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="CentreName" >CentreName</label>
+              <div class="{{.CentreName_props.MsgFeedBackType}}">{{.CentreName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.KeyOriginID_props.MsgType}}" id="KeyOriginID" name="KeyOriginID" aria-describedby="KeyOriginIDHelp" placeholder=""   value="{{.KeyOriginID}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="KeyOriginID" >KeyOriginID</label>
+              <div class="{{.KeyOriginID_props.MsgFeedBackType}}">{{.KeyOriginID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.FullName_props.MsgType}}" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""   value="{{.FullName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="FullName" >FullName</label>
+              <div class="{{.FullName_props.MsgFeedBackType}}">{{.FullName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.CompID_props.MsgType}}" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""   value="{{.CompID}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
+              <div class="{{.CompID_props.MsgFeedBackType}}">{{.CompID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

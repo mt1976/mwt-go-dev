@@ -29,9 +29,9 @@ of Simple CSS Waves-->
     <div class="inner-header flex">
       <!--Just the logo.. Don't mind this-->
 
-      <div class="card shadow-custom" style="margin-top:10rem; box-shadow: 0 2px
+      <div class="card shadow-custom col-md-10" style="margin-top:10rem; box-shadow: 0 2px
         20px 0 rgba(0, 0, 0, .25), 0 3px 14px 16px rgba(0, 0, 0, 0.11)
-        !important;">
+        !important;z-index:99; max-width:1rem">
         <div class="card-header text-center">
           <div class="hdrimage"><i class="fas fa-atom"
               style="font-size:80pt;margin-top:1rem;"></i></div>
@@ -58,10 +58,12 @@ of Simple CSS Waves-->
               <div class="input-group-append">
               </div>
             </div>
-            <div class="text text-center text-danger h4" role="alert"><strong>{{.ResponseError}}</strong></div>
+            <div class="text text-center text-danger h4" role="alert"><strong>{{.ResponseMessage}}</strong></div>
             <div class="justify-content-end">
           
-              <button type="submit" value="" class="btn btn-primary btn-lg" style="float: right;" formaction="/login" method="GET">SIGN IN</button>
+              <button type="submit" value="" class="btn btn-primary btn-lg ms-3" style="float: right;" formaction="/login" method="GET"><i class="fas fa-sign-in-alt me-2"></i>SIGN IN</button>
+              <button type="submit" value="" class="btn btn-link btn-lg ms-3" style="float: right;" formaction="/request?msg=NEW" method="GET">Request Access</button>
+
           </div>
           </form>
 

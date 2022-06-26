@@ -1,0 +1,117 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CounterpartyNotesEdit/?ID={{.NoteId}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="far fa-sticky-note me-2" title="ID = {{.NoteId}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Notes {{.NoteId}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="NoteId" aria-describedby="NoteIdHelp" placeholder="0" disabled value="{{.NoteId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="NoteId"><i class="fas fa-key me-2"></i>NoteId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="StreamId" name="StreamId" class="select" data-mdb-filter="true" disabled>
+                  {{range .StreamId_lookup}}<option value="{{.ID}}" {{if eq .ID $.StreamId}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="StreamId" disabled>StreamId</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Summary" aria-describedby="SummaryHelp" placeholder="" disabled value="{{.Summary}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Summary">Summary</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Details" aria-describedby="DetailsHelp" placeholder="" disabled value="{{.Details}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Details">Details</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="RecordState" name="RecordState" class="select" data-mdb-filter="true" disabled>
+                  {{range .RecordState_lookup}}<option value="{{.ID}}" {{if eq .ID $.RecordState}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="RecordState" disabled>RecordState</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="CreatedBy" aria-describedby="CreatedByHelp" placeholder="" disabled value="{{.CreatedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="CreatedBy">CreatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="datetime" class="form-control" id="CreatedDateTime" aria-describedby="CreatedDateTimeHelp" placeholder="" disabled value="{{.CreatedDateTime}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="CreatedDateTime">CreatedDateTime</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

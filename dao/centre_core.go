@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:20
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Centre_GetByID(id string) (int, dm.Centre, error) {
 	tsql = tsql + " WHERE " + dm.Centre_SQLSearchID + "='" + id + "'"
 	_, _, centreItem, _ := centre_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, centreItem, nil
 }
 
@@ -79,7 +85,12 @@ func Centre_Delete(id string) {
 // Centre_Store() saves/stores a Centre record to the database
 func Centre_Store(r dm.Centre,req *http.Request) error {
 
-	err := centre_Save(r,Audit_User(req))
+	err, r := Centre_Validate(r)
+	if err == nil {
+		err = centre_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Centre_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,27 @@ func Centre_Store(r dm.Centre,req *http.Request) error {
 // Centre_StoreSystem() saves/stores a Centre record to the database
 func Centre_StoreSystem(r dm.Centre) error {
 	
-	err := centre_Save(r,Audit_Host())
+	err, r := Centre_Validate(r)
+	if err == nil {
+		err = centre_Save(r, Audit_Host())
+	} else {
+		logs.Information("Centre_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Centre_Validate() validates for saves/stores a Centre record to the database
+func Centre_Validate(r dm.Centre) (error,dm.Centre) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // centre_Save() saves/stores a Centre record to the database
 func centre_Save(r dm.Centre,usr string) error {
@@ -146,7 +174,7 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Centre_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Centre_Name_sql, "")
@@ -158,7 +186,7 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -178,7 +206,24 @@ func Centre_NewID(r dm.Centre) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// centre_Fetch read all Centre's
+func Centre_New() (int, []dm.Centre, dm.Centre, error) {
+
+	var r = dm.Centre{}
+	var rList []dm.Centre
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

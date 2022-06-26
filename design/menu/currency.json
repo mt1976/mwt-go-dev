@@ -1,11 +1,10 @@
 
-    {
-      "ID": "11bd3bbd-49a7-4a58-9c89-2c5e387eafe2",
-      "Text": "Currency",
-      "Glyph": "fas fa-dollar-sign",
-      "HREF": "/CurrencyList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "307c74b6-7db1-479f-9390-695ec2ed1e12",
+      "MenuText": "Currency",
+      "MenuGlyph": "fas fa-dollar-sign",
+      "MenuHREF": "/CurrencyList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 26/06/2022 at 18:48:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type CustomerOnboarding_PageList struct {
 }
 //CustomerOnboarding_Redirect provides a page to return to aftern an action
 const (
+	
 	CustomerOnboarding_Redirect = dm.CustomerOnboarding_PathList
+	
 )
 
 //customeronboarding_Page provides the information for the template for an individual CustomerOnboarding
@@ -45,23 +47,36 @@ type CustomerOnboarding_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
+	ID_props     dm.FieldProperties
 	CustomerName         string
+	CustomerName_props     dm.FieldProperties
 	CustomerAddress         string
+	CustomerAddress_props     dm.FieldProperties
 	CustomerBOLID         string
+	CustomerBOLID_props     dm.FieldProperties
 	CustomerFirmName         string
+	CustomerFirmName_props     dm.FieldProperties
 	CustomerType         string
+	CustomerType_props     dm.FieldProperties
 	CustomerRDC         string
+	CustomerRDC_props     dm.FieldProperties
 	CustomerSortCode         string
+	CustomerSortCode_props     dm.FieldProperties
 	CustomerGMClientNo         string
+	CustomerGMClientNo_props     dm.FieldProperties
 	CustomerDefaultBook         string
+	CustomerDefaultBook_props     dm.FieldProperties
 	CustomerRegion         string
+	CustomerRegion_props     dm.FieldProperties
 	CustomerCategory         string
+	CustomerCategory_props     dm.FieldProperties
 	CustomerTelephoneNo         string
+	CustomerTelephoneNo_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -187,7 +202,7 @@ func CustomerOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CustomerOnboarding
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.CustomerOnboarding_ID_scrn)
 		item.CustomerName = r.FormValue(dm.CustomerOnboarding_CustomerName_scrn)
@@ -204,7 +219,7 @@ func CustomerOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CustomerTelephoneNo = r.FormValue(dm.CustomerOnboarding_CustomerTelephoneNo_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CustomerOnboarding_Store(item,r)	
 	http.Redirect(w, r, CustomerOnboarding_Redirect, http.StatusFound)
@@ -220,9 +235,9 @@ func CustomerOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.CustomerOnboarding_New()
 
 	pageDetail := CustomerOnboarding_Page{
 		Title:       CardTitle(dm.CustomerOnboarding_Title, core.Action_New),
@@ -233,7 +248,7 @@ func CustomerOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = customeronboarding_PopulatePage(dm.CustomerOnboarding{} , pageDetail) 
+	pageDetail = customeronboarding_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CustomerOnboarding_TemplateNew, w, r, pageDetail)
 
@@ -261,7 +276,7 @@ func CustomerOnboarding_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CustomerOnboarding Page 
 func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail CustomerOnboarding_Page) CustomerOnboarding_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.CustomerName = rD.CustomerName
@@ -279,7 +294,7 @@ func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail Custom
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -308,8 +323,23 @@ func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail Custom
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.CustomerName_props = rD.CustomerName_props
+	pageDetail.CustomerAddress_props = rD.CustomerAddress_props
+	pageDetail.CustomerBOLID_props = rD.CustomerBOLID_props
+	pageDetail.CustomerFirmName_props = rD.CustomerFirmName_props
+	pageDetail.CustomerType_props = rD.CustomerType_props
+	pageDetail.CustomerRDC_props = rD.CustomerRDC_props
+	pageDetail.CustomerSortCode_props = rD.CustomerSortCode_props
+	pageDetail.CustomerGMClientNo_props = rD.CustomerGMClientNo_props
+	pageDetail.CustomerDefaultBook_props = rD.CustomerDefaultBook_props
+	pageDetail.CustomerRegion_props = rD.CustomerRegion_props
+	pageDetail.CustomerCategory_props = rD.CustomerCategory_props
+	pageDetail.CustomerTelephoneNo_props = rD.CustomerTelephoneNo_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

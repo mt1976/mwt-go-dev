@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type CounterpartyImport_PageList struct {
 }
 //CounterpartyImport_Redirect provides a page to return to aftern an action
 const (
+	
 	CounterpartyImport_Redirect = dm.CounterpartyImport_PathList
+	
 )
 
 //counterpartyimport_Page provides the information for the template for an individual CounterpartyImport
@@ -45,18 +47,26 @@ type CounterpartyImport_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	KeyImportID         string
+	KeyImportID_props     dm.FieldProperties
 	Firm         string
+	Firm_props     dm.FieldProperties
 	Centre         string
+	Centre_props     dm.FieldProperties
 	FirmName         string
+	FirmName_props     dm.FieldProperties
 	CentreName         string
+	CentreName_props     dm.FieldProperties
 	KeyOriginID         string
+	KeyOriginID_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	CompID         string
+	CompID_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -182,7 +192,7 @@ func CounterpartyImport_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CounterpartyImport
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.KeyImportID = r.FormValue(dm.CounterpartyImport_KeyImportID_scrn)
 		item.Firm = r.FormValue(dm.CounterpartyImport_Firm_scrn)
@@ -194,7 +204,7 @@ func CounterpartyImport_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CompID = r.FormValue(dm.CounterpartyImport_CompID_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyImport_Store(item,r)	
 	http.Redirect(w, r, CounterpartyImport_Redirect, http.StatusFound)
@@ -210,9 +220,9 @@ func CounterpartyImport_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.CounterpartyImport_New()
 
 	pageDetail := CounterpartyImport_Page{
 		Title:       CardTitle(dm.CounterpartyImport_Title, core.Action_New),
@@ -223,7 +233,7 @@ func CounterpartyImport_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = counterpartyimport_PopulatePage(dm.CounterpartyImport{} , pageDetail) 
+	pageDetail = counterpartyimport_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyImport_TemplateNew, w, r, pageDetail)
 
@@ -251,7 +261,7 @@ func CounterpartyImport_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CounterpartyImport Page 
 func counterpartyimport_PopulatePage(rD dm.CounterpartyImport, pageDetail CounterpartyImport_Page) CounterpartyImport_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.KeyImportID = rD.KeyImportID
 	pageDetail.Firm = rD.Firm
@@ -264,7 +274,7 @@ func counterpartyimport_PopulatePage(rD dm.CounterpartyImport, pageDetail Counte
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -283,8 +293,18 @@ func counterpartyimport_PopulatePage(rD dm.CounterpartyImport, pageDetail Counte
 	
 	
 	
+	pageDetail.KeyImportID_props = rD.KeyImportID_props
+	pageDetail.Firm_props = rD.Firm_props
+	pageDetail.Centre_props = rD.Centre_props
+	pageDetail.FirmName_props = rD.FirmName_props
+	pageDetail.CentreName_props = rD.CentreName_props
+	pageDetail.KeyOriginID_props = rD.KeyOriginID_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.CompID_props = rD.CompID_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

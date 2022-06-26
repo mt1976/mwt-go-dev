@@ -9,16 +9,23 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CounterpartyGroup defines the datamolde for the CounterpartyGroup object
 type CounterpartyGroup struct {
 
+
 Name       string
+Name_props FieldProperties
 CountryCode       string
+CountryCode_props FieldProperties
 SuperGroup       string
+SuperGroup_props FieldProperties
+ // Any lookups will be added below
+
+
 
 }
 

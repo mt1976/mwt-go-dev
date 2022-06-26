@@ -7,7 +7,7 @@
   <link rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
   <!-- Google Fonts Roboto -->
-  <link rel="stylesheet"
+ <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     />
   <link rel="stylesheet" href="/assets/css/mdb.min.css" />
@@ -29,30 +29,26 @@ of Simple CSS Waves-->
     <div class="inner-header flex">
       <!--Just the logo.. Don't mind this-->
 
-      <div class="card shadow-custom" style="margin-top:10rem; box-shadow: 0 2px
+      <div class="card shadow-custom col-md-10" style="margin-top:10rem; box-shadow: 0 2px
         20px 0 rgba(0, 0, 0, .25), 0 3px 14px 16px rgba(0, 0, 0, 0.11)
-        !important;">
-
-        <div class="card-body">
-        <h5 class="card-title">{{.SessionInfo.AppName}}</h5>
-            <br>
-            <p class="card-text lead" role=""><strong><i class="fas fa-ambulance"></i> Ooops. Something went wrong..!</strong></p>
-            <p class="card-text" role="">The issue may be temporary. Please go back and try again. If the problem persists, please get in touch with our support team.</p>
-            <br>
-            <div class="justify-content-start">
-            <p class="card-text">REPORT CODE : <code>ERR_NO_TEMPLATE_FOUND</code></p>
-            <p class="card-text">SERVER VERSION :<code>{{.SessionInfo.AppID}}</code></p>
-            </div>
-            <div class="justify-content-end">
-          <form action="/" method="POST" class="responsive">
-     
-              <!--<button type="submit" value="" class="btn btn-primary btn-lg" style="float: right;" formaction="/login" method="GET">SIGN IN</button>-->
-          </div>
-          </form>
-
+        !important;z-index:99; max-width:1rem">
+ <div class="card-header text-center">
+         <h4 class="card-title">{{.SessionInfo.AppName}}</h4>
         </div>
+        <div class="card-body">
+            <p class="card-text h1" role=""><i class="fas fa-ambulance me-2"></i>Ooops....</p>
+                        <p class="card-text h2" role="">Something went wrong..!</p>
 
-      
+            <p class="card-text word-wrap fw-light" role="">The issue may be temporary. Please go back and try again. If the problem persists, please get in touch with our support team.</p>
+            <div class="justify-content-start">
+            <p class="card-text">REPORT CODE : <code>ERR_NO_TEMPLATE_FOUND</code><br>
+            SERVER VERSION :<code>{{.SessionInfo.AppID}}</code></p>
+          <p><a href="mailto:someone@example.com?subject={{.SessionInfo.AppName}} Support Request&body={{.SessionInfo.AppName}} Support Request %0D Test"><i class="far fa-envelope me-2"></i>Contact Support</a></p>
+            </div>
+
+                <button id="close" type="button" class="btn btn-primary" onclick="history.back()"><i class="fa fa-times me-2" ></i>Cancel</button></div>
+              <!--<button type="submit" value="" class="btn btn-primary btn-lg" style="float: right;" formaction="/login" method="GET">SIGN IN</button>-->
+     
       </div>
 
     </div>
@@ -89,14 +85,5 @@ of Simple CSS Waves-->
             <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
             <!-- Custom scripts -->
             <script type="text/javascript" src="/assets/js/script.js"></script>
-            <script>
-    function showPassword(inField) {
-      var x = document.getElementById(inField);
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-        x.type = "password";
-      }
-    }
-  </script>
+          
           </body>

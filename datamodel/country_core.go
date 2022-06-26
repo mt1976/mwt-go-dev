@@ -9,18 +9,29 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Country defines the datamolde for the Country object
 type Country struct {
 
+
 Code       string
+Code_props FieldProperties
 Name       string
+Name_props FieldProperties
 ShortCode       string
+ShortCode_props FieldProperties
 EU_EEA       string
+EU_EEA_props FieldProperties
 HolidaysWeekend       string
+HolidaysWeekend_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
 
 }
 

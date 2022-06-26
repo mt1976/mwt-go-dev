@@ -9,19 +9,32 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Broker defines the datamolde for the Broker object
 type Broker struct {
 
+
 Code       string
+Code_props FieldProperties
 Name       string
+Name_props FieldProperties
 FullName       string
+FullName_props FieldProperties
 Contact       string
+Contact_props FieldProperties
 Address       string
+Address_props FieldProperties
 LEI       string
+LEI_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
 
 }
 

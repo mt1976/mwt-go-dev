@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:21
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Counterparty_PageList struct {
 }
 //Counterparty_Redirect provides a page to return to aftern an action
 const (
+	
 	Counterparty_Redirect = dm.Counterparty_PathList
+	
 )
 
 //counterparty_Page provides the information for the template for an individual Counterparty
@@ -45,35 +47,54 @@ type Counterparty_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	NameCentre         string
 	NameCentre_lookup    []dm.Lookup_Item
+	NameCentre_props     dm.FieldProperties
 	NameFirm         string
 	NameFirm_lookup    []dm.Lookup_Item
+	NameFirm_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	TelephoneNumber         string
+	TelephoneNumber_props     dm.FieldProperties
 	EmailAddress         string
+	EmailAddress_props     dm.FieldProperties
 	CustomerType         string
 	CustomerType_lookup    []dm.Lookup_Item
+	CustomerType_props     dm.FieldProperties
 	AccountOfficer         string
+	AccountOfficer_props     dm.FieldProperties
 	CountryCode         string
 	CountryCode_lookup    []dm.Lookup_Item
+	CountryCode_props     dm.FieldProperties
 	SectorCode         string
 	SectorCode_lookup    []dm.Lookup_Item
+	SectorCode_props     dm.FieldProperties
 	CpartyGroupName         string
 	CpartyGroupName_lookup    []dm.Lookup_Item
+	CpartyGroupName_props     dm.FieldProperties
 	Notes         string
+	Notes_props     dm.FieldProperties
 	Owner         string
+	Owner_lookup    []dm.Lookup_Item
+	Owner_props     dm.FieldProperties
 	Authorised         string
 	Authorised_lookup    []dm.Lookup_Item
+	Authorised_props     dm.FieldProperties
 	NameFirmName         string
+	NameFirmName_props     dm.FieldProperties
 	NameCentreName         string
+	NameCentreName_props     dm.FieldProperties
 	CountryCodeName         string
+	CountryCodeName_props     dm.FieldProperties
 	SectorCodeName         string
+	SectorCodeName_props     dm.FieldProperties
 	CompID         string
+	CompID_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -199,7 +220,7 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Counterparty
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre_scrn)
 		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm_scrn)
@@ -221,7 +242,7 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CompID = r.FormValue(dm.Counterparty_CompID_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Counterparty_Store(item,r)	
 	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
@@ -250,7 +271,7 @@ func Counterparty_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Counterparty Page 
 func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page) Counterparty_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameCentre = rD.NameCentre
 	pageDetail.NameFirm = rD.NameFirm
@@ -273,7 +294,7 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.NameCentre_lookup = dao.Centre_GetLookup()
@@ -310,6 +331,8 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	
 	
 	
+	pageDetail.Owner_lookup = dao.Owner_GetLookup()
+	
 	
 	
 	
@@ -326,8 +349,28 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	
 	
 	
+	pageDetail.NameCentre_props = rD.NameCentre_props
+	pageDetail.NameFirm_props = rD.NameFirm_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.TelephoneNumber_props = rD.TelephoneNumber_props
+	pageDetail.EmailAddress_props = rD.EmailAddress_props
+	pageDetail.CustomerType_props = rD.CustomerType_props
+	pageDetail.AccountOfficer_props = rD.AccountOfficer_props
+	pageDetail.CountryCode_props = rD.CountryCode_props
+	pageDetail.SectorCode_props = rD.SectorCode_props
+	pageDetail.CpartyGroupName_props = rD.CpartyGroupName_props
+	pageDetail.Notes_props = rD.Notes_props
+	pageDetail.Owner_props = rD.Owner_props
+	pageDetail.Authorised_props = rD.Authorised_props
+	pageDetail.NameFirmName_props = rD.NameFirmName_props
+	pageDetail.NameCentreName_props = rD.NameCentreName_props
+	pageDetail.CountryCodeName_props = rD.CountryCodeName_props
+	pageDetail.SectorCodeName_props = rD.SectorCodeName_props
+	pageDetail.CompID_props = rD.CompID_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

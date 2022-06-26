@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func Product_GetByID(id string) (int, dm.Product, error) {
 	tsql = tsql + " WHERE " + dm.Product_SQLSearchID + "='" + id + "'"
 	_, _, productItem, _ := product_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, productItem, nil
 }
 
@@ -69,7 +75,12 @@ func Product_Delete(id string) {
 // Product_Store() saves/stores a Product record to the database
 func Product_Store(r dm.Product,req *http.Request) error {
 
-	err := product_Save(r,Audit_User(req))
+	err, r := Product_Validate(r)
+	if err == nil {
+		err = product_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Product_Store()", err.Error())
+	}
 
 	return err
 }
@@ -77,10 +88,27 @@ func Product_Store(r dm.Product,req *http.Request) error {
 // Product_StoreSystem() saves/stores a Product record to the database
 func Product_StoreSystem(r dm.Product) error {
 	
-	err := product_Save(r,Audit_Host())
+	err, r := Product_Validate(r)
+	if err == nil {
+		err = product_Save(r, Audit_Host())
+	} else {
+		logs.Information("Product_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Product_Validate() validates for saves/stores a Product record to the database
+func Product_Validate(r dm.Product) (error,dm.Product) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // product_Save() saves/stores a Product record to the database
 func product_Save(r dm.Product,usr string) error {
@@ -145,7 +173,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Product_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Product_Name_sql, "")
@@ -175,7 +203,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -195,7 +223,24 @@ func Product_NewID(r dm.Product) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// product_Fetch read all Product's
+func Product_New() (int, []dm.Product, dm.Product, error) {
+
+	var r = dm.Product{}
+	var rList []dm.Product
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

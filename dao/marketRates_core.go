@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func MarketRates_GetByID(id string) (int, dm.MarketRates, error) {
 	tsql = tsql + " WHERE " + dm.MarketRates_SQLSearchID + "='" + id + "'"
 	_, _, marketratesItem, _ := marketrates_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, marketratesItem, nil
 }
 
@@ -66,7 +72,12 @@ func MarketRates_Delete(id string) {
 // MarketRates_Store() saves/stores a MarketRates record to the database
 func MarketRates_Store(r dm.MarketRates,req *http.Request) error {
 
-	err := marketrates_Save(r,Audit_User(req))
+	err, r := MarketRates_Validate(r)
+	if err == nil {
+		err = marketrates_Save(r, Audit_User(req))
+	} else {
+		logs.Information("MarketRates_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func MarketRates_Store(r dm.MarketRates,req *http.Request) error {
 // MarketRates_StoreSystem() saves/stores a MarketRates record to the database
 func MarketRates_StoreSystem(r dm.MarketRates) error {
 	
-	err := marketrates_Save(r,Audit_Host())
+	err, r := MarketRates_Validate(r)
+	if err == nil {
+		err = marketrates_Save(r, Audit_Host())
+	} else {
+		logs.Information("MarketRates_Store()", err.Error())
+	}
 
 	return err
 }
+
+// MarketRates_Validate() validates for saves/stores a MarketRates record to the database
+func MarketRates_Validate(r dm.MarketRates) (error,dm.MarketRates) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // marketrates_Save() saves/stores a MarketRates record to the database
 func marketrates_Save(r dm.MarketRates,usr string) error {
@@ -130,7 +158,7 @@ logs.Storing("MarketRates",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.MarketRates_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.MarketRates_Id_sql, r.Id)
@@ -155,7 +183,7 @@ logs.Storing("MarketRates",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.MarketRates_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.MarketRates_SQLTable)
@@ -188,7 +216,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.MarketRates_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.MarketRates_Id_sql, "")
@@ -236,7 +264,7 @@ func marketrates_Fetch(tsql string) (int, []dm.MarketRates, dm.MarketRates, erro
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -256,7 +284,24 @@ func MarketRates_NewID(r dm.MarketRates) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// marketrates_Fetch read all MarketRates's
+func MarketRates_New() (int, []dm.MarketRates, dm.MarketRates, error) {
+
+	var r = dm.MarketRates{}
+	var rList []dm.MarketRates
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

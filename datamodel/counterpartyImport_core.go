@@ -9,21 +9,38 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CounterpartyImport defines the datamolde for the CounterpartyImport object
 type CounterpartyImport struct {
 
+
 KeyImportID       string
+KeyImportID_props FieldProperties
 Firm       string
+Firm_props FieldProperties
 Centre       string
+Centre_props FieldProperties
 FirmName       string
+FirmName_props FieldProperties
 CentreName       string
+CentreName_props FieldProperties
 KeyOriginID       string
+KeyOriginID_props FieldProperties
 FullName       string
+FullName_props FieldProperties
 CompID       string
+CompID_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
 
 }
 

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func CounterpartyName_GetByID(id string) (int, dm.CounterpartyName, error) {
 	tsql = tsql + " WHERE " + dm.CounterpartyName_SQLSearchID + "='" + id + "'"
 	_, _, counterpartynameItem, _ := counterpartyname_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, counterpartynameItem, nil
 }
 
@@ -60,7 +66,12 @@ func CounterpartyName_Delete(id string) {
 // CounterpartyName_Store() saves/stores a CounterpartyName record to the database
 func CounterpartyName_Store(r dm.CounterpartyName,req *http.Request) error {
 
-	err := counterpartyname_Save(r,Audit_User(req))
+	err, r := CounterpartyName_Validate(r)
+	if err == nil {
+		err = counterpartyname_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CounterpartyName_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,27 @@ func CounterpartyName_Store(r dm.CounterpartyName,req *http.Request) error {
 // CounterpartyName_StoreSystem() saves/stores a CounterpartyName record to the database
 func CounterpartyName_StoreSystem(r dm.CounterpartyName) error {
 	
-	err := counterpartyname_Save(r,Audit_Host())
+	err, r := CounterpartyName_Validate(r)
+	if err == nil {
+		err = counterpartyname_Save(r, Audit_Host())
+	} else {
+		logs.Information("CounterpartyName_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CounterpartyName_Validate() validates for saves/stores a CounterpartyName record to the database
+func CounterpartyName_Validate(r dm.CounterpartyName) (error,dm.CounterpartyName) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // counterpartyname_Save() saves/stores a CounterpartyName record to the database
 func counterpartyname_Save(r dm.CounterpartyName,usr string) error {
@@ -128,7 +156,7 @@ func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.Counter
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameFirm  = get_String(rec, dm.CounterpartyName_NameFirm_sql, "")
 	   recItem.NameCentre  = get_String(rec, dm.CounterpartyName_NameCentre_sql, "")
@@ -142,7 +170,7 @@ func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.Counter
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -162,7 +190,24 @@ func CounterpartyName_NewID(r dm.CounterpartyName) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// counterpartyname_Fetch read all CounterpartyName's
+func CounterpartyName_New() (int, []dm.CounterpartyName, dm.CounterpartyName, error) {
+
+	var r = dm.CounterpartyName{}
+	var rList []dm.CounterpartyName
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

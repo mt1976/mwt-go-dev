@@ -9,127 +9,356 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 26/06/2022 at 18:48:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Transaction defines the datamolde for the Transaction object
 type Transaction struct {
 
+
 SienaReference       string
+SienaReference_props FieldProperties
 Status       string
+Status_props FieldProperties
 ValueDate       string
+ValueDate_props FieldProperties
 MaturityDate       string
+MaturityDate_props FieldProperties
 ContractNumber       string
+ContractNumber_props FieldProperties
 ExternalReference       string
+ExternalReference_props FieldProperties
 Book       string
+Book_props FieldProperties
 MandatedUser       string
+MandatedUser_props FieldProperties
 Portfolio       string
+Portfolio_props FieldProperties
 AgreementId       string
+AgreementId_props FieldProperties
 BackOfficeRefNo       string
+BackOfficeRefNo_props FieldProperties
 ISIN       string
+ISIN_props FieldProperties
 UTI       string
+UTI_props FieldProperties
 BookName       string
+BookName_props FieldProperties
 Centre       string
+Centre_props FieldProperties
 Firm       string
+Firm_props FieldProperties
 DealTypeShortName       string
+DealTypeShortName_props FieldProperties
 FullDealType       string
+FullDealType_props FieldProperties
 TradeDate       string
+TradeDate_props FieldProperties
 DealtCcy       string
+DealtCcy_props FieldProperties
 DealtAmount       string
+DealtAmount_props FieldProperties
 AgainstAmount       string
+AgainstAmount_props FieldProperties
 AgainstCcy       string
+AgainstCcy_props FieldProperties
 AllInRate       string
+AllInRate_props FieldProperties
 MktRate       string
+MktRate_props FieldProperties
 SettleCcy       string
+SettleCcy_props FieldProperties
 Direction       string
+Direction_props FieldProperties
 NpvRate       string
+NpvRate_props FieldProperties
 OriginUser       string
+OriginUser_props FieldProperties
 PayInstruction       string
+PayInstruction_props FieldProperties
 ReceiptInstruction       string
+ReceiptInstruction_props FieldProperties
 NIName       string
+NIName_props FieldProperties
 CCYPair       string
+CCYPair_props FieldProperties
 Instrument       string
+Instrument_props FieldProperties
 PortfolioName       string
+PortfolioName_props FieldProperties
 RVDate       string
+RVDate_props FieldProperties
 RVMTM       string
+RVMTM_props FieldProperties
 CounterBook       string
+CounterBook_props FieldProperties
 CounterBookName       string
+CounterBookName_props FieldProperties
 Party       string
+Party_props FieldProperties
 PartyName       string
+PartyName_props FieldProperties
 NameCentre       string
+NameCentre_props FieldProperties
 NameFirm       string
+NameFirm_props FieldProperties
 CustomerExternalView       string
+CustomerExternalView_props FieldProperties
 CustomerSienaView       string
+CustomerSienaView_props FieldProperties
 CompID       string
+CompID_props FieldProperties
 SienaDealer       string
+SienaDealer_props FieldProperties
 DealOwner       string
+DealOwner_props FieldProperties
 DealOwnerMnemonic       string
+DealOwnerMnemonic_props FieldProperties
 EditedByUser       string
+EditedByUser_props FieldProperties
 UTCOriginTime       string
+UTCOriginTime_props FieldProperties
 UTCUpdateTime       string
+UTCUpdateTime_props FieldProperties
 MarginTrading       string
+MarginTrading_props FieldProperties
 SwapPoints       string
+SwapPoints_props FieldProperties
 SpotDate       string
+SpotDate_props FieldProperties
 SpotRate       string
+SpotRate_props FieldProperties
 MktSpotRate       string
+MktSpotRate_props FieldProperties
 SpotSalesMargin       string
+SpotSalesMargin_props FieldProperties
 SpotChlMargin       string
+SpotChlMargin_props FieldProperties
 RerouteCcy       string
+RerouteCcy_props FieldProperties
 CustomerPayInstruction       string
+CustomerPayInstruction_props FieldProperties
 CustomerReceiptInstruction       string
+CustomerReceiptInstruction_props FieldProperties
 BackOfficeNotes       string
+BackOfficeNotes_props FieldProperties
 CustomerStatementNotes       string
+CustomerStatementNotes_props FieldProperties
 NotesMargin       string
+NotesMargin_props FieldProperties
 RequestedBy       string
+RequestedBy_props FieldProperties
 EditReason       string
+EditReason_props FieldProperties
 EditOtherReason       string
+EditOtherReason_props FieldProperties
 NICleanPrice       string
+NICleanPrice_props FieldProperties
 NIDirtyPrice       string
+NIDirtyPrice_props FieldProperties
 NIYield       string
+NIYield_props FieldProperties
 NIClearingSystem       string
+NIClearingSystem_props FieldProperties
 Acceptor       string
+Acceptor_props FieldProperties
 NIDiscount       string
+NIDiscount_props FieldProperties
 FastPay       string
+FastPay_props FieldProperties
 PaymentFee       string
+PaymentFee_props FieldProperties
 PaymentFeePolicy       string
+PaymentFeePolicy_props FieldProperties
 PaymentReason       string
+PaymentReason_props FieldProperties
 PaymentDate       string
+PaymentDate_props FieldProperties
 SettlementDate       string
+SettlementDate_props FieldProperties
 FixingDate       string
+FixingDate_props FieldProperties
 VenueUTI       string
+VenueUTI_props FieldProperties
 EditVersion       string
+EditVersion_props FieldProperties
 BrokeragePercentage       string
+BrokeragePercentage_props FieldProperties
 BrokerageAmount       string
+BrokerageAmount_props FieldProperties
 BrokerageCurrency       string
+BrokerageCurrency_props FieldProperties
 BrokerageDate       string
+BrokerageDate_props FieldProperties
 AccountName       string
+AccountName_props FieldProperties
 AccountNumber       string
+AccountNumber_props FieldProperties
 CashBalance       string
+CashBalance_props FieldProperties
 DebitFrequency       string
+DebitFrequency_props FieldProperties
 CreditFrequency       string
+CreditFrequency_props FieldProperties
 ManuallyQuoted       string
+ManuallyQuoted_props FieldProperties
 LedgerBalance       string
+LedgerBalance_props FieldProperties
 SettAmtOutstanding       string
+SettAmtOutstanding_props FieldProperties
 FeePercentage       string
+FeePercentage_props FieldProperties
 FeeAmount       string
+FeeAmount_props FieldProperties
 Venue       string
+Venue_props FieldProperties
 EURAmount       string
+EURAmount_props FieldProperties
 EUROtherAmount       string
+EUROtherAmount_props FieldProperties
 LEI       string
+LEI_props FieldProperties
 Equity       string
+Equity_props FieldProperties
 Shares       string
+Shares_props FieldProperties
 QuoteExpiryDate       string
+QuoteExpiryDate_props FieldProperties
 Commodity       string
+Commodity_props FieldProperties
 PaymentSystemSienaView       string
+PaymentSystemSienaView_props FieldProperties
 PaymentSystemExternalView       string
+PaymentSystemExternalView_props FieldProperties
 SalesProfit       string
+SalesProfit_props FieldProperties
 RejectReason       string
+RejectReason_props FieldProperties
 PaymentError       string
+PaymentError_props FieldProperties
 RepoPrincipal       string
+RepoPrincipal_props FieldProperties
 FixingFrequency       string
+FixingFrequency_props FieldProperties
 Dealt       string
+Dealt_props FieldProperties
 Against       string
+Against_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

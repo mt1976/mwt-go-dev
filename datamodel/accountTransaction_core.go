@@ -9,28 +9,59 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //AccountTransaction defines the datamolde for the AccountTransaction object
 type AccountTransaction struct {
 
+
 SienaReference       string
+SienaReference_props FieldProperties
 LegNo       string
+LegNo_props FieldProperties
 MMLegNo       string
+MMLegNo_props FieldProperties
 Narrative       string
+Narrative_props FieldProperties
 Amount       string
+Amount_props FieldProperties
 StartInterestDate       string
+StartInterestDate_props FieldProperties
 EndInterestDate       string
+EndInterestDate_props FieldProperties
 Amortisation       string
+Amortisation_props FieldProperties
 InterestAmount       string
+InterestAmount_props FieldProperties
 InterestAction       string
+InterestAction_props FieldProperties
 FixingDate       string
+FixingDate_props FieldProperties
 InterestCalculationDate       string
+InterestCalculationDate_props FieldProperties
 AmendmentAmount       string
+AmendmentAmount_props FieldProperties
 DealtCcy       string
+DealtCcy_props FieldProperties
 AmountDp       string
+AmountDp_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

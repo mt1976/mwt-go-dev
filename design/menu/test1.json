@@ -1,11 +1,10 @@
 
-    {
-      "ID": "3bb15d70-58ce-4451-905f-08bdced33a01",
-      "Text": "Test1Template",
-      "Glyph": "fas fa-cubes",
-      "HREF": "/Test1List",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "bce712f6-b31f-4bad-9f69-20c9bc233db8",
+      "MenuText": "Test1Template",
+      "MenuGlyph": "fas fa-cubes",
+      "MenuHREF": "/Test1List",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

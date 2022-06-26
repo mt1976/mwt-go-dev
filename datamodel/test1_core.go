@@ -9,26 +9,44 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Test1 defines the datamolde for the Test1 object
 type Test1 struct {
 
+
 ID       string
+ID_props FieldProperties
 Endpoint       string
+Endpoint_props FieldProperties
 Descr       string
+Descr_props FieldProperties
 Query       string
+Query_props FieldProperties
 Source       string
+Source_props FieldProperties
 Firm       string
-Firm_lookup []Lookup_Item
+Firm_props FieldProperties
 YN       string
-YN_lookup []Lookup_Item
+YN_props FieldProperties
 User       string
-User_lookup []Lookup_Item
+User_props FieldProperties
 Cheese       string
+Cheese_props FieldProperties
 Onion       string
+Onion_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+Firm_lookup []Lookup_Item
+YN_lookup []Lookup_Item
+User_lookup []Lookup_Item
+
+
 
 }
 

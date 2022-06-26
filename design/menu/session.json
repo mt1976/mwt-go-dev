@@ -1,11 +1,10 @@
 
-    {
-      "ID": "e926d3ce-d34f-4502-a3b6-1b70fa2ebf06",
-      "Text": "Session",
-      "Glyph": "fas fa-history",
-      "HREF": "/SessionList",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "23bbfc07-276a-49b1-85fa-ab4a1091780e",
+      "MenuText": "Session",
+      "MenuGlyph": "fas fa-history",
+      "MenuHREF": "/SessionList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

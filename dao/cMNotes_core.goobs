@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 24/06/2022 at 15:01:35
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -131,7 +131,7 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NoteId  = get_Int(rec, dm.CMNotes_NoteId_sql, "0")
 	   recItem.StreamId  = get_Int(rec, dm.CMNotes_StreamId_sql, "0")
@@ -151,7 +151,7 @@ func cmnotes_Fetch(tsql string) (int, []dm.CMNotes, dm.CMNotes, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list

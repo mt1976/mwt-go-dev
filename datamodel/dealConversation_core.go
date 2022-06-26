@@ -9,25 +9,50 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 26/06/2022 at 18:48:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DealConversation defines the datamolde for the DealConversation object
 type DealConversation struct {
 
+
 SienaReference       string
+SienaReference_props FieldProperties
 Status       string
+Status_props FieldProperties
 MessageType       string
+MessageType_props FieldProperties
 ContractNumber       string
+ContractNumber_props FieldProperties
 AckReference       string
+AckReference_props FieldProperties
 NewTX       string
+NewTX_props FieldProperties
 LegNo       string
+LegNo_props FieldProperties
 Summary       string
+Summary_props FieldProperties
 BusinessDate       string
+BusinessDate_props FieldProperties
 TXNo       string
+TXNo_props FieldProperties
 ExternalSystem       string
+ExternalSystem_props FieldProperties
 MessageLogReference       string
+MessageLogReference_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -9,33 +9,80 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Credentials defines the datamolde for the Credentials object
 type Credentials struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 Username       string
+Username_props FieldProperties
 Password       string
+Password_props FieldProperties
 Firstname       string
+Firstname_props FieldProperties
 Lastname       string
+Lastname_props FieldProperties
 Knownas       string
+Knownas_props FieldProperties
 Email       string
+Email_props FieldProperties
 Issued       string
+Issued_props FieldProperties
 Expiry       string
+Expiry_props FieldProperties
 RoleType       string
+RoleType_props FieldProperties
 Brand       string
+Brand_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
+State       string
+State_props FieldProperties
+Notes       string
+Notes_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+RoleType_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+State_lookup []Lookup_Item
+
 
 }
 
@@ -86,6 +133,8 @@ Credentials_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
 Credentials_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
 Credentials_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
 Credentials_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
+Credentials_State_sql   = "State" // State is a String
+Credentials_Notes_sql   = "Notes" // Notes is a String
 
 	/// Definitions End
 
@@ -111,6 +160,8 @@ Credentials_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
 Credentials_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
 Credentials_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
 Credentials_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
+Credentials_State_scrn   = "State" // State is a String
+Credentials_Notes_scrn   = "Notes" // Notes is a String
 
 	/// Definitions End
 )

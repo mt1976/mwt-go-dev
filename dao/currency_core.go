@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Currency_GetByID(id string) (int, dm.Currency, error) {
 	tsql = tsql + " WHERE " + dm.Currency_SQLSearchID + "='" + id + "'"
 	_, _, currencyItem, _ := currency_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, currencyItem, nil
 }
 
@@ -79,7 +85,12 @@ func Currency_Delete(id string) {
 // Currency_Store() saves/stores a Currency record to the database
 func Currency_Store(r dm.Currency,req *http.Request) error {
 
-	err := currency_Save(r,Audit_User(req))
+	err, r := Currency_Validate(r)
+	if err == nil {
+		err = currency_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Currency_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,27 @@ func Currency_Store(r dm.Currency,req *http.Request) error {
 // Currency_StoreSystem() saves/stores a Currency record to the database
 func Currency_StoreSystem(r dm.Currency) error {
 	
-	err := currency_Save(r,Audit_Host())
+	err, r := Currency_Validate(r)
+	if err == nil {
+		err = currency_Save(r, Audit_Host())
+	} else {
+		logs.Information("Currency_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Currency_Validate() validates for saves/stores a Currency record to the database
+func Currency_Validate(r dm.Currency) (error,dm.Currency) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // currency_Save() saves/stores a Currency record to the database
 func currency_Save(r dm.Currency,usr string) error {
@@ -167,7 +195,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Currency_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Currency_Name_sql, "")
@@ -221,7 +249,7 @@ func currency_Fetch(tsql string) (int, []dm.Currency, dm.Currency, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -241,7 +269,24 @@ func Currency_NewID(r dm.Currency) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// currency_Fetch read all Currency's
+func Currency_New() (int, []dm.Currency, dm.Currency, error) {
+
+	var r = dm.Currency{}
+	var rList []dm.Currency
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

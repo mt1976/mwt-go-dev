@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Payee_PageList struct {
 }
 //Payee_Redirect provides a page to return to aftern an action
 const (
+	
 	Payee_Redirect = dm.Payee_PathList
+	
 )
 
 //payee_Page provides the information for the template for an individual Payee
@@ -45,35 +47,59 @@ type Payee_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SourceTable         string
+	SourceTable_props     dm.FieldProperties
 	KeyCounterpartyFirm         string
+	KeyCounterpartyFirm_props     dm.FieldProperties
 	KeyCounterpartyCentre         string
+	KeyCounterpartyCentre_props     dm.FieldProperties
 	KeyCurrency         string
+	KeyCurrency_props     dm.FieldProperties
 	KeyName         string
+	KeyName_props     dm.FieldProperties
 	KeyNumber         string
+	KeyNumber_props     dm.FieldProperties
 	KeyDirection         string
+	KeyDirection_props     dm.FieldProperties
 	KeyType         string
+	KeyType_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	Address         string
+	Address_props     dm.FieldProperties
 	PhoneNo         string
+	PhoneNo_props     dm.FieldProperties
 	Country         string
 	Country_lookup    []dm.Lookup_Item
+	Country_props     dm.FieldProperties
 	Bic         string
+	Bic_props     dm.FieldProperties
 	Iban         string
+	Iban_props     dm.FieldProperties
 	AccountNo         string
+	AccountNo_props     dm.FieldProperties
 	FedWireNo         string
+	FedWireNo_props     dm.FieldProperties
 	SortCode         string
+	SortCode_props     dm.FieldProperties
 	BankName         string
+	BankName_props     dm.FieldProperties
 	BankPinCode         string
+	BankPinCode_props     dm.FieldProperties
 	BankAddress         string
+	BankAddress_props     dm.FieldProperties
 	Reason         string
+	Reason_props     dm.FieldProperties
 	BankSettlementAcct         string
+	BankSettlementAcct_props     dm.FieldProperties
 	UpdatedUserId         string
+	UpdatedUserId_props     dm.FieldProperties
 	Status         string
+	Status_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -162,7 +188,7 @@ func Payee_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Payee Page 
 func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SourceTable = rD.SourceTable
 	pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
@@ -191,7 +217,7 @@ func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	pageDetail.Status = rD.Status
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -244,8 +270,34 @@ func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	
 	
 	
+	pageDetail.SourceTable_props = rD.SourceTable_props
+	pageDetail.KeyCounterpartyFirm_props = rD.KeyCounterpartyFirm_props
+	pageDetail.KeyCounterpartyCentre_props = rD.KeyCounterpartyCentre_props
+	pageDetail.KeyCurrency_props = rD.KeyCurrency_props
+	pageDetail.KeyName_props = rD.KeyName_props
+	pageDetail.KeyNumber_props = rD.KeyNumber_props
+	pageDetail.KeyDirection_props = rD.KeyDirection_props
+	pageDetail.KeyType_props = rD.KeyType_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.Address_props = rD.Address_props
+	pageDetail.PhoneNo_props = rD.PhoneNo_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.Bic_props = rD.Bic_props
+	pageDetail.Iban_props = rD.Iban_props
+	pageDetail.AccountNo_props = rD.AccountNo_props
+	pageDetail.FedWireNo_props = rD.FedWireNo_props
+	pageDetail.SortCode_props = rD.SortCode_props
+	pageDetail.BankName_props = rD.BankName_props
+	pageDetail.BankPinCode_props = rD.BankPinCode_props
+	pageDetail.BankAddress_props = rD.BankAddress_props
+	pageDetail.Reason_props = rD.Reason_props
+	pageDetail.BankSettlementAcct_props = rD.BankSettlementAcct_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.Status_props = rD.Status_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

@@ -48,30 +48,30 @@ SQL Table Key | **MessageID**
 |**MessageID**|String|false|true|false|true|||||N|messageID||false|false|false|text||
 |**MessageFormat**|String|false|true|false|true|||||N|messageFormat||false|false|false|text||
 |**MessageDeliveredTo**|String|false|true|false|true|||||N|messageDeliveredTo||false|false|false|text||
-|**MessageBody**|String|false|true|false|true|||||N|messageBody||false|false|false|text||
+|**MessageBody**|String|false|true|false|true|||||N|messageBody||false|false|false|textarea||
 |**MessageFilename**|String|false|true|false|true|||||N|messageFilename||false|false|false|text||
-|**MessageLife**|String|false|true|false|true|||||Y|messageLife||false|false|false|number||
-|**MessageDate**|String|false|true|false|true|||||N|messageDate||false|false|false|text||
+|**MessageLife**|String|false|true|false|true|||||N|messageLife||false|false|false|number||
+|**MessageDate**|String|false|true|false|true|||||N|messageDate||false|false|false|date|yyyy-mm-dd|
 |**MessageTime**|String|false|true|false|true|||||N|messageTime||false|false|false|text||
 |**MessageTimeoutAction**|String|false|true|false|true|||||N|messageTimeoutAction||false|false|false|text||
 |**MessageACKNAK**|String|false|true|false|false|LL|messageACKNAK|||Y|messageACKNAK||false|false|false|text||
 |**ResponseID**|String|false|true|false|false|||||Y|responseID||false|false|false|text||
 |**ResponseFilename**|String|false|true|false|false|||||Y|responseFilename||false|false|false|text||
-|**ResponseBody**|String|false|true|false|false|||||Y|responseBody||false|false|false|text||
-|**ResponseDate**|String|false|true|false|false|||||Y|responseDate||false|false|false|text||
-|**ResponseTime**|String|false|true|false|false|||||Y|responseTime||false|false|false|text||
-|**ResponseAdditionalInfo**|String|false|true|false|false|||||Y|responseAdditionalInfo||false|false|false|text||
+|**ResponseBody**|String|false|true|false|true|||||Y|responseBody||false|false|false|textarea||
+|**ResponseDate**|String|false|true|false|true|||||Y|responseDate||false|false|false|date|yyyy-mm-dd|
+|**ResponseTime**|String|false|true|false|true|||||Y|responseTime||false|false|false|time||
+|**ResponseAdditionalInfo**|String|false|true|false|true|||||Y|responseAdditionalInfo||false|false|false|textarea||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
 |**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
 |**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
 |**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
 |**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
-|**MessageTimeout**|String|false|true|false|true|||||Y|messageTimeout||false|false|false|datetime||
+|**MessageTimeout**|String|false|true|false|true|||||N|messageTimeout||false|false|false|datetime||
 |**MessageEmitted**|String|false|true|false|true|||||N|messageEmitted||false|false|false|text||
-|**ResponseRecieved**|String|false|true|false|false|||||Y|responseRecieved||false|false|false|text||
+|**ResponseRecieved**|String|false|true|false|false|LL|tf|||Y|responseRecieved||false|false|false|text||
 |**MessageClass**|String|false|true|false|true|||||N|messageClass||false|false|false|text||
-|**AppID**|String|false|true|false|true|||||N|appID||false|false|false|text||
+|**AppID**|String|false|true|false|true|||||NH|appID||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -91,7 +91,7 @@ SQL Table Key | **MessageID**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:11**
+Date & Time		     | **26/06/2022** at **18:48:28**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -1,11 +1,10 @@
 
-    {
-      "ID": "8b337e44-30a2-4c3f-998c-7044961d45d9",
-      "Text": "Message Translation",
-      "Glyph": "fas fa-city",
-      "HREF": "/TranslationList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "7d453664-2e5e-461d-b81f-f374c9aedbfc",
+      "MenuText": "Message Translation",
+      "MenuGlyph": "fas fa-city",
+      "MenuHREF": "/TranslationList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

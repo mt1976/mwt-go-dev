@@ -9,37 +9,86 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DealingInterface defines the datamolde for the DealingInterface object
 type DealingInterface struct {
 
+
 Name       string
+Name_props FieldProperties
 AcceptReducedAmount       string
+AcceptReducedAmount_props FieldProperties
 QuoteAsIndicative       string
+QuoteAsIndicative_props FieldProperties
 RateTimeOut       string
+RateTimeOut_props FieldProperties
 PropagationDelay       string
+PropagationDelay_props FieldProperties
 CheckLiquidity       string
+CheckLiquidity_props FieldProperties
 ChangeQuoteDirection       string
+ChangeQuoteDirection_props FieldProperties
 GenerateRejectedDeals       string
+GenerateRejectedDeals_props FieldProperties
 SpotUpdatesForForwardQuotes       string
+SpotUpdatesForForwardQuotes_props FieldProperties
 SettlementInstructionStyle       string
+SettlementInstructionStyle_props FieldProperties
 CanRetractQuotes       string
+CanRetractQuotes_props FieldProperties
 CancelESPifNotPriced       string
+CancelESPifNotPriced_props FieldProperties
 CancelRFQSifNotPriced       string
+CancelRFQSifNotPriced_props FieldProperties
 CancelonDealingSuspended       string
+CancelonDealingSuspended_props FieldProperties
 CreditCheckedatDI       string
+CreditCheckedatDI_props FieldProperties
 DuplicateCheckonExternalRef       string
+DuplicateCheckonExternalRef_props FieldProperties
 LimitCheckQuote       string
+LimitCheckQuote_props FieldProperties
 LimitCheckonRFQDealSubmission       string
+LimitCheckonRFQDealSubmission_props FieldProperties
 ListenonLimits       string
+ListenonLimits_props FieldProperties
 MarginStyle       string
+MarginStyle_props FieldProperties
 UseRerouteDefinitionOnly       string
+UseRerouteDefinitionOnly_props FieldProperties
 BypassConfirmation       string
+BypassConfirmation_props FieldProperties
 DIOnAcceptance       string
+DIOnAcceptance_props FieldProperties
 IgnoreESPAmountRules       string
+IgnoreESPAmountRules_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

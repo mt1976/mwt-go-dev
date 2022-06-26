@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type CounterpartyGroup_PageList struct {
 }
 //CounterpartyGroup_Redirect provides a page to return to aftern an action
 const (
+	
 	CounterpartyGroup_Redirect = dm.CounterpartyGroup_PathList
+	
 )
 
 //counterpartygroup_Page provides the information for the template for an individual CounterpartyGroup
@@ -45,13 +47,16 @@ type CounterpartyGroup_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Name         string
+	Name_props     dm.FieldProperties
 	CountryCode         string
+	CountryCode_props     dm.FieldProperties
 	SuperGroup         string
+	SuperGroup_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -177,14 +182,14 @@ func CounterpartyGroup_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CounterpartyGroup
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Name = r.FormValue(dm.CounterpartyGroup_Name_scrn)
 		item.CountryCode = r.FormValue(dm.CounterpartyGroup_CountryCode_scrn)
 		item.SuperGroup = r.FormValue(dm.CounterpartyGroup_SuperGroup_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyGroup_Store(item,r)	
 	http.Redirect(w, r, CounterpartyGroup_Redirect, http.StatusFound)
@@ -200,9 +205,9 @@ func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.CounterpartyGroup_New()
 
 	pageDetail := CounterpartyGroup_Page{
 		Title:       CardTitle(dm.CounterpartyGroup_Title, core.Action_New),
@@ -213,7 +218,7 @@ func CounterpartyGroup_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = counterpartygroup_PopulatePage(dm.CounterpartyGroup{} , pageDetail) 
+	pageDetail = counterpartygroup_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyGroup_TemplateNew, w, r, pageDetail)
 
@@ -241,7 +246,7 @@ func CounterpartyGroup_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CounterpartyGroup Page 
 func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail CounterpartyGroup_Page) CounterpartyGroup_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Name = rD.Name
 	pageDetail.CountryCode = rD.CountryCode
@@ -249,7 +254,7 @@ func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail Counterp
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -258,8 +263,13 @@ func counterpartygroup_PopulatePage(rD dm.CounterpartyGroup, pageDetail Counterp
 	
 	
 	
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.CountryCode_props = rD.CountryCode_props
+	pageDetail.SuperGroup_props = rD.SuperGroup_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

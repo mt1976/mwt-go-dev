@@ -9,25 +9,50 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Portfolio defines the datamolde for the Portfolio object
 type Portfolio struct {
 
+
 Code       string
+Code_props FieldProperties
 Description1       string
+Description1_props FieldProperties
 Description2       string
+Description2_props FieldProperties
 IsDefault       string
+IsDefault_props FieldProperties
 InternalId       string
+InternalId_props FieldProperties
 InternalDeleted       string
+InternalDeleted_props FieldProperties
 UpdatedTransactionId       string
+UpdatedTransactionId_props FieldProperties
 UpdatedUserId       string
+UpdatedUserId_props FieldProperties
 UpdatedDateTime       string
+UpdatedDateTime_props FieldProperties
 DeletedTransactionId       string
+DeletedTransactionId_props FieldProperties
 DeletedUserId       string
+DeletedUserId_props FieldProperties
 ChangeType       string
+ChangeType_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

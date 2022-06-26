@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func AccountLadder_GetByID(id string) (int, dm.AccountLadder, error) {
 	tsql = tsql + " WHERE " + dm.AccountLadder_SQLSearchID + "='" + id + "'"
 	_, _, accountladderItem, _ := accountladder_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, accountladderItem, nil
 }
 
@@ -60,7 +66,12 @@ func AccountLadder_Delete(id string) {
 // AccountLadder_Store() saves/stores a AccountLadder record to the database
 func AccountLadder_Store(r dm.AccountLadder,req *http.Request) error {
 
-	err := accountladder_Save(r,Audit_User(req))
+	err, r := AccountLadder_Validate(r)
+	if err == nil {
+		err = accountladder_Save(r, Audit_User(req))
+	} else {
+		logs.Information("AccountLadder_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,27 @@ func AccountLadder_Store(r dm.AccountLadder,req *http.Request) error {
 // AccountLadder_StoreSystem() saves/stores a AccountLadder record to the database
 func AccountLadder_StoreSystem(r dm.AccountLadder) error {
 	
-	err := accountladder_Save(r,Audit_Host())
+	err, r := AccountLadder_Validate(r)
+	if err == nil {
+		err = accountladder_Save(r, Audit_Host())
+	} else {
+		logs.Information("AccountLadder_Store()", err.Error())
+	}
 
 	return err
 }
+
+// AccountLadder_Validate() validates for saves/stores a AccountLadder record to the database
+func AccountLadder_Validate(r dm.AccountLadder) (error,dm.AccountLadder) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // accountladder_Save() saves/stores a AccountLadder record to the database
 func accountladder_Save(r dm.AccountLadder,usr string) error {
@@ -130,7 +158,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SienaReference  = get_String(rec, dm.AccountLadder_SienaReference_sql, "")
 	   recItem.BusinessDate  = get_Time(rec, dm.AccountLadder_BusinessDate_sql, "")
@@ -148,7 +176,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -168,7 +196,24 @@ func AccountLadder_NewID(r dm.AccountLadder) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// accountladder_Fetch read all AccountLadder's
+func AccountLadder_New() (int, []dm.AccountLadder, dm.AccountLadder, error) {
+
+	var r = dm.AccountLadder{}
+	var rList []dm.AccountLadder
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -1,11 +1,10 @@
 
-    {
-      "ID": "18ee1665-2b04-42f4-9d17-11b4905d2369",
-      "Text": "Account Ladder",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/AccountLadderList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "86299534-135a-4d0f-9cca-e1b1d6966c06",
+      "MenuText": "Account Ladder",
+      "MenuGlyph": "fas fa-landmark",
+      "MenuHREF": "/AccountLadderList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

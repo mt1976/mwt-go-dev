@@ -9,28 +9,59 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:19
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Cache defines the datamolde for the Cache object
 type Cache struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 Object       string
+Object_props FieldProperties
 Field       string
+Field_props FieldProperties
 Value       string
+Value_props FieldProperties
 Expiry       string
+Expiry_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 Source       string
+Source_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

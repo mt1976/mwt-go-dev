@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type CounterpartyName_PageList struct {
 }
 //CounterpartyName_Redirect provides a page to return to aftern an action
 const (
+	
 	CounterpartyName_Redirect = dm.CounterpartyName_PathList
+	
 )
 
 //counterpartyname_Page provides the information for the template for an individual CounterpartyName
@@ -45,14 +47,18 @@ type CounterpartyName_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	NameFirm         string
+	NameFirm_props     dm.FieldProperties
 	NameCentre         string
+	NameCentre_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	CompID         string
+	CompID_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -141,7 +147,7 @@ func CounterpartyName_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CounterpartyName Page 
 func counterpartyname_PopulatePage(rD dm.CounterpartyName, pageDetail CounterpartyName_Page) CounterpartyName_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -150,7 +156,7 @@ func counterpartyname_PopulatePage(rD dm.CounterpartyName, pageDetail Counterpar
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -161,8 +167,14 @@ func counterpartyname_PopulatePage(rD dm.CounterpartyName, pageDetail Counterpar
 	
 	
 	
+	pageDetail.NameFirm_props = rD.NameFirm_props
+	pageDetail.NameCentre_props = rD.NameCentre_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.CompID_props = rD.CompID_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

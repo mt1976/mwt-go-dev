@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Product_PageList struct {
 }
 //Product_Redirect provides a page to return to aftern an action
 const (
+	
 	Product_Redirect = dm.Product_PathList
+	
 )
 
 //product_Page provides the information for the template for an individual Product
@@ -45,22 +47,34 @@ type Product_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
+	Code_props     dm.FieldProperties
 	Name         string
+	Name_props     dm.FieldProperties
 	Factor         string
+	Factor_props     dm.FieldProperties
 	MaxTermPrecedence         string
+	MaxTermPrecedence_props     dm.FieldProperties
 	InternalId         string
+	InternalId_props     dm.FieldProperties
 	InternalDeleted         string
+	InternalDeleted_props     dm.FieldProperties
 	UpdatedTransactionId         string
+	UpdatedTransactionId_props     dm.FieldProperties
 	UpdatedUserId         string
+	UpdatedUserId_props     dm.FieldProperties
 	UpdatedDateTime         string
+	UpdatedDateTime_props     dm.FieldProperties
 	DeletedTransactionId         string
+	DeletedTransactionId_props     dm.FieldProperties
 	DeletedUserId         string
+	DeletedUserId_props     dm.FieldProperties
 	ChangeType         string
+	ChangeType_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -186,7 +200,7 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Product
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Product_Code_scrn)
 		item.Name = r.FormValue(dm.Product_Name_scrn)
@@ -202,7 +216,7 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ChangeType = r.FormValue(dm.Product_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Product_Store(item,r)	
 	http.Redirect(w, r, Product_Redirect, http.StatusFound)
@@ -218,9 +232,9 @@ func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Product_New()
 
 	pageDetail := Product_Page{
 		Title:       CardTitle(dm.Product_Title, core.Action_New),
@@ -231,7 +245,7 @@ func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = product_PopulatePage(dm.Product{} , pageDetail) 
+	pageDetail = product_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Product_TemplateNew, w, r, pageDetail)
 
@@ -259,7 +273,7 @@ func Product_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Product Page 
 func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -276,7 +290,7 @@ func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -303,8 +317,22 @@ func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	
 	
 	
+	pageDetail.Code_props = rD.Code_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Factor_props = rD.Factor_props
+	pageDetail.MaxTermPrecedence_props = rD.MaxTermPrecedence_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

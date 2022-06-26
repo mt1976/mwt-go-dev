@@ -1,11 +1,10 @@
 
-    {
-      "ID": "a1b0d63d-1bca-44b4-8162-af59755528e7",
-      "Text": "API Catalog",
-      "Glyph": "fas fa-cubes",
-      "HREF": "/CatalogList",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "c8c7ed0a-aeda-41f5-b1f5-f27266ad8747",
+      "MenuText": "API Catalog",
+      "MenuGlyph": "fas fa-cubes",
+      "MenuHREF": "/CatalogList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

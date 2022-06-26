@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -55,6 +55,12 @@ func DataLoader_GetByID(id string) (int, dm.DataLoader, error) {
 	tsql = tsql + " WHERE " + dm.DataLoader_SQLSearchID + "='" + id + "'"
 	_, _, dataloaderItem, _ := dataloader_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, dataloaderItem, nil
 }
 
@@ -76,7 +82,12 @@ func DataLoader_Delete(id string) {
 // DataLoader_Store() saves/stores a DataLoader record to the database
 func DataLoader_Store(r dm.DataLoader,req *http.Request) error {
 
-	err := dataloader_Save(r,Audit_User(req))
+	err, r := DataLoader_Validate(r)
+	if err == nil {
+		err = dataloader_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DataLoader_Store()", err.Error())
+	}
 
 	return err
 }
@@ -84,10 +95,27 @@ func DataLoader_Store(r dm.DataLoader,req *http.Request) error {
 // DataLoader_StoreSystem() saves/stores a DataLoader record to the database
 func DataLoader_StoreSystem(r dm.DataLoader) error {
 	
-	err := dataloader_Save(r,Audit_Host())
+	err, r := DataLoader_Validate(r)
+	if err == nil {
+		err = dataloader_Save(r, Audit_Host())
+	} else {
+		logs.Information("DataLoader_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DataLoader_Validate() validates for saves/stores a DataLoader record to the database
+func DataLoader_Validate(r dm.DataLoader) (error,dm.DataLoader) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // dataloader_Save() saves/stores a DataLoader record to the database
 func dataloader_Save(r dm.DataLoader,usr string) error {
@@ -129,7 +157,7 @@ logs.Storing("DataLoader",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.DataLoader_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DataLoader_Id_sql, r.Id)
@@ -150,7 +178,7 @@ logs.Storing("DataLoader",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.DataLoader_SYSCreatedHost_sql, r.SYSCreatedHost)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoader_SQLTable)
@@ -183,7 +211,7 @@ func dataloader_Fetch(tsql string) (int, []dm.DataLoader, dm.DataLoader, error) 
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.DataLoader_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.DataLoader_Id_sql, "")
@@ -223,7 +251,7 @@ func dataloader_Fetch(tsql string) (int, []dm.DataLoader, dm.DataLoader, error) 
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -243,7 +271,24 @@ func DataLoader_NewID(r dm.DataLoader) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// dataloader_Fetch read all DataLoader's
+func DataLoader_New() (int, []dm.DataLoader, dm.DataLoader, error) {
+
+	var r = dm.DataLoader{}
+	var rList []dm.DataLoader
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

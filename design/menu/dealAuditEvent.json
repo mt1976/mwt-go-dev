@@ -1,11 +1,10 @@
 
-    {
-      "ID": "6a505be7-e9bc-47c3-8fde-84755a7e1b3d",
-      "Text": "Deal Audit History",
-      "Glyph": "fas fa-toolbox",
-      "HREF": "/DealAuditEventList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "97dc2f4c-b5e2-436e-a1da-4ee70127ba83",
+      "MenuText": "Deal Audit History",
+      "MenuGlyph": "fas fa-toolbox",
+      "MenuHREF": "/DealAuditEventList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

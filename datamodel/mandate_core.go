@@ -9,37 +9,71 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Mandate defines the datamolde for the Mandate object
 type Mandate struct {
 
+
 MandatedUserKeyCounterpartyFirm       string
-MandatedUserKeyCounterpartyFirm_lookup []Lookup_Item
+MandatedUserKeyCounterpartyFirm_props FieldProperties
 MandatedUserKeyCounterpartyCentre       string
-MandatedUserKeyCounterpartyCentre_lookup []Lookup_Item
+MandatedUserKeyCounterpartyCentre_props FieldProperties
 MandatedUserKeyUserName       string
+MandatedUserKeyUserName_props FieldProperties
 TelephoneNumber       string
+TelephoneNumber_props FieldProperties
 EmailAddress       string
+EmailAddress_props FieldProperties
 Active       string
-Active_lookup []Lookup_Item
+Active_props FieldProperties
 FirstName       string
+FirstName_props FieldProperties
 Surname       string
+Surname_props FieldProperties
 DateOfBirth       string
+DateOfBirth_props FieldProperties
 Postcode       string
+Postcode_props FieldProperties
 NationalIDNo       string
+NationalIDNo_props FieldProperties
 PassportNo       string
+PassportNo_props FieldProperties
 Country       string
-Country_lookup []Lookup_Item
+Country_props FieldProperties
 CountryName       string
+CountryName_props FieldProperties
 FirmName       string
+FirmName_props FieldProperties
 CentreName       string
+CentreName_props FieldProperties
 Notify       string
-Notify_lookup []Lookup_Item
+Notify_props FieldProperties
 SystemUser       string
+SystemUser_props FieldProperties
 CompID       string
+CompID_props FieldProperties
+ // Any lookups will be added belowMandatedUserKeyCounterpartyFirm_lookup []Lookup_Item
+MandatedUserKeyCounterpartyCentre_lookup []Lookup_Item
+
+
+
+Active_lookup []Lookup_Item
+
+
+
+
+
+
+Country_lookup []Lookup_Item
+
+
+
+Notify_lookup []Lookup_Item
+
+
 
 }
 

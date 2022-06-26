@@ -9,56 +9,143 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CounterpartyExtensions defines the datamolde for the CounterpartyExtensions object
 type CounterpartyExtensions struct {
 
+
 NameFirm       string
+NameFirm_props FieldProperties
 NameCentre       string
+NameCentre_props FieldProperties
 BICCode       string
+BICCode_props FieldProperties
 ContactIndicator       string
+ContactIndicator_props FieldProperties
 CoverTrade       string
+CoverTrade_props FieldProperties
 CustomerCategory       string
+CustomerCategory_props FieldProperties
 FSCSInclusive       string
+FSCSInclusive_props FieldProperties
 FeeFactor       string
+FeeFactor_props FieldProperties
 InactiveStatus       string
+InactiveStatus_props FieldProperties
 Indemnity       string
+Indemnity_props FieldProperties
 KnowYourCustomerStatus       string
+KnowYourCustomerStatus_props FieldProperties
 LERLimitCarveOut       string
+LERLimitCarveOut_props FieldProperties
 LastAmended       string
+LastAmended_props FieldProperties
 LastLogin       string
+LastLogin_props FieldProperties
 LossGivenDefault       string
+LossGivenDefault_props FieldProperties
 MIC       string
+MIC_props FieldProperties
 ProtectedDepositor       string
+ProtectedDepositor_props FieldProperties
 RPTCurrency       string
+RPTCurrency_props FieldProperties
 RateTimeout       string
+RateTimeout_props FieldProperties
 RateValidation       string
+RateValidation_props FieldProperties
 Registered       string
+Registered_props FieldProperties
 RegulatoryCategory       string
+RegulatoryCategory_props FieldProperties
 SecuredSettlement       string
+SecuredSettlement_props FieldProperties
 SettlementLimitCarveOut       string
+SettlementLimitCarveOut_props FieldProperties
 SortCode       string
+SortCode_props FieldProperties
 Training       string
+Training_props FieldProperties
 TrainingCode       string
+TrainingCode_props FieldProperties
 TrainingReceived       string
+TrainingReceived_props FieldProperties
 Unencumbered       string
+Unencumbered_props FieldProperties
 LEIExpiryDate       string
+LEIExpiryDate_props FieldProperties
 MIFIDReviewDate       string
+MIFIDReviewDate_props FieldProperties
 GDPRReviewDate       string
+GDPRReviewDate_props FieldProperties
 DelegatedReporting       string
+DelegatedReporting_props FieldProperties
 BOReconcile       string
+BOReconcile_props FieldProperties
 MIFIDReportableDealsAllowed       string
+MIFIDReportableDealsAllowed_props FieldProperties
 SignedInvestmentAgreement       string
+SignedInvestmentAgreement_props FieldProperties
 AppropriatenessAssessment       string
+AppropriatenessAssessment_props FieldProperties
 FinancialCounterparty       string
+FinancialCounterparty_props FieldProperties
 Collateralisation       string
+Collateralisation_props FieldProperties
 PortfolioCode       string
+PortfolioCode_props FieldProperties
 ReconciliationLetterFrequency       string
+ReconciliationLetterFrequency_props FieldProperties
 DirectDealing       string
+DirectDealing_props FieldProperties
 CompID       string
+CompID_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

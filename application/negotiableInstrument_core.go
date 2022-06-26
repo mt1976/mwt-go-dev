@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type NegotiableInstrument_PageList struct {
 }
 //NegotiableInstrument_Redirect provides a page to return to aftern an action
 const (
+	
 	NegotiableInstrument_Redirect = dm.NegotiableInstrument_PathList
+	
 )
 
 //negotiableinstrument_Page provides the information for the template for an individual NegotiableInstrument
@@ -45,46 +47,82 @@ type NegotiableInstrument_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	Id         string
+	Id_props     dm.FieldProperties
 	LongName         string
+	LongName_props     dm.FieldProperties
 	Isin         string
+	Isin_props     dm.FieldProperties
 	Tidm         string
+	Tidm_props     dm.FieldProperties
 	Sedol         string
+	Sedol_props     dm.FieldProperties
 	IssueDate         string
+	IssueDate_props     dm.FieldProperties
 	MaturityDate         string
+	MaturityDate_props     dm.FieldProperties
 	CouponValue         string
+	CouponValue_props     dm.FieldProperties
 	CouponType         string
+	CouponType_props     dm.FieldProperties
 	Segment         string
+	Segment_props     dm.FieldProperties
 	Sector         string
+	Sector_props     dm.FieldProperties
 	CodeConventionCalculateAccrual         string
+	CodeConventionCalculateAccrual_props     dm.FieldProperties
 	MinimumDenomination         string
+	MinimumDenomination_props     dm.FieldProperties
 	DenominationCurrency         string
+	DenominationCurrency_props     dm.FieldProperties
 	TradingCurrency         string
+	TradingCurrency_props     dm.FieldProperties
 	Type         string
+	Type_props     dm.FieldProperties
 	FlatYield         string
+	FlatYield_props     dm.FieldProperties
 	PaymentCouponDate         string
+	PaymentCouponDate_props     dm.FieldProperties
 	PeriodOfCoupon         string
+	PeriodOfCoupon_props     dm.FieldProperties
 	ExCouponDate         string
+	ExCouponDate_props     dm.FieldProperties
 	DateOfIndexInflation         string
+	DateOfIndexInflation_props     dm.FieldProperties
 	UnitOfQuotation         string
+	UnitOfQuotation_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSWho         string
+	SYSWho_props     dm.FieldProperties
 	SYSHost         string
+	SYSHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	Issuer         string
+	Issuer_props     dm.FieldProperties
 	IssueAmount         string
+	IssueAmount_props     dm.FieldProperties
 	RunningYield         string
+	RunningYield_props     dm.FieldProperties
 	LEI         string
+	LEI_props     dm.FieldProperties
 	CUSIP         string
+	CUSIP_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -181,7 +219,7 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.NegotiableInstrument
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.NegotiableInstrument_SYSId_scrn)
 		item.Id = r.FormValue(dm.NegotiableInstrument_Id_scrn)
@@ -221,7 +259,7 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedBy = r.FormValue(dm.NegotiableInstrument_SYSUpdatedBy_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.NegotiableInstrument_Store(item,r)	
 	http.Redirect(w, r, NegotiableInstrument_Redirect, http.StatusFound)
@@ -233,7 +271,7 @@ func NegotiableInstrument_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the NegotiableInstrument Page 
 func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail NegotiableInstrument_Page) NegotiableInstrument_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -274,7 +312,7 @@ func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail Ne
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -349,8 +387,46 @@ func negotiableinstrument_PopulatePage(rD dm.NegotiableInstrument, pageDetail Ne
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.LongName_props = rD.LongName_props
+	pageDetail.Isin_props = rD.Isin_props
+	pageDetail.Tidm_props = rD.Tidm_props
+	pageDetail.Sedol_props = rD.Sedol_props
+	pageDetail.IssueDate_props = rD.IssueDate_props
+	pageDetail.MaturityDate_props = rD.MaturityDate_props
+	pageDetail.CouponValue_props = rD.CouponValue_props
+	pageDetail.CouponType_props = rD.CouponType_props
+	pageDetail.Segment_props = rD.Segment_props
+	pageDetail.Sector_props = rD.Sector_props
+	pageDetail.CodeConventionCalculateAccrual_props = rD.CodeConventionCalculateAccrual_props
+	pageDetail.MinimumDenomination_props = rD.MinimumDenomination_props
+	pageDetail.DenominationCurrency_props = rD.DenominationCurrency_props
+	pageDetail.TradingCurrency_props = rD.TradingCurrency_props
+	pageDetail.Type_props = rD.Type_props
+	pageDetail.FlatYield_props = rD.FlatYield_props
+	pageDetail.PaymentCouponDate_props = rD.PaymentCouponDate_props
+	pageDetail.PeriodOfCoupon_props = rD.PeriodOfCoupon_props
+	pageDetail.ExCouponDate_props = rD.ExCouponDate_props
+	pageDetail.DateOfIndexInflation_props = rD.DateOfIndexInflation_props
+	pageDetail.UnitOfQuotation_props = rD.UnitOfQuotation_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Issuer_props = rD.Issuer_props
+	pageDetail.IssueAmount_props = rD.IssueAmount_props
+	pageDetail.RunningYield_props = rD.RunningYield_props
+	pageDetail.LEI_props = rD.LEI_props
+	pageDetail.CUSIP_props = rD.CUSIP_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

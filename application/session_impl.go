@@ -2,10 +2,12 @@ package application
 
 import (
 	"fmt"
+	"html"
 	"log"
 	"net/http"
 	"os"
 	"os/user"
+	"strconv"
 	"time"
 
 	"github.com/google/uuid"
@@ -24,6 +26,7 @@ type sessionToken struct {
 //Session_Publish annouces the endpoints available for this object
 func Session_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc("/login", Session_HandlerValidateLogin)
+	mux.HandleFunc("/request", Session_HandlerRegister)
 
 	logs.Publish("Application", dm.Session_Title+" Impl")
 }
@@ -213,7 +216,7 @@ func Session_CreateToken(req *http.Request) string {
 	r.Apphost = host
 	r.Issued = now.Format(core.DATETIMEFORMATUSER)
 
-	//addTime, _ := strconv.Atoi(globals.ApplicationProperties["sessionlife"])
+	//addTime, _ := strconv.Atoi(globals.core.ApplicationProperties["sessionlife"])
 	expiry := now.Add(time.Minute * 20)
 
 	r.Expiry = expiry.Format(core.DATETIMEFORMATUSER)
@@ -248,6 +251,119 @@ func Session_GetSessionInfo(r *http.Request) (dm.SessionInfo, error) {
 	}
 	s.AppName = core.ApplicationProperties["appname"]
 	s.AppID = fmt.Sprintf("%s [r%s-%s]", core.ApplicationProperties["releaseid"], core.ApplicationProperties["releaselevel"], core.ApplicationProperties["releasenumber"])
+	urMessages, _, _ := dao.Inbox_GetListByUser(s.UserName)
+
+	s.UnreadMessages = ""
+	if urMessages > 0 {
+		s.UnreadMessages = strconv.Itoa(urMessages)
+	}
 	//fmt.Printf("s: %v\n", s)
 	return s, nil
+}
+
+type requestPage struct {
+	AppName          string
+	UserName         string
+	UserPassword     string
+	WebServerVersion string
+	LicenceType      string
+	LicenceLink      string
+	ResponseMessage  string
+}
+
+func Session_HandlerRegister(w http.ResponseWriter, r *http.Request) {
+	tmpl := "Impl_Request"
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	appName := core.ApplicationProperties["appname"]
+
+	appServerVersion := core.ApplicationProperties["releaseid"] + " [r" + core.ApplicationProperties["releaselevel"] + "-" + core.ApplicationProperties["releasenumber"] + "]"
+
+	loginPageContent := requestPage{
+		AppName:          appName,
+		UserName:         "",
+		UserPassword:     "",
+		WebServerVersion: appServerVersion,
+		LicenceType:      core.ApplicationProperties["licname"],
+		LicenceLink:      core.ApplicationProperties["liclink"],
+		ResponseMessage:  "",
+	}
+
+	message := core.GetURLparam(r, "msg")
+	if message != "" {
+		loginPageContent.ResponseMessage = message
+	}
+	//fmt.Println("Page Data", loginPageContent)
+
+	//t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.SessionManager.GetString(r.Context(), core.SessionRole)))
+	// Does not user ExecuteTemplate because this is a special case
+
+	if message != "" {
+		loginPageContent.ResponseMessage = message
+
+		if message == "NEW" {
+			loginPageContent.ResponseMessage = ""
+		}
+		fmt.Printf("message: %v\n", message)
+		ExecuteTemplate(tmpl, w, r, loginPageContent)
+
+	} else {
+
+		message = processRequest(r)
+		fmt.Printf("message: %v\n", message)
+		message := html.EscapeString(message)
+		if message != "" {
+			http.Redirect(w, r, "/request?msg="+message, http.StatusFound)
+		} else {
+			http.Redirect(w, r, "/reqcomplete", http.StatusFound)
+		}
+	}
+
+}
+
+func processRequest(r *http.Request) string {
+	fmt.Printf("r.ParseForm(): %v\n", r.ParseForm())
+	fmt.Println("Process Registration Request")
+	firstName := r.FormValue("firstname")
+	lastName := r.FormValue("lastname")
+	email := r.FormValue("email")
+	username := email
+	password := r.FormValue("password")
+	passwordConfirm := r.FormValue("passwordconfirm")
+
+	fmt.Printf("firstName: %v\n", firstName)
+	fmt.Printf("lastName: %v\n", lastName)
+	fmt.Printf("email: %v\n", email)
+	fmt.Printf("username: %v\n", username)
+	fmt.Printf("password: %v\n", password)
+	fmt.Printf("passwordConfirm: %v\n", passwordConfirm)
+
+	if password != passwordConfirm {
+		return "Password and Confirm Password do not match"
+	}
+
+	if len(password) < 6 {
+		return "Password must be at least 6 characters long"
+	}
+
+	//TODO Duplicate Check
+	err := Credentials_DuplicateCheck(email)
+	if err != nil {
+		return err.Error()
+	}
+
+	err = Credentials_NewRequest(firstName, lastName, email, username, password)
+	if err != nil {
+		return err.Error()
+	}
+
+	mailMessage := fmt.Sprintf(core.ApplicationProperties["emailNewRequest"], firstName, lastName, username)
+	err = Inbox_SendMailSystem("mt76@gmx.com", "Registration Request", mailMessage)
+	if err != nil {
+		return err.Error()
+	}
+
+	return ""
 }

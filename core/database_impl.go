@@ -10,6 +10,22 @@ import (
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
+type Connection struct {
+	count int
+	Pool  []ConnectionItem
+}
+
+type ConnectionItem struct {
+	ID               string
+	Name             string
+	DealimportIn     string
+	DealimportOut    string
+	StaticIn         string
+	StaticOut        string
+	Database         *sql.DB
+	ConnectionString sienaDBItem
+}
+
 func extractCreate(in string) string {
 	//result := in
 	findCREATE := "CREATE"

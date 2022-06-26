@@ -9,49 +9,122 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //NegotiableInstrument defines the datamolde for the NegotiableInstrument object
 type NegotiableInstrument struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 LongName       string
+LongName_props FieldProperties
 Isin       string
+Isin_props FieldProperties
 Tidm       string
+Tidm_props FieldProperties
 Sedol       string
+Sedol_props FieldProperties
 IssueDate       string
+IssueDate_props FieldProperties
 MaturityDate       string
+MaturityDate_props FieldProperties
 CouponValue       string
+CouponValue_props FieldProperties
 CouponType       string
+CouponType_props FieldProperties
 Segment       string
+Segment_props FieldProperties
 Sector       string
+Sector_props FieldProperties
 CodeConventionCalculateAccrual       string
+CodeConventionCalculateAccrual_props FieldProperties
 MinimumDenomination       string
+MinimumDenomination_props FieldProperties
 DenominationCurrency       string
+DenominationCurrency_props FieldProperties
 TradingCurrency       string
+TradingCurrency_props FieldProperties
 Type       string
+Type_props FieldProperties
 FlatYield       string
+FlatYield_props FieldProperties
 PaymentCouponDate       string
+PaymentCouponDate_props FieldProperties
 PeriodOfCoupon       string
+PeriodOfCoupon_props FieldProperties
 ExCouponDate       string
+ExCouponDate_props FieldProperties
 DateOfIndexInflation       string
+DateOfIndexInflation_props FieldProperties
 UnitOfQuotation       string
+UnitOfQuotation_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 Issuer       string
+Issuer_props FieldProperties
 IssueAmount       string
+IssueAmount_props FieldProperties
 RunningYield       string
+RunningYield_props FieldProperties
 LEI       string
+LEI_props FieldProperties
 CUSIP       string
+CUSIP_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -9,40 +9,95 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Session defines the datamolde for the Session object
 type Session struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Apptoken       string
+Apptoken_props FieldProperties
 Createdate       string
+Createdate_props FieldProperties
 Createtime       string
+Createtime_props FieldProperties
 Uniqueid       string
+Uniqueid_props FieldProperties
 Sessiontoken       string
+Sessiontoken_props FieldProperties
 Username       string
+Username_props FieldProperties
 Password       string
+Password_props FieldProperties
 Userip       string
+Userip_props FieldProperties
 Userhost       string
+Userhost_props FieldProperties
 Appip       string
+Appip_props FieldProperties
 Apphost       string
+Apphost_props FieldProperties
 Issued       string
+Issued_props FieldProperties
 Expiry       string
+Expiry_props FieldProperties
 Expiryraw       string
+Expiryraw_props FieldProperties
 Brand       string
+Brand_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 Id       string
+Id_props FieldProperties
 Expires       string
+Expires_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
 SessionRole       string
+SessionRole_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

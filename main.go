@@ -57,6 +57,8 @@ func main() {
 	application.Sector_Publish(*mux)
 	application.Firm_Publish(*mux)
 	application.Portfolio_Publish(*mux)
+	application.SalesDesk_Publish(*mux)
+	application.Owner_Publish(*mux)
 
 	application.Centre_Publish(*mux)
 
@@ -86,6 +88,7 @@ func main() {
 	application.DealingInterface_Publish(*mux)
 
 	application.Credentials_Publish(*mux)
+	application.CredentialsAction_Publish(*mux)
 
 	application.Message_Publish(*mux)
 
@@ -109,7 +112,8 @@ func main() {
 	application.NegotiableInstrument_Publish(*mux)
 	application.NegotiableInstrument_Publish_Impl(*mux)
 
-	application.CMNotes_Publish(*mux)
+	//application.CMNotes_Publish(*mux) - DEPREICATED
+	application.CounterpartyNotes_Publish(*mux)
 	application.CounterpartyOnboarding_Publish(*mux)
 	application.CounterpartyImport_Publish(*mux)
 	application.CounterpartyName_Publish(*mux)
@@ -128,6 +132,15 @@ func main() {
 	application.ExternalMessage_Publish(*mux)
 	application.Catalog_Publish(*mux)
 	application.SimulatorSWIFT_Publish(*mux)
+	application.Inbox_Publish(*mux)
+	application.Inbox_Publish_Impl(*mux)
+	application.UserRole_Publish(*mux)
+
+	application.ContactStream_Publish(*mux)
+	application.ContactStreamType_Publish(*mux)
+	application.ContactDealRefNo_Publish(*mux)
+	application.DealAuditEventConversations_Publish(*mux)
+	application.DealAuditEvent_Publish(*mux)
 	// End of Endpoints
 
 	logs.Header("Publish API")

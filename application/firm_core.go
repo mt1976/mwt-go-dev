@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:11
+// Date & Time		    : 26/06/2022 at 18:48:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Firm_PageList struct {
 }
 //Firm_Redirect provides a page to return to aftern an action
 const (
+	
 	Firm_Redirect = dm.Firm_PathList
+	
 )
 
 //firm_Page provides the information for the template for an individual Firm
@@ -45,16 +47,20 @@ type Firm_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	FirmName         string
+	FirmName_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	Country         string
 	Country_lookup    []dm.Lookup_Item
+	Country_props     dm.FieldProperties
 	Sector         string
 	Sector_lookup    []dm.Lookup_Item
+	Sector_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -180,7 +186,7 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Firm
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.FirmName = r.FormValue(dm.Firm_FirmName_scrn)
 		item.FullName = r.FormValue(dm.Firm_FullName_scrn)
@@ -188,7 +194,7 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Sector = r.FormValue(dm.Firm_Sector_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Firm_Store(item,r)	
 	http.Redirect(w, r, Firm_Redirect, http.StatusFound)
@@ -204,9 +210,9 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Firm_New()
 
 	pageDetail := Firm_Page{
 		Title:       CardTitle(dm.Firm_Title, core.Action_New),
@@ -217,7 +223,7 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = firm_PopulatePage(dm.Firm{} , pageDetail) 
+	pageDetail = firm_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Firm_TemplateNew, w, r, pageDetail)
 
@@ -245,7 +251,7 @@ func Firm_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Firm Page 
 func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.FirmName = rD.FirmName
 	pageDetail.FullName = rD.FullName
@@ -254,7 +260,7 @@ func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -269,8 +275,14 @@ func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	
 	
 	
+	pageDetail.FirmName_props = rD.FirmName_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.Sector_props = rD.Sector_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

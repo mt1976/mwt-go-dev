@@ -9,20 +9,26 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CurrencyPair defines the datamolde for the CurrencyPair object
 type CurrencyPair struct {
 
+
 CodeMajorCurrencyIsoCode       string
-CodeMajorCurrencyIsoCode_lookup []Lookup_Item
+CodeMajorCurrencyIsoCode_props FieldProperties
 CodeMinorCurrencyIsoCode       string
-CodeMinorCurrencyIsoCode_lookup []Lookup_Item
+CodeMinorCurrencyIsoCode_props FieldProperties
 ReciprocalActive       string
-ReciprocalActive_lookup []Lookup_Item
+ReciprocalActive_props FieldProperties
 Code       string
+Code_props FieldProperties
+ // Any lookups will be added belowCodeMajorCurrencyIsoCode_lookup []Lookup_Item
+CodeMinorCurrencyIsoCode_lookup []Lookup_Item
+ReciprocalActive_lookup []Lookup_Item
+
 
 }
 

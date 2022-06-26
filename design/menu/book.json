@@ -1,11 +1,10 @@
 
-    {
-      "ID": "63ba2019-a461-44a9-b041-9fb4b94b71d1",
-      "Text": "Book",
-      "Glyph": "fas fa-book",
-      "HREF": "/BookList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "fc828bae-24c8-44d1-a9c8-acf97495d77b",
+      "MenuText": "Book",
+      "MenuGlyph": "fas fa-book",
+      "MenuHREF": "/BookList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

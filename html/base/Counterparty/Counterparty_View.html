@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="NameCentre" name="NameCentre" class="select" data-mdb-filter="true" disabled>
@@ -29,7 +29,7 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="NameFirm" name="NameFirm" class="select" data-mdb-filter="true" disabled>
@@ -40,40 +40,49 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="FullName">FullName</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder="" disabled value="{{.TelephoneNumber}}" data-mdb-input-mask="">
+                        
+                            <input type="tel" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder="" disabled value="{{.TelephoneNumber}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="TelephoneNumber">TelephoneNumber</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="EmailAddress" aria-describedby="EmailAddressHelp" placeholder="" disabled value="{{.EmailAddress}}" data-mdb-input-mask="">
+                        
+                            <input type="email" class="form-control" id="EmailAddress" aria-describedby="EmailAddressHelp" placeholder="" disabled value="{{.EmailAddress}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="EmailAddress">EmailAddress</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="CustomerType" name="CustomerType" class="select" data-mdb-filter="true" disabled>
@@ -84,18 +93,21 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder="" disabled value="{{.AccountOfficer}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder="" disabled value="{{.AccountOfficer}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="AccountOfficer">AccountOfficer</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="CountryCode" name="CountryCode" class="select" data-mdb-filter="true" disabled>
@@ -106,7 +118,7 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="SectorCode" name="SectorCode" class="select" data-mdb-filter="true" disabled>
@@ -117,7 +129,7 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="CpartyGroupName" name="CpartyGroupName" class="select" data-mdb-filter="true" disabled>
@@ -128,29 +140,32 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="Notes" aria-describedby="NotesHelp" placeholder="" disabled value="{{.Notes}}" data-mdb-input-mask="">
+                        
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+                        
                         <label class="form-label" for="Notes">Notes</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
-                    <div class="form-outline">
-                        <input type="text" class="form-control" id="Owner" aria-describedby="OwnerHelp" placeholder="" disabled value="{{.Owner}}" data-mdb-input-mask="">
-                        <label class="form-label" for="Owner">Owner</label>
-                    </div>
+                  <select id="Owner" name="Owner" class="select" data-mdb-filter="true" disabled>
+                  {{range .Owner_lookup}}<option value="{{.ID}}" {{if eq .ID $.Owner}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Owner" disabled>Owner</label>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="Authorised" name="Authorised" class="select" data-mdb-filter="true" disabled>
@@ -161,56 +176,71 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  hidden>
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder="" disabled value="{{.NameFirmName}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder="" disabled value="{{.NameFirmName}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="NameFirmName">NameFirmName</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  hidden>
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder="" disabled value="{{.NameCentreName}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder="" disabled value="{{.NameCentreName}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="NameCentreName">NameCentreName</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  hidden>
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder="" disabled value="{{.CountryCodeName}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder="" disabled value="{{.CountryCodeName}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="CountryCodeName">CountryCodeName</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  hidden>
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder="" disabled value="{{.SectorCodeName}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder="" disabled value="{{.SectorCodeName}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="SectorCodeName">SectorCodeName</label>
+                        
                     </div>
                 
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  hidden>
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="CompID" aria-describedby="CompIDHelp" placeholder="" disabled value="{{.CompID}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="CompID"><i class="fas fa-key me-2"></i>CompID</label>
+                        
                     </div>
                 
                 </div>

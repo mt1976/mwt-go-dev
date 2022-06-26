@@ -1,11 +1,10 @@
 
-    {
-      "ID": "32d63ad3-9bc9-45b9-8d21-5f98e1f39d1d",
-      "Text": "Scheduler",
-      "Glyph": "far fa-clock",
-      "HREF": "/ScheduleList",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "ac9f60b8-7a07-454d-81bd-a2781d3bb051",
+      "MenuText": "Scheduler",
+      "MenuGlyph": "far fa-clock",
+      "MenuHREF": "/ScheduleList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

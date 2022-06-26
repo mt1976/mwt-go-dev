@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -30,54 +30,40 @@ func Payee_Delete_impl(id string) (error) {return nil}
 
 func Payee_Update_impl(id string,rec dm.Payee, usr string) (error) {return nil}
 
-// If there are fields below, create the methods in adaptor\payee_impl.go
+	// If there are fields below, create the methods in adaptor\payee_impl.go
+	// START - GET API/Callout
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+func Payee_Status_OnStore_impl (fieldval string,rec dm.Payee,usr string) (string,error)  {
+	logs.Callout("Payee", "Status", PUT, rec.KeyCounterpartyFirm)
+	return fieldval,nil
+	}
 
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - GET API/Callout
+	//
+	// START - PUT API/Callout
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+func Payee_Status_OnFetch_impl (rec dm.Payee)(string) {
+	logs.Callout("Payee", "Status", GET, rec.KeyCounterpartyFirm)
+	return ""
+	}
 
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - PUT API/Callout
 
+	// START - Validation API/Callout
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Payee_Status_Impl provides validation/actions for Status
+	func Payee_Status_Impl (iAction string, iId string, iValue string, iRec dm.Payee, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Payee", "Status", VAL +"-"+iAction, iId)
+	return "",fP
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func Payee_Status_OnStore_impl (fieldval string,rec dm.Payee,usr string) (string,error)  {return fieldval,nil}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func Payee_Status_OnFetch_impl (rec dm.Payee)(string) {return ""}
-
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - Validation API/Callout

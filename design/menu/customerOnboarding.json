@@ -1,11 +1,10 @@
 
-    {
-      "ID": "a02dd411-b1f8-413e-a6a0-1505c90d6f00",
-      "Text": "Customer Onboarding Tool",
-      "Glyph": "fas fa-tasks",
-      "HREF": "/CustomerOnboardingList",
-      "OnClick": "",
-      "TextClass": "text-secondary"
+   '{
+      "MenuID": "12b8b0ea-49e7-4479-a275-79e66bb0551b",
+      "MenuText": "Customer Onboarding Tool",
+      "MenuGlyph": "fas fa-tasks",
+      "MenuHREF": "/CustomerOnboardingList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-secondary"
     }
-    ,
     

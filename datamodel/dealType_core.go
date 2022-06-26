@@ -9,39 +9,92 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DealType defines the datamolde for the DealType object
 type DealType struct {
 
+
 DealTypeKey       string
+DealTypeKey_props FieldProperties
 DealTypeShortName       string
+DealTypeShortName_props FieldProperties
 HostKey       string
+HostKey_props FieldProperties
 IsActive       string
+IsActive_props FieldProperties
 Interbook       string
+Interbook_props FieldProperties
 BackOfficeLink       string
+BackOfficeLink_props FieldProperties
 HasTicket       string
+HasTicket_props FieldProperties
 CurrencyOverride       string
+CurrencyOverride_props FieldProperties
 CurrencyHolderCurrency       string
+CurrencyHolderCurrency_props FieldProperties
 AllBooks       string
+AllBooks_props FieldProperties
 FundamentalDealTypeKey       string
+FundamentalDealTypeKey_props FieldProperties
 RelatedDealType       string
+RelatedDealType_props FieldProperties
 BookName       string
+BookName_props FieldProperties
 ExportMethod       string
+ExportMethod_props FieldProperties
 DefaultUserLayoffBooks       string
+DefaultUserLayoffBooks_props FieldProperties
 RFQ       string
+RFQ_props FieldProperties
 OBS       string
+OBS_props FieldProperties
 KID       string
+KID_props FieldProperties
 InternalId       string
+InternalId_props FieldProperties
 InternalDeleted       string
+InternalDeleted_props FieldProperties
 UpdatedTransactionId       string
+UpdatedTransactionId_props FieldProperties
 UpdatedUserId       string
+UpdatedUserId_props FieldProperties
 UpdatedDateTime       string
+UpdatedDateTime_props FieldProperties
 DeletedTransactionId       string
+DeletedTransactionId_props FieldProperties
 DeletedUserId       string
+DeletedUserId_props FieldProperties
 ChangeType       string
+ChangeType_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

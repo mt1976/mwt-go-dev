@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type DealingInterface_PageList struct {
 }
 //DealingInterface_Redirect provides a page to return to aftern an action
 const (
+	
 	DealingInterface_Redirect = dm.DealingInterface_PathList
+	
 )
 
 //dealinginterface_Page provides the information for the template for an individual DealingInterface
@@ -45,34 +47,58 @@ type DealingInterface_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Name         string
+	Name_props     dm.FieldProperties
 	AcceptReducedAmount         string
+	AcceptReducedAmount_props     dm.FieldProperties
 	QuoteAsIndicative         string
+	QuoteAsIndicative_props     dm.FieldProperties
 	RateTimeOut         string
+	RateTimeOut_props     dm.FieldProperties
 	PropagationDelay         string
+	PropagationDelay_props     dm.FieldProperties
 	CheckLiquidity         string
+	CheckLiquidity_props     dm.FieldProperties
 	ChangeQuoteDirection         string
+	ChangeQuoteDirection_props     dm.FieldProperties
 	GenerateRejectedDeals         string
+	GenerateRejectedDeals_props     dm.FieldProperties
 	SpotUpdatesForForwardQuotes         string
+	SpotUpdatesForForwardQuotes_props     dm.FieldProperties
 	SettlementInstructionStyle         string
+	SettlementInstructionStyle_props     dm.FieldProperties
 	CanRetractQuotes         string
+	CanRetractQuotes_props     dm.FieldProperties
 	CancelESPifNotPriced         string
+	CancelESPifNotPriced_props     dm.FieldProperties
 	CancelRFQSifNotPriced         string
+	CancelRFQSifNotPriced_props     dm.FieldProperties
 	CancelonDealingSuspended         string
+	CancelonDealingSuspended_props     dm.FieldProperties
 	CreditCheckedatDI         string
+	CreditCheckedatDI_props     dm.FieldProperties
 	DuplicateCheckonExternalRef         string
+	DuplicateCheckonExternalRef_props     dm.FieldProperties
 	LimitCheckQuote         string
+	LimitCheckQuote_props     dm.FieldProperties
 	LimitCheckonRFQDealSubmission         string
+	LimitCheckonRFQDealSubmission_props     dm.FieldProperties
 	ListenonLimits         string
+	ListenonLimits_props     dm.FieldProperties
 	MarginStyle         string
+	MarginStyle_props     dm.FieldProperties
 	UseRerouteDefinitionOnly         string
+	UseRerouteDefinitionOnly_props     dm.FieldProperties
 	BypassConfirmation         string
+	BypassConfirmation_props     dm.FieldProperties
 	DIOnAcceptance         string
+	DIOnAcceptance_props     dm.FieldProperties
 	IgnoreESPAmountRules         string
+	IgnoreESPAmountRules_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -198,7 +224,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealingInterface
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Name = r.FormValue(dm.DealingInterface_Name_scrn)
 		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount_scrn)
@@ -226,7 +252,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealingInterface_Store(item,r)	
 	http.Redirect(w, r, DealingInterface_Redirect, http.StatusFound)
@@ -242,9 +268,9 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.DealingInterface_New()
 
 	pageDetail := DealingInterface_Page{
 		Title:       CardTitle(dm.DealingInterface_Title, core.Action_New),
@@ -255,7 +281,7 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = dealinginterface_PopulatePage(dm.DealingInterface{} , pageDetail) 
+	pageDetail = dealinginterface_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DealingInterface_TemplateNew, w, r, pageDetail)
 
@@ -283,7 +309,7 @@ func DealingInterface_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DealingInterface Page 
 func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInterface_Page) DealingInterface_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Name = rD.Name
 	pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
@@ -312,7 +338,7 @@ func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInt
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -363,8 +389,34 @@ func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInt
 	
 	
 	
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.AcceptReducedAmount_props = rD.AcceptReducedAmount_props
+	pageDetail.QuoteAsIndicative_props = rD.QuoteAsIndicative_props
+	pageDetail.RateTimeOut_props = rD.RateTimeOut_props
+	pageDetail.PropagationDelay_props = rD.PropagationDelay_props
+	pageDetail.CheckLiquidity_props = rD.CheckLiquidity_props
+	pageDetail.ChangeQuoteDirection_props = rD.ChangeQuoteDirection_props
+	pageDetail.GenerateRejectedDeals_props = rD.GenerateRejectedDeals_props
+	pageDetail.SpotUpdatesForForwardQuotes_props = rD.SpotUpdatesForForwardQuotes_props
+	pageDetail.SettlementInstructionStyle_props = rD.SettlementInstructionStyle_props
+	pageDetail.CanRetractQuotes_props = rD.CanRetractQuotes_props
+	pageDetail.CancelESPifNotPriced_props = rD.CancelESPifNotPriced_props
+	pageDetail.CancelRFQSifNotPriced_props = rD.CancelRFQSifNotPriced_props
+	pageDetail.CancelonDealingSuspended_props = rD.CancelonDealingSuspended_props
+	pageDetail.CreditCheckedatDI_props = rD.CreditCheckedatDI_props
+	pageDetail.DuplicateCheckonExternalRef_props = rD.DuplicateCheckonExternalRef_props
+	pageDetail.LimitCheckQuote_props = rD.LimitCheckQuote_props
+	pageDetail.LimitCheckonRFQDealSubmission_props = rD.LimitCheckonRFQDealSubmission_props
+	pageDetail.ListenonLimits_props = rD.ListenonLimits_props
+	pageDetail.MarginStyle_props = rD.MarginStyle_props
+	pageDetail.UseRerouteDefinitionOnly_props = rD.UseRerouteDefinitionOnly_props
+	pageDetail.BypassConfirmation_props = rD.BypassConfirmation_props
+	pageDetail.DIOnAcceptance_props = rD.DIOnAcceptance_props
+	pageDetail.IgnoreESPAmountRules_props = rD.IgnoreESPAmountRules_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

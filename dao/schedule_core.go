@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func Schedule_GetByID(id string) (int, dm.Schedule, error) {
 	tsql = tsql + " WHERE " + dm.Schedule_SQLSearchID + "='" + id + "'"
 	_, _, scheduleItem, _ := schedule_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, scheduleItem, nil
 }
 
@@ -66,7 +72,12 @@ func Schedule_Delete(id string) {
 // Schedule_Store() saves/stores a Schedule record to the database
 func Schedule_Store(r dm.Schedule,req *http.Request) error {
 
-	err := schedule_Save(r,Audit_User(req))
+	err, r := Schedule_Validate(r)
+	if err == nil {
+		err = schedule_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Schedule_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func Schedule_Store(r dm.Schedule,req *http.Request) error {
 // Schedule_StoreSystem() saves/stores a Schedule record to the database
 func Schedule_StoreSystem(r dm.Schedule) error {
 	
-	err := schedule_Save(r,Audit_Host())
+	err, r := Schedule_Validate(r)
+	if err == nil {
+		err = schedule_Save(r, Audit_Host())
+	} else {
+		logs.Information("Schedule_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Schedule_Validate() validates for saves/stores a Schedule record to the database
+func Schedule_Validate(r dm.Schedule) (error,dm.Schedule) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // schedule_Save() saves/stores a Schedule record to the database
 func schedule_Save(r dm.Schedule,usr string) error {
@@ -127,7 +155,7 @@ logs.Storing("Schedule",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Schedule_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Schedule_Id_sql, r.Id)
@@ -149,7 +177,7 @@ logs.Storing("Schedule",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Schedule_Human_sql, r.Human)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Schedule_SQLTable)
@@ -182,7 +210,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Schedule_Id_sql, "")
@@ -224,7 +252,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -244,7 +272,24 @@ func Schedule_NewID(r dm.Schedule) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// schedule_Fetch read all Schedule's
+func Schedule_New() (int, []dm.Schedule, dm.Schedule, error) {
+
+	var r = dm.Schedule{}
+	var rList []dm.Schedule
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

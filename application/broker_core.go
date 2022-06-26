@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Broker_PageList struct {
 }
 //Broker_Redirect provides a page to return to aftern an action
 const (
+	
 	Broker_Redirect = dm.Broker_PathList
+	
 )
 
 //broker_Page provides the information for the template for an individual Broker
@@ -45,16 +47,22 @@ type Broker_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
+	Code_props     dm.FieldProperties
 	Name         string
+	Name_props     dm.FieldProperties
 	FullName         string
+	FullName_props     dm.FieldProperties
 	Contact         string
+	Contact_props     dm.FieldProperties
 	Address         string
+	Address_props     dm.FieldProperties
 	LEI         string
+	LEI_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -180,7 +188,7 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Broker
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Broker_Code_scrn)
 		item.Name = r.FormValue(dm.Broker_Name_scrn)
@@ -190,7 +198,7 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LEI = r.FormValue(dm.Broker_LEI_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Broker_Store(item,r)	
 	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
@@ -206,9 +214,9 @@ func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Broker_New()
 
 	pageDetail := Broker_Page{
 		Title:       CardTitle(dm.Broker_Title, core.Action_New),
@@ -219,7 +227,7 @@ func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = broker_PopulatePage(dm.Broker{} , pageDetail) 
+	pageDetail = broker_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Broker_TemplateNew, w, r, pageDetail)
 
@@ -247,7 +255,7 @@ func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Broker Page 
 func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -258,7 +266,7 @@ func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -273,8 +281,16 @@ func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	
 	
 	
+	pageDetail.Code_props = rD.Code_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.Contact_props = rD.Contact_props
+	pageDetail.Address_props = rD.Address_props
+	pageDetail.LEI_props = rD.LEI_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

@@ -1,11 +1,10 @@
 
-    {
-      "ID": "09b5c648-dfe8-4a05-b22f-bc75e9def2a2",
-      "Text": "System Message",
-      "Glyph": "fas fa-info-circle",
-      "HREF": "/MessageList",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "6564d4ba-9c73-454f-be43-dc954635cb71",
+      "MenuText": "System Message",
+      "MenuGlyph": "fas fa-info-circle",
+      "MenuHREF": "/MessageList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

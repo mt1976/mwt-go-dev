@@ -1,189 +1,249 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
 
-    <form action="/CounterpartySave/?ID={{.CompID}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-user me-2" title="ID={{.CompID}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartySave/?ID={{.CompID}}" onclick="/CounterpartySave/?ID={{.CompID}}" title="Save Counterparty"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+<form action="/CounterpartySave/?ID={{.CompID}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-user me-2"
+            title="ID={{.CompID}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-         
-         
-                        <div class="form-outline">
-                      <input type="" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  readonly="true" value="{{.NameCentre}}" >
-                      <label class="form-label" for="NameCentre" >NameCentre</label>
-                    </div>
-                 
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                        <div class="form-outline">
-                      <input type="" class="form-control" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  readonly="true" value="{{.NameFirm}}" >
-                      <label class="form-label" for="NameFirm" >NameFirm</label>
-                    </div>
-                 
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""   value="{{.FullName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="FullName" >FullName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="TelephoneNumber" name="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder=""   value="{{.TelephoneNumber}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="TelephoneNumber" >TelephoneNumber</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="EmailAddress" name="EmailAddress" aria-describedby="EmailAddressHelp" placeholder=""   value="{{.EmailAddress}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="EmailAddress" >EmailAddress</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="CustomerType" name="CustomerType" class="select" data-mdb-filter="true"  required>
-                  {{range .CustomerType_lookup}}<option value="{{.ID}}" {{if eq .ID $.CustomerType}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="CustomerType" >CustomerType</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="AccountOfficer" name="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder=""   value="{{.AccountOfficer}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="AccountOfficer" >AccountOfficer</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="CountryCode" name="CountryCode" class="select" data-mdb-filter="true"  >
-                  {{range .CountryCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CountryCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="CountryCode" >CountryCode</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="SectorCode" name="SectorCode" class="select" data-mdb-filter="true"  >
-                  {{range .SectorCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.SectorCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="SectorCode" >SectorCode</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="CpartyGroupName" name="CpartyGroupName" class="select" data-mdb-filter="true"  >
-                  {{range .CpartyGroupName_lookup}}<option value="{{.ID}}" {{if eq .ID $.CpartyGroupName}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="CpartyGroupName" >CpartyGroupName</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Notes" >Notes</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Owner" name="Owner" aria-describedby="OwnerHelp" placeholder=""   value="{{.Owner}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Owner" >Owner</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="Authorised" name="Authorised" class="select" data-mdb-filter="true"  >
-                  {{range .Authorised_lookup}}<option value="{{.ID}}" {{if eq .ID $.Authorised}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="Authorised" >Authorised</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="NameFirmName" name="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder=""   value="{{.NameFirmName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="NameFirmName" >NameFirmName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="NameCentreName" name="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder=""   value="{{.NameCentreName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="NameCentreName" >NameCentreName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="CountryCodeName" name="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder=""   value="{{.CountryCodeName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="CountryCodeName" >CountryCodeName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="SectorCodeName" name="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder=""   value="{{.SectorCodeName}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="SectorCodeName" >SectorCodeName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""   value="{{.CompID}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
-                    </div>
-          
-            </div></div>
-
-     
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CounterpartySave/?ID={{.CompID}}" onclick="/CounterpartySave/?ID={{.CompID}}" title="Save Counterparty"><i class="fas fa-save me-2"></i>Save</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <div class="form-outline">
+              <input type="text" class="form-control {{.NameCentre_props.MsgType}}" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  readonly="true"  value="{{.NameCentre}}" required />
+              <label class="form-label" for="NameCentre" >NameCentre</label>
+                <div class="{{.NameCentre_props.MsgFeedBackType}}">{{.NameCentre_props.MsgMessage}}</div>
+            </div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <div class="form-outline">
+              <input type="text" class="form-control {{.NameFirm_props.MsgType}}" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  readonly="true"  value="{{.NameFirm}}" required />
+              <label class="form-label" for="NameFirm" >NameFirm</label>
+                <div class="{{.NameFirm_props.MsgFeedBackType}}">{{.NameFirm_props.MsgMessage}}</div>
+            </div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.FullName_props.MsgType}}" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""   value="{{.FullName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="FullName" >FullName</label>
+              <div class="{{.FullName_props.MsgFeedBackType}}">{{.FullName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="tel" class="form-control {{.TelephoneNumber_props.MsgType}}" id="TelephoneNumber" name="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder=""   value="{{.TelephoneNumber}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="TelephoneNumber" >TelephoneNumber</label>
+              <div class="{{.TelephoneNumber_props.MsgFeedBackType}}">{{.TelephoneNumber_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="email" class="form-control {{.EmailAddress_props.MsgType}}" id="EmailAddress" name="EmailAddress" aria-describedby="EmailAddressHelp" placeholder=""   value="{{.EmailAddress}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="EmailAddress" >EmailAddress</label>
+              <div class="{{.EmailAddress_props.MsgFeedBackType}}">{{.EmailAddress_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="CustomerType" name="CustomerType" class="select" data-mdb-filter="true"  required>
+                {{range .CustomerType_lookup}}<option value="{{.ID}}" {{if eq .ID $.CustomerType}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="CustomerType" >CustomerType</label>
+            <div class="{{.CustomerType_props.MsgFeedBackType}}">{{.CustomerType_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.AccountOfficer_props.MsgType}}" id="AccountOfficer" name="AccountOfficer" aria-describedby="AccountOfficerHelp" placeholder=""   value="{{.AccountOfficer}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="AccountOfficer" >AccountOfficer</label>
+              <div class="{{.AccountOfficer_props.MsgFeedBackType}}">{{.AccountOfficer_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="CountryCode" name="CountryCode" class="select" data-mdb-filter="true"  >
+                {{range .CountryCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.CountryCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="CountryCode" >CountryCode</label>
+            <div class="{{.CountryCode_props.MsgFeedBackType}}">{{.CountryCode_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="SectorCode" name="SectorCode" class="select" data-mdb-filter="true"  >
+                {{range .SectorCode_lookup}}<option value="{{.ID}}" {{if eq .ID $.SectorCode}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="SectorCode" >SectorCode</label>
+            <div class="{{.SectorCode_props.MsgFeedBackType}}">{{.SectorCode_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="CpartyGroupName" name="CpartyGroupName" class="select" data-mdb-filter="true"  >
+                {{range .CpartyGroupName_lookup}}<option value="{{.ID}}" {{if eq .ID $.CpartyGroupName}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="CpartyGroupName" >CpartyGroupName</label>
+            <div class="{{.CpartyGroupName_props.MsgFeedBackType}}">{{.CpartyGroupName_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+              
+              <label class="form-label" for="Notes" >Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="Owner" name="Owner" class="select" data-mdb-filter="true"  >
+                {{range .Owner_lookup}}<option value="{{.ID}}" {{if eq .ID $.Owner}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Owner" >Owner</label>
+            <div class="{{.Owner_props.MsgFeedBackType}}">{{.Owner_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="Authorised" name="Authorised" class="select" data-mdb-filter="true"  >
+                {{range .Authorised_lookup}}<option value="{{.ID}}" {{if eq .ID $.Authorised}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Authorised" >Authorised</label>
+            <div class="{{.Authorised_props.MsgFeedBackType}}">{{.Authorised_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.NameFirmName_props.MsgType}}" id="NameFirmName" name="NameFirmName" aria-describedby="NameFirmNameHelp" placeholder=""   value="{{.NameFirmName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="NameFirmName" >NameFirmName</label>
+              <div class="{{.NameFirmName_props.MsgFeedBackType}}">{{.NameFirmName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.NameCentreName_props.MsgType}}" id="NameCentreName" name="NameCentreName" aria-describedby="NameCentreNameHelp" placeholder=""   value="{{.NameCentreName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="NameCentreName" >NameCentreName</label>
+              <div class="{{.NameCentreName_props.MsgFeedBackType}}">{{.NameCentreName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.CountryCodeName_props.MsgType}}" id="CountryCodeName" name="CountryCodeName" aria-describedby="CountryCodeNameHelp" placeholder=""   value="{{.CountryCodeName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="CountryCodeName" >CountryCodeName</label>
+              <div class="{{.CountryCodeName_props.MsgFeedBackType}}">{{.CountryCodeName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.SectorCodeName_props.MsgType}}" id="SectorCodeName" name="SectorCodeName" aria-describedby="SectorCodeNameHelp" placeholder=""   value="{{.SectorCodeName}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="SectorCodeName" >SectorCodeName</label>
+              <div class="{{.SectorCodeName_props.MsgFeedBackType}}">{{.SectorCodeName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.CompID_props.MsgType}}" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""   value="{{.CompID}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
+              <div class="{{.CompID_props.MsgFeedBackType}}">{{.CompID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

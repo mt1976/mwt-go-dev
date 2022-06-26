@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:34
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Translation_PageList struct {
 }
 //Translation_Redirect provides a page to return to aftern an action
 const (
+	
 	Translation_Redirect = dm.Translation_PathList
+	
 )
 
 //translation_Page provides the information for the template for an individual Translation
@@ -45,23 +47,36 @@ type Translation_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	Id         string
+	Id_props     dm.FieldProperties
 	Class         string
+	Class_props     dm.FieldProperties
 	Message         string
+	Message_props     dm.FieldProperties
 	Translation         string
+	Translation_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSWho         string
+	SYSWho_props     dm.FieldProperties
 	SYSHost         string
+	SYSHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -187,7 +202,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Translation
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
 		item.Id = r.FormValue(dm.Translation_Id_scrn)
@@ -204,7 +219,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Translation_Store(item,r)	
 	http.Redirect(w, r, Translation_Redirect, http.StatusFound)
@@ -216,7 +231,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Translation Page 
 func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Translation_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -234,7 +249,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Tr
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -263,8 +278,23 @@ func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Tr
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Class_props = rD.Class_props
+	pageDetail.Message_props = rD.Message_props
+	pageDetail.Translation_props = rD.Translation_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

@@ -1,71 +1,93 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
 
-    <form action="/CountrySave/?Code={{.Code}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-globe-americas me-2" title="Code={{.Code}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CountrySave/?Code={{.Code}}" onclick="/CountrySave/?Code={{.Code}}" title="Save Country"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+<form action="/CountrySave/?Code={{.Code}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-globe-americas me-2"
+            title="Code={{.Code}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""   value="{{.Code}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Code" ><i class="fas fa-key me-2"></i>Code</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Name" >Name</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="ShortCode" name="ShortCode" aria-describedby="ShortCodeHelp" placeholder=""   value="{{.ShortCode}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="ShortCode" >ShortCode</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="EU_EEA" name="EU_EEA" aria-describedby="EU_EEAHelp" placeholder="True"   value="{{.EU_EEA}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="EU_EEA" >EU_EEA</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="HolidaysWeekend" name="HolidaysWeekend" aria-describedby="HolidaysWeekendHelp" placeholder=""   value="{{.HolidaysWeekend}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="HolidaysWeekend" >HolidaysWeekend</label>
-                    </div>
-          
-            </div></div>
-
-     
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CountrySave/?Code={{.Code}}" onclick="/CountrySave/?Code={{.Code}}" title="Save Country"><i class="fas fa-save me-2"></i>Save</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Code_props.MsgType}}" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""   value="{{.Code}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Code" ><i class="fas fa-key me-2"></i>Code</label>
+              <div class="{{.Code_props.MsgFeedBackType}}">{{.Code_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Name" >Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.ShortCode_props.MsgType}}" id="ShortCode" name="ShortCode" aria-describedby="ShortCodeHelp" placeholder=""   value="{{.ShortCode}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="ShortCode" >ShortCode</label>
+              <div class="{{.ShortCode_props.MsgFeedBackType}}">{{.ShortCode_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.EU_EEA_props.MsgType}}" id="EU_EEA" name="EU_EEA" aria-describedby="EU_EEAHelp" placeholder="True"   value="{{.EU_EEA}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="EU_EEA" >EU_EEA</label>
+              <div class="{{.EU_EEA_props.MsgFeedBackType}}">{{.EU_EEA_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.HolidaysWeekend_props.MsgType}}" id="HolidaysWeekend" name="HolidaysWeekend" aria-describedby="HolidaysWeekendHelp" placeholder=""   value="{{.HolidaysWeekend}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="HolidaysWeekend" >HolidaysWeekend</label>
+              <div class="{{.HolidaysWeekend_props.MsgFeedBackType}}">{{.HolidaysWeekend_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

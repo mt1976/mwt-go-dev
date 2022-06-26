@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Sector_GetByID(id string) (int, dm.Sector, error) {
 	tsql = tsql + " WHERE " + dm.Sector_SQLSearchID + "='" + id + "'"
 	_, _, sectorItem, _ := sector_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, sectorItem, nil
 }
 
@@ -79,7 +85,12 @@ func Sector_Delete(id string) {
 // Sector_Store() saves/stores a Sector record to the database
 func Sector_Store(r dm.Sector,req *http.Request) error {
 
-	err := sector_Save(r,Audit_User(req))
+	err, r := Sector_Validate(r)
+	if err == nil {
+		err = sector_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Sector_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,27 @@ func Sector_Store(r dm.Sector,req *http.Request) error {
 // Sector_StoreSystem() saves/stores a Sector record to the database
 func Sector_StoreSystem(r dm.Sector) error {
 	
-	err := sector_Save(r,Audit_Host())
+	err, r := Sector_Validate(r)
+	if err == nil {
+		err = sector_Save(r, Audit_Host())
+	} else {
+		logs.Information("Sector_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Sector_Validate() validates for saves/stores a Sector record to the database
+func Sector_Validate(r dm.Sector) (error,dm.Sector) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // sector_Save() saves/stores a Sector record to the database
 func sector_Save(r dm.Sector,usr string) error {
@@ -145,7 +173,7 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Sector_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Sector_Name_sql, "")
@@ -155,7 +183,7 @@ func sector_Fetch(tsql string) (int, []dm.Sector, dm.Sector, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -175,7 +203,24 @@ func Sector_NewID(r dm.Sector) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// sector_Fetch read all Sector's
+func Sector_New() (int, []dm.Sector, dm.Sector, error) {
+
+	var r = dm.Sector{}
+	var rList []dm.Sector
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

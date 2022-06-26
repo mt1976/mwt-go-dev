@@ -9,28 +9,59 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Owner defines the datamolde for the Owner object
 type Owner struct {
 
+
 UserName       string
+UserName_props FieldProperties
 FullName       string
+FullName_props FieldProperties
 Type       string
+Type_props FieldProperties
 TradingEntity       string
+TradingEntity_props FieldProperties
 DefaultEnterBook       string
+DefaultEnterBook_props FieldProperties
 EmailAddress       string
+EmailAddress_props FieldProperties
 Enabled       string
+Enabled_props FieldProperties
 ExternalUserIds       string
+ExternalUserIds_props FieldProperties
 Language       string
+Language_props FieldProperties
 LocalCurrency       string
+LocalCurrency_props FieldProperties
 Role       string
+Role_props FieldProperties
 TelephoneNumber       string
+TelephoneNumber_props FieldProperties
 TokenId       string
+TokenId_props FieldProperties
 Entity       string
+Entity_props FieldProperties
 UserCode       string
+UserCode_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

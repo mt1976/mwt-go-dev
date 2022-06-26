@@ -19,50 +19,56 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-        
+      
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}"  data-mdb-input-mask="">
-                <label class="form-label" for="FirmName" ><i class="fas fa-key me-2"></i>FirmName</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.FirmName_props.MsgType}}" id="FirmName" name="FirmName" aria-describedby="FirmNameHelp" placeholder=""  value="{{.FirmName}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="FirmName" ><i class="fas fa-key me-2"></i>FirmName</label>
+              <div class="{{.FirmName_props.MsgFeedBackType}}">{{.FirmName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}"  data-mdb-input-mask="">
-                <label class="form-label" for="FullName" >FullName</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" readonly="true"><div class="col">
-        
+            
+                <input type="text" class="form-control {{.FullName_props.MsgType}}" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="FullName" >FullName</label>
+              <div class="{{.FullName_props.MsgFeedBackType}}">{{.FullName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
          
-                  <select id="Country" name="Country" class="select" data-mdb-filter="true" readonly="true" >
-                  {{range .Country_lookup}}<option value="{{.ID}}" {{if eq .ID $.Country}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="Country" readonly="true">Country</label>
-                
-        
+            <select id="Country" name="Country" class="select" data-mdb-filter="true" readonly="true" >
+                {{range .Country_lookup}}<option value="{{.ID}}" {{if eq .ID $.Country}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Country" readonly="true">Country</label>
+            <div class="{{.Country_props.MsgFeedBackType}}">{{.Country_props.MsgMessage}}</div>
+                  
+          </div></div>
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            <div class="row mb-3"  ><div class="col">
          
-                  <select id="Sector" name="Sector" class="select" data-mdb-filter="true"  >
-                  {{range .Sector_lookup}}<option value="{{.ID}}" {{if eq .ID $.Sector}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="Sector" >Sector</label>
-                
-        
-
-            </div></div>
+            <select id="Sector" name="Sector" class="select" data-mdb-filter="true"  >
+                {{range .Sector_lookup}}<option value="{{.ID}}" {{if eq .ID $.Sector}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Sector" >Sector</label>
+            <div class="{{.Sector_props.MsgFeedBackType}}">{{.Sector_props.MsgMessage}}</div>
+                  
+          </div></div>
 
      
         </div>

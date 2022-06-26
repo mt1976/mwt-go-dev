@@ -29,3 +29,13 @@ func Credentials_GetByUUID(id string) (int, dm.Credentials, error) {
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 	return 1, credentialsItem, nil
 }
+
+// Credentials_GetByUUID() returns a single Credentials record
+func Credentials_GetByEmail(id string) (int, dm.Credentials, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
+	tsql = tsql + " WHERE " + dm.Credentials_Email_sql + "='" + id + "'"
+
+	noItems, _, credentialsItem, _ := credentials_Fetch(tsql)
+	return noItems, credentialsItem, nil
+}

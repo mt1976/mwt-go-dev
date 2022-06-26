@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 26/06/2022 at 18:48:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Mandate_PageList struct {
 }
 //Mandate_Redirect provides a page to return to aftern an action
 const (
+	
 	Mandate_Redirect = dm.Mandate_PathList
+	
 )
 
 //mandate_Page provides the information for the template for an individual Mandate
@@ -45,34 +47,53 @@ type Mandate_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	MandatedUserKeyCounterpartyFirm         string
 	MandatedUserKeyCounterpartyFirm_lookup    []dm.Lookup_Item
+	MandatedUserKeyCounterpartyFirm_props     dm.FieldProperties
 	MandatedUserKeyCounterpartyCentre         string
 	MandatedUserKeyCounterpartyCentre_lookup    []dm.Lookup_Item
+	MandatedUserKeyCounterpartyCentre_props     dm.FieldProperties
 	MandatedUserKeyUserName         string
+	MandatedUserKeyUserName_props     dm.FieldProperties
 	TelephoneNumber         string
+	TelephoneNumber_props     dm.FieldProperties
 	EmailAddress         string
+	EmailAddress_props     dm.FieldProperties
 	Active         string
 	Active_lookup    []dm.Lookup_Item
+	Active_props     dm.FieldProperties
 	FirstName         string
+	FirstName_props     dm.FieldProperties
 	Surname         string
+	Surname_props     dm.FieldProperties
 	DateOfBirth         string
+	DateOfBirth_props     dm.FieldProperties
 	Postcode         string
+	Postcode_props     dm.FieldProperties
 	NationalIDNo         string
+	NationalIDNo_props     dm.FieldProperties
 	PassportNo         string
+	PassportNo_props     dm.FieldProperties
 	Country         string
 	Country_lookup    []dm.Lookup_Item
+	Country_props     dm.FieldProperties
 	CountryName         string
+	CountryName_props     dm.FieldProperties
 	FirmName         string
+	FirmName_props     dm.FieldProperties
 	CentreName         string
+	CentreName_props     dm.FieldProperties
 	Notify         string
 	Notify_lookup    []dm.Lookup_Item
+	Notify_props     dm.FieldProperties
 	SystemUser         string
+	SystemUser_props     dm.FieldProperties
 	CompID         string
+	CompID_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -198,7 +219,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Mandate
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm_scrn)
 		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre_scrn)
@@ -221,7 +242,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CompID = r.FormValue(dm.Mandate_CompID_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Mandate_Store(item,r)	
 	http.Redirect(w, r, Mandate_Redirect, http.StatusFound)
@@ -237,9 +258,9 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Mandate_New()
 
 	pageDetail := Mandate_Page{
 		Title:       CardTitle(dm.Mandate_Title, core.Action_New),
@@ -250,7 +271,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = mandate_PopulatePage(dm.Mandate{} , pageDetail) 
+	pageDetail = mandate_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Mandate_TemplateNew, w, r, pageDetail)
 
@@ -261,7 +282,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Mandate Page 
 func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 	pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
@@ -285,7 +306,7 @@ func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.MandatedUserKeyCounterpartyFirm_lookup = dao.Firm_GetLookup()
@@ -336,8 +357,29 @@ func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	
 	
 	
+	pageDetail.MandatedUserKeyCounterpartyFirm_props = rD.MandatedUserKeyCounterpartyFirm_props
+	pageDetail.MandatedUserKeyCounterpartyCentre_props = rD.MandatedUserKeyCounterpartyCentre_props
+	pageDetail.MandatedUserKeyUserName_props = rD.MandatedUserKeyUserName_props
+	pageDetail.TelephoneNumber_props = rD.TelephoneNumber_props
+	pageDetail.EmailAddress_props = rD.EmailAddress_props
+	pageDetail.Active_props = rD.Active_props
+	pageDetail.FirstName_props = rD.FirstName_props
+	pageDetail.Surname_props = rD.Surname_props
+	pageDetail.DateOfBirth_props = rD.DateOfBirth_props
+	pageDetail.Postcode_props = rD.Postcode_props
+	pageDetail.NationalIDNo_props = rD.NationalIDNo_props
+	pageDetail.PassportNo_props = rD.PassportNo_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.CountryName_props = rD.CountryName_props
+	pageDetail.FirmName_props = rD.FirmName_props
+	pageDetail.CentreName_props = rD.CentreName_props
+	pageDetail.Notify_props = rD.Notify_props
+	pageDetail.SystemUser_props = rD.SystemUser_props
+	pageDetail.CompID_props = rD.CompID_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

@@ -1,11 +1,10 @@
 
-    {
-      "ID": "ede7943f-8c9c-44ba-b024-c5abbb882e00",
-      "Text": "Counterparty Extension",
-      "Glyph": "fas fa-passport",
-      "HREF": "/CounterpartyExtensionsList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "ac5fde0e-d035-4715-bf40-ec9144b6aa13",
+      "MenuText": "Counterparty Extension",
+      "MenuGlyph": "fas fa-passport",
+      "MenuHREF": "/CounterpartyExtensionsList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

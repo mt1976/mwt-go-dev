@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type SimulatorSWIFT_PageList struct {
 }
 //SimulatorSWIFT_Redirect provides a page to return to aftern an action
 const (
+	
 	SimulatorSWIFT_Redirect = dm.SimulatorSWIFT_PathList
+	
 )
 
 //simulatorswift_Page provides the information for the template for an individual SimulatorSWIFT
@@ -45,15 +47,20 @@ type SimulatorSWIFT_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
+	ID_props     dm.FieldProperties
 	FileName         string
+	FileName_props     dm.FieldProperties
 	MessageRaw         string
+	MessageRaw_props     dm.FieldProperties
 	MessageFmt         string
+	MessageFmt_props     dm.FieldProperties
 	Action         string
+	Action_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -179,7 +186,7 @@ func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.SimulatorSWIFT
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.SimulatorSWIFT_ID_scrn)
 		item.FileName = r.FormValue(dm.SimulatorSWIFT_FileName_scrn)
@@ -188,7 +195,7 @@ func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Action = r.FormValue(dm.SimulatorSWIFT_Action_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.SimulatorSWIFT_Store(item,r)	
 	http.Redirect(w, r, SimulatorSWIFT_Redirect, http.StatusFound)
@@ -204,9 +211,9 @@ func SimulatorSWIFT_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.SimulatorSWIFT_New()
 
 	pageDetail := SimulatorSWIFT_Page{
 		Title:       CardTitle(dm.SimulatorSWIFT_Title, core.Action_New),
@@ -217,7 +224,7 @@ func SimulatorSWIFT_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = simulatorswift_PopulatePage(dm.SimulatorSWIFT{} , pageDetail) 
+	pageDetail = simulatorswift_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.SimulatorSWIFT_TemplateNew, w, r, pageDetail)
 
@@ -245,7 +252,7 @@ func SimulatorSWIFT_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the SimulatorSWIFT Page 
 func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT_Page) SimulatorSWIFT_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.FileName = rD.FileName
@@ -255,7 +262,7 @@ func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -268,8 +275,15 @@ func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.FileName_props = rD.FileName_props
+	pageDetail.MessageRaw_props = rD.MessageRaw_props
+	pageDetail.MessageFmt_props = rD.MessageFmt_props
+	pageDetail.Action_props = rD.Action_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

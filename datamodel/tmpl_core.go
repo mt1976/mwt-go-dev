@@ -9,28 +9,56 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Tmpl defines the datamolde for the Tmpl object
 type Tmpl struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 FIELD1       string
-FIELD1_lookup []Lookup_Item
+FIELD1_props FieldProperties
 FIELD2       string
-FIELD2_lookup []Lookup_Item
+FIELD2_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 ID       string
+ID_props FieldProperties
 ExtraField       string
+ExtraField_props FieldProperties
 ExtraField2       string
+ExtraField2_props FieldProperties
 ExtraField3       string
+ExtraField3_props FieldProperties
+TDate       string
+TDate_props FieldProperties
+ // Any lookups will be added below
+FIELD1_lookup []Lookup_Item
+FIELD2_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -74,6 +102,7 @@ Tmpl_ID_sql   = "ID" // ID is a String
 Tmpl_ExtraField_sql   = "ExtraField" // ExtraField is a String
 Tmpl_ExtraField2_sql   = "ExtraField2" // ExtraField2 is a String
 Tmpl_ExtraField3_sql   = "ExtraField3" // ExtraField3 is a String
+Tmpl_TDate_sql   = "TDate" // TDate is a String
 
 	/// Definitions End
 
@@ -92,6 +121,7 @@ Tmpl_ID_scrn   = "ID" // ID is a String
 Tmpl_ExtraField_scrn   = "ExtraField" // ExtraField is a String
 Tmpl_ExtraField2_scrn   = "ExtraField2" // ExtraField2 is a String
 Tmpl_ExtraField3_scrn   = "ExtraField3" // ExtraField3 is a String
+Tmpl_TDate_scrn   = "TDate" // TDate is a String
 
 	/// Definitions End
 )

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:19
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func Cache_GetByID(id string) (int, dm.Cache, error) {
 	tsql = tsql + " WHERE " + dm.Cache_SQLSearchID + "='" + id + "'"
 	_, _, cacheItem, _ := cache_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, cacheItem, nil
 }
 
@@ -66,7 +72,12 @@ func Cache_Delete(id string) {
 // Cache_Store() saves/stores a Cache record to the database
 func Cache_Store(r dm.Cache,req *http.Request) error {
 
-	err := cache_Save(r,Audit_User(req))
+	err, r := Cache_Validate(r)
+	if err == nil {
+		err = cache_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Cache_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func Cache_Store(r dm.Cache,req *http.Request) error {
 // Cache_StoreSystem() saves/stores a Cache record to the database
 func Cache_StoreSystem(r dm.Cache) error {
 	
-	err := cache_Save(r,Audit_Host())
+	err, r := Cache_Validate(r)
+	if err == nil {
+		err = cache_Save(r, Audit_Host())
+	} else {
+		logs.Information("Cache_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Cache_Validate() validates for saves/stores a Cache record to the database
+func Cache_Validate(r dm.Cache) (error,dm.Cache) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // cache_Save() saves/stores a Cache record to the database
 func cache_Save(r dm.Cache,usr string) error {
@@ -124,7 +152,7 @@ logs.Storing("Cache",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Cache_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Cache_Id_sql, r.Id)
@@ -143,7 +171,7 @@ logs.Storing("Cache",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Cache_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Cache_SQLTable)
@@ -176,7 +204,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Cache_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Cache_Id_sql, "")
@@ -212,7 +240,7 @@ func cache_Fetch(tsql string) (int, []dm.Cache, dm.Cache, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -232,7 +260,24 @@ func Cache_NewID(r dm.Cache) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// cache_Fetch read all Cache's
+func Cache_New() (int, []dm.Cache, dm.Cache, error) {
+
+	var r = dm.Cache{}
+	var rList []dm.Cache
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:11
+// Date & Time		    : 26/06/2022 at 18:48:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type ExternalMessage_PageList struct {
 }
 //ExternalMessage_Redirect provides a page to return to aftern an action
 const (
+	
 	ExternalMessage_Redirect = dm.ExternalMessage_PathList
+	
 )
 
 //externalmessage_Page provides the information for the template for an individual ExternalMessage
@@ -45,39 +47,68 @@ type ExternalMessage_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	MessageID         string
+	MessageID_props     dm.FieldProperties
 	MessageFormat         string
+	MessageFormat_props     dm.FieldProperties
 	MessageDeliveredTo         string
+	MessageDeliveredTo_props     dm.FieldProperties
 	MessageBody         string
+	MessageBody_props     dm.FieldProperties
 	MessageFilename         string
+	MessageFilename_props     dm.FieldProperties
 	MessageLife         string
+	MessageLife_props     dm.FieldProperties
 	MessageDate         string
+	MessageDate_props     dm.FieldProperties
 	MessageTime         string
+	MessageTime_props     dm.FieldProperties
 	MessageTimeoutAction         string
+	MessageTimeoutAction_props     dm.FieldProperties
 	MessageACKNAK         string
 	MessageACKNAK_lookup    []dm.Lookup_Item
+	MessageACKNAK_props     dm.FieldProperties
 	ResponseID         string
+	ResponseID_props     dm.FieldProperties
 	ResponseFilename         string
+	ResponseFilename_props     dm.FieldProperties
 	ResponseBody         string
+	ResponseBody_props     dm.FieldProperties
 	ResponseDate         string
+	ResponseDate_props     dm.FieldProperties
 	ResponseTime         string
+	ResponseTime_props     dm.FieldProperties
 	ResponseAdditionalInfo         string
+	ResponseAdditionalInfo_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	MessageTimeout         string
+	MessageTimeout_props     dm.FieldProperties
 	MessageEmitted         string
+	MessageEmitted_props     dm.FieldProperties
 	ResponseRecieved         string
+	ResponseRecieved_lookup    []dm.Lookup_Item
+	ResponseRecieved_props     dm.FieldProperties
 	MessageClass         string
+	MessageClass_props     dm.FieldProperties
 	AppID         string
+	AppID_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -203,7 +234,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.ExternalMessage
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId_scrn)
 		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID_scrn)
@@ -235,7 +266,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.AppID = r.FormValue(dm.ExternalMessage_AppID_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.ExternalMessage_Store(item,r)	
 	http.Redirect(w, r, ExternalMessage_Redirect, http.StatusFound)
@@ -264,7 +295,7 @@ func ExternalMessage_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the ExternalMessage Page 
 func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMessage_Page) ExternalMessage_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.MessageID = rD.MessageID
@@ -297,7 +328,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -353,13 +384,45 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	
 	
 	
+	pageDetail.ResponseRecieved_lookup = dao.StubLists_Get("tf")
 	
 	
 	
 	
+	
+	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.MessageID_props = rD.MessageID_props
+	pageDetail.MessageFormat_props = rD.MessageFormat_props
+	pageDetail.MessageDeliveredTo_props = rD.MessageDeliveredTo_props
+	pageDetail.MessageBody_props = rD.MessageBody_props
+	pageDetail.MessageFilename_props = rD.MessageFilename_props
+	pageDetail.MessageLife_props = rD.MessageLife_props
+	pageDetail.MessageDate_props = rD.MessageDate_props
+	pageDetail.MessageTime_props = rD.MessageTime_props
+	pageDetail.MessageTimeoutAction_props = rD.MessageTimeoutAction_props
+	pageDetail.MessageACKNAK_props = rD.MessageACKNAK_props
+	pageDetail.ResponseID_props = rD.ResponseID_props
+	pageDetail.ResponseFilename_props = rD.ResponseFilename_props
+	pageDetail.ResponseBody_props = rD.ResponseBody_props
+	pageDetail.ResponseDate_props = rD.ResponseDate_props
+	pageDetail.ResponseTime_props = rD.ResponseTime_props
+	pageDetail.ResponseAdditionalInfo_props = rD.ResponseAdditionalInfo_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.MessageTimeout_props = rD.MessageTimeout_props
+	pageDetail.MessageEmitted_props = rD.MessageEmitted_props
+	pageDetail.ResponseRecieved_props = rD.ResponseRecieved_props
+	pageDetail.MessageClass_props = rD.MessageClass_props
+	pageDetail.AppID_props = rD.AppID_props
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

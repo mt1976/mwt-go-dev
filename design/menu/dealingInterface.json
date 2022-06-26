@@ -1,11 +1,10 @@
 
-    {
-      "ID": "7caba662-4467-4823-89b0-82433744ed46",
-      "Text": "Dealing Interface",
-      "Glyph": "fas fa-share-alt",
-      "HREF": "/DealingInterfaceList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "04f69d1a-9a47-4681-a4bd-0ca499b6817e",
+      "MenuText": "Dealing Interface",
+      "MenuGlyph": "fas fa-share-alt",
+      "MenuHREF": "/DealingInterfaceList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

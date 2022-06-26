@@ -1,0 +1,109 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/SalesDeskEdit/?Desk={{.Name}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-industry me-2" title="Desk = {{.Name}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Sales Desk {{.Name}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Name"><i class="fas fa-key me-2"></i>Name</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ReportDealsOver" aria-describedby="ReportDealsOverHelp" placeholder="" disabled value="{{.ReportDealsOver}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ReportDealsOver">ReportDealsOver</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ReportDealsOverCCY" aria-describedby="ReportDealsOverCCYHelp" placeholder="" disabled value="{{.ReportDealsOverCCY}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ReportDealsOverCCY">ReportDealsOverCCY</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="AccountTransferCutOffTime" aria-describedby="AccountTransferCutOffTimeHelp" placeholder="" disabled value="{{.AccountTransferCutOffTime}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="AccountTransferCutOffTime">AccountTransferCutOffTime</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="AccountTransferCutOffTimeTimeZone" aria-describedby="AccountTransferCutOffTimeTimeZoneHelp" placeholder="" disabled value="{{.AccountTransferCutOffTimeTimeZone}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="AccountTransferCutOffTimeTimeZone">AccountTransferCutOffTimeTimeZone</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="AccountTransferCutOffTimeCutOffPeriod" aria-describedby="AccountTransferCutOffTimeCutOffPeriodHelp" placeholder="" disabled value="{{.AccountTransferCutOffTimeCutOffPeriod}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="AccountTransferCutOffTimeCutOffPeriod">AccountTransferCutOffTimeCutOffPeriod</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

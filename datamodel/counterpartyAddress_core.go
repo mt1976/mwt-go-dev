@@ -9,21 +9,38 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CounterpartyAddress defines the datamolde for the CounterpartyAddress object
 type CounterpartyAddress struct {
 
+
 NameFirm       string
+NameFirm_props FieldProperties
 NameCentre       string
+NameCentre_props FieldProperties
 Address1       string
+Address1_props FieldProperties
 Address2       string
+Address2_props FieldProperties
 CityTown       string
+CityTown_props FieldProperties
 County       string
+County_props FieldProperties
 Postcode       string
+Postcode_props FieldProperties
 CompID       string
+CompID_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
 
 }
 

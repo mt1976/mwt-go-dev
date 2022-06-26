@@ -11,4 +11,5 @@ type SessionInfo struct {
 	Type            string
 	AppName         string
 	AppID           string
+	UnreadMessages  string
 }

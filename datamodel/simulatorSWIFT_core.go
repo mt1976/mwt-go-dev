@@ -9,18 +9,29 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //SimulatorSWIFT defines the datamolde for the SimulatorSWIFT object
 type SimulatorSWIFT struct {
 
+
 ID       string
+ID_props FieldProperties
 FileName       string
+FileName_props FieldProperties
 MessageRaw       string
+MessageRaw_props FieldProperties
 MessageFmt       string
+MessageFmt_props FieldProperties
 Action       string
+Action_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
 
 }
 

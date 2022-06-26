@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:19
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Catalog_PageList struct {
 }
 //Catalog_Redirect provides a page to return to aftern an action
 const (
+	
 	Catalog_Redirect = dm.Catalog_PathList
+	
 )
 
 //catalog_Page provides the information for the template for an individual Catalog
@@ -45,15 +47,20 @@ type Catalog_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
+	ID_props     dm.FieldProperties
 	Endpoint         string
+	Endpoint_props     dm.FieldProperties
 	Descr         string
+	Descr_props     dm.FieldProperties
 	Query         string
+	Query_props     dm.FieldProperties
 	Source         string
+	Source_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -142,7 +149,7 @@ func Catalog_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Catalog Page 
 func catalog_PopulatePage(rD dm.Catalog, pageDetail Catalog_Page) Catalog_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.Endpoint = rD.Endpoint
@@ -152,7 +159,7 @@ func catalog_PopulatePage(rD dm.Catalog, pageDetail Catalog_Page) Catalog_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -165,8 +172,15 @@ func catalog_PopulatePage(rD dm.Catalog, pageDetail Catalog_Page) Catalog_Page {
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.Endpoint_props = rD.Endpoint_props
+	pageDetail.Descr_props = rD.Descr_props
+	pageDetail.Query_props = rD.Query_props
+	pageDetail.Source_props = rD.Source_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

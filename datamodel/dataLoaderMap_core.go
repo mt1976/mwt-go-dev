@@ -9,28 +9,56 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 26/06/2022 at 18:48:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DataLoaderMap defines the datamolde for the DataLoaderMap object
 type DataLoaderMap struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 Name       string
+Name_props FieldProperties
 Position       string
+Position_props FieldProperties
 Loader       string
-Loader_lookup []Lookup_Item
+Loader_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 Int_position       string
+Int_position_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
+ // Any lookups will be added below
+
+
+
+Loader_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
 
 }
 

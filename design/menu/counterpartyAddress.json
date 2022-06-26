@@ -1,11 +1,10 @@
 
-    {
-      "ID": "b969595b-a792-4fee-93c0-a629015330df",
-      "Text": "Counterparty Address",
-      "Glyph": "fas fa-passport",
-      "HREF": "/CounterpartyAddressList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "979393f1-b6c5-4090-84ab-12535ca14dca",
+      "MenuText": "Counterparty Address",
+      "MenuGlyph": "fas fa-passport",
+      "MenuHREF": "/CounterpartyAddressList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

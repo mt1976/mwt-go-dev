@@ -9,40 +9,83 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DealAuditEvent defines the datamolde for the DealAuditEvent object
 type DealAuditEvent struct {
 
+
 DealRefNo       string
+DealRefNo_props FieldProperties
 EventIndex       string
+EventIndex_props FieldProperties
 CommonRefNo       string
+CommonRefNo_props FieldProperties
 Timestamp       string
+Timestamp_props FieldProperties
 UTCTimestamp       string
+UTCTimestamp_props FieldProperties
 EventType       string
+EventType_props FieldProperties
 Status       string
+Status_props FieldProperties
 LimitOrderStatus       string
+LimitOrderStatus_props FieldProperties
 Usr       string
+Usr_props FieldProperties
 DealingInterface       string
+DealingInterface_props FieldProperties
 SourceIP       string
+SourceIP_props FieldProperties
 MessageID       string
+MessageID_props FieldProperties
 Details       string
+Details_props FieldProperties
 InternalId       string
+InternalId_props FieldProperties
 InternalDeleted       string
+InternalDeleted_props FieldProperties
 UpdatedTransactionId       string
+UpdatedTransactionId_props FieldProperties
 UpdatedUserId       string
+UpdatedUserId_props FieldProperties
 UpdatedDateTime       string
+UpdatedDateTime_props FieldProperties
 DeletedTransactionId       string
+DeletedTransactionId_props FieldProperties
 DeletedUserId       string
+DeletedUserId_props FieldProperties
 ChangeType       string
+ChangeType_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
 const (
 	DealAuditEvent_Title       = "Deal Audit History"
-	DealAuditEvent_SQLTable    = "DealAuditEvent"
+	DealAuditEvent_SQLTable    = "sienaDealAuditEvent"
 	DealAuditEvent_SQLSearchID = "InternalId"
 	DealAuditEvent_QueryString = "ID"
 	///

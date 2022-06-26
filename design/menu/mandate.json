@@ -1,11 +1,10 @@
 
-    {
-      "ID": "eea3a95d-0f88-46b8-a33c-2a5dbc6e03cf",
-      "Text": "Mandate",
-      "Glyph": "fas fa-city",
-      "HREF": "/MandateList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "5524c946-3ba9-4129-980a-ac52adfc751f",
+      "MenuText": "Mandate",
+      "MenuGlyph": "fas fa-city",
+      "MenuHREF": "/MandateList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

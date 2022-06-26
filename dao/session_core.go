@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func Session_GetByID(id string) (int, dm.Session, error) {
 	tsql = tsql + " WHERE " + dm.Session_SQLSearchID + "='" + id + "'"
 	_, _, sessionItem, _ := session_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, sessionItem, nil
 }
 
@@ -66,7 +72,12 @@ func Session_Delete(id string) {
 // Session_Store() saves/stores a Session record to the database
 func Session_Store(r dm.Session,req *http.Request) error {
 
-	err := session_Save(r,Audit_User(req))
+	err, r := Session_Validate(r)
+	if err == nil {
+		err = session_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Session_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func Session_Store(r dm.Session,req *http.Request) error {
 // Session_StoreSystem() saves/stores a Session record to the database
 func Session_StoreSystem(r dm.Session) error {
 	
-	err := session_Save(r,Audit_Host())
+	err, r := Session_Validate(r)
+	if err == nil {
+		err = session_Save(r, Audit_Host())
+	} else {
+		logs.Information("Session_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Session_Validate() validates for saves/stores a Session record to the database
+func Session_Validate(r dm.Session) (error,dm.Session) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // session_Save() saves/stores a Session record to the database
 func session_Save(r dm.Session,usr string) error {
@@ -136,7 +164,7 @@ logs.Storing("Session",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Session_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Session_Apptoken_sql, r.Apptoken)
@@ -167,7 +195,7 @@ logs.Storing("Session",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Session_SessionRole_sql, r.SessionRole)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Session_SQLTable)
@@ -200,7 +228,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Session_SYSId_sql, "0")
 	   recItem.Apptoken  = get_String(rec, dm.Session_Apptoken_sql, "")
@@ -260,7 +288,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -280,7 +308,24 @@ func Session_NewID(r dm.Session) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// session_Fetch read all Session's
+func Session_New() (int, []dm.Session, dm.Session, error) {
+
+	var r = dm.Session{}
+	var rList []dm.Session
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 26/06/2022 at 18:48:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Currency_PageList struct {
 }
 //Currency_Redirect provides a page to return to aftern an action
 const (
+	
 	Currency_Redirect = dm.Currency_PathList
+	
 )
 
 //currency_Page provides the information for the template for an individual Currency
@@ -45,34 +47,58 @@ type Currency_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	Code         string
+	Code_props     dm.FieldProperties
 	Name         string
+	Name_props     dm.FieldProperties
 	AmountDp         string
+	AmountDp_props     dm.FieldProperties
 	Country         string
+	Country_props     dm.FieldProperties
 	CountryName         string
+	CountryName_props     dm.FieldProperties
 	IntBase         string
+	IntBase_props     dm.FieldProperties
 	KeydateBase         string
+	KeydateBase_props     dm.FieldProperties
 	InterestRateTolerance         string
+	InterestRateTolerance_props     dm.FieldProperties
 	CheckPayTo         string
+	CheckPayTo_props     dm.FieldProperties
 	LatinAmericanSettlement         string
+	LatinAmericanSettlement_props     dm.FieldProperties
 	DefaultLayOffBookKey         string
+	DefaultLayOffBookKey_props     dm.FieldProperties
 	CutOffTimeCutOffTime         string
+	CutOffTimeCutOffTime_props     dm.FieldProperties
 	CutOffTimeTimeZone         string
+	CutOffTimeTimeZone_props     dm.FieldProperties
 	CutOffTimeDerivedDataUTCOffset         string
+	CutOffTimeDerivedDataUTCOffset_props     dm.FieldProperties
 	CutOffTimeDerivedDataHasDaylightSaving         string
+	CutOffTimeDerivedDataHasDaylightSaving_props     dm.FieldProperties
 	CutOffTimeDerivedDataDaylightStart         string
+	CutOffTimeDerivedDataDaylightStart_props     dm.FieldProperties
 	CutOffTimeDerivedDataDaylightEnd         string
+	CutOffTimeDerivedDataDaylightEnd_props     dm.FieldProperties
 	DealerInterventionQuoteTimeout         string
+	DealerInterventionQuoteTimeout_props     dm.FieldProperties
 	CutOffTimeCutOffPeriod         string
+	CutOffTimeCutOffPeriod_props     dm.FieldProperties
 	StripRateFutureExchangeCode         string
+	StripRateFutureExchangeCode_props     dm.FieldProperties
 	StripRateFutureCurrencyContractCurrencyIsoCode         string
+	StripRateFutureCurrencyContractCurrencyIsoCode_props     dm.FieldProperties
 	StripRateFutureCurrencyContractFutureContractCode         string
+	StripRateFutureCurrencyContractFutureContractCode_props     dm.FieldProperties
 	OvernightFundingSpreadBid         string
+	OvernightFundingSpreadBid_props     dm.FieldProperties
 	OvernightFundingSpreadOffer         string
+	OvernightFundingSpreadOffer_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -161,7 +187,7 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Currency Page 
 func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -190,7 +216,7 @@ func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Pa
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -241,8 +267,34 @@ func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Pa
 	
 	
 	
+	pageDetail.Code_props = rD.Code_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.AmountDp_props = rD.AmountDp_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.CountryName_props = rD.CountryName_props
+	pageDetail.IntBase_props = rD.IntBase_props
+	pageDetail.KeydateBase_props = rD.KeydateBase_props
+	pageDetail.InterestRateTolerance_props = rD.InterestRateTolerance_props
+	pageDetail.CheckPayTo_props = rD.CheckPayTo_props
+	pageDetail.LatinAmericanSettlement_props = rD.LatinAmericanSettlement_props
+	pageDetail.DefaultLayOffBookKey_props = rD.DefaultLayOffBookKey_props
+	pageDetail.CutOffTimeCutOffTime_props = rD.CutOffTimeCutOffTime_props
+	pageDetail.CutOffTimeTimeZone_props = rD.CutOffTimeTimeZone_props
+	pageDetail.CutOffTimeDerivedDataUTCOffset_props = rD.CutOffTimeDerivedDataUTCOffset_props
+	pageDetail.CutOffTimeDerivedDataHasDaylightSaving_props = rD.CutOffTimeDerivedDataHasDaylightSaving_props
+	pageDetail.CutOffTimeDerivedDataDaylightStart_props = rD.CutOffTimeDerivedDataDaylightStart_props
+	pageDetail.CutOffTimeDerivedDataDaylightEnd_props = rD.CutOffTimeDerivedDataDaylightEnd_props
+	pageDetail.DealerInterventionQuoteTimeout_props = rD.DealerInterventionQuoteTimeout_props
+	pageDetail.CutOffTimeCutOffPeriod_props = rD.CutOffTimeCutOffPeriod_props
+	pageDetail.StripRateFutureExchangeCode_props = rD.StripRateFutureExchangeCode_props
+	pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode_props = rD.StripRateFutureCurrencyContractCurrencyIsoCode_props
+	pageDetail.StripRateFutureCurrencyContractFutureContractCode_props = rD.StripRateFutureCurrencyContractFutureContractCode_props
+	pageDetail.OvernightFundingSpreadBid_props = rD.OvernightFundingSpreadBid_props
+	pageDetail.OvernightFundingSpreadOffer_props = rD.OvernightFundingSpreadOffer_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

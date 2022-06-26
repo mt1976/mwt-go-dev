@@ -9,19 +9,32 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 26/06/2022 at 18:48:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CounterpartyCreditRating defines the datamolde for the CounterpartyCreditRating object
 type CounterpartyCreditRating struct {
 
+
 NameFirm       string
+NameFirm_props FieldProperties
 NameCentre       string
+NameCentre_props FieldProperties
 CreditRatingUsage       string
+CreditRatingUsage_props FieldProperties
 CreditRatingAgency       string
+CreditRatingAgency_props FieldProperties
 CreditRatingName       string
+CreditRatingName_props FieldProperties
 CompID       string
+CompID_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
 
 }
 

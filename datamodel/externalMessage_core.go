@@ -9,42 +9,98 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:11
+// Date & Time		    : 26/06/2022 at 18:48:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //ExternalMessage defines the datamolde for the ExternalMessage object
 type ExternalMessage struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 MessageID       string
+MessageID_props FieldProperties
 MessageFormat       string
+MessageFormat_props FieldProperties
 MessageDeliveredTo       string
+MessageDeliveredTo_props FieldProperties
 MessageBody       string
+MessageBody_props FieldProperties
 MessageFilename       string
+MessageFilename_props FieldProperties
 MessageLife       string
+MessageLife_props FieldProperties
 MessageDate       string
+MessageDate_props FieldProperties
 MessageTime       string
+MessageTime_props FieldProperties
 MessageTimeoutAction       string
+MessageTimeoutAction_props FieldProperties
 MessageACKNAK       string
-MessageACKNAK_lookup []Lookup_Item
+MessageACKNAK_props FieldProperties
 ResponseID       string
+ResponseID_props FieldProperties
 ResponseFilename       string
+ResponseFilename_props FieldProperties
 ResponseBody       string
+ResponseBody_props FieldProperties
 ResponseDate       string
+ResponseDate_props FieldProperties
 ResponseTime       string
+ResponseTime_props FieldProperties
 ResponseAdditionalInfo       string
+ResponseAdditionalInfo_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
 MessageTimeout       string
+MessageTimeout_props FieldProperties
 MessageEmitted       string
+MessageEmitted_props FieldProperties
 ResponseRecieved       string
+ResponseRecieved_props FieldProperties
 MessageClass       string
+MessageClass_props FieldProperties
 AppID       string
+AppID_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+MessageACKNAK_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ResponseRecieved_lookup []Lookup_Item
+
+
 
 }
 

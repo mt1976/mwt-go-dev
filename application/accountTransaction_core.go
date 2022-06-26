@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type AccountTransaction_PageList struct {
 }
 //AccountTransaction_Redirect provides a page to return to aftern an action
 const (
+	
 	AccountTransaction_Redirect = dm.AccountTransaction_PathList
+	
 )
 
 //accounttransaction_Page provides the information for the template for an individual AccountTransaction
@@ -45,25 +47,40 @@ type AccountTransaction_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SienaReference         string
+	SienaReference_props     dm.FieldProperties
 	LegNo         string
+	LegNo_props     dm.FieldProperties
 	MMLegNo         string
+	MMLegNo_props     dm.FieldProperties
 	Narrative         string
+	Narrative_props     dm.FieldProperties
 	Amount         string
+	Amount_props     dm.FieldProperties
 	StartInterestDate         string
+	StartInterestDate_props     dm.FieldProperties
 	EndInterestDate         string
+	EndInterestDate_props     dm.FieldProperties
 	Amortisation         string
+	Amortisation_props     dm.FieldProperties
 	InterestAmount         string
+	InterestAmount_props     dm.FieldProperties
 	InterestAction         string
+	InterestAction_props     dm.FieldProperties
 	FixingDate         string
+	FixingDate_props     dm.FieldProperties
 	InterestCalculationDate         string
+	InterestCalculationDate_props     dm.FieldProperties
 	AmendmentAmount         string
+	AmendmentAmount_props     dm.FieldProperties
 	DealtCcy         string
+	DealtCcy_props     dm.FieldProperties
 	AmountDp         string
+	AmountDp_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -152,7 +169,7 @@ func AccountTransaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the AccountTransaction Page 
 func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail AccountTransaction_Page) AccountTransaction_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.LegNo = rD.LegNo
@@ -172,7 +189,7 @@ func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail Accoun
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -205,8 +222,25 @@ func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail Accoun
 	
 	
 	
+	pageDetail.SienaReference_props = rD.SienaReference_props
+	pageDetail.LegNo_props = rD.LegNo_props
+	pageDetail.MMLegNo_props = rD.MMLegNo_props
+	pageDetail.Narrative_props = rD.Narrative_props
+	pageDetail.Amount_props = rD.Amount_props
+	pageDetail.StartInterestDate_props = rD.StartInterestDate_props
+	pageDetail.EndInterestDate_props = rD.EndInterestDate_props
+	pageDetail.Amortisation_props = rD.Amortisation_props
+	pageDetail.InterestAmount_props = rD.InterestAmount_props
+	pageDetail.InterestAction_props = rD.InterestAction_props
+	pageDetail.FixingDate_props = rD.FixingDate_props
+	pageDetail.InterestCalculationDate_props = rD.InterestCalculationDate_props
+	pageDetail.AmendmentAmount_props = rD.AmendmentAmount_props
+	pageDetail.DealtCcy_props = rD.DealtCcy_props
+	pageDetail.AmountDp_props = rD.AmountDp_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

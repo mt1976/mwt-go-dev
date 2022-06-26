@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Session_PageList struct {
 }
 //Session_Redirect provides a page to return to aftern an action
 const (
+	
 	Session_Redirect = dm.Session_PathList
+	
 )
 
 //session_Page provides the information for the template for an individual Session
@@ -45,37 +47,64 @@ type Session_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	Apptoken         string
+	Apptoken_props     dm.FieldProperties
 	Createdate         string
+	Createdate_props     dm.FieldProperties
 	Createtime         string
+	Createtime_props     dm.FieldProperties
 	Uniqueid         string
+	Uniqueid_props     dm.FieldProperties
 	Sessiontoken         string
+	Sessiontoken_props     dm.FieldProperties
 	Username         string
+	Username_props     dm.FieldProperties
 	Password         string
+	Password_props     dm.FieldProperties
 	Userip         string
+	Userip_props     dm.FieldProperties
 	Userhost         string
+	Userhost_props     dm.FieldProperties
 	Appip         string
+	Appip_props     dm.FieldProperties
 	Apphost         string
+	Apphost_props     dm.FieldProperties
 	Issued         string
+	Issued_props     dm.FieldProperties
 	Expiry         string
+	Expiry_props     dm.FieldProperties
 	Expiryraw         string
+	Expiryraw_props     dm.FieldProperties
 	Brand         string
+	Brand_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSWho         string
+	SYSWho_props     dm.FieldProperties
 	SYSHost         string
+	SYSHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	Id         string
+	Id_props     dm.FieldProperties
 	Expires         string
+	Expires_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	SessionRole         string
+	SessionRole_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -172,7 +201,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Session
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Session_SYSId_scrn)
 		item.Apptoken = r.FormValue(dm.Session_Apptoken_scrn)
@@ -203,7 +232,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SessionRole = r.FormValue(dm.Session_SessionRole_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Session_Store(item,r)	
 	http.Redirect(w, r, Session_Redirect, http.StatusFound)
@@ -215,7 +244,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Session Page 
 func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Apptoken = rD.Apptoken
@@ -247,7 +276,7 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -304,8 +333,37 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Apptoken_props = rD.Apptoken_props
+	pageDetail.Createdate_props = rD.Createdate_props
+	pageDetail.Createtime_props = rD.Createtime_props
+	pageDetail.Uniqueid_props = rD.Uniqueid_props
+	pageDetail.Sessiontoken_props = rD.Sessiontoken_props
+	pageDetail.Username_props = rD.Username_props
+	pageDetail.Password_props = rD.Password_props
+	pageDetail.Userip_props = rD.Userip_props
+	pageDetail.Userhost_props = rD.Userhost_props
+	pageDetail.Appip_props = rD.Appip_props
+	pageDetail.Apphost_props = rD.Apphost_props
+	pageDetail.Issued_props = rD.Issued_props
+	pageDetail.Expiry_props = rD.Expiry_props
+	pageDetail.Expiryraw_props = rD.Expiryraw_props
+	pageDetail.Brand_props = rD.Brand_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Expires_props = rD.Expires_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SessionRole_props = rD.SessionRole_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

@@ -9,38 +9,86 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 26/06/2022 at 18:48:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Payee defines the datamolde for the Payee object
 type Payee struct {
 
+
 SourceTable       string
+SourceTable_props FieldProperties
 KeyCounterpartyFirm       string
+KeyCounterpartyFirm_props FieldProperties
 KeyCounterpartyCentre       string
+KeyCounterpartyCentre_props FieldProperties
 KeyCurrency       string
+KeyCurrency_props FieldProperties
 KeyName       string
+KeyName_props FieldProperties
 KeyNumber       string
+KeyNumber_props FieldProperties
 KeyDirection       string
+KeyDirection_props FieldProperties
 KeyType       string
+KeyType_props FieldProperties
 FullName       string
+FullName_props FieldProperties
 Address       string
+Address_props FieldProperties
 PhoneNo       string
+PhoneNo_props FieldProperties
 Country       string
-Country_lookup []Lookup_Item
+Country_props FieldProperties
 Bic       string
+Bic_props FieldProperties
 Iban       string
+Iban_props FieldProperties
 AccountNo       string
+AccountNo_props FieldProperties
 FedWireNo       string
+FedWireNo_props FieldProperties
 SortCode       string
+SortCode_props FieldProperties
 BankName       string
+BankName_props FieldProperties
 BankPinCode       string
+BankPinCode_props FieldProperties
 BankAddress       string
+BankAddress_props FieldProperties
 Reason       string
+Reason_props FieldProperties
 BankSettlementAcct       string
+BankSettlementAcct_props FieldProperties
 UpdatedUserId       string
+UpdatedUserId_props FieldProperties
 Status       string
+Status_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+Country_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

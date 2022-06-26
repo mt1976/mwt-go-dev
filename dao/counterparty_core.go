@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:21
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func Counterparty_GetByID(id string) (int, dm.Counterparty, error) {
 	tsql = tsql + " WHERE " + dm.Counterparty_SQLSearchID + "='" + id + "'"
 	_, _, counterpartyItem, _ := counterparty_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, counterpartyItem, nil
 }
 
@@ -60,7 +66,12 @@ func Counterparty_Delete(id string) {
 // Counterparty_Store() saves/stores a Counterparty record to the database
 func Counterparty_Store(r dm.Counterparty,req *http.Request) error {
 
-	err := counterparty_Save(r,Audit_User(req))
+	err, r := Counterparty_Validate(r)
+	if err == nil {
+		err = counterparty_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Counterparty_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,27 @@ func Counterparty_Store(r dm.Counterparty,req *http.Request) error {
 // Counterparty_StoreSystem() saves/stores a Counterparty record to the database
 func Counterparty_StoreSystem(r dm.Counterparty) error {
 	
-	err := counterparty_Save(r,Audit_Host())
+	err, r := Counterparty_Validate(r)
+	if err == nil {
+		err = counterparty_Save(r, Audit_Host())
+	} else {
+		logs.Information("Counterparty_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Counterparty_Validate() validates for saves/stores a Counterparty record to the database
+func Counterparty_Validate(r dm.Counterparty) (error,dm.Counterparty) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // counterparty_Save() saves/stores a Counterparty record to the database
 func counterparty_Save(r dm.Counterparty,usr string) error {
@@ -142,7 +170,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameCentre  = get_String(rec, dm.Counterparty_NameCentre_sql, "")
 	   recItem.NameFirm  = get_String(rec, dm.Counterparty_NameFirm_sql, "")
@@ -184,7 +212,7 @@ func counterparty_Fetch(tsql string) (int, []dm.Counterparty, dm.Counterparty, e
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -204,7 +232,24 @@ func Counterparty_NewID(r dm.Counterparty) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// counterparty_Fetch read all Counterparty's
+func Counterparty_New() (int, []dm.Counterparty, dm.Counterparty, error) {
+
+	var r = dm.Counterparty{}
+	var rList []dm.Counterparty
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

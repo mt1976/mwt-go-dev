@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func Systems_GetByID(id string) (int, dm.Systems, error) {
 	tsql = tsql + " WHERE " + dm.Systems_SQLSearchID + "='" + id + "'"
 	_, _, systemsItem, _ := systems_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, systemsItem, nil
 }
 
@@ -66,7 +72,12 @@ func Systems_Delete(id string) {
 // Systems_Store() saves/stores a Systems record to the database
 func Systems_Store(r dm.Systems,req *http.Request) error {
 
-	err := systems_Save(r,Audit_User(req))
+	err, r := Systems_Validate(r)
+	if err == nil {
+		err = systems_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Systems_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func Systems_Store(r dm.Systems,req *http.Request) error {
 // Systems_StoreSystem() saves/stores a Systems record to the database
 func Systems_StoreSystem(r dm.Systems) error {
 	
-	err := systems_Save(r,Audit_Host())
+	err, r := Systems_Validate(r)
+	if err == nil {
+		err = systems_Save(r, Audit_Host())
+	} else {
+		logs.Information("Systems_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Systems_Validate() validates for saves/stores a Systems record to the database
+func Systems_Validate(r dm.Systems) (error,dm.Systems) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // systems_Save() saves/stores a Systems record to the database
 func systems_Save(r dm.Systems,usr string) error {
@@ -121,7 +149,7 @@ logs.Storing("Systems",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Systems_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Systems_Id_sql, r.Id)
@@ -144,7 +172,7 @@ logs.Storing("Systems",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Systems_SWIFTout_sql, r.SWIFTout)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Systems_SQLTable)
@@ -177,7 +205,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Systems_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Systems_Id_sql, "")
@@ -221,7 +249,7 @@ func systems_Fetch(tsql string) (int, []dm.Systems, dm.Systems, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -241,7 +269,24 @@ func Systems_NewID(r dm.Systems) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// systems_Fetch read all Systems's
+func Systems_New() (int, []dm.Systems, dm.Systems, error) {
+
+	var r = dm.Systems{}
+	var rList []dm.Systems
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

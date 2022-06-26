@@ -1,0 +1,317 @@
+package application
+// ----------------------------------------------------------------
+// Automatically generated  "/application/userrole.go"
+// ----------------------------------------------------------------
+// Package              : application
+// Object 			    : UserRole (userrole)
+// Endpoint 	        : UserRole (Id)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 26/06/2022 at 18:48:34
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+import (
+	
+	"net/http"
+
+	core    "github.com/mt1976/mwt-go-dev/core"
+	dao     "github.com/mt1976/mwt-go-dev/dao"
+	dm      "github.com/mt1976/mwt-go-dev/datamodel"
+	logs    "github.com/mt1976/mwt-go-dev/logs"
+)
+
+//userrole_PageList provides the information for the template for a list of UserRoles
+type UserRole_PageList struct {
+	SessionInfo      dm.SessionInfo
+	UserMenu         dm.AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []dm.UserRole
+}
+//UserRole_Redirect provides a page to return to aftern an action
+const (
+	
+	UserRole_Redirect = dm.UserRole_PathList
+	
+)
+
+//userrole_Page provides the information for the template for an individual UserRole
+type UserRole_Page struct {
+	SessionInfo      dm.SessionInfo
+	UserMenu    	 dm.AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	SYSId_props     dm.FieldProperties
+	Id         string
+	Id_props     dm.FieldProperties
+	Name         string
+	Name_props     dm.FieldProperties
+	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
+	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
+	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
+	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
+	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
+	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+}
+
+
+
+//UserRole_Publish annouces the endpoints available for this object
+func UserRole_Publish(mux http.ServeMux) {
+	//No API
+	mux.HandleFunc(dm.UserRole_PathList, UserRole_HandlerList)
+	mux.HandleFunc(dm.UserRole_PathView, UserRole_HandlerView)
+	mux.HandleFunc(dm.UserRole_PathEdit, UserRole_HandlerEdit)
+	mux.HandleFunc(dm.UserRole_PathNew, UserRole_HandlerNew)
+	mux.HandleFunc(dm.UserRole_PathSave, UserRole_HandlerSave)
+	mux.HandleFunc(dm.UserRole_PathDelete, UserRole_HandlerDelete)
+	logs.Publish("Application", dm.UserRole_Title)
+    //No API
+}
+
+
+//UserRole_HandlerList is the handler for the list page
+func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	var returnList []dm.UserRole
+	noItems, returnList, _ := dao.UserRole_GetList()
+
+	pageDetail := UserRole_PageList{
+		Title:            CardTitle(dm.UserRole_Title, core.Action_List),
+		PageTitle:        PageTitle(dm.UserRole_Title, core.Action_List),
+		ItemsOnPage: 	  noItems,
+		ItemList:         returnList,
+		UserMenu:         UserMenu_Get(r),
+		UserRole:         Session_GetUserRole(r),
+	}
+	
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+	
+	ExecuteTemplate(dm.UserRole_TemplateList, w, r, pageDetail)
+
+}
+
+
+//UserRole_HandlerView is the handler used to View a page
+func UserRole_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+
+	searchID := core.GetURLparam(r, dm.UserRole_QueryString)
+	_, rD, _ := dao.UserRole_GetByID(searchID)
+
+	pageDetail := UserRole_Page{
+		Title:       CardTitle(dm.UserRole_Title, core.Action_View),
+		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_View),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    Session_GetUserRole(r),
+	}
+
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = userrole_PopulatePage(rD , pageDetail) 
+
+	ExecuteTemplate(dm.UserRole_TemplateView, w, r, pageDetail)
+
+}
+
+
+//UserRole_HandlerEdit is the handler used generate the Edit page
+func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+
+	searchID := core.GetURLparam(r, dm.UserRole_QueryString)
+	_, rD, _ := dao.UserRole_GetByID(searchID)
+	
+	pageDetail := UserRole_Page{
+		Title:       CardTitle(dm.UserRole_Title, core.Action_Edit),
+		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_Edit),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    Session_GetUserRole(r),
+	}
+
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = userrole_PopulatePage(rD , pageDetail) 
+
+	ExecuteTemplate(dm.UserRole_TemplateEdit, w, r, pageDetail)
+}
+
+
+//UserRole_HandlerSave is the handler used process the saving of an UserRole
+func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path+r.FormValue("Id"))
+
+	var item dm.UserRole
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.SYSId = r.FormValue(dm.UserRole_SYSId_scrn)
+		item.Id = r.FormValue(dm.UserRole_Id_scrn)
+		item.Name = r.FormValue(dm.UserRole_Name_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.UserRole_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.UserRole_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.UserRole_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.UserRole_SYSUpdatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.UserRole_SYSUpdated_scrn)
+		item.SYSCreated = r.FormValue(dm.UserRole_SYSCreated_scrn)
+	
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	dao.UserRole_Store(item,r)	
+	http.Redirect(w, r, UserRole_Redirect, http.StatusFound)
+}
+
+
+//UserRole_HandlerNew is the handler used process the creation of an UserRole
+func UserRole_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.UserRole_New()
+
+	pageDetail := UserRole_Page{
+		Title:       CardTitle(dm.UserRole_Title, core.Action_New),
+		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_New),
+		UserMenu:    UserMenu_Get(r),
+		UserRole:    Session_GetUserRole(r),
+	}
+
+	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
+
+	pageDetail = userrole_PopulatePage(rD , pageDetail) 
+
+	ExecuteTemplate(dm.UserRole_TemplateNew, w, r, pageDetail)
+
+}	
+
+
+//UserRole_HandlerDelete is the handler used process the deletion of an UserRole
+func UserRole_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	logs.Servicing(r.URL.Path)
+	searchID := core.GetURLparam(r, dm.UserRole_QueryString)
+
+	dao.UserRole_Delete(searchID)	
+
+	http.Redirect(w, r, UserRole_Redirect, http.StatusFound)
+}
+
+
+// Builds/Popuplates the UserRole Page 
+func userrole_PopulatePage(rD dm.UserRole, pageDetail UserRole_Page) UserRole_Page {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	pageDetail.SYSId = rD.SYSId
+	pageDetail.Id = rD.Id
+	pageDetail.Name = rD.Name
+	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
+	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
+	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
+	pageDetail.SYSCreated = rD.SYSCreated
+	
+	
+	//
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	//
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+	//spew.Dump(pageDetail)
+return pageDetail
+}	

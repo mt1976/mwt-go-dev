@@ -1,11 +1,10 @@
 
-    {
-      "ID": "9362866e-808e-49d8-9eb0-8efc1f62618d",
-      "Text": "Deal Type",
-      "Glyph": "fas fa-toolbox",
-      "HREF": "/DealTypeList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "bca0b5d9-47ce-46e2-92d6-504e85961826",
+      "MenuText": "Deal Type",
+      "MenuGlyph": "fas fa-toolbox",
+      "MenuHREF": "/DealTypeList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

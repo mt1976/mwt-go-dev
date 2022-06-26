@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:18
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func AccountTransaction_GetByID(id string) (int, dm.AccountTransaction, error) {
 	tsql = tsql + " WHERE " + dm.AccountTransaction_SQLSearchID + "='" + id + "'"
 	_, _, accounttransactionItem, _ := accounttransaction_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, accounttransactionItem, nil
 }
 
@@ -60,7 +66,12 @@ func AccountTransaction_Delete(id string) {
 // AccountTransaction_Store() saves/stores a AccountTransaction record to the database
 func AccountTransaction_Store(r dm.AccountTransaction,req *http.Request) error {
 
-	err := accounttransaction_Save(r,Audit_User(req))
+	err, r := AccountTransaction_Validate(r)
+	if err == nil {
+		err = accounttransaction_Save(r, Audit_User(req))
+	} else {
+		logs.Information("AccountTransaction_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,27 @@ func AccountTransaction_Store(r dm.AccountTransaction,req *http.Request) error {
 // AccountTransaction_StoreSystem() saves/stores a AccountTransaction record to the database
 func AccountTransaction_StoreSystem(r dm.AccountTransaction) error {
 	
-	err := accounttransaction_Save(r,Audit_Host())
+	err, r := AccountTransaction_Validate(r)
+	if err == nil {
+		err = accounttransaction_Save(r, Audit_Host())
+	} else {
+		logs.Information("AccountTransaction_Store()", err.Error())
+	}
 
 	return err
 }
+
+// AccountTransaction_Validate() validates for saves/stores a AccountTransaction record to the database
+func AccountTransaction_Validate(r dm.AccountTransaction) (error,dm.AccountTransaction) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // accounttransaction_Save() saves/stores a AccountTransaction record to the database
 func accounttransaction_Save(r dm.AccountTransaction,usr string) error {
@@ -139,7 +167,7 @@ func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.Acc
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SienaReference  = get_String(rec, dm.AccountTransaction_SienaReference_sql, "")
 	   recItem.LegNo  = get_Int(rec, dm.AccountTransaction_LegNo_sql, "0")
@@ -175,7 +203,7 @@ func accounttransaction_Fetch(tsql string) (int, []dm.AccountTransaction, dm.Acc
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -195,7 +223,24 @@ func AccountTransaction_NewID(r dm.AccountTransaction) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// accounttransaction_Fetch read all AccountTransaction's
+func AccountTransaction_New() (int, []dm.AccountTransaction, dm.AccountTransaction, error) {
+
+	var r = dm.AccountTransaction{}
+	var rList []dm.AccountTransaction
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

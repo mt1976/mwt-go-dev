@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 26/06/2022 at 18:48:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,6 +40,12 @@ func CustomerOnboarding_GetByID(id string) (int, dm.CustomerOnboarding, error) {
 
 	 _, customeronboardingItem, _ := adaptor.CustomerOnboarding_GetByID_impl(id)
 	
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, customeronboardingItem, nil
 }
 
@@ -57,7 +63,12 @@ func CustomerOnboarding_Delete(id string) {
 // CustomerOnboarding_Store() saves/stores a CustomerOnboarding record to the database
 func CustomerOnboarding_Store(r dm.CustomerOnboarding,req *http.Request) error {
 
-	err := customeronboarding_Save(r,Audit_User(req))
+	err, r := CustomerOnboarding_Validate(r)
+	if err == nil {
+		err = customeronboarding_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CustomerOnboarding_Store()", err.Error())
+	}
 
 	return err
 }
@@ -65,10 +76,27 @@ func CustomerOnboarding_Store(r dm.CustomerOnboarding,req *http.Request) error {
 // CustomerOnboarding_StoreSystem() saves/stores a CustomerOnboarding record to the database
 func CustomerOnboarding_StoreSystem(r dm.CustomerOnboarding) error {
 	
-	err := customeronboarding_Save(r,Audit_Host())
+	err, r := CustomerOnboarding_Validate(r)
+	if err == nil {
+		err = customeronboarding_Save(r, Audit_Host())
+	} else {
+		logs.Information("CustomerOnboarding_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CustomerOnboarding_Validate() validates for saves/stores a CustomerOnboarding record to the database
+func CustomerOnboarding_Validate(r dm.CustomerOnboarding) (error,dm.CustomerOnboarding) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // customeronboarding_Save() saves/stores a CustomerOnboarding record to the database
 func customeronboarding_Save(r dm.CustomerOnboarding,usr string) error {
@@ -130,7 +158,24 @@ func CustomerOnboarding_NewID(r dm.CustomerOnboarding) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// customeronboarding_Fetch read all CustomerOnboarding's
+func CustomerOnboarding_New() (int, []dm.CustomerOnboarding, dm.CustomerOnboarding, error) {
+
+	var r = dm.CustomerOnboarding{}
+	var rList []dm.CustomerOnboarding
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

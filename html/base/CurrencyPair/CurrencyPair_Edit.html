@@ -1,69 +1,81 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
 
-    <form action="/CurrencyPairSave/?Code={{.Code}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-coins me-2" title="Code={{.Code}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CurrencyPairSave/?Code={{.Code}}" onclick="/CurrencyPairSave/?Code={{.Code}}" title="Save Currency Pair"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Currency Pair"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+<form action="/CurrencyPairSave/?Code={{.Code}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-coins me-2"
+            title="Code={{.Code}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-         
-         
-                        <div class="form-outline">
-                      <input type="" class="form-control" id="CodeMajorCurrencyIsoCode" name="CodeMajorCurrencyIsoCode" aria-describedby="CodeMajorCurrencyIsoCodeHelp" placeholder=""  readonly="true" value="{{.CodeMajorCurrencyIsoCode}}" required>
-                      <label class="form-label" for="CodeMajorCurrencyIsoCode" >CodeMajorCurrencyIsoCode</label>
-                    </div>
-                 
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                        <div class="form-outline">
-                      <input type="" class="form-control" id="CodeMinorCurrencyIsoCode" name="CodeMinorCurrencyIsoCode" aria-describedby="CodeMinorCurrencyIsoCodeHelp" placeholder=""  readonly="true" value="{{.CodeMinorCurrencyIsoCode}}" required>
-                      <label class="form-label" for="CodeMinorCurrencyIsoCode" >CodeMinorCurrencyIsoCode</label>
-                    </div>
-                 
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="ReciprocalActive" name="ReciprocalActive" class="select" data-mdb-filter="true"  >
-                  {{range .ReciprocalActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.ReciprocalActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="ReciprocalActive" >ReciprocalActive</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" readonly="true"><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder="" readonly="true" readonly="true" value="{{.Code}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Code" readonly="true"><i class="fas fa-key me-2"></i>Code</label>
-                    </div>
-          
-            </div></div>
-
-     
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/CurrencyPairSave/?Code={{.Code}}" onclick="/CurrencyPairSave/?Code={{.Code}}" title="Save Currency Pair"><i class="fas fa-save me-2"></i>Save</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Currency Pair"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <div class="form-outline">
+              <input type="" class="form-control {{.CodeMajorCurrencyIsoCode_props.MsgType}}" id="CodeMajorCurrencyIsoCode" name="CodeMajorCurrencyIsoCode" aria-describedby="CodeMajorCurrencyIsoCodeHelp" placeholder=""  readonly="true"  value="{{.CodeMajorCurrencyIsoCode}}" required />
+              <label class="form-label" for="CodeMajorCurrencyIsoCode" >CodeMajorCurrencyIsoCode</label>
+                <div class="{{.CodeMajorCurrencyIsoCode_props.MsgFeedBackType}}">{{.CodeMajorCurrencyIsoCode_props.MsgMessage}}</div>
+            </div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <div class="form-outline">
+              <input type="" class="form-control {{.CodeMinorCurrencyIsoCode_props.MsgType}}" id="CodeMinorCurrencyIsoCode" name="CodeMinorCurrencyIsoCode" aria-describedby="CodeMinorCurrencyIsoCodeHelp" placeholder=""  readonly="true"  value="{{.CodeMinorCurrencyIsoCode}}" required />
+              <label class="form-label" for="CodeMinorCurrencyIsoCode" >CodeMinorCurrencyIsoCode</label>
+                <div class="{{.CodeMinorCurrencyIsoCode_props.MsgFeedBackType}}">{{.CodeMinorCurrencyIsoCode_props.MsgMessage}}</div>
+            </div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ReciprocalActive" name="ReciprocalActive" class="select" data-mdb-filter="true"  >
+                {{range .ReciprocalActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.ReciprocalActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ReciprocalActive" >ReciprocalActive</label>
+            <div class="{{.ReciprocalActive_props.MsgFeedBackType}}">{{.ReciprocalActive_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3" readonly="true" ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Code_props.MsgType}}" id="Code" name="Code" aria-describedby="CodeHelp" placeholder="" readonly="true" readonly="true"  value="{{.Code}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Code" readonly="true"><i class="fas fa-key me-2"></i>Code</label>
+              <div class="{{.Code_props.MsgFeedBackType}}">{{.Code_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

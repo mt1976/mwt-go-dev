@@ -46,8 +46,8 @@ SQL Table Key | **FirmName**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**FirmName**|String|false|true|false|true|||||Y|FirmName||true|false|false|text||
 |**FullName**|String|false|true|false|false|||||Y|FullName||false|false|false|text||
-|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|||
-|**Sector**|String|false|true|false|false|OL|Sector|Sector|Name|Y|Sector||false|false|false|||
+|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|text||
+|**Sector**|String|false|true|false|false|OL|Sector|Sector|Name|Y|Sector||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -69,7 +69,7 @@ SQL Table Key | **FirmName**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:11**
+Date & Time		     | **26/06/2022** at **18:48:29**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

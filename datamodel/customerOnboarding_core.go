@@ -9,26 +9,53 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 26/06/2022 at 18:48:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CustomerOnboarding defines the datamolde for the CustomerOnboarding object
 type CustomerOnboarding struct {
 
+
 ID       string
+ID_props FieldProperties
 CustomerName       string
+CustomerName_props FieldProperties
 CustomerAddress       string
+CustomerAddress_props FieldProperties
 CustomerBOLID       string
+CustomerBOLID_props FieldProperties
 CustomerFirmName       string
+CustomerFirmName_props FieldProperties
 CustomerType       string
+CustomerType_props FieldProperties
 CustomerRDC       string
+CustomerRDC_props FieldProperties
 CustomerSortCode       string
+CustomerSortCode_props FieldProperties
 CustomerGMClientNo       string
+CustomerGMClientNo_props FieldProperties
 CustomerDefaultBook       string
+CustomerDefaultBook_props FieldProperties
 CustomerRegion       string
+CustomerRegion_props FieldProperties
 CustomerCategory       string
+CustomerCategory_props FieldProperties
 CustomerTelephoneNo       string
+CustomerTelephoneNo_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

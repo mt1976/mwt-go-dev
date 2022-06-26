@@ -9,88 +9,224 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 26/06/2022 at 18:48:16
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Account defines the datamolde for the Account object
 type Account struct {
 
+
 SienaReference       string
+SienaReference_props FieldProperties
 CustomerSienaView       string
+CustomerSienaView_props FieldProperties
 SienaCommonRef       string
+SienaCommonRef_props FieldProperties
 Status       string
+Status_props FieldProperties
 StartDate       string
+StartDate_props FieldProperties
 MaturityDate       string
+MaturityDate_props FieldProperties
 ContractNumber       string
+ContractNumber_props FieldProperties
 ExternalReference       string
+ExternalReference_props FieldProperties
 CCY       string
-CCY_lookup []Lookup_Item
+CCY_props FieldProperties
 Book       string
-Book_lookup []Lookup_Item
+Book_props FieldProperties
 MandatedUser       string
+MandatedUser_props FieldProperties
 BackOfficeNotes       string
+BackOfficeNotes_props FieldProperties
 CashBalance       string
+CashBalance_props FieldProperties
 AccountNumber       string
+AccountNumber_props FieldProperties
 AccountName       string
+AccountName_props FieldProperties
 LedgerBalance       string
+LedgerBalance_props FieldProperties
 Portfolio       string
-Portfolio_lookup []Lookup_Item
+Portfolio_props FieldProperties
 AgreementId       string
+AgreementId_props FieldProperties
 BackOfficeRefNo       string
+BackOfficeRefNo_props FieldProperties
 ISIN       string
+ISIN_props FieldProperties
 UTI       string
+UTI_props FieldProperties
 CCYName       string
+CCYName_props FieldProperties
 BookName       string
+BookName_props FieldProperties
 PortfolioName       string
+PortfolioName_props FieldProperties
 Centre       string
-Centre_lookup []Lookup_Item
+Centre_props FieldProperties
 DealTypeKey       string
+DealTypeKey_props FieldProperties
 DealTypeShortName       string
+DealTypeShortName_props FieldProperties
 InternalId       string
+InternalId_props FieldProperties
 InternalDeleted       string
+InternalDeleted_props FieldProperties
 UpdatedTransactionId       string
+UpdatedTransactionId_props FieldProperties
 UpdatedUserId       string
+UpdatedUserId_props FieldProperties
 UpdatedDateTime       string
+UpdatedDateTime_props FieldProperties
 DeletedTransactionId       string
+DeletedTransactionId_props FieldProperties
 DeletedUserId       string
+DeletedUserId_props FieldProperties
 ChangeType       string
+ChangeType_props FieldProperties
 CCYDp       string
+CCYDp_props FieldProperties
 CompID       string
+CompID_props FieldProperties
 Firm       string
-Firm_lookup []Lookup_Item
+Firm_props FieldProperties
 DealType       string
+DealType_props FieldProperties
 FullDealType       string
+FullDealType_props FieldProperties
 DealingInterface       string
+DealingInterface_props FieldProperties
 DealtAmount       string
+DealtAmount_props FieldProperties
 ParentContractNumber       string
+ParentContractNumber_props FieldProperties
 InterestFrequency       string
+InterestFrequency_props FieldProperties
 InterestAction       string
+InterestAction_props FieldProperties
 InterestStrategy       string
+InterestStrategy_props FieldProperties
 InterestBasis       string
+InterestBasis_props FieldProperties
 SienaDealer       string
+SienaDealer_props FieldProperties
 DealOwner       string
+DealOwner_props FieldProperties
 OriginUser       string
+OriginUser_props FieldProperties
 EditedByUser       string
+EditedByUser_props FieldProperties
 DealOwnerMnemonic       string
+DealOwnerMnemonic_props FieldProperties
 UTCOriginTime       string
+UTCOriginTime_props FieldProperties
 UTCUpdateTime       string
+UTCUpdateTime_props FieldProperties
 CustomerStatementNotes       string
+CustomerStatementNotes_props FieldProperties
 NotesMargin       string
+NotesMargin_props FieldProperties
 RequestedBy       string
+RequestedBy_props FieldProperties
 EditReason       string
+EditReason_props FieldProperties
 EditOtherReason       string
+EditOtherReason_props FieldProperties
 NoticeDays       string
+NoticeDays_props FieldProperties
 DebitFrequency       string
+DebitFrequency_props FieldProperties
 CreditFrequency       string
+CreditFrequency_props FieldProperties
 EURAmount       string
+EURAmount_props FieldProperties
 EUROtherAmount       string
+EUROtherAmount_props FieldProperties
 PaymentSystemSienaView       string
+PaymentSystemSienaView_props FieldProperties
 PaymentSystemExternalView       string
+PaymentSystemExternalView_props FieldProperties
 DealtCA       string
+DealtCA_props FieldProperties
 AgainstCA       string
+AgainstCA_props FieldProperties
 LedgerCA       string
+LedgerCA_props FieldProperties
 CashBalanceCA       string
+CashBalanceCA_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
+
+
+
+CCY_lookup []Lookup_Item
+Book_lookup []Lookup_Item
+
+
+
+
+
+
+Portfolio_lookup []Lookup_Item
+
+
+
+
+
+
+
+Centre_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
+
+Firm_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

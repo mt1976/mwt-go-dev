@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 26/06/2022 at 18:48:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func DealingInterface_GetByID(id string) (int, dm.DealingInterface, error) {
 	tsql = tsql + " WHERE " + dm.DealingInterface_SQLSearchID + "='" + id + "'"
 	_, _, dealinginterfaceItem, _ := dealinginterface_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, dealinginterfaceItem, nil
 }
 
@@ -60,7 +66,12 @@ func DealingInterface_Delete(id string) {
 // DealingInterface_Store() saves/stores a DealingInterface record to the database
 func DealingInterface_Store(r dm.DealingInterface,req *http.Request) error {
 
-	err := dealinginterface_Save(r,Audit_User(req))
+	err, r := DealingInterface_Validate(r)
+	if err == nil {
+		err = dealinginterface_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DealingInterface_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,27 @@ func DealingInterface_Store(r dm.DealingInterface,req *http.Request) error {
 // DealingInterface_StoreSystem() saves/stores a DealingInterface record to the database
 func DealingInterface_StoreSystem(r dm.DealingInterface) error {
 	
-	err := dealinginterface_Save(r,Audit_Host())
+	err, r := DealingInterface_Validate(r)
+	if err == nil {
+		err = dealinginterface_Save(r, Audit_Host())
+	} else {
+		logs.Information("DealingInterface_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DealingInterface_Validate() validates for saves/stores a DealingInterface record to the database
+func DealingInterface_Validate(r dm.DealingInterface) (error,dm.DealingInterface) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // dealinginterface_Save() saves/stores a DealingInterface record to the database
 func dealinginterface_Save(r dm.DealingInterface,usr string) error {
@@ -148,7 +176,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Name  = get_String(rec, dm.DealingInterface_Name_sql, "")
 	   recItem.AcceptReducedAmount  = get_Bool(rec, dm.DealingInterface_AcceptReducedAmount_sql, "True")
@@ -202,7 +230,7 @@ func dealinginterface_Fetch(tsql string) (int, []dm.DealingInterface, dm.Dealing
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -222,7 +250,24 @@ func DealingInterface_NewID(r dm.DealingInterface) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// dealinginterface_Fetch read all DealingInterface's
+func DealingInterface_New() (int, []dm.DealingInterface, dm.DealingInterface, error) {
+
+	var r = dm.DealingInterface{}
+	var rList []dm.DealingInterface
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

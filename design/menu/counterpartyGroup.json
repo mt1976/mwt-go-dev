@@ -1,11 +1,10 @@
 
-    {
-      "ID": "1048d40b-d824-4141-ad0c-1a1e37ab1d91",
-      "Text": "Counterparty Group",
-      "Glyph": "fa fa-users",
-      "HREF": "/CounterpartyGroupList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "8d020c78-262d-4efe-88f0-4a03b669f379",
+      "MenuText": "Counterparty Group",
+      "MenuGlyph": "fa fa-users",
+      "MenuHREF": "/CounterpartyGroupList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

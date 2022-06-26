@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type Tmpl_PageList struct {
 }
 //Tmpl_Redirect provides a page to return to aftern an action
 const (
+	
 	Tmpl_Redirect = dm.Tmpl_PathList
+	
 )
 
 //tmpl_Page provides the information for the template for an individual Tmpl
@@ -45,25 +47,40 @@ type Tmpl_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	FIELD1         string
 	FIELD1_lookup    []dm.Lookup_Item
+	FIELD1_props     dm.FieldProperties
 	FIELD2         string
 	FIELD2_lookup    []dm.Lookup_Item
+	FIELD2_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	ID         string
+	ID_props     dm.FieldProperties
 	ExtraField         string
+	ExtraField_props     dm.FieldProperties
 	ExtraField2         string
+	ExtraField2_props     dm.FieldProperties
 	ExtraField3         string
+	ExtraField3_props     dm.FieldProperties
+	TDate         string
+	TDate_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -189,7 +206,7 @@ func Tmpl_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Tmpl
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Tmpl_SYSId_scrn)
 		item.FIELD1 = r.FormValue(dm.Tmpl_FIELD1_scrn)
@@ -204,9 +221,10 @@ func Tmpl_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ExtraField = r.FormValue(dm.Tmpl_ExtraField_scrn)
 		item.ExtraField2 = r.FormValue(dm.Tmpl_ExtraField2_scrn)
 		item.ExtraField3 = r.FormValue(dm.Tmpl_ExtraField3_scrn)
+		item.TDate = r.FormValue(dm.Tmpl_TDate_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Tmpl_Store(item,r)	
 	http.Redirect(w, r, Tmpl_Redirect, http.StatusFound)
@@ -222,9 +240,9 @@ func Tmpl_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Tmpl_New()
 
 	pageDetail := Tmpl_Page{
 		Title:       CardTitle(dm.Tmpl_Title, core.Action_New),
@@ -235,7 +253,7 @@ func Tmpl_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = tmpl_PopulatePage(dm.Tmpl{} , pageDetail) 
+	pageDetail = tmpl_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Tmpl_TemplateNew, w, r, pageDetail)
 
@@ -263,7 +281,7 @@ func Tmpl_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Tmpl Page 
 func tmpl_PopulatePage(rD dm.Tmpl, pageDetail Tmpl_Page) Tmpl_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.FIELD1 = rD.FIELD1
@@ -279,9 +297,10 @@ func tmpl_PopulatePage(rD dm.Tmpl, pageDetail Tmpl_Page) Tmpl_Page {
 	pageDetail.ExtraField = rD.ExtraField
 	pageDetail.ExtraField2 = rD.ExtraField2
 	pageDetail.ExtraField3 = rD.ExtraField3
+	pageDetail.TDate = rD.TDate
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -314,8 +333,26 @@ func tmpl_PopulatePage(rD dm.Tmpl, pageDetail Tmpl_Page) Tmpl_Page {
 	
 	
 	
+	
+	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.FIELD1_props = rD.FIELD1_props
+	pageDetail.FIELD2_props = rD.FIELD2_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.ExtraField_props = rD.ExtraField_props
+	pageDetail.ExtraField2_props = rD.ExtraField2_props
+	pageDetail.ExtraField3_props = rD.ExtraField3_props
+	pageDetail.TDate_props = rD.TDate_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

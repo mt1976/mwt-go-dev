@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 26/06/2022 at 18:48:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,9 @@ type DataLoaderData_PageList struct {
 }
 //DataLoaderData_Redirect provides a page to return to aftern an action
 const (
+	
 	DataLoaderData_Redirect = dm.DataLoaderData_PathList
+	
 )
 
 //dataloaderdata_Page provides the information for the template for an individual DataLoaderData
@@ -45,26 +47,41 @@ type DataLoaderData_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
+	SYSId_props     dm.FieldProperties
 	Id         string
+	Id_props     dm.FieldProperties
 	Row         string
+	Row_props     dm.FieldProperties
 	Position         string
+	Position_props     dm.FieldProperties
 	Value         string
+	Value_props     dm.FieldProperties
 	Loader         string
 	Loader_lookup    []dm.Lookup_Item
+	Loader_props     dm.FieldProperties
 	SYSCreated         string
+	SYSCreated_props     dm.FieldProperties
 	SYSWho         string
+	SYSWho_props     dm.FieldProperties
 	SYSHost         string
+	SYSHost_props     dm.FieldProperties
 	SYSUpdated         string
+	SYSUpdated_props     dm.FieldProperties
 	Map         string
+	Map_props     dm.FieldProperties
 	SYSCreatedBy         string
+	SYSCreatedBy_props     dm.FieldProperties
 	SYSCreatedHost         string
+	SYSCreatedHost_props     dm.FieldProperties
 	SYSUpdatedBy         string
+	SYSUpdatedBy_props     dm.FieldProperties
 	SYSUpdatedHost         string
+	SYSUpdatedHost_props     dm.FieldProperties
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 }
 
@@ -190,7 +207,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DataLoaderData
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.DataLoaderData_SYSId_scrn)
 		item.Id = r.FormValue(dm.DataLoaderData_Id_scrn)
@@ -209,7 +226,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.DataLoaderData_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DataLoaderData_Store(item,r)	
 	http.Redirect(w, r, DataLoaderData_Redirect, http.StatusFound)
@@ -221,7 +238,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DataLoaderData Page 
 func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData_Page) DataLoaderData_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -241,7 +258,7 @@ func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -276,8 +293,25 @@ func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Row_props = rD.Row_props
+	pageDetail.Position_props = rD.Position_props
+	pageDetail.Value_props = rD.Value_props
+	pageDetail.Loader_props = rD.Loader_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Map_props = rD.Map_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

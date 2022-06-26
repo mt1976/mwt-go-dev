@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -40,6 +40,12 @@ func SimulatorSWIFT_GetByID(id string) (int, dm.SimulatorSWIFT, error) {
 
 	 _, simulatorswiftItem, _ := adaptor.SimulatorSWIFT_GetByID_impl(id)
 	
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, simulatorswiftItem, nil
 }
 
@@ -57,7 +63,12 @@ func SimulatorSWIFT_Delete(id string) {
 // SimulatorSWIFT_Store() saves/stores a SimulatorSWIFT record to the database
 func SimulatorSWIFT_Store(r dm.SimulatorSWIFT,req *http.Request) error {
 
-	err := simulatorswift_Save(r,Audit_User(req))
+	err, r := SimulatorSWIFT_Validate(r)
+	if err == nil {
+		err = simulatorswift_Save(r, Audit_User(req))
+	} else {
+		logs.Information("SimulatorSWIFT_Store()", err.Error())
+	}
 
 	return err
 }
@@ -65,10 +76,27 @@ func SimulatorSWIFT_Store(r dm.SimulatorSWIFT,req *http.Request) error {
 // SimulatorSWIFT_StoreSystem() saves/stores a SimulatorSWIFT record to the database
 func SimulatorSWIFT_StoreSystem(r dm.SimulatorSWIFT) error {
 	
-	err := simulatorswift_Save(r,Audit_Host())
+	err, r := SimulatorSWIFT_Validate(r)
+	if err == nil {
+		err = simulatorswift_Save(r, Audit_Host())
+	} else {
+		logs.Information("SimulatorSWIFT_Store()", err.Error())
+	}
 
 	return err
 }
+
+// SimulatorSWIFT_Validate() validates for saves/stores a SimulatorSWIFT record to the database
+func SimulatorSWIFT_Validate(r dm.SimulatorSWIFT) (error,dm.SimulatorSWIFT) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // simulatorswift_Save() saves/stores a SimulatorSWIFT record to the database
 func simulatorswift_Save(r dm.SimulatorSWIFT,usr string) error {
@@ -122,7 +150,24 @@ func SimulatorSWIFT_NewID(r dm.SimulatorSWIFT) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// simulatorswift_Fetch read all SimulatorSWIFT's
+func SimulatorSWIFT_New() (int, []dm.SimulatorSWIFT, dm.SimulatorSWIFT, error) {
+
+	var r = dm.SimulatorSWIFT{}
+	var rList []dm.SimulatorSWIFT
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

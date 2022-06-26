@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 26/06/2022 at 18:48:34
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,6 +45,12 @@ func Translation_GetByID(id string) (int, dm.Translation, error) {
 	tsql = tsql + " WHERE " + dm.Translation_SQLSearchID + "='" + id + "'"
 	_, _, translationItem, _ := translation_Fetch(tsql)
 
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, translationItem, nil
 }
 
@@ -66,7 +72,12 @@ func Translation_Delete(id string) {
 // Translation_Store() saves/stores a Translation record to the database
 func Translation_Store(r dm.Translation,req *http.Request) error {
 
-	err := translation_Save(r,Audit_User(req))
+	err, r := Translation_Validate(r)
+	if err == nil {
+		err = translation_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Translation_Store()", err.Error())
+	}
 
 	return err
 }
@@ -74,10 +85,27 @@ func Translation_Store(r dm.Translation,req *http.Request) error {
 // Translation_StoreSystem() saves/stores a Translation record to the database
 func Translation_StoreSystem(r dm.Translation) error {
 	
-	err := translation_Save(r,Audit_Host())
+	err, r := Translation_Validate(r)
+	if err == nil {
+		err = translation_Save(r, Audit_Host())
+	} else {
+		logs.Information("Translation_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Translation_Validate() validates for saves/stores a Translation record to the database
+func Translation_Validate(r dm.Translation) (error,dm.Translation) {
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return nil,r
+}
+//
 
 // translation_Save() saves/stores a Translation record to the database
 func translation_Save(r dm.Translation,usr string) error {
@@ -122,7 +150,7 @@ logs.Storing("Translation",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Translation_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Translation_Id_sql, r.Id)
@@ -139,7 +167,7 @@ logs.Storing("Translation",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Translation_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 		
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Translation_SQLTable)
@@ -172,7 +200,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Translation_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Translation_Id_sql, "")
@@ -204,7 +232,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -224,7 +252,24 @@ func Translation_NewID(r dm.Translation) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// translation_Fetch read all Translation's
+func Translation_New() (int, []dm.Translation, dm.Translation, error) {
+
+	var r = dm.Translation{}
+	var rList []dm.Translation
+	
+
+	// START
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

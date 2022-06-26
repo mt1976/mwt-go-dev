@@ -1,11 +1,10 @@
 
-    {
-      "ID": "535d795a-b524-46d0-a736-75170381a04b",
-      "Text": "Cache Content",
-      "Glyph": "fas fa-database",
-      "HREF": "/CacheList",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "2a6d982b-8a2d-4137-a9c4-35335bc5ae36",
+      "MenuText": "Cache Content",
+      "MenuGlyph": "fas fa-database",
+      "MenuHREF": "/CacheList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

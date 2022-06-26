@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "d92a2c40-c568-485a-9368-7e5055235de6",
+      "MenuText": "User Roles",
+      "MenuGlyph": "fas fa-poo",
+      "MenuHREF": "/UserRoleList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

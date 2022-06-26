@@ -1,11 +1,10 @@
 
-    {
-      "ID": "c32beb00-4c04-4953-97b1-39a186b3deae",
-      "Text": "Sector",
-      "Glyph": "fas fa-industry",
-      "HREF": "/SectorList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "8ba789b7-dfe3-4f34-8fab-ac6b333fcf13",
+      "MenuText": "Sector",
+      "MenuGlyph": "fas fa-industry",
+      "MenuHREF": "/SectorList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

@@ -1,0 +1,64 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/ContactStreamTypeEdit/?ID={{.TypeId}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="far fa-comment me-2" title="ID = {{.TypeId}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Conversations Types {{.TypeId}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="TypeId" aria-describedby="TypeIdHelp" placeholder="0" disabled value="{{.TypeId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="TypeId"><i class="fas fa-key me-2"></i>TypeId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp" placeholder="" disabled value="{{.Description}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Description">Description</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="RecordState" name="RecordState" class="select" data-mdb-filter="true" disabled>
+                  {{range .RecordState_lookup}}<option value="{{.ID}}" {{if eq .ID $.RecordState}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="RecordState" disabled>RecordState</label>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

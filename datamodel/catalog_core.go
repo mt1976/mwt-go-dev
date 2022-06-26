@@ -9,18 +9,29 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 26/06/2022 at 18:48:19
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Catalog defines the datamolde for the Catalog object
 type Catalog struct {
 
+
 ID       string
+ID_props FieldProperties
 Endpoint       string
+Endpoint_props FieldProperties
 Descr       string
+Descr_props FieldProperties
 Query       string
+Query_props FieldProperties
 Source       string
+Source_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
 
 }
 

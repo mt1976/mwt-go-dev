@@ -11,9 +11,10 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
 	"time"
+
+	uuid "github.com/google/uuid"
 
 	"github.com/mt1976/mwt-go-dev/logs"
 )
@@ -55,11 +56,6 @@ func GetURLparam(r *http.Request, paramID string) string {
 	//log.Printf("URL Parameter : Key=%q Value=%q", paramID, string(key))
 	logs.Information("URL Parameter :", fmt.Sprintf("Key=%q Value=%q", paramID, string(key)))
 	return key
-}
-
-// ArrToString converts an array of strings to a printable string
-func ArrToString(strArray []string) string {
-	return strings.Join(strArray, "\n")
 }
 
 // RemoveContents clears the contents of a specified directory
@@ -160,22 +156,6 @@ func FileExists(filename string) bool {
 		return false
 	}
 	return !info.IsDir()
-}
-
-// StrArrayToString converst a string array into a string
-func StrArrayToString(inArray []string) string {
-	return StrArrayToStringWithSep(inArray, "\n")
-}
-
-//StrArrayToStringWithSep converts a string array to a string using a given separator
-func StrArrayToStringWithSep(inArray []string, inSep string) string {
-
-	outString := ""
-	noRows := len(inArray)
-	for ii := 0; ii < noRows; ii++ {
-		outString += inArray[ii] + inSep
-	}
-	return outString
 }
 
 //ipRange - a structure that holds the start and end of a range of ip addresses
@@ -468,17 +448,6 @@ func Logit(actionType string, data string) {
 	//	log.Println(callerName, actionType, data)
 }
 
-func RemoveSpecialChars(in string) string {
-	reg, err := regexp.Compile("[^A-Za-z0-9]+")
-	if err != nil {
-		log.Fatal(err)
-	}
-	newStr := reg.ReplaceAllString(in, "-")
-	return newStr
-}
-
-//Convert time.Time to string
-func TimeToString(t time.Time) string {
-	//fmt.Printf("t: %v\n", t)
-	return t.Format(DATEFORMATSIENA)
+func GetUUID() string {
+	return uuid.NewString()
 }

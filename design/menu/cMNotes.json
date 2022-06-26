@@ -1,11 +1,10 @@
 
-    {
-      "ID": "88ee1df6-b63d-4089-a567-2648943d5474",
-      "Text": "Customer Note",
-      "Glyph": "fas fa-poo",
-      "HREF": "/CMNotesList",
-      "OnClick": "",
-      "TextClass": """"
+   '{
+      "MenuID": "83a08934-2453-4b6f-afe9-b6b0eb96e318",
+      "MenuText": "Customer Note",
+      "MenuGlyph": "fas fa-poo",
+      "MenuHREF": "/CMNotesList",
+      "MenuOnClick": "",
+      "MenuTextClass": """"
     }
-    ,
     

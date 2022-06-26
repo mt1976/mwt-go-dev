@@ -42,15 +42,17 @@ const (
 	log_Post          = "http POST"
 	log_Save          = "Writing"
 	log_Event         = "Event"
+	log_Callout       = "Callout"
 
 	ColorReset        = "\033[0m"
 	ColorRed          = "\033[31m"
 	ColorGreen        = "\033[32m"
 	ColorYellow       = "\033[33m"
 	ColorBlue         = "\033[34m"
-	ColorPurple       = "\033[35m"
+	ColourMagenta     = "\033[35m"
 	ColorCyan         = "\033[36m"
 	ColorWhite        = "\033[37m"
+	ColorBoldYellow   = "\033[1m\033[33m"
 	Character_MapTo   = "⇄"
 	Character_Job     = "⚙️"
 	Character_Heart   = "🫀"
@@ -66,6 +68,7 @@ const (
 	Character_Result  = "?"
 	Character_Storing = "📀"
 	Character_Event   = "🗂"
+	Character_Callout = "📞"
 )
 
 type Config struct {
@@ -187,6 +190,13 @@ func Storing(t string, w string) {
 	if CFG.VerboseMode {
 
 		msg_raw(log_Storing, t+" "+w, Character_Storing, colour.Yellow)
+	}
+}
+
+func Callout(t string, w string, a string, id string) {
+	//msg_info(w, v)
+	if CFG.VerboseMode {
+		msg_raw(log_Callout, t+" "+w+" ["+a+"] "+id, Character_Callout, ColorBoldYellow)
 	}
 }
 
