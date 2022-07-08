@@ -196,7 +196,7 @@ func Storing(t string, w string) {
 func Callout(t string, w string, a string, id string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		msg_raw(log_Callout, t+" "+w+" ["+a+"] "+id, Character_Callout, ColorBoldYellow)
+		msg_raw(log_Callout, t+" "+ColorGreen+w+ColorBoldYellow+" ["+ColorGreen+a+ColorBoldYellow+"] "+ColorWhite+id+ColorBoldYellow, Character_Callout, ColorBoldYellow)
 	}
 }
 

@@ -78,7 +78,7 @@ func CounterpartyOnboarding_HandlerList(w http.ResponseWriter, r *http.Request) 
 	// noItems, returnList, _ := dao.CounterpartyOnboarding_GetList()
 
 	// pageDetail := CounterpartyOnboarding_PageList{
-	// 	Title:       core.ApplicationProperties["appname"],
+	// 	Title:       core.GetAppName(),
 	// 	PageTitle:   PageTitle(dm.CounterpartyOnboarding_Title, core.Action_List),
 	// 	ItemsOnPage: noItems,
 	// 	ItemList:    returnList,
@@ -106,7 +106,7 @@ func CounterpartyOnboarding_HandlerView(w http.ResponseWriter, r *http.Request) 
 	// _, rD, _ := dao.CounterpartyOnboarding_GetByID(searchID)
 
 	// pageDetail := CounterpartyOnboarding_Page{
-	// 	Title:     core.ApplicationProperties["appname"],
+	// 	Title:     core.GetAppName(),
 	// 	PageTitle: PageTitle(dm.CounterpartyOnboarding_Title, core.Action_View),
 	// 	UserMenu:  UserMenu_Get(r),
 	// 	UserRole:  core.GetUserRole(r),
@@ -151,7 +151,7 @@ func CounterpartyOnboarding_HandlerEdit(w http.ResponseWriter, r *http.Request) 
 	// _, rD, _ := dao.CounterpartyOnboarding_GetByID(searchID)
 
 	// pageDetail := CounterpartyOnboarding_Page{
-	// 	Title:     core.ApplicationProperties["appname"],
+	// 	Title:     core.GetAppName(),
 	// 	PageTitle: PageTitle(dm.CounterpartyOnboarding_Title, core.Action_Edit),
 	// 	UserMenu:  UserMenu_Get(r),
 	// 	UserRole:  core.GetUserRole(r),
@@ -229,7 +229,7 @@ func CounterpartyOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDetail := CounterpartyOnboarding_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.ApplicationName(),
 		PageTitle: PageTitle(dm.CounterpartyOnboarding_Title, core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),

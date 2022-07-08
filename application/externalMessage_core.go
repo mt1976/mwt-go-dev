@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:28
+// Date & Time		    : 28/06/2022 at 16:10:52
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,95 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//externalmessage_PageList provides the information for the template for a list of ExternalMessages
-type ExternalMessage_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.ExternalMessage
-}
-//ExternalMessage_Redirect provides a page to return to aftern an action
-const (
-	
-	ExternalMessage_Redirect = dm.ExternalMessage_PathList
-	
-)
 
-//externalmessage_Page provides the information for the template for an individual ExternalMessage
-type ExternalMessage_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	MessageID         string
-	MessageID_props     dm.FieldProperties
-	MessageFormat         string
-	MessageFormat_props     dm.FieldProperties
-	MessageDeliveredTo         string
-	MessageDeliveredTo_props     dm.FieldProperties
-	MessageBody         string
-	MessageBody_props     dm.FieldProperties
-	MessageFilename         string
-	MessageFilename_props     dm.FieldProperties
-	MessageLife         string
-	MessageLife_props     dm.FieldProperties
-	MessageDate         string
-	MessageDate_props     dm.FieldProperties
-	MessageTime         string
-	MessageTime_props     dm.FieldProperties
-	MessageTimeoutAction         string
-	MessageTimeoutAction_props     dm.FieldProperties
-	MessageACKNAK         string
-	MessageACKNAK_lookup    []dm.Lookup_Item
-	MessageACKNAK_props     dm.FieldProperties
-	ResponseID         string
-	ResponseID_props     dm.FieldProperties
-	ResponseFilename         string
-	ResponseFilename_props     dm.FieldProperties
-	ResponseBody         string
-	ResponseBody_props     dm.FieldProperties
-	ResponseDate         string
-	ResponseDate_props     dm.FieldProperties
-	ResponseTime         string
-	ResponseTime_props     dm.FieldProperties
-	ResponseAdditionalInfo         string
-	ResponseAdditionalInfo_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	MessageTimeout         string
-	MessageTimeout_props     dm.FieldProperties
-	MessageEmitted         string
-	MessageEmitted_props     dm.FieldProperties
-	ResponseRecieved         string
-	ResponseRecieved_lookup    []dm.Lookup_Item
-	ResponseRecieved_props     dm.FieldProperties
-	MessageClass         string
-	MessageClass_props     dm.FieldProperties
-	AppID         string
-	AppID_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -143,7 +55,7 @@ func ExternalMessage_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.ExternalMessage
 	noItems, returnList, _ := dao.ExternalMessage_GetList()
 
-	pageDetail := ExternalMessage_PageList{
+	pageDetail := dm.ExternalMessage_PageList{
 		Title:            CardTitle(dm.ExternalMessage_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.ExternalMessage_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -174,7 +86,7 @@ func ExternalMessage_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.ExternalMessage_QueryString)
 	_, rD, _ := dao.ExternalMessage_GetByID(searchID)
 
-	pageDetail := ExternalMessage_Page{
+	pageDetail := dm.ExternalMessage_Page{
 		Title:       CardTitle(dm.ExternalMessage_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.ExternalMessage_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -205,7 +117,7 @@ func ExternalMessage_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.ExternalMessage_QueryString)
 	_, rD, _ := dao.ExternalMessage_GetByID(searchID)
 	
-	pageDetail := ExternalMessage_Page{
+	pageDetail := dm.ExternalMessage_Page{
 		Title:       CardTitle(dm.ExternalMessage_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.ExternalMessage_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -234,7 +146,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.ExternalMessage
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId_scrn)
 		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID_scrn)
@@ -266,10 +178,10 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.AppID = r.FormValue(dm.ExternalMessage_AppID_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.ExternalMessage_Store(item,r)	
-	http.Redirect(w, r, ExternalMessage_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.ExternalMessage_Redirect, http.StatusFound)
 }
 
 
@@ -288,14 +200,14 @@ func ExternalMessage_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.ExternalMessage_Delete(searchID)	
 
-	http.Redirect(w, r, ExternalMessage_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.ExternalMessage_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the ExternalMessage Page 
-func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMessage_Page) ExternalMessage_Page {
+func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalMessage_Page) dm.ExternalMessage_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.MessageID = rD.MessageID
@@ -328,7 +240,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -421,7 +333,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail ExternalMess
 	pageDetail.AppID_props = rD.AppID_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

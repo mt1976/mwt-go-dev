@@ -64,7 +64,7 @@ func Transaction_Against_OnFetch_impl(rec dm.Transaction) string { return "" }
 
 func Transaction_NewID_impl(rec dm.Transaction) string { return rec.SienaReference }
 
-func Transaction_Dealt_Impl(iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+func Transaction_Dealt_impl(iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
 
 	logs.Callout("Transaction", "Dealt", VAL+"-"+iAction, iId)
 
@@ -72,9 +72,9 @@ func Transaction_Dealt_Impl(iAction string, iId string, iValue string, iRec dm.T
 
 }
 
-// Transaction_Against_Impl provides validation/actions for Against
+// Transaction_Against_impl provides validation/actions for Against
 
-func Transaction_Against_Impl(iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+func Transaction_Against_impl(iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
 
 	logs.Callout("Transaction", "Against", VAL+"-"+iAction, iId)
 

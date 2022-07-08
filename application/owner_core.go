@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:30
+// Date & Time		    : 28/06/2022 at 16:10:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,67 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//owner_PageList provides the information for the template for a list of Owners
-type Owner_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Owner
-}
-//Owner_Redirect provides a page to return to aftern an action
-const (
-	
-	Owner_Redirect = dm.Owner_PathList
-	
-)
 
-//owner_Page provides the information for the template for an individual Owner
-type Owner_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	UserName         string
-	UserName_props     dm.FieldProperties
-	FullName         string
-	FullName_props     dm.FieldProperties
-	Type         string
-	Type_props     dm.FieldProperties
-	TradingEntity         string
-	TradingEntity_props     dm.FieldProperties
-	DefaultEnterBook         string
-	DefaultEnterBook_props     dm.FieldProperties
-	EmailAddress         string
-	EmailAddress_props     dm.FieldProperties
-	Enabled         string
-	Enabled_props     dm.FieldProperties
-	ExternalUserIds         string
-	ExternalUserIds_props     dm.FieldProperties
-	Language         string
-	Language_props     dm.FieldProperties
-	LocalCurrency         string
-	LocalCurrency_props     dm.FieldProperties
-	Role         string
-	Role_props     dm.FieldProperties
-	TelephoneNumber         string
-	TelephoneNumber_props     dm.FieldProperties
-	TokenId         string
-	TokenId_props     dm.FieldProperties
-	Entity         string
-	Entity_props     dm.FieldProperties
-	UserCode         string
-	UserCode_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -115,7 +55,7 @@ func Owner_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Owner
 	noItems, returnList, _ := dao.Owner_GetList()
 
-	pageDetail := Owner_PageList{
+	pageDetail := dm.Owner_PageList{
 		Title:            CardTitle(dm.Owner_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Owner_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -146,7 +86,7 @@ func Owner_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Owner_QueryString)
 	_, rD, _ := dao.Owner_GetByID(searchID)
 
-	pageDetail := Owner_Page{
+	pageDetail := dm.Owner_Page{
 		Title:       CardTitle(dm.Owner_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Owner_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -167,9 +107,9 @@ func Owner_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Owner Page 
-func owner_PopulatePage(rD dm.Owner, pageDetail Owner_Page) Owner_Page {
+func owner_PopulatePage(rD dm.Owner, pageDetail dm.Owner_Page) dm.Owner_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.UserName = rD.UserName
 	pageDetail.FullName = rD.FullName
@@ -189,7 +129,7 @@ func owner_PopulatePage(rD dm.Owner, pageDetail Owner_Page) Owner_Page {
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -239,7 +179,7 @@ func owner_PopulatePage(rD dm.Owner, pageDetail Owner_Page) Owner_Page {
 	pageDetail.UserCode_props = rD.UserCode_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

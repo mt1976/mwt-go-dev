@@ -68,14 +68,14 @@ func test1_Simulator_ProcessResponse_impl(tokens []string, latestToken string) e
 // START - Validation API/Callout
 // Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 //
-// Test1_Cheese_Impl provides validation/actions for Cheese
-func Test1_Cheese_Impl(iAction string, iId string, iValue string, iRec dm.Test1, fP dm.FieldProperties) (string, dm.FieldProperties) {
+// Test1_Cheese_impl provides validation/actions for Cheese
+func Test1_Cheese_impl(iAction string, iId string, iValue string, iRec dm.Test1, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Test1", "Cheese", VAL+"-"+iAction, iId)
 	return "", fP
 }
 
-// Test1_Onion_Impl provides validation/actions for Onion
-func Test1_Onion_Impl(iAction string, iId string, iValue string, iRec dm.Test1, fP dm.FieldProperties) (string, dm.FieldProperties) {
+// Test1_Onion_impl provides validation/actions for Onion
+func Test1_Onion_impl(iAction string, iId string, iValue string, iRec dm.Test1, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Test1", "Onion", VAL+"-"+iAction, iId)
 	return "", fP
 }

@@ -89,8 +89,8 @@ func ListDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:           UserMenu_Get(r),
 		UserRole:           Session_GetUserRole(r),
 		UserNavi:           "NOT USED",
-		Title:              core.ApplicationProperties["appname"],
-		PageTitle:          core.ApplicationProperties["appname"] + " - " + "Dispatch",
+		Title:              core.ApplicationName(),
+		PageTitle:          core.ApplicationName() + " - " + "Dispatch",
 		DispatchStoreCount: noItems,
 		DispatchStoreList:  returnList,
 	}
@@ -118,8 +118,8 @@ func ViewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
 
 	pageDispatchStoreList := appDispatchStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - View",
+		Title:     core.ApplicationName(),
+		PageTitle: core.ApplicationName() + " - " + "Dispatch - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
@@ -161,8 +161,8 @@ func EditDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetDispatchStoreByID(searchID)
 
 	pageDispatchStoreList := appDispatchStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - Edit",
+		Title:     core.ApplicationName(),
+		PageTitle: core.ApplicationName() + " - " + "Dispatch - Edit",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -285,8 +285,8 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageDispatchStoreList := appDispatchStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Dispatch - New",
+		Title:     core.ApplicationName(),
+		PageTitle: core.ApplicationName() + " - " + "Dispatch - New",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -303,21 +303,21 @@ func NewDispatchStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getDispatchStoreList read all employees
 func GetDispatchStoreList() (int, []DispatchStoreItem, error) {
-	tsql := fmt.Sprintf(appDispatchStoreSQLSELECT, appDispatchStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appDispatchStoreSQLSELECT, appDispatchStoreSQL, core.ApplicationSQLSchema())
 	count, appDispatchStoreList, _, _ := fetchDispatchStoreData(tsql)
 	return count, appDispatchStoreList, nil
 }
 
 // getDispatchStoreList read all employees
 func GetDispatchStoreByID(id string) (int, DispatchStoreItem, error) {
-	tsql := fmt.Sprintf(appDispatchStoreSQLGET, appDispatchStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appDispatchStoreSQLGET, appDispatchStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, DispatchStoreItem, _ := fetchDispatchStoreData(tsql)
 	return 1, DispatchStoreItem, nil
 }
 
 // getDispatchStoreList read all employees
 func GetDispatchStoreByTYPE(id string) (int, []DispatchStoreItem, error) {
-	tsql := fmt.Sprintf(appDispatchStoreSQLGETTYPE, appDispatchStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appDispatchStoreSQLGETTYPE, appDispatchStoreSQL, core.ApplicationSQLSchema(), id)
 	_, DispatchStoreItem, _, _ := fetchDispatchStoreData(tsql)
 	return 1, DispatchStoreItem, nil
 }
@@ -345,8 +345,8 @@ func putDispatchStore(r DispatchStoreItem) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appDispatchStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appDispatchStoreSQL, r.Id, r.System, r.Type, r.Path, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appDispatchStoreSQLINSERT, core.ApplicationSQLSchema(), appDispatchStoreSQL, r.Id, r.System, r.Type, r.Path, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
 	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -365,7 +365,7 @@ func putDispatchStore(r DispatchStoreItem) {
 
 func deleteDispatchStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appDispatchStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {

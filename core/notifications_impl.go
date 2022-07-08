@@ -47,7 +47,7 @@ func Notification_Emergency(messageTitle string, messageBody string) {
 
 	// Create the message to send
 	messageBody = messageBody + " - " + SystemHostname
-	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
+	messageTitle = "[" + ApplicationName() + "] Notification - " + messageTitle + " - " + SystemHostname
 
 	// NOTE Notification Message & Title
 	message := Notification_New(messageTitle, messageBody, pushover.PriorityEmergency)
@@ -60,7 +60,7 @@ func Notification_Emergency(messageTitle string, messageBody string) {
 }
 
 func Notification_New(title string, body string, priority int) *pushover.Message {
-	port := ApplicationProperties["port"]
+	port := ApplicationHTTPPort()
 
 	return &pushover.Message{
 		Message:     body,
@@ -86,7 +86,7 @@ func Notification_Normal(messageTitle string, messageBody string) {
 
 	// Create the message to send
 	messageBody = messageBody + " - " + SystemHostname
-	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
+	messageTitle = "[" + ApplicationName() + "] Notification - " + messageTitle + " - " + SystemHostname
 
 	// NOTE Notification Message & Title
 	message := Notification_New(messageTitle, messageBody, pushover.PriorityNormal)
@@ -107,7 +107,7 @@ func Notification_URL(messageTitle string, messageBody string, url string) {
 
 	// Create the message to send
 	messageBody = messageBody + " - " + SystemHostname
-	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
+	messageTitle = "[" + ApplicationName() + "] Notification - " + messageTitle + " - " + SystemHostname
 
 	// NOTE Notification Message & Title
 	message := Notification_New(messageTitle, messageBody, pushover.PriorityNormal)
@@ -129,7 +129,7 @@ func Notification_High(messageTitle string, messageBody string) {
 
 	// Create the message to send
 	messageBody = messageBody + " - " + SystemHostname
-	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
+	messageTitle = "[" + ApplicationName() + "] Notification - " + messageTitle + " - " + SystemHostname
 
 	// NOTE Notification Message
 	message := Notification_New(messageTitle, messageBody, pushover.PriorityHigh)
@@ -150,7 +150,7 @@ func Notification_Low(messageTitle string, messageBody string) {
 
 	// Create the message to send
 	messageBody = messageBody + " - " + SystemHostname
-	messageTitle = "[" + ApplicationProperties["appname"] + "] Notification - " + messageTitle + " - " + SystemHostname
+	messageTitle = "[" + ApplicationName() + "] Notification - " + messageTitle + " - " + SystemHostname
 
 	// NOTE Notification Message
 	message := Notification_New(messageTitle, messageBody, pushover.PriorityLow)

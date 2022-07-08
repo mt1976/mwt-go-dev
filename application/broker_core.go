@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:18
+// Date & Time		    : 28/06/2022 at 16:10:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,49 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//broker_PageList provides the information for the template for a list of Brokers
-type Broker_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Broker
-}
-//Broker_Redirect provides a page to return to aftern an action
-const (
-	
-	Broker_Redirect = dm.Broker_PathList
-	
-)
 
-//broker_Page provides the information for the template for an individual Broker
-type Broker_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Code_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	FullName         string
-	FullName_props     dm.FieldProperties
-	Contact         string
-	Contact_props     dm.FieldProperties
-	Address         string
-	Address_props     dm.FieldProperties
-	LEI         string
-	LEI_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -97,7 +55,7 @@ func Broker_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Broker
 	noItems, returnList, _ := dao.Broker_GetList()
 
-	pageDetail := Broker_PageList{
+	pageDetail := dm.Broker_PageList{
 		Title:            CardTitle(dm.Broker_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Broker_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -128,7 +86,7 @@ func Broker_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Broker_QueryString)
 	_, rD, _ := dao.Broker_GetByID(searchID)
 
-	pageDetail := Broker_Page{
+	pageDetail := dm.Broker_Page{
 		Title:       CardTitle(dm.Broker_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Broker_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -159,7 +117,7 @@ func Broker_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Broker_QueryString)
 	_, rD, _ := dao.Broker_GetByID(searchID)
 	
-	pageDetail := Broker_Page{
+	pageDetail := dm.Broker_Page{
 		Title:       CardTitle(dm.Broker_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Broker_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -188,7 +146,7 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Broker
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Broker_Code_scrn)
 		item.Name = r.FormValue(dm.Broker_Name_scrn)
@@ -198,10 +156,10 @@ func Broker_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.LEI = r.FormValue(dm.Broker_LEI_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Broker_Store(item,r)	
-	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Broker_Redirect, http.StatusFound)
 }
 
 
@@ -218,7 +176,7 @@ func Broker_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.Broker_New()
 
-	pageDetail := Broker_Page{
+	pageDetail := dm.Broker_Page{
 		Title:       CardTitle(dm.Broker_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Broker_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -248,14 +206,14 @@ func Broker_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Broker_Delete(searchID)	
 
-	http.Redirect(w, r, Broker_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Broker_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Broker Page 
-func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
+func broker_PopulatePage(rD dm.Broker, pageDetail dm.Broker_Page) dm.Broker_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -266,7 +224,7 @@ func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -289,7 +247,7 @@ func broker_PopulatePage(rD dm.Broker, pageDetail Broker_Page) Broker_Page {
 	pageDetail.LEI_props = rD.LEI_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

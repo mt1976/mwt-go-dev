@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:24
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -54,10 +54,10 @@ func Country_GetByID(id string) (int, dm.Country, error) {
 	_, _, countryItem, _ := country_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, countryItem, nil
 }
@@ -110,13 +110,17 @@ func Country_StoreSystem(r dm.Country) error {
 
 // Country_Validate() validates for saves/stores a Country record to the database
 func Country_Validate(r dm.Country) (error,dm.Country) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -176,7 +180,7 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Country_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Country_Name_sql, "")
@@ -192,7 +196,7 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -222,10 +226,10 @@ func Country_New() (int, []dm.Country, dm.Country, error) {
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

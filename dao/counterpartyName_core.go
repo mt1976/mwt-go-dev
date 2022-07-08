@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:23
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func CounterpartyName_GetByID(id string) (int, dm.CounterpartyName, error) {
 	_, _, counterpartynameItem, _ := counterpartyname_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, counterpartynameItem, nil
 }
@@ -91,13 +91,17 @@ func CounterpartyName_StoreSystem(r dm.CounterpartyName) error {
 
 // CounterpartyName_Validate() validates for saves/stores a CounterpartyName record to the database
 func CounterpartyName_Validate(r dm.CounterpartyName) (error,dm.CounterpartyName) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -156,7 +160,7 @@ func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.Counter
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameFirm  = get_String(rec, dm.CounterpartyName_NameFirm_sql, "")
 	   recItem.NameCentre  = get_String(rec, dm.CounterpartyName_NameCentre_sql, "")
@@ -170,7 +174,7 @@ func counterpartyname_Fetch(tsql string) (int, []dm.CounterpartyName, dm.Counter
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -200,10 +204,10 @@ func CounterpartyName_New() (int, []dm.CounterpartyName, dm.CounterpartyName, er
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

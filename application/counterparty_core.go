@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:21
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,81 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//counterparty_PageList provides the information for the template for a list of Counterpartys
-type Counterparty_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Counterparty
-}
-//Counterparty_Redirect provides a page to return to aftern an action
-const (
-	
-	Counterparty_Redirect = dm.Counterparty_PathList
-	
-)
 
-//counterparty_Page provides the information for the template for an individual Counterparty
-type Counterparty_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	NameCentre         string
-	NameCentre_lookup    []dm.Lookup_Item
-	NameCentre_props     dm.FieldProperties
-	NameFirm         string
-	NameFirm_lookup    []dm.Lookup_Item
-	NameFirm_props     dm.FieldProperties
-	FullName         string
-	FullName_props     dm.FieldProperties
-	TelephoneNumber         string
-	TelephoneNumber_props     dm.FieldProperties
-	EmailAddress         string
-	EmailAddress_props     dm.FieldProperties
-	CustomerType         string
-	CustomerType_lookup    []dm.Lookup_Item
-	CustomerType_props     dm.FieldProperties
-	AccountOfficer         string
-	AccountOfficer_props     dm.FieldProperties
-	CountryCode         string
-	CountryCode_lookup    []dm.Lookup_Item
-	CountryCode_props     dm.FieldProperties
-	SectorCode         string
-	SectorCode_lookup    []dm.Lookup_Item
-	SectorCode_props     dm.FieldProperties
-	CpartyGroupName         string
-	CpartyGroupName_lookup    []dm.Lookup_Item
-	CpartyGroupName_props     dm.FieldProperties
-	Notes         string
-	Notes_props     dm.FieldProperties
-	Owner         string
-	Owner_lookup    []dm.Lookup_Item
-	Owner_props     dm.FieldProperties
-	Authorised         string
-	Authorised_lookup    []dm.Lookup_Item
-	Authorised_props     dm.FieldProperties
-	NameFirmName         string
-	NameFirmName_props     dm.FieldProperties
-	NameCentreName         string
-	NameCentreName_props     dm.FieldProperties
-	CountryCodeName         string
-	CountryCodeName_props     dm.FieldProperties
-	SectorCodeName         string
-	SectorCodeName_props     dm.FieldProperties
-	CompID         string
-	CompID_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -129,7 +55,7 @@ func Counterparty_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Counterparty
 	noItems, returnList, _ := dao.Counterparty_GetList()
 
-	pageDetail := Counterparty_PageList{
+	pageDetail := dm.Counterparty_PageList{
 		Title:            CardTitle(dm.Counterparty_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Counterparty_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -160,7 +86,7 @@ func Counterparty_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Counterparty_QueryString)
 	_, rD, _ := dao.Counterparty_GetByID(searchID)
 
-	pageDetail := Counterparty_Page{
+	pageDetail := dm.Counterparty_Page{
 		Title:       CardTitle(dm.Counterparty_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Counterparty_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -191,7 +117,7 @@ func Counterparty_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Counterparty_QueryString)
 	_, rD, _ := dao.Counterparty_GetByID(searchID)
 	
-	pageDetail := Counterparty_Page{
+	pageDetail := dm.Counterparty_Page{
 		Title:       CardTitle(dm.Counterparty_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Counterparty_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -220,7 +146,7 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Counterparty
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.NameCentre = r.FormValue(dm.Counterparty_NameCentre_scrn)
 		item.NameFirm = r.FormValue(dm.Counterparty_NameFirm_scrn)
@@ -242,10 +168,10 @@ func Counterparty_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CompID = r.FormValue(dm.Counterparty_CompID_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Counterparty_Store(item,r)	
-	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Counterparty_Redirect, http.StatusFound)
 }
 
 
@@ -264,14 +190,14 @@ func Counterparty_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Counterparty_Delete(searchID)	
 
-	http.Redirect(w, r, Counterparty_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Counterparty_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Counterparty Page 
-func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page) Counterparty_Page {
+func counterparty_PopulatePage(rD dm.Counterparty, pageDetail dm.Counterparty_Page) dm.Counterparty_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameCentre = rD.NameCentre
 	pageDetail.NameFirm = rD.NameFirm
@@ -294,7 +220,7 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.NameCentre_lookup = dao.Centre_GetLookup()
@@ -369,7 +295,7 @@ func counterparty_PopulatePage(rD dm.Counterparty, pageDetail Counterparty_Page)
 	pageDetail.CompID_props = rD.CompID_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

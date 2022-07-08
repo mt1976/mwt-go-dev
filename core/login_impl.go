@@ -33,17 +33,17 @@ func LoginLogout_HandlerLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	ServiceMessage(inUTL)
 
-	appName := ApplicationProperties["appname"]
+	appName := ApplicationName()
 
-	appServerVersion := ApplicationProperties["releaseid"] + " [r" + ApplicationProperties["releaselevel"] + "-" + ApplicationProperties["releasenumber"] + "]"
+	appServerVersion := ReleaseIdentityVerbose()
 
 	loginPageContent := loginPage{
 		AppName:          appName,
 		UserName:         "",
 		UserPassword:     "",
 		WebServerVersion: appServerVersion,
-		LicenceType:      ApplicationProperties["licname"],
-		LicenceLink:      ApplicationProperties["liclink"],
+		LicenceType:      ApplicationGetLicenseName(),
+		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
 	}
 
@@ -73,17 +73,17 @@ func LoginLogout_HandlerRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	ServiceMessage(inUTL)
 
-	appName := ApplicationProperties["appname"]
+	appName := ApplicationName()
 
-	appServerVersion := ApplicationProperties["releaseid"] + " [r" + ApplicationProperties["releaselevel"] + "-" + ApplicationProperties["releasenumber"] + "]"
+	appServerVersion := ReleaseIdentityVerbose()
 
 	loginPageContent := loginPage{
 		AppName:          appName,
 		UserName:         "",
 		UserPassword:     "",
 		WebServerVersion: appServerVersion,
-		LicenceType:      ApplicationProperties["licname"],
-		LicenceLink:      ApplicationProperties["liclink"],
+		LicenceType:      ApplicationGetLicenseName(),
+		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
 	}
 
@@ -105,17 +105,17 @@ func LoginLogout_HandlerRequestComplete(w http.ResponseWriter, r *http.Request) 
 	w.Header().Set("Content-Type", "text/html")
 	ServiceMessage(inUTL)
 
-	appName := ApplicationProperties["appname"]
+	appName := ApplicationName()
 
-	appServerVersion := ApplicationProperties["releaseid"] + " [r" + ApplicationProperties["releaselevel"] + "-" + ApplicationProperties["releasenumber"] + "]"
+	appServerVersion := ReleaseIdentityVerbose()
 
 	loginPageContent := loginPage{
 		AppName:          appName,
 		UserName:         "",
 		UserPassword:     "",
 		WebServerVersion: appServerVersion,
-		LicenceType:      ApplicationProperties["licname"],
-		LicenceLink:      ApplicationProperties["liclink"],
+		LicenceType:      ApplicationGetLicenseName(),
+		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
 	}
 

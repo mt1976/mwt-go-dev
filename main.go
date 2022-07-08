@@ -171,20 +171,20 @@ func main() {
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()
 
-	httpProtocol := core.ApplicationProperties["protocol"]
-	logs.URI(httpProtocol + "://localhost:" + core.ApplicationProperties["port"])
+	httpProtocol := core.ApplicationHTTPProtocol()
+	logs.URI(httpProtocol + "://localhost:" + core.ApplicationHTTPPort())
 	logs.Break()
 
-	httpPort := ":" + core.ApplicationProperties["port"]
+	httpPort := ":" + core.ApplicationHTTPPort()
 
-	if core.ApplicationProperties["environment"] == "development" {
+	if core.ApplicationEnvironment() == "development" {
 
 		http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
 
 	} else {
 
-		certPath := core.ApplicationProperties["certpath"]
-		certName := core.ApplicationProperties["certname"]
+		certPath := core.ApplicationCertificatePath()
+		certName := core.ApplicationCertificateName()
 
 		pwd, _ := os.Getwd()
 		certLocation := pwd + certPath + certName
@@ -230,7 +230,7 @@ func application_HandlerShutdown(w http.ResponseWriter, r *http.Request) {
 	//application.SendRequest(requestMessage, requestID.String(), core.ApplicationProperties)
 	m := http.NewServeMux()
 
-	s := http.Server{Addr: core.ApplicationProperties["port"], Handler: m}
+	s := http.Server{Addr: core.ApplicationHTTPPort(), Handler: m}
 	s.Shutdown(context.Background())
 	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
 	//	viewResponseHandler(w, r)
@@ -245,12 +245,12 @@ func application_HandlerClearQueues(w http.ResponseWriter, r *http.Request) {
 	//requestID := uuid.New()
 	log.Println("Servicing :", inUTL)
 	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := core.RemoveContents(core.ApplicationProperties["deliverpath"])
+	err1 := core.RemoveContents(core.OBSOLETE_MessageQueueDeliveryPath())
 	if err1 != nil {
 		fmt.Println(err1)
 	}
 	//fmt.Println("recPath", wctProperties["receivepath"])
-	err2 := core.RemoveContents(core.ApplicationProperties["receivepath"])
+	err2 := core.RemoveContents(core.OBSOLETE_MessageQueueRecievePath())
 	if err2 != nil {
 		fmt.Println(err2)
 	}
@@ -275,31 +275,31 @@ func application_HandlerGET(w http.ResponseWriter, r *http.Request) {
 }
 
 func Application_Info() {
-	tmpHostname, _ := os.Hostname()
+	//tmpHostname, _ := os.Hostname()
 	logs.Break()
 	logs.Header("Application Information")
 	logs.Break()
 
 	logs.Header("Application")
-	logs.Information("Name", core.ApplicationProperties["appname"])
-	logs.Information("Host Name", tmpHostname)
-	logs.Information("Server Release", fmt.Sprintf("%s [r%s-%s]", core.ApplicationProperties["releaseid"], core.ApplicationProperties["releaselevel"], core.ApplicationProperties["releasenumber"]))
+	logs.Information("Name", core.ApplicationName())
+	logs.Information("Host Name", core.ApplicationHostname())
+	logs.Information("Server Release", core.ReleaseIdentityVerbose())
 	logs.Information("Server Date", time.Now().Format(core.DATEFORMATUSER))
 	if core.IsChildInstance {
 		logs.Information("Server Mode", "Primary System")
 	} else {
 		logs.Information("Server Mode", "Secondary System")
 	}
-	logs.Information("Licence", core.ApplicationProperties["licname"])
-	logs.Information("Lic URL", core.ApplicationProperties["liclink"])
+	logs.Information("Licence", core.ApplicationGetLicenseName())
+	logs.Information("Lic URL", core.ApplicationGetLicenseLink())
 	logs.Header("Runtime")
 	logs.Information("GO Version", runtime.Version())
 	logs.Information("Operating System", runtime.GOOS+" ("+runtime.GOARCH+")")
 	logs.Header("Application Database (MSSQL)")
-	logs.Information("Server", core.ApplicationPropertiesDB["server"])
-	logs.Information("Database", core.ApplicationPropertiesDB["database"])
-	logs.Information("Schema", core.ApplicationPropertiesDB["schema"])
-	logs.Information("Parent Schema", core.ApplicationPropertiesDB["parentschema"])
+	logs.Information("Server", core.ApplicationSQLServer())
+	logs.Information("Database", core.ApplicationSQLDatabase())
+	logs.Information("Schema", core.ApplicationSQLSchema())
+	logs.Information("Parent Schema", core.ApplicationSQLSchemaParent())
 
 	logs.Header("Siena")
 	_, tempDate, _ := application.GetBusinessDate(core.SienaDB)
@@ -323,5 +323,5 @@ func Application_Info() {
 	logs.Information("Rates & Prices Delivery", core.SienaProperties["rates_in"])
 
 	logs.Header("Sessions")
-	logs.Information("Session Life", core.ApplicationProperties["sessionlife"])
+	logs.Information("Session Life", core.ApplicationSessionLife())
 }

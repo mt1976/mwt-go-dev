@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:25
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -56,22 +56,64 @@ const (
 	CredentialsAction_PathSave   = "/CredentialsActionSave/"
 	CredentialsAction_PathDelete = "/CredentialsActionDelete/"
 	///
+	//CredentialsAction_Redirect provides a page to return to aftern an action
+	CredentialsAction_Redirect = CredentialsAction_PathView
+	///
 	///
 	/// SQL Field Definitions
 	///
-CredentialsAction_ID_sql   = "ID" // ID is a String
-CredentialsAction_User_sql   = "User" // User is a String
-CredentialsAction_Action_sql   = "Action" // Action is a String
-CredentialsAction_Notes_sql   = "Notes" // Notes is a String
+	CredentialsAction_ID_sql   = "ID" // ID is a String
+	CredentialsAction_User_sql   = "User" // User is a String
+	CredentialsAction_Action_sql   = "Action" // Action is a String
+	CredentialsAction_Notes_sql   = "Notes" // Notes is a String
 
 	/// Definitions End
-
+	///
 	/// Application Field Definitions
 	///
-CredentialsAction_ID_scrn   = "ID" // ID is a String
-CredentialsAction_User_scrn   = "User" // User is a String
-CredentialsAction_Action_scrn   = "Action" // Action is a String
-CredentialsAction_Notes_scrn   = "Notes" // Notes is a String
+	CredentialsAction_ID_scrn   = "ID" // ID is a String
+	CredentialsAction_User_scrn   = "User" // User is a String
+	CredentialsAction_Action_scrn   = "Action" // Action is a String
+	CredentialsAction_Notes_scrn   = "Notes" // Notes is a String
 
 	/// Definitions End
+	///
 )
+
+//credentialsaction_PageList provides the information for the template for a list of CredentialsActions
+type CredentialsAction_PageList struct {
+	SessionInfo      SessionInfo
+	UserMenu         AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []CredentialsAction
+	Context	 appContext
+}
+
+//credentialsaction_Page provides the information for the template for an individual CredentialsAction
+type CredentialsAction_Page struct {
+	SessionInfo      SessionInfo
+	UserMenu    	 AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	ID         string
+	ID_props     FieldProperties
+	User         string
+	User_lookup    []Lookup_Item
+	User_props     FieldProperties
+	Action         string
+	Action_lookup    []Lookup_Item
+	Action_props     FieldProperties
+	Notes         string
+	Notes_props     FieldProperties
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	Context	 appContext
+}

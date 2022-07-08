@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:22
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func CounterpartyExtensions_GetByID(id string) (int, dm.CounterpartyExtensions, 
 	_, _, counterpartyextensionsItem, _ := counterpartyextensions_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, counterpartyextensionsItem, nil
 }
@@ -91,13 +91,17 @@ func CounterpartyExtensions_StoreSystem(r dm.CounterpartyExtensions) error {
 
 // CounterpartyExtensions_Validate() validates for saves/stores a CounterpartyExtensions record to the database
 func CounterpartyExtensions_Validate(r dm.CounterpartyExtensions) (error,dm.CounterpartyExtensions) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -195,7 +199,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameFirm  = get_String(rec, dm.CounterpartyExtensions_NameFirm_sql, "")
 	   recItem.NameCentre  = get_String(rec, dm.CounterpartyExtensions_NameCentre_sql, "")
@@ -287,7 +291,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -317,10 +321,10 @@ func CounterpartyExtensions_New() (int, []dm.CounterpartyExtensions, dm.Counterp
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

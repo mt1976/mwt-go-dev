@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:29
+// Date & Time		    : 28/06/2022 at 16:10:53
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,75 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//inbox_PageList provides the information for the template for a list of Inboxs
-type Inbox_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Inbox
-}
-//Inbox_Redirect provides a page to return to aftern an action
-const (
-	
-	Inbox_Redirect = dm.Inbox_PathList
-	
-)
 
-//inbox_Page provides the information for the template for an individual Inbox
-type Inbox_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	SYSWho         string
-	SYSWho_props     dm.FieldProperties
-	SYSHost         string
-	SYSHost_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	MailId         string
-	MailId_props     dm.FieldProperties
-	MailTo         string
-	MailTo_props     dm.FieldProperties
-	MailFrom         string
-	MailFrom_props     dm.FieldProperties
-	MailSource         string
-	MailSource_props     dm.FieldProperties
-	MailSent         string
-	MailSent_props     dm.FieldProperties
-	MailUnread         string
-	MailUnread_lookup    []dm.Lookup_Item
-	MailUnread_props     dm.FieldProperties
-	MailSubject         string
-	MailSubject_props     dm.FieldProperties
-	MailContent         string
-	MailContent_props     dm.FieldProperties
-	MailAcknowledged         string
-	MailAcknowledged_lookup    []dm.Lookup_Item
-	MailAcknowledged_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -101,7 +33,7 @@ func Inbox_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Inbox_PathView, Inbox_HandlerView)
 	//Cannot Edit via GUI
 	//Cannot Create via GUI
-	//Cannot Save via GUI
+	mux.HandleFunc(dm.Inbox_PathSave, Inbox_HandlerSave)
 	mux.HandleFunc(dm.Inbox_PathDelete, Inbox_HandlerDelete)
 	logs.Publish("Application", dm.Inbox_Title)
     core.Catalog_Add(dm.Inbox_Title, dm.Inbox_Path, "", dm.Inbox_QueryString, "Application")
@@ -123,7 +55,7 @@ func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Inbox
 	noItems, returnList, _ := dao.Inbox_GetList()
 
-	pageDetail := Inbox_PageList{
+	pageDetail := dm.Inbox_PageList{
 		Title:            CardTitle(dm.Inbox_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Inbox_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -154,7 +86,7 @@ func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Inbox_QueryString)
 	_, rD, _ := dao.Inbox_GetByID(searchID)
 
-	pageDetail := Inbox_Page{
+	pageDetail := dm.Inbox_Page{
 		Title:       CardTitle(dm.Inbox_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Inbox_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -170,6 +102,48 @@ func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 }
 
 
+
+//Inbox_HandlerSave is the handler used process the saving of an Inbox
+func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path+r.FormValue("MailId"))
+
+	var item dm.Inbox
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.SYSId = r.FormValue(dm.Inbox_SYSId_scrn)
+		item.SYSCreated = r.FormValue(dm.Inbox_SYSCreated_scrn)
+		item.SYSWho = r.FormValue(dm.Inbox_SYSWho_scrn)
+		item.SYSHost = r.FormValue(dm.Inbox_SYSHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Inbox_SYSUpdated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Inbox_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Inbox_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Inbox_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Inbox_SYSUpdatedHost_scrn)
+		item.MailId = r.FormValue(dm.Inbox_MailId_scrn)
+		item.MailTo = r.FormValue(dm.Inbox_MailTo_scrn)
+		item.MailFrom = r.FormValue(dm.Inbox_MailFrom_scrn)
+		item.MailSource = r.FormValue(dm.Inbox_MailSource_scrn)
+		item.MailSent = r.FormValue(dm.Inbox_MailSent_scrn)
+		item.MailUnread = r.FormValue(dm.Inbox_MailUnread_scrn)
+		item.MailSubject = r.FormValue(dm.Inbox_MailSubject_scrn)
+		item.MailContent = r.FormValue(dm.Inbox_MailContent_scrn)
+		item.MailAcknowledged = r.FormValue(dm.Inbox_MailAcknowledged_scrn)
+	
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	dao.Inbox_Store(item,r)	
+	http.Redirect(w, r, dm.Inbox_Redirect, http.StatusFound)
+}
 
 
 
@@ -187,14 +161,14 @@ func Inbox_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Inbox_Delete(searchID)	
 
-	http.Redirect(w, r, Inbox_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Inbox_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Inbox Page 
-func inbox_PopulatePage(rD dm.Inbox, pageDetail Inbox_Page) Inbox_Page {
+func inbox_PopulatePage(rD dm.Inbox, pageDetail dm.Inbox_Page) dm.Inbox_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.SYSCreated = rD.SYSCreated
@@ -217,7 +191,7 @@ func inbox_PopulatePage(rD dm.Inbox, pageDetail Inbox_Page) Inbox_Page {
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -280,7 +254,7 @@ func inbox_PopulatePage(rD dm.Inbox, pageDetail Inbox_Page) Inbox_Page {
 	pageDetail.MailAcknowledged_props = rD.MailAcknowledged_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

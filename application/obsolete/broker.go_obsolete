@@ -78,8 +78,8 @@ func ListSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pageSienaBrokerList := sienaBrokerListPage{
-		Title:            core.ApplicationProperties["appname"],
-		PageTitle:        core.ApplicationProperties["appname"] + " - " + "Brokers",
+		Title:            core.GetAppName(),
+		PageTitle:        core.GetAppName() + " - " + "Brokers",
 		SienaBrokerCount: noItems,
 		SienaBrokerList:  returnList,
 		UserMenu:         UserMenu_Get(r),
@@ -115,8 +115,8 @@ func ViewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(tmpl)
 
 	pageSienaBrokerList := sienaBrokerPage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Broker - View",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Broker - View",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -162,8 +162,8 @@ func EditSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	//fmt.Println(displayList)
 
 	pageSienaBrokerList := sienaBrokerPage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - Edit",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Book - Edit",
 		ID:        returnRecord.Code,
 		Code:      returnRecord.Code,
 		Name:      returnRecord.Name,
@@ -305,8 +305,8 @@ func NewSienaBrokerHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageSienaBrokerList := sienaBrokerPage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Book - New",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Book - New",
 		ID:        "NEW",
 		Code:      "",
 		Name:      "",

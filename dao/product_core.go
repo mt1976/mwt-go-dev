@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:31
+// Date & Time		    : 28/06/2022 at 16:10:55
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func Product_GetByID(id string) (int, dm.Product, error) {
 	_, _, productItem, _ := product_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, productItem, nil
 }
@@ -100,13 +100,17 @@ func Product_StoreSystem(r dm.Product) error {
 
 // Product_Validate() validates for saves/stores a Product record to the database
 func Product_Validate(r dm.Product) (error,dm.Product) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -173,7 +177,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Product_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Product_Name_sql, "")
@@ -203,7 +207,7 @@ func product_Fetch(tsql string) (int, []dm.Product, dm.Product, error) {
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -233,10 +237,10 @@ func Product_New() (int, []dm.Product, dm.Product, error) {
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

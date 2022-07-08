@@ -314,6 +314,10 @@ class Datepicker {
     return SelectorEngine.findOne('.datepicker-toggle-button', this._element);
   }
 
+  update(options = {}) {
+    this._options = this._getConfig({ ...this._options, ...options });
+  }
+
   _getConfig(config) {
     const dataAttributes = Manipulator.getDataAttributes(this._element);
 
@@ -326,11 +330,11 @@ class Datepicker {
     typeCheckConfig(NAME, config, DefaultType);
 
     if (config.max && typeof config.max === 'string') {
-      config.max = convertStringToDate(config.max);
+      config.max = new Date(config.max);
     }
 
     if (config.min && typeof config.min === 'string') {
-      config.min = convertStringToDate(config.min);
+      config.min = new Date(config.min);
     }
 
     if (config.startDay && config.startDay !== 0) {
@@ -485,32 +489,36 @@ class Datepicker {
 
   _listenToDateSelection() {
     EventHandler.on(this.datesContainer, 'click', (e) => {
-      const dataset = e.target.nodeName === 'DIV' ? e.target.parentNode.dataset : e.target.dataset;
-      const cell = e.target.nodeName === 'DIV' ? e.target.parentNode : e.target;
-
-      if (dataset.mdbDate) {
-        this._pickDay(dataset.mdbDate, cell);
-      }
-
-      if (dataset.mdbMonth && dataset.mdbYear) {
-        const month = parseInt(dataset.mdbMonth, 10);
-        const year = parseInt(dataset.mdbYear, 10);
-        this._pickMonth(month, year);
-      }
-
-      if (dataset.mdbYear && !dataset.mdbMonth) {
-        const year = parseInt(dataset.mdbYear, 10);
-        this._pickYear(year);
-      }
-
-      if (!this._options.inline) {
-        this._updateHeaderDate(
-          this._activeDate,
-          this._options.monthsShort,
-          this._options.weekdaysShort
-        );
-      }
+      this._handleDateSelection(e);
     });
+  }
+
+  _handleDateSelection(e) {
+    const dataset = e.target.nodeName === 'DIV' ? e.target.parentNode.dataset : e.target.dataset;
+    const cell = e.target.nodeName === 'DIV' ? e.target.parentNode : e.target;
+
+    if (dataset.mdbDate) {
+      this._pickDay(dataset.mdbDate, cell);
+    }
+
+    if (dataset.mdbMonth && dataset.mdbYear) {
+      const month = parseInt(dataset.mdbMonth, 10);
+      const year = parseInt(dataset.mdbYear, 10);
+      this._pickMonth(month, year);
+    }
+
+    if (dataset.mdbYear && !dataset.mdbMonth) {
+      const year = parseInt(dataset.mdbYear, 10);
+      this._pickYear(year);
+    }
+
+    if (!this._options.inline) {
+      this._updateHeaderDate(
+        this._activeDate,
+        this._options.monthsShort,
+        this._options.weekdaysShort
+      );
+    }
   }
 
   _updateHeaderDate(date, monthNames, dayNames) {
@@ -649,6 +657,7 @@ class Datepicker {
       case ENTER:
       case SPACE:
         this._selectDate(this._activeDate);
+        this._handleDateSelection(event);
         event.preventDefault();
         return;
       default:
@@ -1080,6 +1089,11 @@ class Datepicker {
     this._input.classList.remove('active');
     this._setInitialDate();
     this._changeView('days');
+    this._updateHeaderDate(
+      this._activeDate,
+      this._options.monthsShort,
+      this._options.weekdaysShort
+    );
   }
 
   _removeCurrentSelectionStyles() {

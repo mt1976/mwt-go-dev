@@ -47,7 +47,7 @@ SQL Table Key | **id**
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**Id**|String|false|true|false|true|||||N|Id||true|false|false|text||
 |**Username**|String|true|true|false|false|||||Y|Username||false|false|false|text||
-|**Password**|String|false|true|false|true|||||N|Password||false|false|false|password||
+|**Password**|String|false|true|false|true|||||NH|Password||false|false|false|password||
 |**Firstname**|String|false|true|false|false|||||Y|Firstname||false|false|false|text||
 |**Lastname**|String|false|true|false|false|||||Y|Lastname||false|false|false|text||
 |**Knownas**|String|false|true|false|false|||||Y|Knownas||false|false|false|text||
@@ -64,7 +64,7 @@ SQL Table Key | **id**
 |**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
 |**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
 |**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
-|**State**|String|false|true|false|false|LL|credentialStates|||Y|State||false|false|false|text||
+|**State**|String|false|true|false|true|LL|credentialStates|||Y|State||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||Y|Notes||false|false|false|textarea||
 
 
@@ -72,6 +72,7 @@ SQL Table Key | **id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/credentials_core.go |
+| code | **adaptor** | /adaptor/credentials_impl.go_template |
 | code | **api** | /application/credentials_api.go |
 | code | **dao** | /dao/credentials_core.go |
 | code | **datamodel** | /datamodel/credentials_core.go |
@@ -86,7 +87,7 @@ SQL Table Key | **id**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **26/06/2022** at **18:48:24**
+Date & Time		     | **28/06/2022** at **16:10:49**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

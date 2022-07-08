@@ -64,3 +64,58 @@ func NewPageProperties() *PageProperties {
 func AddPageMessage(typeStr string, class string, title string, body string, log bool, glyph string) *PageProperties {
 	return &PageProperties{MsgType: typeStr, MsgClass: class, MsgTitle: title, MsgBody: body, MsgLog: log, MsgGlyph: glyph}
 }
+
+type appContext struct {
+	OnError    string
+	OnSuccess  string
+	OnRedirect string
+	Content    string
+	State      string
+}
+
+func AppContext_SetState(ac appContext, in string) appContext {
+	ac.State = core.EncodeString(in)
+	logs.Information("AppContext_SetState: "+in, ac.State)
+	return ac
+}
+
+func AppContext_GetState(ac appContext) string {
+	logs.Information("AppContext_GetState: "+ac.State, core.DecodeString(ac.State))
+	return core.DecodeString(ac.State)
+}
+
+func AppContext_OnErrorSet(ac appContext, in string) appContext {
+	ac.OnError = core.EncodeString(in)
+	logs.Information("AppContext_OnErrorSet: "+in, ac.OnError)
+	return ac
+}
+
+func AppContext_OnSuccessSet(ac appContext, in string) appContext {
+	ac.OnSuccess = core.EncodeString(in)
+	logs.Information("AppContext_OnSucessSet: "+in, ac.OnSuccess)
+	logs.Information("AppContext_OnSuccessSet: "+ac.OnSuccess, AppContext_OnSuccessGet(ac))
+	return ac
+}
+
+func AppContext_OnRedirectSet(ac appContext, in string) appContext {
+	ac.OnRedirect = core.EncodeString(in)
+	logs.Information("AppContext_OnRedirectSet: "+in, ac.OnRedirect)
+	return ac
+}
+
+func AppContext_ContentSet(ac appContext, in string) appContext {
+	ac.Content = core.EncodeString(in)
+	logs.Information("AppContext_ContentSet: "+in, ac.Content)
+	logs.Information("AppContext_ContentSet: "+in, AppContext_ContentGet(ac))
+	return ac
+}
+
+func AppContext_ContentGet(ac appContext) string {
+	logs.Information("AppContext_ContentGet: "+ac.Content, core.DecodeString(ac.Content))
+	return core.DecodeString(ac.Content)
+}
+
+func AppContext_OnSuccessGet(ac appContext) string {
+	logs.Information("AppContext_OnSuccessGet: "+ac.OnSuccess, core.DecodeString(ac.OnSuccess))
+	return core.DecodeString(ac.OnSuccess)
+}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:20
+// Date & Time		    : 28/06/2022 at 16:10:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -54,10 +54,10 @@ func Centre_GetByID(id string) (int, dm.Centre, error) {
 	_, _, centreItem, _ := centre_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, centreItem, nil
 }
@@ -110,13 +110,17 @@ func Centre_StoreSystem(r dm.Centre) error {
 
 // Centre_Validate() validates for saves/stores a Centre record to the database
 func Centre_Validate(r dm.Centre) (error,dm.Centre) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -174,7 +178,7 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Centre_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Centre_Name_sql, "")
@@ -186,7 +190,7 @@ func centre_Fetch(tsql string) (int, []dm.Centre, dm.Centre, error) {
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -216,10 +220,10 @@ func Centre_New() (int, []dm.Centre, dm.Centre, error) {
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

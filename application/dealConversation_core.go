@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:26
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,61 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dealconversation_PageList provides the information for the template for a list of DealConversations
-type DealConversation_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DealConversation
-}
-//DealConversation_Redirect provides a page to return to aftern an action
-const (
-	
-	DealConversation_Redirect = dm.DealConversation_PathList
-	
-)
 
-//dealconversation_Page provides the information for the template for an individual DealConversation
-type DealConversation_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	SienaReference_props     dm.FieldProperties
-	Status         string
-	Status_props     dm.FieldProperties
-	MessageType         string
-	MessageType_props     dm.FieldProperties
-	ContractNumber         string
-	ContractNumber_props     dm.FieldProperties
-	AckReference         string
-	AckReference_props     dm.FieldProperties
-	NewTX         string
-	NewTX_props     dm.FieldProperties
-	LegNo         string
-	LegNo_props     dm.FieldProperties
-	Summary         string
-	Summary_props     dm.FieldProperties
-	BusinessDate         string
-	BusinessDate_props     dm.FieldProperties
-	TXNo         string
-	TXNo_props     dm.FieldProperties
-	ExternalSystem         string
-	ExternalSystem_props     dm.FieldProperties
-	MessageLogReference         string
-	MessageLogReference_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -109,7 +55,7 @@ func DealConversation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DealConversation
 	noItems, returnList, _ := dao.DealConversation_GetList()
 
-	pageDetail := DealConversation_PageList{
+	pageDetail := dm.DealConversation_PageList{
 		Title:            CardTitle(dm.DealConversation_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealConversation_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -140,7 +86,7 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealConversation_QueryString)
 	_, rD, _ := dao.DealConversation_GetByID(searchID)
 
-	pageDetail := DealConversation_Page{
+	pageDetail := dm.DealConversation_Page{
 		Title:       CardTitle(dm.DealConversation_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealConversation_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -161,9 +107,9 @@ func DealConversation_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the DealConversation Page 
-func dealconversation_PopulatePage(rD dm.DealConversation, pageDetail DealConversation_Page) DealConversation_Page {
+func dealconversation_PopulatePage(rD dm.DealConversation, pageDetail dm.DealConversation_Page) dm.DealConversation_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.Status = rD.Status
@@ -180,7 +126,7 @@ func dealconversation_PopulatePage(rD dm.DealConversation, pageDetail DealConver
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -221,7 +167,7 @@ func dealconversation_PopulatePage(rD dm.DealConversation, pageDetail DealConver
 	pageDetail.MessageLogReference_props = rD.MessageLogReference_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

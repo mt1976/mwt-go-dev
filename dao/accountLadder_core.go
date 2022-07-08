@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:18
+// Date & Time		    : 28/06/2022 at 16:10:41
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func AccountLadder_GetByID(id string) (int, dm.AccountLadder, error) {
 	_, _, accountladderItem, _ := accountladder_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, accountladderItem, nil
 }
@@ -91,13 +91,17 @@ func AccountLadder_StoreSystem(r dm.AccountLadder) error {
 
 // AccountLadder_Validate() validates for saves/stores a AccountLadder record to the database
 func AccountLadder_Validate(r dm.AccountLadder) (error,dm.AccountLadder) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -158,7 +162,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SienaReference  = get_String(rec, dm.AccountLadder_SienaReference_sql, "")
 	   recItem.BusinessDate  = get_Time(rec, dm.AccountLadder_BusinessDate_sql, "")
@@ -176,7 +180,7 @@ func accountladder_Fetch(tsql string) (int, []dm.AccountLadder, dm.AccountLadder
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -206,10 +210,10 @@ func AccountLadder_New() (int, []dm.AccountLadder, dm.AccountLadder, error) {
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

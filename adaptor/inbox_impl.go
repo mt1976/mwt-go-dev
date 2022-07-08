@@ -3,6 +3,7 @@ package adaptor
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -20,6 +21,11 @@ const (
 
 func Inbox_SendMail(mailTo string, mailSubject string, mailContent string, mailFrom string, source string) error {
 	//logs.Success("Message Sent:" + id)
+	fmt.Printf("mailTo: %v\n", mailTo)
+	fmt.Printf("mailSubject: %v\n", mailSubject)
+	fmt.Printf("mailContent: %v\n", mailContent)
+	fmt.Printf("mailFrom: %v\n", mailFrom)
+	fmt.Printf("source: %v\n", source)
 
 	now := time.Now()
 
@@ -33,21 +39,22 @@ func Inbox_SendMail(mailTo string, mailSubject string, mailContent string, mailF
 	mail.MailSource = source
 
 	var err error
-	//fmt.Printf("msItem: %v\n", msItem)
-	//spew.Dump(msItem)
+	//fmt.Printf("msItem: %v\n", mail)
+	//spew.Dump(mail)
+
 	//err = dao.ExternalInbox_StoreSystem(msItem)
 
 	json_data, err := json.Marshal(mail)
-	//fmt.Println(string(json_data))
+	fmt.Println(string(json_data))
 	if err != nil {
 		return err
 	}
 
 	// get current ip address
 	ip := "localhost"
-	uri := core.ApplicationProperties["protocol"] + "://" + ip + ":" + core.ApplicationProperties["port"] + dm.Inbox_Path
+	uri := core.ApplicationHTTPProtocol() + "://" + ip + ":" + core.ApplicationHTTPPort() + dm.Inbox_Path
 
-	//logs.Information("uri", uri)
+	logs.Information("uri", uri)
 
 	resp, err := http.Post(uri, "application/json", bytes.NewBuffer(json_data))
 
@@ -55,9 +62,9 @@ func Inbox_SendMail(mailTo string, mailSubject string, mailContent string, mailF
 		log.Fatal(err)
 	}
 
-	//var res map[string]interface{}
-	//logs.Information("response Status:", resp.Status)
-	//json.NewDecoder(resp.Body).Decode(&res)
+	var res map[string]interface{}
+	logs.Information("response Status:", resp.Status)
+	json.NewDecoder(resp.Body).Decode(&res)
 	if resp.StatusCode != 200 {
 		logs.Error("Error: "+strconv.Itoa(resp.StatusCode), nil)
 		return err
@@ -67,47 +74,5 @@ func Inbox_SendMail(mailTo string, mailSubject string, mailContent string, mailF
 	}
 
 	logs.Post(uri + mail.MailId)
-	// logs.Accessing(uri + id)
-
-	// params := url.Values{}
-	// params.Add(dm.ExternalInbox_QueryString, id)
-
-	// //	fmt.Println(res["json"])
-	// gesp, err2 := http.Get(uri + "?" + params.Encode())
-
-	// if err2 != nil {
-	// 	log.Fatal(err2)
-	// }
-
-	// defer gesp.Body.Close()
-
-	// gbody, err2 := ioutil.ReadAll(gesp.Body)
-
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// //logs.Information("response Status:", gesp.Status)
-
-	// //spew.Dump(gesp)
-	// //json.NewDecoder(resp.Body).Decode(&res)
-	// if gesp.StatusCode != 200 {
-	// 	logs.Error("Error: "+strconv.Itoa(gesp.StatusCode), nil)
-	// 	return err
-	// }
-	// if gesp.StatusCode == 404 {
-	// 	logs.Warning("Unable to Store Message:" + id)
-	// }
-
-	// //fmt.Printf("gesp.Body: %v\n", gesp.Body)
-	// //fmt.Println("RESPONSE>>" + string(gbody))
-
-	// var data *dm.ExternalMessage
-	// json.Unmarshal(gbody, &data)
-
-	//json.NewDecoder(gesp.Body).Decode(data)
-
-	//fmt.Printf("Results: %v\n", data)
-	//spew.Dump(data)
 	return nil
 }

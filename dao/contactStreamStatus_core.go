@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:21
+// Date & Time		    : 28/06/2022 at 16:10:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -54,10 +54,10 @@ func ContactStreamStatus_GetByID(id string) (int, dm.ContactStreamStatus, error)
 	_, _, contactstreamstatusItem, _ := contactstreamstatus_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, contactstreamstatusItem, nil
 }
@@ -101,13 +101,17 @@ func ContactStreamStatus_StoreSystem(r dm.ContactStreamStatus) error {
 
 // ContactStreamStatus_Validate() validates for saves/stores a ContactStreamStatus record to the database
 func ContactStreamStatus_Validate(r dm.ContactStreamStatus) (error,dm.ContactStreamStatus) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -165,7 +169,7 @@ func contactstreamstatus_Fetch(tsql string) (int, []dm.ContactStreamStatus, dm.C
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.StatusId  = get_Int(rec, dm.ContactStreamStatus_StatusId_sql, "0")
 	   recItem.Description  = get_String(rec, dm.ContactStreamStatus_Description_sql, "")
@@ -177,7 +181,7 @@ func contactstreamstatus_Fetch(tsql string) (int, []dm.ContactStreamStatus, dm.C
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -207,10 +211,10 @@ func ContactStreamStatus_New() (int, []dm.ContactStreamStatus, dm.ContactStreamS
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

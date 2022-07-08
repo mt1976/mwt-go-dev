@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:28
+// Date & Time		    : 28/06/2022 at 16:10:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func DealTypeFundamental_GetByID(id string) (int, dm.DealTypeFundamental, error)
 	_, _, dealtypefundamentalItem, _ := dealtypefundamental_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, dealtypefundamentalItem, nil
 }
@@ -91,13 +91,17 @@ func DealTypeFundamental_StoreSystem(r dm.DealTypeFundamental) error {
 
 // DealTypeFundamental_Validate() validates for saves/stores a DealTypeFundamental record to the database
 func DealTypeFundamental_Validate(r dm.DealTypeFundamental) (error,dm.DealTypeFundamental) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -242,7 +246,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey_sql, "")
 	   recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment_sql, "True")
@@ -428,7 +432,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -458,10 +462,10 @@ func DealTypeFundamental_New() (int, []dm.DealTypeFundamental, dm.DealTypeFundam
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

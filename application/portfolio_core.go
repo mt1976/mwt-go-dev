@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:31
+// Date & Time		    : 28/06/2022 at 16:10:55
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,61 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//portfolio_PageList provides the information for the template for a list of Portfolios
-type Portfolio_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Portfolio
-}
-//Portfolio_Redirect provides a page to return to aftern an action
-const (
-	
-	Portfolio_Redirect = dm.Portfolio_PathList
-	
-)
 
-//portfolio_Page provides the information for the template for an individual Portfolio
-type Portfolio_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Code_props     dm.FieldProperties
-	Description1         string
-	Description1_props     dm.FieldProperties
-	Description2         string
-	Description2_props     dm.FieldProperties
-	IsDefault         string
-	IsDefault_props     dm.FieldProperties
-	InternalId         string
-	InternalId_props     dm.FieldProperties
-	InternalDeleted         string
-	InternalDeleted_props     dm.FieldProperties
-	UpdatedTransactionId         string
-	UpdatedTransactionId_props     dm.FieldProperties
-	UpdatedUserId         string
-	UpdatedUserId_props     dm.FieldProperties
-	UpdatedDateTime         string
-	UpdatedDateTime_props     dm.FieldProperties
-	DeletedTransactionId         string
-	DeletedTransactionId_props     dm.FieldProperties
-	DeletedUserId         string
-	DeletedUserId_props     dm.FieldProperties
-	ChangeType         string
-	ChangeType_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -109,7 +55,7 @@ func Portfolio_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Portfolio
 	noItems, returnList, _ := dao.Portfolio_GetList()
 
-	pageDetail := Portfolio_PageList{
+	pageDetail := dm.Portfolio_PageList{
 		Title:            CardTitle(dm.Portfolio_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Portfolio_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -140,7 +86,7 @@ func Portfolio_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Portfolio_QueryString)
 	_, rD, _ := dao.Portfolio_GetByID(searchID)
 
-	pageDetail := Portfolio_Page{
+	pageDetail := dm.Portfolio_Page{
 		Title:       CardTitle(dm.Portfolio_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Portfolio_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -171,7 +117,7 @@ func Portfolio_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Portfolio_QueryString)
 	_, rD, _ := dao.Portfolio_GetByID(searchID)
 	
-	pageDetail := Portfolio_Page{
+	pageDetail := dm.Portfolio_Page{
 		Title:       CardTitle(dm.Portfolio_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Portfolio_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -200,7 +146,7 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Portfolio
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Portfolio_Code_scrn)
 		item.Description1 = r.FormValue(dm.Portfolio_Description1_scrn)
@@ -216,10 +162,10 @@ func Portfolio_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ChangeType = r.FormValue(dm.Portfolio_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Portfolio_Store(item,r)	
-	http.Redirect(w, r, Portfolio_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Portfolio_Redirect, http.StatusFound)
 }
 
 
@@ -236,7 +182,7 @@ func Portfolio_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.Portfolio_New()
 
-	pageDetail := Portfolio_Page{
+	pageDetail := dm.Portfolio_Page{
 		Title:       CardTitle(dm.Portfolio_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Portfolio_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -266,14 +212,14 @@ func Portfolio_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Portfolio_Delete(searchID)	
 
-	http.Redirect(w, r, Portfolio_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Portfolio_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Portfolio Page 
-func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfolio_Page {
+func portfolio_PopulatePage(rD dm.Portfolio, pageDetail dm.Portfolio_Page) dm.Portfolio_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Description1 = rD.Description1
@@ -290,7 +236,7 @@ func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfoli
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -331,7 +277,7 @@ func portfolio_PopulatePage(rD dm.Portfolio, pageDetail Portfolio_Page) Portfoli
 	pageDetail.ChangeType_props = rD.ChangeType_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

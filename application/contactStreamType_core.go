@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:21
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,44 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//contactstreamtype_PageList provides the information for the template for a list of ContactStreamTypes
-type ContactStreamType_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.ContactStreamType
-}
-//ContactStreamType_Redirect provides a page to return to aftern an action
-const (
-	
-	ContactStreamType_Redirect = dm.ContactStreamType_PathList
-	
-)
 
-//contactstreamtype_Page provides the information for the template for an individual ContactStreamType
-type ContactStreamType_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	TypeId         string
-	TypeId_props     dm.FieldProperties
-	Description         string
-	Description_props     dm.FieldProperties
-	RecordState         string
-	RecordState_lookup    []dm.Lookup_Item
-	RecordState_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -92,7 +55,7 @@ func ContactStreamType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.ContactStreamType
 	noItems, returnList, _ := dao.ContactStreamType_GetList()
 
-	pageDetail := ContactStreamType_PageList{
+	pageDetail := dm.ContactStreamType_PageList{
 		Title:            CardTitle(dm.ContactStreamType_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.ContactStreamType_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -123,7 +86,7 @@ func ContactStreamType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.ContactStreamType_QueryString)
 	_, rD, _ := dao.ContactStreamType_GetByID(searchID)
 
-	pageDetail := ContactStreamType_Page{
+	pageDetail := dm.ContactStreamType_Page{
 		Title:       CardTitle(dm.ContactStreamType_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.ContactStreamType_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -144,9 +107,9 @@ func ContactStreamType_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the ContactStreamType Page 
-func contactstreamtype_PopulatePage(rD dm.ContactStreamType, pageDetail ContactStreamType_Page) ContactStreamType_Page {
+func contactstreamtype_PopulatePage(rD dm.ContactStreamType, pageDetail dm.ContactStreamType_Page) dm.ContactStreamType_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.TypeId = rD.TypeId
 	pageDetail.Description = rD.Description
@@ -154,7 +117,7 @@ func contactstreamtype_PopulatePage(rD dm.ContactStreamType, pageDetail ContactS
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -170,7 +133,7 @@ func contactstreamtype_PopulatePage(rD dm.ContactStreamType, pageDetail ContactS
 	pageDetail.RecordState_props = rD.RecordState_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

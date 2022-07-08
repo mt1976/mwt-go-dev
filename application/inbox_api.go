@@ -9,7 +9,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:29
+// Date & Time		    : 28/06/2022 at 16:10:53
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -119,7 +119,18 @@ func inbox_MethodPost(w http.ResponseWriter, r *http.Request) {
 	}
 	//spew.Dump(t)
 	
-			w.WriteHeader(int(http.StatusMethodNotAllowed))
+	err = dao.Inbox_StoreSystem(t)
+	if err != nil {
+
+		//	panic(err)
+
+		w.WriteHeader(int(http.StatusNotFound))
+
+	} else {
+
+		w.WriteHeader(int(http.StatusOK))
+
+	}
 	
 	//logs.Processing("POST BACK")
 	//logs.Information("POST", err.Error())

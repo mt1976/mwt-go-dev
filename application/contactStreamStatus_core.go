@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:21
+// Date & Time		    : 28/06/2022 at 16:10:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,43 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//contactstreamstatus_PageList provides the information for the template for a list of ContactStreamStatuss
-type ContactStreamStatus_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.ContactStreamStatus
-}
-//ContactStreamStatus_Redirect provides a page to return to aftern an action
-const (
-	
-	ContactStreamStatus_Redirect = dm.ContactStreamStatus_PathList
-	
-)
 
-//contactstreamstatus_Page provides the information for the template for an individual ContactStreamStatus
-type ContactStreamStatus_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	StatusId         string
-	StatusId_props     dm.FieldProperties
-	Description         string
-	Description_props     dm.FieldProperties
-	RecordState         string
-	RecordState_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -91,7 +55,7 @@ func ContactStreamStatus_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.ContactStreamStatus
 	noItems, returnList, _ := dao.ContactStreamStatus_GetList()
 
-	pageDetail := ContactStreamStatus_PageList{
+	pageDetail := dm.ContactStreamStatus_PageList{
 		Title:            CardTitle(dm.ContactStreamStatus_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.ContactStreamStatus_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -122,7 +86,7 @@ func ContactStreamStatus_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.ContactStreamStatus_QueryString)
 	_, rD, _ := dao.ContactStreamStatus_GetByID(searchID)
 
-	pageDetail := ContactStreamStatus_Page{
+	pageDetail := dm.ContactStreamStatus_Page{
 		Title:       CardTitle(dm.ContactStreamStatus_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.ContactStreamStatus_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -143,9 +107,9 @@ func ContactStreamStatus_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the ContactStreamStatus Page 
-func contactstreamstatus_PopulatePage(rD dm.ContactStreamStatus, pageDetail ContactStreamStatus_Page) ContactStreamStatus_Page {
+func contactstreamstatus_PopulatePage(rD dm.ContactStreamStatus, pageDetail dm.ContactStreamStatus_Page) dm.ContactStreamStatus_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.StatusId = rD.StatusId
 	pageDetail.Description = rD.Description
@@ -153,7 +117,7 @@ func contactstreamstatus_PopulatePage(rD dm.ContactStreamStatus, pageDetail Cont
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -167,7 +131,7 @@ func contactstreamstatus_PopulatePage(rD dm.ContactStreamStatus, pageDetail Cont
 	pageDetail.RecordState_props = rD.RecordState_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

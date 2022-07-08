@@ -51,7 +51,7 @@ func Mandate_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Mandate_GetByFullID(muID, muFirm, muCentre)
 
 	pageDetail := Mandate_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Mandate_Title, core.Action_View),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
@@ -120,7 +120,7 @@ func Mandate_HandlerEditItem(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Mandate_GetByFullID(muID, muFirm, muCentre)
 
 	pageDetail := Mandate_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Mandate_Title, core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),

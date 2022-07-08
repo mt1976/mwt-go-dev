@@ -311,42 +311,42 @@ func NewLoaderDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getLoaderDataStoreList read all employees
 func GetLoaderDataStoreList() (int, []LoaderDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECT, appLoaderDataStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECT, appLoaderDataStoreSQL, core.ApplicationSQLSchema())
 	count, appLoaderDataStoreList, _, _ := fetchLoaderDataStoreData(tsql)
 	return count, appLoaderDataStoreList, nil
 }
 
 // GetLoaderDataStoreListByLoaderRow read all employees
 func GetLoaderDataStoreListByLoaderCols(loaderId string, colId string) (int, []LoaderDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERCOLS, appLoaderDataStoreSQL, core.ApplicationPropertiesDB["schema"], loaderId, colId)
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERCOLS, appLoaderDataStoreSQL, core.ApplicationSQLSchema(), loaderId, colId)
 	count, appLoaderDataStoreList, _, _ := fetchLoaderDataStoreData(tsql)
 	return count, appLoaderDataStoreList, nil
 }
 
 // GetLoaderDataStoreListByLoaderRow read all employees
 func GetLoaderDataStoreRowsByLoader(loaderId string) int {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERCOLS, appLoaderDataStoreSQL, core.ApplicationPropertiesDB["schema"], loaderId, "1")
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERCOLS, appLoaderDataStoreSQL, core.ApplicationSQLSchema(), loaderId, "1")
 	count, _, _, _ := fetchLoaderDataStoreData(tsql)
 	return count
 }
 
 // GetLoaderDataStoreRowList read all employees
 func GetLoaderDataStoreRowList(loaderID string, rowID string) (int, []LoaderDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERPITEM, appLoaderDataStoreSQL, core.ApplicationPropertiesDB["schema"], loaderID, rowID)
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLSELECTBYLOADERPITEM, appLoaderDataStoreSQL, core.ApplicationSQLSchema(), loaderID, rowID)
 	count, appLoaderDataStoreList, _, _ := fetchLoaderDataStoreData(tsql)
 	return count, appLoaderDataStoreList, nil
 }
 
 // GetLoaderDataStoreListByLoaderRow read all employees
 func GetLoaderDataStoreListByLoaderItem(loaderId string, colId string, rowId string) (int, LoaderDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLGETITEM, appLoaderDataStoreSQL, core.ApplicationPropertiesDB["schema"], loaderId, colId, rowId)
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLGETITEM, appLoaderDataStoreSQL, core.ApplicationSQLSchema(), loaderId, colId, rowId)
 	count, _, appLoaderDataStoreItem, _ := fetchLoaderDataStoreData(tsql)
 	return count, appLoaderDataStoreItem, nil
 }
 
 // getLoaderDataStoreList read all employees
 func GetLoaderDataStoreByID(id string) (int, LoaderDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderDataStoreSQLGET, appLoaderDataStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appLoaderDataStoreSQLGET, appLoaderDataStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, LoaderDataStoreItem, _ := fetchLoaderDataStoreData(tsql)
 	return 1, LoaderDataStoreItem, nil
 }
@@ -374,8 +374,8 @@ func putLoaderDataStore(r LoaderDataStoreItem, req *http.Request) {
 	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLoaderDataStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLoaderDataStoreSQL, r.Id, r.Row, r.Position, r.Value, r.Loader, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Map)
+	deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appLoaderDataStoreSQLINSERT, core.ApplicationSQLSchema(), appLoaderDataStoreSQL, r.Id, r.Row, r.Position, r.Value, r.Loader, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Map)
 
 	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -415,8 +415,8 @@ func UpdateLoaderDataStore(r LoaderDataStoreItem) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	//deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLoaderDataStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLoaderDataStoreSQL, r.Id, r.Row, r.Position, r.Value, r.Loader, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Map)
+	//deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appLoaderDataStoreSQLINSERT, core.ApplicationSQLSchema(), appLoaderDataStoreSQL, r.Id, r.Row, r.Position, r.Value, r.Loader, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Map)
 
 	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -437,7 +437,7 @@ func UpdateLoaderDataStore(r LoaderDataStoreItem) {
 
 func deleteLoaderDataStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {
@@ -448,7 +448,7 @@ func deleteLoaderDataStore(id string) {
 
 func DeleteLoaderDataStoreByLoader(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETELOADER, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appLoaderDataStoreSQLDELETELOADER, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql)
 	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {

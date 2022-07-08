@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:32
+// Date & Time		    : 28/06/2022 at 16:10:57
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,41 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//sector_PageList provides the information for the template for a list of Sectors
-type Sector_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Sector
-}
-//Sector_Redirect provides a page to return to aftern an action
-const (
-	
-	Sector_Redirect = dm.Sector_PathList
-	
-)
 
-//sector_Page provides the information for the template for an individual Sector
-type Sector_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Code_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -89,7 +55,7 @@ func Sector_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Sector
 	noItems, returnList, _ := dao.Sector_GetList()
 
-	pageDetail := Sector_PageList{
+	pageDetail := dm.Sector_PageList{
 		Title:            CardTitle(dm.Sector_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Sector_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -120,7 +86,7 @@ func Sector_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Sector_QueryString)
 	_, rD, _ := dao.Sector_GetByID(searchID)
 
-	pageDetail := Sector_Page{
+	pageDetail := dm.Sector_Page{
 		Title:       CardTitle(dm.Sector_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Sector_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -151,7 +117,7 @@ func Sector_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Sector_QueryString)
 	_, rD, _ := dao.Sector_GetByID(searchID)
 	
-	pageDetail := Sector_Page{
+	pageDetail := dm.Sector_Page{
 		Title:       CardTitle(dm.Sector_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Sector_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -180,16 +146,16 @@ func Sector_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Sector
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Sector_Code_scrn)
 		item.Name = r.FormValue(dm.Sector_Name_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Sector_Store(item,r)	
-	http.Redirect(w, r, Sector_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Sector_Redirect, http.StatusFound)
 }
 
 
@@ -206,7 +172,7 @@ func Sector_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.Sector_New()
 
-	pageDetail := Sector_Page{
+	pageDetail := dm.Sector_Page{
 		Title:       CardTitle(dm.Sector_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Sector_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -236,21 +202,21 @@ func Sector_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Sector_Delete(searchID)	
 
-	http.Redirect(w, r, Sector_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Sector_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Sector Page 
-func sector_PopulatePage(rD dm.Sector, pageDetail Sector_Page) Sector_Page {
+func sector_PopulatePage(rD dm.Sector, pageDetail dm.Sector_Page) dm.Sector_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -261,7 +227,7 @@ func sector_PopulatePage(rD dm.Sector, pageDetail Sector_Page) Sector_Page {
 	pageDetail.Name_props = rD.Name_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

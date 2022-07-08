@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:24
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,47 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//country_PageList provides the information for the template for a list of Countrys
-type Country_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Country
-}
-//Country_Redirect provides a page to return to aftern an action
-const (
-	
-	Country_Redirect = dm.Country_PathList
-	
-)
 
-//country_Page provides the information for the template for an individual Country
-type Country_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Code_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	ShortCode         string
-	ShortCode_props     dm.FieldProperties
-	EU_EEA         string
-	EU_EEA_props     dm.FieldProperties
-	HolidaysWeekend         string
-	HolidaysWeekend_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -95,7 +55,7 @@ func Country_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Country
 	noItems, returnList, _ := dao.Country_GetList()
 
-	pageDetail := Country_PageList{
+	pageDetail := dm.Country_PageList{
 		Title:            CardTitle(dm.Country_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Country_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -126,7 +86,7 @@ func Country_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Country_QueryString)
 	_, rD, _ := dao.Country_GetByID(searchID)
 
-	pageDetail := Country_Page{
+	pageDetail := dm.Country_Page{
 		Title:       CardTitle(dm.Country_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -157,7 +117,7 @@ func Country_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Country_QueryString)
 	_, rD, _ := dao.Country_GetByID(searchID)
 	
-	pageDetail := Country_Page{
+	pageDetail := dm.Country_Page{
 		Title:       CardTitle(dm.Country_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -186,7 +146,7 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Country
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Country_Code_scrn)
 		item.Name = r.FormValue(dm.Country_Name_scrn)
@@ -195,10 +155,10 @@ func Country_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.HolidaysWeekend = r.FormValue(dm.Country_HolidaysWeekend_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Country_Store(item,r)	
-	http.Redirect(w, r, Country_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Country_Redirect, http.StatusFound)
 }
 
 
@@ -215,7 +175,7 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.Country_New()
 
-	pageDetail := Country_Page{
+	pageDetail := dm.Country_Page{
 		Title:       CardTitle(dm.Country_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Country_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -233,9 +193,9 @@ func Country_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Country Page 
-func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
+func country_PopulatePage(rD dm.Country, pageDetail dm.Country_Page) dm.Country_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -245,7 +205,7 @@ func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -265,7 +225,7 @@ func country_PopulatePage(rD dm.Country, pageDetail Country_Page) Country_Page {
 	pageDetail.HolidaysWeekend_props = rD.HolidaysWeekend_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:33
+// Date & Time		    : 28/06/2022 at 16:10:58
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,60 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//test1_PageList provides the information for the template for a list of Test1s
-type Test1_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Test1
-}
-//Test1_Redirect provides a page to return to aftern an action
-const (
-	
-	Test1_Redirect = dm.Test1_PathList
-	
-)
 
-//test1_Page provides the information for the template for an individual Test1
-type Test1_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	ID_props     dm.FieldProperties
-	Endpoint         string
-	Endpoint_props     dm.FieldProperties
-	Descr         string
-	Descr_props     dm.FieldProperties
-	Query         string
-	Query_props     dm.FieldProperties
-	Source         string
-	Source_props     dm.FieldProperties
-	Firm         string
-	Firm_lookup    []dm.Lookup_Item
-	Firm_props     dm.FieldProperties
-	YN         string
-	YN_lookup    []dm.Lookup_Item
-	YN_props     dm.FieldProperties
-	User         string
-	User_lookup    []dm.Lookup_Item
-	User_props     dm.FieldProperties
-	Cheese         string
-	Cheese_props     dm.FieldProperties
-	Onion         string
-	Onion_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -108,7 +55,7 @@ func Test1_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Test1
 	noItems, returnList, _ := dao.Test1_GetList()
 
-	pageDetail := Test1_PageList{
+	pageDetail := dm.Test1_PageList{
 		Title:            CardTitle(dm.Test1_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Test1_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -139,7 +86,7 @@ func Test1_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Test1_QueryString)
 	_, rD, _ := dao.Test1_GetByID(searchID)
 
-	pageDetail := Test1_Page{
+	pageDetail := dm.Test1_Page{
 		Title:       CardTitle(dm.Test1_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Test1_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -170,7 +117,7 @@ func Test1_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Test1_QueryString)
 	_, rD, _ := dao.Test1_GetByID(searchID)
 	
-	pageDetail := Test1_Page{
+	pageDetail := dm.Test1_Page{
 		Title:       CardTitle(dm.Test1_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Test1_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -199,7 +146,7 @@ func Test1_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Test1
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.Test1_ID_scrn)
 		item.Endpoint = r.FormValue(dm.Test1_Endpoint_scrn)
@@ -213,10 +160,10 @@ func Test1_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Onion = r.FormValue(dm.Test1_Onion_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Test1_Store(item,r)	
-	http.Redirect(w, r, Test1_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Test1_Redirect, http.StatusFound)
 }
 
 
@@ -233,7 +180,7 @@ func Test1_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.Test1_New()
 
-	pageDetail := Test1_Page{
+	pageDetail := dm.Test1_Page{
 		Title:       CardTitle(dm.Test1_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Test1_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -263,14 +210,14 @@ func Test1_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Test1_Delete(searchID)	
 
-	http.Redirect(w, r, Test1_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Test1_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Test1 Page 
-func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
+func test1_PopulatePage(rD dm.Test1, pageDetail dm.Test1_Page) dm.Test1_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.Endpoint = rD.Endpoint
@@ -285,7 +232,7 @@ func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	pageDetail.Onion = rD.Onion
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -326,7 +273,7 @@ func test1_PopulatePage(rD dm.Test1, pageDetail Test1_Page) Test1_Page {
 	pageDetail.Onion_props = rD.Onion_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:11
+// Date & Time		    : 28/06/2022 at 16:10:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -36,19 +36,19 @@ func CustomerOnboarding_Update_impl(id string,rec dm.CustomerOnboarding, usr str
 
 	// If there are fields below, create the methods in adaptor\customeronboarding_impl.go
 	// START - GET API/Callout
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - GET API/Callout
 	//
 	// START - PUT API/Callout
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - PUT API/Callout
 
 func CustomerOnboarding_Simulator_ProcessResponse_impl(filename string) error {
@@ -65,9 +65,27 @@ func customeronboarding_Simulator_ProcessResponse_impl (tokens []string,latestTo
 }
 
 	// START - Validation API/Callout
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - Validation API/Callout
+
+func CustomerOnboarding_ObjectValidation_impl (iAction string, iId string, iRec dm.CustomerOnboarding) (dm.CustomerOnboarding, error, string) {
+	logs.Callout("CustomerOnboarding", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
+
+		case NEW:
+
+		case PUT:
+
+		case GET:
+
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

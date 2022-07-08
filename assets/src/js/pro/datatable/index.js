@@ -69,6 +69,7 @@ const TYPE_OPTIONS = {
   rowsText: 'string',
   ofText: 'string',
   allText: 'string',
+  forceSort: 'boolean',
 };
 
 const TYPE_COLUMN_FIELDS = {
@@ -111,6 +112,7 @@ const DEFAULT_OPTIONS = {
   rowsText: 'Rows per page:',
   ofText: 'of',
   allText: 'All',
+  forceSort: false,
 };
 
 const DEFAUL_COLUMN = {
@@ -201,11 +203,19 @@ class Datatable {
 
       if (Array.isArray(row)) {
         this.columns.forEach((column, i) => {
-          output[column.field] = row[i] || this._options.defaultValue;
+          if (row[i] === 0) {
+            output[column.field] = row[i];
+          } else {
+            output[column.field] = row[i] || this._options.defaultValue;
+          }
         });
       } else if (typeof row === 'object') {
         this.columns.forEach((column) => {
-          output[column.field] = row[column.field] || this._options.defaultValue;
+          if (row[column.field] === 0) {
+            output[column.field] = row[column.field];
+          } else {
+            output[column.field] = row[column.field] || this._options.defaultValue;
+          }
         });
       }
 
@@ -247,7 +257,8 @@ class Datatable {
     if (this._options.entries === 'All') {
       return 1;
     }
-    return Math.ceil(this.rows.length / this._options.entries);
+
+    return Math.ceil(this.searchResult.length / this._options.entries);
   }
 
   get navigationText() {
@@ -303,6 +314,7 @@ class Datatable {
         ofText: this._options.ofText,
         allText: this._options.allText,
       },
+      forceSort: this._options.forceSort,
     };
   }
 
@@ -345,7 +357,9 @@ class Datatable {
 
     this._activePage = 0;
 
-    this._toggleDisableState();
+    if (this._options.pagination) {
+      this._toggleDisableState();
+    }
 
     this._renderRows();
   }
@@ -623,7 +637,7 @@ class Datatable {
         if (this._sortField === field && this._sortOrder === 'asc') {
           this._sortOrder = 'desc';
         } else if (this._sortField === field && this._sortOrder === 'desc') {
-          this._sortOrder = null;
+          this._sortOrder = this._options.forceSort ? 'asc' : null;
         } else {
           this._sortOrder = 'asc';
         }

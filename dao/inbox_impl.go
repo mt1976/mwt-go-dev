@@ -22,7 +22,7 @@ import (
 // Inbox_GetList() returns a list of all Inbox records
 func Inbox_GetListByUser(inUser string) (int, []dm.Inbox, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Inbox_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Inbox_SQLTable)
 	tsql = tsql + " WHERE " + dm.Inbox_MailTo_sql + "='" + inUser + "'"
 
 	count, inboxList, _, _ := inbox_Fetch(tsql)
@@ -33,7 +33,7 @@ func Inbox_GetListByUser(inUser string) (int, []dm.Inbox, error) {
 // Inbox_GetList() returns a list of all Inbox records
 func Inbox_GetUnreadByUser(inUser string) (int, []dm.Inbox, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Inbox_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Inbox_SQLTable)
 	tsql = tsql + " WHERE " + dm.Inbox_MailTo_sql + "='" + inUser + "'"
 	tsql = tsql + " AND " + dm.Inbox_MailUnread_sql + "='" + "true" + "'"
 

@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:11
+// Date & Time		    : 28/06/2022 at 16:10:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -32,7 +32,7 @@ func Transaction_Update_impl(id string,rec dm.Transaction, usr string) (error) {
 
 	// If there are fields below, create the methods in adaptor\transaction_impl.go
 	// START - GET API/Callout
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func Transaction_Dealt_OnStore_impl (fieldval string,rec dm.Transaction,usr string) (string,error)  {
 	logs.Callout("Transaction", "Dealt", PUT, rec.SienaReference)
@@ -44,39 +44,57 @@ func Transaction_Against_OnStore_impl (fieldval string,rec dm.Transaction,usr st
 	}
 
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - GET API/Callout
 	//
 	// START - PUT API/Callout
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func Transaction_Dealt_OnFetch_impl (rec dm.Transaction)(string) {
 	logs.Callout("Transaction", "Dealt", GET, rec.SienaReference)
-	return ""
+	return rec.Dealt
 	}
 func Transaction_Against_OnFetch_impl (rec dm.Transaction)(string) {
 	logs.Callout("Transaction", "Against", GET, rec.SienaReference)
-	return ""
+	return rec.Against
 	}
 
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - PUT API/Callout
 
 	// START - Validation API/Callout
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	// Transaction_Dealt_Impl provides validation/actions for Dealt
-	func Transaction_Dealt_Impl (iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	// Transaction_Dealt_impl provides validation/actions for Dealt
+	func Transaction_Dealt_impl (iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Transaction", "Dealt", VAL +"-"+iAction, iId)
-	return "",fP
+	return iValue,fP
 	}
-	// Transaction_Against_Impl provides validation/actions for Against
-	func Transaction_Against_Impl (iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	// Transaction_Against_impl provides validation/actions for Against
+	func Transaction_Against_impl (iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Transaction", "Against", VAL +"-"+iAction, iId)
-	return "",fP
+	return iValue,fP
 	}
 
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - Validation API/Callout
+
+func Transaction_ObjectValidation_impl (iAction string, iId string, iRec dm.Transaction) (dm.Transaction, error, string) {
+	logs.Callout("Transaction", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
+
+		case NEW:
+
+		case PUT:
+
+		case GET:
+
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

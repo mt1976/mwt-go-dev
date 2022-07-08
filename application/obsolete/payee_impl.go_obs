@@ -51,7 +51,7 @@ func Payee_HandlerViewItem(w http.ResponseWriter, r *http.Request) {
 	_, rD, _ := dao.Payee_GetByFullKey(idSource, idFirm, idCentre, idCCY, idName, idNumber, idDirection, idType)
 
 	pageDetail := Payee_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Payee_Title, core.Action_View),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:23
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func CounterpartyImport_GetByID(id string) (int, dm.CounterpartyImport, error) {
 	_, _, counterpartyimportItem, _ := counterpartyimport_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, counterpartyimportItem, nil
 }
@@ -91,13 +91,17 @@ func CounterpartyImport_StoreSystem(r dm.CounterpartyImport) error {
 
 // CounterpartyImport_Validate() validates for saves/stores a CounterpartyImport record to the database
 func CounterpartyImport_Validate(r dm.CounterpartyImport) (error,dm.CounterpartyImport) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -160,7 +164,7 @@ func counterpartyimport_Fetch(tsql string) (int, []dm.CounterpartyImport, dm.Cou
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.KeyImportID  = get_String(rec, dm.CounterpartyImport_KeyImportID_sql, "")
 	   recItem.Firm  = get_String(rec, dm.CounterpartyImport_Firm_sql, "")
@@ -182,7 +186,7 @@ func counterpartyimport_Fetch(tsql string) (int, []dm.CounterpartyImport, dm.Cou
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -212,10 +216,10 @@ func CounterpartyImport_New() (int, []dm.CounterpartyImport, dm.CounterpartyImpo
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

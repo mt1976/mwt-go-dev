@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-passport me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     <button type="submit" value="" class="btn btn-primary" formaction="/CounterpartyExtensionsNew" method="GET" title="Create a new Counterparty Extension"><i class="fas fa-plus me-2"></i>New</button>
-                    <button id="export" type="button" class="btn btn-info" title="Export Counterparty Extension as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Counterparty Extension"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center">NameFirm</th>
                           <th class="text-center">NameCentre</th>
                           <th class="text-center">BICCode</th>
@@ -126,12 +129,65 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center">NameFirm</th>
+                          <th class="text-center">NameCentre</th>
+                          <th class="text-center">BICCode</th>
+                          <th class="text-center">ContactIndicator</th>
+                          <th class="text-center">CoverTrade</th>
+                          <th class="text-center">CustomerCategory</th>
+                          <th class="text-center">FSCSInclusive</th>
+                          <th class="text-center">FeeFactor</th>
+                          <th class="text-center">InactiveStatus</th>
+                          <th class="text-center">Indemnity</th>
+                          <th class="text-center">KnowYourCustomerStatus</th>
+                          <th class="text-center">LERLimitCarveOut</th>
+                          <th class="text-center">LastAmended</th>
+                          <th class="text-center">LastLogin</th>
+                          <th class="text-center">LossGivenDefault</th>
+                          <th class="text-center">MIC</th>
+                          <th class="text-center">ProtectedDepositor</th>
+                          <th class="text-center">RPTCurrency</th>
+                          <th class="text-center">RateTimeout</th>
+                          <th class="text-center">RateValidation</th>
+                          <th class="text-center">Registered</th>
+                          <th class="text-center">RegulatoryCategory</th>
+                          <th class="text-center">SecuredSettlement</th>
+                          <th class="text-center">SettlementLimitCarveOut</th>
+                          <th class="text-center">SortCode</th>
+                          <th class="text-center">Training</th>
+                          <th class="text-center">TrainingCode</th>
+                          <th class="text-center">TrainingReceived</th>
+                          <th class="text-center">Unencumbered</th>
+                          <th class="text-center">LEIExpiryDate</th>
+                          <th class="text-center">MIFIDReviewDate</th>
+                          <th class="text-center">GDPRReviewDate</th>
+                          <th class="text-center">DelegatedReporting</th>
+                          <th class="text-center">BOReconcile</th>
+                          <th class="text-center">MIFIDReportableDealsAllowed</th>
+                          <th class="text-center">SignedInvestmentAgreement</th>
+                          <th class="text-center">AppropriatenessAssessment</th>
+                          <th class="text-center">FinancialCounterparty</th>
+                          <th class="text-center">Collateralisation</th>
+                          <th class="text-center">PortfolioCode</th>
+                          <th class="text-center">ReconciliationLetterFrequency</th>
+                          <th class="text-center">DirectDealing</th>
+                          <th class="text-center"><i class="fas fa-key me-2"></i>CompID</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

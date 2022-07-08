@@ -1,0 +1,36 @@
+@startuml
+actor User as user
+boundary http_ObjectNameEdit as web
+control application.ObjectName_Edit as app
+entity dao.ObjectName as dao
+control DataAccessService as das 
+database SRS as db
+
+== Display ==
+user -> web: Request
+web->app: GET
+app->dao: ObjectName_GetByID
+dao->das: Fetch
+das->db: SELECT
+db->das: Result
+das->dao: Parse Results
+dao->app: Result Set
+app-> web: Build Page
+web->user:Display Page
+== Submit ==
+user -> web: Submit
+web->app: POST
+app->dao: ObjectName_Save
+dao->das: Parse Object
+das->db: INSERT
+db->das: Result
+das->dao: Parse Results
+dao->app: Result Set
+alt success
+app->web: Redirect to Next Page
+web->user: Display Page
+else failure
+app->web: Redirect to Oops Page
+web->user: Display Page
+end
+@enduml

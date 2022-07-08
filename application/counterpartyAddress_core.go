@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:22
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,53 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//counterpartyaddress_PageList provides the information for the template for a list of CounterpartyAddresss
-type CounterpartyAddress_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CounterpartyAddress
-}
-//CounterpartyAddress_Redirect provides a page to return to aftern an action
-const (
-	
-	CounterpartyAddress_Redirect = dm.CounterpartyAddress_PathList
-	
-)
 
-//counterpartyaddress_Page provides the information for the template for an individual CounterpartyAddress
-type CounterpartyAddress_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	NameFirm         string
-	NameFirm_props     dm.FieldProperties
-	NameCentre         string
-	NameCentre_props     dm.FieldProperties
-	Address1         string
-	Address1_props     dm.FieldProperties
-	Address2         string
-	Address2_props     dm.FieldProperties
-	CityTown         string
-	CityTown_props     dm.FieldProperties
-	County         string
-	County_props     dm.FieldProperties
-	Postcode         string
-	Postcode_props     dm.FieldProperties
-	CompID         string
-	CompID_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -101,7 +55,7 @@ func CounterpartyAddress_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.CounterpartyAddress
 	noItems, returnList, _ := dao.CounterpartyAddress_GetList()
 
-	pageDetail := CounterpartyAddress_PageList{
+	pageDetail := dm.CounterpartyAddress_PageList{
 		Title:            CardTitle(dm.CounterpartyAddress_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CounterpartyAddress_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -132,7 +86,7 @@ func CounterpartyAddress_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CounterpartyAddress_QueryString)
 	_, rD, _ := dao.CounterpartyAddress_GetByID(searchID)
 
-	pageDetail := CounterpartyAddress_Page{
+	pageDetail := dm.CounterpartyAddress_Page{
 		Title:       CardTitle(dm.CounterpartyAddress_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CounterpartyAddress_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -163,7 +117,7 @@ func CounterpartyAddress_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CounterpartyAddress_QueryString)
 	_, rD, _ := dao.CounterpartyAddress_GetByID(searchID)
 	
-	pageDetail := CounterpartyAddress_Page{
+	pageDetail := dm.CounterpartyAddress_Page{
 		Title:       CardTitle(dm.CounterpartyAddress_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CounterpartyAddress_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -192,7 +146,7 @@ func CounterpartyAddress_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CounterpartyAddress
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.NameFirm = r.FormValue(dm.CounterpartyAddress_NameFirm_scrn)
 		item.NameCentre = r.FormValue(dm.CounterpartyAddress_NameCentre_scrn)
@@ -204,10 +158,10 @@ func CounterpartyAddress_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CompID = r.FormValue(dm.CounterpartyAddress_CompID_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyAddress_Store(item,r)	
-	http.Redirect(w, r, CounterpartyAddress_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CounterpartyAddress_Redirect, http.StatusFound)
 }
 
 
@@ -224,7 +178,7 @@ func CounterpartyAddress_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.CounterpartyAddress_New()
 
-	pageDetail := CounterpartyAddress_Page{
+	pageDetail := dm.CounterpartyAddress_Page{
 		Title:       CardTitle(dm.CounterpartyAddress_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CounterpartyAddress_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -254,14 +208,14 @@ func CounterpartyAddress_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.CounterpartyAddress_Delete(searchID)	
 
-	http.Redirect(w, r, CounterpartyAddress_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CounterpartyAddress_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the CounterpartyAddress Page 
-func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail CounterpartyAddress_Page) CounterpartyAddress_Page {
+func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail dm.CounterpartyAddress_Page) dm.CounterpartyAddress_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -274,7 +228,7 @@ func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail Coun
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -303,7 +257,7 @@ func counterpartyaddress_PopulatePage(rD dm.CounterpartyAddress, pageDetail Coun
 	pageDetail.CompID_props = rD.CompID_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

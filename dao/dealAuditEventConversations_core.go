@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:27
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func DealAuditEventConversations_GetByID(id string) (int, dm.DealAuditEventConve
 	_, _, dealauditeventconversationsItem, _ := dealauditeventconversations_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, dealauditeventconversationsItem, nil
 }
@@ -91,13 +91,17 @@ func DealAuditEventConversations_StoreSystem(r dm.DealAuditEventConversations) e
 
 // DealAuditEventConversations_Validate() validates for saves/stores a DealAuditEventConversations record to the database
 func DealAuditEventConversations_Validate(r dm.DealAuditEventConversations) (error,dm.DealAuditEventConversations) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -164,7 +168,7 @@ func dealauditeventconversations_Fetch(tsql string) (int, []dm.DealAuditEventCon
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.DealRefNo  = get_String(rec, dm.DealAuditEventConversations_DealRefNo_sql, "")
 	   recItem.EventIndex  = get_Int(rec, dm.DealAuditEventConversations_EventIndex_sql, "0")
@@ -194,7 +198,7 @@ func dealauditeventconversations_Fetch(tsql string) (int, []dm.DealAuditEventCon
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -224,10 +228,10 @@ func DealAuditEventConversations_New() (int, []dm.DealAuditEventConversations, d
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

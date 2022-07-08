@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:27
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -44,10 +44,10 @@ func DealAuditEvent_GetByID(id string) (int, dm.DealAuditEvent, error) {
 	_, _, dealauditeventItem, _ := dealauditevent_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, dealauditeventItem, nil
 }
@@ -91,13 +91,17 @@ func DealAuditEvent_StoreSystem(r dm.DealAuditEvent) error {
 
 // DealAuditEvent_Validate() validates for saves/stores a DealAuditEvent record to the database
 func DealAuditEvent_Validate(r dm.DealAuditEvent) (error,dm.DealAuditEvent) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -173,7 +177,7 @@ func dealauditevent_Fetch(tsql string) (int, []dm.DealAuditEvent, dm.DealAuditEv
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.DealRefNo  = get_String(rec, dm.DealAuditEvent_DealRefNo_sql, "")
 	   recItem.EventIndex  = get_Int(rec, dm.DealAuditEvent_EventIndex_sql, "0")
@@ -221,7 +225,7 @@ func dealauditevent_Fetch(tsql string) (int, []dm.DealAuditEvent, dm.DealAuditEv
 	
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -251,10 +255,10 @@ func DealAuditEvent_New() (int, []dm.DealAuditEvent, dm.DealAuditEvent, error) {
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

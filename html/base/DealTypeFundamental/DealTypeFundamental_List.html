@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-toolbox me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     <button type="submit" value="" class="btn btn-primary" formaction="/DealTypeFundamentalNew" method="GET" title="Create a new Deal Type Fundamental"><i class="fas fa-plus me-2"></i>New</button>
-                    <button id="export" type="button" class="btn btn-info" title="Export Deal Type Fundamental as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Deal Type Fundamental"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center"><i class="fas fa-key me-2"></i>DealTypeKey</th>
                           <th class="text-center">Amendment</th>
                           <th class="text-center">DefaultFrequency</th>
@@ -220,12 +223,112 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center"><i class="fas fa-key me-2"></i>DealTypeKey</th>
+                          <th class="text-center">Amendment</th>
+                          <th class="text-center">DefaultFrequency</th>
+                          <th class="text-center">Directions</th>
+                          <th class="text-center">SettledTermDealType</th>
+                          <th class="text-center">Optn</th>
+                          <th class="text-center">AllowPledge</th>
+                          <th class="text-center">Takeup</th>
+                          <th class="text-center">MismatchDealType</th>
+                          <th class="text-center">SettledHedgeTermDealType</th>
+                          <th class="text-center">SettlementCode</th>
+                          <th class="text-center">TermSubType</th>
+                          <th class="text-center">FundingDealType</th>
+                          <th class="text-center">TransferType</th>
+                          <th class="text-center">TermDealType</th>
+                          <th class="text-center">NegotiableInstrumentType</th>
+                          <th class="text-center">Mismatch</th>
+                          <th class="text-center">ComplexTransferSubType</th>
+                          <th class="text-center">LayOffDealType</th>
+                          <th class="text-center">NIAccount</th>
+                          <th class="text-center">SimpleMMsubtype</th>
+                          <th class="text-center">SwapDealType</th>
+                          <th class="text-center">Positions</th>
+                          <th class="text-center">OptionOutright</th>
+                          <th class="text-center">SettledHedgeSpotDealType</th>
+                          <th class="text-center">StraightThroughInterestMethod</th>
+                          <th class="text-center">SubType</th>
+                          <th class="text-center">Rollover</th>
+                          <th class="text-center">DefaultIssuer</th>
+                          <th class="text-center">DefaultStartDate</th>
+                          <th class="text-center">Fee</th>
+                          <th class="text-center">NDF</th>
+                          <th class="text-center">FXFX</th>
+                          <th class="text-center">ONIA</th>
+                          <th class="text-center">MarginSubType</th>
+                          <th class="text-center">TransferDealType</th>
+                          <th class="text-center">IsFX</th>
+                          <th class="text-center">Ordr</th>
+                          <th class="text-center">OptionStyle</th>
+                          <th class="text-center">SpotDealType</th>
+                          <th class="text-center">CanIssue</th>
+                          <th class="text-center">CanShort</th>
+                          <th class="text-center">FXMarginTradingType</th>
+                          <th class="text-center">Internal</th>
+                          <th class="text-center">TicketBasename</th>
+                          <th class="text-center">InterestRateFutureType</th>
+                          <th class="text-center">TradingLimitProductCode</th>
+                          <th class="text-center">Forward</th>
+                          <th class="text-center">MaturityNotificationPeriod</th>
+                          <th class="text-center">NotificationEvents</th>
+                          <th class="text-center">SwapSubType</th>
+                          <th class="text-center">ProductCode</th>
+                          <th class="text-center">Funding</th>
+                          <th class="text-center">AllocationPricing</th>
+                          <th class="text-center">CancelPeriod</th>
+                          <th class="text-center">MMMarginTradingType</th>
+                          <th class="text-center">OptionSpot</th>
+                          <th class="text-center">Transfer</th>
+                          <th class="text-center">NotificationPeriod</th>
+                          <th class="text-center">Paymentdateshift</th>
+                          <th class="text-center">CloseOut</th>
+                          <th class="text-center">FXOptionPricing</th>
+                          <th class="text-center">SettledHedgeOutrightDealType</th>
+                          <th class="text-center">RepoBond</th>
+                          <th class="text-center">RepoTerm</th>
+                          <th class="text-center">RepoType</th>
+                          <th class="text-center">DateRule</th>
+                          <th class="text-center">CorpTransferDealType</th>
+                          <th class="text-center">GenerateFXImage</th>
+                          <th class="text-center">Variant</th>
+                          <th class="text-center">HedgeTermDealType</th>
+                          <th class="text-center">PricingModel</th>
+                          <th class="text-center">HedgeOutrightDealType</th>
+                          <th class="text-center">Fixing</th>
+                          <th class="text-center">Payment</th>
+                          <th class="text-center">MT</th>
+                          <th class="text-center">SettlementInstructionStyle</th>
+                          <th class="text-center">QuoteHistoryRequired</th>
+                          <th class="text-center">Brokerage</th>
+                          <th class="text-center">ExposureDisabled</th>
+                          <th class="text-center">CreditLine</th>
+                          <th class="text-center">Encumbered</th>
+                          <th class="text-center">InternalId</th>
+                          <th class="text-center">InternalDeleted</th>
+                          <th class="text-center">UpdatedTransactionId</th>
+                          <th class="text-center">UpdatedUserId</th>
+                          <th class="text-center">UpdatedDateTime</th>
+                          <th class="text-center">DeletedTransactionId</th>
+                          <th class="text-center">DeletedUserId</th>
+                          <th class="text-center">ChangeType</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-industry me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     
-                    <button id="export" type="button" class="btn btn-info" title="Export Owner as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Owner"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center"><i class="fas fa-key me-2"></i>UserName</th>
                           <th class="text-center">FullName</th>
                           <th class="text-center">Type</th>
@@ -70,12 +73,37 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center"><i class="fas fa-key me-2"></i>UserName</th>
+                          <th class="text-center">FullName</th>
+                          <th class="text-center">Type</th>
+                          <th class="text-center">TradingEntity</th>
+                          <th class="text-center">DefaultEnterBook</th>
+                          <th class="text-center">EmailAddress</th>
+                          <th class="text-center">Enabled</th>
+                          <th class="text-center">ExternalUserIds</th>
+                          <th class="text-center">Language</th>
+                          <th class="text-center">LocalCurrency</th>
+                          <th class="text-center">Role</th>
+                          <th class="text-center">TelephoneNumber</th>
+                          <th class="text-center">TokenId</th>
+                          <th class="text-center">Entity</th>
+                          <th class="text-center">UserCode</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

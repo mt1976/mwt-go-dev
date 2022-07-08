@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:27
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,85 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dealinginterface_PageList provides the information for the template for a list of DealingInterfaces
-type DealingInterface_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DealingInterface
-}
-//DealingInterface_Redirect provides a page to return to aftern an action
-const (
-	
-	DealingInterface_Redirect = dm.DealingInterface_PathList
-	
-)
 
-//dealinginterface_Page provides the information for the template for an individual DealingInterface
-type DealingInterface_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Name         string
-	Name_props     dm.FieldProperties
-	AcceptReducedAmount         string
-	AcceptReducedAmount_props     dm.FieldProperties
-	QuoteAsIndicative         string
-	QuoteAsIndicative_props     dm.FieldProperties
-	RateTimeOut         string
-	RateTimeOut_props     dm.FieldProperties
-	PropagationDelay         string
-	PropagationDelay_props     dm.FieldProperties
-	CheckLiquidity         string
-	CheckLiquidity_props     dm.FieldProperties
-	ChangeQuoteDirection         string
-	ChangeQuoteDirection_props     dm.FieldProperties
-	GenerateRejectedDeals         string
-	GenerateRejectedDeals_props     dm.FieldProperties
-	SpotUpdatesForForwardQuotes         string
-	SpotUpdatesForForwardQuotes_props     dm.FieldProperties
-	SettlementInstructionStyle         string
-	SettlementInstructionStyle_props     dm.FieldProperties
-	CanRetractQuotes         string
-	CanRetractQuotes_props     dm.FieldProperties
-	CancelESPifNotPriced         string
-	CancelESPifNotPriced_props     dm.FieldProperties
-	CancelRFQSifNotPriced         string
-	CancelRFQSifNotPriced_props     dm.FieldProperties
-	CancelonDealingSuspended         string
-	CancelonDealingSuspended_props     dm.FieldProperties
-	CreditCheckedatDI         string
-	CreditCheckedatDI_props     dm.FieldProperties
-	DuplicateCheckonExternalRef         string
-	DuplicateCheckonExternalRef_props     dm.FieldProperties
-	LimitCheckQuote         string
-	LimitCheckQuote_props     dm.FieldProperties
-	LimitCheckonRFQDealSubmission         string
-	LimitCheckonRFQDealSubmission_props     dm.FieldProperties
-	ListenonLimits         string
-	ListenonLimits_props     dm.FieldProperties
-	MarginStyle         string
-	MarginStyle_props     dm.FieldProperties
-	UseRerouteDefinitionOnly         string
-	UseRerouteDefinitionOnly_props     dm.FieldProperties
-	BypassConfirmation         string
-	BypassConfirmation_props     dm.FieldProperties
-	DIOnAcceptance         string
-	DIOnAcceptance_props     dm.FieldProperties
-	IgnoreESPAmountRules         string
-	IgnoreESPAmountRules_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -133,7 +55,7 @@ func DealingInterface_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DealingInterface
 	noItems, returnList, _ := dao.DealingInterface_GetList()
 
-	pageDetail := DealingInterface_PageList{
+	pageDetail := dm.DealingInterface_PageList{
 		Title:            CardTitle(dm.DealingInterface_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealingInterface_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -164,7 +86,7 @@ func DealingInterface_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealingInterface_QueryString)
 	_, rD, _ := dao.DealingInterface_GetByID(searchID)
 
-	pageDetail := DealingInterface_Page{
+	pageDetail := dm.DealingInterface_Page{
 		Title:       CardTitle(dm.DealingInterface_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -195,7 +117,7 @@ func DealingInterface_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealingInterface_QueryString)
 	_, rD, _ := dao.DealingInterface_GetByID(searchID)
 	
-	pageDetail := DealingInterface_Page{
+	pageDetail := dm.DealingInterface_Page{
 		Title:       CardTitle(dm.DealingInterface_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -224,7 +146,7 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealingInterface
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Name = r.FormValue(dm.DealingInterface_Name_scrn)
 		item.AcceptReducedAmount = r.FormValue(dm.DealingInterface_AcceptReducedAmount_scrn)
@@ -252,10 +174,10 @@ func DealingInterface_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.IgnoreESPAmountRules = r.FormValue(dm.DealingInterface_IgnoreESPAmountRules_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealingInterface_Store(item,r)	
-	http.Redirect(w, r, DealingInterface_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DealingInterface_Redirect, http.StatusFound)
 }
 
 
@@ -272,7 +194,7 @@ func DealingInterface_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.DealingInterface_New()
 
-	pageDetail := DealingInterface_Page{
+	pageDetail := dm.DealingInterface_Page{
 		Title:       CardTitle(dm.DealingInterface_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.DealingInterface_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -302,14 +224,14 @@ func DealingInterface_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.DealingInterface_Delete(searchID)	
 
-	http.Redirect(w, r, DealingInterface_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DealingInterface_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the DealingInterface Page 
-func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInterface_Page) DealingInterface_Page {
+func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail dm.DealingInterface_Page) dm.DealingInterface_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Name = rD.Name
 	pageDetail.AcceptReducedAmount = rD.AcceptReducedAmount
@@ -338,7 +260,7 @@ func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInt
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -415,7 +337,7 @@ func dealinginterface_PopulatePage(rD dm.DealingInterface, pageDetail DealingInt
 	pageDetail.IgnoreESPAmountRules_props = rD.IgnoreESPAmountRules_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-city me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     
-                    
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Data Loader"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           
                           <th class="text-center"><i class="fas fa-key me-2"></i>Id</th>
                           <th class="text-center">Name</th>
@@ -74,12 +77,39 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          <th class="text-center"><i class="fas fa-key me-2"></i>Id</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Filename</th>
+                          <th class="text-center">Lastrun</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Type</th>
+                          <th class="text-center">Instance</th>
+                          <th class="text-center">Extension</th>
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

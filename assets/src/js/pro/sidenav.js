@@ -79,7 +79,7 @@ const DEFAULT_OPTIONS = {
   scrollContainer: null,
   slim: false,
   slimCollapsed: false,
-  slimWidth: 70,
+  slimWidth: 77,
   position: 'fixed',
   right: false,
   transitionDuration: 300,
@@ -586,7 +586,10 @@ class Sidenav {
       });
     }
 
-    this._perfectScrollbar = new PerfectScrollbar(container, { suppressScrollX: true });
+    this._perfectScrollbar = new PerfectScrollbar(container, {
+      suppressScrollX: true,
+      handlers: ['click-rail', 'drag-thumb', 'wheel', 'touch'],
+    });
   }
 
   _setupSlim() {

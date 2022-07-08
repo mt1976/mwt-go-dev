@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:32
+// Date & Time		    : 28/06/2022 at 16:10:57
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,91 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//session_PageList provides the information for the template for a list of Sessions
-type Session_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Session
-}
-//Session_Redirect provides a page to return to aftern an action
-const (
-	
-	Session_Redirect = dm.Session_PathList
-	
-)
 
-//session_Page provides the information for the template for an individual Session
-type Session_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	Apptoken         string
-	Apptoken_props     dm.FieldProperties
-	Createdate         string
-	Createdate_props     dm.FieldProperties
-	Createtime         string
-	Createtime_props     dm.FieldProperties
-	Uniqueid         string
-	Uniqueid_props     dm.FieldProperties
-	Sessiontoken         string
-	Sessiontoken_props     dm.FieldProperties
-	Username         string
-	Username_props     dm.FieldProperties
-	Password         string
-	Password_props     dm.FieldProperties
-	Userip         string
-	Userip_props     dm.FieldProperties
-	Userhost         string
-	Userhost_props     dm.FieldProperties
-	Appip         string
-	Appip_props     dm.FieldProperties
-	Apphost         string
-	Apphost_props     dm.FieldProperties
-	Issued         string
-	Issued_props     dm.FieldProperties
-	Expiry         string
-	Expiry_props     dm.FieldProperties
-	Expiryraw         string
-	Expiryraw_props     dm.FieldProperties
-	Brand         string
-	Brand_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	SYSWho         string
-	SYSWho_props     dm.FieldProperties
-	SYSHost         string
-	SYSHost_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	Id         string
-	Id_props     dm.FieldProperties
-	Expires         string
-	Expires_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	SessionRole         string
-	SessionRole_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -139,7 +55,7 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Session
 	noItems, returnList, _ := dao.Session_GetList()
 
-	pageDetail := Session_PageList{
+	pageDetail := dm.Session_PageList{
 		Title:            CardTitle(dm.Session_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Session_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -170,7 +86,7 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Session_QueryString)
 	_, rD, _ := dao.Session_GetByID(searchID)
 
-	pageDetail := Session_Page{
+	pageDetail := dm.Session_Page{
 		Title:       CardTitle(dm.Session_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Session_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -201,7 +117,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Session
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Session_SYSId_scrn)
 		item.Apptoken = r.FormValue(dm.Session_Apptoken_scrn)
@@ -232,19 +148,19 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SessionRole = r.FormValue(dm.Session_SessionRole_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Session_Store(item,r)	
-	http.Redirect(w, r, Session_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Session_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the Session Page 
-func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
+func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Apptoken = rD.Apptoken
@@ -276,7 +192,7 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -362,7 +278,7 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	pageDetail.SessionRole_props = rD.SessionRole_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

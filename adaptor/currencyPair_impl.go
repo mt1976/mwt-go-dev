@@ -96,3 +96,50 @@ func CurrencyPair_Code_Impl(iAction string, iId string, iValue string, iRec dm.C
 //
 // Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
+
+// If there are fields below, create the methods in adaptor\currencypair_impl.go
+// START - GET API/Callout
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+//
+
+//
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+// END - GET API/Callout
+//
+// START - PUT API/Callout
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+//
+
+//
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+// END - PUT API/Callout
+
+// START - Validation API/Callout
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+//
+// CurrencyPair_Code_impl provides validation/actions for Code
+func CurrencyPair_Code_impl(iAction string, iId string, iValue string, iRec dm.CurrencyPair, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("CurrencyPair", "Code", VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+//
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+// END - Validation API/Callout
+
+func CurrencyPair_ObjectValidation_impl(iAction string, iId string, iRec dm.CurrencyPair) (dm.CurrencyPair, error, string) {
+	logs.Callout("CurrencyPair", "ObjectValidation", VAL+"-"+iAction, iId)
+	switch iAction {
+	case VAL:
+
+	case NEW:
+
+	case PUT:
+
+	case GET:
+
+	default:
+		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+	}
+	return iRec, nil, ""
+}

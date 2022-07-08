@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:30
+// Date & Time		    : 28/06/2022 at 16:10:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,79 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//marketrates_PageList provides the information for the template for a list of MarketRatess
-type MarketRates_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.MarketRates
-}
-//MarketRates_Redirect provides a page to return to aftern an action
-const (
-	
-	MarketRates_Redirect = dm.MarketRates_PathList
-	
-)
 
-//marketrates_Page provides the information for the template for an individual MarketRates
-type MarketRates_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	Id         string
-	Id_props     dm.FieldProperties
-	Bid         string
-	Bid_props     dm.FieldProperties
-	Mid         string
-	Mid_props     dm.FieldProperties
-	Offer         string
-	Offer_props     dm.FieldProperties
-	Market         string
-	Market_props     dm.FieldProperties
-	Tenor         string
-	Tenor_props     dm.FieldProperties
-	Series         string
-	Series_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	Source         string
-	Source_props     dm.FieldProperties
-	Destination         string
-	Destination_props     dm.FieldProperties
-	Class         string
-	Class_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	SYSWho         string
-	SYSWho_props     dm.FieldProperties
-	SYSHost         string
-	SYSHost_props     dm.FieldProperties
-	Date         string
-	Date_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -127,7 +55,7 @@ func MarketRates_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.MarketRates
 	noItems, returnList, _ := dao.MarketRates_GetList()
 
-	pageDetail := MarketRates_PageList{
+	pageDetail := dm.MarketRates_PageList{
 		Title:            CardTitle(dm.MarketRates_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.MarketRates_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -158,7 +86,7 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.MarketRates_QueryString)
 	_, rD, _ := dao.MarketRates_GetByID(searchID)
 
-	pageDetail := MarketRates_Page{
+	pageDetail := dm.MarketRates_Page{
 		Title:       CardTitle(dm.MarketRates_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.MarketRates_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -179,9 +107,9 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the MarketRates Page 
-func marketrates_PopulatePage(rD dm.MarketRates, pageDetail MarketRates_Page) MarketRates_Page {
+func marketrates_PopulatePage(rD dm.MarketRates, pageDetail dm.MarketRates_Page) dm.MarketRates_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -207,7 +135,7 @@ func marketrates_PopulatePage(rD dm.MarketRates, pageDetail MarketRates_Page) Ma
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -275,7 +203,7 @@ func marketrates_PopulatePage(rD dm.MarketRates, pageDetail MarketRates_Page) Ma
 	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

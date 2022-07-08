@@ -31,7 +31,7 @@ func Credentials_HandlerBan(w http.ResponseWriter, r *http.Request) {
 	}
 	core.ServiceMessageAction(inUTL, "Ban", searchID)
 	banCredentialsStore(searchID, r)
-	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
 }
 
 func Credentials_HandlerActivate(w http.ResponseWriter, r *http.Request) {
@@ -49,13 +49,13 @@ func Credentials_HandlerActivate(w http.ResponseWriter, r *http.Request) {
 	}
 	core.ServiceMessageAction(inUTL, "Activate", searchID)
 	activateCredentialsStore(searchID, r)
-	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
 
 }
 
 func getExpiryDate() string {
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
+	life, _ := strconv.Atoi(core.ApplicationCredentialsLife())
 	expiryDate = expiryDate.AddDate(0, 0, life)
 	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
@@ -75,11 +75,11 @@ func activateCredentialsStore(id string, req *http.Request) {
 	dao.Credentials_Store(r, req)
 }
 
-func credentials_HandlerViewImpl(pageDetail Credentials_Page) Credentials_Page {
+func credentials_HandlerViewImpl(pageDetail dm.Credentials_Page) dm.Credentials_Page {
 	return pageDetail
 }
 
-func credentials_HandlerEditImpl(pageDetail Credentials_Page) Credentials_Page {
+func credentials_HandlerEditImpl(pageDetail dm.Credentials_Page) dm.Credentials_Page {
 	return pageDetail
 }
 

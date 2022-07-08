@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:26
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,68 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dataloaderdata_PageList provides the information for the template for a list of DataLoaderDatas
-type DataLoaderData_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DataLoaderData
-}
-//DataLoaderData_Redirect provides a page to return to aftern an action
-const (
-	
-	DataLoaderData_Redirect = dm.DataLoaderData_PathList
-	
-)
 
-//dataloaderdata_Page provides the information for the template for an individual DataLoaderData
-type DataLoaderData_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	Id         string
-	Id_props     dm.FieldProperties
-	Row         string
-	Row_props     dm.FieldProperties
-	Position         string
-	Position_props     dm.FieldProperties
-	Value         string
-	Value_props     dm.FieldProperties
-	Loader         string
-	Loader_lookup    []dm.Lookup_Item
-	Loader_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	SYSWho         string
-	SYSWho_props     dm.FieldProperties
-	SYSHost         string
-	SYSHost_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	Map         string
-	Map_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -116,7 +55,7 @@ func DataLoaderData_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DataLoaderData
 	noItems, returnList, _ := dao.DataLoaderData_GetList()
 
-	pageDetail := DataLoaderData_PageList{
+	pageDetail := dm.DataLoaderData_PageList{
 		Title:            CardTitle(dm.DataLoaderData_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DataLoaderData_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -147,7 +86,7 @@ func DataLoaderData_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
 	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
 
-	pageDetail := DataLoaderData_Page{
+	pageDetail := dm.DataLoaderData_Page{
 		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -178,7 +117,7 @@ func DataLoaderData_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
 	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
 	
-	pageDetail := DataLoaderData_Page{
+	pageDetail := dm.DataLoaderData_Page{
 		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -207,7 +146,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DataLoaderData
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.DataLoaderData_SYSId_scrn)
 		item.Id = r.FormValue(dm.DataLoaderData_Id_scrn)
@@ -226,19 +165,19 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.DataLoaderData_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DataLoaderData_Store(item,r)	
-	http.Redirect(w, r, DataLoaderData_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DataLoaderData_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the DataLoaderData Page 
-func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData_Page) DataLoaderData_Page {
+func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail dm.DataLoaderData_Page) dm.DataLoaderData_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -258,7 +197,7 @@ func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -310,7 +249,7 @@ func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData
 	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

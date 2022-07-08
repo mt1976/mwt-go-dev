@@ -107,3 +107,9 @@ const (
 	FieldMessage_NORMAL   = ""
 	FieldMessage_POSITIVE = "is-valid"
 )
+
+const (
+	ContextState_ERROR  = "action-error"
+	ContextState_NORMAL = "action-success"
+	ContextState_OK     = "action-success"
+)

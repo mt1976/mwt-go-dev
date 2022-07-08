@@ -1,10 +1,12 @@
 package core
 
 import (
+	"fmt"
 	"os"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/davecgh/go-spew/spew"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
@@ -65,17 +67,19 @@ func Initialise() {
 	// TODO: load them into the var sourceAccess []*sql.DB slice
 
 	SessionManager = scs.New()
-	life, err := time.ParseDuration(ApplicationProperties["sessionlife"])
+	fmt.Printf("ApplicationSessionLife(): %v\n", ApplicationSessionLife())
+	life, err := time.ParseDuration(ApplicationSessionLife())
 	if err != nil {
 		logs.Fatal("No Session Life Found", err)
 	}
 	SessionManager.Lifetime = life
 	SessionManager.IdleTimeout = 20 * time.Minute
-	SessionManager.Cookie.Name = ApplicationProperties["releaseid"]
+	SessionManager.Cookie.Name = GetCookieIdentity()
 	SessionManager.Cookie.HttpOnly = true
 	SessionManager.Cookie.Persist = true
 	//SessionManager.Cookie.SameSite = http.SameSiteStrictMode
 	SessionManager.Cookie.Secure = false
-
+	spew.Dump(SessionManager)
+	fmt.Printf("SessionManager: %v\n", SessionManager)
 	logs.Information("Initialisation", "Vroooom Vrooooom! "+Bike+Bike)
 }

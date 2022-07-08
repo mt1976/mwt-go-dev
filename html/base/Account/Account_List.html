@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-landmark me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     
-                    <button id="export" type="button" class="btn btn-info" title="Export Account as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Account"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center"><i class="fas fa-key me-2"></i>SienaReference</th>
                           <th class="text-center">CustomerSienaView</th>
                           <th class="text-center">SienaCommonRef</th>
@@ -180,12 +183,92 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center"><i class="fas fa-key me-2"></i>SienaReference</th>
+                          <th class="text-center">CustomerSienaView</th>
+                          <th class="text-center">SienaCommonRef</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">StartDate</th>
+                          <th class="text-center">MaturityDate</th>
+                          <th class="text-center">ContractNumber</th>
+                          <th class="text-center">ExternalReference</th>
+                          <th class="text-center">CCY</th>
+                          <th class="text-center">Book</th>
+                          <th class="text-center">MandatedUser</th>
+                          <th class="text-center">BackOfficeNotes</th>
+                          <th class="text-center">CashBalance</th>
+                          <th class="text-center">AccountNumber</th>
+                          <th class="text-center">AccountName</th>
+                          <th class="text-center">LedgerBalance</th>
+                          <th class="text-center">Portfolio</th>
+                          <th class="text-center">AgreementId</th>
+                          <th class="text-center">BackOfficeRefNo</th>
+                          <th class="text-center">ISIN</th>
+                          <th class="text-center">UTI</th>
+                          <th class="text-center">CCYName</th>
+                          <th class="text-center">BookName</th>
+                          <th class="text-center">PortfolioName</th>
+                          <th class="text-center">Centre</th>
+                          <th class="text-center">DealTypeKey</th>
+                          <th class="text-center">DealTypeShortName</th>
+                          <th class="text-center">InternalId</th>
+                          <th class="text-center">InternalDeleted</th>
+                          <th class="text-center">UpdatedTransactionId</th>
+                          <th class="text-center">UpdatedUserId</th>
+                          <th class="text-center">UpdatedDateTime</th>
+                          <th class="text-center">DeletedTransactionId</th>
+                          <th class="text-center">DeletedUserId</th>
+                          <th class="text-center">ChangeType</th>
+                          <th class="text-center">CCYDp</th>
+                          <th class="text-center">CompID</th>
+                          <th class="text-center">Firm</th>
+                          <th class="text-center">DealType</th>
+                          <th class="text-center">FullDealType</th>
+                          <th class="text-center">DealingInterface</th>
+                          <th class="text-center">DealtAmount</th>
+                          <th class="text-center">ParentContractNumber</th>
+                          <th class="text-center">InterestFrequency</th>
+                          <th class="text-center">InterestAction</th>
+                          <th class="text-center">InterestStrategy</th>
+                          <th class="text-center">InterestBasis</th>
+                          <th class="text-center">SienaDealer</th>
+                          <th class="text-center">DealOwner</th>
+                          <th class="text-center">OriginUser</th>
+                          <th class="text-center">EditedByUser</th>
+                          <th class="text-center">DealOwnerMnemonic</th>
+                          <th class="text-center">UTCOriginTime</th>
+                          <th class="text-center">UTCUpdateTime</th>
+                          <th class="text-center">CustomerStatementNotes</th>
+                          <th class="text-center">NotesMargin</th>
+                          <th class="text-center">RequestedBy</th>
+                          <th class="text-center">EditReason</th>
+                          <th class="text-center">EditOtherReason</th>
+                          <th class="text-center">NoticeDays</th>
+                          <th class="text-center">DebitFrequency</th>
+                          <th class="text-center">CreditFrequency</th>
+                          <th class="text-center">EURAmount</th>
+                          <th class="text-center">EUROtherAmount</th>
+                          <th class="text-center">PaymentSystemSienaView</th>
+                          <th class="text-center">PaymentSystemExternalView</th>
+                          <th class="text-center">DealtCA</th>
+                          <th class="text-center">AgainstCA</th>
+                          <th class="text-center">LedgerCA</th>
+                          <th class="text-center">CashBalanceCA</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

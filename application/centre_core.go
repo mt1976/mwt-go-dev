@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:20
+// Date & Time		    : 28/06/2022 at 16:10:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,44 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//centre_PageList provides the information for the template for a list of Centres
-type Centre_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Centre
-}
-//Centre_Redirect provides a page to return to aftern an action
-const (
-	
-	Centre_Redirect = dm.Centre_PathList
-	
-)
 
-//centre_Page provides the information for the template for an individual Centre
-type Centre_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Code_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	Country         string
-	Country_lookup    []dm.Lookup_Item
-	Country_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -92,7 +55,7 @@ func Centre_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Centre
 	noItems, returnList, _ := dao.Centre_GetList()
 
-	pageDetail := Centre_PageList{
+	pageDetail := dm.Centre_PageList{
 		Title:            CardTitle(dm.Centre_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Centre_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -123,7 +86,7 @@ func Centre_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Centre_QueryString)
 	_, rD, _ := dao.Centre_GetByID(searchID)
 
-	pageDetail := Centre_Page{
+	pageDetail := dm.Centre_Page{
 		Title:       CardTitle(dm.Centre_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Centre_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -154,7 +117,7 @@ func Centre_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Centre_QueryString)
 	_, rD, _ := dao.Centre_GetByID(searchID)
 	
-	pageDetail := Centre_Page{
+	pageDetail := dm.Centre_Page{
 		Title:       CardTitle(dm.Centre_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Centre_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -183,17 +146,17 @@ func Centre_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Centre
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Centre_Code_scrn)
 		item.Name = r.FormValue(dm.Centre_Name_scrn)
 		item.Country = r.FormValue(dm.Centre_Country_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Centre_Store(item,r)	
-	http.Redirect(w, r, Centre_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Centre_Redirect, http.StatusFound)
 }
 
 
@@ -210,7 +173,7 @@ func Centre_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.Centre_New()
 
-	pageDetail := Centre_Page{
+	pageDetail := dm.Centre_Page{
 		Title:       CardTitle(dm.Centre_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Centre_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -240,14 +203,14 @@ func Centre_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Centre_Delete(searchID)	
 
-	http.Redirect(w, r, Centre_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Centre_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Centre Page 
-func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
+func centre_PopulatePage(rD dm.Centre, pageDetail dm.Centre_Page) dm.Centre_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -255,7 +218,7 @@ func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -271,7 +234,7 @@ func centre_PopulatePage(rD dm.Centre, pageDetail Centre_Page) Centre_Page {
 	pageDetail.Country_props = rD.Country_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

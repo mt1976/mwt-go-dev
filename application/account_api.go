@@ -8,8 +8,8 @@ package application
 // Endpoint 	        : Account (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:16
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 29/06/2022 at 22:43:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 

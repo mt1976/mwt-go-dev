@@ -84,8 +84,8 @@ func ListNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:             UserMenu_Get(r),
 		UserRole:             Session_GetUserRole(r),
 		UserNavi:             "NOT USED",
-		Title:                core.ApplicationProperties["appname"],
-		PageTitle:            core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts",
+		Title:                core.ApplicationName(),
+		PageTitle:            core.ApplicationName() + " - " + "Bonds & Gilts",
 		NISelectedStoreCount: noItems,
 		NISelectedStoreList:  returnList,
 	}
@@ -112,8 +112,8 @@ func ViewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetNISelectedStoreByID(searchID)
 
 	pageCredentialStoreList := appNISelectedStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - View",
+		Title:     core.ApplicationName(),
+		PageTitle: core.ApplicationName() + " - " + "Bonds & Gilts - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
@@ -151,8 +151,8 @@ func EditNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetNISelectedStoreByID(searchID)
 
 	pageCredentialStoreList := appNISelectedStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - Edit",
+		Title:     core.ApplicationName(),
+		PageTitle: core.ApplicationName() + " - " + "Bonds & Gilts - Edit",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -266,8 +266,8 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appNISelectedStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Bonds & Gilts - New",
+		Title:     core.ApplicationName(),
+		PageTitle: core.ApplicationName() + " - " + "Bonds & Gilts - New",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -283,14 +283,14 @@ func NewNISelectedStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getNISelectedStoreList read all employees
 func GetNISelectedStoreList(unused *sql.DB) (int, []AppNISelectedStoreItem, error) {
-	tsql := fmt.Sprintf(appNISelectedStoreSQLSELECT, appNISelectedStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appNISelectedStoreSQLSELECT, appNISelectedStoreSQL, core.ApplicationSQLSchema())
 	count, appNISelectedStoreList, _, _ := fetchNISelectedStoreData(core.ApplicationDB, tsql)
 	return count, appNISelectedStoreList, nil
 }
 
 // getNISelectedStoreList read all employees
 func GetNISelectedStoreByID(id string) (int, AppNISelectedStoreItem, error) {
-	tsql := fmt.Sprintf(appNISelectedStoreSQLGET, appNISelectedStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appNISelectedStoreSQLGET, appNISelectedStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, AppNISelectedStoreItem, _ := fetchNISelectedStoreData(core.ApplicationDB, tsql)
 	return 1, AppNISelectedStoreItem, nil
 }
@@ -333,8 +333,8 @@ func putNISelectedStoreUser(r AppNISelectedStoreItem, userID string) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appNISelectedStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appNISelectedStoreSQL, r.Id, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appNISelectedStoreSQLINSERT, core.ApplicationSQLSchema(), appNISelectedStoreSQL, r.Id, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -351,7 +351,7 @@ func putNISelectedStoreUser(r AppNISelectedStoreItem, userID string) {
 
 func deleteNISelectedStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appNISelectedStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql)
 	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {

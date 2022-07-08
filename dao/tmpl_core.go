@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:33
+// Date & Time		    : 28/06/2022 at 16:10:58
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -29,7 +29,7 @@ import (
 // Tmpl_GetList() returns a list of all Tmpl records
 func Tmpl_GetList() (int, []dm.Tmpl, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Tmpl_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Tmpl_SQLTable)
 	count, tmplList, _, _ := tmpl_Fetch(tsql)
 
 	return count, tmplList, nil
@@ -38,19 +38,19 @@ func Tmpl_GetList() (int, []dm.Tmpl, error) {
 // Tmpl_GetByID() returns a single Tmpl record
 func Tmpl_GetByID(id string) (int, dm.Tmpl, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Tmpl_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Tmpl_SQLTable)
 	tsql = tsql + " WHERE " + dm.Tmpl_SQLSearchID + "='" + id + "'"
 	_, _, tmplItem, _ := tmpl_Fetch(tsql)
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	tmplItem.ID, tmplItem.ID_props = adaptor.Tmpl_ID_Impl(adaptor.GET, id, tmplItem.ID, tmplItem, tmplItem.ID_props)
-	tmplItem.ExtraField, tmplItem.ExtraField_props = adaptor.Tmpl_ExtraField_Impl(adaptor.GET, id, tmplItem.ExtraField, tmplItem, tmplItem.ExtraField_props)
-	tmplItem.ExtraField3, tmplItem.ExtraField3_props = adaptor.Tmpl_ExtraField3_Impl(adaptor.GET, id, tmplItem.ExtraField3, tmplItem, tmplItem.ExtraField3_props)
-	tmplItem.TDate, tmplItem.TDate_props = adaptor.Tmpl_TDate_Impl(adaptor.GET, id, tmplItem.TDate, tmplItem, tmplItem.TDate_props)
+	tmplItem.ID, tmplItem.ID_props = adaptor.Tmpl_ID_impl(adaptor.GET, id, tmplItem.ID, tmplItem, tmplItem.ID_props)
+	tmplItem.ExtraField, tmplItem.ExtraField_props = adaptor.Tmpl_ExtraField_impl(adaptor.GET, id, tmplItem.ExtraField, tmplItem, tmplItem.ExtraField_props)
+	tmplItem.ExtraField3, tmplItem.ExtraField3_props = adaptor.Tmpl_ExtraField3_impl(adaptor.GET, id, tmplItem.ExtraField3, tmplItem, tmplItem.ExtraField3_props)
+	tmplItem.TDate, tmplItem.TDate_props = adaptor.Tmpl_TDate_impl(adaptor.GET, id, tmplItem.TDate, tmplItem, tmplItem.TDate_props)
 	//
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return 1, tmplItem, nil
 }
@@ -58,7 +58,7 @@ func Tmpl_GetByID(id string) (int, dm.Tmpl, error) {
 // Tmpl_DeleteByID() deletes a single Tmpl record
 func Tmpl_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.Tmpl_SQLTable
+	object_Table := core.ApplicationSQLSchema() + "." + dm.Tmpl_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.Tmpl_SQLSearchID + " = '" + id + "'"
 
@@ -94,17 +94,28 @@ func Tmpl_StoreSystem(r dm.Tmpl) error {
 
 // Tmpl_Validate() validates for saves/stores a Tmpl record to the database
 func Tmpl_Validate(r dm.Tmpl) (error, dm.Tmpl) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	r.ID, r.ID_props = adaptor.Tmpl_ID_Impl(adaptor.PUT, r.ID, r.ID, r, r.ID_props)
-	r.ExtraField, r.ExtraField_props = adaptor.Tmpl_ExtraField_Impl(adaptor.PUT, r.ID, r.ExtraField, r, r.ExtraField_props)
-	r.ExtraField3, r.ExtraField3_props = adaptor.Tmpl_ExtraField3_Impl(adaptor.PUT, r.ID, r.ExtraField3, r, r.ExtraField3_props)
-	r.TDate, r.TDate_props = adaptor.Tmpl_TDate_Impl(adaptor.PUT, r.ID, r.TDate, r, r.TDate_props)
+	r.ID, r.ID_props = adaptor.Tmpl_ID_impl(adaptor.PUT, r.ID, r.ID, r, r.ID_props)
+	r.ExtraField, r.ExtraField_props = adaptor.Tmpl_ExtraField_impl(adaptor.PUT, r.ID, r.ExtraField, r, r.ExtraField_props)
+	r.ExtraField3, r.ExtraField3_props = adaptor.Tmpl_ExtraField3_impl(adaptor.PUT, r.ID, r.ExtraField3, r, r.ExtraField3_props)
+	r.TDate, r.TDate_props = adaptor.Tmpl_TDate_impl(adaptor.PUT, r.ID, r.TDate, r, r.TDate_props)
 	//
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	return nil, r
+	//
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	r, _, _ = adaptor.Tmpl_ObjectValidation_impl(adaptor.PUT, r.ID, r)
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+
+	return err, r
 }
 
 //
@@ -139,7 +150,7 @@ func tmpl_Save(r dm.Tmpl, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Tmpl_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Tmpl_FIELD1_sql, r.FIELD1)
@@ -153,10 +164,10 @@ func tmpl_Save(r dm.Tmpl, usr string) error {
 	ts = addData(ts, dm.Tmpl_ID_sql, r.ID)
 
 	//
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Tmpl_SQLTable)
+	tsql := "INSERT INTO " + get_TableName(core.ApplicationSQLSchema(), dm.Tmpl_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " VALUES (" + values(ts) + ")"
 
@@ -182,7 +193,7 @@ func tmpl_Fetch(tsql string) (int, []dm.Tmpl, dm.Tmpl, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Tmpl_SYSId_sql, "0")
 		recItem.FIELD1 = get_String(rec, dm.Tmpl_FIELD1_sql, "N")
@@ -204,7 +215,7 @@ func tmpl_Fetch(tsql string) (int, []dm.Tmpl, dm.Tmpl, error) {
 		recItem.TDate = adaptor.Tmpl_TDate_OnFetch_impl(recItem)
 
 		//
-		// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -229,14 +240,14 @@ func Tmpl_New() (int, []dm.Tmpl, dm.Tmpl, error) {
 	var rList []dm.Tmpl
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	r.ID, r.ID_props = adaptor.Tmpl_ID_Impl(adaptor.NEW, r.ID, r.ID, r, r.ID_props)
-	r.ExtraField, r.ExtraField_props = adaptor.Tmpl_ExtraField_Impl(adaptor.NEW, r.ID, r.ExtraField, r, r.ExtraField_props)
-	r.ExtraField3, r.ExtraField3_props = adaptor.Tmpl_ExtraField3_Impl(adaptor.NEW, r.ID, r.ExtraField3, r, r.ExtraField3_props)
-	r.TDate, r.TDate_props = adaptor.Tmpl_TDate_Impl(adaptor.NEW, r.ID, r.TDate, r, r.TDate_props)
+	r.ID, r.ID_props = adaptor.Tmpl_ID_impl(adaptor.NEW, r.ID, r.ID, r, r.ID_props)
+	r.ExtraField, r.ExtraField_props = adaptor.Tmpl_ExtraField_impl(adaptor.NEW, r.ID, r.ExtraField, r, r.ExtraField_props)
+	r.ExtraField3, r.ExtraField3_props = adaptor.Tmpl_ExtraField3_impl(adaptor.NEW, r.ID, r.ExtraField3, r, r.ExtraField3_props)
+	r.TDate, r.TDate_props = adaptor.Tmpl_TDate_impl(adaptor.NEW, r.ID, r.TDate, r, r.TDate_props)
 	//
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	rList = append(rList, r)

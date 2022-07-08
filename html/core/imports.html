@@ -20,8 +20,11 @@
     <!-- BOOTSTRAP CSS -->
    
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Google Fonts Roboto -->
+   <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Google Fonts Roboto & Raleway -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 
     <!-- MDB -->
@@ -31,31 +34,22 @@
     <!--<link rel="stylesheet" href="../assets/MDB5/css/style.css" />-->
  <!--<link rel="stylesheet" href="../assets/custom.css">-->
 
-
     <link rel="stylesheet" href="/assets/css/mdb.min.css" />
+  <!--  <link rel="stylesheet" href="/assets/mdb-ui-kit/css/mdb.min.css" /> -->
+
+
+   <!-- <script type="text/javascript" src="/assets/mdb-ui-kit/js/mdb.min.js"></script>-->
     <!-- Custom styles -->
     <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="/assets/custom_table.css" />
+    <!--<link rel="stylesheet" href="/assets/custom_table.css" />-->
 
     <!--<script src="../assets/custom.js"></script>-->
 
     <!-- Add CUSTOM ICONS, FONTS & STYLES -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+
     <!-- END OF INSERTS -->
 
-<!-- Toasts -->
- <div class="d-flex" style="background-color:red;">
-<div class="alert alert-dismissible fade show" role="alert" data-mdb-color="warning" data-mdb-position="bottom-right" data-mdb-offset="10">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
-</div>
-<div class="alert alert-dismissible fade show" role="alert" data-mdb-color="success" data-mdb-position="bottom-right">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
-</div>
-</div>
-<!-- Toasts -->
+
 
 
 <!-- Navbar -->
@@ -128,8 +122,6 @@
 <!-- Content -->
     <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
     <title>{{.PageTitle}}</title>
-    <!-- DO NOT CHANGE -->
-    {{template "tablecontrols" .}}
 </head>{{end}} 
 
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
@@ -163,6 +155,7 @@
 </div>
     <!-- MDB -->
     <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+
     <!-- Custom scripts -->
     <script type="text/javascript" src="/assets/js/script.js"></script>
 </body>
@@ -229,8 +222,44 @@
 <!-- Definition of the Table Controls                                                                                      -->
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 {{define "tablecontrols"}}
+  
+    <script type="text/javascript" src="/assets/DataTables/datatables.min.js"></script>
+<script>
 
+$(document).ready(function () {
+    
 
+    
+  var table = $('#DataTable').DataTable({
+        stateSave: true,
+        language: {
+            decimal: ',',
+            thousands: '.',
+        },
+        scrollY: '65vh',
+        scrollX: true,
+        scrollCollapse: true,
+        pagingType: 'full_numbers',
+        colReorder: true,
+        dom: 'Bfrtip',
+        lengthMenu: [[ 10, 25, 50, 100,250, -1 ],[ '10 rows', '25 rows', '50 rows', '100 rows', '250 rows','Show all' ]],
+        buttons: [
+            {extend: "pageLength", className: "btn-white custo-list", titleAttr: "Rows"}, 
+               {
+                extend: 'spacer',
+                style: 'bar',
+               },
+            {extend: 'collection', className: 'btn-white custo-list', text: '<i class="fas fa-highlighter me-2"></i>Customise', buttons: ['searchBuilder', 'spacer','colvis','spacer', 'savedStatesCreate']},
+               {
+                extend: 'spacer',
+                style: 'bar',
+               },
+            {extend: 'collection', className: 'btn-white custo-list',text: '<i class="fas fa-file-export me-2"></i>Export', buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']},
+        ],
+
+    });
+});
+</script>
 {{end}}
 
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
@@ -238,48 +267,7 @@
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 {{define "exportcontrols"}}
 
-<script>
-    const toCsv = function(table) {
-      // Query all rows
-      const rows = table.querySelectorAll('tr');
 
-      return [].slice.call(rows)
-        .map(function(row) {
-          // Query all cells
-          const cells = row.querySelectorAll('th,td');
-          return [].slice.call(cells)
-            .map(function(cell) {
-              return '"' + cell.textContent + '"';
-            })
-            .join(',');
-        })
-        .join('\n');
-    };
-
-    const download = function(text, fileName) {
-      const link = document.createElement('a');
-      link.setAttribute('href', `data:text/csv;charset=utf-8,${encodeURIComponent(text)}`);
-      link.setAttribute('download', fileName);
-
-      link.style.display = 'none';
-      document.body.appendChild(link);
-
-      link.click();
-
-      document.body.removeChild(link);
-    };
-
-    const table = document.getElementById('ListTable');
-    const exportBtn = document.getElementById('export');
-
-    exportBtn.addEventListener('click', function() {
-      // Export to csv
-      const csv = toCsv(table);
-
-      // Download it
-      download(csv, 'export.csv');
-    });
-    </script>
 
 {{end}}
 
@@ -305,25 +293,16 @@
 <!-- Definition of the Toasts                                                                       -->
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 {{define "toasts"}}
-<div
-  class="toast fade mx-auto show"
-  id="basic-primary-example"
-  role="alert"
-  aria-live="assertive"
-  aria-atomic="true"
-  data-mdb-autohide="true"
-  data-mdb-delay="2000"
-  data-mdb-position="top-right"
-  data-mdb-append-to-body="true"
-  data-mdb-stacking="true"
-  data-mdb-width="400px"
-  data-mdb-color="primary"
->
-  <div class="toast-header">
-    <strong class="me-auto">MDBootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="btn-close" data-mdb-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">Primary Basic Example</div>
+<!-- Toasts -->
+ <div class="d-flex" style="background-color:red;">
+<div class="alert alert-dismissible fade show" role="alert" data-mdb-color="warning" data-mdb-position="bottom-right" data-mdb-offset="10">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
 </div>
+<div class="alert alert-dismissible fade show" role="alert" data-mdb-color="success" data-mdb-position="bottom-right">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+<!-- Toasts -->
 {{end}}

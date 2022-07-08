@@ -71,8 +71,8 @@ func ListCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu: UserMenu_Get(r),
 		UserRole: core.GetUserRole(r),
 		UserNavi: "NOT USED",
-		Title:    core.ApplicationProperties["appname"],
-		//PageTitle:       core.ApplicationProperties["appname"] + " - " + "Cache",
+		Title:    core.GetAppName(),
+		//PageTitle:       core.GetAppName() + " - " + "Cache",
 		PageTitle:       PageTitle(dm.DataCache_Title, "List"),
 		CacheStoreCount: noItems,
 		CacheStoreList:  returnList,
@@ -101,7 +101,7 @@ func ViewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := dao.DataCache_GetItemByID(searchID)
 
 	pageCacheStoreList := appCacheStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.DataCache_Title, "View"),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
@@ -146,7 +146,7 @@ func EditCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := dao.DataCache_GetItemByID(searchID)
 
 	pageCacheStoreList := appCacheStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.DataCache_Title, "Edit"),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -237,7 +237,7 @@ func NewCacheStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageCacheStoreList := appCacheStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.DataCache_Title, "New"),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),

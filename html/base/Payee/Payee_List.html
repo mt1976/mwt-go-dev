@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-wallet me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     
-                    <button id="export" type="button" class="btn btn-info" title="Export Payee as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Payee"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center">SourceTable</th>
                           <th class="text-center"><i class="fas fa-key me-2"></i>KeyCounterpartyFirm</th>
                           <th class="text-center">KeyCounterpartyCentre</th>
@@ -88,12 +91,46 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center">SourceTable</th>
+                          <th class="text-center"><i class="fas fa-key me-2"></i>KeyCounterpartyFirm</th>
+                          <th class="text-center">KeyCounterpartyCentre</th>
+                          <th class="text-center">KeyCurrency</th>
+                          <th class="text-center">KeyName</th>
+                          <th class="text-center">KeyNumber</th>
+                          <th class="text-center">KeyDirection</th>
+                          <th class="text-center">KeyType</th>
+                          <th class="text-center">FullName</th>
+                          <th class="text-center">Address</th>
+                          <th class="text-center">PhoneNo</th>
+                          <th class="text-center">Country</th>
+                          <th class="text-center">Bic</th>
+                          <th class="text-center">Iban</th>
+                          <th class="text-center">AccountNo</th>
+                          <th class="text-center">FedWireNo</th>
+                          <th class="text-center">SortCode</th>
+                          <th class="text-center">BankName</th>
+                          <th class="text-center">BankPinCode</th>
+                          <th class="text-center">BankAddress</th>
+                          <th class="text-center">Reason</th>
+                          <th class="text-center">BankSettlementAcct</th>
+                          <th class="text-center">UpdatedUserId</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

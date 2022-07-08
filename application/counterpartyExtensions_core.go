@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:22
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,123 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//counterpartyextensions_PageList provides the information for the template for a list of CounterpartyExtensionss
-type CounterpartyExtensions_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CounterpartyExtensions
-}
-//CounterpartyExtensions_Redirect provides a page to return to aftern an action
-const (
-	
-	CounterpartyExtensions_Redirect = dm.CounterpartyExtensions_PathList
-	
-)
 
-//counterpartyextensions_Page provides the information for the template for an individual CounterpartyExtensions
-type CounterpartyExtensions_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	NameFirm         string
-	NameFirm_props     dm.FieldProperties
-	NameCentre         string
-	NameCentre_props     dm.FieldProperties
-	BICCode         string
-	BICCode_props     dm.FieldProperties
-	ContactIndicator         string
-	ContactIndicator_props     dm.FieldProperties
-	CoverTrade         string
-	CoverTrade_props     dm.FieldProperties
-	CustomerCategory         string
-	CustomerCategory_props     dm.FieldProperties
-	FSCSInclusive         string
-	FSCSInclusive_props     dm.FieldProperties
-	FeeFactor         string
-	FeeFactor_props     dm.FieldProperties
-	InactiveStatus         string
-	InactiveStatus_props     dm.FieldProperties
-	Indemnity         string
-	Indemnity_props     dm.FieldProperties
-	KnowYourCustomerStatus         string
-	KnowYourCustomerStatus_props     dm.FieldProperties
-	LERLimitCarveOut         string
-	LERLimitCarveOut_props     dm.FieldProperties
-	LastAmended         string
-	LastAmended_props     dm.FieldProperties
-	LastLogin         string
-	LastLogin_props     dm.FieldProperties
-	LossGivenDefault         string
-	LossGivenDefault_props     dm.FieldProperties
-	MIC         string
-	MIC_props     dm.FieldProperties
-	ProtectedDepositor         string
-	ProtectedDepositor_props     dm.FieldProperties
-	RPTCurrency         string
-	RPTCurrency_props     dm.FieldProperties
-	RateTimeout         string
-	RateTimeout_props     dm.FieldProperties
-	RateValidation         string
-	RateValidation_props     dm.FieldProperties
-	Registered         string
-	Registered_props     dm.FieldProperties
-	RegulatoryCategory         string
-	RegulatoryCategory_props     dm.FieldProperties
-	SecuredSettlement         string
-	SecuredSettlement_props     dm.FieldProperties
-	SettlementLimitCarveOut         string
-	SettlementLimitCarveOut_props     dm.FieldProperties
-	SortCode         string
-	SortCode_props     dm.FieldProperties
-	Training         string
-	Training_props     dm.FieldProperties
-	TrainingCode         string
-	TrainingCode_props     dm.FieldProperties
-	TrainingReceived         string
-	TrainingReceived_props     dm.FieldProperties
-	Unencumbered         string
-	Unencumbered_props     dm.FieldProperties
-	LEIExpiryDate         string
-	LEIExpiryDate_props     dm.FieldProperties
-	MIFIDReviewDate         string
-	MIFIDReviewDate_props     dm.FieldProperties
-	GDPRReviewDate         string
-	GDPRReviewDate_props     dm.FieldProperties
-	DelegatedReporting         string
-	DelegatedReporting_props     dm.FieldProperties
-	BOReconcile         string
-	BOReconcile_props     dm.FieldProperties
-	MIFIDReportableDealsAllowed         string
-	MIFIDReportableDealsAllowed_props     dm.FieldProperties
-	SignedInvestmentAgreement         string
-	SignedInvestmentAgreement_props     dm.FieldProperties
-	AppropriatenessAssessment         string
-	AppropriatenessAssessment_props     dm.FieldProperties
-	FinancialCounterparty         string
-	FinancialCounterparty_props     dm.FieldProperties
-	Collateralisation         string
-	Collateralisation_props     dm.FieldProperties
-	PortfolioCode         string
-	PortfolioCode_props     dm.FieldProperties
-	ReconciliationLetterFrequency         string
-	ReconciliationLetterFrequency_props     dm.FieldProperties
-	DirectDealing         string
-	DirectDealing_props     dm.FieldProperties
-	CompID         string
-	CompID_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -171,7 +55,7 @@ func CounterpartyExtensions_HandlerList(w http.ResponseWriter, r *http.Request) 
 	var returnList []dm.CounterpartyExtensions
 	noItems, returnList, _ := dao.CounterpartyExtensions_GetList()
 
-	pageDetail := CounterpartyExtensions_PageList{
+	pageDetail := dm.CounterpartyExtensions_PageList{
 		Title:            CardTitle(dm.CounterpartyExtensions_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CounterpartyExtensions_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -202,7 +86,7 @@ func CounterpartyExtensions_HandlerView(w http.ResponseWriter, r *http.Request) 
 	searchID := core.GetURLparam(r, dm.CounterpartyExtensions_QueryString)
 	_, rD, _ := dao.CounterpartyExtensions_GetByID(searchID)
 
-	pageDetail := CounterpartyExtensions_Page{
+	pageDetail := dm.CounterpartyExtensions_Page{
 		Title:       CardTitle(dm.CounterpartyExtensions_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CounterpartyExtensions_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -233,7 +117,7 @@ func CounterpartyExtensions_HandlerEdit(w http.ResponseWriter, r *http.Request) 
 	searchID := core.GetURLparam(r, dm.CounterpartyExtensions_QueryString)
 	_, rD, _ := dao.CounterpartyExtensions_GetByID(searchID)
 	
-	pageDetail := CounterpartyExtensions_Page{
+	pageDetail := dm.CounterpartyExtensions_Page{
 		Title:       CardTitle(dm.CounterpartyExtensions_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CounterpartyExtensions_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -262,7 +146,7 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 
 	var item dm.CounterpartyExtensions
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.NameFirm = r.FormValue(dm.CounterpartyExtensions_NameFirm_scrn)
 		item.NameCentre = r.FormValue(dm.CounterpartyExtensions_NameCentre_scrn)
@@ -309,10 +193,10 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 		item.CompID = r.FormValue(dm.CounterpartyExtensions_CompID_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyExtensions_Store(item,r)	
-	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CounterpartyExtensions_Redirect, http.StatusFound)
 }
 
 
@@ -329,7 +213,7 @@ func CounterpartyExtensions_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.CounterpartyExtensions_New()
 
-	pageDetail := CounterpartyExtensions_Page{
+	pageDetail := dm.CounterpartyExtensions_Page{
 		Title:       CardTitle(dm.CounterpartyExtensions_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CounterpartyExtensions_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -359,14 +243,14 @@ func CounterpartyExtensions_HandlerDelete(w http.ResponseWriter, r *http.Request
 
 	dao.CounterpartyExtensions_Delete(searchID)	
 
-	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CounterpartyExtensions_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the CounterpartyExtensions Page 
-func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetail CounterpartyExtensions_Page) CounterpartyExtensions_Page {
+func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetail dm.CounterpartyExtensions_Page) dm.CounterpartyExtensions_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -414,7 +298,7 @@ func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetai
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -548,7 +432,7 @@ func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetai
 	pageDetail.CompID_props = rD.CompID_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

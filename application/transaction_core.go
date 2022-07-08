@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:11
+// Date & Time		    : 28/06/2022 at 16:10:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,265 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//transaction_PageList provides the information for the template for a list of Transactions
-type Transaction_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Transaction
-}
-//Transaction_Redirect provides a page to return to aftern an action
-const (
-	
-	Transaction_Redirect = dm.Transaction_PathList
-	
-)
 
-//transaction_Page provides the information for the template for an individual Transaction
-type Transaction_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	SienaReference_props     dm.FieldProperties
-	Status         string
-	Status_props     dm.FieldProperties
-	ValueDate         string
-	ValueDate_props     dm.FieldProperties
-	MaturityDate         string
-	MaturityDate_props     dm.FieldProperties
-	ContractNumber         string
-	ContractNumber_props     dm.FieldProperties
-	ExternalReference         string
-	ExternalReference_props     dm.FieldProperties
-	Book         string
-	Book_props     dm.FieldProperties
-	MandatedUser         string
-	MandatedUser_props     dm.FieldProperties
-	Portfolio         string
-	Portfolio_props     dm.FieldProperties
-	AgreementId         string
-	AgreementId_props     dm.FieldProperties
-	BackOfficeRefNo         string
-	BackOfficeRefNo_props     dm.FieldProperties
-	ISIN         string
-	ISIN_props     dm.FieldProperties
-	UTI         string
-	UTI_props     dm.FieldProperties
-	BookName         string
-	BookName_props     dm.FieldProperties
-	Centre         string
-	Centre_props     dm.FieldProperties
-	Firm         string
-	Firm_props     dm.FieldProperties
-	DealTypeShortName         string
-	DealTypeShortName_props     dm.FieldProperties
-	FullDealType         string
-	FullDealType_props     dm.FieldProperties
-	TradeDate         string
-	TradeDate_props     dm.FieldProperties
-	DealtCcy         string
-	DealtCcy_props     dm.FieldProperties
-	DealtAmount         string
-	DealtAmount_props     dm.FieldProperties
-	AgainstAmount         string
-	AgainstAmount_props     dm.FieldProperties
-	AgainstCcy         string
-	AgainstCcy_props     dm.FieldProperties
-	AllInRate         string
-	AllInRate_props     dm.FieldProperties
-	MktRate         string
-	MktRate_props     dm.FieldProperties
-	SettleCcy         string
-	SettleCcy_props     dm.FieldProperties
-	Direction         string
-	Direction_props     dm.FieldProperties
-	NpvRate         string
-	NpvRate_props     dm.FieldProperties
-	OriginUser         string
-	OriginUser_props     dm.FieldProperties
-	PayInstruction         string
-	PayInstruction_props     dm.FieldProperties
-	ReceiptInstruction         string
-	ReceiptInstruction_props     dm.FieldProperties
-	NIName         string
-	NIName_props     dm.FieldProperties
-	CCYPair         string
-	CCYPair_props     dm.FieldProperties
-	Instrument         string
-	Instrument_props     dm.FieldProperties
-	PortfolioName         string
-	PortfolioName_props     dm.FieldProperties
-	RVDate         string
-	RVDate_props     dm.FieldProperties
-	RVMTM         string
-	RVMTM_props     dm.FieldProperties
-	CounterBook         string
-	CounterBook_props     dm.FieldProperties
-	CounterBookName         string
-	CounterBookName_props     dm.FieldProperties
-	Party         string
-	Party_props     dm.FieldProperties
-	PartyName         string
-	PartyName_props     dm.FieldProperties
-	NameCentre         string
-	NameCentre_props     dm.FieldProperties
-	NameFirm         string
-	NameFirm_props     dm.FieldProperties
-	CustomerExternalView         string
-	CustomerExternalView_props     dm.FieldProperties
-	CustomerSienaView         string
-	CustomerSienaView_props     dm.FieldProperties
-	CompID         string
-	CompID_props     dm.FieldProperties
-	SienaDealer         string
-	SienaDealer_props     dm.FieldProperties
-	DealOwner         string
-	DealOwner_props     dm.FieldProperties
-	DealOwnerMnemonic         string
-	DealOwnerMnemonic_props     dm.FieldProperties
-	EditedByUser         string
-	EditedByUser_props     dm.FieldProperties
-	UTCOriginTime         string
-	UTCOriginTime_props     dm.FieldProperties
-	UTCUpdateTime         string
-	UTCUpdateTime_props     dm.FieldProperties
-	MarginTrading         string
-	MarginTrading_props     dm.FieldProperties
-	SwapPoints         string
-	SwapPoints_props     dm.FieldProperties
-	SpotDate         string
-	SpotDate_props     dm.FieldProperties
-	SpotRate         string
-	SpotRate_props     dm.FieldProperties
-	MktSpotRate         string
-	MktSpotRate_props     dm.FieldProperties
-	SpotSalesMargin         string
-	SpotSalesMargin_props     dm.FieldProperties
-	SpotChlMargin         string
-	SpotChlMargin_props     dm.FieldProperties
-	RerouteCcy         string
-	RerouteCcy_props     dm.FieldProperties
-	CustomerPayInstruction         string
-	CustomerPayInstruction_props     dm.FieldProperties
-	CustomerReceiptInstruction         string
-	CustomerReceiptInstruction_props     dm.FieldProperties
-	BackOfficeNotes         string
-	BackOfficeNotes_props     dm.FieldProperties
-	CustomerStatementNotes         string
-	CustomerStatementNotes_props     dm.FieldProperties
-	NotesMargin         string
-	NotesMargin_props     dm.FieldProperties
-	RequestedBy         string
-	RequestedBy_props     dm.FieldProperties
-	EditReason         string
-	EditReason_props     dm.FieldProperties
-	EditOtherReason         string
-	EditOtherReason_props     dm.FieldProperties
-	NICleanPrice         string
-	NICleanPrice_props     dm.FieldProperties
-	NIDirtyPrice         string
-	NIDirtyPrice_props     dm.FieldProperties
-	NIYield         string
-	NIYield_props     dm.FieldProperties
-	NIClearingSystem         string
-	NIClearingSystem_props     dm.FieldProperties
-	Acceptor         string
-	Acceptor_props     dm.FieldProperties
-	NIDiscount         string
-	NIDiscount_props     dm.FieldProperties
-	FastPay         string
-	FastPay_props     dm.FieldProperties
-	PaymentFee         string
-	PaymentFee_props     dm.FieldProperties
-	PaymentFeePolicy         string
-	PaymentFeePolicy_props     dm.FieldProperties
-	PaymentReason         string
-	PaymentReason_props     dm.FieldProperties
-	PaymentDate         string
-	PaymentDate_props     dm.FieldProperties
-	SettlementDate         string
-	SettlementDate_props     dm.FieldProperties
-	FixingDate         string
-	FixingDate_props     dm.FieldProperties
-	VenueUTI         string
-	VenueUTI_props     dm.FieldProperties
-	EditVersion         string
-	EditVersion_props     dm.FieldProperties
-	BrokeragePercentage         string
-	BrokeragePercentage_props     dm.FieldProperties
-	BrokerageAmount         string
-	BrokerageAmount_props     dm.FieldProperties
-	BrokerageCurrency         string
-	BrokerageCurrency_props     dm.FieldProperties
-	BrokerageDate         string
-	BrokerageDate_props     dm.FieldProperties
-	AccountName         string
-	AccountName_props     dm.FieldProperties
-	AccountNumber         string
-	AccountNumber_props     dm.FieldProperties
-	CashBalance         string
-	CashBalance_props     dm.FieldProperties
-	DebitFrequency         string
-	DebitFrequency_props     dm.FieldProperties
-	CreditFrequency         string
-	CreditFrequency_props     dm.FieldProperties
-	ManuallyQuoted         string
-	ManuallyQuoted_props     dm.FieldProperties
-	LedgerBalance         string
-	LedgerBalance_props     dm.FieldProperties
-	SettAmtOutstanding         string
-	SettAmtOutstanding_props     dm.FieldProperties
-	FeePercentage         string
-	FeePercentage_props     dm.FieldProperties
-	FeeAmount         string
-	FeeAmount_props     dm.FieldProperties
-	Venue         string
-	Venue_props     dm.FieldProperties
-	EURAmount         string
-	EURAmount_props     dm.FieldProperties
-	EUROtherAmount         string
-	EUROtherAmount_props     dm.FieldProperties
-	LEI         string
-	LEI_props     dm.FieldProperties
-	Equity         string
-	Equity_props     dm.FieldProperties
-	Shares         string
-	Shares_props     dm.FieldProperties
-	QuoteExpiryDate         string
-	QuoteExpiryDate_props     dm.FieldProperties
-	Commodity         string
-	Commodity_props     dm.FieldProperties
-	PaymentSystemSienaView         string
-	PaymentSystemSienaView_props     dm.FieldProperties
-	PaymentSystemExternalView         string
-	PaymentSystemExternalView_props     dm.FieldProperties
-	SalesProfit         string
-	SalesProfit_props     dm.FieldProperties
-	RejectReason         string
-	RejectReason_props     dm.FieldProperties
-	PaymentError         string
-	PaymentError_props     dm.FieldProperties
-	RepoPrincipal         string
-	RepoPrincipal_props     dm.FieldProperties
-	FixingFrequency         string
-	FixingFrequency_props     dm.FieldProperties
-	Dealt         string
-	Dealt_props     dm.FieldProperties
-	Against         string
-	Against_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -313,7 +55,7 @@ func Transaction_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Transaction
 	noItems, returnList, _ := dao.Transaction_GetList()
 
-	pageDetail := Transaction_PageList{
+	pageDetail := dm.Transaction_PageList{
 		Title:            CardTitle(dm.Transaction_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Transaction_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -344,7 +86,7 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Transaction_QueryString)
 	_, rD, _ := dao.Transaction_GetByID(searchID)
 
-	pageDetail := Transaction_Page{
+	pageDetail := dm.Transaction_Page{
 		Title:       CardTitle(dm.Transaction_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Transaction_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -365,9 +107,9 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Transaction Page 
-func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Transaction_Page {
+func transaction_PopulatePage(rD dm.Transaction, pageDetail dm.Transaction_Page) dm.Transaction_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.Status = rD.Status
@@ -486,7 +228,7 @@ func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Tr
 	pageDetail.Against = rD.Against
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -833,7 +575,7 @@ func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Tr
 	pageDetail.Against_props = rD.Against_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

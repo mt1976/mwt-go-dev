@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : Account (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:16
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 29/06/2022 at 22:43:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,182 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//account_PageList provides the information for the template for a list of Accounts
-type Account_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Account
-}
-//Account_Redirect provides a page to return to aftern an action
-const (
-	
-	Account_Redirect = dm.Account_PathList
-	
-)
 
-//account_Page provides the information for the template for an individual Account
-type Account_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	SienaReference_props     dm.FieldProperties
-	CustomerSienaView         string
-	CustomerSienaView_props     dm.FieldProperties
-	SienaCommonRef         string
-	SienaCommonRef_props     dm.FieldProperties
-	Status         string
-	Status_props     dm.FieldProperties
-	StartDate         string
-	StartDate_props     dm.FieldProperties
-	MaturityDate         string
-	MaturityDate_props     dm.FieldProperties
-	ContractNumber         string
-	ContractNumber_props     dm.FieldProperties
-	ExternalReference         string
-	ExternalReference_props     dm.FieldProperties
-	CCY         string
-	CCY_lookup    []dm.Lookup_Item
-	CCY_props     dm.FieldProperties
-	Book         string
-	Book_lookup    []dm.Lookup_Item
-	Book_props     dm.FieldProperties
-	MandatedUser         string
-	MandatedUser_props     dm.FieldProperties
-	BackOfficeNotes         string
-	BackOfficeNotes_props     dm.FieldProperties
-	CashBalance         string
-	CashBalance_props     dm.FieldProperties
-	AccountNumber         string
-	AccountNumber_props     dm.FieldProperties
-	AccountName         string
-	AccountName_props     dm.FieldProperties
-	LedgerBalance         string
-	LedgerBalance_props     dm.FieldProperties
-	Portfolio         string
-	Portfolio_lookup    []dm.Lookup_Item
-	Portfolio_props     dm.FieldProperties
-	AgreementId         string
-	AgreementId_props     dm.FieldProperties
-	BackOfficeRefNo         string
-	BackOfficeRefNo_props     dm.FieldProperties
-	ISIN         string
-	ISIN_props     dm.FieldProperties
-	UTI         string
-	UTI_props     dm.FieldProperties
-	CCYName         string
-	CCYName_props     dm.FieldProperties
-	BookName         string
-	BookName_props     dm.FieldProperties
-	PortfolioName         string
-	PortfolioName_props     dm.FieldProperties
-	Centre         string
-	Centre_lookup    []dm.Lookup_Item
-	Centre_props     dm.FieldProperties
-	DealTypeKey         string
-	DealTypeKey_props     dm.FieldProperties
-	DealTypeShortName         string
-	DealTypeShortName_props     dm.FieldProperties
-	InternalId         string
-	InternalId_props     dm.FieldProperties
-	InternalDeleted         string
-	InternalDeleted_props     dm.FieldProperties
-	UpdatedTransactionId         string
-	UpdatedTransactionId_props     dm.FieldProperties
-	UpdatedUserId         string
-	UpdatedUserId_props     dm.FieldProperties
-	UpdatedDateTime         string
-	UpdatedDateTime_props     dm.FieldProperties
-	DeletedTransactionId         string
-	DeletedTransactionId_props     dm.FieldProperties
-	DeletedUserId         string
-	DeletedUserId_props     dm.FieldProperties
-	ChangeType         string
-	ChangeType_props     dm.FieldProperties
-	CCYDp         string
-	CCYDp_props     dm.FieldProperties
-	CompID         string
-	CompID_props     dm.FieldProperties
-	Firm         string
-	Firm_lookup    []dm.Lookup_Item
-	Firm_props     dm.FieldProperties
-	DealType         string
-	DealType_props     dm.FieldProperties
-	FullDealType         string
-	FullDealType_props     dm.FieldProperties
-	DealingInterface         string
-	DealingInterface_props     dm.FieldProperties
-	DealtAmount         string
-	DealtAmount_props     dm.FieldProperties
-	ParentContractNumber         string
-	ParentContractNumber_props     dm.FieldProperties
-	InterestFrequency         string
-	InterestFrequency_props     dm.FieldProperties
-	InterestAction         string
-	InterestAction_props     dm.FieldProperties
-	InterestStrategy         string
-	InterestStrategy_props     dm.FieldProperties
-	InterestBasis         string
-	InterestBasis_props     dm.FieldProperties
-	SienaDealer         string
-	SienaDealer_props     dm.FieldProperties
-	DealOwner         string
-	DealOwner_props     dm.FieldProperties
-	OriginUser         string
-	OriginUser_props     dm.FieldProperties
-	EditedByUser         string
-	EditedByUser_props     dm.FieldProperties
-	DealOwnerMnemonic         string
-	DealOwnerMnemonic_props     dm.FieldProperties
-	UTCOriginTime         string
-	UTCOriginTime_props     dm.FieldProperties
-	UTCUpdateTime         string
-	UTCUpdateTime_props     dm.FieldProperties
-	CustomerStatementNotes         string
-	CustomerStatementNotes_props     dm.FieldProperties
-	NotesMargin         string
-	NotesMargin_props     dm.FieldProperties
-	RequestedBy         string
-	RequestedBy_props     dm.FieldProperties
-	EditReason         string
-	EditReason_props     dm.FieldProperties
-	EditOtherReason         string
-	EditOtherReason_props     dm.FieldProperties
-	NoticeDays         string
-	NoticeDays_props     dm.FieldProperties
-	DebitFrequency         string
-	DebitFrequency_props     dm.FieldProperties
-	CreditFrequency         string
-	CreditFrequency_props     dm.FieldProperties
-	EURAmount         string
-	EURAmount_props     dm.FieldProperties
-	EUROtherAmount         string
-	EUROtherAmount_props     dm.FieldProperties
-	PaymentSystemSienaView         string
-	PaymentSystemSienaView_props     dm.FieldProperties
-	PaymentSystemExternalView         string
-	PaymentSystemExternalView_props     dm.FieldProperties
-	DealtCA         string
-	DealtCA_props     dm.FieldProperties
-	AgainstCA         string
-	AgainstCA_props     dm.FieldProperties
-	LedgerCA         string
-	LedgerCA_props     dm.FieldProperties
-	CashBalanceCA         string
-	CashBalanceCA_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -230,7 +55,7 @@ func Account_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Account
 	noItems, returnList, _ := dao.Account_GetList()
 
-	pageDetail := Account_PageList{
+	pageDetail := dm.Account_PageList{
 		Title:            CardTitle(dm.Account_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Account_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -261,7 +86,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Account_QueryString)
 	_, rD, _ := dao.Account_GetByID(searchID)
 
-	pageDetail := Account_Page{
+	pageDetail := dm.Account_Page{
 		Title:       CardTitle(dm.Account_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Account_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -282,9 +107,9 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Account Page 
-func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
+func account_PopulatePage(rD dm.Account, pageDetail dm.Account_Page) dm.Account_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.CustomerSienaView = rD.CustomerSienaView
@@ -359,7 +184,7 @@ func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	pageDetail.CashBalanceCA = rD.CashBalanceCA
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -584,7 +409,7 @@ func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	pageDetail.CashBalanceCA_props = rD.CashBalanceCA_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

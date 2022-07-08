@@ -11,8 +11,8 @@ import (
 )
 
 type Connection struct {
-	count int
-	Pool  []ConnectionItem
+	//	count int
+	Pool []ConnectionItem
 }
 
 type ConnectionItem struct {
@@ -132,7 +132,7 @@ func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 		logs.Warning("Database " + dbName + " does not exists. GENERATING")
 		Database_Create(dbInstance, ApplicationPropertiesDB, dbName)
 
-		ApplicationPropertiesDB["database"] = dbName
+		SetApplicationSQLDatabase(dbName)
 		//Connect to the specific instance
 		newDBInstance, errReCon := connect(ApplicationPropertiesDB)
 		if errReCon != nil {
@@ -140,7 +140,7 @@ func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 		}
 
 		if len(instance) != 0 {
-			ApplicationPropertiesDB["database"] = database + "-" + instance
+			SetApplicationSQLDatabase(database + "-" + instance)
 		}
 		Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/tables", true)
 		Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)

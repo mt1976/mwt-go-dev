@@ -85,8 +85,8 @@ func ListMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:          UserMenu_Get(r),
 		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
-		Title:             core.ApplicationProperties["appname"],
-		PageTitle:         core.ApplicationProperties["appname"] + " - " + "System Message Translation",
+		Title:             core.GetAppName(),
+		PageTitle:         core.GetAppName() + " - " + "System Message Translation",
 		MessageStoreCount: noItems,
 		MessageStoreList:  returnList,
 	}
@@ -114,8 +114,8 @@ func ViewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetMessageStoreByID(core.ApplicationDB, searchID)
 
 	pageCredentialStoreList := appMessageStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - View",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "System Message Translation - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -155,8 +155,8 @@ func EditMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetMessageStoreByID(core.ApplicationDB, searchID)
 
 	pageCredentialStoreList := appMessageStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - Edit",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "System Message Translation - Edit",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -273,8 +273,8 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appMessageStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "System Message Translation - New",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "System Message Translation - New",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -291,14 +291,14 @@ func NewMessageStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getMessageStoreList read all employees
 func GetMessageStoreList(unused *sql.DB) (int, []appMessageStoreItem, error) {
-	tsql := fmt.Sprintf(appMessageStoreSQLSELECT, appMessageStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appMessageStoreSQLSELECT, appMessageStoreSQL, core.ApplicationSQLSchema())
 	count, appMessageStoreList, _, _ := fetchMessageStoreData(core.ApplicationDB, tsql)
 	return count, appMessageStoreList, nil
 }
 
 // getMessageStoreList read all employees
 func GetMessageStoreByID(unused *sql.DB, id string) (int, appMessageStoreItem, error) {
-	tsql := fmt.Sprintf(appMessageStoreSQLGET, appMessageStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appMessageStoreSQLGET, appMessageStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, appMessageStoreItem, _ := fetchMessageStoreData(core.ApplicationDB, tsql)
 	return 1, appMessageStoreItem, nil
 }
@@ -324,8 +324,8 @@ func putMessageStore(r appMessageStoreItem, req *http.Request) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appMessageStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appMessageStoreSQL, r.Id, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appMessageStoreSQLINSERT, core.ApplicationSQLSchema(), appMessageStoreSQL, r.Id, r.Message, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -342,7 +342,7 @@ func putMessageStore(r appMessageStoreItem, req *http.Request) {
 
 func deleteMessageStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appMessageStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql)
 	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {

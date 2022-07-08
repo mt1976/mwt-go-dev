@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:32
+// Date & Time		    : 28/06/2022 at 16:10:56
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,73 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//schedule_PageList provides the information for the template for a list of Schedules
-type Schedule_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Schedule
-}
-//Schedule_Redirect provides a page to return to aftern an action
-const (
-	
-	Schedule_Redirect = dm.Schedule_PathList
-	
-)
 
-//schedule_Page provides the information for the template for an individual Schedule
-type Schedule_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	Id         string
-	Id_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	Description         string
-	Description_props     dm.FieldProperties
-	Schedule         string
-	Schedule_props     dm.FieldProperties
-	Started         string
-	Started_props     dm.FieldProperties
-	Lastrun         string
-	Lastrun_props     dm.FieldProperties
-	Message         string
-	Message_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	SYSWho         string
-	SYSWho_props     dm.FieldProperties
-	SYSHost         string
-	SYSHost_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	Type         string
-	Type_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	Human         string
-	Human_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -121,7 +55,7 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Schedule
 	noItems, returnList, _ := dao.Schedule_GetList()
 
-	pageDetail := Schedule_PageList{
+	pageDetail := dm.Schedule_PageList{
 		Title:            CardTitle(dm.Schedule_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Schedule_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -152,7 +86,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Schedule_QueryString)
 	_, rD, _ := dao.Schedule_GetByID(searchID)
 
-	pageDetail := Schedule_Page{
+	pageDetail := dm.Schedule_Page{
 		Title:       CardTitle(dm.Schedule_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -183,7 +117,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Schedule
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Schedule_SYSId_scrn)
 		item.Id = r.FormValue(dm.Schedule_Id_scrn)
@@ -205,19 +139,19 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Human = r.FormValue(dm.Schedule_Human_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Schedule_Store(item,r)	
-	http.Redirect(w, r, Schedule_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Schedule_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the Schedule Page 
-func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Page {
+func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Schedule_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -240,7 +174,7 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Pa
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -299,7 +233,7 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Pa
 	pageDetail.Human_props = rD.Human_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

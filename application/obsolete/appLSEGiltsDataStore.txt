@@ -143,8 +143,8 @@ func ListLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               UserMenu_Get(r),
 		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
-		Title:                  core.ApplicationProperties["appname"],
-		PageTitle:              core.ApplicationProperties["appname"] + " - " + "LSE Gilts",
+		Title:                  core.GetAppName(),
+		PageTitle:              core.GetAppName() + " - " + "LSE Gilts",
 		LSEGiltsDataStoreCount: noItems,
 		LSEGiltsDataStoreList:  returnList,
 	}
@@ -172,8 +172,8 @@ func ViewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLSEGiltsDataStoreByID(searchID)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - View",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "LSE Gilts - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -239,8 +239,8 @@ func EditLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := GetLSEGiltsDataStoreByID(searchID)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - Edit",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "LSE Gilts - Edit",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -370,8 +370,8 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageCredentialStoreList := appLSEGiltsDataStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "LSE Gilts - New",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "LSE Gilts - New",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -388,14 +388,14 @@ func NewLSEGiltsDataStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getLSEGiltsDataStoreList read all employees
 func GetLSEGiltsDataStoreList(unused *sql.DB) (int, []AppLSEGiltsDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLSELECT, appLSEGiltsDataStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLSELECT, appLSEGiltsDataStoreSQL, core.ApplicationSQLSchema())
 	count, appLSEGiltsDataStoreList, _, _ := fetchLSEGiltsDataStoreData(core.ApplicationDB, tsql)
 	return count, appLSEGiltsDataStoreList, nil
 }
 
 // getLSEGiltsDataStoreList read all employees
 func GetLSEGiltsDataStoreByID(id string) (int, AppLSEGiltsDataStoreItem, error) {
-	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLGET, appLSEGiltsDataStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appLSEGiltsDataStoreSQLGET, appLSEGiltsDataStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, AppLSEGiltsDataStoreItem, _ := fetchLSEGiltsDataStoreData(core.ApplicationDB, tsql)
 	return 1, AppLSEGiltsDataStoreItem, nil
 }
@@ -440,8 +440,8 @@ func putLSEGiltsDataStoreUser(r AppLSEGiltsDataStoreItem, userID string) {
 	//fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLSEGiltsDataStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLSEGiltsDataStoreSQLInsert, r.Id, r.LongName, r.Isin, r.Tidm, r.Sedol, r.IssueDate, r.MaturityDate, r.CouponValue, r.CouponType, r.Segment, r.Sector, r.CodeConventionCalculateAccrual, r.MinimumDenomination, r.DenominationCurrency, r.TradingCurrency, r.Type, r.FlatYield, r.PaymentCouponDate, r.PeriodOfCoupon, r.ExCouponDate, r.DateOfIndexInflation, r.UnitOfQuotation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Issuer, r.IssueAmount, r.RunningYield, r.Lei, r.Cusip)
+	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appLSEGiltsDataStoreSQLINSERT, core.ApplicationSQLSchema(), appLSEGiltsDataStoreSQLInsert, r.Id, r.LongName, r.Isin, r.Tidm, r.Sedol, r.IssueDate, r.MaturityDate, r.CouponValue, r.CouponType, r.Segment, r.Sector, r.CodeConventionCalculateAccrual, r.MinimumDenomination, r.DenominationCurrency, r.TradingCurrency, r.Type, r.FlatYield, r.PaymentCouponDate, r.PeriodOfCoupon, r.ExCouponDate, r.DateOfIndexInflation, r.UnitOfQuotation, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Issuer, r.IssueAmount, r.RunningYield, r.Lei, r.Cusip)
 
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -458,7 +458,7 @@ func putLSEGiltsDataStoreUser(r AppLSEGiltsDataStoreItem, userID string) {
 
 func deleteLSEGiltsDataStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appLSEGiltsDataStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql)
 	_, err2 := core.ApplicationDB.Exec(deletesql)
 	if err2 != nil {

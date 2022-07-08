@@ -94,7 +94,7 @@ func Simulator_SienaFundsChecker_GetByID(id string) (int, dm.Simulator_SienaFund
 
 // getFundsCheckList read all employees
 func Simulator_SienaFundsChecker_GetList() (int, []dm.Simulator_SienaFundsChecker_Item, error) {
-	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, core.ApplicationPropertiesDB["schema"])
+	//tsql := fmt.Sprintf(simFundsCheckSQLSELECT, simFundsCheckSQL, core.ApplicationSQLSchema())
 	var simFundsCheckList []dm.Simulator_SienaFundsChecker_Item
 	requestPath := core.SienaProperties["funds_in"]
 

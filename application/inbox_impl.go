@@ -48,7 +48,7 @@ func Inbox_HandlerMyInboxList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Inbox_GetListByUser(Session_GetUserName(r))
 	logs.Processing(Session_GetUserName(r))
 
-	pageDetail := Inbox_PageList{
+	pageDetail := dm.Inbox_PageList{
 		Title:       CardTitle(dm.Inbox_Title, core.Action_List),
 		PageTitle:   PageTitle(dm.Inbox_Title, core.Action_List),
 		ItemsOnPage: noItems,

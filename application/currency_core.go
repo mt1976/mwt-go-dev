@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:25
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,85 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//currency_PageList provides the information for the template for a list of Currencys
-type Currency_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Currency
-}
-//Currency_Redirect provides a page to return to aftern an action
-const (
-	
-	Currency_Redirect = dm.Currency_PathList
-	
-)
 
-//currency_Page provides the information for the template for an individual Currency
-type Currency_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Code_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	AmountDp         string
-	AmountDp_props     dm.FieldProperties
-	Country         string
-	Country_props     dm.FieldProperties
-	CountryName         string
-	CountryName_props     dm.FieldProperties
-	IntBase         string
-	IntBase_props     dm.FieldProperties
-	KeydateBase         string
-	KeydateBase_props     dm.FieldProperties
-	InterestRateTolerance         string
-	InterestRateTolerance_props     dm.FieldProperties
-	CheckPayTo         string
-	CheckPayTo_props     dm.FieldProperties
-	LatinAmericanSettlement         string
-	LatinAmericanSettlement_props     dm.FieldProperties
-	DefaultLayOffBookKey         string
-	DefaultLayOffBookKey_props     dm.FieldProperties
-	CutOffTimeCutOffTime         string
-	CutOffTimeCutOffTime_props     dm.FieldProperties
-	CutOffTimeTimeZone         string
-	CutOffTimeTimeZone_props     dm.FieldProperties
-	CutOffTimeDerivedDataUTCOffset         string
-	CutOffTimeDerivedDataUTCOffset_props     dm.FieldProperties
-	CutOffTimeDerivedDataHasDaylightSaving         string
-	CutOffTimeDerivedDataHasDaylightSaving_props     dm.FieldProperties
-	CutOffTimeDerivedDataDaylightStart         string
-	CutOffTimeDerivedDataDaylightStart_props     dm.FieldProperties
-	CutOffTimeDerivedDataDaylightEnd         string
-	CutOffTimeDerivedDataDaylightEnd_props     dm.FieldProperties
-	DealerInterventionQuoteTimeout         string
-	DealerInterventionQuoteTimeout_props     dm.FieldProperties
-	CutOffTimeCutOffPeriod         string
-	CutOffTimeCutOffPeriod_props     dm.FieldProperties
-	StripRateFutureExchangeCode         string
-	StripRateFutureExchangeCode_props     dm.FieldProperties
-	StripRateFutureCurrencyContractCurrencyIsoCode         string
-	StripRateFutureCurrencyContractCurrencyIsoCode_props     dm.FieldProperties
-	StripRateFutureCurrencyContractFutureContractCode         string
-	StripRateFutureCurrencyContractFutureContractCode_props     dm.FieldProperties
-	OvernightFundingSpreadBid         string
-	OvernightFundingSpreadBid_props     dm.FieldProperties
-	OvernightFundingSpreadOffer         string
-	OvernightFundingSpreadOffer_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -133,7 +55,7 @@ func Currency_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Currency
 	noItems, returnList, _ := dao.Currency_GetList()
 
-	pageDetail := Currency_PageList{
+	pageDetail := dm.Currency_PageList{
 		Title:            CardTitle(dm.Currency_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Currency_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -164,7 +86,7 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Currency_QueryString)
 	_, rD, _ := dao.Currency_GetByID(searchID)
 
-	pageDetail := Currency_Page{
+	pageDetail := dm.Currency_Page{
 		Title:       CardTitle(dm.Currency_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Currency_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -185,9 +107,9 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Currency Page 
-func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Page {
+func currency_PopulatePage(rD dm.Currency, pageDetail dm.Currency_Page) dm.Currency_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -216,7 +138,7 @@ func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Pa
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -293,7 +215,7 @@ func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Pa
 	pageDetail.OvernightFundingSpreadOffer_props = rD.OvernightFundingSpreadOffer_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:33
+// Date & Time		    : 28/06/2022 at 16:10:57
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,10 +41,10 @@ func SimulatorSWIFT_GetByID(id string) (int, dm.SimulatorSWIFT, error) {
 	 _, simulatorswiftItem, _ := adaptor.SimulatorSWIFT_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, simulatorswiftItem, nil
 }
@@ -88,13 +88,17 @@ func SimulatorSWIFT_StoreSystem(r dm.SimulatorSWIFT) error {
 
 // SimulatorSWIFT_Validate() validates for saves/stores a SimulatorSWIFT record to the database
 func SimulatorSWIFT_Validate(r dm.SimulatorSWIFT) (error,dm.SimulatorSWIFT) {
+	var err error
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	return nil,r
+	//
+	
+
+	return err,r
 }
 //
 
@@ -160,10 +164,10 @@ func SimulatorSWIFT_New() (int, []dm.SimulatorSWIFT, dm.SimulatorSWIFT, error) {
 	
 
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

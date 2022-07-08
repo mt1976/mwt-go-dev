@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:25
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,47 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//credentialsaction_PageList provides the information for the template for a list of CredentialsActions
-type CredentialsAction_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CredentialsAction
-}
-//CredentialsAction_Redirect provides a page to return to aftern an action
-const (
-	
-	CredentialsAction_Redirect = dm.CredentialsAction_PathView
-	
-)
 
-//credentialsaction_Page provides the information for the template for an individual CredentialsAction
-type CredentialsAction_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	ID_props     dm.FieldProperties
-	User         string
-	User_lookup    []dm.Lookup_Item
-	User_props     dm.FieldProperties
-	Action         string
-	Action_lookup    []dm.Lookup_Item
-	Action_props     dm.FieldProperties
-	Notes         string
-	Notes_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -96,7 +56,7 @@ func CredentialsAction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CredentialsAction_QueryString)
 	_, rD, _ := dao.CredentialsAction_GetByID(searchID)
 
-	pageDetail := CredentialsAction_Page{
+	pageDetail := dm.CredentialsAction_Page{
 		Title:       CardTitle(dm.CredentialsAction_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CredentialsAction_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -127,7 +87,7 @@ func CredentialsAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CredentialsAction_QueryString)
 	_, rD, _ := dao.CredentialsAction_GetByID(searchID)
 	
-	pageDetail := CredentialsAction_Page{
+	pageDetail := dm.CredentialsAction_Page{
 		Title:       CardTitle(dm.CredentialsAction_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CredentialsAction_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -156,7 +116,7 @@ func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CredentialsAction
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.CredentialsAction_ID_scrn)
 		item.User = r.FormValue(dm.CredentialsAction_User_scrn)
@@ -164,10 +124,10 @@ func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Notes = r.FormValue(dm.CredentialsAction_Notes_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CredentialsAction_Store(item,r)	
-	http.Redirect(w, r, CredentialsAction_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CredentialsAction_Redirect, http.StatusFound)
 }
 
 
@@ -184,7 +144,7 @@ func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.CredentialsAction_New()
 
-	pageDetail := CredentialsAction_Page{
+	pageDetail := dm.CredentialsAction_Page{
 		Title:       CardTitle(dm.CredentialsAction_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CredentialsAction_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -202,9 +162,9 @@ func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the CredentialsAction Page 
-func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail CredentialsAction_Page) CredentialsAction_Page {
+func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.CredentialsAction_Page) dm.CredentialsAction_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.User = rD.User
@@ -213,7 +173,7 @@ func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail Credenti
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -234,7 +194,7 @@ func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail Credenti
 	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

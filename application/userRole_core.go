@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:34
+// Date & Time		    : 28/06/2022 at 16:10:59
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,55 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//userrole_PageList provides the information for the template for a list of UserRoles
-type UserRole_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.UserRole
-}
-//UserRole_Redirect provides a page to return to aftern an action
-const (
-	
-	UserRole_Redirect = dm.UserRole_PathList
-	
-)
 
-//userrole_Page provides the information for the template for an individual UserRole
-type UserRole_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     dm.FieldProperties
-	Id         string
-	Id_props     dm.FieldProperties
-	Name         string
-	Name_props     dm.FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     dm.FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     dm.FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     dm.FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     dm.FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     dm.FieldProperties
-	SYSCreated         string
-	SYSCreated_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -103,7 +55,7 @@ func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.UserRole
 	noItems, returnList, _ := dao.UserRole_GetList()
 
-	pageDetail := UserRole_PageList{
+	pageDetail := dm.UserRole_PageList{
 		Title:            CardTitle(dm.UserRole_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.UserRole_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -134,7 +86,7 @@ func UserRole_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.UserRole_QueryString)
 	_, rD, _ := dao.UserRole_GetByID(searchID)
 
-	pageDetail := UserRole_Page{
+	pageDetail := dm.UserRole_Page{
 		Title:       CardTitle(dm.UserRole_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -165,7 +117,7 @@ func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.UserRole_QueryString)
 	_, rD, _ := dao.UserRole_GetByID(searchID)
 	
-	pageDetail := UserRole_Page{
+	pageDetail := dm.UserRole_Page{
 		Title:       CardTitle(dm.UserRole_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -194,7 +146,7 @@ func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.UserRole
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.UserRole_SYSId_scrn)
 		item.Id = r.FormValue(dm.UserRole_Id_scrn)
@@ -207,10 +159,10 @@ func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSCreated = r.FormValue(dm.UserRole_SYSCreated_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.UserRole_Store(item,r)	
-	http.Redirect(w, r, UserRole_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.UserRole_Redirect, http.StatusFound)
 }
 
 
@@ -227,7 +179,7 @@ func UserRole_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.UserRole_New()
 
-	pageDetail := UserRole_Page{
+	pageDetail := dm.UserRole_Page{
 		Title:       CardTitle(dm.UserRole_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -257,14 +209,14 @@ func UserRole_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.UserRole_Delete(searchID)	
 
-	http.Redirect(w, r, UserRole_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.UserRole_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the UserRole Page 
-func userrole_PopulatePage(rD dm.UserRole, pageDetail UserRole_Page) UserRole_Page {
+func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserRole_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -278,7 +230,7 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail UserRole_Page) UserRole_Pa
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -310,7 +262,7 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail UserRole_Page) UserRole_Pa
 	pageDetail.SYSCreated_props = rD.SYSCreated_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

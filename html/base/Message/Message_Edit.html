@@ -1,6 +1,6 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
-
+{{.Context}}
 <form action="/MessageSave/?Message={{.Id}}"
   method="GET" class="form">
   <div class="card">

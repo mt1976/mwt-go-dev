@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:27
+// Date & Time		    : 28/06/2022 at 16:10:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,89 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dealtype_PageList provides the information for the template for a list of DealTypes
-type DealType_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DealType
-}
-//DealType_Redirect provides a page to return to aftern an action
-const (
-	
-	DealType_Redirect = dm.DealType_PathList
-	
-)
 
-//dealtype_Page provides the information for the template for an individual DealType
-type DealType_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	DealTypeKey         string
-	DealTypeKey_props     dm.FieldProperties
-	DealTypeShortName         string
-	DealTypeShortName_props     dm.FieldProperties
-	HostKey         string
-	HostKey_props     dm.FieldProperties
-	IsActive         string
-	IsActive_props     dm.FieldProperties
-	Interbook         string
-	Interbook_props     dm.FieldProperties
-	BackOfficeLink         string
-	BackOfficeLink_props     dm.FieldProperties
-	HasTicket         string
-	HasTicket_props     dm.FieldProperties
-	CurrencyOverride         string
-	CurrencyOverride_props     dm.FieldProperties
-	CurrencyHolderCurrency         string
-	CurrencyHolderCurrency_props     dm.FieldProperties
-	AllBooks         string
-	AllBooks_props     dm.FieldProperties
-	FundamentalDealTypeKey         string
-	FundamentalDealTypeKey_props     dm.FieldProperties
-	RelatedDealType         string
-	RelatedDealType_props     dm.FieldProperties
-	BookName         string
-	BookName_props     dm.FieldProperties
-	ExportMethod         string
-	ExportMethod_props     dm.FieldProperties
-	DefaultUserLayoffBooks         string
-	DefaultUserLayoffBooks_props     dm.FieldProperties
-	RFQ         string
-	RFQ_props     dm.FieldProperties
-	OBS         string
-	OBS_props     dm.FieldProperties
-	KID         string
-	KID_props     dm.FieldProperties
-	InternalId         string
-	InternalId_props     dm.FieldProperties
-	InternalDeleted         string
-	InternalDeleted_props     dm.FieldProperties
-	UpdatedTransactionId         string
-	UpdatedTransactionId_props     dm.FieldProperties
-	UpdatedUserId         string
-	UpdatedUserId_props     dm.FieldProperties
-	UpdatedDateTime         string
-	UpdatedDateTime_props     dm.FieldProperties
-	DeletedTransactionId         string
-	DeletedTransactionId_props     dm.FieldProperties
-	DeletedUserId         string
-	DeletedUserId_props     dm.FieldProperties
-	ChangeType         string
-	ChangeType_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -137,7 +55,7 @@ func DealType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DealType
 	noItems, returnList, _ := dao.DealType_GetList()
 
-	pageDetail := DealType_PageList{
+	pageDetail := dm.DealType_PageList{
 		Title:            CardTitle(dm.DealType_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealType_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -168,7 +86,7 @@ func DealType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealType_QueryString)
 	_, rD, _ := dao.DealType_GetByID(searchID)
 
-	pageDetail := DealType_Page{
+	pageDetail := dm.DealType_Page{
 		Title:       CardTitle(dm.DealType_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -199,7 +117,7 @@ func DealType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealType_QueryString)
 	_, rD, _ := dao.DealType_GetByID(searchID)
 	
-	pageDetail := DealType_Page{
+	pageDetail := dm.DealType_Page{
 		Title:       CardTitle(dm.DealType_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -228,7 +146,7 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealType
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.DealTypeKey = r.FormValue(dm.DealType_DealTypeKey_scrn)
 		item.DealTypeShortName = r.FormValue(dm.DealType_DealTypeShortName_scrn)
@@ -258,10 +176,10 @@ func DealType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ChangeType = r.FormValue(dm.DealType_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealType_Store(item,r)	
-	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DealType_Redirect, http.StatusFound)
 }
 
 
@@ -278,7 +196,7 @@ func DealType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 	_, _, rD, _ := dao.DealType_New()
 
-	pageDetail := DealType_Page{
+	pageDetail := dm.DealType_Page{
 		Title:       CardTitle(dm.DealType_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.DealType_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -308,14 +226,14 @@ func DealType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.DealType_Delete(searchID)	
 
-	http.Redirect(w, r, DealType_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DealType_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the DealType Page 
-func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Page {
+func dealtype_PopulatePage(rD dm.DealType, pageDetail dm.DealType_Page) dm.DealType_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealTypeKey = rD.DealTypeKey
 	pageDetail.DealTypeShortName = rD.DealTypeShortName
@@ -346,7 +264,7 @@ func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Pa
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -429,7 +347,7 @@ func dealtype_PopulatePage(rD dm.DealType, pageDetail DealType_Page) DealType_Pa
 	pageDetail.ChangeType_props = rD.ChangeType_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

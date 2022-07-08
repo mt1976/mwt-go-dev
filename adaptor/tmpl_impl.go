@@ -1,6 +1,7 @@
 package adaptor
 
 import (
+	"strings"
 	"time"
 
 	core "github.com/mt1976/mwt-go-dev/core"
@@ -49,15 +50,15 @@ func Tmpl_TDate_OnStore_impl(fieldval string, rec dm.Tmpl, usr string) (string, 
 //
 func Tmpl_ExtraField_OnFetch_impl(rec dm.Tmpl) string {
 	logs.Callout("Tmpl", "ExtraField", GET, rec.ID)
-	return ""
+	return rec.ExtraField
 }
 func Tmpl_ExtraField3_OnFetch_impl(rec dm.Tmpl) string {
 	logs.Callout("Tmpl", "ExtraField3", GET, rec.ID)
-	return ""
+	return rec.ExtraField3
 }
 func Tmpl_TDate_OnFetch_impl(rec dm.Tmpl) string {
 	logs.Callout("Tmpl", "TDate", GET, rec.ID)
-	return ""
+	return rec.TDate
 }
 
 //
@@ -67,8 +68,8 @@ func Tmpl_TDate_OnFetch_impl(rec dm.Tmpl) string {
 // START - Validation API/Callout
 // Dynamically generated 25/06/2022 by matttownsend (Matt Townsend) on silicon.local
 //
-// Tmpl_ExtraField_Impl provides validation/actions for ExtraField
-func Tmpl_ExtraField_Impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
+// Tmpl_ExtraField_impl provides validation/actions for ExtraField
+func Tmpl_ExtraField_impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Tmpl", "ExtraField", VAL+"-"+iAction, iId)
 
 	fP.MsgType = core.FieldMessage_POSITIVE
@@ -82,8 +83,8 @@ func Tmpl_ExtraField_Impl(iAction string, iId string, iValue string, iRec dm.Tmp
 	return "Sploot", fP
 }
 
-// Tmpl_ExtraField3_Impl provides validation/actions for ExtraField3
-func Tmpl_ExtraField3_Impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
+// Tmpl_ExtraField3_impl provides validation/actions for ExtraField3
+func Tmpl_ExtraField3_impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Tmpl", "ExtraField3", VAL+"-"+iAction, iId)
 	switch iAction {
 	case VAL:
@@ -95,14 +96,14 @@ func Tmpl_ExtraField3_Impl(iAction string, iId string, iValue string, iRec dm.Tm
 	case GET:
 
 	default:
-		logs.Warning("Tmpl_TDate_Impl" + " - Invalid Action")
+		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 	}
 	fP = dm.AddFieldMessage(fP, core.FieldMessage_ERROR, "WOW! MUCH FAILURE", false, "far fa-thumbs-down")
 	return iAction, fP
 }
 
-// Tmpl_TDate_Impl provides validation/actions for TDate
-func Tmpl_TDate_Impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
+// Tmpl_TDate_impl provides validation/actions for TDate
+func Tmpl_TDate_impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Tmpl", "TDate", VAL+"-"+iAction, iId)
 	switch iAction {
 	case VAL:
@@ -116,7 +117,7 @@ func Tmpl_TDate_Impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP
 	case GET:
 
 	default:
-		logs.Warning("Tmpl_TDate_Impl" + " - Invalid Action")
+		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 	}
 	return fP.DefaultValue, fP
 }
@@ -143,7 +144,7 @@ func Tmpl_ID_OnStore_impl(fieldval string, rec dm.Tmpl, usr string) (string, err
 //
 func Tmpl_ID_OnFetch_impl(rec dm.Tmpl) string {
 	logs.Callout("Tmpl", "ID", GET, rec.ID)
-	return ""
+	return rec.ID
 }
 
 //
@@ -153,10 +154,10 @@ func Tmpl_ID_OnFetch_impl(rec dm.Tmpl) string {
 // START - Validation API/Callout
 // Dynamically generated 25/06/2022 by matttownsend (Matt Townsend) on silicon.local
 //
-// Tmpl_ID_Impl provides validation/actions for ID
-func Tmpl_ID_Impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
-	logs.Callout("Tmpl", "ID", VAL+"-"+iAction, iId)
-
+// Tmpl_ID_impl provides validation/actions for ID
+func Tmpl_ID_impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Tmpl", "ID", VAL+"-"+iAction, iId+" - "+iValue)
+	iValue = strings.TrimSpace(iValue)
 	switch iAction {
 	case VAL:
 
@@ -167,14 +168,31 @@ func Tmpl_ID_Impl(iAction string, iId string, iValue string, iRec dm.Tmpl, fP dm
 	case GET:
 
 	default:
-		logs.Warning("Tmpl_TDate_Impl" + " - Invalid Action")
+		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 	}
 
 	fP = dm.AddFieldMessage(fP, core.FieldMessage_NORMAL, "WOW! MUCH NORMAL", false, "far fa-thumbs-down")
-
+	logs.Callout("Tmpl", "ID", VAL+"-"+iAction, iId+" - "+iValue)
 	return iValue, fP
 }
 
 //
 // Dynamically generated 25/06/2022 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
+
+func Tmpl_ObjectValidation_impl(iAction string, iId string, iRec dm.Tmpl) (dm.Tmpl, error, string) {
+	logs.Callout("Tmpl", "ObjectValidation", VAL+"-"+iAction, iId)
+	switch iAction {
+	case VAL:
+
+	case NEW:
+
+	case PUT:
+
+	case GET:
+
+	default:
+		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+	}
+	return iRec, nil, ""
+}

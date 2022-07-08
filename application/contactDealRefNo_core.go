@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:20
+// Date & Time		    : 28/06/2022 at 16:10:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,46 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//contactdealrefno_PageList provides the information for the template for a list of ContactDealRefNos
-type ContactDealRefNo_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.ContactDealRefNo
-}
-//ContactDealRefNo_Redirect provides a page to return to aftern an action
-const (
-	
-	ContactDealRefNo_Redirect = dm.ContactDealRefNo_PathList
-	
-)
 
-//contactdealrefno_Page provides the information for the template for an individual ContactDealRefNo
-type ContactDealRefNo_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	RefNo         string
-	RefNo_lookup    []dm.Lookup_Item
-	RefNo_props     dm.FieldProperties
-	NoteId         string
-	NoteId_lookup    []dm.Lookup_Item
-	NoteId_props     dm.FieldProperties
-	RecordState         string
-	RecordState_lookup    []dm.Lookup_Item
-	RecordState_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -94,7 +55,7 @@ func ContactDealRefNo_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.ContactDealRefNo
 	noItems, returnList, _ := dao.ContactDealRefNo_GetList()
 
-	pageDetail := ContactDealRefNo_PageList{
+	pageDetail := dm.ContactDealRefNo_PageList{
 		Title:            CardTitle(dm.ContactDealRefNo_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.ContactDealRefNo_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -125,7 +86,7 @@ func ContactDealRefNo_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.ContactDealRefNo_QueryString)
 	_, rD, _ := dao.ContactDealRefNo_GetByID(searchID)
 
-	pageDetail := ContactDealRefNo_Page{
+	pageDetail := dm.ContactDealRefNo_Page{
 		Title:       CardTitle(dm.ContactDealRefNo_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.ContactDealRefNo_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -146,9 +107,9 @@ func ContactDealRefNo_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the ContactDealRefNo Page 
-func contactdealrefno_PopulatePage(rD dm.ContactDealRefNo, pageDetail ContactDealRefNo_Page) ContactDealRefNo_Page {
+func contactdealrefno_PopulatePage(rD dm.ContactDealRefNo, pageDetail dm.ContactDealRefNo_Page) dm.ContactDealRefNo_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.RefNo = rD.RefNo
 	pageDetail.NoteId = rD.NoteId
@@ -156,7 +117,7 @@ func contactdealrefno_PopulatePage(rD dm.ContactDealRefNo, pageDetail ContactDea
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.RefNo_lookup = dao.Transaction_GetLookup()
@@ -176,7 +137,7 @@ func contactdealrefno_PopulatePage(rD dm.ContactDealRefNo, pageDetail ContactDea
 	pageDetail.RecordState_props = rD.RecordState_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

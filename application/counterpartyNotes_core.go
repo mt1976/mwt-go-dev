@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 26/06/2022 at 18:48:24
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,53 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//counterpartynotes_PageList provides the information for the template for a list of CounterpartyNotess
-type CounterpartyNotes_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CounterpartyNotes
-}
-//CounterpartyNotes_Redirect provides a page to return to aftern an action
-const (
-	
-	CounterpartyNotes_Redirect = dm.CounterpartyNotes_PathList
-	
-)
 
-//counterpartynotes_Page provides the information for the template for an individual CounterpartyNotes
-type CounterpartyNotes_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	NoteId         string
-	NoteId_props     dm.FieldProperties
-	StreamId         string
-	StreamId_lookup    []dm.Lookup_Item
-	StreamId_props     dm.FieldProperties
-	Summary         string
-	Summary_props     dm.FieldProperties
-	Details         string
-	Details_props     dm.FieldProperties
-	RecordState         string
-	RecordState_lookup    []dm.Lookup_Item
-	RecordState_props     dm.FieldProperties
-	CreatedBy         string
-	CreatedBy_props     dm.FieldProperties
-	CreatedDateTime         string
-	CreatedDateTime_props     dm.FieldProperties
-	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -101,7 +55,7 @@ func CounterpartyNotes_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.CounterpartyNotes
 	noItems, returnList, _ := dao.CounterpartyNotes_GetList()
 
-	pageDetail := CounterpartyNotes_PageList{
+	pageDetail := dm.CounterpartyNotes_PageList{
 		Title:            CardTitle(dm.CounterpartyNotes_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CounterpartyNotes_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -132,7 +86,7 @@ func CounterpartyNotes_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CounterpartyNotes_QueryString)
 	_, rD, _ := dao.CounterpartyNotes_GetByID(searchID)
 
-	pageDetail := CounterpartyNotes_Page{
+	pageDetail := dm.CounterpartyNotes_Page{
 		Title:       CardTitle(dm.CounterpartyNotes_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CounterpartyNotes_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -153,9 +107,9 @@ func CounterpartyNotes_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the CounterpartyNotes Page 
-func counterpartynotes_PopulatePage(rD dm.CounterpartyNotes, pageDetail CounterpartyNotes_Page) CounterpartyNotes_Page {
+func counterpartynotes_PopulatePage(rD dm.CounterpartyNotes, pageDetail dm.CounterpartyNotes_Page) dm.CounterpartyNotes_Page {
 	// START
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NoteId = rD.NoteId
 	pageDetail.StreamId = rD.StreamId
@@ -167,7 +121,7 @@ func counterpartynotes_PopulatePage(rD dm.CounterpartyNotes, pageDetail Counterp
 	
 	
 	//
-	// Automatically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -197,7 +151,7 @@ func counterpartynotes_PopulatePage(rD dm.CounterpartyNotes, pageDetail Counterp
 	pageDetail.CreatedDateTime_props = rD.CreatedDateTime_props
 	
 	// 
-	// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail
