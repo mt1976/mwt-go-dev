@@ -147,7 +147,8 @@ func RatesDataStorePut(ratesData RatesDataStore) {
 		cd.Date = ratesData.date
 	}
 
-	dao.MarketRates_StoreSystem(cd)
+	//dao.MarketRates_StoreSystem(cd)
+	dao.MarketRates_UpdateSystem(cd)
 
 }
 
