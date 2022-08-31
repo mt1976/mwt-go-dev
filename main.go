@@ -12,7 +12,6 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 
-	monitors "github.com/mt1976/mwt-go-dev/adaptor/monitors"
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
 	logs "github.com/mt1976/mwt-go-dev/logs"
@@ -140,7 +139,7 @@ func main() {
 	logs.Break()
 	//go monitors.StaticDataImporter_Watch()
 
-	monitors.Start()
+	//	monitors.Start()
 	logs.Success("Watchers Started")
 	Application_Info()
 	//scheduler.RunJobLSE("")

@@ -271,6 +271,10 @@ func Break() {
 	if isRunningInDockerContainer() {
 		width = 80
 	}
+	if width <= 0 {
+		width = 80
+	}
+
 	log.Println(colour.Bold + strings.Repeat("-", width-20) + colour.Reset)
 	//log.Println("width: ", width)
 }
@@ -288,10 +292,13 @@ func getConfig() (config Config, err error) {
 	pwd, _ := os.Getwd()
 
 	//fmt.Println(pwd)
-	viper.AddConfigPath(pwd + "/config/")
-	viper.SetConfigName("logs")
+	viper.AddConfigPath(pwd)
+	viper.SetConfigName("config")
 	viper.SetConfigType("env")
 	viper.AutomaticEnv()
+
+	//spew.Dump(viper.AllKeys())
+	//fmt.Printf(viper.AllSettings().(string))
 
 	err = viper.ReadInConfig()
 	if err != nil {
