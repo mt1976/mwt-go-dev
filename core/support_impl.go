@@ -364,8 +364,6 @@ func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) 
 	return content, string(content), err
 }
 
-
-
 func FileSystem_WriteData_Absolute(fileName string, path string, content string) int {
 
 	absFileName := path + "/" + fileName
@@ -380,6 +378,12 @@ func FileSystem_WriteData_Absolute(fileName string, path string, content string)
 	//log.Println("File Write : " + fileName + " in " + path + "[" + absFileName + "]")
 	logs.Saving(fileName, absFileName)
 	return 1
+}
+
+func FileSystem_WriteData(fileName string, path string, content string) int {
+
+	return FileSystem_WriteData_Absolute(fileName, path, content)
+
 }
 
 func DeleteDataFileAbsolute(fileName string, path string) int {
