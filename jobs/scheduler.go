@@ -37,7 +37,7 @@ func Start() {
 		RatesFXECB_Register(c)
 		IndexSONIABOE_Register(c)
 		InstFRED_Register(c)
-		InstFII_Register(c)
+		//InstFII_Register(c)
 		RefreshCache_Register(c)
 	}
 
