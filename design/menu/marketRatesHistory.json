@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "ce0fec8d-c8ce-43a0-ab24-4e85212837c7",
+      "MenuText": "Rates Store History",
+      "MenuGlyph": "fas fa-file-invoice-dollar",
+      "MenuHREF": "/MarketRatesHistoryList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
+    }
+    
