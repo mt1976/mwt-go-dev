@@ -103,6 +103,7 @@ func main() {
 
 	application.Tmpl_Publish(*mux)
 	application.MarketRates_Publish(*mux)
+	application.MarketRatesHistory_Publish(*mux)
 	application.Cache_Publish(*mux)
 	application.DealConversation_Publish(*mux)
 

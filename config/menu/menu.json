@@ -33,6 +33,14 @@
             "MenuTextClass": "text-primary"
           },
           {
+            "MenuID": "1f4c2bf1-9d2f-428f-a4e5-e8d00a3e4903",
+            "MenuText": "Rate & Price History",
+            "MenuGlyph": "fas fa-file-invoice-dollar",
+            "MenuHREF": "/MarketRatesHistoryList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-primary"
+          },
+          {
             "MenuID": "c1fecf7a-96ad-4ba8-8950-cb9ac4d44daa",
             "MenuText": "ExternalMessage",
             "MenuGlyph": "fas fa-mail-bulk",
