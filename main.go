@@ -14,6 +14,7 @@ import (
 
 	application "github.com/mt1976/mwt-go-dev/application"
 	core "github.com/mt1976/mwt-go-dev/core"
+	"github.com/mt1976/mwt-go-dev/jobs"
 	logs "github.com/mt1976/mwt-go-dev/logs"
 )
 
@@ -32,7 +33,7 @@ func main() {
 	logs.Header("Scheduling Jobs")
 	logs.Break()
 
-	//scheduler.Start()
+	jobs.Start()
 
 	logs.Success("Jobs Scheduled")
 	logs.Break()
