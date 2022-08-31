@@ -1,0 +1,156 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/ContactStreamEdit/?ID={{.StreamId}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="far fa-comment me-2" title="ID = {{.StreamId}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Conversations {{.StreamId}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="StreamId" aria-describedby="StreamIdHelp" placeholder="0" disabled value="{{.StreamId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="StreamId"><i class="fas fa-key me-2"></i>StreamId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ContactId" aria-describedby="ContactIdHelp" placeholder="0" disabled value="{{.ContactId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ContactId">ContactId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Usr" aria-describedby="UsrHelp" placeholder="" disabled value="{{.Usr}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Usr">Usr</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp" placeholder="" disabled value="{{.Description}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Description">Description</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="StreamTypeId" name="StreamTypeId" class="select" data-mdb-filter="true" disabled>
+                  {{range .StreamTypeId_lookup}}<option value="{{.ID}}" {{if eq .ID $.StreamTypeId}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="StreamTypeId" disabled>StreamTypeId</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="StreamStatusId" name="StreamStatusId" class="select" data-mdb-filter="true" disabled>
+                  {{range .StreamStatusId_lookup}}<option value="{{.ID}}" {{if eq .ID $.StreamStatusId}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="StreamStatusId" disabled>StreamStatusId</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="RecordState" name="RecordState" class="select" data-mdb-filter="true" disabled>
+                  {{range .RecordState_lookup}}<option value="{{.ID}}" {{if eq .ID $.RecordState}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="RecordState" disabled>RecordState</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="datetime" class="form-control" id="CreatedDateTime" aria-describedby="CreatedDateTimeHelp" placeholder="" disabled value="{{.CreatedDateTime}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="CreatedDateTime">CreatedDateTime</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="datetime" class="form-control" id="OpenedDateTime" aria-describedby="OpenedDateTimeHelp" placeholder="" disabled value="{{.OpenedDateTime}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="OpenedDateTime">OpenedDateTime</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="datetime" class="form-control" id="ClosedDateTime" aria-describedby="ClosedDateTimeHelp" placeholder="" disabled value="{{.ClosedDateTime}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ClosedDateTime">ClosedDateTime</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

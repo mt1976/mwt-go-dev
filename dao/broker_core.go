@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 28/06/2022 at 16:10:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func Broker_GetByID(id string) (int, dm.Broker, error) {
 	tsql = tsql + " WHERE " + dm.Broker_SQLSearchID + "='" + id + "'"
 	_, _, brokerItem, _ := broker_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, brokerItem, nil
 }
 
@@ -69,7 +75,12 @@ func Broker_Delete(id string) {
 // Broker_Store() saves/stores a Broker record to the database
 func Broker_Store(r dm.Broker,req *http.Request) error {
 
-	err := broker_Save(r,Audit_User(req))
+	err, r := Broker_Validate(r)
+	if err == nil {
+		err = broker_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Broker_Store()", err.Error())
+	}
 
 	return err
 }
@@ -77,10 +88,31 @@ func Broker_Store(r dm.Broker,req *http.Request) error {
 // Broker_StoreSystem() saves/stores a Broker record to the database
 func Broker_StoreSystem(r dm.Broker) error {
 	
-	err := broker_Save(r,Audit_Host())
+	err, r := Broker_Validate(r)
+	if err == nil {
+		err = broker_Save(r, Audit_Host())
+	} else {
+		logs.Information("Broker_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Broker_Validate() validates for saves/stores a Broker record to the database
+func Broker_Validate(r dm.Broker) (error,dm.Broker) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // broker_Save() saves/stores a Broker record to the database
 func broker_Save(r dm.Broker,usr string) error {
@@ -139,7 +171,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Broker_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Broker_Name_sql, "")
@@ -157,7 +189,7 @@ func broker_Fetch(tsql string) (int, []dm.Broker, dm.Broker, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -177,7 +209,24 @@ func Broker_NewID(r dm.Broker) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// broker_Fetch read all Broker's
+func Broker_New() (int, []dm.Broker, dm.Broker, error) {
+
+	var r = dm.Broker{}
+	var rList []dm.Broker
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

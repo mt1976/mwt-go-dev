@@ -11,9 +11,10 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
 	"time"
+
+	uuid "github.com/google/uuid"
 
 	"github.com/mt1976/mwt-go-dev/logs"
 )
@@ -55,11 +56,6 @@ func GetURLparam(r *http.Request, paramID string) string {
 	//log.Printf("URL Parameter : Key=%q Value=%q", paramID, string(key))
 	logs.Information("URL Parameter :", fmt.Sprintf("Key=%q Value=%q", paramID, string(key)))
 	return key
-}
-
-// ArrToString converts an array of strings to a printable string
-func ArrToString(strArray []string) string {
-	return strings.Join(strArray, "\n")
 }
 
 // RemoveContents clears the contents of a specified directory
@@ -160,22 +156,6 @@ func FileExists(filename string) bool {
 		return false
 	}
 	return !info.IsDir()
-}
-
-// StrArrayToString converst a string array into a string
-func StrArrayToString(inArray []string) string {
-	return StrArrayToStringWithSep(inArray, "\n")
-}
-
-//StrArrayToStringWithSep converts a string array to a string using a given separator
-func StrArrayToStringWithSep(inArray []string, inSep string) string {
-
-	outString := ""
-	noRows := len(inArray)
-	for ii := 0; ii < noRows; ii++ {
-		outString += inArray[ii] + inSep
-	}
-	return outString
 }
 
 //ipRange - a structure that holds the start and end of a range of ip addresses
@@ -384,25 +364,7 @@ func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) 
 	return content, string(content), err
 }
 
-func FileSystem_WriteData(fileName string, path string, content string) int {
-	pwd, _ := os.Getwd()
-	filePath := pwd + "/" + fileName
-	if len(path) != 0 {
-		filePath = pwd + path + "/" + fileName
-	}
-	//log.Println("Write         :", filePath)
 
-	message := []byte(content)
-	err := ioutil.WriteFile(filePath, message, 0644)
-	if err != nil {
-		log.Fatal(err)
-		return -1
-	}
-
-	//	log.Println("File Write : " + fileName + " in " + path + "[" + filePath + "]")
-	logs.Saving(fileName, filePath)
-	return 1
-}
 
 func FileSystem_WriteData_Absolute(fileName string, path string, content string) int {
 
@@ -468,17 +430,123 @@ func Logit(actionType string, data string) {
 	//	log.Println(callerName, actionType, data)
 }
 
-func RemoveSpecialChars(in string) string {
-	reg, err := regexp.Compile("[^A-Za-z0-9]+")
-	if err != nil {
-		log.Fatal(err)
-	}
-	newStr := reg.ReplaceAllString(in, "-")
-	return newStr
+func GetUUID() string {
+	return uuid.NewString()
 }
 
-//Convert time.Time to string
-func TimeToString(t time.Time) string {
-	//fmt.Printf("t: %v\n", t)
-	return t.Format(DATEFORMATSIENA)
+func ReleaseIdentity() string {
+	return ProjectID() + ReleaseID()
+}
+
+func ReleaseIdentityVerbose() string {
+	return fmt.Sprintf("%s [r%s-%s]", ReleaseIdentity(), ReleaseLevel(), ReleaseNumber())
+}
+
+func GetCookieIdentity() string {
+	newidentity := EncodeString(ReleaseIdentity())
+	return strings.ReplaceAll(RemoveSpecialChars(newidentity), "=", "")
+}
+
+func ReleaseID() string {
+	return ApplicationProperties["releaseid"]
+}
+
+func ProjectID() string {
+	return ApplicationProperties["project"]
+}
+
+func ReleaseLevel() string {
+	return ApplicationProperties["releaselevel"]
+}
+
+func ReleaseNumber() string {
+	return ApplicationProperties["releasenumber"]
+}
+
+func ApplicationName() string {
+	return ApplicationProperties["appname"]
+}
+
+func ApplicationHostname() string {
+	tmpHostname, _ := os.Hostname()
+	return tmpHostname
+}
+
+func ApplicationSQLServer() string {
+	return ApplicationPropertiesDB["server"]
+}
+
+func ApplicationSQLSchemaParent() string {
+	return ApplicationPropertiesDB["parentschema"]
+}
+
+func GetSQLSchema(in map[string]string) string {
+	return in["schema"]
+}
+func ApplicationSQLSchema() string {
+	return GetSQLSchema(ApplicationPropertiesDB)
+}
+
+func ApplicationSQLDatabase() string {
+	return ApplicationPropertiesDB["database"]
+}
+
+func ApplicationSessionLife() string {
+	return ApplicationProperties["sessionlife"]
+}
+
+func ApplicationHTTPProtocol() string {
+	return ApplicationProperties["protocol"]
+}
+
+func ApplicationHTTPPort() string {
+	return ApplicationProperties["port"]
+}
+
+func ApplicationEnvironment() string {
+	return ApplicationProperties["environment"]
+}
+
+func ApplicationCertificatePath() string {
+	return ApplicationProperties["certpath"]
+}
+
+func ApplicationCertificateName() string {
+	return ApplicationProperties["certname"]
+}
+
+func ApplicationCredentialsLife() string {
+	return ApplicationProperties["credentialslife"]
+}
+
+func ApplicationGetLicenseName() string {
+	return ApplicationProperties["licname"]
+}
+
+func ApplicationGetLicenseLink() string {
+	return ApplicationProperties["liclink"]
+}
+
+func ApplicationToken() string {
+	return ApplicationProperties["applicationtoken"]
+}
+
+func SetApplicationSQLDatabase(db string) {
+	ApplicationPropertiesDB["database"] = db
+}
+
+func DataLoaderArtifactRepository() string {
+	return DataLoaderArtifactRepository()
+}
+
+func OBSOLETE_MessageQueueDeliveryPath() string {
+	return ApplicationProperties["deliverpath"]
+}
+
+func OBSOLETE_MessageQueueRecievePath() string {
+	return ApplicationProperties["receivepath"]
+}
+
+func OBSOLETE_MessageQueueProcessedPath() string {
+	return ApplicationProperties["processedpath"]
 }

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 28/06/2022 at 16:10:55
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,60 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//payee_PageList provides the information for the template for a list of Payees
-type Payee_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Payee
-}
-//Payee_Redirect provides a page to return to aftern an action
-const (
-	Payee_Redirect = dm.Payee_PathList
-)
 
-//payee_Page provides the information for the template for an individual Payee
-type Payee_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SourceTable         string
-	KeyCounterpartyFirm         string
-	KeyCounterpartyCentre         string
-	KeyCurrency         string
-	KeyName         string
-	KeyNumber         string
-	KeyDirection         string
-	KeyType         string
-	FullName         string
-	Address         string
-	PhoneNo         string
-	Country         string
-	Country_lookup    []dm.Lookup_Item
-	Bic         string
-	Iban         string
-	AccountNo         string
-	FedWireNo         string
-	SortCode         string
-	BankName         string
-	BankPinCode         string
-	BankAddress         string
-	Reason         string
-	BankSettlementAcct         string
-	UpdatedUserId         string
-	Status         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -108,7 +55,7 @@ func Payee_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Payee
 	noItems, returnList, _ := dao.Payee_GetList()
 
-	pageDetail := Payee_PageList{
+	pageDetail := dm.Payee_PageList{
 		Title:            CardTitle(dm.Payee_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Payee_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -139,7 +86,7 @@ func Payee_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Payee_QueryString)
 	_, rD, _ := dao.Payee_GetByID(searchID)
 
-	pageDetail := Payee_Page{
+	pageDetail := dm.Payee_Page{
 		Title:       CardTitle(dm.Payee_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Payee_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -160,9 +107,9 @@ func Payee_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Payee Page 
-func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
+func payee_PopulatePage(rD dm.Payee, pageDetail dm.Payee_Page) dm.Payee_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SourceTable = rD.SourceTable
 	pageDetail.KeyCounterpartyFirm = rD.KeyCounterpartyFirm
@@ -191,7 +138,7 @@ func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	pageDetail.Status = rD.Status
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -244,8 +191,34 @@ func payee_PopulatePage(rD dm.Payee, pageDetail Payee_Page) Payee_Page {
 	
 	
 	
+	pageDetail.SourceTable_props = rD.SourceTable_props
+	pageDetail.KeyCounterpartyFirm_props = rD.KeyCounterpartyFirm_props
+	pageDetail.KeyCounterpartyCentre_props = rD.KeyCounterpartyCentre_props
+	pageDetail.KeyCurrency_props = rD.KeyCurrency_props
+	pageDetail.KeyName_props = rD.KeyName_props
+	pageDetail.KeyNumber_props = rD.KeyNumber_props
+	pageDetail.KeyDirection_props = rD.KeyDirection_props
+	pageDetail.KeyType_props = rD.KeyType_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.Address_props = rD.Address_props
+	pageDetail.PhoneNo_props = rD.PhoneNo_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.Bic_props = rD.Bic_props
+	pageDetail.Iban_props = rD.Iban_props
+	pageDetail.AccountNo_props = rD.AccountNo_props
+	pageDetail.FedWireNo_props = rD.FedWireNo_props
+	pageDetail.SortCode_props = rD.SortCode_props
+	pageDetail.BankName_props = rD.BankName_props
+	pageDetail.BankPinCode_props = rD.BankPinCode_props
+	pageDetail.BankAddress_props = rD.BankAddress_props
+	pageDetail.Reason_props = rD.Reason_props
+	pageDetail.BankSettlementAcct_props = rD.BankSettlementAcct_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.Status_props = rD.Status_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

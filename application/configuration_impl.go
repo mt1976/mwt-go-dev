@@ -68,7 +68,7 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 
-	//title := core.ApplicationProperties["appname"]
+	//title := core.GetAppName()
 
 	// Get Data Here
 
@@ -78,13 +78,13 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserNavi:               "NOT USED",
 		Title:                  CardTitle("Application", core.Action_Configure),
 		PageTitle:              PageTitle("Application", core.Action_Configure),
-		RequestPath:            core.ApplicationProperties["deliverpath"],
-		ResponsePath:           core.ApplicationProperties["receivepath"],
-		ProcessedPath:          core.ApplicationProperties["processedpath"],
-		ResponseType:           core.ApplicationProperties["responseformat"],
-		AppServerReleaseID:     core.ApplicationProperties["releaseid"],
-		AppServerReleaseLevel:  core.ApplicationProperties["releaselevel"],
-		AppServerReleaseNumber: core.ApplicationProperties["releasenumber"],
+		RequestPath:            "OBSOLETE",
+		ResponsePath:           "OBSOLETE",
+		ProcessedPath:          "OBSOLETE",
+		ResponseType:           "OBSOLETE",
+		AppServerReleaseID:     core.ReleaseID(),
+		AppServerReleaseLevel:  core.ReleaseLevel(),
+		AppServerReleaseNumber: core.ReleaseNumber(),
 		SienaName:              core.SienaProperties["name"],
 		SienaDealImportPath:    core.SienaProperties["dealimport_in"],
 		SienaStaticImportPath:  core.SienaProperties["static_in"],
@@ -98,14 +98,14 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 		OS:                     runtime.GOOS,
 	}
 	pageAppConfigView.SienaSystemDate = core.SienaSystemDate.Siena
-	pageAppConfigView.AppDBServer = core.ApplicationPropertiesDB["server"]
+	pageAppConfigView.AppDBServer = core.ApplicationSQLServer()
 	pageAppConfigView.AppDBPort = core.ApplicationPropertiesDB["port"]
 	pageAppConfigView.AppDBUser = core.ApplicationPropertiesDB["user"]
 	pageAppConfigView.AppDBPassword = strings.Repeat("*", len(core.ApplicationPropertiesDB["password"]))
-	pageAppConfigView.AppDBDatabase = core.ApplicationPropertiesDB["database"]
-	pageAppConfigView.AppDBSchema = core.ApplicationPropertiesDB["schema"]
-	pageAppConfigView.AppCredentialsLife = core.ApplicationProperties["credentialslife"]
-	pageAppConfigView.AppSessionLife = core.ApplicationProperties["sessionlife"]
+	pageAppConfigView.AppDBDatabase = core.ApplicationSQLDatabase()
+	pageAppConfigView.AppDBSchema = core.ApplicationSQLSchema()
+	pageAppConfigView.AppCredentialsLife = core.ApplicationCredentialsLife()
+	pageAppConfigView.AppSessionLife = core.ApplicationSessionLife()
 	pageAppConfigView.AppDefaultSienaSystem = core.SienaProperties["name"]
 
 	var sienaSystem SystemStoreItem

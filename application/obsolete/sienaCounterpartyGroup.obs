@@ -73,8 +73,8 @@ func ListSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupListPage{
-		Title:                       core.ApplicationProperties["appname"],
-		PageTitle:                   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
+		Title:                       core.GetAppName(),
+		PageTitle:                   core.GetAppName() + " - " + "Counterparty Groups",
 		SienaCounterpartyGroupCount: noItems,
 		SienaCounterpartyGroupList:  returnList,
 		UserMenu:                    UserMenu_Get(r),
@@ -105,8 +105,8 @@ func ViewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := getSienaCounterpartyGroup(searchID)
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Groups",
+		Title:       core.GetAppName(),
+		PageTitle:   core.GetAppName() + " - " + "Counterparty Groups",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -142,8 +142,8 @@ func EditSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	_, groupList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
-		Title:       core.ApplicationProperties["appname"],
-		PageTitle:   core.ApplicationProperties["appname"] + " - " + "Counterparty Group - View",
+		Title:       core.GetAppName(),
+		PageTitle:   core.GetAppName() + " - " + "Counterparty Group - View",
 		Name:        returnRecord.Name,
 		CountryCode: returnRecord.CountryCode,
 		SuperGroup:  returnRecord.SuperGroup,
@@ -264,8 +264,8 @@ func NewSienaCounterpartyGroupHandler(w http.ResponseWriter, r *http.Request) {
 	_, groupList, _ := getSienaCounterpartyGroupList()
 
 	pageSienaCounterpartyGroupList := sienaCounterpartyGroupPage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Group - New",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Counterparty Group - New",
 
 		Name:        "",
 		CountryCode: "",

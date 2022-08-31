@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "ec8ed0d2-705e-4d0d-9ef5-a0e0861cc6ba",
+      "MenuText": "Conversation Status",
+      "MenuGlyph": "far fa-comment",
+      "MenuHREF": "/ContactStreamStatusList",
+      "MenuOnClick": "",
+      "MenuTextClass": """"
+    }
+    

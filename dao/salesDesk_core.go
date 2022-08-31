@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 28/06/2022 at 16:10:56
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func SalesDesk_GetByID(id string) (int, dm.SalesDesk, error) {
 	tsql = tsql + " WHERE " + dm.SalesDesk_SQLSearchID + "='" + id + "'"
 	_, _, salesdeskItem, _ := salesdesk_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, salesdeskItem, nil
 }
 
@@ -79,7 +85,12 @@ func SalesDesk_Delete(id string) {
 // SalesDesk_Store() saves/stores a SalesDesk record to the database
 func SalesDesk_Store(r dm.SalesDesk,req *http.Request) error {
 
-	err := salesdesk_Save(r,Audit_User(req))
+	err, r := SalesDesk_Validate(r)
+	if err == nil {
+		err = salesdesk_Save(r, Audit_User(req))
+	} else {
+		logs.Information("SalesDesk_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,31 @@ func SalesDesk_Store(r dm.SalesDesk,req *http.Request) error {
 // SalesDesk_StoreSystem() saves/stores a SalesDesk record to the database
 func SalesDesk_StoreSystem(r dm.SalesDesk) error {
 	
-	err := salesdesk_Save(r,Audit_Host())
+	err, r := SalesDesk_Validate(r)
+	if err == nil {
+		err = salesdesk_Save(r, Audit_Host())
+	} else {
+		logs.Information("SalesDesk_Store()", err.Error())
+	}
 
 	return err
 }
+
+// SalesDesk_Validate() validates for saves/stores a SalesDesk record to the database
+func SalesDesk_Validate(r dm.SalesDesk) (error,dm.SalesDesk) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // salesdesk_Save() saves/stores a SalesDesk record to the database
 func salesdesk_Save(r dm.SalesDesk,usr string) error {
@@ -149,7 +181,7 @@ func salesdesk_Fetch(tsql string) (int, []dm.SalesDesk, dm.SalesDesk, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Name  = get_String(rec, dm.SalesDesk_Name_sql, "")
 	   recItem.ReportDealsOver  = get_String(rec, dm.SalesDesk_ReportDealsOver_sql, "")
@@ -167,7 +199,7 @@ func salesdesk_Fetch(tsql string) (int, []dm.SalesDesk, dm.SalesDesk, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -187,7 +219,24 @@ func SalesDesk_NewID(r dm.SalesDesk) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// salesdesk_Fetch read all SalesDesk's
+func SalesDesk_New() (int, []dm.SalesDesk, dm.SalesDesk, error) {
+
+	var r = dm.SalesDesk{}
+	var rList []dm.SalesDesk
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

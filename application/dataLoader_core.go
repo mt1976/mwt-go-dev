@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,52 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dataloader_PageList provides the information for the template for a list of DataLoaders
-type DataLoader_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DataLoader
-}
-//DataLoader_Redirect provides a page to return to aftern an action
-const (
-	DataLoader_Redirect = dm.DataLoader_PathList
-)
 
-//dataloader_Page provides the information for the template for an individual DataLoader
-type DataLoader_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Name         string
-	Description         string
-	Filename         string
-	Lastrun         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	Type         string
-	Instance         string
-	Extension         string
-	SYSCreatedBy         string
-	SYSUpdatedHost         string
-	SYSUpdatedBy         string
-	SYSCreatedHost         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -100,7 +55,7 @@ func DataLoader_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DataLoader
 	noItems, returnList, _ := dao.DataLoader_GetList()
 
-	pageDetail := DataLoader_PageList{
+	pageDetail := dm.DataLoader_PageList{
 		Title:            CardTitle(dm.DataLoader_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DataLoader_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -131,7 +86,7 @@ func DataLoader_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DataLoader_QueryString)
 	_, rD, _ := dao.DataLoader_GetByID(searchID)
 
-	pageDetail := DataLoader_Page{
+	pageDetail := dm.DataLoader_Page{
 		Title:       CardTitle(dm.DataLoader_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DataLoader_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -162,7 +117,7 @@ func DataLoader_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DataLoader_QueryString)
 	_, rD, _ := dao.DataLoader_GetByID(searchID)
 	
-	pageDetail := DataLoader_Page{
+	pageDetail := dm.DataLoader_Page{
 		Title:       CardTitle(dm.DataLoader_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DataLoader_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -191,7 +146,7 @@ func DataLoader_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DataLoader
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.DataLoader_SYSId_scrn)
 		item.Id = r.FormValue(dm.DataLoader_Id_scrn)
@@ -212,19 +167,19 @@ func DataLoader_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSCreatedHost = r.FormValue(dm.DataLoader_SYSCreatedHost_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DataLoader_Store(item,r)	
-	http.Redirect(w, r, DataLoader_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DataLoader_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the DataLoader Page 
-func dataloader_PopulatePage(rD dm.DataLoader, pageDetail DataLoader_Page) DataLoader_Page {
+func dataloader_PopulatePage(rD dm.DataLoader, pageDetail dm.DataLoader_Page) dm.DataLoader_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -246,7 +201,7 @@ func dataloader_PopulatePage(rD dm.DataLoader, pageDetail DataLoader_Page) DataL
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -283,8 +238,27 @@ func dataloader_PopulatePage(rD dm.DataLoader, pageDetail DataLoader_Page) DataL
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Description_props = rD.Description_props
+	pageDetail.Filename_props = rD.Filename_props
+	pageDetail.Lastrun_props = rD.Lastrun_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Type_props = rD.Type_props
+	pageDetail.Instance_props = rD.Instance_props
+	pageDetail.Extension_props = rD.Extension_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

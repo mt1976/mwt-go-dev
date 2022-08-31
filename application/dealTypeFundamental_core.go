@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 28/06/2022 at 16:10:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,125 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dealtypefundamental_PageList provides the information for the template for a list of DealTypeFundamentals
-type DealTypeFundamental_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DealTypeFundamental
-}
-//DealTypeFundamental_Redirect provides a page to return to aftern an action
-const (
-	DealTypeFundamental_Redirect = dm.DealTypeFundamental_PathList
-)
 
-//dealtypefundamental_Page provides the information for the template for an individual DealTypeFundamental
-type DealTypeFundamental_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	DealTypeKey         string
-	Amendment         string
-	DefaultFrequency         string
-	Directions         string
-	SettledTermDealType         string
-	Optn         string
-	AllowPledge         string
-	Takeup         string
-	MismatchDealType         string
-	SettledHedgeTermDealType         string
-	SettlementCode         string
-	TermSubType         string
-	FundingDealType         string
-	TransferType         string
-	TermDealType         string
-	NegotiableInstrumentType         string
-	Mismatch         string
-	ComplexTransferSubType         string
-	LayOffDealType         string
-	NIAccount         string
-	SimpleMMsubtype         string
-	SwapDealType         string
-	Positions         string
-	OptionOutright         string
-	SettledHedgeSpotDealType         string
-	StraightThroughInterestMethod         string
-	SubType         string
-	Rollover         string
-	DefaultIssuer         string
-	DefaultStartDate         string
-	Fee         string
-	NDF         string
-	FXFX         string
-	ONIA         string
-	MarginSubType         string
-	TransferDealType         string
-	IsFX         string
-	Ordr         string
-	OptionStyle         string
-	SpotDealType         string
-	CanIssue         string
-	CanShort         string
-	FXMarginTradingType         string
-	Internal         string
-	TicketBasename         string
-	InterestRateFutureType         string
-	TradingLimitProductCode         string
-	Forward         string
-	MaturityNotificationPeriod         string
-	NotificationEvents         string
-	SwapSubType         string
-	ProductCode         string
-	Funding         string
-	AllocationPricing         string
-	CancelPeriod         string
-	MMMarginTradingType         string
-	OptionSpot         string
-	Transfer         string
-	NotificationPeriod         string
-	Paymentdateshift         string
-	CloseOut         string
-	FXOptionPricing         string
-	SettledHedgeOutrightDealType         string
-	RepoBond         string
-	RepoTerm         string
-	RepoType         string
-	DateRule         string
-	CorpTransferDealType         string
-	GenerateFXImage         string
-	Variant         string
-	HedgeTermDealType         string
-	PricingModel         string
-	HedgeOutrightDealType         string
-	Fixing         string
-	Payment         string
-	MT         string
-	SettlementInstructionStyle         string
-	QuoteHistoryRequired         string
-	Brokerage         string
-	ExposureDisabled         string
-	CreditLine         string
-	Encumbered         string
-	InternalId         string
-	InternalDeleted         string
-	UpdatedTransactionId         string
-	UpdatedUserId         string
-	UpdatedDateTime         string
-	DeletedTransactionId         string
-	DeletedUserId         string
-	ChangeType         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -173,7 +55,7 @@ func DealTypeFundamental_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DealTypeFundamental
 	noItems, returnList, _ := dao.DealTypeFundamental_GetList()
 
-	pageDetail := DealTypeFundamental_PageList{
+	pageDetail := dm.DealTypeFundamental_PageList{
 		Title:            CardTitle(dm.DealTypeFundamental_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealTypeFundamental_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -204,7 +86,7 @@ func DealTypeFundamental_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealTypeFundamental_QueryString)
 	_, rD, _ := dao.DealTypeFundamental_GetByID(searchID)
 
-	pageDetail := DealTypeFundamental_Page{
+	pageDetail := dm.DealTypeFundamental_Page{
 		Title:       CardTitle(dm.DealTypeFundamental_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -235,7 +117,7 @@ func DealTypeFundamental_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealTypeFundamental_QueryString)
 	_, rD, _ := dao.DealTypeFundamental_GetByID(searchID)
 	
-	pageDetail := DealTypeFundamental_Page{
+	pageDetail := dm.DealTypeFundamental_Page{
 		Title:       CardTitle(dm.DealTypeFundamental_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -264,7 +146,7 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DealTypeFundamental
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.DealTypeKey = r.FormValue(dm.DealTypeFundamental_DealTypeKey_scrn)
 		item.Amendment = r.FormValue(dm.DealTypeFundamental_Amendment_scrn)
@@ -358,10 +240,10 @@ func DealTypeFundamental_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ChangeType = r.FormValue(dm.DealTypeFundamental_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DealTypeFundamental_Store(item,r)	
-	http.Redirect(w, r, DealTypeFundamental_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DealTypeFundamental_Redirect, http.StatusFound)
 }
 
 
@@ -374,11 +256,11 @@ func DealTypeFundamental_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.DealTypeFundamental_New()
 
-	pageDetail := DealTypeFundamental_Page{
+	pageDetail := dm.DealTypeFundamental_Page{
 		Title:       CardTitle(dm.DealTypeFundamental_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.DealTypeFundamental_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -387,7 +269,7 @@ func DealTypeFundamental_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = dealtypefundamental_PopulatePage(dm.DealTypeFundamental{} , pageDetail) 
+	pageDetail = dealtypefundamental_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DealTypeFundamental_TemplateNew, w, r, pageDetail)
 
@@ -408,14 +290,14 @@ func DealTypeFundamental_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.DealTypeFundamental_Delete(searchID)	
 
-	http.Redirect(w, r, DealTypeFundamental_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DealTypeFundamental_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the DealTypeFundamental Page 
-func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail DealTypeFundamental_Page) DealTypeFundamental_Page {
+func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail dm.DealTypeFundamental_Page) dm.DealTypeFundamental_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealTypeKey = rD.DealTypeKey
 	pageDetail.Amendment = rD.Amendment
@@ -510,7 +392,7 @@ func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail Deal
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -693,8 +575,100 @@ func dealtypefundamental_PopulatePage(rD dm.DealTypeFundamental, pageDetail Deal
 	
 	
 	
+	pageDetail.DealTypeKey_props = rD.DealTypeKey_props
+	pageDetail.Amendment_props = rD.Amendment_props
+	pageDetail.DefaultFrequency_props = rD.DefaultFrequency_props
+	pageDetail.Directions_props = rD.Directions_props
+	pageDetail.SettledTermDealType_props = rD.SettledTermDealType_props
+	pageDetail.Optn_props = rD.Optn_props
+	pageDetail.AllowPledge_props = rD.AllowPledge_props
+	pageDetail.Takeup_props = rD.Takeup_props
+	pageDetail.MismatchDealType_props = rD.MismatchDealType_props
+	pageDetail.SettledHedgeTermDealType_props = rD.SettledHedgeTermDealType_props
+	pageDetail.SettlementCode_props = rD.SettlementCode_props
+	pageDetail.TermSubType_props = rD.TermSubType_props
+	pageDetail.FundingDealType_props = rD.FundingDealType_props
+	pageDetail.TransferType_props = rD.TransferType_props
+	pageDetail.TermDealType_props = rD.TermDealType_props
+	pageDetail.NegotiableInstrumentType_props = rD.NegotiableInstrumentType_props
+	pageDetail.Mismatch_props = rD.Mismatch_props
+	pageDetail.ComplexTransferSubType_props = rD.ComplexTransferSubType_props
+	pageDetail.LayOffDealType_props = rD.LayOffDealType_props
+	pageDetail.NIAccount_props = rD.NIAccount_props
+	pageDetail.SimpleMMsubtype_props = rD.SimpleMMsubtype_props
+	pageDetail.SwapDealType_props = rD.SwapDealType_props
+	pageDetail.Positions_props = rD.Positions_props
+	pageDetail.OptionOutright_props = rD.OptionOutright_props
+	pageDetail.SettledHedgeSpotDealType_props = rD.SettledHedgeSpotDealType_props
+	pageDetail.StraightThroughInterestMethod_props = rD.StraightThroughInterestMethod_props
+	pageDetail.SubType_props = rD.SubType_props
+	pageDetail.Rollover_props = rD.Rollover_props
+	pageDetail.DefaultIssuer_props = rD.DefaultIssuer_props
+	pageDetail.DefaultStartDate_props = rD.DefaultStartDate_props
+	pageDetail.Fee_props = rD.Fee_props
+	pageDetail.NDF_props = rD.NDF_props
+	pageDetail.FXFX_props = rD.FXFX_props
+	pageDetail.ONIA_props = rD.ONIA_props
+	pageDetail.MarginSubType_props = rD.MarginSubType_props
+	pageDetail.TransferDealType_props = rD.TransferDealType_props
+	pageDetail.IsFX_props = rD.IsFX_props
+	pageDetail.Ordr_props = rD.Ordr_props
+	pageDetail.OptionStyle_props = rD.OptionStyle_props
+	pageDetail.SpotDealType_props = rD.SpotDealType_props
+	pageDetail.CanIssue_props = rD.CanIssue_props
+	pageDetail.CanShort_props = rD.CanShort_props
+	pageDetail.FXMarginTradingType_props = rD.FXMarginTradingType_props
+	pageDetail.Internal_props = rD.Internal_props
+	pageDetail.TicketBasename_props = rD.TicketBasename_props
+	pageDetail.InterestRateFutureType_props = rD.InterestRateFutureType_props
+	pageDetail.TradingLimitProductCode_props = rD.TradingLimitProductCode_props
+	pageDetail.Forward_props = rD.Forward_props
+	pageDetail.MaturityNotificationPeriod_props = rD.MaturityNotificationPeriod_props
+	pageDetail.NotificationEvents_props = rD.NotificationEvents_props
+	pageDetail.SwapSubType_props = rD.SwapSubType_props
+	pageDetail.ProductCode_props = rD.ProductCode_props
+	pageDetail.Funding_props = rD.Funding_props
+	pageDetail.AllocationPricing_props = rD.AllocationPricing_props
+	pageDetail.CancelPeriod_props = rD.CancelPeriod_props
+	pageDetail.MMMarginTradingType_props = rD.MMMarginTradingType_props
+	pageDetail.OptionSpot_props = rD.OptionSpot_props
+	pageDetail.Transfer_props = rD.Transfer_props
+	pageDetail.NotificationPeriod_props = rD.NotificationPeriod_props
+	pageDetail.Paymentdateshift_props = rD.Paymentdateshift_props
+	pageDetail.CloseOut_props = rD.CloseOut_props
+	pageDetail.FXOptionPricing_props = rD.FXOptionPricing_props
+	pageDetail.SettledHedgeOutrightDealType_props = rD.SettledHedgeOutrightDealType_props
+	pageDetail.RepoBond_props = rD.RepoBond_props
+	pageDetail.RepoTerm_props = rD.RepoTerm_props
+	pageDetail.RepoType_props = rD.RepoType_props
+	pageDetail.DateRule_props = rD.DateRule_props
+	pageDetail.CorpTransferDealType_props = rD.CorpTransferDealType_props
+	pageDetail.GenerateFXImage_props = rD.GenerateFXImage_props
+	pageDetail.Variant_props = rD.Variant_props
+	pageDetail.HedgeTermDealType_props = rD.HedgeTermDealType_props
+	pageDetail.PricingModel_props = rD.PricingModel_props
+	pageDetail.HedgeOutrightDealType_props = rD.HedgeOutrightDealType_props
+	pageDetail.Fixing_props = rD.Fixing_props
+	pageDetail.Payment_props = rD.Payment_props
+	pageDetail.MT_props = rD.MT_props
+	pageDetail.SettlementInstructionStyle_props = rD.SettlementInstructionStyle_props
+	pageDetail.QuoteHistoryRequired_props = rD.QuoteHistoryRequired_props
+	pageDetail.Brokerage_props = rD.Brokerage_props
+	pageDetail.ExposureDisabled_props = rD.ExposureDisabled_props
+	pageDetail.CreditLine_props = rD.CreditLine_props
+	pageDetail.Encumbered_props = rD.Encumbered_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

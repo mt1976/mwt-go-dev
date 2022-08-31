@@ -1,11 +1,10 @@
 
-    {
-      "ID": "48213887-18cd-4087-b8d7-fcc1e98d9d60",
-      "Text": "Rates Store Content",
-      "Glyph": "fas fa-file-invoice-dollar",
-      "HREF": "/MarketRatesList",
-      "OnClick": "",
-      "TextClass": "text-info"
+   '{
+      "MenuID": "c5ceb9cf-f270-4c31-b01a-990f9060e1b7",
+      "MenuText": "Rates Store Content",
+      "MenuGlyph": "fas fa-file-invoice-dollar",
+      "MenuHREF": "/MarketRatesList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
     }
-    ,
     

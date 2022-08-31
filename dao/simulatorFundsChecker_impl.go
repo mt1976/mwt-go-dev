@@ -44,8 +44,8 @@ func putFundsCheck(r dm.Simulator_SienaFundsChecker_Item) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	//	deletesql := fmt.Sprintf(simFundsCheckSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	//	inserttsql := fmt.Sprintf(simFundsCheckSQLINSERT, core.ApplicationPropertiesDB["schema"], simFundsCheckSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	//	deletesql := fmt.Sprintf(simFundsCheckSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	//	inserttsql := fmt.Sprintf(simFundsCheckSQLINSERT, core.ApplicationSQLSchema(), simFundsCheckSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
 	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)

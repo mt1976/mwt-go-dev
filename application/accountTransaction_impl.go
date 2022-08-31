@@ -32,8 +32,8 @@ func AccountTransaction_HandlerViewTransaction(w http.ResponseWriter, r *http.Re
 	var returnList []dm.AccountTransaction
 	noItems, returnList, _ := dao.AccountTransaction_GetListByID(searchID)
 
-	pageDetail := AccountTransaction_PageList{
-		Title:       core.ApplicationProperties["appname"],
+	pageDetail := dm.AccountTransaction_PageList{
+		Title:       core.ApplicationName(),
 		PageTitle:   PageTitle(dm.AccountTransaction_Title, core.Action_List),
 		ItemsOnPage: noItems,
 		ItemList:    returnList,

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Country_GetByID(id string) (int, dm.Country, error) {
 	tsql = tsql + " WHERE " + dm.Country_SQLSearchID + "='" + id + "'"
 	_, _, countryItem, _ := country_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, countryItem, nil
 }
 
@@ -79,7 +85,12 @@ func Country_Delete(id string) {
 // Country_Store() saves/stores a Country record to the database
 func Country_Store(r dm.Country,req *http.Request) error {
 
-	err := country_Save(r,Audit_User(req))
+	err, r := Country_Validate(r)
+	if err == nil {
+		err = country_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Country_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,31 @@ func Country_Store(r dm.Country,req *http.Request) error {
 // Country_StoreSystem() saves/stores a Country record to the database
 func Country_StoreSystem(r dm.Country) error {
 	
-	err := country_Save(r,Audit_Host())
+	err, r := Country_Validate(r)
+	if err == nil {
+		err = country_Save(r, Audit_Host())
+	} else {
+		logs.Information("Country_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Country_Validate() validates for saves/stores a Country record to the database
+func Country_Validate(r dm.Country) (error,dm.Country) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // country_Save() saves/stores a Country record to the database
 func country_Save(r dm.Country,usr string) error {
@@ -148,7 +180,7 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Code  = get_String(rec, dm.Country_Code_sql, "")
 	   recItem.Name  = get_String(rec, dm.Country_Name_sql, "")
@@ -164,7 +196,7 @@ func country_Fetch(tsql string) (int, []dm.Country, dm.Country, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -184,7 +216,24 @@ func Country_NewID(r dm.Country) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// country_Fetch read all Country's
+func Country_New() (int, []dm.Country, dm.Country, error) {
+
+	var r = dm.Country{}
+	var rList []dm.Country
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "581cb3fc-9aaa-41c7-b69c-36f542479fab",
+      "MenuText": "Counterparty Notes",
+      "MenuGlyph": "far fa-sticky-note",
+      "MenuHREF": "/CounterpartyNotesList",
+      "MenuOnClick": "",
+      "MenuTextClass": """"
+    }
+    

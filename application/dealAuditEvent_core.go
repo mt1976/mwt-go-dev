@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,56 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dealauditevent_PageList provides the information for the template for a list of DealAuditEvents
-type DealAuditEvent_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DealAuditEvent
-}
-//DealAuditEvent_Redirect provides a page to return to aftern an action
-const (
-	DealAuditEvent_Redirect = dm.DealAuditEvent_PathList
-)
 
-//dealauditevent_Page provides the information for the template for an individual DealAuditEvent
-type DealAuditEvent_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	DealRefNo         string
-	EventIndex         string
-	CommonRefNo         string
-	Timestamp         string
-	UTCTimestamp         string
-	EventType         string
-	Status         string
-	LimitOrderStatus         string
-	Usr         string
-	DealingInterface         string
-	SourceIP         string
-	MessageID         string
-	Details         string
-	InternalId         string
-	InternalDeleted         string
-	UpdatedTransactionId         string
-	UpdatedUserId         string
-	UpdatedDateTime         string
-	DeletedTransactionId         string
-	DeletedUserId         string
-	ChangeType         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -104,7 +55,7 @@ func DealAuditEvent_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DealAuditEvent
 	noItems, returnList, _ := dao.DealAuditEvent_GetList()
 
-	pageDetail := DealAuditEvent_PageList{
+	pageDetail := dm.DealAuditEvent_PageList{
 		Title:            CardTitle(dm.DealAuditEvent_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DealAuditEvent_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -135,7 +86,7 @@ func DealAuditEvent_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DealAuditEvent_QueryString)
 	_, rD, _ := dao.DealAuditEvent_GetByID(searchID)
 
-	pageDetail := DealAuditEvent_Page{
+	pageDetail := dm.DealAuditEvent_Page{
 		Title:       CardTitle(dm.DealAuditEvent_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DealAuditEvent_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -156,9 +107,9 @@ func DealAuditEvent_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the DealAuditEvent Page 
-func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent_Page) DealAuditEvent_Page {
+func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail dm.DealAuditEvent_Page) dm.DealAuditEvent_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.DealRefNo = rD.DealRefNo
 	pageDetail.EventIndex = rD.EventIndex
@@ -184,7 +135,7 @@ func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -229,8 +180,31 @@ func dealauditevent_PopulatePage(rD dm.DealAuditEvent, pageDetail DealAuditEvent
 	
 	
 	
+	pageDetail.DealRefNo_props = rD.DealRefNo_props
+	pageDetail.EventIndex_props = rD.EventIndex_props
+	pageDetail.CommonRefNo_props = rD.CommonRefNo_props
+	pageDetail.Timestamp_props = rD.Timestamp_props
+	pageDetail.UTCTimestamp_props = rD.UTCTimestamp_props
+	pageDetail.EventType_props = rD.EventType_props
+	pageDetail.Status_props = rD.Status_props
+	pageDetail.LimitOrderStatus_props = rD.LimitOrderStatus_props
+	pageDetail.Usr_props = rD.Usr_props
+	pageDetail.DealingInterface_props = rD.DealingInterface_props
+	pageDetail.SourceIP_props = rD.SourceIP_props
+	pageDetail.MessageID_props = rD.MessageID_props
+	pageDetail.Details_props = rD.Details_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

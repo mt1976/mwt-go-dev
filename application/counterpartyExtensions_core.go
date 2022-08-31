@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,78 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//counterpartyextensions_PageList provides the information for the template for a list of CounterpartyExtensionss
-type CounterpartyExtensions_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CounterpartyExtensions
-}
-//CounterpartyExtensions_Redirect provides a page to return to aftern an action
-const (
-	CounterpartyExtensions_Redirect = dm.CounterpartyExtensions_PathList
-)
 
-//counterpartyextensions_Page provides the information for the template for an individual CounterpartyExtensions
-type CounterpartyExtensions_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	NameFirm         string
-	NameCentre         string
-	BICCode         string
-	ContactIndicator         string
-	CoverTrade         string
-	CustomerCategory         string
-	FSCSInclusive         string
-	FeeFactor         string
-	InactiveStatus         string
-	Indemnity         string
-	KnowYourCustomerStatus         string
-	LERLimitCarveOut         string
-	LastAmended         string
-	LastLogin         string
-	LossGivenDefault         string
-	MIC         string
-	ProtectedDepositor         string
-	RPTCurrency         string
-	RateTimeout         string
-	RateValidation         string
-	Registered         string
-	RegulatoryCategory         string
-	SecuredSettlement         string
-	SettlementLimitCarveOut         string
-	SortCode         string
-	Training         string
-	TrainingCode         string
-	TrainingReceived         string
-	Unencumbered         string
-	LEIExpiryDate         string
-	MIFIDReviewDate         string
-	GDPRReviewDate         string
-	DelegatedReporting         string
-	BOReconcile         string
-	MIFIDReportableDealsAllowed         string
-	SignedInvestmentAgreement         string
-	AppropriatenessAssessment         string
-	FinancialCounterparty         string
-	Collateralisation         string
-	PortfolioCode         string
-	ReconciliationLetterFrequency         string
-	DirectDealing         string
-	CompID         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -126,7 +55,7 @@ func CounterpartyExtensions_HandlerList(w http.ResponseWriter, r *http.Request) 
 	var returnList []dm.CounterpartyExtensions
 	noItems, returnList, _ := dao.CounterpartyExtensions_GetList()
 
-	pageDetail := CounterpartyExtensions_PageList{
+	pageDetail := dm.CounterpartyExtensions_PageList{
 		Title:            CardTitle(dm.CounterpartyExtensions_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CounterpartyExtensions_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -157,7 +86,7 @@ func CounterpartyExtensions_HandlerView(w http.ResponseWriter, r *http.Request) 
 	searchID := core.GetURLparam(r, dm.CounterpartyExtensions_QueryString)
 	_, rD, _ := dao.CounterpartyExtensions_GetByID(searchID)
 
-	pageDetail := CounterpartyExtensions_Page{
+	pageDetail := dm.CounterpartyExtensions_Page{
 		Title:       CardTitle(dm.CounterpartyExtensions_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CounterpartyExtensions_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -188,7 +117,7 @@ func CounterpartyExtensions_HandlerEdit(w http.ResponseWriter, r *http.Request) 
 	searchID := core.GetURLparam(r, dm.CounterpartyExtensions_QueryString)
 	_, rD, _ := dao.CounterpartyExtensions_GetByID(searchID)
 	
-	pageDetail := CounterpartyExtensions_Page{
+	pageDetail := dm.CounterpartyExtensions_Page{
 		Title:       CardTitle(dm.CounterpartyExtensions_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CounterpartyExtensions_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -217,7 +146,7 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 
 	var item dm.CounterpartyExtensions
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.NameFirm = r.FormValue(dm.CounterpartyExtensions_NameFirm_scrn)
 		item.NameCentre = r.FormValue(dm.CounterpartyExtensions_NameCentre_scrn)
@@ -264,10 +193,10 @@ func CounterpartyExtensions_HandlerSave(w http.ResponseWriter, r *http.Request) 
 		item.CompID = r.FormValue(dm.CounterpartyExtensions_CompID_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CounterpartyExtensions_Store(item,r)	
-	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CounterpartyExtensions_Redirect, http.StatusFound)
 }
 
 
@@ -280,11 +209,11 @@ func CounterpartyExtensions_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.CounterpartyExtensions_New()
 
-	pageDetail := CounterpartyExtensions_Page{
+	pageDetail := dm.CounterpartyExtensions_Page{
 		Title:       CardTitle(dm.CounterpartyExtensions_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CounterpartyExtensions_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -293,7 +222,7 @@ func CounterpartyExtensions_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = counterpartyextensions_PopulatePage(dm.CounterpartyExtensions{} , pageDetail) 
+	pageDetail = counterpartyextensions_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CounterpartyExtensions_TemplateNew, w, r, pageDetail)
 
@@ -314,14 +243,14 @@ func CounterpartyExtensions_HandlerDelete(w http.ResponseWriter, r *http.Request
 
 	dao.CounterpartyExtensions_Delete(searchID)	
 
-	http.Redirect(w, r, CounterpartyExtensions_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CounterpartyExtensions_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the CounterpartyExtensions Page 
-func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetail CounterpartyExtensions_Page) CounterpartyExtensions_Page {
+func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetail dm.CounterpartyExtensions_Page) dm.CounterpartyExtensions_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.NameFirm = rD.NameFirm
 	pageDetail.NameCentre = rD.NameCentre
@@ -369,7 +298,7 @@ func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetai
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -458,8 +387,53 @@ func counterpartyextensions_PopulatePage(rD dm.CounterpartyExtensions, pageDetai
 	
 	
 	
+	pageDetail.NameFirm_props = rD.NameFirm_props
+	pageDetail.NameCentre_props = rD.NameCentre_props
+	pageDetail.BICCode_props = rD.BICCode_props
+	pageDetail.ContactIndicator_props = rD.ContactIndicator_props
+	pageDetail.CoverTrade_props = rD.CoverTrade_props
+	pageDetail.CustomerCategory_props = rD.CustomerCategory_props
+	pageDetail.FSCSInclusive_props = rD.FSCSInclusive_props
+	pageDetail.FeeFactor_props = rD.FeeFactor_props
+	pageDetail.InactiveStatus_props = rD.InactiveStatus_props
+	pageDetail.Indemnity_props = rD.Indemnity_props
+	pageDetail.KnowYourCustomerStatus_props = rD.KnowYourCustomerStatus_props
+	pageDetail.LERLimitCarveOut_props = rD.LERLimitCarveOut_props
+	pageDetail.LastAmended_props = rD.LastAmended_props
+	pageDetail.LastLogin_props = rD.LastLogin_props
+	pageDetail.LossGivenDefault_props = rD.LossGivenDefault_props
+	pageDetail.MIC_props = rD.MIC_props
+	pageDetail.ProtectedDepositor_props = rD.ProtectedDepositor_props
+	pageDetail.RPTCurrency_props = rD.RPTCurrency_props
+	pageDetail.RateTimeout_props = rD.RateTimeout_props
+	pageDetail.RateValidation_props = rD.RateValidation_props
+	pageDetail.Registered_props = rD.Registered_props
+	pageDetail.RegulatoryCategory_props = rD.RegulatoryCategory_props
+	pageDetail.SecuredSettlement_props = rD.SecuredSettlement_props
+	pageDetail.SettlementLimitCarveOut_props = rD.SettlementLimitCarveOut_props
+	pageDetail.SortCode_props = rD.SortCode_props
+	pageDetail.Training_props = rD.Training_props
+	pageDetail.TrainingCode_props = rD.TrainingCode_props
+	pageDetail.TrainingReceived_props = rD.TrainingReceived_props
+	pageDetail.Unencumbered_props = rD.Unencumbered_props
+	pageDetail.LEIExpiryDate_props = rD.LEIExpiryDate_props
+	pageDetail.MIFIDReviewDate_props = rD.MIFIDReviewDate_props
+	pageDetail.GDPRReviewDate_props = rD.GDPRReviewDate_props
+	pageDetail.DelegatedReporting_props = rD.DelegatedReporting_props
+	pageDetail.BOReconcile_props = rD.BOReconcile_props
+	pageDetail.MIFIDReportableDealsAllowed_props = rD.MIFIDReportableDealsAllowed_props
+	pageDetail.SignedInvestmentAgreement_props = rD.SignedInvestmentAgreement_props
+	pageDetail.AppropriatenessAssessment_props = rD.AppropriatenessAssessment_props
+	pageDetail.FinancialCounterparty_props = rD.FinancialCounterparty_props
+	pageDetail.Collateralisation_props = rD.Collateralisation_props
+	pageDetail.PortfolioCode_props = rD.PortfolioCode_props
+	pageDetail.ReconciliationLetterFrequency_props = rD.ReconciliationLetterFrequency_props
+	pageDetail.DirectDealing_props = rD.DirectDealing_props
+	pageDetail.CompID_props = rD.CompID_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

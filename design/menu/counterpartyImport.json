@@ -1,11 +1,10 @@
 
-    {
-      "ID": "6af00cb3-19af-4e6c-bf13-177714b1a7d4",
-      "Text": "Counterparty Import",
-      "Glyph": "fas fa-passport",
-      "HREF": "/CounterpartyImportList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "68a22fca-8e60-4898-ad41-896043e34dfb",
+      "MenuText": "Counterparty Import",
+      "MenuGlyph": "fas fa-passport",
+      "MenuHREF": "/CounterpartyImportList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

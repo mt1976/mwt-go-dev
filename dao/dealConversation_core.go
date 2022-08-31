@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func DealConversation_GetByID(id string) (int, dm.DealConversation, error) {
 	tsql = tsql + " WHERE " + dm.DealConversation_SQLSearchID + "='" + id + "'"
 	_, _, dealconversationItem, _ := dealconversation_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, dealconversationItem, nil
 }
 
@@ -60,7 +66,12 @@ func DealConversation_Delete(id string) {
 // DealConversation_Store() saves/stores a DealConversation record to the database
 func DealConversation_Store(r dm.DealConversation,req *http.Request) error {
 
-	err := dealconversation_Save(r,Audit_User(req))
+	err, r := DealConversation_Validate(r)
+	if err == nil {
+		err = dealconversation_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DealConversation_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func DealConversation_Store(r dm.DealConversation,req *http.Request) error {
 // DealConversation_StoreSystem() saves/stores a DealConversation record to the database
 func DealConversation_StoreSystem(r dm.DealConversation) error {
 	
-	err := dealconversation_Save(r,Audit_Host())
+	err, r := DealConversation_Validate(r)
+	if err == nil {
+		err = dealconversation_Save(r, Audit_Host())
+	} else {
+		logs.Information("DealConversation_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DealConversation_Validate() validates for saves/stores a DealConversation record to the database
+func DealConversation_Validate(r dm.DealConversation) (error,dm.DealConversation) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // dealconversation_Save() saves/stores a DealConversation record to the database
 func dealconversation_Save(r dm.DealConversation,usr string) error {
@@ -136,7 +168,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SienaReference  = get_String(rec, dm.DealConversation_SienaReference_sql, "")
 	   recItem.Status  = get_String(rec, dm.DealConversation_Status_sql, "")
@@ -166,7 +198,7 @@ func dealconversation_Fetch(tsql string) (int, []dm.DealConversation, dm.DealCon
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -186,7 +218,24 @@ func DealConversation_NewID(r dm.DealConversation) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// dealconversation_Fetch read all DealConversation's
+func DealConversation_New() (int, []dm.DealConversation, dm.DealConversation, error) {
+
+	var r = dm.DealConversation{}
+	var rList []dm.DealConversation
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

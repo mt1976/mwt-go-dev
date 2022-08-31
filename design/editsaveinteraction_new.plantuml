@@ -1,0 +1,55 @@
+@startuml
+title New Model - Daikon
+actor User as user
+boundary http_ObjectNameEdit as web
+control js_ObjectStoreHandler as js
+control application.ObjectName as app
+entity dao.ObjectName as dao
+control DataAccessService as das 
+database SRS as db
+
+== Display ==
+user -> web: Request
+web->app: GET
+app->dao: ObjectName_GetByID
+dao->das: Fetch
+das->db: SELECT
+db->das: Result
+das->dao: Parse Results
+dao->app: Result Set
+app-> web: Build Page
+web->user:Display Page
+== Submit ==
+user -> web: Submit
+web -> js: Store
+js->app: VALIDATE
+app->dao: ObjectName_Validate
+alt validation success
+dao-> app:OK 
+app-> js:OK [http202]
+js->app: POST
+app->dao: ObjectName_Save
+dao->das: Parse Object
+das->db: INSERT
+db->das: Result
+das->dao: Parse Results
+dao->app: Result Set
+alt store success
+app->web: Redirect to Next Page
+web->user: Display Page
+else store failure
+app->web: Redirect to Oops Page
+web->user: Display Page
+end
+
+else validation fail
+dao-> app:NOK 
+app-> js:NOK [http307?]
+js->web: Update 
+note right
+Updates Fields with any error statuses, or toast with crossval errors
+end note
+web->user: (Re)Display Page Errors
+end
+
+@enduml

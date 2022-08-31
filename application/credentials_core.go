@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,61 +22,13 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//credentials_PageList provides the information for the template for a list of Credentialss
-type Credentials_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Credentials
-}
-//Credentials_Redirect provides a page to return to aftern an action
-const (
-	Credentials_Redirect = dm.Credentials_PathList
-)
 
-//credentials_Page provides the information for the template for an individual Credentials
-type Credentials_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Username         string
-	Password         string
-	Firstname         string
-	Lastname         string
-	Knownas         string
-	Email         string
-	Issued         string
-	Expiry         string
-	RoleType         string
-	Brand         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
 //Credentials_Publish annouces the endpoints available for this object
 func Credentials_Publish(mux http.ServeMux) {
-	//No API
+	mux.HandleFunc(dm.Credentials_Path, Credentials_Handler)
 	mux.HandleFunc(dm.Credentials_PathList, Credentials_HandlerList)
 	mux.HandleFunc(dm.Credentials_PathView, Credentials_HandlerView)
 	mux.HandleFunc(dm.Credentials_PathEdit, Credentials_HandlerEdit)
@@ -84,7 +36,7 @@ func Credentials_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Credentials_PathSave, Credentials_HandlerSave)
 	mux.HandleFunc(dm.Credentials_PathDelete, Credentials_HandlerDelete)
 	logs.Publish("Application", dm.Credentials_Title)
-    //No API
+    core.Catalog_Add(dm.Credentials_Title, dm.Credentials_Path, "", dm.Credentials_QueryString, "Application")
 }
 
 
@@ -103,7 +55,7 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Credentials
 	noItems, returnList, _ := dao.Credentials_GetList()
 
-	pageDetail := Credentials_PageList{
+	pageDetail := dm.Credentials_PageList{
 		Title:            CardTitle(dm.Credentials_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Credentials_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -134,7 +86,7 @@ func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
 	_, rD, _ := dao.Credentials_GetByID(searchID)
 
-	pageDetail := Credentials_Page{
+	pageDetail := dm.Credentials_Page{
 		Title:       CardTitle(dm.Credentials_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Credentials_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -165,7 +117,7 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
 	_, rD, _ := dao.Credentials_GetByID(searchID)
 	
-	pageDetail := Credentials_Page{
+	pageDetail := dm.Credentials_Page{
 		Title:       CardTitle(dm.Credentials_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Credentials_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -194,7 +146,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Credentials
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Credentials_SYSId_scrn)
 		item.Id = r.FormValue(dm.Credentials_Id_scrn)
@@ -216,12 +168,14 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSCreatedHost = r.FormValue(dm.Credentials_SYSCreatedHost_scrn)
 		item.SYSUpdatedBy = r.FormValue(dm.Credentials_SYSUpdatedBy_scrn)
 		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost_scrn)
+		item.State = r.FormValue(dm.Credentials_State_scrn)
+		item.Notes = r.FormValue(dm.Credentials_Notes_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Credentials_Store(item,r)	
-	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
 }
 
 
@@ -234,11 +188,11 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Credentials_New()
 
-	pageDetail := Credentials_Page{
+	pageDetail := dm.Credentials_Page{
 		Title:       CardTitle(dm.Credentials_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Credentials_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -247,7 +201,7 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = credentials_PopulatePage(dm.Credentials{} , pageDetail) 
+	pageDetail = credentials_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Credentials_TemplateNew, w, r, pageDetail)
 
@@ -268,14 +222,14 @@ func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Credentials_Delete(searchID)	
 
-	http.Redirect(w, r, Credentials_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Credentials Page 
-func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Credentials_Page {
+func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page) dm.Credentials_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -297,10 +251,12 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Cr
 	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
 	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
+	pageDetail.State = rD.State
+	pageDetail.Notes = rD.Notes
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -323,6 +279,7 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Cr
 	
 	
 	
+	pageDetail.RoleType_lookup = dao.UserRole_GetLookup()
 	
 	
 	
@@ -342,9 +299,40 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail Credentials_Page) Cr
 	
 	
 	
+	
+	
+	
+	pageDetail.State_lookup = dao.StubLists_Get("credentialStates")
+	
+	
+	
+	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Username_props = rD.Username_props
+	pageDetail.Password_props = rD.Password_props
+	pageDetail.Firstname_props = rD.Firstname_props
+	pageDetail.Lastname_props = rD.Lastname_props
+	pageDetail.Knownas_props = rD.Knownas_props
+	pageDetail.Email_props = rD.Email_props
+	pageDetail.Issued_props = rD.Issued_props
+	pageDetail.Expiry_props = rD.Expiry_props
+	pageDetail.RoleType_props = rD.RoleType_props
+	pageDetail.Brand_props = rD.Brand_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.State_props = rD.State_props
+	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

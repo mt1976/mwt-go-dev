@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 28/06/2022 at 16:10:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,149 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//transaction_PageList provides the information for the template for a list of Transactions
-type Transaction_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Transaction
-}
-//Transaction_Redirect provides a page to return to aftern an action
-const (
-	Transaction_Redirect = dm.Transaction_PathList
-)
 
-//transaction_Page provides the information for the template for an individual Transaction
-type Transaction_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	Status         string
-	ValueDate         string
-	MaturityDate         string
-	ContractNumber         string
-	ExternalReference         string
-	Book         string
-	MandatedUser         string
-	Portfolio         string
-	AgreementId         string
-	BackOfficeRefNo         string
-	ISIN         string
-	UTI         string
-	BookName         string
-	Centre         string
-	Firm         string
-	DealTypeShortName         string
-	FullDealType         string
-	TradeDate         string
-	DealtCcy         string
-	DealtAmount         string
-	AgainstAmount         string
-	AgainstCcy         string
-	AllInRate         string
-	MktRate         string
-	SettleCcy         string
-	Direction         string
-	NpvRate         string
-	OriginUser         string
-	PayInstruction         string
-	ReceiptInstruction         string
-	NIName         string
-	CCYPair         string
-	Instrument         string
-	PortfolioName         string
-	RVDate         string
-	RVMTM         string
-	CounterBook         string
-	CounterBookName         string
-	Party         string
-	PartyName         string
-	NameCentre         string
-	NameFirm         string
-	CustomerExternalView         string
-	CustomerSienaView         string
-	CompID         string
-	SienaDealer         string
-	DealOwner         string
-	DealOwnerMnemonic         string
-	EditedByUser         string
-	UTCOriginTime         string
-	UTCUpdateTime         string
-	MarginTrading         string
-	SwapPoints         string
-	SpotDate         string
-	SpotRate         string
-	MktSpotRate         string
-	SpotSalesMargin         string
-	SpotChlMargin         string
-	RerouteCcy         string
-	CustomerPayInstruction         string
-	CustomerReceiptInstruction         string
-	BackOfficeNotes         string
-	CustomerStatementNotes         string
-	NotesMargin         string
-	RequestedBy         string
-	EditReason         string
-	EditOtherReason         string
-	NICleanPrice         string
-	NIDirtyPrice         string
-	NIYield         string
-	NIClearingSystem         string
-	Acceptor         string
-	NIDiscount         string
-	FastPay         string
-	PaymentFee         string
-	PaymentFeePolicy         string
-	PaymentReason         string
-	PaymentDate         string
-	SettlementDate         string
-	FixingDate         string
-	VenueUTI         string
-	EditVersion         string
-	BrokeragePercentage         string
-	BrokerageAmount         string
-	BrokerageCurrency         string
-	BrokerageDate         string
-	AccountName         string
-	AccountNumber         string
-	CashBalance         string
-	DebitFrequency         string
-	CreditFrequency         string
-	ManuallyQuoted         string
-	LedgerBalance         string
-	SettAmtOutstanding         string
-	FeePercentage         string
-	FeeAmount         string
-	Venue         string
-	EURAmount         string
-	EUROtherAmount         string
-	LEI         string
-	Equity         string
-	Shares         string
-	QuoteExpiryDate         string
-	Commodity         string
-	PaymentSystemSienaView         string
-	PaymentSystemExternalView         string
-	SalesProfit         string
-	RejectReason         string
-	PaymentError         string
-	RepoPrincipal         string
-	FixingFrequency         string
-	Dealt         string
-	Against         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -197,7 +55,7 @@ func Transaction_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Transaction
 	noItems, returnList, _ := dao.Transaction_GetList()
 
-	pageDetail := Transaction_PageList{
+	pageDetail := dm.Transaction_PageList{
 		Title:            CardTitle(dm.Transaction_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Transaction_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -228,7 +86,7 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Transaction_QueryString)
 	_, rD, _ := dao.Transaction_GetByID(searchID)
 
-	pageDetail := Transaction_Page{
+	pageDetail := dm.Transaction_Page{
 		Title:       CardTitle(dm.Transaction_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Transaction_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -249,9 +107,9 @@ func Transaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Transaction Page 
-func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Transaction_Page {
+func transaction_PopulatePage(rD dm.Transaction, pageDetail dm.Transaction_Page) dm.Transaction_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.Status = rD.Status
@@ -370,7 +228,7 @@ func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Tr
 	pageDetail.Against = rD.Against
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -601,8 +459,124 @@ func transaction_PopulatePage(rD dm.Transaction, pageDetail Transaction_Page) Tr
 	
 	
 	
+	pageDetail.SienaReference_props = rD.SienaReference_props
+	pageDetail.Status_props = rD.Status_props
+	pageDetail.ValueDate_props = rD.ValueDate_props
+	pageDetail.MaturityDate_props = rD.MaturityDate_props
+	pageDetail.ContractNumber_props = rD.ContractNumber_props
+	pageDetail.ExternalReference_props = rD.ExternalReference_props
+	pageDetail.Book_props = rD.Book_props
+	pageDetail.MandatedUser_props = rD.MandatedUser_props
+	pageDetail.Portfolio_props = rD.Portfolio_props
+	pageDetail.AgreementId_props = rD.AgreementId_props
+	pageDetail.BackOfficeRefNo_props = rD.BackOfficeRefNo_props
+	pageDetail.ISIN_props = rD.ISIN_props
+	pageDetail.UTI_props = rD.UTI_props
+	pageDetail.BookName_props = rD.BookName_props
+	pageDetail.Centre_props = rD.Centre_props
+	pageDetail.Firm_props = rD.Firm_props
+	pageDetail.DealTypeShortName_props = rD.DealTypeShortName_props
+	pageDetail.FullDealType_props = rD.FullDealType_props
+	pageDetail.TradeDate_props = rD.TradeDate_props
+	pageDetail.DealtCcy_props = rD.DealtCcy_props
+	pageDetail.DealtAmount_props = rD.DealtAmount_props
+	pageDetail.AgainstAmount_props = rD.AgainstAmount_props
+	pageDetail.AgainstCcy_props = rD.AgainstCcy_props
+	pageDetail.AllInRate_props = rD.AllInRate_props
+	pageDetail.MktRate_props = rD.MktRate_props
+	pageDetail.SettleCcy_props = rD.SettleCcy_props
+	pageDetail.Direction_props = rD.Direction_props
+	pageDetail.NpvRate_props = rD.NpvRate_props
+	pageDetail.OriginUser_props = rD.OriginUser_props
+	pageDetail.PayInstruction_props = rD.PayInstruction_props
+	pageDetail.ReceiptInstruction_props = rD.ReceiptInstruction_props
+	pageDetail.NIName_props = rD.NIName_props
+	pageDetail.CCYPair_props = rD.CCYPair_props
+	pageDetail.Instrument_props = rD.Instrument_props
+	pageDetail.PortfolioName_props = rD.PortfolioName_props
+	pageDetail.RVDate_props = rD.RVDate_props
+	pageDetail.RVMTM_props = rD.RVMTM_props
+	pageDetail.CounterBook_props = rD.CounterBook_props
+	pageDetail.CounterBookName_props = rD.CounterBookName_props
+	pageDetail.Party_props = rD.Party_props
+	pageDetail.PartyName_props = rD.PartyName_props
+	pageDetail.NameCentre_props = rD.NameCentre_props
+	pageDetail.NameFirm_props = rD.NameFirm_props
+	pageDetail.CustomerExternalView_props = rD.CustomerExternalView_props
+	pageDetail.CustomerSienaView_props = rD.CustomerSienaView_props
+	pageDetail.CompID_props = rD.CompID_props
+	pageDetail.SienaDealer_props = rD.SienaDealer_props
+	pageDetail.DealOwner_props = rD.DealOwner_props
+	pageDetail.DealOwnerMnemonic_props = rD.DealOwnerMnemonic_props
+	pageDetail.EditedByUser_props = rD.EditedByUser_props
+	pageDetail.UTCOriginTime_props = rD.UTCOriginTime_props
+	pageDetail.UTCUpdateTime_props = rD.UTCUpdateTime_props
+	pageDetail.MarginTrading_props = rD.MarginTrading_props
+	pageDetail.SwapPoints_props = rD.SwapPoints_props
+	pageDetail.SpotDate_props = rD.SpotDate_props
+	pageDetail.SpotRate_props = rD.SpotRate_props
+	pageDetail.MktSpotRate_props = rD.MktSpotRate_props
+	pageDetail.SpotSalesMargin_props = rD.SpotSalesMargin_props
+	pageDetail.SpotChlMargin_props = rD.SpotChlMargin_props
+	pageDetail.RerouteCcy_props = rD.RerouteCcy_props
+	pageDetail.CustomerPayInstruction_props = rD.CustomerPayInstruction_props
+	pageDetail.CustomerReceiptInstruction_props = rD.CustomerReceiptInstruction_props
+	pageDetail.BackOfficeNotes_props = rD.BackOfficeNotes_props
+	pageDetail.CustomerStatementNotes_props = rD.CustomerStatementNotes_props
+	pageDetail.NotesMargin_props = rD.NotesMargin_props
+	pageDetail.RequestedBy_props = rD.RequestedBy_props
+	pageDetail.EditReason_props = rD.EditReason_props
+	pageDetail.EditOtherReason_props = rD.EditOtherReason_props
+	pageDetail.NICleanPrice_props = rD.NICleanPrice_props
+	pageDetail.NIDirtyPrice_props = rD.NIDirtyPrice_props
+	pageDetail.NIYield_props = rD.NIYield_props
+	pageDetail.NIClearingSystem_props = rD.NIClearingSystem_props
+	pageDetail.Acceptor_props = rD.Acceptor_props
+	pageDetail.NIDiscount_props = rD.NIDiscount_props
+	pageDetail.FastPay_props = rD.FastPay_props
+	pageDetail.PaymentFee_props = rD.PaymentFee_props
+	pageDetail.PaymentFeePolicy_props = rD.PaymentFeePolicy_props
+	pageDetail.PaymentReason_props = rD.PaymentReason_props
+	pageDetail.PaymentDate_props = rD.PaymentDate_props
+	pageDetail.SettlementDate_props = rD.SettlementDate_props
+	pageDetail.FixingDate_props = rD.FixingDate_props
+	pageDetail.VenueUTI_props = rD.VenueUTI_props
+	pageDetail.EditVersion_props = rD.EditVersion_props
+	pageDetail.BrokeragePercentage_props = rD.BrokeragePercentage_props
+	pageDetail.BrokerageAmount_props = rD.BrokerageAmount_props
+	pageDetail.BrokerageCurrency_props = rD.BrokerageCurrency_props
+	pageDetail.BrokerageDate_props = rD.BrokerageDate_props
+	pageDetail.AccountName_props = rD.AccountName_props
+	pageDetail.AccountNumber_props = rD.AccountNumber_props
+	pageDetail.CashBalance_props = rD.CashBalance_props
+	pageDetail.DebitFrequency_props = rD.DebitFrequency_props
+	pageDetail.CreditFrequency_props = rD.CreditFrequency_props
+	pageDetail.ManuallyQuoted_props = rD.ManuallyQuoted_props
+	pageDetail.LedgerBalance_props = rD.LedgerBalance_props
+	pageDetail.SettAmtOutstanding_props = rD.SettAmtOutstanding_props
+	pageDetail.FeePercentage_props = rD.FeePercentage_props
+	pageDetail.FeeAmount_props = rD.FeeAmount_props
+	pageDetail.Venue_props = rD.Venue_props
+	pageDetail.EURAmount_props = rD.EURAmount_props
+	pageDetail.EUROtherAmount_props = rD.EUROtherAmount_props
+	pageDetail.LEI_props = rD.LEI_props
+	pageDetail.Equity_props = rD.Equity_props
+	pageDetail.Shares_props = rD.Shares_props
+	pageDetail.QuoteExpiryDate_props = rD.QuoteExpiryDate_props
+	pageDetail.Commodity_props = rD.Commodity_props
+	pageDetail.PaymentSystemSienaView_props = rD.PaymentSystemSienaView_props
+	pageDetail.PaymentSystemExternalView_props = rD.PaymentSystemExternalView_props
+	pageDetail.SalesProfit_props = rD.SalesProfit_props
+	pageDetail.RejectReason_props = rD.RejectReason_props
+	pageDetail.PaymentError_props = rD.PaymentError_props
+	pageDetail.RepoPrincipal_props = rD.RepoPrincipal_props
+	pageDetail.FixingFrequency_props = rD.FixingFrequency_props
+	pageDetail.Dealt_props = rD.Dealt_props
+	pageDetail.Against_props = rD.Against_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

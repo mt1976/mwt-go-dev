@@ -105,7 +105,7 @@ func ListSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 		UserNavi:         "NOT USED",
-		Title:            core.ApplicationProperties["appname"],
+		Title:            core.ApplicationName(),
 		PageTitle:        PageTitle("Connected System", core.Action_View),
 		SystemStoreCount: noItems,
 		SystemStoreList:  returnList,
@@ -164,7 +164,7 @@ func editViewSytemStore(w http.ResponseWriter, r *http.Request) appSystemStorePa
 	_, returnRecord, _ := GetSystemStoreByID(searchID)
 
 	pageSystemStoreList := appSystemStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.ApplicationName(),
 		PageTitle: PageTitle("Conected System", core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
@@ -294,7 +294,7 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageSystemStoreList := appSystemStorePage{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.ApplicationName(),
 		PageTitle: PageTitle("Connected System", core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),
@@ -312,14 +312,14 @@ func NewSystemStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getSystemStoreList read all employees
 func GetSystemStoreList() (int, []SystemStoreItem, error) {
-	tsql := fmt.Sprintf(appSystemStoreSQLSELECT, appSystemStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appSystemStoreSQLSELECT, appSystemStoreSQL, core.ApplicationSQLSchema())
 	count, appSystemStoreList, _, _ := fetchSystemStoreData(tsql)
 	return count, appSystemStoreList, nil
 }
 
 // getSystemStoreList read all employees
 func GetSystemStoreByID(id string) (int, SystemStoreItem, error) {
-	tsql := fmt.Sprintf(appSystemStoreSQLGET, appSystemStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appSystemStoreSQLGET, appSystemStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, SystemStoreItem, _ := fetchSystemStoreData(tsql)
 	return 1, SystemStoreItem, nil
 }
@@ -354,8 +354,8 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appSystemStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appSystemStoreSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
+	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appSystemStoreSQLINSERT, core.ApplicationSQLSchema(), appSystemStoreSQL, r.Id, r.Name, r.Staticin, r.Staticout, r.Txnin, r.Txnout, r.Fundscheckin, r.Fundscheckout, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated)
 
 	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -374,7 +374,7 @@ func putSystemStore(r SystemStoreItem, req *http.Request) {
 
 func DeleteSystemStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appSystemStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {

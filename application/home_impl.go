@@ -1,8 +1,8 @@
 package application
 
 import (
+	"fmt"
 	"net/http"
-	"os"
 	"time"
 
 	core "github.com/mt1976/mwt-go-dev/core"
@@ -56,10 +56,12 @@ func Home_Publish_Impl(mux http.ServeMux) {
 // Home_HandlerView
 func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
+	fmt.Printf("Home_HandlerView\n")
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
+	fmt.Printf("Home_HandlerView - Session_Validate\n")
 	// Code Continues Below
 
 	//	log.Println("IN HOMEPAGE")
@@ -67,17 +69,17 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
-	tmpHostname, _ := os.Hostname()
+	//tmpHostname, _ := os.Hostname()
 
 	homePage := sienaHomePage{
 		UserMenu:        UserMenu_Get(r),
 		UserRole:        Session_GetUserRole(r),
 		UserNavi:        "NOT USED",
-		Title:           core.ApplicationProperties["appname"],
+		Title:           core.ApplicationName(),
 		PageTitle:       PageTitle("Home", ""),
-		AppReleaseID:    core.ApplicationProperties["releaseid"],
-		AppReleaseLevel: core.ApplicationProperties["releaselevel"],
-		AppReleaseNo:    core.ApplicationProperties["releasenumber"],
+		AppReleaseID:    core.ReleaseIdentity(),
+		AppReleaseLevel: core.ReleaseLevel(),
+		AppReleaseNo:    core.ReleaseNumber(),
 		SienaName:       core.SienaProperties["name"],
 		SQLServer:       core.SienaPropertiesDB["server"],
 		SQLDB:           core.SienaPropertiesDB["database"],
@@ -87,7 +89,7 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserKnowAs:      Session_GetUserKnownAs(r),
 		SienaDate:       core.SienaSystemDate.Siena,
 		AppServerDate:   time.Now().Format(core.DATEFORMATSIENA),
-		AppServerName:   tmpHostname,
+		AppServerName:   core.ApplicationHostname(),
 
 		DealImportInPath:   core.SienaProperties["transactional_in"],
 		StaticDataInPath:   core.SienaProperties["static_in"],
@@ -97,19 +99,19 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 		StaticDataOutPath:  core.SienaProperties["static_out"],
 		FundsCheckOutPath:  core.SienaProperties["funds_out"],
 		RatesDataOutPath:   core.SienaProperties["rates_out"],
-		AppSQLServer:       core.ApplicationPropertiesDB["server"],
-		AppSQLSchema:       core.ApplicationPropertiesDB["schema"],
-		AppSQLParentSchema: core.ApplicationPropertiesDB["parentschema"],
+		AppSQLServer:       core.ApplicationSQLServer(),
+		AppSQLSchema:       core.ApplicationSQLSchema(),
+		AppSQLParentSchema: core.ApplicationSQLSchemaParent(),
 	}
 
 	//spew.Dump(homePage.UserMenu)
 
 	homePage.InstanceState = "Primary System"
-	homePage.AppSQLDatabase = core.ApplicationPropertiesDB["database"]
+	homePage.AppSQLDatabase = core.ApplicationSQLDatabase()
 	homePage.SessionInfo, _ = Session_GetSessionInfo(r)
 	if core.IsChildInstance {
 		homePage.InstanceState = "Child System"
-		//	homePage.AppSQLDatabase = ApplicationPropertiesDB["database"] + "-" + ApplicationPropertiesDB["instance"]
+		//	homePage.AppSQLDatabase = ApplicationSQLDatabase() + "-" + ApplicationPropertiesDB["instance"]
 	}
 
 	homePage.DateSyncIssue = ""

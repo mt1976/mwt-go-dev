@@ -83,7 +83,7 @@ func Simulator_SienaFundsChecker_HandlerList(w http.ResponseWriter, r *http.Requ
 	fundsCheckPage := Simulator_SienaFundsChecker_PageList{
 		UserMenu:        UserMenu_Get(r),
 		UserRole:        Session_GetUserRole(r),
-		Title:           core.ApplicationProperties["appname"],
+		Title:           core.ApplicationName(),
 		PageTitle:       PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_Requests),
 		FundsCheckCount: noItems,
 		FundsCheckList:  returnList,
@@ -108,7 +108,7 @@ func Simulator_SienaFundsChecker_HandlerView(w http.ResponseWriter, r *http.Requ
 	core.ServiceMessage(inUTL)
 
 	fundsCheckPage := simulator_FundsCheck_BuildPage(w, r)
-	fundsCheckPage.Title = core.ApplicationProperties["appname"]
+	fundsCheckPage.Title = core.ApplicationName()
 	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_View)
 
 	//log.Println(fundsCheckPage)
@@ -131,7 +131,7 @@ func Simulator_SienaFundsChecker_HandlerAction(w http.ResponseWriter, r *http.Re
 
 	fundsCheckPage := simulator_FundsCheck_BuildPage(w, r)
 
-	fundsCheckPage.Title = core.ApplicationProperties["appname"]
+	fundsCheckPage.Title = core.ApplicationName()
 	fundsCheckPage.PageTitle = PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_Process)
 	fundsCheckPage.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -183,7 +183,7 @@ func simulator_FundsCheck_BuildPage(w http.ResponseWriter, r *http.Request) Simu
 	_, returnRecord, _ := dao.Simulator_SienaFundsChecker_GetByID(searchID)
 
 	fundsCheckPage := Simulator_SienaFundsChecker_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.ApplicationName(),
 		PageTitle: PageTitle(dm.Simulator_SienaFundsChecker_Title, core.Action_Request),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  Session_GetUserRole(r),

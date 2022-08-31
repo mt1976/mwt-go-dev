@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 28/06/2022 at 16:10:42
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,44 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//book_PageList provides the information for the template for a list of Books
-type Book_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Book
-}
-//Book_Redirect provides a page to return to aftern an action
-const (
-	Book_Redirect = dm.Book_PathList
-)
 
-//book_Page provides the information for the template for an individual Book
-type Book_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	BookName         string
-	FullName         string
-	PLManage         string
-	PLTransfer         string
-	DerivePL         string
-	CostOfCarry         string
-	CostOfFunding         string
-	LotAllocationMethod         string
-	InternalId         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -92,7 +55,7 @@ func Book_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Book
 	noItems, returnList, _ := dao.Book_GetList()
 
-	pageDetail := Book_PageList{
+	pageDetail := dm.Book_PageList{
 		Title:            CardTitle(dm.Book_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Book_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -123,7 +86,7 @@ func Book_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Book_QueryString)
 	_, rD, _ := dao.Book_GetByID(searchID)
 
-	pageDetail := Book_Page{
+	pageDetail := dm.Book_Page{
 		Title:       CardTitle(dm.Book_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -154,7 +117,7 @@ func Book_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Book_QueryString)
 	_, rD, _ := dao.Book_GetByID(searchID)
 	
-	pageDetail := Book_Page{
+	pageDetail := dm.Book_Page{
 		Title:       CardTitle(dm.Book_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Book_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -183,7 +146,7 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Book
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.BookName = r.FormValue(dm.Book_BookName_scrn)
 		item.FullName = r.FormValue(dm.Book_FullName_scrn)
@@ -196,10 +159,10 @@ func Book_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.InternalId = r.FormValue(dm.Book_InternalId_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Book_Store(item,r)	
-	http.Redirect(w, r, Book_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Book_Redirect, http.StatusFound)
 }
 
 
@@ -218,14 +181,14 @@ func Book_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Book_Delete(searchID)	
 
-	http.Redirect(w, r, Book_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Book_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Book Page 
-func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
+func book_PopulatePage(rD dm.Book, pageDetail dm.Book_Page) dm.Book_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.BookName = rD.BookName
 	pageDetail.FullName = rD.FullName
@@ -239,7 +202,7 @@ func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -260,8 +223,19 @@ func book_PopulatePage(rD dm.Book, pageDetail Book_Page) Book_Page {
 	
 	
 	
+	pageDetail.BookName_props = rD.BookName_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.PLManage_props = rD.PLManage_props
+	pageDetail.PLTransfer_props = rD.PLTransfer_props
+	pageDetail.DerivePL_props = rD.DerivePL_props
+	pageDetail.CostOfCarry_props = rD.CostOfCarry_props
+	pageDetail.CostOfFunding_props = rD.CostOfFunding_props
+	pageDetail.LotAllocationMethod_props = rD.LotAllocationMethod_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

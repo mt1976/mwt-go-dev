@@ -71,7 +71,7 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:              UserMenu_Get(r),
 		UserRole:              core.GetUserRole(r),
 		UserNavi:              "NOT USED",
-		Title:                 core.ApplicationProperties["appname"],
+		Title:                 core.GetAppName(),
 		PageTitle:             PageTitle(dm.Translation_Title, core.Action_List),
 		TranslationStoreCount: noItems,
 		TranslationStoreList:  returnList,
@@ -100,7 +100,7 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := dao.Translation_GetItemByID(searchID)
 
 	l := translation_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Translation_Title, core.Action_View),
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
@@ -143,7 +143,7 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	_, rec, _ := dao.Translation_GetItemByID(searchID)
 
 	l := translation_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Translation_Title, core.Action_Edit),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -228,7 +228,7 @@ func Translation_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	p := translation_Page{
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Translation_Title, core.Action_New),
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),

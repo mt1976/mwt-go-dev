@@ -44,6 +44,10 @@ export function getWrapperTemplate(id, config, label) {
   input.setAttribute('aria-haspopup', 'true');
   input.setAttribute('aria-expanded', false);
 
+  if (config.tabIndex) {
+    input.setAttribute('tabIndex', config.tabIndex);
+  }
+
   if (config.disabled) {
     input.setAttribute('disabled', '');
   }

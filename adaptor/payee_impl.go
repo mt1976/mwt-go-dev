@@ -87,3 +87,66 @@ func Payee_Status_OnFetch_impl(rec dm.Payee) string {
 
 	return val
 }
+
+// Payee_Status_Impl provides validation/actions for Status
+
+func Payee_Status_Impl(iAction string, iId string, iValue string, iRec dm.Payee, fP dm.FieldProperties) (string, dm.FieldProperties) {
+
+	logs.Callout("Payee", "Status", VAL+"-"+iAction, iId)
+
+	return "", fP
+
+}
+
+//
+
+// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+
+// END - Validation API/Callout
+
+// If there are fields below, create the methods in adaptor\payee_impl.go
+// START - GET API/Callout
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+//
+
+//
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+// END - GET API/Callout
+//
+// START - PUT API/Callout
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+//
+
+//
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+// END - PUT API/Callout
+
+// START - Validation API/Callout
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+//
+// Payee_Status_impl provides validation/actions for Status
+func Payee_Status_impl(iAction string, iId string, iValue string, iRec dm.Payee, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Payee", "Status", VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+//
+// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+// END - Validation API/Callout
+
+func Payee_ObjectValidation_impl(iAction string, iId string, iRec dm.Payee) (dm.Payee, error, string) {
+	logs.Callout("Payee", "ObjectValidation", VAL+"-"+iAction, iId)
+	switch iAction {
+	case VAL:
+
+	case NEW:
+
+	case PUT:
+
+	case GET:
+
+	default:
+		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+	}
+	return iRec, nil, ""
+}

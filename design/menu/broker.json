@@ -1,11 +1,10 @@
 
-    {
-      "ID": "a4a5465b-75fb-434a-8718-72d1183a8a44",
-      "Text": "Broker",
-      "Glyph": "fas fa-plug",
-      "HREF": "/BrokerList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "22cd5263-b55c-40b8-8c9b-3d97ab8b8901",
+      "MenuText": "Broker",
+      "MenuGlyph": "fas fa-plug",
+      "MenuHREF": "/BrokerList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

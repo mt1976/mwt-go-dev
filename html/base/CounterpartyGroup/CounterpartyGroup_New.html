@@ -19,39 +19,51 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-        
+      
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
-                <label class="form-label" for="Name" ><i class="fas fa-key me-2"></i>Name</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Name" ><i class="fas fa-key me-2"></i>Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CountryCode" name="CountryCode" aria-describedby="CountryCodeHelp" placeholder=""  value="{{.CountryCode}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CountryCode" >CountryCode</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CountryCode_props.MsgType}}" id="CountryCode" name="CountryCode" aria-describedby="CountryCodeHelp" placeholder=""  value="{{.CountryCode}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CountryCode" >CountryCode</label>
+              <div class="{{.CountryCode_props.MsgFeedBackType}}">{{.CountryCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="SuperGroup" name="SuperGroup" aria-describedby="SuperGroupHelp" placeholder=""  value="{{.SuperGroup}}"  data-mdb-input-mask="">
-                <label class="form-label" for="SuperGroup" >SuperGroup</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
+            
+                <input type="text" class="form-control {{.SuperGroup_props.MsgType}}" id="SuperGroup" name="SuperGroup" aria-describedby="SuperGroupHelp" placeholder=""  value="{{.SuperGroup}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SuperGroup" >SuperGroup</label>
+              <div class="{{.SuperGroup_props.MsgFeedBackType}}">{{.SuperGroup_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
 
      
         </div>

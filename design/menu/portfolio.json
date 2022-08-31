@@ -1,11 +1,10 @@
 
-    {
-      "ID": "38127f7c-5f46-42f8-afc4-4361310a8585",
-      "Text": "Bank Porfolio",
-      "Glyph": "fas fa-plug",
-      "HREF": "/PortfolioList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "096c47c0-ce3d-4c33-9e3a-0ccf7d6b6b49",
+      "MenuText": "Bank Porfolio",
+      "MenuGlyph": "fas fa-plug",
+      "MenuHREF": "/PortfolioList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

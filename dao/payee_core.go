@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 28/06/2022 at 16:10:55
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,13 @@ func Payee_GetByID(id string) (int, dm.Payee, error) {
 	tsql = tsql + " WHERE " + dm.Payee_SQLSearchID + "='" + id + "'"
 	_, _, payeeItem, _ := payee_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	payeeItem.Status,payeeItem.Status_props = adaptor.Payee_Status_impl (adaptor.GET,id,payeeItem.Status,payeeItem,payeeItem.Status_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, payeeItem, nil
 }
 
@@ -60,7 +67,12 @@ func Payee_Delete(id string) {
 // Payee_Store() saves/stores a Payee record to the database
 func Payee_Store(r dm.Payee,req *http.Request) error {
 
-	err := payee_Save(r,Audit_User(req))
+	err, r := Payee_Validate(r)
+	if err == nil {
+		err = payee_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Payee_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +80,32 @@ func Payee_Store(r dm.Payee,req *http.Request) error {
 // Payee_StoreSystem() saves/stores a Payee record to the database
 func Payee_StoreSystem(r dm.Payee) error {
 	
-	err := payee_Save(r,Audit_Host())
+	err, r := Payee_Validate(r)
+	if err == nil {
+		err = payee_Save(r, Audit_Host())
+	} else {
+		logs.Information("Payee_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Payee_Validate() validates for saves/stores a Payee record to the database
+func Payee_Validate(r dm.Payee) (error,dm.Payee) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.Status,r.Status_props = adaptor.Payee_Status_impl (adaptor.PUT,r.KeyCounterpartyFirm,r.Status,r,r.Status_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // payee_Save() saves/stores a Payee record to the database
 func payee_Save(r dm.Payee,usr string) error {
@@ -148,7 +182,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SourceTable  = get_String(rec, dm.Payee_SourceTable_sql, "")
 	   recItem.KeyCounterpartyFirm  = get_String(rec, dm.Payee_KeyCounterpartyFirm_sql, "")
@@ -202,7 +236,7 @@ func payee_Fetch(tsql string) (int, []dm.Payee, dm.Payee, error) {
 	   recItem.Status  = adaptor.Payee_Status_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -222,7 +256,25 @@ func Payee_NewID(r dm.Payee) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// payee_Fetch read all Payee's
+func Payee_New() (int, []dm.Payee, dm.Payee, error) {
+
+	var r = dm.Payee{}
+	var rList []dm.Payee
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.Status,r.Status_props = adaptor.Payee_Status_impl (adaptor.NEW,r.KeyCounterpartyFirm,r.Status,r,r.Status_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

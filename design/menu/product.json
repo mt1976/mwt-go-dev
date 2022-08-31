@@ -1,11 +1,10 @@
 
-    {
-      "ID": "a2eb0e4a-6d22-4dcc-ac5c-776d77065f2e",
-      "Text": "Product Group",
-      "Glyph": "fas fa-object-group",
-      "HREF": "/ProductList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "c713bb35-73df-4bbe-acb8-387b85d4c6a0",
+      "MenuText": "Product Group",
+      "MenuGlyph": "fas fa-object-group",
+      "MenuHREF": "/ProductList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

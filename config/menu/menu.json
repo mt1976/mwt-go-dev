@@ -1,378 +1,443 @@
 {
     "MenuHeaderText": "poop",
-    "SectionTrees": [{
-            "SectionID": "0",
-            "SectionName": "Application",
-            "SectionNodes": [{
-                    "MenuID": "30",
-                    "MenuText": "Dashboard",
-                    "MenuGlyph": "fas fa-tachometer-alt",
-                    "MenuHREF": "/dashboard",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-info"
-                },
-                {
-                    "MenuBreak": "true"
-                },
-                {
-                    "MenuID": "0af8aa47-147c-49d4-ae95-f9772228d566",
-                    "MenuText": "Negotiable Instruments",
-                    "MenuGlyph": "fas fa-file-signature",
-                    "MenuHREF": "/NegotiableInstrumentList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-primary"
-                },
-                {
-                    "MenuID": "1f4c2bf1-9d2f-428f-a4e5-e8d00a3e4903",
-                    "MenuText": "Rates & Prices",
-                    "MenuGlyph": "fas fa-file-invoice-dollar",
-                    "MenuHREF": "/MarketRatesList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-primary"
-                }, {
-                    "MenuID": "c1fecf7a-96ad-4ba8-8950-cb9ac4d44daa",
-                    "MenuText": "ExternalMessage",
-                    "MenuGlyph": "fas fa-mail-bulk",
-                    "MenuHREF": "/ExternalMessageList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-primary"
-                }, {
-                    "MenuBreak": "true"
-                },
-                {
-                    "MenuID": "23",
-                    "MenuText": "App Environment",
-                    "MenuGlyph": "fa fa-server",
-                    "MenuHREF": "/viewAppConfiguration",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-info"
-                },
-                {
-                    "MenuID": "0d89ae10-6eab-498b-a192-29ea8d3170f1",
-                    "MenuText": "Cache Contents",
-                    "MenuGlyph": "fas fa-database",
-                    "MenuHREF": "/CacheList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-info"
-                },
-
-                {
-                    "MenuBreak": "true"
-                },
-
-                {
-                    "MenuID": "f4cbafd2-3fca-405f-97fa-66ba105e8152",
-                    "MenuText": "API Catalog",
-                    "MenuGlyph": "fas fa-cubes",
-                    "MenuHREF": "/CatalogList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-secondary"
-                }
-            ]
-        },
-        {
-            "SectionID": "1",
-            "SectionName": "Siena",
-            "SectionNodes": [
-
-                {
-                    "MenuID": "90568e74-a40e-4436-813d-fa24e6749548",
-                    "MenuText": "Sectors",
-                    "MenuGlyph": "fas fa-industry",
-                    "MenuHREF": "/SectorList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "636db017-7c60-4132-8b00-5922834ae3f9",
-                    "MenuText": "Countries",
-                    "MenuGlyph": "fas fa-globe-americas",
-                    "MenuHREF": "/CountryList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "d723fb94-e903-47a1-baf9-5e7dfd5c504f",
-                    "MenuText": "Books",
-                    "MenuGlyph": "fas fa-book",
-                    "MenuHREF": "/BookList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "c1feb220-4f72-40e6-972d-5047abdefa0a",
-                    "MenuText": "Currencies",
-                    "MenuGlyph": "fas fa-dollar-sign",
-                    "MenuHREF": "/CurrencyList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "c856a12f-52a8-42f0-a24d-cd31641a5922",
-                    "MenuText": "Currency Pairs",
-                    "MenuGlyph": "fas fa-coins",
-                    "MenuHREF": "/CurrencyPairList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "4f6b3df1-453b-44f0-ba7f-6a16dc2b46e1",
-                    "MenuText": "Brokers",
-                    "MenuGlyph": "far fa-handshake ",
-                    "MenuHREF": "/BrokerList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "c8b18803-3f2c-4a5a-80cc-3db66bb1da02",
-                    "MenuText": "Bank Porfolios",
-                    "MenuGlyph": "fas fa-plug",
-                    "MenuHREF": "/PortfolioList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuBreak": "true"
-                },
-                {
-                    "MenuID": "66191dde-a54c-402f-9839-094cbc665b9d",
-                    "MenuText": "Firms",
-                    "MenuGlyph": "fas fa-city",
-                    "MenuHREF": "/FirmList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "6b4d88b4-0a4b-46bc-9ed5-3ec83c00da72",
-                    "MenuText": "Centres",
-                    "MenuGlyph": "fas fa-map-marker-alt",
-                    "MenuHREF": "/CentreList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-                {
-                    "MenuID": "b960fac3-5848-46f3-9143-13d32a360cb4",
-                    "MenuText": "Counterparty",
-                    "MenuGlyph": "fas fa-user",
-                    "MenuHREF": "/CounterpartyList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "a297d710-200e-4b31-8d48-4129efb9af02",
-                    "MenuText": "Counterparty Import",
-                    "MenuGlyph": "fas fa-file-import",
-                    "MenuHREF": "/CounterpartyImportList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "06a43331-0019-4d30-af69-f1c0bfeb9148",
-                    "MenuText": "Counterparty Groups",
-                    "MenuGlyph": "fa fa-users",
-                    "MenuHREF": "/CounterpartyGroupList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                }, {
-                    "MenuID": "35217f13-422c-4f6e-aaab-730f9a4ea59c",
-                    "MenuText": "Mandates",
-                    "MenuGlyph": "fas fa-city",
-                    "MenuHREF": "/MandateList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                }, {
-                    "MenuID": "df9bb1c6-d156-47fb-9ecd-d4cbd1041ad9",
-                    "MenuText": "Accounts",
-                    "MenuGlyph": "fas fa-landmark",
-                    "MenuHREF": "/AccountList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "ecc8cc74-8a0d-490e-add8-27000dfa11b9",
-                    "MenuText": "Payees",
-                    "MenuGlyph": "fas fa-wallet",
-                    "MenuHREF": "/PayeeList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-
-                },
-                {
-                    "MenuID": "c53513a6-9d1d-438e-abcf-91666a05d07f",
-                    "MenuText": "Customer Notes",
-                    "MenuGlyph": "fas fa-poo",
-                    "MenuHREF": "/CMNotesList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-
-                },
-                {
-                    "MenuBreak": "true"
-                },
-
-
-
-
-
-                {
-                    "MenuID": "dfc6cea9-595b-4f0b-b22b-6e44ede7f317",
-                    "MenuText": "Transactions",
-                    "MenuGlyph": "far fa-handshake",
-                    "MenuHREF": "/TransactionList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "87dedcd5-6a00-42ad-a8d9-90a4d166aca3",
-                    "MenuText": "Deal Conversations",
-                    "MenuGlyph": "fas fa-exchange-alt",
-                    "MenuHREF": "/DealConversationList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuBreak": "true"
-                },
-
-                {
-                    "MenuID": "2710fac3-5448-4379-9639-f835d38910d9",
-                    "MenuText": "Deal Types",
-                    "MenuGlyph": "fas fa-toolbox",
-                    "MenuHREF": "/DealTypeList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "680b7b57-0a86-48e4-accd-df07572dfa29",
-                    "MenuText": "Deal Type Fundamentals",
-                    "MenuGlyph": "fas fa-toolbox",
-                    "MenuHREF": "/DealTypeFundamentalList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "dd432174-5cf3-4626-b415-4c9fbbb544a3",
-                    "MenuText": "Product Groups",
-                    "MenuGlyph": "fas fa-object-group",
-                    "MenuHREF": "/ProductList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                },
-
-                {
-                    "MenuID": "13dc5e34-6a41-43a6-b82a-859b892beea4",
-                    "MenuText": "Dealing Interface",
-                    "MenuGlyph": "fas fa-share-alt",
-                    "MenuHREF": "/DealingInterfaceList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                }
-            ]
-        },
-        {
-            "SectionID": "2",
-            "SectionName": "Simulator",
-            "SectionNodes": [{
-                    "MenuID": "19",
-                    "MenuText": "Data Loader",
-                    "MenuGlyph": "fas fa-dice-d6",
-                    "MenuHREF": "/DataLoaderList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-warning"
-                }, {
-                    "MenuID": "fundsCheck",
-                    "MenuText": "Funds Check Approvals",
-                    "MenuGlyph": "fas fa-check",
-                    "MenuHREF": "/Simulator_SienaFundsCheckerList/",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-warning"
-                },
-                {
-                    "MenuID": "d72ad60b-59d2-4bcf-91a8-76f21437f99f",
-                    "MenuText": "SWIFT Simulator",
-                    "MenuGlyph": "fas fa-globe",
-                    "MenuHREF": "/SimulatorSWIFTList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-warning"
-                }
-            ]
-        },
-        {
-            "SectionID": "3",
-            "SectionName": "Utilities",
-            "SectionNodes": [{
-                    "MenuID": "sqlinject",
-                    "MenuText": "Refresh SQL Views",
-                    "MenuGlyph": "fas fa-syringe",
-                    "MenuHREF": "/injectSQLViews",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-danger"
-                },
-                {
-                    "MenuID": "refreshCache",
-                    "MenuText": "Refresh Cache",
-                    "MenuGlyph": "fas fa-redo-alt",
-                    "MenuHREF": "/refreshCache",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-secondary"
-                },
-                {
-                    "MenuID": "4db530c0-5e07-4481-aea3-7c683d46c117",
-                    "MenuText": "Message Translation",
-                    "MenuGlyph": "fas fa-city",
-                    "MenuHREF": "/TranslationList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-primary"
-                }
-            ]
-        },
-        {
-            "SectionID": "4",
-            "SectionName": "Admin",
-            "SectionNodes": [{
-                    "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
-                    "MenuText": "Credentials",
-                    "MenuGlyph": "fas fa-key",
-                    "MenuHREF": "/CredentialsList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-danger"
-                }, {
-                    "MenuID": "da98ab1a-9562-4e1a-a6c8-c5b1cee31f67",
-                    "MenuText": "Scheduler",
-                    "MenuGlyph": "far fa-clock",
-                    "MenuHREF": "/ScheduleList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-info"
-                },
-                {
-                    "MenuID": "bf71274d-fba9-410f-af04-eeaae40f5157",
-                    "MenuText": "Sessions",
-                    "MenuGlyph": "fas fa-history",
-                    "MenuHREF": "/SessionList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": "text-info"
-                },
-                {
-                    "MenuID": "21ae8d71-2ae1-42ba-8716-92d130e0c152",
-                    "MenuText": "Template Contents",
-                    "MenuGlyph": "fas fa-poo",
-                    "MenuHREF": "/TmplList",
-                    "MenuOnClick": "",
-                    "MenuTextClass": ""
-                  }
-                  
-                  
-
-
-            ]
-        }
+    "SectionTrees": [
+      {
+        "SectionID": "0",
+        "SectionName": "Application",
+        "SectionNodes": [
+          {
+            "MenuID": "30",
+            "MenuText": "Dashboard",
+            "MenuGlyph": "fas fa-tachometer-alt",
+            "MenuHREF": "/dashboard",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-info"
+          },
+          {
+            "MenuBreak": "true"
+          },
+          {
+            "MenuID": "0af8aa47-147c-49d4-ae95-f9772228d566",
+            "MenuText": "Negotiable Instruments",
+            "MenuGlyph": "fas fa-file-signature",
+            "MenuHREF": "/NegotiableInstrumentList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-primary"
+          },
+          {
+            "MenuID": "1f4c2bf1-9d2f-428f-a4e5-e8d00a3e4903",
+            "MenuText": "Rates & Prices",
+            "MenuGlyph": "fas fa-file-invoice-dollar",
+            "MenuHREF": "/MarketRatesList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-primary"
+          },
+          {
+            "MenuID": "c1fecf7a-96ad-4ba8-8950-cb9ac4d44daa",
+            "MenuText": "ExternalMessage",
+            "MenuGlyph": "fas fa-mail-bulk",
+            "MenuHREF": "/ExternalMessageList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-primary"
+          },
+          {
+            "MenuBreak": "true"
+          },
+          {
+            "MenuID": "23",
+            "MenuText": "App Environment",
+            "MenuGlyph": "fa fa-server",
+            "MenuHREF": "/viewAppConfiguration",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-info"
+          },
+          {
+            "MenuID": "0d89ae10-6eab-498b-a192-29ea8d3170f1",
+            "MenuText": "Cache Contents",
+            "MenuGlyph": "fas fa-database",
+            "MenuHREF": "/CacheList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-info"
+          },
+          {
+            "MenuBreak": "true"
+          },
+          {
+            "MenuID": "f4cbafd2-3fca-405f-97fa-66ba105e8152",
+            "MenuText": "API Catalog",
+            "MenuGlyph": "fas fa-cubes",
+            "MenuHREF": "/CatalogList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-secondary"
+          }
+        ]
+      },
+      {
+        "SectionID": "1",
+        "SectionName": "Siena",
+        "SectionNodes": [
+          {
+            "MenuID": "90568e74-a40e-4436-813d-fa24e6749548",
+            "MenuText": "Sectors",
+            "MenuGlyph": "fas fa-industry",
+            "MenuHREF": "/SectorList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "636db017-7c60-4132-8b00-5922834ae3f9",
+            "MenuText": "Countries",
+            "MenuGlyph": "fas fa-globe-americas",
+            "MenuHREF": "/CountryList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "d723fb94-e903-47a1-baf9-5e7dfd5c504f",
+            "MenuText": "Books",
+            "MenuGlyph": "fas fa-book",
+            "MenuHREF": "/BookList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "c1feb220-4f72-40e6-972d-5047abdefa0a",
+            "MenuText": "Currencies",
+            "MenuGlyph": "fas fa-dollar-sign",
+            "MenuHREF": "/CurrencyList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "c856a12f-52a8-42f0-a24d-cd31641a5922",
+            "MenuText": "Currency Pairs",
+            "MenuGlyph": "fas fa-coins",
+            "MenuHREF": "/CurrencyPairList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "4f6b3df1-453b-44f0-ba7f-6a16dc2b46e1",
+            "MenuText": "Brokers",
+            "MenuGlyph": "far fa-handshake ",
+            "MenuHREF": "/BrokerList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "c8b18803-3f2c-4a5a-80cc-3db66bb1da02",
+            "MenuText": "Bank Porfolios",
+            "MenuGlyph": "fas fa-plug",
+            "MenuHREF": "/PortfolioList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuBreak": "true"
+          },
+          {
+            "MenuID": "66191dde-a54c-402f-9839-094cbc665b9d",
+            "MenuText": "Firms",
+            "MenuGlyph": "fas fa-city",
+            "MenuHREF": "/FirmList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "6b4d88b4-0a4b-46bc-9ed5-3ec83c00da72",
+            "MenuText": "Centres",
+            "MenuGlyph": "fas fa-map-marker-alt",
+            "MenuHREF": "/CentreList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "b960fac3-5848-46f3-9143-13d32a360cb4",
+            "MenuText": "Counterparty",
+            "MenuGlyph": "fas fa-user",
+            "MenuHREF": "/CounterpartyList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "a297d710-200e-4b31-8d48-4129efb9af02",
+            "MenuText": "Counterparty Import",
+            "MenuGlyph": "fas fa-file-import",
+            "MenuHREF": "/CounterpartyImportList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "06a43331-0019-4d30-af69-f1c0bfeb9148",
+            "MenuText": "Counterparty Groups",
+            "MenuGlyph": "fa fa-users",
+            "MenuHREF": "/CounterpartyGroupList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "35217f13-422c-4f6e-aaab-730f9a4ea59c",
+            "MenuText": "Mandates",
+            "MenuGlyph": "fas fa-city",
+            "MenuHREF": "/MandateList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "df9bb1c6-d156-47fb-9ecd-d4cbd1041ad9",
+            "MenuText": "Accounts",
+            "MenuGlyph": "fas fa-landmark",
+            "MenuHREF": "/AccountList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "ecc8cc74-8a0d-490e-add8-27000dfa11b9",
+            "MenuText": "Payees",
+            "MenuGlyph": "fas fa-wallet",
+            "MenuHREF": "/PayeeList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "c53513a6-9d1d-438e-abcf-91666a05d07f",
+            "MenuText": "Counterparty Notes",
+            "MenuGlyph": "far fa-sticky-note",
+            "MenuHREF": "/CounterpartyNotesList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuBreak": "true"
+          },
+          {
+            "MenuID": "dfc6cea9-595b-4f0b-b22b-6e44ede7f317",
+            "MenuText": "Transactions",
+            "MenuGlyph": "far fa-handshake",
+            "MenuHREF": "/TransactionList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "87dedcd5-6a00-42ad-a8d9-90a4d166aca3",
+            "MenuText": "Deal Conversations",
+            "MenuGlyph": "fas fa-exchange-alt",
+            "MenuHREF": "/DealConversationList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          }
+        ]
+      },
+      {
+        "SectionID": "1",
+        "SectionName": "Siena Admin",
+        "SectionNodes": [
+          {
+            "MenuID": "2710fac3-5448-4379-9639-f835d38910d9",
+            "MenuText": "Deal Types",
+            "MenuGlyph": "fas fa-toolbox",
+            "MenuHREF": "/DealTypeList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "680b7b57-0a86-48e4-accd-df07572dfa29",
+            "MenuText": "Deal Type Fundamentals",
+            "MenuGlyph": "fas fa-toolbox",
+            "MenuHREF": "/DealTypeFundamentalList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "dd432174-5cf3-4626-b415-4c9fbbb544a3",
+            "MenuText": "Product Groups",
+            "MenuGlyph": "fas fa-object-group",
+            "MenuHREF": "/ProductList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "13dc5e34-6a41-43a6-b82a-859b892beea4",
+            "MenuText": "Dealing Interface",
+            "MenuGlyph": "fas fa-share-alt",
+            "MenuHREF": "/DealingInterfaceList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuBreak": "true"
+          },
+          {
+            "MenuID": "46e1a634-e8ff-499b-b881-f62d292e891b",
+            "MenuText": "Conversations",
+            "MenuGlyph": "far fa-comment",
+            "MenuHREF": "/ContactStreamList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "bb839527-34bb-4b0e-9b3c-bc94568d9da6",
+            "MenuText": "Conversations Types",
+            "MenuGlyph": "far fa-comment",
+            "MenuHREF": "/ContactStreamTypeList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "5900e274-e454-4b58-9487-3f1628707857",
+            "MenuText": "Conversation Deals",
+            "MenuGlyph": "far fa-comment",
+            "MenuHREF": "/ContactDealRefNoList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "8093a14a-618a-43a0-b17b-30d1d2b6db39",
+            "MenuText": "Deal Audit History",
+            "MenuGlyph": "fas fa-toolbox",
+            "MenuHREF": "/DealAuditEventList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "d59e8a4a-bbdf-4fe5-bc05-0eda4502e587",
+            "MenuText": "Deal Audit Conversation",
+            "MenuGlyph": "fas fa-toolbox",
+            "MenuHREF": "/DealAuditEventConversationsList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          }
+        ]
+      },
+      {
+        "SectionID": "2",
+        "SectionName": "Simulator",
+        "SectionNodes": [
+          {
+            "MenuID": "19",
+            "MenuText": "Data Loader",
+            "MenuGlyph": "fas fa-dice-d6",
+            "MenuHREF": "/DataLoaderList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-warning"
+          },
+          {
+            "MenuID": "fundsCheck",
+            "MenuText": "Funds Check Approvals",
+            "MenuGlyph": "fas fa-check",
+            "MenuHREF": "/Simulator_SienaFundsCheckerList/",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-warning"
+          },
+          {
+            "MenuID": "d72ad60b-59d2-4bcf-91a8-76f21437f99f",
+            "MenuText": "SWIFT Simulator",
+            "MenuGlyph": "fas fa-globe",
+            "MenuHREF": "/SimulatorSWIFTList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-warning"
+          }
+        ]
+      },
+      {
+        "SectionID": "3",
+        "SectionName": "Utilities",
+        "SectionNodes": [
+          {
+            "MenuID": "sqlinject",
+            "MenuText": "Refresh SQL Views",
+            "MenuGlyph": "fas fa-syringe",
+            "MenuHREF": "/injectSQLViews",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-danger"
+          },
+          {
+            "MenuID": "refreshCache",
+            "MenuText": "Refresh Cache",
+            "MenuGlyph": "fas fa-redo-alt",
+            "MenuHREF": "/refreshCache",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-secondary"
+          },
+          {
+            "MenuID": "4db530c0-5e07-4481-aea3-7c683d46c117",
+            "MenuText": "Message Translation",
+            "MenuGlyph": "fas fa-city",
+            "MenuHREF": "/TranslationList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-primary"
+          }
+        ]
+      },
+      {
+        "SectionID": "4",
+        "SectionName": "Admin",
+        "SectionNodes": [
+          {
+            "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
+            "MenuText": "Credentials",
+            "MenuGlyph": "fas fa-key",
+            "MenuHREF": "/CredentialsList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-danger"
+          },
+          {
+            "MenuID": "da98ab1a-9562-4e1a-a6c8-c5b1cee31f67",
+            "MenuText": "Scheduler",
+            "MenuGlyph": "far fa-clock",
+            "MenuHREF": "/ScheduleList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-info"
+          },
+          {
+            "MenuID": "bf71274d-fba9-410f-af04-eeaae40f5157",
+            "MenuText": "Sessions",
+            "MenuGlyph": "fas fa-history",
+            "MenuHREF": "/SessionList",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-info"
+          },
+          {
+            "MenuID": "21ae8d71-2ae1-42ba-8716-92d130e0c152",
+            "MenuText": "Template Contents",
+            "MenuGlyph": "fas fa-poo",
+            "MenuHREF": "/TmplList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "da8c7cef-608e-4e44-9028-30b8cb09b401",
+            "MenuText": "Inbox",
+            "MenuGlyph": "fas fa-inbox",
+            "MenuHREF": "/InboxList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "da8c7cef-608e-4e44-9028-30b8cb09b401",
+            "MenuText": "My Inbox",
+            "MenuGlyph": "fas fa-inbox",
+            "MenuHREF": "/MyInboxList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          },
+          {
+            "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
+            "MenuText": "Credentials Actions",
+            "MenuGlyph": "fas fa-key",
+            "MenuHREF": "/CredentialsActionEdit",
+            "MenuOnClick": "",
+            "MenuTextClass": "text-danger"
+          },
+          {
+            "MenuID": "6d9f8f37-fa0e-4d8c-8689-45d9cb058ca6",
+            "MenuText": "User Roles",
+            "MenuGlyph": "fas fa-poo",
+            "MenuHREF": "/UserRoleList",
+            "MenuOnClick": "",
+            "MenuTextClass": ""
+          }
+        ]
+      }
     ]
-}
+  }

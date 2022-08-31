@@ -1,11 +1,10 @@
 
-    {
-      "ID": "98e619d9-11a1-4885-b558-21c0debe6848",
-      "Text": "Transaction",
-      "Glyph": "far fa-handshake",
-      "HREF": "/TransactionList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "a3b6f1e8-77e2-4dac-845c-6e225b863ee0",
+      "MenuText": "Transaction",
+      "MenuGlyph": "far fa-handshake",
+      "MenuHREF": "/TransactionList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

@@ -6,13 +6,14 @@
 |Object         |**Owner** (owner) |
 |Endpoint 	    |**/Owner...** [^1]|
 |Endpoint Query |**Owner**|
+|REST API|**/API/Owner/**|
 Glyph|**fas fa-industry** ()
 Friendly Name|**Owner**|
 |For Project    |github.com/mt1976/mwt-go-dev/|
 
 ##  Actions {#action-id}
-
-
+* **List** (/Owner/OwnerList) [Exportable]
+* **View** (/Owner/OwnerView)
 
 
 
@@ -64,15 +65,19 @@ SQL Table Key | **UserName**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/owner_core.go |
+| code | **api** | /application/owner_api.go |
 | code | **dao** | /dao/owner_core.go |
 | code | **datamodel** | /datamodel/owner_core.go |
+| code | **menu** | /design/menu/owner.json |
+| html | **list** | /Owner_List.html |
+| html | **view** | /Owner_View.html |
 
 
 ## Audit Information
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:12**
+Date & Time		     | **28/06/2022** at **16:10:54**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

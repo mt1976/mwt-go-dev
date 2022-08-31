@@ -39,7 +39,7 @@ func HeartBeat_Run() {
 	logs.EndJob(HeartBeat_Job().Name)
 
 	logs.Break()
-	logs.URI("http://localhost:" + core.ApplicationProperties["port"])
+	logs.URI("http://localhost:" + core.ApplicationHTTPPort())
 	logs.Break()
 
 }

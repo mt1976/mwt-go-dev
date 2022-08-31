@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 28/06/2022 at 16:10:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,6 +34,16 @@ func Transaction_GetList() (int, []dm.Transaction, error) {
 }
 
 
+// Transaction_GetLookup() returns a lookup list of all Transaction items in lookup format
+func Transaction_GetLookup() []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	count, transactionList, _ := Transaction_GetList()
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: transactionList[i].SienaReference, Name: transactionList[i].SienaReference})
+	}
+	return returnList
+}
+
 
 // Transaction_GetByID() returns a single Transaction record
 func Transaction_GetByID(id string) (int, dm.Transaction, error) {
@@ -43,6 +53,14 @@ func Transaction_GetByID(id string) (int, dm.Transaction, error) {
 	tsql = tsql + " WHERE " + dm.Transaction_SQLSearchID + "='" + id + "'"
 	_, _, transactionItem, _ := transaction_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	transactionItem.Dealt,transactionItem.Dealt_props = adaptor.Transaction_Dealt_impl (adaptor.GET,id,transactionItem.Dealt,transactionItem,transactionItem.Dealt_props)
+	transactionItem.Against,transactionItem.Against_props = adaptor.Transaction_Against_impl (adaptor.GET,id,transactionItem.Against,transactionItem,transactionItem.Against_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, transactionItem, nil
 }
 
@@ -60,7 +78,12 @@ func Transaction_Delete(id string) {
 // Transaction_Store() saves/stores a Transaction record to the database
 func Transaction_Store(r dm.Transaction,req *http.Request) error {
 
-	err := transaction_Save(r,Audit_User(req))
+	err, r := Transaction_Validate(r)
+	if err == nil {
+		err = transaction_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Transaction_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +91,33 @@ func Transaction_Store(r dm.Transaction,req *http.Request) error {
 // Transaction_StoreSystem() saves/stores a Transaction record to the database
 func Transaction_StoreSystem(r dm.Transaction) error {
 	
-	err := transaction_Save(r,Audit_Host())
+	err, r := Transaction_Validate(r)
+	if err == nil {
+		err = transaction_Save(r, Audit_Host())
+	} else {
+		logs.Information("Transaction_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Transaction_Validate() validates for saves/stores a Transaction record to the database
+func Transaction_Validate(r dm.Transaction) (error,dm.Transaction) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.Dealt,r.Dealt_props = adaptor.Transaction_Dealt_impl (adaptor.PUT,r.SienaReference,r.Dealt,r,r.Dealt_props)
+	r.Against,r.Against_props = adaptor.Transaction_Against_impl (adaptor.PUT,r.SienaReference,r.Against,r,r.Against_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // transaction_Save() saves/stores a Transaction record to the database
 func transaction_Save(r dm.Transaction,usr string) error {
@@ -238,7 +284,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SienaReference  = get_String(rec, dm.Transaction_SienaReference_sql, "")
 	   recItem.Status  = get_String(rec, dm.Transaction_Status_sql, "")
@@ -472,7 +518,7 @@ func transaction_Fetch(tsql string) (int, []dm.Transaction, dm.Transaction, erro
 	   recItem.Against  = adaptor.Transaction_Against_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -492,7 +538,26 @@ func Transaction_NewID(r dm.Transaction) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// transaction_Fetch read all Transaction's
+func Transaction_New() (int, []dm.Transaction, dm.Transaction, error) {
+
+	var r = dm.Transaction{}
+	var rList []dm.Transaction
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.Dealt,r.Dealt_props = adaptor.Transaction_Dealt_impl (adaptor.NEW,r.SienaReference,r.Dealt,r,r.Dealt_props)
+	r.Against,r.Against_props = adaptor.Transaction_Against_impl (adaptor.NEW,r.SienaReference,r.Against,r,r.Against_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -13,7 +13,7 @@ func credentials_NewIDImpl(r dm.Credentials) string {
 // Credentials_GetByUserName() returns a single Credentials record
 func Credentials_GetByUserName(id string) (int, dm.Credentials, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Credentials_SQLTable)
 	tsql = tsql + " WHERE " + dm.Credentials_Username_sql + "='" + id + "'"
 
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
@@ -23,9 +23,19 @@ func Credentials_GetByUserName(id string) (int, dm.Credentials, error) {
 // Credentials_GetByUUID() returns a single Credentials record
 func Credentials_GetByUUID(id string) (int, dm.Credentials, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Credentials_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Credentials_SQLTable)
 	tsql = tsql + " WHERE " + dm.Credentials_Id_sql + "='" + id + "'"
 
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 	return 1, credentialsItem, nil
+}
+
+// Credentials_GetByUUID() returns a single Credentials record
+func Credentials_GetByEmail(id string) (int, dm.Credentials, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Credentials_SQLTable)
+	tsql = tsql + " WHERE " + dm.Credentials_Email_sql + "='" + id + "'"
+
+	noItems, _, credentialsItem, _ := credentials_Fetch(tsql)
+	return noItems, credentialsItem, nil
 }

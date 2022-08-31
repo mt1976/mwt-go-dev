@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="far fa-handshake me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     
-                    <button id="export" type="button" class="btn btn-info" title="Export Transaction as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Transaction"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center"><i class="fas fa-key me-2"></i>SienaReference</th>
                           <th class="text-center">Status</th>
                           <th class="text-center">ValueDate</th>
@@ -268,12 +271,136 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center"><i class="fas fa-key me-2"></i>SienaReference</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">ValueDate</th>
+                          <th class="text-center">MaturityDate</th>
+                          <th class="text-center">ContractNumber</th>
+                          <th class="text-center">ExternalReference</th>
+                          <th class="text-center">Book</th>
+                          <th class="text-center">MandatedUser</th>
+                          <th class="text-center">Portfolio</th>
+                          <th class="text-center">AgreementId</th>
+                          <th class="text-center">BackOfficeRefNo</th>
+                          <th class="text-center">ISIN</th>
+                          <th class="text-center">UTI</th>
+                          <th class="text-center">BookName</th>
+                          <th class="text-center">Centre</th>
+                          <th class="text-center">Firm</th>
+                          <th class="text-center">DealTypeShortName</th>
+                          <th class="text-center">FullDealType</th>
+                          <th class="text-center">TradeDate</th>
+                          <th class="text-center">DealtCcy</th>
+                          <th class="text-center">DealtAmount</th>
+                          <th class="text-center">AgainstAmount</th>
+                          <th class="text-center">AgainstCcy</th>
+                          <th class="text-center">AllInRate</th>
+                          <th class="text-center">MktRate</th>
+                          <th class="text-center">SettleCcy</th>
+                          <th class="text-center">Direction</th>
+                          <th class="text-center">NpvRate</th>
+                          <th class="text-center">OriginUser</th>
+                          <th class="text-center">PayInstruction</th>
+                          <th class="text-center">ReceiptInstruction</th>
+                          <th class="text-center">NIName</th>
+                          <th class="text-center">CCYPair</th>
+                          <th class="text-center">Instrument</th>
+                          <th class="text-center">PortfolioName</th>
+                          <th class="text-center">RVDate</th>
+                          <th class="text-center">RVMTM</th>
+                          <th class="text-center">CounterBook</th>
+                          <th class="text-center">CounterBookName</th>
+                          <th class="text-center">Party</th>
+                          <th class="text-center">PartyName</th>
+                          <th class="text-center">NameCentre</th>
+                          <th class="text-center">NameFirm</th>
+                          <th class="text-center">CustomerExternalView</th>
+                          <th class="text-center">CustomerSienaView</th>
+                          <th class="text-center">CompID</th>
+                          <th class="text-center">SienaDealer</th>
+                          <th class="text-center">DealOwner</th>
+                          <th class="text-center">DealOwnerMnemonic</th>
+                          <th class="text-center">EditedByUser</th>
+                          <th class="text-center">UTCOriginTime</th>
+                          <th class="text-center">UTCUpdateTime</th>
+                          <th class="text-center">MarginTrading</th>
+                          <th class="text-center">SwapPoints</th>
+                          <th class="text-center">SpotDate</th>
+                          <th class="text-center">SpotRate</th>
+                          <th class="text-center">MktSpotRate</th>
+                          <th class="text-center">SpotSalesMargin</th>
+                          <th class="text-center">SpotChlMargin</th>
+                          <th class="text-center">RerouteCcy</th>
+                          <th class="text-center">CustomerPayInstruction</th>
+                          <th class="text-center">CustomerReceiptInstruction</th>
+                          <th class="text-center">BackOfficeNotes</th>
+                          <th class="text-center">CustomerStatementNotes</th>
+                          <th class="text-center">NotesMargin</th>
+                          <th class="text-center">RequestedBy</th>
+                          <th class="text-center">EditReason</th>
+                          <th class="text-center">EditOtherReason</th>
+                          <th class="text-center">NICleanPrice</th>
+                          <th class="text-center">NIDirtyPrice</th>
+                          <th class="text-center">NIYield</th>
+                          <th class="text-center">NIClearingSystem</th>
+                          <th class="text-center">Acceptor</th>
+                          <th class="text-center">NIDiscount</th>
+                          <th class="text-center">FastPay</th>
+                          <th class="text-center">PaymentFee</th>
+                          <th class="text-center">PaymentFeePolicy</th>
+                          <th class="text-center">PaymentReason</th>
+                          <th class="text-center">PaymentDate</th>
+                          <th class="text-center">SettlementDate</th>
+                          <th class="text-center">FixingDate</th>
+                          <th class="text-center">VenueUTI</th>
+                          <th class="text-center">EditVersion</th>
+                          <th class="text-center">BrokeragePercentage</th>
+                          <th class="text-center">BrokerageAmount</th>
+                          <th class="text-center">BrokerageCurrency</th>
+                          <th class="text-center">BrokerageDate</th>
+                          <th class="text-center">AccountName</th>
+                          <th class="text-center">AccountNumber</th>
+                          <th class="text-center">CashBalance</th>
+                          <th class="text-center">DebitFrequency</th>
+                          <th class="text-center">CreditFrequency</th>
+                          <th class="text-center">ManuallyQuoted</th>
+                          <th class="text-center">LedgerBalance</th>
+                          <th class="text-center">SettAmtOutstanding</th>
+                          <th class="text-center">FeePercentage</th>
+                          <th class="text-center">FeeAmount</th>
+                          <th class="text-center">Venue</th>
+                          <th class="text-center">EURAmount</th>
+                          <th class="text-center">EUROtherAmount</th>
+                          <th class="text-center">LEI</th>
+                          <th class="text-center">Equity</th>
+                          <th class="text-center">Shares</th>
+                          <th class="text-center">QuoteExpiryDate</th>
+                          <th class="text-center">Commodity</th>
+                          <th class="text-center">PaymentSystemSienaView</th>
+                          <th class="text-center">PaymentSystemExternalView</th>
+                          <th class="text-center">SalesProfit</th>
+                          <th class="text-center">RejectReason</th>
+                          <th class="text-center">PaymentError</th>
+                          <th class="text-center">RepoPrincipal</th>
+                          <th class="text-center">FixingFrequency</th>
+                          <th class="text-center">Dealt</th>
+                          <th class="text-center">Against</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

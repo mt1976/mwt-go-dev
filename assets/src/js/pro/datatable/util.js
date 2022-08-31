@@ -1,7 +1,14 @@
 const sort = ({ rows, field, order }) => {
   const sorted = rows.sort((a, b) => {
-    const fieldA = a[field];
-    const fieldB = b[field];
+    let fieldA = a[field];
+    let fieldB = b[field];
+
+    if (typeof fieldA === 'string') {
+      fieldA = fieldA.toLowerCase();
+    }
+    if (typeof fieldB === 'string') {
+      fieldB = fieldB.toLowerCase();
+    }
 
     if (fieldA < fieldB) {
       return order === 'desc' ? 1 : -1;
@@ -19,6 +26,10 @@ const search = (rows, search, column) => {
   if (!search) return rows;
 
   const match = (entry) => {
+    const div = document.createElement('div');
+    div.innerHTML = entry;
+    entry = div.textContent || div.innerText || '';
+
     return entry.toString().toLowerCase().match(search.toLowerCase());
   };
 

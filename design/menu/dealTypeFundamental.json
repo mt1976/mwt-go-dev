@@ -1,11 +1,10 @@
 
-    {
-      "ID": "e5f03835-dada-4160-a650-5ba8c248be18",
-      "Text": "Deal Type Fundamental",
-      "Glyph": "fas fa-toolbox",
-      "HREF": "/DealTypeFundamentalList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "f854d159-305d-41f5-9f9a-bd5a8f6077ba",
+      "MenuText": "Deal Type Fundamental",
+      "MenuGlyph": "fas fa-toolbox",
+      "MenuHREF": "/DealTypeFundamentalList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

@@ -61,3 +61,29 @@ func Transaction_Against_OnStore_impl(fieldval string, rec dm.Transaction, usr s
 
 func Transaction_Dealt_OnFetch_impl(rec dm.Transaction) string   { return "" }
 func Transaction_Against_OnFetch_impl(rec dm.Transaction) string { return "" }
+
+func Transaction_NewID_impl(rec dm.Transaction) string { return rec.SienaReference }
+
+func Transaction_Dealt_impl(iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+
+	logs.Callout("Transaction", "Dealt", VAL+"-"+iAction, iId)
+
+	return "", fP
+
+}
+
+// Transaction_Against_impl provides validation/actions for Against
+
+func Transaction_Against_impl(iAction string, iId string, iValue string, iRec dm.Transaction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+
+	logs.Callout("Transaction", "Against", VAL+"-"+iAction, iId)
+
+	return "", fP
+
+}
+
+//
+
+// Dynamically generated 26/06/2022 by matttownsend (Matt Townsend) on silicon.local
+
+// END - Validation API/Callout

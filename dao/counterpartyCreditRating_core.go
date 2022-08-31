@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func CounterpartyCreditRating_GetByID(id string) (int, dm.CounterpartyCreditRati
 	tsql = tsql + " WHERE " + dm.CounterpartyCreditRating_SQLSearchID + "='" + id + "'"
 	_, _, counterpartycreditratingItem, _ := counterpartycreditrating_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, counterpartycreditratingItem, nil
 }
 
@@ -60,7 +66,12 @@ func CounterpartyCreditRating_Delete(id string) {
 // CounterpartyCreditRating_Store() saves/stores a CounterpartyCreditRating record to the database
 func CounterpartyCreditRating_Store(r dm.CounterpartyCreditRating,req *http.Request) error {
 
-	err := counterpartycreditrating_Save(r,Audit_User(req))
+	err, r := CounterpartyCreditRating_Validate(r)
+	if err == nil {
+		err = counterpartycreditrating_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CounterpartyCreditRating_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func CounterpartyCreditRating_Store(r dm.CounterpartyCreditRating,req *http.Requ
 // CounterpartyCreditRating_StoreSystem() saves/stores a CounterpartyCreditRating record to the database
 func CounterpartyCreditRating_StoreSystem(r dm.CounterpartyCreditRating) error {
 	
-	err := counterpartycreditrating_Save(r,Audit_Host())
+	err, r := CounterpartyCreditRating_Validate(r)
+	if err == nil {
+		err = counterpartycreditrating_Save(r, Audit_Host())
+	} else {
+		logs.Information("CounterpartyCreditRating_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CounterpartyCreditRating_Validate() validates for saves/stores a CounterpartyCreditRating record to the database
+func CounterpartyCreditRating_Validate(r dm.CounterpartyCreditRating) (error,dm.CounterpartyCreditRating) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // counterpartycreditrating_Save() saves/stores a CounterpartyCreditRating record to the database
 func counterpartycreditrating_Save(r dm.CounterpartyCreditRating,usr string) error {
@@ -130,7 +162,7 @@ func counterpartycreditrating_Fetch(tsql string) (int, []dm.CounterpartyCreditRa
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameFirm  = get_String(rec, dm.CounterpartyCreditRating_NameFirm_sql, "")
 	   recItem.NameCentre  = get_String(rec, dm.CounterpartyCreditRating_NameCentre_sql, "")
@@ -148,7 +180,7 @@ func counterpartycreditrating_Fetch(tsql string) (int, []dm.CounterpartyCreditRa
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -168,7 +200,24 @@ func CounterpartyCreditRating_NewID(r dm.CounterpartyCreditRating) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// counterpartycreditrating_Fetch read all CounterpartyCreditRating's
+func CounterpartyCreditRating_New() (int, []dm.CounterpartyCreditRating, dm.CounterpartyCreditRating, error) {
+
+	var r = dm.CounterpartyCreditRating{}
+	var rList []dm.CounterpartyCreditRating
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

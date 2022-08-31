@@ -169,14 +169,14 @@ func fetchSienaBusinessDateData(db *sql.DB, tsql string) (int, []core.DateItem, 
 	return count, sienaBusinessDateList, sienaBusinessDate, nil
 }
 
-//		PageTitle: core.ApplicationProperties["appname"] + core.Character_Break + Translation_Lookup("Page", dm.Translation_Title) + core.Character_Break + Translation_Lookup("Action", "New"),
+//		PageTitle: core.GetAppName() + core.Character_Break + Translation_Lookup("Page", dm.Translation_Title) + core.Character_Break + Translation_Lookup("Action", "New"),
 func PageTitle(
 	pageTitle string,
 	pageSubTitle string) string {
 
 	pt := Translation_Lookup("Page", pageTitle)
 	pst := Translation_Lookup("Action", pageSubTitle)
-	appName := core.ApplicationProperties["appname"]
+	appName := core.ApplicationName()
 	if len(appName) == 0 {
 		appName = "Application Name"
 	}

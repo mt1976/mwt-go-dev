@@ -34,7 +34,7 @@ func userMenu_Fetch(inRole string) (int, dm.AppMenuItem) {
 	// 	fmt.Printf("i: %v\n", i)
 	// 	fmt.Printf("data.MenuStructure[i]: %v\n", data.MenuHeaderText)
 	// 	// 	data.MenuItem[i].MenuText = Translation_Lookup("Menu", data.MenuItem[i].MenuText)
-	// 	// 	data.MenuItem[i].MenuHeaderText = core.ApplicationProperties["appname"]
+	// 	// 	data.MenuItem[i].MenuHeaderText = core.GetAppName()
 	// }
 	//fmt.Printf("data: %v\n", data)
 	//fmt.Printf("file: %v\n", file)

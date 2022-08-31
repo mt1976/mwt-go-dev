@@ -53,10 +53,11 @@ SQL Table Key | **ID**
 |**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
 |**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
 |**SYSUpdatedBy**|String|false|true|false|false|||||NH|_updatedBy||false|false|true|text||
-|**ID**|String|true|true|false|false|||||Y|ID||false|false|false|text||
+|**ID**|String|false|true|false|true|||||Y|ID||false|true|false|text||
 |**ExtraField**|String|false|false|true|false|||||Y|||false|true|false|text||
 |**ExtraField2**|String|false|false|true|false|||||Y||Hummous|false|false|false|text||
 |**ExtraField3**|String|false|false|true|false|FL|Firm|Firm|FullName|Y|||false|true|false|text||
+|**TDate**|String|false|false|true|true|||||Y|||false|true|false|date|dd-mmm-yyyy|
 
 
 ##  Artifacts Generated
@@ -79,7 +80,7 @@ SQL Table Key | **ID**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:14**
+Date & Time		     | **28/06/2022** at **16:10:58**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

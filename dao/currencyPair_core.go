@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,13 @@ func CurrencyPair_GetByID(id string) (int, dm.CurrencyPair, error) {
 	tsql = tsql + " WHERE " + dm.CurrencyPair_SQLSearchID + "='" + id + "'"
 	_, _, currencypairItem, _ := currencypair_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	currencypairItem.Code,currencypairItem.Code_props = adaptor.CurrencyPair_Code_impl (adaptor.GET,id,currencypairItem.Code,currencypairItem,currencypairItem.Code_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, currencypairItem, nil
 }
 
@@ -70,7 +77,12 @@ func CurrencyPair_Delete(id string) {
 // CurrencyPair_Store() saves/stores a CurrencyPair record to the database
 func CurrencyPair_Store(r dm.CurrencyPair,req *http.Request) error {
 
-	err := currencypair_Save(r,Audit_User(req))
+	err, r := CurrencyPair_Validate(r)
+	if err == nil {
+		err = currencypair_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CurrencyPair_Store()", err.Error())
+	}
 
 	return err
 }
@@ -78,10 +90,32 @@ func CurrencyPair_Store(r dm.CurrencyPair,req *http.Request) error {
 // CurrencyPair_StoreSystem() saves/stores a CurrencyPair record to the database
 func CurrencyPair_StoreSystem(r dm.CurrencyPair) error {
 	
-	err := currencypair_Save(r,Audit_Host())
+	err, r := CurrencyPair_Validate(r)
+	if err == nil {
+		err = currencypair_Save(r, Audit_Host())
+	} else {
+		logs.Information("CurrencyPair_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CurrencyPair_Validate() validates for saves/stores a CurrencyPair record to the database
+func CurrencyPair_Validate(r dm.CurrencyPair) (error,dm.CurrencyPair) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.Code,r.Code_props = adaptor.CurrencyPair_Code_impl (adaptor.PUT,r.Code,r.Code,r,r.Code_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // currencypair_Save() saves/stores a CurrencyPair record to the database
 func currencypair_Save(r dm.CurrencyPair,usr string) error {
@@ -138,7 +172,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.CodeMajorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMajorCurrencyIsoCode_sql, "")
 	   recItem.CodeMinorCurrencyIsoCode  = get_String(rec, dm.CurrencyPair_CodeMinorCurrencyIsoCode_sql, "")
@@ -152,7 +186,7 @@ func currencypair_Fetch(tsql string) (int, []dm.CurrencyPair, dm.CurrencyPair, e
 	   recItem.Code  = adaptor.CurrencyPair_Code_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -172,7 +206,25 @@ func CurrencyPair_NewID(r dm.CurrencyPair) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// currencypair_Fetch read all CurrencyPair's
+func CurrencyPair_New() (int, []dm.CurrencyPair, dm.CurrencyPair, error) {
+
+	var r = dm.CurrencyPair{}
+	var rList []dm.CurrencyPair
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.Code,r.Code_props = adaptor.CurrencyPair_Code_impl (adaptor.NEW,r.Code,r.Code,r,r.Code_props)
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

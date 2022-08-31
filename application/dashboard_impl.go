@@ -73,7 +73,7 @@ func Dashboard_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:          UserMenu_Get(r),
 		UserRole:          Session_GetUserRole(r),
 		UserNavi:          "NOT USED",
-		Title:             core.ApplicationProperties["appname"],
+		Title:             core.ApplicationName(),
 		PageTitle:         PageTitle("Dashboard", ""),
 		TotCounterparties: strconv.Itoa(noCps),
 		NoGDPRExp:         strconv.Itoa(50),

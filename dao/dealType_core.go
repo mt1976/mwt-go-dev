@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 28/06/2022 at 16:10:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func DealType_GetByID(id string) (int, dm.DealType, error) {
 	tsql = tsql + " WHERE " + dm.DealType_SQLSearchID + "='" + id + "'"
 	_, _, dealtypeItem, _ := dealtype_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, dealtypeItem, nil
 }
 
@@ -60,7 +66,12 @@ func DealType_Delete(id string) {
 // DealType_Store() saves/stores a DealType record to the database
 func DealType_Store(r dm.DealType,req *http.Request) error {
 
-	err := dealtype_Save(r,Audit_User(req))
+	err, r := DealType_Validate(r)
+	if err == nil {
+		err = dealtype_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DealType_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func DealType_Store(r dm.DealType,req *http.Request) error {
 // DealType_StoreSystem() saves/stores a DealType record to the database
 func DealType_StoreSystem(r dm.DealType) error {
 	
-	err := dealtype_Save(r,Audit_Host())
+	err, r := DealType_Validate(r)
+	if err == nil {
+		err = dealtype_Save(r, Audit_Host())
+	} else {
+		logs.Information("DealType_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DealType_Validate() validates for saves/stores a DealType record to the database
+func DealType_Validate(r dm.DealType) (error,dm.DealType) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // dealtype_Save() saves/stores a DealType record to the database
 func dealtype_Save(r dm.DealType,usr string) error {
@@ -150,7 +182,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.DealTypeKey  = get_String(rec, dm.DealType_DealTypeKey_sql, "")
 	   recItem.DealTypeShortName  = get_String(rec, dm.DealType_DealTypeShortName_sql, "")
@@ -208,7 +240,7 @@ func dealtype_Fetch(tsql string) (int, []dm.DealType, dm.DealType, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -228,7 +260,24 @@ func DealType_NewID(r dm.DealType) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// dealtype_Fetch read all DealType's
+func DealType_New() (int, []dm.DealType, dm.DealType, error) {
+
+	var r = dm.DealType{}
+	var rList []dm.DealType
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

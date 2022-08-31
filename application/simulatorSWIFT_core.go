@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 28/06/2022 at 16:10:57
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,40 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//simulatorswift_PageList provides the information for the template for a list of SimulatorSWIFTs
-type SimulatorSWIFT_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.SimulatorSWIFT
-}
-//SimulatorSWIFT_Redirect provides a page to return to aftern an action
-const (
-	SimulatorSWIFT_Redirect = dm.SimulatorSWIFT_PathList
-)
 
-//simulatorswift_Page provides the information for the template for an individual SimulatorSWIFT
-type SimulatorSWIFT_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	FileName         string
-	MessageRaw         string
-	MessageFmt         string
-	Action         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -88,7 +55,7 @@ func SimulatorSWIFT_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.SimulatorSWIFT
 	noItems, returnList, _ := dao.SimulatorSWIFT_GetList()
 
-	pageDetail := SimulatorSWIFT_PageList{
+	pageDetail := dm.SimulatorSWIFT_PageList{
 		Title:            CardTitle(dm.SimulatorSWIFT_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.SimulatorSWIFT_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -119,7 +86,7 @@ func SimulatorSWIFT_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.SimulatorSWIFT_QueryString)
 	_, rD, _ := dao.SimulatorSWIFT_GetByID(searchID)
 
-	pageDetail := SimulatorSWIFT_Page{
+	pageDetail := dm.SimulatorSWIFT_Page{
 		Title:       CardTitle(dm.SimulatorSWIFT_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.SimulatorSWIFT_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -150,7 +117,7 @@ func SimulatorSWIFT_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.SimulatorSWIFT_QueryString)
 	_, rD, _ := dao.SimulatorSWIFT_GetByID(searchID)
 	
-	pageDetail := SimulatorSWIFT_Page{
+	pageDetail := dm.SimulatorSWIFT_Page{
 		Title:       CardTitle(dm.SimulatorSWIFT_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.SimulatorSWIFT_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -179,7 +146,7 @@ func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.SimulatorSWIFT
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.SimulatorSWIFT_ID_scrn)
 		item.FileName = r.FormValue(dm.SimulatorSWIFT_FileName_scrn)
@@ -188,10 +155,10 @@ func SimulatorSWIFT_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Action = r.FormValue(dm.SimulatorSWIFT_Action_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.SimulatorSWIFT_Store(item,r)	
-	http.Redirect(w, r, SimulatorSWIFT_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.SimulatorSWIFT_Redirect, http.StatusFound)
 }
 
 
@@ -204,11 +171,11 @@ func SimulatorSWIFT_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.SimulatorSWIFT_New()
 
-	pageDetail := SimulatorSWIFT_Page{
+	pageDetail := dm.SimulatorSWIFT_Page{
 		Title:       CardTitle(dm.SimulatorSWIFT_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.SimulatorSWIFT_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -217,7 +184,7 @@ func SimulatorSWIFT_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = simulatorswift_PopulatePage(dm.SimulatorSWIFT{} , pageDetail) 
+	pageDetail = simulatorswift_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.SimulatorSWIFT_TemplateNew, w, r, pageDetail)
 
@@ -238,14 +205,14 @@ func SimulatorSWIFT_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.SimulatorSWIFT_Delete(searchID)	
 
-	http.Redirect(w, r, SimulatorSWIFT_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.SimulatorSWIFT_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the SimulatorSWIFT Page 
-func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT_Page) SimulatorSWIFT_Page {
+func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail dm.SimulatorSWIFT_Page) dm.SimulatorSWIFT_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.FileName = rD.FileName
@@ -255,7 +222,7 @@ func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -268,8 +235,15 @@ func simulatorswift_PopulatePage(rD dm.SimulatorSWIFT, pageDetail SimulatorSWIFT
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.FileName_props = rD.FileName_props
+	pageDetail.MessageRaw_props = rD.MessageRaw_props
+	pageDetail.MessageFmt_props = rD.MessageFmt_props
+	pageDetail.Action_props = rD.Action_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

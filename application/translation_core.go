@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 28/06/2022 at 16:10:58
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,48 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//translation_PageList provides the information for the template for a list of Translations
-type Translation_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Translation
-}
-//Translation_Redirect provides a page to return to aftern an action
-const (
-	Translation_Redirect = dm.Translation_PathList
-)
 
-//translation_Page provides the information for the template for an individual Translation
-type Translation_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Class         string
-	Message         string
-	Translation         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -96,7 +55,7 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Translation
 	noItems, returnList, _ := dao.Translation_GetList()
 
-	pageDetail := Translation_PageList{
+	pageDetail := dm.Translation_PageList{
 		Title:            CardTitle(dm.Translation_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Translation_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -127,7 +86,7 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Translation_QueryString)
 	_, rD, _ := dao.Translation_GetByID(searchID)
 
-	pageDetail := Translation_Page{
+	pageDetail := dm.Translation_Page{
 		Title:       CardTitle(dm.Translation_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Translation_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -158,7 +117,7 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Translation_QueryString)
 	_, rD, _ := dao.Translation_GetByID(searchID)
 	
-	pageDetail := Translation_Page{
+	pageDetail := dm.Translation_Page{
 		Title:       CardTitle(dm.Translation_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Translation_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -187,7 +146,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Translation
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
 		item.Id = r.FormValue(dm.Translation_Id_scrn)
@@ -204,19 +163,19 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Translation_Store(item,r)	
-	http.Redirect(w, r, Translation_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Translation_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the Translation Page 
-func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Translation_Page {
+func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page) dm.Translation_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -234,7 +193,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Tr
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -263,8 +222,23 @@ func translation_PopulatePage(rD dm.Translation, pageDetail Translation_Page) Tr
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Class_props = rD.Class_props
+	pageDetail.Message_props = rD.Message_props
+	pageDetail.Translation_props = rD.Translation_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

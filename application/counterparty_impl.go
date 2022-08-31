@@ -130,7 +130,7 @@ func Counterparty_Handler360(w http.ResponseWriter, r *http.Request) {
 	noTxns, txnList, _ := dao.Transaction_GetListByCounterpartyID(id)
 
 	pageSienaCounterpartyList := sienaCounterpartyPage{
-		Title:           core.ApplicationProperties["appname"],
+		Title:           core.ApplicationName(),
 		PageTitle:       PageTitle(dm.Counterparty_Title, core.Action_List),
 		UserMenu:        UserMenu_Get(r),
 		UserRole:        Session_GetUserRole(r),
