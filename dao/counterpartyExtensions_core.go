@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func CounterpartyExtensions_GetByID(id string) (int, dm.CounterpartyExtensions, 
 	tsql = tsql + " WHERE " + dm.CounterpartyExtensions_SQLSearchID + "='" + id + "'"
 	_, _, counterpartyextensionsItem, _ := counterpartyextensions_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, counterpartyextensionsItem, nil
 }
 
@@ -60,7 +66,12 @@ func CounterpartyExtensions_Delete(id string) {
 // CounterpartyExtensions_Store() saves/stores a CounterpartyExtensions record to the database
 func CounterpartyExtensions_Store(r dm.CounterpartyExtensions,req *http.Request) error {
 
-	err := counterpartyextensions_Save(r,Audit_User(req))
+	err, r := CounterpartyExtensions_Validate(r)
+	if err == nil {
+		err = counterpartyextensions_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CounterpartyExtensions_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func CounterpartyExtensions_Store(r dm.CounterpartyExtensions,req *http.Request)
 // CounterpartyExtensions_StoreSystem() saves/stores a CounterpartyExtensions record to the database
 func CounterpartyExtensions_StoreSystem(r dm.CounterpartyExtensions) error {
 	
-	err := counterpartyextensions_Save(r,Audit_Host())
+	err, r := CounterpartyExtensions_Validate(r)
+	if err == nil {
+		err = counterpartyextensions_Save(r, Audit_Host())
+	} else {
+		logs.Information("CounterpartyExtensions_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CounterpartyExtensions_Validate() validates for saves/stores a CounterpartyExtensions record to the database
+func CounterpartyExtensions_Validate(r dm.CounterpartyExtensions) (error,dm.CounterpartyExtensions) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // counterpartyextensions_Save() saves/stores a CounterpartyExtensions record to the database
 func counterpartyextensions_Save(r dm.CounterpartyExtensions,usr string) error {
@@ -167,7 +199,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameFirm  = get_String(rec, dm.CounterpartyExtensions_NameFirm_sql, "")
 	   recItem.NameCentre  = get_String(rec, dm.CounterpartyExtensions_NameCentre_sql, "")
@@ -259,7 +291,7 @@ func counterpartyextensions_Fetch(tsql string) (int, []dm.CounterpartyExtensions
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -279,7 +311,24 @@ func CounterpartyExtensions_NewID(r dm.CounterpartyExtensions) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// counterpartyextensions_Fetch read all CounterpartyExtensions's
+func CounterpartyExtensions_New() (int, []dm.CounterpartyExtensions, dm.CounterpartyExtensions, error) {
+
+	var r = dm.CounterpartyExtensions{}
+	var rList []dm.CounterpartyExtensions
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

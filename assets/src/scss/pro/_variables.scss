@@ -24,7 +24,7 @@ $sidenav-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0
 $sidenav-data-hidden-false-transform: translateX(0%) !default;
 $sidenav-data-color-light-color: rgba(255, 255, 255, 0.6) !default;
 $sidenav-data-right-true-transform: translateX(100%) !default;
-$sidenav-data-slim-collapsed-true-width: 70px !default;
+$sidenav-data-slim-collapsed-true-width: 77px !default;
 
 $sidenav-menu-padding: 0.2rem !default;
 
@@ -505,8 +505,8 @@ $perfectScrollbar-ps-ps__thumb-x-y-color: #aaa !default;
 // Chips
 $chip-height: 32px !default;
 $chip-font-size: 13px !default;
-$chip-font-weight: 500 !default;
-$chip-font-color: rgba($black, 0.6) !default;
+$chip-font-weight: 400 !default;
+$chip-font-color: $body-color !default;
 $chip-line-height: $chip-height !default;
 $chip-padding-right: 12px !default;
 $chip-br: 16px !default;
@@ -524,7 +524,7 @@ $chip-close-padding-left: 8px !default;
 $chips-margin-bottom: 30px !default;
 $chips-min-height: 45px !default;
 $chips-padding-bottom: 1rem !default;
-$chips-input-font-color: rgba($black, 0.6) !default;
+$chips-input-font-color: $body-color !default;
 $chips-input-font-size: 13px !default;
 $chips-input-font-weight: 500 !default;
 $chips-input-height: $chip-height !default;
@@ -610,11 +610,11 @@ $form-outline-select-option-pr: 16px !default;
 $form-outline-select-option-font-size: 1rem !default;
 $form-outline-select-option-font-weight: 400 !default;
 
-$form-outline-select-option-hover-not-disabled-bgc: #ddd !default;
-$form-outline-select-option-active-bgc: #ddd !default;
-$form-outline-select-option-selected-active-bgc: #ddd !default;
+$form-outline-select-option-hover-not-disabled-bgc: rgba(0, 0, 0, 0.048) !default;
+$form-outline-select-option-active-bgc: rgba(0, 0, 0, 0.048) !default;
+$form-outline-select-option-selected-active-bgc: rgba(0, 0, 0, 0.048) !default;
 $form-outline-select-option-selected-disabled-color: #9e9e9e !default;
-$form-outline-select-option-selected-bgc: #eee !default;
+$form-outline-select-option-selected-bgc: rgba(0, 0, 0, 0.02) !default;
 $form-outline-select-option-disabled-color: #9e9e9e !default;
 
 $form-outline-select-option-text-form-check-input-mr: 10px !default;

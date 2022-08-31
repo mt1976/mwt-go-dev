@@ -162,7 +162,7 @@ class Toast extends BSToast {
 
     const header = SelectorEngine.findOne(SELECTOR_HEADER, this._element);
 
-    const colors = [
+    const toasts = [
       'primary',
       'secondary',
       'success',
@@ -173,15 +173,15 @@ class Toast extends BSToast {
       'dark',
     ];
 
-    const color = colors.includes(this._config.color) ? this._config.color : 'primary';
+    const color = toasts.includes(this._config.color) ? this._config.color : 'primary';
 
-    colors.forEach((color) => {
-      this._element.classList.remove(`bg-${color}`);
-      if (header) header.classList.remove(`bg-${color}`);
+    toasts.forEach((color) => {
+      this._element.classList.remove(`toast-${color}`);
+      if (header) header.classList.remove(`toast-${color}`);
     });
 
-    Manipulator.addClass(this._element, `bg-${color}`);
-    if (header) Manipulator.addClass(header, `bg-${color}`);
+    Manipulator.addClass(this._element, `toast-${color}`);
+    if (header) Manipulator.addClass(header, `toast-${color}`);
   }
 
   _setupWidth() {

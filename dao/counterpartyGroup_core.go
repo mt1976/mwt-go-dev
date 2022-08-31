@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func CounterpartyGroup_GetByID(id string) (int, dm.CounterpartyGroup, error) {
 	tsql = tsql + " WHERE " + dm.CounterpartyGroup_SQLSearchID + "='" + id + "'"
 	_, _, counterpartygroupItem, _ := counterpartygroup_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, counterpartygroupItem, nil
 }
 
@@ -70,7 +76,12 @@ func CounterpartyGroup_Delete(id string) {
 // CounterpartyGroup_Store() saves/stores a CounterpartyGroup record to the database
 func CounterpartyGroup_Store(r dm.CounterpartyGroup,req *http.Request) error {
 
-	err := counterpartygroup_Save(r,Audit_User(req))
+	err, r := CounterpartyGroup_Validate(r)
+	if err == nil {
+		err = counterpartygroup_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CounterpartyGroup_Store()", err.Error())
+	}
 
 	return err
 }
@@ -78,10 +89,31 @@ func CounterpartyGroup_Store(r dm.CounterpartyGroup,req *http.Request) error {
 // CounterpartyGroup_StoreSystem() saves/stores a CounterpartyGroup record to the database
 func CounterpartyGroup_StoreSystem(r dm.CounterpartyGroup) error {
 	
-	err := counterpartygroup_Save(r,Audit_Host())
+	err, r := CounterpartyGroup_Validate(r)
+	if err == nil {
+		err = counterpartygroup_Save(r, Audit_Host())
+	} else {
+		logs.Information("CounterpartyGroup_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CounterpartyGroup_Validate() validates for saves/stores a CounterpartyGroup record to the database
+func CounterpartyGroup_Validate(r dm.CounterpartyGroup) (error,dm.CounterpartyGroup) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // counterpartygroup_Save() saves/stores a CounterpartyGroup record to the database
 func counterpartygroup_Save(r dm.CounterpartyGroup,usr string) error {
@@ -137,7 +169,7 @@ func counterpartygroup_Fetch(tsql string) (int, []dm.CounterpartyGroup, dm.Count
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.Name  = get_String(rec, dm.CounterpartyGroup_Name_sql, "")
 	   recItem.CountryCode  = get_String(rec, dm.CounterpartyGroup_CountryCode_sql, "")
@@ -149,7 +181,7 @@ func counterpartygroup_Fetch(tsql string) (int, []dm.CounterpartyGroup, dm.Count
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -169,7 +201,24 @@ func CounterpartyGroup_NewID(r dm.CounterpartyGroup) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// counterpartygroup_Fetch read all CounterpartyGroup's
+func CounterpartyGroup_New() (int, []dm.CounterpartyGroup, dm.CounterpartyGroup, error) {
+
+	var r = dm.CounterpartyGroup{}
+	var rList []dm.CounterpartyGroup
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

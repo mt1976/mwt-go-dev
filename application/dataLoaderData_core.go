@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,51 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//dataloaderdata_PageList provides the information for the template for a list of DataLoaderDatas
-type DataLoaderData_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.DataLoaderData
-}
-//DataLoaderData_Redirect provides a page to return to aftern an action
-const (
-	DataLoaderData_Redirect = dm.DataLoaderData_PathList
-)
 
-//dataloaderdata_Page provides the information for the template for an individual DataLoaderData
-type DataLoaderData_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Row         string
-	Position         string
-	Value         string
-	Loader         string
-	Loader_lookup    []dm.Lookup_Item
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	Map         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -99,7 +55,7 @@ func DataLoaderData_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.DataLoaderData
 	noItems, returnList, _ := dao.DataLoaderData_GetList()
 
-	pageDetail := DataLoaderData_PageList{
+	pageDetail := dm.DataLoaderData_PageList{
 		Title:            CardTitle(dm.DataLoaderData_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.DataLoaderData_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -130,7 +86,7 @@ func DataLoaderData_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
 	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
 
-	pageDetail := DataLoaderData_Page{
+	pageDetail := dm.DataLoaderData_Page{
 		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -161,7 +117,7 @@ func DataLoaderData_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.DataLoaderData_QueryString)
 	_, rD, _ := dao.DataLoaderData_GetByID(searchID)
 	
-	pageDetail := DataLoaderData_Page{
+	pageDetail := dm.DataLoaderData_Page{
 		Title:       CardTitle(dm.DataLoaderData_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.DataLoaderData_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -190,7 +146,7 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DataLoaderData
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.DataLoaderData_SYSId_scrn)
 		item.Id = r.FormValue(dm.DataLoaderData_Id_scrn)
@@ -209,19 +165,19 @@ func DataLoaderData_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.DataLoaderData_SYSUpdatedHost_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DataLoaderData_Store(item,r)	
-	http.Redirect(w, r, DataLoaderData_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.DataLoaderData_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the DataLoaderData Page 
-func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData_Page) DataLoaderData_Page {
+func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail dm.DataLoaderData_Page) dm.DataLoaderData_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -241,7 +197,7 @@ func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -276,8 +232,25 @@ func dataloaderdata_PopulatePage(rD dm.DataLoaderData, pageDetail DataLoaderData
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Row_props = rD.Row_props
+	pageDetail.Position_props = rD.Position_props
+	pageDetail.Value_props = rD.Value_props
+	pageDetail.Loader_props = rD.Loader_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Map_props = rD.Map_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

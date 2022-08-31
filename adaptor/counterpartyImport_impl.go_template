@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 28/06/2022 at 16:10:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -30,22 +30,45 @@ func CounterpartyImport_Delete_impl(id string) (error) {return nil}
 
 func CounterpartyImport_Update_impl(id string,rec dm.CounterpartyImport, usr string) (error) {return nil}
 
-// If there are fields below, create the methods in adaptor\counterpartyimport_impl.go
+	// If there are fields below, create the methods in adaptor\counterpartyimport_impl.go
+	// START - GET API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - GET API/Callout
+	//
+	// START - PUT API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - PUT API/Callout
 
+	// START - Validation API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - Validation API/Callout
 
+func CounterpartyImport_ObjectValidation_impl (iAction string, iId string, iRec dm.CounterpartyImport) (dm.CounterpartyImport, error, string) {
+	logs.Callout("CounterpartyImport", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
 
+		case NEW:
 
+		case PUT:
 
+		case GET:
 
-
-
-
-
-
-
-
-
-
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

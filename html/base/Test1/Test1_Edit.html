@@ -1,125 +1,161 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
-
-    <form action="/Test1Save/?ID={{.ID}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-cubes me-2" title="ID={{.ID}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/Test1Save/?ID={{.ID}}" onclick="/Test1Save/?ID={{.ID}}" title="Save Test1Template"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Test1Template"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+{{.Context}}
+<form action="/Test1Save/?ID={{.ID}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-cubes me-2"
+            title="ID={{.ID}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""   value="{{.ID}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="ID" ><i class="fas fa-key me-2"></i>ID</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Endpoint" name="Endpoint" aria-describedby="EndpointHelp" placeholder=""   value="{{.Endpoint}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Endpoint" >Endpoint</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" readonly="true"><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Descr" name="Descr" aria-describedby="DescrHelp" placeholder="" readonly="true"  value="{{.Descr}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Descr" readonly="true">Descr</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Query" name="Query" aria-describedby="QueryHelp" placeholder=""   value="{{.Query}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Query" >Query</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Source" name="Source" aria-describedby="SourceHelp" placeholder=""   value="{{.Source}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Source" >Source</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" readonly="true"><div class="col">
-         
-         
-                  <select id="Firm" name="Firm" class="select" data-mdb-filter="true" readonly="true" >
-                  {{range .Firm_lookup}}<option value="{{.ID}}" {{if eq .ID $.Firm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="Firm" readonly="true">Firm</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="YN" name="YN" class="select" data-mdb-filter="true"  >
-                  {{range .YN_lookup}}<option value="{{.ID}}" {{if eq .ID $.YN}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="YN" >YN</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-         
-                  <select id="User" name="User" class="select" data-mdb-filter="true"  >
-                  {{range .User_lookup}}<option value="{{.ID}}" {{if eq .ID $.User}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="User" >User</label>
-                  
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Cheese" name="Cheese" aria-describedby="CheeseHelp" placeholder=""   value="{{.Cheese}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Cheese" >Cheese</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Onion" name="Onion" aria-describedby="OnionHelp" placeholder=""   value="{{.Onion}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="Onion" >Onion</label>
-                    </div>
-          
-            </div></div>
-
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
             
-              
-                
-
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/Test1Save/?ID={{.ID}}" onclick="/Test1Save/?ID={{.ID}}" title="Save Test1Template"><i class="fas fa-save me-2"></i>Save</button>
             
-              
-                
-
-     
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Test1Template"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.ID_props.MsgType}}" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""   value="{{.ID}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="ID" ><i class="fas fa-key me-2"></i>ID</label>
+              <div class="{{.ID_props.MsgFeedBackType}}">{{.ID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Endpoint_props.MsgType}}" id="Endpoint" name="Endpoint" aria-describedby="EndpointHelp" placeholder=""   value="{{.Endpoint}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Endpoint" >Endpoint</label>
+              <div class="{{.Endpoint_props.MsgFeedBackType}}">{{.Endpoint_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" readonly="true" ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Descr_props.MsgType}}" id="Descr" name="Descr" aria-describedby="DescrHelp" placeholder="" readonly="true"  value="{{.Descr}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Descr" readonly="true">Descr</label>
+              <div class="{{.Descr_props.MsgFeedBackType}}">{{.Descr_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Query_props.MsgType}}" id="Query" name="Query" aria-describedby="QueryHelp" placeholder=""   value="{{.Query}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Query" >Query</label>
+              <div class="{{.Query_props.MsgFeedBackType}}">{{.Query_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Source_props.MsgType}}" id="Source" name="Source" aria-describedby="SourceHelp" placeholder=""   value="{{.Source}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Source" >Source</label>
+              <div class="{{.Source_props.MsgFeedBackType}}">{{.Source_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" readonly="true" ><div class="col">
+        
+            
+            <select id="Firm" name="Firm" class="select" data-mdb-filter="true" readonly="true" >
+                {{range .Firm_lookup}}<option value="{{.ID}}" {{if eq .ID $.Firm}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Firm" readonly="true">Firm</label>
+            <div class="{{.Firm_props.MsgFeedBackType}}">{{.Firm_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="YN" name="YN" class="select" data-mdb-filter="true"  >
+                {{range .YN_lookup}}<option value="{{.ID}}" {{if eq .ID $.YN}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="YN" >YN</label>
+            <div class="{{.YN_props.MsgFeedBackType}}">{{.YN_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="User" name="User" class="select" data-mdb-filter="true"  >
+                {{range .User_lookup}}<option value="{{.ID}}" {{if eq .ID $.User}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="User" >User</label>
+            <div class="{{.User_props.MsgFeedBackType}}">{{.User_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Cheese_props.MsgType}}" id="Cheese" name="Cheese" aria-describedby="CheeseHelp" placeholder=""   value="{{.Cheese}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Cheese" >Cheese</label>
+              <div class="{{.Cheese_props.MsgFeedBackType}}">{{.Cheese_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Onion_props.MsgType}}" id="Onion" name="Onion" aria-describedby="OnionHelp" placeholder=""   value="{{.Onion}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Onion" >Onion</label>
+              <div class="{{.Onion_props.MsgFeedBackType}}">{{.Onion_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+
+      
+
+      
+
+      
+
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

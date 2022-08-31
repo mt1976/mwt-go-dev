@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="CodeMajorCurrencyIsoCode" name="CodeMajorCurrencyIsoCode" class="select" data-mdb-filter="true" disabled>
@@ -29,7 +29,7 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="CodeMinorCurrencyIsoCode" name="CodeMinorCurrencyIsoCode" class="select" data-mdb-filter="true" disabled>
@@ -40,7 +40,7 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                   <select id="ReciprocalActive" name="ReciprocalActive" class="select" data-mdb-filter="true" disabled>
@@ -51,12 +51,15 @@
                 </div>
             </div>
              
-            <div class="row mb-3" >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
-                        <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}" data-mdb-input-mask="">
+                        
+                            <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}" data-mdb-input-mask=""></input>
+                        
                         <label class="form-label" for="Code"><i class="fas fa-key me-2"></i>Code</label>
+                        
                     </div>
                 
                 </div>

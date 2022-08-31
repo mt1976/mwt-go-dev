@@ -9,28 +9,56 @@ package datamodel
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DataLoaderMap defines the datamolde for the DataLoaderMap object
 type DataLoaderMap struct {
 
+
 SYSId       string
+SYSId_props FieldProperties
 Id       string
+Id_props FieldProperties
 Name       string
+Name_props FieldProperties
 Position       string
+Position_props FieldProperties
 Loader       string
-Loader_lookup []Lookup_Item
+Loader_props FieldProperties
 SYSCreated       string
+SYSCreated_props FieldProperties
 SYSWho       string
+SYSWho_props FieldProperties
 SYSHost       string
+SYSHost_props FieldProperties
 SYSUpdated       string
+SYSUpdated_props FieldProperties
 Int_position       string
+Int_position_props FieldProperties
 SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
 SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
 SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
 SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
+ // Any lookups will be added below
+
+
+
+Loader_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -58,42 +86,104 @@ const (
 	DataLoaderMap_PathSave   = "/DataLoaderMapSave/"
 	DataLoaderMap_PathDelete = "/DataLoaderMapDelete/"
 	///
+	//DataLoaderMap_Redirect provides a page to return to aftern an action
+	DataLoaderMap_Redirect = DataLoaderMap_PathList
+	
+	///
 	///
 	/// SQL Field Definitions
 	///
-DataLoaderMap_SYSId_sql   = "_id" // SYSId is a Int
-DataLoaderMap_Id_sql   = "id" // Id is a String
-DataLoaderMap_Name_sql   = "name" // Name is a String
-DataLoaderMap_Position_sql   = "position" // Position is a String
-DataLoaderMap_Loader_sql   = "loader" // Loader is a String
-DataLoaderMap_SYSCreated_sql   = "_created" // SYSCreated is a String
-DataLoaderMap_SYSWho_sql   = "_who" // SYSWho is a String
-DataLoaderMap_SYSHost_sql   = "_host" // SYSHost is a String
-DataLoaderMap_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
-DataLoaderMap_Int_position_sql   = "int_position" // Int_position is a Int
-DataLoaderMap_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
-DataLoaderMap_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
-DataLoaderMap_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
-DataLoaderMap_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
+	DataLoaderMap_SYSId_sql   = "_id" // SYSId is a Int
+	DataLoaderMap_Id_sql   = "id" // Id is a String
+	DataLoaderMap_Name_sql   = "name" // Name is a String
+	DataLoaderMap_Position_sql   = "position" // Position is a String
+	DataLoaderMap_Loader_sql   = "loader" // Loader is a String
+	DataLoaderMap_SYSCreated_sql   = "_created" // SYSCreated is a String
+	DataLoaderMap_SYSWho_sql   = "_who" // SYSWho is a String
+	DataLoaderMap_SYSHost_sql   = "_host" // SYSHost is a String
+	DataLoaderMap_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
+	DataLoaderMap_Int_position_sql   = "int_position" // Int_position is a Int
+	DataLoaderMap_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
+	DataLoaderMap_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
+	DataLoaderMap_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
+	DataLoaderMap_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
-
+	///
 	/// Application Field Definitions
 	///
-DataLoaderMap_SYSId_scrn   = "SYSId" // SYSId is a Int
-DataLoaderMap_Id_scrn   = "Id" // Id is a String
-DataLoaderMap_Name_scrn   = "Name" // Name is a String
-DataLoaderMap_Position_scrn   = "Position" // Position is a String
-DataLoaderMap_Loader_scrn   = "Loader" // Loader is a String
-DataLoaderMap_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
-DataLoaderMap_SYSWho_scrn   = "SYSWho" // SYSWho is a String
-DataLoaderMap_SYSHost_scrn   = "SYSHost" // SYSHost is a String
-DataLoaderMap_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
-DataLoaderMap_Int_position_scrn   = "Int_position" // Int_position is a Int
-DataLoaderMap_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
-DataLoaderMap_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
-DataLoaderMap_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
-DataLoaderMap_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
+	DataLoaderMap_SYSId_scrn   = "SYSId" // SYSId is a Int
+	DataLoaderMap_Id_scrn   = "Id" // Id is a String
+	DataLoaderMap_Name_scrn   = "Name" // Name is a String
+	DataLoaderMap_Position_scrn   = "Position" // Position is a String
+	DataLoaderMap_Loader_scrn   = "Loader" // Loader is a String
+	DataLoaderMap_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
+	DataLoaderMap_SYSWho_scrn   = "SYSWho" // SYSWho is a String
+	DataLoaderMap_SYSHost_scrn   = "SYSHost" // SYSHost is a String
+	DataLoaderMap_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
+	DataLoaderMap_Int_position_scrn   = "Int_position" // Int_position is a Int
+	DataLoaderMap_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
+	DataLoaderMap_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
+	DataLoaderMap_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
+	DataLoaderMap_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
 
 	/// Definitions End
+	///
 )
+
+//dataloadermap_PageList provides the information for the template for a list of DataLoaderMaps
+type DataLoaderMap_PageList struct {
+	SessionInfo      SessionInfo
+	UserMenu         AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []DataLoaderMap
+	Context	 appContext
+}
+
+//dataloadermap_Page provides the information for the template for an individual DataLoaderMap
+type DataLoaderMap_Page struct {
+	SessionInfo      SessionInfo
+	UserMenu    	 AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	SYSId_props     FieldProperties
+	Id         string
+	Id_props     FieldProperties
+	Name         string
+	Name_props     FieldProperties
+	Position         string
+	Position_props     FieldProperties
+	Loader         string
+	Loader_lookup    []Lookup_Item
+	Loader_props     FieldProperties
+	SYSCreated         string
+	SYSCreated_props     FieldProperties
+	SYSWho         string
+	SYSWho_props     FieldProperties
+	SYSHost         string
+	SYSHost_props     FieldProperties
+	SYSUpdated         string
+	SYSUpdated_props     FieldProperties
+	Int_position         string
+	Int_position_props     FieldProperties
+	SYSCreatedBy         string
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost         string
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdatedBy         string
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost         string
+	SYSUpdatedHost_props     FieldProperties
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	Context	 appContext
+}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:07
+// Date & Time		    : 28/06/2022 at 16:10:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func CounterpartyAddress_GetByID(id string) (int, dm.CounterpartyAddress, error)
 	tsql = tsql + " WHERE " + dm.CounterpartyAddress_SQLSearchID + "='" + id + "'"
 	_, _, counterpartyaddressItem, _ := counterpartyaddress_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, counterpartyaddressItem, nil
 }
 
@@ -60,7 +66,12 @@ func CounterpartyAddress_Delete(id string) {
 // CounterpartyAddress_Store() saves/stores a CounterpartyAddress record to the database
 func CounterpartyAddress_Store(r dm.CounterpartyAddress,req *http.Request) error {
 
-	err := counterpartyaddress_Save(r,Audit_User(req))
+	err, r := CounterpartyAddress_Validate(r)
+	if err == nil {
+		err = counterpartyaddress_Save(r, Audit_User(req))
+	} else {
+		logs.Information("CounterpartyAddress_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func CounterpartyAddress_Store(r dm.CounterpartyAddress,req *http.Request) error
 // CounterpartyAddress_StoreSystem() saves/stores a CounterpartyAddress record to the database
 func CounterpartyAddress_StoreSystem(r dm.CounterpartyAddress) error {
 	
-	err := counterpartyaddress_Save(r,Audit_Host())
+	err, r := CounterpartyAddress_Validate(r)
+	if err == nil {
+		err = counterpartyaddress_Save(r, Audit_Host())
+	} else {
+		logs.Information("CounterpartyAddress_Store()", err.Error())
+	}
 
 	return err
 }
+
+// CounterpartyAddress_Validate() validates for saves/stores a CounterpartyAddress record to the database
+func CounterpartyAddress_Validate(r dm.CounterpartyAddress) (error,dm.CounterpartyAddress) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // counterpartyaddress_Save() saves/stores a CounterpartyAddress record to the database
 func counterpartyaddress_Save(r dm.CounterpartyAddress,usr string) error {
@@ -132,7 +164,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.NameFirm  = get_String(rec, dm.CounterpartyAddress_NameFirm_sql, "")
 	   recItem.NameCentre  = get_String(rec, dm.CounterpartyAddress_NameCentre_sql, "")
@@ -154,7 +186,7 @@ func counterpartyaddress_Fetch(tsql string) (int, []dm.CounterpartyAddress, dm.C
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -174,7 +206,24 @@ func CounterpartyAddress_NewID(r dm.CounterpartyAddress) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// counterpartyaddress_Fetch read all CounterpartyAddress's
+func CounterpartyAddress_New() (int, []dm.CounterpartyAddress, dm.CounterpartyAddress, error) {
+
+	var r = dm.CounterpartyAddress{}
+	var rList []dm.CounterpartyAddress
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

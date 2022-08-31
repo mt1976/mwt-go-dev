@@ -87,7 +87,7 @@ func Account_HandlerList(w http.ResponseWriter, r *http.Request) {
 	noItems, returnList, _ := dao.Account_GetList()
 
 	pageSienaAccountList := account_PageList{
-		Title:             core.ApplicationProperties["appname"],
+		Title:             core.GetAppName(),
 		PageTitle:         PageTitle(dm.Account_Title, core.Action_List),
 		SienaAccountCount: noItems,
 		SienaAccountList:  returnList,
@@ -125,7 +125,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:               UserMenu_Get(r),
 		UserRole:               core.GetUserRole(r),
 		UserNavi:               "NOT USED",
-		Title:                  core.ApplicationProperties["appname"],
+		Title:                  core.GetAppName(),
 		PageTitle:              PageTitle(dm.Account_Title, core.Action_View),
 		ID:                     returnRecord.SienaReference,
 		SienaReference:         returnRecord.SienaReference,
@@ -194,7 +194,7 @@ func Account_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Translation_Title, core.Action_Edit),
 
 		ID:                     returnRecord.SienaReference,
@@ -278,7 +278,7 @@ func Account_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     core.ApplicationProperties["appname"],
+		Title:     core.GetAppName(),
 		PageTitle: PageTitle(dm.Translation_Title, core.Action_New),
 
 		ID:          "NEW",

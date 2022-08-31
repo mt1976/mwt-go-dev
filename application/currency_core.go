@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:08
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,59 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//currency_PageList provides the information for the template for a list of Currencys
-type Currency_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Currency
-}
-//Currency_Redirect provides a page to return to aftern an action
-const (
-	Currency_Redirect = dm.Currency_PathList
-)
 
-//currency_Page provides the information for the template for an individual Currency
-type Currency_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Name         string
-	AmountDp         string
-	Country         string
-	CountryName         string
-	IntBase         string
-	KeydateBase         string
-	InterestRateTolerance         string
-	CheckPayTo         string
-	LatinAmericanSettlement         string
-	DefaultLayOffBookKey         string
-	CutOffTimeCutOffTime         string
-	CutOffTimeTimeZone         string
-	CutOffTimeDerivedDataUTCOffset         string
-	CutOffTimeDerivedDataHasDaylightSaving         string
-	CutOffTimeDerivedDataDaylightStart         string
-	CutOffTimeDerivedDataDaylightEnd         string
-	DealerInterventionQuoteTimeout         string
-	CutOffTimeCutOffPeriod         string
-	StripRateFutureExchangeCode         string
-	StripRateFutureCurrencyContractCurrencyIsoCode         string
-	StripRateFutureCurrencyContractFutureContractCode         string
-	OvernightFundingSpreadBid         string
-	OvernightFundingSpreadOffer         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -107,7 +55,7 @@ func Currency_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Currency
 	noItems, returnList, _ := dao.Currency_GetList()
 
-	pageDetail := Currency_PageList{
+	pageDetail := dm.Currency_PageList{
 		Title:            CardTitle(dm.Currency_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Currency_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -138,7 +86,7 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Currency_QueryString)
 	_, rD, _ := dao.Currency_GetByID(searchID)
 
-	pageDetail := Currency_Page{
+	pageDetail := dm.Currency_Page{
 		Title:       CardTitle(dm.Currency_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Currency_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -159,9 +107,9 @@ func Currency_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Currency Page 
-func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Page {
+func currency_PopulatePage(rD dm.Currency, pageDetail dm.Currency_Page) dm.Currency_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -190,7 +138,7 @@ func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Pa
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -241,8 +189,34 @@ func currency_PopulatePage(rD dm.Currency, pageDetail Currency_Page) Currency_Pa
 	
 	
 	
+	pageDetail.Code_props = rD.Code_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.AmountDp_props = rD.AmountDp_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.CountryName_props = rD.CountryName_props
+	pageDetail.IntBase_props = rD.IntBase_props
+	pageDetail.KeydateBase_props = rD.KeydateBase_props
+	pageDetail.InterestRateTolerance_props = rD.InterestRateTolerance_props
+	pageDetail.CheckPayTo_props = rD.CheckPayTo_props
+	pageDetail.LatinAmericanSettlement_props = rD.LatinAmericanSettlement_props
+	pageDetail.DefaultLayOffBookKey_props = rD.DefaultLayOffBookKey_props
+	pageDetail.CutOffTimeCutOffTime_props = rD.CutOffTimeCutOffTime_props
+	pageDetail.CutOffTimeTimeZone_props = rD.CutOffTimeTimeZone_props
+	pageDetail.CutOffTimeDerivedDataUTCOffset_props = rD.CutOffTimeDerivedDataUTCOffset_props
+	pageDetail.CutOffTimeDerivedDataHasDaylightSaving_props = rD.CutOffTimeDerivedDataHasDaylightSaving_props
+	pageDetail.CutOffTimeDerivedDataDaylightStart_props = rD.CutOffTimeDerivedDataDaylightStart_props
+	pageDetail.CutOffTimeDerivedDataDaylightEnd_props = rD.CutOffTimeDerivedDataDaylightEnd_props
+	pageDetail.DealerInterventionQuoteTimeout_props = rD.DealerInterventionQuoteTimeout_props
+	pageDetail.CutOffTimeCutOffPeriod_props = rD.CutOffTimeCutOffPeriod_props
+	pageDetail.StripRateFutureExchangeCode_props = rD.StripRateFutureExchangeCode_props
+	pageDetail.StripRateFutureCurrencyContractCurrencyIsoCode_props = rD.StripRateFutureCurrencyContractCurrencyIsoCode_props
+	pageDetail.StripRateFutureCurrencyContractFutureContractCode_props = rD.StripRateFutureCurrencyContractFutureContractCode_props
+	pageDetail.OvernightFundingSpreadBid_props = rD.OvernightFundingSpreadBid_props
+	pageDetail.OvernightFundingSpreadOffer_props = rD.OvernightFundingSpreadOffer_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

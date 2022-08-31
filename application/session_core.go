@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 28/06/2022 at 16:10:57
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,62 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//session_PageList provides the information for the template for a list of Sessions
-type Session_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Session
-}
-//Session_Redirect provides a page to return to aftern an action
-const (
-	Session_Redirect = dm.Session_PathList
-)
 
-//session_Page provides the information for the template for an individual Session
-type Session_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Apptoken         string
-	Createdate         string
-	Createtime         string
-	Uniqueid         string
-	Sessiontoken         string
-	Username         string
-	Password         string
-	Userip         string
-	Userhost         string
-	Appip         string
-	Apphost         string
-	Issued         string
-	Expiry         string
-	Expiryraw         string
-	Brand         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	Id         string
-	Expires         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	SessionRole         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -110,7 +55,7 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Session
 	noItems, returnList, _ := dao.Session_GetList()
 
-	pageDetail := Session_PageList{
+	pageDetail := dm.Session_PageList{
 		Title:            CardTitle(dm.Session_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Session_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -141,7 +86,7 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Session_QueryString)
 	_, rD, _ := dao.Session_GetByID(searchID)
 
-	pageDetail := Session_Page{
+	pageDetail := dm.Session_Page{
 		Title:       CardTitle(dm.Session_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Session_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -172,7 +117,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Session
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Session_SYSId_scrn)
 		item.Apptoken = r.FormValue(dm.Session_Apptoken_scrn)
@@ -203,19 +148,19 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SessionRole = r.FormValue(dm.Session_SessionRole_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Session_Store(item,r)	
-	http.Redirect(w, r, Session_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Session_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the Session Page 
-func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
+func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Apptoken = rD.Apptoken
@@ -247,7 +192,7 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -304,8 +249,37 @@ func session_PopulatePage(rD dm.Session, pageDetail Session_Page) Session_Page {
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Apptoken_props = rD.Apptoken_props
+	pageDetail.Createdate_props = rD.Createdate_props
+	pageDetail.Createtime_props = rD.Createtime_props
+	pageDetail.Uniqueid_props = rD.Uniqueid_props
+	pageDetail.Sessiontoken_props = rD.Sessiontoken_props
+	pageDetail.Username_props = rD.Username_props
+	pageDetail.Password_props = rD.Password_props
+	pageDetail.Userip_props = rD.Userip_props
+	pageDetail.Userhost_props = rD.Userhost_props
+	pageDetail.Appip_props = rD.Appip_props
+	pageDetail.Apphost_props = rD.Apphost_props
+	pageDetail.Issued_props = rD.Issued_props
+	pageDetail.Expiry_props = rD.Expiry_props
+	pageDetail.Expiryraw_props = rD.Expiryraw_props
+	pageDetail.Brand_props = rD.Brand_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Expires_props = rD.Expires_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SessionRole_props = rD.SessionRole_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

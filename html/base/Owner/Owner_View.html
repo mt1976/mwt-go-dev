@@ -1,0 +1,235 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/OwnerEdit/?Owner={{.UserName}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-industry me-2" title="Owner = {{.UserName}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Owner {{.UserName}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="UserName" aria-describedby="UserNameHelp" placeholder="" disabled value="{{.UserName}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="UserName"><i class="fas fa-key me-2"></i>UserName</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="FullName" aria-describedby="FullNameHelp" placeholder="" disabled value="{{.FullName}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="FullName">FullName</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Type" aria-describedby="TypeHelp" placeholder="" disabled value="{{.Type}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Type">Type</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="TradingEntity" aria-describedby="TradingEntityHelp" placeholder="" disabled value="{{.TradingEntity}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="TradingEntity">TradingEntity</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DefaultEnterBook" aria-describedby="DefaultEnterBookHelp" placeholder="" disabled value="{{.DefaultEnterBook}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DefaultEnterBook">DefaultEnterBook</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="EmailAddress" aria-describedby="EmailAddressHelp" placeholder="" disabled value="{{.EmailAddress}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="EmailAddress">EmailAddress</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Enabled" aria-describedby="EnabledHelp" placeholder="" disabled value="{{.Enabled}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Enabled">Enabled</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ExternalUserIds" aria-describedby="ExternalUserIdsHelp" placeholder="" disabled value="{{.ExternalUserIds}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ExternalUserIds">ExternalUserIds</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Language" aria-describedby="LanguageHelp" placeholder="" disabled value="{{.Language}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Language">Language</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="LocalCurrency" aria-describedby="LocalCurrencyHelp" placeholder="" disabled value="{{.LocalCurrency}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="LocalCurrency">LocalCurrency</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Role" aria-describedby="RoleHelp" placeholder="" disabled value="{{.Role}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Role">Role</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="TelephoneNumber" aria-describedby="TelephoneNumberHelp" placeholder="" disabled value="{{.TelephoneNumber}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="TelephoneNumber">TelephoneNumber</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="TokenId" aria-describedby="TokenIdHelp" placeholder="" disabled value="{{.TokenId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="TokenId">TokenId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Entity" aria-describedby="EntityHelp" placeholder="" disabled value="{{.Entity}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Entity">Entity</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="UserCode" aria-describedby="UserCodeHelp" placeholder="" disabled value="{{.UserCode}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="UserCode">UserCode</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

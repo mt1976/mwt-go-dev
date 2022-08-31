@@ -1,0 +1,74 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/contactstreamstatus.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : ContactStreamStatus (contactstreamstatus)
+// Endpoint 	        : ContactStreamStatus (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 28/06/2022 at 16:10:46
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in contactstreamstatus_impl.go
+
+
+
+func ContactStreamStatus_NewID_impl(rec dm.ContactStreamStatus) (string) { return rec.StatusId }
+func ContactStreamStatus_Delete_impl(id string) (error) {return nil}
+
+
+func ContactStreamStatus_Update_impl(id string,rec dm.ContactStreamStatus, usr string) (error) {return nil}
+
+	// If there are fields below, create the methods in adaptor\contactstreamstatus_impl.go
+	// START - GET API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - GET API/Callout
+	//
+	// START - PUT API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - PUT API/Callout
+
+	// START - Validation API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - Validation API/Callout
+
+func ContactStreamStatus_ObjectValidation_impl (iAction string, iId string, iRec dm.ContactStreamStatus) (dm.ContactStreamStatus, error, string) {
+	logs.Callout("ContactStreamStatus", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
+
+		case NEW:
+
+		case PUT:
+
+		case GET:
+
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

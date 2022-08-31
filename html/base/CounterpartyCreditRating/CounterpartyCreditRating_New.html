@@ -19,72 +19,96 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-        
+      
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  value="{{.NameFirm}}" required data-mdb-input-mask="">
-                <label class="form-label" for="NameFirm" >NameFirm</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.NameFirm_props.MsgType}}" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  value="{{.NameFirm}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="NameFirm" >NameFirm</label>
+              <div class="{{.NameFirm_props.MsgFeedBackType}}">{{.NameFirm_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  value="{{.NameCentre}}" required data-mdb-input-mask="">
-                <label class="form-label" for="NameCentre" >NameCentre</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.NameCentre_props.MsgType}}" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  value="{{.NameCentre}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="NameCentre" >NameCentre</label>
+              <div class="{{.NameCentre_props.MsgFeedBackType}}">{{.NameCentre_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CreditRatingUsage" name="CreditRatingUsage" aria-describedby="CreditRatingUsageHelp" placeholder=""  value="{{.CreditRatingUsage}}" required data-mdb-input-mask="">
-                <label class="form-label" for="CreditRatingUsage" >CreditRatingUsage</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CreditRatingUsage_props.MsgType}}" id="CreditRatingUsage" name="CreditRatingUsage" aria-describedby="CreditRatingUsageHelp" placeholder=""  value="{{.CreditRatingUsage}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CreditRatingUsage" >CreditRatingUsage</label>
+              <div class="{{.CreditRatingUsage_props.MsgFeedBackType}}">{{.CreditRatingUsage_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CreditRatingAgency" name="CreditRatingAgency" aria-describedby="CreditRatingAgencyHelp" placeholder=""  value="{{.CreditRatingAgency}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CreditRatingAgency" >CreditRatingAgency</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CreditRatingAgency_props.MsgType}}" id="CreditRatingAgency" name="CreditRatingAgency" aria-describedby="CreditRatingAgencyHelp" placeholder=""  value="{{.CreditRatingAgency}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CreditRatingAgency" >CreditRatingAgency</label>
+              <div class="{{.CreditRatingAgency_props.MsgFeedBackType}}">{{.CreditRatingAgency_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CreditRatingName" name="CreditRatingName" aria-describedby="CreditRatingNameHelp" placeholder=""  value="{{.CreditRatingName}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CreditRatingName" >CreditRatingName</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CreditRatingName_props.MsgType}}" id="CreditRatingName" name="CreditRatingName" aria-describedby="CreditRatingNameHelp" placeholder=""  value="{{.CreditRatingName}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CreditRatingName" >CreditRatingName</label>
+              <div class="{{.CreditRatingName_props.MsgFeedBackType}}">{{.CreditRatingName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required data-mdb-input-mask="">
-                <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
+            
+                <input type="text" class="form-control {{.CompID_props.MsgType}}" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
+              <div class="{{.CompID_props.MsgFeedBackType}}">{{.CompID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
 
      
         </div>

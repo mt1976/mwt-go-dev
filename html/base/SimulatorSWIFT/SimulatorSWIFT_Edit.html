@@ -1,71 +1,93 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
-
-    <form action="/SimulatorSWIFTSave/?ID={{.ID}}" method="GET" class="form">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col h3">
-              <i class="fas fa-globe me-2" title="ID={{.ID}}"></i><span class="me-3">{{.Title}}</span>
-            </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/SimulatorSWIFTSave/?ID={{.ID}}" onclick="/SimulatorSWIFTSave/?ID={{.ID}}" title="Save SWIFT Simulator"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print SWIFT Simulator"><i class="fas fa-print me-2"></i></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
-          </div>
+{{.Context}}
+<form action="/SimulatorSWIFTSave/?ID={{.ID}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-globe me-2"
+            title="ID={{.ID}}"></i><span class="me-3">{{.Title}}</span>
         </div>
-        <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""   value="{{.ID}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="ID" ><i class="fas fa-key me-2"></i>ID</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="FileName" name="FileName" aria-describedby="FileNameHelp" placeholder=""   value="{{.FileName}}" required data-mdb-input-mask="">
-                      <label class="form-label" for="FileName" >FileName</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="MessageRaw" name="MessageRaw" aria-describedby="MessageRawHelp" placeholder=""   value="{{.MessageRaw}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="MessageRaw" >MessageRaw</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" readonly="true"><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="MessageFmt" name="MessageFmt" aria-describedby="MessageFmtHelp" placeholder="" readonly="true"  value="{{.MessageFmt}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="MessageFmt" readonly="true">MessageFmt</label>
-                    </div>
-          
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-         
-                  <div class="form-outline">
-                      <input type="text" class="form-control" id="Action" name="Action" aria-describedby="ActionHelp" placeholder=""   value="{{.Action}}"  data-mdb-input-mask="">
-                      <label class="form-label" for="Action" >Action</label>
-                    </div>
-          
-            </div></div>
-
-     
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/SimulatorSWIFTSave/?ID={{.ID}}" onclick="/SimulatorSWIFTSave/?ID={{.ID}}" title="Save SWIFT Simulator"><i class="fas fa-save me-2"></i>Save</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print SWIFT Simulator"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
         </div>
-        
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.ID_props.MsgType}}" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""   value="{{.ID}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="ID" ><i class="fas fa-key me-2"></i>ID</label>
+              <div class="{{.ID_props.MsgFeedBackType}}">{{.ID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.FileName_props.MsgType}}" id="FileName" name="FileName" aria-describedby="FileNameHelp" placeholder=""   value="{{.FileName}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="FileName" >FileName</label>
+              <div class="{{.FileName_props.MsgFeedBackType}}">{{.FileName_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.MessageRaw_props.MsgType}}" id="MessageRaw" name="MessageRaw" aria-describedby="MessageRawHelp" placeholder=""   value="{{.MessageRaw}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="MessageRaw" >MessageRaw</label>
+              <div class="{{.MessageRaw_props.MsgFeedBackType}}">{{.MessageRaw_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" readonly="true" ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.MessageFmt_props.MsgType}}" id="MessageFmt" name="MessageFmt" aria-describedby="MessageFmtHelp" placeholder="" readonly="true"  value="{{.MessageFmt}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="MessageFmt" readonly="true">MessageFmt</label>
+              <div class="{{.MessageFmt_props.MsgFeedBackType}}">{{.MessageFmt_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Action_props.MsgType}}" id="Action" name="Action" aria-describedby="ActionHelp" placeholder=""   value="{{.Action}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Action" >Action</label>
+              <div class="{{.Action_props.MsgFeedBackType}}">{{.Action_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+      
+    </div>
+    
+  </div>
+</form>
 
 {{template "userfooter" .}}
 {{template "pagefooter" .}}

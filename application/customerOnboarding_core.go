@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:03
+// Date & Time		    : 28/06/2022 at 16:10:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,48 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//customeronboarding_PageList provides the information for the template for a list of CustomerOnboardings
-type CustomerOnboarding_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.CustomerOnboarding
-}
-//CustomerOnboarding_Redirect provides a page to return to aftern an action
-const (
-	CustomerOnboarding_Redirect = dm.CustomerOnboarding_PathList
-)
 
-//customeronboarding_Page provides the information for the template for an individual CustomerOnboarding
-type CustomerOnboarding_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	CustomerName         string
-	CustomerAddress         string
-	CustomerBOLID         string
-	CustomerFirmName         string
-	CustomerType         string
-	CustomerRDC         string
-	CustomerSortCode         string
-	CustomerGMClientNo         string
-	CustomerDefaultBook         string
-	CustomerRegion         string
-	CustomerCategory         string
-	CustomerTelephoneNo         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -96,7 +55,7 @@ func CustomerOnboarding_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.CustomerOnboarding
 	noItems, returnList, _ := dao.CustomerOnboarding_GetList()
 
-	pageDetail := CustomerOnboarding_PageList{
+	pageDetail := dm.CustomerOnboarding_PageList{
 		Title:            CardTitle(dm.CustomerOnboarding_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.CustomerOnboarding_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -127,7 +86,7 @@ func CustomerOnboarding_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CustomerOnboarding_QueryString)
 	_, rD, _ := dao.CustomerOnboarding_GetByID(searchID)
 
-	pageDetail := CustomerOnboarding_Page{
+	pageDetail := dm.CustomerOnboarding_Page{
 		Title:       CardTitle(dm.CustomerOnboarding_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.CustomerOnboarding_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -158,7 +117,7 @@ func CustomerOnboarding_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.CustomerOnboarding_QueryString)
 	_, rD, _ := dao.CustomerOnboarding_GetByID(searchID)
 	
-	pageDetail := CustomerOnboarding_Page{
+	pageDetail := dm.CustomerOnboarding_Page{
 		Title:       CardTitle(dm.CustomerOnboarding_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.CustomerOnboarding_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -187,7 +146,7 @@ func CustomerOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CustomerOnboarding
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.CustomerOnboarding_ID_scrn)
 		item.CustomerName = r.FormValue(dm.CustomerOnboarding_CustomerName_scrn)
@@ -204,10 +163,10 @@ func CustomerOnboarding_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CustomerTelephoneNo = r.FormValue(dm.CustomerOnboarding_CustomerTelephoneNo_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CustomerOnboarding_Store(item,r)	
-	http.Redirect(w, r, CustomerOnboarding_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CustomerOnboarding_Redirect, http.StatusFound)
 }
 
 
@@ -220,11 +179,11 @@ func CustomerOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.CustomerOnboarding_New()
 
-	pageDetail := CustomerOnboarding_Page{
+	pageDetail := dm.CustomerOnboarding_Page{
 		Title:       CardTitle(dm.CustomerOnboarding_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CustomerOnboarding_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -233,7 +192,7 @@ func CustomerOnboarding_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = customeronboarding_PopulatePage(dm.CustomerOnboarding{} , pageDetail) 
+	pageDetail = customeronboarding_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.CustomerOnboarding_TemplateNew, w, r, pageDetail)
 
@@ -254,14 +213,14 @@ func CustomerOnboarding_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.CustomerOnboarding_Delete(searchID)	
 
-	http.Redirect(w, r, CustomerOnboarding_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.CustomerOnboarding_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the CustomerOnboarding Page 
-func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail CustomerOnboarding_Page) CustomerOnboarding_Page {
+func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail dm.CustomerOnboarding_Page) dm.CustomerOnboarding_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.CustomerName = rD.CustomerName
@@ -279,7 +238,7 @@ func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail Custom
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -308,8 +267,23 @@ func customeronboarding_PopulatePage(rD dm.CustomerOnboarding, pageDetail Custom
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.CustomerName_props = rD.CustomerName_props
+	pageDetail.CustomerAddress_props = rD.CustomerAddress_props
+	pageDetail.CustomerBOLID_props = rD.CustomerBOLID_props
+	pageDetail.CustomerFirmName_props = rD.CustomerFirmName_props
+	pageDetail.CustomerType_props = rD.CustomerType_props
+	pageDetail.CustomerRDC_props = rD.CustomerRDC_props
+	pageDetail.CustomerSortCode_props = rD.CustomerSortCode_props
+	pageDetail.CustomerGMClientNo_props = rD.CustomerGMClientNo_props
+	pageDetail.CustomerDefaultBook_props = rD.CustomerDefaultBook_props
+	pageDetail.CustomerRegion_props = rD.CustomerRegion_props
+	pageDetail.CustomerCategory_props = rD.CustomerCategory_props
+	pageDetail.CustomerTelephoneNo_props = rD.CustomerTelephoneNo_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

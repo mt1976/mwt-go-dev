@@ -7,8 +7,8 @@ package application
 // Endpoint 	        : Account (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 29/06/2022 at 22:43:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,110 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//account_PageList provides the information for the template for a list of Accounts
-type Account_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Account
-}
-//Account_Redirect provides a page to return to aftern an action
-const (
-	Account_Redirect = dm.Account_PathList
-)
 
-//account_Page provides the information for the template for an individual Account
-type Account_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	CustomerSienaView         string
-	SienaCommonRef         string
-	Status         string
-	StartDate         string
-	MaturityDate         string
-	ContractNumber         string
-	ExternalReference         string
-	CCY         string
-	CCY_lookup    []dm.Lookup_Item
-	Book         string
-	Book_lookup    []dm.Lookup_Item
-	MandatedUser         string
-	BackOfficeNotes         string
-	CashBalance         string
-	AccountNumber         string
-	AccountName         string
-	LedgerBalance         string
-	Portfolio         string
-	Portfolio_lookup    []dm.Lookup_Item
-	AgreementId         string
-	BackOfficeRefNo         string
-	ISIN         string
-	UTI         string
-	CCYName         string
-	BookName         string
-	PortfolioName         string
-	Centre         string
-	Centre_lookup    []dm.Lookup_Item
-	DealTypeKey         string
-	DealTypeShortName         string
-	InternalId         string
-	InternalDeleted         string
-	UpdatedTransactionId         string
-	UpdatedUserId         string
-	UpdatedDateTime         string
-	DeletedTransactionId         string
-	DeletedUserId         string
-	ChangeType         string
-	CCYDp         string
-	CompID         string
-	Firm         string
-	Firm_lookup    []dm.Lookup_Item
-	DealType         string
-	FullDealType         string
-	DealingInterface         string
-	DealtAmount         string
-	ParentContractNumber         string
-	InterestFrequency         string
-	InterestAction         string
-	InterestStrategy         string
-	InterestBasis         string
-	SienaDealer         string
-	DealOwner         string
-	OriginUser         string
-	EditedByUser         string
-	DealOwnerMnemonic         string
-	UTCOriginTime         string
-	UTCUpdateTime         string
-	CustomerStatementNotes         string
-	NotesMargin         string
-	RequestedBy         string
-	EditReason         string
-	EditOtherReason         string
-	NoticeDays         string
-	DebitFrequency         string
-	CreditFrequency         string
-	EURAmount         string
-	EUROtherAmount         string
-	PaymentSystemSienaView         string
-	PaymentSystemExternalView         string
-	DealtCA         string
-	AgainstCA         string
-	LedgerCA         string
-	CashBalanceCA         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -158,7 +55,7 @@ func Account_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Account
 	noItems, returnList, _ := dao.Account_GetList()
 
-	pageDetail := Account_PageList{
+	pageDetail := dm.Account_PageList{
 		Title:            CardTitle(dm.Account_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Account_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -189,7 +86,7 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Account_QueryString)
 	_, rD, _ := dao.Account_GetByID(searchID)
 
-	pageDetail := Account_Page{
+	pageDetail := dm.Account_Page{
 		Title:       CardTitle(dm.Account_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Account_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -210,9 +107,9 @@ func Account_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Account Page 
-func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
+func account_PopulatePage(rD dm.Account, pageDetail dm.Account_Page) dm.Account_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.CustomerSienaView = rD.CustomerSienaView
@@ -287,7 +184,7 @@ func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	pageDetail.CashBalanceCA = rD.CashBalanceCA
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -440,8 +337,80 @@ func account_PopulatePage(rD dm.Account, pageDetail Account_Page) Account_Page {
 	
 	
 	
+	pageDetail.SienaReference_props = rD.SienaReference_props
+	pageDetail.CustomerSienaView_props = rD.CustomerSienaView_props
+	pageDetail.SienaCommonRef_props = rD.SienaCommonRef_props
+	pageDetail.Status_props = rD.Status_props
+	pageDetail.StartDate_props = rD.StartDate_props
+	pageDetail.MaturityDate_props = rD.MaturityDate_props
+	pageDetail.ContractNumber_props = rD.ContractNumber_props
+	pageDetail.ExternalReference_props = rD.ExternalReference_props
+	pageDetail.CCY_props = rD.CCY_props
+	pageDetail.Book_props = rD.Book_props
+	pageDetail.MandatedUser_props = rD.MandatedUser_props
+	pageDetail.BackOfficeNotes_props = rD.BackOfficeNotes_props
+	pageDetail.CashBalance_props = rD.CashBalance_props
+	pageDetail.AccountNumber_props = rD.AccountNumber_props
+	pageDetail.AccountName_props = rD.AccountName_props
+	pageDetail.LedgerBalance_props = rD.LedgerBalance_props
+	pageDetail.Portfolio_props = rD.Portfolio_props
+	pageDetail.AgreementId_props = rD.AgreementId_props
+	pageDetail.BackOfficeRefNo_props = rD.BackOfficeRefNo_props
+	pageDetail.ISIN_props = rD.ISIN_props
+	pageDetail.UTI_props = rD.UTI_props
+	pageDetail.CCYName_props = rD.CCYName_props
+	pageDetail.BookName_props = rD.BookName_props
+	pageDetail.PortfolioName_props = rD.PortfolioName_props
+	pageDetail.Centre_props = rD.Centre_props
+	pageDetail.DealTypeKey_props = rD.DealTypeKey_props
+	pageDetail.DealTypeShortName_props = rD.DealTypeShortName_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	pageDetail.CCYDp_props = rD.CCYDp_props
+	pageDetail.CompID_props = rD.CompID_props
+	pageDetail.Firm_props = rD.Firm_props
+	pageDetail.DealType_props = rD.DealType_props
+	pageDetail.FullDealType_props = rD.FullDealType_props
+	pageDetail.DealingInterface_props = rD.DealingInterface_props
+	pageDetail.DealtAmount_props = rD.DealtAmount_props
+	pageDetail.ParentContractNumber_props = rD.ParentContractNumber_props
+	pageDetail.InterestFrequency_props = rD.InterestFrequency_props
+	pageDetail.InterestAction_props = rD.InterestAction_props
+	pageDetail.InterestStrategy_props = rD.InterestStrategy_props
+	pageDetail.InterestBasis_props = rD.InterestBasis_props
+	pageDetail.SienaDealer_props = rD.SienaDealer_props
+	pageDetail.DealOwner_props = rD.DealOwner_props
+	pageDetail.OriginUser_props = rD.OriginUser_props
+	pageDetail.EditedByUser_props = rD.EditedByUser_props
+	pageDetail.DealOwnerMnemonic_props = rD.DealOwnerMnemonic_props
+	pageDetail.UTCOriginTime_props = rD.UTCOriginTime_props
+	pageDetail.UTCUpdateTime_props = rD.UTCUpdateTime_props
+	pageDetail.CustomerStatementNotes_props = rD.CustomerStatementNotes_props
+	pageDetail.NotesMargin_props = rD.NotesMargin_props
+	pageDetail.RequestedBy_props = rD.RequestedBy_props
+	pageDetail.EditReason_props = rD.EditReason_props
+	pageDetail.EditOtherReason_props = rD.EditOtherReason_props
+	pageDetail.NoticeDays_props = rD.NoticeDays_props
+	pageDetail.DebitFrequency_props = rD.DebitFrequency_props
+	pageDetail.CreditFrequency_props = rD.CreditFrequency_props
+	pageDetail.EURAmount_props = rD.EURAmount_props
+	pageDetail.EUROtherAmount_props = rD.EUROtherAmount_props
+	pageDetail.PaymentSystemSienaView_props = rD.PaymentSystemSienaView_props
+	pageDetail.PaymentSystemExternalView_props = rD.PaymentSystemExternalView_props
+	pageDetail.DealtCA_props = rD.DealtCA_props
+	pageDetail.AgainstCA_props = rD.AgainstCA_props
+	pageDetail.LedgerCA_props = rD.LedgerCA_props
+	pageDetail.CashBalanceCA_props = rD.CashBalanceCA_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

@@ -1,11 +1,10 @@
 
-    {
-      "ID": "d2e80657-96ce-49d0-b8e6-f88eff0c7771",
-      "Text": "Firm",
-      "Glyph": "fas fa-city",
-      "HREF": "/FirmList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "6f6b4dda-a77b-4b0c-aa91-51b2ad21111a",
+      "MenuText": "Firm",
+      "MenuGlyph": "fas fa-city",
+      "MenuHREF": "/FirmList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

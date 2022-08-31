@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 28/06/2022 at 16:10:55
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,47 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//product_PageList provides the information for the template for a list of Products
-type Product_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Product
-}
-//Product_Redirect provides a page to return to aftern an action
-const (
-	Product_Redirect = dm.Product_PathList
-)
 
-//product_Page provides the information for the template for an individual Product
-type Product_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	Code         string
-	Name         string
-	Factor         string
-	MaxTermPrecedence         string
-	InternalId         string
-	InternalDeleted         string
-	UpdatedTransactionId         string
-	UpdatedUserId         string
-	UpdatedDateTime         string
-	DeletedTransactionId         string
-	DeletedUserId         string
-	ChangeType         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -95,7 +55,7 @@ func Product_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Product
 	noItems, returnList, _ := dao.Product_GetList()
 
-	pageDetail := Product_PageList{
+	pageDetail := dm.Product_PageList{
 		Title:            CardTitle(dm.Product_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Product_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -126,7 +86,7 @@ func Product_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Product_QueryString)
 	_, rD, _ := dao.Product_GetByID(searchID)
 
-	pageDetail := Product_Page{
+	pageDetail := dm.Product_Page{
 		Title:       CardTitle(dm.Product_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Product_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -157,7 +117,7 @@ func Product_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Product_QueryString)
 	_, rD, _ := dao.Product_GetByID(searchID)
 	
-	pageDetail := Product_Page{
+	pageDetail := dm.Product_Page{
 		Title:       CardTitle(dm.Product_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Product_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -186,7 +146,7 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Product
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.Code = r.FormValue(dm.Product_Code_scrn)
 		item.Name = r.FormValue(dm.Product_Name_scrn)
@@ -202,10 +162,10 @@ func Product_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ChangeType = r.FormValue(dm.Product_ChangeType_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Product_Store(item,r)	
-	http.Redirect(w, r, Product_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Product_Redirect, http.StatusFound)
 }
 
 
@@ -218,11 +178,11 @@ func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Product_New()
 
-	pageDetail := Product_Page{
+	pageDetail := dm.Product_Page{
 		Title:       CardTitle(dm.Product_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Product_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -231,7 +191,7 @@ func Product_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = product_PopulatePage(dm.Product{} , pageDetail) 
+	pageDetail = product_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Product_TemplateNew, w, r, pageDetail)
 
@@ -252,14 +212,14 @@ func Product_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Product_Delete(searchID)	
 
-	http.Redirect(w, r, Product_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Product_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Product Page 
-func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
+func product_PopulatePage(rD dm.Product, pageDetail dm.Product_Page) dm.Product_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.Code = rD.Code
 	pageDetail.Name = rD.Name
@@ -276,7 +236,7 @@ func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -303,8 +263,22 @@ func product_PopulatePage(rD dm.Product, pageDetail Product_Page) Product_Page {
 	
 	
 	
+	pageDetail.Code_props = rD.Code_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Factor_props = rD.Factor_props
+	pageDetail.MaxTermPrecedence_props = rD.MaxTermPrecedence_props
+	pageDetail.InternalId_props = rD.InternalId_props
+	pageDetail.InternalDeleted_props = rD.InternalDeleted_props
+	pageDetail.UpdatedTransactionId_props = rD.UpdatedTransactionId_props
+	pageDetail.UpdatedUserId_props = rD.UpdatedUserId_props
+	pageDetail.UpdatedDateTime_props = rD.UpdatedDateTime_props
+	pageDetail.DeletedTransactionId_props = rD.DeletedTransactionId_props
+	pageDetail.DeletedUserId_props = rD.DeletedUserId_props
+	pageDetail.ChangeType_props = rD.ChangeType_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

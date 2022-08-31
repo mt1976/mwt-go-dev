@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Account (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 29/06/2022 at 22:43:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,7 +27,7 @@ das  "github.com/mt1976/mwt-go-dev/das"
 // Account_GetList() returns a list of all Account records
 func Account_GetList() (int, []dm.Account, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.SienaPropertiesDB), dm.Account_SQLTable)
 	count, accountList, _, _ := account_Fetch(tsql)
 	
 	return count, accountList, nil
@@ -49,17 +49,27 @@ func Account_GetLookup() []dm.Lookup_Item {
 func Account_GetByID(id string) (int, dm.Account, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.SienaPropertiesDB), dm.Account_SQLTable)
 	tsql = tsql + " WHERE " + dm.Account_SQLSearchID + "='" + id + "'"
 	_, _, accountItem, _ := account_Fetch(tsql)
 
+	// START
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	accountItem.DealtCA,accountItem.DealtCA_props = adaptor.Account_DealtCA_impl (adaptor.GET,id,accountItem.DealtCA,accountItem,accountItem.DealtCA_props)
+	accountItem.AgainstCA,accountItem.AgainstCA_props = adaptor.Account_AgainstCA_impl (adaptor.GET,id,accountItem.AgainstCA,accountItem,accountItem.AgainstCA_props)
+	accountItem.LedgerCA,accountItem.LedgerCA_props = adaptor.Account_LedgerCA_impl (adaptor.GET,id,accountItem.LedgerCA,accountItem,accountItem.LedgerCA_props)
+	accountItem.CashBalanceCA,accountItem.CashBalanceCA_props = adaptor.Account_CashBalanceCA_impl (adaptor.GET,id,accountItem.CashBalanceCA,accountItem,accountItem.CashBalanceCA_props)
+	// 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, accountItem, nil
 }
 
 // Account_GetByReverseLookup(id string) returns a single Account record using the CashBalance field as key.
 func Account_GetByReverseLookup(id string) (int, dm.Account, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.SienaPropertiesDB["schema"], dm.Account_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.SienaPropertiesDB), dm.Account_SQLTable)
 	tsql = tsql + " WHERE CashBalance = '" + id + "'"
 
 	_, _, accountItem, _ := account_Fetch(tsql)
@@ -79,7 +89,12 @@ func Account_Delete(id string) {
 // Account_Store() saves/stores a Account record to the database
 func Account_Store(r dm.Account,req *http.Request) error {
 
-	err := account_Save(r,Audit_User(req))
+	err, r := Account_Validate(r)
+	if err == nil {
+		err = account_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Account_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +102,35 @@ func Account_Store(r dm.Account,req *http.Request) error {
 // Account_StoreSystem() saves/stores a Account record to the database
 func Account_StoreSystem(r dm.Account) error {
 	
-	err := account_Save(r,Audit_Host())
+	err, r := Account_Validate(r)
+	if err == nil {
+		err = account_Save(r, Audit_Host())
+	} else {
+		logs.Information("Account_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Account_Validate() validates for saves/stores a Account record to the database
+func Account_Validate(r dm.Account) (error,dm.Account) {
+	var err error
+	// START
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.DealtCA,r.DealtCA_props = adaptor.Account_DealtCA_impl (adaptor.PUT,r.SienaReference,r.DealtCA,r,r.DealtCA_props)
+	r.AgainstCA,r.AgainstCA_props = adaptor.Account_AgainstCA_impl (adaptor.PUT,r.SienaReference,r.AgainstCA,r,r.AgainstCA_props)
+	r.LedgerCA,r.LedgerCA_props = adaptor.Account_LedgerCA_impl (adaptor.PUT,r.SienaReference,r.LedgerCA,r,r.LedgerCA_props)
+	r.CashBalanceCA,r.CashBalanceCA_props = adaptor.Account_CashBalanceCA_impl (adaptor.PUT,r.SienaReference,r.CashBalanceCA,r,r.CashBalanceCA_props)
+	// 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // account_Save() saves/stores a Account record to the database
 func account_Save(r dm.Account,usr string) error {
@@ -213,7 +253,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SienaReference  = get_String(rec, dm.Account_SienaReference_sql, "")
 	   recItem.CustomerSienaView  = get_String(rec, dm.Account_CustomerSienaView_sql, "")
@@ -359,7 +399,7 @@ func account_Fetch(tsql string) (int, []dm.Account, dm.Account, error) {
 	   recItem.CashBalanceCA  = adaptor.Account_CashBalanceCA_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -379,7 +419,28 @@ func Account_NewID(r dm.Account) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// account_Fetch read all Account's
+func Account_New() (int, []dm.Account, dm.Account, error) {
+
+	var r = dm.Account{}
+	var rList []dm.Account
+	
+
+	// START
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r.DealtCA,r.DealtCA_props = adaptor.Account_DealtCA_impl (adaptor.NEW,r.SienaReference,r.DealtCA,r,r.DealtCA_props)
+	r.AgainstCA,r.AgainstCA_props = adaptor.Account_AgainstCA_impl (adaptor.NEW,r.SienaReference,r.AgainstCA,r,r.AgainstCA_props)
+	r.LedgerCA,r.LedgerCA_props = adaptor.Account_LedgerCA_impl (adaptor.NEW,r.SienaReference,r.LedgerCA,r,r.LedgerCA_props)
+	r.CashBalanceCA,r.CashBalanceCA_props = adaptor.Account_CashBalanceCA_impl (adaptor.NEW,r.SienaReference,r.CashBalanceCA,r,r.CashBalanceCA_props)
+	// 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

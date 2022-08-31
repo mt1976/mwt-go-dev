@@ -12,7 +12,7 @@ import (
 // getCacheStoreList read all employees
 func Cache_GetListByObject(id string) (int, []dm.Cache, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.Cache_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.Cache_SQLTable)
 	tsql = tsql + " WHERE " + dm.Cache_Object_sql + "='" + id + "'"
 
 	//log.Println(tsql)

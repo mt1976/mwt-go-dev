@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 28/06/2022 at 16:10:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,56 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//marketrates_PageList provides the information for the template for a list of MarketRatess
-type MarketRates_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.MarketRates
-}
-//MarketRates_Redirect provides a page to return to aftern an action
-const (
-	MarketRates_Redirect = dm.MarketRates_PathList
-)
 
-//marketrates_Page provides the information for the template for an individual MarketRates
-type MarketRates_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Bid         string
-	Mid         string
-	Offer         string
-	Market         string
-	Tenor         string
-	Series         string
-	Name         string
-	Source         string
-	Destination         string
-	Class         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	Date         string
-	SYSUpdated         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -104,7 +55,7 @@ func MarketRates_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.MarketRates
 	noItems, returnList, _ := dao.MarketRates_GetList()
 
-	pageDetail := MarketRates_PageList{
+	pageDetail := dm.MarketRates_PageList{
 		Title:            CardTitle(dm.MarketRates_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.MarketRates_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -135,7 +86,7 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.MarketRates_QueryString)
 	_, rD, _ := dao.MarketRates_GetByID(searchID)
 
-	pageDetail := MarketRates_Page{
+	pageDetail := dm.MarketRates_Page{
 		Title:       CardTitle(dm.MarketRates_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.MarketRates_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -156,9 +107,9 @@ func MarketRates_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the MarketRates Page 
-func marketrates_PopulatePage(rD dm.MarketRates, pageDetail MarketRates_Page) MarketRates_Page {
+func marketrates_PopulatePage(rD dm.MarketRates, pageDetail dm.MarketRates_Page) dm.MarketRates_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -184,7 +135,7 @@ func marketrates_PopulatePage(rD dm.MarketRates, pageDetail MarketRates_Page) Ma
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -229,8 +180,31 @@ func marketrates_PopulatePage(rD dm.MarketRates, pageDetail MarketRates_Page) Ma
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Bid_props = rD.Bid_props
+	pageDetail.Mid_props = rD.Mid_props
+	pageDetail.Offer_props = rD.Offer_props
+	pageDetail.Market_props = rD.Market_props
+	pageDetail.Tenor_props = rD.Tenor_props
+	pageDetail.Series_props = rD.Series_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Source_props = rD.Source_props
+	pageDetail.Destination_props = rD.Destination_props
+	pageDetail.Class_props = rD.Class_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.Date_props = rD.Date_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

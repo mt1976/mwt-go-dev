@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "4529aa08-ad66-481f-b8ab-5ed6b11ba2bf",
+      "MenuText": "Inbox",
+      "MenuGlyph": "fas fa-inbox",
+      "MenuHREF": "/InboxList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

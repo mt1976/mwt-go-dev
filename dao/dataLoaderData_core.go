@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 28/06/2022 at 16:10:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ import (
 // DataLoaderData_GetList() returns a list of all DataLoaderData records
 func DataLoaderData_GetList() (int, []dm.DataLoaderData, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderData_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.DataLoaderData_SQLTable)
 	count, dataloaderdataList, _, _ := dataloaderdata_Fetch(tsql)
 
 	return count, dataloaderdataList, nil
@@ -37,17 +37,23 @@ func DataLoaderData_GetList() (int, []dm.DataLoaderData, error) {
 // DataLoaderData_GetByID() returns a single DataLoaderData record
 func DataLoaderData_GetByID(id string) (int, dm.DataLoaderData, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderData_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.DataLoaderData_SQLTable)
 	tsql = tsql + " WHERE " + dm.DataLoaderData_SQLSearchID + "='" + id + "'"
 	_, _, dataloaderdataItem, _ := dataloaderdata_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	return 1, dataloaderdataItem, nil
 }
 
 // DataLoaderData_DeleteByID() deletes a single DataLoaderData record
 func DataLoaderData_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DataLoaderData_SQLTable
+	object_Table := core.ApplicationSQLSchema() + "." + dm.DataLoaderData_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.DataLoaderData_SQLSearchID + " = '" + id + "'"
 
@@ -58,7 +64,12 @@ func DataLoaderData_Delete(id string) {
 // DataLoaderData_Store() saves/stores a DataLoaderData record to the database
 func DataLoaderData_Store(r dm.DataLoaderData, req *http.Request) error {
 
-	err := dataloaderdata_Save(r, Audit_User(req))
+	err, r := DataLoaderData_Validate(r)
+	if err == nil {
+		err = dataloaderdata_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DataLoaderData_Store()", err.Error())
+	}
 
 	return err
 }
@@ -66,10 +77,31 @@ func DataLoaderData_Store(r dm.DataLoaderData, req *http.Request) error {
 // DataLoaderData_StoreSystem() saves/stores a DataLoaderData record to the database
 func DataLoaderData_StoreSystem(r dm.DataLoaderData) error {
 
-	err := dataloaderdata_Save(r, Audit_Host())
+	err, r := DataLoaderData_Validate(r)
+	if err == nil {
+		err = dataloaderdata_Save(r, Audit_Host())
+	} else {
+		logs.Information("DataLoaderData_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DataLoaderData_Validate() validates for saves/stores a DataLoaderData record to the database
+func DataLoaderData_Validate(r dm.DataLoaderData) (error, dm.DataLoaderData) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+	//
+
+	return err, r
+}
+
+//
 
 // dataloaderdata_Save() saves/stores a DataLoaderData record to the database
 func dataloaderdata_Save(r dm.DataLoaderData, usr string) error {
@@ -88,7 +120,7 @@ func dataloaderdata_Save(r dm.DataLoaderData, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.DataLoaderData_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DataLoaderData_Id_sql, r.Id)
@@ -107,10 +139,10 @@ func dataloaderdata_Save(r dm.DataLoaderData, usr string) error {
 	ts = addData(ts, dm.DataLoaderData_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 
 	//
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderData_SQLTable)
+	tsql := "INSERT INTO " + get_TableName(core.ApplicationSQLSchema(), dm.DataLoaderData_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " VALUES (" + values(ts) + ")"
 
@@ -136,7 +168,7 @@ func dataloaderdata_Fetch(tsql string) (int, []dm.DataLoaderData, dm.DataLoaderD
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.DataLoaderData_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.DataLoaderData_Id_sql, "")
@@ -157,7 +189,7 @@ func dataloaderdata_Fetch(tsql string) (int, []dm.DataLoaderData, dm.DataLoaderD
 		// If there are fields below, create the methods in adaptor\DataLoaderData_impl.go
 
 		//
-		// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -175,6 +207,20 @@ func DataLoaderData_NewID(r dm.DataLoaderData) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
+// dataloaderdata_Fetch read all DataLoaderData's
+func DataLoaderData_New() (int, []dm.DataLoaderData, dm.DataLoaderData, error) {
+
+	var r = dm.DataLoaderData{}
+	var rList []dm.DataLoaderData
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 28/06/2022 at 16:10:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func Mandate_GetByID(id string) (int, dm.Mandate, error) {
 	tsql = tsql + " WHERE " + dm.Mandate_SQLSearchID + "='" + id + "'"
 	_, _, mandateItem, _ := mandate_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, mandateItem, nil
 }
 
@@ -60,7 +66,12 @@ func Mandate_Delete(id string) {
 // Mandate_Store() saves/stores a Mandate record to the database
 func Mandate_Store(r dm.Mandate,req *http.Request) error {
 
-	err := mandate_Save(r,Audit_User(req))
+	err, r := Mandate_Validate(r)
+	if err == nil {
+		err = mandate_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Mandate_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func Mandate_Store(r dm.Mandate,req *http.Request) error {
 // Mandate_StoreSystem() saves/stores a Mandate record to the database
 func Mandate_StoreSystem(r dm.Mandate) error {
 	
-	err := mandate_Save(r,Audit_Host())
+	err, r := Mandate_Validate(r)
+	if err == nil {
+		err = mandate_Save(r, Audit_Host())
+	} else {
+		logs.Information("Mandate_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Mandate_Validate() validates for saves/stores a Mandate record to the database
+func Mandate_Validate(r dm.Mandate) (error,dm.Mandate) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // mandate_Save() saves/stores a Mandate record to the database
 func mandate_Save(r dm.Mandate,usr string) error {
@@ -143,7 +175,7 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.MandatedUserKeyCounterpartyFirm  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyFirm_sql, "")
 	   recItem.MandatedUserKeyCounterpartyCentre  = get_String(rec, dm.Mandate_MandatedUserKeyCounterpartyCentre_sql, "")
@@ -187,7 +219,7 @@ func mandate_Fetch(tsql string) (int, []dm.Mandate, dm.Mandate, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -207,7 +239,24 @@ func Mandate_NewID(r dm.Mandate) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// mandate_Fetch read all Mandate's
+func Mandate_New() (int, []dm.Mandate, dm.Mandate, error) {
+
+	var r = dm.Mandate{}
+	var rList []dm.Mandate
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

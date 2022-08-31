@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-tasks me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     <button type="submit" value="" class="btn btn-primary" formaction="/CustomerOnboardingNew" method="GET" title="Create a new Customer Onboarding Tool"><i class="fas fa-plus me-2"></i>New</button>
-                    <button id="export" type="button" class="btn btn-info" title="Export Customer Onboarding Tool as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Customer Onboarding Tool"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center"><i class="fas fa-key me-2"></i>ID</th>
                           <th class="text-center">CustomerName</th>
                           <th class="text-center">CustomerAddress</th>
@@ -66,12 +69,35 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center"><i class="fas fa-key me-2"></i>ID</th>
+                          <th class="text-center">CustomerName</th>
+                          <th class="text-center">CustomerAddress</th>
+                          <th class="text-center">CustomerBOLID</th>
+                          <th class="text-center">CustomerFirmName</th>
+                          <th class="text-center">CustomerType</th>
+                          <th class="text-center">CustomerRDC</th>
+                          <th class="text-center">CustomerSortCode</th>
+                          <th class="text-center">CustomerGMClientNo</th>
+                          <th class="text-center">CustomerDefaultBook</th>
+                          <th class="text-center">CustomerRegion</th>
+                          <th class="text-center">CustomerCategory</th>
+                          <th class="text-center">CustomerTelephoneNo</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

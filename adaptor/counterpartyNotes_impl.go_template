@@ -1,0 +1,74 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/mwt-go-dev/core"
+	logs "github.com/mt1976/mwt-go-dev/logs"
+    dm "github.com/mt1976/mwt-go-dev/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/counterpartynotes.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : CounterpartyNotes (counterpartynotes)
+// Endpoint 	        : CounterpartyNotes (ID)
+// For Project          : github.com/mt1976/mwt-go-dev/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 28/06/2022 at 16:10:48
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in counterpartynotes_impl.go
+
+
+
+func CounterpartyNotes_NewID_impl(rec dm.CounterpartyNotes) (string) { return rec.NoteId }
+func CounterpartyNotes_Delete_impl(id string) (error) {return nil}
+
+
+func CounterpartyNotes_Update_impl(id string,rec dm.CounterpartyNotes, usr string) (error) {return nil}
+
+	// If there are fields below, create the methods in adaptor\counterpartynotes_impl.go
+	// START - GET API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - GET API/Callout
+	//
+	// START - PUT API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - PUT API/Callout
+
+	// START - Validation API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - Validation API/Callout
+
+func CounterpartyNotes_ObjectValidation_impl (iAction string, iId string, iRec dm.CounterpartyNotes) (dm.CounterpartyNotes, error, string) {
+	logs.Callout("CounterpartyNotes", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
+
+		case NEW:
+
+		case PUT:
+
+		case GET:
+
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

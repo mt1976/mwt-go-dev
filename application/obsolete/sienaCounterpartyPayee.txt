@@ -132,8 +132,8 @@ func EditSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Payee - Edit",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Counterparty Payee - Edit",
 
 		SourceTable:           returnRecord.SourceTable,
 		KeyCounterpartyFirm:   returnRecord.KeyCounterpartyFirm,
@@ -287,8 +287,8 @@ func NewSienaCounterpartyPayeeHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Counterparty Payee - New",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Counterparty Payee - New",
 
 		ID:                    "NEW",
 		SourceTable:           "",

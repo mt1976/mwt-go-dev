@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:14
+// Date & Time		    : 28/06/2022 at 16:10:57
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,54 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//systems_PageList provides the information for the template for a list of Systemss
-type Systems_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Systems
-}
-//Systems_Redirect provides a page to return to aftern an action
-const (
-	Systems_Redirect = dm.Systems_PathList
-)
 
-//systems_Page provides the information for the template for an individual Systems
-type Systems_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Name         string
-	Staticin         string
-	Staticout         string
-	Txnin         string
-	Txnout         string
-	Fundscheckin         string
-	Fundscheckout         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	SWIFTin         string
-	SWIFTout         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -102,7 +55,7 @@ func Systems_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Systems
 	noItems, returnList, _ := dao.Systems_GetList()
 
-	pageDetail := Systems_PageList{
+	pageDetail := dm.Systems_PageList{
 		Title:            CardTitle(dm.Systems_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Systems_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -133,7 +86,7 @@ func Systems_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Systems_QueryString)
 	_, rD, _ := dao.Systems_GetByID(searchID)
 
-	pageDetail := Systems_Page{
+	pageDetail := dm.Systems_Page{
 		Title:       CardTitle(dm.Systems_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Systems_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -164,7 +117,7 @@ func Systems_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Systems_QueryString)
 	_, rD, _ := dao.Systems_GetByID(searchID)
 	
-	pageDetail := Systems_Page{
+	pageDetail := dm.Systems_Page{
 		Title:       CardTitle(dm.Systems_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Systems_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -193,7 +146,7 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Systems
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Systems_SYSId_scrn)
 		item.Id = r.FormValue(dm.Systems_Id_scrn)
@@ -216,10 +169,10 @@ func Systems_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SWIFTout = r.FormValue(dm.Systems_SWIFTout_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Systems_Store(item,r)	
-	http.Redirect(w, r, Systems_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Systems_Redirect, http.StatusFound)
 }
 
 
@@ -232,11 +185,11 @@ func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Systems_New()
 
-	pageDetail := Systems_Page{
+	pageDetail := dm.Systems_Page{
 		Title:       CardTitle(dm.Systems_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Systems_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -245,7 +198,7 @@ func Systems_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = systems_PopulatePage(dm.Systems{} , pageDetail) 
+	pageDetail = systems_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Systems_TemplateNew, w, r, pageDetail)
 
@@ -266,14 +219,14 @@ func Systems_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Systems_Delete(searchID)	
 
-	http.Redirect(w, r, Systems_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Systems_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Systems Page 
-func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
+func systems_PopulatePage(rD dm.Systems, pageDetail dm.Systems_Page) dm.Systems_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -297,7 +250,7 @@ func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -338,8 +291,29 @@ func systems_PopulatePage(rD dm.Systems, pageDetail Systems_Page) Systems_Page {
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Staticin_props = rD.Staticin_props
+	pageDetail.Staticout_props = rD.Staticout_props
+	pageDetail.Txnin_props = rD.Txnin_props
+	pageDetail.Txnout_props = rD.Txnout_props
+	pageDetail.Fundscheckin_props = rD.Fundscheckin_props
+	pageDetail.Fundscheckout_props = rD.Fundscheckout_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.SWIFTin_props = rD.SWIFTin_props
+	pageDetail.SWIFTout_props = rD.SWIFTout_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

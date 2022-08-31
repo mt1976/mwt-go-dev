@@ -34,7 +34,7 @@ func ExternalMessage_Sent(id string, format string, msgClass string, destination
 	msItem.MessageTime = now.Format(core.TIMEFORMATSIENA)
 	msItem.MessageTimeout = now.Add(time.Duration(lifeSpan) * time.Second).Format(core.DATETIME)
 	msItem.MessageTimeoutAction = timeoutAction
-	msItem.AppID = core.ApplicationProperties["applicationtoken"]
+	msItem.AppID = core.ApplicationToken()
 	var err error
 	//fmt.Printf("msItem: %v\n", msItem)
 	//spew.Dump(msItem)
@@ -48,7 +48,7 @@ func ExternalMessage_Sent(id string, format string, msgClass string, destination
 
 	// get current ip address
 	ip := "localhost"
-	uri := core.ApplicationProperties["protocol"] + "://" + ip + ":" + core.ApplicationProperties["port"] + dm.ExternalMessage_Path
+	uri := core.ApplicationHTTPProtocol() + "://" + ip + ":" + core.ApplicationHTTPPort() + dm.ExternalMessage_Path
 
 	//logs.Information("uri", uri)
 

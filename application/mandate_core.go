@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:12
+// Date & Time		    : 28/06/2022 at 16:10:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,59 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//mandate_PageList provides the information for the template for a list of Mandates
-type Mandate_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Mandate
-}
-//Mandate_Redirect provides a page to return to aftern an action
-const (
-	Mandate_Redirect = dm.Mandate_PathList
-)
 
-//mandate_Page provides the information for the template for an individual Mandate
-type Mandate_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	MandatedUserKeyCounterpartyFirm         string
-	MandatedUserKeyCounterpartyFirm_lookup    []dm.Lookup_Item
-	MandatedUserKeyCounterpartyCentre         string
-	MandatedUserKeyCounterpartyCentre_lookup    []dm.Lookup_Item
-	MandatedUserKeyUserName         string
-	TelephoneNumber         string
-	EmailAddress         string
-	Active         string
-	Active_lookup    []dm.Lookup_Item
-	FirstName         string
-	Surname         string
-	DateOfBirth         string
-	Postcode         string
-	NationalIDNo         string
-	PassportNo         string
-	Country         string
-	Country_lookup    []dm.Lookup_Item
-	CountryName         string
-	FirmName         string
-	CentreName         string
-	Notify         string
-	Notify_lookup    []dm.Lookup_Item
-	SystemUser         string
-	CompID         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -107,7 +55,7 @@ func Mandate_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Mandate
 	noItems, returnList, _ := dao.Mandate_GetList()
 
-	pageDetail := Mandate_PageList{
+	pageDetail := dm.Mandate_PageList{
 		Title:            CardTitle(dm.Mandate_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Mandate_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -138,7 +86,7 @@ func Mandate_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Mandate_QueryString)
 	_, rD, _ := dao.Mandate_GetByID(searchID)
 
-	pageDetail := Mandate_Page{
+	pageDetail := dm.Mandate_Page{
 		Title:       CardTitle(dm.Mandate_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Mandate_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -169,7 +117,7 @@ func Mandate_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Mandate_QueryString)
 	_, rD, _ := dao.Mandate_GetByID(searchID)
 	
-	pageDetail := Mandate_Page{
+	pageDetail := dm.Mandate_Page{
 		Title:       CardTitle(dm.Mandate_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Mandate_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -198,7 +146,7 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Mandate
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.MandatedUserKeyCounterpartyFirm = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyFirm_scrn)
 		item.MandatedUserKeyCounterpartyCentre = r.FormValue(dm.Mandate_MandatedUserKeyCounterpartyCentre_scrn)
@@ -221,10 +169,10 @@ func Mandate_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.CompID = r.FormValue(dm.Mandate_CompID_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Mandate_Store(item,r)	
-	http.Redirect(w, r, Mandate_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Mandate_Redirect, http.StatusFound)
 }
 
 
@@ -237,11 +185,11 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Mandate_New()
 
-	pageDetail := Mandate_Page{
+	pageDetail := dm.Mandate_Page{
 		Title:       CardTitle(dm.Mandate_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Mandate_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -250,7 +198,7 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = mandate_PopulatePage(dm.Mandate{} , pageDetail) 
+	pageDetail = mandate_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Mandate_TemplateNew, w, r, pageDetail)
 
@@ -259,9 +207,9 @@ func Mandate_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Mandate Page 
-func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
+func mandate_PopulatePage(rD dm.Mandate, pageDetail dm.Mandate_Page) dm.Mandate_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.MandatedUserKeyCounterpartyFirm = rD.MandatedUserKeyCounterpartyFirm
 	pageDetail.MandatedUserKeyCounterpartyCentre = rD.MandatedUserKeyCounterpartyCentre
@@ -285,7 +233,7 @@ func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	pageDetail.MandatedUserKeyCounterpartyFirm_lookup = dao.Firm_GetLookup()
@@ -336,8 +284,29 @@ func mandate_PopulatePage(rD dm.Mandate, pageDetail Mandate_Page) Mandate_Page {
 	
 	
 	
+	pageDetail.MandatedUserKeyCounterpartyFirm_props = rD.MandatedUserKeyCounterpartyFirm_props
+	pageDetail.MandatedUserKeyCounterpartyCentre_props = rD.MandatedUserKeyCounterpartyCentre_props
+	pageDetail.MandatedUserKeyUserName_props = rD.MandatedUserKeyUserName_props
+	pageDetail.TelephoneNumber_props = rD.TelephoneNumber_props
+	pageDetail.EmailAddress_props = rD.EmailAddress_props
+	pageDetail.Active_props = rD.Active_props
+	pageDetail.FirstName_props = rD.FirstName_props
+	pageDetail.Surname_props = rD.Surname_props
+	pageDetail.DateOfBirth_props = rD.DateOfBirth_props
+	pageDetail.Postcode_props = rD.Postcode_props
+	pageDetail.NationalIDNo_props = rD.NationalIDNo_props
+	pageDetail.PassportNo_props = rD.PassportNo_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.CountryName_props = rD.CountryName_props
+	pageDetail.FirmName_props = rD.FirmName_props
+	pageDetail.CentreName_props = rD.CentreName_props
+	pageDetail.Notify_props = rD.Notify_props
+	pageDetail.SystemUser_props = rD.SystemUser_props
+	pageDetail.CompID_props = rD.CompID_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

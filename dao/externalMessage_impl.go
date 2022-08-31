@@ -22,7 +22,7 @@ import (
 // ExternalMessage_GetByID() returns a single ExternalMessage record
 func ExternalMessage_GetActive() (int, []dm.ExternalMessage, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.ExternalMessage_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.ExternalMessage_SQLTable)
 	tsql = tsql + " WHERE " + dm.ExternalMessage_ResponseDate_sql + "= ''"
 	tsql = tsql + " AND " + dm.ExternalMessage_MessageACKNAK_sql + "= ''"
 	noItems, externalmessageList, _, _ := externalmessage_Fetch(tsql)

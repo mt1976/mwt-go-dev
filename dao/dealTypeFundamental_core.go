@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:10
+// Date & Time		    : 28/06/2022 at 16:10:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,6 +43,12 @@ func DealTypeFundamental_GetByID(id string) (int, dm.DealTypeFundamental, error)
 	tsql = tsql + " WHERE " + dm.DealTypeFundamental_SQLSearchID + "='" + id + "'"
 	_, _, dealtypefundamentalItem, _ := dealtypefundamental_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, dealtypefundamentalItem, nil
 }
 
@@ -60,7 +66,12 @@ func DealTypeFundamental_Delete(id string) {
 // DealTypeFundamental_Store() saves/stores a DealTypeFundamental record to the database
 func DealTypeFundamental_Store(r dm.DealTypeFundamental,req *http.Request) error {
 
-	err := dealtypefundamental_Save(r,Audit_User(req))
+	err, r := DealTypeFundamental_Validate(r)
+	if err == nil {
+		err = dealtypefundamental_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DealTypeFundamental_Store()", err.Error())
+	}
 
 	return err
 }
@@ -68,10 +79,31 @@ func DealTypeFundamental_Store(r dm.DealTypeFundamental,req *http.Request) error
 // DealTypeFundamental_StoreSystem() saves/stores a DealTypeFundamental record to the database
 func DealTypeFundamental_StoreSystem(r dm.DealTypeFundamental) error {
 	
-	err := dealtypefundamental_Save(r,Audit_Host())
+	err, r := DealTypeFundamental_Validate(r)
+	if err == nil {
+		err = dealtypefundamental_Save(r, Audit_Host())
+	} else {
+		logs.Information("DealTypeFundamental_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DealTypeFundamental_Validate() validates for saves/stores a DealTypeFundamental record to the database
+func DealTypeFundamental_Validate(r dm.DealTypeFundamental) (error,dm.DealTypeFundamental) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // dealtypefundamental_Save() saves/stores a DealTypeFundamental record to the database
 func dealtypefundamental_Save(r dm.DealTypeFundamental,usr string) error {
@@ -214,7 +246,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.DealTypeKey  = get_String(rec, dm.DealTypeFundamental_DealTypeKey_sql, "")
 	   recItem.Amendment  = get_Bool(rec, dm.DealTypeFundamental_Amendment_sql, "True")
@@ -400,7 +432,7 @@ func dealtypefundamental_Fetch(tsql string) (int, []dm.DealTypeFundamental, dm.D
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -420,7 +452,24 @@ func DealTypeFundamental_NewID(r dm.DealTypeFundamental) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// dealtypefundamental_Fetch read all DealTypeFundamental's
+func DealTypeFundamental_New() (int, []dm.DealTypeFundamental, dm.DealTypeFundamental, error) {
+
+	var r = dm.DealTypeFundamental{}
+	var rList []dm.DealTypeFundamental
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

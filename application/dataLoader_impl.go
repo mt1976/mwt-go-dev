@@ -129,7 +129,7 @@ func DataLoader_HandlerList_Impl(w http.ResponseWriter, r *http.Request) {
 		UserMenu:        UserMenu_Get(r),
 		UserRole:        Session_GetUserRole(r),
 		UserNavi:        "NOT USED",
-		Title:           core.ApplicationProperties["appname"],
+		Title:           core.ApplicationName(),
 		PageTitle:       PageTitle("Data Loader", core.Action_List),
 		NoDataMapIDs:    noRows,
 		SvcDataMapItems: dataMapItemsList,
@@ -158,7 +158,7 @@ func buildGridPage(tmpl string, w http.ResponseWriter, r *http.Request) {
 	inUTL := r.URL.Path
 	thisID := core.GetURLparam(r, "loaderID")
 	core.ServiceMessage(inUTL)
-	//title := core.ApplicationProperties["appname"]
+	//title := core.GetAppName()
 	var wrkDataMapCols []DataHdr
 	noColumns, wrkLoaderHeadersList, _ := GetLoaderMapStoreListByLoader(thisID)
 	for _, colData := range wrkLoaderHeadersList {
@@ -271,7 +271,7 @@ func DataLoader_HandlerViewXML_Impl(w http.ResponseWriter, r *http.Request) {
 }
 
 func getXMLtemplateBody(thisID string) (string, error) {
-	path := core.ApplicationProperties["datamaptemplatepath"]
+	path := core.DataLoaderArtifactRepository()
 	_, loaderItem, _ := GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
 	content, err := core.ReadDataFile(fileName, path)
@@ -282,7 +282,7 @@ func getXMLtemplateBody(thisID string) (string, error) {
 }
 
 func putXMLtemplateBody(thisID string, content string) int {
-	path := core.ApplicationProperties["datamaptemplatepath"]
+	path := core.DataLoaderArtifactRepository()
 	_, loaderItem, _ := GetLoaderStoreByID(thisID)
 	fileName := loaderItem.Filename + ".template"
 	status := core.FileSystem_WriteData(fileName, path, content)
@@ -305,7 +305,7 @@ func DataLoader_HandlerEditXML_Impl(w http.ResponseWriter, r *http.Request) {
 
 	core.ServiceMessage(inUTL)
 
-	//title := core.ApplicationProperties["appname"]
+	//title := core.GetAppName()
 
 	// Get Data Here
 	fullRec, _ := getXMLtemplateBody(thisID)
@@ -410,7 +410,7 @@ func DataLoader_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 
 	core.ServiceMessage(inUTL)
 
-	//title := core.ApplicationProperties["appname"]
+	//title := core.GetAppName()
 
 	_, instanceList, _ := GetSystemStoreList()
 
@@ -473,7 +473,7 @@ func DataLoader_HandlerDelete_Impl(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 	id := core.GetURLparam(r, "loaderID")
-	path := core.ApplicationProperties["datamaptemplatepath"]
+	path := core.DataLoaderArtifactRepository()
 	status := core.DeleteDataFile(id+".template", path)
 	if status != 1 {
 		//do nothing
@@ -504,7 +504,7 @@ func DataLoader_HandlerRun_Impl(w http.ResponseWriter, r *http.Request) {
 	//instanceID := loader.Instance
 	//extensionID := loader.Extension
 	//log.Printf("instance id %s %s", instanceID, extensionID)
-	importtemplate, err := core.ReadDataFile(loader.Filename+".template", core.ApplicationProperties["datamaptemplatepath"])
+	importtemplate, err := core.ReadDataFile(loader.Filename+".template", core.DataLoaderArtifactRepository())
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -618,7 +618,7 @@ func DataLoader_UploadFile_Impl(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
 	id := core.GetURLparam(r, "loaderID")
-	path := core.ApplicationProperties["datamaptemplatepath"]
+	path := core.DataLoaderArtifactRepository()
 	status := core.DeleteDataFile(id+".template", path)
 	if status != 1 {
 		//do nothing

@@ -15,8 +15,8 @@ import (
 // Endpoint 	        : Account (AccountNo)
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
-// Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 29/06/2022 at 22:43:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -30,146 +30,97 @@ func Account_Delete_impl(id string) (error) {return nil}
 
 func Account_Update_impl(id string,rec dm.Account, usr string) (error) {return nil}
 
-// If there are fields below, create the methods in adaptor\account_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func Account_DealtCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
-func Account_AgainstCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
-func Account_LedgerCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
-func Account_CashBalanceCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {return fieldval,nil}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func Account_DealtCA_OnFetch_impl (rec dm.Account)(string) {return ""}
-func Account_AgainstCA_OnFetch_impl (rec dm.Account)(string) {return ""}
-func Account_LedgerCA_OnFetch_impl (rec dm.Account)(string) {return ""}
-func Account_CashBalanceCA_OnFetch_impl (rec dm.Account)(string) {return ""}
-
+	// If there are fields below, create the methods in adaptor\account_impl.go
+	// START - GET API/Callout
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+func Account_DealtCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {
+	logs.Callout("Account", "DealtCA", PUT, rec.SienaReference)
+	return fieldval,nil
+	}
+func Account_AgainstCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {
+	logs.Callout("Account", "AgainstCA", PUT, rec.SienaReference)
+	return fieldval,nil
+	}
+func Account_LedgerCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {
+	logs.Callout("Account", "LedgerCA", PUT, rec.SienaReference)
+	return fieldval,nil
+	}
+func Account_CashBalanceCA_OnStore_impl (fieldval string,rec dm.Account,usr string) (string,error)  {
+	logs.Callout("Account", "CashBalanceCA", PUT, rec.SienaReference)
+	return fieldval,nil
+	}
+
+	// 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - GET API/Callout
+	//
+	// START - PUT API/Callout
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+func Account_DealtCA_OnFetch_impl (rec dm.Account)(string) {
+	logs.Callout("Account", "DealtCA", GET, rec.SienaReference)
+	return rec.DealtCA
+	}
+func Account_AgainstCA_OnFetch_impl (rec dm.Account)(string) {
+	logs.Callout("Account", "AgainstCA", GET, rec.SienaReference)
+	return rec.AgainstCA
+	}
+func Account_LedgerCA_OnFetch_impl (rec dm.Account)(string) {
+	logs.Callout("Account", "LedgerCA", GET, rec.SienaReference)
+	return rec.LedgerCA
+	}
+func Account_CashBalanceCA_OnFetch_impl (rec dm.Account)(string) {
+	logs.Callout("Account", "CashBalanceCA", GET, rec.SienaReference)
+	return rec.CashBalanceCA
+	}
+
+	// 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - PUT API/Callout
+
+	// START - Validation API/Callout
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Account_DealtCA_impl provides validation/actions for DealtCA
+	func Account_DealtCA_impl (iAction string, iId string, iValue string, iRec dm.Account, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Account", "DealtCA", VAL +"-"+iAction, iId)
+	return iValue,fP
+	}
+	// Account_AgainstCA_impl provides validation/actions for AgainstCA
+	func Account_AgainstCA_impl (iAction string, iId string, iValue string, iRec dm.Account, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Account", "AgainstCA", VAL +"-"+iAction, iId)
+	return iValue,fP
+	}
+	// Account_LedgerCA_impl provides validation/actions for LedgerCA
+	func Account_LedgerCA_impl (iAction string, iId string, iValue string, iRec dm.Account, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Account", "LedgerCA", VAL +"-"+iAction, iId)
+	return iValue,fP
+	}
+	// Account_CashBalanceCA_impl provides validation/actions for CashBalanceCA
+	func Account_CashBalanceCA_impl (iAction string, iId string, iValue string, iRec dm.Account, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Account", "CashBalanceCA", VAL +"-"+iAction, iId)
+	return iValue,fP
+	}
+
+	// 
+	// Dynamically generated 29/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - Validation API/Callout
+
+func Account_ObjectValidation_impl (iAction string, iId string, iRec dm.Account) (dm.Account, error, string) {
+	logs.Callout("Account", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
+
+		case NEW:
+
+		case PUT:
+
+		case GET:
+
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

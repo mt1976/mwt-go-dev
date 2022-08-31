@@ -46,7 +46,7 @@ SQL Table Key | **Code**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**Code**|String|true|true|false|false|||||Y|Code||false|false|false|text||
 |**Name**|String|false|true|false|false|||||Y|Name||false|false|false|text||
-|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|||
+|**Country**|String|false|true|false|false|OL|Country|Country|Name|N|Country||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -68,7 +68,7 @@ SQL Table Key | **Code**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:06**
+Date & Time		     | **28/06/2022** at **16:10:44**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

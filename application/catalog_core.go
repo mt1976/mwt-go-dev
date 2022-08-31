@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:06
+// Date & Time		    : 28/06/2022 at 16:10:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,40 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//catalog_PageList provides the information for the template for a list of Catalogs
-type Catalog_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Catalog
-}
-//Catalog_Redirect provides a page to return to aftern an action
-const (
-	Catalog_Redirect = dm.Catalog_PathList
-)
 
-//catalog_Page provides the information for the template for an individual Catalog
-type Catalog_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	Endpoint         string
-	Descr         string
-	Query         string
-	Source         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -88,7 +55,7 @@ func Catalog_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Catalog
 	noItems, returnList, _ := dao.Catalog_GetList()
 
-	pageDetail := Catalog_PageList{
+	pageDetail := dm.Catalog_PageList{
 		Title:            CardTitle(dm.Catalog_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Catalog_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -119,7 +86,7 @@ func Catalog_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Catalog_QueryString)
 	_, rD, _ := dao.Catalog_GetByID(searchID)
 
-	pageDetail := Catalog_Page{
+	pageDetail := dm.Catalog_Page{
 		Title:       CardTitle(dm.Catalog_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Catalog_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -140,9 +107,9 @@ func Catalog_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the Catalog Page 
-func catalog_PopulatePage(rD dm.Catalog, pageDetail Catalog_Page) Catalog_Page {
+func catalog_PopulatePage(rD dm.Catalog, pageDetail dm.Catalog_Page) dm.Catalog_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.Endpoint = rD.Endpoint
@@ -152,7 +119,7 @@ func catalog_PopulatePage(rD dm.Catalog, pageDetail Catalog_Page) Catalog_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -165,8 +132,15 @@ func catalog_PopulatePage(rD dm.Catalog, pageDetail Catalog_Page) Catalog_Page {
 	
 	
 	
+	pageDetail.ID_props = rD.ID_props
+	pageDetail.Endpoint_props = rD.Endpoint_props
+	pageDetail.Descr_props = rD.Descr_props
+	pageDetail.Query_props = rD.Query_props
+	pageDetail.Source_props = rD.Source_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

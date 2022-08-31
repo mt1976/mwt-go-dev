@@ -1,11 +1,10 @@
 
-    {
-      "ID": "612f6443-6aa3-46d5-8f90-31e91c24dbd7",
-      "Text": "Data Loader Data Map",
-      "Glyph": "fas fa-city",
-      "HREF": "/DataLoaderMapList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "e62629fc-a1c5-4ac4-99ed-f57568fb5e79",
+      "MenuText": "Data Loader Data Map",
+      "MenuGlyph": "fas fa-city",
+      "MenuHREF": "/DataLoaderMapList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

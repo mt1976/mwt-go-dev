@@ -19,138 +19,186 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-        
+      
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required data-mdb-input-mask="">
-                <label class="form-label" for="Code" ><i class="fas fa-key me-2"></i>Code</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Code_props.MsgType}}" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Code" ><i class="fas fa-key me-2"></i>Code</label>
+              <div class="{{.Code_props.MsgFeedBackType}}">{{.Code_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Description1" name="Description1" aria-describedby="Description1Help" placeholder=""  value="{{.Description1}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Description1" >Description1</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Description1_props.MsgType}}" id="Description1" name="Description1" aria-describedby="Description1Help" placeholder=""  value="{{.Description1}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Description1" >Description1</label>
+              <div class="{{.Description1_props.MsgFeedBackType}}">{{.Description1_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Description2" name="Description2" aria-describedby="Description2Help" placeholder=""  value="{{.Description2}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Description2" >Description2</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Description2_props.MsgType}}" id="Description2" name="Description2" aria-describedby="Description2Help" placeholder=""  value="{{.Description2}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Description2" >Description2</label>
+              <div class="{{.Description2_props.MsgFeedBackType}}">{{.Description2_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="IsDefault" name="IsDefault" aria-describedby="IsDefaultHelp" placeholder="True"  value="{{.IsDefault}}"  data-mdb-input-mask="">
-                <label class="form-label" for="IsDefault" >IsDefault</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.IsDefault_props.MsgType}}" id="IsDefault" name="IsDefault" aria-describedby="IsDefaultHelp" placeholder="True"  value="{{.IsDefault}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="IsDefault" >IsDefault</label>
+              <div class="{{.IsDefault_props.MsgFeedBackType}}">{{.IsDefault_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="InternalId" name="InternalId" aria-describedby="InternalIdHelp" placeholder="0"  value="{{.InternalId}}" required data-mdb-input-mask="">
-                <label class="form-label" for="InternalId" >InternalId</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.InternalId_props.MsgType}}" id="InternalId" name="InternalId" aria-describedby="InternalIdHelp" placeholder="0"  value="{{.InternalId}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="InternalId" >InternalId</label>
+              <div class="{{.InternalId_props.MsgFeedBackType}}">{{.InternalId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="InternalDeleted" name="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder=""  value="{{.InternalDeleted}}"  data-mdb-input-mask="">
-                <label class="form-label" for="InternalDeleted" >InternalDeleted</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.InternalDeleted_props.MsgType}}" id="InternalDeleted" name="InternalDeleted" aria-describedby="InternalDeletedHelp" placeholder=""  value="{{.InternalDeleted}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="InternalDeleted" >InternalDeleted</label>
+              <div class="{{.InternalDeleted_props.MsgFeedBackType}}">{{.InternalDeleted_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="UpdatedTransactionId" name="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder=""  value="{{.UpdatedTransactionId}}"  data-mdb-input-mask="">
-                <label class="form-label" for="UpdatedTransactionId" >UpdatedTransactionId</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.UpdatedTransactionId_props.MsgType}}" id="UpdatedTransactionId" name="UpdatedTransactionId" aria-describedby="UpdatedTransactionIdHelp" placeholder=""  value="{{.UpdatedTransactionId}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="UpdatedTransactionId" >UpdatedTransactionId</label>
+              <div class="{{.UpdatedTransactionId_props.MsgFeedBackType}}">{{.UpdatedTransactionId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="UpdatedUserId" name="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder=""  value="{{.UpdatedUserId}}"  data-mdb-input-mask="">
-                <label class="form-label" for="UpdatedUserId" >UpdatedUserId</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.UpdatedUserId_props.MsgType}}" id="UpdatedUserId" name="UpdatedUserId" aria-describedby="UpdatedUserIdHelp" placeholder=""  value="{{.UpdatedUserId}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="UpdatedUserId" >UpdatedUserId</label>
+              <div class="{{.UpdatedUserId_props.MsgFeedBackType}}">{{.UpdatedUserId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="UpdatedDateTime" name="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder=""  value="{{.UpdatedDateTime}}"  data-mdb-input-mask="">
-                <label class="form-label" for="UpdatedDateTime" >UpdatedDateTime</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.UpdatedDateTime_props.MsgType}}" id="UpdatedDateTime" name="UpdatedDateTime" aria-describedby="UpdatedDateTimeHelp" placeholder=""  value="{{.UpdatedDateTime}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="UpdatedDateTime" >UpdatedDateTime</label>
+              <div class="{{.UpdatedDateTime_props.MsgFeedBackType}}">{{.UpdatedDateTime_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="DeletedTransactionId" name="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder=""  value="{{.DeletedTransactionId}}"  data-mdb-input-mask="">
-                <label class="form-label" for="DeletedTransactionId" >DeletedTransactionId</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.DeletedTransactionId_props.MsgType}}" id="DeletedTransactionId" name="DeletedTransactionId" aria-describedby="DeletedTransactionIdHelp" placeholder=""  value="{{.DeletedTransactionId}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="DeletedTransactionId" >DeletedTransactionId</label>
+              <div class="{{.DeletedTransactionId_props.MsgFeedBackType}}">{{.DeletedTransactionId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="DeletedUserId" name="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder=""  value="{{.DeletedUserId}}"  data-mdb-input-mask="">
-                <label class="form-label" for="DeletedUserId" >DeletedUserId</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.DeletedUserId_props.MsgType}}" id="DeletedUserId" name="DeletedUserId" aria-describedby="DeletedUserIdHelp" placeholder=""  value="{{.DeletedUserId}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="DeletedUserId" >DeletedUserId</label>
+              <div class="{{.DeletedUserId_props.MsgFeedBackType}}">{{.DeletedUserId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="ChangeType" name="ChangeType" aria-describedby="ChangeTypeHelp" placeholder=""  value="{{.ChangeType}}"  data-mdb-input-mask="">
-                <label class="form-label" for="ChangeType" >ChangeType</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
+            
+                <input type="text" class="form-control {{.ChangeType_props.MsgType}}" id="ChangeType" name="ChangeType" aria-describedby="ChangeTypeHelp" placeholder=""  value="{{.ChangeType}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="ChangeType" >ChangeType</label>
+              <div class="{{.ChangeType_props.MsgFeedBackType}}">{{.ChangeType_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
 
      
         </div>

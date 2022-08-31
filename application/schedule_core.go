@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:13
+// Date & Time		    : 28/06/2022 at 16:10:56
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,53 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//schedule_PageList provides the information for the template for a list of Schedules
-type Schedule_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Schedule
-}
-//Schedule_Redirect provides a page to return to aftern an action
-const (
-	Schedule_Redirect = dm.Schedule_PathList
-)
 
-//schedule_Page provides the information for the template for an individual Schedule
-type Schedule_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	Id         string
-	Name         string
-	Description         string
-	Schedule         string
-	Started         string
-	Lastrun         string
-	Message         string
-	SYSCreated         string
-	SYSWho         string
-	SYSHost         string
-	SYSUpdated         string
-	Type         string
-	SYSCreatedBy         string
-	SYSCreatedHost         string
-	SYSUpdatedBy         string
-	SYSUpdatedHost         string
-	Human         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -101,7 +55,7 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Schedule
 	noItems, returnList, _ := dao.Schedule_GetList()
 
-	pageDetail := Schedule_PageList{
+	pageDetail := dm.Schedule_PageList{
 		Title:            CardTitle(dm.Schedule_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Schedule_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -132,7 +86,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Schedule_QueryString)
 	_, rD, _ := dao.Schedule_GetByID(searchID)
 
-	pageDetail := Schedule_Page{
+	pageDetail := dm.Schedule_Page{
 		Title:       CardTitle(dm.Schedule_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Schedule_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -163,7 +117,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Schedule
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Schedule_SYSId_scrn)
 		item.Id = r.FormValue(dm.Schedule_Id_scrn)
@@ -185,19 +139,19 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Human = r.FormValue(dm.Schedule_Human_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Schedule_Store(item,r)	
-	http.Redirect(w, r, Schedule_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Schedule_Redirect, http.StatusFound)
 }
 
 
 
 
 // Builds/Popuplates the Schedule Page 
-func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Page {
+func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Schedule_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -220,7 +174,7 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Pa
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -259,8 +213,28 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail Schedule_Page) Schedule_Pa
 	
 	
 	
+	pageDetail.SYSId_props = rD.SYSId_props
+	pageDetail.Id_props = rD.Id_props
+	pageDetail.Name_props = rD.Name_props
+	pageDetail.Description_props = rD.Description_props
+	pageDetail.Schedule_props = rD.Schedule_props
+	pageDetail.Started_props = rD.Started_props
+	pageDetail.Lastrun_props = rD.Lastrun_props
+	pageDetail.Message_props = rD.Message_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
+	pageDetail.SYSWho_props = rD.SYSWho_props
+	pageDetail.SYSHost_props = rD.SYSHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
+	pageDetail.Type_props = rD.Type_props
+	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
+	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
+	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
+	pageDetail.Human_props = rD.Human_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

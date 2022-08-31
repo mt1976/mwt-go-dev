@@ -34,8 +34,8 @@ func AccountLadder_HandlerViewLadder(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.AccountLadder
 	noItems, returnList, _ := dao.AccountLadder_GetListByID(searchID)
 
-	pageDetail := AccountLadder_PageList{
-		Title:       core.ApplicationProperties["appname"],
+	pageDetail := dm.AccountLadder_PageList{
+		Title:       core.ApplicationName(),
 		PageTitle:   PageTitle(dm.AccountLadder_Title, core.Action_List),
 		ItemsOnPage: noItems,
 		ItemList:    returnList,

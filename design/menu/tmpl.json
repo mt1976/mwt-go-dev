@@ -1,11 +1,10 @@
 
-    {
-      "ID": "b8234982-79d6-476f-8fd5-709ad0def2c8",
-      "Text": "Template Contents",
-      "Glyph": "fas fa-poo",
-      "HREF": "/TmplList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "0561acfc-1678-47ee-aa6c-8962858d4104",
+      "MenuText": "Template Contents",
+      "MenuGlyph": "fas fa-poo",
+      "MenuHREF": "/TmplList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

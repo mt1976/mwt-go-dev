@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 28/06/2022 at 16:10:41
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,41 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//accountladder_PageList provides the information for the template for a list of AccountLadders
-type AccountLadder_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.AccountLadder
-}
-//AccountLadder_Redirect provides a page to return to aftern an action
-const (
-	AccountLadder_Redirect = dm.AccountLadder_PathList
-)
 
-//accountladder_Page provides the information for the template for an individual AccountLadder
-type AccountLadder_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	BusinessDate         string
-	ContractNumber         string
-	Balance         string
-	DealtCcy         string
-	AmountDp         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -89,7 +55,7 @@ func AccountLadder_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.AccountLadder
 	noItems, returnList, _ := dao.AccountLadder_GetList()
 
-	pageDetail := AccountLadder_PageList{
+	pageDetail := dm.AccountLadder_PageList{
 		Title:            CardTitle(dm.AccountLadder_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.AccountLadder_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -120,7 +86,7 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.AccountLadder_QueryString)
 	_, rD, _ := dao.AccountLadder_GetByID(searchID)
 
-	pageDetail := AccountLadder_Page{
+	pageDetail := dm.AccountLadder_Page{
 		Title:       CardTitle(dm.AccountLadder_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.AccountLadder_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -141,9 +107,9 @@ func AccountLadder_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the AccountLadder Page 
-func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail AccountLadder_Page) AccountLadder_Page {
+func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail dm.AccountLadder_Page) dm.AccountLadder_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.BusinessDate = rD.BusinessDate
@@ -154,7 +120,7 @@ func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail AccountLadder_Pa
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -169,8 +135,16 @@ func accountladder_PopulatePage(rD dm.AccountLadder, pageDetail AccountLadder_Pa
 	
 	
 	
+	pageDetail.SienaReference_props = rD.SienaReference_props
+	pageDetail.BusinessDate_props = rD.BusinessDate_props
+	pageDetail.ContractNumber_props = rD.ContractNumber_props
+	pageDetail.Balance_props = rD.Balance_props
+	pageDetail.DealtCcy_props = rD.DealtCcy_props
+	pageDetail.AmountDp_props = rD.AmountDp_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

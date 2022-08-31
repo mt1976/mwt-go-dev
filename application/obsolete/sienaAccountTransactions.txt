@@ -99,8 +99,8 @@ func ListSienaAccountTransactionsHandler(w http.ResponseWriter, r *http.Request)
 	_, account, _ := dao.Account_GetByID(accountID)
 
 	pageSienaAccountTransactionsList := sienaAccountTransactionListPage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Account Transactions - View",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Account Transactions - View",
 
 		SienaAccountTransactionCount: noItems,
 		SienaAccountTransactionList:  returnList,

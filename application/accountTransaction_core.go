@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:05
+// Date & Time		    : 28/06/2022 at 16:10:42
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,50 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//accounttransaction_PageList provides the information for the template for a list of AccountTransactions
-type AccountTransaction_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.AccountTransaction
-}
-//AccountTransaction_Redirect provides a page to return to aftern an action
-const (
-	AccountTransaction_Redirect = dm.AccountTransaction_PathList
-)
 
-//accounttransaction_Page provides the information for the template for an individual AccountTransaction
-type AccountTransaction_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SienaReference         string
-	LegNo         string
-	MMLegNo         string
-	Narrative         string
-	Amount         string
-	StartInterestDate         string
-	EndInterestDate         string
-	Amortisation         string
-	InterestAmount         string
-	InterestAction         string
-	FixingDate         string
-	InterestCalculationDate         string
-	AmendmentAmount         string
-	DealtCcy         string
-	AmountDp         string
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -98,7 +55,7 @@ func AccountTransaction_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.AccountTransaction
 	noItems, returnList, _ := dao.AccountTransaction_GetList()
 
-	pageDetail := AccountTransaction_PageList{
+	pageDetail := dm.AccountTransaction_PageList{
 		Title:            CardTitle(dm.AccountTransaction_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.AccountTransaction_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -129,7 +86,7 @@ func AccountTransaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.AccountTransaction_QueryString)
 	_, rD, _ := dao.AccountTransaction_GetByID(searchID)
 
-	pageDetail := AccountTransaction_Page{
+	pageDetail := dm.AccountTransaction_Page{
 		Title:       CardTitle(dm.AccountTransaction_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.AccountTransaction_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -150,9 +107,9 @@ func AccountTransaction_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 // Builds/Popuplates the AccountTransaction Page 
-func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail AccountTransaction_Page) AccountTransaction_Page {
+func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail dm.AccountTransaction_Page) dm.AccountTransaction_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SienaReference = rD.SienaReference
 	pageDetail.LegNo = rD.LegNo
@@ -172,7 +129,7 @@ func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail Accoun
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -205,8 +162,25 @@ func accounttransaction_PopulatePage(rD dm.AccountTransaction, pageDetail Accoun
 	
 	
 	
+	pageDetail.SienaReference_props = rD.SienaReference_props
+	pageDetail.LegNo_props = rD.LegNo_props
+	pageDetail.MMLegNo_props = rD.MMLegNo_props
+	pageDetail.Narrative_props = rD.Narrative_props
+	pageDetail.Amount_props = rD.Amount_props
+	pageDetail.StartInterestDate_props = rD.StartInterestDate_props
+	pageDetail.EndInterestDate_props = rD.EndInterestDate_props
+	pageDetail.Amortisation_props = rD.Amortisation_props
+	pageDetail.InterestAmount_props = rD.InterestAmount_props
+	pageDetail.InterestAction_props = rD.InterestAction_props
+	pageDetail.FixingDate_props = rD.FixingDate_props
+	pageDetail.InterestCalculationDate_props = rD.InterestCalculationDate_props
+	pageDetail.AmendmentAmount_props = rD.AmendmentAmount_props
+	pageDetail.DealtCcy_props = rD.DealtCcy_props
+	pageDetail.AmountDp_props = rD.AmountDp_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

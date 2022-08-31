@@ -19,149 +19,201 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-        
+      
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required data-mdb-input-mask="">
-                <label class="form-label" for="ID" ><i class="fas fa-key me-2"></i>ID</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.ID_props.MsgType}}" id="ID" name="ID" aria-describedby="IDHelp" placeholder=""  value="{{.ID}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="ID" ><i class="fas fa-key me-2"></i>ID</label>
+              <div class="{{.ID_props.MsgFeedBackType}}">{{.ID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerName" name="CustomerName" aria-describedby="CustomerNameHelp" placeholder=""  value="{{.CustomerName}}" required data-mdb-input-mask="">
-                <label class="form-label" for="CustomerName" >CustomerName</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerName_props.MsgType}}" id="CustomerName" name="CustomerName" aria-describedby="CustomerNameHelp" placeholder=""  value="{{.CustomerName}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerName" >CustomerName</label>
+              <div class="{{.CustomerName_props.MsgFeedBackType}}">{{.CustomerName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" aria-describedby="CustomerAddressHelp" placeholder=""  value="{{.CustomerAddress}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerAddress" >CustomerAddress</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerAddress_props.MsgType}}" id="CustomerAddress" name="CustomerAddress" aria-describedby="CustomerAddressHelp" placeholder=""  value="{{.CustomerAddress}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerAddress" >CustomerAddress</label>
+              <div class="{{.CustomerAddress_props.MsgFeedBackType}}">{{.CustomerAddress_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerBOLID" name="CustomerBOLID" aria-describedby="CustomerBOLIDHelp" placeholder=""  value="{{.CustomerBOLID}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerBOLID" >CustomerBOLID</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerBOLID_props.MsgType}}" id="CustomerBOLID" name="CustomerBOLID" aria-describedby="CustomerBOLIDHelp" placeholder=""  value="{{.CustomerBOLID}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerBOLID" >CustomerBOLID</label>
+              <div class="{{.CustomerBOLID_props.MsgFeedBackType}}">{{.CustomerBOLID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerFirmName" name="CustomerFirmName" aria-describedby="CustomerFirmNameHelp" placeholder=""  value="{{.CustomerFirmName}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerFirmName" >CustomerFirmName</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerFirmName_props.MsgType}}" id="CustomerFirmName" name="CustomerFirmName" aria-describedby="CustomerFirmNameHelp" placeholder=""  value="{{.CustomerFirmName}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerFirmName" >CustomerFirmName</label>
+              <div class="{{.CustomerFirmName_props.MsgFeedBackType}}">{{.CustomerFirmName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerType" name="CustomerType" aria-describedby="CustomerTypeHelp" placeholder=""  value="{{.CustomerType}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerType" >CustomerType</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerType_props.MsgType}}" id="CustomerType" name="CustomerType" aria-describedby="CustomerTypeHelp" placeholder=""  value="{{.CustomerType}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerType" >CustomerType</label>
+              <div class="{{.CustomerType_props.MsgFeedBackType}}">{{.CustomerType_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerRDC" name="CustomerRDC" aria-describedby="CustomerRDCHelp" placeholder=""  value="{{.CustomerRDC}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerRDC" >CustomerRDC</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerRDC_props.MsgType}}" id="CustomerRDC" name="CustomerRDC" aria-describedby="CustomerRDCHelp" placeholder=""  value="{{.CustomerRDC}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerRDC" >CustomerRDC</label>
+              <div class="{{.CustomerRDC_props.MsgFeedBackType}}">{{.CustomerRDC_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerSortCode" name="CustomerSortCode" aria-describedby="CustomerSortCodeHelp" placeholder=""  value="{{.CustomerSortCode}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerSortCode" >CustomerSortCode</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerSortCode_props.MsgType}}" id="CustomerSortCode" name="CustomerSortCode" aria-describedby="CustomerSortCodeHelp" placeholder=""  value="{{.CustomerSortCode}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerSortCode" >CustomerSortCode</label>
+              <div class="{{.CustomerSortCode_props.MsgFeedBackType}}">{{.CustomerSortCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerGMClientNo" name="CustomerGMClientNo" aria-describedby="CustomerGMClientNoHelp" placeholder=""  value="{{.CustomerGMClientNo}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerGMClientNo" >CustomerGMClientNo</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerGMClientNo_props.MsgType}}" id="CustomerGMClientNo" name="CustomerGMClientNo" aria-describedby="CustomerGMClientNoHelp" placeholder=""  value="{{.CustomerGMClientNo}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerGMClientNo" >CustomerGMClientNo</label>
+              <div class="{{.CustomerGMClientNo_props.MsgFeedBackType}}">{{.CustomerGMClientNo_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerDefaultBook" name="CustomerDefaultBook" aria-describedby="CustomerDefaultBookHelp" placeholder=""  value="{{.CustomerDefaultBook}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerDefaultBook" >CustomerDefaultBook</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerDefaultBook_props.MsgType}}" id="CustomerDefaultBook" name="CustomerDefaultBook" aria-describedby="CustomerDefaultBookHelp" placeholder=""  value="{{.CustomerDefaultBook}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerDefaultBook" >CustomerDefaultBook</label>
+              <div class="{{.CustomerDefaultBook_props.MsgFeedBackType}}">{{.CustomerDefaultBook_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerRegion" name="CustomerRegion" aria-describedby="CustomerRegionHelp" placeholder=""  value="{{.CustomerRegion}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerRegion" >CustomerRegion</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerRegion_props.MsgType}}" id="CustomerRegion" name="CustomerRegion" aria-describedby="CustomerRegionHelp" placeholder=""  value="{{.CustomerRegion}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerRegion" >CustomerRegion</label>
+              <div class="{{.CustomerRegion_props.MsgFeedBackType}}">{{.CustomerRegion_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""  value="{{.CustomerCategory}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerCategory_props.MsgType}}" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""  value="{{.CustomerCategory}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
+              <div class="{{.CustomerCategory_props.MsgFeedBackType}}">{{.CustomerCategory_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerTelephoneNo" name="CustomerTelephoneNo" aria-describedby="CustomerTelephoneNoHelp" placeholder=""  value="{{.CustomerTelephoneNo}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerTelephoneNo" >CustomerTelephoneNo</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
+            
+                <input type="text" class="form-control {{.CustomerTelephoneNo_props.MsgType}}" id="CustomerTelephoneNo" name="CustomerTelephoneNo" aria-describedby="CustomerTelephoneNoHelp" placeholder=""  value="{{.CustomerTelephoneNo}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerTelephoneNo" >CustomerTelephoneNo</label>
+              <div class="{{.CustomerTelephoneNo_props.MsgFeedBackType}}">{{.CustomerTelephoneNo_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
 
      
         </div>

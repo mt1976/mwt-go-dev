@@ -70,7 +70,7 @@ func listcalenderHandler(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Println(tmpl)
 
 	pagecalenderList := calenderListPage{
-		Title:         core.ApplicationProperties["appname"],
+		Title:         core.ApplicationName(),
 		PageTitle:     PageTitle("Calendar", core.Action_List),
 		CalenderCount: noItems,
 		CalenderList:  returnList,

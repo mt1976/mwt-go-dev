@@ -37,7 +37,7 @@ func NegotiableInstrument_HandlerSelect(w http.ResponseWriter, r *http.Request) 
 	thisRec.Id = searchID
 	putNISelectedStore(thisRec, r)
 
-	http.Redirect(w, r, NegotiableInstrument_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.NegotiableInstrument_Redirect, http.StatusFound)
 }
 
 func NegotiableInstrument_HandlerDeSelect(w http.ResponseWriter, r *http.Request) {
@@ -57,5 +57,5 @@ func NegotiableInstrument_HandlerDeSelect(w http.ResponseWriter, r *http.Request
 	//var thisRec AppNISelectedStoreItem
 	//thisRec.Id = searchID
 	deleteNISelectedStore(searchID)
-	http.Redirect(w, r, NegotiableInstrument_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.NegotiableInstrument_Redirect, http.StatusFound)
 }

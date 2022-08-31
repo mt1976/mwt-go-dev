@@ -1,11 +1,10 @@
 
-    {
-      "ID": "15fddf4a-9101-44b2-907e-39d455d9dfa1",
-      "Text": "Currency Pair",
-      "Glyph": "fas fa-coins",
-      "HREF": "/CurrencyPairList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "02c55388-2b8f-4f85-ae65-957b8420bc42",
+      "MenuText": "Currency Pair",
+      "MenuGlyph": "fas fa-coins",
+      "MenuHREF": "/CurrencyPairList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

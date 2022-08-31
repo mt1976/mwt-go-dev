@@ -325,14 +325,14 @@ func NewLoaderStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 // getLoaderStoreList read all employees
 func GetLoaderStoreList() (int, []LoaderStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderStoreSQLSELECT, appLoaderStoreSQL, core.ApplicationPropertiesDB["schema"])
+	tsql := fmt.Sprintf(appLoaderStoreSQLSELECT, appLoaderStoreSQL, core.ApplicationSQLSchema())
 	count, appLoaderStoreList, _, _ := fetchLoaderStoreData(tsql)
 	return count, appLoaderStoreList, nil
 }
 
 // getLoaderStoreList read all employees
 func GetLoaderStoreByID(id string) (int, LoaderStoreItem, error) {
-	tsql := fmt.Sprintf(appLoaderStoreSQLGET, appLoaderStoreSQL, core.ApplicationPropertiesDB["schema"], id)
+	tsql := fmt.Sprintf(appLoaderStoreSQLGET, appLoaderStoreSQL, core.ApplicationSQLSchema(), id)
 	_, _, LoaderStoreItem, _ := fetchLoaderStoreData(tsql)
 	return 1, LoaderStoreItem, nil
 }
@@ -369,8 +369,8 @@ func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 	//	fmt.Println("RECORD", r)
 	//fmt.Printf("%s\n", sqlstruct.Columns(DataStoreSQL{}))
 
-	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], r.Id)
-	inserttsql := fmt.Sprintf(appLoaderStoreSQLINSERT, core.ApplicationPropertiesDB["schema"], appLoaderStoreSQL, r.Id, r.Name, r.Description, r.Filename, r.Lastrun, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type, r.Instance, r.Extension)
+	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, core.ApplicationSQLSchema(), r.Id)
+	inserttsql := fmt.Sprintf(appLoaderStoreSQLINSERT, core.ApplicationSQLSchema(), appLoaderStoreSQL, r.Id, r.Name, r.Description, r.Filename, r.Lastrun, r.SYSCreated, r.SYSWho, r.SYSHost, r.SYSUpdated, r.Type, r.Instance, r.Extension)
 
 	//	log.Println("DELETE:", deletesql, core.ApplicationDB)
 	//	log.Println("INSERT:", inserttsql, core.ApplicationDB)
@@ -389,7 +389,7 @@ func putLoaderStore(r LoaderStoreItem, req *http.Request) {
 
 func DeleteLoaderStore(id string) {
 	//fmt.Println(credentialStore)
-	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, core.ApplicationPropertiesDB["schema"], id)
+	deletesql := fmt.Sprintf(appLoaderStoreSQLDELETE, core.ApplicationSQLSchema(), id)
 	//log.Println("DELETE:", deletesql, core.ApplicationDB)
 	_, err := core.ApplicationDB.Exec(deletesql)
 	if err != nil {

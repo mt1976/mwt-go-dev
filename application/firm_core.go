@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:11
+// Date & Time		    : 28/06/2022 at 16:10:53
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,41 +22,7 @@ import (
 	logs    "github.com/mt1976/mwt-go-dev/logs"
 )
 
-//firm_PageList provides the information for the template for a list of Firms
-type Firm_PageList struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu         dm.AppMenuItem
-	UserRole         string
-	Title            string
-	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []dm.Firm
-}
-//Firm_Redirect provides a page to return to aftern an action
-const (
-	Firm_Redirect = dm.Firm_PathList
-)
 
-//firm_Page provides the information for the template for an individual Firm
-type Firm_Page struct {
-	SessionInfo      dm.SessionInfo
-	UserMenu    	 dm.AppMenuItem
-	UserRole    	 string
-	Title       	 string
-	PageTitle   	 string
-	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	FirmName         string
-	FullName         string
-	Country         string
-	Country_lookup    []dm.Lookup_Item
-	Sector         string
-	Sector_lookup    []dm.Lookup_Item
-	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-}
 
 
 
@@ -89,7 +55,7 @@ func Firm_HandlerList(w http.ResponseWriter, r *http.Request) {
 	var returnList []dm.Firm
 	noItems, returnList, _ := dao.Firm_GetList()
 
-	pageDetail := Firm_PageList{
+	pageDetail := dm.Firm_PageList{
 		Title:            CardTitle(dm.Firm_Title, core.Action_List),
 		PageTitle:        PageTitle(dm.Firm_Title, core.Action_List),
 		ItemsOnPage: 	  noItems,
@@ -120,7 +86,7 @@ func Firm_HandlerView(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Firm_QueryString)
 	_, rD, _ := dao.Firm_GetByID(searchID)
 
-	pageDetail := Firm_Page{
+	pageDetail := dm.Firm_Page{
 		Title:       CardTitle(dm.Firm_Title, core.Action_View),
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_View),
 		UserMenu:    UserMenu_Get(r),
@@ -151,7 +117,7 @@ func Firm_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	searchID := core.GetURLparam(r, dm.Firm_QueryString)
 	_, rD, _ := dao.Firm_GetByID(searchID)
 	
-	pageDetail := Firm_Page{
+	pageDetail := dm.Firm_Page{
 		Title:       CardTitle(dm.Firm_Title, core.Action_Edit),
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_Edit),
 		UserMenu:    UserMenu_Get(r),
@@ -180,7 +146,7 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Firm
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.FirmName = r.FormValue(dm.Firm_FirmName_scrn)
 		item.FullName = r.FormValue(dm.Firm_FullName_scrn)
@@ -188,10 +154,10 @@ func Firm_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Sector = r.FormValue(dm.Firm_Sector_scrn)
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Firm_Store(item,r)	
-	http.Redirect(w, r, Firm_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Firm_Redirect, http.StatusFound)
 }
 
 
@@ -204,11 +170,11 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	}
 	// Code Continues Below
 
-	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
-	core.ServiceMessage(inUTL)
+	logs.Servicing(r.URL.Path)
+	_, _, rD, _ := dao.Firm_New()
 
-	pageDetail := Firm_Page{
+	pageDetail := dm.Firm_Page{
 		Title:       CardTitle(dm.Firm_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Firm_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
@@ -217,7 +183,7 @@ func Firm_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
-	pageDetail = firm_PopulatePage(dm.Firm{} , pageDetail) 
+	pageDetail = firm_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Firm_TemplateNew, w, r, pageDetail)
 
@@ -238,14 +204,14 @@ func Firm_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Firm_Delete(searchID)	
 
-	http.Redirect(w, r, Firm_Redirect, http.StatusFound)
+	http.Redirect(w, r, dm.Firm_Redirect, http.StatusFound)
 }
 
 
 // Builds/Popuplates the Firm Page 
-func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
+func firm_PopulatePage(rD dm.Firm, pageDetail dm.Firm_Page) dm.Firm_Page {
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.FirmName = rD.FirmName
 	pageDetail.FullName = rD.FullName
@@ -254,7 +220,7 @@ func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	
 	
 	//
-	// Automatically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -269,8 +235,14 @@ func firm_PopulatePage(rD dm.Firm, pageDetail Firm_Page) Firm_Page {
 	
 	
 	
+	pageDetail.FirmName_props = rD.FirmName_props
+	pageDetail.FullName_props = rD.FullName_props
+	pageDetail.Country_props = rD.Country_props
+	pageDetail.Sector_props = rD.Sector_props
+	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
+	//spew.Dump(pageDetail)
 return pageDetail
 }	

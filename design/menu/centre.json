@@ -1,11 +1,10 @@
 
-    {
-      "ID": "201ba0f6-b626-49d5-aea0-c9e87ea2c0e2",
-      "Text": "Centre",
-      "Glyph": "fas fa-map-marker-alt",
-      "HREF": "/CentreList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "60646355-6773-403f-bad3-e257e90e6b1d",
+      "MenuText": "Centre",
+      "MenuGlyph": "fas fa-map-marker-alt",
+      "MenuHREF": "/CentreList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:11
+// Date & Time		    : 28/06/2022 at 16:10:53
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,12 @@ func Firm_GetByID(id string) (int, dm.Firm, error) {
 	tsql = tsql + " WHERE " + dm.Firm_SQLSearchID + "='" + id + "'"
 	_, _, firmItem, _ := firm_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
 	return 1, firmItem, nil
 }
 
@@ -79,7 +85,12 @@ func Firm_Delete(id string) {
 // Firm_Store() saves/stores a Firm record to the database
 func Firm_Store(r dm.Firm,req *http.Request) error {
 
-	err := firm_Save(r,Audit_User(req))
+	err, r := Firm_Validate(r)
+	if err == nil {
+		err = firm_Save(r, Audit_User(req))
+	} else {
+		logs.Information("Firm_Store()", err.Error())
+	}
 
 	return err
 }
@@ -87,10 +98,31 @@ func Firm_Store(r dm.Firm,req *http.Request) error {
 // Firm_StoreSystem() saves/stores a Firm record to the database
 func Firm_StoreSystem(r dm.Firm) error {
 	
-	err := firm_Save(r,Audit_Host())
+	err, r := Firm_Validate(r)
+	if err == nil {
+		err = firm_Save(r, Audit_Host())
+	} else {
+		logs.Information("Firm_Store()", err.Error())
+	}
 
 	return err
 }
+
+// Firm_Validate() validates for saves/stores a Firm record to the database
+func Firm_Validate(r dm.Firm) (error,dm.Firm) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	//
+	
+
+	return err,r
+}
+//
 
 // firm_Save() saves/stores a Firm record to the database
 func firm_Save(r dm.Firm,usr string) error {
@@ -147,7 +179,7 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.FirmName  = get_String(rec, dm.Firm_FirmName_sql, "")
 	   recItem.FullName  = get_String(rec, dm.Firm_FullName_sql, "")
@@ -161,7 +193,7 @@ func firm_Fetch(tsql string) (int, []dm.Firm, dm.Firm, error) {
 	
 	
 	// 
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -181,7 +213,24 @@ func Firm_NewID(r dm.Firm) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
 
+
+// firm_Fetch read all Firm's
+func Firm_New() (int, []dm.Firm, dm.Firm, error) {
+
+	var r = dm.Firm{}
+	var rList []dm.Firm
+	
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

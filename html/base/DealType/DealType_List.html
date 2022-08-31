@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
       <div class="card">
@@ -8,21 +9,23 @@
                 <div class="col d-flex"><h3><i class="fas fa-toolbox me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
                   <form action="/home" method="GET">
-                    <div class="btn-group">
+                    <div class="btn-group" id="ActionButtonGroup">
                     <button type="submit" value="" class="btn btn-primary" formaction="/DealTypeNew" method="GET" title="Create a new Deal Type"><i class="fas fa-plus me-2"></i>New</button>
-                    <button id="export" type="button" class="btn btn-info" title="Export Deal Type as CSV"><i class="fas fa-file-csv me-2"></i>Export</button>
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Deal Type"><i class="fas fa-print me-2"></i></i>Print</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-              <div class="card-body">
-                  <div class="datatable table-hover table-responsive table-hover">
-                    <table class="table" id="ListTable">
-                      <thead class="thead-light">
-                        <tr>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
                           <th class="text-center"><i class="fas fa-key me-2"></i>DealTypeKey</th>
                           <th class="text-center">DealTypeShortName</th>
                           <th class="text-center">HostKey</th>
@@ -92,12 +95,48 @@
                         </tr>
                         {{end}}
                       </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          <th class="text-center"><i class="fas fa-key me-2"></i>DealTypeKey</th>
+                          <th class="text-center">DealTypeShortName</th>
+                          <th class="text-center">HostKey</th>
+                          <th class="text-center">IsActive</th>
+                          <th class="text-center">Interbook</th>
+                          <th class="text-center">BackOfficeLink</th>
+                          <th class="text-center">HasTicket</th>
+                          <th class="text-center">CurrencyOverride</th>
+                          <th class="text-center">CurrencyHolderCurrency</th>
+                          <th class="text-center">AllBooks</th>
+                          <th class="text-center">FundamentalDealTypeKey</th>
+                          <th class="text-center">RelatedDealType</th>
+                          <th class="text-center">BookName</th>
+                          <th class="text-center">ExportMethod</th>
+                          <th class="text-center">DefaultUserLayoffBooks</th>
+                          <th class="text-center">RFQ</th>
+                          <th class="text-center">OBS</th>
+                          <th class="text-center">KID</th>
+                          <th class="text-center">InternalId</th>
+                          <th class="text-center">InternalDeleted</th>
+                          <th class="text-center">UpdatedTransactionId</th>
+                          <th class="text-center">UpdatedUserId</th>
+                          <th class="text-center">UpdatedDateTime</th>
+                          <th class="text-center">DeletedTransactionId</th>
+                          <th class="text-center">DeletedUserId</th>
+                          <th class="text-center">ChangeType</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
                     </table>
-                  </div>
-              </div>
+            
+
+            </div>
         </form>
       </div>
 
+
+
+
 {{template "userfooter" .}}
 {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}

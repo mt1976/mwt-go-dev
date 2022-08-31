@@ -90,8 +90,8 @@ func ListSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 		UserMenu:          UserMenu_Get(r),
 		UserRole:          core.GetUserRole(r),
 		UserNavi:          "NOT USED",
-		Title:             core.ApplicationProperties["appname"],
-		PageTitle:         core.ApplicationProperties["appname"] + " - " + "Sessions",
+		Title:             core.GetAppName(),
+		PageTitle:         core.GetAppName() + " - " + "Sessions",
 		SessionStoreCount: noItems,
 		SessionStoreList:  returnList,
 	}
@@ -119,8 +119,8 @@ func ViewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := dao.GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - View",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Session - View",
 		Action:    "",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
@@ -175,8 +175,8 @@ func EditSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	_, returnRecord, _ := dao.GetSessionStoreByID(searchID)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - Edit",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Session - Edit",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -325,8 +325,8 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	pageSessionStoreList := appSessionStorePage{
-		Title:     core.ApplicationProperties["appname"],
-		PageTitle: core.ApplicationProperties["appname"] + " - " + "Session - New",
+		Title:     core.GetAppName(),
+		PageTitle: core.GetAppName() + " - " + "Session - New",
 		UserMenu:  UserMenu_Get(r),
 		UserRole:  core.GetUserRole(r),
 		UserNavi:  "NOT USED",
@@ -343,7 +343,7 @@ func NewSessionStoreHandler(w http.ResponseWriter, r *http.Request) {
 
 func getSessionExpiryTime() string {
 	expiryDate := time.Now()
-	life, _ := strconv.Atoi(core.ApplicationProperties["credentialslife"])
+	life, _ := strconv.Atoi(core.ApplicationCredentialsLife())
 	expiryDate = expiryDate.AddDate(0, 0, life)
 	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }

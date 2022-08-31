@@ -1,11 +1,10 @@
 
-    {
-      "ID": "0c508924-d0e1-4434-ae12-67f40b6b2e27",
-      "Text": "SWIFT Simulator",
-      "Glyph": "fas fa-globe",
-      "HREF": "/SimulatorSWIFTList",
-      "OnClick": "",
-      "TextClass": "text-primary"
+   '{
+      "MenuID": "cab36c27-f467-4201-8582-5fb8604ee119",
+      "MenuText": "SWIFT Simulator",
+      "MenuGlyph": "fas fa-globe",
+      "MenuHREF": "/SimulatorSWIFTList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-primary"
     }
-    ,
     

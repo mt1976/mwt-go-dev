@@ -19,479 +19,651 @@
           </div>
         </div>
         <div class="card-body">
-            <div class="row mb-3" ><div class="col">
-        
+      
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  value="{{.NameFirm}}" required data-mdb-input-mask="">
-                <label class="form-label" for="NameFirm" >NameFirm</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.NameFirm_props.MsgType}}" id="NameFirm" name="NameFirm" aria-describedby="NameFirmHelp" placeholder=""  value="{{.NameFirm}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="NameFirm" >NameFirm</label>
+              <div class="{{.NameFirm_props.MsgFeedBackType}}">{{.NameFirm_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  value="{{.NameCentre}}" required data-mdb-input-mask="">
-                <label class="form-label" for="NameCentre" >NameCentre</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.NameCentre_props.MsgType}}" id="NameCentre" name="NameCentre" aria-describedby="NameCentreHelp" placeholder=""  value="{{.NameCentre}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="NameCentre" >NameCentre</label>
+              <div class="{{.NameCentre_props.MsgFeedBackType}}">{{.NameCentre_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="BICCode" name="BICCode" aria-describedby="BICCodeHelp" placeholder=""  value="{{.BICCode}}"  data-mdb-input-mask="">
-                <label class="form-label" for="BICCode" >BICCode</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.BICCode_props.MsgType}}" id="BICCode" name="BICCode" aria-describedby="BICCodeHelp" placeholder=""  value="{{.BICCode}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="BICCode" >BICCode</label>
+              <div class="{{.BICCode_props.MsgFeedBackType}}">{{.BICCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="ContactIndicator" name="ContactIndicator" aria-describedby="ContactIndicatorHelp" placeholder="True"  value="{{.ContactIndicator}}"  data-mdb-input-mask="">
-                <label class="form-label" for="ContactIndicator" >ContactIndicator</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.ContactIndicator_props.MsgType}}" id="ContactIndicator" name="ContactIndicator" aria-describedby="ContactIndicatorHelp" placeholder="True"  value="{{.ContactIndicator}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="ContactIndicator" >ContactIndicator</label>
+              <div class="{{.ContactIndicator_props.MsgFeedBackType}}">{{.ContactIndicator_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CoverTrade" name="CoverTrade" aria-describedby="CoverTradeHelp" placeholder="True"  value="{{.CoverTrade}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CoverTrade" >CoverTrade</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CoverTrade_props.MsgType}}" id="CoverTrade" name="CoverTrade" aria-describedby="CoverTradeHelp" placeholder="True"  value="{{.CoverTrade}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CoverTrade" >CoverTrade</label>
+              <div class="{{.CoverTrade_props.MsgFeedBackType}}">{{.CoverTrade_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""  value="{{.CustomerCategory}}"  data-mdb-input-mask="">
-                <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.CustomerCategory_props.MsgType}}" id="CustomerCategory" name="CustomerCategory" aria-describedby="CustomerCategoryHelp" placeholder=""  value="{{.CustomerCategory}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CustomerCategory" >CustomerCategory</label>
+              <div class="{{.CustomerCategory_props.MsgFeedBackType}}">{{.CustomerCategory_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="FSCSInclusive" name="FSCSInclusive" aria-describedby="FSCSInclusiveHelp" placeholder="True"  value="{{.FSCSInclusive}}"  data-mdb-input-mask="">
-                <label class="form-label" for="FSCSInclusive" >FSCSInclusive</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.FSCSInclusive_props.MsgType}}" id="FSCSInclusive" name="FSCSInclusive" aria-describedby="FSCSInclusiveHelp" placeholder="True"  value="{{.FSCSInclusive}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="FSCSInclusive" >FSCSInclusive</label>
+              <div class="{{.FSCSInclusive_props.MsgFeedBackType}}">{{.FSCSInclusive_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="FeeFactor" name="FeeFactor" aria-describedby="FeeFactorHelp" placeholder="0.00"  value="{{.FeeFactor}}"  data-mdb-input-mask="">
-                <label class="form-label" for="FeeFactor" >FeeFactor</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.FeeFactor_props.MsgType}}" id="FeeFactor" name="FeeFactor" aria-describedby="FeeFactorHelp" placeholder="0.00"  value="{{.FeeFactor}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="FeeFactor" >FeeFactor</label>
+              <div class="{{.FeeFactor_props.MsgFeedBackType}}">{{.FeeFactor_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="InactiveStatus" name="InactiveStatus" aria-describedby="InactiveStatusHelp" placeholder="True"  value="{{.InactiveStatus}}"  data-mdb-input-mask="">
-                <label class="form-label" for="InactiveStatus" >InactiveStatus</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.InactiveStatus_props.MsgType}}" id="InactiveStatus" name="InactiveStatus" aria-describedby="InactiveStatusHelp" placeholder="True"  value="{{.InactiveStatus}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="InactiveStatus" >InactiveStatus</label>
+              <div class="{{.InactiveStatus_props.MsgFeedBackType}}">{{.InactiveStatus_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Indemnity" name="Indemnity" aria-describedby="IndemnityHelp" placeholder="True"  value="{{.Indemnity}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Indemnity" >Indemnity</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Indemnity_props.MsgType}}" id="Indemnity" name="Indemnity" aria-describedby="IndemnityHelp" placeholder="True"  value="{{.Indemnity}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Indemnity" >Indemnity</label>
+              <div class="{{.Indemnity_props.MsgFeedBackType}}">{{.Indemnity_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatusHelp" placeholder="True"  value="{{.KnowYourCustomerStatus}}"  data-mdb-input-mask="">
-                <label class="form-label" for="KnowYourCustomerStatus" >KnowYourCustomerStatus</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.KnowYourCustomerStatus_props.MsgType}}" id="KnowYourCustomerStatus" name="KnowYourCustomerStatus" aria-describedby="KnowYourCustomerStatusHelp" placeholder="True"  value="{{.KnowYourCustomerStatus}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="KnowYourCustomerStatus" >KnowYourCustomerStatus</label>
+              <div class="{{.KnowYourCustomerStatus_props.MsgFeedBackType}}">{{.KnowYourCustomerStatus_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="LERLimitCarveOut" name="LERLimitCarveOut" aria-describedby="LERLimitCarveOutHelp" placeholder="True"  value="{{.LERLimitCarveOut}}"  data-mdb-input-mask="">
-                <label class="form-label" for="LERLimitCarveOut" >LERLimitCarveOut</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.LERLimitCarveOut_props.MsgType}}" id="LERLimitCarveOut" name="LERLimitCarveOut" aria-describedby="LERLimitCarveOutHelp" placeholder="True"  value="{{.LERLimitCarveOut}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="LERLimitCarveOut" >LERLimitCarveOut</label>
+              <div class="{{.LERLimitCarveOut_props.MsgFeedBackType}}">{{.LERLimitCarveOut_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="LastAmended" name="LastAmended" aria-describedby="LastAmendedHelp" placeholder=""  value="{{.LastAmended}}"  data-mdb-input-mask="">
-                <label class="form-label" for="LastAmended" >LastAmended</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.LastAmended_props.MsgType}}" id="LastAmended" name="LastAmended" aria-describedby="LastAmendedHelp" placeholder=""  value="{{.LastAmended}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="LastAmended" >LastAmended</label>
+              <div class="{{.LastAmended_props.MsgFeedBackType}}">{{.LastAmended_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="LastLogin" name="LastLogin" aria-describedby="LastLoginHelp" placeholder=""  value="{{.LastLogin}}"  data-mdb-input-mask="">
-                <label class="form-label" for="LastLogin" >LastLogin</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.LastLogin_props.MsgType}}" id="LastLogin" name="LastLogin" aria-describedby="LastLoginHelp" placeholder=""  value="{{.LastLogin}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="LastLogin" >LastLogin</label>
+              <div class="{{.LastLogin_props.MsgFeedBackType}}">{{.LastLogin_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="LossGivenDefault" name="LossGivenDefault" aria-describedby="LossGivenDefaultHelp" placeholder="0.00"  value="{{.LossGivenDefault}}"  data-mdb-input-mask="">
-                <label class="form-label" for="LossGivenDefault" >LossGivenDefault</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.LossGivenDefault_props.MsgType}}" id="LossGivenDefault" name="LossGivenDefault" aria-describedby="LossGivenDefaultHelp" placeholder="0.00"  value="{{.LossGivenDefault}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="LossGivenDefault" >LossGivenDefault</label>
+              <div class="{{.LossGivenDefault_props.MsgFeedBackType}}">{{.LossGivenDefault_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="MIC" name="MIC" aria-describedby="MICHelp" placeholder=""  value="{{.MIC}}"  data-mdb-input-mask="">
-                <label class="form-label" for="MIC" >MIC</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.MIC_props.MsgType}}" id="MIC" name="MIC" aria-describedby="MICHelp" placeholder=""  value="{{.MIC}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="MIC" >MIC</label>
+              <div class="{{.MIC_props.MsgFeedBackType}}">{{.MIC_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="ProtectedDepositor" name="ProtectedDepositor" aria-describedby="ProtectedDepositorHelp" placeholder="True"  value="{{.ProtectedDepositor}}"  data-mdb-input-mask="">
-                <label class="form-label" for="ProtectedDepositor" >ProtectedDepositor</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.ProtectedDepositor_props.MsgType}}" id="ProtectedDepositor" name="ProtectedDepositor" aria-describedby="ProtectedDepositorHelp" placeholder="True"  value="{{.ProtectedDepositor}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="ProtectedDepositor" >ProtectedDepositor</label>
+              <div class="{{.ProtectedDepositor_props.MsgFeedBackType}}">{{.ProtectedDepositor_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="RPTCurrency" name="RPTCurrency" aria-describedby="RPTCurrencyHelp" placeholder=""  value="{{.RPTCurrency}}"  data-mdb-input-mask="">
-                <label class="form-label" for="RPTCurrency" >RPTCurrency</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.RPTCurrency_props.MsgType}}" id="RPTCurrency" name="RPTCurrency" aria-describedby="RPTCurrencyHelp" placeholder=""  value="{{.RPTCurrency}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="RPTCurrency" >RPTCurrency</label>
+              <div class="{{.RPTCurrency_props.MsgFeedBackType}}">{{.RPTCurrency_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="RateTimeout" name="RateTimeout" aria-describedby="RateTimeoutHelp" placeholder="0"  value="{{.RateTimeout}}"  data-mdb-input-mask="">
-                <label class="form-label" for="RateTimeout" >RateTimeout</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.RateTimeout_props.MsgType}}" id="RateTimeout" name="RateTimeout" aria-describedby="RateTimeoutHelp" placeholder="0"  value="{{.RateTimeout}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="RateTimeout" >RateTimeout</label>
+              <div class="{{.RateTimeout_props.MsgFeedBackType}}">{{.RateTimeout_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="RateValidation" name="RateValidation" aria-describedby="RateValidationHelp" placeholder=""  value="{{.RateValidation}}"  data-mdb-input-mask="">
-                <label class="form-label" for="RateValidation" >RateValidation</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.RateValidation_props.MsgType}}" id="RateValidation" name="RateValidation" aria-describedby="RateValidationHelp" placeholder=""  value="{{.RateValidation}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="RateValidation" >RateValidation</label>
+              <div class="{{.RateValidation_props.MsgFeedBackType}}">{{.RateValidation_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Registered" name="Registered" aria-describedby="RegisteredHelp" placeholder="True"  value="{{.Registered}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Registered" >Registered</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Registered_props.MsgType}}" id="Registered" name="Registered" aria-describedby="RegisteredHelp" placeholder="True"  value="{{.Registered}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Registered" >Registered</label>
+              <div class="{{.Registered_props.MsgFeedBackType}}">{{.Registered_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="RegulatoryCategory" name="RegulatoryCategory" aria-describedby="RegulatoryCategoryHelp" placeholder=""  value="{{.RegulatoryCategory}}"  data-mdb-input-mask="">
-                <label class="form-label" for="RegulatoryCategory" >RegulatoryCategory</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.RegulatoryCategory_props.MsgType}}" id="RegulatoryCategory" name="RegulatoryCategory" aria-describedby="RegulatoryCategoryHelp" placeholder=""  value="{{.RegulatoryCategory}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="RegulatoryCategory" >RegulatoryCategory</label>
+              <div class="{{.RegulatoryCategory_props.MsgFeedBackType}}">{{.RegulatoryCategory_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="SecuredSettlement" name="SecuredSettlement" aria-describedby="SecuredSettlementHelp" placeholder="True"  value="{{.SecuredSettlement}}"  data-mdb-input-mask="">
-                <label class="form-label" for="SecuredSettlement" >SecuredSettlement</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.SecuredSettlement_props.MsgType}}" id="SecuredSettlement" name="SecuredSettlement" aria-describedby="SecuredSettlementHelp" placeholder="True"  value="{{.SecuredSettlement}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SecuredSettlement" >SecuredSettlement</label>
+              <div class="{{.SecuredSettlement_props.MsgFeedBackType}}">{{.SecuredSettlement_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="SettlementLimitCarveOut" name="SettlementLimitCarveOut" aria-describedby="SettlementLimitCarveOutHelp" placeholder="True"  value="{{.SettlementLimitCarveOut}}"  data-mdb-input-mask="">
-                <label class="form-label" for="SettlementLimitCarveOut" >SettlementLimitCarveOut</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.SettlementLimitCarveOut_props.MsgType}}" id="SettlementLimitCarveOut" name="SettlementLimitCarveOut" aria-describedby="SettlementLimitCarveOutHelp" placeholder="True"  value="{{.SettlementLimitCarveOut}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SettlementLimitCarveOut" >SettlementLimitCarveOut</label>
+              <div class="{{.SettlementLimitCarveOut_props.MsgFeedBackType}}">{{.SettlementLimitCarveOut_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="SortCode" name="SortCode" aria-describedby="SortCodeHelp" placeholder=""  value="{{.SortCode}}"  data-mdb-input-mask="">
-                <label class="form-label" for="SortCode" >SortCode</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.SortCode_props.MsgType}}" id="SortCode" name="SortCode" aria-describedby="SortCodeHelp" placeholder=""  value="{{.SortCode}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SortCode" >SortCode</label>
+              <div class="{{.SortCode_props.MsgFeedBackType}}">{{.SortCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder="True"  value="{{.Training}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Training" >Training</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Training_props.MsgType}}" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder="True"  value="{{.Training}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Training" >Training</label>
+              <div class="{{.Training_props.MsgFeedBackType}}">{{.Training_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCodeHelp" placeholder=""  value="{{.TrainingCode}}"  data-mdb-input-mask="">
-                <label class="form-label" for="TrainingCode" >TrainingCode</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.TrainingCode_props.MsgType}}" id="TrainingCode" name="TrainingCode" aria-describedby="TrainingCodeHelp" placeholder=""  value="{{.TrainingCode}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="TrainingCode" >TrainingCode</label>
+              <div class="{{.TrainingCode_props.MsgFeedBackType}}">{{.TrainingCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceivedHelp" placeholder="True"  value="{{.TrainingReceived}}"  data-mdb-input-mask="">
-                <label class="form-label" for="TrainingReceived" >TrainingReceived</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.TrainingReceived_props.MsgType}}" id="TrainingReceived" name="TrainingReceived" aria-describedby="TrainingReceivedHelp" placeholder="True"  value="{{.TrainingReceived}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="TrainingReceived" >TrainingReceived</label>
+              <div class="{{.TrainingReceived_props.MsgFeedBackType}}">{{.TrainingReceived_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Unencumbered" name="Unencumbered" aria-describedby="UnencumberedHelp" placeholder="True"  value="{{.Unencumbered}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Unencumbered" >Unencumbered</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Unencumbered_props.MsgType}}" id="Unencumbered" name="Unencumbered" aria-describedby="UnencumberedHelp" placeholder="True"  value="{{.Unencumbered}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Unencumbered" >Unencumbered</label>
+              <div class="{{.Unencumbered_props.MsgFeedBackType}}">{{.Unencumbered_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDateHelp" placeholder=""  value="{{.LEIExpiryDate}}"  data-mdb-input-mask="">
-                <label class="form-label" for="LEIExpiryDate" >LEIExpiryDate</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.LEIExpiryDate_props.MsgType}}" id="LEIExpiryDate" name="LEIExpiryDate" aria-describedby="LEIExpiryDateHelp" placeholder=""  value="{{.LEIExpiryDate}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="LEIExpiryDate" >LEIExpiryDate</label>
+              <div class="{{.LEIExpiryDate_props.MsgFeedBackType}}">{{.LEIExpiryDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDateHelp" placeholder=""  value="{{.MIFIDReviewDate}}"  data-mdb-input-mask="">
-                <label class="form-label" for="MIFIDReviewDate" >MIFIDReviewDate</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.MIFIDReviewDate_props.MsgType}}" id="MIFIDReviewDate" name="MIFIDReviewDate" aria-describedby="MIFIDReviewDateHelp" placeholder=""  value="{{.MIFIDReviewDate}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="MIFIDReviewDate" >MIFIDReviewDate</label>
+              <div class="{{.MIFIDReviewDate_props.MsgFeedBackType}}">{{.MIFIDReviewDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDateHelp" placeholder=""  value="{{.GDPRReviewDate}}"  data-mdb-input-mask="">
-                <label class="form-label" for="GDPRReviewDate" >GDPRReviewDate</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.GDPRReviewDate_props.MsgType}}" id="GDPRReviewDate" name="GDPRReviewDate" aria-describedby="GDPRReviewDateHelp" placeholder=""  value="{{.GDPRReviewDate}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="GDPRReviewDate" >GDPRReviewDate</label>
+              <div class="{{.GDPRReviewDate_props.MsgFeedBackType}}">{{.GDPRReviewDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReportingHelp" placeholder=""  value="{{.DelegatedReporting}}"  data-mdb-input-mask="">
-                <label class="form-label" for="DelegatedReporting" >DelegatedReporting</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.DelegatedReporting_props.MsgType}}" id="DelegatedReporting" name="DelegatedReporting" aria-describedby="DelegatedReportingHelp" placeholder=""  value="{{.DelegatedReporting}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="DelegatedReporting" >DelegatedReporting</label>
+              <div class="{{.DelegatedReporting_props.MsgFeedBackType}}">{{.DelegatedReporting_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="BOReconcile" name="BOReconcile" aria-describedby="BOReconcileHelp" placeholder="True"  value="{{.BOReconcile}}"  data-mdb-input-mask="">
-                <label class="form-label" for="BOReconcile" >BOReconcile</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.BOReconcile_props.MsgType}}" id="BOReconcile" name="BOReconcile" aria-describedby="BOReconcileHelp" placeholder="True"  value="{{.BOReconcile}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="BOReconcile" >BOReconcile</label>
+              <div class="{{.BOReconcile_props.MsgFeedBackType}}">{{.BOReconcile_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowedHelp" placeholder="True"  value="{{.MIFIDReportableDealsAllowed}}"  data-mdb-input-mask="">
-                <label class="form-label" for="MIFIDReportableDealsAllowed" >MIFIDReportableDealsAllowed</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.MIFIDReportableDealsAllowed_props.MsgType}}" id="MIFIDReportableDealsAllowed" name="MIFIDReportableDealsAllowed" aria-describedby="MIFIDReportableDealsAllowedHelp" placeholder="True"  value="{{.MIFIDReportableDealsAllowed}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="MIFIDReportableDealsAllowed" >MIFIDReportableDealsAllowed</label>
+              <div class="{{.MIFIDReportableDealsAllowed_props.MsgFeedBackType}}">{{.MIFIDReportableDealsAllowed_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreementHelp" placeholder="True"  value="{{.SignedInvestmentAgreement}}"  data-mdb-input-mask="">
-                <label class="form-label" for="SignedInvestmentAgreement" >SignedInvestmentAgreement</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.SignedInvestmentAgreement_props.MsgType}}" id="SignedInvestmentAgreement" name="SignedInvestmentAgreement" aria-describedby="SignedInvestmentAgreementHelp" placeholder="True"  value="{{.SignedInvestmentAgreement}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SignedInvestmentAgreement" >SignedInvestmentAgreement</label>
+              <div class="{{.SignedInvestmentAgreement_props.MsgFeedBackType}}">{{.SignedInvestmentAgreement_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessmentHelp" placeholder="True"  value="{{.AppropriatenessAssessment}}"  data-mdb-input-mask="">
-                <label class="form-label" for="AppropriatenessAssessment" >AppropriatenessAssessment</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.AppropriatenessAssessment_props.MsgType}}" id="AppropriatenessAssessment" name="AppropriatenessAssessment" aria-describedby="AppropriatenessAssessmentHelp" placeholder="True"  value="{{.AppropriatenessAssessment}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="AppropriatenessAssessment" >AppropriatenessAssessment</label>
+              <div class="{{.AppropriatenessAssessment_props.MsgFeedBackType}}">{{.AppropriatenessAssessment_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="FinancialCounterparty" name="FinancialCounterparty" aria-describedby="FinancialCounterpartyHelp" placeholder="True"  value="{{.FinancialCounterparty}}"  data-mdb-input-mask="">
-                <label class="form-label" for="FinancialCounterparty" >FinancialCounterparty</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.FinancialCounterparty_props.MsgType}}" id="FinancialCounterparty" name="FinancialCounterparty" aria-describedby="FinancialCounterpartyHelp" placeholder="True"  value="{{.FinancialCounterparty}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="FinancialCounterparty" >FinancialCounterparty</label>
+              <div class="{{.FinancialCounterparty_props.MsgFeedBackType}}">{{.FinancialCounterparty_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="Collateralisation" name="Collateralisation" aria-describedby="CollateralisationHelp" placeholder=""  value="{{.Collateralisation}}"  data-mdb-input-mask="">
-                <label class="form-label" for="Collateralisation" >Collateralisation</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.Collateralisation_props.MsgType}}" id="Collateralisation" name="Collateralisation" aria-describedby="CollateralisationHelp" placeholder=""  value="{{.Collateralisation}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Collateralisation" >Collateralisation</label>
+              <div class="{{.Collateralisation_props.MsgFeedBackType}}">{{.Collateralisation_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCodeHelp" placeholder=""  value="{{.PortfolioCode}}"  data-mdb-input-mask="">
-                <label class="form-label" for="PortfolioCode" >PortfolioCode</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.PortfolioCode_props.MsgType}}" id="PortfolioCode" name="PortfolioCode" aria-describedby="PortfolioCodeHelp" placeholder=""  value="{{.PortfolioCode}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="PortfolioCode" >PortfolioCode</label>
+              <div class="{{.PortfolioCode_props.MsgFeedBackType}}">{{.PortfolioCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="ReconciliationLetterFrequency" name="ReconciliationLetterFrequency" aria-describedby="ReconciliationLetterFrequencyHelp" placeholder=""  value="{{.ReconciliationLetterFrequency}}"  data-mdb-input-mask="">
-                <label class="form-label" for="ReconciliationLetterFrequency" >ReconciliationLetterFrequency</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.ReconciliationLetterFrequency_props.MsgType}}" id="ReconciliationLetterFrequency" name="ReconciliationLetterFrequency" aria-describedby="ReconciliationLetterFrequencyHelp" placeholder=""  value="{{.ReconciliationLetterFrequency}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="ReconciliationLetterFrequency" >ReconciliationLetterFrequency</label>
+              <div class="{{.ReconciliationLetterFrequency_props.MsgFeedBackType}}">{{.ReconciliationLetterFrequency_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="DirectDealing" name="DirectDealing" aria-describedby="DirectDealingHelp" placeholder="True"  value="{{.DirectDealing}}"  data-mdb-input-mask="">
-                <label class="form-label" for="DirectDealing" >DirectDealing</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
-            <div class="row mb-3" ><div class="col">
-        
+            
+                <input type="text" class="form-control {{.DirectDealing_props.MsgType}}" id="DirectDealing" name="DirectDealing" aria-describedby="DirectDealingHelp" placeholder="True"  value="{{.DirectDealing}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="DirectDealing" >DirectDealing</label>
+              <div class="{{.DirectDealing_props.MsgFeedBackType}}">{{.DirectDealing_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
          
-                    <div class="form-outline">
-                           <input type="text" class="form-control" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required data-mdb-input-mask="">
-                <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
-                    </div>
-                    
-        
+            <div class="form-outline">
 
-            </div></div>
+            
+                <input type="text" class="form-control {{.CompID_props.MsgType}}" id="CompID" name="CompID" aria-describedby="CompIDHelp" placeholder=""  value="{{.CompID}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="CompID" ><i class="fas fa-key me-2"></i>CompID</label>
+              <div class="{{.CompID_props.MsgFeedBackType}}">{{.CompID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
 
      
         </div>

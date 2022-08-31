@@ -52,7 +52,7 @@ SQL Table Key | **CompID**
 |**Active**|Bool|false|true|false|false|LL|tf|||Y|Active|True|false|false|false|text||
 |**FirstName**|String|false|true|false|false|||||Y|FirstName||false|false|false|text||
 |**Surname**|String|false|true|false|false|||||Y|Surname||false|false|false|text||
-|**DateOfBirth**|Time|false|true|false|true|||||Y|DateOfBirth||false|false|false|date||
+|**DateOfBirth**|Time|false|true|false|true|||||Y|DateOfBirth||false|false|false|date|dd/mm/yyyy|
 |**Postcode**|String|false|true|false|false|||||Y|Postcode||false|false|false|text||
 |**NationalIDNo**|String|false|true|false|false|||||Y|NationalIDNo||false|false|false|text||
 |**PassportNo**|String|false|true|false|false|||||Y|PassportNo||false|false|false|text||
@@ -84,7 +84,7 @@ SQL Table Key | **CompID**
 |   |   |
 |---|---|
 Template Generator Version   | **delinquentDysprosium [r4-21.12.31]**
-Date & Time		     | **17/06/2022** at **18:38:12**
+Date & Time		     | **28/06/2022** at **16:10:54**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

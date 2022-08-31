@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/mwt-go-dev/
 // ----------------------------------------------------------------
 // Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 17/06/2022 at 18:38:09
+// Date & Time		    : 28/06/2022 at 16:10:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ import (
 // DataLoaderMap_GetList() returns a list of all DataLoaderMap records
 func DataLoaderMap_GetList() (int, []dm.DataLoaderMap, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderMap_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.DataLoaderMap_SQLTable)
 	count, dataloadermapList, _, _ := dataloadermap_Fetch(tsql)
 
 	return count, dataloadermapList, nil
@@ -37,17 +37,23 @@ func DataLoaderMap_GetList() (int, []dm.DataLoaderMap, error) {
 // DataLoaderMap_GetByID() returns a single DataLoaderMap record
 func DataLoaderMap_GetByID(id string) (int, dm.DataLoaderMap, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderMap_SQLTable)
+	tsql := "SELECT * FROM " + get_TableName(core.ApplicationSQLSchema(), dm.DataLoaderMap_SQLTable)
 	tsql = tsql + " WHERE " + dm.DataLoaderMap_SQLSearchID + "='" + id + "'"
 	_, _, dataloadermapItem, _ := dataloadermap_Fetch(tsql)
 
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	return 1, dataloadermapItem, nil
 }
 
 // DataLoaderMap_DeleteByID() deletes a single DataLoaderMap record
 func DataLoaderMap_Delete(id string) {
 
-	object_Table := core.ApplicationPropertiesDB["schema"] + "." + dm.DataLoaderMap_SQLTable
+	object_Table := core.ApplicationSQLSchema() + "." + dm.DataLoaderMap_SQLTable
 	tsql := "DELETE FROM " + object_Table
 	tsql = tsql + " WHERE " + dm.DataLoaderMap_SQLSearchID + " = '" + id + "'"
 
@@ -58,7 +64,12 @@ func DataLoaderMap_Delete(id string) {
 // DataLoaderMap_Store() saves/stores a DataLoaderMap record to the database
 func DataLoaderMap_Store(r dm.DataLoaderMap, req *http.Request) error {
 
-	err := dataloadermap_Save(r, Audit_User(req))
+	err, r := DataLoaderMap_Validate(r)
+	if err == nil {
+		err = dataloadermap_Save(r, Audit_User(req))
+	} else {
+		logs.Information("DataLoaderMap_Store()", err.Error())
+	}
 
 	return err
 }
@@ -66,10 +77,31 @@ func DataLoaderMap_Store(r dm.DataLoaderMap, req *http.Request) error {
 // DataLoaderMap_StoreSystem() saves/stores a DataLoaderMap record to the database
 func DataLoaderMap_StoreSystem(r dm.DataLoaderMap) error {
 
-	err := dataloadermap_Save(r, Audit_Host())
+	err, r := DataLoaderMap_Validate(r)
+	if err == nil {
+		err = dataloadermap_Save(r, Audit_Host())
+	} else {
+		logs.Information("DataLoaderMap_Store()", err.Error())
+	}
 
 	return err
 }
+
+// DataLoaderMap_Validate() validates for saves/stores a DataLoaderMap record to the database
+func DataLoaderMap_Validate(r dm.DataLoaderMap) (error, dm.DataLoaderMap) {
+	var err error
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+	//
+
+	return err, r
+}
+
+//
 
 // dataloadermap_Save() saves/stores a DataLoaderMap record to the database
 func dataloadermap_Save(r dm.DataLoaderMap, usr string) error {
@@ -88,7 +120,7 @@ func dataloadermap_Save(r dm.DataLoaderMap, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.DataLoaderMap_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DataLoaderMap_Id_sql, r.Id)
@@ -106,10 +138,10 @@ func dataloadermap_Save(r dm.DataLoaderMap, usr string) error {
 	ts = addData(ts, dm.DataLoaderMap_SYSUpdatedHost_sql, r.SYSUpdatedHost)
 
 	//
-	// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.ApplicationPropertiesDB["schema"], dm.DataLoaderMap_SQLTable)
+	tsql := "INSERT INTO " + get_TableName(core.ApplicationSQLSchema(), dm.DataLoaderMap_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " VALUES (" + values(ts) + ")"
 
@@ -135,7 +167,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.DataLoaderMap_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.DataLoaderMap_Id_sql, "")
@@ -155,7 +187,7 @@ func dataloadermap_Fetch(tsql string) (int, []dm.DataLoaderMap, dm.DataLoaderMap
 		// If there are fields below, create the methods in adaptor\DataLoaderMap_impl.go
 
 		//
-		// Dynamically generated 17/06/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -173,6 +205,20 @@ func DataLoaderMap_NewID(r dm.DataLoaderMap) string {
 	return id
 }
 
-// ----------------------------------------------------------------
-// ADD Aditional Functions below this line
-// ----------------------------------------------------------------
+// dataloadermap_Fetch read all DataLoaderMap's
+func DataLoaderMap_New() (int, []dm.DataLoaderMap, dm.DataLoaderMap, error) {
+
+	var r = dm.DataLoaderMap{}
+	var rList []dm.DataLoaderMap
+
+	// START
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+
+	rList = append(rList, r)
+
+	return 1, rList, r, nil
+}

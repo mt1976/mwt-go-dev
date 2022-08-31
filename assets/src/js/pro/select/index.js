@@ -209,6 +209,10 @@ class Select {
       config.disabled = true;
     }
 
+    if (this._element.tabIndex) {
+      config.tabIndex = this._element.getAttribute('tabIndex');
+    }
+
     typeCheckConfig(NAME, config, DefaultType);
 
     return config;
@@ -829,7 +833,7 @@ class Select {
   }
 
   _appendFakeValue() {
-    if (!this._selectionModel.selection) {
+    if (!this._selectionModel.selection || this._selectionModel._multiple) {
       return;
     }
 
@@ -1139,6 +1143,9 @@ class Select {
     if (this._config.filter) {
       this._resetFilterState();
       this._updateOptionsListTemplate(this._optionsToRender);
+      if (this._config.multiple) {
+        this._updateSelectAllState();
+      }
     }
 
     this._removeDropdownEvents();

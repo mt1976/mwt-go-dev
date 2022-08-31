@@ -1,11 +1,10 @@
 
-    {
-      "ID": "16916c1e-ea70-4d6a-acfe-75857608b08e",
-      "Text": "Account Transaction",
-      "Glyph": "fas fa-landmark",
-      "HREF": "/AccountTransactionList",
-      "OnClick": "",
-      "TextClass": ""
+   '{
+      "MenuID": "0f8c0dec-703e-4d6a-bb10-c3c2f98f030c",
+      "MenuText": "Account Transaction",
+      "MenuGlyph": "fas fa-landmark",
+      "MenuHREF": "/AccountTransactionList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
     }
-    ,
     
