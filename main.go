@@ -113,6 +113,7 @@ func main() {
 	application.NegotiableInstrument_Publish(*mux)
 	application.NegotiableInstrument_Publish_Impl(*mux)
 
+<<<<<<< Updated upstream
 	//application.CMNotes_Publish(*mux) - DEPREICATED
 	application.CounterpartyNotes_Publish(*mux)
 	application.CounterpartyOnboarding_Publish(*mux)
@@ -157,6 +158,10 @@ func main() {
 	//	monitors.Start()
 	logs.Success("Watchers Started")
 	Application_Info()
+=======
+	siena.RateImporterTest()
+
+>>>>>>> Stashed changes
 	//scheduler.RunJobLSE("")
 	//scheduler.RunJobFII("")
 	//jobs.RatesFXSpot_Run()
